@@ -176,6 +176,46 @@ def _numerize(text: str) -> str:
     )
 
 
+_HAZARD_FP_CMP_RE = re.compile(r"^\s*c\.[a-z]+\.[sd]\b")
+
+
+def _is_ee_fp_hazard_producer(line: str) -> bool:
+    """True if *line* is an EE FP op a following op must stall on (mtc1/ctc1
+    GPR->COP1 move, incl. the li.s/li.d float-immediate macro, or an FP compare
+    feeding bc1*).  FP loads interlock, so they're excluded.  See ee-cc-wrap.py."""
+    op = line.strip()
+    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) \
+        or bool(_HAZARD_FP_CMP_RE.match(line))
+
+
+def _materialize_hazard_nops(text: str) -> str:
+    """Turn cc1's commented ``#nop`` EE FP hazard hints into real nops.
+
+    SN cc1 (like cygnus) emits a bare ``#nop`` comment wherever the pipeline
+    needs a stall but leaves materialisation to a reorder-capable assembler;
+    ee-as does not reorder, so the nop is otherwise lost.  Only the ``#nop``
+    whose preceding instruction is an mtc1->FPU or FP-compare->branch hazard
+    producer is converted — keeping every already-matched function byte
+    identical.  Twin of the helper in ee-cc-wrap.py.
+    """
+    if "#nop" not in text:
+        return text
+    lines = text.split("\n")
+    out = []
+    last_instr = None
+    for line in lines:
+        stripped = line.strip()
+        if stripped == "#nop" and last_instr is not None \
+                and _is_ee_fp_hazard_producer(last_instr):
+            out.append("\tnop")
+            continue
+        out.append(line)
+        if stripped and not stripped.startswith((".", "#")) \
+                and not stripped.endswith(":"):
+            last_instr = line
+    return "\n".join(out)
+
+
 def die(msg: str, code: int = 1) -> None:
     print(f"sn-cc-wrap: {msg}", file=sys.stderr)
     sys.exit(code)
@@ -358,8 +398,11 @@ def main(argv: list[str]) -> int:
         if "i" in args.print_stage and not is_preprocessed:
             shutil.copy2(i_path, output.with_suffix(".i"))
 
-        # Stage 3: numerize ABI reg names for ee-as 2.10.
-        s_num_path.write_text(_numerize(s_path.read_text()))
+        # Stage 3: numerize ABI reg names for ee-as 2.10, materialising any
+        # commented #nop EE hazard hints into real nops first.
+        s_num_path.write_text(
+            _numerize(_materialize_hazard_nops(s_path.read_text()))
+        )
 
         # Stage 4: assemble via Cygnus ee-as (same backend ee-cc-wrap.py
         # uses; consistent with how the existing .o mirror is built).

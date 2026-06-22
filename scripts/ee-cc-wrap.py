@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -113,6 +114,56 @@ SCE_EE_PREDEFINES = [
 def die(msg: str, code: int = 1) -> None:
     print(f"ee-cc-wrap: {msg}", file=sys.stderr)
     sys.exit(code)
+
+
+_HAZARD_FP_CMP_RE = re.compile(r"^\s*c\.[a-z]+\.[sd]\b")
+
+
+def _is_ee_fp_hazard_producer(line: str) -> bool:
+    """True if *line* is an EE FP op whose result a following op stalls on.
+
+    Two R5900 hazards need a nop that cc1 only emits as a commented ``#nop``:
+    a GPR->COP1 move (``mtc1``/``ctc1``, incl. the ``li.s``/``li.d``
+    float-immediate macro that expands to lui+mtc1) feeding an FP op, and an FP
+    compare (``c.<cond>.s``) feeding a ``bc1*`` branch.  FP *loads* (lwc1/l.s)
+    and integer loads interlock on the R5900, so their ``#nop`` hints are NOT
+    materialised (retail didn't); a register-dependency-aware rule would be
+    needed to safely include lwc1->FPU, so we stay with these producers, which
+    keep every already-matched function byte-identical.
+    """
+    op = line.strip()
+    return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) \
+        or bool(_HAZARD_FP_CMP_RE.match(line))
+
+
+def _materialize_hazard_nops(s_path: Path) -> None:
+    """Turn cc1's commented ``#nop`` EE FP hazard hints into real nops.
+
+    The EE cc1 (cygnus-2.96, sn-2.95.3-136, 2.9-991111) emits a bare ``#nop``
+    comment wherever the pipeline needs a stall but defers materialisation to a
+    reorder-capable assembler.  Our ee-as does not reorder, so the nop is lost
+    — fine for everything except functions with a real mtc1->FPU or
+    FP-compare->branch hazard (currently left as INCLUDE_ASM).  We uncomment
+    only the ``#nop`` whose *preceding* instruction is one of those two EE FP
+    hazard producers, reproducing retail's nops without touching anything else.
+    """
+    text = s_path.read_text()
+    if "#nop" not in text:
+        return
+    lines = text.split("\n")
+    out = []
+    last_instr = None
+    for line in lines:
+        stripped = line.strip()
+        if stripped == "#nop" and last_instr is not None \
+                and _is_ee_fp_hazard_producer(last_instr):
+            out.append("\tnop")
+            continue
+        out.append(line)
+        if stripped and not stripped.startswith((".", "#")) \
+                and not stripped.endswith(":"):
+            last_instr = line
+    s_path.write_text("\n".join(out))
 
 
 def run(cmd: list[str], stage: str, cwd: Path | None = None) -> None:
@@ -352,6 +403,7 @@ def main(argv: list[str]) -> int:
                 cc1_cmd.append("-gstabs")
             cc1_cmd += [i_name, "-o", s_name]
             run(cc1_cmd, "cc1", cwd=td_path)
+            _materialize_hazard_nops(s_path)
         else:
             shutil.copy2(args.input, s_path)
 
