@@ -3,6 +3,9 @@
 extern int D_00747A34;
 extern char D_00754C10[];
 extern char D_00754220[];
+extern void func_003A52F0(void *, int, int);
+extern void func_002CD740(void *);
+extern int func_002CD7C8(int, int);
 
 __attribute__((section(".text.IsSlotAvailable_2CB778")))
 int IsSlotAvailable_2CB778(int a0, int a1)
@@ -15,12 +18,19 @@ int IsSlotAvailable_2CB778(int a0, int a1)
     return cSeData_IsAlive(p);
 }
 
-/* REGRESSED to nonmatching: the byte-match required a
- * forced-register pin (`register ... __asm__("$N")`), which is not a
- * real C match.  Reverted to INCLUDE_ASM pending an authentic re-match
- * (restructure -> decomp-permuter -> C++ TU).  Retail asm + matching
- * analysis preserved in the comments above for the retry. */
-INCLUDE_ASM("nonmatching", InitSlotContext_2CD6D0);
+__attribute__((section(".text.InitSlotContext_2CD6D0")))
+void InitSlotContext_2CD6D0(int a0, int a1, int a2)
+{
+    int ret;
+    *(int *)(a0 + 0x380) = a0;
+    func_003A52F0((void *)a0, 0, 0x380);
+    *(int *)(a0 + 0x384) = a2;
+    func_002CD740((void *)a0);
+    *(int *)(a0 + 0x38C) = a1;
+    ret = func_002CD7C8(a1, a2);
+    *(int *)(a0 + 0x388) = ret;
+    *(int *)(*(int *)(a0 + 0x380) + 0x10) = ret;
+}
 
 
 __attribute__((section(".text.Setup_00309028_309028")))

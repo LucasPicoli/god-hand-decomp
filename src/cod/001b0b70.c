@@ -129,7 +129,48 @@ int BuildObjEntry_387160(short arg1, const void *src) {
 INCLUDE_ASM("nonmatching", ColiseumEmSelect__Initialize);
 
 /* func_001F4928: 147 insns, 588 B — sq-prologue, saves $s0..$s5,$ra. */
-INCLUDE_ASM("nonmatching", func_001F4928);
+extern void SetCustomIDDispOneOrAll_1F4778(int a0, int a1, int a2);
+
+__attribute__((section(".text.func_001F4928")))
+void func_001F4928(int a0, int a1)
+{
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x50, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x51, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x52, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x53, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x54, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x55, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x56, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x57, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x58, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x59, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5A, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5B, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5C, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5D, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5E, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x5F, 0);
+    SetCustomIDDispOneOrAll_1F4778(a0, 0x60, 0);
+    if (a1 != 0) {
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x50, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x51, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x52, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x53, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x54, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x55, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x56, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x57, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x58, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x59, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5A, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5B, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5C, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5D, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5E, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x5F, 1);
+        SetCustomIDDispOneOrAll_1F4778(a0, 0x60, 1);
+    }
+}
 
 /* func_002A10E8: 341 insns, 1364 B — sq-prologue, deepest pick;
  *                no VU0, no jumptable. */

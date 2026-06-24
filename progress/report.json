@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 5.9064746,
+    "fuzzy_match_percent": 5.9389596,
     "total_code": "2844404",
-    "matched_code": "168004",
-    "matched_code_percent": 5.9064746,
+    "matched_code": "168928",
+    "matched_code_percent": 5.9389596,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11202,
-    "matched_functions": 3080,
-    "matched_functions_percent": 27.495089,
-    "complete_code": 146944,
-    "complete_code_percent": 5.16607345510694,
+    "matched_functions": 3083,
+    "matched_functions_percent": 27.521873,
+    "complete_code": 147728,
+    "complete_code_percent": 5.193636347016809,
     "total_units": 5232,
-    "complete_units": 857
+    "complete_units": 859
   },
   "units": [
     {
@@ -55731,14 +55731,14 @@
     {
       "name": "src/cod/001b0b70",
       "measures": {
-        "fuzzy_match_percent": 18.314257,
+        "fuzzy_match_percent": 33.61082,
         "total_code": "3844",
-        "matched_code": "704",
-        "matched_code_percent": 18.314257,
+        "matched_code": "1292",
+        "matched_code_percent": 33.61082,
         "matched_data_percent": 100.0,
         "total_functions": 10,
-        "matched_functions": 6,
-        "matched_functions_percent": 60.000004,
+        "matched_functions": 7,
+        "matched_functions_percent": 70.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -55756,7 +55756,7 @@
         {
           "name": ".text",
           "size": "3864",
-          "fuzzy_match_percent": 18.314257,
+          "fuzzy_match_percent": 33.61082,
           "metadata": {}
         },
         {
@@ -55823,6 +55823,7 @@
         {
           "name": "func_001F4928",
           "size": "588",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "1904"
         },
@@ -73178,11 +73179,19 @@
     {
       "name": "src/cod/casino/CasinoWork",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "224",
+        "matched_code": "224",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "224",
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 1,
+        "complete_units": 1
       },
       "sections": [
         {
@@ -73198,6 +73207,7 @@
         {
           "name": ".text",
           "size": "224",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -73210,11 +73220,13 @@
         {
           "name": "CasinoWork_ResetWarmUpRoom",
           "size": "224",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         }
       ],
       "metadata": {
+        "complete": true,
         "progress_categories": [
           "engine",
           "engine.casino"
@@ -126078,16 +126090,19 @@
     {
       "name": "src/cod/002cb778",
       "measures": {
-        "fuzzy_match_percent": 80.0,
+        "fuzzy_match_percent": 100.0,
         "total_code": "560",
-        "matched_code": "448",
-        "matched_code_percent": 80.0,
+        "matched_code": "560",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 5,
-        "matched_functions": 4,
-        "matched_functions_percent": 80.0,
+        "matched_functions": 5,
+        "matched_functions_percent": 100.0,
+        "complete_code": "560",
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 1,
+        "complete_units": 1
       },
       "sections": [
         {
@@ -126103,7 +126118,7 @@
         {
           "name": ".text",
           "size": "560",
-          "fuzzy_match_percent": 80.0,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -126130,6 +126145,7 @@
         {
           "name": "InitSlotContext_2CD6D0",
           "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "224"
         },
@@ -126149,6 +126165,7 @@
         }
       ],
       "metadata": {
+        "complete": true,
         "progress_categories": [
           "engine"
         ],
@@ -269266,39 +269283,39 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 6.0154996,
+        "fuzzy_match_percent": 6.048584,
         "total_code": "2792852",
-        "matched_code": "168004",
-        "matched_code_percent": 6.0154996,
+        "matched_code": "168928",
+        "matched_code_percent": 6.048584,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 10758,
-        "matched_functions": 3080,
-        "matched_functions_percent": 28.629858,
-        "complete_code": "146944",
-        "complete_code_percent": 5.2614317,
+        "matched_functions": 3083,
+        "matched_functions_percent": 28.657743,
+        "complete_code": "147728",
+        "complete_code_percent": 5.289503,
         "total_units": 4788,
-        "complete_units": 857
+        "complete_units": 859
       }
     },
     {
       "id": "engine.casino",
       "name": "Casino",
       "measures": {
-        "fuzzy_match_percent": 46.42409,
+        "fuzzy_match_percent": 53.45044,
         "total_code": "3188",
-        "matched_code": "1480",
-        "matched_code_percent": 46.42409,
+        "matched_code": "1704",
+        "matched_code_percent": 53.45044,
         "matched_data_percent": 100.0,
         "total_functions": 19,
-        "matched_functions": 13,
-        "matched_functions_percent": 68.42105,
-        "complete_code": "884",
-        "complete_code_percent": 27.728983,
+        "matched_functions": 14,
+        "matched_functions_percent": 73.68421,
+        "complete_code": "1108",
+        "complete_code_percent": 34.755333,
         "complete_data_percent": 100.0,
         "total_units": 12,
-        "complete_units": 6
+        "complete_units": 7
       }
     },
     {
