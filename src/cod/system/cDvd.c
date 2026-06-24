@@ -2,6 +2,8 @@
 extern char D_00580D40[];
 extern void func_00201228(char *a0, char *a1);
 extern void func_00201290(char *a0);
+extern int cDvd_Check(int a0, int a1);
+extern void func_00200B20(int a0);
 
 __attribute__((section(".text.cDvd_ReadAlloc")))
 int cDvd_ReadAlloc(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, int t3)
@@ -48,6 +50,9 @@ int cDvd_ReadAlloc(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, 
         func_00201290(a0);
     return *(int *)(s0 + 0x4);
 }
-#include "include_asm.h"
-
-INCLUDE_ASM("nonmatching", cDvd_CheckWait);
+__attribute__((section(".text.cDvd_CheckWait")))
+void cDvd_CheckWait(int a0, int a1)
+{
+    while (cDvd_Check(a0, a1))
+        func_00200B20(a0);
+}
