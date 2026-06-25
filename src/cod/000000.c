@@ -3040,9 +3040,21 @@ INCLUDE_ASM("nonmatching", cEm00_setEm65Separate);
 
 INCLUDE_ASM("nonmatching", cEm12_SetParent);
 
-INCLUDE_ASM("nonmatching", cEma2_SetPoison);
+__attribute__((section(".text.cEma2_SetPoison")))
+void cEma2_SetPoison(char *a0) {
+    a0[0x2F4] = 0;
+    a0[0x2F5] = 5;
+    a0[0x2F6] = 0;
+    a0[0x2F7] = 0;
+}
 
-INCLUDE_ASM("nonmatching", cEma2_SetPoisonDie);
+__attribute__((section(".text.cEma2_SetPoisonDie")))
+void cEma2_SetPoisonDie(char *a0) {
+    a0[0x2F4] = 0;
+    a0[0x2F5] = 5;
+    a0[0x2F6] = 2;
+    a0[0x2F7] = 0;
+}
 
 INCLUDE_ASM("nonmatching", cEma2_gotoSwitch);
 
@@ -3060,7 +3072,13 @@ INCLUDE_ASM("nonmatching", cHeatSys_SetHeatGage);
 
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
 
-INCLUDE_ASM("nonmatching", cObjSimple_R0_Init);
+__attribute__((section(".text.cObjSimple_R0_Init")))
+void cObjSimple_R0_Init(char *a0) {
+    a0[0x2F4] = 1;
+    a0[0x2F5] = 0;
+    a0[0x2F6] = 0;
+    a0[0x2F7] = 0;
+}
 
 INCLUDE_ASM("nonmatching", cObjSimple_SetRingFlag);
 
