@@ -50,7 +50,14 @@ int Obj35D0_ReturnZero_D0D8(void)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D0E0 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D0E0);
+extern int sfuo_InitInf(void *a, void *b, int c);
+__attribute__((section(".text.func_0035D0E0")))
+int func_0035D0E0(char *a0) {
+    char *p = a0 + 0x2150;
+    *(void **)(p + 8) = a0 + 0x3678;
+    sfuo_InitInf(a0, a0 + 0x3678, *(int *)(p + 0x10));
+    return 0;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D110 — call-chain (jal ×2)                                        */

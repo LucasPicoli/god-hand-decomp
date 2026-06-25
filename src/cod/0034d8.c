@@ -96,10 +96,15 @@ INCLUDE_ASM("permanent", func_0034DC98);
 __attribute__((section(".text.Obj34D8_Thunk_DD58")))
 void Obj34D8_Thunk_DD58(char *a0) { func_0034DD58(a0); }
 
-/* ── func_0034DD58: zero 5 words — compiler reorders; use nonmatching ─────── */
-/* sw zero,0x10(a0); sw zero,0(a0); sw zero,4(a0); sw zero,8(a0);
- * jr $ra; sw zero,0xC(a0) */
-INCLUDE_ASM("nonmatching", func_0034DD58);
+/* ── func_0034DD58: zero 5 words (0x0..0x10) — natural-order stores match ─── */
+__attribute__((section(".text.func_0034DD58")))
+void func_0034DD58(char *a0) {
+    *(int *)(a0 + 0x0)  = 0;
+    *(int *)(a0 + 0x4)  = 0;
+    *(int *)(a0 + 0x8)  = 0;
+    *(int *)(a0 + 0xC)  = 0;
+    *(int *)(a0 + 0x10) = 0;
+}
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain + jalr-leaf ─────────────────── */
 INCLUDE_ASM("nonmatching", func_0034DD70);

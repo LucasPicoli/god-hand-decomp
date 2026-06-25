@@ -146,8 +146,11 @@ int Obj2810_GetField1560_Bit0(char *a0) {
 }
 
 /* ── Getter: lw v0,0x1560(a0); andi v0,v0,2; jr ra; delay:sltu v0,zero,v0 ── */
-/* Optimizer produces sra+andi instead of andi+sltu with -O2; use ASM.     */
-INCLUDE_ASM("nonmatching", func_002815D0);
+/* The `> 0` form yields andi+sltu (`& 2` / `!= 0` do not).                  */
+__attribute__((section(".text.func_002815D0")))
+int func_002815D0(char *a0) {
+    return (*(int *)(a0 + 0x1560) & 2) > 0;
+}
 
 /* ── Call-chain (INCLUDE_ASM nonmatching — T1 will match) ── */
 
