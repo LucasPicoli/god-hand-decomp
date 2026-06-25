@@ -37,7 +37,6 @@ int Obj38B8_IsField38_NonNegative(char *a0) {
 
 INCLUDE_ASM("nonmatching", func_0038B8B0);
 INCLUDE_ASM("nonmatching", stossc__9streambuf);
-INCLUDE_ASM("nonmatching", func_0038B9F0);
 INCLUDE_ASM("nonmatching", func_0038BA10);
 INCLUDE_ASM("nonmatching", func_0038BA38);
 INCLUDE_ASM("nonmatching", func_0038BA68);
@@ -234,7 +233,6 @@ __attribute__((section(".text.Obj38B8_AndNotByte1A")))
 void Obj38B8_AndNotByte1A(char *a0, int a1) {
     a0[0x1A] = (unsigned char)(a0[0x1A] & ~a1);
 }
-INCLUDE_ASM("nonmatching", func_0038BF18);
 INCLUDE_ASM("nonmatching", func_0038BF38);
 __attribute__((section(".text.Obj38B8_GetField0_v2")))
 int Obj38B8_GetField0_v2(char *a0) {

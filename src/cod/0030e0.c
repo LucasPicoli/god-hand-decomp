@@ -24,7 +24,6 @@ INCLUDE_ASM("nonmatching", func_0030E560);
 /* ── 2 × call_chain (nonmatching — T1 will match) ────────────────────────── */
 
 INCLUDE_ASM("nonmatching", func_0030E568);
-INCLUDE_ASM("nonmatching", func_0030E598);
 
 /* ── 1 × accessor single-insn fragment (nonmatching — no jr $ra) ─────────── */
 
