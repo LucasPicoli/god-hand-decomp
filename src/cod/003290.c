@@ -29,10 +29,26 @@ INCLUDE_ASM("nonmatching", ADXPS2_LoadFcacheDvd);
 INCLUDE_ASM("nonmatching", func_003292D8);
 
 /* func_00329438: 0x58 B, wraps NoOp_33E6A8 + func_00329490 + NoOp_33E6B0 */
-INCLUDE_ASM("nonmatching", func_00329438);
+extern int func_00329490(int a0, int a1, int a2);
+__attribute__((section(".text.func_00329438")))
+int func_00329438(int a0, int a1, int a2) {
+    int r;
+    NoOp_33E6A8();
+    r = func_00329490(a0, a1, a2);
+    NoOp_33E6B0();
+    return r;
+}
 
 /* func_003297A8: 0x48 B, wraps NoOp_33E6A8 + func_003297F0 + NoOp_33E6B0 */
-INCLUDE_ASM("nonmatching", func_003297A8);
+extern int func_003297F0(int a0, int a1);
+__attribute__((section(".text.func_003297A8")))
+int func_003297A8(int a0, int a1) {
+    int r;
+    NoOp_33E6A8();
+    r = func_003297F0(a0, a1);
+    NoOp_33E6B0();
+    return r;
+}
 
 /* func_003297F0: 0x54 B, call func_00329490 then func_00336BA8 if result non-null */
 INCLUDE_ASM("nonmatching", func_003297F0);
