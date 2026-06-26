@@ -3892,6 +3892,18 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0032f068.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/002a7280.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/003b7270.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -22282,7 +22294,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7270",
       "size": 72,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b7270.c"
     },
     {
       "name": "func_003B7380",
@@ -36284,6 +36297,62 @@
       "vaddr": "0x0034FD28",
       "size": 196,
       "tu": "src/cod/00323780.c"
+    },
+    {
+      "name": "func_0035B500",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035B500",
+      "size": 100,
+      "tu": "src/cod/0032f068.c"
+    },
+    {
+      "name": "func_0032F068",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0032F068",
+      "size": 104,
+      "tu": "src/cod/0032f068.c"
+    },
+    {
+      "name": "func_0034C748",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0034C748",
+      "size": 104,
+      "tu": "src/cod/0032f068.c"
+    },
+    {
+      "name": "arrayFree",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002A7280",
+      "size": 72,
+      "tu": "src/cod/002a7280.c"
+    },
+    {
+      "name": "func_0035DC60",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035DC60",
+      "size": 80,
+      "tu": "src/cod/0032f068.c"
+    },
+    {
+      "name": "func_0036DB80",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0036DB80",
+      "size": 92,
+      "tu": "src/cod/0032f068.c"
+    },
+    {
+      "name": "func_003ADFA8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003ADFA8",
+      "size": 92,
+      "tu": "src/cod/002a7280.c"
+    },
+    {
+      "name": "func_003AE0C8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003AE0C8",
+      "size": 92,
+      "tu": "src/cod/002a7280.c"
     }
   ],
   "build_dir": "build",
