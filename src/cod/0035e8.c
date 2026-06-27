@@ -4,7 +4,29 @@
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E868 — call-chain (jal×2, complex branch)                         */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035E868);
+extern void *getElemInfPtr(int a0, int a1);
+extern int isEnableVidFtr(int a0, void *a1);
+
+__attribute__((section(".text.func_0035E868")))
+int func_0035E868(int a0, int a1, int *a2)
+{
+    void *s1;
+    int s0;
+    s0 = a1 & 0xFF;
+    *a2 = -1;
+    s1 = getElemInfPtr(a0, s0);
+    if (s1 == 0) {
+        return 0;
+    }
+    if (isEnableVidFtr(s0, s1) == 0) {
+        return 0;
+    }
+    if (*(int *)((char *)a0 + 0xC) < 0xD2) {
+        return 0;
+    }
+    *a2 = *(unsigned char *)((char *)s1 + 0x27);
+    return 1;
+}
 
 /* func_0035E8F8 (0x0035E8F8): NOT carved — jump-table entries              */
 /* (.L0035E920) are referenced from rodata D_00459C50; the label must      */

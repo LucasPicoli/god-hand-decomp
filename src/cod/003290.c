@@ -51,7 +51,18 @@ int func_003297A8(int a0, int a1) {
 }
 
 /* func_003297F0: 0x54 B, call func_00329490 then func_00336BA8 if result non-null */
-INCLUDE_ASM("nonmatching", func_003297F0);
+extern int func_00329490(int, int, int);
+extern int func_00336BA8(int, int, int);
+
+__attribute__((section(".text.func_003297F0")))
+int func_003297F0(int a0, int a1) {
+    int p = func_00329490(2, a0 + 0x400, a1 - 0x400);
+    if (p != 0) {
+        func_00336BA8(p, a0, 0x400);
+        return p;
+    }
+    return p;
+}
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /* addiu-only / no-jr-ra stubs — unrepresentable in C (INCLUDE_ASM)          */

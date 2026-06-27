@@ -7,8 +7,36 @@ void func_0035C200(char *a0, int a1, int a2);
 
 /* ── INCLUDE_ASM: call-chain / loop-leaf / medium-leaf (nonmatching) ───────── */
 INCLUDE_ASM("nonmatching", sftrn_BuildAudio);
-INCLUDE_ASM("nonmatching", func_0035C238);
-INCLUDE_ASM("nonmatching", func_0035C2D0);
+__attribute__((section(".text.func_0035C238")))
+int func_0035C238(int a0, int a1) {
+    char *e = (char *)(a0 + 0x1F30);
+    int i;
+    int ret = 0;
+    for (i = 0; i < 9; i++) {
+        int *tbl = *(int **)(e + 0xC);
+        e += 0x44;
+        if (tbl) {
+            int (*fn)(int, int, int, int) = (int (*)(int, int, int, int))tbl[a1];
+            ret = fn(a0, 0, 0, 0);
+            if (ret) break;
+        }
+    }
+    return ret;
+}
+
+typedef int (*Fn)(int, int, int, int);
+
+__attribute__((section(".text.func_0035C2D0")))
+int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
+    Fn *tbl;
+    char *p = (char *)a0 + a1 * 68;
+    tbl = *(Fn **)(p + 0x1F3C);
+    if (tbl == 0) {
+        return 0;
+    }
+    return tbl[a2](a0, a3, t0, 0);
+}
+
 INCLUDE_ASM("nonmatching", func_0035C3A0);
 INCLUDE_ASM("nonmatching", func_0035C480);
 INCLUDE_ASM("nonmatching", func_0035C548);

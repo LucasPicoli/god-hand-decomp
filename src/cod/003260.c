@@ -36,7 +36,20 @@ INCLUDE_ASM("nonmatching", func_00326008);
 /* ── Call-chain functions (11 = deferred) ───────────── */
 INCLUDE_ASM("nonmatching", func_00326020);
 INCLUDE_ASM("nonmatching", func_00326050);
-INCLUDE_ASM("nonmatching", func_003260C8);
+extern void func_003A7AE8(void *a0, void *a1, void *a2);
+extern void func_003B1F28();
+extern int D_003CF9E0;
+
+__attribute__((section(".text.func_003260C8")))
+void func_003260C8(void *a0, ...)
+{
+    char buf[0x80];
+    if (D_003CF9E0 != 2) {
+        func_003A7AE8(buf, a0, (char *)__builtin_next_arg(a0) - 0x38);
+        func_003B1F28(buf);
+    }
+}
+
 INCLUDE_ASM("nonmatching", ADXPS2_GetNumDataSjtmp);
 INCLUDE_ASM("nonmatching", func_003261A8);
 /* Obj3260_TrampChain_D2D8: call func_00338338(a0,0) + func_003382A0(a0,0) + tail-call   */
