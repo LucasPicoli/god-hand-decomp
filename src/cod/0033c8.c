@@ -7,7 +7,6 @@ INCLUDE_ASM("nonmatching", func_0033C918);
 /* ── MEDIUM (1) — large initializer ───────────────────────────────────────*/
 INCLUDE_ASM("nonmatching", func_0033CC50);
 
-INCLUDE_ASM("nonmatching", func_0033CCF0);
 
 /* ── ACCESSOR / BRANCHED_LEAF (15) ─────────────────────────────────────── */
 __attribute__((section(".text.Obj33C8_SetFields_78_7C")))

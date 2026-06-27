@@ -20,7 +20,6 @@ extern char *D_003EE0B8;   /* set by Obj34D8_SetGlobalEE0B8_IfField48 */
 
 /* ── INCLUDE_ASM("nonmatching") — complex call-chain / jalr / odd ─────────── */
 INCLUDE_ASM("nonmatching", sfhds_AnlyAudio);
-INCLUDE_ASM("nonmatching", sfhds_AnlyVideo);
 __attribute__((section(".text.sfhds_CallN")))
 int sfhds_CallN(int a0, int (*fn)(int, int *)) {
     int local;
@@ -107,11 +106,9 @@ void func_0034DD58(char *a0) {
 }
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain + jalr-leaf ─────────────────── */
-INCLUDE_ASM("nonmatching", func_0034DD70);
 INCLUDE_ASM("nonmatching", func_0034DDE0);
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain with tail-j ─────────────────── */
-INCLUDE_ASM("nonmatching", func_0034DE20);
 
 /* ── Obj34D8_SetFields_0_4: store a2→a0+4, a1→a0+0 ─────────────────────────────── */
 /* sw a2,4(a0); jr $ra; sw a1,0(a0) */

@@ -60,7 +60,6 @@ void Obj3260_TrampChain_D2D8(void *a0) {
     func_003382A0(a0, 0);
     func_003381B0(a0);
 }
-INCLUDE_ASM("nonmatching", func_003264C8);
 INCLUDE_ASM("nonmatching", func_003265A8);
 extern void func_0033C918(int);
 extern void Forward33B658_33E678(void);
@@ -232,4 +231,3 @@ void func_00326568(char *p) {
 /* func_00326520: decrement refcount + conditional tail-call.                */
 /* C compiler inverts branch logic (beqz vs bnez) → structural mismatch.    */
 /* Deferred.                                              */
-INCLUDE_ASM("nonmatching", func_00326520);

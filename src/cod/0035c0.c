@@ -39,7 +39,6 @@ int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
 
 INCLUDE_ASM("nonmatching", func_0035C3A0);
 INCLUDE_ASM("nonmatching", func_0035C480);
-INCLUDE_ASM("nonmatching", func_0035C548);
 /* Medium-leaf (nonmatching — instruction scheduling hard to reproduce exactly): */
 INCLUDE_ASM("nonmatching", func_0035C1C0);
 INCLUDE_ASM("nonmatching", func_0035C200);
