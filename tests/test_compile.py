@@ -1386,3 +1386,29 @@ def test_unit_categories_maps_lib_vaddr_to_subcategory(tmp_path):
     # bar (the decomp.dev subcategory tree); 'system' is in _ENGINE_SUBSYSTEMS.
     assert cm._unit_categories("src/cod/system/cCoreSave", lib_cats) == ["engine", "engine.system"]
 
+
+
+class TestCompileUnitsStripCxxFrame:
+    """Per-TU strip_cxx_frame parsing in Config.compile_units."""
+
+    def test_strip_cxx_frame_true_parsed(self):
+        cfg = _mkcfg(compile_units=[
+            {"path": "src/cod/0031fae8.cc", "compiler": "ee-2.9-991111",
+             "strip_cxx_frame": True}
+        ])
+        entry = cfg.compile_units["src/cod/0031fae8.cc"]
+        assert entry["strip_cxx_frame"] is True
+
+    def test_strip_cxx_frame_defaults_false(self):
+        cfg = _mkcfg(compile_units=[
+            {"path": "src/cod/000000.c", "compiler": "cygnus-2.96"}
+        ])
+        assert cfg.compile_units["src/cod/000000.c"]["strip_cxx_frame"] is False
+
+    def test_strip_cxx_frame_non_bool_raises(self):
+        cfg = _mkcfg(compile_units=[
+            {"path": "src/cod/000000.c", "compiler": "cygnus-2.96",
+             "strip_cxx_frame": "yes"}
+        ])
+        with pytest.raises(cm.BuildError):
+            _ = cfg.compile_units

@@ -243,6 +243,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Strip absolute paths from cpp0 #line directives (for reproducible builds)",
     )
     p.add_argument(
+        "--strip-cxx-frame",
+        action="store_true",
+        help=(
+            "Remove the .data DWARF frame block ee-gcc 2.9 emits unconditionally "
+            "for a C++ TU. Use for a carved single-function C++ TU whose frame "
+            "data is already provided by the data splat (otherwise the duplicate "
+            "shifts downstream sections). No-op for C TUs."
+        ),
+    )
+    p.add_argument(
         "--compiler",
         choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"),
         default="cygnus-2.96",
@@ -445,6 +455,16 @@ def main(argv: list[str]) -> int:
             shutil.copy2(i_path, output.with_suffix(".i"))
         if "s" in args.print_stage and not is_assembly:
             shutil.copy2(s_path, output.with_suffix(".s"))
+
+    # ee-gcc 2.9 emits an unconditional per-TU DWARF frame block into .data for
+    # C++ TUs (CIE + FDE + __FRAME_BEGIN__ + _GLOBAL_$F$<fn>).  For a carved
+    # single-function C++ TU whose frame data is already provided by the data
+    # splat, that block is a duplicate that shifts downstream sections away from
+    # retail.  --strip-cxx-frame removes it so the splat copy stays the single
+    # source (opt-in per-TU via compile_config.json::compile_units strip_cxx_frame).
+    if language == "c++" and args.strip_cxx_frame:
+        run(["mipsel-linux-gnu-objcopy", "--remove-section", ".data", str(output)],
+            "strip-cxx-frame")
 
     return 0
 

@@ -260,6 +260,15 @@ class Config:
                     f"of strings; got {drop!r}"
                 )
             entry["c_flags_drop"] = tuple(drop)
+            # Per-TU opt-in: strip the unconditional C++ DWARF frame .data block
+            # (provided instead by the data splat for a carved C++ function).
+            strip = raw.get("strip_cxx_frame", False)
+            if not isinstance(strip, bool):
+                raise BuildError(
+                    f"compile_units[{path!r}]: strip_cxx_frame must be a bool; "
+                    f"got {strip!r}"
+                )
+            entry["strip_cxx_frame"] = strip
             out[path] = entry
         return out
 
@@ -277,7 +286,7 @@ class Config:
             if not isinstance(raw, dict):
                 continue
             name = str(raw.get("name", ""))
-            if not name or name.startswith("_"):
+            if not name or (name.startswith("_") and not raw.get("tu")):
                 continue
             out.append(raw)
         return out
@@ -298,7 +307,7 @@ class Config:
             if not isinstance(raw, dict):
                 continue
             name = str(raw.get("name", ""))
-            if not name or name.startswith("_"):
+            if not name or (name.startswith("_") and not raw.get("tu")):
                 continue
             parts: list[RelPart] = []
             for praw in raw.get("parts", []):
@@ -906,6 +915,9 @@ class CompileUnit:
     # Empty tuple = no-op (today's behaviour for all TUs except those
     # listed in compile_config.json::compile_units with c_flags_drop set).
     c_flags_drop: tuple = ()
+    # Strip the unconditional C++ DWARF frame .data block from this TU's .o
+    # (the frame data is provided by the data splat instead). C++ TUs only.
+    strip_cxx_frame: bool = False
 
 
 def _glob_all(patterns: Iterable[str]) -> list[Path]:
@@ -1014,6 +1026,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
         units.append(CompileUnit(
             src=src, obj=obj, kind="c", rel=rel, compiler=compiler,
             c_flags_drop=tuple(c_flags_drop),
+            strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
         ))
 
     for src in _glob_all(cfg.vsm_globs):
@@ -1181,6 +1194,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         "-o",
         str(unit.obj),
     ]
+    if unit.strip_cxx_frame:
+        argv.append("--strip-cxx-frame")
     g = _g_flag(unit, cfg)
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]
