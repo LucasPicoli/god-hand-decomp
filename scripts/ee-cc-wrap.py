@@ -163,6 +163,70 @@ def _materialize_hazard_nops(s_path: Path) -> None:
     s_path.write_text("\n".join(out))
 
 
+def _strip_cxx_frame_block(text: str) -> str:
+    """Remove ee-gcc 2.9's per-TU DWARF frame block from a cc1plus ``.s``.
+
+    ee-gcc 2.9 cc1plus emits, as the *last* thing in the assembly, an
+    unconditional EH/unwind frame block.  Its shape is always::
+
+        .data                       # its own section re-entry
+        .align 2
+        .globl _GLOBAL_$F$<sym>
+    _GLOBAL_$F$<sym>:
+    __FRAME_BEGIN__:
+        ...CIE + one FDE per function...
+        .4byte 0x0                  # frame-table terminator
+        .align 0
+
+    The block is identified by its ``__FRAME_BEGIN__`` anchor and is the
+    final emission of the TU (all real program ``.data`` — initialized
+    globals, vtables, typeinfo, string literals — is emitted *earlier*).
+    We cut from the block's introducing ``.data`` (the section-switch that
+    immediately precedes the ``_GLOBAL_$F$``/``__FRAME_BEGIN__`` labels)
+    through end-of-file, preserving every earlier line.  This is surgical:
+    unlike ``objcopy --remove-section .data`` it keeps real program ``.data``.
+
+    Returns the input unchanged if no frame block is present (no-op for any
+    ``.s`` without ``__FRAME_BEGIN__``).
+    """
+    lines = text.split("\n")
+    begin = next(
+        (i for i, ln in enumerate(lines) if ln.strip() == "__FRAME_BEGIN__:"),
+        None,
+    )
+    if begin is None:
+        return text  # no frame block to strip
+    # Walk backwards from __FRAME_BEGIN__ over the frame's preamble to the
+    # section-switch directive that introduces it, so we don't leave a
+    # dangling `.globl`/label or an empty `.data` re-entry behind.
+    start = begin
+    j = begin - 1
+    while j >= 0:
+        s = lines[j].strip()
+        if s == "":
+            j -= 1
+            continue
+        if s == ".data" or (s.startswith(".section") and ".data" in s):
+            start = j  # the frame block's introducing section directive
+            break
+        if (
+            (s.startswith("_GLOBAL_$F$") and s.endswith(":"))
+            or (s.startswith(".globl") and "_GLOBAL_$F$" in s)
+            or s.startswith(".align")
+        ):
+            start = j
+            j -= 1
+            continue
+        break  # hit real content — stop; don't over-consume program data
+    del lines[start:]  # the frame block is always last → cut to EOF
+    return "\n".join(lines).rstrip("\n") + "\n"
+
+
+def _strip_cxx_frame_from_s(s_path: Path) -> None:
+    """In-place surgical strip of the C++ DWARF frame block from ``s_path``."""
+    s_path.write_text(_strip_cxx_frame_block(s_path.read_text()))
+
+
 def run(cmd: list[str], stage: str, cwd: Path | None = None) -> None:
     """Run a subprocess and abort on non-zero exit.
 
@@ -246,10 +310,13 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--strip-cxx-frame",
         action="store_true",
         help=(
-            "Remove the .data DWARF frame block ee-gcc 2.9 emits unconditionally "
-            "for a C++ TU. Use for a carved single-function C++ TU whose frame "
+            "Surgically remove ONLY the DWARF frame block ee-gcc 2.9 appends "
+            "unconditionally to a C++ TU's .s (the __FRAME_BEGIN__/_GLOBAL_$F$ "
+            "span), preserving any real program .data (globals, vtables, "
+            "typeinfo, string literals). Use for a carved C++ TU whose frame "
             "data is already provided by the data splat (otherwise the duplicate "
-            "shifts downstream sections). No-op for C TUs."
+            "shifts downstream sections). No-op for C TUs and for .s with no "
+            "frame block."
         ),
     )
     p.add_argument(
@@ -411,6 +478,15 @@ def main(argv: list[str]) -> int:
             cc1_cmd += [i_name, "-o", s_name]
             run(cc1_cmd, "cc1", cwd=td_path)
             _materialize_hazard_nops(s_path)
+            # ee-gcc 2.9 cc1plus appends an unconditional per-TU DWARF frame
+            # block to the C++ ``.s``.  For a carved C++ TU whose frame data is
+            # already provided by the data splat, that block is a duplicate
+            # that shifts downstream sections away from retail.  Strip it at the
+            # ``.s`` level (surgically — only the frame block, NOT real program
+            # ``.data``) before ee-as assembles, so the splat copy stays the
+            # single source.  Opt-in per-TU via compile_units strip_cxx_frame.
+            if language == "c++" and args.strip_cxx_frame:
+                _strip_cxx_frame_from_s(s_path)
         else:
             shutil.copy2(args.input, s_path)
 
@@ -455,16 +531,6 @@ def main(argv: list[str]) -> int:
             shutil.copy2(i_path, output.with_suffix(".i"))
         if "s" in args.print_stage and not is_assembly:
             shutil.copy2(s_path, output.with_suffix(".s"))
-
-    # ee-gcc 2.9 emits an unconditional per-TU DWARF frame block into .data for
-    # C++ TUs (CIE + FDE + __FRAME_BEGIN__ + _GLOBAL_$F$<fn>).  For a carved
-    # single-function C++ TU whose frame data is already provided by the data
-    # splat, that block is a duplicate that shifts downstream sections away from
-    # retail.  --strip-cxx-frame removes it so the splat copy stays the single
-    # source (opt-in per-TU via compile_config.json::compile_units strip_cxx_frame).
-    if language == "c++" and args.strip_cxx_frame:
-        run(["mipsel-linux-gnu-objcopy", "--remove-section", ".data", str(output)],
-            "strip-cxx-frame")
 
     return 0
 

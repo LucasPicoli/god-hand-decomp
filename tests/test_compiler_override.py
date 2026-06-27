@@ -32,6 +32,15 @@ import pytest
 
 import compile as cm
 
+import importlib.util as _ilu
+
+# ee-cc-wrap.py has a hyphenated filename → load it as a module so the pure
+# helpers (e.g. the .s-level C++ frame strip) can be unit-tested directly.
+_EECC_SPEC = _ilu.spec_from_file_location(
+    "ee_cc_wrap", cm.ROOT / "scripts" / "ee-cc-wrap.py")
+eecc = _ilu.module_from_spec(_EECC_SPEC)
+_EECC_SPEC.loader.exec_module(eecc)
+
 
 # --------------------------------------------------------------------------- #
 # Tiny test helpers
@@ -502,3 +511,147 @@ class TestCompileUnitsCFlagsDrop:
         for flag in ("-O2", "-G0"):
             assert flag in captured[0]
             assert flag in captured[1]
+
+
+# --------------------------------------------------------------------------- #
+# Surgical C++ DWARF-frame strip (.s-level, not whole .data)
+# --------------------------------------------------------------------------- #
+# ee-gcc 2.9 cc1plus emits an unconditional per-TU DWARF frame block as the
+# LAST thing in the .s: its own `.data` re-entry + `.align` + `.globl
+# _GLOBAL_$F$<sym>` + the `_GLOBAL_$F$<sym>:`/`__FRAME_BEGIN__:` labels + the
+# CIE/FDE bytes, terminated by `.4byte 0x0` / `.align 0`.  --strip-cxx-frame
+# must remove ONLY that block, preserving any real program `.data` emitted
+# earlier (initialized globals, vtables, typeinfo, string literals).  The old
+# implementation removed the whole `.data` section, which would silently wipe
+# real program data the moment a multi-function C++ TU is added.
+
+# Real cc1plus layout for a 2-function TU with an initialized global:
+# program `.data` (g_value) first, then `.text`, then the frame block last.
+_PROGRAM_PART = "\n".join([
+    '\t.file\t1 "multi.i"',
+    'gcc2_compiled.:',
+    '__gnu_compiled_cplusplus:',
+    '\t.globl\tg_value',
+    '\t.data',
+    '\t.align\t2',
+    '\t.type\t g_value,@object',
+    '\t.size\t g_value,4',
+    'g_value:',
+    '\t.word\t305419896',
+    '\t.text',
+    '\t.p2align 3',
+    '\t.globl\tfoo',
+    '$LFB1:',
+    '\t.ent\tfoo',
+    'foo:',
+    '\tj\t$31',
+    '\t.end\tfoo',
+    '$LFE1:',
+    '\t.p2align 3',
+    '\t.globl\tbar',
+    '$LFB2:',
+    '\t.ent\tbar',
+    'bar:',
+    '\tj\t$31',
+    '\t.end\tbar',
+    '$LFE2:',
+])
+_FRAME_PART = "\n".join([
+    '\t.data',
+    '\t.align\t2',
+    '\t.globl\t_GLOBAL_$F$g_value',
+    '_GLOBAL_$F$g_value:',
+    '__FRAME_BEGIN__:',
+    '\t.4byte\t$LECIE1-$LSCIE1',
+    '$LSCIE1:',
+    '\t.4byte\t0x0',
+    '\t.align\t2',
+    '$LECIE1:',
+    '\t.4byte\t$LEFDE1-$LSFDE1',
+    '$LSFDE1:',
+    '\t.4byte\t$LSFDE1-__FRAME_BEGIN__',
+    '\t.4byte\t$LFB1',
+    '\t.align\t2',
+    '$LEFDE1:',
+    '\t.4byte\t0x0',
+    '\t.align\t0',
+])
+_MULTI_FN_S = _PROGRAM_PART + "\n" + _FRAME_PART + "\n"
+
+# Single-function frame-only TU (the real __dynamic_cast shape): the frame
+# block IS the entire `.data` — there is no real program data to preserve.
+_SINGLE_FN_S = "\n".join([
+    '\t.section .text.__dynamic_cast,"ax",@progbits',
+    '\t.globl\t__dynamic_cast',
+    '$LFB1:',
+    '__dynamic_cast:',
+    '\tj\t$31',
+    '\t.end\t__dynamic_cast',
+    '$LFE1:',
+    '',
+    '\t.data',
+    '\t.align\t2',
+    '\t.globl\t_GLOBAL_$F$__dynamic_cast',
+    '_GLOBAL_$F$__dynamic_cast:',
+    '__FRAME_BEGIN__:',
+    '\t.4byte\t$LECIE1-$LSCIE1',
+    '$LSCIE1:',
+    '\t.4byte\t0x0',
+    '\t.align\t0',
+]) + "\n"
+
+
+class TestStripCxxFrameBlock:
+    """The pure .s-level frame strip removes ONLY the DWARF frame block,
+    preserving real program `.data`."""
+
+    def test_multi_fn_preserves_program_data_exactly(self):
+        out = eecc._strip_cxx_frame_block(_MULTI_FN_S)
+        # The frame block (and only the frame block) is cut, byte-exact.
+        assert out == _PROGRAM_PART + "\n"
+
+    def test_multi_fn_real_global_survives(self):
+        out = eecc._strip_cxx_frame_block(_MULTI_FN_S)
+        assert "g_value:" in out
+        assert "305419896" in out          # the initialized .word value
+        assert "\t.globl\tg_value" in out
+
+    def test_multi_fn_frame_block_removed(self):
+        out = eecc._strip_cxx_frame_block(_MULTI_FN_S)
+        assert "__FRAME_BEGIN__" not in out
+        assert "_GLOBAL_$F$" not in out
+        # Exactly one `.data` directive remains (the program one); the frame's
+        # `.data` re-entry is gone.
+        assert out.count("\t.data") == 1
+
+    def test_multi_fn_text_survives(self):
+        out = eecc._strip_cxx_frame_block(_MULTI_FN_S)
+        assert "foo:" in out
+        assert "bar:" in out
+
+    def test_single_fn_frame_removed(self):
+        out = eecc._strip_cxx_frame_block(_SINGLE_FN_S)
+        assert "__FRAME_BEGIN__" not in out
+        assert "_GLOBAL_$F$" not in out
+        # The function text is untouched.
+        assert "__dynamic_cast:" in out
+        assert ".text.__dynamic_cast" in out
+        # All `.data` is gone (the frame WAS the entire .data section).
+        assert ".data" not in out
+
+    def test_idempotent(self):
+        once = eecc._strip_cxx_frame_block(_MULTI_FN_S)
+        twice = eecc._strip_cxx_frame_block(once)
+        assert twice == once
+
+    def test_no_frame_is_noop(self):
+        plain = "\n".join([
+            '\t.text',
+            '\t.globl\tmain',
+            'main:',
+            '\tj\t$31',
+            '\t.data',
+            'k:',
+            '\t.word\t7',
+        ]) + "\n"
+        assert eecc._strip_cxx_frame_block(plain) == plain
