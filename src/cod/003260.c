@@ -62,7 +62,26 @@ void Obj3260_TrampChain_D2D8(void *a0) {
 }
 INCLUDE_ASM("nonmatching", func_003264C8);
 INCLUDE_ASM("nonmatching", func_003265A8);
-INCLUDE_ASM("nonmatching", func_00326718);
+extern void func_0033C918(int);
+extern void Forward33B658_33E678(void);
+extern void func_003A52F0(void *a0, int a1, int a2);
+extern void Forward33B670_33E690(void);
+
+__attribute__((section(".text.func_00326718")))
+void func_00326718(int a0) {
+    int v0;
+    if (a0 == 0)
+        return;
+    v0 = *(int*)(a0 + 4);
+    if (v0 != 0) {
+        *(int*)(a0 + 4) = 0;
+        func_0033C918(v0);
+    }
+    Forward33B658_33E678();
+    func_003A52F0((void *)a0, 0, 0xAC);
+    Forward33B670_33E690();
+}
+
 INCLUDE_ASM("nonmatching", func_00326780);
 INCLUDE_ASM("nonmatching", func_003267C0);
 

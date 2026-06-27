@@ -198,7 +198,21 @@ int Obj35D0_ReturnZero_D280(void)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D288 — call-chain (jal ×4)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", SFVOM_ExecServer);
+extern int GetArrayElemA0C_35A1C8(int, int);
+extern void func_0035D2E0(int);
+extern int Obj35D0_ReturnZero_D430();
+extern void func_0035D3A8(int);
+
+__attribute__((section(".text.SFVOM_ExecServer")))
+int SFVOM_ExecServer(int a0) {
+    int r;
+    if (GetArrayElemA0C_35A1C8(a0, 5) == 0)
+        return 0;
+    func_0035D2E0(a0);
+    r = Obj35D0_ReturnZero_D430(a0);
+    func_0035D3A8(a0);
+    return r;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D2E0 — call-chain (jal ×3)                                        */
@@ -412,7 +426,15 @@ void Obj35D0_SetFields_1_a1_a2_D740(char *a0, int a1, int a2)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D758 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", initLibWork);
+extern void Obj35D0_ClearFields_0_4_8_C_D728(char *);
+
+__attribute__((section(".text.initLibWork")))
+void initLibWork(int n, char *w) {
+    int i;
+    for (i = 0; i < n; i++) {
+        Obj35D0_ClearFields_0_4_8_C_D728(w + i * 16);
+    }
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D7A8 — return (*(int*)a0 == 0)                                    */
