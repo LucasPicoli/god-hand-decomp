@@ -4015,6 +4015,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/003b68b8.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -36947,6 +36951,20 @@
       "vaddr": "0x00336048",
       "size": 196,
       "tu": "src/cod/00324040.c"
+    },
+    {
+      "name": "func_003B68B8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003B68B8",
+      "size": 212,
+      "tu": "src/cod/003b68b8.c"
+    },
+    {
+      "name": "func_003B7B40",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003B7B40",
+      "size": 196,
+      "tu": "src/cod/003b68b8.c"
     }
   ],
   "build_dir": "build",
