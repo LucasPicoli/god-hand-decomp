@@ -18,13 +18,12 @@ decompilation. An empty carve already reproduces retail; as functions are
 decompiled it stays byte-identical, so 100% matched code means a byte-identical
 ELF.
 
-## Goals
+## Goal
 
-1. Produce C/C++ that compiles back into a byte-identical `SLUS_215.03` plus
-   matching `.rel` overlays, using the original PS2 toolchain (ee-gcc 2.96 + the
-   SN linker + dvp-as).
-2. From the same source tree, eventually build a **native PC port** behind a
-   thin platform layer (SDL, a modern graphics API, modern audio).
+Produce C/C++ that compiles back into a byte-identical `SLUS_215.03` plus
+matching `.rel` overlays, using the original PS2 toolchain (ee-gcc 2.96 + the
+SN linker + dvp-as). The sole aim of this project is to decompile the game;
+there is no port.
 
 ## How it works
 

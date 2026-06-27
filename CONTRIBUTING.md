@@ -198,8 +198,8 @@ guard.
    hard-fails any pin (the allowlist is kept empty).
 
 3. **Name what you understand, in the same commit.** Names don't affect the
-   ratchet but they *are* most of the deliverable (and what makes a PC port
-   possible). If you figure out what a function, global, or struct is, propagate
+   ratchet but they *are* most of the deliverable (and what makes the
+   decompilation legible). If you figure out what a function, global, or struct is, propagate
    the name into `config/symbol_addrs.txt`, the C source, `carved_funcs`, and
    Ghidra — together, in the commit that matched it.
 
