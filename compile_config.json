@@ -4060,6 +4060,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/003b1ee0.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -22146,7 +22150,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003B1EE0",
       "size": 72,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b1ee0.c"
     },
     {
       "name": "func_003B1F28",
