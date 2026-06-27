@@ -4037,6 +4037,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00333470.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -19248,7 +19252,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00333470",
       "size": 84,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00333470.c"
     },
     {
       "name": "func_003334C8",
@@ -19319,7 +19324,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00334E98",
       "size": 84,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00333470.c"
     },
     {
       "name": "func_00334EF0",
