@@ -49,7 +49,7 @@ int Obj35D0_ReturnZero_D0D8(void)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D0E0 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-extern int sfuo_InitInf(void *a, void *b, int c);
+extern void sfuo_InitInf(int a, int b, int c);
 __attribute__((section(".text.func_0035D0E0")))
 int func_0035D0E0(char *a0) {
     char *p = a0 + 0x2150;
@@ -61,7 +61,21 @@ int func_0035D0E0(char *a0) {
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D110 — call-chain (jal ×2)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", sfuo_InitInf);
+extern void sfuo_InitUoch(char *);
+extern void func_0034C208(int, int, int, int);
+
+__attribute__((section(".text.sfuo_InitInf")))
+void sfuo_InitInf(int a0, int a1, int a2) {
+    int i;
+    int p;
+    *(int*)a1 = 0;
+    p = a1 + 4;
+    for (i = 0; i < 3; i++) {
+        sfuo_InitUoch((char *)p);
+        func_0034C208(a0, a2, i, p);
+        p += 0x10;
+    }
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D188 — tail-call wrapper: Obj35D0_SetFields_0_4_8_C_D1B0(a0, 0, 0, 0, 0)          */
