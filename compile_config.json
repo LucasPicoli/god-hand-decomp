@@ -4053,6 +4053,13 @@
     {
       "path": "src/cod/0039c390.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00325240.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -19030,14 +19037,16 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00325240",
       "size": 80,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00325240.c"
     },
     {
       "name": "func_00325290",
       "unit": "asm/cod/000000",
       "vaddr": "0x00325290",
       "size": 80,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00325240.c"
     },
     {
       "name": "adxm_ResumeThread",
@@ -19874,7 +19883,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00349FB0",
       "size": 136,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00325240.c"
     },
     {
       "name": "func_0034A6F8",
@@ -37123,6 +37133,34 @@
       "vaddr": "0x0032F938",
       "size": 80,
       "tu": "src/cod/0032f938.c"
+    },
+    {
+      "name": "func_00366DC8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00366DC8",
+      "size": 76,
+      "tu": "src/cod/00325240.c"
+    },
+    {
+      "name": "func_0035A7C8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035A7C8",
+      "size": 72,
+      "tu": "src/cod/00325240.c"
+    },
+    {
+      "name": "func_0035B848",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035B848",
+      "size": 116,
+      "tu": "src/cod/00325240.c"
+    },
+    {
+      "name": "func_00357910",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00357910",
+      "size": 112,
+      "tu": "src/cod/00325240.c"
     }
   ],
   "build_dir": "build",
