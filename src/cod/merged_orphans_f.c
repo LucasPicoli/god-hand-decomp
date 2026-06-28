@@ -25,3 +25,15 @@ void InitObjVtableFreeField604_192210(void *obj, void *a1) {
     }
     SetField214PtrThenInit_1B6F38(obj, a1);
 }
+
+/* func_0038BBB8 / func_0038BBD8 (RE4 twin: cItemMgr::bulletNum thunks): thin
+ * forwarders that tail-pass `this` to the real impl. Carved here (sn) out of the
+ * cygnus 0038b8.c TU because SN emits the full jal+frame retail uses (cygnus
+ * sibcalls them to a frameless `j`). */
+extern int func_0038E490(void *this);
+__attribute__((section(".text.func_0038BBB8")))
+int func_0038BBB8(void *this) { return func_0038E490(this); }
+
+extern int func_0038E3F0(void *this);
+__attribute__((section(".text.func_0038BBD8")))
+int func_0038BBD8(void *this) { return func_0038E3F0(this); }

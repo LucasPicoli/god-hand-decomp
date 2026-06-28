@@ -65,8 +65,7 @@ int Obj38B8_GetFlag0_Bit1(char *a0) {
     return (*(int *)a0 >> 1) & 1;
 }
 
-INCLUDE_ASM("nonmatching", func_0038BBB8);
-INCLUDE_ASM("nonmatching", func_0038BBD8);
+/* func_0038BBB8 / func_0038BBD8 matched & carved to merged_orphans_f.c (sn). */
 __attribute__((section(".text.Obj38B8_GetFlag0_Mask800")))
 int Obj38B8_GetFlag0_Mask800(char *a0) {
     return *(int *)a0 & 0x800;

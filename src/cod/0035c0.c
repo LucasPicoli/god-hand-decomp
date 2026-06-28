@@ -41,7 +41,17 @@ INCLUDE_ASM("nonmatching", func_0035C3A0);
 INCLUDE_ASM("nonmatching", func_0035C480);
 /* Medium-leaf (nonmatching — instruction scheduling hard to reproduce exactly): */
 INCLUDE_ASM("nonmatching", func_0035C1C0);
-INCLUDE_ASM("nonmatching", func_0035C200);
+
+/* func_0035C200 (RE4 twin): two strided table writes into a0 — a2 at stride
+ * 0x44 (+0x1F40), a1 at stride 0x74 (+0x1360). Offsets hoisted to locals so the
+ * base register lands first in each addu (commutative-operand match). */
+__attribute__((section(".text.func_0035C200")))
+void func_0035C200(char *a0, int a1, int a2) {
+    int o2 = a2 * 0x44;
+    int o1 = a1 * 0x74;
+    *(int *)(a0 + o2 + 0x1F40) = a1;
+    *(int *)(a0 + o1 + 0x1360) = a2;
+}
 
 /* ── INCLUDE_ASM: permanent (beql/bnel, never matchable in C) ────────────── */
 INCLUDE_ASM("permanent", func_0035C5A0);
