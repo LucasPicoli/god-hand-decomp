@@ -117,6 +117,13 @@ func_003984D8   = 0x3984D8;
  * their retail addresses.  Not splat-discoverable (the disasm references
  * the numeric func_<addr> label), so maintained here by hand. */
 dpdiv           = 0x31E5F0;
+litodp          = 0x31E8C0;
+dpmul           = 0x31E348;
+dpadd           = 0x31E288;
+dpsub           = 0x31E2E0;
+dpcmp           = 0x31E870;
+dptoul          = 0x31EA10;
+fptodp          = 0x31EDD0;
 
 /* undefined_syms_auto.txt (49 entries) */
 D_1000          = 0x1000;
