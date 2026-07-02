@@ -132,6 +132,11 @@ def mark_report(complete: set[str]) -> bool:
     m["complete_code_percent"] = (
         0.0 if total_code == 0 else 100.0 * complete_code / total_code
     )
+    # objdiff-cli only emits complete_units when objdiff.json already carries the
+    # complete flags at generate time; a fresh objdiff.json (as integrate leaves
+    # it) makes the first generate omit it. Write it authoritatively here so a
+    # single progress.sh pass is always canonical, regardless of flag ordering.
+    m["complete_units"] = len(complete)
 
     after = json.dumps(rep, sort_keys=True)
     if before != after:

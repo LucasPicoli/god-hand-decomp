@@ -107,3 +107,36 @@ def test_committed_artifacts_are_consistent(mc):
 
 def test_check_mode_passes_on_committed_report(mc):
     assert mc.main(["--check"]) == 0
+
+
+def test_mark_report_writes_complete_units(mc, tmp_path, monkeypatch):
+    """mark_report must set measures.complete_units (= |complete|) authoritatively,
+    not rely on objdiff-cli having emitted it at generate time. A lean report
+    (as objdiff-cli produces when objdiff.json has no complete flags yet) must
+    come out with complete_units present after a single mark_report pass."""
+    report = tmp_path / "report.json"
+    report.write_text(json.dumps({
+        "measures": {"total_code": 100, "matched_code": 50},   # NO complete_units
+        "units": [
+            {"name": "src/cod/aa", "measures": {"total_code": 30}},
+            {"name": "src/cod/bb", "measures": {"total_code": 20}},
+            {"name": "asm/cod/xx", "measures": {"total_code": 50}},
+        ],
+    }))
+    monkeypatch.setattr(mc, "REPORT", report)
+
+    changed = mc.mark_report({"src/cod/aa", "src/cod/bb"})
+
+    assert changed is True
+    out = json.loads(report.read_text())["measures"]
+    assert out["complete_units"] == 2
+    assert out["complete_code"] == 50          # 30 + 20
+    assert abs(out["complete_code_percent"] - 50.0) < 1e-6
+
+
+def test_committed_report_has_complete_units_measure(mc):
+    """The committed report's headline complete_units equals the predicate count —
+    the invariant a lean night-loop regen used to violate."""
+    report = json.loads((ROOT / "progress" / "report.json").read_text())
+    expected = set(mc.complete_units(report, ROOT))
+    assert int(mc._num(report["measures"].get("complete_units"))) == len(expected)
