@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# pre-commit hook for god-hand-decomp — the commit-time ratchet.
+# pre-commit hook for god-hand-decomp — a reference implementation of the
+# commit-time ratchet.
 #
-# Installed automatically by scripts/setup_toolchain.sh, which points
-# core.hooksPath at scripts/hooks/ so this version-tracked file runs on
-# every commit (no .git symlink to drift). Before 2026-06-05 the hook was
-# opt-in and usually left uninstalled, so the ratchet was honor-system — a
-# workflow-audit gap.
+# NOTE: this file is NOT the active hook. The active hook is selected by git's
+# core.hooksPath, which does not point at scripts/hooks/. This copy is kept
+# only as a version-tracked reference; nothing installs it automatically. To
+# enforce the ratchet yourself, run scripts/session_check.sh before committing
+# (or install this file as your own pre-commit hook).
 #
-# Escape hatches:
+# Escape hatches (honored only if you install this file as your hook):
 #   GODHAND_NO_HOOK=1           skip the hook (env: this commit or your shell)
 #   GODHAND_PRECOMMIT_CHECKS=…  run a fast subset, e.g. "build,score,state"
 #                               (default: the full session_check.sh suite)
