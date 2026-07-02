@@ -257,6 +257,15 @@ def _externalize_jump_tables(text: str, syms: list[str]) -> str:
     if idx < len(syms):
         die(f"--extern-jtbl: {len(syms)} symbol(s) given but cc1 emitted "
             f"only {idx} jump table(s)")
+    # Postcondition: no switch-table entry may survive. The count-check above
+    # can't catch a table the block regex MISSES while the emitted count still
+    # lines up with the symbol list (an extra or differently-formatted table).
+    # A residual `.word $L<n>` is exactly that — refuse rather than emit a TU
+    # that would link its own table copy and shift .rodata.
+    if re.search(r"\n\t\.word\t\$L\d+\n", text):
+        die("--extern-jtbl: a `.word $L` jump-table entry survived externalization "
+            "(the switch-table regex missed a block — likely a new switch-back / "
+            "section format); refusing to emit a TU that would relink its own table")
     return text
 
 
