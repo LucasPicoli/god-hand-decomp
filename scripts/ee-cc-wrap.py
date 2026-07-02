@@ -297,6 +297,32 @@ def _externalize_jump_tables(s_path: Path, syms: list[str]) -> None:
     s_path.write_text(text)
 
 
+def _strip_eh_table_from_s(s_path: Path) -> None:
+    """Remove cc1plus's emitted ``.gcc_except_table`` block(s) from the .s
+    (``--strip-eh-table``). Retail's per-function EH entries already live
+    in the split 360C00.gcc_except_table blob; a TU copy would be appended
+    by the lcf wildcard and shift the section away from retail. The
+    ``$LEHB/$LEHE/$L`` labels the deleted block referenced remain in .text
+    as byte-free locals. Blob entries that point INTO a carved function's
+    span (``.word $LEH_<addr>``) are separately converted to raw retail
+    words via config/jtbl_extern_words.txt (same mechanism as the
+    extern_jtbl jump tables)."""
+    text = s_path.read_text()
+    out: list[str] = []
+    skip = False
+    for line in text.split("\n"):
+        ls = line.strip()
+        if ls.startswith(".section") and ".gcc_except_table" in ls:
+            skip = True
+            continue
+        if skip and (ls.startswith(".section") or
+                     ls in (".text", ".data", ".rdata", ".sdata")):
+            skip = False
+        if not skip:
+            out.append(line)
+    s_path.write_text("\n".join(out))
+
+
 def _strip_cxx_frame_from_s(s_path: Path) -> None:
     """In-place surgical strip of the C++ DWARF frame block from ``s_path``."""
     s_path.write_text(_strip_cxx_frame_block(s_path.read_text()))
@@ -392,6 +418,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "data is already provided by the data splat (otherwise the duplicate "
             "shifts downstream sections). No-op for C TUs and for .s with no "
             "frame block."
+        ),
+    )
+    p.add_argument(
+        "--strip-eh-table",
+        action="store_true",
+        help=(
+            "Remove cc1plus's emitted .gcc_except_table block from the .s "
+            "(the retail EH entries come from the split blob; a TU copy "
+            "would shift the section). C++ TUs only; pair the blob's "
+            "$LEH_ refs into the carved span with raw-word entries in "
+            "config/jtbl_extern_words.txt."
         ),
     )
     p.add_argument(
@@ -586,6 +623,8 @@ def main(argv: list[str]) -> int:
             # single source.  Opt-in per-TU via compile_units strip_cxx_frame.
             if language == "c++" and args.strip_cxx_frame:
                 _strip_cxx_frame_from_s(s_path)
+            if language == "c++" and args.strip_eh_table:
+                _strip_eh_table_from_s(s_path)
         else:
             shutil.copy2(args.input, s_path)
 

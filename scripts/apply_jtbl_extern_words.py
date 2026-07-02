@@ -31,7 +31,11 @@ def main() -> int:
     for path, addrs in entries.items():
         text = path.read_text()
         for addr in addrs:
-            label_re = re.compile(r"^(\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word )\.L0*"
+            # Handles both label spellings splat emits for in-function
+            # targets: jump-table entries (`.word .L<addr>`) and
+            # exception-region boundaries (`.word $LEH_<addr>`).
+            label_re = re.compile(r"^(\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word )"
+                                  r"(?:\.L|\$LEH_)0*"
                                   + addr.lstrip("0") + r"$", re.MULTILINE)
             raw_line = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word 0x0*"
                                   + addr.lstrip("0") + r"$", re.MULTILINE)
