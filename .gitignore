@@ -50,6 +50,7 @@
 !config/SLUS_215.03.lcf
 !config/SLUS_215.03.yaml
 !config/forced_regs_allowlist.txt
+!config/jtbl_extern_words.txt
 !config/linker_script_extra.ld
 !config/r207.lcf
 !config/r207.undefined_funcs_auto.txt
@@ -138,6 +139,7 @@
 !scripts/recon/rel_inventory.py
 !scripts/recon/rel_overlay_inventory.py
 !scripts/recon/uncarved_leaves_worklist.md
+!scripts/apply_jtbl_extern_words.py
 !scripts/resplat.sh
 !scripts/score_nm.sh
 !scripts/session_check.sh
@@ -1176,6 +1178,7 @@
 !src/cod/00327830.c
 !src/cod/0031db50.c
 !src/cod/003950f8.c
+!src/cod/00296530.c
 !src/cod/0031de10.c
 !src/cod/003b7fe0.c
 !src/cod/003b8820.c

@@ -1,0 +1,12 @@
+# Jump-table entries in the split rodata blobs that must stay RAW WORDS
+# (no .L label reference) because their dispatcher function is compiled
+# as real C with compile_units[].extern_jtbl — the TU's emitted table is
+# deleted by the cc wrapper and its %hi/%lo redirect to the blob symbol,
+# so the blob keeps supplying the retail table bytes. splat re-emits a
+# `.word .L<addr>` for any entry whose target address has a known label;
+# scripts/apply_jtbl_extern_words.py (run by resplat.sh after every
+# split) converts each listed entry back to its raw retail word.
+#
+# Format: <blob .s path relative to repo root> <label-addr hex>
+# (the entry's own bytes are recovered from the line's splat comment)
+asm/data/cod/31B580.rodata.s 00296584

@@ -227,6 +227,11 @@ def _compile_one(
         rel=rel,
         compiler=compiler,
         c_flags_drop=c_flags_drop,
+        strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
+        # Honour extern_jtbl the same way (the jump-table dispatcher class):
+        # without it the harness would link the TU's own emitted table and
+        # spuriously report gate drift vs the expected baseline.
+        extern_jtbl=tuple(entry.get("extern_jtbl", ())),
     )
     out_obj.parent.mkdir(parents=True, exist_ok=True)
     # Silence cpp0's `empty declaration` warnings and SN cc1's heap

@@ -269,6 +269,20 @@ class Config:
                     f"got {strip!r}"
                 )
             entry["strip_cxx_frame"] = strip
+            # Per-TU opt-in: externalize compiler-emitted switch jump tables
+            # to the retail rodata blob's symbols (in table-emission order).
+            # The wrapper deletes each emitted .rdata table block and
+            # redirects its %hi/%lo($Ln) references to the given symbol, so
+            # the dispatcher's table bytes keep coming from the split blob
+            # (whose .word entries are raw retail addresses) instead of a
+            # duplicate TU copy that would shift .rodata.
+            jtbl = raw.get("extern_jtbl", [])
+            if not isinstance(jtbl, list) or not all(isinstance(s, str) for s in jtbl):
+                raise BuildError(
+                    f"compile_units[{path!r}]: extern_jtbl must be a list "
+                    f"of symbol names; got {jtbl!r}"
+                )
+            entry["extern_jtbl"] = tuple(jtbl)
             out[path] = entry
         return out
 
@@ -918,6 +932,9 @@ class CompileUnit:
     # Strip the unconditional C++ DWARF frame .data block from this TU's .o
     # (the frame data is provided by the data splat instead). C++ TUs only.
     strip_cxx_frame: bool = False
+    # Symbols to substitute for compiler-emitted switch jump tables, in
+    # emission order (--extern-jtbl per entry). Empty = no-op.
+    extern_jtbl: tuple = ()
 
 
 def _glob_all(patterns: Iterable[str]) -> list[Path]:
@@ -1027,6 +1044,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             src=src, obj=obj, kind="c", rel=rel, compiler=compiler,
             c_flags_drop=tuple(c_flags_drop),
             strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
+            extern_jtbl=tuple(entry.get("extern_jtbl", ())),
         ))
 
     for src in _glob_all(cfg.vsm_globs):
@@ -1196,6 +1214,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
     ]
     if unit.strip_cxx_frame:
         argv.append("--strip-cxx-frame")
+    for sym in unit.extern_jtbl:
+        argv += ["--extern-jtbl", sym]
     g = _g_flag(unit, cfg)
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]

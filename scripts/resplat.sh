@@ -11,4 +11,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 .venv/bin/python -m splat split config/SLUS_215.03.yaml
 git checkout -- include/labels.inc include/include_asm.h include/macro.inc
+# Re-apply raw-word jump-table entries for extern_jtbl dispatchers (splat
+# re-emits `.word .L<addr>` labels for them on every split).
+.venv/bin/python scripts/apply_jtbl_extern_words.py
 echo "resplat: done (include/ macros are now generation-disabled; checkout was a no-op)"

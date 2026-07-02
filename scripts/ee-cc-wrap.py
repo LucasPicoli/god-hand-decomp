@@ -253,6 +253,50 @@ def _strip_cxx_frame_block(text: str) -> str:
     return "\n".join(lines).rstrip("\n") + "\n"
 
 
+# One cc1-emitted switch jump table: a `.rdata` block holding the table
+# label and its `.word $Ln` case entries, closed by the switch-back to the
+# text section — plain `.text`, or `.section .text.<fn>,...` when the
+# function carries a section attribute (every carved TU does). gcc 2.9x
+# (cygnus and SN alike) emits exactly this shape on MIPS.
+_JTBL_BLOCK_RE = re.compile(
+    r"\n\t\.rdata\n\t\.align\t\d+\n(\$L\d+):\n(?:\t\.word\t\$L\d+\n)+"
+    r"\t\.(?:text\n|section \.text[^\n]*\n)")
+
+
+def _externalize_jump_tables(s_path: Path, syms: list[str]) -> None:
+    """Replace cc1-emitted switch jump tables with the split rodata blob's
+    retail symbols (``--extern-jtbl``, in table-emission order).
+
+    The split blob already carries every dispatcher's table bytes as raw
+    ``.word`` retail addresses; letting the TU link its own copy would
+    append 4*N bytes to ``.rodata`` and shift everything behind it. So the
+    emitted ``.rdata`` block is deleted and every ``%hi/%lo($Ln)`` of the
+    table label in the remaining text is redirected to the blob symbol —
+    the dispatcher's lui/addiu then resolve to the retail table address.
+    The function's case labels stay local; nothing else changes, so the
+    ``.text`` bytes are exactly what the scorer already byte-verified.
+    Twin of the helper in sn-cc-wrap.py.
+    """
+    text = s_path.read_text()
+    idx = 0
+    while True:
+        m = _JTBL_BLOCK_RE.search(text)
+        if not m:
+            break
+        if idx >= len(syms):
+            die(f"--extern-jtbl: cc1 emitted more jump tables than symbols "
+                f"given (table {idx + 1} has no mapping)")
+        label = re.escape(m.group(1))
+        text = text[:m.start()] + "\n" + text[m.end():]
+        text = re.sub(r"(%(?:hi|lo)\()" + label + r"(\))",
+                      r"\g<1>" + syms[idx] + r"\g<2>", text)
+        idx += 1
+    if idx < len(syms):
+        die(f"--extern-jtbl: {len(syms)} symbol(s) given but cc1 emitted "
+            f"only {idx} jump table(s)")
+    s_path.write_text(text)
+
+
 def _strip_cxx_frame_from_s(s_path: Path) -> None:
     """In-place surgical strip of the C++ DWARF frame block from ``s_path``."""
     s_path.write_text(_strip_cxx_frame_block(s_path.read_text()))
@@ -349,6 +393,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "shifts downstream sections). No-op for C TUs and for .s with no "
             "frame block."
         ),
+    )
+    p.add_argument(
+        "--extern-jtbl", dest="extern_jtbl", action="append", default=[],
+        metavar="SYM",
+        help="Externalize the Nth cc1-emitted switch jump table to SYM "
+             "(repeatable, applied in table-emission order): delete the "
+             ".rdata table block and redirect its %%hi/%%lo references to "
+             "SYM. The split rodata blob supplies the retail table bytes; "
+             "a duplicate TU copy would shift .rodata. Forwarded to "
+             "sn-cc-wrap.py for SN TUs. See compile_config "
+             "compile_units[].extern_jtbl.",
     )
     p.add_argument(
         "--compiler",
@@ -519,6 +574,8 @@ def main(argv: list[str]) -> int:
                 cc1_cmd.append("-gstabs")
             cc1_cmd += [i_name, "-o", s_name]
             run(cc1_cmd, "cc1", cwd=td_path)
+            if args.extern_jtbl:
+                _externalize_jump_tables(s_path, args.extern_jtbl)
             _materialize_hazard_nops(s_path)
             # ee-gcc 2.9 cc1plus appends an unconditional per-TU DWARF frame
             # block to the C++ ``.s``.  For a carved C++ TU whose frame data is

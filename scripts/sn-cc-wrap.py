@@ -218,6 +218,48 @@ def _materialize_hazard_nops(text: str) -> str:
     return "\n".join(out)
 
 
+# One cc1-emitted switch jump table: a `.rdata` block holding the table
+# label and its `.word $Ln` case entries, closed by the switch-back to the
+# text section — plain `.text`, or `.section .text.<fn>,...` when the
+# function carries a section attribute (every carved TU does). gcc 2.9x
+# (SN and cygnus alike) emits exactly this shape on MIPS.
+_JTBL_BLOCK_RE = re.compile(
+    r"\n\t\.rdata\n\t\.align\t\d+\n(\$L\d+):\n(?:\t\.word\t\$L\d+\n)+"
+    r"\t\.(?:text\n|section \.text[^\n]*\n)")
+
+
+def _externalize_jump_tables(text: str, syms: list[str]) -> str:
+    """Replace cc1-emitted switch jump tables with the split rodata blob's
+    retail symbols (``--extern-jtbl``, in table-emission order).
+
+    The split blob already carries every dispatcher's table bytes as raw
+    ``.word`` retail addresses; letting the TU link its own copy would
+    append 4*N bytes to ``.rodata`` and shift everything behind it. So the
+    emitted ``.rdata`` block is deleted and every ``%hi/%lo($Ln)`` of the
+    table label in the remaining text is redirected to the blob symbol —
+    the dispatcher's lui/addiu then resolve to the retail table address.
+    The function's case labels stay local; nothing else changes, so the
+    ``.text`` bytes are exactly what the scorer already byte-verified.
+    """
+    idx = 0
+    while True:
+        m = _JTBL_BLOCK_RE.search(text)
+        if not m:
+            break
+        if idx >= len(syms):
+            die(f"--extern-jtbl: cc1 emitted more jump tables than symbols "
+                f"given (table {idx + 1} has no mapping)")
+        label = re.escape(m.group(1))
+        text = text[:m.start()] + "\n" + text[m.end():]
+        text = re.sub(r"(%(?:hi|lo)\()" + label + r"(\))",
+                      r"\g<1>" + syms[idx] + r"\g<2>", text)
+        idx += 1
+    if idx < len(syms):
+        die(f"--extern-jtbl: {len(syms)} symbol(s) given but cc1 emitted "
+            f"only {idx} jump table(s)")
+    return text
+
+
 def die(msg: str, code: int = 1) -> None:
     print(f"sn-cc-wrap: {msg}", file=sys.stderr)
     sys.exit(code)
@@ -247,6 +289,15 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     p.add_argument("-D", dest="defines", action="append", default=[], help="Add a -D macro")
     p.add_argument("-U", dest="undefines", action="append", default=[], help="Add a -U macro")
     p.add_argument("-I", dest="includes", action="append", default=[], help="Add an include dir")
+    p.add_argument(
+        "--extern-jtbl", dest="extern_jtbl", action="append", default=[],
+        metavar="SYM",
+        help="Externalize the Nth cc1-emitted switch jump table to SYM "
+             "(repeatable, applied in table-emission order): delete the "
+             ".rdata table block and redirect its %%hi/%%lo references to "
+             "SYM. The split rodata blob supplies the retail table bytes; "
+             "a duplicate TU copy would shift .rodata. See compile_config "
+             "compile_units[].extern_jtbl.")
     # -W and -f mirror ee-cc-wrap.py so compile.py's identical argv shape
     # can be forwarded to either wrapper. The default config carries
     # ``-f=-freorder-blocks`` from compile_config.json::c_flags; without
@@ -401,9 +452,16 @@ def main(argv: list[str]) -> int:
             shutil.copy2(i_path, output.with_suffix(".i"))
 
         # Stage 3: numerize ABI reg names for ee-as 2.10, materialising any
-        # commented #nop EE hazard hints into real nops first.
+        # commented #nop EE hazard hints into real nops first. When the TU
+        # opted in via --extern-jtbl, first delete cc1's emitted switch
+        # jump table(s) and redirect their %hi/%lo references to the split
+        # rodata blob's symbols (the blob already carries the retail table
+        # bytes as raw words; a duplicate TU copy would shift .rodata).
+        s_text = s_path.read_text()
+        if args.extern_jtbl:
+            s_text = _externalize_jump_tables(s_text, args.extern_jtbl)
         s_num_path.write_text(
-            _numerize(_materialize_hazard_nops(s_path.read_text()))
+            _numerize(_materialize_hazard_nops(s_text))
         )
 
         # Stage 4: assemble via Cygnus ee-as (same backend ee-cc-wrap.py
