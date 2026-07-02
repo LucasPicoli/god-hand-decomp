@@ -61,3 +61,24 @@ class TestReconcile:
     def test_detects_percent_drift(self, tmp_path):
         errs = df.reconcile(self._tree(tmp_path, readme=_readme(fuzzy="3.35")))
         assert any("fuzzy" in e.lower() or "Code matched" in e for e in errs)
+
+
+class TestHasProgressTable:
+    """The lint only engages when the README hard-codes a numeric Progress
+    table.  A prose README that delegates its figures to decomp.dev (the
+    current layout) has nothing to reconcile and must not trip the check —
+    otherwise doc_figures.py reds CI on the intentional no-numbers format.
+    """
+
+    def test_true_when_hardcoded_table_present(self):
+        assert df.has_progress_table(_readme()) is True
+
+    def test_false_when_readme_delegates_to_decompdev(self):
+        prose = (
+            "## Measuring progress\n\n"
+            "Progress is measured two complementary ways:\n\n"
+            "- **matched_code_percent** — objdiff diffs every unit ...\n"
+            "- **Full-ELF byte identity** — the pass/fail gate ...\n\n"
+            "Live progress is also tracked at decomp.dev/LucasPicoli/god-hand-decomp.\n"
+        )
+        assert df.has_progress_table(prose) is False

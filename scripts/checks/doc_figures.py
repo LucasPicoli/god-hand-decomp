@@ -2,18 +2,23 @@
 """doc_figures.py — reconcile the README "Progress" table with report.json.
 
 The committed ``progress/report.json`` is the ground truth decomp.dev ingests.
-The README "Progress" table is a hand-updated copy of those numbers, and nothing
-stopped it silently drifting — it was a full publish (1,843 vs 1,912 functions)
-stale once. This lint re-derives the headline figures from ``report.json`` and
-fails if the README table disagrees, so a stale doc can't be committed. (Badges
-are hosted by decomp.dev, which renders them from the same report, so they can't
-drift.)
+If the README hard-codes those numbers in a "Progress" table, nothing stops the
+copy silently drifting — it was a full publish (1,843 vs 1,912 functions) stale
+once. This lint re-derives the headline figures from ``report.json`` and fails
+if a hard-coded README table disagrees, so a stale doc can't be committed.
+(Badges are hosted by decomp.dev, which renders them from the same report, so
+they can't drift.)
+
+The README may instead describe progress in prose and delegate the live numbers
+to decomp.dev (the current layout) — then there is no hand-copied table to
+drift, and this lint has nothing to reconcile and passes. It only engages when a
+hard-coded ``Functions matched | ...`` table is actually present.
 
 Toolchain-free (reads only committed files), so it runs in PR CI alongside
 ``report_lint.py``. When it fails: update the README "Progress" table to match
-``progress/report.json``.
+``progress/report.json`` (or drop the table and delegate to decomp.dev).
 
-Exit codes: 0 pass, 1 mismatch, 77 skip (no report.json).
+Exit codes: 0 pass / nothing to reconcile, 1 mismatch, 77 skip (no report.json).
 """
 from __future__ import annotations
 
@@ -81,6 +86,15 @@ def check_readme(text: str, exp: dict) -> list[str]:
     return errs
 
 
+# Anchor for a hand-maintained numeric Progress table.  When absent, the README
+# delegates its figures to decomp.dev and there is nothing to reconcile.
+_TABLE_ANCHOR = re.compile(r"Functions matched\s*\|")
+
+
+def has_progress_table(text: str) -> bool:
+    return _TABLE_ANCHOR.search(text) is not None
+
+
 def reconcile(root: Path) -> list[str]:
     measures = json.loads((root / "progress" / "report.json").read_text()
                           ).get("measures", {})
@@ -99,6 +113,11 @@ def main() -> int:
     if not report.exists():
         print("progress/report.json missing — skipping doc reconciliation.")
         return 77
+    readme = ROOT / "README.md"
+    if readme.exists() and not has_progress_table(readme.read_text()):
+        print("README has no hard-coded progress table — figures are delegated "
+              "to decomp.dev; nothing to reconcile.")
+        return 0
     errs = reconcile(ROOT)
     if errs:
         print("doc figures OUT OF SYNC with progress/report.json:")
