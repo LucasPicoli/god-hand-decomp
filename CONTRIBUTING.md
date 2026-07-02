@@ -174,7 +174,7 @@ with your C in `src/cod/`, add its `carved_funcs` entry in `compile_config.json`
 then rebuild and confirm the full ELF still equals retail:
 
 ```bash
-.venv/bin/python compile.py            # rebuild + sha256 gate
+.venv/bin/python compile.py            # rebuild + main-ELF sha256 gate (must == retail)
 scripts/session_check.sh               # full ratchet — must exit clean
 ```
 

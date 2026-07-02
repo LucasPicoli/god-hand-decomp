@@ -1467,6 +1467,44 @@ def _concat_rel(rel: RelDescriptor, log: Logger) -> Path:
     return rel.output_rel
 
 
+def _verify_main_elf_sha256(out: Path, log: Logger) -> None:
+    """Assert the linked main ELF is byte-identical to the retail image.
+
+    Without this, ``compile.py`` exit 0 asserted only the REL sha256 — a linked
+    image that diverged from retail (a wrong carve, a reloc-false body) still
+    exited 0, and the only gate was the separate session_check/build.sh pass.
+    The byte-identity invariant means a CORRECT build always matches retail, so
+    a mismatch here is a real error.
+
+    Uses the on-disc retail image as the source of truth (same bytes ``cmp``
+    checks). When the retail image is absent (a public clone without the user's
+    own disc dump) verification is honestly SKIPPED with a warning rather than
+    silently passing. Set ``GODHAND_SKIP_ELF_VERIFY=1`` to bypass (only for an
+    intentional work-in-progress build).
+    """
+    if os.environ.get("GODHAND_SKIP_ELF_VERIFY"):
+        log.warn("main-ELF sha256 verify bypassed (GODHAND_SKIP_ELF_VERIFY set)")
+        return
+    retail = ROOT / "disc_extract" / "SLUS_215.03"
+    if not retail.exists():
+        log.warn(
+            f"main-ELF sha256 verify SKIPPED: retail image not found at "
+            f"{retail.relative_to(ROOT)} — the build was produced but NOT verified "
+            f"against retail (exit 0 does not imply a correct ELF here)."
+        )
+        return
+    got = hashlib.sha256(out.read_bytes()).hexdigest()
+    want = hashlib.sha256(retail.read_bytes()).hexdigest()
+    if got == want:
+        log.info(f"  main ELF: sha256 {got[:16]}… matches retail")
+        return
+    raise BuildError(
+        f"main ELF {out.name}: sha256 mismatch — the linked image is NOT retail\n"
+        f"  built : {got}\n  retail: {want}\n"
+        f"  (a wrong carve or reloc-false body diverged the link; inspect before trusting)"
+    )
+
+
 def _verify_rel_sha256(rel: RelDescriptor, log: Logger) -> None:
     """Assert the built REL's sha256 matches the on-disc retail bytes.
 
@@ -2375,13 +2413,15 @@ def main(argv: list[str]) -> int:
         size = out.stat().st_size
         log.info(f"linked {out.relative_to(ROOT)} ({size} bytes)")
 
-        # Every configured REL is built alongside the main ELF in
-        # the default path. RELs are independent of the main link — they
-        # produce ``build/rel/<name>.rel`` whose sha256 must equal the
-        # AFS-extracted retail bytes (sha256_expected in the schema). A
-        # REL build failure raises BuildError just like any other stage,
-        # so the ratchet covers REL output the same way it covers main-
-        # ELF output (per scripts/checks/rel.sh).
+        # Gate the main ELF on the retail sha256 (byte-identity invariant) so
+        # exit 0 implies a correct image — not just a successful link.
+        _verify_main_elf_sha256(out, log)
+
+        # Every configured REL is built alongside the main ELF in the default
+        # path. RELs are independent of the main link — they produce
+        # ``build/rel/<name>.rel`` whose sha256 must equal the AFS-extracted
+        # retail bytes (sha256_expected in the schema). A REL build failure
+        # raises BuildError just like any other stage.
         for rel_desc in cfg.rels:
             build_rel(rel_desc, cfg, log)
 
