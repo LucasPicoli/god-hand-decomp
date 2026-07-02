@@ -228,6 +228,7 @@ def _compile_one(
         compiler=compiler,
         c_flags_drop=c_flags_drop,
         strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
+        strip_eh_table=bool(entry.get("strip_eh_table", False)),
         # Honour extern_jtbl the same way (the jump-table dispatcher class):
         # without it the harness would link the TU's own emitted table and
         # spuriously report gate drift vs the expected baseline.
