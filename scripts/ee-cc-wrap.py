@@ -65,6 +65,37 @@ CC1_991111 = COMPILER / "lib" / "gcc-lib" / "ee" / "2.9-ee-991111-01" / "cc1"
 # group, so its cc1plus is the correct-lineage C++ compiler (cygnus-2.96 cc1plus
 # emits sd/8-byte slots, SN cc1plus emits sq/16-byte — both wrong shape).
 CC1PLUS_991111 = COMPILER / "lib" / "gcc-lib" / "ee" / "2.9-ee-991111-01" / "cc1plus"
+# Sibling-lineage variant cc1s (decompme/compilers release bucket). Same
+# cpp0 + ee-as backends as the three primary compilers; only the cc1 stage
+# differs. Used to screen scheduler/reg-alloc near-miss ties that resist
+# all three primaries — the retail build may have used a sibling SN BUILD
+# or ee-2.9 snapshot. Keys map to a gcc-lib dir holding cc1/cc1plus.
+# (2.9-ee-991111-dtls13010's cc1 is a shell shim exec'ing cc1.bin through
+# its bundled ld-2.3.6.so; the loader + libc live in gcc/lib/.)
+_GCCLIB_EE = COMPILER / "lib" / "gcc-lib" / "ee"
+CC1_VARIANT_DIRS = {
+    "ee-2.9-990721": _GCCLIB_EE / "2.9-ee-990721",
+    "ee-2.9-991111-plain": _GCCLIB_EE / "2.9-ee-991111",
+    "ee-2.9-991111a": _GCCLIB_EE / "2.9-ee-991111a",
+    "ee-2.9-991111-dtls": _GCCLIB_EE / "2.9-ee-991111-dtls13010",
+    "ee-3.2-030926": _GCCLIB_EE / "3.2-ee-030926",
+    "ee-3.2-040921": _GCCLIB_EE / "3.2-ee-040921",
+}
+# SN sibling builds (Win32 PE, run via wibo like sn-2.95.3-136). Values are
+# the gcc-lib dir names under compiler/windows/ee/gcc/lib/gcc-lib/ee/;
+# forwarded to sn-cc-wrap.py via the GH_SN_GCCLIB environment variable.
+SN_VARIANT_DIRS = {
+    "sn-2.95.3-114": "2.95.3-sn-114",
+    "sn-2.95.3-107": "2.95.3-sn-107",
+    "sn-2.95.2-273a": "2.95.2-sn-273a",
+    "sn-2.95.2-274": "2.95.2-sn-274",
+}
+# gcc 2.9-lineage cc1s all predate -freorder-blocks (exit 33 "Invalid
+# option"); the flag must be dropped for every member, exactly as the
+# primary ee-2.9-991111 path already does. gcc 3.2 accepts the flag.
+_NO_FREORDER_COMPILERS = frozenset(
+    {"ee-2.9-991111"} | {k for k in CC1_VARIANT_DIRS if k.startswith("ee-2.9-")}
+)
 EE_AS = COMPILER / "bin" / "ee-as"
 EE_DVP_AS = COMPILER / "bin" / "ee-dvp-as"
 
@@ -321,7 +352,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     )
     p.add_argument(
         "--compiler",
-        choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"),
+        choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111",
+                 *CC1_VARIANT_DIRS, *SN_VARIANT_DIRS),
         default="cygnus-2.96",
         help=(
             "Which cc1 frontend to invoke. 'cygnus-2.96' "
@@ -391,10 +423,14 @@ def _dispatch_sn(argv: list[str]) -> int:
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
 
-    if args.compiler == "sn-2.95.3-136":
+    if args.compiler == "sn-2.95.3-136" or args.compiler in SN_VARIANT_DIRS:
         # Dispatch the SN path before any Cygnus-specific argument
         # validation so a TU opted into SN never trips this wrapper's
-        # cygnus-flavoured checks.
+        # cygnus-flavoured checks. Variant SN builds forward their
+        # gcc-lib dir via GH_SN_GCCLIB (sn-cc-wrap.py reads it; default
+        # is 2.95.3-sn-136).
+        if args.compiler in SN_VARIANT_DIRS:
+            os.environ["GH_SN_GCCLIB"] = SN_VARIANT_DIRS[args.compiler]
         return _dispatch_sn(argv)
 
     if not args.c:
@@ -412,6 +448,12 @@ def main(argv: list[str]) -> int:
     language = detect_language(args.input, args.x)
     if args.compiler == "ee-2.9-991111":
         cc1_bin = CC1PLUS_991111 if language == "c++" else CC1_991111
+    elif args.compiler in CC1_VARIANT_DIRS:
+        vdir = CC1_VARIANT_DIRS[args.compiler]
+        cc1_bin = vdir / ("cc1plus" if language == "c++" else "cc1")
+        if not cc1_bin.exists():
+            die(f"variant compiler {args.compiler} not installed at {vdir} "
+                "(fetch from decompme/compilers releases)")
     else:
         cc1_bin = CC1PLUS if language == "c++" else CC1
 
@@ -458,7 +500,7 @@ def main(argv: list[str]) -> int:
         # Stage 2: compile (skipped for .s input)
         if not is_assembly:
             features = args.features
-            if args.compiler == "ee-2.9-991111":
+            if args.compiler in _NO_FREORDER_COMPILERS:
                 # gcc 2.9 cc1 predates -freorder-blocks (exit 33 "Invalid
                 # option"); drop it, exactly as sn-cc-wrap.py does for the
                 # SN cc1.  The newlib sd-prologue group never needs it.

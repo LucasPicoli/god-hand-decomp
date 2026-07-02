@@ -71,7 +71,11 @@ CPP0 = CYGNUS_GCCLIB / "cpp0"
 EE_AS = ROOT / "compiler" / "linux" / "ee" / "gcc" / "bin" / "ee-as"
 
 # SN 2.95.3-136 frontend (Win32 PE binaries, run via wibo).
-SN_GCCLIB = ROOT / "compiler" / "windows" / "ee" / "gcc" / "lib" / "gcc-lib" / "ee" / "2.95.3-sn-136"
+# GH_SN_GCCLIB selects a sibling SN build's gcc-lib dir (e.g. 2.95.3-sn-114,
+# 2.95.2-sn-273a) — set by ee-cc-wrap.py's variant dispatch; the default
+# stays the primary 2.95.3-sn-136 so all existing entry points are unchanged.
+SN_GCCLIB = ROOT / "compiler" / "windows" / "ee" / "gcc" / "lib" / "gcc-lib" / "ee" / os.environ.get(
+    "GH_SN_GCCLIB", "2.95.3-sn-136")
 SN_CC1 = SN_GCCLIB / "cc1.exe"
 SN_CC1PLUS = SN_GCCLIB / "cc1plus.exe"
 
