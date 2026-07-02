@@ -970,10 +970,9 @@ class TestRealMonolithic:
     the function shape in `asm/cod/000000.s` has drifted.
     """
 
+    @pytest.mark.requires_monolith
     def test_real_monolithic_indexes_thousands_of_functions(self):
         mono = cm.ROOT / "asm" / "cod" / "000000.s"
-        if not mono.exists():
-            pytest.skip("asm/cod/000000.s not present (pre-splat checkout)")
         lines = mono.read_text().splitlines(keepends=True)
         idx = cm._index_functions(lines)
         # Live count at session 27 is ~11,140 glabels in the monolithic
@@ -981,10 +980,9 @@ class TestRealMonolithic:
         # tolerating future re-splat shape drift.
         assert len(idx) > 1000
 
+    @pytest.mark.requires_monolith
     def test_real_monolithic_has_func_00100000(self):
         mono = cm.ROOT / "asm" / "cod" / "000000.s"
-        if not mono.exists():
-            pytest.skip("asm/cod/000000.s not present (pre-splat checkout)")
         lines = mono.read_text().splitlines(keepends=True)
         idx = cm._index_functions(lines)
         assert "func_00100000" in idx
@@ -1240,9 +1238,11 @@ class TestForeignVersionExclusion:
         for sub in ("src/v2", "asm/v2", "src/v3", "asm/v3"):
             assert (tmp_path / sub).resolve() in roots
 
+    @pytest.mark.requires_monolith
     def test_us_discover_excludes_foreign_sources(self):
         # End-to-end: the real US config's discover() must yield no units under
-        # any foreign-version source root.
+        # any foreign-version source root.  Reads the monolithic asm via
+        # maybe_carve(), so it needs a post-splat checkout (see conftest).
         cfg = cm.Config.load(cm.DEFAULT_CONFIG)
         carve = cm.maybe_carve(cfg, cm.Logger(verbose=False))
         foreign_roots = cm._foreign_version_roots(cfg)

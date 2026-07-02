@@ -1,18 +1,25 @@
 name: PR checks
 
-# Toolchain-free gates that run on every pull request, including from forks.
-# The matching toolchain (ee-gcc / SN ProDG) and the disc-derived target are
-# non-redistributable, so this workflow never builds the game — it runs only
-# the checks that need nothing but Python + git:
+# Toolchain-free gates that run on every pull request (including from forks)
+# AND on every push to main.  The matching toolchain (ee-gcc / SN ProDG) and
+# the disc-derived target are non-redistributable, so this workflow never
+# builds the game — it runs only the checks that need nothing but Python + git:
 #
 #   1. the pytest suite (build-helper / carver invariants),
 #   2. a game-data leak guard (no ISO/AFS/boot-ELF/SDK/binary blobs), and
 #   3. a progress-report consistency lint.
 #
+# Running on push (not just pull_request) is deliberate: these gates used to be
+# invisible while matching directly on main — a red suite only surfaced when a
+# fork opened a PR.  The push trigger surfaces any drift (stale generated
+# artifacts, band-model regressions) on the commit that introduces it.
+#
 # The byte-level match itself is verified locally by the contributor with
 # objdiff (see CONTRIBUTING.md); it cannot run here.
 
 on:
+  push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 

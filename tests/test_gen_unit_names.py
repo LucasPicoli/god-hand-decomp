@@ -22,7 +22,6 @@ from pathlib import Path
 
 from scripts.gen_unit_names import (
     compute_display_names,
-    generate,
     load_folder_map,
     load_part_funcs,
     load_symbol_addrs,
@@ -276,16 +275,16 @@ class TestLoadUnits:
 
 
 # --------------------------------------------------------------------------- #
-# Drift guard: the committed artifact must match the generator (like the
-# report.json / doc-figure lint tests).  Catches a stale unit_names.json after
-# carves change objdiff.json.
+# NOTE: there is deliberately no "committed unit_names.json matches generator"
+# drift guard.  ``progress/unit_names.json`` is a publish-time display remap
+# that the decomp.dev upload workflow (.github/workflows/progress.yml)
+# regenerates from the committed config on every run — nothing reads a
+# committed copy.  Committing it only created a derived artifact that went
+# stale on every match/rename commit and turned CI red for no functional
+# reason, so it is no longer tracked (see .gitignore).  The generator itself
+# is covered by the ``resolve_unit`` / ``compute_display_names`` / loader
+# tests above; ``apply_to_report`` (the publish transform) is covered below.
 # --------------------------------------------------------------------------- #
-class TestCommittedMapIsCurrent:
-    def test_unit_names_json_matches_generator(self):
-        committed = json.loads((_ROOT / "progress" / "unit_names.json").read_text())
-        assert committed == generate(_ROOT), (
-            "progress/unit_names.json is stale — run scripts/gen_unit_names.py"
-        )
 
 
 # --------------------------------------------------------------------------- #
