@@ -1997,6 +1997,115 @@ def do_reseed_expected_rel(
 
 
 # --------------------------------------------------------------------------- #
+# Reseed one explicit unit (escape hatch — bypasses the membership gate)
+# --------------------------------------------------------------------------- #
+def _regenerate_objdiff_json(cfg: Config, unit_entries: list[dict]) -> None:
+    """Rewrite ``ROOT/objdiff.json`` from the current per-unit list.  The unit
+    list may have grown since the last write, so the reseed paths refresh it.
+    Shared tail extracted so ``do_reseed_path`` and its tests can drive it."""
+    objdiff_cfg = cfg.objdiff_cfg
+    out: dict = {
+        "min_version": objdiff_cfg.get("min_version", "2.0.0"),
+        "name": objdiff_cfg.get("name", "god-hand-decomp"),
+        "custom_make": objdiff_cfg.get("custom_make", "python"),
+        "custom_args": list(
+            objdiff_cfg.get("custom_args", ["compile.py", "--single-file"])
+        ),
+        "build_target": bool(objdiff_cfg.get("build_target", True)),
+        "watch_patterns": list(objdiff_cfg.get("watch_patterns", [])),
+        "progress_categories": list(objdiff_cfg.get("progress_categories", [])),
+        "units": unit_entries,
+    }
+    (ROOT / "objdiff.json").write_text(json.dumps(out, indent=2) + "\n")
+
+
+def _resolve_unit_entry(unit_name: str, unit_entries: list[dict]) -> dict:
+    """Resolve ``unit_name`` to exactly one objdiff unit entry, independent of
+    ``carved_funcs``/REL membership — that independence is the whole point of
+    ``--reseed-path``.
+
+    Accepts the unit ``name`` (e.g. ``asm/cod/31B580.rodata``), its
+    repo-relative ``base_path``/``target_path`` (``build/…​.o`` /
+    ``expected/build/…​.o``), or the bare ``<rel>.o`` / ``<rel>`` tail.  Raises
+    ``BuildError`` on no match or an ambiguous tail match."""
+    q = unit_name.strip()
+    # 1. exact match on a canonical key.
+    for e in unit_entries:
+        if q in (e["name"], e["base_path"], e["target_path"]):
+            return e
+    # 2. tail match: "build/…​.o", "31B580.rodata.o", "31B580.rodata".
+    cand = q[:-2] if q.endswith(".o") else q
+    matches = [
+        e for e in unit_entries
+        if e["name"] == cand
+        or e["name"].endswith("/" + cand)
+        or e["base_path"].endswith("/" + q)
+    ]
+    if len(matches) == 1:
+        return matches[0]
+    if len(matches) > 1:
+        raise BuildError(
+            f"--reseed-path: {unit_name!r} is ambiguous — matches "
+            f"{[m['name'] for m in matches]}; pass a full unit name."
+        )
+    sample = [e["name"] for e in unit_entries[:6]]
+    raise BuildError(
+        f"--reseed-path: {unit_name!r} matches no objdiff unit "
+        f"({len(unit_entries)} units; e.g. {sample}). Pass an objdiff unit "
+        f"'name' (e.g. 'asm/cod/31B580.rodata') or its build/<rel>.o path."
+    )
+
+
+def do_reseed_path(unit_name: str, cfg: Config, log: Logger) -> None:
+    """Force-reseed the ``expected/build`` mirror for exactly one unit,
+    bypassing the ``carved_funcs`` ∪ REL membership gate that guards
+    ``--reseed-expected``.
+
+    This is the escape hatch for the silent-under-count bug where a NON-carve,
+    non-REL TU (e.g. a ``.rodata`` fragment object) grows after its expected
+    `.o` was first seeded: the mirror is pinned, ``git clean -df`` and
+    ``compile.py --clean`` both leave the stale copy in place, and
+    ``--reseed-expected`` refuses the unit because it is neither a declared
+    carve nor a REL.  ``--reseed-path`` names the unit explicitly and
+    overwrites just that one mirror.
+
+    ``unit_name`` may be an objdiff unit ``name`` (e.g.
+    ``asm/cod/31B580.rodata``), its repo-relative ``build/<rel>.o`` /
+    ``expected/build/<rel>.o`` path, or the bare ``<rel>.o`` / ``<rel>`` tail.
+
+    Compile-only (no link): the mirror is a per-`.o` freeze, so refreshing it
+    needs a fresh ``build/<rel>.o`` but not the linked ELF — and skipping the
+    link keeps this escape hatch usable even when an unrelated link stage is
+    mid-repair.  Only the one named mirror is overwritten; every other
+    ``expected/build/*.o`` keeps its pin.
+    """
+    carve = maybe_carve(cfg, log)
+    units = discover(cfg, carve)
+    log.info(
+        f"reseed-path: rebuilding {len(units)} compile units so the target "
+        f"mirror is fresh"
+    )
+    _compile_many(units, cfg, log, jobs=DEFAULT_PARALLELISM)
+
+    unit_entries = _objdiff_units(cfg, carve)
+    entry = _resolve_unit_entry(unit_name, unit_entries)
+    force = {entry["base_path"]}
+    _, _, forced = _mirror_expected(unit_entries, log, force=force)
+    if forced != 1:
+        raise BuildError(
+            f"reseed-path: expected to force exactly 1 mirror for "
+            f"{entry['name']!r} but forced {forced}; base_path "
+            f"{entry['base_path']!r} did not match a single unit."
+        )
+    _regenerate_objdiff_json(cfg, unit_entries)
+    log.info(
+        f"reseed-path: force-refreshed expected mirror for {entry['name']!r} "
+        f"(bypassed the carved_funcs/REL membership gate); objdiff.json "
+        f"regenerated."
+    )
+
+
+# --------------------------------------------------------------------------- #
 # Clean
 # --------------------------------------------------------------------------- #
 def do_clean(cfg: Config, log: Logger) -> None:
@@ -2161,6 +2270,15 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         "plus the carved .o in one operation. NAME may also be a "
                         "REL name from compile_config.json::rels, in which case the "
                         "REL's per-`.o` mirror is refreshed instead.")
+    p.add_argument("--reseed-path", type=str, default=None, metavar="UNIT",
+                   help="force-reseed the expected/build/ mirror for exactly one "
+                        "UNIT even when it is NOT a carved_funcs member nor a REL "
+                        "— the escape hatch for a non-carve TU whose expected .o "
+                        "silently went stale (e.g. a .rodata fragment that grew, "
+                        "surviving `git clean` and `--clean`). UNIT is an objdiff "
+                        "unit name (e.g. asm/cod/31B580.rodata) or its "
+                        "build/<rel>.o path. Rebuilds, overwrites just that one "
+                        "mirror, regenerates objdiff.json, and exits.")
     p.add_argument("--rel", type=str, default=None, metavar="NAME",
                    help="build only the named REL (a name from "
                         "compile_config.json::rels) and exit; analogous to "
@@ -2220,6 +2338,10 @@ def main(argv: list[str]) -> int:
 
         if args.reseed_expected is not None:
             do_reseed_expected(args.reseed_expected, cfg, log)
+            return 0
+
+        if args.reseed_path is not None:
+            do_reseed_path(args.reseed_path, cfg, log)
             return 0
 
         if args.single_file is not None:

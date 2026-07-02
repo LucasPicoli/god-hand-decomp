@@ -16,6 +16,7 @@
 #     scripts/session_check.sh build           # compile.py + ELF sha256
 #     scripts/session_check.sh rel             # per-REL build sha256 ratchet
 #     scripts/session_check.sh expected        # expected/build baseline ≡ retail
+#     scripts/session_check.sh expected_stale  # expected/build mirror not drifted from build/
 #     scripts/session_check.sh dual_compiler_regress  # per-section dual-compiler
 #     scripts/session_check.sh score           # objdiff ratchet
 #     scripts/session_check.sh data_decls      # data .s sync with include/ extern decls
@@ -40,7 +41,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete atlas social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync tu_complete atlas social)
 
 # Optional checks read local-only working files (running notes, the in-progress
 # struct atlas, naming bookkeeping) that aren't tracked in the repo, so their
@@ -48,7 +49,7 @@ DEFAULT_CHECKS=(splat rel-splat metadata build rel expected dual_compiler_regres
 # optional check is skipped, not failed. A missing NON-optional check is still a
 # hard error — that catches a typo in DEFAULT_CHECKS or an accidentally-deleted
 # tracked check.
-OPTIONAL_CHECKS=(naming_debt naming_sync atlas)
+OPTIONAL_CHECKS=(naming_debt naming_sync atlas expected_stale)
 
 usage() {
     cat <<EOF
