@@ -4414,6 +4414,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0033a468.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -39115,6 +39122,13 @@
       "vaddr": "0x00338E38",
       "size": 96,
       "tu": "src/cod/00338e38.c"
+    },
+    {
+      "name": "func_0033A468",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033A468",
+      "size": 96,
+      "tu": "src/cod/0033a468.c"
     }
   ],
   "build_dir": "build",
