@@ -125,6 +125,11 @@ dpcmp           = 0x31E870;
 dptoul          = 0x31EA10;
 fptodp          = 0x31EDD0;
 
+/* libgcc 64-bit integer division helper (signed), emitted as `jal __divdi3`
+ * by the C `/` operator on `long long` (e.g. the saturating fixed-point
+ * mul-div in func_0036C920). Same hand-maintained alias pattern as above. */
+__divdi3        = 0x3B7FE0;
+
 /* undefined_syms_auto.txt (49 entries) */
 D_1000          = 0x1000;
 D_4000          = 0x4000;
