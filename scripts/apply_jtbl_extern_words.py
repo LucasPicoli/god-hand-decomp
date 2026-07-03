@@ -37,8 +37,10 @@ def main() -> int:
             label_re = re.compile(r"^(\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word )"
                                   r"(?:\.L|\$LEH_)0*"
                                   + addr.lstrip("0") + r"$", re.MULTILINE)
-            raw_line = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word 0x0*"
-                                  + addr.lstrip("0") + r"$", re.MULTILINE)
+            # Converted entries are written back lowercase (`0x0026af5c`),
+            # so the already-raw probe must match the hex case-blind.
+            raw_line = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word 0x0*(?i:"
+                                  + addr.lstrip("0") + r")$", re.MULTILINE)
             if label_re.search(text):
                 text = label_re.sub(lambda m: m.group(1) + "0x" + addr.lower(),
                                     text, count=1)
