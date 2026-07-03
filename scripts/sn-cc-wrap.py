@@ -253,6 +253,11 @@ def _externalize_jump_tables(text: str, syms: list[str]) -> str:
         text = text[:m.start()] + "\n" + text[m.end():]
         text = re.sub(r"(%(?:hi|lo)\()" + label + r"(\))",
                       r"\g<1>" + syms[idx] + r"\g<2>", text)
+        # Bare macro-operand table refs (`lw $3,$L12($2)`) — cygnus cc1
+        # emits these instead of a %hi/%lo pair; harden the SN twin the
+        # same way (the block is deleted, so any surviving reference is
+        # a table ref; lookahead keeps $L120 etc. intact).
+        text = re.sub(r"(?<![\w$])" + label + r"(?![\d:])", syms[idx], text)
         idx += 1
     if idx < len(syms):
         die(f"--extern-jtbl: {len(syms)} symbol(s) given but cc1 emitted "

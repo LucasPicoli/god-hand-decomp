@@ -290,6 +290,12 @@ def _externalize_jump_tables(s_path: Path, syms: list[str]) -> None:
         text = text[:m.start()] + "\n" + text[m.end():]
         text = re.sub(r"(%(?:hi|lo)\()" + label + r"(\))",
                       r"\g<1>" + syms[idx] + r"\g<2>", text)
+        # cygnus cc1 references the table as a bare macro operand
+        # (`lw $3,$L12($2)`) instead of a %hi/%lo pair; ee-as expands that
+        # macro into the lui+lw pair itself. Redirect the bare token too
+        # (the table block is already deleted, so any surviving reference
+        # is a table ref; the lookahead keeps $L120 etc. intact).
+        text = re.sub(r"(?<![\w$])" + label + r"(?![\d:])", syms[idx], text)
         idx += 1
     if idx < len(syms):
         die(f"--extern-jtbl: {len(syms)} symbol(s) given but cc1 emitted "
