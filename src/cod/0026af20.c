@@ -6,24 +6,16 @@
  * inline) + a count, then calls cOmWeapon_setParent(a1, a0, count, buf, buf+0x10).
  * Early-out when a1 == 0.
  *
- * NON_MATCHING partial.  Default `us` build uses the byte-exact
- * `#else INCLUDE_ASM` carve (sha256 unchanged); `us-nm` scores this clean-C.
- * The .text is byte-exact under sn-2.95.3-136 (per-case float locals + complete
- * per-case stores → cc1 tail-merge reproduces the shared .L tails), BUT the
- * switch jump-table lives in a SEPARATE carved data object (31B580.rodata.o)
- * keyed to the asm head label `.L0026AF5C`; a pure-C body emits its own
- * jump-table and orphans that external reference (ld: undefined `.L0026AF5C`).
- * So the function stays INCLUDE_ASM with the label re-exported — external-rodata
- * jumptable class, not source-fixable.  Uses macro.inc so the switch jump-table
- * head labels stay global for the rodata table referencing them (carve folds the
- * text out; --strip-all => sha256 unaffected). */
-#define INCLUDE_ASM_USE_MACRO_INC 1
-#include "include_asm.h"
+ * Byte-exact under sn-2.95.3-136 (per-case float locals + complete per-case
+ * stores → cc1 tail-merge reproduces the shared .L tails).  The switch
+ * jump-table lives in the carved rodata blob (31B580.rodata.o, table
+ * D_004455F0): compile_units[].extern_jtbl deletes the TU-emitted table and
+ * redirects %hi/%lo to the blob symbol; the blob's one labeled entry
+ * (.L0026AF5C) is kept as a raw word via config/jtbl_extern_words.txt. */
 #include "godhand/vu0.h"
 
 extern int cOmWeapon_setParent();
 
-#ifdef NON_MATCHING
 __attribute__((section(".text.SetOrientByType_26AF20")))
 void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2) {
     void *a3 = a0;
@@ -146,10 +138,3 @@ void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2) {
     }
     cOmWeapon_setParent(a1, a3, count, buf, (char *)buf + 0x10);
 }
-#else
-INCLUDE_ASM("nonmatching", SetOrientByType_26AF20);
-/* Re-export the switch jump-table head label the .rodata table references
- * across the .o boundary (the labels.inc-assembled carve marks jlabels
- * local).  --strip-all => no effect on the final ELF bytes / sha256. */
-__asm__(".globl .L0026AF5C\n");
-#endif
