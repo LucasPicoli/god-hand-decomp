@@ -124,6 +124,14 @@ dpsub           = 0x31E2E0;
 dpcmp           = 0x31E870;
 dptoul          = 0x31EA10;
 fptodp          = 0x31EDD0;
+/* Float/double conversion helpers, addresses recovered 2026-07-04 (notes/94
+ * follow-up) by witnessing the compiler-emitted `jal` name for each cast and
+ * matching it to the retail call target: `(unsigned)float`->fptoui,
+ * `(int)double`->dptoli (dptoli proven by an exact func_00346100 match),
+ * `(float)double`->dptofp. Unblocks the link step for ~32 double-math callers. */
+fptoui          = 0x31ED08;
+dptoli          = 0x31E978;
+dptofp          = 0x31EAE0;
 
 /* libgcc 64-bit integer division helper (signed), emitted as `jal __divdi3`
  * by the C `/` operator on `long long` (e.g. the saturating fixed-point
