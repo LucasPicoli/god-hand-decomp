@@ -106,6 +106,15 @@ def main() -> int:
         )
         return 0  # not an error: setup_toolchain.sh handles ordering.
 
+    # Byte-level idempotency FIRST: if OUR byte is already flipped, this patch
+    # is applied — regardless of whether a LATER patch (e.g.
+    # 02-fix-short-loop-pad) has since changed the whole-file sha256. Without
+    # this, re-running setup_toolchain.sh after 02 applied would make the
+    # whole-file check below see neither PRE nor POST and wrongly die.
+    if _read_byte_at(BINARY_PATH, OFFSET) == NEW_BYTE:
+        _log("ok", f"already-applied (byte at {OFFSET:#x} is {NEW_BYTE:#04x})")
+        return 0
+
     current_sha = _sha256(BINARY_PATH)
 
     if current_sha == POST_SHA256:
