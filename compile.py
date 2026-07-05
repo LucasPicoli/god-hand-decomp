@@ -293,6 +293,22 @@ class Config:
                     f"of symbol names; got {jtbl!r}"
                 )
             entry["extern_jtbl"] = tuple(jtbl)
+            # Per-TU opt-in: externalize compiler-emitted `li.d` double
+            # immediate loads to the retail rodata blob's symbols (in
+            # emission order). The wrapper replaces each li.d pseudo-op with
+            # an $at-form `ld` from the given blob symbol and drops the
+            # TU-local .rodata copy of the constant, so the double's bytes
+            # keep coming from the split blob (byte-identical to retail)
+            # instead of a duplicate TU copy that would both shift .rodata
+            # and never reach the blob-interior address retail loaded from.
+            # Data analogue of extern_jtbl.
+            dbl = raw.get("extern_double", [])
+            if not isinstance(dbl, list) or not all(isinstance(s, str) for s in dbl):
+                raise BuildError(
+                    f"compile_units[{path!r}]: extern_double must be a list "
+                    f"of symbol names; got {dbl!r}"
+                )
+            entry["extern_double"] = tuple(dbl)
             # Optional per-TU assembler route. 'ee' (default) = SCE ee-as 2.10;
             # 'gnu' routes cc1's .s through scripts/mipsel-as-wrap.py (GNU as),
             # whose reorder scheduler fills a same-register jr delay slot ee-as
@@ -960,6 +976,10 @@ class CompileUnit:
     # Symbols to substitute for compiler-emitted switch jump tables, in
     # emission order (--extern-jtbl per entry). Empty = no-op.
     extern_jtbl: tuple = ()
+    # Blob symbols to substitute for compiler-emitted `li.d` double
+    # immediate loads, in emission order (--extern-double per entry).
+    # Empty = no-op.
+    extern_double: tuple = ()
     # Stage-3 assembler route: "ee" (default, SCE ee-as 2.10) or "gnu"
     # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot). notes/95.
     assembler: str = "ee"
@@ -1074,6 +1094,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
             strip_eh_table=bool(entry.get("strip_eh_table", False)),
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
+            extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
         ))
 
@@ -1248,6 +1269,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv.append("--strip-eh-table")
     for sym in unit.extern_jtbl:
         argv += ["--extern-jtbl", sym]
+    for sym in unit.extern_double:
+        argv += ["--extern-double", sym]
     if unit.assembler == "gnu":
         argv.append("--assembler=gnu")
     g = _g_flag(unit, cfg)

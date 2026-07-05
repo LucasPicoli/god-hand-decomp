@@ -312,6 +312,54 @@ def _externalize_jump_tables(s_path: Path, syms: list[str]) -> None:
     s_path.write_text(text)
 
 
+# One cc1-emitted `li.d` double-immediate load.  In this toolchain doubles
+# live in GPRs (the EE soft-float ABI), so ee-as expands `li.d $rt,<val>`
+# into a TU-local `.rodata` copy of the 8-byte constant plus
+# `lui $at,%hi(.rodata); ld $rt,%lo(.rodata)($at)`.  cc1 (cygnus and SN
+# alike) emits the pseudo-op as a single `\tli.d\t$rt,<value>` line.
+_LID_RE = re.compile(r"^\tli\.d\t(\$\w+),[^\n]*$", re.M)
+
+
+def _externalize_fp_literals(s_path: Path, syms: list[str]) -> None:
+    """Redirect each cc1-emitted ``li.d`` double-immediate load to a symbol
+    in the split rodata blob (``--extern-double``, in emission order).
+
+    The data analogue of ``_externalize_jump_tables``.  Retail loads a
+    double constant from a fixed address inside the contiguous 31B580
+    rodata blob (e.g. ``D_00458140`` = the ``0.8`` at vaddr 0x458140) via
+    ``lui $at,%hi(D_..); ld $rt,%lo(D_..)($at)``.  A compiled TU that
+    writes the same constant with ``li.d`` instead gets its OWN
+    ``.rodata`` copy, which (a) duplicates the bytes and (b) — living in
+    the linker's ``*(.rodata .rodata.*)`` catch-all AFTER the blob — can
+    never land at the blob-interior address retail used, so the emitted
+    %hi/%lo never match.  We delete the pseudo-op and re-emit the SAME
+    ``$at``-form load pointed at the blob symbol: no TU ``.rodata`` is
+    produced (the pseudo-op was its only source) and the %hi/%lo resolve
+    to the blob's copy — byte-identical to retail.
+
+    The explicit ``$at`` (wrapped in ``.set noat``/``.set at``) reproduces
+    ee-as's own ``li.d`` expansion register choice.  A bare-symbol macro
+    load (``ld $rt, SYM``) would instead pick ``$rt`` as the address temp
+    (``lui $rt``) — wrong bytes.  Symbols are applied in ``li.d`` emission
+    order, one per load (order-sensitive, like ``--extern-jtbl``).
+    """
+    text = s_path.read_text()
+    matches = list(_LID_RE.finditer(text))
+    if len(matches) != len(syms):
+        die(f"--extern-double: {len(syms)} symbol(s) given but cc1 emitted "
+            f"{len(matches)} `li.d` double-immediate load(s) — give exactly "
+            f"one blob symbol per li.d, in emission order")
+    # Splice right-to-left so earlier match spans stay valid as we edit.
+    for m, sym in reversed(list(zip(matches, syms))):
+        reg = m.group(1)
+        repl = (f"\t.set\tnoat\n"
+                f"\tlui\t$at,%hi({sym})\n"
+                f"\tld\t{reg},%lo({sym})($at)\n"
+                f"\t.set\tat")
+        text = text[:m.start()] + repl + text[m.end():]
+    s_path.write_text(text)
+
+
 def _strip_eh_table_from_s(s_path: Path) -> None:
     """Remove cc1plus's emitted ``.gcc_except_table`` block(s) from the .s
     (``--strip-eh-table``). Retail's per-function EH entries already live
@@ -456,6 +504,18 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
              "a duplicate TU copy would shift .rodata. Forwarded to "
              "sn-cc-wrap.py for SN TUs. See compile_config "
              "compile_units[].extern_jtbl.",
+    )
+    p.add_argument(
+        "--extern-double", dest="extern_double", action="append", default=[],
+        metavar="SYM",
+        help="Externalize the Nth cc1-emitted `li.d` double-immediate load "
+             "to SYM (repeatable, in emission order): replace the li.d "
+             "pseudo-op with an $at-form `ld` from SYM and drop the TU-local "
+             ".rodata copy of the constant. The split rodata blob supplies "
+             "the retail bytes at SYM's address; a TU copy would both "
+             "duplicate them and link after the blob (never at the "
+             "blob-interior address retail used). Data analogue of "
+             "--extern-jtbl. See compile_config compile_units[].extern_double.",
     )
     p.add_argument(
         "--assembler",
@@ -646,6 +706,8 @@ def main(argv: list[str]) -> int:
             run(cc1_cmd, "cc1", cwd=td_path)
             if args.extern_jtbl:
                 _externalize_jump_tables(s_path, args.extern_jtbl)
+            if args.extern_double:
+                _externalize_fp_literals(s_path, args.extern_double)
             _materialize_hazard_nops(s_path)
             # ee-gcc 2.9 cc1plus appends an unconditional per-TU DWARF frame
             # block to the C++ ``.s``.  For a carved C++ TU whose frame data is

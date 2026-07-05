@@ -233,6 +233,10 @@ def _compile_one(
         # without it the harness would link the TU's own emitted table and
         # spuriously report gate drift vs the expected baseline.
         extern_jtbl=tuple(entry.get("extern_jtbl", ())),
+        # Honour extern_double the same way (the double-math constant class):
+        # without it the harness would relink the TU's own li.d .rodata copy
+        # and spuriously report gate drift vs the expected baseline.
+        extern_double=tuple(entry.get("extern_double", ())),
         # Honour the per-TU assembler route (as == 'gnu'): the gate compile
         # must go through the SAME stage-3 assembler as the real build, or a
         # gnu-as-routed TU (func_00348938) would recompile via ee-as and
