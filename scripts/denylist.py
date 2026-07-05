@@ -13,7 +13,15 @@ import re
 # A GCC explicit-register local (`register <type> x __asm__("$N")`). Matched
 # anywhere on a line (NOT anchored) so a mid-line declaration cannot evade the
 # check; callers strip comments first so prose mentions never count.
-FORCED_REG_RE = re.compile(r"\bregister\b[^;{}]*?__asm__\s*\(")
+# GCC accepts three interchangeable spellings of the binding keyword —
+# `__asm__`, `__asm`, and plain `asm` — all codegen-identical, so all three
+# must be caught. The plain `asm` form in particular evaded BOTH this gate and
+# the inline-asm gate (which deliberately exempts register bindings, deferring
+# to this checker) until the alternation was added. The `\b` before the group
+# stops an identifier that merely ends in `asm` (`foo_asm(`) from matching, and
+# `[^;{}]` keeps the `register` and the `asm(` inside one statement so a bare
+# `register` storage class on a preceding statement can't fuse with a later call.
+FORCED_REG_RE = re.compile(r"\bregister\b[^;{}]*?\b(?:__asm__|__asm|asm)\s*\(")
 
 # --- inline-asm keywords ----------------------------------------------------- #
 # Each is anchored or word-bounded so it does not match identifiers that merely

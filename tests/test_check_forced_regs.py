@@ -52,6 +52,41 @@ def test_plain_register_without_asm_does_not_count(tmp_path):
     assert cfr.count_pins(_write(tmp_path, "d.c", src)) == 0
 
 
+def test_plain_asm_spelling_is_caught(tmp_path):
+    # GCC's plain `asm` binding spelling is codegen-identical to `__asm__`
+    # and previously evaded BOTH this gate and the inline-asm gate.
+    src = 'void *f(void *o){ register int *v asm("$3"); return o; }\n'
+    assert cfr.count_pins(_write(tmp_path, "asm.c", src)) == 1
+
+
+def test_single_underscore_asm_spelling_is_caught(tmp_path):
+    # The `__asm` (single-pair) binding spelling must also count.
+    src = 'void *f(void *o){ register int *v __asm("$3"); return o; }\n'
+    assert cfr.count_pins(_write(tmp_path, "uasm.c", src)) == 1
+
+
+def test_all_three_spellings_counted_together(tmp_path):
+    src = (
+        'register int a asm("$2");\n'
+        'register int b __asm("$3");\n'
+        'register int c __asm__("$4");\n'
+    )
+    assert cfr.count_pins(_write(tmp_path, "mix.c", src)) == 3
+
+
+def test_identifier_ending_in_asm_does_not_count(tmp_path):
+    # A call to a helper whose name ends in `asm` is not a register pin;
+    # the `\b` before the keyword and `[^;{}]` (no statement fusion) guard it.
+    src = (
+        'void k(void){\n'
+        '    register int i;\n'
+        '    i = foo_asm(3);\n'
+        '    (void)i;\n'
+        '}\n'
+    )
+    assert cfr.count_pins(_write(tmp_path, "helper.c", src)) == 0
+
+
 def test_multiple_pins_across_lines(tmp_path):
     src = (
         'register int a __asm__("$2");\n'

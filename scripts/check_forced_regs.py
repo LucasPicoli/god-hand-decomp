@@ -42,8 +42,9 @@ SCAN_DIRS = ("src", "include")
 SCAN_EXTS = (".c", ".cc", ".cpp", ".cxx", ".c++", ".h", ".hpp", ".hh")
 
 # The forced-register pin pattern lives in the central registry.
-# It matches `register <stuff> __asm__("$N")` anywhere on a line (NOT anchored)
-# so a mid-line pin cannot evade the gate; comments are stripped first (see
+# It matches `register <stuff> {__asm__|__asm|asm}("$N")` anywhere on a line
+# (NOT anchored) so a mid-line pin cannot evade the gate, in any of GCC's three
+# interchangeable binding spellings; comments are stripped first (see
 # ``strip_comments``) so prose mentions of the idiom never count.
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
