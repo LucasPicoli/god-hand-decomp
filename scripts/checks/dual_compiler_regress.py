@@ -233,6 +233,11 @@ def _compile_one(
         # without it the harness would link the TU's own emitted table and
         # spuriously report gate drift vs the expected baseline.
         extern_jtbl=tuple(entry.get("extern_jtbl", ())),
+        # Honour the per-TU assembler route (as == 'gnu'): the gate compile
+        # must go through the SAME stage-3 assembler as the real build, or a
+        # gnu-as-routed TU (func_00348938) would recompile via ee-as and
+        # spuriously MISS the expected baseline. notes/95 #11.
+        assembler=entry.get("as", "ee"),
     )
     out_obj.parent.mkdir(parents=True, exist_ok=True)
     # Silence cpp0's `empty declaration` warnings and SN cc1's heap

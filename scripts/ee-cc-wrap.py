@@ -458,6 +458,22 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
              "compile_units[].extern_jtbl.",
     )
     p.add_argument(
+        "--assembler",
+        dest="assembler",
+        choices=("ee", "gnu"),
+        default="ee",
+        help=(
+            "Which assembler runs stage 3. 'ee' (default) uses the SCE "
+            "ee-as 2.10 (today's behaviour for every TU). 'gnu' routes the "
+            "cc1 .s through scripts/mipsel-as-wrap.py (mipsel-linux-gnu-as, "
+            "the same GNU assembler the ASM-splat path uses): GNU as's "
+            ".set-reorder scheduler swaps a same-register load into a jr "
+            "delay slot where ee-as 2.10 refuses to (e.g. cygnus reorder-mode "
+            "getter macros like `lw $2,D_xxx($4); j $31`). Opt-in per-TU via "
+            "compile_units[].as == 'gnu'."
+        ),
+    )
+    p.add_argument(
         "--compiler",
         choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111",
                  *CC1_VARIANT_DIRS, *SN_VARIANT_DIRS),
@@ -505,17 +521,19 @@ def _dispatch_sn(argv: list[str]) -> int:
     sn_wrap = ROOT / "scripts" / "sn-cc-wrap.py"
     if not sn_wrap.exists():
         die(f"sn-cc-wrap.py missing at {sn_wrap} — run toolchain setup")
-    # Strip --compiler=... / --compiler X tokens before forwarding.
+    # Strip --compiler=... / --compiler X and --assembler=... / --assembler X
+    # tokens before forwarding (sn-cc-wrap.py understands neither; the GNU-as
+    # route is a cygnus/ee-2.9 stage-3 option — SN has its own assemble stage).
     forwarded: list[str] = []
     skip = False
     for tok in argv:
         if skip:
             skip = False
             continue
-        if tok == "--compiler":
+        if tok in ("--compiler", "--assembler"):
             skip = True
             continue
-        if tok.startswith("--compiler="):
+        if tok.startswith("--compiler=") or tok.startswith("--assembler="):
             continue
         forwarded.append(tok)
     try:
@@ -644,20 +662,48 @@ def main(argv: list[str]) -> int:
             shutil.copy2(args.input, s_path)
 
         # Stage 3: assemble
-        as_cmd = [
-            str(EE_AS),
-            "-EL",
-            "-mips3",
-            "-mcpu=5900",
-            # -mabi=eabi makes ee-as emit ELF flag 0x4000 (eabi64), matching the
-            # original SLUS_215.03 main ELF header flags (0x20924001).  Without
-            # this we get 0x20920001 (no eabi64 bit) and objdiff scoring drifts.
-            "-mabi=eabi",
-            f"-G{args.sdata_thresh}",
-        ]
-        # Forward -I include search paths to ee-as too.  INCLUDE_ASM(folder,
-        # name) expands to `.include "folder/name.s"`; ee-as resolves that
-        # through its own -I list (same as cpp0's -I list for #include).
+        if args.assembler == "gnu":
+            # Route the cc1 .s through the GNU assembler (mipsel-linux-gnu-as
+            # via scripts/mipsel-as-wrap.py) instead of ee-as 2.10.  GNU as's
+            # .set-reorder delay-slot scheduler swaps a same-register load into
+            # a `jr $31` delay slot where ee-as 2.10 refuses to (cygnus
+            # reorder-mode getter macros: `lw $2,D_xxx($4); j $31`).  These are
+            # the SAME flags the ASM-splat path assembles the monolithic
+            # fragments with (compile_config as_flags), so the .text bytes match
+            # retail exactly; mipsel-as-wrap rewrites -mabi=eabi -> -mabi=o64
+            # and patches the .o's EF_MIPS_ABI back to eabi64 (0x4000).  Opt-in
+            # per-TU only — GNU as would reschedule OTHER TUs that ee-as (and
+            # retail) left unscheduled, so the default stays ee-as.
+            mipsel_wrap = ROOT / "scripts" / "mipsel-as-wrap.py"
+            if not mipsel_wrap.exists():
+                die(f"--assembler gnu: mipsel-as-wrap.py missing at {mipsel_wrap}")
+            as_cmd = [
+                sys.executable,
+                str(mipsel_wrap),
+                "-EL",
+                "-march=r5900",
+                "-mabi=eabi",
+                f"-G{args.sdata_thresh}",
+                "--no-pad-sections",
+            ]
+            as_stage = "gnu-as"
+        else:
+            as_cmd = [
+                str(EE_AS),
+                "-EL",
+                "-mips3",
+                "-mcpu=5900",
+                # -mabi=eabi makes ee-as emit ELF flag 0x4000 (eabi64), matching
+                # the original SLUS_215.03 main ELF header flags (0x20924001).
+                # Without this we get 0x20920001 (no eabi64 bit) and objdiff
+                # scoring drifts.
+                "-mabi=eabi",
+                f"-G{args.sdata_thresh}",
+            ]
+            as_stage = "ee-as"
+        # Forward -I include search paths to the assembler too.  INCLUDE_ASM(
+        # folder, name) expands to `.include "folder/name.s"`; ee-as resolves
+        # that through its own -I list (same as cpp0's -I list for #include).
         # Standard gcc-driver behaviour; needed for carving where
         # `.include "nonmatching/<name>.s"` resolves under build/asm/.
         for inc in args.includes:
@@ -677,7 +723,7 @@ def main(argv: list[str]) -> int:
         if args.g:
             as_cmd.append("--gstabs")
         as_cmd += [s_name, "-o", str(output)]
-        run(as_cmd, "ee-as", cwd=td_path)
+        run(as_cmd, as_stage, cwd=td_path)
 
         # Optional: side-export intermediates for diff sessions
         if "i" in args.print_stage and not is_assembly:

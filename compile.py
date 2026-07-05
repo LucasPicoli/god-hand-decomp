@@ -293,6 +293,18 @@ class Config:
                     f"of symbol names; got {jtbl!r}"
                 )
             entry["extern_jtbl"] = tuple(jtbl)
+            # Optional per-TU assembler route. 'ee' (default) = SCE ee-as 2.10;
+            # 'gnu' routes cc1's .s through scripts/mipsel-as-wrap.py (GNU as),
+            # whose reorder scheduler fills a same-register jr delay slot ee-as
+            # 2.10 refuses to (notes/95 #11). Opt-in per-TU ONLY — GNU as would
+            # reschedule TUs ee-as/retail left alone.
+            as_route = raw.get("as", "ee")
+            if as_route not in ("ee", "gnu"):
+                raise BuildError(
+                    f"compile_units[{path!r}]: 'as' must be 'ee' or 'gnu'; "
+                    f"got {as_route!r}"
+                )
+            entry["as"] = as_route
             out[path] = entry
         return out
 
@@ -948,6 +960,9 @@ class CompileUnit:
     # Symbols to substitute for compiler-emitted switch jump tables, in
     # emission order (--extern-jtbl per entry). Empty = no-op.
     extern_jtbl: tuple = ()
+    # Stage-3 assembler route: "ee" (default, SCE ee-as 2.10) or "gnu"
+    # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot). notes/95.
+    assembler: str = "ee"
 
 
 def _glob_all(patterns: Iterable[str]) -> list[Path]:
@@ -1059,6 +1074,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
             strip_eh_table=bool(entry.get("strip_eh_table", False)),
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
+            assembler=entry.get("as", "ee"),
         ))
 
     for src in _glob_all(cfg.vsm_globs):
@@ -1232,6 +1248,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv.append("--strip-eh-table")
     for sym in unit.extern_jtbl:
         argv += ["--extern-jtbl", sym]
+    if unit.assembler == "gnu":
+        argv.append("--assembler=gnu")
     g = _g_flag(unit, cfg)
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]
