@@ -1,17 +1,17 @@
 {
   "measures": {
-    "fuzzy_match_percent": 9.82193,
-    "total_code": "2844492",
+    "fuzzy_match_percent": 9.822233,
+    "total_code": "2844404",
     "matched_code": "279384",
-    "matched_code_percent": 9.82193,
+    "matched_code_percent": 9.822234,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
-    "total_functions": 11203,
+    "total_functions": 11202,
     "matched_functions": 4360,
-    "matched_functions_percent": 38.918148,
+    "matched_functions_percent": 38.921623,
     "complete_code": 256668,
-    "complete_code_percent": 9.023333516142777,
+    "complete_code_percent": 9.023612679492787,
     "total_units": 6612,
     "complete_units": 1095
   },
@@ -54,14 +54,14 @@
     {
       "name": "src/cod/000000",
       "measures": {
-        "fuzzy_match_percent": 50.83848,
-        "total_code": "18128",
+        "fuzzy_match_percent": 51.086475,
+        "total_code": "18040",
         "matched_code": "9216",
-        "matched_code_percent": 50.83848,
+        "matched_code_percent": 51.08647,
         "matched_data_percent": 100.0,
-        "total_functions": 537,
+        "total_functions": 536,
         "matched_functions": 436,
-        "matched_functions_percent": 81.19181,
+        "matched_functions_percent": 81.343285,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -78,8 +78,8 @@
         },
         {
           "name": ".text",
-          "size": "19336",
-          "fuzzy_match_percent": 50.83848,
+          "size": "19248",
+          "fuzzy_match_percent": 51.086475,
           "metadata": {}
         },
         {
@@ -3521,231 +3521,225 @@
           "address": "16704"
         },
         {
-          "name": "cOmDoor_setClose",
-          "size": "88",
-          "metadata": {},
-          "address": "16752"
-        },
-        {
           "name": "cOmItem_setBlockObj",
           "size": "72",
           "metadata": {},
-          "address": "16840"
+          "address": "16752"
         },
         {
           "name": "cOmSub_setVibration",
           "size": "60",
           "metadata": {},
-          "address": "16912"
+          "address": "16824"
         },
         {
           "name": "cOmb0_ReleaseCollision",
           "size": "44",
           "metadata": {},
-          "address": "16976"
+          "address": "16888"
         },
         {
           "name": "cOmb3_SetNextPoint",
           "size": "28",
           "metadata": {},
-          "address": "17024"
+          "address": "16936"
         },
         {
           "name": "cPadVib_setSeq",
           "size": "88",
           "metadata": {},
-          "address": "17056"
+          "address": "16968"
         },
         {
           "name": "cPadVib_stopSeq",
           "size": "8",
           "metadata": {},
-          "address": "17144"
+          "address": "17056"
         },
         {
           "name": "cRoomJump_setTblAddr",
           "size": "8",
           "metadata": {},
-          "address": "17152"
+          "address": "17064"
         },
         {
           "name": "cRoomSave_systemInit",
           "size": "72",
           "metadata": {},
-          "address": "17160"
+          "address": "17072"
         },
         {
           "name": "cSceAtManager_AtDataReset",
           "size": "44",
           "metadata": {},
-          "address": "17232"
+          "address": "17144"
         },
         {
           "name": "cSceAtManager_AtDataSet_exec_2C2750",
           "size": "60",
           "metadata": {},
-          "address": "17280"
+          "address": "17192"
         },
         {
           "name": "cSceAtManager_SetDoorFunc",
           "size": "36",
           "metadata": {},
-          "address": "17344"
+          "address": "17256"
         },
         {
           "name": "cScenario_SetRoomExitFunc",
           "size": "12",
           "metadata": {},
-          "address": "17384"
+          "address": "17296"
         },
         {
           "name": "cScenario_beginRoomJump_2C4548",
           "size": "44",
           "metadata": {},
-          "address": "17400"
+          "address": "17312"
         },
         {
           "name": "cScenario_getObjIdFromStr",
           "size": "248",
           "metadata": {},
-          "address": "17448"
+          "address": "17360"
         },
         {
           "name": "cScenario_getStrFromObjId",
           "size": "112",
           "metadata": {},
-          "address": "17696"
+          "address": "17608"
         },
         {
           "name": "cScenario_isCamEnd",
           "size": "52",
           "metadata": {},
-          "address": "17808"
+          "address": "17720"
         },
         {
           "name": "cScenario_setOmSuspend",
           "size": "164",
           "metadata": {},
-          "address": "17864"
+          "address": "17776"
         },
         {
           "name": "cScrArray_SearchScroll",
           "size": "76",
           "metadata": {},
-          "address": "18032"
+          "address": "17944"
         },
         {
           "name": "cSnd_SetBgmLevel",
           "size": "20",
           "metadata": {},
-          "address": "18112"
+          "address": "18024"
         },
         {
           "name": "cSnd_SetBgmState",
           "size": "8",
           "metadata": {},
-          "address": "18136"
+          "address": "18048"
         },
         {
           "name": "cWorldTime_getGlobalHMS",
           "size": "48",
           "metadata": {},
-          "address": "18144"
+          "address": "18056"
         },
         {
           "name": "capVu0Acos",
           "size": "60",
           "metadata": {},
-          "address": "18192"
+          "address": "18104"
         },
         {
           "name": "capVu0LengthSq",
           "size": "32",
           "metadata": {},
-          "address": "18256"
+          "address": "18168"
         },
         {
           "name": "chack_point_line",
           "size": "132",
           "metadata": {},
-          "address": "18288"
+          "address": "18200"
         },
         {
           "name": "classPAD_WORK_Pad_act_set",
           "size": "116",
           "metadata": {},
-          "address": "18424"
+          "address": "18336"
         },
         {
           "name": "displayOmLayer",
           "size": "156",
           "metadata": {},
-          "address": "18544"
+          "address": "18456"
         },
         {
           "name": "func_00100000",
           "size": "4",
           "metadata": {},
-          "address": "18704"
+          "address": "18616"
         },
         {
           "name": "func_00273630",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "18712"
+          "address": "18624"
         },
         {
           "name": "func_003951B0",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "18728"
+          "address": "18640"
         },
         {
           "name": "func_003951C0",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "18744"
+          "address": "18656"
         },
         {
           "name": "func_003951D0",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "18760"
+          "address": "18672"
         },
         {
           "name": "getItemNumInRoom",
           "size": "164",
           "metadata": {},
-          "address": "18776"
+          "address": "18688"
         },
         {
           "name": "pl00_CkSubScreen",
           "size": "52",
           "metadata": {},
-          "address": "18944"
+          "address": "18856"
         },
         {
           "name": "scTag2",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "19000"
+          "address": "18912"
         },
         {
           "name": "setColorScrollLayer",
           "size": "116",
           "metadata": {},
-          "address": "19040"
+          "address": "18952"
         },
         {
           "name": "setPlayerPos",
           "size": "176",
           "metadata": {},
-          "address": "19160"
+          "address": "19072"
         }
       ],
       "metadata": {
@@ -322167,18 +322161,18 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 9.99256,
-        "total_code": "2795920",
+        "fuzzy_match_percent": 9.992875,
+        "total_code": "2795832",
         "matched_code": "279384",
-        "matched_code_percent": 9.99256,
+        "matched_code_percent": 9.992875,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 10808,
+        "total_functions": 10807,
         "matched_functions": 4360,
-        "matched_functions_percent": 40.34049,
+        "matched_functions_percent": 40.34422,
         "complete_code": "256668",
-        "complete_code_percent": 9.180091,
+        "complete_code_percent": 9.18038,
         "total_units": 6217,
         "complete_units": 1095
       }
