@@ -5129,6 +5129,10 @@
     {
       "path": "src/cod/0035bc38.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0033af28.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -20590,7 +20594,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033AF28",
       "size": 48,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033af28.c"
     },
     {
       "name": "SJRMT_GetNumData",
@@ -20704,7 +20709,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003402E0",
       "size": 40,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033af28.c"
     },
     {
       "name": "DTR_Stop",
