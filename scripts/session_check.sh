@@ -63,6 +63,12 @@ CHECK may be any single sub-check name, or a comma-separated list
 
 Each sub-check is also independently runnable as scripts/checks/<name>.sh.
 
+  scripts/session_check.sh --fix   repair the derived artifacts the ratchet
+                                   checks (reseed stale expected mirrors, regen
+                                   report.json to its fixed point, regen the
+                                   struct atlas), then re-run the gate to verify.
+                                   Wraps scripts/session_finalize.py.
+
 Exit codes:
   0   all selected checks passed (warnings ok)
   1   at least one check failed
@@ -78,6 +84,13 @@ fi
 if [[ $# -eq 1 ]]; then
     case "$1" in
         -h|--help) usage; exit 0 ;;
+        --fix)
+            # Repair the derived artifacts the ratchet checks (reseed stale
+            # expected mirrors, regen report.json to its fixed point, regen the
+            # struct atlas) instead of just reporting the drift. Leaves the
+            # regenerated report uncommitted for review; re-run the gate to verify.
+            exec python3 "$ROOT/scripts/session_finalize.py"
+            ;;
         *)
             IFS=',' read -r -a selected <<<"$1"
             ;;
