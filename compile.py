@@ -321,6 +321,18 @@ class Config:
                     f"got {as_route!r}"
                 )
             entry["as"] = as_route
+            # Per-TU opt-in: reconstruct the R5900 FP hazard nops our cc1
+            # frontends omit (mtc1->cvt, and cvt->div FDIV setup). The retail
+            # scheduler's div-nop placement is non-mechanical across the
+            # binary, so this is opt-in per-TU and each opted-in function is
+            # byte-verified (e.g. func_00184A40, the (float)a/(float)b divide).
+            fp_hz = raw.get("fp_hazard_nops", False)
+            if not isinstance(fp_hz, bool):
+                raise BuildError(
+                    f"compile_units[{path!r}]: fp_hazard_nops must be a bool; "
+                    f"got {fp_hz!r}"
+                )
+            entry["fp_hazard_nops"] = fp_hz
             out[path] = entry
         return out
 
@@ -983,6 +995,9 @@ class CompileUnit:
     # Stage-3 assembler route: "ee" (default, SCE ee-as 2.10) or "gnu"
     # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot). notes/95.
     assembler: str = "ee"
+    # Insert the R5900 FP hazard nops our cc1 omits (--fp-hazard-nops:
+    # mtc1->cvt + cvt->div). Opt-in per-TU; each opted-in fn is byte-verified.
+    fp_hazard_nops: bool = False
 
 
 def _glob_all(patterns: Iterable[str]) -> list[Path]:
@@ -1096,6 +1111,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
             extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
+            fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
         ))
 
     for src in _glob_all(cfg.vsm_globs):
@@ -1273,6 +1289,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv += ["--extern-double", sym]
     if unit.assembler == "gnu":
         argv.append("--assembler=gnu")
+    if unit.fp_hazard_nops:
+        argv.append("--fp-hazard-nops")
     g = _g_flag(unit, cfg)
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]

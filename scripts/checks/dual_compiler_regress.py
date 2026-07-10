@@ -242,6 +242,10 @@ def _compile_one(
         # gnu-as-routed TU (func_00348938) would recompile via ee-as and
         # spuriously MISS the expected baseline. notes/95 #11.
         assembler=entry.get("as", "ee"),
+        # Honour fp_hazard_nops (the mtc1->cvt / cvt->div FP hazard class,
+        # func_00184A40): without it the harness would compile the TU missing
+        # the retail FP hazard nops and spuriously report gate drift.
+        fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
     )
     out_obj.parent.mkdir(parents=True, exist_ok=True)
     # Silence cpp0's `empty declaration` warnings and SN cc1's heap

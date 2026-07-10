@@ -218,6 +218,138 @@ def _materialize_hazard_nops(text: str) -> str:
     return "\n".join(out)
 
 
+# --- Opt-in EE FP hazard-nop INSERTER (--fp-hazard-nops) ---------------------
+# Twin of the helper in ee-cc-wrap.py; the two must agree byte-for-byte so the
+# same source matches under either cc1 frontend.  Unlike _materialize_hazard_nops
+# (which only uncomments a #nop cc1 already placed), this pass INSERTS the nops
+# our cc1 frontends omit entirely, for a TU that opted in.  See
+# .private/tests/test_fp_hazard_insert.py for the full spec.
+_FPR_RE = re.compile(r"\$f\d+")
+_MTC1_DEST_RE = re.compile(r"^\s*d?mtc1\s+\$\w+\s*,\s*(\$f\d+)\b")
+_CVT_DEST_RE = re.compile(r"^\s*cvt\.[a-z0-9.]+\s+(\$f\d+)\b")
+_DIV_SRC_RE = re.compile(r"^\s*div\.[sd]\s+\$f\d+\s*,\s*(\$f\d+)\s*,\s*(\$f\d+)")
+_FP_CONSUMER_RE = re.compile(
+    r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
+    r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
+
+
+def _fp_op_reads(line: str, fpr: str) -> bool:
+    """True if FP op *line* reads *fpr* as a SOURCE operand.
+
+    For a compare (``c.<cond>.s $fs,$ft``) every FPR operand is a source; for
+    every other FP op the first FPR is the destination and the rest are
+    sources.  ``cvt.s.w $f0,$f0`` reads $f0; ``mov.s $f0,$f12`` does not.
+    """
+    m = _FP_CONSUMER_RE.match(line)
+    if not m:
+        return False
+    mnem, rest = m.group(1), m.group(2)
+    regs = _FPR_RE.findall(rest)
+    if not regs:
+        return False
+    sources = regs if mnem == "c" else regs[1:]
+    return fpr in sources
+
+
+def _is_asm_instr(stripped: str) -> bool:
+    return (bool(stripped) and not stripped.startswith((".", "#"))
+            and not stripped.endswith(":"))
+
+
+def _is_branch_or_jump(stripped: str) -> bool:
+    """True if the instruction is a control transfer (basic-block boundary).
+
+    Any MIPS branch (``b``/``beq``/``beqz``/``bc1t``/``bnel`` …) or jump
+    (``j``/``jr``/``jal``/``jalr``) — every such mnemonic starts with ``b`` or
+    ``j``.  ``break`` is the one ``b*`` mnemonic that is not a branch.
+    """
+    mnem = stripped.split(None, 1)[0]
+    return mnem[:1] in ("b", "j") and mnem != "break"
+
+
+def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> bool:
+    """Scan backward from *div_idx* within the same straight-line block for a
+    ``cvt.*`` writing one of *srcs*.  Stop at a label, branch/jump, or ``.set
+    noreorder`` — any basic-block / hand-scheduled boundary.  Retail's
+    ``(float)a / (float)b`` divide feeds the div from a cvt in the same block.
+    """
+    for j in range(div_idx - 1, -1, -1):
+        s = lines[j].strip()
+        if s.endswith(":"):            # label = block start
+            return False
+        if s.startswith(".set"):
+            if "noreorder" in s:
+                return False           # left the reorder region
+            continue
+        if not _is_asm_instr(s):
+            continue
+        if _is_branch_or_jump(s):      # control edge = block boundary
+            return False
+        cm = _CVT_DEST_RE.match(lines[j])
+        if cm and cm.group(1) in srcs:
+            return True
+    return False
+
+
+def _insert_ee_fp_hazard_nops(text: str) -> str:
+    """Insert the R5900 FP hazard nops cc1 omits, for a --fp-hazard-nops TU.
+
+    Rule A (mtc1->cvt): after ``mtc1``/``dmtc1 $r,$fN`` whose *immediately
+    following* real instruction is an FP op reading ``$fN`` as a source, emit
+    one nop (GPR->COP1 move latency).
+
+    Rule B (cvt->div): before a ``div.s``/``div.d`` whose FP source operand was
+    produced by a ``cvt.*`` earlier in the same straight-line block, emit two
+    nops (the FDIV operand-setup latency cygnus-2.96/ee-2.9 schedule but sn
+    omits).
+
+    Delay-slot (``.set noreorder``) regions are left untouched.  Idempotent: a
+    real nop already between an mtc1 and its consumer breaks Rule A's
+    adjacency, and the two extra nops Rule B adds are not themselves cvt/div so
+    a second pass finds the same producer and re-detects the *same* div — which
+    already carries its nops immediately before it (Rule B measures from the
+    original div, and re-running inserts before the same div line, so the count
+    is stable only if we guard; see the leading-nop guard below).
+    """
+    lines = text.split("\n")
+    insert_before = [0] * len(lines)
+    reorder = True
+    prev_mtc1_dest: str | None = None
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if s.startswith(".set"):
+            if "noreorder" in s:
+                reorder = False
+            elif "reorder" in s:
+                reorder = True
+            prev_mtc1_dest = None
+            continue
+        if not _is_asm_instr(s):
+            if s.endswith(":"):  # label = basic-block boundary, breaks adjacency
+                prev_mtc1_dest = None
+            continue
+        if reorder:
+            if prev_mtc1_dest is not None and _fp_op_reads(line, prev_mtc1_dest):
+                insert_before[i] += 1  # Rule A
+            dm = _DIV_SRC_RE.match(line)
+            if dm:
+                srcs = {dm.group(1), dm.group(2)}
+                # Idempotency guard: if the two slots before the div are already
+                # nops, Rule B has already run — don't stack more.
+                already = (i >= 2 and lines[i - 1].strip() == "nop"
+                           and lines[i - 2].strip() == "nop")
+                if not already and _block_has_cvt_producing(lines, i, srcs):
+                    insert_before[i] += 2  # Rule B
+        m = _MTC1_DEST_RE.match(line)
+        prev_mtc1_dest = m.group(1) if (m and reorder) else None
+
+    out: list[str] = []
+    for i, line in enumerate(lines):
+        out.extend(["\tnop"] * insert_before[i])
+        out.append(line)
+    return "\n".join(out)
+
+
 # One cc1-emitted switch jump table: a `.rdata` block holding the table
 # label and its `.word $Ln` case entries, closed by the switch-back to the
 # text section — plain `.text`, or `.section .text.<fn>,...` when the
@@ -337,6 +469,12 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--asm-only",
         action="store_true",
         help="Stop after cc1; emit .s instead of .o (smoke-test mode)",
+    )
+    p.add_argument(
+        "--fp-hazard-nops", dest="fp_hazard_nops", action="store_true",
+        help="Insert the R5900 mtc1->cvt and cvt->div FP hazard nops SN cc1 "
+             "omits (opt-in per-TU; twin of ee-cc-wrap.py's flag). See "
+             "compile_units[].fp_hazard_nops.",
     )
     return p.parse_args(argv)
 
@@ -474,9 +612,14 @@ def main(argv: list[str]) -> int:
         s_text = s_path.read_text()
         if args.extern_jtbl:
             s_text = _externalize_jump_tables(s_text, args.extern_jtbl)
-        s_num_path.write_text(
-            _numerize(_materialize_hazard_nops(s_text))
-        )
+        s_text = _materialize_hazard_nops(s_text)
+        # Opt-in FP hazard-nop INSERTER, after materialize so an already-
+        # materialised nop breaks Rule A's mtc1->consumer adjacency (no double
+        # insertion). Per-TU via compile_units fp_hazard_nops. Runs on ABI reg
+        # names (it only inspects $fN + mnemonics, both numerize-invariant).
+        if args.fp_hazard_nops:
+            s_text = _insert_ee_fp_hazard_nops(s_text)
+        s_num_path.write_text(_numerize(s_text))
 
         # Stage 4: assemble via Cygnus ee-as (same backend ee-cc-wrap.py
         # uses; consistent with how the existing .o mirror is built).
