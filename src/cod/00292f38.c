@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern void PushEsp(void *a0);
-extern int PTR_DAT_003fa62c;
+extern int D_003FA62C;
 extern void __malloc_lock(int a0);
 extern void func_003ACA28(int a0, int a1);
 extern void __malloc_unlock(int a0);
@@ -18,9 +18,9 @@ void UpdateObjByIndexedOp_2FBE50(void *a0) {
 
 __attribute__((section(".text.UpdateGlobalPtrWithParam_3A7CC0")))
 void UpdateGlobalPtrWithParam_3A7CC0(int a0) {
-    __malloc_lock(PTR_DAT_003fa62c);
-    func_003ACA28(PTR_DAT_003fa62c, a0);
-    __malloc_unlock(PTR_DAT_003fa62c);
+    __malloc_lock(D_003FA62C);
+    func_003ACA28(D_003FA62C, a0);
+    __malloc_unlock(D_003FA62C);
 }
 
 __attribute__((section(".text.SetField548AndGlobals_292F38")))

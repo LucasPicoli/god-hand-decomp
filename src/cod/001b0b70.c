@@ -64,7 +64,7 @@ extern void cIDBase_restartAnim(void *);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, int f, int g);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
 extern int D_00747470;
-extern void *PTR_DAT_003c2f84;
+extern void *D_003C2F84;
 
 __attribute__((section(".text.ResetAnimState_1F5EF8")))
 void ResetAnimState_1F5EF8(unsigned char *this) {
@@ -74,7 +74,7 @@ void ResetAnimState_1F5EF8(unsigned char *this) {
     this[2] = 0;
     this[3] = 0;
     classFADE_start(&D_00747470, 0, 0xA, 0, 0xFF000000U, 0, 0xA);
-    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)PTR_DAT_003c2f84 + 0x20), 0xA);
+    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)D_003C2F84 + 0x20), 0xA);
 }
 
 /* AllocZeroedBlock_313E50: 28 insns, 112 B — sq-prologue, no VU0, no jumptable. */

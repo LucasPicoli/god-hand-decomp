@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *(*PTR_FUN_003c490c)(void);
+extern void *(*D_003C490C)(void);
 extern int type_info___eq(void *self, void *arg);
 extern float func_0031EB38(void *);
 
 __attribute__((section(".text.func_00320338")))
 void *func_00320338(void)
 {
-  return (*PTR_FUN_003c490c)();
+  return (*D_003C490C)();
 }
 
 __attribute__((section(".text.func_0031F460")))

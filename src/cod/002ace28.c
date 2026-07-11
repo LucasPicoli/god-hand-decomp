@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int (*PTR_FUN_003c490c)(void *);
+extern int (*D_003C490C)(void *);
 extern void *D_003C3CF0;
 extern int EnsureInitThenForward_2A9538_30EE08(void *, int, void *);
 
 __attribute__((section(".text.func_00320360")))
 int func_00320360(void *a0) {
-    return PTR_FUN_003c490c(a0) + 8;
+    return D_003C490C(a0) + 8;
 }
 
 __attribute__((section(".text.func_002ACE28")))

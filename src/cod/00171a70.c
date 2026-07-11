@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern char D_00463050[];
-extern int PTR_DAT_003c2f84;
+extern int D_003C2F84;
 extern int D_00747A78;
 extern void cCamManager_setPlCamera(char *a0, int a1);
 extern void cScenario__endSoftEvent(int a0);
@@ -50,7 +50,7 @@ __attribute__((section(".text.func_001A4CF8")))
 void func_001A4CF8(char *a0) {
     if (*(unsigned char *)(a0 + 0x763)) {
         cCamManager_setPlCamera(D_00463050, 0);
-        cScenario__endSoftEvent(PTR_DAT_003c2f84);
+        cScenario__endSoftEvent(D_003C2F84);
         D_00747A78 &= 0xFFFEFFFF;
     }
 }

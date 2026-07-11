@@ -45,16 +45,16 @@ void *func_002AED40(void *a0, int a1) {
     return 0;
 }
 
-typedef struct Node {
+typedef struct Node_00276090 {
     int pad0;
-    struct Node *prev;
-    struct Node *next;
-} Node;
+    struct Node_00276090 *prev;
+    struct Node_00276090 *next;
+} Node_00276090;
 
 __attribute__((section(".text.func_002B2318")))
-Node *func_002B2318(Node *a0) {
-    Node *prev;
-    Node *next;
+Node_00276090 *func_002B2318(Node_00276090 *a0) {
+    Node_00276090 *prev;
+    Node_00276090 *next;
     prev = a0->prev;
     if (prev != 0) {
         prev->next = a0->next;

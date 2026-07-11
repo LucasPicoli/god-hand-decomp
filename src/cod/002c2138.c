@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern char *PTR_DAT_003c2f84;
-extern char *PTR_DAT_003c23a4;
+extern char *D_003C2F84;
+extern char *D_003C23A4;
 extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
 extern void cTaskWork_exit(int a0);
 extern void func_002C1D68(int a0, int a1, int a2);
@@ -18,8 +18,8 @@ int SetNodeCallback_2C2138(char *a0, int a1) {
     if (*(int*)(a0+0x3C) == 0) {
         return 0;
     }
-    t = func_002C38D8(PTR_DAT_003c2f84, *(int*)(a0+0x3C), *(int*)(a0+0x40), *(char*)(a0+0x44));
-    *(int*)(PTR_DAT_003c2f84 + (t << 3) + 0x58) = a1;
+    t = func_002C38D8(D_003C2F84, *(int*)(a0+0x3C), *(int*)(a0+0x40), *(char*)(a0+0x44));
+    *(int*)(D_003C2F84 + (t << 3) + 0x58) = a1;
     return 1;
 }
 
@@ -28,10 +28,10 @@ void ForwardEntityAndExit_2C2368(char *a0) {
     char *s1 = a0 + 0x5C;
     int v1 = *(unsigned short*)(s1 + 2);
     if ((unsigned int)v1 < 0x1000) {
-        v1 = func_002AEB50(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x5C), v1);
+        v1 = func_002AEB50(D_003C23A4, *(unsigned short*)(a0 + 0x5C), v1);
     }
-    func_002C4150(PTR_DAT_003c2f84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
-    cTaskWork_exit(*(int*)(PTR_DAT_003c2f84 + 0x20));
+    func_002C4150(D_003C2F84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
+    cTaskWork_exit(*(int*)(D_003C2F84 + 0x20));
 }
 
 __attribute__((section(".text.FindNodeByHit_2C2490")))

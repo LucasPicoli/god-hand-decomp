@@ -4,8 +4,8 @@ extern int patch(int, int, int);
 extern int strlen(const char *);
 extern int __svfscanf(void *, const char *, void *);
 extern int func_003A6CD8();
-extern void *PTR_DAT_003fa62c;
-extern void *PTR_DAT_003f852c;
+extern void *D_003FA62C;
+extern void *D_003F852C;
 
 struct E { int f0; unsigned int f4; int f8; };
 __attribute__((section(".text.func_00394290")))
@@ -68,7 +68,7 @@ int func_003A6CE0(const char *str, const char *fmt, ...) {
     f._read = (void *)func_003A6CD8;
     f._ub._base = 0;
     f._lb._base = 0;
-    f._data = PTR_DAT_003fa62c;
+    f._data = D_003FA62C;
     va_start(ap, fmt);
     ret = __svfscanf(&f, fmt, ap);
     va_end(ap);
@@ -83,12 +83,12 @@ struct Elem {
     unsigned char field_B;
 };
 
-struct Node {
+struct Node_00394290 {
     char pad[0xC];
     struct Elem *field_C;
     int field_10;
     char pad2[0x30 - 0x14];
-    struct Node *field_30;
+    struct Node_00394290 *field_30;
 };
 
 
@@ -97,10 +97,10 @@ struct Node {
 
 __attribute__((section(".text.func_003945C0")))
 int func_003945C0(struct Elem *a0) {
-    struct Node *node;
+    struct Node_00394290 *node;
     struct Elem *elem;
     int cnt;
-    node = (struct Node *)PTR_DAT_003f852c;
+    node = (struct Node_00394290 *)D_003F852C;
     if (node != 0) {
         do {
             cnt = node->field_10;

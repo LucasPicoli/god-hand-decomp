@@ -3,7 +3,7 @@ extern int D_004209D0;
 extern int D_00785858;
 extern unsigned char D_005864F0[];
 extern int D_00747B00[];
-extern int *PTR_DAT_003c2f84;
+extern int *D_003C2F84;
 
 __attribute__((section(".text.GetOrInitSingleton785848_171020")))
 void *GetOrInitSingleton785848_171020(void) {
@@ -27,7 +27,7 @@ struct vec4 { int a; float b; int c; float d; };
 __attribute__((section(".text.UpdateSlotCurValues_295860")))
 int UpdateSlotCurValues_295860(char *a0)
 {
-    int *v1 = PTR_DAT_003c2f84;
+    int *v1 = D_003C2F84;
     int s3;
     unsigned int s2;
     char *s0;

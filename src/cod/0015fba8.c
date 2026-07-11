@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_003C2FB0;
-extern int PTR_DAT_003c2f84;
-extern int PTR_DAT_003c23a4;
-extern int PTR_DAT_003bd6e8;
-extern int PTR_DAT_003bd930;
+extern int D_003C2F84;
+extern int D_003C23A4;
+extern int D_003BD6E8;
+extern int D_003BD930;
 extern void Trans_Clipmatrix_set(void);
 extern void cScrSpriteDraw_drawInit(int);
 extern void ObjTrans(void);
@@ -43,11 +43,11 @@ void Trans(void) {
     Trans_Clipmatrix_set();
     cScrSpriteDraw_drawInit(D_003C2FB0);
     ObjTrans();
-    func_002C3818(PTR_DAT_003c2f84);
-    func_002AF028(PTR_DAT_003c23a4);
+    func_002C3818(D_003C2F84);
+    func_002AF028(D_003C23A4);
     TransEsp();
-    func_001410A8(PTR_DAT_003bd6e8);
-    func_00160B90(PTR_DAT_003bd930);
+    func_001410A8(D_003BD6E8);
+    func_00160B90(D_003BD930);
 }
 
 __attribute__((section(".text.cScenario_setOmBreak")))

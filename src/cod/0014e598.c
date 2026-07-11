@@ -19,7 +19,7 @@ extern int D_00423C70;
 extern int D_00425AC0;
 extern void func_0014E990(void *);
 extern int D_00450C38;
-extern int PTR_DAT_003fa62c;
+extern int D_003FA62C;
 extern int D_003FBEA8;
 
 __attribute__((section(".text.func_003892C0")))
@@ -117,12 +117,12 @@ void *func_003184E0(void *a0){
 
 __attribute__((section(".text.func_003A9228")))
 int func_003A9228(int a0, int a1, int a2) {
-    return func_003A9018(PTR_DAT_003fa62c, a0, a1, a2);
+    return func_003A9018(D_003FA62C, a0, a1, a2);
 }
 
 __attribute__((section(".text.func_003AD0C0")))
 int func_003AD0C0(int a0, int a1, int a2) {
-    return func_003ACE90(PTR_DAT_003fa62c, a0, a1, a2);
+    return func_003ACE90(D_003FA62C, a0, a1, a2);
 }
 
 __attribute__((section(".text.func_003B6E40")))

@@ -61,6 +61,6 @@ unsigned int func_0034D188(unsigned char *a0){
   return v;
 }
 
-struct S { long long sum, mn, mx; int cnt; };
+struct S_00334e80 { long long sum, mn, mx; int cnt; };
 __attribute__((section(".text.func_0035BB40")))
-void func_0035BB40(struct S *p){ p->mn = 0x7FFFFFFFFFFFFFFFLL; p->sum = 0; p->mx = 0; p->cnt = 0; }
+void func_0035BB40(struct S_00334e80 *p){ p->mn = 0x7FFFFFFFFFFFFFFFLL; p->sum = 0; p->mx = 0; p->cnt = 0; }

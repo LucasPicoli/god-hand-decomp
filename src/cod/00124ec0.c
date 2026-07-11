@@ -10,22 +10,22 @@ typedef struct Sub {
     int unk70;  /* 0x70 */
 } Sub;
 
-typedef struct Obj {
+typedef struct Obj_00124ec0 {
     char pad0[0x278];
     Sub *unk278;                 /* 0x278 */
     char pad27C[0x2B4 - 0x27C];
     unsigned char unk2B4;                   /* 0x2B4 */
     char pad2B5[0x15F4 - 0x2B5];
     int unk15F4;                 /* 0x15F4 */
-} Obj;
+} Obj_00124ec0;
 
 
 
 void cCamManager_setPartsCamera(void *cam, int mode);
-void Obj0000_Set_Fields_360_364_368_139B68(void *parts, Obj *obj, int a2, int a3);
+void Obj0000_Set_Fields_360_364_368_139B68(void *parts, Obj_00124ec0 *obj, int a2, int a3);
 
 __attribute__((section(".text.func_00124EC0")))
-void func_00124EC0(Obj *obj) {
+void func_00124EC0(Obj_00124ec0 *obj) {
     unsigned char *base;
     void *parts;
     int a2v;

@@ -2,7 +2,7 @@
 #include "include_asm.h"
 
 extern unsigned int D_00747A78;
-extern void *PTR_DAT_003c2f84;
+extern void *D_003C2F84;
 typedef struct { char pad[0x1B0]; short f; } CacT;
 extern CacT D_005CAC90;              /* struct base; sh @0x1B0 */
 extern int D_00747470;               /* fade obj base */
@@ -42,7 +42,7 @@ void JukeBox_Execute(void *a0)
 
     D_005CAC90.f = 0x1E;
     classFADE_start(&D_00747470, 0, 0xA, 0, 0, 0xFF000000U, 0xF);
-    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)PTR_DAT_003c2f84 + 0x20), 0xF);
+    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)D_003C2F84 + 0x20), 0xF);
 
     pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
 
@@ -53,7 +53,7 @@ void JukeBox_Execute(void *a0)
         do {
             func_001F5E90(a0);
             SetFieldsCESignalSemaSleep_2D5AA0(
-                *(void **)((char *)PTR_DAT_003c2f84 + 0x20), 1);
+                *(void **)((char *)D_003C2F84 + 0x20), 1);
         } while (*(unsigned char *)((char *)a0 + 0x4) == 0);
     }
 
@@ -64,7 +64,7 @@ void JukeBox_Execute(void *a0)
     func_001F6B78(a0, 0);
 
     classFADE_start(&D_00747470, 0, 0xA, 0, 0xFF000000, 0, 0xF);
-    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)PTR_DAT_003c2f84 + 0x20), 0xF);
+    SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)D_003C2F84 + 0x20), 0xF);
     classFADE_kill(&D_00747470);
 
     Set_bg_mode(1, color & 0xFF, (color >> 8) & 0xFF, (color >> 16) & 0xFF);

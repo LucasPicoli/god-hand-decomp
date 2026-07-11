@@ -2,7 +2,7 @@
 
 extern int D_007474A0;
 extern int D_00747A2C;
-extern int PTR_DAT_003c2f84;
+extern int D_003C2F84;
 extern int D_005FEA60;
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void ClearSoundSlot_2C4390(int a0);
@@ -21,7 +21,7 @@ void cScenario_move(char *a0)
             if (((t >> 1) & 1) == 0) {
                 if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) <= 0) {
                     *(int *)(a0 + 0x48) = *(int *)(a0 + 0x48) | 2;
-                    ClearSoundSlot_2C4390(PTR_DAT_003c2f84);
+                    ClearSoundSlot_2C4390(D_003C2F84);
                     *(int *)(g + 0x5E0) = *(int *)(g + 0x5E0) | 0x100000;
                 }
             } else {

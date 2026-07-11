@@ -6,7 +6,7 @@ extern int GetD003EE078_3463F8(void);
 extern void (*D_003EE07C)(int, int);
 extern void func_0033BA10(int a0, int a1, int a2, int a3, int a4);
 extern int D_00760D84;
-extern void func_0034D318(struct S *a, struct S *b);
+extern void func_0034D318(struct S_0034d318 *a, struct S_0034d318 *b);
 extern int WaitSema(int sema);
 extern int SignalSema(int sema);
 
@@ -51,14 +51,14 @@ void func_00348A08(int a0, int a1, int a2, int a3) {
 }
 
 /* MATCH via cygnus-2.96. */
-struct S { int x[549]; };
+struct S_0034d318 { int x[549]; };
 
 
 __attribute__((section(".text.func_0034D2D8")))
 void func_0034D2D8(void *a0) {
-    struct S *p = (struct S *)func_0034D450(a0);
+    struct S_0034d318 *p = (struct S_0034d318 *)func_0034D450(a0);
     if (p != 0) {
-        func_0034D318(p, (struct S *)((char *)a0 + 0x78));
+        func_0034D318(p, (struct S_0034d318 *)((char *)a0 + 0x78));
     }
 }
 

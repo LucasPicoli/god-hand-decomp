@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *(*PTR_FUN_003c490c)(void);
+extern void *(*D_003C490C)(void);
 
 __attribute__((section(".text.func_00320418")))
 void ***func_00320418(void)
 {
-  char *eh = (char *)(*PTR_FUN_003c490c)();
+  char *eh = (char *)(*D_003C490C)();
   return (void ***)(eh + 4);
 }

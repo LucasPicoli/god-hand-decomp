@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern struct cb D_007588B0;
+extern struct cb_0033b790 D_007588B0;
 extern char D_003E9990[];
 extern char D_003EADC0[];
 extern char D_00456930[];
@@ -10,7 +10,7 @@ extern int strncat(char *dst, int src, int n);
 extern char D_00460900[];
 extern void func_003B9DE0(void *a0);
 
-struct cb { void (*fn)(void *arg, void *p); void *arg; };
+struct cb_0033b790 { void (*fn)(void *arg, void *p); void *arg; };
 
 
 

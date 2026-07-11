@@ -5,7 +5,7 @@ extern int func_002A9B50(void *p);
 extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *p);
 extern void *D_00569B70;
 extern unsigned int D_00747A50;       /* lhu -> u16 */
-extern void *PTR_DAT_003bd6e8;
+extern void *D_003BD6E8;
 
 __attribute__((section(".text.cHeatSys_AddHeatGage")))
 void cHeatSys_AddHeatGage(void *a0, int a1, float heat)
@@ -28,7 +28,7 @@ void cHeatSys_AddHeatGage(void *a0, int a1, float heat)
     }
 
     if (120.0f <= heat) {
-        void *p = PTR_DAT_003bd6e8;
+        void *p = D_003BD6E8;
         *(int *)((char *)p + 0x4F0) = *(int *)((char *)p + 0x4F0) | 0x01000000;
     }
 

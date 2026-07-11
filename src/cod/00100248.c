@@ -14,7 +14,7 @@ extern void func_003A0E20(char *a0, unsigned int a1);
 extern void func_003B7C18(void);
 extern void SetT2(unsigned int a0, void *a1);
 extern void func_003224D0(void *a0, void *a1);
-extern void *PTR_DAT_003fc9b4;
+extern void *D_003FC9B4;
 extern char D_007854B0[];
 
 __attribute__((section(".text.func_00100248")))
@@ -60,4 +60,4 @@ __attribute__((section(".text.func_003B6A20")))
 void func_003B6A20(void *a0) { SetT2(0xB0001020, a0); }
 
 __attribute__((section(".text.func_003BAFB8")))
-void func_003BAFB8(void) { func_003224D0(&PTR_DAT_003fc9b4, D_007854B0); }
+void func_003BAFB8(void) { func_003224D0(&D_003FC9B4, D_007854B0); }

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int PTR_DAT_003c2f84;
+extern int D_003C2F84;
 extern unsigned char D_00747A50[];
 extern unsigned char D_00747A57;
 
@@ -13,7 +13,7 @@ extern unsigned char D_00747A57;
 __attribute__((section(".text.func_001633A0")))
 void func_001633A0(void *a0) {
     unsigned char sel;
-    if (*(unsigned char *)(PTR_DAT_003c2f84 + 0x14) != 0)
+    if (*(unsigned char *)(D_003C2F84 + 0x14) != 0)
         sel = D_00747A57;
     else
         sel = D_00747A50[1];

@@ -43,7 +43,7 @@ extern void (*D_003E9D20)(void);
 extern void func_00335B88(int);
 extern int (*D_003F2004)(void);
 extern int (*D_003F2030)(void);
-extern struct cb D_00755C20;
+extern struct cb_0031f4e0 D_00755C20;
 extern struct cb2 D_00755C28;
 
 __attribute__((section(".text.func_003248F0")))
@@ -368,7 +368,7 @@ int func_0036CE38(void) {
     return 0;
 }
 
-struct cb { void (*fn)(int); int arg; };
+struct cb_0031f4e0 { void (*fn)(int); int arg; };
 
 
 __attribute__((section(".text.func_00325FA8")))

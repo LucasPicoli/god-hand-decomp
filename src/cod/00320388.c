@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
 extern int func_003203B0(void);
-extern void *PTR_FUN_003c490c;
+extern void *D_003C490C;
 extern int D_007588C0[2];
 extern int D_003DECFC;
 extern int D_003DED00;
@@ -52,7 +52,7 @@ __attribute__((section(".text.func_00320388")))
 void func_00320388(void)
 {
     int (*f)(void) = func_003203B0;
-    PTR_FUN_003c490c = (void *)f;
+    D_003C490C = (void *)f;
     f();
 }
 

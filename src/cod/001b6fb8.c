@@ -9,7 +9,7 @@ extern int D_004289F8;
 extern int D_00428A00;
 extern int D_00428A08;
 extern int D_00428A10;
-extern int PTR_DAT_003bd6e8;
+extern int D_003BD6E8;
 extern void ReleaseField6ECByTag564_26B1E8(void *);
 extern void func_002B6420(void *a0);
 extern void func_00147C88(void *a0, void *a1, int a2);
@@ -60,7 +60,7 @@ int func_001B6FB8(void *a0)
     *(float *)((char *)s0 + 0x3A8) = 1.0f;
     t8 = *(unsigned short *)((char *)s0 + 0x2FE);
     if (t8 == 0x359) {
-        func_0013F558(PTR_DAT_003bd6e8 + 0x1E90, s0);
+        func_0013F558(D_003BD6E8 + 0x1E90, s0);
     }
     return 1;
 }

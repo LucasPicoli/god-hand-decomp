@@ -12,8 +12,8 @@ extern void cCamera_move(void *a0);
 extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
-extern int *PTR_DAT_003c2f84;
-extern int PTR_DAT_003c23a4;
+extern int *D_003C2F84;
+extern int D_003C23A4;
 extern void ClearSoundSlot_2C4390(char *a0);
 extern void cMessage_deleteMessNo(int a0, int a1);
 extern void setPlayerPos(void *p, float w);
@@ -58,7 +58,7 @@ void ClearCameraOverlayState_2C3FC0(void *a0) {
 __attribute__((section(".text.cScenario_waitCam")))
 void cScenario_waitCam(void *a0) {
     while (cScenario_isCamEnd(a0) == 0) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(int *)((char *)PTR_DAT_003c2f84 + 0x20), 1);
+        SetFieldsCESignalSemaSleep_2D5AA0(*(int *)((char *)D_003C2F84 + 0x20), 1);
     }
 }
 
@@ -78,7 +78,7 @@ void SetSoundSlot_2C42E0(char *a0, int a1) {
     if (*(unsigned short*)(a0 + 0x112) != 0xFFFF) {
         ClearSoundSlot_2C4390(a0);
     }
-    if (cMessage_create(PTR_DAT_003c23a4, a1, 0, 0, 0) != 0xFFFF) {
+    if (cMessage_create(D_003C23A4, a1, 0, 0, 0) != 0xFFFF) {
         *(unsigned short*)(a0 + 0x112) = a1;
     }
 }
@@ -86,7 +86,7 @@ void SetSoundSlot_2C42E0(char *a0, int a1) {
 __attribute__((section(".text.ClearSoundSlot_2C4390")))
 void ClearSoundSlot_2C4390(char *a0) {
     if (*(unsigned short*)(a0 + 0x112) != 0xFFFF) {
-        cMessage_deleteMessNo(PTR_DAT_003c23a4, *(unsigned short*)(a0 + 0x112));
+        cMessage_deleteMessNo(D_003C23A4, *(unsigned short*)(a0 + 0x112));
         *(unsigned short*)(a0 + 0x112) = 0xFFFF;
     }
 }
@@ -125,7 +125,7 @@ void SetObjectTransform_2C4440(int a0, char *a1, float p0, float p1, float p2, f
 __attribute__((section(".text.cScenario_waitMess")))
 void cScenario_waitMess(char *a0) {
     while (func_002C4350(a0) == 1) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(int*)((char*)PTR_DAT_003c2f84 + 0x20), 1);
+        SetFieldsCESignalSemaSleep_2D5AA0(*(int*)((char*)D_003C2F84 + 0x20), 1);
     }
     ClearSoundSlot_2C4390(a0);
 }

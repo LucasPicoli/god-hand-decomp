@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int PTR_DAT_003fa62c;
+extern int D_003FA62C;
 extern int write(int, char *, int);
 extern int D_0077DB88;
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
@@ -23,7 +23,7 @@ void func_003A7AE8(void *a0, void *a1, void *a2)
     *(short *)(buf + 0xC) = 0x208;
     *(void **)(buf + 0x10) = a0;
     *(int *)(buf + 0x14) = 0x7FFFFFFF;
-    *(int *)(buf + 0x54) = PTR_DAT_003fa62c;
+    *(int *)(buf + 0x54) = D_003FA62C;
     func_003A9D88(buf, a1, a2);
     p = *(char **)buf;
     *p = 0;

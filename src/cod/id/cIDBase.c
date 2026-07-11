@@ -27,7 +27,7 @@ void cIDBase_restartAnim(void *a0) {
 }
 #include "include_asm.h"
 
-extern unsigned char *PTR_DAT_003c23a4;
+extern unsigned char *D_003C23A4;
 extern void func_002AA6E0(void);
 extern void func_002ABDC0(void *a0, void *a1);
 extern void func_002AC048(void *a0, void *a1);
@@ -79,7 +79,7 @@ void cIDBase_move(void *a0)
                 t = *(int *)(s0 + 0x2C);
                 if (((t >> 1) & 1) == 0) {
                     if (*(unsigned short *)(s0 + 0x90) != 0xFFFF) {
-                        cMessage_create((int)PTR_DAT_003c23a4, *(unsigned short *)(s0 + 0x90), 0, 0, 0);
+                        cMessage_create((int)D_003C23A4, *(unsigned short *)(s0 + 0x90), 0, 0, 0);
                         *(int *)(s0 + 0x2C) = *(int *)(s0 + 0x2C) | 0x2;
                     }
                 }

@@ -5,7 +5,7 @@ extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
 
 extern int D_00747A84;
 extern char D_00583EC0[];
-extern int PTR_DAT_003c264c;
+extern int D_003C264C;
 extern int D_00747A24;
 extern int D_00569B70;
 extern char D_005E8658[];
@@ -55,7 +55,7 @@ __attribute__((section(".text.cScenario_endCasinoBattle")))
 void cScenario_endCasinoBattle(void)
 {
     int *p;
-    func_002C0038(PTR_DAT_003c264c);
+    func_002C0038(D_003C264C);
     D_00747A24 = D_00747A24 & 0xF7FFFFFF;
     p = (int *)D_00569B70;
     p[5] = p[5] & 0xFBFFFFFF;

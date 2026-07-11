@@ -138,20 +138,20 @@ void InitEspWork(void) {
     func_003A52F0(D_0071B8C0, 0, 0x80);
 }
 
-struct Node {
-    struct Node *prev;
-    struct Node *next;
+struct Node_001aad88 {
+    struct Node_001aad88 *prev;
+    struct Node_001aad88 *next;
     int pad;
     int key;
 };
 
 __attribute__((section(".text.func_00306FF8")))
-void func_00306FF8(char *a0, struct Node *a1) {
-    struct Node *a2 = (struct Node *)(a0 + 0x4200);
+void func_00306FF8(char *a0, struct Node_001aad88 *a1) {
+    struct Node_001aad88 *a2 = (struct Node_001aad88 *)(a0 + 0x4200);
     if (a2 != 0) {
         do {
             if ((unsigned int)a1->key < (unsigned int)a2->key) {
-                struct Node *p = a2->prev;
+                struct Node_001aad88 *p = a2->prev;
                 a1->next = a2;
                 a1->prev = p;
                 p->next = a1;

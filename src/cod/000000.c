@@ -3,7 +3,7 @@
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
 /* ------------------------------------------------------------------ */
-extern unsigned char *PTR_DAT_003c23a4;  /* 0x003C23A4: pointer in .data */
+extern unsigned char *D_003C23A4;  /* 0x003C23A4: pointer in .data */
 extern char D_003C2555;                  /* 0x003C2555: 1-byte flag in .data */
 extern int D_0044BED0;                   /* 0x0044BED0: first int of rodata table */
 extern int D_005FEAC0;                   /* 0x005FEAC0: BSS word */
@@ -168,7 +168,7 @@ void Obj0000_Memset_Backward_366B80(char *a0, int a1, unsigned int a2) {
 
 __attribute__((section(".text.GetField_BEE_2B1290")))
 unsigned short GetField_BEE_2B1290(void) {
-    return *(unsigned short *)(PTR_DAT_003c23a4 + 0xBEE);
+    return *(unsigned short *)(D_003C23A4 + 0xBEE);
 }
 
 __attribute__((section(".text.Obj0000_Set_D_003C2555_One_2B65F0")))
@@ -598,11 +598,11 @@ unsigned char *GetD003F8560_395388(void) {
     return D_003F8560;
 }
 
-int *PTR_DAT_003fa62c;
+int *D_003FA62C;
 
-__attribute__((section(".text.Obj0000_Get_PTR_DAT_003fa62c_3A4FB8")))
-int Obj0000_Get_PTR_DAT_003fa62c_3A4FB8(void) {
-    return (int)PTR_DAT_003fa62c;
+__attribute__((section(".text.Obj0000_Get_D_003FA62C_3A4FB8")))
+int Obj0000_Get_D_003FA62C_3A4FB8(void) {
+    return (int)D_003FA62C;
 }
 
 extern unsigned char D_0045FB80[];
@@ -658,15 +658,7 @@ typedef struct CGObj293
 {
   unsigned char unk[0x590];
 } CGObj293_t;
-extern unsigned char D_0041EDF0[];
-extern unsigned char D_00466448[];
 extern unsigned char cMcLoaderState[0x1108];
-extern unsigned char D_0044A7B0[];
-extern int D_786768;
-extern int D_786778;
-extern int D_0045D350;
-extern int D_0045D360;
-extern int D_00460DB0;
 typedef struct CGObj38B8
 {
   unsigned char unk[0x60];
@@ -933,14 +925,14 @@ int Obj0000_Get_D_003EEA70_LT_2_360C40(void) {
     return (unsigned long long)D_003EEA70 < 2;
 }
 
-extern int PTR_DAT_003c4f00;
+extern int D_003C4F00;
 
 __attribute__((section(".text.Obj0000_Swap_D_003C4F00_321218")))
 int Obj0000_Swap_D_003C4F00_321218(int a0) {
-    unsigned long v0 = PTR_DAT_003c4f00;
+    unsigned long v0 = D_003C4F00;
     int new_var;
     new_var = v0;
-    PTR_DAT_003c4f00 = a0;
+    D_003C4F00 = a0;
     return new_var;
 }
 
@@ -992,11 +984,11 @@ void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(unsigned char *a0) {
     *(int *)(a0 + 0x6C) = D_007474A0.field_5E0;
 }
 
-extern unsigned char *PTR_DAT_003bd6e8;
+extern unsigned char *D_003BD6E8;
 
-__attribute__((section(".text.Obj0000_Clear_Byte_PTR_003BD6E8_1380_94_Bit0_1F75B0")))
-void Obj0000_Clear_Byte_PTR_003BD6E8_1380_94_Bit0_1F75B0(void) {
-    unsigned char *base = PTR_DAT_003bd6e8 + 0x1380;
+__attribute__((section(".text.Obj0000_Clear_Byte_D_003BD6E8_1380_94_Bit0_1F75B0")))
+void Obj0000_Clear_Byte_D_003BD6E8_1380_94_Bit0_1F75B0(void) {
+    unsigned char *base = D_003BD6E8 + 0x1380;
     base[0x94] = base[0x94] & 0xFE;
 }
 
@@ -1019,10 +1011,10 @@ void Obj0000_Set_D_00747A0C_Field_178_If_NonNull_1F9EB0(int **a0) {
 }
 
 
-__attribute__((section(".text.Obj0000_Get_DAT_003c23a4_By_Short_A1p2_2B1270")))
-int Obj0000_Get_DAT_003c23a4_By_Short_A1p2_2B1270(int a0, unsigned char *a1) {
+__attribute__((section(".text.Obj0000_Get_D_003C23A4_By_Short_A1p2_2B1270")))
+int Obj0000_Get_D_003C23A4_By_Short_A1p2_2B1270(int a0, unsigned char *a1) {
     unsigned int idx = (unsigned int)(*(unsigned short *)(a1 + 2)) << 2;
-    return *(int *)((unsigned char *)PTR_DAT_003c23a4 + idx + 0xBDC);
+    return *(int *)((unsigned char *)D_003C23A4 + idx + 0xBDC);
 }
 
 __attribute__((section(".text.func_003951B0")))
@@ -1041,14 +1033,12 @@ void func_003951D0(void) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Byte_54")))
-__attribute__((section(".text.Obj0000_Set_Byte_54")))
 void Obj0000_Set_Byte_54(char *arg0, int arg1) {
     arg0[0x54] = arg1;
 }
 
 extern unsigned char D_0061B670;
 
-__attribute__((section(".text.Obj0000_Get_Byte_D_0061B670")))
 __attribute__((section(".text.Obj0000_Get_Byte_D_0061B670")))
 int Obj0000_Get_Byte_D_0061B670(void) {
     return D_0061B670;
@@ -1065,7 +1055,6 @@ void Obj0000_Set_Byte_2F5_If_Field_618_GE_29(CGUnk_0010B5C8_t *arg0)
 }
 
 __attribute__((section(".text.Obj0000_Clear_Field_28_And_Ptr4_Field_30_34")))
-__attribute__((section(".text.Obj0000_Clear_Field_28_And_Ptr4_Field_30_34")))
 void Obj0000_Clear_Field_28_And_Ptr4_Field_30_34(char *a0) {
     char *ptr = *(char * volatile *)(a0 + 0x4);
     if (ptr == 0) return;
@@ -1079,12 +1068,10 @@ extern int D_003D8408;
 void func_003302B0(void *, void *, int);
 
 __attribute__((section(".text.Tramp_003302B0_003302E0")))
-__attribute__((section(".text.Tramp_003302B0_003302E0")))
 void Tramp_003302B0_003302E0(void *a0) {
     func_003302B0(&D_003D8408, a0, 0);
 }
 
-__attribute__((section(".text.Tramp_003A52F0_00333AD8")))
 __attribute__((section(".text.Tramp_003A52F0_00333AD8")))
 void Tramp_003A52F0_00333AD8(void) {
     extern void func_003A52F0(void *a0, int a1, int a2);
@@ -1094,7 +1081,6 @@ void Tramp_003A52F0_00333AD8(void) {
 
 extern void (*D_003E9D30)(void);
 
-__attribute__((section(".text.Tramp_003E9D30_0033C4C0")))
 __attribute__((section(".text.Tramp_003E9D30_0033C4C0")))
 void Tramp_003E9D30_0033C4C0(void) {
     D_003E9D30();
@@ -1155,7 +1141,6 @@ void Obj0000_Call_0034C378_Field_1F44(unsigned char *a0, void *a1, void *a2)
 }
 
 __attribute__((section(".text.Obj0000_Set_Field_E48_If_Field_E6C_NE_MAX")))
-__attribute__((section(".text.Obj0000_Set_Field_E48_If_Field_E6C_NE_MAX")))
 void Obj0000_Set_Field_E48_If_Field_E6C_NE_MAX(unsigned char *a0) {
     unsigned char *ptr = a0 + 0xE48;
     if (*(int *)(ptr + 0x24) == 0x7FFFFFFF) return;
@@ -1168,7 +1153,6 @@ void scTag2(unsigned long long *a0, unsigned int a1, unsigned int a2, unsigned i
 }
 
 __attribute__((section(".text.Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4")))
-__attribute__((section(".text.Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4")))
 int Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4(unsigned char *a0) {
     int v1 = *(int *)(a0 + 0x48);
     if ((unsigned int)(v1 - 1) >= 4) {
@@ -1179,7 +1163,6 @@ int Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4(unsigned char *a0) {
 
 extern int D_00766CD8;
 
-__attribute__((section(".text.MPSLIB_CheckHn")))
 __attribute__((section(".text.MPSLIB_CheckHn")))
 int MPSLIB_CheckHn(int *a0) {
     int v1;
@@ -1197,7 +1180,6 @@ int MPSLIB_CheckHn(int *a0) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Field_3BC_Triple")))
-__attribute__((section(".text.Obj0000_Set_Field_3BC_Triple")))
 void Obj0000_Set_Field_3BC_Triple(unsigned char *a0, int a1, int a2, int a3, int a4) {
     int *p = (int *)(a0 + 0x3BC + a1 * 12);
     p[0] = a2;
@@ -1206,14 +1188,12 @@ void Obj0000_Set_Field_3BC_Triple(unsigned char *a0, int a1, int a2, int a3, int
 }
 
 __attribute__((section(".text.Tramp_003356B0_00335610")))
-__attribute__((section(".text.Tramp_003356B0_00335610")))
 void Tramp_003356B0_00335610(int a0, int a1) {
     func_003356B0(a0, a1, 0, 0, 0xFFFFF);
 }
 
 extern void *D_00766D44;
 
-__attribute__((section(".text.Obj0000_Set_D_00766D44_Check_Field_188_NE_2")))
 __attribute__((section(".text.Obj0000_Set_D_00766D44_Check_Field_188_NE_2")))
 int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *a0) {
     D_00766D44 = (void *)a0;
@@ -1237,7 +1217,6 @@ int Obj0000_Get_Field_3B4_Via_func_0036CD98(unsigned char *a0) {
 extern int *D_0076A5D8;
 
 __attribute__((section(".text.Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2")))
-__attribute__((section(".text.Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2")))
 int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *a0) {
     int v1;
     D_0076A5D8 = (int *)a0;
@@ -1248,7 +1227,6 @@ int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *a0) {
     return v1 == 0 ? 0 : -1;
 }
 
-__attribute__((section(".text.Obj0000_Set_Field_11C_Triple")))
 __attribute__((section(".text.Obj0000_Set_Field_11C_Triple")))
 void Obj0000_Set_Field_11C_Triple(unsigned char *a0, int a1, int a2, int a3, int a4) {
     int *entry = (int *)(a0 + 0x11C + a1 * 12);
@@ -1269,19 +1247,16 @@ void Obj0000_Set_Short_88_If_LT_1000(void *a0, short a1) {
 }
 
 __attribute__((section(".text.Obj0000_Set_D_003FAE30_Field_10_Zero")))
-__attribute__((section(".text.Obj0000_Set_D_003FAE30_Field_10_Zero")))
 void Obj0000_Set_D_003FAE30_Field_10_Zero(void) {
     extern char D_003FAE30[];
     *(int *)(D_003FAE30 + 0x10) = 0;
 }
 
-__attribute__((section(".text.Tramp_001F7DF8_00101E28")))
 __attribute__((section(".text.Tramp_001F7DF8_00101E28"))) void Tramp_001F7DF8_00101E28(void)
 {
  do { capVu0Length(); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0014EA50_0010B760")))
 __attribute__((section(".text.Tramp_func_0014EA50_0010B760"))) void Tramp_func_0014EA50_0010B760(void)
 {
  do { cObjBase_R0_scenario(); } while (0);
@@ -1293,20 +1268,17 @@ void Tramp_func_0014EFA8_0012BBE0(void)
  do { cObjBase_KageDraw(); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_002AAC28_0013C508")))
 __attribute__((section(".text.Tramp_func_002AAC28_0013C508"))) void Tramp_func_002AAC28_0013C508(void)
 {
  do { cIDBase_trans(); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0030A548_00147528")))
 __attribute__((section(".text.Tramp_func_0030A548_00147528"))) void Tramp_func_0030A548_00147528(void)
 {
   func_0030A548();
  do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0030A2E0_00147548")))
 void func_0030A2E0(void);
 __attribute__((section(".text.Tramp_func_0030A2E0_00147548"))) void Tramp_func_0030A2E0_00147548(void)
 {
@@ -1314,7 +1286,6 @@ __attribute__((section(".text.Tramp_func_0030A2E0_00147548"))) void Tramp_func_0
  do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0030A2B0_001508D8")))
 __attribute__((section(".text.Tramp_func_0030A2B0_001508D8"))) void Tramp_func_0030A2B0_001508D8(void)
 {
   func_0030A2B0();
@@ -1334,13 +1305,11 @@ void Tramp_func_0015B0C0_0015B0A0(void)
  do { func_0015B0C0(); } while (0);
 }
 
-__attribute__((section(".text.Obj0000_Call_func_0015FD18_Field_48_161288")))
 __attribute__((section(".text.Obj0000_Call_func_0015FD18_Field_48_161288"))) void Obj0000_Call_func_0015FD18_Field_48_161288(unsigned char *a0)
 {
  do { func_0015FD18(a0, *((int *) (0x48 + a0))); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0015FF10_001612A8_1612A8")))
 __attribute__((section(".text.Tramp_func_0015FF10_001612A8_1612A8")))
 void Tramp_func_0015FF10_001612A8_1612A8(void)
 {
@@ -1349,14 +1318,12 @@ void Tramp_func_0015FF10_001612A8_1612A8(void)
 }
 
 __attribute__((section(".text.Tramp_func_002AAC28_00161970_161970")))
-__attribute__((section(".text.Tramp_func_002AAC28_00161970_161970")))
 void Tramp_func_002AAC28_00161970_161970(void)
 {
   cIDBase_trans();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001614D0_00161BB0_161BB0")))
 __attribute__((section(".text.Tramp_func_001614D0_00161BB0_161BB0")))
 void Tramp_func_001614D0_00161BB0_161BB0(void)
 {
@@ -1365,14 +1332,12 @@ void Tramp_func_001614D0_00161BB0_161BB0(void)
 }
 
 __attribute__((section(".text.Tramp_func_002AAC28_00162278_162278")))
-__attribute__((section(".text.Tramp_func_002AAC28_00162278_162278")))
 void Tramp_func_002AAC28_00162278_162278(void)
 {
   cIDBase_trans();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001614D0_00166618_166618")))
 __attribute__((section(".text.Tramp_func_001614D0_00166618_166618")))
 void Tramp_func_001614D0_00166618_166618(void)
 {
@@ -1381,14 +1346,12 @@ void Tramp_func_001614D0_00166618_166618(void)
 }
 
 __attribute__((section(".text.Tramp_func_001614D0_001673B0_1673B0")))
-__attribute__((section(".text.Tramp_func_001614D0_001673B0_1673B0")))
 void Tramp_func_001614D0_001673B0_1673B0(void)
 {
   ClearFields_1614D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
 __attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
 void Tramp_func_002AAC28_001682A8_1682A8(void)
 {
@@ -1397,7 +1360,6 @@ void Tramp_func_002AAC28_001682A8_1682A8(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016F5E8_16F5E8")))
-__attribute__((section(".text.Tramp_func_001C29D0_0016F5E8_16F5E8")))
 void Tramp_func_001C29D0_0016F5E8_16F5E8(void)
 {
   func_001C29D0();
@@ -1405,20 +1367,17 @@ void Tramp_func_001C29D0_0016F5E8_16F5E8(void)
 }
 
 __attribute__((section(".text.Obj0000_Set_Short_202")))
-__attribute__((section(".text.Obj0000_Set_Short_202")))
 void Obj0000_Set_Short_202(unsigned char *a0)
 {
   do { func_0016B1F8(a0, *((short *) (0x202 + a0))); } while (0);
 }
 
 __attribute__((section(".text.Obj0000_Set_Short_204")))
-__attribute__((section(".text.Obj0000_Set_Short_204")))
 void Obj0000_Set_Short_204(unsigned char *a0)
 {
     do { func_0016B1F8(a0, *((short *)(a0 + 0x204))); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_0016F8E0")))
 __attribute__((section(".text.Tramp_func_001C29D0_0016F8E0")))
 void Tramp_func_001C29D0_0016F8E0(void)
 {
@@ -1427,14 +1386,12 @@ void Tramp_func_001C29D0_0016F8E0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016FBD8")))
-__attribute__((section(".text.Tramp_func_001C29D0_0016FBD8")))
 void Tramp_func_001C29D0_0016FBD8(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_0016FE48")))
 __attribute__((section(".text.Tramp_func_001C29D0_0016FE48")))
 void Tramp_func_001C29D0_0016FE48(void)
 {
@@ -1443,14 +1400,12 @@ void Tramp_func_001C29D0_0016FE48(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00170130")))
-__attribute__((section(".text.Tramp_func_001C29D0_00170130")))
 void Tramp_func_001C29D0_00170130(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_00170418")))
 __attribute__((section(".text.Tramp_func_001C29D0_00170418")))
 void Tramp_func_001C29D0_00170418(void)
 {
@@ -1459,14 +1414,12 @@ void Tramp_func_001C29D0_00170418(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BFB80_001706E0")))
-__attribute__((section(".text.Tramp_func_001BFB80_001706E0")))
 void Tramp_func_001BFB80_001706E0(void)
 {
   func_001BFB80();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BFB80_00170970")))
 __attribute__((section(".text.Tramp_func_001BFB80_00170970")))
 void Tramp_func_001BFB80_00170970(void)
 {
@@ -1475,14 +1428,12 @@ void Tramp_func_001BFB80_00170970(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BFB80_00170C00")))
-__attribute__((section(".text.Tramp_func_001BFB80_00170C00")))
 void Tramp_func_001BFB80_00170C00(void)
 {
   func_001BFB80();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BFB80_00170E90")))
 __attribute__((section(".text.Tramp_func_001BFB80_00170E90")))
 void Tramp_func_001BFB80_00170E90(void)
 {
@@ -1491,14 +1442,12 @@ void Tramp_func_001BFB80_00170E90(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BFB80_00171000")))
-__attribute__((section(".text.Tramp_func_001BFB80_00171000")))
 void Tramp_func_001BFB80_00171000(void)
 {
   func_001BD6B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_001717A0")))
 __attribute__((section(".text.Tramp_func_001B79B0_001717A0")))
 void Tramp_func_001B79B0_001717A0(void)
 {
@@ -1507,14 +1456,12 @@ void Tramp_func_001B79B0_001717A0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BD6B0_00171C20")))
-__attribute__((section(".text.Tramp_func_001BD6B0_00171C20")))
 void Tramp_func_001BD6B0_00171C20(void)
 {
   func_001BD6B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00173198")))
 __attribute__((section(".text.Tramp_func_001B79B0_00173198")))
 void Tramp_func_001B79B0_00173198(void)
 {
@@ -1523,14 +1470,12 @@ void Tramp_func_001B79B0_00173198(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_001741E8")))
-__attribute__((section(".text.Tramp_func_001B79B0_001741E8")))
 void Tramp_func_001B79B0_001741E8(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00174FB0")))
 __attribute__((section(".text.Tramp_func_001B79B0_00174FB0")))
 void Tramp_func_001B79B0_00174FB0(void)
 {
@@ -1539,14 +1484,12 @@ void Tramp_func_001B79B0_00174FB0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00176738")))
-__attribute__((section(".text.Tramp_func_001B79B0_00176738")))
 void Tramp_func_001B79B0_00176738(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00177DC0")))
 __attribute__((section(".text.Tramp_func_001B79B0_00177DC0")))
 void Tramp_func_001B79B0_00177DC0(void)
 {
@@ -1555,14 +1498,12 @@ void Tramp_func_001B79B0_00177DC0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_001784F8")))
-__attribute__((section(".text.Tramp_func_001C29D0_001784F8")))
 void Tramp_func_001C29D0_001784F8(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_001787A0")))
 __attribute__((section(".text.Tramp_func_001C29D0_001787A0")))
 void Tramp_func_001C29D0_001787A0(void)
 {
@@ -1571,14 +1512,12 @@ void Tramp_func_001C29D0_001787A0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_001789F8")))
-__attribute__((section(".text.Tramp_func_001B79B0_001789F8")))
 void Tramp_func_001B79B0_001789F8(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_00178CC0")))
 __attribute__((section(".text.Tramp_func_001C29D0_00178CC0")))
 void Tramp_func_001C29D0_00178CC0(void)
 {
@@ -1587,14 +1526,12 @@ void Tramp_func_001C29D0_00178CC0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00178F58")))
-__attribute__((section(".text.Tramp_func_001C29D0_00178F58")))
 void Tramp_func_001C29D0_00178F58(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00179798")))
 __attribute__((section(".text.Tramp_func_001B79B0_00179798")))
 void Tramp_func_001B79B0_00179798(void)
 {
@@ -1603,14 +1540,12 @@ void Tramp_func_001B79B0_00179798(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017A508")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017A508")))
 void Tramp_func_001B79B0_0017A508(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0017B548")))
 __attribute__((section(".text.Tramp_func_001B79B0_0017B548")))
 void Tramp_func_001B79B0_0017B548(void)
 {
@@ -1619,14 +1554,12 @@ void Tramp_func_001B79B0_0017B548(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017C008")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017C008")))
 void Tramp_func_001B79B0_0017C008(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BD6B0_0017C5B0")))
 __attribute__((section(".text.Tramp_func_001BD6B0_0017C5B0")))
 void Tramp_func_001BD6B0_0017C5B0(void)
 {
@@ -1635,14 +1568,12 @@ void Tramp_func_001BD6B0_0017C5B0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017CE18")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017CE18")))
 void Tramp_func_001B79B0_0017CE18(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BC0A0_0017D560")))
 __attribute__((section(".text.Tramp_func_001BC0A0_0017D560")))
 void Tramp_func_001BC0A0_0017D560(void)
 {
@@ -1651,14 +1582,12 @@ void Tramp_func_001BC0A0_0017D560(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017DB40")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017DB40")))
 void Tramp_func_001B79B0_0017DB40(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0017E658")))
 __attribute__((section(".text.Tramp_func_001B79B0_0017E658")))
 void Tramp_func_001B79B0_0017E658(void)
 {
@@ -1667,14 +1596,12 @@ void Tramp_func_001B79B0_0017E658(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_0017EA28")))
-__attribute__((section(".text.Tramp_func_001BC0A0_0017EA28")))
 void Tramp_func_001BC0A0_0017EA28(void)
 {
   func_001BC0A0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BD6B0_0017EB98")))
 __attribute__((section(".text.Tramp_func_001BD6B0_0017EB98")))
 void Tramp_func_001BD6B0_0017EB98(void)
 {
@@ -1683,14 +1610,12 @@ void Tramp_func_001BD6B0_0017EB98(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017EDD0")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017EDD0")))
 void Tramp_func_001B79B0_0017EDD0(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0017F1D0")))
 __attribute__((section(".text.Tramp_func_001B79B0_0017F1D0")))
 void Tramp_func_001B79B0_0017F1D0(void)
 {
@@ -1699,14 +1624,12 @@ void Tramp_func_001B79B0_0017F1D0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_0017F470")))
-__attribute__((section(".text.Tramp_func_001BC0A0_0017F470")))
 void Tramp_func_001BC0A0_0017F470(void)
 {
   func_001BC0A0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0017F990")))
 __attribute__((section(".text.Tramp_func_001B79B0_0017F990")))
 void Tramp_func_001B79B0_0017F990(void)
 {
@@ -1715,14 +1638,12 @@ void Tramp_func_001B79B0_0017F990(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0017FD80")))
-__attribute__((section(".text.Tramp_func_001B79B0_0017FD80")))
 void Tramp_func_001B79B0_0017FD80(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_001815B0")))
 __attribute__((section(".text.Tramp_func_001B79B0_001815B0")))
 void Tramp_func_001B79B0_001815B0(void)
 {
@@ -1731,14 +1652,12 @@ void Tramp_func_001B79B0_001815B0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_001817C8")))
-__attribute__((section(".text.Tramp_func_001BC0A0_001817C8")))
 void Tramp_func_001BC0A0_001817C8(void)
 {
   func_001BC0A0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00182020")))
 __attribute__((section(".text.Tramp_func_001B79B0_00182020")))
 void Tramp_func_001B79B0_00182020(void)
 {
@@ -1747,14 +1666,12 @@ void Tramp_func_001B79B0_00182020(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00182818")))
-__attribute__((section(".text.Tramp_func_001C29D0_00182818")))
 void Tramp_func_001C29D0_00182818(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00182FD8")))
 __attribute__((section(".text.Tramp_func_001B79B0_00182FD8")))
 void Tramp_func_001B79B0_00182FD8(void)
 {
@@ -1763,14 +1680,12 @@ void Tramp_func_001B79B0_00182FD8(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BFB80_001834F0")))
-__attribute__((section(".text.Tramp_func_001BFB80_001834F0")))
 void Tramp_func_001BFB80_001834F0(void)
 {
   func_001BFB80();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_001837D8")))
 __attribute__((section(".text.Tramp_func_001C29D0_001837D8")))
 void Tramp_func_001C29D0_001837D8(void)
 {
@@ -1779,14 +1694,12 @@ void Tramp_func_001C29D0_001837D8(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00184A20")))
-__attribute__((section(".text.Tramp_func_001B79B0_00184A20")))
 void Tramp_func_001B79B0_00184A20(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0014EFA8_001866A0")))
 __attribute__((section(".text.Tramp_func_0014EFA8_001866A0")))
 void Tramp_func_0014EFA8_001866A0(void)
 {
@@ -1795,14 +1708,12 @@ void Tramp_func_0014EFA8_001866A0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_00186928")))
-__attribute__((section(".text.Tramp_func_001BC0A0_00186928")))
 void Tramp_func_001BC0A0_00186928(void)
 {
   func_001BC0A0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_00187190")))
 __attribute__((section(".text.Tramp_func_001B79B0_00187190")))
 void Tramp_func_001B79B0_00187190(void)
 {
@@ -1811,14 +1722,12 @@ void Tramp_func_001B79B0_00187190(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00187958")))
-__attribute__((section(".text.Tramp_func_001C29D0_00187958")))
 void Tramp_func_001C29D0_00187958(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_00187C18")))
 __attribute__((section(".text.Tramp_func_001C29D0_00187C18")))
 void Tramp_func_001C29D0_00187C18(void)
 {
@@ -1827,14 +1736,12 @@ void Tramp_func_001C29D0_00187C18(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00188528")))
-__attribute__((section(".text.Tramp_func_001B79B0_00188528")))
 void Tramp_func_001B79B0_00188528(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_00188C88")))
 __attribute__((section(".text.Tramp_func_001C29D0_00188C88")))
 void Tramp_func_001C29D0_00188C88(void)
 {
@@ -1843,14 +1750,12 @@ void Tramp_func_001C29D0_00188C88(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00188F10")))
-__attribute__((section(".text.Tramp_func_001C29D0_00188F10")))
 void Tramp_func_001C29D0_00188F10(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0018A110")))
 __attribute__((section(".text.Tramp_func_001B79B0_0018A110")))
 void Tramp_func_001B79B0_0018A110(void)
 {
@@ -1859,14 +1764,12 @@ void Tramp_func_001B79B0_0018A110(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0018AD88")))
-__attribute__((section(".text.Tramp_func_001B79B0_0018AD88")))
 void Tramp_func_001B79B0_0018AD88(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0018BAA0")))
 __attribute__((section(".text.Tramp_func_001B79B0_0018BAA0")))
 void Tramp_func_001B79B0_0018BAA0(void)
 {
@@ -1875,14 +1778,12 @@ void Tramp_func_001B79B0_0018BAA0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0018C8A8")))
-__attribute__((section(".text.Tramp_func_001B79B0_0018C8A8")))
 void Tramp_func_001B79B0_0018C8A8(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_0018D698")))
 __attribute__((section(".text.Tramp_func_001B79B0_0018D698")))
 void Tramp_func_001B79B0_0018D698(void)
 {
@@ -1891,14 +1792,12 @@ void Tramp_func_001B79B0_0018D698(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0018E450")))
-__attribute__((section(".text.Tramp_func_001B79B0_0018E450")))
 void Tramp_func_001B79B0_0018E450(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_0018EC28")))
 __attribute__((section(".text.Tramp_func_001C29D0_0018EC28")))
 void Tramp_func_001C29D0_0018EC28(void)
 {
@@ -1907,14 +1806,12 @@ void Tramp_func_001C29D0_0018EC28(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BFB80_0018EE38")))
-__attribute__((section(".text.Tramp_func_001BFB80_0018EE38")))
 void Tramp_func_001BFB80_0018EE38(void)
 {
   func_001BFB80();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BC0A0_0018F0A0")))
 __attribute__((section(".text.Tramp_func_001BC0A0_0018F0A0")))
 void Tramp_func_001BC0A0_0018F0A0(void)
 {
@@ -1923,14 +1820,12 @@ void Tramp_func_001BC0A0_0018F0A0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0018FBF0")))
-__attribute__((section(".text.Tramp_func_001B79B0_0018FBF0")))
 void Tramp_func_001B79B0_0018FBF0(void)
 {
   Tramp_00312708_1B79B0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_001915B8")))
 __attribute__((section(".text.Tramp_func_001B79B0_001915B8")))
 void Tramp_func_001B79B0_001915B8(void)
 {
@@ -1939,14 +1834,12 @@ void Tramp_func_001B79B0_001915B8(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00191CC8")))
-__attribute__((section(".text.Tramp_func_001C29D0_00191CC8")))
 void Tramp_func_001C29D0_00191CC8(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001BC0A0_00191F30")))
 __attribute__((section(".text.Tramp_func_001BC0A0_00191F30")))
 void Tramp_func_001BC0A0_00191F30(void)
 {
@@ -1955,14 +1848,12 @@ void Tramp_func_001BC0A0_00191F30(void)
 }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_00192198")))
-__attribute__((section(".text.Tramp_func_001BC0A0_00192198")))
 void Tramp_func_001BC0A0_00192198(void)
 {
   func_001BC0A0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001B79B0_001928B0")))
 __attribute__((section(".text.Tramp_func_001B79B0_001928B0")))
 void Tramp_func_001B79B0_001928B0(void)
 {
@@ -1971,7 +1862,6 @@ void Tramp_func_001B79B0_001928B0(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00192BC8")))
-__attribute__((section(".text.Tramp_func_001C29D0_00192BC8")))
 void Tramp_func_001C29D0_00192BC8(void)
 {
   func_001C29D0();
@@ -1979,14 +1869,12 @@ void Tramp_func_001C29D0_00192BC8(void)
 }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00192EF8")))
-__attribute__((section(".text.Tramp_func_001C29D0_00192EF8")))
 void Tramp_func_001C29D0_00192EF8(void)
 {
   func_001C29D0();
   do { } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_00193180")))
 __attribute__((section(".text.Tramp_func_001C29D0_00193180")))
 void Tramp_func_001C29D0_00193180(void)
 {
@@ -2113,13 +2001,11 @@ int Obj0000_Check_D_0045A460_Magic_And_D_0045A470_Val(void)
 typedef struct { unsigned char unk[0x5D8]; int field_5D8; unsigned char pad[4]; int field_5E0; } D007474A0_t;
 
 __attribute__((section(".text.Obj0000_Set_D_007474A0_Fields_5D8_5E0")))
-__attribute__((section(".text.Obj0000_Set_D_007474A0_Fields_5D8_5E0")))
 void Obj0000_Set_D_007474A0_Fields_5D8_5E0(unsigned char *a0) {
     D_007474A0.field_5D8 = *(int *)(a0 + 0x68);
     D_007474A0.field_5E0 = *(int *)(a0 + 0x6C);
 }
 
-__attribute__((section(".text.Obj0000_Or_Field_B90_Bit_A1")))
 __attribute__((section(".text.Obj0000_Or_Field_B90_Bit_A1")))
 void Obj0000_Or_Field_B90_Bit_A1(int **a0, int a1) {
     int *ptr = *a0;

@@ -39,9 +39,9 @@ void func_0036E208(int *s){
     s[0x3C0/4] = a0 >> 1;
 }
 
-struct Obj { char pad0[7]; unsigned char unk7; unsigned char unk8; unsigned char unk9; char pad_a[2]; int unkC; char pad10[0x1A]; unsigned short unk2A; };
+struct Obj_0033d198 { char pad0[7]; unsigned char unk7; unsigned char unk8; unsigned char unk9; char pad_a[2]; int unkC; char pad10[0x1A]; unsigned short unk2A; };
 __attribute__((section(".text.func_0033D9C0")))
-int func_0033D9C0(struct Obj *obj, int a1u, short *out2, char *outNeg1, signed char *out5, signed char *out6, signed char *out7, int *out8, int *out9, int *out10, short *out11) {
+int func_0033D9C0(struct Obj_0033d198 *obj, int a1u, short *out2, char *outNeg1, signed char *out5, signed char *out6, signed char *out7, int *out8, int *out9, int *out10, short *out11) {
  unsigned char type; int v;
  *out2 = obj->unk7 << 4; *out7 = (obj->unk9 & 3) + 1; *out8 = obj->unk2A;
  type = obj->unk8;

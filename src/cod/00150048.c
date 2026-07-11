@@ -14,7 +14,7 @@ extern void func_0037BE98(void);
 extern void FlushCache(int mode);
 extern int sceIpuStopDMA(int chan);
 extern int sceIpuRestartDMA(int chan);
-extern int PTR_DAT_003fa62c;
+extern int D_003FA62C;
 extern void Obj0000_Get_D_0045FB80_3AD118(int a);
 extern void Deci2Call(int a, int *b);
 extern void func_002CDA48(void *a);
@@ -155,12 +155,12 @@ int func_0039AE78(char *a0) {
 
 __attribute__((section(".text.func_003A62B0")))
 void func_003A62B0(void) {
-    func_003A6290(PTR_DAT_003fa62c);
+    func_003A6290(D_003FA62C);
 }
 
 __attribute__((section(".text.func_003AD130")))
 void func_003AD130(void) {
-    Obj0000_Get_D_0045FB80_3AD118(PTR_DAT_003fa62c);
+    Obj0000_Get_D_0045FB80_3AD118(D_003FA62C);
 }
 
 __attribute__((section(".text.func_003B7AA8")))
@@ -299,7 +299,7 @@ void func_002D9BE0(void *a0) {
 
 __attribute__((section(".text.func_003A8FE0")))
 int func_003A8FE0(int a0, int a1) {
-    return func_003A80E8(PTR_DAT_003fa62c, a0, a1);
+    return func_003A80E8(D_003FA62C, a0, a1);
 }
 
 __attribute__((section(".text.func_00150048")))
