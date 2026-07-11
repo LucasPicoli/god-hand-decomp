@@ -5300,6 +5300,14 @@
         "D_00422DA0"
       ],
       "fp_hazard_nops": true
+    },
+    {
+      "path": "src/cod/00184e60.c",
+      "compiler": "sn-2.95.3-136",
+      "extern_jtbl": [
+        "D_00422DC0"
+      ],
+      "fp_hazard_nops": true
     }
   ],
   "_carved_funcs_doc": [
@@ -42042,6 +42050,13 @@
       "vaddr": "0x00184CE0",
       "size": 380,
       "tu": "src/cod/00184ce0.c"
+    },
+    {
+      "name": "func_00184E60",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00184E60",
+      "size": 380,
+      "tu": "src/cod/00184e60.c"
     }
   ],
   "build_dir": "build",
