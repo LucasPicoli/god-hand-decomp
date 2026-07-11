@@ -11,7 +11,7 @@ int func_00394348(Entry *a0, int count, int kind) {
         unsigned int w;
         w = a0->f4;
         if ((w >> 8) == (unsigned int)kind) {
-            if (func_00394328(a0->f0, w & 0xFF) == 0) {
+            if (patch_394328(a0->f0, w & 0xFF) == 0) {
                 return 0;
             }
         }

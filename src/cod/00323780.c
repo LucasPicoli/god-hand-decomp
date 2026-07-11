@@ -350,7 +350,7 @@ int func_0034FD28(int a0) {
         return func_0034DD70(0, 0xFF000D08, a0);
     }
     if (MPS_SetErrFn(s1, func_0034FE78)) {
-        func_0034FEE0(s1);
+        Tramp_MPS_Destroy_34FEE0(s1);
         return func_0034DD70(0, 0xFF000D09);
     }
     *s2 = (int)s1;

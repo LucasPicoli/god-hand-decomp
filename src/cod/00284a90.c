@@ -38,7 +38,7 @@ void ResetAltStateVtable_289788(int a0, int a1) {
         SetField_630_1C2370(*(int *)((char *)a0 + 0x15B0));
         *(int *)((char *)a0 + 0x15B0) = 0;
     }
-    func_00289E10(a0);
+    cCollisionSolidManage_ReleaseUnit_289E10(a0);
     func_0028EB88(a0, a1);
 }
 

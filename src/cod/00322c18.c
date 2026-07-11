@@ -43,7 +43,7 @@ int func_00347AA8(int a0) {
 
 __attribute__((section(".text.func_0034FE90")))
 void func_0034FE90(int a0) {
-    if (func_0034FEE0(**(int**)((char*)a0+0x1F7C))) {
+    if (Tramp_MPS_Destroy_34FEE0(**(int**)((char*)a0+0x1F7C))) {
         func_0034DD70(a0, 0xFF000D0A);
     }
 }

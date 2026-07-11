@@ -12,8 +12,8 @@ void func_0019EDC0(void) { func_001C29D0(); }
 __attribute__((section(".text.func_0019F038")))
 void func_0019F038(void) { func_001C29D0(); }
 
-__attribute__((section(".text.func_0019F8B0")))
-void func_0019F8B0(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_0019F8B0")))
+void Tramp_func_001B79B0_0019F8B0(void) { Tramp_00312708_1B79B0(); }
 
 __attribute__((section(".text.func_001A00B0")))
 void func_001A00B0(void) { func_001C29D0(); }
@@ -33,37 +33,37 @@ void func_001A0A80(void) { func_001C29D0(); }
 __attribute__((section(".text.func_001A0CF8")))
 void func_001A0CF8(void) { func_001C29D0(); }
 
-__attribute__((section(".text.func_001A20A8")))
-void func_001A20A8(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001A20A8")))
+void Tramp_func_001B79B0_001A20A8(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001A34A0")))
-void func_001A34A0(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001A34A0")))
+void Tramp_func_001B79B0_001A34A0(void) { Tramp_00312708_1B79B0(); }
 
 __attribute__((section(".text.func_001A3CA0")))
 void func_001A3CA0(void) { func_001C29D0(); }
 
-__attribute__((section(".text.func_001A4B70")))
-void func_001A4B70(void) {
+__attribute__((section(".text.Tramp_func_001B79B0_001A4B70")))
+void Tramp_func_001B79B0_001A4B70(void) {
     Tramp_00312708_1B79B0();
 }
 
-__attribute__((section(".text.func_001A4B90")))
-void func_001A4B90(void) {
+__attribute__((section(".text.Tramp_cOm4f_setOpen_1A4B90")))
+void Tramp_cOm4f_setOpen_1A4B90(void) {
     cOm4f_setOpen();
 }
 
-__attribute__((section(".text.func_001A4BB0")))
-void func_001A4BB0(void) {
+__attribute__((section(".text.Tramp_cOm4f_setClose_1A4BB0")))
+void Tramp_cOm4f_setClose_1A4BB0(void) {
     cOm4f_setClose();
 }
 
-__attribute__((section(".text.func_001A5B08")))
-void func_001A5B08(void) {
+__attribute__((section(".text.Tramp_func_001B79B0_001A5B08")))
+void Tramp_func_001B79B0_001A5B08(void) {
     Tramp_00312708_1B79B0();
 }
 
-__attribute__((section(".text.func_001A6CD8")))
-void func_001A6CD8(void) {
+__attribute__((section(".text.Tramp_func_001B79B0_001A6CD8")))
+void Tramp_func_001B79B0_001A6CD8(void) {
     Tramp_00312708_1B79B0();
 }
 

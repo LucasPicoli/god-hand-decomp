@@ -50,14 +50,14 @@ void func_003A0F80(char *a0) { func_003A0E20(a0, 0x20); }
 __attribute__((section(".text.func_003B6818")))
 void func_003B6818(void) { func_003B7C18(); }
 
-__attribute__((section(".text.func_003B6A00")))
-void func_003B6A00(void *a0) { SetT2(0xB0001000, a0); }
+__attribute__((section(".text.SetT2_B0001000_3B6A00")))
+void SetT2_B0001000_3B6A00(void *a0) { SetT2(0xB0001000, a0); }
 
-__attribute__((section(".text.func_003B6A10")))
-void func_003B6A10(void *a0) { SetT2(0xB0001010, a0); }
+__attribute__((section(".text.SetT2_B0001010_3B6A10")))
+void SetT2_B0001010_3B6A10(void *a0) { SetT2(0xB0001010, a0); }
 
-__attribute__((section(".text.func_003B6A20")))
-void func_003B6A20(void *a0) { SetT2(0xB0001020, a0); }
+__attribute__((section(".text.SetT2_B0001020_3B6A20")))
+void SetT2_B0001020_3B6A20(void *a0) { SetT2(0xB0001020, a0); }
 
 __attribute__((section(".text.func_003BAFB8")))
 void func_003BAFB8(void) { func_003224D0(&D_003FC9B4, D_007854B0); }

@@ -21,50 +21,50 @@ extern void func_003735E0(void *a0, int a1);
 __attribute__((section(".text.func_003B2058")))
 int func_003B2058(int a0) { return D_0077E6C0[a0]; }
 
-__attribute__((section(".text.func_001B5160")))
-void func_001B5160(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001B5160")))
+void Tramp_func_001B79B0_001B5160(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001B6660")))
-void func_001B6660(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001B6660")))
+void Tramp_func_001B79B0_001B6660(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001B6E10")))
-void func_001B6E10(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001B6E10")))
+void Tramp_func_001B79B0_001B6E10(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001B8F88")))
-void func_001B8F88(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001B8F88")))
+void Tramp_func_001B79B0_001B8F88(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BBE48")))
-void func_001BBE48(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BBE48")))
+void Tramp_func_001B79B0_001BBE48(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BCB18")))
-void func_001BCB18(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BCB18")))
+void Tramp_func_001B79B0_001BCB18(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BD9E0")))
-void func_001BD9E0(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BD9E0")))
+void Tramp_func_001B79B0_001BD9E0(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BE478")))
-void func_001BE478(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BE478")))
+void Tramp_func_001B79B0_001BE478(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BEA20")))
-void func_001BEA20(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BEA20")))
+void Tramp_func_001B79B0_001BEA20(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BFA58")))
-void func_001BFA58(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BFA58")))
+void Tramp_func_001B79B0_001BFA58(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001BFF48")))
-void func_001BFF48(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001BFF48")))
+void Tramp_func_001B79B0_001BFF48(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001C2260")))
-void func_001C2260(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001C2260")))
+void Tramp_func_001B79B0_001C2260(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001C3070")))
-void func_001C3070(void) { Tramp_00312708_1B79B0(); }
+__attribute__((section(".text.Tramp_func_001B79B0_001C3070")))
+void Tramp_func_001B79B0_001C3070(void) { Tramp_00312708_1B79B0(); }
 
-__attribute__((section(".text.func_001F9AD0")))
-void func_001F9AD0(void *a0) { cCoreSave_setGameLevel(a0, 1); }
+__attribute__((section(".text.cCoreSave_setGameLevel1_1F9AD0")))
+void cCoreSave_setGameLevel1_1F9AD0(void *a0) { cCoreSave_setGameLevel(a0, 1); }
 
-__attribute__((section(".text.func_001F9AF0")))
-void func_001F9AF0(void *a0) { cCoreSave_setGameLevel(a0, 5); }
+__attribute__((section(".text.cCoreSave_setGameLevel5_1F9AF0")))
+void cCoreSave_setGameLevel5_1F9AF0(void *a0) { cCoreSave_setGameLevel(a0, 5); }
 
 __attribute__((section(".text.func_001FDF88")))
 void func_001FDF88(void *a0) { func_001FDEA8(a0); }
@@ -217,8 +217,8 @@ void func_002F5448(void) {
 
 void UpdateObjByIndexedOp_2FBE50(void);
 
-__attribute__((section(".text.func_002FEBB8")))
-void func_002FEBB8(void) {
+__attribute__((section(".text.Tramp_UpdateObjByIndexedOp_2FBE50_2FEBB8")))
+void Tramp_UpdateObjByIndexedOp_2FBE50_2FEBB8(void) {
     UpdateObjByIndexedOp_2FBE50();
 }
 

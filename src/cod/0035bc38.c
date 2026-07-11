@@ -33,7 +33,7 @@ void *func_0036C2F0(char *o) {
     return o;
 }
 
-__attribute__((section(".text.func_0035BC38")))
-void func_0035BC38(int a0, int a1) {
+__attribute__((section(".text.sftrn_CallTrEntry1_35BC38")))
+void sftrn_CallTrEntry1_35BC38(int a0, int a1) {
     sftrn_CallTrEntry(a0, 1);
 }

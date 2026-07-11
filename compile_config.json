@@ -104,7 +104,7 @@
     "for all 735 currently-matched TUs) or 'sn-2.95.3-136' (opt-in SN",
     "ee-gcc for the `sq`-prologue functions).  TUs not",
     "named here use the default compiler; the override is at TU",
-    "granularity (not per-function \u2014 that's a later task if needed).",
+    "granularity (not per-function — that's a later task if needed).",
     "Documentation entries (path starting with `_`) are ignored.",
     "",
     "Wired through `compile.py::discover` -> CompileUnit.compiler ->",
@@ -5416,7 +5416,7 @@
     "the TU's INCLUDE_ASM macro pulls the carved .s into its own .text,",
     "so the standalone build/asm/nonmatching/<name>.o is NOT built or",
     "linked when `tu` is set.  Without `tu` (baseline), the",
-    "standalone .o is linked directly \u2014 useful for asm-only carves",
+    "standalone .o is linked directly — useful for asm-only carves",
     "with no C wrapper yet.",
     "",
     "Mechanism: each carve splits the monolithic at the",
@@ -5657,7 +5657,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "_comment": "first-TU group \u2014 accessor family @ 0x002930A8 \u2013 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
+      "_comment": "first-TU group — accessor family @ 0x002930A8 – 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
     },
     {
       "name": "Obj293_PostIncCounter_55C",
@@ -5723,7 +5723,7 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 — PERMANENT; no carve needed."
     },
     {
       "name": "Obj293_OrByte_5A3",
@@ -5754,13 +5754,13 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic \u2014 carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
+      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic — carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
     },
     {
-      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
-      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
       "name": "EESyscall_0x00",
@@ -7184,7 +7184,7 @@
       "tu": "src/cod/0038b8.c"
     },
     {
-      "name": "func_0038BF18",
+      "name": "sync_with_stdio__3iosi_38BF18",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BF18",
       "size": 28,
@@ -20157,7 +20157,7 @@
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_001F9AD0",
+      "name": "cCoreSave_setGameLevel1_1F9AD0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F9AD0",
       "size": 28,
@@ -25892,7 +25892,7 @@
       "tu": "src/cod/00134880.c"
     },
     {
-      "name": "func_001D5760",
+      "name": "CustomIDWork_SetNumber_1D5760",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D5760",
       "size": 28,
@@ -26298,14 +26298,14 @@
       "tu": "src/cod/002cda38.c"
     },
     {
-      "name": "func_003B5A50",
+      "name": "Tramp_sceSifFreeSysMemory_3B5A50",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B5A50",
       "size": 28,
       "tu": "src/cod/001dd218.c"
     },
     {
-      "name": "func_001DD218",
+      "name": "CustomIDWork_SetNumber_1DD218",
       "unit": "asm/cod/000000",
       "vaddr": "0x001DD218",
       "size": 28,
@@ -26326,7 +26326,7 @@
       "tu": "src/cod/002ace28.c"
     },
     {
-      "name": "func_002ACE28",
+      "name": "cIDManager_getTexAddr_2ACE28",
       "unit": "asm/cod/000000",
       "vaddr": "0x002ACE28",
       "size": 32,
@@ -26515,7 +26515,7 @@
       "tu": "src/cod/001506f0.c"
     },
     {
-      "name": "func_001953C8",
+      "name": "Tramp_func_001B79B0_001953C8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001953C8",
       "size": 28,
@@ -26529,21 +26529,21 @@
       "tu": "src/cod/001506f0.c"
     },
     {
-      "name": "func_00195FE8",
+      "name": "Tramp_func_001B79B0_00195FE8",
       "unit": "asm/cod/000000",
       "vaddr": "0x00195FE8",
       "size": 28,
       "tu": "src/cod/001506f0.c"
     },
     {
-      "name": "func_00197188",
+      "name": "Tramp_func_001B79B0_00197188",
       "unit": "asm/cod/000000",
       "vaddr": "0x00197188",
       "size": 28,
       "tu": "src/cod/001506f0.c"
     },
     {
-      "name": "func_001987B0",
+      "name": "Tramp_func_001B79B0_001987B0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001987B0",
       "size": 28,
@@ -26557,7 +26557,7 @@
       "tu": "src/cod/001506f0.c"
     },
     {
-      "name": "func_001997C8",
+      "name": "Tramp_func_001B79B0_001997C8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001997C8",
       "size": 28,
@@ -26718,7 +26718,7 @@
       "tu": "src/cod/0019aba8.c"
     },
     {
-      "name": "func_0019B760",
+      "name": "Tramp_func_001B79B0_0019B760",
       "unit": "asm/cod/000000",
       "vaddr": "0x0019B760",
       "size": 28,
@@ -26753,7 +26753,7 @@
       "tu": "src/cod/0019aba8.c"
     },
     {
-      "name": "func_0019CD80",
+      "name": "Tramp_func_001B79B0_0019CD80",
       "unit": "asm/cod/000000",
       "vaddr": "0x0019CD80",
       "size": 28,
@@ -26970,7 +26970,7 @@
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_0019F8B0",
+      "name": "Tramp_func_001B79B0_0019F8B0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0019F8B0",
       "size": 28,
@@ -27019,14 +27019,14 @@
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A20A8",
+      "name": "Tramp_func_001B79B0_001A20A8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A20A8",
       "size": 28,
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A34A0",
+      "name": "Tramp_func_001B79B0_001A34A0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A34A0",
       "size": 28,
@@ -27040,35 +27040,35 @@
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A4B70",
+      "name": "Tramp_func_001B79B0_001A4B70",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4B70",
       "size": 28,
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A4B90",
+      "name": "Tramp_cOm4f_setOpen_1A4B90",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4B90",
       "size": 28,
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A4BB0",
+      "name": "Tramp_cOm4f_setClose_1A4BB0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4BB0",
       "size": 28,
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A5B08",
+      "name": "Tramp_func_001B79B0_001A5B08",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A5B08",
       "size": 28,
       "tu": "src/cod/0019edc0.c"
     },
     {
-      "name": "func_001A6CD8",
+      "name": "Tramp_func_001B79B0_001A6CD8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A6CD8",
       "size": 28,
@@ -27208,14 +27208,14 @@
       "tu": "src/cod/00297fb8.c"
     },
     {
-      "name": "func_001A6EE0",
+      "name": "Tramp_func_001B79B0_001A6EE0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A6EE0",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001A7EA0",
+      "name": "Tramp_func_001B79B0_001A7EA0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A7EA0",
       "size": 28,
@@ -27229,63 +27229,63 @@
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001A8688",
+      "name": "Tramp_func_001B79B0_001A8688",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A8688",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001A8840",
+      "name": "Tramp_func_001B79B0_001A8840",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A8840",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001A91F0",
+      "name": "Tramp_func_001B79B0_001A91F0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A91F0",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001A97E8",
+      "name": "Tramp_func_001B79B0_001A97E8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A97E8",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001AA8B8",
+      "name": "Tramp_func_001B79B0_001AA8B8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001AA8B8",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001AD8C8",
+      "name": "Tramp_func_001B79B0_001AD8C8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001AD8C8",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001ADDD8",
+      "name": "Tramp_func_001B79B0_001ADDD8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001ADDD8",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001AFBB0",
+      "name": "Tramp_func_001B79B0_001AFBB0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001AFBB0",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001B0AE8",
+      "name": "Tramp_func_001B79B0_001B0AE8",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B0AE8",
       "size": 28,
@@ -27299,7 +27299,7 @@
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001B1EE0",
+      "name": "Tramp_func_001B79B0_001B1EE0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B1EE0",
       "size": 28,
@@ -27313,21 +27313,21 @@
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001B3658",
+      "name": "Tramp_func_001B79B0_001B3658",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B3658",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001B38F0",
+      "name": "Tramp_func_001B79B0_001B38F0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B38F0",
       "size": 28,
       "tu": "src/cod/001a6ee0.c"
     },
     {
-      "name": "func_001B38D0",
+      "name": "cOmSub_move_1B38D0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B38D0",
       "size": 28,
@@ -31457,14 +31457,14 @@
       "tu": "src/cod/0030a3b0.c"
     },
     {
-      "name": "func_0030A3F8",
+      "name": "Tramp_MMI_INVERSE_RT_MATRIX_30A3F8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030A3F8",
       "size": 112,
       "tu": "src/cod/0030a3f8.c"
     },
     {
-      "name": "func_0030A508",
+      "name": "Tramp_MMI_COPY3Q_VADD_30A508",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030A508",
       "size": 48,
@@ -32906,98 +32906,98 @@
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001B5160",
+      "name": "Tramp_func_001B79B0_001B5160",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B5160",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001B6660",
+      "name": "Tramp_func_001B79B0_001B6660",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B6660",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001B6E10",
+      "name": "Tramp_func_001B79B0_001B6E10",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B6E10",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001B8F88",
+      "name": "Tramp_func_001B79B0_001B8F88",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B8F88",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BBE48",
+      "name": "Tramp_func_001B79B0_001BBE48",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BBE48",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BCB18",
+      "name": "Tramp_func_001B79B0_001BCB18",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BCB18",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BD9E0",
+      "name": "Tramp_func_001B79B0_001BD9E0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BD9E0",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BE478",
+      "name": "Tramp_func_001B79B0_001BE478",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BE478",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BEA20",
+      "name": "Tramp_func_001B79B0_001BEA20",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BEA20",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BFA58",
+      "name": "Tramp_func_001B79B0_001BFA58",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BFA58",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001BFF48",
+      "name": "Tramp_func_001B79B0_001BFF48",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BFF48",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001C2260",
+      "name": "Tramp_func_001B79B0_001C2260",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C2260",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001C3070",
+      "name": "Tramp_func_001B79B0_001C3070",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C3070",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_001F9AF0",
+      "name": "cCoreSave_setGameLevel5_1F9AF0",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F9AF0",
       "size": 28,
@@ -33172,7 +33172,7 @@
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_002FEBB8",
+      "name": "Tramp_UpdateObjByIndexedOp_2FBE50_2FEBB8",
       "unit": "asm/cod/000000",
       "vaddr": "0x002FEBB8",
       "size": 28,
@@ -33284,7 +33284,7 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_003212E8",
+      "name": "Tramp_UpdateGlobalPtrWithParam_3A7CC0_3212E8",
       "unit": "asm/cod/000000",
       "vaddr": "0x003212E8",
       "size": 28,
@@ -33333,21 +33333,21 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A178",
+      "name": "Tramp_read__7istreamPci_38A178",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A178",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A198",
+      "name": "Tramp_read__7istreamPci_38A198",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A198",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A1B8",
+      "name": "Tramp_read__7istreamPci_38A1B8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A1B8",
       "size": 28,
@@ -33368,7 +33368,7 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A498",
+      "name": "Tramp___ls__7ostreamd_38A498",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A498",
       "size": 28,
@@ -33382,49 +33382,49 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A548",
+      "name": "Tramp_ostream___ls_38A548",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A548",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A568",
+      "name": "Tramp_ostream___ls_38A568",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A568",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A5C8",
+      "name": "Tramp_write__7ostreamPCci_38A5C8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A5C8",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A5E8",
+      "name": "Tramp_write__7ostreamPCci_38A5E8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A5E8",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038A608",
+      "name": "Tramp_write__7ostreamPCci_38A608",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A608",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038B030",
+      "name": "Tramp__IO_un_link_38B030",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B030",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038B050",
+      "name": "Tramp__IO_link_in_38B050",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B050",
       "size": 28,
@@ -33473,7 +33473,7 @@
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038B368",
+      "name": "Tramp__IO_default_doallocate_38B368",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B368",
       "size": 28,
@@ -33494,21 +33494,21 @@
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038B480",
+      "name": "Tramp__IO_sungetc_38B480",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B480",
       "size": 28,
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038B4F0",
+      "name": "Tramp__IO_flush_all_38B4F0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B4F0",
       "size": 28,
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038B510",
+      "name": "Tramp__IO_flush_all_linebuffered_38B510",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B510",
       "size": 28,
@@ -33522,7 +33522,7 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038B608",
+      "name": "Tramp__IO_marker_delta_38B608",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B608",
       "size": 28,
@@ -33550,7 +33550,7 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_0038EB78",
+      "name": "Tramp__IO_file_init_38EB78",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EB78",
       "size": 28,
@@ -33571,7 +33571,7 @@
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038EF80",
+      "name": "Tramp__IO_file_doallocate_38EF80",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EF80",
       "size": 28,
@@ -33592,7 +33592,7 @@
       "tu": "src/cod/0038b070.c"
     },
     {
-      "name": "func_0038EFE0",
+      "name": "Tramp__IO_file_sync_38EFE0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EFE0",
       "size": 28,
@@ -33620,14 +33620,14 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_00394328",
+      "name": "patch_394328",
       "unit": "asm/cod/000000",
       "vaddr": "0x00394328",
       "size": 28,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_003964A0",
+      "name": "Tramp_GsGetIMR_3964A0",
       "unit": "asm/cod/000000",
       "vaddr": "0x003964A0",
       "size": 28,
@@ -34173,35 +34173,35 @@
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_00277540",
+      "name": "cCollisionSolidManage_ReleaseUnit_277540",
       "unit": "asm/cod/000000",
       "vaddr": "0x00277540",
       "size": 36,
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_00278368",
+      "name": "cCollisionSolidManage_ReleaseUnit_278368",
       "unit": "asm/cod/000000",
       "vaddr": "0x00278368",
       "size": 36,
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_0027E088",
+      "name": "cCollisionSolidManage_ReleaseUnit_27E088",
       "unit": "asm/cod/000000",
       "vaddr": "0x0027E088",
       "size": 36,
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_00281940",
+      "name": "cCollisionSolidManage_ReleaseUnit_281940",
       "unit": "asm/cod/000000",
       "vaddr": "0x00281940",
       "size": 36,
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_00289E10",
+      "name": "cCollisionSolidManage_ReleaseUnit_289E10",
       "unit": "asm/cod/000000",
       "vaddr": "0x00289E10",
       "size": 36,
@@ -34719,21 +34719,21 @@
       "tu": "src/cod/0031eee8.c"
     },
     {
-      "name": "func_003892C0",
+      "name": "Tramp_flush__7ostream_3892C0",
       "unit": "asm/cod/000000",
       "vaddr": "0x003892C0",
       "size": 28,
       "tu": "src/cod/0014e598.c"
     },
     {
-      "name": "func_00389808",
+      "name": "Tramp___as__22_IO_ostream_withassignR7ostream_389808",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389808",
       "size": 28,
       "tu": "src/cod/0014e598.c"
     },
     {
-      "name": "func_00389960",
+      "name": "Tramp___as__22_IO_istream_withassignR7istream_389960",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389960",
       "size": 28,
@@ -38583,7 +38583,7 @@
       "tu": "src/cod/00349e30.c"
     },
     {
-      "name": "func_0034FEE0",
+      "name": "Tramp_MPS_Destroy_34FEE0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034FEE0",
       "size": 20,
@@ -38856,21 +38856,21 @@
       "tu": "src/cod/00100248.c"
     },
     {
-      "name": "func_003B6A00",
+      "name": "SetT2_B0001000_3B6A00",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B6A00",
       "size": 16,
       "tu": "src/cod/00100248.c"
     },
     {
-      "name": "func_003B6A10",
+      "name": "SetT2_B0001010_3B6A10",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B6A10",
       "size": 16,
       "tu": "src/cod/00100248.c"
     },
     {
-      "name": "func_003B6A20",
+      "name": "SetT2_B0001020_3B6A20",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B6A20",
       "size": 16,
@@ -39745,7 +39745,7 @@
       "tu": "src/cod/001dee60.c"
     },
     {
-      "name": "func_003B3EF8",
+      "name": "SignalSema_3B3EF8",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B3EF8",
       "size": 12,
@@ -41894,7 +41894,7 @@
       "tu": "src/cod/0035bc38.c"
     },
     {
-      "name": "func_0035BC38",
+      "name": "sftrn_CallTrEntry1_35BC38",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035BC38",
       "size": 24,
@@ -42253,14 +42253,14 @@
     "  1. Assembling every `asm` part to build/rel/<name>/<asm-rel>.o",
     "  2. Full-linking via `mipsel-linux-gnu-ld -EL -T <lcf>",
     "     --unresolved-symbols=ignore-all -o build/rel/<name>/<name>.elf`",
-    "     (full link, not -r \u2014 the SNR2 tail",
+    "     (full link, not -r — the SNR2 tail",
     "     blob already encodes the surviving external reloc table).",
     "  3. Extracting .text via",
     "     `objcopy -O binary --only-section=.text` to",
     "     build/rel/<name>/<name>.text.bin.",
-    "  4. Concatenating parts in order \u2014 each `bin` part is read",
+    "  4. Concatenating parts in order — each `bin` part is read",
     "     verbatim and each `asm` part is replaced by the linked .text",
-    "     bytes \u2014 to produce build/rel/<name>.rel.",
+    "     bytes — to produce build/rel/<name>.rel.",
     "  5. Asserting sha256(build/rel/<name>.rel) == sha256_expected.",
     "",
     "Schema per entry:",
@@ -42319,7 +42319,7 @@
     "deprecated in the schema; per-unit `target_path`/`base_path` is",
     "used instead).  They live here only as the on-disk roots compile.py",
     "uses when constructing those per-unit paths and when mirroring",
-    "build/ \u2192 expected/build/ for not-yet-decompiled units.",
+    "build/ → expected/build/ for not-yet-decompiled units.",
     "`watch_patterns` and `progress_categories` are written verbatim.",
     "`min_version` pins the schema; bumping it should be deliberate."
   ],

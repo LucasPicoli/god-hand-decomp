@@ -38,8 +38,8 @@ void func_0034E1D8(void) { func_0034E1F0(); }
 __attribute__((section(".text.func_0034FE78")))
 void func_0034FE78(void) { func_0034DD70(); }
 
-__attribute__((section(".text.func_0034FEE0")))
-void func_0034FEE0(void) { MPS_Destroy(); }
+__attribute__((section(".text.Tramp_MPS_Destroy_34FEE0")))
+void Tramp_MPS_Destroy_34FEE0(void) { MPS_Destroy(); }
 
 __attribute__((section(".text.func_00350700")))
 void func_00350700(void) { func_00350718(); }

@@ -80,8 +80,8 @@ void func_00320240(void) {
     func_0031EE10();
 }
 
-__attribute__((section(".text.func_003212E8")))
-void func_003212E8(int a0) {
+__attribute__((section(".text.Tramp_UpdateGlobalPtrWithParam_3A7CC0_3212E8")))
+void Tramp_UpdateGlobalPtrWithParam_3A7CC0_3212E8(int a0) {
     UpdateGlobalPtrWithParam_3A7CC0(a0);
 }
 
@@ -105,18 +105,18 @@ int func_00389E00(void) {
     return func_00387B78();
 }
 
-__attribute__((section(".text.func_0038A178")))
-int func_0038A178(void) {
+__attribute__((section(".text.Tramp_read__7istreamPci_38A178")))
+int Tramp_read__7istreamPci_38A178(void) {
     return read__7istreamPci();
 }
 
-__attribute__((section(".text.func_0038A198")))
-int func_0038A198(void) {
+__attribute__((section(".text.Tramp_read__7istreamPci_38A198")))
+int Tramp_read__7istreamPci_38A198(void) {
     return read__7istreamPci();
 }
 
-__attribute__((section(".text.func_0038A1B8")))
-int func_0038A1B8(void) { return read__7istreamPci(); }
+__attribute__((section(".text.Tramp_read__7istreamPci_38A1B8")))
+int Tramp_read__7istreamPci_38A1B8(void) { return read__7istreamPci(); }
 
 __attribute__((section(".text.func_0038A218")))
 void func_0038A218(void) { func_00387610(); }
@@ -124,42 +124,42 @@ void func_0038A218(void) { func_00387610(); }
 __attribute__((section(".text.func_0038A258")))
 void func_0038A258(void) { func_00387610(); }
 
-__attribute__((section(".text.func_0038A498")))
-void func_0038A498(void) { __ls__7ostreamd(); }
+__attribute__((section(".text.Tramp___ls__7ostreamd_38A498")))
+void Tramp___ls__7ostreamd_38A498(void) { __ls__7ostreamd(); }
 
 __attribute__((section(".text.func_0038A4E8")))
 void func_0038A4E8(void) { func_00388A00(); }
 
-__attribute__((section(".text.func_0038A548")))
-int func_0038A548(void) { return ostream___ls(); }
+__attribute__((section(".text.Tramp_ostream___ls_38A548")))
+int Tramp_ostream___ls_38A548(void) { return ostream___ls(); }
 
-__attribute__((section(".text.func_0038A568")))
-int func_0038A568(void) {
+__attribute__((section(".text.Tramp_ostream___ls_38A568")))
+int Tramp_ostream___ls_38A568(void) {
     return ostream___ls();
 }
 
-__attribute__((section(".text.func_0038A5C8")))
-int func_0038A5C8(void) {
+__attribute__((section(".text.Tramp_write__7ostreamPCci_38A5C8")))
+int Tramp_write__7ostreamPCci_38A5C8(void) {
     return write__7ostreamPCci();
 }
 
-__attribute__((section(".text.func_0038A5E8")))
-int func_0038A5E8(void) {
+__attribute__((section(".text.Tramp_write__7ostreamPCci_38A5E8")))
+int Tramp_write__7ostreamPCci_38A5E8(void) {
     return write__7ostreamPCci();
 }
 
-__attribute__((section(".text.func_0038A608")))
-int func_0038A608(void) {
+__attribute__((section(".text.Tramp_write__7ostreamPCci_38A608")))
+int Tramp_write__7ostreamPCci_38A608(void) {
     return write__7ostreamPCci();
 }
 
-__attribute__((section(".text.func_0038B030")))
-int func_0038B030(void) {
+__attribute__((section(".text.Tramp__IO_un_link_38B030")))
+int Tramp__IO_un_link_38B030(void) {
     return _IO_un_link();
 }
 
-__attribute__((section(".text.func_0038B050")))
-int func_0038B050(void) {
+__attribute__((section(".text.Tramp__IO_link_in_38B050")))
+int Tramp__IO_link_in_38B050(void) {
     return _IO_link_in();
 }
 
@@ -168,8 +168,8 @@ void func_0038B5E8(void) {
 	func_0038D070();
 }
 
-__attribute__((section(".text.func_0038B608")))
-void func_0038B608(void) {
+__attribute__((section(".text.Tramp__IO_marker_delta_38B608")))
+void Tramp__IO_marker_delta_38B608(void) {
 	_IO_marker_delta();
 }
 
@@ -188,8 +188,8 @@ void func_0038B6C0(void) {
 	func_0038CFA0();
 }
 
-__attribute__((section(".text.func_0038EB78")))
-void func_0038EB78(void) {
+__attribute__((section(".text.Tramp__IO_file_init_38EB78")))
+void Tramp__IO_file_init_38EB78(void) {
 	_IO_file_init();
 }
 
@@ -213,13 +213,13 @@ void func_00393720(int *a0) {
     func_003A6420(a0[0x16]);
 }
 
-__attribute__((section(".text.func_00394328")))
-void func_00394328(int a0, int a1) {
+__attribute__((section(".text.patch_394328")))
+void patch_394328(int a0, int a1) {
     patch(a0, a1, 0);
 }
 
-__attribute__((section(".text.func_003964A0")))
-void func_003964A0(void) {
+__attribute__((section(".text.Tramp_GsGetIMR_3964A0")))
+void Tramp_GsGetIMR_3964A0(void) {
     GsGetIMR();
 }
 

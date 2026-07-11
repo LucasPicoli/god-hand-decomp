@@ -45,8 +45,8 @@ int func_0038B348(void)
     return func_0038C768();
 }
 
-__attribute__((section(".text.func_0038B368")))
-int func_0038B368(void *a0) {
+__attribute__((section(".text.Tramp__IO_default_doallocate_38B368")))
+int Tramp__IO_default_doallocate_38B368(void *a0) {
     return _IO_default_doallocate(a0);
 }
 
@@ -60,18 +60,18 @@ int func_0038B440(void *a0) {
     return func_0038E3F0(a0);
 }
 
-__attribute__((section(".text.func_0038B480")))
-int func_0038B480(void *a0) {
+__attribute__((section(".text.Tramp__IO_sungetc_38B480")))
+int Tramp__IO_sungetc_38B480(void *a0) {
     return _IO_sungetc(a0);
 }
 
-__attribute__((section(".text.func_0038B4F0")))
-int func_0038B4F0(void) {
+__attribute__((section(".text.Tramp__IO_flush_all_38B4F0")))
+int Tramp__IO_flush_all_38B4F0(void) {
     return _IO_flush_all();
 }
 
-__attribute__((section(".text.func_0038B510")))
-int func_0038B510(void) {
+__attribute__((section(".text.Tramp__IO_flush_all_linebuffered_38B510")))
+int Tramp__IO_flush_all_linebuffered_38B510(void) {
     return _IO_flush_all_linebuffered();
 }
 
@@ -85,8 +85,8 @@ int func_0038EF40(void) {
     return func_00392998();
 }
 
-__attribute__((section(".text.func_0038EF80")))
-int func_0038EF80(void) {
+__attribute__((section(".text.Tramp__IO_file_doallocate_38EF80")))
+int Tramp__IO_file_doallocate_38EF80(void) {
     return _IO_file_doallocate();
 }
 
@@ -100,7 +100,7 @@ int func_0038EFC0(void) {
     return func_00392BA0();
 }
 
-__attribute__((section(".text.func_0038EFE0")))
-int func_0038EFE0(void) {
+__attribute__((section(".text.Tramp__IO_file_sync_38EFE0")))
+int Tramp__IO_file_sync_38EFE0(void) {
     return _IO_file_sync();
 }

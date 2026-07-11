@@ -9,8 +9,8 @@ int func_00320360(void *a0) {
     return D_003C490C(a0) + 8;
 }
 
-__attribute__((section(".text.func_002ACE28")))
-int func_002ACE28(void *a0, void *a1) {
+__attribute__((section(".text.cIDManager_getTexAddr_2ACE28")))
+int cIDManager_getTexAddr_2ACE28(void *a0, void *a1) {
     return cIDManager_getTexAddr(a0, 1, a1);
 }
 

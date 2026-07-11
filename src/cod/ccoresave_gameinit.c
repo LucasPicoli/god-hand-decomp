@@ -28,9 +28,9 @@ extern void func_001FC548(void *);
 extern void func_001FC5B8(void *);
 extern void func_001FC618(void *);
 extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *);
-extern void func_001F9AD0(void *);
+extern void cCoreSave_setGameLevel1_1F9AD0(void *);
 extern void func_001F9A98(void *);
-extern void func_001F9AF0(void *);
+extern void cCoreSave_setGameLevel5_1F9AF0(void *);
 extern void cCoreSave_addGodItem(void *, int);
 
 __attribute__((section(".text.cCoreSave_gameInit")))
@@ -70,13 +70,13 @@ void cCoreSave_gameInit(void *a0)
     switch (v1) {
     case 1:
     default:
-        func_001F9AD0(a0);
+        cCoreSave_setGameLevel1_1F9AD0(a0);
         break;
     case 0:
         func_001F9A98(a0);
         break;
     case 2:
-        func_001F9AF0(a0);
+        cCoreSave_setGameLevel5_1F9AF0(a0);
         break;
     }
     cCoreSave_addGodItem(a0, 1);

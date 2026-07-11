@@ -47,7 +47,7 @@ extern int D_003E8DD4;
 extern int D_003E9068;
 extern int D_003E8DDC;
 extern void DTX_Destroy(int a0);
-extern void func_003B5A50(int a0);
+extern void Tramp_sceSifFreeSysMemory_3B5A50(int a0);
 extern void func_003325F8(void);
 
 __attribute__((section(".text.func_0034B430")))
@@ -713,7 +713,7 @@ void func_0033B3B0(void) {
     D_003E9068 = 0;
     s0 = D_003E8DDC;
     if (s0 != 0) {
-        func_003B5A50(s0);
+        Tramp_sceSifFreeSysMemory_3B5A50(s0);
         D_003E8DDC = 0;
     }
     func_003325F8();

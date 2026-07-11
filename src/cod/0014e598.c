@@ -22,18 +22,18 @@ extern int D_00450C38;
 extern int D_003FA62C;
 extern int D_003FBEA8;
 
-__attribute__((section(".text.func_003892C0")))
-void func_003892C0(void *a0) {
+__attribute__((section(".text.Tramp_flush__7ostream_3892C0")))
+void Tramp_flush__7ostream_3892C0(void *a0) {
     flush__7ostream(a0);
 }
 
-__attribute__((section(".text.func_00389808")))
-void func_00389808(void *a0, void *a1) {
+__attribute__((section(".text.Tramp___as__22_IO_ostream_withassignR7ostream_389808")))
+void Tramp___as__22_IO_ostream_withassignR7ostream_389808(void *a0, void *a1) {
     __as__22_IO_ostream_withassignR7ostream(a0, a1);
 }
 
-__attribute__((section(".text.func_00389960")))
-void func_00389960(void *a0, void *a1) {
+__attribute__((section(".text.Tramp___as__22_IO_istream_withassignR7istream_389960")))
+void Tramp___as__22_IO_istream_withassignR7istream_389960(void *a0, void *a1) {
     __as__22_IO_istream_withassignR7istream(a0, a1);
 }
 

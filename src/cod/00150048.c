@@ -98,28 +98,28 @@ void func_001F8A60(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00277540")))
-void func_00277540(void *a0) {
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_277540")))
+void cCollisionSolidManage_ReleaseUnit_277540(void *a0) {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
 }
 
-__attribute__((section(".text.func_00278368")))
-void func_00278368(void *a0) {
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_278368")))
+void cCollisionSolidManage_ReleaseUnit_278368(void *a0) {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
 }
 
-__attribute__((section(".text.func_0027E088")))
-void func_0027E088(void *a0) {
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_27E088")))
+void cCollisionSolidManage_ReleaseUnit_27E088(void *a0) {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
 }
 
-__attribute__((section(".text.func_00281940")))
-void func_00281940(void *a0) {
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_281940")))
+void cCollisionSolidManage_ReleaseUnit_281940(void *a0) {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
 }
 
-__attribute__((section(".text.func_00289E10")))
-void func_00289E10(void *a0) {
+__attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_289E10")))
+void cCollisionSolidManage_ReleaseUnit_289E10(void *a0) {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
 }
 

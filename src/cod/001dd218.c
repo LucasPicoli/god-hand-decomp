@@ -4,13 +4,13 @@ extern int sceSifFreeSysMemory(void *);
 extern void CustomIDWork_SetNumber(void *, int);
 extern int FindAndForwardEntry_3059A8(void *, int, void *);
 
-__attribute__((section(".text.func_003B5A50")))
-int func_003B5A50(void *a0) {
+__attribute__((section(".text.Tramp_sceSifFreeSysMemory_3B5A50")))
+int Tramp_sceSifFreeSysMemory_3B5A50(void *a0) {
     return sceSifFreeSysMemory(a0);
 }
 
-__attribute__((section(".text.func_001DD218")))
-void func_001DD218(void *a0, int a1) {
+__attribute__((section(".text.CustomIDWork_SetNumber_1DD218")))
+void CustomIDWork_SetNumber_1DD218(void *a0, int a1) {
     CustomIDWork_SetNumber((char *)a0 + 0x918, a1);
 }
 

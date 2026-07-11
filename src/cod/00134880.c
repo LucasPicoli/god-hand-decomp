@@ -46,8 +46,8 @@ void cCollisionSolidManage_CreateSphere(int a0, int a1, int a2, int a3, float f)
     }
 }
 
-__attribute__((section(".text.func_001D5760")))
-void func_001D5760(char *a0) {
+__attribute__((section(".text.CustomIDWork_SetNumber_1D5760")))
+void CustomIDWork_SetNumber_1D5760(char *a0) {
     CustomIDWork_SetNumber(a0 + 0x158);
 }
 
