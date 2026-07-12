@@ -1288,7 +1288,7 @@ __attribute__((section(".text.Tramp_func_0030A2E0_00147548"))) void Tramp_func_0
 
 __attribute__((section(".text.Tramp_func_0030A2B0_001508D8"))) void Tramp_func_0030A2B0_001508D8(void)
 {
-  func_0030A2B0();
+  sceVu0ApplyMatrix();
  do { } while (0);
 }
 

@@ -1,12 +1,12 @@
 #include "godhand/vu0.h"
 
-/* func_0030AB48 — VU0 4x4 matrix * vector with perspective divide, converting
+/* sceVu0RotTransPers — VU0 4x4 matrix * vector with perspective divide, converting
  * the result to fixed-point.  Transforms the vector (a2) by the matrix (a1),
  * divides x/y/z by w (Q-pipe), converts to int with vftoi4, and — when a3 is
  * set — also converts z/w via vftoi0, storing the packed result to a0. */
 
-__attribute__((section(".text.func_0030AB48")))
-void func_0030AB48(void *a0, void *a1, void *a2, int a3) {
+__attribute__((section(".text.sceVu0RotTransPers")))
+void sceVu0RotTransPers(void *a0, void *a1, void *a2, int a3) {
     VU0_LQC2(4, a1, 0);
     VU0_LQC2(5, a1, 0x10);
     VU0_LQC2(6, a1, 0x20);
