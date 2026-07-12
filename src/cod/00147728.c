@@ -3,7 +3,7 @@
 extern void func_0030A700(void *, void *, float);
 extern void func_0030A7B8(void *, void *, float);
 extern void func_0030A650(void *, void *, float);
-extern void func_0030A870(void *, void *, void *);
+extern void sceVu0RotMatrix(void *, void *, void *);
 
 #include "godhand/vu0.h"
 
@@ -49,7 +49,7 @@ void MtxInitRotVec(void *a0, float *a1, unsigned char order) {
         func_0030A7B8(a0, a0, a1[1]);
         break;
     case 5:
-        func_0030A870(a0, a0, a1);
+        sceVu0RotMatrix(a0, a0, a1);
         break;
     }
 }
