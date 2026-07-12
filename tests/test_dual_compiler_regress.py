@@ -120,6 +120,26 @@ class TestReadSections:
 # Section comparator — synthesise two identical files and one diverging
 # pair, exercise the OK / MISS / MISSING / EXTRA paths
 # --------------------------------------------------------------------------- #
+def _section_off_size(obj_path: Path, section_name: str) -> tuple[int, int]:
+    """(file_offset, size) of ``section_name`` in ``obj_path`` via readelf -SW.
+
+    Resolved at run time: the 0033c8.o section layout shifts whenever its TU
+    gains/loses functions, so a hard-coded byte offset goes stale (the old
+    0xfd0 pin fell outside .text.func_0033C918 once the TU grew).
+    """
+    out = subprocess.check_output(
+        ["readelf", "-SW", str(obj_path)], text=True, stderr=subprocess.DEVNULL,
+    )
+    for line in out.splitlines():
+        # Drop the "[ N]" index brackets so the section name is a clean token
+        # regardless of one- vs two-digit index spacing.
+        toks = line.replace("[", " ").replace("]", " ").split()
+        if section_name in toks:
+            i = toks.index(section_name)  # name, TYPE, ADDR, OFF, SIZE, ...
+            return int(toks[i + 3], 16), int(toks[i + 4], 16)
+    raise AssertionError(f"{section_name} not found in {obj_path}")
+
+
 @pytest.mark.skipif(
     not EXPECTED_0033C8.exists(),
     reason="expected/build artifacts not present (fresh clone)",
@@ -133,10 +153,11 @@ class TestCompareSections:
     def test_byte_flip_produces_miss(self, harness, tmp_path):
         copy = tmp_path / "0033c8.o"
         b = bytearray(EXPECTED_0033C8.read_bytes())
-        # Flip a byte in the middle of .text.func_0033C918 (offset 0xfc8
-        # per readelf -SW). Any byte in [.text.* range] triggers a MISS
-        # on that section.
-        b[0xfd0] ^= 0xff
+        # Flip a byte in the middle of .text.func_0033C918. Resolve the section's
+        # file range at run time (the .o layout shifts as the 0033c8 TU changes);
+        # any byte inside the section triggers a MISS on it.
+        off, size = _section_off_size(EXPECTED_0033C8, ".text.func_0033C918")
+        b[off + size // 2] ^= 0xff
         copy.write_bytes(bytes(b))
         rows = harness._compare_sections(EXPECTED_0033C8, copy)
         statuses = {n: s for n, _, s in rows}
