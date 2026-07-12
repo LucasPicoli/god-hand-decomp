@@ -2890,8 +2890,6 @@ INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
 
 INCLUDE_ASM("nonmatching", CasinoWork_SetWarmUpRoom);
 
-INCLUDE_ASM("nonmatching", capVu0LengthSq);
-
 INCLUDE_ASM("nonmatching", capVu0Acos);
 
 INCLUDE_ASM("nonmatching", cCoreSave_setGameDifficulty);
