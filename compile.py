@@ -69,7 +69,12 @@ from scripts.carver import (
     _NONMATCHING_RE,
 )
 DEFAULT_CONFIG = ROOT / "compile_config.json"
-DEFAULT_PARALLELISM = 8
+# Compile workers.  Scales with the host instead of a fixed 8 — the sweep is
+# subprocess-bound (cpp0/cc1/ee-as), so it tracks core count.  Thread count
+# cannot affect the output: every unit writes a fixed .o path and link order
+# comes from the linker script, and `session_check.sh build` gates the result
+# on build/SLUS_215.03.elf being byte-identical to retail regardless.
+DEFAULT_PARALLELISM = max(1, (os.cpu_count() or 4) - 2)
 
 # Version registry. `config/versions.json` maps a short version key to its
 # build metadata, including which compile_config.json holds that version's

@@ -38,7 +38,9 @@ Final exit code:
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
+import os
 import struct
 import subprocess
 import sys
@@ -248,20 +250,21 @@ def _compile_one(
         fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
     )
     out_obj.parent.mkdir(parents=True, exist_ok=True)
-    # Silence cpp0's `empty declaration` warnings and SN cc1's heap
-    # tracing during the sweep — they are not actionable here.
-    with _suppress_fd(2):
-        cpy._cc(unit, cfg, log)
+    cpy._cc(unit, cfg, log)
 
 
 import contextlib
-import os
 
 
 @contextlib.contextmanager
 def _suppress_fd(fd: int):
     """Redirect a fd to /dev/null for the duration of the with-block.
-    Used to quiet cpp0/cc1 stderr noise that the wrapper passes through."""
+    Used to quiet cpp0/cc1 stderr noise that the wrapper passes through.
+
+    `run(capture=False)` leaves the compiler's stderr inherited, so silencing
+    it means dup2()ing the process-global fd — which is why this wraps the
+    whole sweep once instead of each compile: a per-compile dup2 would race
+    across the worker threads."""
     saved = os.dup(fd)
     devnull = os.open(os.devnull, os.O_WRONLY)
     try:
@@ -381,7 +384,15 @@ def main(argv: list[str] | None = None) -> int:
         help="restrict to TUs whose path contains this substring "
              "(repeatable; default: every src/cod/*.c)",
     )
+    ap.add_argument(
+        "-j", "--jobs",
+        type=int,
+        default=max(1, (os.cpu_count() or 4) - 2),
+        help="parallel compile workers (default: cpu_count - 2)",
+    )
     args = ap.parse_args(argv)
+    if args.jobs < 1:
+        ap.error("--jobs must be >= 1")
 
     if not EXPECTED_ROOT.exists():
         sys.stderr.write(
@@ -423,10 +434,23 @@ def main(argv: list[str] | None = None) -> int:
     with tempfile.TemporaryDirectory(prefix="m8_03_dual_") as td:
         scratch = Path(td)
         any_default_miss = False
-        reports: list[TUReport] = []
-        for src in sources:
-            rep = _run_tu(src, cfg, log, scratch)
-            reports.append(rep)
+
+        # Compile every TU under both compilers in parallel.  _run_tu is pure
+        # per-TU: it writes only scratch/<compiler>/<rel>.o (a path unique to
+        # the TU) and reads expected/build/<rel>.o, so scheduling order cannot
+        # change any byte the contract compares — .mdebug, the one section
+        # whose content depends on filesystem ordering, is already excluded
+        # from the gate (see DEFAULT_INTEREST).  Results are collected in
+        # source order, so the report below is identical to the serial sweep's.
+        with _suppress_fd(2):
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=args.jobs
+            ) as pool:
+                reports: list[TUReport] = list(
+                    pool.map(lambda s: _run_tu(s, cfg, log, scratch), sources)
+                )
+
+        for rep in reports:
             cyg_rows = rep.rows_by_compiler["cygnus-2.96"]
             sn_rows = rep.rows_by_compiler["sn-2.95.3-136"]
             cyg_co, cyg_ct, _, _ = _summarise(cyg_rows) if cyg_rows else (0, 0, 0, 0)
