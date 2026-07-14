@@ -338,6 +338,20 @@ class Config:
                     f"got {fp_hz!r}"
                 )
             entry["fp_hazard_nops"] = fp_hz
+            # Per-TU opt-in: insert the R5900 short-loop errata pad ee-as omits
+            # for backward loops containing a call (jal/jalr). Retail's
+            # assembler padded them. Opt-in rather than global because the
+            # prebuilt-library band at 0x32xxxx-0x33xxxx is genuinely UNPADDED
+            # (__do_global_ctors, DTX_Destroy, func_003[23]xxxx match today
+            # BECAUSE they are unpadded), so retail is not internally
+            # consistent. Each opted-in function is byte-verified.
+            clp = raw.get("call_loop_pad", False)
+            if not isinstance(clp, bool):
+                raise BuildError(
+                    f"compile_units[{path!r}]: call_loop_pad must be a bool; "
+                    f"got {clp!r}"
+                )
+            entry["call_loop_pad"] = clp
             out[path] = entry
         return out
 
@@ -1003,6 +1017,9 @@ class CompileUnit:
     # Insert the R5900 FP hazard nops our cc1 omits (--fp-hazard-nops:
     # mtc1->cvt + cvt->div). Opt-in per-TU; each opted-in fn is byte-verified.
     fp_hazard_nops: bool = False
+    # Insert the R5900 short-loop errata pad ee-as omits for call-bearing
+    # backward loops (--call-loop-pad). Opt-in per-TU; byte-verified.
+    call_loop_pad: bool = False
 
 
 def _glob_all(patterns: Iterable[str]) -> list[Path]:
@@ -1117,6 +1134,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
             fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
+            call_loop_pad=bool(entry.get("call_loop_pad", False)),
         ))
 
     for src in _glob_all(cfg.vsm_globs):
@@ -1296,6 +1314,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv.append("--assembler=gnu")
     if unit.fp_hazard_nops:
         argv.append("--fp-hazard-nops")
+    if unit.call_loop_pad:
+        argv.append("--call-loop-pad")
     g = _g_flag(unit, cfg)
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]
