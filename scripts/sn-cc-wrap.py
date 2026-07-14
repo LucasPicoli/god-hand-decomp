@@ -371,8 +371,11 @@ _SHORT_LOOP_MIN_PRE = 4
 _CALL_MNEMONICS = frozenset({"jal", "jalr"})
 
 # Conditional branches only.  An unconditional `b` backward is not the
-# single-block conditional loop the errata concerns, and bltzal/bgezal link
-# (they are calls, handled above).
+# single-block conditional loop the errata concerns.  The branch-and-link forms
+# (bltzal/bgezal) are deliberately absent from BOTH this set and
+# _CALL_MNEMONICS: a body containing one falls through to _is_branch_or_jump and
+# the loop is rejected as multi-block.  That is conservative (we decline to pad
+# rather than risk mis-padding), and cc1 never emits them.
 _COND_BRANCHES = frozenset({
     "beq", "bne", "beqz", "bnez", "bgez", "bgtz", "blez", "bltz",
     "beql", "bnel", "beqzl", "bnezl", "bgezl", "bgtzl", "blezl", "bltzl",
