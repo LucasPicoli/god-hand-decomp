@@ -19,6 +19,9 @@ void *func_001E90F8(void *a0) {
     *(int *)(p + 0x54) = 0;
 
     q = p + 0x5C;
+    /* `j != -1`, not `j >= 0`: retail materialises -1 in a register and closes
+       this loop with `bne`, where the zero-fill loops below use `bgez`. The
+       idiom picks the branch instruction, so normalising it breaks the match. */
     for (j = 4; j != -1; j--) {
         ClearFields00And30_1EE768(q);
         q += 0x40;
