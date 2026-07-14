@@ -248,6 +248,10 @@ def _compile_one(
         # func_00184A40): without it the harness would compile the TU missing
         # the retail FP hazard nops and spuriously report gate drift.
         fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
+        # Honour call_loop_pad (the R5900 call-loop errata-pad class): without
+        # it the harness would compile the TU missing retail's short-loop pads
+        # and spuriously report gate drift vs the expected baseline.
+        call_loop_pad=bool(entry.get("call_loop_pad", False)),
     )
     out_obj.parent.mkdir(parents=True, exist_ok=True)
     cpy._cc(unit, cfg, log)
