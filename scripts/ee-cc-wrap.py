@@ -325,6 +325,170 @@ def _insert_ee_fp_hazard_nops_file(s_path: Path) -> None:
     s_path.write_text(_insert_ee_fp_hazard_nops(s_path.read_text()))
 
 
+# --- Opt-in R5900 call-loop errata-pad INSERTER (--call-loop-pad) ------------
+# Twin of the helper in sn-cc-wrap.py; the two must agree byte-for-byte (a
+# parity test in .private/tests/test_call_loop_pad.py enforces it).
+#
+# ee-as pads a single-block backward-conditional loop until it holds at least
+# _SHORT_LOOP_MIN_PRE instructions before the branch (the R5900 short-loop
+# errata; patches/ee-as/02 pins the minimum to retail's 4).  But it SKIPS that
+# pad whenever the loop body contains a call -- proven with .set noreorder
+# probes: a call-free body pads, a body holding a %hi relocation pads, a body
+# holding jal or jalr does not.  Retail's assembler padded them in game code,
+# so those functions are unmatchable no matter what C we write.
+#
+# This pass inserts the missing pad for a TU that opted in.  ee-as still sees
+# the call and still declines to pad, so there is no double-pad: it merely fixes
+# up the branch displacement around our nops.  Verified end-to-end against real
+# ee-as output (see the spec).
+_SHORT_LOOP_MIN_PRE = 4
+
+_CALL_MNEMONICS = frozenset({"jal", "jalr"})
+
+# Conditional branches only.  An unconditional `b` backward is not the
+# single-block conditional loop the errata concerns.  The branch-and-link forms
+# (bltzal/bgezal) are deliberately absent from BOTH this set and
+# _CALL_MNEMONICS: a body containing one falls through to _is_branch_or_jump and
+# the loop is rejected as multi-block.  That is conservative (we decline to pad
+# rather than risk mis-padding), and cc1 never emits them.
+_COND_BRANCHES = frozenset({
+    "beq", "bne", "beqz", "bnez", "bgez", "bgtz", "blez", "bltz",
+    "beql", "bnel", "beqzl", "bnezl", "bgezl", "bgtzl", "blezl", "bltzl",
+    "bc1t", "bc1f", "bc1tl", "bc1fl",
+})
+
+_LOCAL_LABEL_RE = re.compile(r"^(\$L\w+|\.L\w+):")
+# `0($4)`, `-8($sp)`, `0x10($3)` -> one word.  A symbol (`glob`, `glob+4($3)`)
+# makes the op a .set macro expansion (lui + op) -> two words.
+_REG_OFFSET_RE = re.compile(r"^[-+]?(?:0[xX][0-9a-fA-F]+|\d+)?\(\$\w+\)$")
+_MEM_OPS = frozenset({
+    "lb", "lbu", "lh", "lhu", "lw", "lwu", "lwl", "lwr", "ld", "ldl", "ldr",
+    "lq", "sb", "sh", "sw", "swl", "swr", "sd", "sdl", "sdr", "sq",
+    "lwc1", "swc1", "ldc1", "sdc1",
+})
+
+
+def _strip_comment(line: str) -> str:
+    """Drop cc1's trailing `# 0x4`-style comment and surrounding whitespace."""
+    return line.split("#", 1)[0].strip()
+
+
+def _insn_words(stripped: str, macro_on: bool) -> int:
+    """How many machine words *stripped* assembles to.
+
+    ee-as counts emitted instructions, not source lines, when it applies the
+    short-loop pad, and cc1 leaves loop bodies in a ``.set macro`` region where
+    a few forms expand to two words.  Counting lines would silently mis-pad a
+    body holding, say, ``lw $2,glob``.  Unknown mnemonics cost one word.
+    """
+    if not macro_on:
+        return 1  # macros are disabled; every line is one instruction
+    parts = stripped.split(None, 1)
+    if not parts:
+        return 0
+    mnem, rest = parts[0], (parts[1] if len(parts) > 1 else "")
+    if mnem in ("la", "dla"):
+        return 2  # lui + addiu
+    if mnem in ("li", "dli"):
+        val = rest.split(",")[-1].strip()
+        try:
+            n = int(val, 0)
+        except ValueError:
+            return 2  # li of a symbol -> lui + ori
+        # one word iff it fits a single addiu (signed 16) or ori (unsigned 16)
+        return 1 if -0x8000 <= n <= 0xFFFF else 2
+    if mnem in _MEM_OPS:
+        addr = rest.split(",", 1)[1].strip() if "," in rest else ""
+        return 1 if _REG_OFFSET_RE.match(addr) else 2
+    return 1
+
+
+def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
+    """Map {index of a branch line -> how many nops to insert before it}.
+
+    A loop qualifies when its body (target label .. branch, exclusive) contains
+    a call, contains no other control transfer (multi-block loops are out of
+    scope), and assembles to fewer than _SHORT_LOOP_MIN_PRE words.
+    """
+    labels: dict[str, int] = {}
+    macro_at: list[bool] = []
+    macro_on = True
+    for i, line in enumerate(lines):
+        s = _strip_comment(line)
+        if s.startswith(".set"):
+            if "nomacro" in s:
+                macro_on = False
+            elif "macro" in s:
+                macro_on = True
+        macro_at.append(macro_on)
+        m = _LOCAL_LABEL_RE.match(s)
+        if m:
+            labels[m.group(1)] = i
+
+    plan: dict[int, int] = {}
+    for i, line in enumerate(lines):
+        s = _strip_comment(line)
+        if not _is_asm_instr(s):
+            continue
+        parts = s.split(None, 1)
+        if parts[0] not in _COND_BRANCHES or len(parts) < 2:
+            continue
+        target = parts[1].split(",")[-1].strip()
+        start = labels.get(target)
+        if start is None or start >= i:
+            continue  # forward branch, or a target we cannot see
+
+        words = 0
+        has_call = False
+        multi_block = False
+        for j in range(start + 1, i):
+            body = _strip_comment(lines[j])
+            if not _is_asm_instr(body):
+                continue
+            mnem = body.split(None, 1)[0]
+            if mnem in _CALL_MNEMONICS:
+                has_call = True
+            elif _is_branch_or_jump(body):
+                multi_block = True
+                break
+            words += _insn_words(body, macro_at[j])
+
+        if multi_block or not has_call or words >= _SHORT_LOOP_MIN_PRE:
+            continue
+        plan[i] = _SHORT_LOOP_MIN_PRE - words
+    return plan
+
+
+def _insert_call_loop_pads(text: str) -> str:
+    """Insert the R5900 short-loop pad ee-as omits for call-bearing loops.
+
+    Idempotent: the nops this adds are themselves counted on a second pass, so
+    an already-padded loop is at the minimum and gets nothing more.
+
+    The fixed-point loop is defensive.  Under the current predicate an
+    enclosing loop necessarily contains the inner loop's branch, so it is
+    multi-block and skipped -- inner padding can never change a loop we would
+    pad, and this converges in one sweep.  Keep the loop so the invariant
+    survives a future widening of the multi-block rule.
+    """
+    lines = text.split("\n")
+    for _ in range(16):
+        plan = _plan_call_loop_pads(lines)
+        if not plan:
+            break
+        out: list[str] = []
+        for i, line in enumerate(lines):
+            out.extend(["\tnop"] * plan.get(i, 0))
+            out.append(line)
+        lines = out
+    return "\n".join(lines)
+
+
+def _insert_call_loop_pads_file(s_path: Path) -> None:
+    """In-place application of :func:`_insert_call_loop_pads` to ``s_path``."""
+    s_path.write_text(_insert_call_loop_pads(s_path.read_text()))
+
+
 def _strip_cxx_frame_block(text: str) -> str:
     """Remove ee-gcc 2.9's per-TU DWARF frame block from a cc1plus ``.s``.
 
@@ -638,6 +802,19 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         ),
     )
     p.add_argument(
+        "--call-loop-pad", dest="call_loop_pad", action="store_true",
+        help=(
+            "Insert the R5900 short-loop errata pad ee-as omits for backward "
+            "loops whose body contains a call (jal/jalr): pad to 4 instructions "
+            "before the branch. Retail's assembler emitted these; ee-as does "
+            "not, which makes ~61 functions unmatchable regardless of the C. "
+            "Never global -- the prebuilt-library band at 0x32xxxx-0x33xxxx is "
+            "genuinely unpadded -- so opt-in per-TU and byte-verified. "
+            "Forwarded to sn-cc-wrap.py for SN TUs. "
+            "See compile_units[].call_loop_pad."
+        ),
+    )
+    p.add_argument(
         "--extern-jtbl", dest="extern_jtbl", action="append", default=[],
         metavar="SYM",
         help="Externalize the Nth cc1-emitted switch jump table to SYM "
@@ -857,6 +1034,10 @@ def main(argv: list[str]) -> int:
             # (no double insertion). Per-TU via compile_units fp_hazard_nops.
             if args.fp_hazard_nops:
                 _insert_ee_fp_hazard_nops_file(s_path)
+            # Opt-in call-loop errata pad, LAST: it counts loop-body
+            # instructions, so it must run after every pass that can add one.
+            if args.call_loop_pad:
+                _insert_call_loop_pads_file(s_path)
             # ee-gcc 2.9 cc1plus appends an unconditional per-TU DWARF frame
             # block to the C++ ``.s``.  For a carved C++ TU whose frame data is
             # already provided by the data splat, that block is a duplicate
