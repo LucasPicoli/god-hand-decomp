@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 11.392334,
+    "fuzzy_match_percent": 11.40049,
     "total_code": "2844404",
-    "matched_code": "324044",
-    "matched_code_percent": 11.392334,
+    "matched_code": "324276",
+    "matched_code_percent": 11.40049,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11202,
-    "matched_functions": 4638,
-    "matched_functions_percent": 41.40332,
-    "complete_code": 301328,
-    "complete_code_percent": 10.593713129358559,
+    "matched_functions": 4640,
+    "matched_functions_percent": 41.421173,
+    "complete_code": 301748,
+    "complete_code_percent": 10.608478964310274,
     "total_units": 7052,
-    "complete_units": 1267
+    "complete_units": 1269
   },
   "units": [
     {
@@ -81857,16 +81857,19 @@
     {
       "name": "src/cod/casino/BlackJackId",
       "measures": {
-        "fuzzy_match_percent": 68.115944,
+        "fuzzy_match_percent": 100.0,
         "total_code": "276",
-        "matched_code": "188",
-        "matched_code_percent": 68.115944,
+        "matched_code": "276",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 2,
-        "matched_functions": 1,
-        "matched_functions_percent": 50.0,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code": "276",
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 1,
+        "complete_units": 1
       },
       "sections": [
         {
@@ -81882,7 +81885,7 @@
         {
           "name": ".text",
           "size": "280",
-          "fuzzy_match_percent": 68.115944,
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -81895,6 +81898,7 @@
         {
           "name": "BlackJackId_Move",
           "size": "88",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
@@ -81907,6 +81911,7 @@
         }
       ],
       "metadata": {
+        "complete": true,
         "progress_categories": [
           "engine",
           "engine.casino"
@@ -86308,11 +86313,19 @@
     {
       "name": "src/cod/Slot2",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "144",
+        "matched_code": "144",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "144",
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 1,
+        "complete_units": 1
       },
       "sections": [
         {
@@ -86328,6 +86341,7 @@
         {
           "name": ".text",
           "size": "144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -86340,11 +86354,13 @@
         {
           "name": "Slot2",
           "size": "144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         }
       ],
       "metadata": {
+        "complete": true,
         "progress_categories": [
           "engine"
         ],
@@ -340399,39 +340415,39 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 11.589557,
+        "fuzzy_match_percent": 11.597854,
         "total_code": "2796000",
-        "matched_code": "324044",
-        "matched_code_percent": 11.589556,
+        "matched_code": "324276",
+        "matched_code_percent": 11.597854,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 10811,
-        "matched_functions": 4638,
-        "matched_functions_percent": 42.90075,
-        "complete_code": "301328",
-        "complete_code_percent": 10.77711,
+        "matched_functions": 4640,
+        "matched_functions_percent": 42.919247,
+        "complete_code": "301748",
+        "complete_code_percent": 10.792131,
         "total_units": 6661,
-        "complete_units": 1267
+        "complete_units": 1269
       }
     },
     {
       "id": "engine.casino",
       "name": "Casino",
       "measures": {
-        "fuzzy_match_percent": 53.45044,
+        "fuzzy_match_percent": 56.21079,
         "total_code": "3188",
-        "matched_code": "1704",
-        "matched_code_percent": 53.45044,
+        "matched_code": "1792",
+        "matched_code_percent": 56.210793,
         "matched_data_percent": 100.0,
         "total_functions": 19,
-        "matched_functions": 14,
-        "matched_functions_percent": 73.68421,
-        "complete_code": "1108",
-        "complete_code_percent": 34.755333,
+        "matched_functions": 15,
+        "matched_functions_percent": 78.94737,
+        "complete_code": "1384",
+        "complete_code_percent": 43.4128,
         "complete_data_percent": 100.0,
         "total_units": 12,
-        "complete_units": 7
+        "complete_units": 8
       }
     },
     {
