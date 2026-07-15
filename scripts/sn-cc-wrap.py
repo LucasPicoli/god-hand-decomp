@@ -437,7 +437,9 @@ def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
     """
     labels: dict[str, int] = {}
     macro_at: list[bool] = []
+    reorder_at: list[bool] = []
     macro_on = True
+    reorder_on = True  # cc1 emits code in .set reorder by default
     for i, line in enumerate(lines):
         s = _strip_comment(line)
         if s.startswith(".set"):
@@ -445,7 +447,13 @@ def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
                 macro_on = False
             elif "macro" in s:
                 macro_on = True
+            # "noreorder" contains "reorder"; test the negative form first.
+            if "noreorder" in s:
+                reorder_on = False
+            elif "reorder" in s:
+                reorder_on = True
         macro_at.append(macro_on)
+        reorder_at.append(reorder_on)
         m = _LOCAL_LABEL_RE.match(s)
         if m:
             labels[m.group(1)] = i
@@ -478,9 +486,19 @@ def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
                 break
             words += _insn_words(body, macro_at[j])
 
-        if multi_block or not has_call or words >= _SHORT_LOOP_MIN_PRE:
+        # A branch emitted in a `.set reorder` region carries no explicit delay
+        # slot: ee-as fills it, and does so by pulling in the nop immediately
+        # before the branch — stealing one of our pads. Retail's call-loops of
+        # this shape (single-arg list walks `while(p){f(p); p=*p;}`, arg-busy
+        # loops `while(f(0)==0)`) still carry the errata pad, so plan one extra
+        # nop for ee-as to consume as the delay slot, leaving _SHORT_LOOP_MIN_PRE
+        # real words before the branch. The matched noreorder loops (cc1 emits
+        # their delay slot explicitly, so nothing is stolen) keep min_pre = 4 and
+        # are unaffected — proven by the retail-ELF byte-identity gate.
+        min_pre = _SHORT_LOOP_MIN_PRE + (1 if reorder_at[i] else 0)
+        if multi_block or not has_call or words >= min_pre:
             continue
-        plan[i] = _SHORT_LOOP_MIN_PRE - words
+        plan[i] = min_pre - words
     return plan
 
 
