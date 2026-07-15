@@ -1292,6 +1292,29 @@ class TestRelObjdiffUnits:
         assert [u for u in units if u.get("metadata", {}).get("rel")] == []
 
 
+class TestSortedUnits:
+    def test_orders_by_name_rel_last(self):
+        units = [
+            {"name": "src/cod/00100280", "metadata": {}},
+            {"name": "asm/cod/000000.part1", "metadata": {"auto_generated": True}},
+            {"name": "asm/r207/seg0", "metadata": {"rel": "r207"}},
+            {"name": "src/cod/00100248", "metadata": {}},
+        ]
+        out = [u["name"] for u in cm._sorted_units(units)]
+        assert out == [
+            "asm/cod/000000.part1",
+            "src/cod/00100248",
+            "src/cod/00100280",
+            "asm/r207/seg0",
+        ]
+
+    def test_is_pure_returns_new_ordering_same_objects(self):
+        a = {"name": "b", "metadata": {}}
+        b = {"name": "a", "metadata": {}}
+        out = cm._sorted_units([a, b])
+        assert out == [b, a]
+
+
 # --------------------------------------------------------------------------- #
 # resolve_config_path  — version registry selection
 # --------------------------------------------------------------------------- #

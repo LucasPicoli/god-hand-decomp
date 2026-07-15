@@ -1758,6 +1758,19 @@ def _unit_categories(name: str, lib_categories: dict[str, str]) -> list[str]:
     return ["engine"]
 
 
+def _sorted_units(units: list[dict]) -> list[dict]:
+    """Deterministic unit order for ``objdiff.json``: main-ELF units by name,
+    then REL units by name.  ``objdiff-cli`` emits the progress report in this
+    order, so stabilising it here turns a carve/rename from a whole-list
+    reshuffle into a localized diff.  asm parts are ``metadata.auto_generated``
+    (hidden from the objdiff GUI sidebar), so their position never affects
+    navigation; the REL-last grouping preserves the documented layout."""
+    return sorted(
+        units,
+        key=lambda u: (bool(u.get("metadata", {}).get("rel")), u["name"]),
+    )
+
+
 def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict]:
     """Build the per-unit list for ``objdiff.json`` from splat's linker entries.
 
@@ -1828,7 +1841,7 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
                     },
                 }
             )
-    return units
+    return _sorted_units(units)
 
 
 def _mirror_expected(
