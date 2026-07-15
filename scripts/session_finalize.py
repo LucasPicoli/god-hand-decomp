@@ -125,7 +125,7 @@ def report_is_canonical(root=ROOT) -> bool:
         return False
 
 
-def regen_report(root=ROOT, commit=True):
+def regen_report(root=ROOT, commit=True, revert_on_noncanonical=True) -> bool:
     """Regenerate report.json to the regen fixed point (see report_is_canonical).
 
     progress.sh runs ``objdiff-cli report generate`` BEFORE ``mark_complete`` flags
@@ -138,6 +138,12 @@ def regen_report(root=ROOT, commit=True):
     commit=True  → commit report.json + objdiff.json (batch-integrate end).
     commit=False → leave the regenerated report on disk for the human to review
                    (``session_check --fix``).
+    revert_on_noncanonical=True  → a lean report reverts BOTH report.json and
+                   objdiff.json to HEAD (today's default safety net).
+    revert_on_noncanonical=False → a lean report is left as-is (the caller may
+                   have just legitimately regenerated objdiff.json for a new
+                   unit); the caller decides what to do with it instead.
+    Returns True iff the regenerated report is canonical.
     Best-effort: a regen/commit failure must NEVER be fatal — log and move on."""
     root = Path(root)
     rj = root / "progress" / "report.json"
@@ -155,15 +161,17 @@ def regen_report(root=ROOT, commit=True):
             prev = cur
         if not report_is_canonical(root):
             print("session_finalize: report.json still lean after regen (no "
-                  "complete_units) — refusing to commit; reverting for a clean tree",
-                  file=sys.stderr)
-            subprocess.run(["git", "checkout", "--", "progress/report.json",
-                            "objdiff.json"], cwd=root)
-            return
+                  "complete_units) — refusing to commit", file=sys.stderr)
+            if revert_on_noncanonical:
+                subprocess.run(["git", "checkout", "--", "progress/report.json",
+                                "objdiff.json"], cwd=root)
+                print("session_finalize: reverted report.json + objdiff.json for "
+                      "a clean tree", file=sys.stderr)
+            return False
         if not commit:
             print("session_finalize: report.json regenerated (fixed point); left "
                   "uncommitted for review.")
-            return
+            return True
         st = subprocess.run(["git", "status", "--short", "progress/report.json",
                              "objdiff.json"], cwd=root, capture_output=True, text=True)
         if st.stdout.strip():
@@ -174,9 +182,11 @@ def regen_report(root=ROOT, commit=True):
             print("session_finalize: regen + committed progress/report.json (fixed point)")
         else:
             print("session_finalize: report.json already current")
+        return True
     except subprocess.CalledProcessError as e:
         print(f"session_finalize: report.json regen skipped (non-fatal): {e}",
               file=sys.stderr)
+        return False
 
 
 # --------------------------------------------------------------------------- #
