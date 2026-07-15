@@ -25,4 +25,13 @@ int cMessage_deleteMessNo(void *a0, unsigned short a1)
 }
 #include "include_asm.h"
 
-INCLUDE_ASM("nonmatching", cMessage_closeAll);
+extern void func_002B2400(void *a0);
+
+__attribute__((section(".text.cMessage_closeAll")))
+void cMessage_closeAll(void *a0) {
+    void *p = *(void **)((char *)a0 + 0x10);
+    while (p) {
+        func_002B2400(p);
+        p = *(void **)((char *)p + 0x8);
+    }
+}
