@@ -2944,8 +2944,6 @@ INCLUDE_ASM("nonmatching", cEma2_ckKiss);
 
 INCLUDE_ASM("nonmatching", cEmManage_GetEm);
 
-INCLUDE_ASM("nonmatching", cEmManage_ReleaseEmAll);
-
 INCLUDE_ASM("nonmatching", cEmManage_DarkWorldCk);
 
 INCLUDE_ASM("nonmatching", cGame_isReleaseActiveHeap);
