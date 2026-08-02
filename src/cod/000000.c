@@ -2862,8 +2862,6 @@ INCLUDE_ASM("nonmatching", cOm1f_setStart);
 
 INCLUDE_ASM("nonmatching", cOm1f_setMoveRange);
 
-INCLUDE_ASM("nonmatching", cOm1f_setHomePos);
-
 INCLUDE_ASM("nonmatching", cOm4f_setOpenFix);
 
 INCLUDE_ASM("nonmatching", cOm4f_setCloseFix);
@@ -2873,8 +2871,6 @@ INCLUDE_ASM("nonmatching", cOm4f_setOpenCloseRot);
 INCLUDE_ASM("nonmatching", cOm53_setGetOffEm);
 
 INCLUDE_ASM("nonmatching", cOm53_setDownPos);
-
-INCLUDE_ASM("nonmatching", cOm5a_setClose);
 
 INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
 
@@ -2895,8 +2891,6 @@ INCLUDE_ASM("nonmatching", capVu0Acos);
 INCLUDE_ASM("nonmatching", cCoreSave_setGameDifficulty);
 
 INCLUDE_ASM("nonmatching", cCoreSave_setGold);
-
-INCLUDE_ASM("nonmatching", cCoreSave_setKeyNum);
 
 INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
@@ -3013,6 +3007,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
