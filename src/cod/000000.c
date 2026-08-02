@@ -2880,8 +2880,6 @@ INCLUDE_ASM("nonmatching", cOmItem_setBlockObj);
 
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
-INCLUDE_ASM("nonmatching", DogRace_SetActBtn);
-
 INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
 
 INCLUDE_ASM("nonmatching", CasinoWork_SetWarmUpRoom);
@@ -3007,6 +3005,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
