@@ -2902,8 +2902,6 @@ INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
-INCLUDE_ASM("nonmatching", cCoreSave_setCasinoTicketNum);
-
 INCLUDE_ASM("nonmatching", cCoreSave_getAllKillEmNum);
 
 INCLUDE_ASM("nonmatching", cCoreSave_SetOliviaCostumeNo);
@@ -3000,13 +2998,9 @@ INCLUDE_ASM("nonmatching", cSnd_SetBgmState);
 
 INCLUDE_ASM("nonmatching", cSnd_SetBgmLevel);
 
-INCLUDE_ASM("nonmatching", CustomIDWork);
-
 INCLUDE_ASM("nonmatching", CustomIDWork_Initialize);
 
 INCLUDE_ASM("nonmatching", CustomIDWork_SetColorAnimNormal_2D6898);
-
-INCLUDE_ASM("nonmatching", CustomIDWork_SetColorAnimNormal_2D68D8);
 
 INCLUDE_ASM("nonmatching", CustomIDWork_SetScaleAnimNormal);
 
@@ -3019,6 +3013,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
