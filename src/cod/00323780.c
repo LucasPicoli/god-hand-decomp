@@ -129,7 +129,7 @@ void func_00335E60(void)
     func_00335D18(0, 0);
 }
 
-int func_00349B88(int);
+int Forward328098_349B88(int);
 void func_00349AD0(int, int, int, int, int);
 int Forward3281C8_349B48(int);
 int func_00345750();
@@ -143,7 +143,7 @@ int func_00348FF0(void *a0)
     int r;
 
     s0 = a0;
-    r = func_00349B88(*(int *)((char *)s0 + 0x40));
+    r = Forward328098_349B88(*(int *)((char *)s0 + 0x40));
 
     if (r == 2) {
         return -1;
