@@ -2888,15 +2888,11 @@ INCLUDE_ASM("nonmatching", capVu0Acos);
 
 INCLUDE_ASM("nonmatching", cCoreSave_setGameDifficulty);
 
-INCLUDE_ASM("nonmatching", cCoreSave_setGold);
-
 INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
 INCLUDE_ASM("nonmatching", cCoreSave_getAllKillEmNum);
-
-INCLUDE_ASM("nonmatching", cCoreSave_SetOliviaCostumeNo);
 
 INCLUDE_ASM("nonmatching", cDamageUnit_SetDamageCollFlashActive);
 
@@ -2960,10 +2956,6 @@ INCLUDE_ASM("nonmatching", cObjSimple_SetParentInfo);
 
 INCLUDE_ASM("nonmatching", cPadVib_setSeq);
 
-INCLUDE_ASM("nonmatching", cPadVib_stopSeq);
-
-INCLUDE_ASM("nonmatching", cRoomJump_setTblAddr);
-
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 
 INCLUDE_ASM("nonmatching", cSceAtManager_SetDoorFunc);
@@ -2986,8 +2978,6 @@ INCLUDE_ASM("nonmatching", cScenario_setOmSuspend);
 
 INCLUDE_ASM("nonmatching", cScrArray_SearchScroll);
 
-INCLUDE_ASM("nonmatching", cSnd_SetBgmState);
-
 INCLUDE_ASM("nonmatching", cSnd_SetBgmLevel);
 
 INCLUDE_ASM("nonmatching", CustomIDWork_Initialize);
@@ -3005,6 +2995,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
