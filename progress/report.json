@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 12.746567,
-    "total_code": "2844468",
-    "matched_code": "362572",
-    "matched_code_percent": 12.746567,
+    "fuzzy_match_percent": 12.748406,
+    "total_code": "2844528",
+    "matched_code": "362632",
+    "matched_code_percent": 12.748406,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
-    "total_functions": 11207,
-    "matched_functions": 5068,
-    "matched_functions_percent": 45.221737,
-    "complete_code": 340020,
-    "complete_code_percent": 11.953729133180616,
-    "total_units": 7469,
-    "complete_units": 1341
+    "total_functions": 11213,
+    "matched_functions": 5074,
+    "matched_functions_percent": 45.25105,
+    "complete_code": 340080,
+    "complete_code_percent": 11.9555863046523,
+    "total_units": 7470,
+    "complete_units": 1342
   },
   "units": [
     {
@@ -275161,6 +275161,98 @@
       }
     },
     {
+      "name": "src/cod/001a80f8",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "60",
+        "matched_code": "60",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 6,
+        "matched_functions": 6,
+        "matched_functions_percent": 100.0,
+        "complete_code": "60",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.cEmManage_DarkWorldCk",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "cEmManage_DarkWorldCk",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "cEma2_ckKiss",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "16"
+        },
+        {
+          "name": "cObjSimple_SetBustFlag",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "32"
+        },
+        {
+          "name": "cObjSimple_SetRingFlag",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "40"
+        },
+        {
+          "name": "cOm53_setDownPos",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "48"
+        },
+        {
+          "name": "cScenario_SetRoomExitFunc",
+          "size": "12",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "56"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/001a8150",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -356367,20 +356459,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 12.956737,
-        "total_code": "2798328",
-        "matched_code": "362572",
-        "matched_code_percent": 12.956737,
+        "fuzzy_match_percent": 12.958603,
+        "total_code": "2798388",
+        "matched_code": "362632",
+        "matched_code_percent": 12.958603,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 10850,
-        "matched_functions": 5068,
-        "matched_functions_percent": 46.70968,
-        "complete_code": "340020",
-        "complete_code_percent": 12.150827,
-        "total_units": 7112,
-        "complete_units": 1341
+        "total_functions": 10856,
+        "matched_functions": 5074,
+        "matched_functions_percent": 46.739132,
+        "complete_code": "340080",
+        "complete_code_percent": 12.152711,
+        "total_units": 7113,
+        "complete_units": 1342
       }
     },
     {
