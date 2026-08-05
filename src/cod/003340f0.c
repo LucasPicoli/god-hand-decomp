@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern int Forward33B568_33B688(void *a0);
+extern int Forward33B568_33B688(void);
 extern void func_00331070(void *a0);
 extern int Forward33B5C8_33B6B8(void);
 
@@ -12,7 +12,7 @@ extern int Forward33B5C8_33B6B8(void);
 __attribute__((section(".text.func_003340F0")))
 void func_003340F0(void *a0){ char *s0=(char*)a0;
  if(*(int*)(s0+0x2C)==0) return;
- Forward33B568_33B688(s0);
+ Forward33B568_33B688();
  switch(func_003312B0(*(void**)(s0+0x2C))){
  case 9: *(char*)(s0+0x2)=3;
   func_00331070(*(void**)(s0+0x2C)); *(int*)(s0+0x2C)=0; break;

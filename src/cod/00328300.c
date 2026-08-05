@@ -12,7 +12,7 @@ extern int D_00453380;
 extern int D_004533A0;
 extern int D_00453EB0;
 extern int D_00453ED0;
-extern int Forward33B568_33B688(int *a0);
+extern int Forward33B568_33B688(void);
 extern int Forward33B5C8_33B6B8(void);
 extern void func_003B1F28(int *a0);
 extern volatile unsigned int D_003D8460;
@@ -103,7 +103,7 @@ int func_00330C18(int *a0) {
 __attribute__((section(".text.func_00331570")))
 int func_00331570(int *a0) {
     int *s0 = a0;
-    Forward33B568_33B688(a0);
+    Forward33B568_33B688();
     if (s0 == 0) {
         func_003B1F28(&D_00453EB0);
     } else if (s0[1] == 1) {
