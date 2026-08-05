@@ -1,7 +1,21 @@
-# DEFAULT-DENY allowlist — regenerate via the project's allowlist tool.
-# Change the allowlist by tracking a file (git add) and regenerating, not by hand.
+# DEFAULT-DENY allowlist. Everything is denied by the `*` below; a file is
+# publishable only once it has an explicit `!` line here. Failing closed is
+# deliberate — a new file is invisible until someone opts it in.
+#
+# Maintained by APPENDING. There is no regeneration tool; the carve pipeline and
+# scripts/checks/carve_allowlist.py --fix both append the `!` line for a file at
+# the moment it is committed. Adding one by hand is fine — keep it in the same
+# grouping (directories first, then paths) and anchor it (see below).
+#
+# ANCHOR root-file entries with a leading slash: `!/README.md`, not `!README.md`.
+# An unanchored pattern matches that basename at ANY depth, so `!LICENSE` would
+# allowlist a LICENSE inside every allowlisted directory, not just the root one.
+# All 13 root entries were unanchored until 2026-08-05.
+#
+# A directory must be allowlisted before anything inside it can be: git does not
+# descend into a denied directory, so a `!` line for a file under one has no effect.
 *
-!.gitignore
+!/.gitignore
 !.github/
 !.github/workflows/
 !config/
@@ -38,15 +52,15 @@
 !tests/
 !tools/
 !tools/splat_ext/
-!.clang-format
+!/.clang-format
 !.github/workflows/pr.yml
 !.github/workflows/progress.yml
-!.gitignore
-!CONTRIBUTING.md
-!LICENSE
-!README.md
-!compile.py
-!compile_config.json
+!/.gitignore
+!/CONTRIBUTING.md
+!/LICENSE
+!/README.md
+!/compile.py
+!/compile_config.json
 !config/SLUS_215.03.lcf
 !config/SLUS_215.03.yaml
 !config/forced_regs_allowlist.txt
@@ -59,12 +73,12 @@
 !config/reloc_addrs.txt
 !config/symbol_addrs.txt
 !config/versions.json
-!ctx.h
+!/ctx.h
 !disc_extract/rel/manifest.json
 !docs/STYLE.md
 !docs/ps2_mips_cheatsheet.md
-!flake.lock
-!flake.nix
+!/flake.lock
+!/flake.nix
 !include/.gitkeep
 !include/godhand/eesyscall.h
 !include/godhand/mmi.h
@@ -74,10 +88,10 @@
 !include/labels.inc
 !include/macro.inc
 !include/sce/.gitkeep
-!objdiff.json
+!/objdiff.json
 !patches/ee-as/01-disable-short-loop-check.py
 !patches/ee-as/02-fix-short-loop-pad.py
-!permuter_settings.toml
+!/permuter_settings.toml
 !progress/function_categories.json
 !progress/library_identified.json
 !progress/report.json
