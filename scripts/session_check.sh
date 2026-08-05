@@ -41,7 +41,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words tu_complete atlas social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words carve_allowlist tu_complete atlas social)
 
 # Optional checks read local-only working files (running notes, the in-progress
 # struct atlas, naming bookkeeping) that aren't tracked in the repo, so their
