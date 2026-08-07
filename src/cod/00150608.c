@@ -31,7 +31,7 @@ extern void func_002C8E60(void *);
 extern int D_00603A40;
 extern void func_002D2DC8(void *);
 extern int D_00604700;
-extern void func_002D6D80(void *);
+extern void *func_002D6D80(void *);
 extern int D_0061A998;
 extern void Obj0000_Set_Vtbl_D_0044D388_2D9E18(void *);
 extern void func_001B6FB8(void *);
