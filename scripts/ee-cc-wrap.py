@@ -207,6 +207,27 @@ _DIV_SRC_RE = re.compile(r"^\s*div\.[sd]\s+\$f\d+\s*,\s*(\$f\d+)\s*,\s*(\$f\d+)"
 _FP_CONSUMER_RE = re.compile(
     r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
     r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
+# Every FP-*writing* form our cc1 frontends emit, all of which name the written
+# FPR as their first FPR operand (`mtc1 $r,$fN` included).  Deliberately
+# conservative — a mnemonic missing here only ever costs Rule B a firing, while
+# a wrong entry would fabricate nops, which is the failure this exists to stop.
+# Two families are excluded on purpose: `c.<cond>.s` writes only the condition
+# flag, and the R5900 accumulator forms (`adda.s`, `suba.s`, `mula.s`,
+# `madda.s`, `msuba.s`) take a *source* first — neither carries the literal `.`
+# immediately after the mnemonic stem that this pattern demands, so neither can
+# match by accident.
+_FP_DEST_RE = re.compile(
+    r"^\s*(?:"
+    r"(?:abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor|add|sub|mul|div"
+    r"|madd|msub|nmadd|nmsub|max|min|rint)\.[a-z0-9.]+"
+    r"|li?\.[sd]|lwc1|ldc1|lwxc1|ldxc1|d?mtc1"
+    r")\s+[^#]*?(\$f\d+)")
+
+
+def _fp_dest(line: str) -> str | None:
+    """The FPR *written* by *line*, or ``None`` if it writes no FPR."""
+    m = _FP_DEST_RE.match(line)
+    return m.group(1) if m else None
 
 
 def _fp_op_reads(line: str, fpr: str) -> bool:
@@ -248,7 +269,16 @@ def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> 
     ``cvt.*`` writing one of *srcs*.  Stop at a label, branch/jump, or ``.set
     noreorder`` — any basic-block / hand-scheduled boundary.  Retail's
     ``(float)a / (float)b`` divide feeds the div from a cvt in the same block.
+
+    The scan stops tracing a register at its **producer**: the first instruction
+    writing it ends that register's search, whatever that instruction is.  Only
+    a ``cvt.*`` may answer True; any other writer merely drops the register, and
+    the scan gives up once every source is accounted for.  Walking *past* a
+    redefinition would credit the div to a cvt whose value it never reads —
+    ``cvt.s.w $f0,$f0`` … ``sub.s $f0,$f1,$f0`` … ``div.s $f2,$f0,$f1``, the
+    func_001D4258 shape, where retail carries one nop and not the FDIV pair.
     """
+    srcs = set(srcs)
     for j in range(div_idx - 1, -1, -1):
         s = lines[j].strip()
         if s.endswith(":"):            # label = block start
@@ -261,9 +291,14 @@ def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> 
             continue
         if _is_branch_or_jump(s):      # control edge = block boundary
             return False
-        cm = _CVT_DEST_RE.match(lines[j])
-        if cm and cm.group(1) in srcs:
-            return True
+        dest = _fp_dest(lines[j])
+        if dest is None or dest not in srcs:
+            continue                   # writes no FPR we are tracing
+        if _CVT_DEST_RE.match(lines[j]):
+            return True                # the producer IS a cvt → Rule B applies
+        srcs.discard(dest)             # producer found, and it is not a cvt
+        if not srcs:
+            return False
     return False
 
 
