@@ -31,6 +31,26 @@ from pathlib import Path
 SHT_SYMTAB = 2
 STB_LOCAL = 0
 
+# MIPS ECOFF symbolic-debug header, carried in `.mdebug`.
+_HDRR_MAGIC = 0x7009
+# Offsets of the HDRR fields we need, from the start of the header. HDRR is
+# `short magic; short vstamp;` then 23 longs; isymMax is the 8th, cbSymOffset
+# the 9th, iextMax the 22nd and cbExtOffset the 23rd — i.e. 4 + n*4.
+_HDRR_ISYMMAX = 0x20
+_HDRR_CBSYMOFFSET = 0x24
+_HDRR_IEXTMAX = 0x58
+_HDRR_CBEXTOFFSET = 0x5C
+# sizeof(struct ext_ext): es_flags[2], es_ifd[2], then a 12-byte SYMR.
+_EXTR_SIZE = 16
+_EXTR_SYMR_OFF = 4
+_SYMR_SIZE = 12
+# SYMR's trailing word packs `st:6, sc:5, reserved:1, index:20` (LSB first).
+_SYMR_BITS_OFF = 8
+_SYMR_RESERVED_BIT = 1 << 11
+# Only three bits of es_flags are defined (jmptbl, cobol_main, weakext); the
+# remaining 13 are reserved and must be zero.
+_EXTR_FLAG_MASK = 0x0007
+
 # Elf32_Shdr field offsets.
 _SH_TYPE = 0x04
 _SH_OFFSET = 0x10
@@ -94,8 +114,83 @@ def repair_symtab_info(obj: Path) -> bool:
             struct.pack_into("<I", data, sh + _SH_INFO, first_global)
             changed = True
 
+    changed |= _scrub_mdebug_ext_flags(data, e_shoff, e_shentsize, e_shnum)
+
     if changed:
         obj.write_bytes(bytes(data))
+    return changed
+
+
+def _scrub_mdebug_ext_flags(data: bytearray, e_shoff: int, e_shentsize: int,
+                            e_shnum: int) -> bool:
+    """Zero the uninitialised reserved bits of `.mdebug`'s EXTR flag words.
+
+    ps2eeas leaves ``es_flags`` uninitialised on some external-symbol records,
+    so the same input assembles to two different objects across runs: the
+    field holds a stale heap value (observed 0xB1C0 vs 0xC1A0 on consecutive
+    builds of the same TU, both shifted by a constant 0xFE0 — an allocator
+    base, not data).  Nothing downstream reads it: `.mdebug` is stripped from
+    the linked ELF, which is byte-identical to retail either way.  But the
+    ``expected/build/<u>.o`` gate compares whole objects, so a TU on this
+    route would flap between two hashes forever.
+
+    Evidence the correct value is zero: in the same object ps2eeas writes 0
+    into this field for some records and garbage into others, and the adjacent
+    ``es_ifd`` is stable across runs.  Only the three defined bits (jmptbl,
+    cobol_main, weakext) are preserved — a real weak external keeps its bit.
+
+    The same records also carry an uninitialised SYMR ``reserved`` bit, which
+    is what remained after the flag word was fixed: assembling one TU eight
+    times gave two hashes differing in exactly one byte, and the only bit that
+    moved was ``reserved`` (``st``/``sc``/``index`` all stable).  It is defined
+    as reserved and must be zero, so clearing it is a correction rather than a
+    normalisation.  Cleared in the local symbol table too — the same SYMR
+    layout, the same spec rule — so the flap cannot resurface there on some
+    other TU; only the external table was ever measured unstable.
+    """
+    changed = False
+
+    def _clear_reserved(off: int) -> bool:
+        """Zero the SYMR reserved bit of the record whose SYMR starts at *off*."""
+        pos = off + _SYMR_BITS_OFF
+        if pos + 4 > len(data):
+            return False
+        bits, = struct.unpack_from("<I", data, pos)
+        if bits & _SYMR_RESERVED_BIT:
+            struct.pack_into("<I", data, pos, bits & ~_SYMR_RESERVED_BIT)
+            return True
+        return False
+
+    for i in range(e_shnum):
+        sh = e_shoff + i * e_shentsize
+        sh_off, = struct.unpack_from("<I", data, sh + _SH_OFFSET)
+        sh_size, = struct.unpack_from("<I", data, sh + _SH_SIZE)
+        if sh_size < 0x60 or sh_off + 2 > len(data):
+            continue
+        magic, = struct.unpack_from("<H", data, sh_off)
+        if magic != _HDRR_MAGIC:
+            continue
+        iext_max, = struct.unpack_from("<i", data, sh_off + _HDRR_IEXTMAX)
+        cb_ext, = struct.unpack_from("<i", data, sh_off + _HDRR_CBEXTOFFSET)
+        if iext_max > 0 and cb_ext > 0:
+            for k in range(iext_max):
+                off = cb_ext + k * _EXTR_SIZE
+                if off + _EXTR_SIZE > len(data):
+                    break
+                flags, = struct.unpack_from("<H", data, off)
+                keep = flags & _EXTR_FLAG_MASK
+                if flags != keep:
+                    struct.pack_into("<H", data, off, keep)
+                    changed = True
+                changed |= _clear_reserved(off + _EXTR_SYMR_OFF)
+        isym_max, = struct.unpack_from("<i", data, sh_off + _HDRR_ISYMMAX)
+        cb_sym, = struct.unpack_from("<i", data, sh_off + _HDRR_CBSYMOFFSET)
+        if isym_max > 0 and cb_sym > 0:
+            for k in range(isym_max):
+                off = cb_sym + k * _SYMR_SIZE
+                if off + _SYMR_SIZE > len(data):
+                    break
+                changed |= _clear_reserved(off)
     return changed
 
 

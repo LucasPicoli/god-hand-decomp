@@ -283,6 +283,27 @@ class TestPs2eeasDliExpansion:
             capture_output=True, text=True)
         assert ld.returncode == 0, ld.stderr
 
+    def test_output_is_deterministic(self, tmp_path):
+        """ps2eeas leaves `.mdebug` EXTR `es_flags` uninitialised, so the same
+        input assembled twice gave two different objects (observed 0xB1C0 vs
+        0xC1A0 — a stale heap value, both shifted by a constant 0xFE0). Nothing
+        reads it (`.mdebug` is stripped at link, and the ELF is retail-identical
+        either way) but `expected/build/<u>.o` compares WHOLE objects, so a TU
+        on this route would flap between two hashes forever."""
+        import hashlib
+        src = tmp_path / "det.c"
+        src.write_text(self.SRC)
+        hashes = set()
+        for i in range(3):
+            obj = tmp_path / f"det{i}.o"
+            p = subprocess.run(
+                [sys.executable, str(EE_CC_WRAP), "-c", "-O2", "-G0",
+                 "--assembler=sn", "-o", str(obj), str(src)],
+                capture_output=True, text=True, cwd=ROOT)
+            assert p.returncode == 0, p.stderr
+            hashes.add(hashlib.sha256(obj.read_bytes()).hexdigest())
+        assert len(hashes) == 1, f"ps2eeas output is nondeterministic: {hashes}"
+
     def test_routes_disagree_on_the_immediate_chain(self, tmp_path):
         ee = self._text(tmp_path)
         sn = self._text(tmp_path, "--assembler=sn")
