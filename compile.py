@@ -319,11 +319,20 @@ class Config:
             # whose reorder scheduler fills a same-register jr delay slot ee-as
             # 2.10 refuses to (notes/95 #11). Opt-in per-TU ONLY — GNU as would
             # reschedule TUs ee-as/retail left alone.
+            # 'sn' routes it through SN Systems' ps2eeas.exe (under wibo), which
+            # expands the `dli` 64-bit-immediate pseudo-op MSB-first as
+            # `ori rX,$zero,hi ; dsll rX,n ; ori rX,rX,lo ...` where ee-as emits
+            # lui/ori + fixed dsll16 steps. Retail matches ps2eeas at all 551
+            # strict-chain sites in the monolith (notes/110). Opt-in per TU ONLY
+            # and NOT implied by compiler: 'sn-*' — the two differ on reorder as
+            # well (measured 1 DIFF in 60 already-matched TUs: func_0036D460,
+            # where ee-as hoists `sdr` into a jal delay slot, ps2eeas refuses to
+            # split the sdl/sdr pair, and retail matches ee-as).
             as_route = raw.get("as", "ee")
-            if as_route not in ("ee", "gnu"):
+            if as_route not in ("ee", "gnu", "sn"):
                 raise BuildError(
-                    f"compile_units[{path!r}]: 'as' must be 'ee' or 'gnu'; "
-                    f"got {as_route!r}"
+                    f"compile_units[{path!r}]: 'as' must be 'ee', 'gnu' or "
+                    f"'sn'; got {as_route!r}"
                 )
             entry["as"] = as_route
             # Per-TU opt-in: reconstruct the R5900 FP hazard nops our cc1
@@ -1011,8 +1020,9 @@ class CompileUnit:
     # immediate loads, in emission order (--extern-double per entry).
     # Empty = no-op.
     extern_double: tuple = ()
-    # Stage-3 assembler route: "ee" (default, SCE ee-as 2.10) or "gnu"
-    # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot). notes/95.
+    # Stage-3 assembler route: "ee" (default, SCE ee-as 2.10), "gnu"
+    # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot, notes/95)
+    # or "sn" (ps2eeas.exe under wibo; retail's `dli` expansion, notes/110).
     assembler: str = "ee"
     # Insert the R5900 FP hazard nops our cc1 omits (--fp-hazard-nops:
     # mtc1->cvt + cvt->div). Opt-in per-TU; each opted-in fn is byte-verified.
@@ -1310,8 +1320,12 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv += ["--extern-jtbl", sym]
     for sym in unit.extern_double:
         argv += ["--extern-double", sym]
-    if unit.assembler == "gnu":
-        argv.append("--assembler=gnu")
+    if unit.assembler != "ee":
+        # "gnu" and "sn" are both opt-in stage-3 routes; "ee" is the wrapper's
+        # own default, so forwarding it would be a no-op. Forward by value
+        # rather than branching per route, so a new route reaching the
+        # compile_units validator above cannot silently fall back to ee-as.
+        argv.append(f"--assembler={unit.assembler}")
     if unit.fp_hazard_nops:
         argv.append("--fp-hazard-nops")
     if unit.call_loop_pad:

@@ -99,6 +99,15 @@ _NO_FREORDER_COMPILERS = frozenset(
 EE_AS = COMPILER / "bin" / "ee-as"
 EE_DVP_AS = COMPILER / "bin" / "ee-dvp-as"
 
+# SN Systems' PS2 EE assembler (Win32 PE, run under wibo like the SN cc1.exe
+# builds).  Reached only by `--assembler sn` / compile_units[].as == "sn".
+# 2.95.3-sn-114/ps2eeas.exe is behaviourally identical on every probe run against
+# it (dli expansion, section bytes, e_flags — notes/110), so this is pinned
+# rather than configurable: one assembler binary, one answer.
+WIBO = ROOT / "tools" / "wibo"
+PS2EEAS = (ROOT / "compiler" / "windows" / "ee" / "gcc" / "lib" / "gcc-lib" /
+           "ee" / "2.95.2-sn-273a" / "ps2eeas.exe")
+
 # Capture the cwd at import time.  compile.py invokes us with cwd=repo root,
 # which is splat's `base_path` — the directory that splat's auto-generated
 # `.include "include/<file>.inc"` paths in `include/include_asm.h` are
@@ -893,7 +902,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     p.add_argument(
         "--assembler",
         dest="assembler",
-        choices=("ee", "gnu"),
+        choices=("ee", "gnu", "sn"),
         default="ee",
         help=(
             "Which assembler runs stage 3. 'ee' (default) uses the SCE "
@@ -902,8 +911,13 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "the same GNU assembler the ASM-splat path uses): GNU as's "
             ".set-reorder scheduler swaps a same-register load into a jr "
             "delay slot where ee-as 2.10 refuses to (e.g. cygnus reorder-mode "
-            "getter macros like `lw $2,D_xxx($4); j $31`). Opt-in per-TU via "
-            "compile_units[].as == 'gnu'."
+            "getter macros like `lw $2,D_xxx($4); j $31`). 'sn' routes it "
+            "through SN Systems' ps2eeas.exe under wibo, whose `dli` "
+            "expansion is MSB-first (`ori rX,$zero,hi; dsll rX,n; ori "
+            "rX,rX,lo`) where ee-as emits lui/ori + fixed dsll16 steps — "
+            "retail matches ps2eeas at all 551 strict-chain sites. Both are "
+            "opt-in per-TU via compile_units[].as; neither is implied by "
+            "--compiler."
         ),
     )
     p.add_argument(
@@ -937,7 +951,7 @@ def detect_language(src: Path, override: str | None) -> str:
     return "c"  # unreachable, satisfies type checker
 
 
-def _dispatch_sn(argv: list[str]) -> int:
+def _dispatch_sn(argv: list[str], assembler: str = "ee") -> int:
     """Re-exec scripts/sn-cc-wrap.py with the same args (minus our
     ``--compiler`` flag, which sn-cc-wrap.py doesn't understand).
 
@@ -954,9 +968,21 @@ def _dispatch_sn(argv: list[str]) -> int:
     sn_wrap = ROOT / "scripts" / "sn-cc-wrap.py"
     if not sn_wrap.exists():
         die(f"sn-cc-wrap.py missing at {sn_wrap} — run toolchain setup")
-    # Strip --compiler=... / --compiler X and --assembler=... / --assembler X
-    # tokens before forwarding (sn-cc-wrap.py understands neither; the GNU-as
-    # route is a cygnus/ee-2.9 stage-3 option — SN has its own assemble stage).
+    # Strip --compiler=... / --compiler X before forwarding (sn-cc-wrap.py
+    # doesn't understand it — the SN build is selected by *being* dispatched
+    # here, plus GH_SN_GCCLIB for the sibling builds).
+    #
+    # --assembler is different: it names a stage-3 route that sn-cc-wrap.py
+    # also has to honour, because it runs its OWN assemble stage.  Forward
+    # 'sn' (sn-cc-wrap implements ps2eeas too) and drop the no-op default
+    # 'ee'.  'gnu' has no SN implementation — silently dropping it would
+    # assemble with ee-as while the caller believes it got GNU as, so it
+    # dies with a named reason instead.  No TU pairs them today (the one
+    # gnu-as TU, src/cod/00348938.c, is cygnus).
+    if assembler == "gnu":
+        die("--assembler gnu is a cygnus/ee-2.9 stage-3 route and has no SN "
+            "implementation; an SN compiler assembles via sn-cc-wrap.py. Use "
+            "as: 'ee' or as: 'sn' on an SN-compiler TU.")
     forwarded: list[str] = []
     skip = False
     for tok in argv:
@@ -969,6 +995,8 @@ def _dispatch_sn(argv: list[str]) -> int:
         if tok.startswith("--compiler=") or tok.startswith("--assembler="):
             continue
         forwarded.append(tok)
+    if assembler != "ee":
+        forwarded += ["--assembler", assembler]
     try:
         result = subprocess.run(
             [sys.executable, str(sn_wrap), *forwarded], check=False,
@@ -989,7 +1017,7 @@ def main(argv: list[str]) -> int:
         # is 2.95.3-sn-136).
         if args.compiler in SN_VARIANT_DIRS:
             os.environ["GH_SN_GCCLIB"] = SN_VARIANT_DIRS[args.compiler]
-        return _dispatch_sn(argv)
+        return _dispatch_sn(argv, args.assembler)
 
     if not args.c:
         die("only -c (compile-only) is supported; linking is handled by compile.py")
@@ -1131,6 +1159,51 @@ def main(argv: list[str]) -> int:
                 "--no-pad-sections",
             ]
             as_stage = "gnu-as"
+        elif args.assembler == "sn":
+            # Route the cc1 .s through SN Systems' ps2eeas.exe (under wibo)
+            # instead of ee-as 2.10.  The one behaviour that matters is the
+            # `dli` 64-bit-immediate expansion: ps2eeas chunks the constant
+            # MSB-first (`ori rX,$zero,hi ; dsll rX,n ; ori rX,rX,lo ...`)
+            # where ee-as emits lui/ori followed by fixed dsll16 steps.  Retail
+            # matches ps2eeas at every one of the 551 strict-chain sites in the
+            # monolith, and no *compiler* decision reaches this — 11 of the 13
+            # cc1 builds emit a bare `dli` pseudo-op (notes/110; notes/64's
+            # "different immediate-synth path" was an assembler, not a
+            # compiler).  Opt-in per-TU only: on `.set noreorder` input the two
+            # assemblers agree byte-for-byte except on reorder, where they
+            # differ on 1 of 60 already-matched TUs (func_0036D460: ee-as
+            # hoists `sdr` into a jal delay slot, ps2eeas will not split the
+            # sdl/sdr pair, and retail matches ee-as there).
+            if not PS2EEAS.exists():
+                die(f"--assembler sn: ps2eeas.exe missing at {PS2EEAS} — "
+                    f"run scripts/setup_toolchain.sh")
+            if not WIBO.exists():
+                die(f"--assembler sn: wibo missing at {WIBO} — "
+                    f"run scripts/setup_toolchain.sh")
+            # ps2eeas cannot parse `.pushsection`, which is how
+            # include/include_asm.h's INCLUDE_ASM brackets each carved
+            # function.  Detect it on the generated `.s` rather than on the C
+            # source, so it catches the directive whatever emitted it
+            # (INCLUDE_ASM, a raw __asm__ block, a hand-written .s input).
+            # Dying here is deliberate: falling back to ee-as would assemble
+            # the TU with the WRONG `dli` expansion and present it as this
+            # route's output, which reads as "the C is wrong".
+            if ".pushsection" in s_path.read_text():
+                die("--assembler sn: ps2eeas cannot parse .pushsection; this "
+                    "TU still contains INCLUDE_ASM. Carve the function "
+                    "standalone, or use as: ee.")
+            # -EL and -mabi= are BOTH rejected by ps2eeas (exit 3), which reads
+            # as a crash rather than a rejected flag — do not add them.  They
+            # are unnecessary anyway: ps2eeas emits e_flags 0x20924001 on
+            # `.set noreorder` input, matching retail's ELF header exactly.
+            # Deliberately do NOT touch WIBO_DEBUG: wibo tests for the
+            # variable's PRESENCE, not its value, so setting it to "0" turns
+            # its 326-line debug trace ON. Left unset, wibo is silent and
+            # ps2eeas's own `file.s(N) : Error : ...` reaches the stderr run()
+            # inherits — which is the whole ask in
+            # notes/110.
+            as_cmd = [str(WIBO), str(PS2EEAS), f"-G{args.sdata_thresh}"]
+            as_stage = "ps2eeas"
         else:
             as_cmd = [
                 str(EE_AS),
@@ -1168,6 +1241,25 @@ def main(argv: list[str]) -> int:
             as_cmd.append("--gstabs")
         as_cmd += [s_name, "-o", str(output)]
         run(as_cmd, as_stage, cwd=td_path)
+        if as_stage == "ps2eeas":
+            # ps2eeas writes .symtab's sh_info one short of the first global
+            # (it emits gcc2_compiled./__gnu_compiled_c as LOCAL *after* the
+            # index it declares), which GNU ld rejects outright: ".symtab
+            # local symbol at index 2 (>= sh_info of 2) / error adding
+            # symbols: bad value".  Section contents are correct — this is
+            # header metadata — so recomputing the field from the symbols'
+            # own bindings is lossless and is what makes the route linkable
+            # rather than merely scorable.  Same shape as mipsel-as-wrap.py
+            # patching EF_MIPS_ABI on the gnu route.
+            # Imported here rather than at module scope: it is shared with
+            # sn-cc-wrap.py (one copy, not two), and the default route must
+            # not fail to start because an unused sibling is absent.
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import ps2eeas_objfix
+            try:
+                ps2eeas_objfix.repair_symtab_info(output)
+            except ps2eeas_objfix.ObjFixError as exc:
+                die(f"ps2eeas: {exc}")
 
         # Optional: side-export intermediates for diff sessions
         if "i" in args.print_stage and not is_assembly:

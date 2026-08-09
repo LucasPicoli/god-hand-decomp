@@ -81,6 +81,14 @@ SN_CC1PLUS = SN_GCCLIB / "cc1plus.exe"
 
 WIBO = ROOT / "tools" / "wibo"
 
+# SN Systems' PS2 EE assembler, reached only by `--assembler sn`.  Pinned to
+# the same build ee-cc-wrap.py pins (2.95.3-sn-114/ps2eeas.exe is behaviourally
+# identical on every probe run against it, notes/110), and deliberately NOT keyed off
+# GH_SN_GCCLIB: the cc1 build and the assembler build are independent choices,
+# and only one assembler answer has ever been measured.
+PS2EEAS = (ROOT / "compiler" / "windows" / "ee" / "gcc" / "lib" / "gcc-lib" /
+           "ee" / "2.95.2-sn-273a" / "ps2eeas.exe")
+
 # Capture launch cwd before any tempdir chdir so ee-as's `.include`
 # resolver finds the project's include/include_asm.h. Mirrors
 # ee-cc-wrap.py's LAUNCH_CWD; see that file's comment for rationale.
@@ -697,6 +705,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
              "is genuinely unpadded, so this must never be global). Twin of "
              "ee-cc-wrap.py's flag. See compile_units[].call_loop_pad.",
     )
+    p.add_argument(
+        "--assembler", dest="assembler", choices=("ee", "sn"), default="ee",
+        help="Which assembler runs stage 4. 'ee' (default) uses the Cygnus "
+             "ee-as 2.10 backend this wrapper has always used. 'sn' uses SN "
+             "Systems' ps2eeas.exe under wibo, whose `dli` expansion is "
+             "MSB-first (`ori rX,$zero,hi; dsll rX,n; ori rX,rX,lo`) where "
+             "ee-as emits lui/ori + fixed dsll16 steps — retail matches "
+             "ps2eeas at all 551 strict-chain sites. ee-cc-wrap.py's 'gnu' "
+             "route has no SN implementation and is rejected there rather "
+             "than dropped here. Opt-in per-TU via compile_units[].as.",
+    )
     return p.parse_args(argv)
 
 
@@ -800,17 +819,24 @@ def main(argv: list[str]) -> int:
         if args.g:
             cc1_cmd.append("-gstabs")
         cc1_cmd += [str(i_path), "-o", str(s_path)]
-        # Suppress wibo's spammy stderr banner about thunked imports;
-        # cc1's own stderr still flows through stdout because we don't
-        # redirect anything. If a real diagnostic happens, cc1 returns
-        # non-zero and run() surfaces it.
-        env = os.environ.copy()
-        env.setdefault("WIBO_DEBUG", "0")
+        # wibo checks only whether WIBO_DEBUG is PRESENT, not its value, so the
+        # old `env.setdefault("WIBO_DEBUG", "0")` here turned wibo's debug
+        # trace ON for every compile (326 lines on stdout) — and the paired
+        # `stderr=DEVNULL` then hid the hosted tool's real diagnostic. That
+        # combination is exactly why ps2eeas failures had to be grepped out of
+        # wibo's stdout trace by hand (notes/110).
+        # Inherit the env instead: unset is silent, and a caller who exports
+        # WIBO_DEBUG deliberately still gets the trace. Capture stderr and
+        # replay it only on failure, so a clean build stays quiet.
         try:
-            result = subprocess.run(cc1_cmd, env=env, check=False, stderr=subprocess.DEVNULL)
+            result = subprocess.run(cc1_cmd, check=False,
+                                    stderr=subprocess.PIPE)
         except FileNotFoundError as exc:
             die(f"cc1: missing binary {exc.filename!r}")
         if result.returncode != 0:
+            if result.stderr:
+                sys.stderr.buffer.write(result.stderr)
+                sys.stderr.flush()
             die(f"cc1 failed (exit {result.returncode})", result.returncode)
 
         if args.asm_only:
@@ -856,14 +882,40 @@ def main(argv: list[str]) -> int:
         # `.include "include/include_asm.h"` still resolves when ee-as
         # runs from tempdir (.mdebug-determinism fix — same
         # justification as ee-cc-wrap.py).
-        as_cmd = [
-            str(EE_AS),
-            "-EL",
-            "-mips3",
-            "-mcpu=5900",
-            "-mabi=eabi",
-            f"-G{args.sdata_thresh}",
-        ]
+        if args.assembler == "sn":
+            # Opt-in stage-4 route: SN Systems' ps2eeas.exe under wibo instead
+            # of ee-as, for the `dli` MSB-first expansion retail used (issue
+            # 10). ee-cc-wrap.py forwards --assembler here rather than dropping
+            # it, so an SN-compiler TU carrying as: "sn" cannot silently
+            # assemble with ee-as and present the wrong bytes as this route's
+            # output. Same guards and same flag set as ee-cc-wrap.py's branch —
+            # no -EL, no -mabi= (ps2eeas rejects both with exit 3).
+            if not PS2EEAS.exists():
+                die(f"--assembler sn: ps2eeas.exe missing at {PS2EEAS} — "
+                    f"run scripts/setup_toolchain.sh")
+            if not WIBO.exists():
+                die(f"--assembler sn: wibo missing at {WIBO} — "
+                    f"run scripts/setup_toolchain.sh")
+            if ".pushsection" in s_num_path.read_text():
+                die("--assembler sn: ps2eeas cannot parse .pushsection; this "
+                    "TU still contains INCLUDE_ASM. Carve the function "
+                    "standalone, or use as: ee.")
+            # Do NOT set WIBO_DEBUG here (see the cc1 stage above: wibo tests
+            # for presence, not value, so setting it to "0" enables the
+            # trace). Unset, wibo is silent and ps2eeas's own
+            # `file.s(N) : Error : ...` reaches the inherited stderr.
+            as_cmd = [str(WIBO), str(PS2EEAS), f"-G{args.sdata_thresh}"]
+            as_stage = "ps2eeas"
+        else:
+            as_cmd = [
+                str(EE_AS),
+                "-EL",
+                "-mips3",
+                "-mcpu=5900",
+                "-mabi=eabi",
+                f"-G{args.sdata_thresh}",
+            ]
+            as_stage = "ee-as"
         for inc in args.includes:
             as_cmd.append(f"-I{inc}")
         as_cmd += [
@@ -873,7 +925,17 @@ def main(argv: list[str]) -> int:
             str(s_num_path),
             "-o", str(output),
         ]
-        run(as_cmd, "ee-as")
+        run(as_cmd, as_stage)
+        if as_stage == "ps2eeas":
+            # See ee-cc-wrap.py's twin call: ps2eeas writes .symtab's sh_info
+            # one short of the first global, and GNU ld refuses the object.
+            # Lossless header repair — no section byte moves.
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import ps2eeas_objfix
+            try:
+                ps2eeas_objfix.repair_symtab_info(output)
+            except ps2eeas_objfix.ObjFixError as exc:
+                die(f"ps2eeas: {exc}")
 
         # Optional: side-export the (numerized) .s for debugging.
         if "s" in args.print_stage:
