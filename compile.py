@@ -38,7 +38,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Iterable, Optional, Sequence
 
 ROOT = Path(__file__).resolve().parent
 
@@ -303,6 +303,29 @@ class Config:
                     f"c_flags_add and c_flags_drop"
                 )
             entry["c_flags_add"] = tuple(add)
+            # The drop vocabulary is checked HERE, after the collision check
+            # above, so a TU that both adds and drops one flag reports the
+            # contradiction rather than the vocabulary.
+            #
+            # `c_flags_drop` was open until issue 58: any string was accepted.
+            # An open subtractive key is not as dangerous as an open additive
+            # one, but it is not safe either — a TU could drop `-O2` and call
+            # an unoptimised compile a match. Closing the set makes the key say
+            # exactly one thing, as `compiler`, `as` and `c_flags_add` already
+            # do. Widening it is a map decision, not a config edit.
+            for f in drop:
+                if f not in SUPPORTED_C_FLAG_DROPS:
+                    raise BuildError(
+                        f"compile_units[{path!r}]: c_flags_drop {f!r} is not "
+                        f"in the allowed set {sorted(SUPPORTED_C_FLAG_DROPS)}; "
+                        f"widening it is a map decision (see issue 58), not a "
+                        f"config edit"
+                    )
+            if len(set(drop)) != len(drop):
+                raise BuildError(
+                    f"compile_units[{path!r}]: c_flags_drop has a duplicate "
+                    f"entry; got {drop!r}"
+                )
             # Per-TU opt-in: strip the unconditional C++ DWARF frame .data block
             # (provided instead by the data splat for a carved C++ function).
             strip = raw.get("strip_cxx_frame", False)
@@ -1084,6 +1107,25 @@ SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"
 # elsewhere. Each TU that takes it is byte-verified, and no already-matched TU
 # may take it.
 SUPPORTED_C_FLAG_ADDS = frozenset({"-f=-fno-gcse"})
+
+# Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
+#
+# `-f=-freorder-blocks` is one of the three global `c_flags`. Dropping it on
+# one TU restores ee-gcc 2.96's default basic-block order, which is what retail
+# emitted for the near-miss TUs that carry the key. 70 TUs carry it today and
+# every one is byte-verified: removing the drop moves a code or data byte on
+# all 70 (issue 58).
+#
+# The set is closed for the same reason `c_flags_add`'s is (issue 45): the ELF
+# byte gate cannot see a per-TU key that is invisible on its own TU, so the key
+# needs a vocabulary and a necessity gate instead. The subtractive direction is
+# less dangerous than the additive one, but it is not safe: an open set lets a
+# TU drop `-O2` and call an unoptimised compile a match. Widening the set is a
+# map decision, not a config edit.
+#
+# scripts/checks/c_flags_necessary.py gates the other half — that each key a TU
+# carries actually moves a byte.
+SUPPORTED_C_FLAG_DROPS = frozenset({"-f=-freorder-blocks"})
 
 # The per-TU settings a MATCH RECORD must carry, from the scorer through every
 # intermediate step to the compile_units entry the build finally compiles.
@@ -2335,6 +2377,65 @@ def _resolve_unit_entry(unit_name: str, unit_entries: list[dict]) -> dict:
     )
 
 
+def do_reseed_paths(unit_names: Sequence[str], cfg: Config, log: Logger) -> None:
+    """Force-reseed the ``expected/build`` mirrors for N units in ONE build.
+
+    The plural form of ``do_reseed_path``, and the code path both use: the
+    singular flag calls this with a one-element list.
+
+    WHY IT EXISTS (2026-08-10, ticket 49).  The work of a reseed is *one*
+    carve + discover + compile pass, and the mirror refresh is a file copy.
+    Driving the singular flag in a loop repeats the whole build once per
+    mirror, so a landing that re-indexes the monolith fragments — ticket 36
+    drifted 1,073 mirrors at once — paid ~15 s x 1,073, over four hours, for
+    work that costs one build. Reseeding is ``O(1)`` builds; the tool made it
+    ``O(n)``.
+
+    Semantics are otherwise identical to the singular form, deliberately:
+    the same membership-gate bypass, the same "force exactly the named
+    mirrors and no others" assertion, the same ``objdiff.json`` regen. Two
+    names that resolve to the SAME unit collapse to one force-copy, because
+    the copy is idempotent; an unresolvable name raises ``BuildError`` BEFORE
+    any mirror is written, so a typo in a 1,000-name list cannot half-apply.
+    """
+    names = list(dict.fromkeys(n.strip() for n in unit_names if n and n.strip()))
+    if not names:
+        raise BuildError(
+            "--reseed-paths: no unit named; nothing to reseed. Pass at least "
+            "one objdiff unit name."
+        )
+    carve = maybe_carve(cfg, log)
+    units = discover(cfg, carve)
+    log.info(
+        f"reseed-path: rebuilding {len(units)} compile units so the "
+        f"{len(names)} target mirror(s) are fresh"
+    )
+    _compile_many(units, cfg, log, jobs=DEFAULT_PARALLELISM)
+
+    unit_entries = _objdiff_units(cfg, carve)
+    # Resolve EVERY name before writing ANY mirror: a half-applied reseed is
+    # worse than a refused one, because the tree then looks repaired.
+    resolved = [_resolve_unit_entry(n, unit_entries) for n in names]
+    entries = list({e["base_path"]: e for e in resolved}.values())
+    force = {e["base_path"] for e in entries}
+    _, _, forced = _mirror_expected(unit_entries, log, force=force)
+    if forced != len(force):
+        raise BuildError(
+            f"reseed-path: expected to force exactly {len(force)} mirror(s) "
+            f"but forced {forced}; the resolved base_path set did not match "
+            f"the unit list one-for-one."
+        )
+    _regenerate_objdiff_json(cfg, unit_entries)
+    shown = ", ".join(repr(e["name"]) for e in entries[:4])
+    if len(entries) > 4:
+        shown += f", … (+{len(entries) - 4} more)"
+    log.info(
+        f"reseed-path: force-refreshed {forced} expected mirror(s) in one "
+        f"build ({shown}) (bypassed the carved_funcs/REL membership gate); "
+        f"objdiff.json regenerated."
+    )
+
+
 def do_reseed_path(unit_name: str, cfg: Config, log: Logger) -> None:
     """Force-reseed the ``expected/build`` mirror for exactly one unit,
     bypassing the ``carved_funcs`` ∪ REL membership gate that guards
@@ -2357,31 +2458,12 @@ def do_reseed_path(unit_name: str, cfg: Config, log: Logger) -> None:
     link keeps this escape hatch usable even when an unrelated link stage is
     mid-repair.  Only the one named mirror is overwritten; every other
     ``expected/build/*.o`` keeps its pin.
-    """
-    carve = maybe_carve(cfg, log)
-    units = discover(cfg, carve)
-    log.info(
-        f"reseed-path: rebuilding {len(units)} compile units so the target "
-        f"mirror is fresh"
-    )
-    _compile_many(units, cfg, log, jobs=DEFAULT_PARALLELISM)
 
-    unit_entries = _objdiff_units(cfg, carve)
-    entry = _resolve_unit_entry(unit_name, unit_entries)
-    force = {entry["base_path"]}
-    _, _, forced = _mirror_expected(unit_entries, log, force=force)
-    if forced != 1:
-        raise BuildError(
-            f"reseed-path: expected to force exactly 1 mirror for "
-            f"{entry['name']!r} but forced {forced}; base_path "
-            f"{entry['base_path']!r} did not match a single unit."
-        )
-    _regenerate_objdiff_json(cfg, unit_entries)
-    log.info(
-        f"reseed-path: force-refreshed expected mirror for {entry['name']!r} "
-        f"(bypassed the carved_funcs/REL membership gate); objdiff.json "
-        f"regenerated."
-    )
+    Reseeding several mirrors?  Call ``do_reseed_paths`` (or pass
+    ``--reseed-paths``) instead of looping here: one build serves any number
+    of mirrors, and a loop pays a full build per mirror.
+    """
+    do_reseed_paths([unit_name], cfg, log)
 
 
 # --------------------------------------------------------------------------- #
@@ -2558,6 +2640,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         "unit name (e.g. asm/cod/31B580.rodata) or its "
                         "build/<rel>.o path. Rebuilds, overwrites just that one "
                         "mirror, regenerates objdiff.json, and exits.")
+    p.add_argument("--reseed-paths", type=str, nargs="+", default=None,
+                   metavar="UNIT",
+                   help="the plural of --reseed-path: force-reseed the "
+                        "expected/build/ mirror for every named UNIT in ONE "
+                        "build, then exit. A reseed costs one carve + discover "
+                        "+ compile pass however many mirrors it refreshes, so "
+                        "looping --reseed-path pays a full build per mirror "
+                        "(~15 s each; 1,073 mirrors = over four hours). Every "
+                        "name is resolved before any mirror is written, so a "
+                        "typo refuses the whole batch instead of half-applying "
+                        "it.")
     p.add_argument("--rel", type=str, default=None, metavar="NAME",
                    help="build only the named REL (a name from "
                         "compile_config.json::rels) and exit; analogous to "
@@ -2621,6 +2714,10 @@ def main(argv: list[str]) -> int:
 
         if args.reseed_path is not None:
             do_reseed_path(args.reseed_path, cfg, log)
+            return 0
+
+        if args.reseed_paths is not None:
+            do_reseed_paths(args.reseed_paths, cfg, log)
             return 0
 
         if args.single_file is not None:

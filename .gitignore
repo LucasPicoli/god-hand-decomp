@@ -131,7 +131,8 @@
 !scripts/checks/verify_expected_vs_retail.py
 !scripts/checks/registers.py
 !scripts/checks/registers.sh
-!scripts/checks/c_flags_add_necessary.py
+!scripts/checks/c_flags_necessary.py
+!scripts/checks/c_flags_necessary.sh
 !scripts/compiler_for_function.py
 !scripts/denylist.py
 !scripts/ee-cc-wrap.py
@@ -1195,6 +1196,7 @@
 !tests/test_verify_rel_splat_roundtrip.py
 !tests/test_gate_noop_exit_codes.py
 !tests/test_c_flags_add_key.py
+!tests/test_c_flags_drop_key.py
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py

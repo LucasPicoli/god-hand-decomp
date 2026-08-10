@@ -21,6 +21,11 @@ Inventory (one ``-k`` slice per behaviour):
     _cc() argv shape       — the flag is appended AFTER the drop filter
     dual_compiler_regress  — the gate honours the key
     the necessity gate     — an inert c_flags_add fails scripts/checks
+
+Issue 58 generalised the necessity gate to BOTH keys and renamed it
+``scripts/checks/c_flags_necessary.py``.  The drop side of it, and the drop
+vocabulary this file's docstring calls "bounded by construction", live in
+tests/test_c_flags_drop_key.py.
 """
 from __future__ import annotations
 
@@ -35,7 +40,7 @@ import compile as cm
 
 sys.path.insert(0, str(cm.ROOT / "scripts" / "checks"))
 import dual_compiler_regress as dcr  # noqa: E402
-import c_flags_add_necessary as cfan  # noqa: E402
+import c_flags_necessary as cfan  # noqa: E402
 
 GCSE = "-f=-fno-gcse"
 REORDER = "-f=-freorder-blocks"

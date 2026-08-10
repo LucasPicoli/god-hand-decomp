@@ -18,6 +18,7 @@
 #     scripts/session_check.sh expected        # expected/build baseline ≡ retail
 #     scripts/session_check.sh expected_stale  # expected/build mirror not drifted from build/
 #     scripts/session_check.sh dual_compiler_regress  # per-section dual-compiler
+#     scripts/session_check.sh c_flags_necessary      # every per-TU flag key moves a byte
 #     scripts/session_check.sh score           # objdiff ratchet
 #     scripts/session_check.sh data_decls      # data .s sync with include/ extern decls
 #     scripts/session_check.sh forced_regs     # forced-register pin ratchet
@@ -73,7 +74,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words carve_allowlist registers tu_complete atlas social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress c_flags_necessary units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words carve_allowlist registers tu_complete atlas social)
 
 # Optional checks read local-only working files (running notes, the in-progress
 # struct atlas, naming bookkeeping) that aren't tracked in the repo, so their

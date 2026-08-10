@@ -422,11 +422,21 @@ class TestCompileUnitsCFlagsDrop:
     def test_explicit_list_round_trips_as_tuple(self):
         cfg = _mkcfg(compile_units=[
             {"path": "src/cod/x.c",
-             "c_flags_drop": ["-f=-freorder-blocks", "-O2"]},
+             "c_flags_drop": ["-f=-freorder-blocks"]},
         ])
         assert cfg.compile_units["src/cod/x.c"]["c_flags_drop"] == (
-            "-f=-freorder-blocks", "-O2",
+            "-f=-freorder-blocks",
         )
+
+    def test_a_flag_outside_the_vocabulary_is_rejected(self):
+        """Issue 58 closed the drop vocabulary. Before it, this config was
+        accepted and the TU compiled at -O0 while calling itself a match."""
+        cfg = _mkcfg(compile_units=[
+            {"path": "src/cod/x.c",
+             "c_flags_drop": ["-f=-freorder-blocks", "-O2"]},
+        ])
+        with pytest.raises(cm.BuildError, match="not in the allowed set"):
+            _ = cfg.compile_units
 
     def test_invalid_drop_type_raises(self):
         cfg = _mkcfg(compile_units=[

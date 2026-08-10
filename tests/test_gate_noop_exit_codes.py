@@ -52,7 +52,8 @@ WORKFLOW = REPO_ROOT / ".github" / "workflows" / "pr.yml"
 # re-reads the script and asserts none of these was dropped.
 DEFAULT_CHECKS = (
     "splat", "rel-splat", "metadata", "build", "rel", "expected",
-    "expected_stale", "dual_compiler_regress", "units", "score", "diff",
+    "expected_stale", "dual_compiler_regress", "c_flags_necessary",
+    "units", "score", "diff",
     "data_decls", "forced_regs", "naming_debt", "naming_sync", "monolith_sync",
     "jtbl_words", "carve_allowlist", "tu_complete", "atlas", "social",
 )

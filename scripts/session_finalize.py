@@ -16,14 +16,18 @@ end-of-batch regen to it. It performs, in dependency order:
   2. reseed_stale          — refresh exactly the ``expected/build/<u>.o`` mirrors
      that ``expected_staleness.find_stale()`` flags (the #1 manual friction; the
      mirrors are pinned copy-if-missing and untracked, so a grown TU silently
-     under-counts until reseeded). Fix per unit: ``compile.py --reseed-path``.
+     under-counts until reseeded). All of them in ONE build, via
+     ``compile.py --reseed-paths``; the singular ``--reseed-path`` costs a full
+     build per mirror.
   3. regen_report          — objdiff ``progress/report.json`` to its byte-stable
      fixed point (objdiff-cli's generate-before-flag ordering needs 2 passes).
   4. regen_struct_atlas    — the private STRUCTS.md / struct_atlas.json artifacts.
 
-The reseed + struct-atlas steps depend on private tooling under .private/scripts;
-in a public checkout they degrade to graceful no-ops (like the public wrappers
-scripts/checks/{expected_stale,atlas}.sh, which already point at those paths).
+The reseed + struct-atlas steps depend on optional local tooling. When that
+tooling is not installed they degrade to graceful no-ops, exactly like the
+wrappers scripts/checks/{expected_stale,atlas}.sh, which are optional for the
+same reason. Both steps test for the tool's FILE rather than catching a failure
+from running it, so "not installed" and "installed and broken" stay distinct.
 """
 from __future__ import annotations
 
@@ -38,19 +42,27 @@ _HERE = Path(__file__).resolve().parent          # <root>/scripts
 ROOT = _HERE.parent
 MAIN_ELF = "SLUS_215.03"
 
-# The staleness detector + its helpers are private tooling. Import them if the
-# overlay is present; otherwise reseed_stale becomes a no-op (public checkout).
-_PRIV_SCRIPTS = ROOT / ".private" / "scripts"
-try:
-    if str(_PRIV_SCRIPTS) not in sys.path:
-        sys.path.insert(0, str(_PRIV_SCRIPTS))
-    from expected_staleness import (            # type: ignore
+# The staleness detector + its helpers are local-only tooling. Import them when
+# that tooling is installed; otherwise reseed_stale is a no-op (plain checkout).
+#
+# The absence test is the FILE, not a caught exception. A blanket
+# ``except Exception`` around the import cannot tell "the tool is not installed"
+# from "the tool is installed and broken", and it answers both with a silent
+# no-op — the exact shape of a gate that reports a pass for work it never did.
+# An installed-but-broken detector now raises at import, loudly.
+_OPTIONAL_SCRIPTS_REL = Path(".private") / "scripts"
+_OPTIONAL_SCRIPTS = ROOT / _OPTIONAL_SCRIPTS_REL
+_STALENESS_MODULE = _OPTIONAL_SCRIPTS / "expected_staleness.py"
+if _STALENESS_MODULE.exists():
+    if str(_OPTIONAL_SCRIPTS) not in sys.path:
+        sys.path.insert(0, str(_OPTIONAL_SCRIPTS))
+    from expected_staleness import (            # type: ignore  # noqa: E402
         find_stale,
         DEFAULT_SECTION_PREFIXES,
         _load_units,
     )
     _HAVE_STALENESS = True
-except Exception:                                # pragma: no cover - public checkout
+else:                                            # pragma: no cover
     _HAVE_STALENESS = False
     find_stale = None                            # type: ignore
     _load_units = None                           # type: ignore
@@ -80,12 +92,19 @@ def build_matches_retail(root=ROOT):
 # --------------------------------------------------------------------------- #
 def reseed_stale(root=ROOT):
     """Reseed exactly the expected/build/<u>.o mirrors that drifted from the
-    current build. Returns the list of reseeded unit names.
+    current build, in ONE build. Returns the list of reseeded unit names.
 
     Refuses (raises FinalizeError) when the build no longer byte-matches retail —
     reseeding then would freeze a regression as the objdiff baseline. Skips (returns
-    []) when the ELF/retail pair is absent (can't verify) or the private staleness
-    tooling is not present (public checkout)."""
+    []) when the ELF/retail pair is absent (can't verify) or the staleness
+    detector is not installed (plain checkout).
+
+    ONE BUILD, NOT N (2026-08-10, ticket 49). A reseed is one carve + discover
+    + compile pass plus a file copy per mirror, so the build is shared and the
+    copies are free. This used to run ``compile.py --reseed-path`` once per
+    mirror, at ~15 s each: ticket 36's 1,073 drifted mirrors would have cost
+    over four hours for work that costs one build. ``--reseed-paths`` takes the
+    whole list."""
     root = Path(root)
     match = build_matches_retail(root)
     if match is None:
@@ -96,17 +115,19 @@ def reseed_stale(root=ROOT):
             "(that would pin a regression as the objdiff baseline). Investigate the "
             "build first.")
     if not _HAVE_STALENESS:
-        return []                                # public checkout: nothing to reseed
+        return []                                # no detector installed here
     units = _load_units(root / "objdiff.json")
     stale, _unbuilt, _targets = find_stale(units, root, DEFAULT_SECTION_PREFIXES)
-    reseeded = []
-    for name in sorted(stale):
-        subprocess.run([sys.executable, "compile.py", "--reseed-path", name],
-                       cwd=root, check=True, capture_output=True, text=True)
-        reseeded.append(name)
-    if reseeded:
-        print(f"session_finalize: reseeded {len(reseeded)} stale expected mirror(s): "
-              + ", ".join(reseeded))
+    reseeded = sorted(stale)
+    if not reseeded:
+        return []
+    subprocess.run([sys.executable, "compile.py", "--reseed-paths", *reseeded],
+                   cwd=root, check=True, capture_output=True, text=True)
+    shown = ", ".join(reseeded[:8])
+    if len(reseeded) > 8:
+        shown += f", … (+{len(reseeded) - 8} more)"
+    print(f"session_finalize: reseeded {len(reseeded)} stale expected mirror(s) "
+          f"in one build: {shown}")
     return reseeded
 
 
@@ -193,22 +214,52 @@ def regen_report(root=ROOT, commit=True, revert_on_noncanonical=True) -> bool:
 # 4. Regenerate the private struct atlas (best-effort, degrades in public)
 # --------------------------------------------------------------------------- #
 def regen_struct_atlas(root=ROOT):
-    """Regenerate STRUCTS.md + progress/struct_atlas.json (private-only derived
+    """Regenerate STRUCTS.md + progress/struct_atlas.json (local-only derived
     artifacts) so the ``atlas`` sub-check passes. Do NOT git-add — they are
-    public-ignored and captured by the private overlay's next save. Best-effort:
-    a missing generator (public checkout) or a regen failure must never raise."""
+    untracked here and captured by the local overlay's next save. Best-effort:
+    an absent generator or a regen failure must never raise.
+
+    The absence test is the FILE. Running an absent generator and reading the
+    subprocess failure answers "not installed" and "installed and broken" with
+    the same message, which is how a step that did not run reads as a skip."""
+    gen = Path(root) / _OPTIONAL_SCRIPTS_REL / "gen_struct_atlas.py"
+    if not gen.exists():
+        print("session_finalize: no struct-atlas generator installed — "
+              "skipping (the atlas sub-check is optional).", file=sys.stderr)
+        return
     try:
-        subprocess.run([sys.executable, ".private/scripts/gen_struct_atlas.py"],
+        subprocess.run([sys.executable, str(gen)],
                        cwd=root, check=True, capture_output=True, text=True)
         print("session_finalize: regenerated struct atlas (STRUCTS.md + struct_atlas.json)")
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
-        print(f"session_finalize: struct atlas regen skipped (non-fatal): {e}",
+        print(f"session_finalize: struct atlas regen FAILED (non-fatal): {e}",
               file=sys.stderr)
 
 
 # --------------------------------------------------------------------------- #
 # Orchestrator
 # --------------------------------------------------------------------------- #
+def reseed_status(root=ROOT, reseeded=None, ran=True) -> str:
+    """One line saying WHICH terminal path the reseed step took.
+
+    "reseeded 0 mirror(s)" is the same sentence for three different outcomes:
+    every mirror was fresh (a pass), the ELF/retail pair was absent (did not
+    run), and no detector is installed (did not run). Only the first is a
+    verdict. The caller prints this instead, so a step that examined nothing
+    cannot read as a step that found nothing wrong."""
+    if not ran:
+        return "reseed skipped by the caller"
+    n = len(reseeded or [])
+    if n:
+        return f"reseeded {n} stale mirror(s) in one build"
+    if build_matches_retail(root) is None:
+        return ("reseed DID NOT RUN — no build/retail pair to verify against, "
+                "so a mirror could not be safely pinned")
+    if not _HAVE_STALENESS:
+        return "reseed DID NOT RUN — no staleness detector installed"
+    return "reseeded 0 mirror(s) — every mirror is fresh"
+
+
 def finalize(root=ROOT, commit=False, do_reseed=True):
     """Run the full repair set in dependency order and return a summary.
 
@@ -217,6 +268,8 @@ def finalize(root=ROOT, commit=False, do_reseed=True):
     result = {"reseeded": []}
     if do_reseed:
         result["reseeded"] = reseed_stale(root)
+    result["reseed_status"] = reseed_status(
+        root, result["reseeded"], ran=do_reseed)
     regen_report(root, commit=commit)
     regen_struct_atlas(root)
     return result
@@ -237,7 +290,7 @@ def main(argv=None) -> int:
         print(f"session_finalize: ABORT — {e}", file=sys.stderr)
         return 1
     tail = "" if args.commit else "  (report left uncommitted — review + commit)"
-    print(f"session_finalize: reseeded {len(res['reseeded'])} mirror(s); "
+    print(f"session_finalize: {res['reseed_status']}; "
           f"report + struct atlas current.{tail}")
     return 0
 
