@@ -70,20 +70,23 @@ class TestExtractFuncs:
 # --------------------------------------------------------------------------- #
 # filter_carved_funcs — replicate compile.py's Config.carved_funcs so the carve
 # name-list (and thus the fragment split) matches the build EXACTLY.  The build
-# drops non-dict entries, entries with no name, and `_`-prefixed names (C++
-# operator mangles like `__ls__7ostreamc` + doc markers stay un-carved).
+# drops documentation records only: a non-dict element, or a dict with no
+# `name` key.  Ticket 36: a `_`-prefixed name is a real C++ operator mangle
+# (`__ls__7ostreamc`) or a real library symbol (`_IO_adjust_column`), so it IS
+# carved.  This filter and compile.py's had drifted 7 entries apart — the old
+# text here dropped `__umoddi3` and `__dynamic_cast`, which the build carves.
 # --------------------------------------------------------------------------- #
 class TestFilterCarvedFuncs:
-    def test_drops_underscore_prefixed_and_nameless_and_nondict(self):
+    def test_drops_doc_records_and_keeps_underscore_names(self):
         raw = [
             {"name": "Foo_1004C8", "vaddr": "0x001004C8", "size": 8, "unit": "asm/cod/000000"},
             {"name": "__ls__7ostreamc", "vaddr": "0x00100500", "size": 8, "unit": "asm/cod/000000"},
             {"_comment": "doc-only marker"},
-            {"vaddr": "0x00100600"},          # no name
+            {"vaddr": "0x00100600"},          # no name -> documentation
             "not-a-dict",
         ]
         kept = filter_carved_funcs(raw)
-        assert [e["name"] for e in kept] == ["Foo_1004C8"]
+        assert [e["name"] for e in kept] == ["Foo_1004C8", "__ls__7ostreamc"]
 
 
 # --------------------------------------------------------------------------- #

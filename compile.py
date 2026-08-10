@@ -369,17 +369,28 @@ class Config:
         """Per-function carves out of the monolithic asm baseline.
 
         Each entry is a dict {name, unit, vaddr, size} per the
-        ``_carved_funcs_doc`` block in compile_config.json.  Documentation
-        keys (``_*``) and entries whose ``name`` starts with ``_`` are
-        filtered out so the doc block can live next to the array.
+        ``_carved_funcs_doc`` block in compile_config.json.  Only
+        documentation records are filtered out, so the ``{"_comment": …}``
+        markers can live next to the array — see
+        ``scripts.carver.is_doc_record`` for the one shared predicate.
+
+        This property used to test ``name.startswith("_")`` instead, which
+        silently discarded 50 real library carves (8,548 B) whose C
+        identifier legitimately begins with an underscore.  Ticket 36
+        removed that test; ``test_carve_doc_record_predicate.py`` pins it
+        out.  A malformed entry — one that has a ``name`` key with an empty
+        value — now raises instead of vanishing.
         """
         out = []
         for raw in self.raw.get("carved_funcs", []):
-            if not isinstance(raw, dict):
+            if CarveSchema.is_doc_record(raw):
                 continue
-            name = str(raw.get("name", ""))
-            if not name or (name.startswith("_") and not raw.get("tu")):
-                continue
+            if not str(raw.get("name", "")):
+                raise BuildError(
+                    "carved_funcs: entry has an empty 'name'; a "
+                    "documentation record must omit the key entirely "
+                    f"(offending entry: {raw!r})"
+                )
             out.append(raw)
         return out
 
@@ -388,19 +399,30 @@ class Config:
         """Per-REL build descriptors.
 
         Returns a list of :class:`RelDescriptor` parsed from
-        ``compile_config.json::rels``.  Documentation keys (``_*``) and
-        entries with no ``name`` are filtered out so the doc block can
-        live next to the array.  Empty list when no REL is configured
-        (the baseline) — every REL-aware code path is a no-op in that
-        case.
+        ``compile_config.json::rels``.  Documentation records are filtered
+        out so the doc block can live next to the array.  Empty list when
+        no REL is configured (the baseline) — every REL-aware code path is
+        a no-op in that case.
+
+        This array carried a **copy** of ``carved_funcs``'s
+        ``name.startswith("_")`` test.  Ticket 36 replaced both with the
+        shared ``scripts.carver.is_doc_record``.  A REL named ``_boot``
+        would have been dropped here for the same reason 50 library carves
+        were dropped there; no REL is named that today, so the copy cost
+        nothing yet.  It is fixed rather than justified, because a copied
+        predicate is exactly how ticket 29's defect survived one fix.
         """
         out: list[RelDescriptor] = []
         for raw in self.raw.get("rels", []):
-            if not isinstance(raw, dict):
+            if CarveSchema.is_doc_record(raw):
                 continue
             name = str(raw.get("name", ""))
-            if not name or (name.startswith("_") and not raw.get("tu")):
-                continue
+            if not name:
+                raise BuildError(
+                    "rels: entry has an empty 'name'; a documentation "
+                    f"record must omit the key entirely (offending "
+                    f"entry: {raw!r})"
+                )
             parts: list[RelPart] = []
             for praw in raw.get("parts", []):
                 if not isinstance(praw, dict):

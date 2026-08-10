@@ -60,6 +60,14 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# Run as `python3 scripts/check_tu_complete.py` the repo root is not on
+# `sys.path`; add it so the shared carve-schema predicate imports.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.carver import CarveSchema  # noqa: E402
+
 DEFAULT_CONFIG = ROOT / "compile_config.json"
 DEFAULT_REPORT = ROOT / "progress" / "report.json"
 DEFAULT_MARKER = ROOT / "progress" / "in_progress_tu.txt"
@@ -168,10 +176,13 @@ def load_carved_funcs(config_path: Path) -> list[dict]:
     raw = json.loads(config_path.read_text())
     out: list[dict] = []
     for entry in raw.get("carved_funcs", []):
-        if not isinstance(entry, dict):
+        # Documentation records only.  A `_`-prefix test lived here as a
+        # third copy of compile.py's; ticket 36 replaced all of them with
+        # the shared predicate, so a `_IO_*` carve bound to a TU is now
+        # visible to the TU-completion cross-reference.
+        if CarveSchema.is_doc_record(entry):
             continue
-        name = entry.get("name")
-        if not isinstance(name, str) or name.startswith("_"):
+        if not isinstance(entry.get("name"), str):
             continue
         out.append(entry)
     return out

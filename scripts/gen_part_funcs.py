@@ -79,16 +79,17 @@ def extract_funcs(fragment_text: str) -> list[str]:
 
 
 def filter_carved_funcs(raw: list) -> list[dict]:
-    """Replicate ``compile.py``'s ``Config.carved_funcs``: keep only dict
-    entries that have a ``name`` not starting with ``_``.  Doc markers and
-    ``_``-prefixed C++ operator mangles (``__ls__7ostreamc``) are NOT carved by
-    the build, so they must be excluded here too or the fragment split — and
-    every ``partN`` index — drifts from the real ``objdiff.json``.
+    """Replicate ``compile.py``'s ``Config.carved_funcs``: keep every entry
+    that is not a documentation record.
+
+    The two filters must stay identical or the fragment split — and every
+    ``partN`` index — drifts from the real ``objdiff.json``.  Ticket 36
+    changed the shared rule: ``_``-prefixed C++ operator mangles such as
+    ``__ls__7ostreamc`` ARE carved by the build now, so they are kept here
+    too.  The predicate itself lives in ``scripts.carver.is_doc_record``;
+    this function must never re-spell it.
     """
-    return [
-        e for e in raw
-        if isinstance(e, dict) and e.get("name") and not str(e["name"]).startswith("_")
-    ]
+    return [e for e in raw if not CarveSchema.is_doc_record(e)]
 
 
 def build_manifest(fragments: list[str], unit_prefix: str) -> dict[str, list[str]]:

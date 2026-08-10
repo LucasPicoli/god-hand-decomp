@@ -268,6 +268,37 @@ class CarveState:
 # --------------------------------------------------------------------------- #
 
 
+def is_doc_record(raw) -> bool:
+    """True when a ``compile_config.json`` array element is documentation.
+
+    The convention across every documented array in ``compile_config.json``
+    (``carved_funcs``, ``rels``, ``compile_units``) is that a documentation
+    record carries **no** ``name`` key. The prose block sits at top level
+    (``_carved_funcs_doc``, ``_rels_doc``); the in-array markers are
+    ``{"_comment": "..."}`` — 13 of them in ``carved_funcs`` today, each
+    recording why a function deliberately stays in the monolithic asm.
+
+    A non-dict element is documentation-shaped too: it carries no data this
+    schema can read, so it is skipped here rather than crashing a caller.
+
+    **Do not test ``name.startswith("_")``.** That prefix test is the
+    defect ticket 36 removes. It silently discarded 50 real library carves
+    (8,548 B) whose C identifier legitimately begins with an underscore —
+    ``_IO_adjust_column``, ``__rtti_class``, ``__7filebuf``, ``_InitAlarm``,
+    the C++ operator mangles ``__ls__7ostreamc`` … Those entries parsed,
+    passed every validation, and then produced no LCF slot, no carve unit
+    and no objdiff unit. `_parse_carved_entries` below has always used the
+    ``name``-key test and never had the defect.
+
+    One caller-visible consequence: an entry that **has** a ``name`` key
+    whose value is empty is no longer silently dropped. It is data, it is
+    malformed, and the caller raises.
+    """
+    if not isinstance(raw, dict):
+        return True
+    return "name" not in raw
+
+
 def _parse_carved_entries(cfg) -> list[CarveEntry]:
     """JSON-dict-array → list[CarveEntry].
 
@@ -284,7 +315,7 @@ def _parse_carved_entries(cfg) -> list[CarveEntry]:
         # that a function deliberately stays in the monolithic asm —
         # e.g. PERMANENT carves whose local labels are referenced by
         # rodata jump tables, which carving would orphan.
-        if "name" not in raw:
+        if is_doc_record(raw):
             continue
         name = raw["name"]
         unit = raw["unit"]
@@ -565,6 +596,16 @@ class CarveSchema:
         )
         sizes = {n: CarveSchema.carve_unit_size_bytes(carved[n]) for n in carved}
     """
+
+    @staticmethod
+    def is_doc_record(raw) -> bool:
+        """True when a config array element is documentation, not data.
+
+        The one predicate every reader of `compile_config.json`'s
+        documented arrays must use. See `is_doc_record` for why a
+        `name`-prefix test is forbidden here (ticket 36).
+        """
+        return is_doc_record(raw)
 
     @staticmethod
     def parse_entries(cfg) -> list[CarveEntry]:

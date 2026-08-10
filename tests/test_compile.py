@@ -152,17 +152,20 @@ class TestParseCarvedEntries:
         [entry] = cm._parse_carved_entries(cfg)
         assert entry.vaddr == 0x100000
 
-    def test_doc_entries_filtered_via_underscore_name(self):
-        # Documentation entries (name starts with `_`) are dropped by
-        # Config.carved_funcs *before* _parse_carved_entries sees them.
+    def test_doc_entries_filtered_by_absent_name_key(self):
+        # A documentation record carries NO `name` key. It is dropped by
+        # Config.carved_funcs before _parse_carved_entries sees it.
+        # Ticket 36: an underscore-NAMED entry is data, never doc — it is
+        # a real library carve (`_IO_*`, `__rtti_*`, `__7filebuf`).
         cfg = _mkcfg(carved_funcs=[
-            {"name": "_doc", "unit": "asm/cod/000000",
-             "vaddr": 0, "size": 0},
+            {"_comment": "PERMANENT: jump-table labels would orphan"},
+            {"name": "_IO_adjust_column", "unit": "asm/cod/000000",
+             "vaddr": 0x0038CE10, "size": 72},
             {"name": "real", "unit": "asm/cod/000000",
              "vaddr": 0x100000, "size": 4},
         ])
         entries = cm._parse_carved_entries(cfg)
-        assert [e.name for e in entries] == ["real"]
+        assert [e.name for e in entries] == ["_IO_adjust_column", "real"]
 
     def test_non_dict_entries_filtered(self):
         cfg = _mkcfg(carved_funcs=[
@@ -1029,9 +1032,11 @@ class TestConfigRels:
         assert cfg.rels == []
 
     def test_doc_keys_are_filtered(self):
+        # Ticket 36: only a record with no `name` key is documentation.
+        # The old `name.startswith("_")` test here was a copy of the
+        # carved_funcs one and would have dropped a REL named `_boot`.
         cfg = _mkcfg(rels=[
             {"_comment": "doc string"},
-            {"name": "_skip_me", "lcf": "x"},   # leading-underscore name
             "not_a_dict",                        # non-dict
             self._r207_entry(),
         ])
