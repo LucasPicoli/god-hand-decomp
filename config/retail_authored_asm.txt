@@ -1,0 +1,188 @@
+# config/retail_authored_asm.txt
+#
+# THE RETAIL-AUTHORED ASSEMBLY REGISTER.
+#
+# The finish line is "100% of the binary's code reaching the ELF as compiled C".
+# Assembly counts as done ONLY for the enumerated set that the original author
+# — the SDK vendor, the middleware vendor, or the game team — wrote in assembly.
+# The criterion is PROVENANCE. It is not the file extension.
+#
+# Without this file the metric has a hole: a `.s` file dropped anywhere under
+# `src/` scores 100% because it assembles, with no argument made and no reviewer
+# prompted. `scripts/checks/registers.py` closes that hole. It fails when a `.s`
+# under `src/` has no entry here, and when an entry names a unit that is gone.
+#
+# ONE ENTRY PER UNIT, NOT PER FUNCTION. Each entry carries the provenance
+# argument, the standard of proof it clears, its own limits, and the falsifier
+# that removes it.
+#
+# THERE IS NO `--fix`. The repair for a missing entry is to write a provenance
+# argument. That is the one thing a tool must not do for you. `carve_allowlist.py`
+# has a `--fix` because appending an allowlist line is mechanical and changes no
+# claim. Appending an entry here asserts a fact about a 20-year-old build.
+#
+# ------------------------------------------------------------------ standard
+# THE STANDARD OF PROOF. `standard-of-proof:` takes one of three values. Each
+# entry must state which tier it clears. The tiers are ordered.
+#
+#   sdk-artifact   A public build artifact of the original library holds the
+#                  same bytes, and its own debug information names an assembly
+#                  source file. This is the only tier that is evidence about the
+#                  original author rather than about our toolchain.
+#
+#   toolchain-gap  Every installed compiler build was measured and none emits
+#                  the instruction from C. This is evidence about OUR toolchain.
+#                  It is weaker: it cannot distinguish "the author wrote assembly"
+#                  from "our compiler set is incomplete".
+#
+#   reasoned       An argument from language capability with no artifact and no
+#                  measurement behind it. This is the weakest tier the project
+#                  runs and it is weaker than any byte gate. An entry may not
+#                  rest here once a tier above it is reachable.
+#
+# `eesyscall.h` argued provenance at the `reasoned` tier: "there is no C
+# construct that emits a `syscall` instruction". That argument is now known to
+# be insufficient on its own — see the entry below, which reaches `sdk-artifact`
+# and simultaneously records that 13 functions of the same shape DO reach the
+# ELF from C through `EE_SYSCALL`.
+#
+# ------------------------------------------------------------------- format
+#   [entry]            starts a stanza
+#   key: value         single-line field
+#   key:               block field; the indented lines below it are the value
+#
+# Required fields: id, unit, representation, functions, bytes, percent,
+# standard-of-proof, last-tested, argument, falsifier.
+#
+# `functions:` and `bytes:` are verified against `progress/report.json`, so this
+# register cannot drift from the number it defends.
+#
+# Percentages are against total_code = 2,844,404 B (report.json, 2026-08-10
+# 07:42:46 UTC+0, 13.938667% / 5,151 of 11,202 functions).
+#
+# ---------------------------------------------------------------- entries
+#
+# THE REGISTER HOLDS ONE ENTRY. Two populations that earlier work sent here have
+# been refused on measurement; both refusals are recorded below the entry.
+
+[entry]
+id: eesyscalls
+unit: src/cod/eesyscalls
+representation: src/cod/eesyscalls.s
+functions: 138
+bytes: 2208
+percent: 0.0776
+standard-of-proof: sdk-artifact
+last-tested: 2026-08-10
+argument:
+  The EE kernel syscall trampoline table. 138 stubs of 16 bytes each spanning
+  0x003AF880 to 0x003B0110. Each stub is `addiu $v1, $zero, <num>` / `syscall 0`
+  / `jr $ra` / `nop`. The file holds one 5-instruction assembly macro and 138
+  one-line invocations of it, so it is a table, not 138 transcribed bodies.
+  Sony's own source for these stubs was an assembly file. The public PS2 SDK
+  ships `libkernl.a`, whose member `klib.o` holds 89 of these 138 bodies
+  BYTE-IDENTICAL to retail. `klib.o` carries NO `__gnu_compiled_c` and NO
+  `gcc2_compiled.` marker, and the only source path in its debug information is
+  `klib.s`. A GCC C compilation always emits `__gnu_compiled_c`; an assembled
+  `.s` never does. That is a measurement about the original author, not about
+  this project's compiler set.
+limits:
+  1. The SDK object covers 89 of the 138 stubs from `klib.o` and 5 more from
+     `tlbfunc.o`, for 94 of 138. The other 44 are absent from the SDK version on
+     hand and inherit the argument by shape, not by artifact.
+  2. THE ENTRY IS MIXED PROVENANCE, and this is stated rather than hidden. The 5
+     stubs supplied by `tlbfunc.o` — GetEntryAddress, iPutTLBEntry, GetTLBEntry,
+     iProbeTLBEntry, ExpandScratchPad, 80 B at 0x003AFDF0-0x003AFE50 — come from
+     an object that DOES carry `__gnu_compiled_c` and names `tlbfunc.c`. Sony
+     wrote those five in C. Under the strict reading of the rule they are not
+     retail-authored assembly. They stay in the unit because splitting an
+     80-byte tail out of a 2,208-byte table costs more than it recovers.
+  3. The header `include/godhand/eesyscall.h` argues provenance from "no C
+     construct emits a `syscall` instruction". That argument is REFUTED as a
+     necessity claim: 13 functions of exactly this 4-instruction shape reach the
+     ELF today as compiled C through the `EE_SYSCALL` macro, in
+     `src/cod/00396560.c` (5) and `src/cod/003b66c0.c` (8), 208 B. So the `.s`
+     form is a faithful representation, not a forced one. The entry stands on
+     the `klib.s` artifact, not on the capability argument.
+  4. Do not convert this unit to C. Converting yields 138 bodies of
+     `void ResetEE(void) { EE_SYSCALL(0x1); }` — more text, the same
+     information, and the transcription is relocated into the macro axis rather
+     than removed. The only gain is type recovery, which is naming work.
+falsifier:
+  Any of the following returns this entry to scope:
+  1. A CRI-era or Sony-era build artifact for `klib` that carries
+     `__gnu_compiled_c` and names a `.c` source, showing the stubs were compiled.
+  2. A published Sony SDK source listing that shows these stubs in C.
+  3. A ruling that mixed-provenance units may not hold a single entry, which
+     would split the 5 `tlbfunc.c` stubs out.
+
+# ---------------------------------------------------------------- refusals
+#
+# A refusal is part of the register. An entry that was considered and rejected
+# must stay visible, or the next reader re-opens it.
+#
+# REFUSED 2026-08-09 — the two CRI Sofdec colour codecs, 2 fns / 20,060 B /
+# 0.7052%. CRI compiled both from C. The public CRI Sofdec PS2 SDK ships
+# `cft_raw8rgb.o` in `libmwsfde.a` whose 10,084 bytes for
+# `cftraw_CnvMbRAW8toARGB` are byte-identical to retail, which carries
+# `__gnu_compiled_c`, and whose debug information names `../../srcee/
+# cft_mbraw8rgb.c`. The body is compiled rather than pasted, on one discriminator
+# that survived a control: retail's callee-save prologue is mixed width
+# (`sq $s0`-`$s4`, `sd $s5`), which only GCC's per-register mode information
+# produces. They are ordinary in-scope work.
+#
+# REFUSED 2026-08-10 — the three whole-routine `mmi.h` consumers,
+# `sceVu0TransposeMatrix` (0x0030A3B0), `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8`
+# (0x0030A3F8) and `Tramp_MMI_COPY3Q_VADD_30A508` (0x0030A508), 3 fns / 232 B /
+# 0.00816%. Sony wrote them in C.
+#
+#   The public Sony PS2 SDK ships `libvu0.a`, whose single member `libvu0.o`
+#   carries `__gnu_compiled_c` and `gcc2_compiled.` and names one source file,
+#   `libvu0.c`. Of its 17 routines that retail also carries, 13 hold the
+#   IDENTICAL instruction sequence to retail; 1 is byte-identical outright
+#   (`sceVu0InnerProduct`); and the sole difference in the other 12 is that the
+#   SDK build filled the `jr $ra` delay slot with the routine's last instruction
+#   and retail's build did not. `sceVu0TransposeMatrix` is one of the 12.
+#
+#   The delay slot is the discriminator, and it was tested rather than assumed.
+#   Two controls compiled with `cygnus-2.96 -O2 -G0`: the same 16 instructions
+#   inside an `__asm__` block framed by `.set push` / `.set noreorder` / `.set
+#   pop` emit `sq` then `jr $ra` then `nop`, which is RETAIL's shape; the same 16
+#   instructions in an `__asm__` block WITHOUT that framing emit `jr $ra` with
+#   the `sq` in the delay slot, which is the SDK OBJECT's shape. So Sony's
+#   `libvu0.c` did not hold a noreorder-pinned assembly block for this routine.
+#   The fixed-GPR dataflow that `mmi.h`'s header calls the tell of a human
+#   allocator is reproduced by GCC 2 from `libvu0.c`.
+#
+#   The whole translation unit is C, not assembly. The retail address range
+#   0x0030A2B0-0x0030ABD8 holds 30 blocks, of which 19 are named `sceVu0*` or
+#   `Tramp_MMI_*` and all 19 are matched today. 16 of the 19 match from ordinary
+#   C or from per-op `vu0.h` macros; `sceVu0RotMatrix` matches from three plain
+#   function calls with no assembly at all.
+#
+#   Two of the three also recover their real Sony names, by the same byte test:
+#   `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8` is `sceVu0InversMatrix` and
+#   `Tramp_MMI_COPY3Q_VADD_30A508` is `sceVu0TransMatrix`. Two unmatched
+#   neighbours also name themselves: `func_0030A538` is `sceVu0CopyVector` and
+#   `func_0030A548` is `sceVu0CopyMatrix`.
+#
+#   CONSEQUENCE FOR THE `mmi.h` RETIREMENT. There is no `.s` home for these
+#   three. Retiring `mmi.h` before a real-C match lands costs 232 B / 3 matched
+#   functions. The earlier sequencing note — "27 must enumerate them BEFORE
+#   `mmi.h` is retired, net cost zero matched code" — rested on the assumption
+#   that they were retail-authored assembly, and that assumption is refuted.
+#
+# REFUSED by construction — the splat "Handwritten function" marker as a seed.
+# 204 monolith blocks / 12,240 B / 0.4303% carry that marker, of which 151 are
+# matched (2,416 B). The marker is `rabbitizer.Instruction.isLikelyHandwritten()`,
+# a per-instruction heuristic, and it is not a provenance finding. It is wrong
+# in both directions, measured:
+#   FALSE POSITIVE  17 blocks are marked only because they carry an MMI op. They
+#                   are `_rix_*` / `_ri0_*` in the retail MPEG band and they are
+#                   byte-identical to `libmpeg.a(mpc.o)`, which carries
+#                   `__gnu_compiled_c` and names `mpc.c`. Sony compiled them.
+#   FALSE NEGATIVE  `sceVu0TransposeMatrix`, both `Tramp_MMI_*`, `sceGsSetDefClear`
+#                   and `lo0bits` all have SDK provenance and none is marked.
+# The 151 marked-and-matched blocks are not a scattered class either: every one
+# of them is a 16-byte syscall trampoline — the 138 in `eesyscalls.s` plus the 13
+# that reach the ELF from C through `EE_SYSCALL`.

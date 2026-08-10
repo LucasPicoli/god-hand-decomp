@@ -213,6 +213,13 @@ _FPR_RE = re.compile(r"\$f\d+")
 _MTC1_DEST_RE = re.compile(r"^\s*d?mtc1\s+\$\w+\s*,\s*(\$f\d+)\b")
 _CVT_DEST_RE = re.compile(r"^\s*cvt\.[a-z0-9.]+\s+(\$f\d+)\b")
 _DIV_SRC_RE = re.compile(r"^\s*div\.[sd]\s+\$f\d+\s*,\s*(\$f\d+)\s*,\s*(\$f\d+)")
+# The whole divide class the vendor EE cc1 pads.  The template lives in the cc1
+# binary as `%(nop / nop / div.s %0,%1,%2%)`, with the same pair for `sqrt.s`,
+# `rsqrt.s %0,%2` and `rsqrt.s %0,%1,%2` (`%(`/`%)` are gcc's MIPS operand codes
+# for `.set noreorder`/`.set reorder`).  Single precision ONLY: retail holds 966
+# `div.s` and 155 `sqrt.s` sites and ZERO `div.d`/`sqrt.d`, because the R5900
+# FPU has no double unit.
+_FDIV_CLASS_RE = re.compile(r"^\s*(?:div|sqrt|rsqrt)\.s\b")
 _FP_CONSUMER_RE = re.compile(
     r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
     r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
@@ -231,6 +238,54 @@ _FP_DEST_RE = re.compile(
     r"|madd|msub|nmadd|nmsub|max|min|rint)\.[a-z0-9.]+"
     r"|li?\.[sd]|lwc1|ldc1|lwxc1|ldxc1|d?mtc1"
     r")\s+[^#]*?(\$f\d+)")
+
+# --- rule selection ----------------------------------------------------------
+# The two halves of this pass are not the same kind of thing, so they are
+# selected separately (`--fp-hazard-rules`):
+#
+#   mtc1    Rule A.  One nop after `mtc1`/`dmtc1 $r,$fN` whose next real
+#           instruction reads $fN.  MECHANICAL, and `ps2eeas.exe` emits exactly
+#           this nop by itself — a TU on the `as: "sn"` route may not need it.
+#   fdiv    The divide-class pad.  Two nops before EVERY `div.s`, `sqrt.s` and
+#           `rsqrt.s`, unconditionally.  This is NOT a hazard predicate: it
+#           reproduces a fixed cc1 OUTPUT TEMPLATE that the vendor EE gcc line
+#           carries behind the target switch `-mhandle-ee-div-pipeline-bug`
+#           (on by default).  The template reads no operand and no producer.
+#   cvtdiv  The legacy Rule B (cvt -> div, two nops).  Kept ONLY so the bare
+#           `--fp-hazard-nops` flag keeps the meaning the four TUs carrying
+#           `fp_hazard_nops: true` were byte-verified under.  Its own trigger is
+#           the LEAST padded producer in retail — 31.6% of `cvt.s.w` sites carry
+#           a pad against a 69.3% base rate — so it is inverted, not merely
+#           inaccurate.  Do not select it for new work.
+#
+# Every rule stays per-TU opt-in and byte-verified.  `fdiv` agrees with retail
+# at 772 of the 1,121 sites; the 344 over-insertions are translation units
+# compiled with the switch OFF, and no predicate can see a compile flag.
+_FP_RULE_MTC1 = "mtc1"
+_FP_RULE_FDIV = "fdiv"
+_FP_RULE_CVTDIV = "cvtdiv"
+_FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_CVTDIV)
+# What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
+_FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
+
+
+def _parse_fp_hazard_rules(spec: str | None) -> frozenset[str]:
+    """Parse a ``--fp-hazard-rules`` value; ``None`` gives the bare flag's set.
+
+    Raises ``ValueError`` on an unknown name, so a typo cannot silently disable
+    a rule the caller asked for.
+    """
+    if spec is None:
+        return _FP_RULES_DEFAULT
+    names = [t.strip() for t in spec.replace("+", ",").split(",") if t.strip()]
+    if not names:
+        raise ValueError("--fp-hazard-rules needs at least one rule name; "
+                         "known rules: " + ", ".join(_FP_RULES_KNOWN))
+    unknown = [n for n in names if n not in _FP_RULES_KNOWN]
+    if unknown:
+        raise ValueError("unknown FP hazard rule(s): %s; known rules: %s"
+                         % (", ".join(unknown), ", ".join(_FP_RULES_KNOWN)))
+    return frozenset(names)
 
 
 def _fp_dest(line: str) -> str | None:
@@ -273,6 +328,57 @@ def _is_branch_or_jump(stripped: str) -> bool:
     return mnem[:1] in ("b", "j") and mnem != "break"
 
 
+_SET_DIRECTIVE_RE = re.compile(r"^\.set\b\s*(.*)$")
+
+
+def _set_directive_tokens(stripped: str) -> list[str] | None:
+    """The operand tokens of a ``.set`` directive, or ``None`` for other lines.
+
+    Exact tokens, on purpose.  ``"noreorder" in line`` is substring-fragile: it
+    is only ever correct because the negative form happens to be tested first,
+    and it answers *nothing* for ``.set push`` / ``.set pop``.  A ``.set``
+    assignment (``.set sym, expr``) yields tokens that match no state name, so
+    it changes nothing.
+    """
+    m = _SET_DIRECTIVE_RE.match(stripped)
+    if m is None:
+        return None
+    body = m.group(1).split("#", 1)[0]
+    return [t.strip() for t in body.split(",") if t.strip()]
+
+
+def _apply_set_directive(tokens: list[str], reorder: bool,
+                         stack: list[bool]) -> bool:
+    """Fold one ``.set`` directive into the reorder state; return the new state.
+
+    ``.set push`` saves the reorder state and ``.set pop`` restores it, and
+    ``stack`` is mutated in place.  ``godhand/vu0.h`` brackets EVERY COP2 macro
+    that way — ``.set push / .set noreorder / <op> / .set pop`` — so a tracker
+    that reads only the ``reorder``/``noreorder`` pair latches noreorder at the
+    first macro and never leaves it.  Every later insertion in the function is
+    then dropped in silence, until cc1 happens to emit an explicit
+    ``.set reorder``, which it does after some branches.  That made the failure
+    intermittent.  ``findings/23_setpop_defect.py`` reproduces it.
+    """
+    for tok in tokens:
+        if tok == "push":
+            stack.append(reorder)
+        elif tok == "pop":
+            if stack:
+                reorder = stack.pop()
+        elif tok == "reorder":
+            reorder = True
+        elif tok == "noreorder":
+            reorder = False
+    return reorder
+
+
+def _prev_two_are_nops(lines: list[str], i: int) -> bool:
+    """True if the two lines directly above *i* are both bare ``nop``."""
+    return (i >= 2 and lines[i - 1].strip() == "nop"
+            and lines[i - 2].strip() == "nop")
+
+
 def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> bool:
     """Scan backward from *div_idx* within the same straight-line block for a
     ``cvt.*`` writing one of *srcs*.  Stop at a label, branch/jump, or ``.set
@@ -286,14 +392,19 @@ def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> 
     redefinition would credit the div to a cvt whose value it never reads —
     ``cvt.s.w $f0,$f0`` … ``sub.s $f0,$f1,$f0`` … ``div.s $f2,$f0,$f1``, the
     func_001D4258 shape, where retail carries one nop and not the FDIV pair.
+
+    This serves the legacy ``cvtdiv`` rule only.  ``.set push``/``.set pop`` are
+    NOT unwound here: a ``vu0.h`` macro always carries a ``.set noreorder``
+    inside its push/pop bracket, so the scan stops on that line anyway.
     """
     srcs = set(srcs)
     for j in range(div_idx - 1, -1, -1):
         s = lines[j].strip()
         if s.endswith(":"):            # label = block start
             return False
-        if s.startswith(".set"):
-            if "noreorder" in s:
+        toks = _set_directive_tokens(s)
+        if toks is not None:
+            if "noreorder" in toks:
                 return False           # left the reorder region
             continue
         if not _is_asm_instr(s):
@@ -311,31 +422,45 @@ def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> 
     return False
 
 
-def _insert_ee_fp_hazard_nops(text: str) -> str:
-    """Insert the R5900 FP hazard nops cc1 omits, for a --fp-hazard-nops TU.
+def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
+    """Insert the R5900 FP nops cc1 omits, for a --fp-hazard-nops TU.
 
-    Rule A (mtc1->cvt): after ``mtc1``/``dmtc1 $r,$fN`` whose *immediately
+    *rules* is an iterable of rule names (see ``_FP_RULES_KNOWN``); ``None``
+    means ``_FP_RULES_DEFAULT``, which is exactly what the bare
+    ``--fp-hazard-nops`` flag has always done.
+
+    ``mtc1`` (Rule A): after ``mtc1``/``dmtc1 $r,$fN`` whose *immediately
     following* real instruction is an FP op reading ``$fN`` as a source, emit
     one nop (GPR->COP1 move latency).
 
-    Rule B (cvt->div): before a ``div.s``/``div.d`` whose FP source operand was
-    produced by a ``cvt.*`` earlier in the same straight-line block, emit two
-    nops (the FDIV operand-setup latency cygnus-2.96/ee-2.9 schedule but sn
-    omits).
+    ``fdiv``: two nops before every ``div.s``, ``sqrt.s`` and ``rsqrt.s``.
+    Unconditional, because the cc1 template it reproduces is unconditional.
+    When it fires, Rule A is suppressed on the same instruction — the pair
+    already separates the ``mtc1`` from its reader, so a third nop would be
+    fabricated length.
 
-    Delay-slot (``.set noreorder``) regions are left untouched.  Idempotent.
+    ``cvtdiv`` (legacy Rule B): two nops before a ``div.s``/``div.d`` whose FP
+    source operand was produced by a ``cvt.*`` earlier in the same straight-line
+    block.  ``fdiv`` subsumes it: when both are selected the site takes one
+    pair, never two.
+
+    Delay-slot (``.set noreorder``) regions are left untouched, and ``.set
+    push``/``.set pop`` are tracked as a stack.  Idempotent.
     """
+    rules = _FP_RULES_DEFAULT if rules is None else frozenset(rules)
+    want_mtc1 = _FP_RULE_MTC1 in rules
+    want_fdiv = _FP_RULE_FDIV in rules
+    want_cvtdiv = _FP_RULE_CVTDIV in rules
     lines = text.split("\n")
     insert_before = [0] * len(lines)
     reorder = True
+    set_stack: list[bool] = []
     prev_mtc1_dest: str | None = None
     for i, line in enumerate(lines):
         s = line.strip()
-        if s.startswith(".set"):
-            if "noreorder" in s:
-                reorder = False
-            elif "reorder" in s:
-                reorder = True
+        toks = _set_directive_tokens(s)
+        if toks is not None:
+            reorder = _apply_set_directive(toks, reorder, set_stack)
             prev_mtc1_dest = None
             continue
         if not _is_asm_instr(s):
@@ -343,17 +468,23 @@ def _insert_ee_fp_hazard_nops(text: str) -> str:
                 prev_mtc1_dest = None
             continue
         if reorder:
-            if prev_mtc1_dest is not None and _fp_op_reads(line, prev_mtc1_dest):
+            pad = 0
+            is_fdiv_site = want_fdiv and bool(_FDIV_CLASS_RE.match(line))
+            if is_fdiv_site:
+                pad = 2
+            elif want_cvtdiv:
+                dm = _DIV_SRC_RE.match(line)
+                if dm and _block_has_cvt_producing(
+                        lines, i, {dm.group(1), dm.group(2)}):
+                    pad = 2
+            # Idempotency guard: if the two slots before the site are already
+            # nops, the pad has already run — don't stack more.
+            if pad and _prev_two_are_nops(lines, i):
+                pad = 0
+            if (want_mtc1 and not is_fdiv_site and prev_mtc1_dest is not None
+                    and _fp_op_reads(line, prev_mtc1_dest)):
                 insert_before[i] += 1  # Rule A
-            dm = _DIV_SRC_RE.match(line)
-            if dm:
-                srcs = {dm.group(1), dm.group(2)}
-                # Idempotency guard: if the two slots before the div are already
-                # nops, Rule B has already run — don't stack more.
-                already = (i >= 2 and lines[i - 1].strip() == "nop"
-                           and lines[i - 2].strip() == "nop")
-                if not already and _block_has_cvt_producing(lines, i, srcs):
-                    insert_before[i] += 2  # Rule B
+            insert_before[i] += pad
         m = _MTC1_DEST_RE.match(line)
         prev_mtc1_dest = m.group(1) if (m and reorder) else None
 
@@ -363,10 +494,9 @@ def _insert_ee_fp_hazard_nops(text: str) -> str:
         out.append(line)
     return "\n".join(out)
 
-
-def _insert_ee_fp_hazard_nops_file(s_path: Path) -> None:
+def _insert_ee_fp_hazard_nops_file(s_path: Path, rules=None) -> None:
     """In-place application of :func:`_insert_ee_fp_hazard_nops` to ``s_path``."""
-    s_path.write_text(_insert_ee_fp_hazard_nops(s_path.read_text()))
+    s_path.write_text(_insert_ee_fp_hazard_nops(s_path.read_text(), rules))
 
 
 # --- Opt-in R5900 call-loop errata-pad INSERTER (--call-loop-pad) ------------
@@ -857,10 +987,25 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "Insert the R5900 FP hazard nops our cc1 frontends omit: one after "
             "an mtc1/dmtc1 whose next FP op reads the moved reg (GPR->COP1 "
             "latency), and two before a div.s/div.d fed by a cvt in the same "
-            "block (FDIV operand-setup latency). Non-mechanical across the "
-            "binary (the retail scheduler filled the slots with real work "
-            "where it could), so opt-in per-TU and byte-verified. Forwarded to "
-            "sn-cc-wrap.py for SN TUs. See compile_units[].fp_hazard_nops."
+            "block (the legacy 'cvtdiv' rule). Opt-in per-TU and byte-verified. "
+            "Forwarded to sn-cc-wrap.py for SN TUs. Use --fp-hazard-rules to "
+            "pick a different rule set. See compile_units[].fp_hazard_nops."
+        ),
+    )
+    p.add_argument(
+        "--fp-hazard-rules", dest="fp_hazard_rules", default=None,
+        metavar="RULES",
+        help=(
+            "Comma-separated rule set for the FP hazard inserter; implies "
+            "--fp-hazard-nops. 'mtc1' = one nop after an mtc1/dmtc1 whose next "
+            "instruction reads the moved FPR (mechanical; ps2eeas.exe emits it "
+            "itself, so an as:'sn' TU may not need it). 'fdiv' = two nops "
+            "before EVERY div.s/sqrt.s/rsqrt.s, which reproduces the vendor "
+            "cc1 output template behind -mhandle-ee-div-pipeline-bug and "
+            "agrees with retail at 772 of 1121 sites. 'cvtdiv' = the legacy "
+            "cvt->div rule, kept only for the TUs already byte-verified under "
+            "it; its trigger is retail's LEAST padded producer, so do not pick "
+            "it for new work. Default (the bare flag): mtc1,cvtdiv."
         ),
     )
     p.add_argument(
@@ -1009,6 +1154,16 @@ def _dispatch_sn(argv: list[str], assembler: str = "ee") -> int:
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
 
+    # --fp-hazard-rules implies --fp-hazard-nops, and a typo must die here
+    # rather than silently drop the rule the caller asked for.  Validate BEFORE
+    # the SN dispatch so the message names this wrapper either way.
+    if args.fp_hazard_rules is not None:
+        args.fp_hazard_nops = True
+    try:
+        fp_hazard_rules = _parse_fp_hazard_rules(args.fp_hazard_rules)
+    except ValueError as exc:
+        die(str(exc))
+
     if args.compiler == "sn-2.95.3-136" or args.compiler in SN_VARIANT_DIRS:
         # Dispatch the SN path before any Cygnus-specific argument
         # validation so a TU opted into SN never trips this wrapper's
@@ -1114,7 +1269,7 @@ def main(argv: list[str]) -> int:
             # already-materialised nop breaks Rule A's mtc1->consumer adjacency
             # (no double insertion). Per-TU via compile_units fp_hazard_nops.
             if args.fp_hazard_nops:
-                _insert_ee_fp_hazard_nops_file(s_path)
+                _insert_ee_fp_hazard_nops_file(s_path, fp_hazard_rules)
             # Opt-in call-loop errata pad, LAST: it counts loop-body
             # instructions, so it must run after every pass that can add one.
             if args.call_loop_pad:

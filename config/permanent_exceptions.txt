@@ -1,0 +1,211 @@
+# config/permanent_exceptions.txt
+#
+# THE PERMANENT-EXCEPTION REGISTER.
+#
+# The destination is "100% of the binary's code reaching the ELF as compiled C".
+# A small set of code sits OUTSIDE that target. This file names that set, entry
+# by entry. It replaces the percentage "98.74%", which was rejected because a
+# percentage bakes in an estimate that has already moved three times and hides
+# both which code and on what evidence.
+#
+# ============================================================================
+# READ THIS FIRST. BOTH REMAINING ENTRIES SAY "NOBODY TRIED", NOT "SOMEONE
+# FAILED". Every entry carries an `evidence-class:` field and it is `nobody-tried`
+# on both. An entry here is a statement that no one has yet done the work, not a
+# proof that the work is impossible.
+# ============================================================================
+#
+# ============================================================================
+# THIS REGISTER IS NEVER AN INPUT TO CANDIDATE SELECTION.
+#
+# It is a statement about the DESTINATION. It must never be able to block a
+# match. The last time a permanence belief reached the worklist generators it
+# suppressed 102 functions / 48,912 B, five of which were already matched, and
+# the generator's own justifying comment cited a wasted attempt on a function
+# that is matched today.
+#
+# Re-entry therefore fires as AUTO-STALE MARKING, never as a failing gate. When
+# an entry's `last-tested:` date is older than `stale-after-days:`, the entry is
+# marked stale and reported. A stale entry is a prompt to re-test. It is not a
+# failure and it does not gate anything.
+#
+# `scripts/checks/registers.py` enforces exactly two things about this file: that
+# every entry is well formed, and that NO other file under `scripts/` reads this
+# path. The second check is the structural guard. Wiring this register into a
+# selector is the failure mode above, and it is now a hard error.
+# ============================================================================
+#
+# ONE ENTRY PER CLASS. Each entry carries the function list, the byte count, the
+# SPECIFIC FINDING THAT RETURNS IT TO SCOPE, and who last tested it.
+#
+# ------------------------------------------------------------------- format
+#   [entry]            starts a stanza
+#   key: value         single-line field
+#   key:               block field; the indented lines below it are the value
+#
+# Required fields: id, functions, bytes, percent, evidence-class, last-tested,
+# tested-by, stale-after-days, members, argument, falsifier.
+#
+# `evidence-class:` takes `nobody-tried` or `someone-failed`. Nothing else.
+#
+# Percentages are against total_code = 2,844,404 B (report.json, 2026-08-10
+# 07:42:46 UTC+0, 13.938667% / 5,151 of 11,202 functions).
+#
+# ---------------------------------------------------------------- entries
+#
+# THE REGISTER HOLDS TWO ENTRIES: 11 whole functions (2,884 B / 0.1014%) plus a
+# 34-instruction capability gap (136 B / 0.0048%). TOTAL 3,020 B / 0.1062%.
+# Three of the four classes it was founded on have been removed on measurement.
+# The removals are recorded below the entries, because a class deleted without a
+# record comes back.
+
+[entry]
+id: gp-switch-blocks
+functions: 11
+bytes: 2884
+percent: 0.1014
+evidence-class: nobody-tried
+last-tested: 2026-08-10
+tested-by: instruction-word census of all 11,188 monolith blocks
+stale-after-days: 180
+members:
+  func_003A12B8 0x003A12B8 904
+  func_0039A720 0x0039A720 452
+  func_0039A5B0 0x0039A5B0 368
+  func_003B2708 0x003B2708 328
+  _request_end 0x003B2C00 204
+  func_003B79C0 0x003B79C0 168
+  func_0039AB20 0x0039AB20 120
+  func_0039AB98 0x0039AB98 116
+  _sceCd_Poff_Intr 0x003987C0 84
+  _pad_intr_hdr 0x00397780 72
+  _sceFs_Poff_Intr 0x003B3F08 68
+argument:
+  These are ORDINARY FUNCTIONS. They carry branches, `jalr`, struct loads and
+  `mult`. Each saves `$gp` into a scratch register, switches `$gp` to the
+  callee's value, calls through a function pointer, and restores `$gp`. Every
+  instruction of that sequence has a C form. Nothing here lacks a capability.
+  What C cannot do is NAME `$gp`, and naming a register is steering, not
+  capability. The project already outlawed steering: the forced-register pin
+  `register T x __asm__("$N")` is ratcheted to zero with an empty allowlist and
+  zero occurrences in `src/`. A `gp.h` header would be that same pin wearing a
+  header. It is refused on the project's own existing rule.
+  The switch takes two shapes, and the earlier one-shape description was wrong:
+  3 of the 11 load the new `$gp` from a global with `lw $gp, %lo(SYM)(rX)`; the
+  other 8 move it from a register already holding a struct field.
+falsifier:
+  A per-translation-unit `-mabicalls` or PIC flag combination that makes ee-gcc
+  emit the save / switch / restore sequence itself. The build is `-G0` with no
+  `-mabicalls`, so this HAS NEVER BEEN TRIED on any of the 13 installed builds.
+  A second and cheaper falsifier is now available and also untried: find the
+  Sony SDK object that supplies these blocks. The method works — a scan of 107
+  public SCE EE archives found 151 distinct retail function bodies byte-identical
+  to a public SDK object, and `_pad_intr_hdr`, `_sceCd_Poff_Intr` and
+  `_sceFs_Poff_Intr` are Sony library names. They were NOT in the archives on
+  hand, so the scan neither confirms nor refutes; it only shows the route exists.
+limits:
+  The count depends entirely on the predicate, and three predicates give three
+  answers. 33 blocks reference `$gp` at all (30,828 B). 14 blocks WRITE `$gp`
+  (4,500 B). 11 blocks carry both a save and a restore (2,884 B). This entry
+  uses the narrowest, which is the only one that describes the idiom. The 3
+  writers that are not in the entry — `cbTimerHandler`, `_start` and
+  `func_003B7E80` — write `$gp` once with no matching restore and belong to the
+  COP0 population instead.
+  Zero of the 33 are matched, so there is no counter-example inside the class.
+
+[entry]
+id: pref-cache-hints
+functions: 0
+instructions: 34
+bytes: 136
+percent: 0.0048
+evidence-class: nobody-tried
+last-tested: 2026-08-09
+tested-by: sweep across all 13 installed compiler builds
+stale-after-days: 365
+members:
+  cftraw_CnvMbRAW8toARGB 0x00360D78 24
+  func_00363620 0x00363620 10
+argument:
+  THE ENTRY IS 34 INSTRUCTIONS, NOT TWO FUNCTIONS, AND NEVER 20,060 B. The
+  `members:` lines give the `pref` instruction COUNT inside each host function —
+  24 and 10 — not the host's size. 34 instructions is 136 B, which is 0.0048%.
+  `functions: 0` is deliberate: no whole function is on this register.
+  No installed build emits `pref`. `-fprefetch-loop-arrays` is rejected as an
+  invalid option by 11 of the 13 builds and warns "not supported for this target"
+  on the other 2. `__builtin_prefetch` compiles everywhere and folds to nothing.
+  No build carries a prefetch instruction pattern. `pref` has no C form and no
+  builtin, so a sanctioned one-op macro is available and is the same move as a
+  `cop0.h`. This entry exists because that macro has not been written.
+  THE TWO HOST FUNCTIONS ARE NOT ON THIS REGISTER. They are ordinary in-scope
+  work: CRI compiled both from C, the public CRI SDK ships a byte-identical
+  prebuilt object, and every one of the eight MMI mnemonics they use has a
+  compiler builtin in the installed toolchain.
+falsifier:
+  A compiler build, or a `pref` intrinsic, that emits the instruction from C
+  without inline assembly. Last tested 2026-08-09 across all 13 builds.
+limits:
+  All 34 `pref` instructions in the entire binary are inside these two
+  functions. Nothing else in the binary depends on this entry.
+
+# ---------------------------------------------------------------- removals
+#
+# REMOVED 2026-08-07 — COP0 privileged, 29 fns / 5,624 B / 0.20%. Mis-framed.
+# These are not functions made of COP0. They are ordinary bodies of 80 to 173
+# instructions carrying 1 to 10 COP0 ops; `cbTimerHandler` is 173 instructions
+# blocked on a single `ei`. A per-op `cop0.h` adds capability, is irreducible and
+# is per-op, so it is admissible on the same ground as the existing headers.
+# These are ordinary functions with a one-instruction hole, not permanent code.
+# A re-census on 2026-08-10 using decoded instruction words rather than rendered
+# mnemonics gives 30 fns / 5,664 B unmatched for the class, so the 29 / 5,624 was
+# one function and 40 bytes low; the disposition does not change.
+#
+# REMOVED 2026-08-09 — the two CRI Sofdec colour codecs, 2 fns / 20,060 B /
+# 0.7052%. Refuted by document. The public CRI Sofdec PS2 SDK ships
+# `cft_raw8rgb.o` in `libmwsfde.a` whose 10,084 bytes for
+# `cftraw_CnvMbRAW8toARGB` are byte-identical to retail, which carries
+# `__gnu_compiled_c`, and whose debug information names `../../srcee/
+# cft_mbraw8rgb.c`. The body is compiled rather than pasted, on one discriminator
+# that survived a control: retail's callee-save prologue is mixed width
+# (`sq $s0`-`$s4`, `sd $s5`), which only GCC's own per-register mode information
+# produces; an opaque `__asm__` clobber list forces a uniform width. Note that
+# `__gnu_compiled_c` and the `.mdebug` `regmask` BOTH FAILED as discriminators
+# and must not be cited as proof. This was the register's largest entry and it
+# was 56% of the whole register by bytes.
+#
+# REMOVED 2026-08-10 — 64-bit runtime shift INTERSECT the `sq`-prologue group,
+# 10 fns /
+# 6,780 B / 0.2384%. REFUTED BY CONSTRUCTION, and this was the entry the record
+# called "weakened, not confirmed" for three months.
+#
+#   The premise was: "SN's cc1 exits 33 on runtime 64-bit shifts, and only SN
+#   emits the `sq` callee-save prologue, so no single compiler does both."
+#
+#   Both halves were tested on 2026-08-10 and the conjunction is false.
+#   1. The second half holds. 4,435 monolith blocks carry an `sq $sN,off($sp)`
+#      prologue; 1,558 of them are matched, and ALL 1,558 come from
+#      `sn-2.95.3-136`. No other build produced one.
+#   2. The first half is false as stated. Two MATCHED functions compiled by
+#      `sn-2.95.3-136` carry a runtime 64-bit shift today:
+#      `cCollisionScroll_SetCollEnable` (`dsllv`, from the ordinary C statement
+#      `acc |= (long)*a1 << (i * 8);`) and `cScenario_setOmBreak` (`dsllv`).
+#   3. The conjunction was tested directly. A control function with six
+#      callee-saved values live across a call AND two runtime 64-bit shifts
+#      compiles under `sn-2.95.3-136 -O2 -G0` with exit code 0 and emits BOTH:
+#      nine `sq $sN,off($sp)` prologue stores AND `dsllv` and `dsrav`. There is
+#      no cc1 exit 33.
+#
+#   All 10 functions do have a genuine `sq` callee-save prologue, so the set was
+#   correctly identified; only its permanence was wrong. They return to the
+#   tractable pool as ordinary work.
+#
+# ---------------------------------------------------------------- arithmetic
+#
+# The register has fallen from 53 fns / 35,832 B / 1.26% to 11 fns plus a
+# 34-instruction gap, 3,020 B / 0.1062% — by bytes, to one twelfth of its
+# founding size — and every removal was a measurement, not a re-reading. Nothing
+# has ever been added to it.
+#
+# DO NOT RESTATE THIS AS A DESTINATION PERCENTAGE. "99.89%" would be stale the
+# day either entry falls, and it would hide which code and on what evidence.
+# Both entries say `nobody-tried`. The expected direction of travel is down.

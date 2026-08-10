@@ -229,6 +229,10 @@ def _compile_one(
         rel=rel,
         compiler=compiler,
         c_flags_drop=c_flags_drop,
+        # Honour per-TU c_flags_add (the -fno-gcse class) for the same reason:
+        # a TU that only matches retail with the flag added would recompile
+        # here without it and spuriously report gate drift.
+        c_flags_add=tuple(entry.get("c_flags_add", ())),
         strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
         strip_eh_table=bool(entry.get("strip_eh_table", False)),
         # Honour extern_jtbl the same way (the jump-table dispatcher class):
@@ -248,6 +252,10 @@ def _compile_one(
         # func_00184A40): without it the harness would compile the TU missing
         # the retail FP hazard nops and spuriously report gate drift.
         fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
+        # Honour the rule-set sibling key the same way: a TU that names a rule
+        # set compiles with a different nop count, so a harness that ignored
+        # the key would report false gate drift on it.
+        fp_hazard_rules=entry.get("fp_hazard_rules"),
         # Honour call_loop_pad (the R5900 call-loop errata-pad class): without
         # it the harness would compile the TU missing retail's short-loop pads
         # and spuriously report gate drift vs the expected baseline.

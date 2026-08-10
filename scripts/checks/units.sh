@@ -18,6 +18,10 @@
 #   - ``asm/cod/000000.s`` missing (splat has never been run; the
 #     ``maybe_carve()`` step that discover() calls would raise).
 #
+# Void verdict (exit 2): the lcf and discover() BOTH produced 0 objects.  Two
+# empty sets agree trivially, so exit 0 there would report a pass over an input
+# set that was never determined.
+#
 # See the session-check notes.
 set -uo pipefail
 
@@ -76,6 +80,14 @@ lcf_set = {_rel(p) for p in lcf_objs}
 build_lcf = ROOT / "build" / "SLUS_215.03.lcf"
 active_lcf = build_lcf if build_lcf.exists() else ROOT / "config" / "SLUS_215.03.lcf"
 active_rel = _rel(active_lcf)
+
+# Two empty sets agree trivially. That is not a pass: it means neither the lcf
+# nor discover() produced an object list, so the comparison examined nothing.
+if not discovered and not lcf_set:
+    print(f"units: both {active_rel} and compile.py::discover() produced "
+          f"0 units.")
+    print("units: nothing was compared — verdict VOID, not a pass.")
+    sys.exit(2)
 
 lcf_only = sorted(lcf_set - discovered)
 disc_only = sorted(discovered - lcf_set)

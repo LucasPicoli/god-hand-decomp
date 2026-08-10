@@ -19,6 +19,11 @@
 #   - if tools/objdiff-cli or objdiff.json is missing → exit 77.
 #   - if HEAD has no committed report.json yet, the cross-clone floor is
 #     skipped and only the local high-water mark applies.
+#   - if NEITHER floor exists (no committed HEAD report AND no
+#     report.prev.json) there is no baseline at all, so the ratchet compares
+#     nothing.  That is not a pass: exit 77.  Before this guard the script
+#     printed "cross-clone floor skipped" and exited 0 having compared zero
+#     numbers, which is the no-op-reported-as-pass defect.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -123,6 +128,17 @@ fi
 
 if [[ $fail -ne 0 ]]; then
     exit 1
+fi
+
+# No baseline on either side → the ratchet compared nothing. Report a skip so
+# the operator sees it, rather than a pass that proves nothing.
+if [[ -z "$floor_code" && ! -f "$PREV" ]]; then
+    echo "no committed HEAD report.json AND no progress/report.prev.json —"
+    echo "  the ratchet has no baseline and compared nothing."
+    echo "  Seeding the local high-water mark now; commit a report.json to set"
+    echo "  the cross-clone floor."
+    cp "$REPORT" "$PREV"
+    exit 77
 fi
 
 # Refresh the local high-water mark (seed on first run, advance when higher).

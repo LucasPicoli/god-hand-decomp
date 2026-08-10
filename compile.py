@@ -265,6 +265,44 @@ class Config:
                     f"of strings; got {drop!r}"
                 )
             entry["c_flags_drop"] = tuple(drop)
+            # Per-TU c_flags ADD — the mirror of c_flags_drop.
+            # Retail was built with one flag set per translation unit, and this
+            # build already varies the cc1 build and the stage-3 assembler per
+            # TU. A per-TU flag is the same kind of claim, so it is expressed
+            # the same way: an opt-in key on the unit, never on a function.
+            #
+            # The vocabulary is CLOSED (SUPPORTED_C_FLAG_ADDS). c_flags_drop
+            # can only remove one of the three global flags, so it is bounded
+            # by construction; an unbounded ADD would let one TU select any
+            # code-generation option and call the result a match. Every other
+            # per-TU key in this file is a closed set too (`compiler`, `as`) or
+            # a bool. Widening the set is a map decision, not an edit.
+            add = raw.get("c_flags_add", [])
+            if not isinstance(add, list) or not all(isinstance(f, str) for f in add):
+                raise BuildError(
+                    f"compile_units[{path!r}]: c_flags_add must be a list "
+                    f"of strings; got {add!r}"
+                )
+            for f in add:
+                if f not in SUPPORTED_C_FLAG_ADDS:
+                    raise BuildError(
+                        f"compile_units[{path!r}]: c_flags_add {f!r} is not in "
+                        f"the allowed set {sorted(SUPPORTED_C_FLAG_ADDS)}; "
+                        f"widening it is a map decision (see issue 45), not a "
+                        f"config edit"
+                    )
+            if len(set(add)) != len(add):
+                raise BuildError(
+                    f"compile_units[{path!r}]: c_flags_add has a duplicate "
+                    f"entry; got {add!r}"
+                )
+            overlap = sorted(set(add) & set(drop))
+            if overlap:
+                raise BuildError(
+                    f"compile_units[{path!r}]: {overlap} appears in both "
+                    f"c_flags_add and c_flags_drop"
+                )
+            entry["c_flags_add"] = tuple(add)
             # Per-TU opt-in: strip the unconditional C++ DWARF frame .data block
             # (provided instead by the data splat for a carved C++ function).
             strip = raw.get("strip_cxx_frame", False)
@@ -347,6 +385,20 @@ class Config:
                     f"got {fp_hz!r}"
                 )
             entry["fp_hazard_nops"] = fp_hz
+            # Sibling key: choose WHICH hazard rules run, instead of the bare
+            # flag's default set. The value is the cc-wrap `--fp-hazard-rules`
+            # spec (a comma- or plus-separated list of rule names; the wrapper
+            # owns the vocabulary and rejects an unknown name). Setting it
+            # implies fp_hazard_nops, exactly as the wrapper flag does.
+            # Without this key a match found with `--fp-hazard-rules fdiv`
+            # scores green and cannot be integrated (ticket 40 §10).
+            fp_rules = raw.get("fp_hazard_rules")
+            if fp_rules is not None and not isinstance(fp_rules, str):
+                raise BuildError(
+                    f"compile_units[{path!r}]: fp_hazard_rules must be a "
+                    f"string; got {fp_rules!r}"
+                )
+            entry["fp_hazard_rules"] = fp_rules
             # Per-TU opt-in: insert the R5900 short-loop errata pad ee-as omits
             # for backward loops containing a call (jal/jalr). Retail's
             # assembler padded them. Opt-in rather than global because the
@@ -1017,6 +1069,44 @@ def _emit_build_lcf(
 DEFAULT_COMPILER = "cygnus-2.96"
 SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"})
 
+# Closed vocabulary for the per-TU `c_flags_add` key (Config.compile_units).
+#
+# `-f=-fno-gcse` disables gcc 2.9x's global CSE / partial-redundancy pass.
+# Retail materialises the same `sp+K` address twice at two call sites; gcse
+# unifies the two `plus(sp,K)` computations into one pseudo whose live range
+# crosses the call, which forces an extra callee-saved GPR and renames every
+# register downstream (issue 42). Turning the pass off reproduces retail's
+# two materialisations.
+#
+# It is a per-TU key and NEVER a global flag: measured over every C TU in the
+# build, the flag changes the object of a minority of already-matched TUs, and
+# a global flag that moves one matched byte is a regression however good it is
+# elsewhere. Each TU that takes it is byte-verified, and no already-matched TU
+# may take it.
+SUPPORTED_C_FLAG_ADDS = frozenset({"-f=-fno-gcse"})
+
+# The per-TU settings a MATCH RECORD must carry, from the scorer through every
+# intermediate step to the compile_units entry the build finally compiles.
+# Maps the record's key to the compile_units key it becomes.
+#
+# Every one of these was threaded by hand at six separate sites, and several
+# shipped a bug where exactly one site was missed.  A missed site either
+# re-scores the body without the setting -> NO-MATCH -> the body is silently
+# dropped, or lands it in a unit without the key -> sha-fail.  Neither failure
+# names the key that caused it, which is why the table exists.
+#
+# Read this table before adding the next per-TU key, and extend every step in
+# the same change.  A rail test fails when one step forgets a key.
+PER_TU_MATCH_KEYS = {
+    "compiler": "compiler",
+    "drop_freorder": "c_flags_drop",
+    "c_flags_add": "c_flags_add",
+    "assembler": "as",
+    "call_loop_pad": "call_loop_pad",
+    "fp_hazard_nops": "fp_hazard_nops",
+    "fp_hazard_rules": "fp_hazard_rules",
+}
+
 
 @dataclasses.dataclass(frozen=True)
 class CompileUnit:
@@ -1029,6 +1119,10 @@ class CompileUnit:
     # Empty tuple = no-op (today's behaviour for all TUs except those
     # listed in compile_config.json::compile_units with c_flags_drop set).
     c_flags_drop: tuple = ()
+    # Flags to APPEND to cfg.c_flags for this TU, after the drop filter.
+    # Empty tuple = no-op (today's behaviour for every TU). The vocabulary is
+    # closed — see SUPPORTED_C_FLAG_ADDS.
+    c_flags_add: tuple = ()
     # Strip the unconditional C++ DWARF frame .data block from this TU's .o
     # (the frame data is provided by the data splat instead). C++ TUs only.
     strip_cxx_frame: bool = False
@@ -1049,6 +1143,9 @@ class CompileUnit:
     # Insert the R5900 FP hazard nops our cc1 omits (--fp-hazard-nops:
     # mtc1->cvt + cvt->div). Opt-in per-TU; each opted-in fn is byte-verified.
     fp_hazard_nops: bool = False
+    # Choose WHICH hazard rules run (--fp-hazard-rules=VALUE). None = the bare
+    # flag's default set. A non-None value implies fp_hazard_nops.
+    fp_hazard_rules: str | None = None
     # Insert the R5900 short-loop errata pad ee-as omits for call-bearing
     # backward loops (--call-loop-pad). Opt-in per-TU; byte-verified.
     call_loop_pad: bool = False
@@ -1160,12 +1257,14 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
         units.append(CompileUnit(
             src=src, obj=obj, kind="c", rel=rel, compiler=compiler,
             c_flags_drop=tuple(c_flags_drop),
+            c_flags_add=tuple(entry.get("c_flags_add", ())),
             strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
             strip_eh_table=bool(entry.get("strip_eh_table", False)),
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
             extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
             fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
+            fp_hazard_rules=entry.get("fp_hazard_rules"),
             call_loop_pad=bool(entry.get("call_loop_pad", False)),
         ))
 
@@ -1314,7 +1413,11 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
     # Per-TU c_flags filter: drop exact-match flags from the global
     # cfg.c_flags before forwarding to ee-cc-wrap.py.  Default empty
     # tuple = no-op (zero regression).
-    effective_c_flags = [f for f in cfg.c_flags if f not in unit.c_flags_drop]
+    # Per-TU c_flags ADD: append after the drop filter, so the two keys have a
+    # defined order and cannot fight. The validator already rejects a flag
+    # named in both, and rejects any flag outside SUPPORTED_C_FLAG_ADDS.
+    effective_c_flags = ([f for f in cfg.c_flags if f not in unit.c_flags_drop]
+                         + list(unit.c_flags_add))
     argv = [
         sys.executable,
         cfg.tool("ee_cc_wrap"),
@@ -1348,7 +1451,12 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         # rather than branching per route, so a new route reaching the
         # compile_units validator above cannot silently fall back to ee-as.
         argv.append(f"--assembler={unit.assembler}")
-    if unit.fp_hazard_nops:
+    if unit.fp_hazard_rules:
+        # The rule-set form implies the bare flag in both cc-wraps, so pass
+        # only one of the two. Passing both would be harmless today but would
+        # make the argv depend on two keys that can disagree.
+        argv.append(f"--fp-hazard-rules={unit.fp_hazard_rules}")
+    elif unit.fp_hazard_nops:
         argv.append("--fp-hazard-nops")
     if unit.call_loop_pad:
         argv.append("--call-loop-pad")

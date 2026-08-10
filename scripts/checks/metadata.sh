@@ -96,5 +96,13 @@ if problems:
         print(f"   - {line}")
     sys.exit(1)
 
+# A manifest that referenced no payload at all leaves nothing hashed. Exit 0
+# there would report a pass over an input set that was never determined.
+if checked == 0:
+    print("metadata: bin/elf_metadata/manifest.json references 0 payload(s);")
+    print("   nothing was hashed, so this verdict is VOID — not a pass.")
+    print("   Re-run scripts/extract_elf_metadata.py.")
+    sys.exit(2)
+
 print(f"metadata: {checked} payload(s) match bin/elf_metadata/manifest.json")
 PY

@@ -20,6 +20,10 @@
 #     been run yet; the build sub-check will run it)
 #   - otherwise, every present .rel's sha256 must match the
 #     declared expected value, else exit 1.
+#
+# Void verdict (exit 2): compile_config.json could not be parsed, so the REL
+# list is undeterminable.  That is NOT the same as "rels is empty" and must
+# not be reported as a skip.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -33,7 +37,10 @@ fi
 # Pull the (name, sha256_expected) pairs out of compile_config.json so
 # this sub-check doesn't depend on a separate manifest/state file.
 # Python is already a hard dependency of compile.py.
-mapfile -t entries < <(
+# The reader's exit status is captured separately: a parse failure must not be
+# read as "no RELs declared".  `mapfile < <(...)` discards the producer's
+# status, so run the reader first and test it.
+entries_text=$(
     python3 - <<'PY'
 import json, sys
 try:
@@ -53,6 +60,17 @@ for r in cfg.get("rels", []):
     print(f"{name}\t{sha}\t{size}")
 PY
 )
+reader_rc=$?
+if (( reader_rc != 0 )); then
+    echo "rel: could not read compile_config.json::rels (reader rc=$reader_rc)."
+    echo "  The REL list is UNDETERMINABLE — verdict void, not a skip."
+    exit 2
+fi
+
+declare -a entries=()
+if [[ -n "$entries_text" ]]; then
+    mapfile -t entries <<<"$entries_text"
+fi
 
 if (( ${#entries[@]} == 0 )); then
     echo "compile_config.json::rels is empty — no RELs declared yet."

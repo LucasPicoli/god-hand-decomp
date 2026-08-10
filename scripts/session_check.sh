@@ -28,12 +28,44 @@
 #     scripts/session_check.sh social          # advisory checks (never fails)
 #
 # Sub-check exit-code convention:
-#     0    pass
+#     0    pass — the check ran and its predicate holds.  An EMPTY input set
+#          is a pass ONLY when the set was genuinely determined and genuinely
+#          empty (a vacuous truth).  See the ruling below.
+#     2    void verdict — the check ran but could not determine its input
+#          set, so it examined nothing.  FATAL, and reported as a failure.
 #     77   skipped (missing prerequisite, e.g. a downstream artifact not
 #          yet built); always non-fatal and reported with a yellow `∼`
 #     78   pass-with-warnings (only meaningful for `social`); output is
 #          shown verbatim
 #     *    failure
+#
+# THE 2 vs 77 RULING — why a void verdict and a missing prerequisite keep
+# separate codes instead of being unified:
+#
+#     77 says "this checkout has not reached the state the check needs yet".
+#        A fresh clone before splat, or before `python compile.py --setup`,
+#        is a LEGITIMATE state.  The operator action is "run the missing
+#        step, then re-run".  It must therefore be NON-FATAL, or a fresh
+#        clone could never report green.
+#
+#     2  says "the inputs should have been there and the check still could
+#        not form an opinion".  No legitimate state produces it.  The
+#        operator action is "fix the caller or the environment".  It must
+#        therefore be FATAL.
+#
+# The two codes carry OPPOSITE fatality, so unifying them breaks one caller
+# either way: fold 2 into 77 and a broken caller passes; fold 77 into 2 and a
+# fresh clone fails.  Keep both.
+#
+# `.private/leak_scan.py` uses 2 with exactly this meaning ("scanned NOTHING —
+# verdict is void") and predates the ruling.  It stays as it is; the ruling is
+# written to match it, not the other way round.
+#
+# NEVER read a sub-check's status through a pipe.  `$?` after a pipeline is
+# the LAST command's status, so `check.sh | tail` reports tail's 0 and turns
+# any failing gate green at the observation layer.  Use ${PIPESTATUS[0]},
+# `set -o pipefail`, or run the command unpiped.  The dispatcher below uses
+# command substitution (`out=$("$SCRIPT" 2>&1); rc=$?`), which is safe.
 #
 set -uo pipefail
 
@@ -41,7 +73,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 CHECKS_DIR="$ROOT/scripts/checks"
-DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words carve_allowlist tu_complete atlas social)
+DEFAULT_CHECKS=(splat rel-splat metadata build rel expected expected_stale dual_compiler_regress units score diff data_decls forced_regs naming_debt naming_sync monolith_sync jtbl_words carve_allowlist registers tu_complete atlas social)
 
 # Optional checks read local-only working files (running notes, the in-progress
 # struct atlas, naming bookkeeping) that aren't tracked in the repo, so their

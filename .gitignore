@@ -73,6 +73,8 @@
 !config/reloc_addrs.txt
 !config/symbol_addrs.txt
 !config/versions.json
+!config/retail_authored_asm.txt
+!config/permanent_exceptions.txt
 !/ctx.h
 !disc_extract/rel/manifest.json
 !docs/STYLE.md
@@ -127,6 +129,9 @@
 !scripts/checks/tu_complete.sh
 !scripts/checks/units.sh
 !scripts/checks/verify_expected_vs_retail.py
+!scripts/checks/registers.py
+!scripts/checks/registers.sh
+!scripts/checks/c_flags_add_necessary.py
 !scripts/compiler_for_function.py
 !scripts/denylist.py
 !scripts/ee-cc-wrap.py
@@ -1188,6 +1193,8 @@
 !tests/test_report_lint.py
 !tests/test_session_finalize.py
 !tests/test_verify_rel_splat_roundtrip.py
+!tests/test_gate_noop_exit_codes.py
+!tests/test_c_flags_add_key.py
 !tools/splat_ext/sndata.py
 !tools/strip_data_nonmatching.py
 !tools/test_strip_data_nonmatching.py

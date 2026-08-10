@@ -16,6 +16,21 @@ name: PR checks
 #
 # The byte-level match itself is verified locally by the contributor with
 # objdiff (see CONTRIBUTING.md); it cannot run here.
+#
+# Exit-code policy for every gate below.  A gate that examined nothing must
+# never look like a gate that passed:
+#
+#   0    the gate ran and its predicate holds (an empty input set is a pass
+#        only when the set was genuinely determined and genuinely empty).
+#   1    the gate ran and found a violation.
+#   2    the gate ran but could not determine its input — the verdict is VOID.
+#   77   a prerequisite is absent.
+#
+# NO code is translated to green here.  A previous version wrapped each call in
+# `[ "$rc" = 77 ] && exit 0`, which laundered a skip into a pass at the YAML
+# layer.  Every prerequisite these three gates need is a TRACKED file, so a 77
+# in this workflow means the checkout lost something and the gate checked
+# nothing.  That must be red, not green.
 
 on:
   push:
@@ -46,25 +61,70 @@ jobs:
       - name: Run test suite
         run: python -m pytest tests/ -q
 
+      # Resolve a base that is correct for THIS event.  On a pull_request the
+      # base is the target commit.  On a push the base is the commit the branch
+      # pointed at BEFORE the push; `origin/main` is not usable there, because
+      # in a push-to-main checkout origin/main IS the pushed commit, which makes
+      # the diff range degenerate and the guard vacuous.
+      - name: Resolve the diff base
+        id: diff_base
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          set -uo pipefail
+          ZERO=0000000000000000000000000000000000000000
+          base=""
+          if [ -n "${PR_BASE:-}" ]; then
+            base="$PR_BASE"
+            src="pull_request.base.sha"
+          elif [ -n "${PUSH_BEFORE:-}" ] && [ "$PUSH_BEFORE" != "$ZERO" ] \
+               && git cat-file -e "${PUSH_BEFORE}^{commit}" 2>/dev/null; then
+            base="$PUSH_BEFORE"
+            src="push.before"
+          elif git rev-parse --verify -q 'HEAD^{commit}' >/dev/null; then
+            # workflow_dispatch, a branch-creation push, or a force-push whose
+            # old tip is unreachable.  HEAD^ still yields a real, non-degenerate
+            # range covering the tip commit.
+            base="$(git rev-parse HEAD^)"
+            src="HEAD^ fallback"
+          else
+            src="NONE — no usable base"
+          fi
+          echo "resolved diff base: ${base:-<empty>} (source: $src)"
+          echo "sha=$base" >> "$GITHUB_OUTPUT"
+
+      # No exit code is translated here.  0 passes; 1 (violation), 2 (void
+      # verdict — the changed set could not be determined) and 77 (not a git
+      # repo) all fail the step, because after actions/checkout none of them
+      # describes a healthy run.
       - name: Guard against committed game data
         env:
-          DIFF_BASE: ${{ github.event.pull_request.base.sha }}
-        run: |
-          rc=0
-          bash scripts/checks/ci_no_game_data.sh || rc=$?
-          [ "$rc" = 77 ] && { echo "skipped (could not determine base)"; exit 0; }
-          exit $rc
+          DIFF_BASE: ${{ steps.diff_base.outputs.sha }}
+        run: bash scripts/checks/ci_no_game_data.sh
 
       - name: Lint progress report consistency
         run: |
+          set -uo pipefail
           rc=0
           python3 scripts/checks/report_lint.py || rc=$?
-          [ "$rc" = 77 ] && { echo "skipped (no report.json)"; exit 0; }
+          if [ "$rc" = 77 ]; then
+            echo "::error::report_lint.py skipped: progress/report.json is absent."
+            echo "That file is tracked, so a skip here means this gate examined"
+            echo "nothing.  A skipped gate is not a passing gate."
+            exit 1
+          fi
           exit $rc
 
       - name: Reconcile README + badges with report
         run: |
+          set -uo pipefail
           rc=0
           python3 scripts/checks/doc_figures.py || rc=$?
-          [ "$rc" = 77 ] && { echo "skipped (no report.json)"; exit 0; }
+          if [ "$rc" = 77 ]; then
+            echo "::error::doc_figures.py skipped: progress/report.json is absent."
+            echo "That file is tracked, so a skip here means this gate examined"
+            echo "nothing.  A skipped gate is not a passing gate."
+            exit 1
+          fi
           exit $rc
