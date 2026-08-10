@@ -5,13 +5,6 @@ extern signed char D_0044AC28[];
 extern signed char D_0044AC30[];
 extern void *cObjBaseArray_SearchOM(char *arr, long mask);
 
-/* SN ProDG ee-gcc 2.95.3 matched TU. */
-
-
-
-
-
-
 static inline void Clr(char *tbl, signed char *str) {
     signed char *s;
     long acc = 0;

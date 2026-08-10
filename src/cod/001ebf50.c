@@ -2,10 +2,6 @@
 
 extern void cModel_calcParts(void *m);
 
-/* SN ProDG ee-gcc 2.95.3 matched TU. */
-
-
-
 static inline void SetBit(int *w, int b) {
     if ((unsigned int)b < 0x20) {
         *w |= (int)(1L << b);
