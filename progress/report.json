@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 13.938667,
+    "fuzzy_match_percent": 13.994495,
     "total_code": "2844404",
-    "matched_code": "396472",
-    "matched_code_percent": 13.938667,
+    "matched_code": "398060",
+    "matched_code_percent": 13.994495,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11202,
-    "matched_functions": 5151,
-    "matched_functions_percent": 45.98286,
-    "complete_code": 373920,
-    "complete_code_percent": 13.145811917013194,
+    "matched_functions": 5153,
+    "matched_functions_percent": 46.000713,
+    "complete_code": 375380,
+    "complete_code_percent": 13.19714077184535,
     "total_units": 7690,
-    "complete_units": 1395
+    "complete_units": 1396
   },
   "units": [
     {
@@ -355499,11 +355499,19 @@
     {
       "name": "src/cod/DogRace",
       "measures": {
+        "fuzzy_match_percent": 100.0,
         "total_code": "1460",
+        "matched_code": "1460",
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
         "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "1460",
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
-        "total_units": 1
+        "total_units": 1,
+        "complete_units": 1
       },
       "sections": [
         {
@@ -355519,6 +355527,7 @@
         {
           "name": ".text",
           "size": "1464",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
         },
         {
@@ -355531,11 +355540,13 @@
         {
           "name": "DogRace_Initialize",
           "size": "1460",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         }
       ],
       "metadata": {
+        "complete": true,
         "progress_categories": [
           "engine"
         ],
@@ -361229,14 +361240,14 @@
     {
       "name": "src/cod/event/cScenario",
       "measures": {
-        "fuzzy_match_percent": 31.764706,
+        "fuzzy_match_percent": 41.17647,
         "total_code": "1360",
-        "matched_code": "432",
-        "matched_code_percent": 31.764708,
+        "matched_code": "560",
+        "matched_code_percent": 41.17647,
         "matched_data_percent": 100.0,
         "total_functions": 12,
-        "matched_functions": 7,
-        "matched_functions_percent": 58.333332,
+        "matched_functions": 8,
+        "matched_functions_percent": 66.66667,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -361254,7 +361265,7 @@
         {
           "name": ".text",
           "size": "1392",
-          "fuzzy_match_percent": 31.764706,
+          "fuzzy_match_percent": 41.17647,
           "metadata": {}
         },
         {
@@ -361306,6 +361317,7 @@
         {
           "name": "cScenario_isOmBreak_2C5168",
           "size": "128",
+          "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "912"
         },
@@ -365175,20 +365187,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 14.209814,
+        "fuzzy_match_percent": 14.266729,
         "total_code": "2790128",
-        "matched_code": "396472",
-        "matched_code_percent": 14.209814,
+        "matched_code": "398060",
+        "matched_code_percent": 14.266729,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 10800,
-        "matched_functions": 5151,
-        "matched_functions_percent": 47.694443,
-        "complete_code": "373920",
-        "complete_code_percent": 13.401535,
+        "matched_functions": 5153,
+        "matched_functions_percent": 47.712963,
+        "complete_code": "375380",
+        "complete_code_percent": 13.453863,
         "total_units": 7288,
-        "complete_units": 1395
+        "complete_units": 1396
       }
     },
     {
@@ -365233,14 +365245,14 @@
       "id": "engine.event",
       "name": "Event",
       "measures": {
-        "fuzzy_match_percent": 47.80702,
+        "fuzzy_match_percent": 52.48538,
         "total_code": "2736",
-        "matched_code": "1308",
-        "matched_code_percent": 47.80702,
+        "matched_code": "1436",
+        "matched_code_percent": 52.485382,
         "matched_data_percent": 100.0,
         "total_functions": 26,
-        "matched_functions": 17,
-        "matched_functions_percent": 65.38461,
+        "matched_functions": 18,
+        "matched_functions_percent": 69.230774,
         "complete_data_percent": 100.0,
         "total_units": 4
       }

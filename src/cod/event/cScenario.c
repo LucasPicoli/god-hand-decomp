@@ -3,7 +3,11 @@ extern void *func_002D5580(void *);
 extern void func_002C3968(void *, void *);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
 
+extern void *cObjBaseArray_SearchOM(char *arr, long mask);
+extern int cScenario_isOmBreak(int a0, void *om);
+
 extern int D_00747A84;
+extern char D_00754C58[];
 extern char D_00583EC0[];
 extern int D_003C264C;
 extern int D_00747A24;
@@ -66,7 +70,25 @@ INCLUDE_ASM("nonmatching", cScenario_beginKurohukuBattle);
 
 INCLUDE_ASM("nonmatching", cScenario_endKurohukuBattle);
 
-INCLUDE_ASM("nonmatching", cScenario_isOmBreak_2C5168);
+/* The object name is packed into a 64-bit key one byte at a time, then looked
+   up.  The table base must be bound at block top: it stays live across the
+   loop, and no call intervenes. */
+__attribute__((section(".text.cScenario_isOmBreak_2C5168")))
+int cScenario_isOmBreak_2C5168(int a0, signed char *a1)
+{
+    char *arr = D_00754C58;
+    long acc = 0;
+    int i = 0;
+    if (*a1 != 0) {
+        do {
+            acc |= (long)*a1 << (i * 8);
+            i++;
+            a1++;
+            if (i >= 8) break;
+        } while (*a1 != 0);
+    }
+    return cScenario_isOmBreak(a0, cObjBaseArray_SearchOM(arr, acc));
+}
 
 INCLUDE_ASM("nonmatching", cScenario_isOmBreak_2C5220);
 
