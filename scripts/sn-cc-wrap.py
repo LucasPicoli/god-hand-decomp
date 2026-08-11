@@ -808,7 +808,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     )
     p.add_argument(
         "--no-line-info", action="store_true",
-        help="Strip absolute paths from cpp0 #line directives (mirrors ee-cc-wrap.py)",
+        help="REJECTED on this route (see main()); the flag exists only so "
+             "this wrapper accepts ee-cc-wrap.py's argv shape",
     )
     p.add_argument(
         "--asm-only",
@@ -884,6 +885,32 @@ def main(argv: list[str]) -> int:
 
     if not args.asm_only and not args.c:
         die("either -c or --asm-only is required")
+
+    # ``--no-line-info`` was mirrored from ee-cc-wrap.py in 2026-05-27 so this
+    # wrapper would accept the same argv shape. The ``-P`` the flag names was
+    # never added to the cpp0 command, so the parser read the flag and then
+    # discarded it in silence, and a caller who passed it got unstripped line
+    # info while it believed the opposite. Issue 60 measured that.
+    #
+    # Refuse rather than implement. ``-P`` removes cpp0's line markers, and SN
+    # cc1 then names its own INPUT in the ``.file`` directive — an absolute
+    # path inside this wrapper's RANDOM tempdir. Both the ``.s`` and the ``.o``
+    # then change on every run, which is the opposite of what a flag called
+    # "for reproducible builds" must do. ee-cc-wrap.py escapes this because it
+    # runs cc1 and ee-as with ``cwd=tempdir`` and a stable BASENAME; this
+    # wrapper passes absolute tempdir paths. Give it the same treatment and
+    # ``-P`` becomes correct here — measure that change against the object
+    # sha256 of every SN TU before you land it.
+    #
+    # ``compile.py`` never passes this flag, so the refusal moves no build
+    # byte. It only turns a silent wrong answer into a named one.
+    if args.no_line_info:
+        die("--no-line-info is not implemented on the SN route. It was "
+            "accepted and silently ignored until issue 60. cpp0 -P would make "
+            "SN cc1 stamp this wrapper's random tempdir into the .file "
+            "directive, so the .s and the .o would change on every run. Use "
+            "--compiler cygnus-2.96 / ee-2.9-991111 for a line-info-free "
+            "compile, or drop the flag.")
 
     if not args.input.exists():
         die(f"input not found: {args.input}")

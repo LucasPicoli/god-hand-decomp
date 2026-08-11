@@ -47,33 +47,63 @@ ELF = ROOT / "build" / "SLUS_215.03.elf"
 LCF = ROOT / "build" / "SLUS_215.03.lcf"
 RETAIL_SHA256 = "1742f95bef65bdb2aa57b7a77df4ac7619a092e9646e1ea325bc32ec8a64f3cd"
 
-# Match a `glabel func_AABBCCDD` line where `func_*` is a literal vaddr-shaped
-# symbol.  Same shape as compile.py's _index_functions / _NONMATCHING_RE.
-_GLABEL_RE = re.compile(r"^glabel\s+(func_[0-9A-Fa-f]{8})\s*$", re.MULTILINE)
+# Every `glabel` line, whatever the symbol is called — the same shape
+# compile.py's `_index_functions` reads.
+#
+# WIDENED 2026-08-10.  This read
+# `^glabel\s+(func_[0-9A-Fa-f]{8})\s*$`, so the stress sample was drawn from
+# 8,055 of the monolith's 11,188 blocks and **no NAMED function was ever
+# carved by this test**.  That is a coverage hole, not a hidden candidate:
+# nothing here feeds a matching pool.  It still mattered, because the carve
+# path this file exists to stress is exactly the path a named function takes.
+# Verified on the live monolith (sha256 9b8291b4…): all 11,188 blocks carry a
+# `nonmatching NAME, 0x…` marker — 8,055 func_-shaped and 3,133 named — so
+# widening the sample loses no size and adds no unsized pick.
+#
+# Falsifier: `python scripts/recon/carve_stress.py --count 1` must still reach
+# the retail sha256 gate.  A named pick that breaks the carve refutes the
+# claim that this widening is inert.
+_GLABEL_RE = re.compile(r"^glabel\s+(\S+)\s*$", re.MULTILINE)
 _NONMATCHING_RE = re.compile(r"^\s*nonmatching\s+(\S+),\s*(0x[0-9A-Fa-f]+|\d+)")
+# The 2nd field of a disasm comment is the runtime vaddr.  A NAMED function
+# carries no address in its name, so widening the parse above without this is
+# only half a fix: the sample finds the block and cannot place it.
+_VADDR_RE = re.compile(
+    r"^\s*/\*\s+[0-9A-Fa-f]+\s+([0-9A-Fa-f]+)\s+[0-9A-Fa-f]{8}\s+\*/")
 
 
 def parse_monolithic() -> list[tuple[str, int, int]]:
-    """Return list of (name, vaddr_from_name, size_bytes) for every
-    `func_*` glabel that has a matching `nonmatching` marker.
+    """Return list of (name, vaddr, size_bytes) for every `glabel` that has a
+    matching `nonmatching` marker.
+
+    The vaddr is read off the block's first disasm comment, never derived from
+    the symbol spelling.
     """
     text = MONOLITHIC.read_text()
-    names: list[str] = list(_GLABEL_RE.findall(text))
-    # Build size map by scanning every line for nonmatching markers.
+    # Build the size map and the vaddr map in one pass over the lines.
     sizes: dict[str, int] = {}
+    vaddrs: dict[str, int] = {}
+    cur: str | None = None
+    names: list[str] = []
     for line in text.splitlines():
-        m = _NONMATCHING_RE.match(line)
-        if not m:
+        gm = _GLABEL_RE.match(line)
+        if gm:
+            cur = gm.group(1)
+            names.append(cur)
             continue
-        name = m.group(1)
-        raw = m.group(2)
-        sizes[name] = int(raw, 0)
+        m = _NONMATCHING_RE.match(line)
+        if m:
+            sizes[m.group(1)] = int(m.group(2), 0)
+            continue
+        if cur is not None and cur not in vaddrs:
+            vm = _VADDR_RE.match(line)
+            if vm:
+                vaddrs[cur] = int(vm.group(1), 16)
     out: list[tuple[str, int, int]] = []
     for n in names:
-        if n not in sizes:
-            continue  # no nonmatching marker → not safely carveable
-        vaddr = int(n[len("func_"):], 16)
-        out.append((n, vaddr, sizes[n]))
+        if n not in sizes or n not in vaddrs:
+            continue  # no nonmatching marker / no disasm line → not carveable
+        out.append((n, vaddrs[n], sizes[n]))
     return out
 
 
