@@ -2874,8 +2874,6 @@ INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
 
 INCLUDE_ASM("nonmatching", cOmb3_SetNextPoint);
 
-INCLUDE_ASM("nonmatching", cOmItem_setBlockObj);
-
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
 INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);

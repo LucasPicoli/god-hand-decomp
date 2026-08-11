@@ -13,6 +13,7 @@ extern int D_003C264C;
 extern int D_00747A24;
 extern int D_00569B70;
 extern char D_005E8658[];
+extern int ForwardCheckedRequest_2BED60();
 
 __attribute__((section(".text.cScenario_waitEventStartOk")))
 void cScenario_waitEventStartOk(void *a0) {
@@ -90,7 +91,22 @@ int cScenario_isOmBreak_2C5168(int a0, signed char *a1)
     return cScenario_isOmBreak(a0, cObjBaseArray_SearchOM(arr, acc));
 }
 
-INCLUDE_ASM("nonmatching", cScenario_isOmBreak_2C5220);
+__attribute__((section(".text.cScenario_isOmBreak_2C5220")))
+int cScenario_isOmBreak_2C5220(int a0, unsigned short a1, signed char *a2)
+{
+    char *arr = D_005E8658;
+    long acc = 0;
+    int i = 0;
+    if (*a2 != 0) {
+        do {
+            acc |= (long)*a2 << (i * 8);
+            i++;
+            a2++;
+            if (i >= 8) break;
+        } while (*a2 != 0);
+    }
+    return ForwardCheckedRequest_2BED60(arr, a1, acc);
+}
 
 __attribute__((section(".text.cScenario_isOmBreak_2C5288")))
 int cScenario_isOmBreak_2C5288(int a0, unsigned short a1)
