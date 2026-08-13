@@ -7,19 +7,24 @@
  * SetEffect(a1, a2, src, &desc, a3, a0) on the t1!=0 / t1==0 branch.
  * Hot: 180 call sites via func_0021A538's siblings.
  *
- * NON_MATCHING partial.  Default `us` build uses the byte-exact
- * `#else INCLUDE_ASM` carve (sha256 unchanged); `us-nm` scores this clean-C.
- * Exact match owed (sn-2.95.3-136): the residual is a stack base-pointer /
- * temp register-allocation + immediate-folding permutation.  Two real bugs
- * fixed during recovery: a3 is `int` (retail does no sign-extend), and the
- * sqc2 $vf0 zero-quad idiom is correct (objdump mislabels the identical
- * bytes as `sdc2 $0`).  Permuter-pending. */
-#include "include_asm.h"
+ * Byte-exact under sn-2.95.3-136.  Three edits closed the residual the old
+ * header called a permutation:
+ *   1. b4F is `unsigned char`.  `signed char` folds 0xFF to -1, so gcc emits
+ *      one `li -1` for both 0x4C and 0x4F where retail has `li -1` AND
+ *      `li 255`.  Worth 42 of 67 words.
+ *   2. The 0x30..0x3C float run stores through a bound `float *q`, which
+ *      hoists retail's `addiu $v0,$sp,0x30` above the group's first store.
+ *      Naming the four members emits no base at all.  Worth 44 of 67 words.
+ *   3. The branch tests `t1 == 0` first.  gcc emits the negated source
+ *      condition and lays the "then" arm out as the fall-through, so retail's
+ *      `bnez` means the source tested `== 0`.  Worth 12 words.
+ * Two real bugs were fixed during the earlier recovery and still hold: a3 is
+ * `int` (retail does no sign-extend), and the sqc2 $vf0 zero-quad idiom is
+ * correct (objdump mislabels the identical bytes as `sdc2 $0`). */
 #include "godhand/vu0.h"
 
 extern int SetEffect();
 
-#ifdef NON_MATCHING
 typedef struct {
     float f00;      /* 0x00 */
     float f04;      /* 0x04 */
@@ -37,7 +42,7 @@ typedef struct {
     signed char b4C;/* 0x4C */
     signed char b4D;/* 0x4D */
     signed char b4E;/* 0x4E */
-    signed char b4F;/* 0x4F */
+    unsigned char b4F;/* 0x4F */
     int   i50;      /* 0x50 */
     char  pad54[0xC];/* 0x54 */
     char  q60[0x10];/* 0x60 sqc2 */
@@ -57,10 +62,13 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
     s.f0C = 1.0f;
     VU0_SQC2_VF0(&s, 0x10);
     VU0_SQC2_VF0(&s, 0x20);
-    s.f30 = 1.0f;
-    s.f3C = 1.0f;
-    s.f34 = 1.0f;
-    s.f38 = 1.0f;
+    {
+        float *q = &s.f30;
+        q[0] = 1.0f;
+        q[1] = 1.0f;
+        q[2] = 1.0f;
+        q[3] = 1.0f;
+    }
     s.f40 = 1.0f;
     s.b4C = -1;
     s.b4F = 0xFF;
@@ -76,12 +84,7 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
     s.b74 = 0;
     s.i78 = 0;
     *(unsigned short *)((char *)a0 + 0x570) = a3;
-    if (t1 != 0) {
-        if (a0 != 0) {
-            s.f40 = *(float *)((char *)a0 + 0x114);
-        }
-        SetEffect(a1, a2, t1, &s, a3, a0);
-    } else {
+    if (t1 == 0) {
         if (a0 != 0) {
             if (*(unsigned short *)((char *)a0 + 0x434) & 2) {
                 s.i48 |= 0x80;
@@ -89,8 +92,10 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
             }
         }
         SetEffect(a1, a2, a0, &s, a3, a0);
+    } else {
+        if (a0 != 0) {
+            s.f40 = *(float *)((char *)a0 + 0x114);
+        }
+        SetEffect(a1, a2, t1, &s, a3, a0);
     }
 }
-#else
-INCLUDE_ASM("nonmatching", InitRenderStruct_2A8608);
-#endif
