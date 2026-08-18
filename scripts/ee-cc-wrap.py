@@ -373,10 +373,12 @@ def _apply_set_directive(tokens: list[str], reorder: bool,
     return reorder
 
 
-def _prev_two_are_nops(lines: list[str], i: int) -> bool:
-    """True if the two lines directly above *i* are both bare ``nop``."""
-    return (i >= 2 and lines[i - 1].strip() == "nop"
-            and lines[i - 2].strip() == "nop")
+def _prev_nop_run(lines: list[str], i: int, limit: int) -> int:
+    """How many bare ``nop`` sit directly above *i*, counted up to *limit*."""
+    n = 0
+    while n < limit and i - n - 1 >= 0 and lines[i - n - 1].strip() == "nop":
+        n += 1
+    return n
 
 
 def _block_has_cvt_producing(lines: list[str], div_idx: int, srcs: set[str]) -> bool:
@@ -477,10 +479,15 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
                 if dm and _block_has_cvt_producing(
                         lines, i, {dm.group(1), dm.group(2)}):
                     pad = 2
-            # Idempotency guard: if the two slots before the site are already
-            # nops, the pad has already run — don't stack more.
-            if pad and _prev_two_are_nops(lines, i):
-                pad = 0
+            # Idempotency guard: pad UP TO the required count, never BY it.
+            # SN cc1 emits one of retail's two fdiv nops itself. The old
+            # all-or-nothing test asked "are BOTH slots already nops", found
+            # one, added two, and the site got THREE — a shape no rule
+            # combination could reach (measured on func_0020F3C0). Subtract
+            # what is already there instead.
+            # Both endpoints are unchanged: 0 existing nops -> full pad,
+            # 2 existing nops -> no pad.
+            pad -= _prev_nop_run(lines, i, pad)
             if (want_mtc1 and not is_fdiv_site and prev_mtc1_dest is not None
                     and _fp_op_reads(line, prev_mtc1_dest)):
                 insert_before[i] += 1  # Rule A
