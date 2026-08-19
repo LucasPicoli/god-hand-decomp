@@ -243,6 +243,11 @@ _DIV_SRC_RE = re.compile(r"^\s*div\.[sd]\s+\$f\d+\s*,\s*(\$f\d+)\s*,\s*(\$f\d+)"
 # `div.s` and 155 `sqrt.s` sites and ZERO `div.d`/`sqrt.d`, because the R5900
 # FPU has no double unit.
 _FDIV_CLASS_RE = re.compile(r"^\s*(?:div|sqrt|rsqrt)\.s\b")
+# `div`: the same pad, but on `div.s` ALONE. Four functions in 0x156794-0x15A954
+# carry a PADDED `div.s` and a BARE `sqrt.s` in one body (5 of the binary's 155
+# `sqrt.s` sites), which `fdiv` cannot express. Measured by worker F3 of wave
+# 2026-08-18 across 9 installed builds: every one pads both or neither.
+_DIV_ONLY_CLASS_RE = re.compile(r"^\s*div\.s\b")
 _FP_CONSUMER_RE = re.compile(
     r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
     r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
@@ -286,8 +291,10 @@ _FP_DEST_RE = re.compile(
 # compiled with the switch OFF, and no predicate can see a compile flag.
 _FP_RULE_MTC1 = "mtc1"
 _FP_RULE_FDIV = "fdiv"
+_FP_RULE_DIV = "div"
 _FP_RULE_CVTDIV = "cvtdiv"
-_FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_CVTDIV)
+_FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
+                   _FP_RULE_CVTDIV)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -475,6 +482,7 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     rules = _FP_RULES_DEFAULT if rules is None else frozenset(rules)
     want_mtc1 = _FP_RULE_MTC1 in rules
     want_fdiv = _FP_RULE_FDIV in rules
+    want_div = _FP_RULE_DIV in rules
     want_cvtdiv = _FP_RULE_CVTDIV in rules
     lines = text.split("\n")
     insert_before = [0] * len(lines)
@@ -494,7 +502,9 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
             continue
         if reorder:
             pad = 0
-            is_fdiv_site = want_fdiv and bool(_FDIV_CLASS_RE.match(line))
+            is_fdiv_site = ((want_fdiv and bool(_FDIV_CLASS_RE.match(line)))
+                            or (want_div
+                                and bool(_DIV_ONLY_CLASS_RE.match(line))))
             if is_fdiv_site:
                 pad = 2
             elif want_cvtdiv:
