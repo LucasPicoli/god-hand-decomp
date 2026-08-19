@@ -64,3 +64,54 @@ if __name__ == "__main__":
             assert got == 2, f"{w}: {e} existing -> {got}"
         print(f"{w}: pad reaches exactly 2 from 0, 1 and 2 existing nops")
     print("OK")
+
+
+# --- the `sqrt` rule: the mirror of `div` (issue 77 Route A) -----------------
+#
+# `fdiv` pads div.s + sqrt.s + rsqrt.s; `div` pads div.s alone; `sqrt` pads
+# sqrt.s + rsqrt.s alone. Four unmatched functions carry a PADDED sqrt.s and a
+# BARE div.s in one body, which neither of the older two can express.
+
+_MIXED_ASM = "\n".join([
+    "\tmul.s\t$f1,$f1,$f5",
+    "\tdiv.s\t$f2,$f2,$f0",
+    "\tmov.s\t$f3,$f4",
+    "\tsqrt.s\t$f0,$f12",
+    "\tadd.s\t$f5,$f5,$f6",
+])
+
+
+def _nops_before(text, mnemonic):
+    """Nops directly above the first *mnemonic* site."""
+    head = text.split(mnemonic)[0].rstrip().split("\n")
+    n = 0
+    for line in reversed(head):
+        if line.strip() == "nop":
+            n += 1
+        elif line.strip():
+            break
+    return n
+
+
+@pytest.mark.parametrize("wrap", WRAPS)
+@pytest.mark.parametrize("rule,want_div,want_sqrt", [
+    ("fdiv", 2, 2),
+    ("div",  2, 0),
+    ("sqrt", 0, 2),
+])
+def test_rule_selects_the_instruction_class(wrap, rule, want_div, want_sqrt):
+    mod = _load(wrap)
+    inserter = getattr(mod, "_insert_ee_fp_hazard_nops", None) or \
+        getattr(mod, "_insert_sn_fp_hazard_nops")
+    out = inserter(_MIXED_ASM, rules=mod._parse_fp_hazard_rules(rule))
+    assert _nops_before(out, "div.s") == want_div
+    assert _nops_before(out, "sqrt.s") == want_sqrt
+
+
+@pytest.mark.parametrize("wrap", WRAPS)
+def test_sqrt_is_in_the_vocabulary_and_a_typo_still_dies(wrap):
+    mod = _load(wrap)
+    assert "sqrt" in mod._FP_RULES_KNOWN
+    assert mod._parse_fp_hazard_rules("sqrt") == frozenset({"sqrt"})
+    with pytest.raises(ValueError):
+        mod._parse_fp_hazard_rules("sqrtt")

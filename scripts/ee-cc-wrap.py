@@ -225,6 +225,12 @@ _FDIV_CLASS_RE = re.compile(r"^\s*(?:div|sqrt|rsqrt)\.s\b")
 # `sqrt.s` sites), which `fdiv` cannot express. Measured by worker F3 of wave
 # 2026-08-18 across 9 installed builds: every one pads both or neither.
 _DIV_ONLY_CLASS_RE = re.compile(r"^\s*div\.s\b")
+# `sqrt`: the mirror of `div` — the same pad on `sqrt.s`/`rsqrt.s` ALONE.
+# Four unmatched functions carry a PADDED `sqrt.s` and a BARE `div.s` in one
+# body, which neither `fdiv` (over-pads the divide) nor `div` (under-pads the
+# root) can express.  Measured by the batch-7 orchestrator over all 1,121
+# divide-class sites in retail; see issue 77 section 3.
+_SQRT_ONLY_CLASS_RE = re.compile(r"^\s*(?:sqrt|rsqrt)\.s\b")
 _FP_CONSUMER_RE = re.compile(
     r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
     r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
@@ -256,6 +262,8 @@ _FP_DEST_RE = re.compile(
 #           reproduces a fixed cc1 OUTPUT TEMPLATE that the vendor EE gcc line
 #           carries behind the target switch `-mhandle-ee-div-pipeline-bug`
 #           (on by default).  The template reads no operand and no producer.
+#   sqrt    The mirror of `div`: the same pad on `sqrt.s`/`rsqrt.s` ALONE, for
+#           a TU whose square roots are padded and whose divides are bare.
 #   cvtdiv  The legacy Rule B (cvt -> div, two nops).  Kept ONLY so the bare
 #           `--fp-hazard-nops` flag keeps the meaning the four TUs carrying
 #           `fp_hazard_nops: true` were byte-verified under.  Its own trigger is
@@ -269,9 +277,10 @@ _FP_DEST_RE = re.compile(
 _FP_RULE_MTC1 = "mtc1"
 _FP_RULE_FDIV = "fdiv"
 _FP_RULE_DIV = "div"
+_FP_RULE_SQRT = "sqrt"
 _FP_RULE_CVTDIV = "cvtdiv"
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
-                   _FP_RULE_CVTDIV)
+                   _FP_RULE_SQRT, _FP_RULE_CVTDIV)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -460,6 +469,7 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     want_mtc1 = _FP_RULE_MTC1 in rules
     want_fdiv = _FP_RULE_FDIV in rules
     want_div = _FP_RULE_DIV in rules
+    want_sqrt = _FP_RULE_SQRT in rules
     want_cvtdiv = _FP_RULE_CVTDIV in rules
     lines = text.split("\n")
     insert_before = [0] * len(lines)
@@ -481,7 +491,9 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
             pad = 0
             is_fdiv_site = ((want_fdiv and bool(_FDIV_CLASS_RE.match(line)))
                             or (want_div
-                                and bool(_DIV_ONLY_CLASS_RE.match(line))))
+                                and bool(_DIV_ONLY_CLASS_RE.match(line)))
+                            or (want_sqrt
+                                and bool(_SQRT_ONLY_CLASS_RE.match(line))))
             if is_fdiv_site:
                 pad = 2
             elif want_cvtdiv:

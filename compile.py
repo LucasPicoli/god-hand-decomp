@@ -2702,7 +2702,10 @@ def _compile_many(units: list[CompileUnit], cfg: Config, log: Logger, jobs: int)
             if total >= 4 and done % max(1, total // 10) == 0:
                 log.info(f"  [{done}/{total}] units done")
     if errors:
-        raise BuildError(f"{len(errors)} unit(s) failed to compile")
+        # Carry the FIRST error into the message. integrate_batch prints only
+        # the build output it captured, and it anchors on "error:"/"rc=33"; a
+        # bare count matches neither, so the real cc1 diagnostic was lost.
+        raise BuildError(f"{len(errors)} unit(s) failed to compile: {errors[0]}")
 
 
 def main(argv: list[str]) -> int:
