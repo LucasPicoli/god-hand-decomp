@@ -1106,7 +1106,23 @@ SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"
 # a global flag that moves one matched byte is a regression however good it is
 # elsewhere. Each TU that takes it is byte-verified, and no already-matched TU
 # may take it.
-SUPPORTED_C_FLAG_ADDS = frozenset({"-f=-fno-gcse"})
+#
+# `-f=-ffast-math` deletes gcc 2.9x's errno wrapper around an inlined
+# `sqrt.s` — the block `sqrt.s` + `c.eq.s $fN,$fN` + `bc1t` + `jal sqrtf`.
+# 67 unmatched functions / 83,012 B carry a BARE `sqrt.s` that no source
+# spelling and no other flag reaches: 10 spellings, 6 other `-f` flags, both
+# assemblers and all 13 installed builds were falsified on func_002C0CB0,
+# which then compiled byte-identical to retail WITH the flag (issue 76).
+#
+# It is the FIRST member of this vocabulary that changes semantics rather
+# than an optimisation pass. Two facts carried the decision. First, the
+# narrow flag does not exist here: `-fno-math-errno` is the correct-by-scope
+# request, and 10 of the 13 builds reject it (exit 33), including every SN
+# build. Second, the census: compiled twice over every C TU, `-ffast-math`
+# changes 2 of 1,499 objects (0.1%), against 6.7% for `-fno-gcse`. Both
+# changed TUs are already matched, so neither may carry the key.
+# Census: .scratch/decomp-velocity/findings/76_ffastmath_census.py.
+SUPPORTED_C_FLAG_ADDS = frozenset({"-f=-fno-gcse", "-f=-ffast-math"})
 
 # Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
 #

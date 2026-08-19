@@ -122,10 +122,14 @@ class TestValidation:
         with pytest.raises(cm.BuildError, match="both"):
             cfg.compile_units
 
-    def test_the_vocabulary_holds_exactly_the_gcse_flag_today(self):
+    def test_the_vocabulary_holds_exactly_two_flags_today(self):
         """Widening this set is a map decision. If this test fails, the map
-        owes the record an argument for the new member."""
-        assert cm.SUPPORTED_C_FLAG_ADDS == frozenset({GCSE})
+        owes the record an argument for the new member.
+
+        `-f=-ffast-math` joined on 2026-08-18 (issue 76): it is the only
+        route to a bare `sqrt.s`, it changes 2 of 1,499 C objects, and
+        func_002C0CB0 is byte-exact with it and unreachable without it."""
+        assert cm.SUPPORTED_C_FLAG_ADDS == frozenset({GCSE, "-f=-ffast-math"})
 
 
 # --------------------------------------------------------------------------- #
