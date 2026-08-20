@@ -6990,6 +6990,13 @@
       "path": "src/cod/001b0078.c",
       "compiler": "sn-2.95.3-136",
       "fp_hazard_rules": "fdiv,mtc1"
+    },
+    {
+      "path": "src/cod/0032ae50.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -48483,6 +48490,13 @@
       "vaddr": "0x001B0078",
       "size": 216,
       "tu": "src/cod/001b0078.c"
+    },
+    {
+      "name": "func_0032AE50",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0032AE50",
+      "size": 228,
+      "tu": "src/cod/0032ae50.c"
     }
   ],
   "build_dir": "build",
