@@ -6965,6 +6965,11 @@
       "path": "src/cod/001efd70.c",
       "compiler": "sn-2.95.3-136",
       "fp_hazard_rules": "fdiv,mtc1"
+    },
+    {
+      "path": "src/cod/002ea798.c",
+      "compiler": "sn-2.95.3-136",
+      "fp_hazard_rules": "fdiv"
     }
   ],
   "_carved_funcs_doc": [
@@ -48423,6 +48428,13 @@
       "vaddr": "0x001EFD70",
       "size": 244,
       "tu": "src/cod/001efd70.c"
+    },
+    {
+      "name": "func_002EA798",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002EA798",
+      "size": 248,
+      "tu": "src/cod/002ea798.c"
     }
   ],
   "build_dir": "build",
