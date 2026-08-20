@@ -2836,8 +2836,6 @@ INCLUDE_ASM("nonmatching", VecRotVec);
 
 INCLUDE_ASM("nonmatching", VecRotY);
 
-INCLUDE_ASM("nonmatching", GetPointCalcPointLine);
-
 INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
 INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
@@ -2981,6 +2979,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
