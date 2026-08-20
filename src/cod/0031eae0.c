@@ -6,8 +6,8 @@ extern void WaitDma(void *);
 
 struct fp32 { int a; int b; int c; int d; long long e; long long f; };
 
-__attribute__((section(".text.func_0031EAE0")))
-float func_0031EAE0(double a0)
+__attribute__((section(".text.dptofp")))
+float dptofp(double a0)
 {
     struct fp32 buf;
     long long frac;

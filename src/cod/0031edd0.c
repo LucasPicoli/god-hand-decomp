@@ -42,8 +42,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_0031EDD0")))
-double func_0031EDD0(float arg_a)
+__attribute__((section(".text.fptodp")))
+double fptodp(float arg_a)
 {
   fp_number_type_sf in;
   func_0031EC48(&arg_a, &in);

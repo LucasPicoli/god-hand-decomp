@@ -189,6 +189,12 @@ def _numerize(text: str) -> str:
 
 
 _HAZARD_FP_CMP_RE = re.compile(r"^\s*c\.[a-z]+\.[sd]\b")
+# The `libm` rule's two halves (see _FP_RULE_LIBM).  An `mfc1` naming the FPR
+# an FP->integer convert just wrote is the only producer/consumer pair retail's
+# libm objects pad; `mfc1` after an FP *arithmetic* op is NOT padded there.
+_HAZARD_MFC1_RE = re.compile(r"^\s*d?mfc1\s+\$\w+\s*,\s*(\$f\d+)\b")
+_HAZARD_FTOI_RE = re.compile(
+    r"^\s*(?:cvt|trunc|round|ceil|floor)\.w\.[sd]\s+(\$f\d+)\b")
 
 
 def _is_ee_fp_hazard_producer(line: str) -> bool:
@@ -198,7 +204,7 @@ def _is_ee_fp_hazard_producer(line: str) -> bool:
     return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) or bool(_HAZARD_FP_CMP_RE.match(line))
 
 
-def _materialize_hazard_nops(text: str) -> str:
+def _materialize_hazard_nops(text: str, rules=None) -> str:
     """Turn cc1's commented ``#nop`` EE FP hazard hints into real nops.
 
     SN cc1 (like cygnus) emits a bare ``#nop`` comment wherever the pipeline
@@ -207,21 +213,39 @@ def _materialize_hazard_nops(text: str) -> str:
     whose preceding instruction is an mtc1->FPU or FP-compare->branch hazard
     producer is converted — keeping every already-matched function byte
     identical.  Twin of the helper in ee-cc-wrap.py.
+
+    ``rules`` is the parsed ``--fp-hazard-rules`` set, or ``None`` for a TU
+    that did not opt in.  Only ``libm`` changes this pass; see _FP_RULE_LIBM.
     """
     if "#nop" not in text:
         return text
+    libm = rules is not None and _FP_RULE_LIBM in rules
     lines = text.split("\n")
     out = []
     last_instr = None
+    mfc1_pend = False
     for line in lines:
         stripped = line.strip()
-        if stripped == "#nop" and last_instr is not None \
-                and _is_ee_fp_hazard_producer(last_instr):
-            out.append("\tnop")
-            continue
+        if stripped == "#nop" and last_instr is not None:
+            if _is_ee_fp_hazard_producer(last_instr):
+                if libm and not _HAZARD_FP_CMP_RE.match(last_instr):
+                    # libm: drop the FIRST nop after the mtc1 family.  Setting
+                    # last_instr to None keeps a following nop -- the div.s
+                    # template pad -- which retail carries.
+                    last_instr = None
+                    continue
+                out.append("\tnop")
+                continue
+            if mfc1_pend:
+                out.append("\tnop")
+                mfc1_pend = False
+                continue
         out.append(line)
         if stripped and not stripped.startswith((".", "#")) \
                 and not stripped.endswith(":"):
+            m = _HAZARD_MFC1_RE.match(line)
+            p = _HAZARD_FTOI_RE.match(last_instr) if (libm and last_instr) else None
+            mfc1_pend = bool(m and p and m.group(1) == p.group(1))
             last_instr = line
     return "\n".join(out)
 
@@ -285,6 +309,15 @@ _FP_DEST_RE = re.compile(
 #           reproduces a fixed cc1 OUTPUT TEMPLATE that the vendor EE gcc line
 #           carries behind the target switch `-mhandle-ee-div-pipeline-bug`
 #           (on by default).  The template reads no operand and no producer.
+#   libm    The retail libm objects' policy, and ONLY theirs.  Two changes to
+#           _materialize_hazard_nops: DELETE the first nop after the
+#           `mtc1`/`ctc1`/`li.s`/`li.d` family (the later nops of the run are
+#           the div.s template pad and must survive), and MATERIALIZE the nop
+#           after an `mfc1` reading the FPR an FP->integer convert just wrote.
+#           The `c.<cond>.s` -> `bc1*` nop is untouched: retail pads 3,041 of
+#           3,066 such sites.  Per-TU because the two edits invert the binary's
+#           own base rates -- `mtc1` is padded at 22.0% (3,074/13,945) and
+#           `mfc1` after an FP op at 0.7% (3/432).
 #   cvtdiv  The legacy Rule B (cvt -> div, two nops).  Kept ONLY so the bare
 #           `--fp-hazard-nops` flag keeps the meaning the four TUs carrying
 #           `fp_hazard_nops: true` were byte-verified under.  Its own trigger is
@@ -300,8 +333,9 @@ _FP_RULE_FDIV = "fdiv"
 _FP_RULE_DIV = "div"
 _FP_RULE_SQRT = "sqrt"
 _FP_RULE_CVTDIV = "cvtdiv"
+_FP_RULE_LIBM = "libm"
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
-                   _FP_RULE_SQRT, _FP_RULE_CVTDIV)
+                   _FP_RULE_SQRT, _FP_RULE_CVTDIV, _FP_RULE_LIBM)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -1059,7 +1093,8 @@ def main(argv: list[str]) -> int:
         s_text = s_path.read_text()
         if args.extern_jtbl:
             s_text = _externalize_jump_tables(s_text, args.extern_jtbl)
-        s_text = _materialize_hazard_nops(s_text)
+        s_text = _materialize_hazard_nops(
+            s_text, fp_hazard_rules if args.fp_hazard_nops else None)
         # Opt-in FP hazard-nop INSERTER, after materialize so an already-
         # materialised nop breaks Rule A's mtc1->consumer adjacency (no double
         # insertion). Per-TU via compile_units fp_hazard_nops. Runs on ABI reg

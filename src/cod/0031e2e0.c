@@ -7,8 +7,8 @@ struct fp { int a; int b; int c; int d; long long e; long long f; };
 
 
 
-__attribute__((section(".text.func_0031E2E0")))
-int func_0031E2E0(double a0, double a1) {
+__attribute__((section(".text.dpsub")))
+int dpsub(double a0, double a1) {
     struct fp bufA;
     struct fp bufB;
     struct fp bufC;

@@ -14,7 +14,7 @@ __attribute__((section(".text.func_003A4AC8")))
 int func_003A4AC8(void *a0) {
     long long p;
     p = *(long long *)((char *)a0 + 0x8);
-    func_0031E870(p, p);
+    dpcmp(p, p);
     return 0;
 }
 
