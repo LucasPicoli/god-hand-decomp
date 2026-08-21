@@ -2832,8 +2832,6 @@ INCLUDE_ASM("nonmatching", cModel_setMeshDisplay);
 
 INCLUDE_ASM("nonmatching", cObj_setId);
 
-INCLUDE_ASM("nonmatching", VecRotVec);
-
 INCLUDE_ASM("nonmatching", VecRotY);
 
 INCLUDE_ASM("nonmatching", MotionIsHaveParam);
@@ -2952,8 +2950,6 @@ INCLUDE_ASM("nonmatching", cSceAtManager_AtDataReset);
 
 INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
 
-INCLUDE_ASM("nonmatching", cScenario_beginRoomJump_2C4548);
-
 INCLUDE_ASM("nonmatching", cScenario_getObjIdFromStr);
 
 INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
@@ -2979,6 +2975,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
