@@ -309,6 +309,11 @@ _FP_DEST_RE = re.compile(
 #           reproduces a fixed cc1 OUTPUT TEMPLATE that the vendor EE gcc line
 #           carries behind the target switch `-mhandle-ee-div-pipeline-bug`
 #           (on by default).  The template reads no operand and no producer.
+#   div1    The one-nop mirror of `fdiv`: exactly ONE nop before every
+#           `div.s`, `sqrt.s` and `rsqrt.s`, on the same instruction class.
+#           Retail holds 62 divide-class sites at pad depth 1, and 10 unmatched
+#           functions (8,536 B) carry that depth at EVERY one of their sites.
+#           A two-nop rule wins on any site it also claims.
 #   libm    The retail libm objects' policy, and ONLY theirs.  Two changes to
 #           _materialize_hazard_nops: DELETE the first nop after the
 #           `mtc1`/`ctc1`/`li.s`/`li.d` family (the later nops of the run are
@@ -331,11 +336,13 @@ _FP_DEST_RE = re.compile(
 _FP_RULE_MTC1 = "mtc1"
 _FP_RULE_FDIV = "fdiv"
 _FP_RULE_DIV = "div"
+_FP_RULE_DIV1 = "div1"
 _FP_RULE_SQRT = "sqrt"
 _FP_RULE_CVTDIV = "cvtdiv"
 _FP_RULE_LIBM = "libm"
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
-                   _FP_RULE_SQRT, _FP_RULE_CVTDIV, _FP_RULE_LIBM)
+                   _FP_RULE_DIV1, _FP_RULE_SQRT, _FP_RULE_CVTDIV,
+                   _FP_RULE_LIBM)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -512,6 +519,10 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     already separates the ``mtc1`` from its reader, so a third nop would be
     fabricated length.
 
+    ``div1``: one nop before every ``div.s``, ``sqrt.s`` and ``rsqrt.s`` -
+    the same instruction class as ``fdiv``, at pad depth 1.  ``fdiv``,
+    ``div`` and ``sqrt`` win on any site they also claim.
+
     ``cvtdiv`` (legacy Rule B): two nops before a ``div.s``/``div.d`` whose FP
     source operand was produced by a ``cvt.*`` earlier in the same straight-line
     block.  ``fdiv`` subsumes it: when both are selected the site takes one
@@ -523,6 +534,7 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     rules = _FP_RULES_DEFAULT if rules is None else frozenset(rules)
     want_mtc1 = _FP_RULE_MTC1 in rules
     want_fdiv = _FP_RULE_FDIV in rules
+    want_div1 = _FP_RULE_DIV1 in rules
     want_div = _FP_RULE_DIV in rules
     want_sqrt = _FP_RULE_SQRT in rules
     want_cvtdiv = _FP_RULE_CVTDIV in rules
@@ -544,13 +556,21 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
             continue
         if reorder:
             pad = 0
-            is_fdiv_site = ((want_fdiv and bool(_FDIV_CLASS_RE.match(line)))
+            two_nop_site = ((want_fdiv and bool(_FDIV_CLASS_RE.match(line)))
                             or (want_div
                                 and bool(_DIV_ONLY_CLASS_RE.match(line)))
                             or (want_sqrt
                                 and bool(_SQRT_ONLY_CLASS_RE.match(line))))
-            if is_fdiv_site:
+            # `div1` is the one-nop mirror of `fdiv` over the same class.
+            # A two-nop rule wins on any site it also claims, so this stays
+            # inert unless the TU names `div1`.
+            one_nop_site = (want_div1
+                            and bool(_FDIV_CLASS_RE.match(line)))
+            is_fdiv_site = two_nop_site or one_nop_site
+            if two_nop_site:
                 pad = 2
+            elif one_nop_site:
+                pad = 1
             elif want_cvtdiv:
                 dm = _DIV_SRC_RE.match(line)
                 if dm and _block_has_cvt_producing(
@@ -890,7 +910,9 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
              "--fp-hazard-nops. 'mtc1' = one nop after an mtc1/dmtc1 whose "
              "next instruction reads the moved FPR. 'fdiv' = two nops before "
              "EVERY div.s/sqrt.s/rsqrt.s (the vendor cc1 output template "
-             "behind -mhandle-ee-div-pipeline-bug). 'cvtdiv' = the legacy "
+             "behind -mhandle-ee-div-pipeline-bug). 'div1' = ONE nop "
+             "before the same class, for the 62 retail divide sites "
+             "at pad depth 1. 'cvtdiv' = the legacy "
              "cvt->div rule, kept only for the TUs already byte-verified "
              "under it. Default (the bare flag): mtc1,cvtdiv. Twin of "
              "ee-cc-wrap.py's flag.",
