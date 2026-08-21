@@ -7439,6 +7439,13 @@
         "D_0041E7E0"
       ],
       "fp_hazard_rules": "mtc1,div1"
+    },
+    {
+      "path": "src/cod/00174448.c",
+      "compiler": "sn-2.95.3-136",
+      "c_flags_add": [
+        "-f=-fno-gcse"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -49541,6 +49548,13 @@
       "vaddr": "0x00145238",
       "size": 468,
       "tu": "src/cod/00145238.c"
+    },
+    {
+      "name": "func_00174448",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00174448",
+      "size": 516,
+      "tu": "src/cod/00174448.c"
     }
   ],
   "build_dir": "build",
