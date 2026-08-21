@@ -23,7 +23,15 @@ INCLUDE_ASM("nonmatching", func_0030E560);
 
 /* ── 2 × call_chain (nonmatching — T1 will match) ────────────────────────── */
 
-INCLUDE_ASM("nonmatching", func_0030E568);
+extern int D_00752C00;
+extern void func_002D50C0();
+
+__attribute__((section(".text.func_0030E568")))
+void func_0030E568(int a0, int a1) {
+    if (a1 == 0xFFFF && a0 != 0) {
+        func_002D50C0(&D_00752C00);
+    }
+}
 
 /* ── 1 × accessor single-insn fragment (nonmatching — no jr $ra) ─────────── */
 

@@ -6,21 +6,21 @@ extern int func_0038B388(char *a0);
 extern int func_0038EAE0(char *a0);
 extern int func_0038EB28(char *a0, char *a1);
 extern int func_0038C9E8(char *a0, char *a1, int a2);
-extern void func_0038E138(char *a0, int a1);
+extern int func_0038E138(char *a0, int a1);
 extern void func_0038E490(char *a0);
 extern void func_0038E3F0(char *a0);
 extern void func_0038C3A0(char *a0, int a1, int a2, int a3);
 extern int *func_0038C168(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern void func_0038AFB0(int a0);
-extern int *func_0038BE98(void);
+extern void *func_0038BE98(void);
 
 /* -- Extern globals ----------------------------------------------------------- */
 extern int D_786768;
 extern int D_786778;
-extern int D_0045D350;
-extern int D_0045D360;
-extern int D_00460DB0;
+extern char D_0045D350[];
+extern char D_0045D360[];
+extern char D_00460DB0[];
 
 
 __attribute__((section(".text.Obj38B8_GetSignedField38_OrMinus1")))
@@ -35,11 +35,22 @@ int Obj38B8_IsField38_NonNegative(char *a0) {
     return *(int *)(a0 + 0x38) >= 0;
 }
 
-INCLUDE_ASM("nonmatching", func_0038B8B0);
+__attribute__((section(".text.func_0038B8B0")))
+void *func_0038B8B0(void) {
+    int *s0 = &D_786768;
+    if (!*s0) {
+        func_0038BE98();
+        SetField_0_4_8_31EEA8(s0, &D_0045D350, &D_786778);
+    }
+    return s0;
+}
 INCLUDE_ASM("nonmatching", stossc__9streambuf);
 INCLUDE_ASM("nonmatching", func_0038BA10);
 INCLUDE_ASM("nonmatching", func_0038BA38);
-INCLUDE_ASM("nonmatching", func_0038BA68);
+__attribute__((section(".text.func_0038BA68")))
+int func_0038BA68(void *a0, int a1) {
+    return func_0038E138(a0, (char)a1);
+}
 INCLUDE_ASM("nonmatching", func_0038BA88);
 __attribute__((section(".text.Obj38B8_GetField14MinusField10")))
 int Obj38B8_GetField14MinusField10(char *a0) {
@@ -53,8 +64,22 @@ int Obj38B8_GetField8MinusField4(char *a0) {
 
 INCLUDE_ASM("nonmatching", func_0038BAD0);
 INCLUDE_ASM("nonmatching", allocate__9streambuf);
-INCLUDE_ASM("nonmatching", func_0038BB48);
-INCLUDE_ASM("nonmatching", func_0038BB70);
+__attribute__((section(".text.func_0038BB48")))
+void func_0038BB48(char *arg0, int arg1) {
+    if (arg1) {
+        *(int *)(arg0 + 0x0) |= 0x200;
+    } else {
+        *(int *)(arg0 + 0x0) &= ~0x200;
+    }
+}
+__attribute__((section(".text.func_0038BB70")))
+void func_0038BB70(char *arg0, int arg1) {
+    if (arg1) {
+        *(int *)(arg0 + 0x0) |= 2;
+    } else {
+        *(int *)(arg0 + 0x0) &= ~2;
+    }
+}
 __attribute__((section(".text.Obj38B8_GetFlag0_Bit9")))
 int Obj38B8_GetFlag0_Bit9(char *a0) {
     return (*(int *)a0 >> 9) & 1;
@@ -212,7 +237,15 @@ char *Obj38B8_GetPtrField50(char *a0) {
     return a0 + 0x50;
 }
 
-INCLUDE_ASM("nonmatching", func_0038BE98);
+__attribute__((section(".text.func_0038BE98")))
+void *func_0038BE98(void) {
+    int *s0 = &D_786778;
+    if (!*s0) {
+        func_0038C168();
+        SetField_0_4_8_31EEA8(s0, &D_0045D360, &D_00460DB0);
+    }
+    return s0;
+}
 __attribute__((section(".text.Obj38B8_ReturnOne")))
 int Obj38B8_ReturnOne(void) {
     return 1;
