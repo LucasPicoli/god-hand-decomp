@@ -7566,6 +7566,17 @@
     {
       "path": "src/cod/001c6968.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/001ad818.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00171140.c",
+      "compiler": "sn-2.95.3-136",
+      "c_flags_add": [
+        "-f=-fno-gcse"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -50837,6 +50848,76 @@
       "vaddr": "0x001C6A60",
       "size": 36,
       "tu": "src/cod/001c6968.c"
+    },
+    {
+      "name": "func_001D0140",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001D0140",
+      "size": 256,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001D0240",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001D0240",
+      "size": 256,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001D0340",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001D0340",
+      "size": 200,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001D0408",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001D0408",
+      "size": 200,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001AD818",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001AD818",
+      "size": 172,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_002F53A8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002F53A8",
+      "size": 160,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001B54E8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B54E8",
+      "size": 184,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_001CFD60",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001CFD60",
+      "size": 296,
+      "tu": "src/cod/001ad818.c"
+    },
+    {
+      "name": "func_00171140",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00171140",
+      "size": 192,
+      "tu": "src/cod/00171140.c"
+    },
+    {
+      "name": "func_00182958",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00182958",
+      "size": 192,
+      "tu": "src/cod/00171140.c"
     }
   ],
   "build_dir": "build",
