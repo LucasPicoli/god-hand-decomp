@@ -7542,6 +7542,14 @@
     {
       "path": "src/cod/001736a8.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00155138.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/003b59d8.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -25876,7 +25884,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003B59D8",
       "size": 120,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b59d8.c"
     },
     {
       "name": "func_003B5B80",
@@ -27176,14 +27185,14 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0017E6A0",
       "size": 140,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00155138.c"
     },
     {
       "name": "cOl22_setCloseFix",
       "unit": "asm/cod/000000",
       "vaddr": "0x0017E738",
       "size": 148,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00155138.c"
     },
     {
       "name": "cOl2b_setInit",
@@ -27239,14 +27248,14 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4E00",
       "size": 132,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00155138.c"
     },
     {
       "name": "cOm4f_setCloseFix",
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4E88",
       "size": 132,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00155138.c"
     },
     {
       "name": "cOm4f_setOpenCloseRot",
@@ -50634,6 +50643,55 @@
       "vaddr": "0x0019BA08",
       "size": 328,
       "tu": "src/cod/001736a8.c"
+    },
+    {
+      "name": "func_00155138",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00155138",
+      "size": 136,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "func_00155248",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00155248",
+      "size": 136,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "func_001B3548",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B3548",
+      "size": 128,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "func_001B1938",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001B1938",
+      "size": 164,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "func_001C2378",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C2378",
+      "size": 140,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "cOmThrow_SetFall",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C8CB8",
+      "size": 144,
+      "tu": "src/cod/00155138.c"
+    },
+    {
+      "name": "func_001C8D48",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001C8D48",
+      "size": 144,
+      "tu": "src/cod/00155138.c"
     }
   ],
   "build_dir": "build",
