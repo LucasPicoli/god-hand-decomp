@@ -2838,27 +2838,17 @@ INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
 INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
 
-INCLUDE_ASM("nonmatching", cOl40_setVitalMax);
-
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
-
-INCLUDE_ASM("nonmatching", cOm1f_setMoveRange);
 
 INCLUDE_ASM("nonmatching", cOm53_setGetOffEm);
 
 INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
 
-INCLUDE_ASM("nonmatching", cOmb3_SetNextPoint);
-
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
 INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
 
-INCLUDE_ASM("nonmatching", CasinoWork_SetWarmUpRoom);
-
 INCLUDE_ASM("nonmatching", capVu0Acos);
-
-INCLUDE_ASM("nonmatching", cCoreSave_setGameDifficulty);
 
 INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
@@ -2902,8 +2892,6 @@ void cObjSimple_R0_Init(char *a0) {
     a0[0x2F7] = 0;
 }
 
-INCLUDE_ASM("nonmatching", cObjSimple_SetPackIndex);
-
 INCLUDE_ASM("nonmatching", cPadVib_setSeq);
 
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
@@ -2911,8 +2899,6 @@ INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 INCLUDE_ASM("nonmatching", cSceAtManager_SetDoorFunc);
 
 INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
-
-INCLUDE_ASM("nonmatching", cSceAtManager_AtDataReset);
 
 INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
 
@@ -2924,8 +2910,6 @@ INCLUDE_ASM("nonmatching", cScenario_setOmSuspend);
 
 INCLUDE_ASM("nonmatching", cScrArray_SearchScroll);
 
-INCLUDE_ASM("nonmatching", cSnd_SetBgmLevel);
-
 INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
 INCLUDE_ASM("nonmatching", SetEventFrame);
@@ -2935,6 +2919,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
