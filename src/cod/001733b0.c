@@ -24,7 +24,7 @@ extern void CopyVec3ToField40_173968(char *a0, float *a1);
 
 
 __attribute__((section(".text.func_001733B0")))
-void func_001733B0(char *a0, int a1, float *a2, float *a3)
+void func_001733B0(char *a0, int a1, float *a2, float *a3, int a4)
 {
     unsigned char frame[0x40] __attribute__((aligned(16)));
     int obj1,obj2,obj3,obj4;
