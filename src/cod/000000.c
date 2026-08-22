@@ -2838,10 +2838,6 @@ INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
 INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
 
-INCLUDE_ASM("nonmatching", cOl21_setCollisionActive);
-
-INCLUDE_ASM("nonmatching", cOl2b_setInit);
-
 INCLUDE_ASM("nonmatching", cOl40_setVitalMax);
 
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
@@ -2868,19 +2864,13 @@ INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
-INCLUDE_ASM("nonmatching", cCoreSave_getAllKillEmNum);
-
 INCLUDE_ASM("nonmatching", cDamageUnit_SetDamageCollFlashActive);
 
 INCLUDE_ASM("nonmatching", cDvd_Check);
 
-INCLUDE_ASM("nonmatching", cEm00_CkDevilEvent);
-
 INCLUDE_ASM("nonmatching", cEm00_setSitChair);
 
 INCLUDE_ASM("nonmatching", cEm00_setR302Switch);
-
-INCLUDE_ASM("nonmatching", cEm00_setEm65Separate);
 
 __attribute__((section(".text.cEma2_SetPoison")))
 void cEma2_SetPoison(char *a0) {
@@ -2898,11 +2888,7 @@ void cEma2_SetPoisonDie(char *a0) {
     a0[0x2F7] = 0;
 }
 
-INCLUDE_ASM("nonmatching", cEma2_gotoSwitch);
-
 INCLUDE_ASM("nonmatching", cEmManage_GetEm);
-
-INCLUDE_ASM("nonmatching", cGame_isReleaseActiveHeap);
 
 INCLUDE_ASM("nonmatching", cHeatSys_SetHeatGage);
 
@@ -2940,12 +2926,6 @@ INCLUDE_ASM("nonmatching", cScrArray_SearchScroll);
 
 INCLUDE_ASM("nonmatching", cSnd_SetBgmLevel);
 
-INCLUDE_ASM("nonmatching", CustomIDWork_Initialize);
-
-INCLUDE_ASM("nonmatching", CustomIDWork_SetColorAnimNormal_2D6898);
-
-INCLUDE_ASM("nonmatching", CustomIDWork_SetScaleAnimNormal);
-
 INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
 INCLUDE_ASM("nonmatching", SetEventFrame);
@@ -2955,6 +2935,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
