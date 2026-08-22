@@ -2838,23 +2838,15 @@ INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
 INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
 
-INCLUDE_ASM("nonmatching", cOl1b_setCloseFix);
-
 INCLUDE_ASM("nonmatching", cOl21_setCollisionActive);
 
 INCLUDE_ASM("nonmatching", cOl2b_setInit);
-
-INCLUDE_ASM("nonmatching", cOl2b_setOpenFix);
-
-INCLUDE_ASM("nonmatching", cOl2b_setCloseFix);
 
 INCLUDE_ASM("nonmatching", cOl40_setVitalMax);
 
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
 
 INCLUDE_ASM("nonmatching", cOm1f_setMoveRange);
-
-INCLUDE_ASM("nonmatching", cOm4f_setOpenCloseRot);
 
 INCLUDE_ASM("nonmatching", cOm53_setGetOffEm);
 
@@ -2963,6 +2955,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 

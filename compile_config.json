@@ -7577,6 +7577,17 @@
       "c_flags_add": [
         "-f=-fno-gcse"
       ]
+    },
+    {
+      "path": "src/cod/0017b5e0.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00180388.c",
+      "compiler": "sn-2.95.3-136",
+      "c_flags_add": [
+        "-f=-fno-gcse"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -27201,7 +27212,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0017B718",
       "size": 244,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/0017b5e0.c"
     },
     {
       "name": "cOl21_setCollisionActive",
@@ -27236,14 +27247,14 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00180388",
       "size": 180,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00180388.c"
     },
     {
       "name": "cOl2b_setCloseFix",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180440",
       "size": 180,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00180388.c"
     },
     {
       "name": "cOl40_setVitalMax",
@@ -27292,7 +27303,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x001A4FE0",
       "size": 188,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/0017b5e0.c"
     },
     {
       "name": "cOm53_setGetOffEm",
@@ -50918,6 +50929,20 @@
       "vaddr": "0x00182958",
       "size": 192,
       "tu": "src/cod/00171140.c"
+    },
+    {
+      "name": "func_0017B5E0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0017B5E0",
+      "size": 260,
+      "tu": "src/cod/0017b5e0.c"
+    },
+    {
+      "name": "cOl2b_setInitFix",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x001804F8",
+      "size": 176,
+      "tu": "src/cod/00180388.c"
     }
   ],
   "build_dir": "build",
