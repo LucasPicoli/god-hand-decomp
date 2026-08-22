@@ -6,6 +6,9 @@ extern void pl00_reset(void);
 
 extern void func_001C8D48(void *obj);
 
+extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
+extern int D_005FEE00[];
+
 __attribute__((section(".text.pl00_CannonGameMode")))
 void pl00_CannonGameMode(void *a0, int a1) {
     if (a1) {
@@ -48,7 +51,50 @@ void pl00_setPyramidIn(char *a0) {
     *(unsigned char*)(a0 + 0x2F7) = 0;
 }
 
-INCLUDE_ASM("nonmatching", pl00_SetCannonDamage);
+/* sn-2.95.3-136 matched TU. */
+
+
+extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0,
+                               int t1, int t2, int t3);
+
+__attribute__((section(".text.pl00_SetCannonDamage")))
+void pl00_SetCannonDamage(unsigned char *p)
+{
+    char hold[16];
+    char *e;
+    int cnt;
+    int i4;
+    int n;
+
+    if (*((short *) (p + 0x54A)) > 0) {
+        i4 = 4;
+        cnt = *((unsigned char *) (p + 0x2B4));
+        *((int *) hold) = cnt;
+        if (i4 < cnt) {
+            e = *((char **) (*((char **) (p + 0x278)) + 0x10));
+        } else {
+            e = 0;
+        }
+        if (e != 0) {
+            SetEffectPos(0, 3, 0, *((void **) (e + 0xF0)), -1, 1.0f);
+        }
+        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x123, p, 0, 0, 0, 0);
+        n = *((unsigned short *) (p + 0x54A)) - 10;
+        *((short *) (p + 0x54A)) = n;
+        if ((short) n <= 0) {
+            p[0x2F4] = 2;
+            *((short *) (p + 0x54A)) = 0;
+            p[0x2F5] = 1;
+            p[0x2F6] = 0;
+            p[0x2F7] = 1;
+        } else {
+            p[0x2F4] = 6;
+            p[0x2F6] = 4;
+            p[0x2F5] = 0;
+            p[0x2F7] = 0;
+        }
+    }
+}
 
 __attribute__((section(".text.pl00_DiscardThrowObj")))
 void pl00_DiscardThrowObj(void *a0)
