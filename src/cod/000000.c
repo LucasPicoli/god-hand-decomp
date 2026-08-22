@@ -2926,8 +2926,6 @@ void cObjSimple_R0_Init(char *a0) {
 
 INCLUDE_ASM("nonmatching", cObjSimple_SetPackIndex);
 
-INCLUDE_ASM("nonmatching", cObjSimple_SetParentInfo);
-
 INCLUDE_ASM("nonmatching", cPadVib_setSeq);
 
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
@@ -2965,6 +2963,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
