@@ -8393,6 +8393,21 @@
     {
       "path": "src/cod/001d0090.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00146978.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/003691d8.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035a540.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -24923,7 +24938,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003691D8",
       "size": 148,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003691d8.c"
     },
     {
       "name": "mpvhdec_GetCurDelim",
@@ -27987,7 +28003,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00146978",
       "size": 156,
-      "tu": "src/cod/000000.c"
+      "tu": "src/cod/00146978.c"
     },
     {
       "name": "cModel_setMeshDisplay",
@@ -54749,6 +54765,48 @@
       "vaddr": "0x00268408",
       "size": 152,
       "tu": "src/cod/001d0090.c"
+    },
+    {
+      "name": "func_0026A338",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0026A338",
+      "size": 156,
+      "tu": "src/cod/00146978.c"
+    },
+    {
+      "name": "func_0037A6A8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0037A6A8",
+      "size": 152,
+      "tu": "src/cod/00146978.c"
+    },
+    {
+      "name": "func_003762D8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003762D8",
+      "size": 152,
+      "tu": "src/cod/00146978.c"
+    },
+    {
+      "name": "func_0035A540",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035A540",
+      "size": 156,
+      "tu": "src/cod/0035a540.c"
+    },
+    {
+      "name": "func_0031DFA8",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0031DFA8",
+      "size": 156,
+      "tu": "src/cod/00146978.c"
+    },
+    {
+      "name": "func_00383478",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00383478",
+      "size": 160,
+      "tu": "src/cod/00146978.c"
     }
   ],
   "build_dir": "build",
