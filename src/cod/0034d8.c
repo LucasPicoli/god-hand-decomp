@@ -5,7 +5,7 @@
 extern void func_003394A0(void);
 extern void func_00339520(void);
 extern void func_003571D0(void);
-extern void func_0034D048(void);
+extern void Forward35D538_34D048(void);
 extern void func_0034D068(void);
 extern void Forward33B568_33B658(void);
 extern void Forward33B5C8_33B670(void);
@@ -137,11 +137,11 @@ void Thunk_func_003394A0(void) { func_003394A0(); }
 __attribute__((section(".text.Thunk_func_00339520")))
 void Thunk_func_00339520(void) { func_00339520(); }
 
-/* ── Call_3571D0_Then_4D048: jal func_003571D0 + j func_0034D048 ─────────────────── */
+/* ── Call_3571D0_Then_4D048: jal func_003571D0 + j Forward35D538_34D048 ─────────────────── */
 __attribute__((section(".text.Call_3571D0_Then_4D048")))
 void Call_3571D0_Then_4D048(void) {
     func_003571D0();
-    func_0034D048();
+    Forward35D538_34D048();
 }
 
 /* ── Thunk_func_0034D068: j-thunk → func_0034D068 ─────────────────────────────── */
