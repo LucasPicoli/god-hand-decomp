@@ -2824,8 +2824,6 @@ INCLUDE_ASM("nonmatching", setPlayerPos);
 
 INCLUDE_ASM("nonmatching", pl00_CkSubScreen);
 
-INCLUDE_ASM("nonmatching", cCollisionScroll_SetLayerCollEnable);
-
 INCLUDE_ASM("nonmatching", cCockScroll_OnScroll);
 
 INCLUDE_ASM("nonmatching", cModel_setMeshDisplay);
@@ -2909,6 +2907,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
