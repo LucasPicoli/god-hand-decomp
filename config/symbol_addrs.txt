@@ -50094,3 +50094,46 @@ func_001D4B78 = 0x001D4B78; // type:func
 func_0037A298 = 0x0037A298; // type:func
 func_0031E048 = 0x0031E048; // type:func
 func_00163598 = 0x00163598; // type:func
+
+// === hand-added 2026-08-22 (wave 17: dead-head merged-orphan boundary fix) ===
+// 36 functions whose ghidra-seeded entry is 8 to 80 B too low: the declared span
+// opens with the PREVIOUS function's epilogue tail, so the body reads registers
+// nothing writes and no C form exists. Same defect the 2026-05-28 block fixes.
+// The orphan keeps the old name and stays INCLUDE_ASM in monolithic.
+
+func_0012D3C8 = 0x0012D3C8; // type:func   (was inside func_0012D3A8)
+func_0012DEF0 = 0x0012DEF0; // type:func   (was inside func_0012DEC8)
+func_001506C8 = 0x001506C8; // type:func   (was inside func_00150678)
+func_00190178 = 0x00190178; // type:func   (was inside func_00190158)
+func_001A6D18 = 0x001A6D18; // type:func   (was inside func_001A6CF8)
+func_001B5650 = 0x001B5650; // type:func   (was inside func_001B5630)
+func_002AE8A8 = 0x002AE8A8; // type:func   (was inside func_002AE8A0)
+func_002BA158 = 0x002BA158; // type:func   (was inside func_002BA140)
+func_002D5CA8 = 0x002D5CA8; // type:func   (was inside func_002D5C78)
+func_00323CF0 = 0x00323CF0; // type:func   (was inside func_00323CE0)
+func_00328F30 = 0x00328F30; // type:func   (was inside func_00328EF8)
+func_003292C0 = 0x003292C0; // type:func   (was inside func_003292B0)
+func_00329E08 = 0x00329E08; // type:func   (was inside func_00329E00)
+func_0032BC98 = 0x0032BC98; // type:func   (was inside func_0032BC90)
+func_0032BF90 = 0x0032BF90; // type:func   (was inside func_0032BF80)
+func_0032CEB0 = 0x0032CEB0; // type:func   (was inside func_0032CEA0)
+func_0032D868 = 0x0032D868; // type:func   (was inside func_0032D858)
+func_00330C88 = 0x00330C88; // type:func   (was inside func_00330C80)
+func_00333F80 = 0x00333F80; // type:func   (was inside func_00333F78)
+func_00333FA0 = 0x00333FA0; // type:func   (was inside func_00333F98)
+func_00335A18 = 0x00335A18; // type:func   (was inside func_00335A08)
+func_00335B88 = 0x00335B88; // type:func   (was inside func_00335B70)
+func_00337D24 = 0x00337D24; // type:func   (was inside func_00337D08)
+func_003388B0 = 0x003388B0; // type:func   (was inside func_00338898)
+func_0033D040 = 0x0033D040; // type:func   (was inside func_0033D038)
+func_0033F694 = 0x0033F694; // type:func   (was inside func_0033F670)
+func_00347218 = 0x00347218; // type:func   (was inside func_00347208)
+func_003475F0 = 0x003475F0; // type:func   (was inside func_003475E8)
+func_00348CB8 = 0x00348CB8; // type:func   (was inside func_00348CB0)
+func_0034D048 = 0x0034D048; // type:func   (was inside func_0034D008)
+func_003504A0 = 0x003504A0; // type:func   (was inside func_00350490)
+func_0035FD58 = 0x0035FD58; // type:func   (was inside func_0035FD50)
+func_0035FDA8 = 0x0035FDA8; // type:func   (was inside func_0035FD80)
+func_0036CCC8 = 0x0036CCC8; // type:func   (was inside func_0036CCB8)
+func_00378610 = 0x00378610; // type:func   (was inside func_00378608)
+func_003984D8 = 0x003984D8; // type:func   (was inside _sceCd_cd_callback)
