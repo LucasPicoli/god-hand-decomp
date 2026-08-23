@@ -1090,7 +1090,22 @@ def _emit_build_lcf(
 # slots.  Anything not in this set is a config error — see
 # Config.compile_units.
 DEFAULT_COMPILER = "cygnus-2.96"
-SUPPORTED_COMPILERS = frozenset({"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"})
+# The sibling-lineage builds below are already implemented by
+# scripts/ee-cc-wrap.py (CC1_VARIANT_DIRS / SN_VARIANT_DIRS) and already
+# offered by .private/scripts/score_candidate.py --compiler, so a lane can
+# find a byte-exact body under one and then fail to LAND it here. Wave 17
+# hit that on cScrArray_SearchScroll, which matches under ee-2.9-990721 and
+# under no other build. compile.py only forwards --compiler=<key> to the
+# wrapper, so the wrapper stays the authority for what each key means; this
+# set only says which keys a compile_unit may name. The retail ELF cmp gate
+# still proves every TU that uses one.
+_CC1_SIBLING_BUILDS = frozenset({
+    "ee-2.9-990721", "ee-2.9-991111-plain", "ee-2.9-991111a",
+    "ee-2.9-991111-dtls", "ee-3.2-030926", "ee-3.2-040921",
+    "sn-2.95.3-114", "sn-2.95.3-107", "sn-2.95.2-273a", "sn-2.95.2-274",
+})
+SUPPORTED_COMPILERS = frozenset(
+    {"cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111"}) | _CC1_SIBLING_BUILDS
 
 # Closed vocabulary for the per-TU `c_flags_add` key (Config.compile_units).
 #
