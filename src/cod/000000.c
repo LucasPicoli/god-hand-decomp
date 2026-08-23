@@ -2817,7 +2817,6 @@ INCLUDE_ASM("nonmatching", SetEv61HumanAlive);
 INCLUDE_ASM("nonmatching", Dest_ck);
 INCLUDE_ASM("nonmatching", setColorScrollLayer);
 INCLUDE_ASM("nonmatching", displayOmLayer);
-INCLUDE_ASM("nonmatching", GetViewScrollIdAll);
 INCLUDE_ASM("nonmatching", getItemNumInRoom);
 INCLUDE_ASM("nonmatching", SetEventCutEffect);
 INCLUDE_ASM("nonmatching", setPlayerPos);
@@ -2905,6 +2904,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
