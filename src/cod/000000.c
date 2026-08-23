@@ -2854,8 +2854,6 @@ INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
-INCLUDE_ASM("nonmatching", cDamageUnit_SetDamageCollFlashActive);
-
 INCLUDE_ASM("nonmatching", cDvd_Check);
 
 INCLUDE_ASM("nonmatching", cEm00_setSitChair);
@@ -2890,8 +2888,6 @@ void cObjSimple_R0_Init(char *a0) {
     a0[0x2F7] = 0;
 }
 
-INCLUDE_ASM("nonmatching", cPadVib_setSeq);
-
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 
 INCLUDE_ASM("nonmatching", cSceAtManager_SetDoorFunc);
@@ -2917,6 +2913,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
