@@ -25,7 +25,7 @@ INCLUDE_ASM("nonmatching", func_003290B8);
 INCLUDE_ASM("nonmatching", ADXPS2_LoadFcacheDvd);
 
 /* func_003292D8: 0x118 B, multi-jal init; calls func_00330E70, func_00330318 ×2,
- * func_00330580, func_00335218, func_00335248, Forward331C98_333F60, j func_00333F80 */
+ * func_00330580, func_00335218, func_00335248, Forward331C98_333F60, j Forward331CE0_333F80 */
 INCLUDE_ASM("nonmatching", func_003292D8);
 
 /* func_00329438: 0x58 B, wraps NoOp_33E6A8 + func_00329490 + NoOp_33E6B0 */
