@@ -2889,8 +2889,6 @@ INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
 
 INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
 
-INCLUDE_ASM("nonmatching", cScenario_getObjIdFromStr);
-
 INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 
 INCLUDE_ASM("nonmatching", cScenario_setOmSuspend);
@@ -2904,6 +2902,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
