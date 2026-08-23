@@ -2878,8 +2878,6 @@ void cEma2_SetPoisonDie(char *a0) {
     a0[0x2F7] = 0;
 }
 
-INCLUDE_ASM("nonmatching", cEmManage_GetEm);
-
 INCLUDE_ASM("nonmatching", cHeatSys_SetHeatGage);
 
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
@@ -2919,6 +2917,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
