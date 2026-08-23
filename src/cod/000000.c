@@ -2851,8 +2851,6 @@ INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
-INCLUDE_ASM("nonmatching", cEm00_setR302Switch);
-
 __attribute__((section(".text.cEma2_SetPoison")))
 void cEma2_SetPoison(char *a0) {
     a0[0x2F4] = 0;
@@ -2883,8 +2881,6 @@ void cObjSimple_R0_Init(char *a0) {
 
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 
-INCLUDE_ASM("nonmatching", cSceAtManager_SetDoorFunc);
-
 INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
 
 INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
@@ -2893,13 +2889,12 @@ INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 
 INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
-INCLUDE_ASM("nonmatching", SetEventFrame);
-
 INCLUDE_ASM("nonmatching", KeyStop);
 
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
