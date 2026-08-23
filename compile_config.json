@@ -8535,6 +8535,14 @@
       "path": "src/cod/003a18f0.c",
       "compiler": "ee-2.9-991111",
       "fp_hazard_rules": "libm"
+    },
+    {
+      "path": "src/cod/0038c208.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/0031fa40.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -23414,7 +23422,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0031FA40",
       "size": 36,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0031fa40.c"
     },
     {
       "name": "func_0031FF50",
@@ -25675,7 +25684,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038C208",
       "size": 48,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038c208.c"
     },
     {
       "name": "_IO_least_marker",
