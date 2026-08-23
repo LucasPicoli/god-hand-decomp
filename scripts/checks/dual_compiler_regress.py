@@ -43,6 +43,7 @@ import hashlib
 import os
 import struct
 import subprocess
+import json
 import sys
 import tempfile
 from dataclasses import dataclass
@@ -54,7 +55,30 @@ sys.path.insert(0, str(ROOT))
 import compile as cpy  # noqa: E402
 
 EXPECTED_ROOT = ROOT / "expected" / "build"
-COMPILERS = ("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111")
+def _compilers() -> tuple[str, ...]:
+    """The three primaries, plus any sibling build a compile_unit actually names.
+
+    The primaries are the load-bearing contract and always run. A sibling
+    lineage build (ee-2.9-990721 and friends) is only worth a sweep once some
+    TU depends on it, and then it MUST be swept: without this the harness
+    reports every section of that TU as MISS, because it never ran the one
+    compiler that reproduces it. Wave 17 hit exactly that on
+    src/cod/002c5420.c after cScrArray_SearchScroll landed under
+    ee-2.9-990721 — the only build that matches it.
+    """
+    primaries = ("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111")
+    try:
+        cfg = json.loads((ROOT / "compile_config.json").read_text())
+    except (OSError, ValueError):
+        return primaries
+    extra = sorted({
+        u.get("compiler") for u in cfg.get("compile_units", [])
+        if u.get("compiler") and u.get("compiler") not in primaries
+    })
+    return primaries + tuple(extra)
+
+
+COMPILERS = _compilers()
 
 
 # --------------------------------------------------------------------------- #
