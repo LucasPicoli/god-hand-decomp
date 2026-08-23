@@ -3,7 +3,17 @@
 
 /* ── All-zero (5-insn): sb 0,2F7; sb 0,2F4; sb 0,2F5; jr; delay:sb 0,2F6 ── */
 /* Optimizer reorders 4 independent zero-stores non-trivially; use ASM.    */
-INCLUDE_ASM("nonmatching", func_00281260);
+/* func_00281260: the do{}while(0) barriers keep the retail store order. */
+__attribute__((section(".text.func_00281260")))
+void func_00281260(unsigned char *p) {
+    p[0x2F7] = 0;
+    do { } while (0);
+    p[0x2F4] = 0;
+    do { } while (0);
+    p[0x2F5] = 0;
+    do { } while (0);
+    p[0x2F6] = 0;
+}
 
 /* ── Group B6 (6-insn, 2F7=a1): li; sb a1,2F7; sb v0,2F5; sb 0,2F4; jr; delay:2F6 ── */
 /* Note: -O2 reverses adjacent equal-value zero-stores.                     */
@@ -60,9 +70,22 @@ void Obj2810_ClearState_6(char *a0) {
     a0[0x2F7] = 0;
 }
 
-/* ── Branched_leaf: func_00281368 (0x54 B) — INCLUDE_ASM nonmatching ── */
+/* ── Branched_leaf: func_00281368 (0x54 B) ── */
 
-INCLUDE_ASM("nonmatching", func_00281368);
+__attribute__((section(".text.func_00281368")))
+void func_00281368(unsigned char *p, int mode) {
+    if (mode == 1) goto a1;
+    if (mode == 0) goto def;
+    if (mode == 2) goto a2;
+def:
+    p[0x2F4] = 0; p[0x2F5] = 7; p[0x2F6] = 0; p[0x2F7] = 0;
+    return;
+a1:
+    p[0x2F5] = 7; p[0x2F6] = 2; p[0x2F4] = 0; p[0x2F7] = 0;
+    return;
+a2:
+    p[0x2F5] = 7; p[0x2F6] = 4; p[0x2F4] = 0; p[0x2F7] = 0;
+}
 
 /* ── Group B6 (6-insn, 2F7=a1) ── */
 
@@ -84,9 +107,26 @@ void Obj2810_SetState_9_a1(char *a0, int a1) {
     a0[0x2F4] = 0;
 }
 
-/* ── Branched_leaf: func_002813F0 (0x68 B) — INCLUDE_ASM nonmatching ── */
+/* ── Branched_leaf: func_002813F0 (0x68 B) ── */
 
-INCLUDE_ASM("nonmatching", func_002813F0);
+__attribute__((section(".text.func_002813F0")))
+void func_002813F0(unsigned char *p, int mode) {
+    if (mode == 1) goto a1;
+    if (mode == 0) goto def;
+    if (mode == 2) goto a2;
+    if (mode == 3) goto a3;
+def:
+    p[0x2F4] = 0; p[0x2F5] = 0xA; p[0x2F6] = 0; p[0x2F7] = 0;
+    return;
+a1:
+    p[0x2F5] = 0xA; p[0x2F6] = 2; p[0x2F4] = 0; p[0x2F7] = 0;
+    return;
+a2:
+    p[0x2F5] = 0xA; p[0x2F6] = 4; p[0x2F4] = 0; p[0x2F7] = 0;
+    return;
+a3:
+    p[0x2F5] = 0xA; p[0x2F6] = 6; p[0x2F4] = 0; p[0x2F7] = 0;
+}
 
 /* ── Group B6 (6-insn, 2F7=a1) ── */
 
@@ -99,9 +139,31 @@ void Obj2810_SetState_E_a1(char *a0, int a1) {
     a0[0x2F4] = 0;
 }
 
-/* ── Branched_leaf: func_00281470 (0x44 B) — INCLUDE_ASM nonmatching ── */
+/* ── Branched_leaf: func_00281470 (0x44 B) ── */
 
-INCLUDE_ASM("nonmatching", func_00281470);
+__attribute__((section(".text.func_00281470")))
+void func_00281470(int a0, unsigned char a1) {
+    switch (a1) {
+    case 0:
+        *(unsigned char *)(a0 + 0x2F4) = 0;
+        *(unsigned char *)(a0 + 0x2F5) = 0xF;
+        *(unsigned char *)(a0 + 0x2F6) = 0;
+        *(unsigned char *)(a0 + 0x2F7) = 0;
+        break;
+    case 1:
+        *(unsigned char *)(a0 + 0x2F4) = 0;
+        *(unsigned char *)(a0 + 0x2F5) = 0xF;
+        *(unsigned char *)(a0 + 0x2F6) = 2;
+        *(unsigned char *)(a0 + 0x2F7) = 0;
+        break;
+    default:
+        *(unsigned char *)(a0 + 0x2F4) = 0;
+        *(unsigned char *)(a0 + 0x2F5) = 0xF;
+        *(unsigned char *)(a0 + 0x2F6) = 0;
+        *(unsigned char *)(a0 + 0x2F7) = 0;
+        break;
+    }
+}
 
 /* ── Group A (6-insn, 2F6=2F7=0) ── */
 
@@ -134,8 +196,37 @@ void Obj2810_SetState_D_a1(char *a0, int a1) {
 
 /* ── Branched_leaf: func_00281500, func_00281560 (0x5C B each) — nonmatching ── */
 
-INCLUDE_ASM("nonmatching", func_00281500);
-INCLUDE_ASM("nonmatching", func_00281560);
+__attribute__((section(".text.func_00281500")))
+void func_00281500(unsigned char *p, int mode) {
+    int m = mode & 0xFF;
+    if (m == 1) goto a1;
+    if (m < 2) goto def;
+    if (m == 2) goto a2;
+def:
+    p[0x2F4] = 0; p[0x2F5] = 0x10; p[0x2F6] = 0; p[0x2F7] = 0;
+    return;
+a1:
+    p[0x2F5] = 0x10; p[0x2F6] = 2; p[0x2F4] = 0; p[0x2F7] = 0;
+    return;
+a2:
+    p[0x2F5] = 0x10; p[0x2F6] = 4; p[0x2F4] = 0; p[0x2F7] = 0;
+}
+
+__attribute__((section(".text.func_00281560")))
+void func_00281560(unsigned char *p, int mode) {
+    int m = mode & 0xFF;
+    if (m == 1) goto a1;
+    if (m < 2) goto def;
+    if (m == 2) goto a2;
+def:
+    p[0x2F4] = 0; p[0x2F5] = 0x11; p[0x2F6] = 0; p[0x2F7] = 0;
+    return;
+a1:
+    p[0x2F5] = 0x11; p[0x2F6] = 2; p[0x2F4] = 0; p[0x2F7] = 0;
+    return;
+a2:
+    p[0x2F5] = 0x11; p[0x2F6] = 4; p[0x2F4] = 0; p[0x2F7] = 0;
+}
 
 /* ── Getter: lw v0,0x1560(a0); jr ra; delay:andi v0,v0,1 ── */
 

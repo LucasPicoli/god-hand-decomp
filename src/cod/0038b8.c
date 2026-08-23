@@ -44,7 +44,14 @@ void *func_0038B8B0(void) {
     }
     return s0;
 }
-INCLUDE_ASM("nonmatching", stossc__9streambuf);
+/* streambuf::stossc — advance gptr while it is below egptr. */
+__attribute__((section(".text.stossc__9streambuf")))
+void stossc__9streambuf(int *p) {
+    int a = p[1];
+    if ((unsigned int)a < (unsigned int)p[2]) {
+        p[1] = a + 1;
+    }
+}
 INCLUDE_ASM("nonmatching", func_0038BA10);
 INCLUDE_ASM("nonmatching", func_0038BA38);
 __attribute__((section(".text.func_0038BA68")))
@@ -148,7 +155,15 @@ char *Obj38B8_GetPtrField4B(char *a0) {
 }
 
 INCLUDE_ASM("nonmatching", setg__9streambufPcT1T1);
-INCLUDE_ASM("nonmatching", func_0038BD40);
+/* func_0038BD40: the two do{}while(0) barriers keep the retail store order. */
+__attribute__((section(".text.func_0038BD40")))
+void func_0038BD40(int *p, int a, int b) {
+    p[6] = b;
+    do { } while (0);
+    p[4] = a;
+    do { } while (0);
+    p[5] = a;
+}
 __attribute__((section(".text.Obj38B8_AddField14")))
 int Obj38B8_AddField14(char *a0, int a1) {
     int v = *(int *)(a0 + 0x14) + a1;
@@ -265,7 +280,15 @@ __attribute__((section(".text.Obj38B8_AndNotByte1A")))
 void Obj38B8_AndNotByte1A(char *a0, int a1) {
     a0[0x1A] = (unsigned char)(a0[0x1A] & ~a1);
 }
-INCLUDE_ASM("nonmatching", func_0038BF38);
+/* func_0038BF38: exchange word 0 and set bit 2 of byte 0x1A when v is zero. */
+__attribute__((section(".text.func_0038BF38")))
+int func_0038BF38(int *p, unsigned int v) {
+    unsigned int t = v < 1;
+    int old = p[0];
+    p[0] = v;
+    *((unsigned char *)p + 0x1A) = t << 2;
+    return old;
+}
 __attribute__((section(".text.Obj38B8_GetField0_v2")))
 int Obj38B8_GetField0_v2(char *a0) {
     return *(int *)a0;
@@ -285,7 +308,11 @@ __attribute__((section(".text.Obj38B8_GetByte1A_Mask6")))
 unsigned int Obj38B8_GetByte1A_Mask6(char *a0) {
     return (unsigned char)a0[0x1A] & 0x6;
 }
-INCLUDE_ASM("nonmatching", func_0038BF78);
+/* func_0038BF78: return -1 when byte 0x1A has neither bit 1 nor bit 2. */
+__attribute__((section(".text.func_0038BF78")))
+unsigned int func_0038BF78(unsigned char *p) {
+    return (p[0x1A] & 6) ? 0 : 0xFFFFFFFF;
+}
 __attribute__((section(".text.Obj38B8_GetByte1A")))
 unsigned int Obj38B8_GetByte1A(char *a0) {
     return (unsigned char)a0[0x1A];

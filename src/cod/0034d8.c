@@ -62,8 +62,22 @@ int Obj34D8_GetTri78_Times100(char *a0) {
     return v1 * 100 + base;
 }
 
-/* ── func_0034DB20: PERMANENT (bnel) ─────────────────────────────────────── */
-INCLUDE_ASM("permanent", func_0034DB20);
+/* ── func_0034DB20 ──────────────────────────────────────────────────────────
+ * The old "PERMANENT (bnel)" note is wrong.  cygnus-2.96 emits the bnel from
+ * two plain early returns once the +0xD4 base sits in a local. */
+__attribute__((section(".text.func_0034DB20")))
+int func_0034DB20(char *p)
+{
+    char *q = p + 0xD4;
+
+    if (*(int *)(p + 0x78) == 0) {
+        return -1;
+    }
+    if (*(int *)(q + 0x14) != 0) {
+        return *(int *)(q + 0x18);
+    }
+    return -1;
+}
 
 /* ── func_0034DB48: single addiu $v0,$v0,0 — no jr $ra; unrepresentable ──── */
 INCLUDE_ASM("nonmatching", func_0034DB48);

@@ -83,13 +83,18 @@ int Obj33F8_GetWord_C_FA68(char *a0) {
     return *(int *)(a0 + 0xC);
 }
 
-/* ── Branched store functions — T0 attempt: too many bytes generated ──────── */
-INCLUDE_ASM("nonmatching", func_0033FA70);
-INCLUDE_ASM("nonmatching", func_0033FAA0);
-INCLUDE_ASM("nonmatching", func_0033FAD0);
+/* ── Branched store functions — moved to src/cod/0033fa70.c ──────────────── */
+/* func_0033FA70, func_0033FAA0 and func_0033FAD0 match under sn-2.95.3-136   */
+/* only.  This TU needs cygnus-2.96, so the three live in their own TU.       */
 
-/* ── func_0033FB00 — acquire lock (T0 attempt: too many bytes) ──────────── */
-INCLUDE_ASM("nonmatching", func_0033FB00);
+/* ── func_0033FB00 — acquire lock ───────────────────────────────────────── */
+__attribute__((section(".text.func_0033FB00")))
+void func_0033FB00(int *p) {
+    if (p[3] == 0) {
+        p[4] = 0;
+        p[3] = 1;
+    }
+}
 
 /* ── Obj33F8_ResetLock_FB20 — zero lock + memset sub-struct ──────────────────────── */
 __attribute__((section(".text.Obj33F8_ResetLock_FB20")))
@@ -98,8 +103,13 @@ void Obj33F8_ResetLock_FB20(char *a0) {
     func_003A52F0(a0 + 0x28, 0, 8);
 }
 
-/* ── func_0033FB48 — clear lock if == 3 (beql branch, T0 too many bytes) ─── */
-INCLUDE_ASM("nonmatching", func_0033FB48);
+/* ── func_0033FB48 — clear lock if == 3 ─────────────────────────────────── */
+__attribute__((section(".text.func_0033FB48")))
+void func_0033FB48(int *p) {
+    if (p[3] == 3) {
+        p[3] = 0;
+    }
+}
 
 /* ── Obj33F8_GetWord_10_FB60 — return *(int*)(a0+0x10) ────────────────────────────── */
 __attribute__((section(".text.Obj33F8_GetWord_10_FB60")))

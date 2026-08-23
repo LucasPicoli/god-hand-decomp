@@ -39,8 +39,18 @@ int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
 
 INCLUDE_ASM("nonmatching", func_0035C3A0);
 INCLUDE_ASM("nonmatching", func_0035C480);
-/* Medium-leaf (nonmatching — instruction scheduling hard to reproduce exactly): */
-INCLUDE_ASM("nonmatching", func_0035C1C0);
+/* func_0035C1C0: two strided table writes into base — a3 at stride 0x44
+ * (+0x1F44), a1 at stride 0x74 (+0x135C).  The intermediate int `r` keeps the
+ * addu operand order retail uses. */
+__attribute__((section(".text.func_0035C1C0")))
+void func_0035C1C0(char *base, int a1, int a2, int a3) {
+    char *q = base + a1 * 0x44;
+    int r = a2 * 4 + (int)q;
+    char *w = base + a3 * 0x74;
+
+    *(int *)(r + 0x1F44) = a3;
+    *(int *)(w + 0x135C) = a1;
+}
 
 /* func_0035C200 (RE4 twin): two strided table writes into a0 — a2 at stride
  * 0x44 (+0x1F40), a1 at stride 0x74 (+0x1360). Offsets hoisted to locals so the

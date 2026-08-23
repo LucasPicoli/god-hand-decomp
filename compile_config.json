@@ -223,7 +223,10 @@
     },
     {
       "path": "src/cod/0033f8.c",
-      "compiler": "cygnus-2.96"
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     },
     {
       "path": "src/cod/0034d8.c",
@@ -8547,6 +8550,29 @@
     {
       "path": "src/cod/00397100.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "_comment": "Wave 18 themed-TU landings.  integrate_batch skips a themed TU by design, so these nine TUs took a hand edit.  A lane reports the FIRST key that matched, not the only one, so each key below was chosen by scoring EVERY body in the TU, not just the new ones."
+    },
+    {
+      "path": "src/cod/002b28.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/002810.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0033fa70.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOl2b.c",
+      "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/object/cOmWeapon.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -12509,21 +12535,21 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033FA70",
       "size": 48,
-      "tu": "src/cod/0033f8.c"
+      "tu": "src/cod/0033fa70.c"
     },
     {
       "name": "func_0033FAA0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033FAA0",
       "size": 48,
-      "tu": "src/cod/0033f8.c"
+      "tu": "src/cod/0033fa70.c"
     },
     {
       "name": "func_0033FAD0",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033FAD0",
       "size": 48,
-      "tu": "src/cod/0033f8.c"
+      "tu": "src/cod/0033fa70.c"
     },
     {
       "name": "func_0033FB00",
