@@ -2,7 +2,7 @@
 #include "include_asm.h"
 
 /* -- Forward declarations for tail-call targets ----------------------------- */
-extern int func_0033D040(void *a0);
+extern int Forward33C548_33D040(void *a0);
 extern int Obj33C8_GetShort_98(void *a0);
 extern int Obj33C8_GetField_14(void *a0);
 extern int func_0033CE98(void *a0);
@@ -40,10 +40,10 @@ void Obj3270_SetField_9C(void *a0, int a1) {
     *(int *)((char *)a0 + 0x9C) = a1;
 }
 
-/* addiu sp,-0x10; sd ra; ld ra; j func_0033D040; addiu sp,+0x10 */
+/* addiu sp,-0x10; sd ra; ld ra; j Forward33C548_33D040; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3270_Tramp_0033D040_7728")))
 int Obj3270_Tramp_0033D040_7728(void *a0) {
-    return func_0033D040(a0);
+    return Forward33C548_33D040(a0);
 }
 
 /* sw $a1, 0x50($a0) only — 1-insn fallthrough, no jr $ra */
