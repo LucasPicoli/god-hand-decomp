@@ -50123,17 +50123,66 @@ Forward331CE0_333F80 = 0x00333F80; // type:func   (was inside func_00333F78)
 func_00333FA0 = 0x00333FA0; // type:func   (was inside func_00333F98)
 func_00335A18 = 0x00335A18; // type:func   (was inside func_00335A08)
 func_00335B88 = 0x00335B88; // type:func   (was inside func_00335B70)
-func_00337D24 = 0x00337D24; // type:func   (was inside func_00337D08)
 func_003388B0 = 0x003388B0; // type:func   (was inside func_00338898)
 Forward33C548_33D040 = 0x0033D040; // type:func   (was inside func_0033D038)
-func_0033F694 = 0x0033F694; // type:func   (was inside func_0033F670)
 func_00347218 = 0x00347218; // type:func   (was inside func_00347208)
 func_003475F0 = 0x003475F0; // type:func   (was inside func_003475E8)
 func_00348CB8 = 0x00348CB8; // type:func   (was inside func_00348CB0)
 Forward35D538_34D048 = 0x0034D048; // type:func   (was inside func_0034D008)
 func_003504A0 = 0x003504A0; // type:func   (was inside func_00350490)
 Forward36CC80_35FD58 = 0x0035FD58; // type:func   (was inside func_0035FD50)
-func_0035FDA8 = 0x0035FDA8; // type:func   (was inside func_0035FD80)
 func_0036CCC8 = 0x0036CCC8; // type:func   (was inside func_0036CCB8)
 func_00378610 = 0x00378610; // type:func   (was inside func_00378608)
 func_003984D8 = 0x003984D8; // type:func   (was inside _sceCd_cd_callback)
+
+
+// wave 18 (2026-08-23): 35 more DEAD-HEAD boundary symbols.  A declared span
+// starts BEFORE the real entry and opens with the previous function's epilogue,
+// so the body reads registers nothing writes and no C form exists.
+//
+// TWO selectors find this class and they are DISJOINT.  The `alabel` arm (lane
+// K2) keys on a spimdisasm alabel; the reference arm (lane K3) keys on a .word,
+// a %hi/%lo pair or a cross-boundary j.  A reference from OUTSIDE the
+// declaration proves an ENTRY; a reference from INSIDE proves a LABEL.
+//
+// THREE rows below are MERGE cases.  Wave 18 lane K2 measured their true entry
+// 4 B EARLIER than the 2026-08-22 block assumed, because gcc scheduled a lui
+// ABOVE the prologue.  Their late symbols (func_00337D24, func_0033F694,
+// func_0035FDA8) are REMOVED in this same edit; without the removal the three
+// functions stay cut in two and cannot land.
+
+func_00331CE0 = 0x00331CE0; // type:func   (was inside func_00331CD8)
+func_00337D20 = 0x00337D20; // type:func   (was inside func_00337D08)
+func_0033C708 = 0x0033C708; // type:func   (was inside func_0033C700)
+func_0033CE80 = 0x0033CE80; // type:func   (was inside func_0033CE78)
+func_0033D2D0 = 0x0033D2D0; // type:func   (was inside func_0033D2C8)
+func_0033F690 = 0x0033F690; // type:func   (was inside func_0033F670)
+func_003597D0 = 0x003597D0; // type:func   (was inside func_003597B0)
+func_0035CB20 = 0x0035CB20; // type:func   (was inside func_0035CB18)
+func_0035D538 = 0x0035D538; // type:func   (was inside func_0035D530)
+func_0035FC58 = 0x0035FC58; // type:func   (was inside func_0035FC38)
+func_0035FC78 = 0x0035FC78; // type:func   (was inside func_0035FC70)
+func_0035FD98 = 0x0035FD98; // type:func   (was inside func_0035FD80)
+func_00360710 = 0x00360710; // type:func   (was inside func_003606F8)
+func_00360740 = 0x00360740; // type:func   (was inside func_00360730)
+func_00360CA0 = 0x00360CA0; // type:func   (was inside func_00360C90)
+func_00360CF0 = 0x00360CF0; // type:func   (was inside func_00360CD0)
+func_003669B0 = 0x003669B0; // type:func   (was inside func_00366978)
+func_00369FB0 = 0x00369FB0; // type:func   (was inside func_00369FA8)
+func_001BF2E8 = 0x001BF2E8; // type:func   (was inside func_001BF2E0, head 8 B)
+func_003248C0 = 0x003248C0; // type:func   (was inside func_003248B0, head 16 B)
+func_00161688 = 0x00161688; // type:func   (was inside func_00161668, head 32 B)
+func_003071E8 = 0x003071E8; // type:func   (was inside func_003071E0, head 8 B)
+func_0032D170 = 0x0032D170; // type:func   (was inside func_0032D168, head 8 B)
+func_002BAE68 = 0x002BAE68; // type:func   (was inside func_002BAE60, head 8 B)
+func_002D9F30 = 0x002D9F30; // type:func   (was inside func_002D9F28, head 8 B)
+func_0013F118 = 0x0013F118; // type:func   (was inside func_0013F110, head 8 B)
+func_00143558 = 0x00143558; // type:func   (was inside func_00143550, head 8 B)
+func_001B80C0 = 0x001B80C0; // type:func   (was inside func_001B80B0, head 16 B)
+func_0013D048 = 0x0013D048; // type:func   (was inside func_0013D030, head 24 B)
+func_0013C220 = 0x0013C220; // type:func   (was inside func_0013C218, head 8 B)
+func_001342B8 = 0x001342B8; // type:func   (was inside func_001342B0, head 8 B)
+func_00304ED0 = 0x00304ED0; // type:func   (was inside func_00304E88, head 72 B)
+func_003B6470 = 0x003B6470; // type:func   (was inside func_003B6468, head 8 B)
+func_003211F8 = 0x003211F8; // type:func   (was inside terminate, head 24 B)
+func_00321208 = 0x00321208; // type:func   (was inside terminate, head 40 B)
