@@ -1,0 +1,226 @@
+/* sn-2.95.3-136 matched TU. */
+
+extern char D_00567D80[];
+extern char D_00567D70[];
+extern char D_00567E80[];
+extern char D_00567F80[];
+extern char D_00567FA0[];
+
+typedef struct {
+    float x;
+    float y;
+    float z;
+    float w;
+} Vec4;
+
+
+
+
+
+
+
+__attribute__((section(".text.func_00164980")))
+void func_00164980(void *a0, int a1) {
+    Vec4 *pa;
+    float *q;
+    Vec4 *pb;
+    Vec4 *pc;
+    Vec4 *pd;
+
+    if (a1 != 0xFFFF) return;
+    if (a0 == 0) return;
+
+    pa = (Vec4 *)D_00567D80;
+    q = (float *)D_00567D70;
+    pb = (Vec4 *)D_00567E80;
+    pc = (Vec4 *)D_00567F80;
+    pd = (Vec4 *)D_00567FA0;
+
+    q[0] = 0.0f;
+    q[1] = 0.0f;
+    q[2] = 0.0f;
+
+    pa->x = 102.0f;
+    pa->y = 276.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 165.0f;
+    pa->y = 210.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 116.0f;
+    pa->y = 178.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 133.0f;
+    pa->y = 105.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 168.0f;
+    pa->y = 121.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 187.0f;
+    pa->y = 172.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 235.0f;
+    pa->y = 138.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 279.0f;
+    pa->y = 160.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 310.0f;
+    pa->y = 204.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 335.0f;
+    pa->y = 185.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 312.0f;
+    pa->y = 151.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 325.0f;
+    pa->y = 97.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 358.0f;
+    pa->y = 93.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 376.0f;
+    pa->y = 128.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 404.0f;
+    pa->y = 106.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+    pa->x = 454.0f;
+    pa->y = 57.0f;
+    pa->z = 0.0f;
+    pa->w = 1.0f;
+    pa++;
+
+    pb->x = 11.0f;
+    pb->y = -35.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 3.0f;
+    pb->y = -13.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = -63.0f;
+    pb->y = -43.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 63.0f;
+    pb->y = -55.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = -8.0f;
+    pb->y = 32.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 91.0f;
+    pb->y = 16.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 35.0f;
+    pb->y = -71.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 0.0f;
+    pb->y = 44.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 55.0f;
+    pb->y = -15.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 3.0f;
+    pb->y = -21.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = -64.0f;
+    pb->y = -46.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 11.0f;
+    pb->y = -8.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 10.0f;
+    pb->y = 35.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 13.0f;
+    pb->y = 1.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 44.0f;
+    pb->y = -97.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+    pb->x = 11.0f;
+    pb->y = -26.0f;
+    pb->z = 0.0f;
+    pb->w = 1.0f;
+    pb++;
+
+    pc->x = 102.0f;
+    pc->y = 276.0f;
+    pc->z = 0.0f;
+    pc->w = 1.0f;
+    pc++;
+    pc->x = 171.0f;
+    pc->y = 213.0f;
+    pc->z = 0.0f;
+    pc->w = 1.0f;
+    pc++;
+
+    pd->x = -21.0f;
+    pd->y = -16.0f;
+    pd->z = 0.0f;
+    pd->w = 1.0f;
+    pd++;
+    pd->x = 7.0f;
+    pd->y = -48.0f;
+    pd->z = 0.0f;
+    pd->w = 1.0f;
+    pd++;
+}
