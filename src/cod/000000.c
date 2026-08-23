@@ -2837,8 +2837,6 @@ INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
 
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
 
-INCLUDE_ASM("nonmatching", cOm53_setGetOffEm);
-
 INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
 
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
@@ -2883,8 +2881,6 @@ INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 
 INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
 
-INCLUDE_ASM("nonmatching", cScenario_isCamEnd);
-
 INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 
 INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
@@ -2894,6 +2890,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
