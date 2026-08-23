@@ -2902,8 +2902,6 @@ INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 
 INCLUDE_ASM("nonmatching", cScenario_setOmSuspend);
 
-INCLUDE_ASM("nonmatching", cScrArray_SearchScroll);
-
 INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
 INCLUDE_ASM("nonmatching", SetEventFrame);
@@ -2913,6 +2911,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
