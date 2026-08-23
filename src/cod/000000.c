@@ -2854,8 +2854,6 @@ INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
 
 INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
 
-INCLUDE_ASM("nonmatching", cDvd_Check);
-
 INCLUDE_ASM("nonmatching", cEm00_setSitChair);
 
 INCLUDE_ASM("nonmatching", cEm00_setR302Switch);
@@ -2911,6 +2909,7 @@ INCLUDE_ASM("nonmatching", KeyStop);
 INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
