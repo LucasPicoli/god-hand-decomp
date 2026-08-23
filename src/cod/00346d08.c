@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0035FC58(int a0, int a1);
+extern void SetField_1_35FC58(int a0, int a1);
 
 __attribute__((section(".text.func_00346D08")))
 void func_00346D08(int *a0, int *a1) {
@@ -15,5 +15,5 @@ void func_00346D08(int *a0, int *a1) {
     } else {
         s1 = a0[0x13];
     }
-    func_0035FC58(func_00346C48(a0), s1);
+    SetField_1_35FC58(func_00346C48(a0), s1);
 }
