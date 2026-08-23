@@ -2815,7 +2815,6 @@ INCLUDE_ASM("nonmatching", chack_point_line);
 INCLUDE_ASM("nonmatching", MotionGetParam);
 INCLUDE_ASM("nonmatching", SetEv61HumanAlive);
 INCLUDE_ASM("nonmatching", Dest_ck);
-INCLUDE_ASM("nonmatching", setColorScrollLayer);
 INCLUDE_ASM("nonmatching", displayOmLayer);
 INCLUDE_ASM("nonmatching", getItemNumInRoom);
 INCLUDE_ASM("nonmatching", SetEventCutEffect);
@@ -2887,9 +2886,8 @@ INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
 INCLUDE_ASM("nonmatching", KeyStop);
 
-INCLUDE_ASM("nonmatching", classPAD_WORK_Pad_act_set);
-
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
