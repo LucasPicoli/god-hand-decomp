@@ -179,6 +179,36 @@ def _is_ee_fp_hazard_producer(line: str) -> bool:
     return op.startswith(("mtc1", "ctc1", "li.s", "li.d")) or bool(_HAZARD_FP_CMP_RE.match(line))
 
 
+_HAZARD_BC1_RE = re.compile(r"^\s*bc1[tf]l?\b")
+
+
+def _libm_compare_slot_is_empty(lines, i) -> bool:
+    """True if the `bc1*` consuming this compare has an EMPTY delay slot.
+
+    Retail's libm objects pad a `c.<cond>.s` -> `bc1*` pair only when the branch
+    delay slot holds real work. With an EMPTY slot they carry the nop IN the slot
+    and none before the branch: `c.eq.s / bc1t / nop` is three words, and
+    `c.eq.s / nop / bc1t / nop` is four.
+
+    SCOPE, and it is the whole point of the `libm` gate. A full decode of all
+    3,212 `c.<cond>.[sd]` sites in retail says this predicate holds 27 of 27
+    inside 0x3A0000-0x3B0000 and FAILS 388 times outside it -- 368 game-code
+    sites are padded with an empty slot, across 172 functions. Applied globally
+    it fabricates a missing word at every one. A predicate measured inside one
+    vendor object is a per-object rule until a whole-binary decode says
+    otherwise.
+    """
+    nxt = []
+    for ln in lines[i + 1:]:
+        s = ln.strip()
+        if not s or s.startswith((".", "#")) or s.endswith(":"):
+            continue
+        nxt.append(s)
+        if len(nxt) == 2:
+            break
+    return len(nxt) == 2 and bool(_HAZARD_BC1_RE.match(nxt[0])) and nxt[1] == "nop"
+
+
 def _materialize_hazard_nops(s_path: Path, rules=None) -> None:
     """Turn cc1's commented ``#nop`` EE FP hazard hints into real nops.
 
@@ -201,10 +231,15 @@ def _materialize_hazard_nops(s_path: Path, rules=None) -> None:
     out = []
     last_instr = None
     mfc1_pend = False
-    for line in lines:
+    for _i, line in enumerate(lines):
         stripped = line.strip()
         if stripped == "#nop" and last_instr is not None:
             if _is_ee_fp_hazard_producer(last_instr):
+                if (libm and _HAZARD_FP_CMP_RE.match(last_instr)
+                        and _libm_compare_slot_is_empty(lines, _i)):
+                    # libm, empty slot: retail carries the nop IN the slot.
+                    last_instr = None
+                    continue
                 if libm and not _HAZARD_FP_CMP_RE.match(last_instr):
                     # libm: drop the FIRST nop after the mtc1 family.  Setting
                     # last_instr to None keeps a following nop -- the div.s
@@ -519,6 +554,7 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     want_cvtdiv = _FP_RULE_CVTDIV in rules
     lines = text.split("\n")
     insert_before = [0] * len(lines)
+    fence_site = [False] * len(lines)
     reorder = True
     set_stack: list[bool] = []
     prev_mtc1_dest: str | None = None
@@ -568,14 +604,44 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
                     and _fp_op_reads(line, prev_mtc1_dest)):
                 insert_before[i] += 1  # Rule A
             insert_before[i] += pad
+            if pad > 0 and is_fdiv_site:
+                fence_site[i] = True
         m = _MTC1_DEST_RE.match(line)
         prev_mtc1_dest = m.group(1) if (m and reorder) else None
 
     out: list[str] = []
     for i, line in enumerate(lines):
+        fence = (insert_before[i] and fence_site[i]
+                 and _fence_divide_before_branch(lines, i))
+        if fence:
+            out.append("\t.set\tpush")
+            out.append("\t.set\tnoreorder")
         out.extend(["\tnop"] * insert_before[i])
         out.append(line)
+        if fence:
+            out.append("\t.set\tpop")
     return "\n".join(out)
+
+def _fence_divide_before_branch(lines, i) -> bool:
+    """True if the divide-class op at *i* is IMMEDIATELY followed by a branch.
+
+    The pad this pass inserts is a bare ``nop`` inside a ``.set reorder``
+    region, but the vendor cc1 template that it reproduces is fenced. So where
+    retail reads ``<div.s|sqrt.s|rsqrt.s> ; <branch> ; nop``, ee-as is free to
+    hoist the divide-class op into the branch delay slot, and the body comes out
+    ONE WORD SHORT. 38 such sites sit in 27 unmatched functions.
+
+    The fence is narrow ON PURPOSE. It fires only where a branch follows the op,
+    which is the only shape ee-as can rewrite this way, so every already-matched
+    TU that carries the pad in straight-line code is untouched.
+    """
+    for ln in lines[i + 1:]:
+        s = ln.strip()
+        if not s or s.startswith((".", "#")) or s.endswith(":"):
+            continue
+        return _is_branch_or_jump(s)
+    return False
+
 
 def _insert_ee_fp_hazard_nops_file(s_path: Path, rules=None) -> None:
     """In-place application of :func:`_insert_ee_fp_hazard_nops` to ``s_path``."""
