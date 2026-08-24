@@ -219,8 +219,11 @@ class TestCommittedConfig:
         [entry] = [e for e in cfg.carved_funcs if e["name"] == name]
         assert entry["vaddr"] == vaddr
         assert entry["size"] == size
-        assert entry.get("tu") is None      # standalone carve, no C owner
         assert entry.get("lib") is True
+        # No assertion on "tu".  The ticket is that the entry REACHES the
+        # build; whether it arrives as a standalone carve or under a C owner
+        # is decomp progress, not the property under test.  Three of these
+        # four gained a "tu" after later waves matched them.
 
     def test_all_four_readers_agree_on_the_same_set(self):
         # The lockstep property. gen_part_funcs' manifest indexes the
