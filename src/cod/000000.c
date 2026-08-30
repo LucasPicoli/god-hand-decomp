@@ -2830,8 +2830,6 @@ INCLUDE_ASM("nonmatching", VecRotY);
 
 INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
-INCLUDE_ASM("nonmatching", Quaternion_SetVectorRotation);
-
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
 
 INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
@@ -2885,6 +2883,7 @@ INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 INCLUDE_ASM("nonmatching", KeyStop);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
