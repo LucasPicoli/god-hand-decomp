@@ -8688,6 +8688,10 @@
       "path": "src/cod/003af6f0.c",
       "compiler": "sn-2.95.3-136",
       "as": "sn"
+    },
+    {
+      "path": "src/cod/003a8048.c",
+      "compiler": "sn-2.95.3-136"
     }
   ],
   "_carved_funcs_doc": [
@@ -55636,6 +55640,27 @@
       "vaddr": "0x003AF7B8",
       "size": 188,
       "tu": "src/cod/003af6f0.c"
+    },
+    {
+      "name": "__malloc_lock",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003A8048",
+      "size": 96,
+      "tu": "src/cod/003a8048.c"
+    },
+    {
+      "name": "__malloc_unlock",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003A80A8",
+      "size": 64,
+      "tu": "src/cod/003a8048.c"
+    },
+    {
+      "name": "__mdiff",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003AF180",
+      "size": 396,
+      "tu": "src/cod/003a8048.c"
     }
   ],
   "build_dir": "build",
