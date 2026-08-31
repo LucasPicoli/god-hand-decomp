@@ -42,9 +42,15 @@ def main() -> int:
             raw_line = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]+ [0-9A-F]+ \*/ \.word 0x0*(?i:"
                                   + addr.lstrip("0") + r")$", re.MULTILINE)
             if label_re.search(text):
-                text = label_re.sub(lambda m: m.group(1) + "0x" + addr.lower(),
-                                    text, count=1)
-                converted += 1
+                # EVERY occurrence, not the first. One arm label can fill several
+                # table slots (func_00273230 repeats `.L002735FC` four times), and
+                # a caller that lists the label ONCE -- which land_jtbl.py does,
+                # because its append is idempotent -- then left the rest as
+                # undefined `.L` references and the link failed. There is no case
+                # where one occurrence must stay a label while another goes raw.
+                text, n = label_re.subn(lambda m: m.group(1) + "0x" + addr.lower(),
+                                        text)
+                converted += n
             elif raw_line.search(text):
                 raw_already += 1
             else:
