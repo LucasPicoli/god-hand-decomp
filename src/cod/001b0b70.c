@@ -125,8 +125,80 @@ int BuildObjEntry_387160(short arg1, const void *src) {
 
 /* ──────────────────────────── large picks ─────────────────────────────── */
 
-/* func_001F35C0: 183 insns, 732 B — sq-prologue, saves $s0..$s4,$ra. */
-INCLUDE_ASM("nonmatching", ColiseumEmSelect__Initialize);
+/* ColiseumEmSelect__Initialize: 183 insns, 732 B — sq-prologue, saves $s0..$s4,$ra. */
+typedef struct { char b[0x28]; } EmEntry;
+
+extern void cIDManager_getLocalFileName();
+extern int cDvd_ReadAlloc();
+extern void cDvd_CheckWait();
+extern void cIDManager_setIDData();
+extern int GetTimerValue_1FA710();
+extern void func_001F4648();
+extern void func_001F4B78();
+extern void func_001F4840();
+extern void func_001F4068();
+extern void func_001F4248();
+extern void func_001F52A0();
+extern void func_001F5510();
+extern void func_001F53A8();
+
+extern short D_00568240[];
+extern EmEntry D_003BE8B0[];
+extern int D_003C2388;
+extern char D_0042BF40[];
+extern char D_00583F20[];
+extern char D_00754220[];
+extern int *D_003C2384;
+extern int *D_00569B70;
+extern int D_00747A2C;
+
+__attribute__((section(".text.ColiseumEmSelect__Initialize")))
+void ColiseumEmSelect__Initialize(char *a0)
+{
+    char buf[0x40];
+    short *hd;
+    int r;
+    short a;
+    short b;
+
+    hd = D_00568240;
+    *(int *)(a0 + 0x54) = 0;
+    a = hd[8];
+    b = hd[9];
+    *(short *)(a0 + 0x37D0) = a;
+    *(short *)(a0 + 0x37D4) = b;
+    *(short *)(a0 + 0x37D2) = a - b;
+    *(EmEntry *)(a0 + 0x37A8) = D_003BE8B0[a];
+    cIDManager_getLocalFileName(D_003C2388, buf, D_0042BF40, -1);
+    r = cDvd_ReadAlloc(D_00583F20, buf, a0 + 0x37D8, D_00754220, 0, 0, 0, 0);
+    cDvd_CheckWait(D_00583F20, r);
+    cIDManager_setIDData(*D_003C2384, 0x15, *(int *)(a0 + 0x37D8));
+    func_001F4648(a0 + 0x60);
+    func_001F4B78(a0 + 0x60, GetTimerValue_1FA710(&D_00569B70));
+    func_001F4840(a0 + 0x60);
+    func_001F4068(a0, 0, &D_003BE8B0[*(short *)(a0 + 0x37D4)], 1);
+    func_001F4068(a0, 1, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 1], 1);
+    func_001F4068(a0, 2, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 2], 1);
+    func_001F4068(a0, 3, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 3], 1);
+    func_001F4068(a0, 4, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 4], 1);
+    func_001F4068(a0, 5, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 5], 1);
+    func_001F4068(a0, 6, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 6], 1);
+    func_001F4248(a0, 1);
+    func_001F52A0(a0 + 0x60, *(unsigned short *)(a0 + 0x37D2), 1);
+    if (D_00747A2C & 0x200) {
+        D_00569B70[5] |= 0x800000;
+    }
+    if (D_00569B70[5] & 0x800000) {
+        *(short *)(a0 + 0x37D6) = 0x33;
+    } else {
+        *(short *)(a0 + 0x37D6) = 0x32;
+    }
+    func_001F5510(a0 + 0x60, *(short *)(a0 + 0x37D6), 7);
+    func_001F53A8(a0 + 0x60, 1);
+    *(int *)(a0 + 0x4) = 0;
+    *(int *)(a0 + 0x8) = 0;
+    *(int *)(a0 + 0xC) = 0;
+}
 
 /* func_001F4928: 147 insns, 588 B — sq-prologue, saves $s0..$s5,$ra. */
 extern void SetCustomIDDispOneOrAll_1F4778(int a0, int a1, int a2);
