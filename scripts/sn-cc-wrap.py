@@ -234,6 +234,36 @@ def _libm_compare_slot_is_empty(lines, i) -> bool:
     return len(nxt) == 2 and bool(_HAZARD_BC1_RE.match(nxt[0])) and nxt[1] == "nop"
 
 
+def _compare_slot_is_full(lines, i) -> bool:
+    """True if the `bc1*` consuming this compare has a NON-empty delay slot.
+
+    The complement of :func:`_libm_compare_slot_is_empty`, and NOT its negation:
+    this one also requires that a `bc1*` actually follows.  A `c.<cond>.s` whose
+    next instruction is something else returns False from both.
+
+    SCOPE. A whole-binary decode of all 3,066 `c.<cond>.[sd]` -> `bc1*` pairs in
+    retail says the pad is the rule and its absence is the exception: 2,673 of
+    2,693 full-slot pairs ARE padded. Applied globally this would delete a real
+    word at every one of them. It is a PER-TU opt-in for the same reason `libm`
+    is, and the twenty sites it describes sit in EIGHT functions, none of which
+    mixes the two forms:
+
+        func_0032A1B0 2  func_0032DD70 1  func_0033E6B8 3  func_00343C18 1
+        func_0035B6F8 1  func_0035B8C0 4  func_00366110 4  func_00366368 4
+
+    Census: `.scratch/decomp-velocity/findings/wave-2026-08-31/cmpfull_census.py`.
+    """
+    nxt = []
+    for ln in lines[i + 1:]:
+        s = ln.strip()
+        if not s or s.startswith((".", "#")) or s.endswith(":"):
+            continue
+        nxt.append(s)
+        if len(nxt) == 2:
+            break
+    return len(nxt) == 2 and bool(_HAZARD_BC1_RE.match(nxt[0])) and nxt[1] != "nop"
+
+
 def _materialize_hazard_nops(text: str, rules=None) -> str:
     """Turn cc1's commented ``#nop`` EE FP hazard hints into real nops.
 
@@ -250,6 +280,7 @@ def _materialize_hazard_nops(text: str, rules=None) -> str:
     if "#nop" not in text:
         return text
     libm = rules is not None and _FP_RULE_LIBM in rules
+    cmpfull = rules is not None and _FP_RULE_CMPFULL in rules
     lines = text.split("\n")
     out = []
     last_instr = None
@@ -261,6 +292,12 @@ def _materialize_hazard_nops(text: str, rules=None) -> str:
                 if (libm and _HAZARD_FP_CMP_RE.match(last_instr)
                         and _libm_compare_slot_is_empty(lines, _i)):
                     # libm, empty slot: retail carries the nop IN the slot.
+                    last_instr = None
+                    continue
+                if (cmpfull and _HAZARD_FP_CMP_RE.match(last_instr)
+                        and _compare_slot_is_full(lines, _i)):
+                    # cmpfull: retail does NOT pad a compare whose branch slot
+                    # holds real work. Eight functions, twenty sites, none mixed.
                     last_instr = None
                     continue
                 if libm and not _HAZARD_FP_CMP_RE.match(last_instr):
@@ -375,9 +412,11 @@ _FP_RULE_DIV1 = "div1"
 _FP_RULE_SQRT = "sqrt"
 _FP_RULE_CVTDIV = "cvtdiv"
 _FP_RULE_LIBM = "libm"
+_FP_RULE_CMPFULL = "cmpfull"
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
                    _FP_RULE_DIV1, _FP_RULE_SQRT, _FP_RULE_CVTDIV,
-                   _FP_RULE_LIBM)
+                   _FP_RULE_LIBM,
+                   _FP_RULE_CMPFULL)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
