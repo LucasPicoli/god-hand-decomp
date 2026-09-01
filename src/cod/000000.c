@@ -1273,31 +1273,9 @@ __attribute__((section(".text.Tramp_func_002AAC28_0013C508"))) void Tramp_func_0
  do { cIDBase_trans(); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0030A548_00147528"))) void Tramp_func_0030A548_00147528(void)
-{
-  func_0030A548();
- do { } while (0);
-}
 
-void func_0030A2E0(void);
-__attribute__((section(".text.Tramp_func_0030A2E0_00147548"))) void Tramp_func_0030A2E0_00147548(void)
-{
-  func_0030A2E0();
- do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_0030A2B0_001508D8"))) void Tramp_func_0030A2B0_001508D8(void)
-{
-  sceVu0ApplyMatrix();
- do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_0015B0F0_0015B080_15B080")))
-void Tramp_func_0015B0F0_0015B080_15B080(void)
-{
-  PostInc_D_00566E10_0015B0F0_15B0F0();
-  do { } while (0);
-}
 
 __attribute__((section(".text.Tramp_func_0015B0C0_0015B0A0")))
 void Tramp_func_0015B0C0_0015B0A0(void)
@@ -1310,61 +1288,13 @@ __attribute__((section(".text.Obj0000_Call_func_0015FD18_Field_48_161288"))) voi
  do { func_0015FD18(a0, *((int *) (0x48 + a0))); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0015FF10_001612A8_1612A8")))
-void Tramp_func_0015FF10_001612A8_1612A8(void)
-{
-  func_0015FF10();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_002AAC28_00161970_161970")))
-void Tramp_func_002AAC28_00161970_161970(void)
-{
-  cIDBase_trans();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_001614D0_00161BB0_161BB0")))
-void Tramp_func_001614D0_00161BB0_161BB0(void)
-{
-  ClearFields_1614D0();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_002AAC28_00162278_162278")))
-void Tramp_func_002AAC28_00162278_162278(void)
-{
-  cIDBase_trans();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_001614D0_00166618_166618")))
-void Tramp_func_001614D0_00166618_166618(void)
-{
-  ClearFields_1614D0();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_001614D0_001673B0_1673B0")))
-void Tramp_func_001614D0_001673B0_1673B0(void)
-{
-  ClearFields_1614D0();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
-void Tramp_func_002AAC28_001682A8_1682A8(void)
-{
-  cIDBase_trans();
-  do { } while (0);
-}
 
-__attribute__((section(".text.Tramp_func_001C29D0_0016F5E8_16F5E8")))
-void Tramp_func_001C29D0_0016F5E8_16F5E8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
 
 __attribute__((section(".text.Obj0000_Set_Short_202")))
 void Obj0000_Set_Short_202(unsigned char *a0)
@@ -1378,509 +1308,77 @@ void Obj0000_Set_Short_204(unsigned char *a0)
     do { func_0016B1F8(a0, *((short *)(a0 + 0x204))); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_001C29D0_0016F8E0")))
-void Tramp_func_001C29D0_0016F8E0(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_0016FBD8")))
-void Tramp_func_001C29D0_0016FBD8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_0016FE48")))
-void Tramp_func_001C29D0_0016FE48(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00170130")))
-void Tramp_func_001C29D0_00170130(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00170418")))
-void Tramp_func_001C29D0_00170418(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_001706E0")))
-void Tramp_func_001BFB80_001706E0(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_00170970")))
-void Tramp_func_001BFB80_00170970(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_00170C00")))
-void Tramp_func_001BFB80_00170C00(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_00170E90")))
-void Tramp_func_001BFB80_00170E90(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_00171000")))
-void Tramp_func_001BFB80_00171000(void)
-{
-  func_001BD6B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001717A0")))
-void Tramp_func_001B79B0_001717A0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BD6B0_00171C20")))
-void Tramp_func_001BD6B0_00171C20(void)
-{
-  func_001BD6B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00173198")))
-void Tramp_func_001B79B0_00173198(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001741E8")))
-void Tramp_func_001B79B0_001741E8(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00174FB0")))
-void Tramp_func_001B79B0_00174FB0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00176738")))
-void Tramp_func_001B79B0_00176738(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00177DC0")))
-void Tramp_func_001B79B0_00177DC0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_001784F8")))
-void Tramp_func_001C29D0_001784F8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_001787A0")))
-void Tramp_func_001C29D0_001787A0(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001789F8")))
-void Tramp_func_001B79B0_001789F8(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00178CC0")))
-void Tramp_func_001C29D0_00178CC0(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00178F58")))
-void Tramp_func_001C29D0_00178F58(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00179798")))
-void Tramp_func_001B79B0_00179798(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017A508")))
-void Tramp_func_001B79B0_0017A508(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017B548")))
-void Tramp_func_001B79B0_0017B548(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017C008")))
-void Tramp_func_001B79B0_0017C008(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BD6B0_0017C5B0")))
-void Tramp_func_001BD6B0_0017C5B0(void)
-{
-  func_001BD6B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017CE18")))
-void Tramp_func_001B79B0_0017CE18(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_0017D560")))
-void Tramp_func_001BC0A0_0017D560(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017DB40")))
-void Tramp_func_001B79B0_0017DB40(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017E658")))
-void Tramp_func_001B79B0_0017E658(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_0017EA28")))
-void Tramp_func_001BC0A0_0017EA28(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BD6B0_0017EB98")))
-void Tramp_func_001BD6B0_0017EB98(void)
-{
-  func_001BD6B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017EDD0")))
-void Tramp_func_001B79B0_0017EDD0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017F1D0")))
-void Tramp_func_001B79B0_0017F1D0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_0017F470")))
-void Tramp_func_001BC0A0_0017F470(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017F990")))
-void Tramp_func_001B79B0_0017F990(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0017FD80")))
-void Tramp_func_001B79B0_0017FD80(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001815B0")))
-void Tramp_func_001B79B0_001815B0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_001817C8")))
-void Tramp_func_001BC0A0_001817C8(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00182020")))
-void Tramp_func_001B79B0_00182020(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00182818")))
-void Tramp_func_001C29D0_00182818(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00182FD8")))
-void Tramp_func_001B79B0_00182FD8(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_001834F0")))
-void Tramp_func_001BFB80_001834F0(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_001837D8")))
-void Tramp_func_001C29D0_001837D8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00184A20")))
-void Tramp_func_001B79B0_00184A20(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_0014EFA8_001866A0")))
-void Tramp_func_0014EFA8_001866A0(void)
-{
-  cObjBase_KageDraw();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_00186928")))
-void Tramp_func_001BC0A0_00186928(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00187190")))
-void Tramp_func_001B79B0_00187190(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00187958")))
-void Tramp_func_001C29D0_00187958(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00187C18")))
-void Tramp_func_001C29D0_00187C18(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_00188528")))
-void Tramp_func_001B79B0_00188528(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00188C88")))
-void Tramp_func_001C29D0_00188C88(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00188F10")))
-void Tramp_func_001C29D0_00188F10(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018A110")))
-void Tramp_func_001B79B0_0018A110(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018AD88")))
-void Tramp_func_001B79B0_0018AD88(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018BAA0")))
-void Tramp_func_001B79B0_0018BAA0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018C8A8")))
-void Tramp_func_001B79B0_0018C8A8(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018D698")))
-void Tramp_func_001B79B0_0018D698(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018E450")))
-void Tramp_func_001B79B0_0018E450(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_0018EC28")))
-void Tramp_func_001C29D0_0018EC28(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BFB80_0018EE38")))
-void Tramp_func_001BFB80_0018EE38(void)
-{
-  func_001BFB80();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_0018F0A0")))
-void Tramp_func_001BC0A0_0018F0A0(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_0018FBF0")))
-void Tramp_func_001B79B0_0018FBF0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001915B8")))
-void Tramp_func_001B79B0_001915B8(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00191CC8")))
-void Tramp_func_001C29D0_00191CC8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_00191F30")))
-void Tramp_func_001BC0A0_00191F30(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001BC0A0_00192198")))
-void Tramp_func_001BC0A0_00192198(void)
-{
-  func_001BC0A0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001B79B0_001928B0")))
-void Tramp_func_001B79B0_001928B0(void)
-{
-  Tramp_00312708_1B79B0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00192BC8")))
-void Tramp_func_001C29D0_00192BC8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00192EF8")))
-void Tramp_func_001C29D0_00192EF8(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
-
-__attribute__((section(".text.Tramp_func_001C29D0_00193180")))
-void Tramp_func_001C29D0_00193180(void)
-{
-  func_001C29D0();
-  do { } while (0);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 __attribute__((section(".text.Obj0000_Set_Fields_1EC_280_Zero")))
 void Obj0000_Set_Fields_1EC_280_Zero(unsigned char *a0, unsigned char *a1)
