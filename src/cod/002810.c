@@ -6,13 +6,10 @@
 /* func_00281260: the do{}while(0) barriers keep the retail store order. */
 __attribute__((section(".text.func_00281260")))
 void func_00281260(unsigned char *p) {
-    p[0x2F7] = 0;
-    do { } while (0);
     p[0x2F4] = 0;
-    do { } while (0);
     p[0x2F5] = 0;
-    do { } while (0);
     p[0x2F6] = 0;
+    p[0x2F7] = 0;
 }
 
 /* ── Group B6 (6-insn, 2F7=a1): li; sb a1,2F7; sb v0,2F5; sb 0,2F4; jr; delay:2F6 ── */

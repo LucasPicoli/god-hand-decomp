@@ -17,8 +17,6 @@ char *func_001FE1E0(char *base) {
             break;
         }
     }
-    do {
-    } while (0);
     return base + 0xAC00;
 }
 

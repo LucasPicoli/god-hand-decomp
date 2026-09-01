@@ -6,12 +6,9 @@ __attribute__((section(".text.func_0036CC80")))
 void func_0036CC80(int *p, int a, int b, int c) {
     int *q = p + 2;
     int one = 1;
-    q[2] = b;
-    do { } while (0);
     q[0] = c;
-    do { } while (0);
     q[1] = a;
-    do { } while (0);
+    q[2] = b;
     p[1] = one;
 }
 

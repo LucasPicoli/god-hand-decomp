@@ -125,10 +125,10 @@ int func_002A96C0(int a, int b, int c)
 {
     int t = a + 7;
 
+    int nc = -c;
+
     t += c;
-    do {
-    } while (0);
-    t &= -c;
+    t &= nc;
     return t * b;
 }
 

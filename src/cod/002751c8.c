@@ -15,11 +15,8 @@ void cEm00_setR302Switch(unsigned char *p) {
     int v = 0x8F;
     if ((*(int *)(p + 0x564) ^ 0x252) == 0) {
         p[0x2F7] = 0;
-        do { } while (0);
-        p[0x2F5] = v;
-        do { } while (0);
         p[0x2F4] = 0;
-        do { } while (0);
         p[0x2F6] = 0;
+        p[0x2F5] = v;
     }
 }

@@ -158,11 +158,9 @@ INCLUDE_ASM("nonmatching", setg__9streambufPcT1T1);
 /* func_0038BD40: the two do{}while(0) barriers keep the retail store order. */
 __attribute__((section(".text.func_0038BD40")))
 void func_0038BD40(int *p, int a, int b) {
-    p[6] = b;
-    do { } while (0);
-    p[4] = a;
-    do { } while (0);
     p[5] = a;
+    p[4] = a;
+    p[6] = b;
 }
 __attribute__((section(".text.Obj38B8_AddField14")))
 int Obj38B8_AddField14(char *a0, int a1) {

@@ -25,7 +25,6 @@ int func_0017B940(char *p)
     func_0017C028(p, *(int *)(p + 0xF0), p + 0x100);
     tbl = (int)D_00421AD0;
     lo = 0;
-    do { } while (0);
     i = 0;
     while (i < 3) {
         j = 1;
@@ -65,7 +64,6 @@ int func_001A8980(char *p)
     func_001A9210(p, *(int *)(p + 0xF0), p + 0x100);
     tbl = (int)D_00427948;
     lo = 0;
-    do { } while (0);
     i = 0;
     while (i < 3) {
         j = 1;

@@ -265,8 +265,7 @@ int func_00174890(char *p)
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
         n = 1;
-        do { } while (0);
-    loop:
+        while (1) {
         ok1 = ((*(int *)&f[4] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
         *(int *)(obj1 + 0x154) |= 8;
@@ -275,7 +274,8 @@ int func_00174890(char *p)
         *(int *)(obj2 + 0x154) |= 0x10;
         i++;
         n++;
-        if (i < 13 && *(unsigned char *)(p + 0x2B4) != i) goto loop;
+        if (!(i < 13 && *(unsigned char *)(p + 0x2B4) != i)) break;
+        }
     }
     return 1;
 }
