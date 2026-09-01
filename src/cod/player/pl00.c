@@ -107,7 +107,7 @@ void pl00_DiscardThrowObj(void *a0)
     char *obj2;
     char *p2;
     char *dst;
-    volatile float buf[4];
+    float buf[4];
 
     obj = *(char **)(s0 + 0x6A0);
     if (obj == 0)

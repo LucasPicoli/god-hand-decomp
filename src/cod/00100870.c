@@ -66,11 +66,11 @@ extern char D_004613A0[];
     v[1] = 0.0f;                                                            \
     *(int *)&v[2] = 0;                                                      \
     v[3] = 1.0f;                                                            \
-    dst = (volatile float *)(p + 0x20B0);                                   \
-    if (dst != (volatile float *)v) {                                       \
+    dst = (float *)(p + 0x20B0);                                   \
+    if (dst != (float *)v) {                                       \
         dst[0] = v[0];                                                      \
         dst[1] = v[1];                                                      \
-        dst[2] = *(volatile float *)&v[2];                                  \
+        dst[2] = *(float *)&v[2];                                  \
     }                                                                       \
     *(float *)(p + 0x20C0) = 1.0471976f;                                    \
     func_001038E0(p, p + 0x2050, p + 0x4D0, 0.1f, 0.0f);
@@ -79,7 +79,7 @@ __attribute__((section(".text.func_00100870")))
 void func_00100870(char *p)
 {
     float v[4];
-    volatile float *dst;
+    float *dst;
 
     switch (cCoreSave_getCostumeNo(&D_00569B70)) {
     default:

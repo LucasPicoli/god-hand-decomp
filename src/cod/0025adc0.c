@@ -144,8 +144,8 @@ void func_0025ADC0(void *a0)
             t0 = vb[0];
             t1 = vb[1];
             dp[0] = t0;
-            *(volatile float *)&dp[1] = t1;
-            t2 = *(volatile float *)&vb[2];
+            *(float *)&dp[1] = t1;
+            t2 = *(float *)&vb[2];
             dp[2] = t2;
         }
         p = *(char **)(s1 + 0xF0);
