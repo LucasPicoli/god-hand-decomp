@@ -132,9 +132,10 @@ falsifier:
 # produces. They are ordinary in-scope work.
 #
 # REFUSED 2026-08-10 — the three whole-routine `mmi.h` consumers,
-# `sceVu0TransposeMatrix` (0x0030A3B0), `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8`
-# (0x0030A3F8) and `Tramp_MMI_COPY3Q_VADD_30A508` (0x0030A508), 3 fns / 232 B /
-# 0.00816%. Sony wrote them in C.
+# `sceVu0TransposeMatrix` (0x0030A3B0), `sceVu0InversMatrix` (0x0030A3F8) and
+# `sceVu0TransMatrix` (0x0030A508), 3 fns / 232 B / 0.00816%. Sony wrote them
+# in C. RE-TESTED 2026-09-01 against every copy of the SDK library on disk; the
+# refusal stands and is now stronger. See the RE-TEST block below.
 #
 #   The public Sony PS2 SDK ships `libvu0.a`, whose single member `libvu0.o`
 #   carries `__gnu_compiled_c` and `gcc2_compiled.` and names one source file,
@@ -156,21 +157,56 @@ falsifier:
 #
 #   The whole translation unit is C, not assembly. The retail address range
 #   0x0030A2B0-0x0030ABD8 holds 30 blocks, of which 19 are named `sceVu0*` or
-#   `Tramp_MMI_*` and all 19 are matched today. 16 of the 19 match from ordinary
+#   `sceVu0*` and all 19 are matched today. 16 of the 19 match from ordinary
 #   C or from per-op `vu0.h` macros; `sceVu0RotMatrix` matches from three plain
 #   function calls with no assembly at all.
 #
-#   Two of the three also recover their real Sony names, by the same byte test:
-#   `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8` is `sceVu0InversMatrix` and
-#   `Tramp_MMI_COPY3Q_VADD_30A508` is `sceVu0TransMatrix`. Two unmatched
-#   neighbours also name themselves: `func_0030A538` is `sceVu0CopyVector` and
-#   `func_0030A548` is `sceVu0CopyMatrix`.
+#   Two of the three also recover their real Sony names, by the same byte test.
+#   The rename LANDED 2026-09-01 and the ELF still equals retail:
+#   `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8` -> `sceVu0InversMatrix` (SDK 0x148) and
+#   `Tramp_MMI_COPY3Q_VADD_30A508` -> `sceVu0TransMatrix` (SDK 0x280). Two
+#   unmatched neighbours also name themselves and are NOT yet renamed:
+#   `func_0030A538` is `sceVu0CopyVector` and `func_0030A548` is
+#   `sceVu0CopyMatrix`.
 #
 #   CONSEQUENCE FOR THE `mmi.h` RETIREMENT. There is no `.s` home for these
 #   three. Retiring `mmi.h` before a real-C match lands costs 232 B / 3 matched
 #   functions. The earlier sequencing note — "27 must enumerate them BEFORE
 #   `mmi.h` is retired, net cost zero matched code" — rested on the assumption
 #   that they were retail-authored assembly, and that assumption is refuted.
+#
+#   RE-TEST 2026-09-01 — every copy of the SDK library on disk, and a control.
+#   The refusal above rested on one extract. All four copies were tested. They
+#   hold TWO distinct builds of `libvu0.o`, not four: three copies are
+#   byte-identical (md5 e67511d5dec0988b3ad924ae8bd109df) and one is a later
+#   build. BOTH builds carry `gcc2_compiled.` and `__gnu_compiled_c`, and BOTH
+#   name `libvu0.c`. No copy names a `.s`.
+#
+#     copy                                                        markers  source
+#     extract/sce24/local/sce/ee/lib/libvu0.a                      present  libvu0.c
+#     extract/others7z/.../2.7.2 RunTime/ee/lib/libvu0.a           present  libvu0.c
+#     corpus/sce_libvu0/libvu0.o                                   present  libvu0.c
+#     extract/others7z/.../Runtime/ee/lib/libvu0.a                 present  libvu0.c
+#
+#   THE CONTROL IS THE NEW EVIDENCE. The larger archive ships a second member,
+#   `libvu0_entry.o`. It carries NO compiler marker and it names
+#   `libvu0_entry.s`. A third member, `erxexport.o`, carries both markers and
+#   names `erxexport.c`. So the register's own discriminator separates C from
+#   assembly INSIDE one vendor archive, from one vendor build system, in one
+#   era. It reports `.s` for the member that is `.s`, and C for the two members
+#   that are C. The test is validated on a positive control and a negative
+#   control at the same time.
+#
+#   `sceVu0TransMatrix` IS in the SDK object, at offset 0x280. It was earlier
+#   recorded as absent. That search read the export list and looked for the
+#   invented name `Tramp_MMI_COPY3Q_VADD_30A508`, which the SDK never held. A
+#   byte search over the corpus finds the routine in all 7 library files.
+#
+#   FALSIFIER, UNCHANGED AND NOT MET. A `libvu0` build artifact without
+#   `gcc2_compiled.` whose debug information names a `.s` would swing this back.
+#   No such artifact is on disk. A published Sony source listing would also
+#   settle it; none is available, and a leaked one is out of bounds for this
+#   project.
 #
 # REFUSED by construction — the splat "Handwritten function" marker as a seed.
 # 204 monolith blocks / 12,240 B / 0.4303% carry that marker, of which 151 are
@@ -181,7 +217,8 @@ falsifier:
 #                   are `_rix_*` / `_ri0_*` in the retail MPEG band and they are
 #                   byte-identical to `libmpeg.a(mpc.o)`, which carries
 #                   `__gnu_compiled_c` and names `mpc.c`. Sony compiled them.
-#   FALSE NEGATIVE  `sceVu0TransposeMatrix`, both `Tramp_MMI_*`, `sceGsSetDefClear`
+#   FALSE NEGATIVE  `sceVu0TransposeMatrix`, `sceVu0InversMatrix`,
+#                   `sceVu0TransMatrix`, `sceGsSetDefClear`
 #                   and `lo0bits` all have SDK provenance and none is marked.
 # The 151 marked-and-matched blocks are not a scattered class either: every one
 # of them is a 16-byte syscall trampoline — the 138 in `eesyscalls.s` plus the 13
