@@ -9551,6 +9551,22 @@
       "path": "src/cod/001d2888.c",
       "compiler": "sn-2.95.3-136",
       "as": "sn"
+    },
+    {
+      "path": "src/cod/0038b2f8.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/00389268.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26353,7 +26369,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00389268",
       "size": 88,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00389268.cc"
     },
     {
       "name": "func_00389400",
@@ -26614,7 +26631,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B2F8",
       "size": 48,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038b2f8.cc"
     },
     {
       "name": "func_0038B3A8",
