@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 26.176878,
+    "fuzzy_match_percent": 26.178143,
     "total_code": "2844052",
-    "matched_code": "744484",
-    "matched_code_percent": 26.176876,
+    "matched_code": "744520",
+    "matched_code_percent": 26.178143,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6248,
-    "matched_functions_percent": 55.43922,
-    "complete_code": 722200,
-    "complete_code_percent": 25.393347238376794,
+    "matched_functions": 6249,
+    "matched_functions_percent": 55.44809,
+    "complete_code": 722236,
+    "complete_code_percent": 25.39461303801759,
     "total_units": 9123,
-    "complete_units": 1914
+    "complete_units": 1915
   },
   "units": [
     {
@@ -273360,52 +273360,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/func_0038C3F0",
-      "measures": {
-        "total_code": "36",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "40",
-          "metadata": {}
-        },
-        {
-          "name": ".text.func_0038C3F0",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_0038C3F0",
-          "size": "36",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "crt"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/func_0038ED40",
       "measures": {
         "total_code": "124",
@@ -405204,6 +405158,63 @@
       }
     },
     {
+      "name": "src/cod/0038c3f0",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "36",
+        "matched_code": "36",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "36",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "40",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.func_0038C3F0",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_0038C3F0",
+          "size": "36",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/0038c768",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -423953,20 +423964,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 26.63464,
-        "total_code": "2795172",
-        "matched_code": "744484",
-        "matched_code_percent": 26.63464,
+        "fuzzy_match_percent": 26.635586,
+        "total_code": "2795208",
+        "matched_code": "744520",
+        "matched_code_percent": 26.635584,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 10912,
-        "matched_functions": 6248,
-        "matched_functions_percent": 57.258064,
-        "complete_code": "722200",
-        "complete_code_percent": 25.83741,
-        "total_units": 8765,
-        "complete_units": 1914
+        "total_functions": 10913,
+        "matched_functions": 6249,
+        "matched_functions_percent": 57.26198,
+        "complete_code": "722236",
+        "complete_code_percent": 25.838364,
+        "total_units": 8766,
+        "complete_units": 1915
       }
     },
     {
@@ -424087,11 +424098,11 @@
       "id": "crt",
       "name": "C runtime (libc / libm / libstdc++ / libgcc)",
       "measures": {
-        "total_code": "12528",
+        "total_code": "12492",
         "matched_data_percent": 100.0,
-        "total_functions": 90,
+        "total_functions": 89,
         "complete_data_percent": 100.0,
-        "total_units": 90
+        "total_units": 89
       }
     },
     {
