@@ -1137,7 +1137,26 @@ SUPPORTED_COMPILERS = frozenset(
 # changes 2 of 1,499 objects (0.1%), against 6.7% for `-fno-gcse`. Both
 # changed TUs are already matched, so neither may carry the key.
 # Census: .scratch/decomp-velocity/findings/76_ffastmath_census.py.
-SUPPORTED_C_FLAG_ADDS = frozenset({"-f=-fno-gcse", "-f=-ffast-math"})
+#
+# `-f=-fno-rtti` stops cc1plus from emitting the typeinfo NAME strings. Every
+# C++ body in the libio/libstdc++ group inlines the gcc-2.95.2 `iostream.h`
+# prelude, so every one of its TUs emits the same 174-byte `.rodata` pool:
+# "22_IO_ostream_withassign", "8iostream", "7istream", "7ostream", "3ios",
+# "11_ios_fields". Retail contributes that pool ONCE. The linker concatenates
+# one copy per TU, `.rodata` shifts, and the ELF cmp gate fails. The scorer
+# cannot see this: it compares `.text.<name>` only, so the pool is invisible
+# on the TU that emits it. This is the same class as `strip_cxx_frame` — the
+# data belongs to the splat, not to the TU.
+#
+# It is the first member of this vocabulary that cannot reach a C TU at all.
+# The census is therefore exact rather than statistical: `-fno-rtti` is a
+# cc1plus option, the key is per-TU, and the build holds 2 C++ TUs against
+# 1,499 C ones. Over all 96 verified bodies of the libio C++ group the flag
+# changes ZERO `.text` bytes — 96 of 96 compile byte-identical with and
+# without it — and it removes the dead pool from 83 of the 96. The 13 that
+# keep a `.rodata` are constructors whose vtables are real data, not a pool.
+SUPPORTED_C_FLAG_ADDS = frozenset(
+    {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti"})
 
 # Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
 #
