@@ -52,7 +52,10 @@ void stossc__9streambuf(int *p) {
         p[1] = a + 1;
     }
 }
-INCLUDE_ASM("nonmatching", sputc__9streambufi);
+__attribute__((section(".text.sputc__9streambufi")))
+int sputc__9streambufi(char *sb, int c) {
+    return _IO_putc((char *)c, sb);
+}
 INCLUDE_ASM("nonmatching", sgetn__9streambufPcl);
 __attribute__((section(".text.func_0038BA68")))
 int func_0038BA68(void *a0, int a1) {
