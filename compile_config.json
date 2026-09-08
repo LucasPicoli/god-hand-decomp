@@ -9655,6 +9655,14 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/00388a00.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -57653,6 +57661,13 @@
       "vaddr": "0x0038B4A0",
       "size": 64,
       "tu": "src/cod/0038b4a0.cc"
+    },
+    {
+      "name": "__ls__7ostreami",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00388A00",
+      "size": 156,
+      "tu": "src/cod/00388a00.cc"
     }
   ],
   "build_dir": "build",
