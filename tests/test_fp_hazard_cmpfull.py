@@ -21,11 +21,20 @@ def _load(name, path):
 
 SN = _load("sn_cc_wrap", "scripts/sn-cc-wrap.py")
 
+# cc1's FULL-slot form, corrected 2026-09-07 (wave 23 lane G).  The delay slot
+# is only in the .s when cc1 fenced the branch with `.set noreorder`; a bare
+# `bc1*` leaves the slot to ee-as, which can only fill it with a nop.  The
+# fixture used to be spelled unfenced, and assembled it is an EMPTY slot.  See
+# `_compare_branch_slot` in scripts/ee-cc-wrap.py for the measurement.
 FULL = "\n".join([
     "\tc.eq.s\t$f20,$f20",
     "#nop",
+    "\t.set\tnoreorder",
+    "\t.set\tnomacro",
     "\tbc1t\t$L42",
-    "\taddiu\t$v0,$v0,1",       # a FULL delay slot
+    "\taddiu\t$v0,$v0,1",       # a FULL delay slot: cc1 filled it
+    "\t.set\tmacro",
+    "\t.set\treorder",
 ])
 EMPTY = "\n".join([
     "\tc.eq.s\t$f20,$f20",

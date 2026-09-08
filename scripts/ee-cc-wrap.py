@@ -182,45 +182,95 @@ def _is_ee_fp_hazard_producer(line: str) -> bool:
 _HAZARD_BC1_RE = re.compile(r"^\s*bc1[tf]l?\b")
 
 
+_SET_REORDER_RE = re.compile(r"^\s*\.set\s+(no)?reorder\b")
+
+
+def _compare_branch_slot(lines, i):
+    """Delay-slot state of the ``bc1*`` that consumes the compare at *i*.
+
+    Returns ``"full"``, ``"empty"``, or ``None`` when no ``bc1*`` follows the
+    compare immediately (an intervening real instruction -- a nop this pass
+    already materialised included -- gives ``None``).
+
+    THE STAGE THIS READS IS ee-as, NOT the pre-assembly ``.s``.  That
+    distinction is the whole fix: cc1 emits a branch in one of two forms and
+    only one of them shows its delay slot in the ``.s`` at all.
+
+      * FENCED -- ``.set noreorder`` before the branch.  cc1 filled the slot
+        itself, so the next real line IS the slot: a ``nop`` there is an EMPTY
+        slot, anything else is a FULL one.
+      * REORDER -- a bare ``bc1*`` with no fence.  The slot is not in the
+        ``.s``.  ee-as fills it, and the only instruction it may hoist is the
+        one immediately BEFORE the branch -- the compare itself, or this pass's
+        own hazard pad.  Neither can move, because the compare writes the
+        condition code the branch reads, so ee-as emits a nop and the slot is
+        EMPTY.
+
+    Measured 2026-09-07 by assembling all three shapes with the tracked ee-as
+    2.10.  Unfenced ``c.eq.s / nop / bc1t / mov.s`` assembles to ``c.eq.s /
+    nop / bc1t / nop / mov.s`` -- ee-as inserted the slot nop and did NOT hoist
+    the ``mov.s``.  The same input fenced assembles to ``c.eq.s / nop / bc1t /
+    mov.s``.  Unfenced with no pad at all assembles to ``c.eq.s / bc1t / nop /
+    mov.s``: ee-as adds no hazard nop of its own either.
+
+    The predicates below read this state.  Before 2026-09-07 both walked the
+    raw ``.s`` looking for a literal ``nop`` two real lines on, which under
+    every installed cc1 is the fall-through instruction and never the slot.
+    ``_libm_compare_slot_is_empty`` could therefore never fire and
+    ``_compare_slot_is_full``, its complement, fired at every pair.
+
+    SCOPE of the rule these serve, unchanged by the fix. A full decode of all
+    3,212 `c.<cond>.[sd]` sites in retail says the empty-slot predicate holds
+    27 of 27 inside 0x3A0000-0x3B0000 and FAILS 388 times outside it -- 368
+    game-code sites are padded with an empty slot, across 172 functions. And
+    2,673 of 2,693 full-slot pairs ARE padded, so dropping that pad globally
+    would delete a real word at every one. Both stay per-TU opt-in.
+    """
+    reorder = True
+    seen_branch = False
+    for ln in lines[i + 1:]:
+        s = ln.strip()
+        if not s:
+            continue
+        if s.startswith("."):
+            m = _SET_REORDER_RE.match(s)
+            if m:
+                reorder = m.group(1) is None
+            continue
+        if s.startswith("#") or s.endswith(":"):
+            continue
+        if not seen_branch:
+            if not _HAZARD_BC1_RE.match(s):
+                return None
+            seen_branch = True
+            if reorder:
+                # ee-as owns the slot and can only fill it with a nop.
+                return "empty"
+            continue
+        return "empty" if s == "nop" else "full"
+    return None
+
+
 def _libm_compare_slot_is_empty(lines, i) -> bool:
-    """True if the `bc1*` consuming this compare has an EMPTY delay slot.
+    """True if the `bc1*` consuming this compare gets an EMPTY delay slot.
 
     Retail's libm objects pad a `c.<cond>.s` -> `bc1*` pair only when the branch
     delay slot holds real work. With an EMPTY slot they carry the nop IN the slot
     and none before the branch: `c.eq.s / bc1t / nop` is three words, and
-    `c.eq.s / nop / bc1t / nop` is four.
-
-    SCOPE, and it is the whole point of the `libm` gate. A full decode of all
-    3,212 `c.<cond>.[sd]` sites in retail says this predicate holds 27 of 27
-    inside 0x3A0000-0x3B0000 and FAILS 388 times outside it -- 368 game-code
-    sites are padded with an empty slot, across 172 functions. Applied globally
-    it fabricates a missing word at every one. A predicate measured inside one
-    vendor object is a per-object rule until a whole-binary decode says
-    otherwise.
+    `c.eq.s / nop / bc1t / nop` is four.  See :func:`_compare_branch_slot` for
+    which stage decides that and why the pre-assembly text cannot.
     """
-    nxt = []
-    for ln in lines[i + 1:]:
-        s = ln.strip()
-        if not s or s.startswith((".", "#")) or s.endswith(":"):
-            continue
-        nxt.append(s)
-        if len(nxt) == 2:
-            break
-    return len(nxt) == 2 and bool(_HAZARD_BC1_RE.match(nxt[0])) and nxt[1] == "nop"
+    return _compare_branch_slot(lines, i) == "empty"
 
 
 def _compare_slot_is_full(lines, i) -> bool:
-    """True if the `bc1*` consuming this compare has a NON-empty delay slot.
+    """True if the `bc1*` consuming this compare gets a NON-empty delay slot.
 
     The complement of :func:`_libm_compare_slot_is_empty`, and NOT its negation:
     this one also requires that a `bc1*` actually follows.  A `c.<cond>.s` whose
     next instruction is something else returns False from both.
 
-    SCOPE. A whole-binary decode of all 3,066 `c.<cond>.[sd]` -> `bc1*` pairs in
-    retail says the pad is the rule and its absence is the exception: 2,673 of
-    2,693 full-slot pairs ARE padded. Applied globally this would delete a real
-    word at every one of them. It is a PER-TU opt-in for the same reason `libm`
-    is, and the twenty sites it describes sit in EIGHT functions, none of which
+    The twenty sites it was measured on sit in EIGHT functions, none of which
     mixes the two forms:
 
         func_0032A1B0 2  func_0032DD70 1  func_0033E6B8 3  func_00343C18 1
@@ -228,15 +278,7 @@ def _compare_slot_is_full(lines, i) -> bool:
 
     Census: `.scratch/decomp-velocity/findings/wave-2026-08-31/cmpfull_census.py`.
     """
-    nxt = []
-    for ln in lines[i + 1:]:
-        s = ln.strip()
-        if not s or s.startswith((".", "#")) or s.endswith(":"):
-            continue
-        nxt.append(s)
-        if len(nxt) == 2:
-            break
-    return len(nxt) == 2 and bool(_HAZARD_BC1_RE.match(nxt[0])) and nxt[1] != "nop"
+    return _compare_branch_slot(lines, i) == "full"
 
 
 def _materialize_hazard_nops(s_path: Path, rules=None) -> None:
@@ -256,7 +298,14 @@ def _materialize_hazard_nops(s_path: Path, rules=None) -> None:
     text = s_path.read_text()
     if "#nop" not in text:
         return
-    libm = rules is not None and _FP_RULE_LIBM in rules
+    libm = rules is not None and any(r in rules
+                                     for r in _FP_RULES_LIBM_ANY)
+    # The FTOI half is `libm` ONLY. `libm-mtc1` is the same rule without it:
+    # a convert feeding an adjacent `mfc1` is padded at 3 of the 419 sites in
+    # the whole binary and 3 of the 9 inside 0x3A0000-0x3B0000, and those three
+    # are exactly the three landed TUs. It is a per-OBJECT policy, not an
+    # archive one -- see the _FP_RULE_LIBM_MTC1 note.
+    libm_ftoi = rules is not None and _FP_RULE_LIBM in rules
     cmpfull = rules is not None and _FP_RULE_CMPFULL in rules
     lines = text.split("\n")
     out = []
@@ -293,7 +342,7 @@ def _materialize_hazard_nops(s_path: Path, rules=None) -> None:
         if stripped and not stripped.startswith((".", "#")) \
                 and not stripped.endswith(":"):
             m = _HAZARD_MFC1_RE.match(line)
-            p = _HAZARD_FTOI_RE.match(last_instr) if (libm and last_instr) else None
+            p = _HAZARD_FTOI_RE.match(last_instr) if (libm_ftoi and last_instr) else None
             mfc1_pend = bool(m and p and m.group(1) == p.group(1))
             last_instr = line
     s_path.write_text("\n".join(out))
@@ -327,6 +376,14 @@ _DIV_ONLY_CLASS_RE = re.compile(r"^\s*div\.s\b")
 # root) can express.  Measured by the batch-7 orchestrator over all 1,121
 # divide-class sites in retail; see issue 77 section 3.
 _SQRT_ONLY_CLASS_RE = re.compile(r"^\s*(?:sqrt|rsqrt)\.s\b")
+# `fpfence`: the FP ARITHMETIC class ee-as will hoist into a delay slot.
+# Deliberately excludes the COP1 moves and the FP loads/stores: ee-as already
+# refuses to hoist `mtc1` (measured -- retail 0x003A2B84 `mtc1 v1,$f0 / jr ra /
+# nop` reproduces with no fence), and an `lwc1` in a delay slot is a legitimate
+# retail shape that this must never touch.
+_FP_ARITH_RE = re.compile(
+    r"^\s*(?:abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor|add|sub|mul"
+    r"|div|madd|msub|nmadd|nmsub|max|min|rint)\.[a-z0-9.]+\s")
 _FP_CONSUMER_RE = re.compile(
     r"^\s*(abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor"
     r"|add|sub|mul|div|madd|msub|max|min|rint|c)\.[a-z0-9.]*\b(.*)$")
@@ -374,6 +431,28 @@ _FP_DEST_RE = re.compile(
 #           3,066 such sites.  Per-TU because the two edits invert the binary's
 #           own base rates -- `mtc1` is padded at 22.0% (3,074/13,945) and
 #           `mfc1` after an FP op at 0.7% (3/432).
+#   libm-mtc1
+#           `libm` WITHOUT its FTOI half: the mtc1-family drop and the
+#           compare-slot policy, and no `mfc1`-after-convert pad.  The FTOI
+#           pad is a per-OBJECT policy, not an archive one -- a convert feeding
+#           an adjacent `mfc1` occurs 419 times in the whole binary and is
+#           padded 3 times; inside 0x3A0000-0x3B0000 it occurs 9 times and is
+#           padded 3, and those 3 sites are exactly the 3 landed TUs that carry
+#           the `libm` key.  Six in-block sites, in three other objects, are
+#           bare.  Measured by wave-23 lane D3 (`ftoi_census.py`).
+#   cmppad  INSERT one nop after a `c.<cond>.[sd]` whose `bc1*` follows
+#           IMMEDIATELY and whose delay slot ee-as will leave FULL.  The
+#           mirror of `cmpfull`, and the one shape `_materialize_hazard_nops`
+#           cannot reach: where a LABEL sits between the compare and the
+#           branch, cc1 emits no `#nop` hint at all, so there is nothing to
+#           uncomment.  Retail pads such a site (func_003A3DD8 at 0x003A4238).
+#   fpfence Fence an FP ARITHMETIC op that is IMMEDIATELY followed by a jump
+#           or branch, in `.set push`/`.set noreorder` ... `.set pop`, so
+#           ee-as cannot hoist it into the delay slot.  Same failure the
+#           `fdiv` pad already fences, on an op that carries no pad: retail
+#           ends func_003A28F8 `mtc1 v1,$f1 / mul.s $f0,$f1,$f0 / jr ra / nop`
+#           and ee-as gives `mtc1 / jr / mul.s`, ONE WORD SHORT.  Measured
+#           with the tracked ee-as 2.10 on both spellings.
 #   cvtdiv  The legacy Rule B (cvt -> div, two nops).  Kept ONLY so the bare
 #           `--fp-hazard-nops` flag keeps the meaning the four TUs carrying
 #           `fp_hazard_nops: true` were byte-verified under.  Its own trigger is
@@ -391,11 +470,17 @@ _FP_RULE_DIV1 = "div1"
 _FP_RULE_SQRT = "sqrt"
 _FP_RULE_CVTDIV = "cvtdiv"
 _FP_RULE_LIBM = "libm"
+_FP_RULE_LIBM_MTC1 = "libm-mtc1"
 _FP_RULE_CMPFULL = "cmpfull"
+_FP_RULE_CMPPAD = "cmppad"
+_FP_RULE_FPFENCE = "fpfence"
+# Either name selects the mtc1-drop and compare-slot halves; only `libm` also
+# selects the FTOI->mfc1 pad.
+_FP_RULES_LIBM_ANY = frozenset((_FP_RULE_LIBM, _FP_RULE_LIBM_MTC1))
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
                    _FP_RULE_DIV1, _FP_RULE_SQRT, _FP_RULE_CVTDIV,
-                   _FP_RULE_LIBM,
-                   _FP_RULE_CMPFULL)
+                   _FP_RULE_LIBM, _FP_RULE_LIBM_MTC1,
+                   _FP_RULE_CMPFULL, _FP_RULE_CMPPAD, _FP_RULE_FPFENCE)
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -591,8 +676,11 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     want_div = _FP_RULE_DIV in rules
     want_sqrt = _FP_RULE_SQRT in rules
     want_cvtdiv = _FP_RULE_CVTDIV in rules
+    want_cmppad = _FP_RULE_CMPPAD in rules
+    want_fpfence = _FP_RULE_FPFENCE in rules
     lines = text.split("\n")
     insert_before = [0] * len(lines)
+    insert_after = [0] * len(lines)
     fence_site = [False] * len(lines)
     reorder = True
     set_stack: list[bool] = []
@@ -645,18 +733,33 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
             insert_before[i] += pad
             if pad > 0 and is_fdiv_site:
                 fence_site[i] = True
+            # `cmppad`: the compare pad cc1 never hinted.  _compare_branch_slot
+            # returns "full" only when a `bc1*` follows IMMEDIATELY (any real
+            # instruction in between, an already-materialised nop included,
+            # gives None), so this cannot double-insert and is idempotent.
+            if (want_cmppad and _HAZARD_FP_CMP_RE.match(line)
+                    and _compare_branch_slot(lines, i) == "full"):
+                insert_after[i] += 1
+            # `fpfence`: no pad, fence only.  The `if reorder:` gate makes this
+            # idempotent -- a second pass sees the line inside the fence.
+            if (want_fpfence and not fence_site[i]
+                    and _FP_ARITH_RE.match(line)):
+                fence_site[i] = True
         m = _MTC1_DEST_RE.match(line)
         prev_mtc1_dest = m.group(1) if (m and reorder) else None
 
     out: list[str] = []
     for i, line in enumerate(lines):
-        fence = (insert_before[i] and fence_site[i]
-                 and _fence_divide_before_branch(lines, i))
+        # `fence_site` already implies a pad for the divide-class rules, so
+        # dropping the old `insert_before[i] and` guard is behaviour-preserving
+        # and lets `fpfence` fence an op that carries no pad at all.
+        fence = fence_site[i] and _fence_divide_before_branch(lines, i)
         if fence:
             out.append("\t.set\tpush")
             out.append("\t.set\tnoreorder")
         out.extend(["\tnop"] * insert_before[i])
         out.append(line)
+        out.extend(["\tnop"] * insert_after[i])
         if fence:
             out.append("\t.set\tpop")
     return "\n".join(out)
@@ -1017,15 +1120,27 @@ def _externalize_fp_literals(s_path: Path, syms: list[str]) -> None:
     load (``ld $rt, SYM``) would instead pick ``$rt`` as the address temp
     (``lui $rt``) — wrong bytes.  Symbols are applied in ``li.d`` emission
     order, one per load (order-sensitive, like ``--extern-jtbl``).
+
+    Pass ``-`` for a load that must stay a ``li.d``.  Only a constant ee-as
+    cannot synthesise inline needs a blob symbol: it expands ``li.d $2,1.0``
+    and ``li.d $2,0.5`` to an immediate chain and emits no ``.rodata`` at all,
+    and rewriting one of those into a memory load is wrong bytes.  A TU that
+    mixes the two (func_003A1F38 emits five ``li.d``, of which the second and
+    fourth are the only ones that reach ``.rodata``) could not use this route
+    before the placeholder existed.  The count must still match exactly, so a
+    miscount is still an error rather than a silent skip.
     """
     text = s_path.read_text()
     matches = list(_LID_RE.finditer(text))
     if len(matches) != len(syms):
         die(f"--extern-double: {len(syms)} symbol(s) given but cc1 emitted "
             f"{len(matches)} `li.d` double-immediate load(s) — give exactly "
-            f"one blob symbol per li.d, in emission order")
+            f"one blob symbol per li.d, in emission order (`-` leaves one "
+            f"alone)")
     # Splice right-to-left so earlier match spans stay valid as we edit.
     for m, sym in reversed(list(zip(matches, syms))):
+        if sym == "-":
+            continue
         reg = m.group(1)
         repl = (f"\t.set\tnoat\n"
                 f"\tlui\t$at,%hi({sym})\n"
@@ -1195,7 +1310,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "pad depth 1. 'cvtdiv' = the legacy "
             "cvt->div rule, kept only for the TUs already byte-verified under "
             "it; its trigger is retail's LEAST padded producer, so do not pick "
-            "it for new work. Default (the bare flag): mtc1,cvtdiv."
+            "it for new work. 'libm-mtc1' = 'libm' without its "
+            "mfc1-after-convert pad, which is a per-OBJECT policy (3 padded "
+            "sites of 419 in the binary, 3 of 9 inside the libm block). "
+            "'cmppad' = INSERT one nop after a c.<cond>.s whose bc1* follows "
+            "immediately and whose delay slot ee-as leaves full -- the shape "
+            "where a label between the compare and the branch stops cc1 "
+            "emitting a #nop hint at all. 'fpfence' = fence an FP arithmetic "
+            "op that immediately precedes a jump or branch so ee-as cannot "
+            "hoist it into the delay slot. Default (the bare flag): "
+            "mtc1,cvtdiv."
         ),
     )
     p.add_argument(
@@ -1226,7 +1350,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--extern-double", dest="extern_double", action="append", default=[],
         metavar="SYM",
         help="Externalize the Nth cc1-emitted `li.d` double-immediate load "
-             "to SYM (repeatable, in emission order): replace the li.d "
+             "to SYM (repeatable, in emission order; `-` leaves that load "
+             "alone, for a constant ee-as synthesises inline): replace the li.d "
              "pseudo-op with an $at-form `ld` from SYM and drop the TU-local "
              ".rodata copy of the constant. The split rodata blob supplies "
              "the retail bytes at SYM's address; a TU copy would both "
