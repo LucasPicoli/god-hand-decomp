@@ -1,15 +1,15 @@
 {
   "measures": {
-    "fuzzy_match_percent": 26.800917,
+    "fuzzy_match_percent": 26.802605,
     "total_code": "2844052",
-    "matched_code": "762232",
-    "matched_code_percent": 26.800915,
+    "matched_code": "762280",
+    "matched_code_percent": 26.802605,
     "total_data": "3975970",
     "matched_data": "3299928",
     "matched_data_percent": 82.9968,
     "total_functions": 11270,
-    "matched_functions": 6343,
-    "matched_functions_percent": 56.28216,
+    "matched_functions": 6344,
+    "matched_functions_percent": 56.29104,
     "complete_code": 734316,
     "complete_code_percent": 25.819359139706307,
     "total_units": 9204,
@@ -276733,54 +276733,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/osfx__7ostream",
-      "measures": {
-        "total_code": "48",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "48",
-          "metadata": {}
-        },
-        {
-          "name": ".text.osfx__7ostream",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "osfx__7ostream",
-          "size": "48",
-          "metadata": {
-            "demangled_name": "ostream::osfx"
-          },
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "crt"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/overflow__8stdiobufi",
       "measures": {
         "total_code": "76",
@@ -404373,6 +404325,61 @@
       }
     },
     {
+      "name": "src/cod/0038a6d0",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "48",
+        "matched_code": "48",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.osfx__7ostream",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "osfx__7ostream",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {
+            "demangled_name": "ostream::osfx"
+          },
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/0038a700",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -427734,19 +427741,19 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 27.21223,
-        "total_code": "2801064",
-        "matched_code": "762232",
-        "matched_code_percent": 27.212229,
+        "fuzzy_match_percent": 27.213478,
+        "total_code": "2801112",
+        "matched_code": "762280",
+        "matched_code_percent": 27.213478,
         "total_data": "3975970",
         "matched_data": "3299928",
         "matched_data_percent": 82.9968,
-        "total_functions": 10958,
-        "matched_functions": 6343,
-        "matched_functions_percent": 57.88465,
+        "total_functions": 10959,
+        "matched_functions": 6344,
+        "matched_functions_percent": 57.888496,
         "complete_code": "734316",
-        "complete_code_percent": 26.21561,
-        "total_units": 8892,
+        "complete_code_percent": 26.21516,
+        "total_units": 8893,
         "complete_units": 1950
       }
     },
@@ -427868,11 +427875,11 @@
       "id": "crt",
       "name": "C runtime (libc / libm / libstdc++ / libgcc)",
       "measures": {
-        "total_code": "8596",
+        "total_code": "8548",
         "matched_data_percent": 100.0,
-        "total_functions": 56,
+        "total_functions": 55,
         "complete_data_percent": 100.0,
-        "total_units": 56
+        "total_units": 55
       }
     },
     {
