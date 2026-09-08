@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 27.251963,
+    "fuzzy_match_percent": 27.271935,
     "total_code": "2844052",
-    "matched_code": "775060",
-    "matched_code_percent": 27.251963,
+    "matched_code": "775628",
+    "matched_code_percent": 27.271935,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6412,
-    "matched_functions_percent": 56.89441,
-    "complete_code": 744204,
-    "complete_code_percent": 26.167032107711112,
-    "total_units": 9292,
-    "complete_units": 1990
+    "matched_functions": 6413,
+    "matched_functions_percent": 56.903286,
+    "complete_code": 744772,
+    "complete_code_percent": 26.18700361315475,
+    "total_units": 9294,
+    "complete_units": 1991
   },
   "units": [
     {
@@ -253715,9 +253715,11 @@
     {
       "name": "asm/cod/000000.part6872",
       "measures": {
-        "total_code": "568",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253734,16 +253736,8 @@
         },
         {
           "name": ".text",
-          "size": "568",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003BAD80",
-          "size": "568",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -253755,6 +253749,41 @@
     },
     {
       "name": "asm/cod/000000.part6873",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6874",
       "measures": {
         "total_code": "32",
         "matched_data_percent": 100.0,
@@ -253801,7 +253830,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6874",
+      "name": "asm/cod/000000.part6875",
       "measures": {
         "total_code": "308",
         "matched_data_percent": 100.0,
@@ -253854,7 +253883,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6875",
+      "name": "asm/cod/000000.part6876",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -253889,7 +253918,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6876",
+      "name": "asm/cod/000000.part6877",
       "measures": {
         "total_code": "1164",
         "matched_data_percent": 100.0,
@@ -253930,7 +253959,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6877",
+      "name": "asm/cod/000000.part6878",
       "measures": {
         "total_code": "1292",
         "matched_data_percent": 100.0,
@@ -421794,6 +421823,63 @@
       }
     },
     {
+      "name": "src/cod/003bad80",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "568",
+        "matched_code": "568",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "568",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "568",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.func_003BAD80",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003BAD80",
+          "size": "568",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/003bb178",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -431690,20 +431776,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 27.64099,
+        "fuzzy_match_percent": 27.661247,
         "total_code": "2804024",
-        "matched_code": "775060",
-        "matched_code_percent": 27.64099,
+        "matched_code": "775628",
+        "matched_code_percent": 27.661245,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 10983,
-        "matched_functions": 6412,
-        "matched_functions_percent": 58.381134,
-        "complete_code": "744204",
-        "complete_code_percent": 26.540571,
-        "total_units": 9005,
-        "complete_units": 1990
+        "matched_functions": 6413,
+        "matched_functions_percent": 58.390244,
+        "complete_code": "744772",
+        "complete_code_percent": 26.560827,
+        "total_units": 9007,
+        "complete_units": 1991
       }
     },
     {
