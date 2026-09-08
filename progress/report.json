@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 27.176016,
+    "fuzzy_match_percent": 27.179953,
     "total_code": "2844052",
-    "matched_code": "772900",
-    "matched_code_percent": 27.176014,
+    "matched_code": "773012",
+    "matched_code_percent": 27.179953,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6399,
-    "matched_functions_percent": 56.779057,
-    "complete_code": 742044,
-    "complete_code_percent": 26.09108412926346,
+    "matched_functions": 6400,
+    "matched_functions_percent": 56.787933,
+    "complete_code": 742156,
+    "complete_code_percent": 26.095022172590376,
     "total_units": 9268,
-    "complete_units": 1977
+    "complete_units": 1978
   },
   "units": [
     {
@@ -270345,52 +270345,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/TimerUSec2BusClock",
-      "measures": {
-        "total_code": "112",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "112",
-          "metadata": {}
-        },
-        {
-          "name": ".text.TimerUSec2BusClock",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "TimerUSec2BusClock",
-          "size": "112",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "sce-runtime"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/VSync2",
       "measures": {
         "total_code": "164",
@@ -420124,6 +420078,63 @@
       }
     },
     {
+      "name": "src/cod/003b7638",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "112",
+        "matched_code": "112",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "112",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "112",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.TimerUSec2BusClock",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "TimerUSec2BusClock",
+          "size": "112",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/003b76b8",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -430647,20 +430658,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 27.56506,
-        "total_code": "2803912",
-        "matched_code": "772900",
-        "matched_code_percent": 27.56506,
+        "fuzzy_match_percent": 27.567953,
+        "total_code": "2804024",
+        "matched_code": "773012",
+        "matched_code_percent": 27.567953,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 10982,
-        "matched_functions": 6399,
-        "matched_functions_percent": 58.268078,
-        "complete_code": "742044",
-        "complete_code_percent": 26.464596,
-        "total_units": 8980,
-        "complete_units": 1977
+        "total_functions": 10983,
+        "matched_functions": 6400,
+        "matched_functions_percent": 58.271873,
+        "complete_code": "742156",
+        "complete_code_percent": 26.467535,
+        "total_units": 8981,
+        "complete_units": 1978
       }
     },
     {
@@ -430770,11 +430781,11 @@
       "id": "sce-runtime",
       "name": "SCE PS2 runtime",
       "measures": {
-        "total_code": "16936",
+        "total_code": "16824",
         "matched_data_percent": 100.0,
-        "total_functions": 94,
+        "total_functions": 93,
         "complete_data_percent": 100.0,
-        "total_units": 94
+        "total_units": 93
       }
     },
     {
