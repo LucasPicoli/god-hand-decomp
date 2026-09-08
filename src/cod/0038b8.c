@@ -52,13 +52,13 @@ void stossc__9streambuf(int *p) {
         p[1] = a + 1;
     }
 }
-INCLUDE_ASM("nonmatching", func_0038BA10);
-INCLUDE_ASM("nonmatching", func_0038BA38);
+INCLUDE_ASM("nonmatching", sputc__9streambufi);
+INCLUDE_ASM("nonmatching", sgetn__9streambufPcl);
 __attribute__((section(".text.func_0038BA68")))
 int func_0038BA68(void *a0, int a1) {
     return func_0038E138(a0, (char)a1);
 }
-INCLUDE_ASM("nonmatching", func_0038BA88);
+INCLUDE_ASM("nonmatching", sputn__9streambufPCcl);
 __attribute__((section(".text.Obj38B8_GetField14MinusField10")))
 int Obj38B8_GetField14MinusField10(char *a0) {
     return *(int *)(a0 + 0x14) - *(int *)(a0 + 0x10);
@@ -69,7 +69,7 @@ int Obj38B8_GetField8MinusField4(char *a0) {
     return *(int *)(a0 + 8) - *(int *)(a0 + 4);
 }
 
-INCLUDE_ASM("nonmatching", func_0038BAD0);
+INCLUDE_ASM("nonmatching", allocbuf__9streambuf);
 INCLUDE_ASM("nonmatching", allocate__9streambuf);
 __attribute__((section(".text.func_0038BB48")))
 void func_0038BB48(char *arg0, int arg1) {

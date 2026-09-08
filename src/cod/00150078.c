@@ -2,9 +2,9 @@
 
 extern void UpdateGlobalPtrWithParam_3A7CC0(int a0);
 extern int read__7istreamPci(void);
-extern void func_00387610(void);
+extern void get__7istreamRc(void);
 extern void __ls__7ostreamd(void);
-extern void func_00388A00(void);
+extern void __ls__7ostreami(void);
 extern int ostream___ls(void);
 extern int write__7ostreamPCci(void);
 extern int _IO_un_link(void);
@@ -87,22 +87,22 @@ void Tramp_UpdateGlobalPtrWithParam_3A7CC0_3212E8(int a0) {
 
 __attribute__((section(".text.func_00389DA0")))
 int func_00389DA0(void) {
-    return func_00387AB8();
+    return __rs__7istreamRc();
 }
 
 __attribute__((section(".text.func_00389DC0")))
 int func_00389DC0(void) {
-    return func_00387AB8();
+    return __rs__7istreamRc();
 }
 
 __attribute__((section(".text.func_00389DE0")))
 int func_00389DE0(void) {
-    return func_00387B78();
+    return __rs__7istreamPc();
 }
 
 __attribute__((section(".text.func_00389E00")))
 int func_00389E00(void) {
-    return func_00387B78();
+    return __rs__7istreamPc();
 }
 
 __attribute__((section(".text.Tramp_read__7istreamPci_38A178")))
@@ -119,16 +119,16 @@ __attribute__((section(".text.Tramp_read__7istreamPci_38A1B8")))
 int Tramp_read__7istreamPci_38A1B8(void) { return read__7istreamPci(); }
 
 __attribute__((section(".text.func_0038A218")))
-void func_0038A218(void) { func_00387610(); }
+void func_0038A218(void) { get__7istreamRc(); }
 
 __attribute__((section(".text.func_0038A258")))
-void func_0038A258(void) { func_00387610(); }
+void func_0038A258(void) { get__7istreamRc(); }
 
 __attribute__((section(".text.Tramp___ls__7ostreamd_38A498")))
 void Tramp___ls__7ostreamd_38A498(void) { __ls__7ostreamd(); }
 
 __attribute__((section(".text.func_0038A4E8")))
-void func_0038A4E8(void) { func_00388A00(); }
+void func_0038A4E8(void) { __ls__7ostreami(); }
 
 __attribute__((section(".text.Tramp_ostream___ls_38A548")))
 int Tramp_ostream___ls_38A548(void) { return ostream___ls(); }

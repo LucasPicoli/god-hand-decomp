@@ -10,7 +10,7 @@ int func_0038A1D8(void *a0, char *a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward38AA60_38A1F8")))
 int Forward38AA60_38A1F8(void *a0, char *a1, int a2, int a3) {
-    return func_0038AA60(a0, a1, a2, (char)a3);
+    return get__7istreamPcic(a0, a1, a2, (char)a3);
 }
 
 __attribute__((section(".text.func_0038A238")))
@@ -20,12 +20,12 @@ int func_0038A238(void *a0, char *a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward38AA60_38A278")))
 int Forward38AA60_38A278(void *a0, char *a1, int a2, int a3) {
-    return func_0038AA60(a0, a1, a2, (char)a3);
+    return get__7istreamPcic(a0, a1, a2, (char)a3);
 }
 
 __attribute__((section(".text.Forward388A00_38A528")))
 int Forward388A00_38A528(void *a0, int a1) {
-    return func_00388A00(a0, (short)a1);
+    return __ls__7ostreami(a0, (short)a1);
 }
 
 __attribute__((section(".text.func_0038A588")))

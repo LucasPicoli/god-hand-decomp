@@ -9615,6 +9615,14 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/0038b4a0.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -11047,14 +11055,14 @@
       "tu": "src/cod/0038b9f0.c"
     },
     {
-      "name": "func_0038BA10",
+      "name": "sputc__9streambufi",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BA10",
       "size": 36,
       "tu": "src/cod/0038b8.c"
     },
     {
-      "name": "func_0038BA38",
+      "name": "sgetn__9streambufPcl",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BA38",
       "size": 44,
@@ -11068,7 +11076,7 @@
       "tu": "src/cod/0038b8.c"
     },
     {
-      "name": "func_0038BA88",
+      "name": "sputn__9streambufPCcl",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BA88",
       "size": 40,
@@ -11089,7 +11097,7 @@
       "tu": "src/cod/0038b8.c"
     },
     {
-      "name": "func_0038BAD0",
+      "name": "allocbuf__9streambuf",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BAD0",
       "size": 40,
@@ -26273,56 +26281,56 @@
       "lib": true
     },
     {
-      "name": "func_00387F78",
+      "name": "__rs__7istreamRs",
       "unit": "asm/cod/000000",
       "vaddr": "0x00387F78",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_00387FD8",
+      "name": "__rs__7istreamRUs",
       "unit": "asm/cod/000000",
       "vaddr": "0x00387FD8",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_00388038",
+      "name": "__rs__7istreamRi",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388038",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_00388098",
+      "name": "__rs__7istreamRUi",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388098",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_003880F8",
+      "name": "__rs__7istreamRl",
       "unit": "asm/cod/000000",
       "vaddr": "0x003880F8",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_00388158",
+      "name": "__rs__7istreamRUl",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388158",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_003881B8",
+      "name": "__rs__7istreamRx",
       "unit": "asm/cod/000000",
       "vaddr": "0x003881B8",
       "size": 92,
       "lib": true
     },
     {
-      "name": "func_00388218",
+      "name": "__rs__7istreamRUx",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388218",
       "size": 92,
@@ -26350,28 +26358,28 @@
       "lib": true
     },
     {
-      "name": "func_00388B18",
+      "name": "__ls__7ostreaml",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388B18",
       "size": 144,
       "lib": true
     },
     {
-      "name": "func_00388BA8",
+      "name": "__ls__7ostreamUl",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388BA8",
       "size": 112,
       "lib": true
     },
     {
-      "name": "func_00388C18",
+      "name": "__ls__7ostreamx",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388C18",
       "size": 144,
       "lib": true
     },
     {
-      "name": "func_00388CA8",
+      "name": "__ls__7ostreamUx",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388CA8",
       "size": 112,
@@ -26421,7 +26429,7 @@
       "tu": "src/cod/00389268.cc"
     },
     {
-      "name": "func_00389400",
+      "name": "ends__FR7ostream",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389400",
       "size": 52,
@@ -26517,7 +26525,7 @@
       "lib": true
     },
     {
-      "name": "func_00389E30",
+      "name": "putback__7istreamc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389E30",
       "size": 88,
@@ -26531,7 +26539,7 @@
       "lib": true
     },
     {
-      "name": "func_00389ED8",
+      "name": "unget__7istreamc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00389ED8",
       "size": 88,
@@ -26590,7 +26598,7 @@
       "tu": "src/cod/0038a4b8.c"
     },
     {
-      "name": "func_0038A508",
+      "name": "__ls__7ostreamUs",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A508",
       "size": 28,
@@ -26605,7 +26613,7 @@
       "tu": "src/cod/0038a1d8.c"
     },
     {
-      "name": "func_0038A6D0",
+      "name": "osfx__7ostream",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A6D0",
       "size": 48,
@@ -26663,7 +26671,7 @@
       "lib": true
     },
     {
-      "name": "func_0038B0B0",
+      "name": "__overflow__FP9streambufi",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B0B0",
       "size": 40,
@@ -26881,7 +26889,7 @@
       "lib": true
     },
     {
-      "name": "func_0038EF60",
+      "name": "setbuf__7filebufPci",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EF60",
       "size": 28,
@@ -27069,7 +27077,7 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_00393740",
+      "name": "sys_close__8stdiobuf",
       "unit": "asm/cod/000000",
       "vaddr": "0x00393740",
       "size": 44,
@@ -57602,6 +57610,13 @@
       "vaddr": "0x00387958",
       "size": 104,
       "tu": "src/cod/00387958.cc"
+    },
+    {
+      "name": "get_column__9streambuf",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0038B4A0",
+      "size": 64,
+      "tu": "src/cod/0038b4a0.cc"
     }
   ],
   "build_dir": "build",
