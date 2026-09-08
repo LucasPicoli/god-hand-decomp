@@ -122,7 +122,7 @@ class TestValidation:
         with pytest.raises(cm.BuildError, match="both"):
             cfg.compile_units
 
-    def test_the_vocabulary_holds_exactly_three_flags_today(self):
+    def test_the_vocabulary_holds_exactly_four_flags_today(self):
         """Widening this set is a map decision. If this test fails, the map
         owes the record an argument for the new member.
 
@@ -138,9 +138,20 @@ class TestValidation:
         `.text.<name>` only. The flag cannot reach a C TU — it is a cc1plus
         option and the key is per-TU — so the census is exact, not
         statistical: over all 96 verified bodies it changes ZERO `.text`
-        bytes and removes the pool from 83 of them."""
+        bytes and removes the pool from 83 of them.
+
+        `-f=-ftrapv` joined on 2026-09-07 (wave 23 lane F): it routes signed
+        `int` `+` and `-` through gcc's trapping optab, so `int n - 1` emits
+        `addi`. No installed cc1 emits that word without the flag. Retail
+        holds 29 `addi` and 2 `add` against zero `sub`, and `_rix_000` of
+        `sce302_libmpeg/mpc.o` compiles from C to 29 of 29 instructions at
+        retail's exact 116 bytes with the flag and is wrong without it. The
+        census is per-build: SN and ee-2.9 REJECT the flag (exit 33) on all
+        1,375 of their units, and over the 667 cygnus-2.96 units 146 change
+        and 521 do not (21.9%). That is the highest rate in this vocabulary,
+        so the flag stays per-TU and no already-matched TU may take it."""
         assert cm.SUPPORTED_C_FLAG_ADDS == frozenset(
-            {GCSE, "-f=-ffast-math", "-f=-fno-rtti"})
+            {GCSE, "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv"})
 
 
 # --------------------------------------------------------------------------- #

@@ -1155,8 +1155,45 @@ SUPPORTED_COMPILERS = frozenset(
 # changes ZERO `.text` bytes — 96 of 96 compile byte-identical with and
 # without it — and it removes the dead pool from 83 of the 96. The 13 that
 # keep a `.rodata` are constructors whose vtables are real data, not a pool.
+#
+# `-f=-ftrapv` routes SIGNED INTEGER `+` and `-` through gcc's trapping optab.
+# `int n - 1` then emits `addi` and `int a + int b` emits `add`, while POINTER
+# and UNSIGNED arithmetic keep `addu` and `addiu`. No installed cc1 emits a
+# trapping `addi` without the flag — all 13 were checked and none carries a
+# bare `addi` output template — so the flag is the only route to that word.
+#
+# Retail needs the route. The whole `.text` holds 29 `addi` and 2 `add`,
+# against zero `sub` and zero `daddi`: one trapping word on a signed counter
+# inside a body that is otherwise full of `addiu` and `addu`. The monolith
+# tags every one `/* handwritten instruction */`, and wave 17 read that tag as
+# "`addi` = hand-written asm, 21 fns / 0 matched". The tag is a guess about one
+# mnemonic, not an attribution. 16 of those 21 functions are the `_rix`/`_ri0`
+# family of `sce302_libmpeg/mpc.o`, whose `.mdebug` names them one authored C
+# region, and `_rix_000` compiles from C to 29 of 29 instructions in retail's
+# order at retail's exact 116 bytes with this flag. Without it word 12 is
+# `addiu` and the body is wrong.
+#
+# It is a per-TU key and NEVER a global flag, for two measured reasons.
+#
+# First, REACH. Compiled over every C translation unit the build makes, the
+# flag is REJECTED with exit 33 ("Invalid option") by all 1,176 SN units and
+# all 199 ee-2.9 units. It reaches cygnus-2.96 and the two ee-3.2 builds only.
+# A unit that names the key must therefore also name a compiler that takes it.
+#
+# Second, BLAST RADIUS. Over the 667 cygnus-2.96 C units, 146 change and 521
+# do not — 21.9%, against 6.7% for `-fno-gcse` and 0.1% for `-ffast-math`.
+# That is the highest rate in this vocabulary, so the flag must never become
+# global and no already-matched TU may take it. The 521 unchanged units are
+# the control this rests on: a unit with no signed `int` arithmetic compiles
+# byte-identical with and without the flag.
+# Census: .scratch/decomp-velocity/findings/F_ftrapv_census.py.
+#
+# One hazard, and it is per-build. Under ee-3.2 a signed `int * int` compiles
+# to `jal __mulvsi3`, a libgcc helper this build does not link. cygnus-2.96
+# keeps `mult` and adds no call. Read the emitted `.s` for a `__mulv` or
+# `__addv` call before you land an ee-3.2 TU that carries the key.
 SUPPORTED_C_FLAG_ADDS = frozenset(
-    {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti"})
+    {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv"})
 
 # Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
 #
