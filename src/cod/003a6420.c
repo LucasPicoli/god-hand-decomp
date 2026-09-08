@@ -7,7 +7,7 @@ extern long __sseek(void *cookie, long offset, int whence);
 /* newlib libc/stdio/fseek.c -- fseek. */
 
 extern void func_003A61F0(void *ptr);			/* __sinit */
-extern int func_003A6020(void *fp);			/* fflush */
+extern int fflush(void *fp);			/* fflush */
 extern int func_003ADFA8(void *ptr, int fd, void *st);	/* _fstat_r */
 
 
@@ -126,7 +126,7 @@ int func_003A6420(register FILE *fp, long offset, int whence)
   if (fp->_flags & __SAPP && fp->_flags & __SWR)
     {
       /* So flush the buffer and seek to the end.  */
-      func_003A6020 (fp);
+      fflush (fp);
     }
 
   /* Have to be able to seek.  */
@@ -150,7 +150,7 @@ int func_003A6420(register FILE *fp, long offset, int whence)
        * we have to first find the current stream offset a la
        * ftell (see ftell for details).
        */
-      func_003A6020 (fp);	/* may adjust seek offset on append stream */
+      fflush (fp);	/* may adjust seek offset on append stream */
       if (fp->_flags & __SOFF)
 	curoff = fp->_offset;
       else
@@ -306,7 +306,7 @@ int func_003A6420(register FILE *fp, long offset, int whence)
    */
 
 dumb:
-  if (func_003A6020 (fp) || (*seekfn) (fp->_cookie, offset, whence) == -1L)
+  if (fflush (fp) || (*seekfn) (fp->_cookie, offset, whence) == -1L)
     return EOF;
   /* success: clear EOF indicator and discard ungetc() data */
   fp->_p = fp->_bf._base;

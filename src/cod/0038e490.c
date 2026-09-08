@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void func_0038C3A0(int *a0);
+extern void _IO_free_backup_area(int *a0);
 extern void WaitDma(void *a0);
 extern void func_003B63A0(void);
 extern void func_003B63F0(void);
@@ -8,13 +8,13 @@ extern void func_003B63F0(void);
 /* MATCH via ee-2.9-991111. */
 
 
-__attribute__((section(".text.func_0038E490")))
-void func_0038E490(int *a0, int a1, int a2)
+__attribute__((section(".text._IO_seekpos")))
+void _IO_seekpos(int *a0, int a1, int a2)
 {
     int vt;
     void (*fn)(int *, int, int);
     if (a0[9] != 0)
-        func_0038C3A0(a0);
+        _IO_free_backup_area(a0);
     vt = a0[0x14];
     fn = (void (*)(int *, int, int))((int *)vt)[0x13];
     fn(a0, a1, a2);

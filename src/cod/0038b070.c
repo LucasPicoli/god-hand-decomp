@@ -18,7 +18,7 @@ int func_0038B070(void)
 __attribute__((section(".text.func_0038B090")))
 int func_0038B090(void)
 {
-    return func_0038C3A0();
+    return _IO_free_backup_area();
 }
 
 __attribute__((section(".text.func_0038B0E0")))
@@ -36,11 +36,11 @@ int func_0038B1F8(void)
 __attribute__((section(".text.func_0038B328")))
 int func_0038B328(void)
 {
-    return func_0038E490();
+    return _IO_seekpos();
 }
 
-__attribute__((section(".text.func_0038B348")))
-int func_0038B348(void)
+__attribute__((section(".text.setb__9streambufPcT1i")))
+int setb__9streambufPcT1i(void)
 {
     return func_0038C768();
 }
@@ -50,14 +50,14 @@ int Tramp__IO_default_doallocate_38B368(void *a0) {
     return _IO_default_doallocate(a0);
 }
 
-__attribute__((section(".text.func_0038B388")))
-int func_0038B388(void *a0) {
+__attribute__((section(".text.doallocbuf__9streambuf")))
+int doallocbuf__9streambuf(void *a0) {
     return func_0038C7F0(a0);
 }
 
 __attribute__((section(".text.func_0038B440")))
 int func_0038B440(void *a0) {
-    return func_0038E3F0(a0);
+    return _IO_seekoff(a0);
 }
 
 __attribute__((section(".text.Tramp__IO_sungetc_38B480")))
@@ -90,8 +90,8 @@ int Tramp__IO_file_doallocate_38EF80(void) {
     return _IO_file_doallocate();
 }
 
-__attribute__((section(".text.func_0038EFA0")))
-int func_0038EFA0(void) {
+__attribute__((section(".text.overflow__7filebufi")))
+int overflow__7filebufi(void) {
     return func_00392CD0();
 }
 

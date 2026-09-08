@@ -77,7 +77,7 @@ struct _IO_marker {
 
 extern struct _IO_FILE *D_003F50F8;                 /* _IO_list_all */
 extern void func_0038C768(struct _IO_FILE *f, char *b, char *eb, int a); /* _IO_setb */
-extern int func_0038C3A0(struct _IO_FILE *fp);      /* _IO_free_backup_area */
+extern int _IO_free_backup_area(struct _IO_FILE *fp);      /* _IO_free_backup_area */
 
 
 
@@ -87,11 +87,11 @@ extern void *func_003A7C70(unsigned int n);                       /* malloc */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *p);             /* free */
 extern void *func_003A5148(void *d, const void *s, unsigned int n); /* memcpy */
 extern void *func_003A51F4(void *d, const void *s, unsigned int n); /* memmove */
-extern int func_0038C5B8(struct _IO_FILE *fp);      /* __underflow */
+extern int __underflow(struct _IO_FILE *fp);      /* __underflow */
 
 /* libio genops.c :: _IO_default_xsgetn */
-__attribute__((section(".text.func_0038CA10")))
-_IO_size_t func_0038CA10(struct _IO_FILE *fp, void *data, _IO_size_t n) {
+__attribute__((section(".text._IO_default_xsgetn")))
+_IO_size_t _IO_default_xsgetn(struct _IO_FILE *fp, void *data, _IO_size_t n) {
     _IO_size_t more = n;
     char *s = (char*) data;
     for (;;) {
@@ -114,7 +114,7 @@ _IO_size_t func_0038CA10(struct _IO_FILE *fp, void *data, _IO_size_t n) {
             }
             more -= count;
         }
-        if (more == 0 || func_0038C5B8(fp) == -1)
+        if (more == 0 || __underflow(fp) == -1)
             break;
     }
     return n - more;

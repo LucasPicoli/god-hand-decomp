@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
 extern void WaitDma(void *);
-extern void func_0038C3A0(int *);
+extern void _IO_free_backup_area(int *);
 extern void UpdateGlobalPtrWithParam_3A7CC0(int);
 
 __attribute__((section(".text.func_003974D0")))
@@ -16,12 +16,12 @@ void func_003974D0(int *o, int a1, int a2) {
     o[0] = (f & ~1) | 0x100;
 }
 
-__attribute__((section(".text.func_0038E3F0")))
-int func_0038E3F0(int *o, long a1, int a2, int a3) {
+__attribute__((section(".text._IO_seekoff")))
+int _IO_seekoff(int *o, long a1, int a2, int a3) {
     if (o[9] != 0) {
         if (a2 == 1 && (o[0] & 0x100))
             a1 -= (o[2] - o[1]);
-        func_0038C3A0(o);
+        _IO_free_backup_area(o);
     }
     return (*(int (**)(int *, long, int, int))(((int *)o[0x14]) + 0x11))(o, a1, a2, a3);
 }

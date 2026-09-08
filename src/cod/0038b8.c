@@ -2,14 +2,14 @@
 #include "include_asm.h"
 
 /* -- Forward declarations for called functions -------------------------------- */
-extern int func_0038B388(char *a0);
-extern int func_0038EAE0(char *a0);
-extern int func_0038EB28(char *a0, char *a1);
-extern int func_0038C9E8(char *a0, char *a1, int a2);
-extern int func_0038E138(char *a0, int a1);
-extern void func_0038E490(char *a0);
-extern void func_0038E3F0(char *a0);
-extern void func_0038C3A0(char *a0, int a1, int a2, int a3);
+extern int doallocbuf__9streambuf(char *a0);
+extern int _IO_getc(char *a0);
+extern int _IO_putc(char *a0, char *a1);
+extern int _IO_sgetn(char *a0, char *a1, int a2);
+extern int _IO_padn(char *a0, int a1);
+extern void _IO_seekpos(char *a0);
+extern void _IO_seekoff(char *a0);
+extern void _IO_free_backup_area(char *a0, int a1, int a2, int a3);
 extern int *func_0038C168(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern void func_0038AFB0(int a0);
@@ -56,7 +56,7 @@ INCLUDE_ASM("nonmatching", sputc__9streambufi);
 INCLUDE_ASM("nonmatching", sgetn__9streambufPcl);
 __attribute__((section(".text.func_0038BA68")))
 int func_0038BA68(void *a0, int a1) {
-    return func_0038E138(a0, (char)a1);
+    return _IO_padn(a0, (char)a1);
 }
 INCLUDE_ASM("nonmatching", sputn__9streambufPCcl);
 __attribute__((section(".text.Obj38B8_GetField14MinusField10")))

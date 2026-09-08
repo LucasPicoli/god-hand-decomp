@@ -9,7 +9,7 @@ extern int write(int fd, const void *buf, int n);
  * ungetc buffer is never grown. */
 
 extern void func_003A61F0(void *ptr);		/* __sinit */
-extern int func_003A6020(void *fp);		/* fflush */
+extern int fflush(void *fp);		/* fflush */
 
 extern char D_0045FC90[];			/* the overflow message */
 
@@ -96,7 +96,7 @@ int func_003AE598(int c, register FILE *fp)
 	return EOF;
       if (fp->_flags & __SWR)
 	{
-	  if (func_003A6020 (fp))
+	  if (fflush (fp))
 	    return EOF;
 	  fp->_flags &= ~__SWR;
 	  fp->_w = 0;

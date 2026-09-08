@@ -240,9 +240,9 @@ __udivmoddi4 (UDItype n, UDItype d, UDItype *rp)
   return ww.ll;
 }
 
-__attribute__((section(".text.func_003B8E88")))
+__attribute__((section(".text.__udivdi3")))
 UDItype
-func_003B8E88 (UDItype n, UDItype d)
+__udivdi3 (UDItype n, UDItype d)
 {
   return __udivmoddi4 (n, d, (UDItype *) 0);
 }

@@ -230,11 +230,11 @@ int func_00398B90(int a0, int a1) {
     return func_00398890(a0, a1, 0);
 }
 
-int func_003A6020(int a0, int a1, int a2, int a3);
+int fflush(int a0, int a1, int a2, int a3);
 
 __attribute__((section(".text.func_003A6A88")))
 int func_003A6A88(int a0, int a1, int a2, int a3) {
-    return func_003A6020(a0, a1, a2, a3);
+    return fflush(a0, a1, a2, a3);
 }
 
 int func_003A8FE0(int a0, int a1);

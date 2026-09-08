@@ -7,7 +7,7 @@ extern int __swsetup(void *fp);
 /* newlib libc/stdio/fvwrite.c -- __sfvwrite. */
 
 
-extern int func_003A6020(void *fp);					/* fflush */
+extern int fflush(void *fp);					/* fflush */
 extern void *func_003A51F4(void *dst, const void *src, unsigned int n);	/* memmove */
 extern void *func_003A4FC8(const void *s, int c, unsigned int n);	/* memchr */
 
@@ -138,7 +138,7 @@ int __sfvwrite(register FILE *fp, register struct __suio *uio)
 				/* fill and flush */
 				COPY (w);
 				fp->_p += w;
-				if (func_003A6020 (fp))
+				if (fflush (fp))
 					goto err;
 			} else if (len >= (w = fp->_bf._size)) {
 				/* write directly */
@@ -173,7 +173,7 @@ int __sfvwrite(register FILE *fp, register struct __suio *uio)
 			if (fp->_p > fp->_bf._base && s > w) {
 				COPY (w);
 				fp->_p += w;
-				if (func_003A6020 (fp))
+				if (fflush (fp))
 					goto err;
 			} else if (s >= (w = fp->_bf._size)) {
 				w = (*fp->_write) (fp->_cookie, p, w);
@@ -187,7 +187,7 @@ int __sfvwrite(register FILE *fp, register struct __suio *uio)
 			}
 			if ((nldist -= w) == 0) {
 				/* copied the newline: flush and forget */
-				if (func_003A6020 (fp))
+				if (fflush (fp))
 					goto err;
 				nlknown = 0;
 			}

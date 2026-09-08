@@ -63,7 +63,7 @@ struct _IO_FILE {
     struct _IO_jump_t *vtable;       /* 0x50 */
 };
 /* libio genops.c :: _IO_sgetn -- return _IO_XSGETN (fp, data, n); */
-__attribute__((section(".text.func_0038C9E8")))
-int func_0038C9E8(struct _IO_FILE *fp, void *data, int n) {
+__attribute__((section(".text._IO_sgetn")))
+int _IO_sgetn(struct _IO_FILE *fp, void *data, int n) {
     return (*fp->vtable->__xsgetn.pfn)(fp, data, n);
 }

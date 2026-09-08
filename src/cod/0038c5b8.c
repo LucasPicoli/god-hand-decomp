@@ -77,7 +77,7 @@ struct _IO_marker {
 
 extern struct _IO_FILE *D_003F50F8;                 /* _IO_list_all */
 extern void func_0038C768(struct _IO_FILE *f, char *b, char *eb, int a); /* _IO_setb */
-extern int func_0038C3A0(struct _IO_FILE *fp);      /* _IO_free_backup_area */
+extern int _IO_free_backup_area(struct _IO_FILE *fp);      /* _IO_free_backup_area */
 
 
 
@@ -87,11 +87,11 @@ extern void *func_003A7C70(unsigned int n);                       /* malloc */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *p);             /* free */
 extern void *func_003A5148(void *d, const void *s, unsigned int n); /* memcpy */
 extern void *func_003A51F4(void *d, const void *s, unsigned int n); /* memmove */
-__attribute__((section(".text.func_0038C5B8")))
-extern int func_0038C5B8(struct _IO_FILE *fp);      /* __underflow */
+__attribute__((section(".text.__underflow")))
+extern int __underflow(struct _IO_FILE *fp);      /* __underflow */
 
 /* libio genops.c :: __underflow */
-int func_0038C5B8(struct _IO_FILE *fp) {
+int __underflow(struct _IO_FILE *fp) {
     if (fp->_flags & 0x800)
         if (_IO_switch_to_get_mode(fp) == -1)
             return -1;
@@ -106,6 +106,6 @@ int func_0038C5B8(struct _IO_FILE *fp) {
         if (save_for_backup(fp))
             return -1;
     } else if (fp->_IO_save_base != 0)
-        func_0038C3A0(fp);
+        _IO_free_backup_area(fp);
     return (*fp->vtable->__underflow.pfn)(fp);
 }

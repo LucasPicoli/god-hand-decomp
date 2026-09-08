@@ -66,8 +66,8 @@ extern void *func_003A5148(void *dst, const void *src, _IO_size_t n); /* memcpy 
 extern int func_0038C3F0(struct _IO_FILE *f, int ch);                 /* __overflow */
 
 /* libio genops.c :: _IO_default_xsputn */
-__attribute__((section(".text.func_0038C8B0")))
-_IO_size_t func_0038C8B0(struct _IO_FILE *f, const void *data, _IO_size_t n) {
+__attribute__((section(".text._IO_default_xsputn")))
+_IO_size_t _IO_default_xsputn(struct _IO_FILE *f, const void *data, _IO_size_t n) {
     const char *s = (char *) data;
     _IO_size_t more = n;
     if (more <= 0)

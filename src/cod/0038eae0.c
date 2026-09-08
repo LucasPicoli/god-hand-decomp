@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-__attribute__((section(".text.func_0038EAE0")))
-int func_0038EAE0(void *arg0) {
+__attribute__((section(".text._IO_getc")))
+int _IO_getc(void *arg0) {
     unsigned char *p = *(unsigned char **)((char *)arg0 + 4);
     int c;
 

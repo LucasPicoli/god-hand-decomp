@@ -55,8 +55,8 @@ struct __suio {
 };
 
 
-__attribute__((section(".text.func_003A68C8")))
-unsigned int func_003A68C8(const void *buf, unsigned int size, unsigned int count, FILE *fp)
+__attribute__((section(".text.fwrite")))
+unsigned int fwrite(const void *buf, unsigned int size, unsigned int count, FILE *fp)
 {
   unsigned int n;
   struct __suio uio;

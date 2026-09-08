@@ -28,8 +28,8 @@ int cArea_HitCheck_1F83E8(unsigned char *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_0038EB28")))
-int func_0038EB28(int a0, int a1) {
+__attribute__((section(".text._IO_putc")))
+int _IO_putc(int a0, int a1) {
     char *p = *(char **)(a1 + 0x14);
     char *end = *(char **)(a1 + 0x18);
     if ((unsigned int)p < (unsigned int)end) {

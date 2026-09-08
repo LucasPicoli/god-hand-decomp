@@ -2,8 +2,8 @@
 
 extern int _IO_default_setbuf(int a0, int a1, int a2);
 
-__attribute__((section(".text.func_00392A30")))
-int func_00392A30(int a0, int a1, int a2) {
+__attribute__((section(".text._IO_file_setbuf")))
+int _IO_file_setbuf(int a0, int a1, int a2) {
     int v1;
     if (_IO_default_setbuf(a0, a1, a2) == 0) return 0;
     v1 = *(int *)(a0 + 0x1C);

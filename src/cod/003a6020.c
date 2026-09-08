@@ -65,14 +65,14 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
 #define __SWR  0x0008
 #define __SERR 0x0040
 
-__attribute__((section(".text.func_003A6020")))
-int func_003A6020(register FILE *fp)
+__attribute__((section(".text.fflush")))
+int fflush(register FILE *fp)
 {
   register unsigned char *p;
   register int n, t;
 
   if (fp == 0)
-    return func_003A6830 (_REENT, (int (*)(void *)) func_003A6020);
+    return func_003A6830 (_REENT, (int (*)(void *)) fflush);
 
   CHECK_INIT (fp);
 

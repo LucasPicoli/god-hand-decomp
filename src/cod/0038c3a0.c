@@ -3,8 +3,8 @@
 extern void _IO_switch_to_main_get_area(int *fp);
 extern void UpdateGlobalPtrWithParam_3A7CC0(int p);
 
-__attribute__((section(".text.func_0038C3A0")))
-void func_0038C3A0(int *fp) {
+__attribute__((section(".text._IO_free_backup_area")))
+void _IO_free_backup_area(int *fp) {
     if (fp[0] & 0x100) {
         _IO_switch_to_main_get_area(fp);
     }

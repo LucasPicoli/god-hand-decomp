@@ -2,7 +2,7 @@
 
 extern int D_00755BC8;
 extern void __do_global_ctors(void);
-extern void func_0038C3A0(int);
+extern void _IO_free_backup_area(int);
 extern void _sceMpegWaitIpuIdle(int);
 
 __attribute__((section(".text.func_0031DB50")))
@@ -19,7 +19,7 @@ void func_0038D140(int a0) {
         *(int *)((char *)a0 + 0x30) = 0;
     }
     if (*(int *)((char *)a0 + 0x24) != 0) {
-        func_0038C3A0(a0);
+        _IO_free_backup_area(a0);
     }
 }
 

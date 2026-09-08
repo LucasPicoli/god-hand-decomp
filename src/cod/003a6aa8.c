@@ -5,7 +5,7 @@ extern void __smakebuf(void *fp);
 /* newlib libc/stdio/refill.c -- __srefill. */
 
 extern void func_003A61F0(void *ptr);			/* __sinit */
-extern int func_003A6020(void *fp);			/* fflush */
+extern int fflush(void *fp);			/* fflush */
 extern int func_003A6A88(void *fp);			/* lflush */
 extern int func_003A6830(void *ptr, int (*function)(void *));	/* _fwalk */
 
@@ -96,7 +96,7 @@ int __srefill(register FILE *fp)
       /* switch to reading */
       if (fp->_flags & __SWR)
 	{
-	  if (func_003A6020 (fp))
+	  if (fflush (fp))
 	    return EOF;
 	  fp->_flags &= ~__SWR;
 	  fp->_w = 0;

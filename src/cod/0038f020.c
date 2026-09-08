@@ -2,8 +2,8 @@
 
 extern int _IO_file_close_it();
 
-__attribute__((section(".text.func_0038F020")))
-void *func_0038F020(void *a0)
+__attribute__((section(".text.close__7filebuf")))
+void *close__7filebuf(void *a0)
 {
   if (_IO_file_close_it(a0) == 0) return a0;
   return 0;

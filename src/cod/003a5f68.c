@@ -3,7 +3,7 @@
 /* newlib libc/stdio -- transcribed. */
 
 extern void func_003A61F0(void *);	/* __sinit */
-extern int func_003A6020(void *);	/* __sflush */
+extern int fflush(void *);	/* __sflush */
 
 struct _reent;
 
@@ -65,8 +65,8 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
 #define EOF (-1)
 #define __SWR 0x0008
 
-__attribute__((section(".text.func_003A5F68")))
-int func_003A5F68(register FILE *fp)
+__attribute__((section(".text.fclose")))
+int fclose(register FILE *fp)
 {
   int r;
 
@@ -77,7 +77,7 @@ int func_003A5F68(register FILE *fp)
 
   if (fp->_flags == 0)
     return (0);
-  r = fp->_flags & __SWR ? func_003A6020 (fp) : 0;
+  r = fp->_flags & __SWR ? fflush (fp) : 0;
   if (fp->_close != 0 && (*fp->_close) (fp->_cookie) < 0)
     r = EOF;
   fp->_flags = 0;
