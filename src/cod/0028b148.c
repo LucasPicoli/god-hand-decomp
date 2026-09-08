@@ -25,7 +25,7 @@ __attribute__((section(".text.func_0028CE70")))
 void func_0028CE70(char *a0) {
     int v = *(int*)(a0 + 0x1630);
     if (v) {
-        func_0030F5C8(v);
+        __builtin_vec_delete(v);
         *(int*)(a0 + 0x1630) = 0;
     }
 }

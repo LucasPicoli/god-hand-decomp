@@ -518,7 +518,7 @@ __attribute__((section(".text.SetField5CAndForward_12D178")))
 void SetField5CAndForward_12D178(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -526,7 +526,7 @@ __attribute__((section(".text.SetField5CAndForwardAlt_12DC88")))
 void SetField5CAndForwardAlt_12DC88(int *a0, int a1) {
     *(int *)((char *)a0 + 0x5C) = (int)D_0041D5A8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -534,7 +534,7 @@ __attribute__((section(".text.SetField198AndForward_12E640")))
 void SetField198AndForward_12E640(int *a0, int a1) {
     *(int *)((char *)a0 + 0x198) = (int)D_0041D540;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 

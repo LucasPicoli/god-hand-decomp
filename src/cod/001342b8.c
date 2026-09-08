@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned char D_0044BAB0[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void *a);
+extern void __builtin_delete(void *a);
 extern unsigned char D_0044D3C0[];
 extern int cIDBase_initialize();
 extern int D_00747A80;
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_002BAE68")))
 void func_002BAE68(void *a0, int a1) {
     *(unsigned char **)((char *)a0 + 0x18) = D_0044BAB0;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -56,7 +56,7 @@ __attribute__((section(".text.func_002D9F30")))
 void func_002D9F30(void *a0, int a1) {
     *(unsigned char **)((char *)a0 + 0x0) = D_0044D3C0;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 

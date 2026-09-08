@@ -4,7 +4,7 @@ extern void flush__7ostream(void *a0);
 extern void __as__22_IO_ostream_withassignR7ostream(void *a0, void *a1);
 extern void __as__22_IO_istream_withassignR7istream(void *a0, void *a1);
 extern int D_003BAFE0[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern void func_003B9DE0(void *);
 extern int D_00460AA8;
 extern void func_001495A0(void *);
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_00372C80")))
 void func_00372C80(int *a0, int a1) {
     *(int **)((char *)a0 + 0x80) = D_003BAFE0;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 

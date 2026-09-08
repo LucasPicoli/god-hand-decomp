@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern int D_00451038;
 extern int D_007861D8;
 extern int D_0044A750;
@@ -12,7 +12,7 @@ __attribute__((section(".text.func_0031EE10")))
 void func_0031EE10(void *a0, int a1) {
     *(int **)((char *)a0 + 4) = &D_00451038;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 

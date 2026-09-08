@@ -4,7 +4,7 @@ extern void func_003182D8(int a, int b);
 extern void func_0031CE90(int a, int b);
 extern unsigned char D_0045F039[];
 extern int D_00466470;
-extern void ForwardFieldNeg20_002A9680_30F5A0();
+extern void __builtin_delete();
 extern int D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void EmitterAllKill(void);
@@ -94,7 +94,7 @@ int func_00150100(int a0) {
 __attribute__((section(".text.func_001F8A60")))
 void func_001F8A60(int a0, int a1) {
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 
@@ -306,7 +306,7 @@ __attribute__((section(".text.func_00150048")))
 void func_00150048(int *a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)D_0041ECA0;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -314,7 +314,7 @@ __attribute__((section(".text.func_001FCE80")))
 void func_001FCE80(int *a0, int a1) {
     *(int *)((char *)a0 + 0x50) = (int)D_0042C4D8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -322,7 +322,7 @@ __attribute__((section(".text.func_001FD418")))
 void func_001FD418(int *a0, int a1) {
     *(int *)((char *)a0 + 0x50) = (int)D_0042C4D8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -330,7 +330,7 @@ __attribute__((section(".text.func_001FE500")))
 void func_001FE500(int *a0, int a1) {
     *(int *)((char *)a0 + 0x50) = (int)D_0042C4D8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -338,7 +338,7 @@ __attribute__((section(".text.func_002A98D8")))
 void func_002A98D8(int *a0, int a1) {
     *(int *)((char *)a0 + 0x18) = (int)D_0044AEF8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -347,7 +347,7 @@ void func_002B6568(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0xF0) = D_0044B310;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -356,7 +356,7 @@ void func_002B8B20(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x18) = D_0044BAB0;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -365,7 +365,7 @@ void func_002D5C38(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x30) = D_0044D1C8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -374,7 +374,7 @@ void func_002D9E30(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x0) = D_0044D388;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -383,7 +383,7 @@ void func_002FBDD8(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0xF0) = D_0044B310;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -392,7 +392,7 @@ void func_003028E8(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0xF0) = D_0044B310;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -401,7 +401,7 @@ void func_00305A38(void *a0, int a1)
 {
     *(int **)((char *)a0 + 0x424) = &D_00450080;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -410,7 +410,7 @@ void func_0031F330(void *a0, int a1)
 {
     *(int **)a0 = &D_00451288;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -419,7 +419,7 @@ void func_0031F3C8(void *a0, int a1)
 {
     *(int **)a0 = &D_00451288;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -428,7 +428,7 @@ void func_00321818(void *a0, int a1)
 {
     *(int **)a0 = &D_00451288;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -437,6 +437,6 @@ void func_003218B0(void *a0, int a1)
 {
     *(int **)a0 = &D_00451288;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }

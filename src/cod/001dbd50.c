@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int ForwardFieldNeg20_002A9680_30F5A0();
+extern int __builtin_delete();
 extern char D_00463050[];
 extern int cCamManager_setSubScrCamera();
 
@@ -40,7 +40,7 @@ void CustomIDWork_SetColorAnimNormal_2D68D8(int a0, int a1, int a2, int a3) {
 __attribute__((section(".text.CustomIDWork__dtor")))
 void CustomIDWork__dtor(int a0, int a1) {
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 

@@ -6,7 +6,7 @@ extern void func_002DBE98(void);
 extern unsigned int D_00747A78;
 extern void func_00139180(int a0);
 extern char D_0041DCC8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void *a0);
+extern void __builtin_delete(void *a0);
 
 __attribute__((section(".text.IsSpecialConditionMet_12C758")))
 int IsSpecialConditionMet_12C758(char *a0) {
@@ -39,7 +39,7 @@ void SetVtable80AndForwardNeg20_13D338(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -48,7 +48,7 @@ void SetVtable80AndMaybeForwardNeg20_13E300(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -57,7 +57,7 @@ void InitVtable80ConditionalForward_13E750(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }
 
@@ -66,6 +66,6 @@ void SetField80VtableAndForward_13EC50(void *a0, int a1)
 {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }

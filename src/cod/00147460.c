@@ -2,7 +2,7 @@
 
 extern void cIDBase_trans(void *);
 extern char D_0041DCC8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern int D_007476B0;
 extern int D_00466448[];
 extern int D_00747A34;
@@ -21,7 +21,7 @@ __attribute__((section(".text.InitPtrField80AndForward_1474A0")))
 void InitPtrField80AndForward_1474A0(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 

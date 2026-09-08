@@ -55,8 +55,8 @@ void LookupSlotPopulateFieldsAndDispatch_1F7858(int a0, int a1, int a2, int a3, 
     }
 }
 
-__attribute__((section(".text.ForwardFieldNeg20_002A9680_30F5A0")))
-void ForwardFieldNeg20_002A9680_30F5A0(int *a0) {
+__attribute__((section(".text.__builtin_delete")))
+void __builtin_delete(int *a0) {
     if (a0) {
         UnlinkAndCoalesceNode_2A9680(*(int*)((char*)a0 - 0x20), a0);
     }

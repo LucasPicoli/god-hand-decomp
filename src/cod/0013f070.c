@@ -2,7 +2,7 @@
 
 extern void cIDBase_trans(void);
 extern int D_0041DCC8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern void cIDBase_move(void *);
 
 __attribute__((section(".text.Forward2AAC28_13F070")))
@@ -15,7 +15,7 @@ __attribute__((section(".text.SetVtable80WithConditionalForward_13F090")))
 void SetVtable80WithConditionalForward_13F090(void *a0, int a1) {
     *(int **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 

@@ -95,8 +95,8 @@ int func_00304F58(void *a0) {
 /* clone */
 
 
-__attribute__((section(".text.func_0030F5C8")))
-void func_0030F5C8(int *a0) {
+__attribute__((section(".text.__builtin_vec_delete")))
+void __builtin_vec_delete(int *a0) {
     if (a0) {
         UnlinkAndCoalesceNode_2A9680(*(int*)((char*)a0 - 0x20), a0);
     }

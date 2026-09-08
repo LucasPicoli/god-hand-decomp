@@ -46,7 +46,7 @@ typedef struct Sub {
 
 
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *);                /* free */
-extern void ForwardFieldNeg20_002A9680_30F5A0(void *);              /* operator delete */
+extern void __builtin_delete(void *);              /* operator delete */
 
 
 __attribute__((section(".text.func_0037DC88")))
@@ -192,7 +192,7 @@ void func_0037DC88(char *self, int in_chrg)
             }
         }
 
-        ForwardFieldNeg20_002A9680_30F5A0(p);
+        __builtin_delete(p);
     }
 
     /* ~m44 */
@@ -287,6 +287,6 @@ void func_0037DC88(char *self, int in_chrg)
     }
 
     if (in_chrg & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(self);
+        __builtin_delete(self);
     }
 }

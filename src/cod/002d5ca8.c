@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern char D_0044D1C8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void *a0);
+extern void __builtin_delete(void *a0);
 
 /* func_002D5CA8 -- DEAD-HEAD BOUNDARY DEFECT.
  * The declared span starts 48 B too early; the TRUE entry is 0x002D5CA8.
@@ -22,6 +22,6 @@ __attribute__((section(".text.func_002D5CA8")))
 void func_002D5CA8(void *a0, int a1) {
     *(char **)((char *)a0 + 0x30) = D_0044D1C8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0(a0);
+        __builtin_delete(a0);
     }
 }

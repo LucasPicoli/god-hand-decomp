@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern char D_0041DCC8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern void cIDBase_trans(void *);
 
 __attribute__((section(".text.SetLinkedObjFlags_1471A8")))
@@ -39,7 +39,7 @@ __attribute__((section(".text.InitPtrField80AndForward_146748")))
 void InitPtrField80AndForward_146748(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 
@@ -59,7 +59,7 @@ __attribute__((section(".text.InitPtrField80AndForward_146E70")))
 void InitPtrField80AndForward_146E70(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 
@@ -67,6 +67,6 @@ __attribute__((section(".text.InitPtrField80AndForward_146F98")))
 void InitPtrField80AndForward_146F98(void *a0, int a1) {
     *(char **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }

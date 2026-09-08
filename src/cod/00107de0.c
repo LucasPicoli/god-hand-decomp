@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_0041DCC8[];
-extern void ForwardFieldNeg20_002A9680_30F5A0(void);
+extern void __builtin_delete(void);
 extern int D_004615F0[];
 extern void pl00_reset(void);
 
@@ -9,7 +9,7 @@ __attribute__((section(".text.InitPtrField80AndForward_144AD0")))
 void InitPtrField80AndForward_144AD0(void *a0, int a1) {
     *(int **)((char *)a0 + 0x80) = D_0041DCC8;
     if (a1 & 1) {
-        ForwardFieldNeg20_002A9680_30F5A0();
+        __builtin_delete();
     }
 }
 
