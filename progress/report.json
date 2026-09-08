@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 27.215816,
+    "fuzzy_match_percent": 27.22763,
     "total_code": "2844052",
-    "matched_code": "774032",
-    "matched_code_percent": 27.215818,
+    "matched_code": "774368",
+    "matched_code_percent": 27.22763,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6408,
-    "matched_functions_percent": 56.858913,
-    "complete_code": 743176,
-    "complete_code_percent": 26.13088649574621,
-    "total_units": 9284,
-    "complete_units": 1986
+    "matched_functions": 6409,
+    "matched_functions_percent": 56.86779,
+    "complete_code": 743512,
+    "complete_code_percent": 26.142700625726956,
+    "total_units": 9286,
+    "complete_units": 1987
   },
   "units": [
     {
@@ -253488,9 +253488,11 @@
     {
       "name": "asm/cod/000000.part6866",
       "measures": {
-        "total_code": "336",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253507,16 +253509,8 @@
         },
         {
           "name": ".text",
-          "size": "336",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "sceIpuRestartDMA",
-          "size": "336",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -253564,6 +253558,41 @@
     {
       "name": "asm/cod/000000.part6868",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6869",
+      "measures": {
         "total_code": "568",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -253593,53 +253622,6 @@
           "size": "568",
           "metadata": {},
           "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6869",
-      "measures": {
-        "total_code": "32",
-        "matched_data_percent": 100.0,
-        "total_functions": 2,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "40",
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003BAFD0",
-          "size": "12",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "D_003BAFE4",
-          "size": "20",
-          "metadata": {},
-          "address": "20"
         }
       ],
       "metadata": {
@@ -253686,6 +253668,53 @@
     },
     {
       "name": "asm/cod/000000.part6870",
+      "measures": {
+        "total_code": "32",
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "40",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003BAFD0",
+          "size": "12",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "D_003BAFE4",
+          "size": "20",
+          "metadata": {},
+          "address": "20"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6871",
       "measures": {
         "total_code": "308",
         "matched_data_percent": 100.0,
@@ -253738,7 +253767,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6871",
+      "name": "asm/cod/000000.part6872",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -253773,7 +253802,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6872",
+      "name": "asm/cod/000000.part6873",
       "measures": {
         "total_code": "1164",
         "matched_data_percent": 100.0,
@@ -253814,7 +253843,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6873",
+      "name": "asm/cod/000000.part6874",
       "measures": {
         "total_code": "1292",
         "matched_data_percent": 100.0,
@@ -421393,6 +421422,63 @@
       }
     },
     {
+      "name": "src/cod/003bab50",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "336",
+        "matched_code": "336",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "336",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "336",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.sceIpuRestartDMA",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "sceIpuRestartDMA",
+          "size": "336",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/003baca0",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -431346,20 +431432,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 27.604328,
+        "fuzzy_match_percent": 27.616312,
         "total_code": "2804024",
-        "matched_code": "774032",
-        "matched_code_percent": 27.60433,
+        "matched_code": "774368",
+        "matched_code_percent": 27.61631,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 10983,
-        "matched_functions": 6408,
-        "matched_functions_percent": 58.344715,
-        "complete_code": "743176",
-        "complete_code_percent": 26.503908,
-        "total_units": 8997,
-        "complete_units": 1986
+        "matched_functions": 6409,
+        "matched_functions_percent": 58.353817,
+        "complete_code": "743512",
+        "complete_code_percent": 26.515892,
+        "total_units": 8999,
+        "complete_units": 1987
       }
     },
     {
