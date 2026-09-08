@@ -9759,6 +9759,14 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/00388278.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26481,7 +26489,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00388278",
       "size": 96,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00388278.cc"
     },
     {
       "name": "__ls__7ostreamc",
