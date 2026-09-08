@@ -10015,6 +10015,14 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/00393740.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -27504,7 +27512,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00393740",
       "size": 44,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00393740.cc"
     },
     {
       "name": "overflow__8stdiobufi",
