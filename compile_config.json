@@ -10540,6 +10540,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00355bb8.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26750,7 +26757,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00355BB8",
       "size": 80,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00355bb8.c"
     },
     {
       "name": "viBufDelete",
