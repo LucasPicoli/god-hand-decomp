@@ -10554,6 +10554,21 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00349d38.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/002bb138.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0034af70.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26410,7 +26425,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00349D38",
       "size": 60,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00349d38.c"
     },
     {
       "name": "func_00349FB0",
@@ -26433,14 +26449,16 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0034ABD0",
       "size": 36,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00349d38.c"
     },
     {
       "name": "sfadxt_CreateEx",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034AF70",
       "size": 108,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0034af70.c"
     },
     {
       "name": "sfadxt_GetTimeTst",
@@ -26454,7 +26472,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0034B478",
       "size": 60,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00349d38.c"
     },
     {
       "name": "func_0034B4B8",
@@ -59199,6 +59218,20 @@
       "vaddr": "0x00355988",
       "size": 316,
       "tu": "src/cod/00355988.c"
+    },
+    {
+      "name": "SFADXT_Finish",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00349D78",
+      "size": 40,
+      "tu": "src/cod/00349d38.c"
+    },
+    {
+      "name": "func_002BB138",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x002BB138",
+      "size": 40,
+      "tu": "src/cod/002bb138.c"
     }
   ],
   "build_dir": "build",
