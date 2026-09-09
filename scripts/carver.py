@@ -667,7 +667,7 @@ _DEFAULT_TU = "src/cod/000000.c"
 # ``progress/decomp_targets.json`` entries that include trailing-nop
 # alignment padding in ``size_bytes``.
 _NONMATCHING_DIRECTIVE_RE = re.compile(
-    r"^\s*nonmatching\s+(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*,\s*"
+    r"^\s*nonmatching\s+(?P<name>[A-Za-z_$][A-Za-z0-9_$]*)\s*,\s*"
     r"0[xX](?P<hex>[0-9a-fA-F]+)\s*$",
     re.MULTILINE,
 )

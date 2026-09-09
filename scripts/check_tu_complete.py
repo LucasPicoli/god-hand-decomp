@@ -79,7 +79,7 @@ INCLUDE_ASM_RE = re.compile(
         \s*\(\s*
         "([^"]+)"           # folder string
         \s*,\s*
-        ([A-Za-z_][A-Za-z0-9_]*)  # function name
+        ([A-Za-z_$][A-Za-z0-9_$]*)  # function name
         \s*\)\s*;?\s*$
     """,
     re.MULTILINE | re.VERBOSE,

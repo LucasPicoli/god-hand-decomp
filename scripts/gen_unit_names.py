@@ -186,7 +186,7 @@ def compute_display_names(
 # Loaders: on-disk files -> the dicts the resolver consumes
 # --------------------------------------------------------------------------- #
 _SYM_LINE_RE = re.compile(
-    r"^\s*([A-Za-z_]\w*)\s*=\s*0x([0-9A-Fa-f]+)\s*;\s*//\s*type:func\b"
+    r"^\s*([A-Za-z_$][\w$]*)\s*=\s*0x([0-9A-Fa-f]+)\s*;\s*//\s*type:func\b"
 )
 
 
