@@ -10599,6 +10599,17 @@
     {
       "path": "src/cod/0035e0f0.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035a6a8.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
+      "path": "src/cod/00358e78.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -26912,7 +26923,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00358E78",
       "size": 108,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00358e78.c"
     },
     {
       "name": "SFD_AddWritePtr",
@@ -26947,7 +26959,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0035A6A8",
       "size": 80,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0035a6a8.c"
     },
     {
       "name": "SFTIM_IsStagnant",
