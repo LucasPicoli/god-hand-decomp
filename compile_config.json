@@ -10658,6 +10658,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00330518.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -25787,14 +25794,16 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00330518",
       "size": 96,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "isExistDev",
       "unit": "asm/cod/000000",
       "vaddr": "0x00330648",
       "size": 124,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "variousProc",
@@ -25808,7 +25817,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00330EC0",
       "size": 80,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "addDevName",
@@ -25902,7 +25912,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003334C8",
       "size": 148,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "func_00333A10",
@@ -25916,7 +25927,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00334090",
       "size": 96,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "func_003344C8",
@@ -25977,7 +25989,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00334EF0",
       "size": 148,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00330518.c"
     },
     {
       "name": "func_003350F0",
