@@ -10610,6 +10610,17 @@
     {
       "path": "src/cod/00358e78.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0034d1b8.c",
+      "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0035d918.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26668,7 +26679,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0034D1B8",
       "size": 84,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0034d1b8.c"
     },
     {
       "name": "SFHDS_ProcessHdr",
@@ -26931,7 +26943,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00358EE8",
       "size": 124,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0034d1b8.c"
     },
     {
       "name": "func_00359730",
@@ -27064,7 +27077,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D918",
       "size": 108,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0035d918.c"
     },
     {
       "name": "SFH_IsEffFtrInf",
