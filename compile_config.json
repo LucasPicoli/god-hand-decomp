@@ -10484,6 +10484,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0034f188.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26593,7 +26600,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0034F188",
       "size": 108,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0034f188.c"
     },
     {
       "name": "sfmps_IsEffectiveEndcode",
