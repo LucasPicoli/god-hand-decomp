@@ -10665,6 +10665,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00333a10.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -25920,7 +25927,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00333A10",
       "size": 200,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00333a10.c"
     },
     {
       "name": "htci_zero_padding",
@@ -25974,7 +25982,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00334D10",
       "size": 88,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00333a10.c"
     },
     {
       "name": "func_00334E98",
@@ -25997,7 +26006,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003350F0",
       "size": 200,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00333a10.c"
     },
     {
       "name": "LSC_ResetEntry",
