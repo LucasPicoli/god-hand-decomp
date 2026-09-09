@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.203423,
+    "fuzzy_match_percent": 28.20539,
     "total_code": "2844052",
-    "matched_code": "802120",
-    "matched_code_percent": 28.203423,
+    "matched_code": "802176",
+    "matched_code_percent": 28.20539,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6528,
-    "matched_functions_percent": 57.92369,
-    "complete_code": 771124,
-    "complete_code_percent": 27.1135689502161,
+    "matched_functions": 6529,
+    "matched_functions_percent": 57.93256,
+    "complete_code": 771180,
+    "complete_code_percent": 27.115537971879558,
     "total_units": 9342,
-    "complete_units": 2066
+    "complete_units": 2067
   },
   "units": [
     {
@@ -274657,52 +274657,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/func_00397550",
-      "measures": {
-        "total_code": "56",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "56",
-          "metadata": {}
-        },
-        {
-          "name": ".text.func_00397550",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_00397550",
-          "size": "56",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "sce-runtime"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/func_003978C8",
       "measures": {
         "total_code": "276",
@@ -415430,6 +415384,63 @@
       }
     },
     {
+      "name": "src/cod/00397550",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "56",
+        "matched_code": "56",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "56",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.func_00397550",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_00397550",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/00398468",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -434337,20 +434348,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.52392,
-        "total_code": "2812096",
-        "matched_code": "802120",
-        "matched_code_percent": 28.523918,
+        "fuzzy_match_percent": 28.525343,
+        "total_code": "2812152",
+        "matched_code": "802176",
+        "matched_code_percent": 28.525343,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11053,
-        "matched_functions": 6528,
-        "matched_functions_percent": 59.06089,
-        "complete_code": "771124",
-        "complete_code_percent": 27.42168,
-        "total_units": 9125,
-        "complete_units": 2066
+        "total_functions": 11054,
+        "matched_functions": 6529,
+        "matched_functions_percent": 59.06459,
+        "complete_code": "771180",
+        "complete_code_percent": 27.423126,
+        "total_units": 9126,
+        "complete_units": 2067
       }
     },
     {
@@ -434460,11 +434471,11 @@
       "id": "sce-runtime",
       "name": "SCE PS2 runtime",
       "measures": {
-        "total_code": "14012",
+        "total_code": "13956",
         "matched_data_percent": 100.0,
-        "total_functions": 75,
+        "total_functions": 74,
         "complete_data_percent": 100.0,
-        "total_units": 75
+        "total_units": 74
       }
     },
     {
