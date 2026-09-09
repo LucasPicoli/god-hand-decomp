@@ -189,6 +189,47 @@ D_20000050      = 0x20000050;
 D_70000040      = 0x70000040;
 D_E0002000      = 0xE0002000;
 
+/* -------------------------------------------------------------------------- *
+ * g++ 2.x C++ vtables, plus three mangled names. Wave 24, lanes E and H.
+ *
+ * Every C++ constructor and destructor stores a vtable pointer. g++ 2.x names
+ * the vtable `_vt$<class>`, or `_vt$<derived>$<base>` for a virtual base.
+ * Retail's disassembly carries no name for these ten addresses, so a byte-exact
+ * constructor or destructor scored MATCH-SEMANTIC-MISMATCH against retail's own
+ * `D_...` operand on 21 bodies / 4,272 B. Each address is read off
+ * `--link-check`'s relocation join over a body whose `.text` is byte-identical
+ * to retail. None is guessed. The join covers 21 bodies and 123 sites.
+ *
+ * These are LINKER-SCRIPT assignments, not `config/symbol_addrs.txt` rows, and
+ * deliberately so. A symbol_addrs row renames the address in the splat monolith
+ * AND in the tracked `.rodata` blob that holds these ten vtables. An lcf
+ * assignment adds one absolute symbol at link time and touches no asm.
+ *
+ * MEASURED (wave 24 lane H): `mipsel-linux-gnu-ld` accepts `$` in a script
+ * symbol and resolves it correctly, and a script assignment overrides a WEAK
+ * definition of the same name inside an input object with no
+ * multiple-definition error. `score_candidate._lcf_aliases` needs its character
+ * class widened to `[A-Za-z_$][\w$]*` to read these rows; the widening reads
+ * the same 50,272 names at the same addresses as the old one.
+ * -------------------------------------------------------------------------- */
+_vt$22_IO_ostream_withassign$3ios = 0x0045D138;
+_vt$22_IO_istream_withassign$3ios = 0x0045D148;
+_vt$8iostream$3ios = 0x0045D158;
+_vt$7istream$3ios  = 0x0045D168;
+_vt$7ostream$3ios  = 0x0045D178;
+_vt$9streambuf     = 0x0045D2B0;
+_vt$3ios           = 0x0045D340;
+_vt$12ostdiostream$3ios = 0x0045DAC8;
+_vt$12istdiostream$3ios = 0x0045DAD8;
+_vt$8stdiobuf      = 0x0045DAE8;
+
+/* Two mangled destructor names for addresses this repo names `func_...`, and
+ * the mangled spelling of `terminate` (config/symbol_addrs.txt:6079). All three
+ * come from the same relocation join. */
+_$_7filebuf        = 0x0038ED40;
+_$_8stdiobuf       = 0x003935D0;
+terminate__Fv      = 0x003211E0;
+
 SECTIONS
 {
     /* ------------------------------------------------------------------ *
