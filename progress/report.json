@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.46924,
+    "fuzzy_match_percent": 28.474304,
     "total_code": "2844052",
-    "matched_code": "809680",
-    "matched_code_percent": 28.46924,
+    "matched_code": "809824",
+    "matched_code_percent": 28.474304,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6601,
-    "matched_functions_percent": 58.571426,
-    "complete_code": 777264,
-    "complete_code_percent": 27.329458111173775,
+    "matched_functions": 6603,
+    "matched_functions_percent": 58.589172,
+    "complete_code": 777408,
+    "complete_code_percent": 27.334521309736953,
     "total_units": 9347,
-    "complete_units": 2106
+    "complete_units": 2108
   },
   "units": [
     {
@@ -274323,98 +274323,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/mwPlyCalcWorkCprmSfd",
-      "measures": {
-        "total_code": "92",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "96",
-          "metadata": {}
-        },
-        {
-          "name": ".text.mwPlyCalcWorkCprmSfd",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "mwPlyCalcWorkCprmSfd",
-          "size": "92",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/nonmatching/mwPlyCalcYccPlane",
-      "measures": {
-        "total_code": "52",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "56",
-          "metadata": {}
-        },
-        {
-          "name": ".text.mwPlyCalcYccPlane",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "mwPlyCalcYccPlane",
-          "size": "52",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/mwPlyFxSetLumiPrm",
       "measures": {
         "total_code": "80",
@@ -384550,6 +384458,63 @@
       }
     },
     {
+      "name": "src/cod/00342f98",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "92",
+        "matched_code": "92",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "92",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "96",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.mwPlyCalcWorkCprmSfd",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "mwPlyCalcWorkCprmSfd",
+          "size": "92",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/00343a98",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -385141,6 +385106,63 @@
         {
           "name": "func_00344BF0",
           "size": "60",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "src/cod/00344e18",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "52",
+        "matched_code": "52",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "52",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "56",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.mwPlyCalcYccPlane",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "mwPlyCalcYccPlane",
+          "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
@@ -435010,20 +435032,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.735044,
-        "total_code": "2817744",
-        "matched_code": "809680",
-        "matched_code_percent": 28.735044,
+        "fuzzy_match_percent": 28.738688,
+        "total_code": "2817888",
+        "matched_code": "809824",
+        "matched_code_percent": 28.738686,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11112,
-        "matched_functions": 6601,
-        "matched_functions_percent": 59.404247,
-        "complete_code": "777264",
-        "complete_code_percent": 27.584621,
-        "total_units": 9189,
-        "complete_units": 2106
+        "total_functions": 11114,
+        "matched_functions": 6603,
+        "matched_functions_percent": 59.411556,
+        "complete_code": "777408",
+        "complete_code_percent": 27.588324,
+        "total_units": 9191,
+        "complete_units": 2108
       }
     },
     {
@@ -435122,11 +435144,11 @@
       "id": "cri-middleware",
       "name": "CRI middleware (ADX / AFS)",
       "measures": {
-        "total_code": "8048",
+        "total_code": "7904",
         "matched_data_percent": 100.0,
-        "total_functions": 62,
+        "total_functions": 60,
         "complete_data_percent": 100.0,
-        "total_units": 62
+        "total_units": 60
       }
     },
     {
