@@ -10980,6 +10980,17 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00344bf0.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
+      "path": "src/cod/0034b4b8.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -26936,7 +26947,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0034B4B8",
       "size": 76,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0034b4b8.c"
     },
     {
       "name": "SFAOAP_ExecServer",
@@ -59932,6 +59944,13 @@
       "vaddr": "0x0033F8B8",
       "size": 204,
       "tu": "src/cod/0033f8b8.c"
+    },
+    {
+      "name": "func_00344BF0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00344BF0",
+      "size": 60,
+      "tu": "src/cod/00344bf0.c"
     }
   ],
   "build_dir": "build",
