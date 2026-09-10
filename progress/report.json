@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.71157,
+    "fuzzy_match_percent": 28.717758,
     "total_code": "2844052",
-    "matched_code": "816572",
-    "matched_code_percent": 28.711569,
+    "matched_code": "816748",
+    "matched_code_percent": 28.71776,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6659,
-    "matched_functions_percent": 59.086067,
-    "complete_code": 784156,
-    "complete_code_percent": 27.571788420183598,
+    "matched_functions": 6660,
+    "matched_functions_percent": 59.09494,
+    "complete_code": 784332,
+    "complete_code_percent": 27.577976773983035,
     "total_units": 9367,
-    "complete_units": 2148
+    "complete_units": 2149
   },
   "units": [
     {
@@ -274477,52 +274477,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/scePadSetButtonInfo",
-      "measures": {
-        "total_code": "176",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "176",
-          "metadata": {}
-        },
-        {
-          "name": ".text.scePadSetButtonInfo",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "scePadSetButtonInfo",
-          "size": "176",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "sce-runtime"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/scePadSetMainMode",
       "measures": {
         "total_code": "180",
@@ -415882,6 +415836,63 @@
       }
     },
     {
+      "name": "src/cod/003982c8",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "176",
+        "matched_code": "176",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "176",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.scePadSetButtonInfo",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "scePadSetButtonInfo",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/003983f8",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -436198,20 +436209,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.938353,
-        "total_code": "2821764",
-        "matched_code": "816572",
-        "matched_code_percent": 28.938353,
+        "fuzzy_match_percent": 28.942783,
+        "total_code": "2821940",
+        "matched_code": "816748",
+        "matched_code_percent": 28.942785,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11152,
-        "matched_functions": 6659,
-        "matched_functions_percent": 59.711258,
-        "complete_code": "784156",
-        "complete_code_percent": 27.789566,
-        "total_units": 9249,
-        "complete_units": 2148
+        "total_functions": 11153,
+        "matched_functions": 6660,
+        "matched_functions_percent": 59.714878,
+        "complete_code": "784332",
+        "complete_code_percent": 27.794071,
+        "total_units": 9250,
+        "complete_units": 2149
       }
     },
     {
@@ -436321,11 +436332,11 @@
       "id": "sce-runtime",
       "name": "SCE PS2 runtime",
       "measures": {
-        "total_code": "10852",
+        "total_code": "10676",
         "matched_data_percent": 100.0,
-        "total_functions": 50,
+        "total_functions": 49,
         "complete_data_percent": 100.0,
-        "total_units": 50
+        "total_units": 49
       }
     },
     {
