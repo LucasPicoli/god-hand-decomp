@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.422827,
+    "fuzzy_match_percent": 28.428032,
     "total_code": "2844052",
-    "matched_code": "808360",
-    "matched_code_percent": 28.422827,
+    "matched_code": "808508",
+    "matched_code_percent": 28.428034,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6583,
-    "matched_functions_percent": 58.411713,
-    "complete_code": 775944,
-    "complete_code_percent": 27.28304545767799,
-    "total_units": 9352,
-    "complete_units": 2095
+    "matched_functions": 6585,
+    "matched_functions_percent": 58.429462,
+    "complete_code": 776092,
+    "complete_code_percent": 27.2882493006457,
+    "total_units": 9351,
+    "complete_units": 2096
   },
   "units": [
     {
@@ -269674,98 +269674,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/SFAOAP_ExecServer",
-      "measures": {
-        "total_code": "64",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "64",
-          "metadata": {}
-        },
-        {
-          "name": ".text.SFAOAP_ExecServer",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SFAOAP_ExecServer",
-          "size": "64",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/nonmatching/SFAOAP_Pause",
-      "measures": {
-        "total_code": "84",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "88",
-          "metadata": {}
-        },
-        {
-          "name": ".text.SFAOAP_Pause",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SFAOAP_Pause",
-          "size": "84",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/SFAOAP_Start",
       "measures": {
         "total_code": "72",
@@ -388949,6 +388857,70 @@
       }
     },
     {
+      "name": "src/cod/0034b738",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "148",
+        "matched_code": "148",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code": "148",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "152",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.SFAOAP_ExecServer",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "SFAOAP_ExecServer",
+          "size": "64",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "SFAOAP_Pause",
+          "size": "84",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "64"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/0034b8c8",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -435087,20 +435059,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.701033,
-        "total_code": "2816484",
-        "matched_code": "808360",
-        "matched_code_percent": 28.701035,
+        "fuzzy_match_percent": 28.704779,
+        "total_code": "2816632",
+        "matched_code": "808508",
+        "matched_code_percent": 28.70478,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11095,
-        "matched_functions": 6583,
-        "matched_functions_percent": 59.33303,
-        "complete_code": "775944",
-        "complete_code_percent": 27.550095,
-        "total_units": 9177,
-        "complete_units": 2095
+        "total_functions": 11097,
+        "matched_functions": 6585,
+        "matched_functions_percent": 59.340363,
+        "complete_code": "776092",
+        "complete_code_percent": 27.553902,
+        "total_units": 9178,
+        "complete_units": 2096
       }
     },
     {
@@ -435199,11 +435171,11 @@
       "id": "cri-middleware",
       "name": "CRI middleware (ADX / AFS)",
       "measures": {
-        "total_code": "9308",
+        "total_code": "9160",
         "matched_data_percent": 100.0,
-        "total_functions": 79,
+        "total_functions": 77,
         "complete_data_percent": 100.0,
-        "total_units": 79
+        "total_units": 77
       }
     },
     {
