@@ -10805,6 +10805,13 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/003366b8.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -26204,42 +26211,48 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003366B8",
       "size": 68,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "mfCiSeek",
       "unit": "asm/cod/000000",
       "vaddr": "0x00336700",
       "size": 188,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "func_003367C0",
       "unit": "asm/cod/000000",
       "vaddr": "0x003367C0",
       "size": 56,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "func_003369D0",
       "unit": "asm/cod/000000",
       "vaddr": "0x003369D0",
       "size": 56,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "func_00336A08",
       "unit": "asm/cod/000000",
       "vaddr": "0x00336A08",
       "size": 56,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "func_00336AC0",
       "unit": "asm/cod/000000",
       "vaddr": "0x00336AC0",
       "size": 56,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003366b8.c"
     },
     {
       "name": "func_00338A90",
