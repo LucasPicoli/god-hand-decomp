@@ -10907,6 +10907,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0036d7f8.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -27586,7 +27590,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0036D7F8",
       "size": 112,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0036d7f8.c"
     },
     {
       "name": "M2V_GetErrInf",
