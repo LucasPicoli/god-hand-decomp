@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.443644,
+    "fuzzy_match_percent": 28.450113,
     "total_code": "2844052",
-    "matched_code": "808952",
-    "matched_code_percent": 28.443644,
+    "matched_code": "809136",
+    "matched_code_percent": 28.450113,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6591,
-    "matched_functions_percent": 58.482697,
-    "complete_code": 776536,
-    "complete_code_percent": 27.303860829548828,
-    "total_units": 9347,
-    "complete_units": 2098
+    "matched_functions": 6593,
+    "matched_functions_percent": 58.500446,
+    "complete_code": 776720,
+    "complete_code_percent": 27.31033047215733,
+    "total_units": 9346,
+    "complete_units": 2099
   },
   "units": [
     {
@@ -269812,98 +269812,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/SFD_SetSpeed",
-      "measures": {
-        "total_code": "112",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "112",
-          "metadata": {}
-        },
-        {
-          "name": ".text.SFD_SetSpeed",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SFD_SetSpeed",
-          "size": "112",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/nonmatching/SFD_Standby",
-      "measures": {
-        "total_code": "72",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "72",
-          "metadata": {}
-        },
-        {
-          "name": ".text.SFD_Standby",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SFD_Standby",
-          "size": "72",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/SFHDS_SetHdr",
       "measures": {
         "total_code": "184",
@@ -392887,6 +392795,70 @@
       }
     },
     {
+      "name": "src/cod/003570f8",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "184",
+        "matched_code": "184",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code": "184",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "184",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.SFD_SetSpeed",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "SFD_SetSpeed",
+          "size": "112",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "SFD_Standby",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "112"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/00357140",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -434925,20 +434897,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.716017,
-        "total_code": "2817076",
-        "matched_code": "808952",
-        "matched_code_percent": 28.716015,
+        "fuzzy_match_percent": 28.720673,
+        "total_code": "2817260",
+        "matched_code": "809136",
+        "matched_code_percent": 28.72067,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11103,
-        "matched_functions": 6591,
-        "matched_functions_percent": 59.362335,
-        "complete_code": "776536",
-        "complete_code_percent": 27.56532,
-        "total_units": 9180,
-        "complete_units": 2098
+        "total_functions": 11105,
+        "matched_functions": 6593,
+        "matched_functions_percent": 59.36965,
+        "complete_code": "776720",
+        "complete_code_percent": 27.570051,
+        "total_units": 9181,
+        "complete_units": 2099
       }
     },
     {
@@ -435037,11 +435009,11 @@
       "id": "cri-middleware",
       "name": "CRI middleware (ADX / AFS)",
       "measures": {
-        "total_code": "8716",
+        "total_code": "8532",
         "matched_data_percent": 100.0,
-        "total_functions": 71,
+        "total_functions": 69,
         "complete_data_percent": 100.0,
-        "total_units": 71
+        "total_units": 69
       }
     },
     {
