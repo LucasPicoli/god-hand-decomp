@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 28.49526,
+    "fuzzy_match_percent": 28.49948,
     "total_code": "2844052",
-    "matched_code": "810420",
-    "matched_code_percent": 28.495258,
+    "matched_code": "810540",
+    "matched_code_percent": 28.499477,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11270,
-    "matched_functions": 6612,
-    "matched_functions_percent": 58.66903,
-    "complete_code": 778004,
-    "complete_code_percent": 27.355477326012323,
+    "matched_functions": 6614,
+    "matched_functions_percent": 58.686783,
+    "complete_code": 778124,
+    "complete_code_percent": 27.359696658148305,
     "total_units": 9351,
-    "complete_units": 2117
+    "complete_units": 2119
   },
   "units": [
     {
@@ -275117,98 +275117,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/searchStmId",
-      "measures": {
-        "total_code": "72",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "72",
-          "metadata": {}
-        },
-        {
-          "name": ".text.searchStmId",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "searchStmId",
-          "size": "72",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/nonmatching/sfaoap_OutputServer",
-      "measures": {
-        "total_code": "48",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "48",
-          "metadata": {}
-        },
-        {
-          "name": ".text.sfaoap_OutputServer",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "sfaoap_OutputServer",
-          "size": "48",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/sfbuf_ChkSupSj",
       "measures": {
         "total_code": "68",
@@ -388645,6 +388553,63 @@
       }
     },
     {
+      "name": "src/cod/0034b778",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "48",
+        "matched_code": "48",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "48",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.sfaoap_OutputServer",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "sfaoap_OutputServer",
+          "size": "48",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/0034b8c8",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -396128,6 +396093,63 @@
         {
           "name": "SFH_IsExistStmId",
           "size": "108",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "src/cod/0035da58",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "72",
+        "matched_code": "72",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "72",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "72",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.searchStmId",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "searchStmId",
+          "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
@@ -435281,20 +435303,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 28.755266,
-        "total_code": "2818336",
-        "matched_code": "810420",
-        "matched_code_percent": 28.755266,
+        "fuzzy_match_percent": 28.758299,
+        "total_code": "2818456",
+        "matched_code": "810540",
+        "matched_code_percent": 28.758299,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11121,
-        "matched_functions": 6612,
-        "matched_functions_percent": 59.455086,
-        "complete_code": "778004",
-        "complete_code_percent": 27.605083,
-        "total_units": 9202,
-        "complete_units": 2117
+        "total_functions": 11123,
+        "matched_functions": 6614,
+        "matched_functions_percent": 59.462376,
+        "complete_code": "778124",
+        "complete_code_percent": 27.608166,
+        "total_units": 9204,
+        "complete_units": 2119
       }
     },
     {
@@ -435393,11 +435415,11 @@
       "id": "cri-middleware",
       "name": "CRI middleware (ADX / AFS)",
       "measures": {
-        "total_code": "7456",
+        "total_code": "7336",
         "matched_data_percent": 100.0,
-        "total_functions": 53,
+        "total_functions": 51,
         "complete_data_percent": 100.0,
-        "total_units": 53
+        "total_units": 51
       }
     },
     {
