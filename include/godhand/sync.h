@@ -83,4 +83,19 @@
                          ".set reorder"                                        \
                          : : : "memory")
 
+/* `mfc0 $12` — read the COP0 Status register.  Same bucket-1 ground as the
+ * macros above: the 28-binary probe of D-032 finds no builtin that reaches it
+ * and no scalar C construct emits it.  The value leaves through an OUTPUT
+ * CONSTRAINT, so the compiler picks the register and `scripts/check_forced_regs.py`
+ * has nothing to refuse.  SCE's `eekernel.h` writes the same statement inside
+ * its own `DI()` retry loop, which is why it belongs here.
+ *
+ * Measured 2026-09-10 by wave 28 lane L5: `EIntr` (24 B) and `DelayThread`
+ * (200 B) are byte-exact with it and byte-blocked without it. */
+#define GH_MFC0_STATUS(v)                                                      \
+    __asm__ __volatile__(".set noreorder\n\t"                                  \
+                         "mfc0 %0, $12\n\t"                                    \
+                         ".set reorder"                                        \
+                         : "=r"(v))
+
 #endif /* GODHAND_SYNC_H */
