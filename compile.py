@@ -345,6 +345,22 @@ class Config:
                     f"got {strip_eh!r}"
                 )
             entry["strip_eh_table"] = strip_eh
+            # Per-TU opt-in: delete the WEAK `_vt$<class>` vtable objects
+            # cc1plus emits into .rdata for every class in the TU's inheritance
+            # chain. Retail contributes each vtable ONCE from the split .rodata
+            # blob, so a carve TU's copy is a duplicate the lcf .rodata wildcard
+            # appends, and it shifts every later byte away from retail.
+            # `score_candidate` cannot see it: compare() reads .text.<name> only.
+            # The strip leaves the reference UNDEFINED; ten lcf rows resolve it
+            # (config/SLUS_215.03.lcf, "g++ 2.x C++ vtables"). Same class as
+            # strip_cxx_frame and strip_eh_table: opt-in, C++ TUs only.
+            strip_vt = raw.get("strip_cxx_vtable", False)
+            if not isinstance(strip_vt, bool):
+                raise BuildError(
+                    f"compile_units[{path!r}]: strip_cxx_vtable must be a bool; "
+                    f"got {strip_vt!r}"
+                )
+            entry["strip_cxx_vtable"] = strip_vt
             # Per-TU opt-in: externalize compiler-emitted switch jump tables
             # to the retail rodata blob's symbols (in table-emission order).
             # The wrapper deletes each emitted .rdata table block and
@@ -1258,6 +1274,7 @@ class CompileUnit:
     # Strip cc1plus's emitted .gcc_except_table block (blob supplies the
     # retail EH entries). C++ TUs only.
     strip_eh_table: bool = False
+    strip_cxx_vtable: bool = False
     # Symbols to substitute for compiler-emitted switch jump tables, in
     # emission order (--extern-jtbl per entry). Empty = no-op.
     extern_jtbl: tuple = ()
@@ -1389,6 +1406,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             c_flags_add=tuple(entry.get("c_flags_add", ())),
             strip_cxx_frame=bool(entry.get("strip_cxx_frame", False)),
             strip_eh_table=bool(entry.get("strip_eh_table", False)),
+            strip_cxx_vtable=bool(entry.get("strip_cxx_vtable", False)),
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
             extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
@@ -1570,6 +1588,8 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         argv.append("--strip-cxx-frame")
     if unit.strip_eh_table:
         argv.append("--strip-eh-table")
+    if unit.strip_cxx_vtable:
+        argv.append("--strip-cxx-vtable")
     for sym in unit.extern_jtbl:
         argv += ["--extern-jtbl", sym]
     for sym in unit.extern_double:

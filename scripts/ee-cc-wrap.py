@@ -1176,6 +1176,72 @@ def _strip_eh_table_from_s(s_path: Path) -> None:
     s_path.write_text("\n".join(out))
 
 
+def _strip_cxx_vtable_block(text: str) -> str:
+    """Remove cc1plus's emitted ``_vt$<class>`` vtable objects from a C++ ``.s``.
+
+    ee-gcc 2.9 cc1plus emits one WEAK vtable object per class in the TU's
+    inheritance chain, each in ``.rdata``::
+
+        .weak   _vt$8iostream$3ios
+        .rdata
+        .align  3
+        .type    _vt$8iostream$3ios,@object
+        .size    _vt$8iostream$3ios,16
+    _vt$8iostream$3ios:
+        .half   -16
+        ...
+        .word   _$_8iostream
+        .weak   _vt$7istream$3ios       # the next object, same run
+        ...
+        .text                           # the run's closing section switch
+
+    Retail contributes each vtable ONCE, from the split ``.rodata`` blob, so a
+    carve TU's copy is a duplicate that the lcf wildcard appends and that shifts
+    every later ``.rodata`` byte away from retail. ``score_candidate`` cannot see
+    it: ``compare()`` reads ``.text.<name>`` only. Measured on
+    ``__8iostreamiP9streambufP7ostream``: ``.rodata`` 0xEE with no key, 0x40 with
+    ``-f=-fno-rtti`` alone (the residue is exactly the four vtables), 0 with this
+    strip.
+
+    The pass is CONSERVATIVE. It deletes the run only when every line between the
+    first ``.weak _vt$`` and the closing section switch belongs to a ``_vt$``
+    object or is one of the directives above. Any other content returns the input
+    unchanged, so a TU that mixes real ``.rdata`` into the run is never damaged.
+    """
+    lines = text.split("\n")
+    begin = next((i for i, ln in enumerate(lines)
+                  if ln.strip().startswith(".weak") and "_vt$" in ln), None)
+    if begin is None:
+        return text                                   # no vtable to strip
+    # `.rdata` OPENS the run (it follows the first `.weak`), so it is not a
+    # closer. Listing it as one made the pass delete exactly one line.
+    CLOSE = (".text", ".data", ".sdata", ".sbss", ".bss")
+    OK = (".weak", ".rdata", ".align", ".type", ".size", ".half", ".word",
+          ".byte", ".2byte", ".4byte", ".8byte", ".space", ".globl")
+    end = None
+    for i in range(begin + 1, len(lines)):
+        ls = lines[i].strip()
+        if ls == "" or ls.startswith("#"):
+            continue
+        if ls in CLOSE or (ls.startswith(".section") and ".text" in ls):
+            end = i                                   # exclusive: keep the switch
+            break
+        if ls.startswith("_vt$") and ls.endswith(":"):
+            continue
+        if any(ls.startswith(d) for d in OK):
+            continue
+        return text                                   # real content: no-op
+    if end is None:
+        return text                                   # unterminated run: no-op
+    del lines[begin:end]
+    return "\n".join(lines)
+
+
+def _strip_cxx_vtable_from_s(s_path: Path) -> None:
+    """In-place surgical strip of the C++ ``_vt$`` vtable run from ``s_path``."""
+    s_path.write_text(_strip_cxx_vtable_block(s_path.read_text()))
+
+
 def _strip_cxx_frame_from_s(s_path: Path) -> None:
     """In-place surgical strip of the C++ DWARF frame block from ``s_path``."""
     s_path.write_text(_strip_cxx_frame_block(s_path.read_text()))
@@ -1282,6 +1348,17 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
             "would shift the section). C++ TUs only; pair the blob's "
             "$LEH_ refs into the carved span with raw-word entries in "
             "config/jtbl_extern_words.txt."
+        ),
+    )
+    p.add_argument(
+        "--strip-cxx-vtable",
+        action="store_true",
+        help=(
+            "Remove the WEAK `_vt$<class>` vtable objects cc1plus emits into "
+            ".rdata for a C++ TU. Retail contributes each vtable once from the "
+            "split .rodata blob, so a carve TU's copy is a duplicate the lcf "
+            "wildcard appends and that shifts every later .rodata byte. Opt-in "
+            "per TU via compile_units strip_cxx_vtable."
         ),
     )
     p.add_argument(
@@ -1601,6 +1678,8 @@ def main(argv: list[str]) -> int:
                 _strip_cxx_frame_from_s(s_path)
             if language == "c++" and args.strip_eh_table:
                 _strip_eh_table_from_s(s_path)
+            if language == "c++" and args.strip_cxx_vtable:
+                _strip_cxx_vtable_from_s(s_path)
         else:
             shutil.copy2(args.input, s_path)
 
