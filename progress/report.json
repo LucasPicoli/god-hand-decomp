@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 29.247967,
+    "fuzzy_match_percent": 29.260197,
     "total_code": "2845244",
-    "matched_code": "832176",
-    "matched_code_percent": 29.247967,
+    "matched_code": "832524",
+    "matched_code_percent": 29.260197,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11278,
-    "matched_functions": 6713,
-    "matched_functions_percent": 59.522964,
-    "complete_code": 797636,
-    "complete_code_percent": 28.034010439877914,
-    "total_units": 9423,
-    "complete_units": 2186
+    "matched_functions": 6715,
+    "matched_functions_percent": 59.540703,
+    "complete_code": 797984,
+    "complete_code_percent": 28.04624137683798,
+    "total_units": 9426,
+    "complete_units": 2187
   },
   "units": [
     {
@@ -250988,9 +250988,11 @@
     {
       "name": "asm/cod/000000.part6828",
       "measures": {
-        "total_code": "144",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -251007,16 +251009,8 @@
         },
         {
           "name": ".text",
-          "size": "144",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B0E68",
-          "size": "144",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -251029,9 +251023,11 @@
     {
       "name": "asm/cod/000000.part6829",
       "measures": {
-        "total_code": "3348",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -251048,16 +251044,8 @@
         },
         {
           "name": ".text",
-          "size": "3352",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "_sceSnprintf",
-          "size": "3348",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -251117,11 +251105,9 @@
     {
       "name": "asm/cod/000000.part6830",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "3348",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -251138,8 +251124,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "3352",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "_sceSnprintf",
+          "size": "3348",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -251432,9 +251426,11 @@
     {
       "name": "asm/cod/000000.part6839",
       "measures": {
-        "total_code": "212",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -251451,22 +251447,8 @@
         },
         {
           "name": ".text",
-          "size": "216",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B2070",
-          "size": "12",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "func_003B2080",
-          "size": "200",
-          "metadata": {},
-          "address": "16"
         }
       ],
       "metadata": {
@@ -251520,6 +251502,53 @@
     {
       "name": "asm/cod/000000.part6840",
       "measures": {
+        "total_code": "212",
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "216",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B2070",
+          "size": "12",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "func_003B2080",
+          "size": "200",
+          "metadata": {},
+          "address": "16"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6841",
+      "measures": {
         "total_code": "640",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -251549,41 +251578,6 @@
           "size": "640",
           "metadata": {},
           "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6841",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -251736,6 +251730,41 @@
     {
       "name": "asm/cod/000000.part6846",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6847",
+      "measures": {
         "total_code": "504",
         "matched_data_percent": 100.0,
         "total_functions": 3,
@@ -251777,41 +251806,6 @@
           "size": "4",
           "metadata": {},
           "address": "500"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6847",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -251999,9 +251993,11 @@
     {
       "name": "asm/cod/000000.part6852",
       "measures": {
-        "total_code": "204",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252018,16 +252014,8 @@
         },
         {
           "name": ".text",
-          "size": "208",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "_request_end",
-          "size": "204",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252075,9 +252063,11 @@
     {
       "name": "asm/cod/000000.part6854",
       "measures": {
-        "total_code": "4",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252094,16 +252084,8 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B2DE0",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252151,11 +252133,9 @@
     {
       "name": "asm/cod/000000.part6856",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "4",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252172,8 +252152,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "8",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B2DE0",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -252256,9 +252244,11 @@
     {
       "name": "asm/cod/000000.part6859",
       "measures": {
-        "total_code": "512",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252275,16 +252265,8 @@
         },
         {
           "name": ".text",
-          "size": "512",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B3128",
-          "size": "512",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252367,11 +252349,9 @@
     {
       "name": "asm/cod/000000.part6861",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "512",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252388,8 +252368,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "512",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B3128",
+          "size": "512",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -252507,9 +252495,11 @@
     {
       "name": "asm/cod/000000.part6865",
       "measures": {
-        "total_code": "452",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252526,16 +252516,8 @@
         },
         {
           "name": ".text",
-          "size": "456",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B3650",
-          "size": "452",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252583,7 +252565,7 @@
     {
       "name": "asm/cod/000000.part6867",
       "measures": {
-        "total_code": "4",
+        "total_code": "452",
         "matched_data_percent": 100.0,
         "total_functions": 1,
         "complete_data_percent": 100.0,
@@ -252602,14 +252584,14 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "size": "456",
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "func_003B38C8",
-          "size": "4",
+          "name": "func_003B3650",
+          "size": "452",
           "metadata": {},
           "address": "0"
         }
@@ -252659,11 +252641,9 @@
     {
       "name": "asm/cod/000000.part6869",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "4",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252680,8 +252660,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "8",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B38C8",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -252729,9 +252717,11 @@
     {
       "name": "asm/cod/000000.part6870",
       "measures": {
-        "total_code": "948",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252748,16 +252738,8 @@
         },
         {
           "name": ".text",
-          "size": "952",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "_sceFs_Rcv_Intr",
-          "size": "948",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252805,11 +252787,9 @@
     {
       "name": "asm/cod/000000.part6872",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "948",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252826,8 +252806,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "952",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "_sceFs_Rcv_Intr",
+          "size": "948",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -252875,9 +252863,11 @@
     {
       "name": "asm/cod/000000.part6874",
       "measures": {
-        "total_code": "520",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -252894,16 +252884,8 @@
         },
         {
           "name": ".text",
-          "size": "520",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B3F50",
-          "size": "520",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -252951,6 +252933,82 @@
     {
       "name": "asm/cod/000000.part6876",
       "measures": {
+        "total_code": "520",
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "520",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B3F50",
+          "size": "520",
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6877",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6878",
+      "measures": {
         "total_code": "656",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -252990,7 +253048,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6877",
+      "name": "asm/cod/000000.part6879",
       "measures": {
         "total_code": "2800",
         "matched_data_percent": 100.0,
@@ -253049,7 +253107,42 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6878",
+      "name": "asm/cod/000000.part688",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6880",
       "measures": {
         "total_code": "28",
         "matched_data_percent": 100.0,
@@ -253090,116 +253183,13 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6879",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part688",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6880",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/cod/000000.part6881",
       "measures": {
-        "total_code": "608",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253216,22 +253206,8 @@
         },
         {
           "name": ".text",
-          "size": "616",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B5678",
-          "size": "36",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "func_003B56A0",
-          "size": "572",
-          "metadata": {},
-          "address": "40"
         }
       ],
       "metadata": {
@@ -253279,11 +253255,9 @@
     {
       "name": "asm/cod/000000.part6883",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "608",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 2,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253300,8 +253274,22 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "616",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B5678",
+          "size": "36",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "func_003B56A0",
+          "size": "572",
+          "metadata": {},
+          "address": "40"
         }
       ],
       "metadata": {
@@ -253349,9 +253337,11 @@
     {
       "name": "asm/cod/000000.part6885",
       "measures": {
-        "total_code": "12",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253368,16 +253358,8 @@
         },
         {
           "name": ".text",
-          "size": "16",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B5A70",
-          "size": "12",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -253425,11 +253407,9 @@
     {
       "name": "asm/cod/000000.part6887",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "12",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253446,8 +253426,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "16",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B5A70",
+          "size": "12",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -253565,9 +253553,11 @@
     {
       "name": "asm/cod/000000.part6890",
       "measures": {
-        "total_code": "4",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253584,16 +253574,8 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B5E70",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -253641,6 +253623,82 @@
     {
       "name": "asm/cod/000000.part6892",
       "measures": {
+        "total_code": "4",
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "8",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B5E70",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6893",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6894",
+      "measures": {
         "total_code": "376",
         "matched_data_percent": 100.0,
         "total_functions": 2,
@@ -253686,7 +253744,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6893",
+      "name": "asm/cod/000000.part6895",
       "measures": {
         "total_code": "376",
         "matched_data_percent": 100.0,
@@ -253739,7 +253797,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6894",
+      "name": "asm/cod/000000.part6896",
       "measures": {
         "total_code": "4",
         "matched_data_percent": 100.0,
@@ -253780,81 +253838,13 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6895",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6896",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/cod/000000.part6897",
       "measures": {
-        "total_code": "4",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253871,16 +253861,8 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B64F8",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -253928,11 +253910,9 @@
     {
       "name": "asm/cod/000000.part6899",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "4",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -253949,8 +253929,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "8",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B64F8",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -254372,9 +254360,11 @@
     {
       "name": "asm/cod/000000.part6909",
       "measures": {
-        "total_code": "4",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254391,16 +254381,8 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B6848",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -254483,11 +254465,9 @@
     {
       "name": "asm/cod/000000.part6911",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "4",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254504,8 +254484,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "8",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B6848",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -254588,9 +254576,11 @@
     {
       "name": "asm/cod/000000.part6914",
       "measures": {
-        "total_code": "112",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254607,16 +254597,8 @@
         },
         {
           "name": ".text",
-          "size": "112",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SetT2",
-          "size": "112",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -254664,11 +254646,9 @@
     {
       "name": "asm/cod/000000.part6916",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "112",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254685,8 +254665,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "112",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "SetT2",
+          "size": "112",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -254734,9 +254722,11 @@
     {
       "name": "asm/cod/000000.part6918",
       "measures": {
-        "total_code": "4",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254753,16 +254743,8 @@
         },
         {
           "name": ".text",
-          "size": "8",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B6B88",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -254775,9 +254757,11 @@
     {
       "name": "asm/cod/000000.part6919",
       "measures": {
-        "total_code": "404",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254794,22 +254778,8 @@
         },
         {
           "name": ".text",
-          "size": "408",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B6C20",
-          "size": "4",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "SetNextComp",
-          "size": "400",
-          "metadata": {},
-          "address": "8"
         }
       ],
       "metadata": {
@@ -254857,42 +254827,7 @@
     {
       "name": "asm/cod/000000.part6920",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6921",
-      "measures": {
-        "total_code": "692",
+        "total_code": "4",
         "matched_data_percent": 100.0,
         "total_functions": 1,
         "complete_data_percent": 100.0,
@@ -254911,16 +254846,63 @@
         },
         {
           "name": ".text",
-          "size": "696",
+          "size": "8",
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "cbTimerHandler",
-          "size": "692",
+          "name": "func_003B6B88",
+          "size": "4",
           "metadata": {},
           "address": "0"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6921",
+      "measures": {
+        "total_code": "404",
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "408",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B6C20",
+          "size": "4",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "SetNextComp",
+          "size": "400",
+          "metadata": {},
+          "address": "8"
         }
       ],
       "metadata": {
@@ -254968,11 +254950,9 @@
     {
       "name": "asm/cod/000000.part6923",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "692",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -254989,8 +254969,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "696",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "cbTimerHandler",
+          "size": "692",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -255038,9 +255026,11 @@
     {
       "name": "asm/cod/000000.part6925",
       "measures": {
-        "total_code": "20",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255057,16 +255047,8 @@
         },
         {
           "name": ".text",
-          "size": "24",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B72B8",
-          "size": "20",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -255114,9 +255096,9 @@
     {
       "name": "asm/cod/000000.part6927",
       "measures": {
-        "total_code": "312",
+        "total_code": "20",
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255133,22 +255115,16 @@
         },
         {
           "name": ".text",
-          "size": "320",
+          "size": "24",
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "func_003B73D0",
-          "size": "44",
+          "name": "func_003B72B8",
+          "size": "20",
           "metadata": {},
           "address": "0"
-        },
-        {
-          "name": "func_003B7400",
-          "size": "268",
-          "metadata": {},
-          "address": "48"
         }
       ],
       "metadata": {
@@ -255196,11 +255172,9 @@
     {
       "name": "asm/cod/000000.part6929",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "312",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 2,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255217,8 +255191,22 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "320",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B73D0",
+          "size": "44",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "func_003B7400",
+          "size": "268",
+          "metadata": {},
+          "address": "48"
         }
       ],
       "metadata": {
@@ -255266,9 +255254,11 @@
     {
       "name": "asm/cod/000000.part6930",
       "measures": {
-        "total_code": "12",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255285,16 +255275,8 @@
         },
         {
           "name": ".text",
-          "size": "16",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B76A8",
-          "size": "12",
-          "metadata": {},
-          "address": "0"
         }
       ],
       "metadata": {
@@ -255342,11 +255324,9 @@
     {
       "name": "asm/cod/000000.part6932",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "12",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 1,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255363,8 +255343,16 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "16",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B76A8",
+          "size": "12",
+          "metadata": {},
+          "address": "0"
         }
       ],
       "metadata": {
@@ -255447,6 +255435,76 @@
     {
       "name": "asm/cod/000000.part6935",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6936",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6937",
+      "measures": {
         "total_code": "12",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -255486,7 +255544,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6936",
+      "name": "asm/cod/000000.part6938",
       "measures": {
         "total_code": "60",
         "matched_data_percent": 100.0,
@@ -255527,7 +255585,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6937",
+      "name": "asm/cod/000000.part6939",
       "measures": {
         "total_code": "4",
         "matched_data_percent": 100.0,
@@ -255558,76 +255616,6 @@
           "size": "4",
           "metadata": {},
           "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6938",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6939",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -255815,9 +255803,11 @@
     {
       "name": "asm/cod/000000.part6944",
       "measures": {
-        "total_code": "848",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255834,22 +255824,8 @@
         },
         {
           "name": ".text",
-          "size": "904",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003B7C58",
-          "size": "500",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "func_003B7E80",
-          "size": "348",
-          "metadata": {},
-          "address": "552"
         }
       ],
       "metadata": {
@@ -255897,11 +255873,9 @@
     {
       "name": "asm/cod/000000.part6946",
       "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
+        "total_code": "848",
         "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
+        "total_functions": 2,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -255918,8 +255892,22 @@
         },
         {
           "name": ".text",
-          "fuzzy_match_percent": 100.0,
+          "size": "904",
           "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003B7C58",
+          "size": "500",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "func_003B7E80",
+          "size": "348",
+          "metadata": {},
+          "address": "552"
         }
       ],
       "metadata": {
@@ -256072,6 +256060,76 @@
     {
       "name": "asm/cod/000000.part6950",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6951",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6952",
+      "measures": {
         "total_code": "348",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -256111,7 +256169,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6951",
+      "name": "asm/cod/000000.part6953",
       "measures": {
         "total_code": "148",
         "matched_data_percent": 100.0,
@@ -256152,7 +256210,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6952",
+      "name": "asm/cod/000000.part6954",
       "measures": {
         "total_code": "244",
         "matched_data_percent": 100.0,
@@ -256183,76 +256241,6 @@
           "size": "244",
           "metadata": {},
           "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6953",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6954",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -256545,6 +256533,76 @@
     {
       "name": "asm/cod/000000.part6962",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6963",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6964",
+      "measures": {
         "total_code": "76",
         "matched_data_percent": 100.0,
         "total_functions": 1,
@@ -256584,7 +256642,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6963",
+      "name": "asm/cod/000000.part6965",
       "measures": {
         "total_code": "260",
         "matched_data_percent": 100.0,
@@ -256621,76 +256679,6 @@
           "size": "84",
           "metadata": {},
           "address": "176"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6964",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6965",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -256738,6 +256726,76 @@
     {
       "name": "asm/cod/000000.part6967",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6968",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6969",
+      "measures": {
         "total_code": "56",
         "matched_data_percent": 100.0,
         "total_functions": 2,
@@ -256783,7 +256841,42 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6968",
+      "name": "asm/cod/000000.part697",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6970",
       "measures": {
         "total_code": "1024",
         "matched_data_percent": 100.0,
@@ -256842,7 +256935,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6969",
+      "name": "asm/cod/000000.part6971",
       "measures": {
         "total_code": "284",
         "matched_data_percent": 100.0,
@@ -256883,42 +256976,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part697",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6970",
+      "name": "asm/cod/000000.part6972",
       "measures": {
         "total_code": "244",
         "matched_data_percent": 100.0,
@@ -256959,7 +257017,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6971",
+      "name": "asm/cod/000000.part6973",
       "measures": {
         "total_code": "324",
         "matched_data_percent": 100.0,
@@ -257008,76 +257066,6 @@
           "size": "116",
           "metadata": {},
           "address": "208"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6972",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "engine"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
-      "name": "asm/cod/000000.part6973",
-      "measures": {
-        "fuzzy_match_percent": 100.0,
-        "matched_code_percent": 100.0,
-        "matched_data_percent": 100.0,
-        "matched_functions_percent": 100.0,
-        "complete_code_percent": 100.0,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
         }
       ],
       "metadata": {
@@ -257265,9 +257253,11 @@
     {
       "name": "asm/cod/000000.part6979",
       "measures": {
-        "total_code": "32",
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
         "matched_data_percent": 100.0,
-        "total_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
         "complete_data_percent": 100.0,
         "total_units": 1
       },
@@ -257284,22 +257274,8 @@
         },
         {
           "name": ".text",
-          "size": "40",
+          "fuzzy_match_percent": 100.0,
           "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "func_003BAFD0",
-          "size": "12",
-          "metadata": {},
-          "address": "0"
-        },
-        {
-          "name": "D_003BAFE4",
-          "size": "20",
-          "metadata": {},
-          "address": "20"
         }
       ],
       "metadata": {
@@ -257353,6 +257329,88 @@
     {
       "name": "asm/cod/000000.part6980",
       "measures": {
+        "fuzzy_match_percent": 100.0,
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "matched_functions_percent": 100.0,
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6981",
+      "measures": {
+        "total_code": "32",
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "complete_data_percent": 100.0,
+        "total_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "40",
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "func_003BAFD0",
+          "size": "12",
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "D_003BAFE4",
+          "size": "20",
+          "metadata": {},
+          "address": "20"
+        }
+      ],
+      "metadata": {
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
+      "name": "asm/cod/000000.part6982",
+      "measures": {
         "total_code": "308",
         "matched_data_percent": 100.0,
         "total_functions": 3,
@@ -257404,7 +257462,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6981",
+      "name": "asm/cod/000000.part6983",
       "measures": {
         "fuzzy_match_percent": 100.0,
         "matched_code_percent": 100.0,
@@ -257439,7 +257497,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6982",
+      "name": "asm/cod/000000.part6984",
       "measures": {
         "total_code": "1164",
         "matched_data_percent": 100.0,
@@ -257480,7 +257538,7 @@
       }
     },
     {
-      "name": "asm/cod/000000.part6983",
+      "name": "asm/cod/000000.part6985",
       "measures": {
         "total_code": "1292",
         "matched_data_percent": 100.0,
@@ -425120,6 +425178,70 @@
       }
     },
     {
+      "name": "src/cod/003b0e68",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "348",
+        "matched_code": "348",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 2,
+        "matched_functions": 2,
+        "matched_functions_percent": 100.0,
+        "complete_code": "348",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "352",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text._request_end",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "_request_end",
+          "size": "204",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
+          "name": "func_003B0E68",
+          "size": "144",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "208"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/003b1ee0",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -438797,20 +438919,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 29.43472,
+        "fuzzy_match_percent": 29.447027,
         "total_code": "2827192",
-        "matched_code": "832176",
-        "matched_code_percent": 29.43472,
+        "matched_code": "832524",
+        "matched_code_percent": 29.447027,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
         "total_functions": 11176,
-        "matched_functions": 6713,
-        "matched_functions_percent": 60.06621,
-        "complete_code": "797636",
-        "complete_code_percent": 28.213013,
-        "total_units": 9321,
-        "complete_units": 2186
+        "matched_functions": 6715,
+        "matched_functions_percent": 60.08411,
+        "complete_code": "797984",
+        "complete_code_percent": 28.22532,
+        "total_units": 9324,
+        "complete_units": 2187
       }
     },
     {
