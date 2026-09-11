@@ -8,7 +8,6 @@ extern void func_0035B8C0(int a0, int *out, float cur, float t);
 extern int D_003EE270;
 
 __attribute__((section(".text.func_0035B6F8")))
-__attribute__((section(".text.func_0035B6F8")))
 void func_0035B6F8(int a0, int a1, int a2, int *a3, int scale)
 {
     int t[2];
