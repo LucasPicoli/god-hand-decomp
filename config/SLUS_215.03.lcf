@@ -138,6 +138,15 @@ dptofp          = 0x31EAE0;
  * mul-div in func_0036C920). Same hand-maintained alias pattern as above. */
 __divdi3        = 0x3B7FE0;
 
+/* A C++ carve TU defines the MANGLED symbol, because cc1plus mangles the
+ * declaration itself and no source spelling reaches the emitted name. The
+ * monolith label at the same address carries the splat name instead, and every
+ * caller, trampoline and data table references THAT. Assign the splat name to
+ * the carve address so both spellings resolve to one body. Added 2026-09-10 for
+ * the libstdc++ iostream carves. */
+ostream___ls    = 0x388E30;   /* = __ls__7ostreamPCc */
+func_003874C0   = 0x3874C0;   /* = __7istreamiP9streambufP7ostream */
+
 /* undefined_syms_auto.txt (49 entries) */
 D_1000          = 0x1000;
 D_4000          = 0x4000;
@@ -241,7 +250,15 @@ SECTIONS
     {
         cod_TEXT_START = .;
         build/asm/cod/000000.o(.text*)
-        *(.text .text.*)
+        /* Carve TUs put the matched body in `.text.<name>`. A C++ carve
+         * TU ALSO emits its class siblings into plain `.text`, and those
+         * bytes are duplicates of code the monolith fragments still hold.
+         * Collect `.text.*` only and discard plain `.text` below.
+         * Measured 2026-09-10 over 9,883 build objects: exactly ONE object
+         * outside the monolith fragments carries a non-empty plain `.text`,
+         * `build/rel/r207/asm/rel/r207/00003C.o`, and that REL links with
+         * config/r207.lcf, not this script. Blast radius is zero. */
+        *(.text.*)
         cod_TEXT_END = .;
         cod_TEXT_SIZE = ABSOLUTE(cod_TEXT_END - cod_TEXT_START);
     } :load
@@ -370,6 +387,9 @@ SECTIONS
     /DISCARD/ :
     {
         /* Suppress ld's auto-synthesised reginfo — see idx-2 note above. */
+        /* The surplus plain `.text` of a C++ carve TU (see the .text
+         * output section above). */
+        *(.text)
         *(.reginfo)
         *(.MIPS.abiflags)
         *(.note .note.*)
