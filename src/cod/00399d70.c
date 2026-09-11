@@ -3,7 +3,7 @@
 extern void func_003BACA0(int, int);
 extern unsigned char D_0045E400[];
 extern void func_0039C390(void *, void *);
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
 __attribute__((section(".text._clearEach")))
 void _clearEach(void *m) {
@@ -16,7 +16,7 @@ void _clearEach(void *m) {
     *(volatile unsigned int *)0x1000B400 = 0;
     *(volatile unsigned int *)0x1000D400 = 0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFFU;
-    if (oldstat != 0) func_003B63F0();
+    if (oldstat != 0) EIntr();
     *(volatile unsigned int *)0x1000B020 = 0;
     *(volatile unsigned int *)0x1000B420 = 0;
     *(volatile unsigned int *)0x1000D420 = 0;
@@ -91,5 +91,5 @@ void func_0039FDD8(unsigned int addr, int size) {
     *(volatile unsigned int *)0x1000B010 = addr;
     *(volatile unsigned int *)0x1000B020 = size >> 4;
     *(volatile unsigned int *)0x1000B000 = 0x100;
-    if (oldstat != 0) func_003B63F0();
+    if (oldstat != 0) EIntr();
 }

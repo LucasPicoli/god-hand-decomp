@@ -27,8 +27,8 @@ extern long long _sceMpegWaitIpuIdle64(void *s);
         (out) = (short)v_;                                              \
     }
 
-__attribute__((section(".text.func_0039DB28")))
-void func_0039DB28(char *s, int *PMV, int *dmvector, int h_r_size, int v_r_size,
+__attribute__((section(".text._motionVector")))
+void _motionVector(char *s, int *PMV, int *dmvector, int h_r_size, int v_r_size,
                    int dmv, int mvscale, int full_pel_vector)
 {
     int motion_code;

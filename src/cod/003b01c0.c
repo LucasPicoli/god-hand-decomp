@@ -22,13 +22,13 @@ unsigned long long VSync2(void)
     *(volatile int *)0x1000F000 = 4;
     GH_SYNC();
     if (di)
-        func_003B63F0();
+        EIntr();
     while (((*(volatile int *)0x1000F000) & 4) == 0 && flag == 0)
         ;
     di = func_003B63A0();
     *(volatile int *)0x1000F000 = 4;
     GH_SYNC();
     if (di)
-        func_003B63F0();
+        EIntr();
     return t;
 }

@@ -14,11 +14,11 @@ extern void func_0039FDD8(int a, int b);
 extern void func_0039DF50(void *s, int *PMV, int *dmv, int *mvfs, int idx,
                           int mvcount, int mvformat, int hr, int vr,
                           int dmvf, int mvscale);
-extern void func_0039DB28(void *s, int *PMV, int *dmv, int hr, int vr,
+extern void _motionVector(void *s, int *PMV, int *dmv, int hr, int vr,
                           int dmvf, int mvscale, int fullpel);
 
-__attribute__((section(".text.func_0039E0F0")))
-int func_0039E0F0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
+__attribute__((section(".text._decMB0")))
+int _decMB0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
                   int *PMV, int *mvfs, int *dmvector)
 {
     long long v;
@@ -97,7 +97,7 @@ int func_0039E0F0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
                           *(int *)(s + 0x174) - 1, *(int *)(s + 0x178) - 1,
                           dmv, mvscale);
         else
-            func_0039DB28(s, PMV, dmvector, *(int *)(s + 0x168) - 1,
+            _motionVector(s, PMV, dmvector, *(int *)(s + 0x168) - 1,
                           *(int *)(s + 0x168) - 1, 0, 0, *(int *)(s + 0x164));
     }
     if (*(int *)(s + 0x12C) != 0)
@@ -108,7 +108,7 @@ int func_0039E0F0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
                           *(int *)(s + 0x17C) - 1, *(int *)(s + 0x180) - 1,
                           0, mvscale);
         else
-            func_0039DB28(s, PMV + 2, dmvector, *(int *)(s + 0x170) - 1,
+            _motionVector(s, PMV + 2, dmvector, *(int *)(s + 0x170) - 1,
                           *(int *)(s + 0x170) - 1, 0, 0, *(int *)(s + 0x16C));
     }
     if (*(int *)(s + 0x12C) != 0)

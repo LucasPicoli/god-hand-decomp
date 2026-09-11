@@ -8,8 +8,8 @@ extern int D_004558F0[];
 extern void Forward340AE8_338A28(void);
 extern void func_00338EC8(struct SJMEM *e);
 
-__attribute__((section(".text.func_00338BD8")))
-struct SJMEM *func_00338BD8(int a, int b)
+__attribute__((section(".text.SJMEM_Create")))
+struct SJMEM *SJMEM_Create(int a, int b)
 {
     int i;
     struct SJMEM *e;

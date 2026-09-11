@@ -4,7 +4,7 @@ extern void func_0031DFA8(long long *, void *);
 extern void _waitIpuIdle(void);
 extern long long _sceMpegWaitIpuIdle64(void *);
 extern void func_003B63A0(void);
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
 struct P { unsigned int cls; int sign; int exp; int pad; long long mant; };
 __attribute__((section(".text.func_0031E978")))
@@ -73,11 +73,11 @@ int func_003B2AC8(int a0) {
             }
             *(int **)(e + 0x14) = (int *)e;
             *(int *)(e + 0x18) = newid;
-            func_003B63F0();
+            EIntr();
             return (int)e;
         }
         e += 0x40;
     }
-    func_003B63F0();
+    EIntr();
     return 0;
 }

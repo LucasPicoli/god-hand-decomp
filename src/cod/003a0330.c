@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
 extern void _initSeq(int h);
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
 /* MPEG-2 sequence_header() -- Sony libmpeg ext.c::_sequenceHeader */
 
@@ -88,7 +88,7 @@ void func_003A0330(Mpeg *v)
 		D4_QWC = 4;
 		D4_CHCR = 0x101;
 		if (r != 0)
-			func_003B63F0();
+			EIntr();
 		IPU_CMD = cmd;
 		v->ipu_cmd = 0x50000000;
 		v->ipu_busy = 1;
@@ -117,7 +117,7 @@ void func_003A0330(Mpeg *v)
 		D4_QWC = 4;
 		D4_CHCR = 0x101;
 		if (r != 0)
-			func_003B63F0();
+			EIntr();
 		IPU_CMD = cmd;
 		v->ipu_cmd = 0x50000000;
 		v->ipu_busy = 1;

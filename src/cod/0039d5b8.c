@@ -37,7 +37,7 @@ int func_0039D5B8(char *s)
     if (*(int *)(s + 0x184) != 3)
         n = n >> 1;
     do {
-        r = func_0039D7F8(s, n);
+        r = _slice0(s, n);
     } while (r == 1 || r == 3);
     ok = 1;
     _waitIpuIdle(s);

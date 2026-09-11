@@ -141,7 +141,7 @@ int func_00338B90(int a0, int a1) {
     s0 = a0;
     s1 = a1;
     Forward33B658_3389F8();
-    r = func_00338BD8(s0, s1);
+    r = SJMEM_Create(s0, s1);
     Forward33B670_338A10();
     return r;
 }

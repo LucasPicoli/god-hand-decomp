@@ -27,8 +27,8 @@ do {								\
 
 #define huge ((float)(1.0e30))
 
-__attribute__((section(".text.func_003A4D18")))
-float func_003A4D18(float x)
+__attribute__((section(".text.floorf")))
+float floorf(float x)
 {
 	int i0,j0;
 	unsigned i;

@@ -3,8 +3,8 @@
 #include "godhand/sync.h"
 
 
-__attribute__((section(".text.func_003B63F0")))
-int func_003B63F0(void)
+__attribute__((section(".text.EIntr")))
+int EIntr(void)
 {
     unsigned int stat;
 

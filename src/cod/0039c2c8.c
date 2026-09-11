@@ -9,7 +9,7 @@ extern void func_0039C390(void *m, const char *msg);   /* _sceMpegError */
 struct cbp { int reason; int pad[7]; };
 extern int  func_0039AB20(void *p, struct cbp *q);       /* _sceMpegDispatchMpegCallback */
 extern int  func_003B63A0(void);                       /* DIntr */
-extern int  func_003B63F0(void);                       /* EIntr */
+extern int  EIntr(void);                       /* EIntr */
 
 __attribute__((section(".text._sceMpegErrorBdec")))
 void _sceMpegErrorBdec(void *m)
@@ -28,6 +28,6 @@ void _sceMpegErrorBdec(void *m)
     *(volatile u_int *)0x1000B000 = 0;
     *(volatile u_int *)0x1000F590 = *(volatile u_int *)0x1000F520 & 0xFFFEFFFF;
     if (oldstat)
-        func_003B63F0();
+        EIntr();
     *(volatile u_int *)0x1000B020 = 0;
 }

@@ -43,6 +43,6 @@ int func_00397E18(int port, int slot, int state)
     p[0x71] = state;
     SyncDCache(p, p + 0x7F);
     if (oldstat == 1)
-        func_003B63F0();
+        EIntr();
     return 1;
 }

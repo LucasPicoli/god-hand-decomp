@@ -22,8 +22,8 @@ extern unsigned int TimerUSec2BusClock(unsigned int sec, unsigned int usec);
 
 extern int func_003B0D20(int a0, int a1, int a2, int semid);
 
-__attribute__((section(".text.func_003B0AE0")))
-int func_003B0AE0(unsigned int usec)
+__attribute__((section(".text.DelayThread")))
+int DelayThread(unsigned int usec)
 {
     struct SemaParam sp;
     int semid;

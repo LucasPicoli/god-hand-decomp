@@ -12,10 +12,10 @@
 #define D9_SADR (*(volatile unsigned int *)0x1000D480)
 
 
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
-__attribute__((section(".text.func_0039AEA0")))
-void func_0039AEA0(char *c, char *f)
+__attribute__((section(".text._cpr8")))
+void _cpr8(char *c, char *f)
 {
     int np;
     int off;
@@ -56,7 +56,7 @@ void func_0039AEA0(char *c, char *f)
             D9_QWC = qwc;
             D9_CHCR = 0x101;
             if (st)
-                func_003B63F0();
+                EIntr();
             p2 = p + ystep;
             q2 = q + step;
             while (D9_CHCR & 0x100)
@@ -67,7 +67,7 @@ void func_0039AEA0(char *c, char *f)
             D8_QWC = qwc;
             D8_CHCR = 0x100;
             if (st)
-                func_003B63F0();
+                EIntr();
             while (D8_CHCR & 0x100)
                 ;
             while (D8_QWC)

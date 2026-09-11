@@ -3,7 +3,7 @@
 extern void _IO_free_backup_area(int *a0);
 extern void WaitDma(void *a0);
 extern void func_003B63A0(void);
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
 /* MATCH via ee-2.9-991111. */
 
@@ -51,6 +51,6 @@ int func_003B35F8(int *a0)
         a0[3] = ((int *)p)[0xF];
         a0[1] = 1;
     }
-    func_003B63F0();
+    EIntr();
     return p;
 }

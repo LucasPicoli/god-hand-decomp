@@ -23,7 +23,7 @@ int sceMpegInit(void) {
     *(volatile unsigned int *)0x1000B000 = *(volatile unsigned int *)0x1000B000 & 0xFFFFFEFFU;
     *(volatile unsigned int *)0x1000B400 = *(volatile unsigned int *)0x1000B400 & 0xFFFFFEFFU;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFFU;
-    if (oldstat != 0) func_003B63F0();
+    if (oldstat != 0) EIntr();
     *(volatile unsigned int *)0x1000B020 = 0;
     *(volatile unsigned int *)0x1000B420 = 0;
     func_003BAD80();
@@ -38,7 +38,7 @@ void _sceMpegStopIpuDma(void) {
     *(volatile unsigned int *)0x1000B000 = 0;
     *(volatile unsigned int *)0x1000B400 = 0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFFU;
-    if (oldstat != 0) func_003B63F0();
+    if (oldstat != 0) EIntr();
     *(volatile unsigned int *)0x1000B020 = 0;
     *(volatile unsigned int *)0x1000B420 = 0;
     *(volatile unsigned int *)0x10002010 = 0x40000000;

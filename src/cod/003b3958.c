@@ -22,7 +22,7 @@ int func_003B3958(void *sd, int cmd, int mode, void *send, int ssize,
             break;
         if (nowait)
             break;
-        func_003B0AE0(d * 1000);
+        DelayThread(d * 1000);
         if (d < 127)
             d = d * 2;
         i++;

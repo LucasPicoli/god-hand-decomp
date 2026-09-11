@@ -38,6 +38,6 @@ PadData *func_00397BC8(int port, int slot, PadData *buf)
     if (buf != 0)
         *buf = pd[n];
     if (oldstat == 1)
-        func_003B63F0();
+        EIntr();
     return &pd[n];
 }

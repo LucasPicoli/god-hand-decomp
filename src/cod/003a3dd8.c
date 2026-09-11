@@ -7,7 +7,7 @@
  *   assembler:        ee (default)
  *   fp_hazard_rules:  "libm-mtc1,cmppad"
  *
- *   python3 .private/scripts/score_candidate.py func_003A3DD8 <this file> \
+ *   python3 .private/scripts/score_candidate.py __kernel_rem_pio2f <this file> \
  *           --compiler ee-2.9-991111 --fp-hazard-rules libm-mtc1,cmppad
  *   -> MATCH (exact)
  *
@@ -26,7 +26,7 @@
 /* newlib libm kf_rem_pio2.c -- __kernel_rem_pio2f */
 
 extern float scalbnf(float, int);
-extern float func_003A4D18(float);	/* floorf */
+extern float floorf(float);	/* floorf */
 extern const int D_0045EF90[3];		/* init_jk = {4,7,9} */
 extern const float D_0045EFA0[];	/* PIo2[] */
 #define init_jk D_0045EF90
@@ -37,8 +37,8 @@ extern const float D_0045EFA0[];	/* PIo2[] */
 #define two8	((float)256.0)		/* 0x43800000 */
 #define twon8	((float)0.00390625)	/* 0x3B800000 */
 
-__attribute__((section(".text.func_003A3DD8")))
-int func_003A3DD8(float *x, float *y, int e0, int nx, int prec, const int *ipio2)
+__attribute__((section(".text.__kernel_rem_pio2f")))
+int __kernel_rem_pio2f(float *x, float *y, int e0, int nx, int prec, const int *ipio2)
 {
 	int jz,jx,jv,jp,jk,carry,n,iq[20],i,j,k,m,q0,ih;
 	float z,fw,f[20],fq[20],q[20];
@@ -72,7 +72,7 @@ recompute:
 
     /* compute n */
 	z  = scalbnf(z,q0);		/* actual value of z */
-	z -= (float)8.0*func_003A4D18(z*(float)0.125);	/* trim off integer >= 8 */
+	z -= (float)8.0*floorf(z*(float)0.125);	/* trim off integer >= 8 */
 	n  = (int) z;
 	z -= (float)n;
 	ih = 0;

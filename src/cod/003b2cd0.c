@@ -2,7 +2,7 @@
 
 extern void  func_003B3650(void *sd);
 extern void  SleepThread(void);
-extern void  func_003B63F0(void);
+extern void  EIntr(void);
 extern void SetT2_B0001010_3B6A10(int mode);
 extern unsigned long iGetTimerSystemTime(void);
 extern void SetNextComp(unsigned long t);
@@ -94,7 +94,7 @@ void *func_003B7510(void *a, void *b, void *c, void *d)
     state = func_003B63A0();
     r = func_003B7400(a, b, c, d);
     if (state != 0) {
-        func_003B63F0();
+        EIntr();
     }
     return r;
 }
@@ -117,14 +117,14 @@ int func_003B6B90(void)
     mode = *(volatile int *)0x10001010;
     if (mode & 0x80) {
         if (state != 0) {
-            func_003B63F0();
+            EIntr();
         }
         return 1;
     }
     SetT2_B0001010_3B6A10((mode & 0xFFFFF3FF) | 0x80);
     SetNextComp(iGetTimerSystemTime());
     if (state != 0) {
-        func_003B63F0();
+        EIntr();
     }
     return 0;
 }

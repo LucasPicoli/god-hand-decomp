@@ -3,13 +3,13 @@
 /* ee-2.9-991111 matched TU.  NO fp_hazard_rules (none needed).
  * newlib libm ef_rem_pio2.c -- __ieee754_rem_pio2f.  Donor: sce_crt_libm/ef_rem_pio2.o.
  * MATCH (exact), 992 B.  Emitted symbol: __ieee754_rem_pio2f.
- * Callees: func_003A19D8 (fabsf, landed), func_003A3DD8 (__kernel_rem_pio2f, OPEN).
+ * Callees: func_003A19D8 (fabsf, landed), __kernel_rem_pio2f (__kernel_rem_pio2f, OPEN).
  * Data: D_0045EEE8 (npio2_hw[32]), D_0045EBD0 (two_over_pi).
  */
 /* newlib libm ef_rem_pio2.c -- __ieee754_rem_pio2f */
 
 extern float func_003A19D8(float);	/* fabsf */
-extern int func_003A3DD8(float *, float *, int, int, int, const int *);	/* __kernel_rem_pio2f */
+extern int __kernel_rem_pio2f(float *, float *, int, int, int, const int *);	/* __kernel_rem_pio2f */
 extern const int D_0045EEE8[32];	/* npio2_hw   */
 extern const int D_0045EBD0[];		/* two_over_pi */
 #define npio2_hw    D_0045EEE8
@@ -133,7 +133,7 @@ int __ieee754_rem_pio2f(float x, float *y)
 	tx[2] = z;
 	nx = 3;
 	while(tx[nx-1]==zero) nx--;	/* skip zero term */
-	n  =  func_003A3DD8(tx,y,e0,nx,2,two_over_pi);
+	n  =  __kernel_rem_pio2f(tx,y,e0,nx,2,two_over_pi);
 	if(hx<0) {y[0] = -y[0]; y[1] = -y[1]; return -n;}
 	return n;
 }

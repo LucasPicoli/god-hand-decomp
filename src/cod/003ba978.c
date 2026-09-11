@@ -11,6 +11,6 @@ void setD4_CHCR(int a0) {
     *(volatile unsigned int *)0x1000B000 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;
     if (r != 0) {
-        func_003B63F0();
+        EIntr();
     }
 }

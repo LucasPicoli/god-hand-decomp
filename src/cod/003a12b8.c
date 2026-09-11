@@ -22,8 +22,8 @@ extern void *D_003FA330;     /* _sce_sdr_transIntr0Gp  */
 extern void *D_003FA334;     /* _sce_sdr_transIntr1Gp  */
 extern void *D_003FA338;     /* _sce_sdr_spu2IntrGp    */
 
-__attribute__((section(".text.func_003A12B8")))
-int func_003A12B8(int arg, ...)
+__attribute__((section(".text.sceSdRemote")))
+int sceSdRemote(int arg, ...)
 {
     char *ap;
     u_int *p;

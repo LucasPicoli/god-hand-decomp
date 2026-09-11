@@ -121,7 +121,7 @@ __attribute__((section(".text.func_00332838")))
 int func_00332838(int a0, int a1) {
     int r;
     PushGlobalD8478History_331C78(0x8000);
-    r = func_00398890(a0, a1, D_003D90DC);
+    r = sceCdLayerSearchFile(a0, a1, D_003D90DC);
     PushGlobalD8478History_331C78(0x8001);
     return r;
 }

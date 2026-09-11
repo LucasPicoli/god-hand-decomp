@@ -41,6 +41,6 @@ RpcQ *sceSifRemoveRpcQueue(RpcQ *q)
             }
         }
     }
-    func_003B63F0();
+    EIntr();
     return p;
 }

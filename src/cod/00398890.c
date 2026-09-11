@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-/* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: func_00398890 */
+/* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: sceCdLayerSearchFile */
 
 typedef struct { unsigned int lsn; unsigned int size; char name[0x1C]; } sceCdlFILE;
 typedef struct { char b[0x24]; } fileblk;
@@ -36,8 +36,8 @@ extern int  func_003B2F48(void *cd, unsigned int sid, int mode);  /* sceSifBindR
 extern void func_003B2850(void *p, int size);  /* sceSifWriteBackDCache */
 
 
-__attribute__((section(".text.func_00398890")))
-int func_00398890(sceCdlFILE *fp, const char *name, int layer)
+__attribute__((section(".text.sceCdLayerSearchFile")))
+int sceCdLayerSearchFile(sceCdlFILE *fp, const char *name, int layer)
 {
     int i;
     int n;

@@ -4,7 +4,7 @@
 typedef unsigned int u_int;
 
 
-extern void func_003B63F0(void);
+extern void EIntr(void);
 
 __attribute__((section(".text.VSync")))
 void VSync(void)
@@ -15,7 +15,7 @@ void VSync(void)
     *(volatile u_int *)0x1000F000 = 4;
     GH_SYNC();
     if (stat) {
-        func_003B63F0();
+        EIntr();
     }
     while ((*(volatile u_int *)0x1000F000 & 4) == 0) {
         ;
@@ -24,6 +24,6 @@ void VSync(void)
     *(volatile u_int *)0x1000F000 = 4;
     GH_SYNC();
     if (stat) {
-        func_003B63F0();
+        EIntr();
     }
 }

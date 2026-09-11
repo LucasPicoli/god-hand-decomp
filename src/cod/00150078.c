@@ -223,11 +223,11 @@ void Tramp_GsGetIMR_3964A0(void) {
     GsGetIMR();
 }
 
-int func_00398890(int a0, int a1, int a2);
+int sceCdLayerSearchFile(int a0, int a1, int a2);
 
 __attribute__((section(".text.func_00398B90")))
 int func_00398B90(int a0, int a1) {
-    return func_00398890(a0, a1, 0);
+    return sceCdLayerSearchFile(a0, a1, 0);
 }
 
 int fflush(int a0, int a1, int a2, int a3);

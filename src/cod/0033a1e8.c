@@ -8,8 +8,8 @@ extern int D_00455BA8[];
 extern void Forward340AE8_33A028(void);
 extern void func_0033A4F8(struct SJUNI *e);
 
-__attribute__((section(".text.func_0033A1E8")))
-struct SJUNI *func_0033A1E8(int a, int b, int c)
+__attribute__((section(".text.SJUNI_Create")))
+struct SJUNI *SJUNI_Create(int a, int b, int c)
 {
     int i;
     struct SJUNI *e;

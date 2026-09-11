@@ -12,7 +12,7 @@ int func_003B7380(int a0) {
     r1 = func_003B63A0(a0);
     r2 = iStartTimerCounter(a0);
     if (r1 != 0)
-        func_003B63F0();
+        EIntr();
     return r2;
 }
 
@@ -46,7 +46,7 @@ void func_003BA9F0(int a0) {
     *(volatile unsigned int *)0x1000B400 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;
     if (r != 0) {
-        func_003B63F0();
+        EIntr();
     }
 }
 
@@ -57,7 +57,7 @@ void func_003BAD08(int a0) {
     *(volatile unsigned int *)0x1000B400 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;
     if (r != 0) {
-        func_003B63F0();
+        EIntr();
     }
 }
 

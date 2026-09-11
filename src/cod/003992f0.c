@@ -17,7 +17,7 @@ extern char D_0045E368[];
 
 extern void func_003B1F28();                    /* scePrintf */
 extern int  func_003B63A0(void);                /* DIntr */
-extern void func_003B63F0(void);                /* EIntr */
+extern void EIntr(void);                /* EIntr */
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
 extern int  SignalSema(int sema);
@@ -27,8 +27,8 @@ extern int  func_003B2F48(void *cd, unsigned int sid, int mode);   /* sceSifBind
 extern void func_003B2850(void *p, int size);   /* sceSifWriteBackDCache */
 
 
-__attribute__((section(".text.func_003992F0")))
-int func_003992F0(int mode)
+__attribute__((section(".text.sceCdDiskReady_old")))
+int sceCdDiskReady_old(int mode)
 {
     int i;
     int r;
@@ -39,7 +39,7 @@ int func_003992F0(int mode)
     i = func_003B63A0();
     D_003F8680 = 1;
     if (i)
-        func_003B63F0();
+        EIntr();
     cmd_sem_init();
     r = PollSema(D_003F866C);
     if (D_003F866C != r)

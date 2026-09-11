@@ -149,8 +149,8 @@ extern char D_0045DA80[];       /* "NaN" */
 extern char D_0045DA88[];       /* "0"   */
 
  char *
-__attribute__((section(".text.func_00391558")))
-func_00391558 (double d, int mode, int ndigits, int *decpt, int *sign, char **rve)
+__attribute__((section(".text._IO_dtoa")))
+_IO_dtoa (double d, int mode, int ndigits, int *decpt, int *sign, char **rve)
 {
  /*     Arguments ndigits, decpt, sign are similar to those
         of ecvt and fcvt; trailing zeros are suppressed from

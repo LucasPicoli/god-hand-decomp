@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void func_003B63F0(void);
+extern void EIntr(void);
 extern int func_003B1E68();
 extern void _sceSnprintf();
 
@@ -12,6 +12,6 @@ void func_003B1FA8(char *fmt, ...) {
     h = func_003B63A0();
     _sceSnprintf(func_003B1E68, &ctx, 0xFFFFFFFFU, fmt, (char *)__builtin_next_arg(fmt) - 0x38);
     if (h) {
-        func_003B63F0();
+        EIntr();
     }
 }

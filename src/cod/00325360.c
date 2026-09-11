@@ -182,7 +182,7 @@ __attribute__((section(".text.func_0033A190")))
 int func_0033A190(int a0, int a1, int a2) {
     int r;
     Forward33B658_3389F8();
-    r = func_0033A1E8(a0, a1, a2);
+    r = SJUNI_Create(a0, a1, a2);
     Forward33B670_338A10();
     return r;
 }

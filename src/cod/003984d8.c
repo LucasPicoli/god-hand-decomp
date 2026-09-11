@@ -18,7 +18,7 @@ extern int  D_003F8640[];    /* D_003F8640[4] == SCE_CD_debug */
 extern char D_0045E2B0[];    /* the scePrintf format string */
 
 extern void func_003B1F28(const char *fmt);      /* scePrintf */
-extern void func_003B0AE0(int usec);             /* DelayThread */
+extern void DelayThread(int usec);             /* DelayThread */
 
 
 __attribute__((section(".text.sceCdSyncS")))
@@ -28,7 +28,7 @@ int sceCdSyncS(int mode)
         if (D_003F8640[4] > 0)
             func_003B1F28(D_0045E2B0);
         while (sceSifCheckStatRpc(&D_003FA1C0))
-            func_003B0AE0(4000);
+            DelayThread(4000);
         return 0;
     }
     return sceSifCheckStatRpc(&D_003FA1C0);
@@ -42,7 +42,7 @@ extern int  D_003F8640[];    /* D_003F8640[4] == SCE_CD_debug */
 extern char D_0045E2A0[];    /* the scePrintf format string */
 
 extern void func_003B1F28(const char *fmt);      /* scePrintf */
-extern void func_003B0AE0(int usec);             /* DelayThread */
+extern void DelayThread(int usec);             /* DelayThread */
 
 
 __attribute__((section(".text.func_00398DA0")))
@@ -52,7 +52,7 @@ int func_00398DA0(int mode)
         if (D_003F8640[4] > 0)
             func_003B1F28(D_0045E2A0);
         while (D_003F8674 || sceSifCheckStatRpc(&D_003F9810))
-            func_003B0AE0(4000);
+            DelayThread(4000);
         return 0;
     }
     if (D_003F8674 || sceSifCheckStatRpc(&D_003F9810))
@@ -67,7 +67,7 @@ extern int D_003F8688;       /* the power-off-callback-installed flag */
 
 
 extern int  func_003B63A0(void);                       /* DIntr */
-extern int  func_003B63F0(void);                       /* EIntr */
+extern int  EIntr(void);                       /* EIntr */
 extern int  func_003B2488(int fid, void (*fn)(void *, void *), void *data); /* sceSifAddCmdHandler */
 
 __attribute__((section(".text.PowerOffCB")))
@@ -79,7 +79,7 @@ int PowerOffCB(void)
     oldstat = func_003B63A0();
     func_003B2488(0x80000012, _sceCd_Poff_Intr, 0);
     if (oldstat)
-        func_003B63F0();
+        EIntr();
     D_003F8664 = 0;
     D_003F8688 = 1;
     return 1;
@@ -97,7 +97,7 @@ extern int D_003F8670;       /* the third semaphore id */
 
 
 extern int func_003B63A0(void);          /* DIntr */
-extern int func_003B63F0(void);          /* EIntr */
+extern int EIntr(void);          /* EIntr */
 extern int func_003B2500(int fid);       /* sceSifRemoveCmdHandler */
 
 __attribute__((section(".text.cdvd_exit")))
@@ -116,7 +116,7 @@ void cdvd_exit(void)
     oldstat = func_003B63A0();
     func_003B2500(0x80000012);
     if (oldstat)
-        func_003B63F0();
+        EIntr();
 }
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: _sceCd_cd_callback */

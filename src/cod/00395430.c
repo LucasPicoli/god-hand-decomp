@@ -68,8 +68,8 @@ typedef struct {
 extern char D_0045DC20[];                    /* the scePrintf format string */
 extern void func_003B1F28(const char *fmt);  /* scePrintf */
 
-__attribute__((section(".text.func_00395430")))
-int func_00395430(sceGsLoadImage *di, short dbp, short dbw, short dpsm,
+__attribute__((section(".text.sceGsSetDefLoadImage")))
+int sceGsSetDefLoadImage(sceGsLoadImage *di, short dbp, short dbw, short dpsm,
                   short dsax, short dsay, short rrw, short rrh)
 {
     int qwc;

@@ -110,7 +110,7 @@ extern const char D_0045D7F0[16];   /* zeroes */
 
 extern int _IO_putc(int c, struct _IO_FILE *fp);
 extern _IO_ssize_t _IO_padn(struct _IO_FILE *fp, int pad, _IO_ssize_t count);
-extern char *func_00391558(double d, int mode, int ndigits, int *decpt,
+extern char *_IO_dtoa(double d, int mode, int ndigits, int *decpt,
 			   int *sign, char **rve);            /* _IO_dtoa */
 
 #define _IO_sputn(__fp, __s, __n) ((*(__fp)->vtable->__xsputn.pfn)(__fp, __s, __n))
@@ -169,7 +169,7 @@ int _IO_outfloat (double value, struct _IO_FILE *sb, int type, int width,
   /* Do the actual convension */
   if (precision == 999 && mode != 3)
     mode = 0;
-  p = func_00391558(value, mode, precision, &decpt, &sign, &end);
+  p = _IO_dtoa(value, mode, precision, &decpt, &sign, &end);
   useful_digits = end-p;
   exponent_start = EBUF_END;
   if (mode == 0)

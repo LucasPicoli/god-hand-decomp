@@ -6,7 +6,7 @@ extern long long func_0031DE10(long long a, long long b);
 extern void func_003B1EE0(char *buf, int size, char *fmt, int a, int b);
 extern void func_0039C390(char *c, char *msg);
 extern void func_0039BB20(char *c, char *pic);
-extern void func_0039AEA0(char *c, char *pic);
+extern void _cpr8(char *c, char *pic);
 extern char D_0045E5A8[];
 extern unsigned int D_003FA1F8[];
 
@@ -79,7 +79,7 @@ void _dispRefImage(char *c, char *pic, int n)
             if (*(int *)(c + 0xC4) != 0)
                 func_0039BB20(c, pic);
             else
-                func_0039AEA0(c, pic);
+                _cpr8(c, pic);
             if (*(int *)(c + 0x8) != 2) {
                 *(int *)(c + 0x8) = 2;
                 *(int *)(c + 0xC0) = *(int *)(c + 0x128);

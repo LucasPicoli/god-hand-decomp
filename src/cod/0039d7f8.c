@@ -28,8 +28,8 @@ extern void func_0039C390(void *s, char *msg);
 
 
 
-__attribute__((section(".text.func_0039D7F8")))
-int func_0039D7F8(char *s, int nmb)
+__attribute__((section(".text._slice0")))
+int _slice0(char *s, int nmb)
 {
     Blk b;
     int p1[4];
@@ -113,7 +113,7 @@ int func_0039D7F8(char *s, int nmb)
             return 2;
         }
         if (ninc == 1) {
-            if (func_0039E0F0(s, &v48, &v4C, &v50, &b, p1, p2) == 0) {
+            if (_decMB0(s, &v48, &v4C, &v50, &b, p1, p2) == 0) {
                 *(int *)(s + 0x12C) = 0;
                 return 1;
             }

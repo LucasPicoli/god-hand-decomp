@@ -42,5 +42,5 @@ void func_003B3368(RpcQ *q, void *thread)
             p->next = q;
         }
     }
-    func_003B63F0();
+    EIntr();
 }
