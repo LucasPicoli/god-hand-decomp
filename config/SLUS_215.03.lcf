@@ -241,6 +241,11 @@ _$_7filebuf        = 0x0038ED40;
 _$_8stdiobuf       = 0x003935D0;
 terminate__Fv      = 0x003211E0;
 
+/* Read off the same relocation join, wave 27. `memset` sits at three sites in
+ * the libio global constructor; `__muldi3` comes from the read_int body. */
+memset             = 0x003A52F0;
+__muldi3           = 0x0031DE10;
+
 SECTIONS
 {
     /* ------------------------------------------------------------------ *
