@@ -234,6 +234,11 @@ _vt$12ostdiostream$3ios = 0x0045DAC8;
 _vt$12istdiostream$3ios = 0x0045DAD8;
 _vt$8stdiobuf      = 0x0045DAE8;
 
+/* The gcc 2.95.2 `gcc/cp/tinfo2.cc` BUILTIN(mangled) family, 17 rows at
+ * 0x0031FB98..0x0031FF18, shares one vtable. `#pragma interface` keeps it
+ * extern, so the address resolves here rather than emitting a weak copy. */
+_vt$19__builtin_type_info = 0x00451198;
+
 /* Two mangled destructor names for addresses this repo names `func_...`, and
  * the mangled spelling of `terminate` (config/symbol_addrs.txt:6079). All three
  * come from the same relocation join. */

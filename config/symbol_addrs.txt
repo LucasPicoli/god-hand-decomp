@@ -50291,3 +50291,44 @@ sceSdRemote = 0x003A12B8; // type:func
 sceGsSetDefLoadImage = 0x00395430; // type:func
 EIntr = 0x003B63F0; // type:func
 DelayThread = 0x003B0AE0; // type:func
+
+// wave 30 (2026-09-18): 5 more DEAD-HEAD boundary symbols, from lane S3.
+// Wave 28 lane T2 rejected 41 rows into a `D4b_gcc_hoist_rejected` bucket on
+// the theory that the leading words are a gcc hoist. Wave 29 lane L4 refuted
+// one of them with a byte-exact body. S3 re-ran L4's reference test over all
+// 41, widened from two indices to five (j/jal, branches, data words, hi/lo
+// pairs, a raw 4-aligned whole-file word scan) plus a walk back to the nearest
+// terminator. FIVE survive: zero references of every kind to the head, and a
+// `jr $ra` two or three instructions before it, so fall-through is ruled out
+// too. The other 36 all carry a live reference to the recorded head, 32 by jal.
+//
+// A second independent classifier agrees on all 41 with zero disagreements:
+// every survivor's head is a run of instruction, nop, instruction, nop, and no
+// genuine hoist has that shape. func_002C5530's head holds two stack restores
+// in front of a stack allocate, which no compiler emits as a prologue.
+//
+// 112 B of dead head, 2,344 B of true span unlocked, 4 of 5 with a byte-exact
+// body already written.
+
+func_001467E8 = 0x001467E8; // type:func   (was inside func_001467C8, 32 B head)
+func_002B83B8 = 0x002B83B8; // type:func   (was inside func_002B8390, 40 B head)
+func_002C2F08 = 0x002C2F08; // type:func   (was inside func_002C2F00, 8 B head)
+func_002C5548 = 0x002C5548; // type:func   (was inside func_002C5530, 24 B head)
+func_0035DC10 = 0x0035DC10; // type:func   (was inside func_0035DC08, 8 B head)
+func_0031FB98 = 0x0031FB98; // type:func
+func_0031FBD0 = 0x0031FBD0; // type:func
+func_0031FC08 = 0x0031FC08; // type:func
+func_0031FC40 = 0x0031FC40; // type:func
+func_0031FC78 = 0x0031FC78; // type:func
+func_0031FCB0 = 0x0031FCB0; // type:func
+func_0031FCE8 = 0x0031FCE8; // type:func
+func_0031FD20 = 0x0031FD20; // type:func
+func_0031FD58 = 0x0031FD58; // type:func
+func_0031FD90 = 0x0031FD90; // type:func
+func_0031FDC8 = 0x0031FDC8; // type:func
+func_0031FE00 = 0x0031FE00; // type:func
+func_0031FE38 = 0x0031FE38; // type:func
+func_0031FE70 = 0x0031FE70; // type:func
+func_0031FEA8 = 0x0031FEA8; // type:func
+func_0031FEE0 = 0x0031FEE0; // type:func
+func_0031FF18 = 0x0031FF18; // type:func
