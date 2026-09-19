@@ -12046,6 +12046,10 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/003b7c18.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -30888,7 +30892,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003B7C18",
       "size": 64,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b7c18.c"
     },
     {
       "name": "setD4_CHCR",
