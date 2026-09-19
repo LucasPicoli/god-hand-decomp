@@ -12322,6 +12322,46 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/003903e8.c",
+      "compiler": "ee-2.9-991111",
+      "as_flags": [
+        "-g"
+      ],
+      "extern_jtbl": [
+        "D_0045D9A0"
+      ],
+      "extern_double": [
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "-",
+        "D_0045DA58",
+        "D_0045DA60",
+        "D_0045DA68"
+      ]
+    },
+    {
+      "path": "src/cod/0038ab70.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "as_flags": [
+        "-g"
+      ],
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -29542,7 +29582,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038AB70",
       "size": 316,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038ab70.cc"
     },
     {
       "name": "vscan__9streambufPCcPcP3ios",
