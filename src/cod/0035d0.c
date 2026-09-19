@@ -489,4 +489,3 @@ ok:
 }
 INCLUDE_ASM("nonmatching", func_0035D4A8);
 INCLUDE_ASM("nonmatching", func_0035D530);
-INCLUDE_ASM("permanent", SFH_Create);
