@@ -12240,6 +12240,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0036bb78.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -28934,7 +28941,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0036BB78",
       "size": 344,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0036bb78.c"
     },
     {
       "name": "func_0036BDA0",
