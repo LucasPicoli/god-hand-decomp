@@ -12026,6 +12026,26 @@
       "strip_cxx_frame": true,
       "strip_eh_table": true,
       "strip_cxx_vtable": true
+    },
+    {
+      "path": "src/cod/00389880.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/003899d8.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -29040,7 +29060,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00389880",
       "size": 220,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00389880.cc"
     },
     {
       "name": "func_00389980",
@@ -29055,7 +29076,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003899D8",
       "size": 220,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003899d8.cc"
     },
     {
       "name": "__8iostreami",
