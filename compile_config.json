@@ -12131,6 +12131,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0039aad8.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -30184,7 +30188,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0039AAD8",
       "size": 52,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0039aad8.c"
     },
     {
       "name": "func_0039AB20",
@@ -30206,7 +30211,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0039AC10",
       "size": 68,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0039aad8.c"
     },
     {
       "name": "func_0039AE50",
