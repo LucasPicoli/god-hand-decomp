@@ -12362,6 +12362,17 @@
       "c_flags_add": [
         "-f=-fno-rtti"
       ]
+    },
+    {
+      "path": "src/cod/0033e558.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
+      "path": "src/cod/003b06d8.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -27974,7 +27985,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033E558",
       "size": 100,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033e558.c"
     },
     {
       "name": "ADX_DecodeInfoExADPCM2",
@@ -28026,7 +28038,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00340E90",
       "size": 100,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033e558.c"
     },
     {
       "name": "ADX_DecodeInfoAiff",
@@ -29009,7 +29022,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00368E90",
       "size": 76,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033e558.c"
     },
     {
       "name": "MPS_SetErrFn",
@@ -30736,21 +30750,24 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003B06D8",
       "size": 104,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b06d8.c"
     },
     {
       "name": "func_003B0740",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B0740",
       "size": 104,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b06d8.c"
     },
     {
       "name": "func_003B07A8",
       "unit": "asm/cod/000000",
       "vaddr": "0x003B07A8",
       "size": 104,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003b06d8.c"
     },
     {
       "name": "func_003B0810",
