@@ -12226,6 +12226,13 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/00355ac8.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -62341,6 +62348,13 @@
       "vaddr": "0x0035DC10",
       "size": 76,
       "tu": "src/cod/0035dc10.c"
+    },
+    {
+      "name": "viBufBeginPut",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00355AC8",
+      "size": 236,
+      "tu": "src/cod/00355ac8.c"
     }
   ],
   "build_dir": "build",
