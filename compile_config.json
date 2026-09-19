@@ -12254,6 +12254,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0036d868.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -29004,7 +29008,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0036D868",
       "size": 124,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0036d868.c"
     },
     {
       "name": "M2VERR_SetCode",
