@@ -12066,6 +12066,17 @@
     {
       "path": "src/cod/003b7768.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0033e9a0.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
+      "path": "src/cod/00398378.c",
+      "compiler": "ee-2.9-991111"
     }
   ],
   "_carved_funcs_doc": [
@@ -27683,7 +27694,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033E9A0",
       "size": 128,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033e9a0.c"
     },
     {
       "name": "ADX_DecodeInfoExVer",
@@ -29979,7 +29991,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00398378",
       "size": 128,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00398378.c"
     },
     {
       "name": "scePadEnterPressMode",
