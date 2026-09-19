@@ -12077,6 +12077,17 @@
     {
       "path": "src/cod/00398378.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0033adf8.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
+      "path": "src/cod/0032f4f8.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -27203,7 +27214,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0032F4F8",
       "size": 48,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0032f4f8.c"
     },
     {
       "name": "getDevice",
@@ -27588,7 +27600,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0033ADF8",
       "size": 208,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0033adf8.c"
     },
     {
       "name": "SJUNI_CreateRmt",
