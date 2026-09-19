@@ -244,7 +244,6 @@ int func_002815D0(char *a0) {
 
 /* GetClassDescB_2815E8 moved to src/cod/merged_orphans_b.c (matched, SN pin). */
 INCLUDE_ASM("nonmatching", func_00281638);
-INCLUDE_ASM("nonmatching", func_00281690);
 
 /* ── PERMANENT: func_002816E0 (0x260 B) — complex init — stays in asm ── */
 INCLUDE_ASM("permanent", func_002816E0);

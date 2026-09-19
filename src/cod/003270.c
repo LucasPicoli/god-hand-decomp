@@ -12,7 +12,6 @@ extern int Obj33C8_GetField_18(void *a0);
 
 /* -- 1 call_chain ----------------------------------------------------------- */
 /* func_003276A8: iterating loop with bnel, calls func_00327370 — nonmatching */
-INCLUDE_ASM("nonmatching", func_003276A8);
 
 /* -- 16 accessor leaves ----------------------------------------------------- */
 
