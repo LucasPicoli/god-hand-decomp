@@ -1,19 +1,19 @@
 {
   "measures": {
-    "fuzzy_match_percent": 31.213022,
+    "fuzzy_match_percent": 31.218918,
     "total_code": "2848952",
-    "matched_code": "889244",
-    "matched_code_percent": 31.21302,
+    "matched_code": "889412",
+    "matched_code_percent": 31.21892,
     "total_data": "3975100",
     "matched_data": "3299928",
     "matched_data_percent": 83.01497,
     "total_functions": 11311,
-    "matched_functions": 6899,
-    "matched_functions_percent": 60.993725,
-    "complete_code": 845104,
-    "complete_code_percent": 29.663679837357737,
+    "matched_functions": 6900,
+    "matched_functions_percent": 61.002563,
+    "complete_code": 845272,
+    "complete_code_percent": 29.669576742605702,
     "total_units": 9609,
-    "complete_units": 2271
+    "complete_units": 2272
   },
   "units": [
     {
@@ -273820,52 +273820,6 @@
       }
     },
     {
-      "name": "asm/nonmatching/SFBUF_SetSupplySj",
-      "measures": {
-        "total_code": "168",
-        "matched_data_percent": 100.0,
-        "total_functions": 1,
-        "complete_data_percent": 100.0,
-        "total_units": 1
-      },
-      "sections": [
-        {
-          "name": ".bss",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".data",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        },
-        {
-          "name": ".text",
-          "size": "168",
-          "metadata": {}
-        },
-        {
-          "name": ".text.SFBUF_SetSupplySj",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {}
-        }
-      ],
-      "functions": [
-        {
-          "name": "SFBUF_SetSupplySj",
-          "size": "168",
-          "metadata": {},
-          "address": "0"
-        }
-      ],
-      "metadata": {
-        "progress_categories": [
-          "cri-middleware"
-        ],
-        "auto_generated": true
-      }
-    },
-    {
       "name": "asm/nonmatching/SFD_SetAdxtPara",
       "measures": {
         "total_code": "88",
@@ -393069,6 +393023,63 @@
       }
     },
     {
+      "name": "src/cod/0034bff8",
+      "measures": {
+        "fuzzy_match_percent": 100.0,
+        "total_code": "168",
+        "matched_code": "168",
+        "matched_code_percent": 100.0,
+        "matched_data_percent": 100.0,
+        "total_functions": 1,
+        "matched_functions": 1,
+        "matched_functions_percent": 100.0,
+        "complete_code": "168",
+        "complete_code_percent": 100.0,
+        "complete_data_percent": 100.0,
+        "total_units": 1,
+        "complete_units": 1
+      },
+      "sections": [
+        {
+          "name": ".bss",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".data",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        },
+        {
+          "name": ".text.SFBUF_SetSupplySj",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {}
+        }
+      ],
+      "functions": [
+        {
+          "name": "SFBUF_SetSupplySj",
+          "size": "168",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        }
+      ],
+      "metadata": {
+        "complete": true,
+        "progress_categories": [
+          "engine"
+        ],
+        "auto_generated": true
+      }
+    },
+    {
       "name": "src/cod/0034c0e8",
       "measures": {
         "fuzzy_match_percent": 100.0,
@@ -447172,20 +447183,20 @@
       "id": "engine",
       "name": "Game engine",
       "measures": {
-        "fuzzy_match_percent": 31.341646,
-        "total_code": "2837260",
-        "matched_code": "889244",
-        "matched_code_percent": 31.341644,
+        "fuzzy_match_percent": 31.34571,
+        "total_code": "2837428",
+        "matched_code": "889412",
+        "matched_code_percent": 31.345713,
         "total_data": "3975100",
         "matched_data": "3299928",
         "matched_data_percent": 83.01497,
-        "total_functions": 11247,
-        "matched_functions": 6899,
-        "matched_functions_percent": 61.3408,
-        "complete_code": "845104",
-        "complete_code_percent": 29.78592,
-        "total_units": 9545,
-        "complete_units": 2271
+        "total_functions": 11248,
+        "matched_functions": 6900,
+        "matched_functions_percent": 61.344234,
+        "complete_code": "845272",
+        "complete_code_percent": 29.790077,
+        "total_units": 9546,
+        "complete_units": 2272
       }
     },
     {
@@ -447284,11 +447295,11 @@
       "id": "cri-middleware",
       "name": "CRI middleware (ADX / AFS)",
       "measures": {
-        "total_code": "4848",
+        "total_code": "4680",
         "matched_data_percent": 100.0,
-        "total_functions": 29,
+        "total_functions": 28,
         "complete_data_percent": 100.0,
-        "total_units": 29
+        "total_units": 28
       }
     },
     {
