@@ -31,7 +31,7 @@ void func_0028CDD0(char *arg)
         char *q;
         int i;
 
-        p = func_0030F578(0x1B80);
+        p = __builtin_vec_new(0x1B80);
         q = p;
         for (i = 0x2B; i != -1; i--) {
             VU0_SQC2_VF0(q, 0x0);

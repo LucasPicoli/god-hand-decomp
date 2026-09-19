@@ -30,7 +30,7 @@ void func_00271410(char *obj)
     case 0x272:
     case 0x273:
     case 0x274:
-        buf = func_0030F578(0x1B80);
+        buf = __builtin_vec_new(0x1B80);
         p = buf;
         i = 0x2B;
         do {

@@ -77,8 +77,8 @@ void func_002DD600(char *a0) {
 
 
 
-__attribute__((section(".text.func_0030F578")))
-int func_0030F578(void *a0) {
+__attribute__((section(".text.__builtin_vec_new")))
+int __builtin_vec_new(void *a0) {
     return EnsureInitThenForward_2A9538_30EE08(a0, 0x10, D_003C3CF0);
 }
 
