@@ -12092,6 +12092,14 @@
     {
       "path": "src/cod/003b5c48.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0038bad0.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -13570,7 +13578,7 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038BAD0",
       "size": 40,
-      "tu": "src/cod/0038b8.c"
+      "tu": "src/cod/0038bad0.cc"
     },
     {
       "name": "allocate__9streambuf",

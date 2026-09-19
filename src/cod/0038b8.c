@@ -5,11 +5,11 @@
 extern int doallocbuf__9streambuf(char *a0);
 extern int _IO_getc(char *a0);
 extern int _IO_putc(char *a0, char *a1);
-extern int _IO_sgetn(char *a0, char *a1, int a2);
+extern unsigned int _IO_sgetn(void *fp, void *buf, unsigned int n);
 extern int _IO_padn(char *a0, int a1);
 extern void _IO_seekpos(char *a0);
 extern void _IO_seekoff(char *a0);
-extern void _IO_free_backup_area(char *a0, int a1, int a2, int a3);
+extern void _IO_free_backup_area(void *fp);
 extern int *func_0038C168(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern void func_0038AFB0(int a0);
@@ -56,12 +56,22 @@ __attribute__((section(".text.sputc__9streambufi")))
 int sputc__9streambufi(char *sb, int c) {
     return _IO_putc((char *)c, sb);
 }
-INCLUDE_ASM("nonmatching", sgetn__9streambufPcl);
+/* streambuf::sgetn out-of-lined from gcc-2.95.2 streambuf.h. */
+__attribute__((section(".text.sgetn__9streambufPcl")))
+long sgetn__9streambufPcl(void *sb, char *s, long n) {
+    return _IO_sgetn(sb, s, n);
+}
 __attribute__((section(".text.func_0038BA68")))
 int func_0038BA68(void *a0, int a1) {
     return _IO_padn(a0, (char)a1);
 }
-INCLUDE_ASM("nonmatching", sputn__9streambufPCcl);
+/* streambuf::sputn out-of-lined from gcc-2.95.2 streambuf.h: a virtual call through the g++ 2.x vtable at 0x50 (entry 6 = xsputn). */
+struct VtEnt { short delta; short index; void *pfn; };
+__attribute__((section(".text.sputn__9streambufPCcl")))
+long sputn__9streambufPCcl(char *sb, const char *s, long n) {
+    struct VtEnt *vt = *(struct VtEnt **)(sb + 0x50);
+    return ((long (*)(char *, const char *, long))vt[6].pfn)(sb + vt[6].delta, s, n);
+}
 __attribute__((section(".text.Obj38B8_GetField14MinusField10")))
 int Obj38B8_GetField14MinusField10(char *a0) {
     return *(int *)(a0 + 0x14) - *(int *)(a0 + 0x10);
@@ -72,8 +82,15 @@ int Obj38B8_GetField8MinusField4(char *a0) {
     return *(int *)(a0 + 8) - *(int *)(a0 + 4);
 }
 
-INCLUDE_ASM("nonmatching", allocbuf__9streambuf);
-INCLUDE_ASM("nonmatching", allocate__9streambuf);
+/* streambuf::allocate out-of-lined from gcc-2.95.2 streambuf.h: base() || unbuffered() ? 0 : doallocate() (vtable entry 12). */
+__attribute__((section(".text.allocate__9streambuf")))
+int allocate__9streambuf(char *sb) {
+    if (*(char **)(sb + 0x1C) != 0 || ((*(int *)sb >> 1) & 1)) return 0;
+    else {
+        struct VtEnt *vt = *(struct VtEnt **)(sb + 0x50);
+        return ((int (*)(char *))vt[12].pfn)(sb + vt[12].delta);
+    }
+}
 __attribute__((section(".text.func_0038BB48")))
 void func_0038BB48(char *arg0, int arg1) {
     if (arg1) {
@@ -157,7 +174,12 @@ char *Obj38B8_GetPtrField4B(char *a0) {
     return a0 + 0x4B;
 }
 
-INCLUDE_ASM("nonmatching", setg__9streambufPcT1T1);
+/* streambuf::setg out-of-lined from gcc-2.95.2 streambuf.h. */
+__attribute__((section(".text.setg__9streambufPcT1T1")))
+void setg__9streambufPcT1T1(char *sb, char *eb, char *g, char *eg) {
+    if (*(int *)sb & 0x100) _IO_free_backup_area(sb);
+    *(char **)(sb + 0xC) = eb; *(char **)(sb + 0x4) = g; *(char **)(sb + 0x8) = eg;
+}
 /* func_0038BD40: the two do{}while(0) barriers keep the retail store order. */
 __attribute__((section(".text.func_0038BD40")))
 void func_0038BD40(int *p, int a, int b) {
