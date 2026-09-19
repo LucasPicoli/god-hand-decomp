@@ -1,11 +1,17 @@
 /* Struct: CGObj35E8_t — fields +0x4..+0x70; counter (StepCounter) and indirect pointer (SetIndirect). */
 #include "include_asm.h"
+/* Struct: CGObj35E8_t — fields +0x4..+0x70; counter (StepCounter) and indirect pointer (SetIndirect). */
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E868 — call-chain (jal×2, complex branch)                         */
 /* ════════════════════════════════════════════════════════════════════════ */
 extern void *getElemInfPtr(int a0, int a1);
-extern int isEnableVidFtr(int a0, void *a1);
+typedef struct Elem {
+    char pad0[0x20];
+    unsigned char codec;
+} Elem;
+extern int func_0035E9E8(unsigned int id);
+extern int isEnableVidFtr(int a0, Elem *a1);
 
 __attribute__((section(".text.func_0035E868")))
 int func_0035E868(int a0, int a1, int *a2)
@@ -35,12 +41,32 @@ int func_0035E868(int a0, int a1, int *a2)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E968 — call-chain: jal E9E8 + branch + movz                       */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", isEnableAudFtr);
+__attribute__((section(".text.isEnableAudFtr")))
+int isEnableAudFtr(int id, Elem *e)
+{
+    int nz;
+    int lt;
+
+    if (func_0035E9E8(id) != 0xC0) return 0;
+    nz = (e->codec != 0);
+    lt = (e->codec < 2);
+    return lt && nz;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E9A8 — call-chain: jal E9E8 + branch + movz (checks 0xE0)         */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", isEnableVidFtr);
+__attribute__((section(".text.isEnableVidFtr")))
+int isEnableVidFtr(int id, Elem *e)
+{
+    int nz;
+    int lt;
+
+    if (func_0035E9E8(id) != 0xE0) return 0;
+    nz = (e->codec != 0);
+    lt = (e->codec < 2);
+    return lt && nz;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035E9E8 — branched leaf: range checks + exact matches                 */
@@ -49,12 +75,20 @@ INCLUDE_ASM("nonmatching", isEnableVidFtr);
 /*  NOTE: compiler generates bne+delay v0=0 in reference vs xori+movn      */
 /*  here → size mismatch (0x40 vs 0x44) → keep as nonmatching asm          */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035E9E8);
+__attribute__((section(".text.func_0035E9E8")))
+int func_0035E9E8(unsigned int id)
+{
+    if (id - 0xC0 < 0x20) return 0xC0;
+    if (id - 0xE0 < 0x10) return 0xE0;
+    if (id == 0xBD) goto bd;
+    if (id != 0xBF) return 0;
+bd:
+    return 0xBD;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EA30 — arg-rearrange + stores + ra-save tail-call                  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EA30);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EA60 — medium leaf: counter step arithmetic                        */
@@ -75,7 +109,6 @@ void Obj35E8_StepCounter_EA60(char *a0)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EA88 — large branched call-chain (jal FBD8)                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EA88);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EB60 — branched leaf: type-dispatch via movn                       */
@@ -84,12 +117,10 @@ INCLUDE_ASM("nonmatching", func_0035EA88);
 /*  NOTE: reference uses $a2 for 0x51 constant + movn; compiled uses $v1   */
 /*  + xori + movz → register mismatch → keep as nonmatching asm            */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EB60);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EB98 — ra-save trampoline (sd ra; ld ra; j EBB0) — nonmatching     */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EB98);
 
 /* func_0035EBB0 (0x0035EBB0): NOT carved — PERMANENT (bnel) AND            */
 /* jump-table label .L0035ECC8 referenced from rodata D_00459CE0; must     */
@@ -98,37 +129,30 @@ INCLUDE_ASM("nonmatching", func_0035EB98);
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035ED08 — PERMANENT (beql): branch logic with beql instructions       */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("permanent", func_0035ED08);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EDA8 — ra-save + lw×3 + tail-call func_003603D8                   */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EDA8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EDC8 — ra-save + lw + tail-call func_0035EDE0                     */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EDC8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EDE0 — PERMANENT (.word 0x460000E4): FP init table                 */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("permanent", func_0035EDE0);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EE98 — ra-save + lw×3 + tail-call func_0036CBC0                   */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EE98);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EEB8 — ra-save + lw×3 + tail-call func_0036CC08                   */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EEB8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EED8 — ra-save + lw×3 + tail-call func_0036CC40                   */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EED8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EEF8 — branched leaf: optional function-pointer call               */
@@ -136,12 +160,10 @@ INCLUDE_ASM("nonmatching", func_0035EED8);
 /*  NOTE: reference uses beqz, compiled uses beqzl (likely-branch)         */
 /*  at offset c → different delay-slot content → keep as nonmatching asm   */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EEF8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EF20 — no-jr-ra stub (addiu sp+0x20 twice) — nonmatching           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035EF20);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EF30 — accessor: *(a0+0x68) = a1                                  */
@@ -206,4 +228,17 @@ void Obj35E8_SetField_70(char *a0, int a1)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035EF78 — large call-chain (0x258 bytes; jal×4)                       */
 /* ════════════════════════════════════════════════════════════════════════ */
+INCLUDE_ASM("nonmatching", func_0035EA30);
+INCLUDE_ASM("nonmatching", func_0035EA88);
+INCLUDE_ASM("nonmatching", func_0035EB60);
+INCLUDE_ASM("nonmatching", func_0035EB98);
+INCLUDE_ASM("nonmatching", func_0035EDA8);
+INCLUDE_ASM("nonmatching", func_0035EDC8);
+INCLUDE_ASM("nonmatching", func_0035EE98);
+INCLUDE_ASM("nonmatching", func_0035EEB8);
+INCLUDE_ASM("nonmatching", func_0035EED8);
+INCLUDE_ASM("nonmatching", func_0035EEF8);
+INCLUDE_ASM("nonmatching", func_0035EF20);
 INCLUDE_ASM("nonmatching", func_0035EF78);
+INCLUDE_ASM("permanent", func_0035ED08);
+INCLUDE_ASM("permanent", func_0035EDE0);

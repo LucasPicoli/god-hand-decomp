@@ -1,9 +1,13 @@
 /* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 #include "include_asm.h"
+/* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 
 /* ── Forward declarations for within-TU functions called before definition ── */
 void Obj35D0_SetFields_0_4_8_C_D1B0(char *a0, int a1, int a2, int a3, int a4);
 void Obj35D0_ClearFields_0_4_8_D708(char *a0);
+void Obj35D0_ClearFields_0_4_8_C_D728(char *a0);
+extern int func_0035B9B0(int);
+extern int func_0035D800(char *o);
 
 /* ── External functions ─────────────────────────────────────────────────── */
 extern int  func_0034DD70(char *a0, unsigned int a1);
@@ -12,7 +16,8 @@ extern void func_0034C990(char *a0, int a1, int a2, int a3);
 /* ── External globals ───────────────────────────────────────────────────── */
 extern char D_00459BF0[];   /* 0x00459BF0 — ASCII string used as base ptr  */
 extern int  D_00766C9C;     /* reference counter for D5C8/D530 logic       */
-extern char D_00766C90[];   /* struct zero-init target (3 int fields)       */
+typedef struct SfhLib { int f0; int nobj; int f8; } SfhLib;
+extern SfhLib D_00766C90;   /* sfh_objinf: 3 int fields                      */
 
 
 /* ════════════════════════════════════════════════════════════════════════ */
@@ -234,7 +239,12 @@ int SFVOM_ExecServer(int a0) {
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D360 — call-chain (jal ×2)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", sfvom_IsTerm);
+__attribute__((section(".text.sfvom_IsTerm")))
+int sfvom_IsTerm(int h)
+{
+    if (GetArrayElemA0C_35A1C8(h, 0xF) == 0) return 1;
+    return func_0035B9B0(h) != 0;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D3A8 — call-chain (jal ×3)                                        */
@@ -334,7 +344,6 @@ void Obj35D0_SendEvent_FF000701_D488(char *a0)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D4A8 — call-chain (branch + jal)                                  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D4A8);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D4F0 — tail-call wrapper: rearrange args → func_0034C990          */
@@ -367,23 +376,32 @@ char *Obj35D0_GetStringPtr_D00459BF0(void)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D530 — call-chain (jal ×2, references D_00766C88/C90/C9C)         */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", func_0035D530);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D5C8 — branched-leaf: INCLUDE_ASM(nonmatching)                    */
 /* -freorder-blocks inverts bgtz→blez; can't byte-match with current flags  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", SFH_Finish);
+__attribute__((section(".text.SFH_Finish")))
+void SFH_Finish(void)
+{
+    D_00766C9C--;
+    if (D_00766C9C > 0) return;
+    Obj35D0_ClearFields_0_4_8_D708((char *)&D_00766C90);
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D610 — PERMANENT (beql); stays in monolithic asm                  */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("permanent", SFH_Create);
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D6D8 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", SFH_Destroy);
+__attribute__((section(".text.SFH_Destroy")))
+void SFH_Destroy(char *o)
+{
+    Obj35D0_ClearFields_0_4_8_C_D728(o);
+    D_00766C90.nobj--;
+}
 
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D708 — zero 3 word fields: a0[0]=0, a0[4]=0, a0[8]=0             */
@@ -460,4 +478,15 @@ int Obj35D0_IsField0Zero_D7A8(char *a0)
 /* ════════════════════════════════════════════════════════════════════════ */
 /* 0x0035D7B8 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
-INCLUDE_ASM("nonmatching", isEffectiveVer);
+__attribute__((section(".text.isEffectiveVer")))
+int isEffectiveVer(char *o)
+{
+    if (func_0035D800(o) == 0) return 0;
+    if (*(int *)(o + 0xC) == 0x6B) goto ok;
+    if (*(int *)(o + 0xC) < 0x6E) return 0;
+ok:
+    return 1;
+}
+INCLUDE_ASM("nonmatching", func_0035D4A8);
+INCLUDE_ASM("nonmatching", func_0035D530);
+INCLUDE_ASM("permanent", SFH_Create);

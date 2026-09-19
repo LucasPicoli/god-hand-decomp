@@ -1,12 +1,26 @@
 /* Struct: CGObj35C0_t — indexed 68-byte-stride table +0x138..+0x170 (CopyPair); fields +0x1F30..+0x1F3C with callbacks at +0x1F3C; view into a large entity object. */
 #include "include_asm.h"
+/* Struct: CGObj35C0_t — indexed 68-byte-stride table +0x138..+0x170 (CopyPair); fields +0x1F30..+0x1F3C with callbacks at +0x1F3C; view into a large entity object. */
 
 /* ── Forward declarations for within-TU calls ────────────────────────────── */
 void func_0035C1C0(char *a0, int a1, int a2, int a3);
 void func_0035C200(char *a0, int a1, int a2);
+void Obj35C0_Set_a1_0_a2_C140(char *a0, int a1, int a2);
 
 /* ── INCLUDE_ASM: call-chain / loop-leaf / medium-leaf (nonmatching) ───────── */
-INCLUDE_ASM("nonmatching", sftrn_BuildAudio);
+__attribute__((section(".text.sftrn_BuildAudio")))
+void sftrn_BuildAudio(char *h, char *s)
+{
+    func_0035C200(h, 2, 3);
+    Obj35C0_Set_a1_0_a2_C140(h, 3, 4);
+    if (*(int *)(s + 0x14) != 0) {
+        func_0035C200(h, 4, 5);
+        Obj35C0_Set_a1_0_a2_C140(h, 5, 6);
+        func_0035C200(h, 6, 7);
+        return;
+    }
+    func_0035C200(h, 4, 7);
+}
 __attribute__((section(".text.func_0035C238")))
 int func_0035C238(int a0, int a1) {
     char *e = (char *)(a0 + 0x1F30);
@@ -36,9 +50,6 @@ int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
     }
     return tbl[a2](a0, a3, t0, 0);
 }
-
-INCLUDE_ASM("nonmatching", func_0035C3A0);
-INCLUDE_ASM("nonmatching", func_0035C480);
 /* func_0035C1C0: two strided table writes into base — a3 at stride 0x44
  * (+0x1F44), a1 at stride 0x74 (+0x135C).  The intermediate int `r` keeps the
  * addu operand order retail uses. */
@@ -64,7 +75,6 @@ void func_0035C200(char *a0, int a1, int a2) {
 }
 
 /* ── INCLUDE_ASM: permanent (beql/bnel, never matchable in C) ────────────── */
-INCLUDE_ASM("permanent", func_0035C5A0);
 
 /* ════════════════════════════════════════════════════════════════════════════ */
 /* Accessor thunks — set constant args then tail-call deeper function          */
@@ -227,3 +237,6 @@ void Obj35C0_SetField10_IfPositive_C528(char *a0, int a1)
 {
     if (a1 > 0) *(int *)(a0 + 0x10) = a1;
 }
+INCLUDE_ASM("nonmatching", func_0035C3A0);
+INCLUDE_ASM("nonmatching", func_0035C480);
+INCLUDE_ASM("permanent", func_0035C5A0);

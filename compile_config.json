@@ -238,11 +238,17 @@
     },
     {
       "path": "src/cod/0035d0.c",
-      "compiler": "cygnus-2.96"
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     },
     {
       "path": "src/cod/0035e8.c",
-      "compiler": "cygnus-2.96"
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     },
     {
       "_comment": "merged-orphan boundary-fix batch A: 4 lazy-init singleton getters at real entry+0x8.  SN-pinned (band 1, sq prologue)."

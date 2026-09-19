@@ -1,5 +1,6 @@
 /* Struct: CGObj34D8_t — vec3 at +0x24 (CopyVec3); reaches +0x1F44 — likely an accessor view into a large entity object. */
 #include "include_asm.h"
+/* Struct: CGObj34D8_t — vec3 at +0x24 (CopyVec3); reaches +0x1F44 — likely an accessor view into a large entity object. */
 
 /* ── Forward declarations for external called functions ──────────────────── */
 extern void func_003394A0(void);
@@ -19,7 +20,21 @@ extern void func_0034DD58(char *a0);
 extern char *D_003EE0B8;   /* set by Obj34D8_SetGlobalEE0B8_IfField48 */
 
 /* ── INCLUDE_ASM("nonmatching") — complex call-chain / jalr / odd ─────────── */
-INCLUDE_ASM("nonmatching", sfhds_AnlyAudio);
+extern int func_0035E148(int, unsigned char, int *);
+extern int func_0035E1B8(int, unsigned char, int *);
+extern int func_0035E238(int, unsigned char, int *);
+extern int func_0035E2A8(int, unsigned char, int *);
+int sfhds_CallS(int a0, int a1, int (*fn)(int, unsigned char, int *));
+
+__attribute__((section(".text.sfhds_AnlyAudio")))
+void sfhds_AnlyAudio(int h, int p, int *r)
+{
+    if (p == 0) return;
+    r[0] = sfhds_CallS(h, p, func_0035E148);
+    r[1] = sfhds_CallS(h, p, func_0035E1B8);
+    r[2] = sfhds_CallS(h, p, func_0035E238);
+    r[3] = sfhds_CallS(h, p, func_0035E2A8);
+}
 __attribute__((section(".text.sfhds_CallN")))
 int sfhds_CallN(int a0, int (*fn)(int, int *)) {
     int local;
@@ -29,7 +44,7 @@ int sfhds_CallN(int a0, int (*fn)(int, int *)) {
 }
 
 __attribute__((section(".text.sfhds_CallS")))
-int sfhds_CallS(int a0, unsigned char a1, int (*fn)(int, unsigned char, int *)) {
+int sfhds_CallS(int a0, int a1, int (*fn)(int, unsigned char, int *)) {
     int local;
     int r = fn(a0, a1, &local);
     if (r != 0) return local;
@@ -80,7 +95,6 @@ int func_0034DB20(char *p)
 }
 
 /* ── func_0034DB48: single addiu $v0,$v0,0 — no jr $ra; unrepresentable ──── */
-INCLUDE_ASM("nonmatching", func_0034DB48);
 
 /* ── Cmp_a1_Eq_0x37B0: equality test a1 == 0x37B0 ───────────────────────────── */
 /* xori v0,a1,0x37B0; jr $ra; sltiu v0,v0,1 */
@@ -90,8 +104,6 @@ int Cmp_a1_Eq_0x37B0(int a0, int a1) {
 }
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain (jal + bnel) ────────────────── */
-INCLUDE_ASM("nonmatching", func_0034DB60);
-INCLUDE_ASM("nonmatching", func_0034DBC8);
 
 /* ── Obj34D8_ClearTwoWords_1FC: zero two words at a0+0x1FC / a0+0x200 ───────────────── */
 /* addiu a0,a0,0x1FC; sw zero,4(a0); jr $ra; sw zero,0(a0) */
@@ -103,7 +115,6 @@ void Obj34D8_ClearTwoWords_1FC(char *a0) {
 }
 
 /* ── func_0034DC98: PERMANENT (bgezl loop) ───────────────────────────────── */
-INCLUDE_ASM("permanent", func_0034DC98);
 
 /* ── Obj34D8_Thunk_DD58: j-thunk → func_0034DD58 (5-insn trampoline) ─────────── */
 __attribute__((section(".text.Obj34D8_Thunk_DD58")))
@@ -120,7 +131,6 @@ void func_0034DD58(char *a0) {
 }
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain + jalr-leaf ─────────────────── */
-INCLUDE_ASM("nonmatching", func_0034DDE0);
 
 /* ── INCLUDE_ASM("nonmatching") — call_chain with tail-j ─────────────────── */
 
@@ -212,3 +222,8 @@ int ReturnZero_DFF0(void) { return 0; }
 
 __attribute__((section(".text.ReturnZero_DFF8")))
 int ReturnZero_DFF8(void) { return 0; }
+INCLUDE_ASM("nonmatching", func_0034DB48);
+INCLUDE_ASM("nonmatching", func_0034DB60);
+INCLUDE_ASM("nonmatching", func_0034DBC8);
+INCLUDE_ASM("nonmatching", func_0034DDE0);
+INCLUDE_ASM("permanent", func_0034DC98);
