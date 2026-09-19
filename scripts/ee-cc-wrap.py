@@ -1458,6 +1458,22 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         ),
     )
     p.add_argument(
+        "--as-flag",
+        dest="as_flags",
+        action="append",
+        default=[],
+        metavar="FLAG",
+        help=(
+            "Append FLAG to the stage-3 assembler argv (repeatable; write it "
+            "GLUED, --as-flag=-g, since the value starts with '-'). Forwarded "
+            "verbatim on every --assembler route and to sn-cc-wrap.py. "
+            "compile.py closes the vocabulary (SUPPORTED_AS_FLAGS); today it "
+            "is `-g`, ee-as 2.10's 'do not remove unneeded NOPs or swap "
+            "branches', which keeps the nop in a jal delay slot the default "
+            "reorder pass fills. See compile_units[].as_flags."
+        ),
+    )
+    p.add_argument(
         "--compiler",
         choices=("cygnus-2.96", "sn-2.95.3-136", "ee-2.9-991111",
                  *CC1_VARIANT_DIRS, *SN_VARIANT_DIRS),
@@ -1534,6 +1550,8 @@ def _dispatch_sn(argv: list[str], assembler: str = "ee") -> int:
         forwarded.append(tok)
     if assembler != "ee":
         forwarded += ["--assembler", assembler]
+    # --as-flag=<f> tokens are not stripped above, so they reach sn-cc-wrap.py
+    # verbatim; it appends them to its own stage-4 argv.
     try:
         result = subprocess.run(
             [sys.executable, str(sn_wrap), *forwarded], check=False,
@@ -1674,12 +1692,16 @@ def main(argv: list[str]) -> int:
             # ``.s`` level (surgically — only the frame block, NOT real program
             # ``.data``) before ee-as assembles, so the splat copy stays the
             # single source.  Opt-in per-TU via compile_units strip_cxx_frame.
+            # The vtable strip runs FIRST. A weak vtable run that ends the
+            # ``.s`` is closed only by the frame block's ``.data``; stripping
+            # the frame first leaves the run unterminated and the vtable pass
+            # returns the text unchanged (measured on ``_$_3ios``, wave 31).
+            if language == "c++" and args.strip_cxx_vtable:
+                _strip_cxx_vtable_from_s(s_path)
             if language == "c++" and args.strip_cxx_frame:
                 _strip_cxx_frame_from_s(s_path)
             if language == "c++" and args.strip_eh_table:
                 _strip_eh_table_from_s(s_path)
-            if language == "c++" and args.strip_cxx_vtable:
-                _strip_cxx_vtable_from_s(s_path)
         else:
             shutil.copy2(args.input, s_path)
 
@@ -1789,6 +1811,8 @@ def main(argv: list[str]) -> int:
         as_cmd.append(f"-I{LAUNCH_CWD}")
         if args.g:
             as_cmd.append("--gstabs")
+        # Per-TU assembler flags (compile_units[].as_flags), every route.
+        as_cmd += args.as_flags
         as_cmd += [s_name, "-o", str(output)]
         run(as_cmd, as_stage, cwd=td_path)
         if as_stage == "ps2eeas":
