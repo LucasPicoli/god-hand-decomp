@@ -12143,6 +12143,46 @@
     {
       "path": "src/cod/0039ef68.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0038b6e8.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/00389c38.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/00393b10.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/00393e28.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -29203,7 +29243,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00389C38",
       "size": 276,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00389c38.cc"
     },
     {
       "name": "putback__7istreamc",
@@ -29422,7 +29463,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B6E8",
       "size": 92,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038b6e8.cc"
     },
     {
       "name": "__3iosP9streambufP7ostream",
@@ -29829,7 +29871,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00393B10",
       "size": 232,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00393b10.cc"
     },
     {
       "name": "__12istdiostreamiP7__sFILE",
@@ -29852,7 +29895,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00393E28",
       "size": 232,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00393e28.cc"
     },
     {
       "name": "func_00393F30",
