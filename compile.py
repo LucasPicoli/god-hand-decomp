@@ -412,6 +412,31 @@ class Config:
                     f"'sn'; got {as_route!r}"
                 )
             entry["as"] = as_route
+            # Per-TU stage-3 assembler FLAGS, appended to that route's argv.
+            # `as` picks WHICH assembler runs; `as_flags` picks how it runs.
+            # The vocabulary is CLOSED (SUPPORTED_AS_FLAGS) for the same
+            # reason c_flags_add's is. Not the top-level `as_flags`, which
+            # is the GNU-as argv of the ASM-splat path and never reaches a
+            # C TU.
+            asf = raw.get("as_flags", [])
+            if not isinstance(asf, list) or not all(isinstance(f, str) for f in asf):
+                raise BuildError(
+                    f"compile_units[{path!r}]: as_flags must be a list "
+                    f"of strings; got {asf!r}"
+                )
+            for f in asf:
+                if f not in SUPPORTED_AS_FLAGS:
+                    raise BuildError(
+                        f"compile_units[{path!r}]: as_flags {f!r} is not in "
+                        f"the allowed set {sorted(SUPPORTED_AS_FLAGS)}; "
+                        f"widening it is a map decision, not a config edit"
+                    )
+            if len(set(asf)) != len(asf):
+                raise BuildError(
+                    f"compile_units[{path!r}]: as_flags has a duplicate "
+                    f"entry; got {asf!r}"
+                )
+            entry["as_flags"] = tuple(asf)
             # Per-TU opt-in: reconstruct the R5900 FP hazard nops our cc1
             # frontends omit (mtc1->cvt, and cvt->div FDIV setup). The retail
             # scheduler's div-nop placement is non-mechanical across the
@@ -1230,6 +1255,25 @@ SUPPORTED_C_FLAG_ADDS = frozenset(
 # carries actually moves a byte.
 SUPPORTED_C_FLAG_DROPS = frozenset({"-f=-freorder-blocks"})
 
+# Closed vocabulary for the per-TU `as_flags` key (Config.compile_units).
+#
+# `-g` is ee-as 2.10's "do not remove unneeded NOPs or swap branches"
+# (`ee-as --help`, not a debug-info switch; that one is `--gstabs`). In reorder
+# mode the default ee-as hoists the instruction before a `jal` into its delay
+# slot; with `-g` it leaves a nop there. Retail holds the nop on two bodies,
+# 4,244 B in all: _IO_strtod (func_003903E8, 3,928 B, libio floatconv.c) and
+# _sb_readline__FP9streambufRlc (316 B), both `dsll/dsra/jal` shapes under
+# ee-2.9-991111. Each is 4 B short through the default assembler and
+# byte-exact with the flag (wave 28 L9, wave 31 L1 and T2). ps2eeas accepts
+# `-g` (rc 0) and never hoists into the slot, so the flag is inert on `as:
+# "sn"`. The compiler's own -g is NOT a substitute: cc1 -gstabs leaves the .s
+# in reorder mode and the body still misses (wave 28 L9).
+#
+# Closed for the same reason SUPPORTED_C_FLAG_ADDS is: the ELF byte gate
+# cannot see a per-TU key that is invisible on its own TU, and an open set
+# would let a TU pass any assembler switch and call the result a match.
+SUPPORTED_AS_FLAGS = frozenset({"-g"})
+
 # The per-TU settings a MATCH RECORD must carry, from the scorer through every
 # intermediate step to the compile_units entry the build finally compiles.
 # Maps the record's key to the compile_units key it becomes.
@@ -1247,6 +1291,7 @@ PER_TU_MATCH_KEYS = {
     "drop_freorder": "c_flags_drop",
     "c_flags_add": "c_flags_add",
     "assembler": "as",
+    "as_flags": "as_flags",
     "call_loop_pad": "call_loop_pad",
     "fp_hazard_nops": "fp_hazard_nops",
     "fp_hazard_rules": "fp_hazard_rules",
@@ -1286,6 +1331,9 @@ class CompileUnit:
     # (scripts/mipsel-as-wrap.py; fills a same-register jr delay slot, notes/95)
     # or "sn" (ps2eeas.exe under wibo; retail's `dli` expansion, notes/110).
     assembler: str = "ee"
+    # Extra flags for that stage-3 assembler (--as-flag=<f> per entry). Closed
+    # vocabulary, see SUPPORTED_AS_FLAGS. Empty = no-op.
+    as_flags: tuple = ()
     # Insert the R5900 FP hazard nops our cc1 omits (--fp-hazard-nops:
     # mtc1->cvt + cvt->div). Opt-in per-TU; each opted-in fn is byte-verified.
     fp_hazard_nops: bool = False
@@ -1410,6 +1458,7 @@ def discover(cfg: Config, carve: Optional[CarveState] = None) -> list[CompileUni
             extern_jtbl=tuple(entry.get("extern_jtbl", ())),
             extern_double=tuple(entry.get("extern_double", ())),
             assembler=entry.get("as", "ee"),
+            as_flags=tuple(entry.get("as_flags", ())),
             fp_hazard_nops=bool(entry.get("fp_hazard_nops", False)),
             fp_hazard_rules=entry.get("fp_hazard_rules"),
             call_loop_pad=bool(entry.get("call_loop_pad", False)),
@@ -1600,6 +1649,10 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
         # rather than branching per route, so a new route reaching the
         # compile_units validator above cannot silently fall back to ee-as.
         argv.append(f"--assembler={unit.assembler}")
+    for f in unit.as_flags:
+        # Glued form: every member starts with "-", and argparse reads a
+        # separated "-g" as the next option.
+        argv.append(f"--as-flag={f}")
     if unit.fp_hazard_rules:
         # The rule-set form implies the bare flag in both cc-wraps, so pass
         # only one of the two. Passing both would be harmless today but would

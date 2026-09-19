@@ -1151,6 +1151,15 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
              "route has no SN implementation and is rejected there rather "
              "than dropped here. Opt-in per-TU via compile_units[].as.",
     )
+    p.add_argument(
+        "--as-flag", dest="as_flags", action="append", default=[],
+        metavar="FLAG",
+        help="Append FLAG to the stage-4 assembler argv (repeatable; glued "
+             "form --as-flag=-g). Twin of ee-cc-wrap.py's flag, which forwards "
+             "it here. `-g` is ee-as's 'do not remove unneeded NOPs'; ps2eeas "
+             "accepts it and never hoists into a jal slot anyway. See "
+             "compile_units[].as_flags.",
+    )
     return p.parse_args(argv)
 
 
@@ -1389,6 +1398,8 @@ def main(argv: list[str]) -> int:
             as_stage = "ee-as"
         for inc in args.includes:
             as_cmd.append(f"-I{inc}")
+        # Per-TU assembler flags (compile_units[].as_flags), both routes.
+        as_cmd += args.as_flags
         as_cmd += [
             f"-I{LAUNCH_CWD}",
             f"-I{LAUNCH_CWD / 'include'}",

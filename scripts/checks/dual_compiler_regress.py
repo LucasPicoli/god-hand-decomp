@@ -272,6 +272,9 @@ def _compile_one(
         # gnu-as-routed TU (func_00348938) would recompile via ee-as and
         # spuriously MISS the expected baseline. notes/95 #11.
         assembler=entry.get("as", "ee"),
+        # Honour as_flags the same way: an ee-as -g TU recompiled through the
+        # default reorder pass is 4 B short and would report false drift.
+        as_flags=tuple(entry.get("as_flags", ())),
         # Honour fp_hazard_nops (the mtc1->cvt / cvt->div FP hazard class,
         # func_00184A40): without it the harness would compile the TU missing
         # the retail FP hazard nops and spuriously report gate drift.
