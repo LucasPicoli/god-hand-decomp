@@ -12262,6 +12262,66 @@
     {
       "path": "src/cod/0035d610.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/003935d0.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/0038b3e0.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/0038ed40.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/0038eb98.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/0038ec08.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
+    },
+    {
+      "path": "src/cod/0038ec90.cc",
+      "compiler": "ee-2.9-991111",
+      "strip_cxx_frame": true,
+      "strip_eh_table": true,
+      "strip_cxx_vtable": true,
+      "c_flags_add": [
+        "-f=-fno-rtti"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -29529,7 +29589,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038B3E0",
       "size": 84,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038b3e0.cc"
     },
     {
       "name": "_$_12streammarker",
@@ -29696,28 +29757,32 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EB98",
       "size": 108,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038eb98.cc"
     },
     {
       "name": "__7filebufi",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EC08",
       "size": 132,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038ec08.cc"
     },
     {
       "name": "__7filebufiPci",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038EC90",
       "size": 172,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038ec90.cc"
     },
     {
       "name": "_$_7filebuf",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038ED40",
       "size": 124,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0038ed40.cc"
     },
     {
       "name": "setbuf__7filebufPci",
@@ -29897,7 +29962,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x003935D0",
       "size": 84,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/003935d0.cc"
     },
     {
       "name": "sys_write__8stdiobufPCcl",
