@@ -238,12 +238,11 @@ _vt$8stdiobuf      = 0x0045DAE8;
  * 0x0031FB98..0x0031FF18, shares one vtable. `#pragma interface` keeps it
  * extern, so the address resolves here rather than emitting a weak copy. */
 _vt$19__builtin_type_info = 0x00451198;
+_vt$7filebuf       = 0x0045D220;
 
 /* Two mangled destructor names for addresses this repo names `func_...`, and
  * the mangled spelling of `terminate` (config/symbol_addrs.txt:6079). All three
  * come from the same relocation join. */
-_$_7filebuf        = 0x0038ED40;
-_$_8stdiobuf       = 0x003935D0;
 terminate__Fv      = 0x003211E0;
 
 /* Read off the same relocation join, wave 27. `memset` sits at three sites in

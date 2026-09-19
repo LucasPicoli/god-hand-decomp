@@ -82,7 +82,7 @@ int func_0038EF20(void) {
 
 __attribute__((section(".text.func_0038EF40")))
 int func_0038EF40(void) {
-    return func_00392998();
+    return _IO_file_attach();
 }
 
 __attribute__((section(".text.Tramp__IO_file_doallocate_38EF80")))

@@ -98,8 +98,8 @@ extern int func_0038C3F0(struct _IO_FILE *f, int ch);   /* __overflow */
 extern _IO_size_t _IO_default_xsputn(struct _IO_FILE *f, const void *data, _IO_size_t n);
 
 /* libio fileops.c :: _IO_file_attach */
-__attribute__((section(".text.func_00392998")))
-struct _IO_FILE *func_00392998(struct _IO_FILE *fp, int fd) {
+__attribute__((section(".text._IO_file_attach")))
+struct _IO_FILE *_IO_file_attach(struct _IO_FILE *fp, int fd) {
     if (fp->_fileno >= 0)
         return 0;
     fp->_fileno = fd;
