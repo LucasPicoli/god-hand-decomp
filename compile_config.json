@@ -12463,6 +12463,13 @@
     {
       "path": "src/cod/0035d800.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/00340318.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
     }
   ],
   "_carved_funcs_doc": [
@@ -28121,7 +28128,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x00340318",
       "size": 176,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/00340318.c"
     },
     {
       "name": "func_00340E90",
