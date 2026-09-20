@@ -71,4 +71,38 @@
         : "i"((int)(num))                                              \
         : "memory")
 
+/* EE_SYSCALL_R(num, ret): the same trap, for a service that RETURNS a value.
+ *
+ * Added on demand under the scope rule above, not speculatively: wave 32 lane
+ * L5 measured `iWakeupThread` (0x003B0A40, 148 B) byte-exact with it at body 1
+ * and byte-blocked without it, because `EE_SYSCALL` has no output operand and
+ * cannot express retail's third word:
+ *
+ *     addiu  $v1, $zero, -0x2F
+ *     syscall
+ *     daddu  $s0, $v0, $zero
+ *
+ * # Why `move %0, $2` sits INSIDE the template
+ *
+ * The obvious way to collect the result is a forced-register pin on `$v0`,
+ * which D-019 refuses with a deliberately empty allowlist.  It is not needed.
+ * Writing the move inside the template and listing `$2` as a CLOBBER makes gcc
+ * choose some other register for `%0`, and under `-mabi=eabi` the assembler
+ * renders `move` as `daddu $rX, $v0, $zero` — retail's word, with the register
+ * the compiler picked by itself.  `scripts/check_forced_regs.py` has nothing
+ * to refuse.
+ *
+ * `num` keeps the `"i"` constraint for the reason `EE_SYSCALL` states. */
+#define EE_SYSCALL_R(num, ret)                                         \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "addiu $3, $0, %1\n"                                           \
+        "syscall\n"                                                    \
+        "move %0, $2\n"                                                \
+        ".set pop\n"                                                   \
+        : "=r"(ret)                                                    \
+        : "i"((int)(num))                                              \
+        : "$2", "$3", "memory")
+
 #endif /* GODHAND_EESYSCALL_H */

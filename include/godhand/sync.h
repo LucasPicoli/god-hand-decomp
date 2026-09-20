@@ -98,4 +98,34 @@
                          ".set reorder"                                        \
                          : "=r"(v))
 
+/* `cache <op>, <off>($base)` — the EE cache-maintenance instruction.  Same
+ * bucket-1 ground as the barriers above: no C construct emits it and the
+ * 28-binary probe of D-032 finds no builtin that reaches it.  `op` and `off`
+ * are compile-time literals the assembler needs as literals, so they are
+ * stringified into the template; only `base` moves through a CONSTRAINT, so
+ * the compiler picks that register and `scripts/check_forced_regs.py` has
+ * nothing to refuse.
+ *
+ * Measured 2026-09-20 by wave 32 lane L5: `_sceSDC` (164 B) and `_sceIDC`
+ * (164 B) are byte-exact with it and byte-blocked without it.  They differ
+ * only in the op they pass, 0x14 against 0x16, over the same loop. */
+#define GH_CACHE(op, off, base)                                                \
+    __asm__ __volatile__(".set noreorder\n\t"                                  \
+                         "cache " #op ", " #off "(%0)\n\t"                     \
+                         ".set reorder"                                        \
+                         : : "r"(base) : "memory")
+
+/* `mfc0 $28` — read the COP0 TagLo register.  `GH_MFC0_STATUS` above is the
+ * same shape over `$12`; this is its TagLo sibling, and the cache-tag loop
+ * that `GH_CACHE` serves is the only consumer.  The value leaves through an
+ * OUTPUT CONSTRAINT, so nothing is pinned.
+ *
+ * Write the register NUMBER, never the name: `ee-as` under `-mabi=eabi`
+ * rejects a COP0 register name outright (see `include/godhand/gp.h`). */
+#define GH_MFC0_TAGLO(v)                                                       \
+    __asm__ __volatile__(".set noreorder\n\t"                                  \
+                         "mfc0 %0, $28\n\t"                                    \
+                         ".set reorder"                                        \
+                         : "=r"(v))
+
 #endif /* GODHAND_SYNC_H */

@@ -99,4 +99,49 @@ extern __inline__ void *SetModuleGp(void)
         return(oldgp);
 }
 
+/* # BELOW THIS LINE IS PROJECT-LOCAL IDIOM, NOT VENDOR SOURCE
+ *
+ * Everything above is SCE's `eekernel.h` transcribed.  The two macros below
+ * are not in it.  They are here under the same "add on demand, never
+ * speculatively" rule `godhand/sync.h` and `godhand/eesyscall.h` follow, and
+ * this comment exists so nobody mistakes them for vendor lines.
+ *
+ * # Why the vendor spelling cannot reach these bytes
+ *
+ * Retail loads `$gp` STRAIGHT FROM MEMORY, in one word.  `_sceCd_Poff_Intr`
+ * at 0x003987C0:
+ *
+ *     003987EC  2D808003   daddu  $s0, $gp, $zero
+ *     003987F0  CCC35C8C   lw     $gp, %lo(D_0077C3CC)($v0)
+ *     00398800  2DE00002   daddu  $gp, $s0, $zero
+ *
+ * `SetGp` takes its new value through an `"r"` CONSTRAINT, so the compiler
+ * must materialise it first: `lw $rX, %lo(sym)($v0)` and then the template's
+ * `move $28, $rX`.  Two words where retail has one, on every body in this
+ * shape.  An `"m"` constraint hands the compiler the address instead and the
+ * `lw` inside the template IS retail's word.
+ *
+ * This is still not a forced-register pin.  `$28` is written by the template,
+ * never allocated, and the saved value leaves through `"=&r"`, so the compiler
+ * picks that register by itself and picks retail's.  D-019's allowlist stays
+ * empty and `scripts/check_forced_regs.py` has nothing to refuse.
+ *
+ * Measured by wave 31 lane L4 and re-verified from disk by wave 32 lane L5:
+ * `_sceCd_Poff_Intr` (84 B) is byte-exact with these and byte-blocked without
+ * them, `[reloc-check] OK` on 8 symbol references.  Asked for by five
+ * consecutive waves before it shipped. */
+
+/* Save `$gp` into `old`, then load the new one DIRECTLY from `sym`. */
+#define GH_SWAPGP_MEM(old, sym)                                                \
+    __asm__ __volatile__("move           %0, $28\n"                            \
+                         "\tlw            $28, %1"                             \
+                         : "=&r"(old)                                          \
+                         : "m"(sym))
+
+/* Restore `$gp` from a value already in a register. */
+#define GH_PUTGP(v)                                                            \
+    __asm__ __volatile__("move           $28, %0"                              \
+                         :                                                     \
+                         : "r"(v))
+
 #endif /* GODHAND_GP_H */
