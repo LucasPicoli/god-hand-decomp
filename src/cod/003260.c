@@ -50,8 +50,105 @@ void func_003260C8(void *a0, ...)
     }
 }
 
-INCLUDE_ASM("nonmatching", ADXPS2_GetNumDataSjtmp);
-INCLUDE_ASM("nonmatching", func_003261A8);
+/* ── CRI ADX PS2 stream-joint accessors ──────────────────────────────────
+ * Two siblings over the same layout, both `(unsigned)n >> 1` on a joint's
+ * data count.  Merged into this owner TU by hand: they are byte-verified at
+ * exit 0 but `integrate_batch`'s themed-TU pre-filter drops any body whose
+ * carve is already bound to a non-000000 TU (wave 31 defect 1). */
+typedef signed char Sint8;
+typedef unsigned char Uint8;
+typedef short Sint16;
+typedef unsigned short Uint16;
+typedef int Sint32;
+typedef unsigned int Uint32;
+
+typedef void *ADXRNA;
+typedef void *ADXSTM;
+typedef void *ADXSJD;
+
+typedef struct _sj_obj {
+    struct _sj_vtbl *vtbl;
+} SJ_OBJ, *SJ;
+
+typedef struct {
+    Uint8 *data;
+    Sint32 len;
+} SJCK;
+
+struct _sj_vtbl {
+    void (*QueryInterface)();
+    void (*AddRef)();
+    void (*Release)();
+    void (*Destroy)();
+    void *(*GetUuid)();
+    void (*Reset)();
+    void (*GetChunk)();
+    void (*UngetChunk)();
+    void (*PutChunk)();
+    Sint32 (*GetNumData)(SJ, Sint32);
+    Sint32 (*IsGetChunk)();
+    void (*EntryErrFunc)();
+};
+
+typedef struct ps2psj_obj {
+    Sint8 used;
+    Sint8 rsv;
+    Sint16 rsv2;
+    SJ sjiop;
+    SJ sjtmp;
+    void *sjx;
+    SJCK ck;
+} PS2PSJ_OBJ, *PS2PSJ;
+
+typedef struct ps2rna_obj {
+    Sint8 used;
+    Sint8 rsv;
+    Sint16 rsv2;
+    Sint32 maxnch;
+    PS2PSJ psj[2];
+    void *dtr[2];
+    SJ sjo[2];
+    void *ioprna;
+} PS2RNA_OBJ, *PS2RNA;
+
+typedef struct _adx_talk {
+    Sint8 used;
+    Sint8 stat;
+    Sint8 pmode;
+    Sint8 maxnch;
+    ADXSJD sjd;
+    ADXSTM stm;
+    ADXRNA rna;
+    SJ sjf;
+    SJ sji;
+    SJ sjo[2];
+} ADX_TALK, *ADXT;
+
+extern Sint32 SJRMT_GetNumData(SJ sj, Sint32 unit);
+
+__attribute__((section(".text.ADXPS2_GetNumDataSjtmp")))
+Sint32 ADXPS2_GetNumDataSjtmp(ADXT adxt, Sint32 chno)
+{
+    PS2RNA ps2rna;
+    PS2PSJ psj;
+    SJ sjtmp;
+
+    ps2rna = (PS2RNA)adxt->rna;
+    psj = ps2rna->psj[chno];
+    sjtmp = psj->sjtmp;
+    return (Uint32)sjtmp->vtbl->GetNumData(sjtmp, 1) >> 1;
+}
+
+__attribute__((section(".text.func_003261A8")))
+Sint32 func_003261A8(ADXT adxt, Sint32 chno)
+{
+    PS2RNA ps2rna;
+    PS2PSJ psj;
+
+    ps2rna = (PS2RNA)adxt->rna;
+    psj = ps2rna->psj[chno];
+    return (Uint32)SJRMT_GetNumData(psj->sjiop, 1) >> 1;
+}
 /* Obj3260_TrampChain_D2D8: call func_00338338(a0,0) + func_003382A0(a0,0) + tail-call   */
 /* func_003381B0(a0). Saves a0 in $s0 across both calls.                        */
 __attribute__((section(".text.Obj3260_TrampChain_D2D8")))
