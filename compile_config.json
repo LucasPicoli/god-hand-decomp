@@ -12459,6 +12459,10 @@
     {
       "path": "src/cod/003b6a30.c",
       "compiler": "ee-2.9-991111"
+    },
+    {
+      "path": "src/cod/0035d800.c",
+      "compiler": "cygnus-2.96"
     }
   ],
   "_carved_funcs_doc": [
@@ -29006,7 +29010,8 @@
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D800",
       "size": 40,
-      "lib": true
+      "lib": true,
+      "tu": "src/cod/0035d800.c"
     },
     {
       "name": "SFH_IsExistStmId",
