@@ -238,5 +238,12 @@ void Obj35C0_SetField10_IfPositive_C528(char *a0, int a1)
     if (a1 > 0) *(int *)(a0 + 0x10) = a1;
 }
 INCLUDE_ASM("nonmatching", func_0035C3A0);
-INCLUDE_ASM("nonmatching", func_0035C480);
+extern void func_003A52F0(void *a0, int a1, int a2);
+
+__attribute__((section(".text.func_0035C480")))
+void func_0035C480(char *a0) {
+    func_003A52F0(a0 + 0x18, 0, 0xF0);
+    *(int *)(a0 + 0x14) = 0;
+    *(int *)(a0 + 0x19C) += 1;
+}
 INCLUDE_ASM("permanent", func_0035C5A0);
