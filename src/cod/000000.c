@@ -2320,8 +2320,6 @@ INCLUDE_ASM("nonmatching", setPlayerPos);
 
 INCLUDE_ASM("nonmatching", pl00_CkSubScreen);
 
-INCLUDE_ASM("nonmatching", cModel_setMeshDisplay);
-
 INCLUDE_ASM("nonmatching", cObj_setId);
 
 INCLUDE_ASM("nonmatching", VecRotY);
@@ -2381,6 +2379,7 @@ INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 INCLUDE_ASM("nonmatching", KeyStop);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
