@@ -187,6 +187,24 @@
         "vadd.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
         ".set pop\n")
 
+/* VU0_VADD_XYZ_PTR(d, a, b): d.xyz = a.xyz + b.xyz through memory, as ONE asm
+ * statement in the libvu0 vector-routine shape (lqc2, lqc2, op, sqc2) with
+ * three plain register inputs. Retail's 0x694 phase machines schedule the
+ * block as a unit; four separate VU0_LQC2/VU0_VADD_XYZ/VU0_SQC2 statements
+ * let sched1 emit the second operand's producer first. */
+#define VU0_VADD_XYZ_PTR(d, a, b)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "lqc2  $vf4, 0(%1)\n"                                          \
+        "lqc2  $vf5, 0(%2)\n"                                          \
+        "vadd.xyz $vf4, $vf4, $vf5\n"                                  \
+        "sqc2  $vf4, 0(%0)\n"                                          \
+        ".set pop\n"                                                   \
+        :                                                              \
+        : "r"((void *)(d)), "r"((void *)(a)), "r"((void *)(b))         \
+        : "memory")
+
 /* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */
 #define VU0_VMOVE_XYZW(dst, src)                                       \
     __asm__ __volatile__ (                                             \
