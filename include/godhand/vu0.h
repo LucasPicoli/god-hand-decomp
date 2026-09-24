@@ -328,6 +328,11 @@
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
         "vmulx.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
 
+/* Broadcast-x subtract: $vf<dst>.xyz = $vf<s1>.xyz - $vf<s2>.x. */
+#define VU0_VSUBX_XYZ(dst, s1, s2)                                     \
+    __asm__ __volatile__ (".set push\n.set noreorder\n"               \
+        "vsubx.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "x\n.set pop\n")
+
 /* Reciprocal via Q-pipeline: Q = $vf<num>.w / $vf<den>.x (vf0.w == 1.0). */
 #define VU0_VDIV_W_X(num, den)                                         \
     __asm__ __volatile__ (".set push\n.set noreorder\n"               \
