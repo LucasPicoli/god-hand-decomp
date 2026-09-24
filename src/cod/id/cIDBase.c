@@ -89,4 +89,92 @@ void cIDBase_move(void *a0)
     }
 }
 
-INCLUDE_ASM("nonmatching", cIDBase_trans);
+extern void *D_003C2380;
+extern int D_005E7510;
+extern int D_007474A0;
+extern char D_0044AF20[];
+extern char D_0044AF28[];
+extern char D_0044AF30[];
+extern void *SearchData(void *a, void *b, int c);
+extern void cFont_setTextureAddr(void *a0, int a1, void *a2, void *a3);
+extern void cScrSpriteDraw_drawInit(void *p);
+extern void cMessDrawFont_setEnvInit(void *a0);
+extern void func_002AF6A8(void *a0, int a1, int a2);
+extern void func_002AAFF0(void *a0, void *a1, void *a2);
+extern void func_002AB0B8(void *a0, void *a1);
+extern void func_002AB2A0(void *a0, void *a1);
+extern void func_002AB360(void *a0, void *a1);
+extern void func_002AAEF0(void *a0, void *a1, void *a2);
+
+__attribute__((section(".text.cIDBase_trans")))
+void cIDBase_trans(void *a0)
+{
+    char *s2 = (char *)a0;
+    int draw[0x10];
+    int layer;
+    int i;
+
+    if (*(unsigned char *)(s2 + 0x19) != 0) return;
+    if (*(int *)(s2 + 0x4) == 0) return;
+    cScrSpriteDraw_drawInit(draw);
+    *(short *)((char *)draw + 0x30) = 0;
+    if (*(int *)(s2 + 0x8) != 0) {
+        char *g = (char *)&D_007474A0;
+        int v = *(int *)(g + 0x56C);
+        if (v == 0) {
+            void *t = SearchData(*(void **)(s2 + 0x8), D_0044AF20, 0);
+            cFont_setTextureAddr(D_003C2380, 3, t, SearchData(*(void **)(s2 + 0x8), D_0044AF28, 0));
+        } else if (v >= 0) {
+            if (v < 7) {
+                void *t = SearchData(*(void **)(g + 0x558), D_0044AF20, 0);
+                cFont_setTextureAddr(D_003C2380, 3, t, SearchData(*(void **)(s2 + 0x8), D_0044AF28, 0));
+            }
+        }
+        *(void **)(D_003C23A4 + 0x8) = SearchData(*(void **)(s2 + 0x8), D_0044AF30, 0);
+    }
+    cMessDrawFont_setEnvInit(&D_005E7510);
+    func_002AF6A8(&D_005E7510, 2, 0);
+    for (layer = 4; layer >= -4; layer--) {
+        for (i = 0; i < *(int *)(s2 + 0xC); i++) {
+            int m29 = 0x20000000;
+            int one = 1;
+            long m27 = 0x8000000;
+            char *e = *(char **)(s2 + 0x4) + i * 0xAC;
+            unsigned long t1;
+            if (e == 0) continue;
+            if (*(signed char *)(e + 0x2B) != layer) continue;
+            t1 = *(int *)(e + 0x2C);
+            if (*(int *)(e + 0x2C) & m29) continue;
+            if (*(signed char *)(e + 0x29) >= 0) {
+                int flag = 0;
+                char *p;
+                for (p = *(char **)(e + 0x20); p != 0; p = *(char **)(p + 0x20)) {
+                    unsigned long w = *(int *)(p + 0x2C);
+                    long b = (w >> 3) & 1;
+                    if (b != 0) {
+                        if (w & 0x8000000) flag = 1;
+                    }
+                }
+                if (flag == one) continue;
+            }
+            if (t1 & m27) continue;
+            switch (*(unsigned char *)(e + 0x88)) {
+            case 1:
+                func_002AAFF0(s2, draw, e);
+                break;
+            case 2:
+                func_002AB0B8(s2, e);
+                break;
+            case 4:
+                func_002AB2A0(s2, e);
+                break;
+            case 3:
+                func_002AB360(s2, e);
+                break;
+            default:
+                func_002AAEF0(s2, draw, e);
+                break;
+            }
+        }
+    }
+}
