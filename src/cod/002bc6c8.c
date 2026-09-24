@@ -78,10 +78,7 @@ void func_002BC6C8(void *obj, void *mtx, char *src, float f12, float f13)
     VU0_LOAD_SCALAR(5, f12);
     VU0_VMULX_XYZ(4, 4, 5);
     VU0_SQC2(4, f, 0x20);
-    VU0_LQC2(4, f, 0x0);
-    VU0_LQC2(5, f + 0x20, 0x0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, f, 0x0);
+    VU0_VADD_XYZ_IP(f, 0x0, f + 0x20);
     VU0_LQC2(4, f, 0x10);
     VU0_LQC2(5, f + 0x20, 0x0);
     VU0_VSUB_XYZ(4, 4, 5);

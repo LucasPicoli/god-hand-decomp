@@ -85,12 +85,9 @@ void func_0011DE30(void *a0)
 
             *(short *)(s0 + 0x56E) = *(unsigned short *)(s0 + 0x56E) - 1;
             p = *(char **)(s0 + 0xF0);
-            do { } while (0);
+             
             q = s1 + 0x550;
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {

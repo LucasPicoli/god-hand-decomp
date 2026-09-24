@@ -112,10 +112,7 @@ void func_001B6A30(void *a0)
         VU0_SQC2(4, FRAME, 0x30);
         v = mtx;
         p = *(float **)(s1 + 0xF0);
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, v, 0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, v);
         n = *(unsigned short *)(s1 + 0x628) - 1;
         *(short *)(s1 + 0x628) = n;
         if (*(short *)(s1 + 0x628) < 0) {

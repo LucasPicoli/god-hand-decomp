@@ -73,10 +73,7 @@ float GetDistCalcPointSegment(void *a0, void *a1, void *a2, float *out) {
         VU0_SQC2(4, buf, 0x40);
         VU0_LQC2(4, a0, 0x0);
         VU0_SQC2(4, buf, 0x50);
-        VU0_LQC2(4, buf, 0x50);
-        VU0_LQC2(5, q, 0x0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, buf, 0x50);
+        VU0_VADD_XYZ_IP(buf, 0x50, q);
         VU0_LQC2(4, r50, 0x0);
         VU0_SQC2(4, buf, 0x30);
         if (out != (float *)r30) {

@@ -96,7 +96,7 @@ void func_0011FD10(void *a0)
             p = *(char **)(s0 + 0xF0);
             *(short *)(s0 + 0x56E) = *(unsigned short *)(s0 + 0x56E) - 1;
             q = s1 + 0x550;
-            VU0_VADD_XYZ_PTR(p, p, q);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         *(float *)(s0 + 0x54C) = 5.0f;
         func_002DB7A8();
@@ -287,10 +287,7 @@ void func_0011FD10(void *a0)
             char *p;
             *(short *)(s0 + 0x56E) = *(unsigned short *)(s0 + 0x56E) - 1;
             p = *(char **)(s0 + 0xF0);
-            VU0_LQC2(4, p, 0x0);
-            VU0_LQC2(5, q, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0x0);
+            VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         if (*(short *)(s0 + 0x56C) != 0) {
             *(float *)(s0 + 0x54C) = 5.0f;

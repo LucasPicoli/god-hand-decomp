@@ -54,8 +54,8 @@ void func_002380D0(void *a0)
         if (*(short *)(s1 + 0x54A) < 2) {
             *(short *)(s0 + 0x568) = 0x19;
         }
-    do {
-    do {
+    
+    
         *(short *)(s0 + 0x56A) = 0;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
         /* fallthrough */
@@ -64,13 +64,9 @@ void func_002380D0(void *a0)
             goto join;
         (*(short *)(s0 + 0x56E))--;
         p = *(char **)(s0 + 0xF0);
-    } while (0);
+    
         q = s1 + 0x550;
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, q, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, q);
     join:
         *(float *)(s0 + 0x54C) = 3.0f;
         if (moveMotion(s0) != 0) {
@@ -117,10 +113,7 @@ void func_002380D0(void *a0)
             char *w = s1 + 0x550;
 
             (*(short *)(s0 + 0x56E))--;
-            VU0_LQC2(4, v, 0x0);
-            VU0_LQC2(5, w, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, v, 0x0);
+            VU0_VADD_XYZ_IP(v, 0x0, w);
         }
         *(float *)(s0 + 0x54C) = 3.0f;
         if (moveMotion(s0) != 0) {

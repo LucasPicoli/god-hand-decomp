@@ -69,10 +69,7 @@ void func_0025D678(void *a0)
 
         q = s1 + 0x550;
         p0 = *(int *)(s0 + 0xF0);
-        VU0_LQC2(4, p0, 0);
-        VU0_LQC2(5, q, 0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p0, 0);
+        VU0_VADD_XYZ_IP(p0, 0, q);
     }
         if (moveMotion(s0) != 0) {
             (*(unsigned char *)(s0 + 0x2F6))++;
@@ -99,7 +96,7 @@ void func_0025D678(void *a0)
 
         p0 = *(int *)(s0 + 0xF0);
         q = s1 + 0x550;
-        VU0_VADD_XYZ_PTR(p0, p0, q);
+        VU0_VADD_XYZ_IP(p0, 0, q);
     }
         moveMotion(s0);
         AddScaledVecToField_100_14F9F0(s0, 1.0f);
@@ -143,7 +140,7 @@ void func_0025D678(void *a0)
             (*(short *)(s0 + 0x56E))--;
             p0 = *(int *)(s0 + 0xF0);
             q = s1 + 0x550;
-            VU0_VADD_XYZ_PTR(p0, p0, q);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         if (*(unsigned short *)(s0 + 0x3AC) & 2) {
             if (*(int *)(s0 + 0x5F0) != 0) {
@@ -192,10 +189,7 @@ void func_0025D678(void *a0)
             (*(short *)(s0 + 0x56E))--;
             q = s1 + 0x550;
             p0 = *(int *)(s0 + 0xF0);
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         if (*(unsigned short *)(s0 + 0x3AC) & 2) {
             if (*(int *)(s0 + 0x5F0) != 0) {

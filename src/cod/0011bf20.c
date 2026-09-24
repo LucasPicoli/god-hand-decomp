@@ -83,10 +83,7 @@ void func_0011BF20(void *a0)
                 char *pv = s0 + 0x550;
                 *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
                 q = *(char **)(s1 + 0xF0);
-                VU0_LQC2(4, q, 0x0);
-                VU0_LQC2(5, pv, 0x0);
-                VU0_VADD_XYZ(4, 4, 5);
-                VU0_SQC2(4, q, 0x0);
+                VU0_VADD_XYZ_IP(q, 0x0, pv);
             }
         }
         func_00124EC0(s1);

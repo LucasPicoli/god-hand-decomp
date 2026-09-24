@@ -243,10 +243,7 @@ void func_00241C18(void *a0)
                 }
             }
             p = *(char **)(s0 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, buf, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, buf);
         }
         AddScaledVecToField_100_14F9F0(s0, 1.0f);
         AddScaledXfmVecToField_F0_14F928(s0, 1.0f);

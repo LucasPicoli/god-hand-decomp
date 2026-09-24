@@ -187,11 +187,16 @@
         "vadd.xyz $vf" #dst ", $vf" #s1 ", $vf" #s2 "\n"               \
         ".set pop\n")
 
-/* VU0_VADD_XYZ_PTR(d, a, b): d.xyz = a.xyz + b.xyz through memory, as ONE asm
- * statement in the libvu0 vector-routine shape (lqc2, lqc2, op, sqc2) with
- * three plain register inputs. Retail's 0x694 phase machines schedule the
- * block as a unit; four separate VU0_LQC2/VU0_VADD_XYZ/VU0_SQC2 statements
- * let sched1 emit the second operand's producer first. */
+/* The capVu0AddVectorXYZ helper (retail symbol capVu0AddVectorXYZ__FPfPCfT1,
+ * 0x001F7ED8) is ONE asm statement in the libvu0 vector-routine shape:
+ * lqc2, lqc2, vadd.xyz, sqc2. Retail inlines it at 531 sites; every site keeps
+ * the four instructions contiguous, updates the first operand in place, folds
+ * any offset into that operand's lqc2/sqc2, and reads the second at 0(reg).
+ * Four separate VU0_LQC2/VU0_VADD_XYZ/VU0_SQC2 statements do not reproduce
+ * those sites: sched1 is free to move code between them.
+ *
+ * VU0_VADD_XYZ_PTR(d, a, b): d.xyz = a.xyz + b.xyz, three register operands.
+ * The out-of-line helper's own body. */
 #define VU0_VADD_XYZ_PTR(d, a, b)                                      \
     __asm__ __volatile__ (                                             \
         ".set push\n"                                                  \
@@ -203,6 +208,23 @@
         ".set pop\n"                                                   \
         :                                                              \
         : "r"((void *)(d)), "r"((void *)(a)), "r"((void *)(b))         \
+        : "memory")
+
+/* VU0_VADD_XYZ_IP(v, off, b): (v+off).xyz += b.xyz, the inlined form. The
+ * in-place operand is a memory operand so the compiler folds `off` into the
+ * lqc2/sqc2 addressing, as retail does; `b` stays a register operand. */
+typedef struct { int w[4]; } vu0_q128_t;
+#define VU0_VADD_XYZ_IP(v, off, b)                                     \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "lqc2  $vf4, %0\n"                                             \
+        "lqc2  $vf5, 0(%1)\n"                                          \
+        "vadd.xyz $vf4, $vf4, $vf5\n"                                  \
+        "sqc2  $vf4, %0\n"                                             \
+        ".set pop\n"                                                   \
+        :                                                              \
+        : "m"(*(vu0_q128_t *)((char *)(v) + (off))), "r"((void *)(b))  \
         : "memory")
 
 /* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */

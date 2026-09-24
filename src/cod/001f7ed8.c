@@ -5,8 +5,5 @@
 
 __attribute__((section(".text.capVu0AddVectorXYZ")))
 void capVu0AddVectorXYZ(void *a0, void *a1, void *a2) {
-    VU0_LQC2(4, a1, 0);
-    VU0_LQC2(5, a2, 0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, a0, 0);
+    VU0_VADD_XYZ_PTR(a0, a1, a2);
 }

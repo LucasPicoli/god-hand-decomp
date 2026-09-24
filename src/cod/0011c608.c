@@ -79,10 +79,7 @@ void func_0011C608(void *a0)
             char *p;
             *(short *)(s0 + 0x56E) = *(unsigned short *)(s0 + 0x56E) - 1;
             p = *(char **)(s0 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s0);
         if (moveMotion(s0))

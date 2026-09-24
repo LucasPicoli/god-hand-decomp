@@ -75,12 +75,9 @@ void func_002383D0(char *s0)
 
             *(int *)(s0 + 0x5F0) = *(int *)(s0 + 0x5F0) - 1;
             p = *(char **)(s0 + 0xF0);
-            do { } while (0);
+             
             q = s3 + 0x550;
-            VU0_LQC2(4, p, 0x0);
-            VU0_LQC2(5, q, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0x0);
+            VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         *(float *)(s0 + 0x54C) = 5.0f;
         if ((*(int *)(s0 + 0x16D4) & 0x4000000) != 0) {
@@ -149,10 +146,7 @@ void func_002383D0(char *s0)
             q = s3 + 0x550;
             *(int *)(s0 + 0x5F0) = *(int *)(s0 + 0x5F0) - 1;
             p = *(char **)(s0 + 0xF0);
-            VU0_LQC2(4, p, 0x0);
-            VU0_LQC2(5, q, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0x0);
+            VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         if (*(short *)(s0 + 0x56C) != 0) {
             *(float *)(s0 + 0x54C) = 5.0f;

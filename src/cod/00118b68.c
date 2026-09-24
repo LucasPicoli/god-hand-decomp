@@ -66,10 +66,7 @@ void func_00118B68(void *a0)
         if (s2 != 0) {
             char *q = s2 + 0x550;
             char *p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s1);
         if (moveMotion(s1))
@@ -98,12 +95,9 @@ void func_00118B68(void *a0)
         if (s2 != 0) {
             char *q;
             char *p;
-            do { q = s2 + 0x550; } while (0);
-            p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+             p = *(char **)(s1 + 0xF0);
+            q = s2 + 0x550;
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         if (*(short *)(s1 + 0x568) != 0)
             *(short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
@@ -179,8 +173,8 @@ void func_00118B68(void *a0)
         AddScaledVecToField_100_14F9F0(s1, 1.0f);
         AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
         break;
-    do {
-    do {
+    
+    
     case 4: {
         float v;
         buf[1] = 0.0f;
@@ -200,13 +194,9 @@ void func_00118B68(void *a0)
             goto join1;
         (*(short *)(s1 + 0x56E))--;
         p1 = *(char **)(s1 + 0xF0);
-    } while (0);
+    
         q1 = s1 + 0x550;
-        VU0_LQC2(4, p1, 0);
-        VU0_LQC2(5, q1, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p1, 0);
+        VU0_VADD_XYZ_IP(p1, 0, q1);
     join1:
         func_00124EC0(s1);
         if (moveMotion(s1)) {
@@ -219,8 +209,8 @@ void func_00118B68(void *a0)
         AddScaledVecToField_100_14F9F0(s1, 1.0f);
         AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
         break;
-    do {
-    do {
+    
+    
     case 6: {
         float v;
         buf[1] = 0.0f;
@@ -240,13 +230,9 @@ void func_00118B68(void *a0)
             goto join2;
         (*(short *)(s1 + 0x56E))--;
         p2 = *(char **)(s1 + 0xF0);
-    } while (0);
+    
         q2 = s1 + 0x550;
-        VU0_LQC2(4, p2, 0);
-        VU0_LQC2(5, q2, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p2, 0);
+        VU0_VADD_XYZ_IP(p2, 0, q2);
     join2:
         func_00124EC0(s1);
         if (moveMotion(s1)) {

@@ -81,10 +81,7 @@ void func_00117600(void *a0)
             char *e = s2 + 0x550;
             *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
             d = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, d, 0);
-            VU0_LQC2(5, e, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, d, 0);
+            VU0_VADD_XYZ_IP(d, 0, e);
         }
         if (moveMotion(s1)) {
             ClearField15F4Bit1_124F60(s1, 0, 0);

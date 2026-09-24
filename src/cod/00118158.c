@@ -63,10 +63,7 @@ void func_00118158(char *s1)
 
             q = s2 + 0x550;
             p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0x0);
-            VU0_LQC2(5, q, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0x0);
+            VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
@@ -89,10 +86,7 @@ void func_00118158(char *s1)
 
             q = s2 + 0x550;
             p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0x0);
-            VU0_LQC2(5, q, 0x0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0x0);
+            VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         if (*(short *)(s1 + 0x568) != 0) {
             *(short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
@@ -146,8 +140,8 @@ void func_00118158(char *s1)
         func_00124EC0(s1);
         if (moveMotion(s1) == 0 || *(short *)(s1 + 0x568) > 0)
             goto tail3;
-    do {
-    do {
+    
+    
         (*(unsigned char *)(s1 + 0x2F6))++;
         goto tail3;
     case 4:
@@ -161,13 +155,9 @@ void func_00118158(char *s1)
             goto join5;
         (*(short *)(s1 + 0x56E))--;
         p1 = *(char **)(s1 + 0xF0);
-    } while (0);
+    
         q1 = s1 + 0x550;
-        VU0_LQC2(4, p1, 0x0);
-        VU0_LQC2(5, q1, 0x0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p1, 0x0);
+        VU0_VADD_XYZ_IP(p1, 0x0, q1);
     join5:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
@@ -195,12 +185,9 @@ void func_00118158(char *s1)
 
                 *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
                 p = *(char **)(s1 + 0xF0);
-                do { } while (0);
+                 
                 q = s1 + 0x550;
-                VU0_LQC2(4, p, 0x0);
-                VU0_LQC2(5, q, 0x0);
-                VU0_VADD_XYZ(4, 4, 5);
-                VU0_SQC2(4, p, 0x0);
+                VU0_VADD_XYZ_IP(p, 0x0, q);
             }
         }
         func_00124EC0(s1);

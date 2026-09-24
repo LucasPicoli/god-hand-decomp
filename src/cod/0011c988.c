@@ -92,10 +92,7 @@ void func_0011C988(void *a0)
     case 1: {
         char *q = s2 + 0x550;
         char *p = *(char **)(s1 + 0xF0);
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, q, 0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, q);
         func_00124EC0(s1);
         if (moveMotion(s1))
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -136,12 +133,9 @@ void func_0011C988(void *a0)
             char *q;
             *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
             p = *(char **)(s1 + 0xF0);
-            do { } while (0);
+             
             q = s2 + 0x550;
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s1);
         moveMotion(s1);

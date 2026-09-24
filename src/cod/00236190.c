@@ -65,12 +65,9 @@ void func_00236190(void *a0)
 
             (*(short *)(s1 + 0x56E))--;
             p0 = *(int *)(s1 + 0xF0);
-            do { } while (0);
+             
             q = s2 + 0x550;
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         {
             char *g = D_007474A0;

@@ -89,20 +89,16 @@ void func_0011CEE8(void *a0)
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
         /* fallthrough */
-    do {
-    do {
+    
+    
     case 1:
         if (*(short *)(s1 + 0x56E) == 0 || s0 == 0)
             goto join;
         (*(short *)(s1 + 0x56E))--;
         p = *(char **)(s1 + 0xF0);
-    } while (0);
+    
         q = s0 + 0x550;
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, q, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, q);
     join:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
@@ -211,20 +207,16 @@ void func_00122140(void *a0)
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
         /* fallthrough */
-    do {
-    do {
+    
+    
     case 1:
         if (*(short *)(s1 + 0x56E) == 0 || s0 == 0)
             goto join;
         (*(short *)(s1 + 0x56E))--;
         p = *(char **)(s1 + 0xF0);
-    } while (0);
+    
         q = s0 + 0x550;
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, q, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, q);
     join:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
@@ -313,7 +305,7 @@ void func_0025C010(void *a0)
             (*(short *)(s0 + 0x56E))--;
             p = *(char **)(s0 + 0xF0);
             q = s1 + 0x550;
-            VU0_VADD_XYZ_PTR(p, p, q);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         if (*(int *)(s0 + 0x5F0) != 0) {
             if (--*(int *)(s0 + 0x5F0) <= 0) {

@@ -64,12 +64,9 @@ void func_00239240(void *a0)
 
             (*(short *)(s0 + 0x56E))--;
             p0 = *(int *)(s0 + 0xF0);
-            do { } while (0);
+             
             q = s1 + 0x550;
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         *(float *)(s0 + 0x54C) = 3.0f;
         if (moveMotion(s0) != 0) {

@@ -54,10 +54,7 @@ int func_00135EC8(void *a0, void *a1, void *a2, void *a3, void *a4) {
 
                     VU0_LQC2(4, s3, 0x0);
                     VU0_SQC2(4, buf, 0x40);
-                    VU0_LQC2(4, buf, 0x40);
-                    VU0_LQC2(5, r, 0x0);
-                    VU0_VADD_XYZ(4, 4, 5);
-                    VU0_SQC2(4, buf, 0x40);
+                    VU0_VADD_XYZ_IP(buf, 0x40, r);
                     VU0_LQC2(4, q, 0x0);
                     VU0_SQC2(4, buf, 0x20);
 
@@ -144,10 +141,7 @@ void *func_00156BE8(void *a0, void *a1, void *a2, void *a3, void *a4) {
 
     VU0_LQC2(4, buf, 0x0);
     VU0_SQC2(4, buf, 0x10);
-    VU0_LQC2(4, buf, 0x10);
-    VU0_LQC2(5, s2, 0x0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, buf, 0x10);
+    VU0_VADD_XYZ_IP(buf, 0x10, s2);
     VU0_LQC2(4, p1, 0x0);
     VU0_SQC2(4, a0, 0x0);
     return a0;

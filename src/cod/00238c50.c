@@ -60,10 +60,7 @@ void func_00238C50(void *a0)
             (*(short *)(s0 + 0x56E))--;
             q = s1 + 0x550;
             p0 = *(int *)(s0 + 0xF0);
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         if (moveMotion(s0) != 0) {
             *(char *)(s0 + 0x2F4) = 0;
@@ -103,10 +100,7 @@ void func_00238C50(void *a0)
             (*(short *)(s0 + 0x56E))--;
             q = s1 + 0x550;
             p0 = *(int *)(s0 + 0xF0);
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q);
         }
         if (moveMotion(s0) != 0) {
             if (cCoreSave_getGameLevel(&D_00569B70) < 3) {

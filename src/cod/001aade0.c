@@ -64,12 +64,9 @@ void func_001AADE0(void *a0)
             char *q0;
 
             p0 = *(char **)(s0 + 0xF0);
-            do { } while (0);
+             
             q0 = s0 + 0x9B0;
-            VU0_LQC2(4, p0, 0);
-            VU0_LQC2(5, q0, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p0, 0);
+            VU0_VADD_XYZ_IP(p0, 0, q0);
         }
         *(float *)(s0 + 0x104) = *(float *)(s0 + 0x104) + *(float *)(s0 + 0x9C4);
     } else {
@@ -100,12 +97,9 @@ void func_001AADE0(void *a0)
             char *q1;
 
             p1 = *(char **)(s0 + 0xF0);
-            do { } while (0);
+             
             q1 = s0 + 0x9B0;
-            VU0_LQC2(4, p1, 0);
-            VU0_LQC2(5, q1, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p1, 0);
+            VU0_VADD_XYZ_IP(p1, 0, q1);
         }
         o2 = *(char **)(s0 + 0x9A0);
         dd = s0 + 0x100;

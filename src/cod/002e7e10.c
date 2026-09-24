@@ -49,10 +49,7 @@ void func_002E7E10(char *p)
         x[3] = 1.0f;
         VU0_LQC2(4, x, 0x0);
         VU0_SQC2(4, buf, 0x30);
-        VU0_LQC2(4, buf, 0x30);
-        VU0_LQC2(5, buf, 0x0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, buf, 0x30);
+        VU0_VADD_XYZ_IP(buf, 0x30, buf);
         VU0_LQC2(4, y, 0x0);
         VU0_SQC2(4, buf, 0x10);
         d = (float *)(l + 0x10);

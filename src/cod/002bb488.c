@@ -86,10 +86,7 @@ int func_002BCD58(void *arg, void *node, float k, float h)
     VU0_LOAD_SCALAR(5, k);
     VU0_VMULX_XYZ(4, 4, 5);
     VU0_SQC2(4, buf, 0x20);
-    VU0_LQC2(4, buf, 0x0);
-    VU0_LQC2(5, c, 0x0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, buf, 0x0);
+    VU0_VADD_XYZ_IP(buf, 0x0, c);
     VU0_LQC2(4, buf, 0x10);
     VU0_LQC2(5, c, 0x0);
     VU0_VSUB_XYZ(4, 4, 5);
@@ -176,10 +173,7 @@ int func_002BB488(void *a0, void *a1, float a2, float a3, float a4) {
     VU0_LOAD_SCALAR(5, a3);
     VU0_VMULX_XYZ(4, 4, 5);
     VU0_SQC2(4, buf, 0x20);
-    VU0_LQC2(4, buf, 0x0);
-    VU0_LQC2(5, p1, 0x0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, buf, 0x0);
+    VU0_VADD_XYZ_IP(buf, 0x0, p1);
     VU0_LQC2(4, buf, 0x10);
     VU0_LQC2(5, p1, 0x0);
     VU0_VSUB_XYZ(4, 4, 5);

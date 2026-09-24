@@ -58,10 +58,7 @@ void func_00119750(void *a0)
         if (s2 != 0) {
             char *q = s2 + 0x550;
             char *p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s1);
         if (moveMotion(s1))
@@ -82,10 +79,7 @@ void func_00119750(void *a0)
         if (s2 != 0) {
             char *q = s2 + 0x550;
             char *p = *(char **)(s1 + 0xF0);
-            VU0_LQC2(4, p, 0);
-            VU0_LQC2(5, q, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, p, 0);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         if (*(short *)(s1 + 0x568) != 0)
             *(short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
@@ -170,7 +164,7 @@ void func_00119750(void *a0)
             *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
             p = *(char **)(s1 + 0xF0);
             q = s1 + 0x550;
-            VU0_VADD_XYZ_PTR(p, p, q);
+            VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s1);
         if (moveMotion(s1)) {

@@ -91,20 +91,16 @@ void func_001212D0(void *a0)
         (*(unsigned char *)(s0 + 0x2F6))++;
     }
         /* fallthrough */
-    do {
-    do {
+    
+    
     case 1:
         if (*(short *)(s0 + 0x56E) == 0 || s1 == 0)
             goto join;
         (*(short *)(s0 + 0x56E))--;
         p = *(char **)(s0 + 0xF0);
-    } while (0);
+    
         q = s1 + 0x550;
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, q, 0);
-    } while (0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, q);
     join:
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {

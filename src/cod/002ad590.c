@@ -61,10 +61,7 @@ void func_002AD590(void *arg, float f12) {
                 VU0_LQC2(4, buf + 0x20, 0x0);
                 VU0_SQC2(4, buf, 0x10);
                 e10 = elem + 0x10;
-                VU0_LQC2(4, elem, 0x10);
-                VU0_LQC2(5, r10, 0x0);
-                VU0_VADD_XYZ(4, 4, 5);
-                VU0_SQC2(4, elem, 0x10);
+                VU0_VADD_XYZ_IP(elem, 0x10, r10);
                 VU0_LQC2(4, e10, 0x0);
                 VU0_SQC2(4, buf, 0x20);
                 VU0_LQC2(4, buf, 0x20);
@@ -73,10 +70,7 @@ void func_002AD590(void *arg, float f12) {
                 VU0_SQC2(4, buf, 0x20);
                 VU0_LQC2(4, buf + 0x20, 0x0);
                 VU0_SQC2(4, buf, 0x10);
-                VU0_LQC2(4, elem, 0x0);
-                VU0_LQC2(5, r10, 0x0);
-                VU0_VADD_XYZ(4, 4, 5);
-                VU0_SQC2(4, elem, 0x0);
+                VU0_VADD_XYZ_IP(elem, 0x0, r10);
             }
         }
     }

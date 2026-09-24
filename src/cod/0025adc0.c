@@ -149,10 +149,7 @@ void func_0025ADC0(void *a0)
             dp[2] = t2;
         }
         p = *(char **)(s1 + 0xF0);
-        VU0_LQC2(4, p, 0);
-        VU0_LQC2(5, dp, 0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, p, 0);
+        VU0_VADD_XYZ_IP(p, 0, dp);
         VU0_LQC2(4, s1, 0x580);
         VU0_LQC2(5, dp, 0);
         VU0_VSUB_XYZ(4, 4, 5);

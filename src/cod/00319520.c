@@ -142,10 +142,7 @@ void func_00319520(char *self)
         p40 = (float *)(buf + 0x40);
         VU0_LQC2(4, w, 0x0);
         VU0_SQC2(4, buf, 0x80);
-        VU0_LQC2(4, buf, 0x80);
-        VU0_LQC2(5, p40, 0x0);
-        VU0_VADD_XYZ(4, 4, 5);
-        VU0_SQC2(4, buf, 0x80);
+        VU0_VADD_XYZ_IP(buf, 0x80, p40);
         VU0_LQC2(4, buf + 0x80, 0x0);
         VU0_SQC2(4, buf, 0x30);
         {

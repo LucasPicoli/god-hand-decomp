@@ -108,10 +108,7 @@ void func_0011ECB0(void *a0)
             d = *(float **)(s3 + 0xF0);
             VU0_LQC2(4, frame + 0x70, 0);
             VU0_SQC2(4, frame, 0x80);
-            VU0_LQC2(4, frame, 0x80);
-            VU0_LQC2(5, d, 0);
-            VU0_VADD_XYZ(4, 4, 5);
-            VU0_SQC2(4, frame, 0x80);
+            VU0_VADD_XYZ_IP(frame, 0x80, d);
             VU0_LQC2(4, t, 0);
             VU0_SQC2(4, frame, 0x60);
             d = *(float **)(s1 + 0xF0);

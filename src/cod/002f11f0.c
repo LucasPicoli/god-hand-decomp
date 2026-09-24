@@ -159,10 +159,7 @@ void func_002F6BB8(char *this) {
     u = frame + 0x30;
     VU0_LQC2(4, p, 0);
     VU0_SQC2(4, frame, 0x40);
-    VU0_LQC2(4, frame, 0x40);
-    VU0_LQC2(5, u, 0);
-    VU0_VADD_XYZ(4, 4, 5);
-    VU0_SQC2(4, frame, 0x40);
+    VU0_VADD_XYZ_IP(frame, 0x40, u);
     VU0_LQC2(4, s, 0);
     VU0_SQC2(4, frame, 0x20);
     *(float *)(frame + 0x24) = *(float *)(this + 0x2B4);
