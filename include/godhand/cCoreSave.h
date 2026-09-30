@@ -22,6 +22,7 @@
 #define CORESAVE_SKILL_NUM     0x72    /* valid ids; the array holds 0x80 */
 #define CORESAVE_COMBO_SETS    6
 #define CORESAVE_COMBO_LEN     6
+#define CORESAVE_GOD_REEL_NUM  0x1F    /* valid bits of godReel */
 
 /* Play time is counted in frames at 30 fps. */
 #define CORESAVE_TICKS_PER_SEC   30
@@ -61,7 +62,8 @@ typedef struct cCoreSaveData {
     unsigned char costumeNo;            /* 0x0AE */
     unsigned char prevCostumeNo;        /* 0x0AF */
     char skill[0x80];                   /* 0x0B0 -1 = not owned */
-    char unk130[0x26];
+    unsigned int godReel;               /* 0x130 bit n = god reel n unlocked */
+    char unk134[0x22];
     unsigned char reelItemNum;          /* 0x156 usable godItem[] slots */
     unsigned char paper;                /* 0x157 */
     char unk158[0x58];

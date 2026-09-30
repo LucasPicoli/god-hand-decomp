@@ -2336,10 +2336,6 @@ INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
 
 INCLUDE_ASM("nonmatching", capVu0Acos);
 
-INCLUDE_ASM("nonmatching", cCoreSave_addGodItem);
-
-INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
-
 __attribute__((section(".text.cEma2_SetPoison")))
 void cEma2_SetPoison(char *a0) {
     a0[0x2F4] = 0;
