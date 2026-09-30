@@ -1,7 +1,8 @@
-/* cCoreSave_setVital — stores a1 to offset 0x84 of the save block at a0->0x0. */
+/* cCoreSave_setVital - set the player's current health. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_setVital")))
-void cCoreSave_setVital(void *a0, int a1) {
-    void *p = *(void **)a0;
-    if (p) *(int *)((char *)p + 0x84) = a1;
+void cCoreSave_setVital(cCoreSave *self, int vital) {
+    cCoreSaveData *data = self->data;
+    if (data) data->vital = vital;
 }

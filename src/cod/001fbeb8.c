@@ -1,8 +1,8 @@
-/* cCoreSave_clearKillNpcNum — zeroes the kill counter (0x96) in the save block
- * at a0->0x0 when present. */
+/* cCoreSave_clearKillNpcNum - reset this stage's NPC kill count. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_clearKillNpcNum")))
-void cCoreSave_clearKillNpcNum(void *a0) {
-    short *p = *(short **)a0;
-    if (p) *(short *)((char *)p + 0x96) = 0;
+void cCoreSave_clearKillNpcNum(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data) data->killNpcNum = 0;
 }

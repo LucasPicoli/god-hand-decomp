@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char D_005F3970[];
 extern void func_003A52F0(void *, int, int);
@@ -22,18 +23,18 @@ void *func_00134650(void *this) {
 }
 
 __attribute__((section(".text.cCoreSave_setClearStage")))
-void cCoreSave_setClearStage(void *this, unsigned short stage) {
-    void *obj;
+void cCoreSave_setClearStage(cCoreSave *self, unsigned short stage) {
+    cCoreSaveData *data;
     unsigned int mask;
     unsigned int i;
 
-    obj = *(void **)this;
-    if (obj != 0) {
+    data = self->data;
+    if (data != 0) {
         mask = 0;
         for (i = 0; i <= stage; i++) {
             mask |= 1 << i;
         }
-        *(unsigned int *)((char *)obj + 0xA4) = mask;
+        data->clearStageMask = mask;
     }
 }
 

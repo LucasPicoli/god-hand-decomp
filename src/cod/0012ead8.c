@@ -1,10 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern char D_005686D0[];
-extern char *D_00569B70;
-extern void InitSlotTable_1FAFA8(void *self);
-extern void func_001FC138(void *self);
-extern void cCoreSave_setGameDifficulty(void *self, int level);
+extern cCoreSaveData D_005686D0;   /* the record itself */
+extern cCoreSave D_00569B70;       /* the game's cCoreSave */
+extern void InitSlotTable_1FAFA8(cCoreSave *self);
+extern void func_001FC138(cCoreSave *self);
+extern void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty);
 
 /* sn-2.95.3-136 candidate. */
 
@@ -56,15 +57,15 @@ Node *func_0012EAD8(char *self, void *obj, int a2, int a3, int a4, int a5,
 
 
 __attribute__((section(".text.cCoreSave_systemInit")))
-void cCoreSave_systemInit(char **self)
+void cCoreSave_systemInit(cCoreSave *self)
 {
     unsigned int i;
 
-    func_003A52F0(D_005686D0, 0, 0x14A0);
-    D_00569B70 = D_005686D0;
+    func_003A52F0(&D_005686D0, 0, sizeof(cCoreSaveData));
+    D_00569B70.data = &D_005686D0;
     InitSlotTable_1FAFA8(self);
     for (i = 0; i < 0x80; i++) {
-        (*self + i)[0xB0] = -1;
+        self->data->skill[i] = -1;
     }
     func_001FC138(self);
     cCoreSave_setGameDifficulty(self, 1);

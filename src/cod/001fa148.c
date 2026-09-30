@@ -1,28 +1,26 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
+/* Starting levelPoint for each game level. The table holds ints; the game
+ * reads the low halfword of each. */
 extern unsigned short D_003BF178[];
 
-typedef struct GameLevelObj {
-    char pad[0x1C];
-    unsigned short f1c;
-    char f1e;
-} GameLevelObj;
-
+/* Jump to game level 1..5 (clamped) and grant two level-down graces. */
 __attribute__((section(".text.cCoreSave_setGameLevel")))
-void cCoreSave_setGameLevel(GameLevelObj **arg0, int arg1) {
-    GameLevelObj *p = *arg0;
-    int lvl = arg1;
+void cCoreSave_setGameLevel(cCoreSave *self, int level) {
+    cCoreSaveData *data = self->data;
+    int lvl = level;
 
-    if (p != 0) {
-        arg1 = 2;
+    if (data != 0) {
+        level = 2;
         lvl = lvl - 1;
         if (lvl < 0) {
             lvl = 0;
         }
-        if (lvl >= 5) {
-            lvl = 4;
+        if (lvl >= CORESAVE_LEVEL_NUM) {
+            lvl = CORESAVE_LEVEL_NUM - 1;
         }
-        p->f1c = D_003BF178[lvl * 2];
-        (*arg0)->f1e = arg1;
+        data->levelPoint = D_003BF178[lvl * 2];
+        self->data->levelDownGrace = level;
     }
 }

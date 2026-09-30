@@ -1,20 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-struct save_s {
-    volatile unsigned char items_pad[0xA8];
-    volatile unsigned char items[6];
-    unsigned char pad2[0xA8];
-    unsigned char count;
-};
-
+/* Count the filled god-item slots among the unlocked ones. */
 __attribute__((section(".text.cCoreSave_getGodItemNum")))
-int cCoreSave_getGodItemNum(struct save_s **pp) {
+int cCoreSave_getGodItemNum(cCoreSave *self) {
     unsigned int i;
     int n;
 
     n = 0;
-    for (i = 0; (i < 6) && (i < (*pp)->count); i++) {
-        if ((*pp)->items[i] != 0) {
+    for (i = 0; (i < CORESAVE_GOD_ITEM_NUM) && (i < self->data->reelItemNum); i++) {
+        if (self->data->godItem[i] != 0) {
             n++;
         }
     }

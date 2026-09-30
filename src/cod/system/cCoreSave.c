@@ -1,23 +1,33 @@
 /* TU: cCoreSave [system] - recovered C++ class. */
-extern unsigned short D_00747A50;
-extern int D_0061A990[];
-extern int D_003BF160[];
-struct S001FA690 { char pad[0x10]; unsigned short f10; };
-struct W001FA690 { struct S001FA690 *p; };
-extern void cCoreSave_initAddGold(void *);
-extern int cCoreSave_getComboMax(int *a0, unsigned int a1);
-extern int D_00747A34;
+#include "godhand/cCoreSave.h"
 #include "include_asm.h"
-extern int D_00747A38;
 
+extern unsigned short D_00747A50;   /* current stage id */
+extern int D_0061A990[];
+extern int D_003BF160[];            /* levelPoint thresholds, one per game level */
+extern int D_00747A34;              /* cheat flags */
+extern int D_00747A38;              /* cheat flags */
+
+extern void cCoreSave_initAddGold(cCoreSave *self);
+extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
+extern void cCoreSave_clearKillNpcNum(cCoreSave *self);
+extern void cCoreSave_initContinueNum(cCoreSave *self);
+extern void cCoreSave_setVital(cCoreSave *self, int vital);
+extern int GetField80ViaPtr_1FAC80(cCoreSave *self);
+extern void ClearField46Array_1FBDD0(cCoreSave *self);
+extern void InitSlotTable_1FAFA8(cCoreSave *self);
+extern void func_002D9D48(int *a0, int a1);
+
+/* Game level 1..5 from the level points. Level 4 is never reported: a
+ * player past the third threshold is shown as level 5. */
 __attribute__((section(".text.cCoreSave_getGameLevel")))
-int cCoreSave_getGameLevel(void **arg0)
+int cCoreSave_getGameLevel(cCoreSave *self)
 {
     int i;
     int r;
-    if (*arg0 == 0) return 0;
-    for (i = 0; i < 5; i++) {
-        if (*(short *)((char *)*arg0 + 0x1C) < D_003BF160[i]) break;
+    if (self->data == 0) return 0;
+    for (i = 0; i < CORESAVE_LEVEL_NUM; i++) {
+        if (self->data->levelPoint < D_003BF160[i]) break;
     }
     r = i;
     if (i >= 3) r = 4;
@@ -25,195 +35,184 @@ int cCoreSave_getGameLevel(void **arg0)
 }
 
 __attribute__((section(".text.cCoreSave_setClearNum")))
-void cCoreSave_setClearNum(struct W001FA690 *a0, unsigned short a1) {
-    if (a0->p != 0) {
-        a0->p->f10 = a1;
-        if (a0->p->f10 >= 0x64) {
-            a0->p->f10 = 0x63;
+void cCoreSave_setClearNum(cCoreSave *self, unsigned short num) {
+    if (self->data != 0) {
+        self->data->clearNum = num;
+        if (self->data->clearNum > CORESAVE_CLEAR_MAX) {
+            self->data->clearNum = CORESAVE_CLEAR_MAX;
         }
     }
 }
 
+/* Add gold and log the pickup. clearLog == 1 empties the log afterwards. */
 __attribute__((section(".text.cCoreSave_addGold")))
-void cCoreSave_addGold(int *a0, int a1, int a2) {
-    int *v1;
-    int idx;
-    int *arr;
+void cCoreSave_addGold(cCoreSave *self, int amount, int clearLog) {
+    cCoreSaveData *data;
+    int n;
 
-    v1 = *(int **)a0;
-    if (v1 == 0) {
+    data = self->data;
+    if (data == 0)
         return;
+    n = data->addGoldNum;
+    if (n < CORESAVE_ADD_GOLD_LOG) {
+        data->addGold[n] = amount;
+        self->data->addGoldNum += 1;
     }
-    idx = *(int *)((char *)v1 + 0x24);
-    if (idx < 0x10) {
-        arr = (int *)((char *)v1 + 0x28);
-        arr[idx] = a1;
-        v1 = *(int **)a0;
-        *(int *)((char *)v1 + 0x24) += 1;
-    }
-    if (a2 == 1) {
-        cCoreSave_initAddGold(a0);
-    }
-    {
-        int *v0 = *(int **)a0;
-        *(int *)((char *)v0 + 0x20) += a1;
-    }
-    v1 = *(int **)a0;
-    if (*(int *)((char *)v1 + 0x20) > 999999) {
-        *(int *)((char *)v1 + 0x20) = 999999;
-    }
-    v1 = *(int **)a0;
-    if (*(int *)((char *)v1 + 0x20) < 0) {
-        *(int *)((char *)v1 + 0x20) = 0;
-    }
-    if ((D_00747A34 & 0x2000000) != 0) {
-        int *v0 = *(int **)a0;
-        *(int *)((char *)v0 + 0x20) = 999999;
-    }
+    if (clearLog == 1)
+        cCoreSave_initAddGold(self);
+    self->data->gold += amount;
+    if (self->data->gold > CORESAVE_GOLD_MAX)
+        self->data->gold = CORESAVE_GOLD_MAX;
+    if (self->data->gold < 0)
+        self->data->gold = 0;
+    if (D_00747A34 & 0x2000000)
+        self->data->gold = CORESAVE_GOLD_MAX;
 }
 
 __attribute__((section(".text.cCoreSave_getKeyCardNum")))
-int cCoreSave_getKeyCardNum(int *a0)
+int cCoreSave_getKeyCardNum(cCoreSave *self)
 {
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(int*)(p + 0x68);
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    return data->keyCardNum;
 }
 
 __attribute__((section(".text.cCoreSave_getKeyNum")))
-int cCoreSave_getKeyNum(int *a0)
+int cCoreSave_getKeyNum(cCoreSave *self)
 {
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(int*)(p + 0x6C);
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    return data->keyNum;
 }
 
+/* The all-items cheat (D_00747A38 & 0x8000000) unlocks every reel slot. */
 __attribute__((section(".text.cCoreSave_getReelItem")))
-int cCoreSave_getReelItem(int **a0) {
-    int *p = *a0;
-    if (p == 0) {
+int cCoreSave_getReelItem(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
     if (D_00747A38 & 0x8000000) {
-        *((unsigned char *)p + 0x156) = 6;
+        data->reelItemNum = CORESAVE_GOD_ITEM_NUM;
     }
-    return *((unsigned char *)*a0 + 0x156);
+    return self->data->reelItemNum;
 }
 
 __attribute__((section(".text.cCoreSave_setSkill")))
-void cCoreSave_setSkill(int **a0, int a1, int a2)
+void cCoreSave_setSkill(cCoreSave *self, int id, int lv)
 {
-    char v = (char)a2;
-    if (*a0) {
-        if (a1 < 0x80) {
-            if (a1 < 0x72) {
-                *(char *)((char *)*a0 + a1 + 0xB0) = v;
+    char v = (char)lv;
+    if (self->data) {
+        if (id < 0x80) {
+            if (id < CORESAVE_SKILL_NUM) {
+                self->data->skill[id] = v;
             }
         }
     }
 }
 
+/* -1 for an invalid id. The all-skills cheat (D_00747A34 & 0x800000)
+ * reports 0 for every skill. */
 __attribute__((section(".text.cCoreSave_getSkill")))
-int cCoreSave_getSkill(char **a0, int a1)
+int cCoreSave_getSkill(cCoreSave *self, int id)
 {
-    char *p;
-    p = *a0;
-    if (p == 0 || a1 >= 0x80 || a1 >= 0x72) {
+    cCoreSaveData *data;
+    data = self->data;
+    if (data == 0 || id >= 0x80 || id >= CORESAVE_SKILL_NUM) {
         return -1;
     }
     if (D_00747A34 & 0x800000) {
         return 0;
     }
-    return *(char *)(p + a1 + 0xB0);
+    return data->skill[id];
 }
 
+/* level is 1-based, like cCoreSave_getGameLevel. */
 __attribute__((section(".text.cCoreSave_getKillEmNum")))
-short cCoreSave_getKillEmNum(int **a0, int a1) {
-    short *p = (short *)*a0;
-    short *q;
-    if (p == 0) return 0;
-    if (--a1 < 0) return 0;
-    if (a1 >= 5) return 0;
-    q = p + a1;
-    return q[0x46];
+short cCoreSave_getKillEmNum(cCoreSave *self, int level) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    if (--level < 0) return 0;
+    if (level >= CORESAVE_LEVEL_NUM) return 0;
+    return data->killEmNum[level];
 }
 
 __attribute__((section(".text.cCoreSave_getKillNpcNum")))
-short cCoreSave_getKillNpcNum(int *a0)
+short cCoreSave_getKillNpcNum(cCoreSave *self)
 {
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(short*)(p + 0x96);
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    return data->killNpcNum;
 }
 
 __attribute__((section(".text.cCoreSave_addKillNpcNum")))
-void cCoreSave_addKillNpcNum(int **a0) {
-    int *p;
-    int *q;
-    p = *a0;
-    if (p) {
-        *(unsigned short *)((char *)p + 0x96) += 1;
-        q = *a0;
-        *(unsigned short *)((char *)q + 0xBB6) += 1;
+void cCoreSave_addKillNpcNum(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data) {
+        data->killNpcNum += 1;
+        self->data->allKillNpcNum += 1;
     }
 }
 
 __attribute__((section(".text.cCoreSave_getCostumeNo")))
-unsigned char cCoreSave_getCostumeNo(int a0)
+unsigned char cCoreSave_getCostumeNo(cCoreSave *self)
 {
-    int p = *(int*)a0;
-    if (!p) return 0;
-    return *(unsigned char*)(p + 0xAE);
+    cCoreSaveData *data = self->data;
+    if (!data) return 0;
+    return data->costumeNo;
 }
 
+/* Remembers the outgoing costume in prevCostumeNo. */
 __attribute__((section(".text.cCoreSave_setCostumeNo")))
-void cCoreSave_setCostumeNo(unsigned char **a0, unsigned int a1) {
-    unsigned char *p;
-    p = a0[0];
-    a1 = a1 & 0xFF;
-    if (p == 0) {
+void cCoreSave_setCostumeNo(cCoreSave *self, unsigned int no) {
+    cCoreSaveData *data;
+    data = self->data;
+    no = no & 0xFF;
+    if (data == 0) {
         return;
     }
-    p[0xAF] = p[0xAE];
-    a0[0][0xAE] = (unsigned char)a1;
+    data->prevCostumeNo = data->costumeNo;
+    self->data->costumeNo = (unsigned char)no;
 }
 
 __attribute__((section(".text.cCoreSave_ckPaper")))
-int cCoreSave_ckPaper(int a0)
+int cCoreSave_ckPaper(cCoreSave *self)
 {
-    int p = *(int*)a0;
-    return p ? (*(unsigned char*)(p + 0x157) != 0) : 0;
+    cCoreSaveData *data = self->data;
+    return data ? (data->paper != 0) : 0;
 }
 
 __attribute__((section(".text.cCoreSave_addAllStageTime")))
-void cCoreSave_addAllStageTime(int a0, int a1)
+void cCoreSave_addAllStageTime(cCoreSave *self, int ticks)
 {
-    int p = *(int*)a0;
-    if (p) {
-        *(int*)(p + 0xBBC) = *(int*)(p + 0xBBC) + a1;
+    cCoreSaveData *data = self->data;
+    if (data) {
+        data->allStageTime = data->allStageTime + ticks;
     }
 }
 
-
+/* Reset the per-stage counters. Health refills to max except on stage 0x20. */
 __attribute__((section(".text.cCoreSave_stageInit")))
-void cCoreSave_stageInit(int a0) {
-    ClearField46Array_1FBDD0(a0);
-    cCoreSave_clearKillNpcNum(a0);
-    cCoreSave_initContinueNum(a0);
-    InitSlotTable_1FAFA8(a0);
+void cCoreSave_stageInit(cCoreSave *self) {
+    ClearField46Array_1FBDD0(self);
+    cCoreSave_clearKillNpcNum(self);
+    cCoreSave_initContinueNum(self);
+    InitSlotTable_1FAFA8(self);
     func_002D9D48(D_0061A990, 0);
     if (D_00747A50 != 0x20) {
-        cCoreSave_setVital(a0, GetField80ViaPtr_1FAC80(a0));
+        cCoreSave_setVital(self, GetField80ViaPtr_1FAC80(self));
     }
 }
+
+/* Move id at `slot` of combo set `set`; 0 past the set's used length. */
 __attribute__((section(".text.cCoreSave_getCombo")))
-int cCoreSave_getCombo(int *a0, unsigned int a1, unsigned int a2)
+int cCoreSave_getCombo(cCoreSave *self, unsigned int set, unsigned int slot)
 {
     unsigned int n;
-    if (*a0 == 0) return 0;
-    if (a2 >= 6) return 0;
-    n = cCoreSave_getComboMax(a0, a1);
-    if (a2 >= n) return 0;
-    if (a1 >= 6) return 0;
-    return *(int *)(*a0 + (a1 * 0x24 + a2 * 4) + 0x1B0);
+    if (self->data == 0) return 0;
+    if (slot >= CORESAVE_COMBO_LEN) return 0;
+    n = cCoreSave_getComboMax(self, set);
+    if (slot >= n) return 0;
+    if (set >= CORESAVE_COMBO_SETS) return 0;
+    return self->data->combo[set].id[slot];
 }

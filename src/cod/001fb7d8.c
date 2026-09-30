@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_003BA550")))
 void func_003BA550(void *a0) {
@@ -31,14 +32,12 @@ float ESLib_ESHermite(float t, float p0, float p1, float m0, float m1)
 }
 
 __attribute__((section(".text.cCoreSave_setCombo")))
-void cCoreSave_setCombo(int *a0, unsigned int a1, unsigned int a2, int a3, int a4)
+void cCoreSave_setCombo(cCoreSave *self, unsigned int set, unsigned int slot, int id, int lv)
 {
-    char v = (char)a4;
-    unsigned int k;
-    if (*a0 == 0) return;
-    if (a2 >= 6) return;
-    if (a1 >= 6) return;
-    k = a1 * 0x24;
-    *(int *)(*a0 + (a2 * 4 + k) + 0x1B0) = a3;
-    *(char *)(*a0 + (a2 + k) + 0x1C8) = v;
+    char v = (char)lv;
+    if (self->data == 0) return;
+    if (slot >= CORESAVE_COMBO_LEN) return;
+    if (set >= CORESAVE_COMBO_SETS) return;
+    self->data->combo[set].id[slot] = id;
+    self->data->combo[set].lv[slot] = v;
 }

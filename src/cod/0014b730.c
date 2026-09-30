@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_0014B730")))
 void *func_0014B730(char *obj, char *name)
@@ -31,27 +32,30 @@ void *func_0014B730(char *obj, char *name)
     return n;
 }
 
+/* Walks one pointer from the record to the flag word, the way retail forms
+ * the address. The empty do-while keeps retail's scheduling. */
 __attribute__((section(".text.cCoreSave_SetFightingRingClearFlag")))
-void cCoreSave_SetFightingRingClearFlag(char *obj, unsigned int bit, int set)
+void cCoreSave_SetFightingRingClearFlag(cCoreSave *self, unsigned int bit, int set)
 {
+    char *p;
     unsigned int w;
 
-    obj = *(char **)obj;
-    if (obj == 0) return;
+    p = (char *)self->data;
+    if (p == 0) return;
     w = bit >> 5;
     if (w >= 4) return;
     bit = bit & 0x1F;
     w = w * 4;
     if (set) {
-        obj = obj + 0xB98;
-        obj = obj + w;
+        p = p + CORESAVE_OFFSET(fightingRingClear);
+        p = p + w;
         do { } while (0);
-        *(unsigned int *)obj = *(unsigned int *)obj | (1 << bit);
+        *(unsigned int *)p = *(unsigned int *)p | (1 << bit);
     } else {
-        obj = obj + 0xB98;
-        obj = obj + w;
+        p = p + CORESAVE_OFFSET(fightingRingClear);
+        p = p + w;
         do { } while (0);
-        *(unsigned int *)obj = *(unsigned int *)obj & ~(1 << bit);
+        *(unsigned int *)p = *(unsigned int *)p & ~(1 << bit);
     }
 }
 

@@ -1,15 +1,16 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_setGold")))
-void cCoreSave_setGold(void *a0, int a1) {
-    void *p = *(void **)a0;
-    if (p) *(int *)((char *)p + 0x20) = a1;
+void cCoreSave_setGold(cCoreSave *self, int gold) {
+    cCoreSaveData *data = self->data;
+    if (data) data->gold = gold;
 }
 
 __attribute__((section(".text.cCoreSave_SetOliviaCostumeNo")))
-void cCoreSave_SetOliviaCostumeNo(void *a0, int a1) {
-    void *p = *(void **)a0;
-    if (p) *(int *)((char *)p + 0xBC0) = a1;
+void cCoreSave_SetOliviaCostumeNo(cCoreSave *self, int no) {
+    cCoreSaveData *data = self->data;
+    if (data) data->oliviaCostumeNo = no;
 }
 
 __attribute__((section(".text.cPadVib_stopSeq")))

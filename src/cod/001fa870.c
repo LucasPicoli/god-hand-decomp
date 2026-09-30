@@ -1,19 +1,18 @@
-/* cCoreSave_subGold — subtract a1 from the gold counter ((*a0)->0x20), clamp to
- * [0, 0xF423F]; if the infinite-money flag (D_00747A34 & 0x2000000) is set,
- * force it to the cap.  Re-derefs reproduce the aliasing reloads;
- * sn-2.95.3-136 branch-likely. */
+/* cCoreSave_subGold - take gold away, clamped to [0, CORESAVE_GOLD_MAX]. The
+ * infinite-money cheat (D_00747A34 & 0x2000000) pins it at the cap. */
+#include "godhand/cCoreSave.h"
 
 extern int D_00747A34;
 
 __attribute__((section(".text.cCoreSave_subGold")))
-void cCoreSave_subGold(void *a0, int a1) {
-    if (!*(void **)a0)
+void cCoreSave_subGold(cCoreSave *self, int amount) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0x20) -= a1;
-    if (*(int *)((char *)*(void **)a0 + 0x20) > 0xF423F)
-        *(int *)((char *)*(void **)a0 + 0x20) = 0xF423F;
-    if (*(int *)((char *)*(void **)a0 + 0x20) < 0)
-        *(int *)((char *)*(void **)a0 + 0x20) = 0;
+    self->data->gold -= amount;
+    if (self->data->gold > CORESAVE_GOLD_MAX)
+        self->data->gold = CORESAVE_GOLD_MAX;
+    if (self->data->gold < 0)
+        self->data->gold = 0;
     if (D_00747A34 & 0x2000000)
-        *(int *)((char *)*(void **)a0 + 0x20) = 0xF423F;
+        self->data->gold = CORESAVE_GOLD_MAX;
 }

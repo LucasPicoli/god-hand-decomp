@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char D_0076A880[];
 
@@ -47,16 +48,12 @@ void func_00375860(void) {
     } while (done == 0);
 }
 
-typedef struct cCoreSave {
-    unsigned char *mData;
-} cCoreSave;
-
 __attribute__((section(".text.cCoreSave_clearGodItem")))
-void cCoreSave_clearGodItem(cCoreSave *this) {
+void cCoreSave_clearGodItem(cCoreSave *self) {
     int i;
 
-    for (i = 0; i < 6; i++) {
-        *(this->mData + i + 0xA8) = 0;
+    for (i = 0; i < CORESAVE_GOD_ITEM_NUM; i++) {
+        self->data->godItem[i] = 0;
     }
 }
 

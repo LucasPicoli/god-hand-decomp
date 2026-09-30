@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int __builtin_delete();
 extern char D_00463050[];
@@ -87,12 +88,12 @@ int cArea_HitCheck(unsigned char *a0) {
 /* clone */
 
 __attribute__((section(".text.cCoreSave_setCasinoTicketNum")))
-void cCoreSave_setCasinoTicketNum(void *a0, int a1) {
-    if (!*(void **)a0)
+void cCoreSave_setCasinoTicketNum(cCoreSave *self, int num) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0xB94) = a1;
-    if (*(int *)((char *)*(void **)a0 + 0xB94) >= 0xA)
-        *(int *)((char *)*(void **)a0 + 0xB94) = 9;
-    if (*(int *)((char *)*(void **)a0 + 0xB94) < 0)
-        *(int *)((char *)*(void **)a0 + 0xB94) = 0;
+    self->data->casinoTicketNum = num;
+    if (self->data->casinoTicketNum > CORESAVE_KEY_MAX)
+        self->data->casinoTicketNum = CORESAVE_KEY_MAX;
+    if (self->data->casinoTicketNum < 0)
+        self->data->casinoTicketNum = 0;
 }

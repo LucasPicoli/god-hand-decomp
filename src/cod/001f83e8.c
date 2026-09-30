@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_00380EB0(void);
 extern void func_00381D60(void);
@@ -41,15 +42,15 @@ int _IO_putc(int a0, int a1) {
 }
 
 __attribute__((section(".text.cCoreSave_getComboMax")))
-int cCoreSave_getComboMax(int a0, unsigned int a1) {
-    int p = *(int *)a0;
-    if (p == 0) {
+int cCoreSave_getComboMax(cCoreSave *self, unsigned int set) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
-    if (a1 >= 6) {
+    if (set >= CORESAVE_COMBO_SETS) {
         return 0;
     }
-    return *(int *)(p + a1 * 0x24 + 0x1D0);
+    return data->combo[set].max;
 }
 
 __attribute__((section(".text.func_002948C8")))

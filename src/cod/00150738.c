@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int D_00747A0C;
 extern char *D_005FEE00[];
@@ -20,13 +21,13 @@ void CasinoWork_SetWarmUpRoom(char *p, int a, short b, short c, float f)
 
 /* cygnus-2.96 */
 __attribute__((section(".text.cCoreSave_setGameDifficulty")))
-void cCoreSave_setGameDifficulty(char *p, int d)
+void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty)
 {
-    char *q = *(char **)p;
+    cCoreSaveData *data = self->data;
 
-    if (q != 0) {
-        if ((unsigned int)d < 3) {
-            *(unsigned char *)(q + 0x1F) = d;
+    if (data != 0) {
+        if ((unsigned int)difficulty < 3) {
+            data->difficulty = difficulty;
         }
     }
 }

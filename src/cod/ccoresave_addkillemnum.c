@@ -1,28 +1,27 @@
-/* cCoreSave_addKillEmNum — increment the kill counters for the current game
- * level: both the per-level table at (*a0)+0x8C and the running table at
- * (*a0)+0xBAC, indexed by (gameLevel-1).  The split base computation
- * (base = *a0 + OFFSET; p = base + idx*2) reproduces retail's addiu/addu address
- * forming (found via decomp-permuter).  sn-2.95.3-136. */
+/* cCoreSave_addKillEmNum - count one enemy kill against the current game
+ * level, in both the per-stage and the whole-game tables. Taking the row
+ * address first and indexing it second matches retail's address forming. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(void *);
+extern int cCoreSave_getGameLevel(cCoreSave *self);
 
 __attribute__((section(".text.cCoreSave_addKillEmNum")))
-void cCoreSave_addKillEmNum(void *a0) {
+void cCoreSave_addKillEmNum(cCoreSave *self) {
     int lv, idx;
-    char *b1, *b2;
+    char *stage, *all;
     short *p1, *p2;
-    if (!*(void **)a0)
+    if (!self->data)
         return;
-    lv = cCoreSave_getGameLevel(a0);
+    lv = cCoreSave_getGameLevel(self);
     idx = lv - 1;
     if (idx < 0)
         return;
-    if (idx >= 5)
+    if (idx >= CORESAVE_LEVEL_NUM)
         return;
-    b1 = (char *)*(void **)a0 + 0x8C;
-    p1 = (short *)(b1 + idx * 2);
+    stage = (char *)self->data->killEmNum;
+    p1 = (short *)(stage + idx * 2);
     *p1 += 1;
-    b2 = (char *)*(void **)a0 + 0xBAC;
-    p2 = (short *)(b2 + idx * 2);
+    all = (char *)self->data->allKillEmNum;
+    p2 = (short *)(all + idx * 2);
     *p2 += 1;
 }

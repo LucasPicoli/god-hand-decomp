@@ -1,14 +1,13 @@
-/* cCoreSave_setKeyCardNum — set the key-card count (field 0x68 of the save
- * record at *a0), clamped to [0, 9].  Re-derefs *a0 each access to reproduce
- * retail's aliasing reloads; sn-2.95.3-136 branch-likely. */
+/* cCoreSave_setKeyCardNum - set the key-card count, clamped to [0, 9]. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_setKeyCardNum")))
-void cCoreSave_setKeyCardNum(void *a0, int a1) {
-    if (!*(void **)a0)
+void cCoreSave_setKeyCardNum(cCoreSave *self, int num) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0x68) = a1;
-    if (*(int *)((char *)*(void **)a0 + 0x68) >= 0xA)
-        *(int *)((char *)*(void **)a0 + 0x68) = 9;
-    if (*(int *)((char *)*(void **)a0 + 0x68) < 0)
-        *(int *)((char *)*(void **)a0 + 0x68) = 0;
+    self->data->keyCardNum = num;
+    if (self->data->keyCardNum > CORESAVE_KEY_MAX)
+        self->data->keyCardNum = CORESAVE_KEY_MAX;
+    if (self->data->keyCardNum < 0)
+        self->data->keyCardNum = 0;
 }

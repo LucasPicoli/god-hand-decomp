@@ -1,8 +1,8 @@
-/* cCoreSave_initAddGold — zeroes the added-gold field (0x24) in the save block
- * at a0->0x0 when present. */
+/* cCoreSave_initAddGold - empty the recent-gold-pickup log. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_initAddGold")))
-void cCoreSave_initAddGold(void *a0) {
-    int *p = *(int **)a0;
-    if (p) *(int *)((char *)p + 0x24) = 0;
+void cCoreSave_initAddGold(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data) data->addGoldNum = 0;
 }

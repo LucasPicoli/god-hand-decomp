@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -31,42 +32,48 @@ char *Binit(char *p)
 }
 
 __attribute__((section(".text.cCoreSave_getAllKillEmNum")))
-int cCoreSave_getAllKillEmNum(char **self, int idx) {
-    char *p = *self;
-    int off;
+int cCoreSave_getAllKillEmNum(cCoreSave *self, int level) {
+    cCoreSaveData *data = self->data;
 
-    if (p == 0) {
+    if (data == 0) {
         return 0;
     }
-    idx--;
-    if (idx < 0) {
+    level--;
+    if (level < 0) {
         return 0;
     }
-    if (idx >= 5) {
+    if (level >= CORESAVE_LEVEL_NUM) {
         return 0;
     }
-    off = idx * 2;
-    return *(unsigned short *)(p + off + 0xBAC);
+    return (unsigned short)data->allKillEmNum[level];
 }
 
 __attribute__((section(".text.cCoreSave_getClearNum")))
-int cCoreSave_getClearNum(char **self) {
-    char *p = *self;
+int cCoreSave_getClearNum(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
 
-    if (p == 0) {
+    if (data == 0) {
         return 0;
     }
     if ((D_00747A3C & 0x40000) == 0) {
-        return *(unsigned short *)(p + 0x10);
+        return data->clearNum;
     }
-    if (*(unsigned short *)(p + 0x10) == 0) {
+    if (data->clearNum == 0) {
         return 1;
     }
-    return *(unsigned short *)(p + 0x10);
+    return data->clearNum;
 }
 
 __attribute__((section(".text.cCoreSave_setComboMax")))
-void cCoreSave_setComboMax(int a0,unsigned int a1,int a2){int p=*(int*)a0;if(p==0)return;if(a1>=6)return;if(a2<0)a2=0;if(a2>6)a2=6;*(int*)(p+a1*0x24+0x1D0)=a2;}
+void cCoreSave_setComboMax(cCoreSave *self, unsigned int set, int max)
+{
+    cCoreSaveData *data = self->data;
+    if (data == 0) return;
+    if (set >= CORESAVE_COMBO_SETS) return;
+    if (max < 0) max = 0;
+    if (max > CORESAVE_COMBO_LEN) max = CORESAVE_COMBO_LEN;
+    data->combo[set].max = max;
+}
 
 __attribute__((section(".text.cEm00_CkDevilEvent")))
 int cEm00_CkDevilEvent(char *p) {

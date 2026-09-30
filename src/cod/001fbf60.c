@@ -1,8 +1,8 @@
-/* cCoreSave_initContinueNum — zeroes the continue counter (0x12) in the save
- * block at a0->0x0 when present. */
+/* cCoreSave_initContinueNum - reset this stage's continue count. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_initContinueNum")))
-void cCoreSave_initContinueNum(void *a0) {
-    short *p = *(short **)a0;
-    if (p) *(short *)((char *)p + 0x12) = 0;
+void cCoreSave_initContinueNum(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data) data->continueNum = 0;
 }

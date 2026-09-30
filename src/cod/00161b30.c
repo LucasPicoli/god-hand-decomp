@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int cOm5a_setCloseFix();
 extern int cOm5a_setOpenFix();
@@ -12,14 +13,14 @@ extern int InitField214WithPtr429420_1BD650();
 /* clone */
 
 __attribute__((section(".text.cCoreSave_setKeyNum")))
-void cCoreSave_setKeyNum(void *a0, int a1) {
-    if (!*(void **)a0)
+void cCoreSave_setKeyNum(cCoreSave *self, int num) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0x6C) = a1;
-    if (*(int *)((char *)*(void **)a0 + 0x6C) >= 0xA)
-        *(int *)((char *)*(void **)a0 + 0x6C) = 9;
-    if (*(int *)((char *)*(void **)a0 + 0x6C) < 0)
-        *(int *)((char *)*(void **)a0 + 0x6C) = 0;
+    self->data->keyNum = num;
+    if (self->data->keyNum > CORESAVE_KEY_MAX)
+        self->data->keyNum = CORESAVE_KEY_MAX;
+    if (self->data->keyNum < 0)
+        self->data->keyNum = 0;
 }
 
 /* clone */
