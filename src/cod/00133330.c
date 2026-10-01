@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cArea.h"
 
 extern char D_007474A0[];
 extern unsigned int D_00754250[];
@@ -92,19 +93,20 @@ void func_0030F2B0(unsigned int s) {
     }
 }
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Write the area's centre to out[0..2]: the corner mean for a quad, the circle centre otherwise;
+ * out[1] is the band bottom. Does nothing for an unknown type. */
 __attribute__((section(".text.cArea_AreaGetCenterPos")))
-void cArea_AreaGetCenterPos(char *a0, float *a1) {
-    if (*(unsigned char *)(a0 + 0x1) == 1) goto t1;
-    if (*(unsigned char *)(a0 + 0x1) == 2) goto t2;
+void cArea_AreaGetCenterPos(cArea *self, float *out) {
+    if (self->type == CAREA_TYPE_QUAD) goto t1;
+    if (self->type == CAREA_TYPE_CIRCLE) goto t2;
     return;
 t1:
-    a1[0] = (*(float *)(a0 + 0x10) + *(float *)(a0 + 0x18) + *(float *)(a0 + 0x20) + *(float *)(a0 + 0x28)) * 0.25f;
-    a1[1] = *(float *)(a0 + 0x4);
-    a1[2] = (*(float *)(a0 + 0x14) + *(float *)(a0 + 0x1C) + *(float *)(a0 + 0x24) + *(float *)(a0 + 0x2C)) * 0.25f;
+    out[0] = (self->corner[0].x + self->corner[1].x + self->corner[2].x + self->corner[3].x) * 0.25f;
+    out[1] = self->y;
+    out[2] = (self->corner[0].z + self->corner[1].z + self->corner[2].z + self->corner[3].z) * 0.25f;
     return;
 t2:
-    a1[0] = *(float *)(a0 + 0x10);
-    a1[1] = *(float *)(a0 + 0x4);
-    a1[2] = *(float *)(a0 + 0x14);
+    out[0] = self->corner[0].x;
+    out[1] = self->y;
+    out[2] = self->corner[0].z;
 }

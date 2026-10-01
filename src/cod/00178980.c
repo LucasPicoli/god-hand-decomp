@@ -1,15 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cHeatSys.h"
 
+/* Level 1 once cur reaches threshold, else 0. Stores and returns lv. */
 __attribute__((section(".text.cHeatSys_GetHeatLv")))
-int cHeatSys_GetHeatLv(int a0) {
-    float a = *(float*)((char*)a0 + 0x4);
-    float b = *(float*)((char*)a0 + 0xC);
-    if (a < b) {
-        *(int*)((char*)a0 + 0x14) = 0;
+int cHeatSys_GetHeatLv(cHeatSys *self) {
+    float cur = self->cur;
+    float threshold = self->threshold;
+    if (cur < threshold) {
+        self->lv = 0;
     } else {
-        *(int*)((char*)a0 + 0x14) = 1;
+        self->lv = 1;
     }
-    return *(int*)((char*)a0 + 0x14);
+    return self->lv;
 }
 
 __attribute__((section(".text.func_0028ED78")))

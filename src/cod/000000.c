@@ -1,4 +1,5 @@
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjSimple.h"
 #include "include_asm.h"
 
 /* ------------------------------------------------------------------ */
@@ -2375,12 +2376,13 @@ void cEma2_SetPoisonDie(char *a0) {
 
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
 
+/* Reset the object to state 1 with its state arguments cleared. */
 __attribute__((section(".text.cObjSimple_R0_Init")))
-void cObjSimple_R0_Init(char *a0) {
-    a0[0x2F4] = 1;
-    a0[0x2F5] = 0;
-    a0[0x2F6] = 0;
-    a0[0x2F7] = 0;
+void cObjSimple_R0_Init(cObjSimple *self) {
+    self->state = 1;
+    self->stateArg[0] = 0;
+    self->stateArg[1] = 0;
+    self->stateArg[2] = 0;
 }
 
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);

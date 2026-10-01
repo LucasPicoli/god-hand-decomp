@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjSimple.h"
 
 extern int D_00747A0C;
 extern char *D_005FEE00[];
@@ -32,13 +33,13 @@ void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty)
     }
 }
 
-/* cygnus-2.96 */
+/* Pick texture pack `i` for the texture swap (ignored when negative). */
 __attribute__((section(".text.cObjSimple_SetPackIndex")))
-void cObjSimple_SetPackIndex(char *p, int i)
+void cObjSimple_SetPackIndex(cObjSimple *self, int i)
 {
     if (i >= 0) {
-        *(int *)(p + 0x4D4) = i;
-        *(unsigned char *)(p + 0x4D0) = 1;
+        self->texChangeIdx = i;
+        self->texChangeOn = 1;
     }
 }
 

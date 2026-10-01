@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cArea.h"
 
 /* sn-2.95.3-136 matched TU.
  * compile_units: {"path": "src/cod/001f8550.c", "compiler": "sn-2.95.3-136",
@@ -8,23 +9,25 @@
  * lies inside the cylinder at a0: the height band a0[1]..a0[1]+a0[2], and the
  * XZ radius a0[3] about the centre (a0[4], a0[5]). Return 0 otherwise. */
 
+/* Is point `pt` inside the circle area: inside the height band, then within `radius` of the
+ * centre in XZ. 1 if so, else 0. */
 __attribute__((section(".text.func_001F8550")))
-int func_001F8550(float *a0, float *a1) {
-    float y = a0[1];
-    float py = a1[1];
-    float h = a0[2];
+int func_001F8550(cArea *self, float *pt) {
+    float y = self->y;
+    float py = pt[1];
+    float h = self->height;
     float t, dx, dz, d;
     int r;
     t = y + h;
     if (py < y) goto zero;
     r = 0;
     if (t < py) goto ret;
-    dx = a1[0] - a0[4];
-    dz = a1[2] - a0[5];
+    dx = pt[0] - self->corner[0].x;
+    dz = pt[2] - self->corner[0].z;
     d = __builtin_sqrtf(dx * dx + dz * dz);
     do { } while (0);
     r = 1;
-    if (d < a0[3]) goto ret;
+    if (d < self->radius) goto ret;
 zero:
     return 0;
 ret:

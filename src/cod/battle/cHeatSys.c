@@ -1,24 +1,28 @@
 /* TU: cHeatSys [battle] - recovered C++ class. */
+#include "godhand/cHeatSys.h"
 #include "include_asm.h"
 
-extern int func_002A9B50(void *p);
 extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *p);
 extern void *D_00569B70;
 extern unsigned int D_00747A50;       /* lhu -> u16 */
 extern void *D_003BD6E8;
 
+extern void func_002A9B50(cHeatSys *self);
+/* Add `heat` to the gauge (boosted by 1.25 for some players and in heat mode), clamp at max,
+ * move the floor up by the gain, and refresh lv. Does nothing while heat mode is on and heat > 0,
+ * unless a1 is set. */
 __attribute__((section(".text.cHeatSys_AddHeatGage")))
-void cHeatSys_AddHeatGage(void *a0, int a1, float heat)
+void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
 {
     void *obj;
-    float old4;
-    float cur8;
-    float min;
+    float oldCur;
+    float newFloor;
+    float cur;
     unsigned short mode;
 
-    old4 = *(float *)((char *)a0 + 0x4);
+    oldCur = self->cur;
 
-    if (a1 == 0 && *(unsigned char *)((char *)a0 + 0x10) != 0 && 0.0f < heat)
+    if (a1 == 0 && self->mode != 0 && 0.0f < heat)
         return;
 
     obj = D_00569B70;
@@ -37,18 +41,17 @@ void cHeatSys_AddHeatGage(void *a0, int a1, float heat)
         heat = heat * 1.25f;
     }
 
-    min = *(float *)((char *)a0 + 0x4) + heat;
-    *(float *)((char *)a0 + 0x4) = min;
-    if (*(float *)((char *)a0 + 0x0) < min)
-        *(float *)((char *)a0 + 0x4) = *(float *)((char *)a0 + 0x0);
+    cur = self->cur + heat;
+    self->cur = cur;
+    if (self->max < cur)
+        self->cur = self->max;
 
     if (0.0f < heat) {
-        cur8 = *(float *)((char *)a0 + 0x8) +
-               (*(float *)((char *)a0 + 0x4) - old4);
-        *(float *)((char *)a0 + 0x8) = cur8;
-        if (*(float *)((char *)a0 + 0x0) < cur8)
-            *(float *)((char *)a0 + 0x8) = *(float *)((char *)a0 + 0x0);
+        newFloor = self->floor + (self->cur - oldCur);
+        self->floor = newFloor;
+        if (self->max < newFloor)
+            self->floor = self->max;
     }
 
-    func_002A9B50(a0);
+    func_002A9B50(self);
 }

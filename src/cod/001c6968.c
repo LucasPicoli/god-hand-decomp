@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cOmWeapon.h"
+#include "godhand/cObjSimple.h"
 
 extern void func_001C6C30(void *a0, void *a1);
 extern float DoubleFloatMinusHalf_31D020(void);
@@ -8,30 +9,32 @@ extern void func_001C6A90(void *a0, int a1, void *a2, void *a3, int t0);
 
 /* sn-2.95.3-136 matched TU. */
 
+/* Attach this prop to `parent` (or to its child `idx`; -1 = the parent itself) with two offsets.
+ * Does nothing when the parent or the child is missing. Turns the parent follow on. */
 __attribute__((section(".text.cObjSimple_SetParentInfo")))
-void cObjSimple_SetParentInfo(char *a, unsigned char *obj, int idx, float *v1,
-                              float *v2)
+void cObjSimple_SetParentInfo(cObjSimple *self, cObjSimple *parent, int idx,
+                              cObjSimpleVec3 *ofsA, cObjSimpleVec3 *ofsB)
 {
     char hold[16];
-    float *d;
+    cObjSimpleVec3 *d;
 
-    if (obj == 0) {
+    if (parent == 0) {
         return;
     }
     if (idx != -1) {
-        char *e;
+        cObjSimpleChild *e;
         int ok;
         int cnt;
 
         ok = 0;
-        cnt = *((unsigned char *) (obj + 0x2B4));
+        cnt = parent->childNum;
         *((int *) hold) = cnt;
         if (idx >= 0) {
             ok = idx < cnt;
             cnt = 0;
         }
         if (ok & 0xFF) {
-            e = *((char **) (*((char **) (obj + 0x278)) + idx * 4));
+            e = parent->children[idx];
         } else {
             e = 0;
         }
@@ -39,21 +42,21 @@ void cObjSimple_SetParentInfo(char *a, unsigned char *obj, int idx, float *v1,
             return;
         }
     }
-    *((char **) (a + 0x30B0)) = (char *) obj;
-    *((int *) (a + 0x30B4)) = idx;
-    d = (float *) (a + 0x30C0);
-    if (d != v1) {
-        d[0] = v1[0];
-        d[1] = v1[1];
-        d[2] = v1[2];
+    self->parent = parent;
+    self->parentIdx = idx;
+    d = &self->parentOfsA;
+    if (d != ofsA) {
+        d->x = ofsA->x;
+        d->y = ofsA->y;
+        d->z = ofsA->z;
     }
-    d = (float *) (a + 0x30D0);
-    if (d != v2) {
-        d[0] = v2[0];
-        d[1] = v2[1];
-        d[2] = v2[2];
+    d = &self->parentOfsB;
+    if (d != ofsB) {
+        d->x = ofsB->x;
+        d->y = ofsB->y;
+        d->z = ofsB->z;
     }
-    a[0x4E0] = 1;
+    self->parentOn = 1;
 }
 
 /* sn-2.95.3-136 matched TU. */

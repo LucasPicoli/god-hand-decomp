@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cObjSimple.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern void cModel_setTextureExchange(void *self, void *tex, int tbl, int n);
@@ -12,125 +13,84 @@ extern char D_0044B4B0[];
 
 
 
+/* Address of the texture table at `off` in the model data: the entry holds its offset from the model. */
+#define COBJSIMPLE_MODEL_TBL(self, off) \
+    (*(int *)((char *)(self)->model + (off)) + (int)(self)->model)
+
+/* Find a texture-change mesh in the model (the second name if the first is missing) and,
+ * for the object ids that have a table, start the texture exchange with `n`. */
 __attribute__((section(".text.cObjSimple__SetTexChange")))
-void cObjSimple__SetTexChange(void *a0, int a1) {
-    char *s0 = (char *)a0;
-    int s1 = a1;
+void cObjSimple__SetTexChange(cObjSimple *self, int n) {
     void *m;
     int val;
 
-    if (*(unsigned char *)(s0 + 0x4D0) == 0) {
-        m = SearchData(*(void **)(s0 + 0x304), &D_0044B4A8, 0);
+    if (self->texChangeOn == 0) {
+        m = SearchData(self->model, &D_0044B4A8, 0);
         if (m == 0) {
-            m = SearchData(*(void **)(s0 + 0x304), &D_0044B4B0, 0);
+            m = SearchData(self->model, &D_0044B4B0, 0);
         }
     } else {
-        m = SearchData(*(void **)(s0 + 0x304), &D_0044B4A8, *(int *)(s0 + 0x4D4));
+        m = SearchData(self->model, &D_0044B4A8, self->texChangeIdx);
         if (m == 0) {
-            m = SearchData(*(void **)(s0 + 0x304), &D_0044B4B0, *(int *)(s0 + 0x4D4));
+            m = SearchData(self->model, &D_0044B4B0, self->texChangeIdx);
         }
     }
-    switch (*(unsigned short *)(s0 + 0x2FE)) {
-    case 0x227: {
-        char *p0 = *(char **)(s0 + 0x304);
-        int f0 = *(int *)(p0 + 0x44);
-        val = f0 + (int)p0;
+    switch (self->objId) {
+    case 0x227:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x44);
         break;
-    }
-    case 0x228: {
-        char *p1 = *(char **)(s0 + 0x304);
-        int f1 = *(int *)(p1 + 0x48);
-        val = f1 + (int)p1;
+    case 0x228:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x48);
         break;
-    }
-    case 0x229: {
-        char *p2 = *(char **)(s0 + 0x304);
-        int f2 = *(int *)(p2 + 0x4C);
-        val = f2 + (int)p2;
+    case 0x229:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x4C);
         break;
-    }
-    case 0x22A: {
-        char *p3 = *(char **)(s0 + 0x304);
-        int f3 = *(int *)(p3 + 0x50);
-        val = f3 + (int)p3;
+    case 0x22A:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x50);
         break;
-    }
-    case 0x22B: {
-        char *p4 = *(char **)(s0 + 0x304);
-        int f4 = *(int *)(p4 + 0x54);
-        val = f4 + (int)p4;
+    case 0x22B:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x54);
         break;
-    }
-    case 0x22C: {
-        char *p5 = *(char **)(s0 + 0x304);
-        int f5 = *(int *)(p5 + 0x58);
-        val = f5 + (int)p5;
+    case 0x22C:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x58);
         break;
-    }
-    case 0x22D: {
-        char *p6 = *(char **)(s0 + 0x304);
-        int f6 = *(int *)(p6 + 0x78);
-        val = f6 + (int)p6;
+    case 0x22D:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x78);
         break;
-    }
-    case 0x22E: {
-        char *p7 = *(char **)(s0 + 0x304);
-        int f7 = *(int *)(p7 + 0x70);
-        val = f7 + (int)p7;
+    case 0x22E:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x70);
         break;
-    }
-    case 0x243: {
-        char *p8 = *(char **)(s0 + 0x304);
-        int f8 = *(int *)(p8 + 0x80);
-        val = f8 + (int)p8;
+    case 0x243:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x80);
         break;
-    }
-    case 0x24A: {
-        char *p9 = *(char **)(s0 + 0x304);
-        int f9 = *(int *)(p9 + 0x64);
-        val = f9 + (int)p9;
+    case 0x24A:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x64);
         break;
-    }
-    case 0x24B: {
-        char *p10 = *(char **)(s0 + 0x304);
-        int f10 = *(int *)(p10 + 0x6C);
-        val = f10 + (int)p10;
+    case 0x24B:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x6C);
         break;
-    }
-    case 0x24C: {
-        char *p11 = *(char **)(s0 + 0x304);
-        int f11 = *(int *)(p11 + 0x74);
-        val = f11 + (int)p11;
+    case 0x24C:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x74);
         break;
-    }
-    case 0x24D: {
-        char *p12 = *(char **)(s0 + 0x304);
-        int f12 = *(int *)(p12 + 0x7C);
-        val = f12 + (int)p12;
+    case 0x24D:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x7C);
         break;
-    }
-    case 0x24E: {
-        char *p13 = *(char **)(s0 + 0x304);
-        int f13 = *(int *)(p13 + 0x88);
-        val = f13 + (int)p13;
+    case 0x24E:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x88);
         break;
-    }
     case 0x271:
     case 0x272:
-    case 0x273: {
-        char *p14 = *(char **)(s0 + 0x304);
-        int f14 = *(int *)(p14 + 0x5C);
-        val = f14 + (int)p14;
+    case 0x273:
+        val = COBJSIMPLE_MODEL_TBL(self, 0x5C);
         break;
-    }
     default:
         val = 0;
         break;
     }
     if (m != 0) {
         if (val != 0) {
-            *(int *)(s0 + 0x254) = *(int *)(s0 + 0x254) | 0x10000000;
-            cModel_setTextureExchange(s0, m, val, s1);
+            self->drawFlags = self->drawFlags | 0x10000000;
+            cModel_setTextureExchange(self, m, val, n);
         }
     }
 }

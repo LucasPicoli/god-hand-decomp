@@ -1,13 +1,16 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cObjSimple.h"
 
+/* Turn the ring physics on or off. */
 __attribute__((section(".text.cObjSimple_SetRingFlag")))
-void cObjSimple_SetRingFlag(char *arg0, int arg1) {
-    arg0[0x2FF0] = arg1;
+void cObjSimple_SetRingFlag(cObjSimple *self, int on) {
+    self->ringFlag = on;
 }
 
+/* Turn the bust physics on or off. */
 __attribute__((section(".text.cObjSimple_SetBustFlag")))
-void cObjSimple_SetBustFlag(char *arg0, int arg1) {
-    arg0[0x2FA0] = arg1;
+void cObjSimple_SetBustFlag(cObjSimple *self, int on) {
+    self->bustFlag = on;
 }
 
 __attribute__((section(".text.cScenario_SetRoomExitFunc")))

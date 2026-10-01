@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cObjSimple.h"
 
 extern void sceVu0ApplyMatrix(void *v1, void *m0, void *v0);
 extern void cModel_setMeshDisplay(void *model, char *name, int on);
-extern char D_003BD880[];
 extern char D_0044B4D8[];
 extern char D_0044B4E0[];
 extern char D_0044B4E8[];
@@ -73,22 +73,90 @@ extern char D_0044B4E8[];
         dp[2] = ((float *) D_003BD880)[2];                                    \
     }
 
+/* Reset child N's output position (or its vecE0) to the default vector D_003BD880. */
+#define COBJSIMPLE_RESET_OUT(N)                                               \
+    {                                                                         \
+        int i = (N);                                                          \
+        int n;                                                                \
+        cObjSimple *ep;                                                       \
+        cObjSimpleVec3 *dp;                                                   \
+        if (((*((int *) hold) = n = self->childNum), (i < n)))                \
+            ep = self->children[N];                                           \
+        else                                                                  \
+            ep = 0;                                                           \
+        dp = (cObjSimpleVec3 *) ep->outPos;                                   \
+        dp->x = D_003BD880.x;                                                 \
+        dp->y = D_003BD880.y;                                                 \
+        dp->z = D_003BD880.z;                                                 \
+    }
+
+#define COBJSIMPLE_RESET_E0(N)                                                \
+    {                                                                         \
+        int i = (N);                                                          \
+        int n;                                                                \
+        cObjSimple *ep;                                                       \
+        cObjSimpleVec3 *dp;                                                   \
+        if (((*((int *) hold) = n = self->childNum), (i < n)))                \
+            ep = self->children[N];                                           \
+        else                                                                  \
+            ep = 0;                                                           \
+        dp = &ep->vecE0;                                                      \
+        dp->x = D_003BD880.x;                                                 \
+        dp->y = D_003BD880.y;                                                 \
+        dp->z = D_003BD880.z;                                                 \
+    }
+
+/* Same two resets for child 0, whose test is "any children". */
+#define COBJSIMPLE_RESET_OUT0()                                               \
+    {                                                                         \
+        int n;                                                                \
+        cObjSimple *ep;                                                       \
+        cObjSimpleVec3 *dp;                                                   \
+        if (((*((int *) hold) = n = self->childNum), (n != 0)))               \
+            ep = self->children[0];                                           \
+        else                                                                  \
+            ep = 0;                                                           \
+        dp = (cObjSimpleVec3 *) ep->outPos;                                   \
+        dp->x = D_003BD880.x;                                                 \
+        dp->y = D_003BD880.y;                                                 \
+        dp->z = D_003BD880.z;                                                 \
+    }
+
+#define COBJSIMPLE_RESET_E00()                                                \
+    {                                                                         \
+        int n;                                                                \
+        cObjSimple *ep;                                                       \
+        cObjSimpleVec3 *dp;                                                   \
+        if (((*((int *) hold) = n = self->childNum), (n != 0)))               \
+            ep = self->children[0];                                           \
+        else                                                                  \
+            ep = 0;                                                           \
+        dp = &ep->vecE0;                                                      \
+        dp->x = D_003BD880.x;                                                 \
+        dp->y = D_003BD880.y;                                                 \
+        dp->z = D_003BD880.z;                                                 \
+    }
+
+extern cObjSimpleVec3 D_003BD880;
+/* Make the prop follow its parent: copy the offset into this object's position and put it in the
+ * parent's frame (the parent, or its child `parentIdx`), copy rot/vec240/f24C/flag bit 4 from the
+ * parent, and reset the child positions chosen by `followSel`. */
 __attribute__((section(".text.func_002B6FE8")))
-void func_002B6FE8(char *p)
+void func_002B6FE8(cObjSimple *self)
 {
     char hold[16];
     int idx;
     int sel;
-    char *obj;
+    cObjSimple *obj;
 
-    idx = *((int *) (p + 0x30B4));
+    idx = self->parentIdx;
     if (idx != -1) {
-        char *o = *((char **) (p + 0x30B0));
-        int n = *((unsigned char *) (o + 0x2B4));
+        cObjSimple *o = self->parent;
+        int n = o->childNum;
         int ok = 0;
-        char *ep;
-        float *dd;
-        float *ss;
+        cObjSimple *ep;
+        cObjSimpleVec3 *dd;
+        cObjSimpleVec3 *ss;
 
         *((int *) hold) = n;
         if (idx >= 0) {
@@ -96,88 +164,87 @@ void func_002B6FE8(char *p)
             n = 0;
         }
         if (ok & 0xFF)
-            ep = *((char **) (*((char **) (o + 0x278)) + idx * 4));
+            ep = o->children[idx];
         else
             ep = 0;
-        dd = (float *) *((char **) (p + 0xF0));
-        ss = (float *) (p + 0x30C0);
+        dd = self->parentPos;
+        ss = &self->parentOfsA;
         if (dd != ss) {
-            dd[0] = ss[0];
-            dd[1] = ss[1];
-            dd[2] = ss[2];
+            dd->x = ss->x;
+            dd->y = ss->y;
+            dd->z = ss->z;
         }
-        sceVu0ApplyMatrix(*((char **) (p + 0xF0)), ep + 0x80,
-                          *((char **) (p + 0xF0)));
+        sceVu0ApplyMatrix(self->parentPos, ep->mtx, self->parentPos);
     } else {
-        float *dd = (float *) *((char **) (p + 0xF0));
-        float *ss = (float *) (p + 0x30C0);
-        char *m;
+        cObjSimpleVec3 *dd = self->parentPos;
+        cObjSimpleVec3 *ss = &self->parentOfsA;
+        cObjSimpleVec3 *m;
 
         if (dd != ss) {
-            dd[0] = ss[0];
-            dd[1] = ss[1];
-            dd[2] = ss[2];
+            dd->x = ss->x;
+            dd->y = ss->y;
+            dd->z = ss->z;
         }
-        m = *((char **) (p + 0xF0));
-        sceVu0ApplyMatrix(m, *((char **) (p + 0x30B0)) + 0x80, m);
+        m = self->parentPos;
+        sceVu0ApplyMatrix(m, self->parent->mtx, m);
     }
 
     {
-        char *o2 = *((char **) (p + 0x30B0));
-        float *d2 = (float *) (p + 0x100);
-        float *s2 = (float *) (o2 + 0x100);
+        cObjSimple *o2 = self->parent;
+        cObjSimpleVec3 *d2 = &self->rot;
+        cObjSimpleVec3 *s2 = &o2->rot;
 
         if (d2 != s2) {
-            d2[0] = s2[0];
-            d2[1] = s2[1];
-            d2[2] = s2[2];
+            d2->x = s2->x;
+            d2->y = s2->y;
+            d2->z = s2->z;
         }
     }
 
-    sel = *((int *) (p + 0x30A4));
+    sel = self->followSel;
     switch (sel) {
     case 1:
-        CD0()
-        CD(1)
-        CE0()
-        CE(1)
-        CD(17)
-        CD(18)
-        CE(17)
-        CE(18)
+        COBJSIMPLE_RESET_OUT0()
+        COBJSIMPLE_RESET_OUT(1)
+        COBJSIMPLE_RESET_E00()
+        COBJSIMPLE_RESET_E0(1)
+        COBJSIMPLE_RESET_OUT(17)
+        COBJSIMPLE_RESET_OUT(18)
+        COBJSIMPLE_RESET_E0(17)
+        COBJSIMPLE_RESET_E0(18)
         break;
     case 2:
-        CD0()
-        CD(1)
-        CD(2)
-        CE0()
-        CE(1)
-        CE(2)
+        COBJSIMPLE_RESET_OUT0()
+        COBJSIMPLE_RESET_OUT(1)
+        COBJSIMPLE_RESET_OUT(2)
+        COBJSIMPLE_RESET_E00()
+        COBJSIMPLE_RESET_E0(1)
+        COBJSIMPLE_RESET_E0(2)
         break;
     case 3:
-        CD0()
-        CD(1)
-        CE0()
-        CE(1)
-        cModel_setMeshDisplay(*((char **) (p + 0x30B0)), D_0044B4D8, 0);
-        cModel_setMeshDisplay(*((char **) (p + 0x30B0)), D_0044B4E0, 0);
-        cModel_setMeshDisplay(*((char **) (p + 0x30B0)), D_0044B4E8, 0);
+        COBJSIMPLE_RESET_OUT0()
+        COBJSIMPLE_RESET_OUT(1)
+        COBJSIMPLE_RESET_E00()
+        COBJSIMPLE_RESET_E0(1)
+        cModel_setMeshDisplay(self->parent, D_0044B4D8, 0);
+        cModel_setMeshDisplay(self->parent, D_0044B4E0, 0);
+        cModel_setMeshDisplay(self->parent, D_0044B4E8, 0);
         break;
     case 4:
-        CD0()
-        CD(1)
-        CD(2)
-        CD(3)
-        CD(4)
-        CD(5)
-        CD(6)
-        CE0()
-        CE(1)
-        CE(2)
-        CE(3)
-        CE(4)
-        CE(5)
-        CE(6)
+        COBJSIMPLE_RESET_OUT0()
+        COBJSIMPLE_RESET_OUT(1)
+        COBJSIMPLE_RESET_OUT(2)
+        COBJSIMPLE_RESET_OUT(3)
+        COBJSIMPLE_RESET_OUT(4)
+        COBJSIMPLE_RESET_OUT(5)
+        COBJSIMPLE_RESET_OUT(6)
+        COBJSIMPLE_RESET_E00()
+        COBJSIMPLE_RESET_E0(1)
+        COBJSIMPLE_RESET_E0(2)
+        COBJSIMPLE_RESET_E0(3)
+        COBJSIMPLE_RESET_E0(4)
+        COBJSIMPLE_RESET_E0(5)
+        COBJSIMPLE_RESET_E0(6)
         break;
     case 0:
     case 5:
@@ -186,21 +253,21 @@ void func_002B6FE8(char *p)
     }
 
     {
-        char *o3 = *((char **) (p + 0x30B0));
-        float *d3 = (float *) (p + 0x240);
-        float *s3 = (float *) (o3 + 0x240);
+        cObjSimple *o3 = self->parent;
+        cObjSimpleVec3 *d3 = &self->vec240;
+        cObjSimpleVec3 *s3 = &o3->vec240;
 
         if (d3 != s3) {
-            d3[0] = s3[0];
-            d3[1] = s3[1];
-            d3[2] = s3[2];
+            d3->x = s3->x;
+            d3->y = s3->y;
+            d3->z = s3->z;
         }
     }
-    obj = *((char **) (p + 0x30B0));
-    *((float *) (p + 0x24C)) = *((float *) (obj + 0x24C));
-    if (*((int *) (obj + 0x250)) & 0x10) {
-        *((unsigned int *) (p + 0x250)) |= 0x10;
+    obj = self->parent;
+    self->f24C = obj->f24C;
+    if (obj->flags250 & 0x10) {
+        self->flags250 |= 0x10;
     } else {
-        *((unsigned int *) (p + 0x250)) &= 0xFFFFFFEF;
+        self->flags250 &= 0xFFFFFFEF;
     }
 }

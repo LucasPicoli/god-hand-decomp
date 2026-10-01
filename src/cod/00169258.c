@@ -1,53 +1,55 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cArea.h"
 
 extern float D_0041FE60[];
 extern float D_0041FE78[];
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Build an area at height band [s[1], s[1] + z). Type 1 is a quad of size x by y centred on (s[0], s[2]);
+ * type 2 is a circle of radius x / 2 centred there. */
 __attribute__((section(".text.func_001F88A8")))
-void func_001F88A8(char *o, float *s, unsigned char t, float x, float y, float z)
+void func_001F88A8(cArea *o, float *s, unsigned char t, float x, float y, float z)
 {
     float hx;
     float hy;
     float hx2;
 
-    o[0] = 1;
-    o[1] = t;
-    *(short *)(o + 2) = 0;
-    if (t == 1) goto one;
-    if (t == 2) goto two;
+    o->used = 1;
+    o->type = t;
+    o->pad02 = 0;
+    if (t == CAREA_TYPE_QUAD) goto one;
+    if (t == CAREA_TYPE_CIRCLE) goto two;
     return;
 one:
     {
         hx = x * 0.5f;
         hy = y * 0.5f;
-        *(float *)(o + 4) = s[1];
-        *(float *)(o + 8) = z;
-        *(float *)(o + 0xC) = hx;
-        *(float *)(o + 0x10) = s[0] - hx;
-        *(float *)(o + 0x14) = s[2] - hy;
-        *(float *)(o + 0x18) = s[0] - hx;
-        *(float *)(o + 0x1C) = s[2] + hy;
-        *(float *)(o + 0x20) = s[0] + hx;
-        *(float *)(o + 0x24) = s[2] + hy;
-        *(float *)(o + 0x28) = s[0] + hx;
-        *(float *)(o + 0x2C) = s[2] - hy;
+        o->y = s[1];
+        o->height = z;
+        o->radius = hx;
+        o->corner[0].x = s[0] - hx;
+        o->corner[0].z = s[2] - hy;
+        o->corner[1].x = s[0] - hx;
+        o->corner[1].z = s[2] + hy;
+        o->corner[2].x = s[0] + hx;
+        o->corner[2].z = s[2] + hy;
+        o->corner[3].x = s[0] + hx;
+        o->corner[3].z = s[2] - hy;
     return;
     }
 two:
     {
-        *(float *)(o + 0x10) = s[0];
+        o->corner[0].x = s[0];
         hx2 = x * 0.5f;
-        *(float *)(o + 0x14) = s[2];
-        *(float *)(o + 4) = s[1];
-        *(float *)(o + 8) = z;
-        *(float *)(o + 0xC) = hx2;
-        *(float *)(o + 0x18) = 0.0f;
-        *(float *)(o + 0x1C) = 0.0f;
-        *(float *)(o + 0x20) = 0.0f;
-        *(float *)(o + 0x24) = 0.0f;
-        *(float *)(o + 0x28) = 0.0f;
-        *(float *)(o + 0x2C) = 0.0f;
+        o->corner[0].z = s[2];
+        o->y = s[1];
+        o->height = z;
+        o->radius = hx2;
+        o->corner[1].x = 0.0f;
+        o->corner[1].z = 0.0f;
+        o->corner[2].x = 0.0f;
+        o->corner[2].z = 0.0f;
+        o->corner[3].x = 0.0f;
+        o->corner[3].z = 0.0f;
     }
 }
 
