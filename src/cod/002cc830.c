@@ -3,9 +3,9 @@
 
 extern int D_005FEE00;
 
-/* Like func_002CC728 for a node that already has its bank and state: stores flags and the request's values. */
-__attribute__((section(".text.func_002CC830")))
-int func_002CC830(cSndBgmNode *node, cSndBgmReq *req, int flags)
+/* Like cSndBgmNode_Setup for a node that already has its bank and state: stores flags and the request's values. */
+__attribute__((section(".text.cSndBgmNode_ApplyReq")))
+int cSndBgmNode_ApplyReq(cSndBgmNode *node, cSndBgmReq *req, int flags)
 {
     int param;
     int state;
@@ -20,11 +20,11 @@ int func_002CC830(cSndBgmNode *node, cSndBgmReq *req, int flags)
         break;
     case 3:
         node->matchWt = req->wordA;
-        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
+        node->link = (int *)cSnd_GetBgmLinkPtr(&D_005FEE00, req->wordB);
         break;
     case 2:
-        node->entry = (int *)func_002D0598(&D_005FEE00, req->wordA);
-        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
+        node->entry = (int *)cSnd_GetBgmEntryPtr(&D_005FEE00, req->wordA);
+        node->link = (int *)cSnd_GetBgmLinkPtr(&D_005FEE00, req->wordB);
         break;
     case 1:
     case 4:

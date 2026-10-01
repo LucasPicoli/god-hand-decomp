@@ -15,8 +15,8 @@ extern unsigned short D_00747A50;
 extern void AddQueueEntry_1FF4D0(cDataSlot *slot, int id);
 /* Queue the load of data id on the slot of kind (plus its companions) and wait until it is ready.
    Bit 0 of flags picks the alternate id of a few ids. */
-__attribute__((section(".text.func_001FEAA0")))
-void func_001FEAA0(cDataManager *self, int kind, int id, int flags) {
+__attribute__((section(".text.cDataManager_loadSeWait")))
+void cDataManager_loadSeWait(cDataManager *self, int kind, int id, int flags) {
     int v0;
 
     v0 = cDataManager_findKind(self, kind);

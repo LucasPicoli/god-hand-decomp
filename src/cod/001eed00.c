@@ -25,7 +25,7 @@ extern void func_001F28F0(void *ui);
 extern void func_001F2990(void *ui);
 extern void NoOp_1F0490(ColiseumBattle *self);
 
-extern void func_001EFD70(ColiseumBattle *self, int on);
+extern void ColiseumBattle_UpdateCountdown(ColiseumBattle *self, int on);
 extern void ColiseumBattle_PlCtrlOff(ColiseumBattle *self, int off);
 
 /* Per-frame update of the result scene: runs the seven-step sequence that
@@ -137,7 +137,7 @@ void ColiseumBattle_Update(ColiseumBattle *self)
                     self->timer = 0x3C;
                     self->state = self->state + 1;
                 } else {
-                    func_001EFD70(self, 1);
+                    ColiseumBattle_UpdateCountdown(self, 1);
                 }
             } else {
                 ColiseumBattle_PlCtrlOff(self, 1);

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 
-extern void *GetIndexedEntry_2CC4B8(void *a0, int a1);
+extern void *cSnd_GetSeEntry(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
-extern void func_002CE3E8(void *a0);
+extern void cSndSeVoice_Unlink(void *a0);
 extern char D_005FEE00[];
 extern unsigned int D_00747A84;
 extern int D_00747A78;
@@ -20,8 +20,8 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 
 /* Updates one voice every frame: waits out its start delay, starts or retunes the sound, tracks the
    distance ratio, and frees the voice when its sound is gone. Each live frame ages the voice by one. */
-__attribute__((section(".text.func_002CDA80")))
-void func_002CDA80(cSndSeVoice *voice)
+__attribute__((section(".text.cSndSeVoice_Update")))
+void cSndSeVoice_Update(cSndSeVoice *voice)
 {
     char buf[0x30] __attribute__((aligned(16)));
     cSndSeEntry *entry;
@@ -32,11 +32,11 @@ void func_002CDA80(cSndSeVoice *voice)
     long bit;
     float ratio;
 
-    if (func_002CDA38(voice) == 0) {
+    if (cSndSeVoice_IsActive(voice) == 0) {
         return;
     }
     snd = (cSnd *)D_005FEE00;
-    entry = GetIndexedEntry_2CC4B8(snd, voice->key0);
+    entry = cSnd_GetSeEntry(snd, voice->key0);
     if (cSeData_IsAlive(entry) == 0) {
         goto reset;
     }
@@ -66,7 +66,7 @@ void func_002CDA80(cSndSeVoice *voice)
         voice->stateFlags &= 0xFFFEFFFF;
     }
     if ((*(unsigned char *)&voice->flags ^ 1) & 1) {
-        if (func_002CE588(voice, buf) == 0) {
+        if (cSndSeVoice_Play(voice, buf) == 0) {
             goto reset;
         }
         voice->flags |= 1;
@@ -89,7 +89,7 @@ void func_002CDA80(cSndSeVoice *voice)
     switch ((unsigned int)state) {
     case 0:
         if (*(unsigned char *)(buf + 0x22) < voice->pri) {
-            func_002CE3E8(voice);
+            cSndSeVoice_Unlink(voice);
         }
         break;
     case 1:
@@ -108,7 +108,7 @@ void func_002CDA80(cSndSeVoice *voice)
     }
     goto age;
 reset:
-    func_002CE3E8(voice);
+    cSndSeVoice_Unlink(voice);
     return;
 age:
     voice->pri = voice->pri + 1;

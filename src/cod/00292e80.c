@@ -34,29 +34,29 @@ void SetCostumeFlagIfMatch_2982A0(int a0)
 }
 
 /* A slot is usable when its entry is not loaded yet, or is idle. */
-__attribute__((section(".text.IsSlotUsable_2CB830")))
-int IsSlotUsable_2CB830(cSnd *self, int slot)
+__attribute__((section(".text.cSnd_SeIsLoadOk")))
+int cSnd_SeIsLoadOk(cSnd *self, int slot)
 {
 	int usable;
 
 	usable = 1;
-	if (func_002CFC78(GetIndexedEntry_2CC4B8(self, slot)) == 1) {
+	if (cSeData_IsFree(cSnd_GetSeEntry(self, slot)) == 1) {
 		return 1;
 	}
-	if (func_002CFC88(GetIndexedEntry_2CC4B8(self, slot)) != 0) {
+	if (cSeData_IsFailed(cSnd_GetSeEntry(self, slot)) != 0) {
 		usable = 0;
 	}
 	return usable;
 }
 
 /* Finds the first slot in 0x14..0x33 whose entry is idle, or -1. */
-__attribute__((section(".text.FindActiveSlot_2CC050")))
-int FindActiveSlot_2CC050(cSnd *self)
+__attribute__((section(".text.cSnd_FindFreeSeSlot")))
+int cSnd_FindFreeSeSlot(cSnd *self)
 {
 	int slot;
 
 	for (slot = 0x14; slot < 0x34; slot++) {
-		if (func_002CFC78(&self->seEntry[slot]) == 1) {
+		if (cSeData_IsFree(&self->seEntry[slot]) == 1) {
 			return slot;
 		}
 	}

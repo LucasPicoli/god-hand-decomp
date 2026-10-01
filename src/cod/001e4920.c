@@ -3,11 +3,11 @@
 #include "godhand/Slot2.h"
 #include "godhand/cMessDrawFont.h"
 
-extern int ResetEntityStateById_2C29F8(int a0, int a1);
+extern int cSceAtManager_SetDisableById(int a0, int a1);
 extern void cScenario_taskExec(void *a0, void *a1, void *a2, int a3);
 extern char D_005FEA60[];
 extern char *D_003C2F84;
-extern void func_001E4970(void);
+extern void Slot2_Execute(void);
 extern char *D_003BD6E8;
 extern void func_00143A90(char *a0);
 extern void *cMessage_getMessageAddr(void *mgr, int id);
@@ -43,8 +43,8 @@ extern int D_00747A2C;
 
 __attribute__((section(".text.Slot2_actBtnHandler")))
 void Slot2_actBtnHandler(Slot2 *self) {
-    ResetEntityStateById_2C29F8((int)D_005FEA60, self->slotId);
-    cScenario_taskExec(D_003C2F84, (void *)&func_001E4970, self, -1);
+    cSceAtManager_SetDisableById((int)D_005FEA60, self->slotId);
+    cScenario_taskExec(D_003C2F84, (void *)&Slot2_Execute, self, -1);
 }
 
 /* Slot2 end-of-game stage: on the first call run the end hook, then flag the

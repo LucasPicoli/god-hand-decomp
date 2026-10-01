@@ -170,8 +170,8 @@ void func_003B7AA8(int a0) {
     Deci2Call(0x10, &local);
 }
 
-__attribute__((section(".text.func_002CDA08")))
-void *func_002CDA08(void *a0) {
+__attribute__((section(".text.cSndSeVoice_Ctor")))
+void *cSndSeVoice_Ctor(void *a0) {
     cSndSeVoice_Init(a0);
     return a0;
 }

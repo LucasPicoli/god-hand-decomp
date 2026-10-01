@@ -12,7 +12,7 @@ __attribute__((section(".text.cSndBgmNode_IsDone")))
 int cSndBgmNode_IsDone(cSndBgmNode *node)
 {
     int two = 2;
-    if (func_002CC568(node) == 0 || (node->flags & 1))
+    if (cSndBgmNode_IsActive(node) == 0 || (node->flags & 1))
         return 1;
     return two < GetSequenceResult_373770(node);
 }

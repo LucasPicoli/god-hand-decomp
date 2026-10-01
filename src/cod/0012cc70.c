@@ -12,7 +12,7 @@ extern void func_0037C618(void *slot, void *obj, int bit);
 extern int *D_003C2384;
 extern int D_003C2388;
 extern void cIDBase_buildEntries(int a0, int a1, int a2);
-extern void func_002AA480(int a0);
+extern void cIDBase_linkParents(int a0);
 extern void ColiseumBattle_DefeatAllEnemies(void *a0);
 extern void cEmSetParam_setEm(void *a0, int a1);
 extern void cEmWrap_StartAction(void *a0);
@@ -168,7 +168,7 @@ int cIDBase_setWorkFromData(int a0, int a1)
         }
     }
     cIDBase_buildEntries(a0, q, *(int *)(a0 + 0xC));
-    func_002AA480(a0);
+    cIDBase_linkParents(a0);
     return 1;
 ng:
     return 0;

@@ -8,8 +8,8 @@ extern void UnlinkAndCoalesceNode_2A9680(void *a0, void *a1);
 extern void func_001EB9F8(void *a0);
 extern void **D_003C2384;
 
-__attribute__((section(".text.func_001E9E40")))
-void func_001E9E40(void *a0) {
+__attribute__((section(".text.DogRace_Release")))
+void DogRace_Release(void *a0) {
     char *p = (char *)a0;
     char *q;
     int i;

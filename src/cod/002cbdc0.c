@@ -6,8 +6,8 @@ extern char D_0076A790[];
 extern char D_0076E590[];
 
 /* Pushes a call onto the recent-call ring. */
-__attribute__((section(".text.func_002CBDC0")))
-void func_002CBDC0(cSnd *self, int a, int b, int tick)
+__attribute__((section(".text.cSnd_SeRecentPush")))
+void cSnd_SeRecentPush(cSnd *self, int a, int b, int tick)
 {
     int pos;
     pos = self->recentPos + 1;

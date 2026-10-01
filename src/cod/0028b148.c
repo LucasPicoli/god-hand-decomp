@@ -96,8 +96,8 @@ void *func_002C38D8(void *a0) {
 
 
 
-__attribute__((section(".text.func_002CC540")))
-int func_002CC540(void *a0) {
+__attribute__((section(".text.cSndBgmNode_Dtor")))
+int cSndBgmNode_Dtor(void *a0) {
     *(char**)((char*)a0+0x80) = D_0044CEE8;
     return func_00372C80(a0);
 }

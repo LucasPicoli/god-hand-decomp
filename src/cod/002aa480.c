@@ -6,8 +6,8 @@ extern char *D_00754C58;
 
 /* Resolve each entry's parent: an entry whose parentRef (0x29) names the id
  * (0x28) of another entry points `parent` at that entry. */
-__attribute__((section(".text.func_002AA480")))
-void func_002AA480(cIDBaseObj *self) {
+__attribute__((section(".text.cIDBase_linkParents")))
+void cIDBase_linkParents(cIDBaseObj *self) {
     int i;
     int j;
     int c;

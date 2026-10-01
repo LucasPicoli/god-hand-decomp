@@ -18,7 +18,7 @@ extern void func_001F6B78(void *p, int a);
 extern void func_001F6C40(void *p, int a);
 extern int JukeBox_Load(void *p);
 extern void func_001F5E90(void *p);
-extern void func_001F5C48(void *p);
+extern void JukeBox_Release(void *p);
 extern void cSnd_BgmFlaggedNodeKick(void *p, float f);
 
 extern void cIDBase(void *);
@@ -61,7 +61,7 @@ void JukeBox_Execute(JukeBoxObj *self)
         } while (self->done == 0);
     }
 
-    func_001F5C48(self);
+    JukeBox_Release(self);
 
     D_005CAC90.f = 0x1E;
     cSnd_BgmFlaggedNodeKick(&D_005FEE00, 20.0f);

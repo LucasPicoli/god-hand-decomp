@@ -5,7 +5,7 @@
 extern void ClearFlagBits_373858(cSndBgmNode *node, int bits);
 extern int IsSequenceFlagSet_3737C8(cSndBgmNode *node, int bits);
 extern int GetSequenceResult_373770(cSndBgmNode *node);
-extern void func_002CC5E8(cSndBgmNode *node);
+extern void cSndBgmNode_Unlink(cSndBgmNode *node);
 extern void UpdateSequenceNode_373430(cSndBgmNode *node);
 extern void ResetNodeData_3733C8(cSndBgmNode *node);
 extern int cBgmData_GetHeadPtr(int data);
@@ -30,7 +30,7 @@ void cSndBgmNode_Update(cSndBgmNode *node)
         return;
     if (GetSequenceResult_373770(node) != 0)
         return;
-    func_002CC5E8(node);
+    cSndBgmNode_Unlink(node);
 }
 
 /* Starts a node's sequence from its bank and request. Returns 1 once it is running, 0 if it cannot start.
@@ -73,7 +73,7 @@ ng:
 __attribute__((section(".text.cSndSeVoice_Bind")))
 int cSndSeVoice_Bind(cSndSeVoice *v, short key0, short key1, char *obj, char *part, int a5, int a6)
 {
-    if (func_002CDA38(v) == 1)
+    if (cSndSeVoice_IsActive(v) == 1)
         return 0;
     v->obj = obj;
     v->part = part;
@@ -91,14 +91,14 @@ int cSndSeVoice_Bind(cSndSeVoice *v, short key0, short key1, char *obj, char *pa
             func_0030A538(v->pos, *(int *)(part + OBJ_MTX_OFFSET));
         v->pos[1] += 1.3f;
     }
-    return func_002CDFF0(v, key0, key1, a5, a6);
+    return cSndSeVoice_Setup(v, key0, key1, a5, a6);
 }
 
 /* Binds a free voice to a fixed matrix (0 = the global origin), places it there, then starts it. */
 __attribute__((section(".text.cSndSeVoice_BindMtx")))
 int cSndSeVoice_BindMtx(cSndSeVoice *v, short key0, short key1, int mtx, int a5, int a6)
 {
-    if (func_002CDA38(v) == 1)
+    if (cSndSeVoice_IsActive(v) == 1)
         return 0;
     v->obj = 0;
     v->part = 0;
@@ -113,5 +113,5 @@ int cSndSeVoice_BindMtx(cSndSeVoice *v, short key0, short key1, int mtx, int a5,
         func_0030A538(v->pos, mtx);
         v->pos[1] += 1.3f;
     }
-    return func_002CDFF0(v, key0, key1, a5, a6);
+    return cSndSeVoice_Setup(v, key0, key1, a5, a6);
 }

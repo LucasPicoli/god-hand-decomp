@@ -30,8 +30,8 @@ extern long D_00747640;
 
 
 /* Win state: pay out four times the bet, counting the winnings into the gold total. */
-__attribute__((section(".text.func_001D3CE8")))
-void func_001D3CE8(BlackJack *self) {
+__attribute__((section(".text.BlackJack_UpdateBlackJackWin")))
+void BlackJack_UpdateBlackJackWin(BlackJack *self) {
     switch (self->phase) {
     case 0:
         self->timer = 0x14;

@@ -35,8 +35,8 @@ extern char D_007474A0[];
 #define SLOT2_CASINO_FLAG 0x8000000
 /* Slot2 ticket exchange screen: pay the player a casino ticket, then show the
  * result and wait for a button before returning to the title state. */
-__attribute__((section(".text.func_001E5F30")))
-void func_001E5F30(Slot2 *self) {
+__attribute__((section(".text.Slot2_PayoutTicket")))
+void Slot2_PayoutTicket(Slot2 *self) {
     switch (self->phase) {
     case 0:
         self->timer = 0x78;

@@ -92,8 +92,8 @@ void func_001E6938(Slot2 *self)
 
 
 
-__attribute__((section(".text.func_001D2BB0")))
-void func_001D2BB0(void *a0)
+__attribute__((section(".text.BlackJack_UpdateDoubleDownMenu")))
+void BlackJack_UpdateDoubleDownMenu(void *a0)
 {
     char *s0 = (char *)a0;
 

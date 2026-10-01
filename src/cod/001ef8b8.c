@@ -13,7 +13,7 @@ extern char **D_003C2384;
 extern void KeyStop(void);
 extern void classFADE_kill(void *p);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
-extern void func_001EFD00(ColiseumBattle *self);
+extern void ColiseumBattle_KillFade(ColiseumBattle *self);
 extern void ColiseumBattle_StartFade(ColiseumBattle *self, unsigned char mode);
 extern void func_001F28C0(void *ui);
 extern void func_001F28F0(void *ui);

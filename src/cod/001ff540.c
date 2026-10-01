@@ -12,7 +12,7 @@ int IsSlotArrayValid_1FF540(int *a0) {
     int i;
     p = a0 + 9;
     for (i = 0; i < 10; i++) {
-        if (IsSlotAvailable_2CB778(&D_005FEE00, p[0]) == 0) return 0;
+        if (cSnd_SeIsLoaded(&D_005FEE00, p[0]) == 0) return 0;
         p++;
     }
     return 1;

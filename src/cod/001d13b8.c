@@ -23,8 +23,8 @@ extern int D_003C11BC;
 extern int D_00586B80;
 
 /* Betting state with the toggle button: pad buttons confirm the bet or step it by 100. */
-__attribute__((section(".text.func_001D13B8")))
-void func_001D13B8(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateAddBetMenu")))
+void BlackJack_UpdateAddBetMenu(BlackJack *self)
 {
     switch (self->phase) {
     case 0:

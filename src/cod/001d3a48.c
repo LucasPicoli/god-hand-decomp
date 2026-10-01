@@ -32,8 +32,8 @@ extern long D_00747640;
 
 
 /* Bet-back state: pay the bet back into the gold total in steps of 10, then end the round. */
-__attribute__((section(".text.func_001D3A48")))
-void func_001D3A48(BlackJack *self) {
+__attribute__((section(".text.BlackJack_UpdatePush")))
+void BlackJack_UpdatePush(BlackJack *self) {
     switch (self->phase) {
     case 0:
         self->timer = 0x14;

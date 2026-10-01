@@ -2,7 +2,7 @@
 
 extern void func_002CA798(void *a0);
 extern int cDvd_ReadAlloc(void *a0, void *a1, void *a2, void *a3, int t0, int t1, int t2, int t3);
-extern void func_00201108(void *a0, int a1);
+extern void cDvd_CheckWaitFrame(void *a0, int a1);
 extern void FileNameFromObjId(char *buf, int id);
 extern int EnsureInitThenForward_2A9538_30EE08(void *, int, void *);
 extern int cCoreSave_getCostumeNo(void *a0);
@@ -62,8 +62,8 @@ void func_0030D5C8(void) {
         if ((b & 0x2000) == 0) {
         h = cDvd_ReadAlloc(D_00583F20, (void *)D_003C3BC8[1],
                            (char *)&D_00747A24 - 0x34, D_00754200, 0, 0, 0, 0);
-        func_00201108(D_00583F20, h);
-        func_00201108(D_00583F20, h);
+        cDvd_CheckWaitFrame(D_00583F20, h);
+        cDvd_CheckWaitFrame(D_00583F20, h);
         h = cDvd_ReadAlloc(D_00583F20, (void *)D_003C3BC8[10],
                            (char *)&D_00747A24 + 0x20, D_00754200, h, 0, 0, 0);
         }
@@ -77,7 +77,7 @@ void func_0030D5C8(void) {
         i = 0;
         if (p[0] != 0xFFFF) {
             do {
-                func_00201108(D_00583F20, h);
+                cDvd_CheckWaitFrame(D_00583F20, h);
                 i++;
                 FileNameFromObjId(buf, p[0]);
                 h = cDvd_ReadAlloc(D_00583F20, buf, D_00752C38 + (p[1] << 2),
@@ -85,7 +85,7 @@ void func_0030D5C8(void) {
                 p = D_003C3CC4 + i * 2;
             } while (p[0] != 0xFFFF);
         }
-        func_00201108(D_00583F20, h);
+        cDvd_CheckWaitFrame(D_00583F20, h);
         }
     }
     if ((D_00747A24 & 0x10000) == 0) {

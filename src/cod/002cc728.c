@@ -3,8 +3,8 @@
 
 extern int D_005FEE00;
 extern int cSnd_GetBgmData(int a0, int a1);
-extern void func_002CC628(void *a0);
-extern void func_002CC5C0(void *a0);
+extern void cSndBgmNode_StepState(void *a0);
+extern void cSndBgmNode_Link(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -17,8 +17,8 @@ extern void func_002CC5C0(void *a0);
 
 
 /* Fills a BGM node from a start request and links it into the active list. Returns 0 for an empty request. */
-__attribute__((section(".text.func_002CC728")))
-int func_002CC728(cSndBgmNode *node, int bank, cSndBgmReq *req, int flags)
+__attribute__((section(".text.cSndBgmNode_Setup")))
+int cSndBgmNode_Setup(cSndBgmNode *node, int bank, cSndBgmReq *req, int flags)
 {
     int state;
 
@@ -35,11 +35,11 @@ int func_002CC728(cSndBgmNode *node, int bank, cSndBgmReq *req, int flags)
         break;
     case 3:
         node->matchWt = req->wordA;
-        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
+        node->link = (int *)cSnd_GetBgmLinkPtr(&D_005FEE00, req->wordB);
         break;
     case 2:
-        node->entry = (int *)func_002D0598(&D_005FEE00, req->wordA);
-        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
+        node->entry = (int *)cSnd_GetBgmEntryPtr(&D_005FEE00, req->wordA);
+        node->link = (int *)cSnd_GetBgmLinkPtr(&D_005FEE00, req->wordB);
         break;
     case 1:
     case 4:
@@ -51,7 +51,7 @@ int func_002CC728(cSndBgmNode *node, int bank, cSndBgmReq *req, int flags)
         node->state = 0;
         return 0;
     }
-    func_002CC628(node);
-    func_002CC5C0(node);
+    cSndBgmNode_StepState(node);
+    cSndBgmNode_Link(node);
     return 1;
 }

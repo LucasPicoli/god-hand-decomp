@@ -7,7 +7,7 @@ extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern void cBgmData_Reset(cBgmData *);
-extern void func_002CD4E0(cSndBgmNode *, float, float);
+extern void cSndBgmNode_FadeTo(cSndBgmNode *, float, float);
 extern float GetSequenceBlendWeight_373938(cSndBgmNode *, int);
 extern void UpdateSequenceNodeWeighted_373560(cSndBgmNode *, int, float);
 extern void cSndBgmNode_FadeOut(cSndBgmNode *, float);
@@ -31,7 +31,7 @@ void cSnd_BgmEvFadeSet(cSnd *self, int bgmPt, int reqNo, float time, float level
                 float w = GetSequenceBlendWeight_373938(node, 0);
                 UpdateSequenceNodeWeighted_373560(node, -1, w * weight);
             }
-            func_002CD4E0(node, time, level);
+            cSndBgmNode_FadeTo(node, time, level);
         }
     }
 }
@@ -54,7 +54,7 @@ void cSnd_BgmFadeOutAll(cSnd *self, int bgmPt, int keepReq, float time)
 __attribute__((section(".text.cSnd_BgmEvIsReady")))
 int cSnd_BgmEvIsReady(cSnd *self, int bgmPt, int reqNo)
 {
-    int node = func_002D22B0(self, bgmPt, reqNo);
+    int node = cSnd_FindBgmNode(self, bgmPt, reqNo);
     if (node != 0 && cSndBgmNode_IsDone(node) == 0)
         return 0;
     return 1;

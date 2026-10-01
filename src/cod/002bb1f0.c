@@ -61,14 +61,14 @@ void ClearInputState_2C33D8(void *a0)
 }
 
 /* Cuts the extension off a file name, then loads it into the slot's entry. */
-__attribute__((section(".text.LoadFileStripExt_2CB638")))
-int LoadFileStripExt_2CB638(cSnd *self, int slot, char *name)
+__attribute__((section(".text.cSnd_SeLoadFile")))
+int cSnd_SeLoadFile(cSnd *self, int slot, char *name)
 {
     char *dot = func_003A54D8(name, 0x2E);
     if (dot != 0) {
         *dot = 0;
     }
-    return cSeData_LoadFile(GetIndexedEntry_2CC4B8(self, slot), slot, name);
+    return cSeData_LoadFile(cSnd_GetSeEntry(self, slot), slot, name);
 }
 
 

@@ -290,8 +290,8 @@ __attribute__((section(".text.NoOp_1B80A8")))
 void NoOp_1B80A8(void) {
 }
 
-__attribute__((section(".text.GetField_600_1B8640")))
-unsigned char GetField_600_1B8640(unsigned char *a0) {
+__attribute__((section(".text.cOmbb_ckFire")))
+unsigned char cOmbb_ckFire(unsigned char *a0) {
     return a0[0x600];
 }
 
@@ -356,8 +356,8 @@ void SetField_162C_1ED488(char *a0, int a1) {
     *(int *)(a0 + 0x162C) = a1;
 }
 
-__attribute__((section(".text.NoOp_1EF740")))
-void NoOp_1EF740(void) {}
+__attribute__((section(".text.ColiseumBattle_StepIdle")))
+void ColiseumBattle_StepIdle(void) {}
 
 __attribute__((section(".text.NoOp_194550")))
 void NoOp_194550(void) {
@@ -1058,8 +1058,8 @@ void Obj0000_Set_Byte_2F5_If_Field_618_GE_29(CGUnk_0010B5C8_t *arg0)
   }
 }
 
-__attribute__((section(".text.Obj0000_Clear_Field_28_And_Ptr4_Field_30_34")))
-void Obj0000_Clear_Field_28_And_Ptr4_Field_30_34(char *a0) {
+__attribute__((section(".text.CustomIDWork_ResetMoveOffsetPos")))
+void CustomIDWork_ResetMoveOffsetPos(char *a0) {
     char *ptr = *(char * volatile *)(a0 + 0x4);
     if (ptr == 0) return;
     *(int *)(a0 + 0x28) = 0;

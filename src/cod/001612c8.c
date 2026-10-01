@@ -136,8 +136,8 @@ void func_002C4EF0(void)
     cTaskWork_exit(*(void **)(D_003C2F84 + 0x20));
 }
 
-__attribute__((section(".text.func_001D32D8")))
-void func_001D32D8(char *s1)
+__attribute__((section(".text.BlackJack_UpdateRevealDealerHand")))
+void BlackJack_UpdateRevealDealerHand(char *s1)
 {
     int i;
     int j;

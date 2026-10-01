@@ -56,8 +56,8 @@ int UpdateSlotCurValues_295860(char *a0)
     return s3 != 0;
 }
 
-__attribute__((section(".text.SetVia4_Float_54C_295B80")))
-void SetVia4_Float_54C_295B80(void *a0, float f)
+__attribute__((section(".text.cEmWrap_setMutekiTimer")))
+void cEmWrap_setMutekiTimer(void *a0, float f)
 {
     if (FindResolveActor_295978(a0)) {
         char *p = *(char **)((char *)a0 + 4);

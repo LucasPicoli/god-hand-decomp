@@ -592,8 +592,8 @@ void *func_0028EAB0(void)
     return &D_007862D8;
 }
 
-__attribute__((section(".text.func_002B8340")))
-void *func_002B8340(void)
+__attribute__((section(".text.cObjSimple_GetTypeInfo")))
+void *cObjSimple_GetTypeInfo(void)
 {
     if (D_007862E8 == 0) {
         func_0014FD20();
@@ -682,8 +682,8 @@ void *func_002BACF0(void)
     return &D_00786378;
 }
 
-__attribute__((section(".text.func_002CD5C0")))
-void *func_002CD5C0(void)
+__attribute__((section(".text.cBgm_GetTypeInfo")))
+void *cBgm_GetTypeInfo(void)
 {
     if (D_00786398 == 0) {
         Get_460D70_3BAFF8();

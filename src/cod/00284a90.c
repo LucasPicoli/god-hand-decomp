@@ -22,7 +22,7 @@ int IsAnyActorActive_289418(void) {
     for (i = 0; i < 2; i++) {
         r = func_002948C8(&D_005864F0, i);
         if (r != 0) {
-            if (GetField_600_1B8640(r) != 0) {
+            if (cOmbb_ckFire(r) != 0) {
                 return 1;
             }
         }

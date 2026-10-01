@@ -24,8 +24,8 @@ int func_002AEB50(char *a0, char *a1, int a2) {
     return ((v0 + a2) & 0xFFFF) | 0x1000;
 }
 
-__attribute__((section(".text.func_002C3040")))
-void func_002C3040(char *a0, int *a1, int *a2) {
+__attribute__((section(".text.cSceAtManager_linkUnit")))
+void cSceAtManager_linkUnit(char *a0, int *a1, int *a2) {
     int v1 = *a1;
     int v0 = (int)a2 | 0x80000000;
     *a2 = v1;

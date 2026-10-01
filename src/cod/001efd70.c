@@ -13,8 +13,8 @@ extern int D_005864F0;
 
 /* Counts the battle clock down by the game speed and shows it as
 * minutes, seconds and hundredths. */
-__attribute__((section(".text.func_001EFD70")))
-void func_001EFD70(ColiseumBattle *self, void *a1) {
+__attribute__((section(".text.ColiseumBattle_UpdateCountdown")))
+void ColiseumBattle_UpdateCountdown(ColiseumBattle *self, void *a1) {
     float d;
     float t;
     int mins;

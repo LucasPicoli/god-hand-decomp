@@ -5,7 +5,7 @@ extern int *D_003C2384;
 
 /* The stores go through a raw byte offset: through the struct fields the
  * scheduler floats the D_003C2384 load above them and the bytes change. */
-extern void func_002A9DF8(cIDBaseObj *self);
+extern void cIDBase_clear(cIDBaseObj *self);
 extern void *func_002ACD78(int a0, int a1, int a2);
 extern int cIDBase_setWorkFromData(cIDBaseObj *self, void *data);
 extern void cIDBase_resetAnim(cIDBaseObj *self);
@@ -14,7 +14,7 @@ __attribute__((section(".text.cIDBase_initialize")))
 int cIDBase_initialize(cIDBaseObj *self, int resNo, int id)
 {
     void *res;
-    func_002A9DF8(self);
+    cIDBase_clear(self);
     *(int *)((char *)self + IDBASE_OFFSET(id)) = id;
     *(char *)((char *)self + IDBASE_OFFSET(mode)) = 6;
     *(int *)((char *)self + IDBASE_OFFSET(resNo)) = resNo;
@@ -44,7 +44,7 @@ cIDBaseObj *cIDBase(cIDBaseObj *self)
 {
     VU0_SQC2_VF0(self, 0x20);
     VU0_SQC2_VF0(self, 0x30);
-    func_002A9DF8(self);
+    cIDBase_clear(self);
     return self;
 }
 
@@ -118,11 +118,11 @@ extern void cScrSpriteDraw_drawInit(void *p);
 extern void cMessDrawFont_setEnvInit(void *a0);
 extern void func_002AF6A8(void *a0, int a1, int a2);
 
-extern void func_002AAFF0(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
+extern void cIDBase_transSprite(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
 extern void cIDBase_transText(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void cIDBase_transIcon(cIDBaseObj *self, cIDBaseEnt *ent);
-extern void func_002AB360(cIDBaseObj *self, cIDBaseEnt *ent);
-extern void func_002AAEF0(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
+extern void cIDBase_transPanel(cIDBaseObj *self, cIDBaseEnt *ent);
+extern void cIDBase_transTex(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
 /* Draw every visible entry, layer 4 first and layer -4 last, picking the
  * draw routine from the entry's kind. An entry is skipped when it is HIDDEN
  * or NO_DRAW, or when a CHILD-flagged entry in its parent chain is NO_DRAW. */
@@ -179,7 +179,7 @@ void cIDBase_trans(cIDBaseObj *self)
             if (flags & m27) continue;
             switch (ent->kind) {
             case IDENT_KIND_SPRITE:
-                func_002AAFF0(self, (cIDBaseDraw *)draw, ent);
+                cIDBase_transSprite(self, (cIDBaseDraw *)draw, ent);
                 break;
             case IDENT_KIND_TEXT:
                 cIDBase_transText(self, ent);
@@ -188,10 +188,10 @@ void cIDBase_trans(cIDBaseObj *self)
                 cIDBase_transIcon(self, ent);
                 break;
             case IDENT_KIND_PANEL:
-                func_002AB360(self, ent);
+                cIDBase_transPanel(self, ent);
                 break;
             default:
-                func_002AAEF0(self, (cIDBaseDraw *)draw, ent);
+                cIDBase_transTex(self, (cIDBaseDraw *)draw, ent);
                 break;
             }
         }

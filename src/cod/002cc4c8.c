@@ -2,8 +2,8 @@
 #include "godhand/cSnd.h"
 
 /* Returns voice idx of the voice pool. */
-__attribute__((section(".text.func_002CC4C8")))
-cSndSeVoice *func_002CC4C8(cSnd *self, int idx) {
+__attribute__((section(".text.cSnd_GetVoice")))
+cSndSeVoice *cSnd_GetVoice(cSnd *self, int idx) {
     return &self->voicePool[idx];
 }
 

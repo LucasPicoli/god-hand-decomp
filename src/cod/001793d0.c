@@ -12,7 +12,7 @@ extern char D_007419A0[];
 extern int cSeData_IsAlive(void *p);
 extern int EnsureInitThenForward_2A9538_30EE08(int a, int b, int c);
 extern int FindEntryValue_1FF9C0(void *a, void *b, int c, int d);
-extern void func_002CFCB0(void *a, int b);
+extern void cSeData_AddLoadBits(void *a, int b);
 extern char D_00580D40[];
 extern void cIDBase_initialize(void *p, int a, int b);
 extern void cIDBase_restartAnim(void *p);
@@ -103,8 +103,8 @@ void func_001838D8(char *p, void *arg)
     SetField214PtrThenInit_1B6F38(p, arg);
 }
 
-__attribute__((section(".text.func_002CFBC0")))
-int func_002CFBC0(char *p)
+__attribute__((section(".text.cSeData_PrepareDecode")))
+int cSeData_PrepareDecode(char *p)
 {
     char *x;
     int r;
@@ -121,7 +121,7 @@ int func_002CFBC0(char *p)
 
     if (func_00322A68(*(void **)(p + 0x28), 0, r, *(int *)(p + 0x24)) != 0) return 0;
 
-    func_002CFCB0(p, 4);
+    cSeData_AddLoadBits(p, 4);
     return 1;
 }
 

@@ -3,8 +3,8 @@
 extern int D_00569B70;
 extern int cCoreSave_getGameLevel(void *save);
 
-__attribute__((section(".text.func_001B8670")))
-void func_001B8670(char *p) {
+__attribute__((section(".text.cOmbb_initCountdown")))
+void cOmbb_initCountdown(char *p) {
     switch (cCoreSave_getGameLevel(&D_00569B70)) {
     case 1:
     default:

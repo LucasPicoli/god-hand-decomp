@@ -141,8 +141,8 @@ extern cObjSimpleVec3 D_003BD880;
 /* Make the prop follow its parent: copy the offset into this object's position and put it in the
  * parent's frame (the parent, or its child `parentIdx`), copy rot/vec240/f24C/flag bit 4 from the
  * parent, and reset the child positions chosen by `followSel`. */
-__attribute__((section(".text.func_002B6FE8")))
-void func_002B6FE8(cObjSimple *self)
+__attribute__((section(".text.cObjSimple_FollowParent")))
+void cObjSimple_FollowParent(cObjSimple *self)
 {
     char hold[16];
     int idx;

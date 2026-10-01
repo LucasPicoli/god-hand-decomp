@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void sceVu0UnitMatrix(void *m);
-extern void Forward2CD668_2CD638(void);
+extern void cSndMemHeap_OpenMain(void);
 extern void func_002CA220(void *a);
 extern void func_002CA390(void *a, int b);
 extern char D_005FFD80[];
@@ -51,7 +51,7 @@ void func_002C9F58(void *arg) {
     }
 
     *(int *)(s + 0x1E0) = 0;
-    Forward2CD668_2CD638();
+    cSndMemHeap_OpenMain();
     func_002CA220(s);
     *(int *)(s + 0x130) = -1;
     func_002CA390(s, 0);

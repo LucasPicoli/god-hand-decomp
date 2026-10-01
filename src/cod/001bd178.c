@@ -93,8 +93,8 @@ void func_002BE510(int a, int b)
 
 extern cSnd D_005FEE00;
 /* Takes a BGM node off the active list and marks it unused. */
-__attribute__((section(".text.func_002CC5E8")))
-void func_002CC5E8(cSndBgmNode *node) {
+__attribute__((section(".text.cSndBgmNode_Unlink")))
+void cSndBgmNode_Unlink(cSndBgmNode *node) {
     cSndBgmNode *prev = node->prev;
     cSndBgmNode *next;
 
@@ -111,8 +111,8 @@ void func_002CC5E8(cSndBgmNode *node) {
 }
 
 /* Takes a voice off the playing list and clears what it was bound to. */
-__attribute__((section(".text.func_002CE3E8")))
-void func_002CE3E8(cSndSeVoice *voice)
+__attribute__((section(".text.cSndSeVoice_Unlink")))
+void cSndSeVoice_Unlink(cSndSeVoice *voice)
 {
     if (voice->prev != 0)
         voice->prev->next = voice->next;

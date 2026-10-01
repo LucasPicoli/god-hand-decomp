@@ -15,8 +15,8 @@ int func_002B4F98(void *a0, int key) {
     return 0;
 }
 
-__attribute__((section(".text.func_002C30C8")))
-unsigned int func_002C30C8(void *a0, void *a1) {
+__attribute__((section(".text.cSceAtManager_getNextUnit")))
+unsigned int cSceAtManager_getNextUnit(void *a0, void *a1) {
     unsigned int x = *(unsigned int *)a1;
     while (x != 0xFFFFFFFF) {
         unsigned int y = x & 0x7FFFFFFF;

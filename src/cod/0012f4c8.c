@@ -183,7 +183,7 @@ void cSnd_BgmEvCutSet(int a0, int a1)
     int *hd;
     unsigned char *e;
 
-    if (func_002CFF68((int *)cSnd_GetBgmData(a0, 1)) == 0) {
+    if (cBgmData_IsReady((int *)cSnd_GetBgmData(a0, 1)) == 0) {
         return;
     }
     hd = (int *)cBgmData_GetHeadPtr((int *)cSnd_GetBgmData(a0, 1));

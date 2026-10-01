@@ -14,8 +14,8 @@ extern char D_0044D0C0[];
 extern char D_0044D0D8[];
 extern void *EnsureInitThenForward_2A9538_30EE08(int, int, void *);
 extern int FindEntryValue_1FF9C0(char *, char *, int, int);
-extern void func_002D0350(cBgmData *, int);
-extern int func_002D0128(cBgmData *, int, int);
+extern void cBgmData_AddLoadBits(cBgmData *, int);
+extern int cBgmData_LoadNumbered(cBgmData *, int, int);
 extern char D_00754210[];
 extern char D_00583F20[];
 extern char D_0044D0A0[];
@@ -26,7 +26,7 @@ extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
 __attribute__((section(".text.cSnd_BgmEvIsPlaying")))
 int cSnd_BgmEvIsPlaying(void *unused, int reqNo)
 {
-    return func_002D22B0(D_005FEE00, 0, reqNo) != 0;
+    return cSnd_FindBgmNode(D_005FEE00, 0, reqNo) != 0;
 }
 
 /* Allocate the decode buffer for the slot's table and register it; 1 on success. */
@@ -36,7 +36,7 @@ int cBgmData_PrepareDecode(cBgmData *d)
     char name[0x40];
     int key;
 
-    if (func_002CFF68(d) == 1)
+    if (cBgmData_IsReady(d) == 1)
         return 0;
     d->f14 = EnsureInitThenForward_2A9538_30EE08(((((unsigned int)(*(int *)d->head) + 0x8E) >> 1) << 2), 0x10, d->pool);
     switch (d->f18) {
@@ -53,11 +53,11 @@ int cBgmData_PrepareDecode(cBgmData *d)
     key = FindEntryValue_1FF9C0(D_00580D40, name, 0, 0);
     if (func_00322A68(d->f18, 0, key, d->f14) != 0)
         return 0;
-    func_002D0350(d, 4);
+    cBgmData_AddLoadBits(d, 4);
     return 1;
 }
 
-/* Like func_002D0128 for a named table; 1 when the data arrived. */
+/* Like cBgmData_LoadNumbered for a named table; 1 when the data arrived. */
 __attribute__((section(".text.cBgmData_LoadNamed")))
 int cBgmData_LoadNamed(cBgmData *d, int kind, int req)
 {
@@ -81,7 +81,7 @@ int cBgmData_LoadNamed(cBgmData *d, int kind, int req)
         cBgmData_Reset(d);
         return 0;
     } else {
-        func_002D0350(d, 1);
+        cBgmData_AddLoadBits(d, 1);
         return 1;
     }
 }

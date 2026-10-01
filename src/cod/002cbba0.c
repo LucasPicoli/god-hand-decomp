@@ -39,9 +39,9 @@ cSndSeVoice *cSnd_AllocVoice(cSnd *self)
 {
     int i;
     for (i = 0; i < CSND_VOICE_NUM; i++) {
-        if (func_002CDA38(func_002CC4C8(self, i)) == 0) {
-            cSndSeVoice_Init(func_002CC4C8(self, i));
-            return func_002CC4C8(self, i);
+        if (cSndSeVoice_IsActive(cSnd_GetVoice(self, i)) == 0) {
+            cSndSeVoice_Init(cSnd_GetVoice(self, i));
+            return cSnd_GetVoice(self, i);
         }
     }
     return 0;

@@ -10,7 +10,7 @@ extern void func_001331B8(void *a0, long a1, int a2);
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void func_001B7BB8(void *a0);
 extern int *D_003C2384;
-extern void func_002A9DF8(int a0);
+extern void cIDBase_clear(int a0);
 extern void cIDBase_resetAnim(int a0);
 
 /* Retire the object: unhide it, release its model and collision, drop its item and mark it gone. */

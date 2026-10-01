@@ -130,14 +130,14 @@ void InitSubBufferPool_2C3280(char *a0)
 __attribute__((section(".text.InitSubsystemGroup_2CA518")))
 void InitSubsystemGroup_2CA518(void *a0)
 {
-	func_002CC150(a0);
+	cSnd_UpdateListener(a0);
 	func_002D22F0(a0);
 	func_002CB128(a0);
 	func_002CB200(a0);
 }
 
-__attribute__((section(".text.InitActorVtable_2CC500")))
-void *InitActorVtable_2CC500(void *a0)
+__attribute__((section(".text.cSndBgmNode_Ctor")))
+void *cSndBgmNode_Ctor(void *a0)
 {
 	int r = Obj0000_Set_Field_80_372C68(a0);
 	*(int **)((char *)a0 + 0x80) = &D_0044CEE8;

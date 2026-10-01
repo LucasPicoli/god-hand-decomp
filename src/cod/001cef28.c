@@ -13,7 +13,7 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern int GetField_600_1B8640(int a0);
+extern int cOmbb_ckFire(int a0);
 extern void cOmbb_setFire(int a0);
 extern float SetField444SignedByFlag434_158288(void *a0, float f12);
 extern float cEmManage_GetSpeedRate(void *a0);
@@ -67,7 +67,7 @@ void func_00244708(void *a0)
     }
     if (*(unsigned short *)(s0 + 0x3AC) & 1) {
         if (s1 != 0) {
-            if (GetField_600_1B8640(s1) == 0)
+            if (cOmbb_ckFire(s1) == 0)
                 cOmbb_setFire(s1);
         }
     }

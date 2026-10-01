@@ -515,13 +515,13 @@ int func_002C9C68(void) {
     return func_002C9C38(1, 0xFFFF);
 }
 
-__attribute__((section(".text.func_002CC4E0")))
-int func_002CC4E0(void) {
-    return func_002CC3B8(1, 0xFFFF);
+__attribute__((section(".text.cSnd_GlobalCtor")))
+int cSnd_GlobalCtor(void) {
+    return cSnd_StaticInit(1, 0xFFFF);
 }
 
-__attribute__((section(".text.func_002CD9E8")))
-int func_002CD9E8(void) {
+__attribute__((section(".text.cSndMemHeap_GlobalCtor")))
+int cSndMemHeap_GlobalCtor(void) {
     return cSndMemHeap_CloseAll(1, 0xFFFF);
 }
 

@@ -23,9 +23,9 @@ void ClearStructFields_2C8EB0(int *a0) {
 }
 
 /* Clears the active flag of a used BGM node and refreshes its state. */
-__attribute__((section(".text.ClearActiveBit_2CCAC8")))
-void ClearActiveBit_2CCAC8(cSndBgmNode *node) {
-    if (func_002CC568(node)) {
+__attribute__((section(".text.cSndBgmNode_Resume")))
+void cSndBgmNode_Resume(cSndBgmNode *node) {
+    if (cSndBgmNode_IsActive(node)) {
         node->flags = node->flags & 0xFFFFFFFE;
         UpdateStateAndClearFlag_3734F0(node);
     }

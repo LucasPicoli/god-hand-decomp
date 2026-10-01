@@ -21,8 +21,8 @@ extern Vec  D_005680F0[];
 extern Vec  D_00568080[];
 
 /* Dealing-in state: slide both hands into place, then hand control to the next state. */
-__attribute__((section(".text.func_001D4258")))
-void func_001D4258(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateClearTable")))
+void BlackJack_UpdateClearTable(BlackJack *self)
 {
     float r;
     float k;

@@ -21,11 +21,11 @@ typedef struct Table {
 extern char D_007474A0[];
 extern char D_0044C230[];
 extern Table *SearchData(int a0, char *a1, int a2);
-extern int FindEntityByTypeIndex_2C2AE0(void *a0, int a1);
+extern int cSceAtManager_getUnitBySpawnIdx(void *a0, int a1);
 
 extern void cSceAtUnit_AtInit(void *u, int a1, int a2, int a3, int t0);
 extern void cSceAtUnit_AreaSet(void *u, float *v, int n, float f12, float f13);
-extern void func_002C3040(void *a0, void *a1, void *a2);
+extern void cSceAtManager_linkUnit(void *a0, void *a1, void *a2);
 
 static __inline__ void SetVec4(float *d, float x, float y, float z)
 {
@@ -76,7 +76,7 @@ void func_002C12C8(char *self)
         if (n >= 8) {
             return;
         }
-        if (FindEntityByTypeIndex_2C2AE0(self, j) != 0) {
+        if (cSceAtManager_getUnitBySpawnIdx(self, j) != 0) {
             goto next;
         }
         u = func_0030F550(0x9C);
@@ -101,7 +101,7 @@ void func_002C12C8(char *self)
         SetVec4(v, (float)e->x * 0.01f, (float)e->y * 0.01f, (float)e->z * 0.01f);
         cSceAtUnit_AreaSet(*s, v, 1, 3.0f, 3.0f);
         (*s)[0x79] = j;
-        func_002C3040(self, self + 0x30, *s);
+        cSceAtManager_linkUnit(self, self + 0x30, *s);
         s++;
     next:
         j++;

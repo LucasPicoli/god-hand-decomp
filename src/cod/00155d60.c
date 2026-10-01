@@ -13,8 +13,8 @@ unsigned char *func_00155D60(unsigned char *base, long val, int idx) {
     return p;
 }
 
-__attribute__((section(".text.func_002C3000")))
-void func_002C3000(void *unused, unsigned int *arr, int count) {
+__attribute__((section(".text.cSceAtManager_initFreeList")))
+void cSceAtManager_initFreeList(void *unused, unsigned int *arr, int count) {
     int i;
 
     arr[0] = 0xFFFFFFFF;

@@ -72,8 +72,8 @@ void func_002C4DD0(void *a0, int a1, int a2) {
 }
 
 /* True while the node is in use. */
-__attribute__((section(".text.func_002CC568")))
-int func_002CC568(cSndBgmNode *node) {
+__attribute__((section(".text.cSndBgmNode_IsActive")))
+int cSndBgmNode_IsActive(cSndBgmNode *node) {
     return node->state != 0;
 }
 

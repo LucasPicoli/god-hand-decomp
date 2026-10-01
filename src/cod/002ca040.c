@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002CE430(void *node);
+extern void cSndSeVoice_Stop(void *node);
 extern void cSndBgmNode_Release(void *node);
 extern void func_002CB070(void *this);
 extern void func_00375050(int a, int b);
@@ -41,7 +41,7 @@ void func_002CA040(void *this) {
     node = *(char **)(base + 0x1C);
     if (node != 0) {
         do {
-            func_002CE430(node);
+            cSndSeVoice_Stop(node);
             node = *(char **)(node + 0x4);
         } while (node != 0);
     }

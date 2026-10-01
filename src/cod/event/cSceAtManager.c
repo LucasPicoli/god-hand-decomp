@@ -7,8 +7,8 @@ extern void cSceAtUnit_SetEnable(cSceAtUnit *unit, int arg);
 extern void cSceAtUnit_SetDisable(cSceAtUnit *unit, int arg);
 extern void cSceAtUnit_getCenterPos(cSceAtUnit *unit, int out);
 extern void *func_002C0ED0(cSceAtUnit *unit, void *arg);
-extern cSceAtUnit *func_002C30C0(cSceAtManager *self);
-extern cSceAtUnit *func_002C30C8(cSceAtManager *self, cSceAtUnit *e);
+extern cSceAtUnit *cSceAtManager_getUnitList(cSceAtManager *self);
+extern cSceAtUnit *cSceAtManager_getNextUnit(cSceAtManager *self, cSceAtUnit *e);
 extern void func_002C3058(cSceAtManager *self, unsigned int *list, cSceAtUnit *unit);
 extern cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id);
 extern int cSceAtManager_SetEnable_2C28F8(cSceAtManager *self, cSceAtUnit *unit);
@@ -70,8 +70,8 @@ __attribute__((section(".text.cSceAtManager_getUnit")))
 cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id) {
     cSceAtUnit *e;
     if (id == SCEAT_ID_NONE) return 0;
-    e = func_002C30C0(self);
-    while ((e = func_002C30C8(self, e)) != 0) {
+    e = cSceAtManager_getUnitList(self);
+    while ((e = cSceAtManager_getNextUnit(self, e)) != 0) {
         if (e->id == id) return e;
     }
     return 0;

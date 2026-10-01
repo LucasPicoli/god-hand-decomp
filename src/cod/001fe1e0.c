@@ -106,8 +106,8 @@ __attribute__((section(".text.func_002C9060")))
 int func_002C9060(int a0,unsigned int a1){int p=*(int*)a0;if(p==0)return 0;{unsigned int n=*(unsigned int*)(a0+0xC);if(n==0)return 0;if(a1<n)return p+a1*0x24;return 0;}}
 
 /* Finds the block that holds the chunk at this address. */
-__attribute__((section(".text.func_002CD8F8")))
-cSndMemBlk *func_002CD8F8(cSndMemHeap *heap, int addr) {
+__attribute__((section(".text.cSndMemHeap_FindBlk")))
+cSndMemBlk *cSndMemHeap_FindBlk(cSndMemHeap *heap, int addr) {
     cSndMemBlk *p = &heap->self->blk[1];
     int i = 1;
 
@@ -122,8 +122,8 @@ cSndMemBlk *func_002CD8F8(cSndMemHeap *heap, int addr) {
 }
 
 /* Finds an unused block of the heap. */
-__attribute__((section(".text.func_002CD930")))
-cSndMemBlk *func_002CD930(cSndMemHeap *heap) {
+__attribute__((section(".text.cSndMemHeap_FindUnusedBlk")))
+cSndMemBlk *cSndMemHeap_FindUnusedBlk(cSndMemHeap *heap) {
     cSndMemBlk *p = &heap->self->blk[1];
     int i = 1;
 

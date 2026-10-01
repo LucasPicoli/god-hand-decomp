@@ -2,7 +2,7 @@
  *
  * JukeBox owns one cIDBase at 0x30 (the on-screen ID object, 0x50 bytes) and
  * the loaded data file whose handle sits at 0x80. JukeBox_Execute runs the
- * whole screen from one call; func_001F5A98 loads and sets it up, func_001F5C48
+ * whole screen from one call; func_001F5A98 loads and sets it up, JukeBox_Release
  * tears it down.
  *
  * Offsets are exact: every body that uses this header builds byte-identical

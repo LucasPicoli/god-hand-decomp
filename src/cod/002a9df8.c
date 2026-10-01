@@ -5,8 +5,8 @@ extern const float D_003BD880[4];
 
 /* Put a cIDBase in its empty state: no entries, not stopped or hidden, the
  * two vectors copied from D_003BD880, default scale and colour mode. */
-__attribute__((section(".text.func_002A9DF8")))
-void func_002A9DF8(cIDBaseObj *self) {
+__attribute__((section(".text.cIDBase_clear")))
+void cIDBase_clear(cIDBaseObj *self) {
     const float *src1;
     const float *src2;
     float *d1;

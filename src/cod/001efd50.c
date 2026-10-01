@@ -63,15 +63,15 @@ void CustomIDWork_SetOffsetPosXY(CustomIDWork *self, int x, int y) {
 }
 
 /* Starts the battle clock at ring time limit * 30 frames. */
-__attribute__((section(".text.SetField_B98_1EFD50")))
-void SetField_B98_1EFD50(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_SetCountdown")))
+void ColiseumBattle_SetCountdown(ColiseumBattle *self)
 {
     self->countdown = (float)(self->ring.timeLimit * 30);
 }
 
 /* Swings the Y offset by +-`amp` as a sine over `frames` frames. */
-__attribute__((section(".text.func_002D6838")))
-void func_002D6838(CustomIDWork *self, int amp, unsigned short frames) {
+__attribute__((section(".text.CustomIDWork_SetMoveOffsetPosYSin")))
+void CustomIDWork_SetMoveOffsetPosYSin(CustomIDWork *self, int amp, unsigned short frames) {
     if (self->obj != 0) {
         self->offsFlags = CIDW_ANIM_ON | CIDW_OFFS_SINE_Y;
         self->offsTotal = frames;

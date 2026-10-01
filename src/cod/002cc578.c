@@ -6,7 +6,7 @@ extern char D_005FEE00[];
 extern int cSnd_GetBgmData(void *snd, int bank);
 extern void UpdateSequenceNode_373430(cSndBgmNode *node);
 extern void ResetNodeData_3733C8(cSndBgmNode *node);
-extern void func_002CC5E8(cSndBgmNode *node);
+extern void cSndBgmNode_Unlink(cSndBgmNode *node);
 
 /* memset returns its pointer; declaring that keeps $v0 busy and puts the -1 in $v1 as retail does. */
 
@@ -39,7 +39,7 @@ __attribute__((section(".text.cSnd_BgmNodeStart")))
 int cSnd_BgmNodeStart(cSndBgmNode *node, int bank, int reqNo, int state, unsigned int param, int wordA, int wordB)
 {
     cSndBgmReq req;
-    if (func_002CFF68((int *)cSnd_GetBgmData(D_005FEE00, bank)) == 0)
+    if (cBgmData_IsReady((int *)cSnd_GetBgmData(D_005FEE00, bank)) == 0)
         return 0;
     if (reqNo >= 0x38)
         return 0;
@@ -48,16 +48,16 @@ int cSnd_BgmNodeStart(cSndBgmNode *node, int bank, int reqNo, int state, unsigne
     req.param = param;
     req.wordA = wordA;
     req.wordB = wordB;
-    return func_002CC728(node, bank, &req, 0);
+    return cSndBgmNode_Setup(node, bank, &req, 0);
 }
 
 /* Tears down a used BGM node. */
 __attribute__((section(".text.cSndBgmNode_Release")))
 void cSndBgmNode_Release(cSndBgmNode *node)
 {
-    if (func_002CC568(node) != 0) {
+    if (cSndBgmNode_IsActive(node) != 0) {
         UpdateSequenceNode_373430(node);
         ResetNodeData_3733C8(node);
-        func_002CC5E8(node);
+        cSndBgmNode_Unlink(node);
     }
 }

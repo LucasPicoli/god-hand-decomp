@@ -25,68 +25,68 @@ short func_002CF298(short *obj)
 }
 
 /* Is the sound-effect slot free? */
-__attribute__((section(".text.func_002CFC78")))
-int func_002CFC78(cSeData *d) { return d->state == CSEDATA_STATE_FREE; }
+__attribute__((section(".text.cSeData_IsFree")))
+int cSeData_IsFree(cSeData *d) { return d->state == CSEDATA_STATE_FREE; }
 
 /* Is the sound-effect slot loaded and usable? */
 __attribute__((section(".text.cSeData_IsAlive")))
 int cSeData_IsAlive(cSeData *d) { return d->state == CSEDATA_STATE_ALIVE; }
 
 /* Did loading the sound-effect slot fail? */
-__attribute__((section(".text.func_002CFC88")))
-int func_002CFC88(cSeData *d) { return d->state == CSEDATA_STATE_FAILED; }
+__attribute__((section(".text.cSeData_IsFailed")))
+int cSeData_IsFailed(cSeData *d) { return d->state == CSEDATA_STATE_FAILED; }
 
 /* Is the bgm data record empty? */
-__attribute__((section(".text.func_002CFF78")))
-int func_002CFF78(cBgmData *d) { return d->state == 0; }
+__attribute__((section(".text.cBgmData_IsEmpty")))
+int cBgmData_IsEmpty(cBgmData *d) { return d->state == 0; }
 
 /* Is the bgm data record fully loaded? */
-__attribute__((section(".text.func_002CFF68")))
-int func_002CFF68(cBgmData *d) { return d->state == CBGMDATA_STATE_READY; }
+__attribute__((section(".text.cBgmData_IsReady")))
+int cBgmData_IsReady(cBgmData *d) { return d->state == CBGMDATA_STATE_READY; }
 
 /* Mark a used sound-effect slot as failed. */
-__attribute__((section(".text.func_002CFC98")))
-void func_002CFC98(cSeData *d) { if (d->state != CSEDATA_STATE_FREE) d->state = CSEDATA_STATE_FAILED; }
+__attribute__((section(".text.cSeData_SetFailed")))
+void cSeData_SetFailed(cSeData *d) { if (d->state != CSEDATA_STATE_FREE) d->state = CSEDATA_STATE_FAILED; }
 
 /* Are all the load bits in mask set? */
-__attribute__((section(".text.func_002CFD38")))
-int func_002CFD38(cSeData *d, unsigned int mask) { return (~d->flags & mask) == 0; }
+__attribute__((section(".text.cSeData_HasLoadBits")))
+int cSeData_HasLoadBits(cSeData *d, unsigned int mask) { return (~d->flags & mask) == 0; }
 
 /* Is the bank free in the sound driver? */
-__attribute__((section(".text.func_002CF868")))
-int func_002CF868(cSeData *d) { return func_00375128(d->bankIdS) == 0; }
+__attribute__((section(".text.cSeData_IsBankIdle")))
+int cSeData_IsBankIdle(cSeData *d) { return func_00375128(d->bankIdS) == 0; }
 
-__attribute__((section(".text.func_002CFE28")))
-int func_002CFE28(cSeData *d) { return func_002CD7C8((int)d->head); }
+__attribute__((section(".text.cSeData_HeapAlloc")))
+int cSeData_HeapAlloc(cSeData *d) { return cSndMemHeap_Alloc((int)d->head); }
 
-__attribute__((section(".text.func_002CFE48")))
-int func_002CFE48(int *a0) { return func_002CD890(a0[3]); }
+__attribute__((section(".text.cSeData_HeapFree")))
+int cSeData_HeapFree(int *a0) { return cSndMemHeap_Free(a0[3]); }
 
 /* Set load bits on a bgm data record; returns the new bits. */
-__attribute__((section(".text.func_002D0350")))
-int func_002D0350(cBgmData *d, int bits) { return d->state |= bits; }
+__attribute__((section(".text.cBgmData_AddLoadBits")))
+int cBgmData_AddLoadBits(cBgmData *d, int bits) { return d->state |= bits; }
 
 /* Are all the load bits in mask set on a bgm data record? */
-__attribute__((section(".text.func_002D03D0")))
-int func_002D03D0(cBgmData *d, int mask) { return (~d->state & mask) == 0; }
+__attribute__((section(".text.cBgmData_HasLoadBits")))
+int cBgmData_HasLoadBits(cBgmData *d, int mask) { return (~d->state & mask) == 0; }
 
 /* Set attribute bits; returns the new word. */
-__attribute__((section(".text.func_002D0748")))
-int func_002D0748(cSnd *self, int bits) { return CSND_ATTR(self) |= bits; }
+__attribute__((section(".text.cSnd_AddBgmAttr")))
+int cSnd_AddBgmAttr(cSnd *self, int bits) { return CSND_ATTR(self) |= bits; }
 
 /* Clear attribute bits; returns the new word. */
-__attribute__((section(".text.func_002D0758")))
-int func_002D0758(cSnd *self, int bits) { return CSND_ATTR(self) &= ~bits; }
+__attribute__((section(".text.cSnd_ClearBgmAttr")))
+int cSnd_ClearBgmAttr(cSnd *self, int bits) { return CSND_ATTR(self) &= ~bits; }
 
-__attribute__((section(".text.func_002D0578")))
-int func_002D0578(int *a0, int a1) {
+__attribute__((section(".text.cSnd_GetBgmLinkPtr")))
+int cSnd_GetBgmLinkPtr(int *a0, int a1) {
     int *p = (int *)a0[0xC];
     if (!p) return 0;
     return p[4] + (a1 << 3);
 }
 
-__attribute__((section(".text.func_002D0598")))
-int func_002D0598(int *a0, int a1) {
+__attribute__((section(".text.cSnd_GetBgmEntryPtr")))
+int cSnd_GetBgmEntryPtr(int *a0, int a1) {
     int *p = (int *)a0[0xC];
     if (!p) return 0;
     return p[5] + (a1 << 4);
@@ -100,27 +100,27 @@ int func_002D05B8(int *a0, int a1) {
 }
 
 /* Set the playback attribute word and apply it. */
-__attribute__((section(".text.func_002D0728")))
-int func_002D0728(cSnd *self, int attr) { CSND_ATTR(self) = attr; return func_002D0820(self); }
+__attribute__((section(".text.cSnd_SetBgmAttr")))
+int cSnd_SetBgmAttr(cSnd *self, int attr) { CSND_ATTR(self) = attr; return cSnd_SetBgmFadeOutTimeAll(self); }
 
 /* The table header of a loaded bgm data record, or 0. */
 __attribute__((section(".text.cBgmData_GetHeadPtr")))
 cBgmHead *cBgmData_GetHeadPtr(cBgmData *d) {
-    if (!func_002CFF68(d)) return 0;
+    if (!cBgmData_IsReady(d)) return 0;
     return d->head;
 }
 
 /* Is the sound-effect slot's disc request finished (or absent)? */
-__attribute__((section(".text.func_002CF830")))
-int func_002CF830(cSeData *d) {
+__attribute__((section(".text.cSeData_IsReadDone")))
+int cSeData_IsReadDone(cSeData *d) {
     int req = d->f38;
     if (req == 0) return 1;
     return cDvd_Check(D_00583F20, req) == 0;
 }
 
 /* Is the bgm data's disc request finished (or absent)? */
-__attribute__((section(".text.func_002D0318")))
-int func_002D0318(cBgmData *d) {
+__attribute__((section(".text.cBgmData_IsReadDone")))
+int cBgmData_IsReadDone(cBgmData *d) {
     int req = d->f1C;
     if (req == 0) return 1;
     return cDvd_Check(D_00583F20, req) == 0;
@@ -128,54 +128,54 @@ int func_002D0318(cBgmData *d) {
 
 /* Set the default attribute word and make it current. */
 __attribute__((section(".text.cSnd_SetBgmDefAttr")))
-int cSnd_SetBgmDefAttr(cSnd *self, int attr) { CSND_DEF_ATTR(self) = attr; return func_002D0728(self, attr); }
+int cSnd_SetBgmDefAttr(cSnd *self, int attr) { CSND_DEF_ATTR(self) = attr; return cSnd_SetBgmAttr(self, attr); }
 
 /* Add bits to the default attribute word and to the current one. */
-__attribute__((section(".text.func_002D07A8")))
-int func_002D07A8(cSnd *self, int bits) { CSND_DEF_ATTR(self) |= bits; return func_002D0748(self, bits); }
+__attribute__((section(".text.cSnd_AddBgmDefAttr")))
+int cSnd_AddBgmDefAttr(cSnd *self, int bits) { CSND_DEF_ATTR(self) |= bits; return cSnd_AddBgmAttr(self, bits); }
 
 /* Remove bits from the default attribute word and from the current one. */
-__attribute__((section(".text.func_002D07D8")))
-int func_002D07D8(cSnd *self, int bits) { CSND_DEF_ATTR(self) &= ~bits; return func_002D0758(self, bits); }
+__attribute__((section(".text.cSnd_ClearBgmDefAttr")))
+int cSnd_ClearBgmDefAttr(cSnd *self, int bits) { CSND_DEF_ATTR(self) &= ~bits; return cSnd_ClearBgmAttr(self, bits); }
 
 /* Entry n of the bgm table of a loaded record, or 0. */
 __attribute__((section(".text.cBgmData_GetTblPtr")))
 int cBgmData_GetTblPtr(cBgmData *d, int n) {
-    if (!func_002CFF68(d)) return 0;
+    if (!cBgmData_IsReady(d)) return 0;
     return (int)d->tbl + (n << 5);
 }
 
 extern int D_00603A40;
 
 /* Add load bits to a sound-effect slot; once the image is complete, mark it alive. */
-__attribute__((section(".text.func_002CFCB0")))
-void func_002CFCB0(cSeData *d, int bits)
+__attribute__((section(".text.cSeData_AddLoadBits")))
+void cSeData_AddLoadBits(cSeData *d, int bits)
 {
     d->flags |= bits;                           /* 0x4 */
-    if (func_002CFD38(d, 0x7F) == 1) {
-        if (func_002CFD38(d, 0x80) == 0) {
+    if (cSeData_HasLoadBits(d, 0x7F) == 1) {
+        if (cSeData_HasLoadBits(d, 0x80) == 0) {
             cSeBuf *p = d->buf;                 /* 0x10 */
             if (p->f20 != (int)p)               /* 0x20 */
                 func_002A9648((int)d->pool, p, p->f20 - (int)p, 0x10);
-            func_002CFCB0(d, 0x80);
+            cSeData_AddLoadBits(d, 0x80);
         }
         d->state = CSEDATA_STATE_ALIVE;
     }
 }
 
 /* Hand the loaded bank's image to the sound driver and set its parameters. */
-__attribute__((section(".text.func_002CFB60")))
-void func_002CFB60(cSeData *d)
+__attribute__((section(".text.cSeData_RegisterBank")))
+void cSeData_RegisterBank(cSeData *d)
 {
     cSeBuf *p = d->buf;                 /* 0x10 */
     func_00374B70(d->bankIdS, d->f14, d->sysMem, d->f1C, p->f18);
     func_00375988(d->bankIdS, d->f14, d->sysMem, d->f1C);
-    func_002CFCB0(d, 0x40);
+    cSeData_AddLoadBits(d, 0x40);
 }
 
 /* Reserve IOP memory for the bank image; 1 when the slot is ready for the next step. */
-__attribute__((section(".text.func_002CF888")))
-int func_002CF888(cSeData *d)
+__attribute__((section(".text.cSeData_AllocSysMem")))
+int cSeData_AllocSysMem(cSeData *d)
 {
     cSeBuf *p;
     if (d->sysMem != 0)
@@ -183,17 +183,17 @@ int func_002CF888(cSeData *d)
     p = d->buf;
     if (p->f20 != (int)p)
         d->f30 = func_002D3050(&D_00603A40, p->f20, &d->sysMem, p->f24);
-    func_002CFCB0(d, 0x10);
+    cSeData_AddLoadBits(d, 0x10);
     return 1;
 }
 
 /* Load bank bankId through cSeData_LoadFile; on success remember arg in the slot. */
-__attribute__((section(".text.func_002CF6F8")))
-int func_002CF6F8(cSeData *d, int bankId, int arg)
+__attribute__((section(".text.cSeData_LoadNumbered")))
+int cSeData_LoadNumbered(cSeData *d, int bankId, int arg)
 {
     int buf[16];
     int r;
-    func_002CFE68(d, bankId, arg, buf);
+    cSeData_MakeFileName(d, bankId, arg, buf);
     r = cSeData_LoadFile(d, bankId, buf);
     if (r == 1)
         d->f3C = arg;
@@ -201,8 +201,8 @@ int func_002CF6F8(cSeData *d, int bankId, int arg)
 }
 
 /* Rebase the pointers of a loaded bgm table once and point the record at its entries. */
-__attribute__((section(".text.func_002D0360")))
-void func_002D0360(cBgmData *d)
+__attribute__((section(".text.cBgmData_Relocate")))
+void cBgmData_Relocate(cBgmData *d)
 {
     cBgmHead *h = d->head;
     if (h->relocated == 0) {
@@ -215,9 +215,9 @@ void func_002D0360(cBgmData *d)
         h->relocated = 1;
     }
     d->tbl = (void *)d->head->tblOfs;
-    func_002D0350(d, 2);
+    cBgmData_AddLoadBits(d, 2);
 }
 
 /* The playback attribute word. */
-__attribute__((section(".text.func_002D0770")))
-int func_002D0770(cSnd *self) { return CSND_ATTR(self); }
+__attribute__((section(".text.cSnd_GetBgmAttr")))
+int cSnd_GetBgmAttr(cSnd *self) { return CSND_ATTR(self); }

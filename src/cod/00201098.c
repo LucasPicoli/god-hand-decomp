@@ -69,8 +69,8 @@ int func_0037AD08(char *a0) {
 extern unsigned int D_00747A84;
 /* Starts a fade toward preset `slot` over `frames` frames (an instant fade
  * while the game flag is set). Ignored while a fade is already running. */
-__attribute__((section(".text.func_002D8E18")))
-void func_002D8E18(cWorldLight *self, int slot, short frames)
+__attribute__((section(".text.cWorldLight_startFade")))
+void cWorldLight_startFade(cWorldLight *self, int slot, short frames)
 {
     int n;
     if ((self->flags & WORLDLIGHT_FLAG_FADING) != 0) {
@@ -129,8 +129,8 @@ void func_002A9708(char *a0) {
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
-__attribute__((section(".text.func_002AABA0")))
-void func_002AABA0(char *a0) {
+__attribute__((section(".text.cIDBase_stepJitter")))
+void cIDBase_stepJitter(char *a0) {
     int i;
     char *p;
     if (*(unsigned char *)(a0 + 0x1C) == 0) return;

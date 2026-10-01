@@ -116,9 +116,9 @@ void *GetOrInit_460D68_2BAFA0(void) {
     return &D_00460D68;
 }
 
-__attribute__((section(".text.Forward2CF6F8_2CB6A0")))
-int Forward2CF6F8_2CB6A0(int a0, int a1, int a2) {
-    return func_002CF6F8(GetIndexedEntry_2CC4B8(a0), a1, a2);
+__attribute__((section(".text.cSnd_SeLoadNo")))
+int cSnd_SeLoadNo(int a0, int a1, int a2) {
+    return cSeData_LoadNumbered(cSnd_GetSeEntry(a0), a1, a2);
 }
 
 __attribute__((section(".text.GetOrInit_460D78_2D5BB8")))

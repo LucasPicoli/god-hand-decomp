@@ -6,9 +6,9 @@ float cEmManage_GetSpeedRate(void *a0) {
     return *(float*)((char*)a0 + 0x548) * D_00747A14;
 }
 extern int func_00290958(void *a0);
-extern int GetActiveEntry_1FE9B8(void *a0, int a1);
+extern int cDataManager_isLoaded(void *a0, int a1);
 extern void cDataManager_loadWait(void *a0, int a1, void *a2, int a3);
-extern void func_001FEAA0(void *a0, int a1, int a2, int a3);
+extern void cDataManager_loadSeWait(void *a0, int a1, int a2, int a3);
 extern char *CreateObj(int a0, int a1);
 extern void func_00290048(void *node, void *obj, int kind);
 extern int func_00290988(void *a0, int a1);
@@ -35,9 +35,9 @@ char *cEmManage_EntryEm(char *this, int *ep, int kind, void *a3)
     slot = func_00290958(this);
     if (slot == -1)
         goto ng;
-    if (GetActiveEntry_1FE9B8(D_005864E0, ep[0]) == 0)
+    if (cDataManager_isLoaded(D_005864E0, ep[0]) == 0)
         cDataManager_loadWait(D_005864E0, ep[0], D_00754220, 1);
-    func_001FEAA0(D_005864E0, ep[0], ep[10], ep[11]);
+    cDataManager_loadSeWait(D_005864E0, ep[0], ep[10], ep[11]);
     obj = CreateObj(ep[0], 0xFFFF);
     if (obj == 0)
         return 0;

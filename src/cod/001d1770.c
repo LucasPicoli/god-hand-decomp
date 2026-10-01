@@ -30,8 +30,8 @@ extern int D_007474A0;
 
 
 /* Betting state: pad buttons confirm the bet or step it by 100, paying gold in and out. */
-__attribute__((section(".text.func_001D1770")))
-void func_001D1770(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateMaxBetMenu")))
+void BlackJack_UpdateMaxBetMenu(BlackJack *self)
 {
     switch (self->phase) {
     case 0:

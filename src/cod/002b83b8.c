@@ -16,8 +16,8 @@ extern char D_0044B490[];
 extern char D_0044B498[];
 
 /* Set the one-body flag; when on, hide the extra body meshes that this object id has. */
-__attribute__((section(".text.func_002B83B8")))
-void func_002B83B8(cObjSimple *self, int on) {
+__attribute__((section(".text.cObjSimple_SetOneBodyFlag")))
+void cObjSimple_SetOneBodyFlag(cObjSimple *self, int on) {
     self->oneBodyFlag = on;
     if (on == 0) {
         return;

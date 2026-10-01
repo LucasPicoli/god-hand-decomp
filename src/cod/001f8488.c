@@ -11,13 +11,13 @@ extern void cHeatSys_SetHeatGage(cHeatSys *self, float gage);
 extern void func_002A9C90(cHeatSys *self, float range);
 extern int func_001573C8(float *pt, cAreaVec4 *a, cAreaVec4 *b, cAreaVec4 *c, cAreaVec4 *d);
 extern void cModel_ScrollTexture(cObjSimple *self, float dt);
-extern void func_002B6FE8(cObjSimple *self);
+extern void cObjSimple_FollowParent(cObjSimple *self);
 extern void cModel_calcParts(cObjSimple *self);
 extern void cObjBase_KageDraw(cObjSimple *self);
 extern void EmClothMove(int cloth, cObjSimple *self, void *data, void *anchor);
-extern void func_002B6A40(cObjSimple *self);
-extern void func_002B79E0(cObjSimple *self);
-extern void func_002B6DA0(cObjSimple *self);
+extern void cObjSimple_MoveBust(cObjSimple *self);
+extern void cObjSimple_MoveRing(cObjSimple *self);
+extern void cObjSimple_UpdateHandMesh(cObjSimple *self);
 
 /* Clear the gauge, then size it for the player and set the lv 1 threshold. */
 __attribute__((section(".text.cHeatSys_Initialize")))
@@ -82,17 +82,17 @@ void cObjSimple_Update(cObjSimple *self)
     }}}
     cModel_ScrollTexture(self, 1.0f);
     if (self->parentOn)
-        func_002B6FE8(self);
+        cObjSimple_FollowParent(self);
     cModel_calcParts(self);
     if (self->kageObj)
         cObjBase_KageDraw(self);
     if (self->pendulumOn)
         EmClothMove(self->pendulumId, self, self->pendulumData, self->clothAnchor);
     if (self->bustFlag)
-        func_002B6A40(self);
+        cObjSimple_MoveBust(self);
     if (self->ringFlag)
-        func_002B79E0(self);
+        cObjSimple_MoveRing(self);
     if (self->oneBodyFlag)
-        func_002B6DA0(self);
+        cObjSimple_UpdateHandMesh(self);
     cObjSimpleVec3_Copy(&self->pos, self->parentPos);
 }

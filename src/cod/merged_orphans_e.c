@@ -24,12 +24,12 @@ int cEvent__isPlaying(signed char *a0) {
     return a0[4] == 3;
 }
 
-/* GetResolvedActorVtable_295AB8: getter with a guard call.  If FindResolveActor_295978(a0) is 0,
+/* cEmWrap_getPos: getter with a guard call.  If FindResolveActor_295978(a0) is 0,
  * return &D_00747B00; else return obj->field_4->field_F0. */
 extern int D_00747B00;
 extern int FindResolveActor_295978(void *a0);
-__attribute__((section(".text.GetResolvedActorVtable_295AB8")))
-void *GetResolvedActorVtable_295AB8(void *a0) {
+__attribute__((section(".text.cEmWrap_getPos")))
+void *cEmWrap_getPos(void *a0) {
     if (FindResolveActor_295978(a0) == 0)
         return &D_00747B00;
     return *(void **)(*(char **)((char *)a0 + 4) + 0xF0);

@@ -36,8 +36,8 @@ extern long D_00747640;
 
 
 /* Win state: pay out twice the bet, counting the winnings into the gold total. */
-__attribute__((section(".text.func_001D3508")))
-void func_001D3508(BlackJack *self) {
+__attribute__((section(".text.BlackJack_UpdateWin")))
+void BlackJack_UpdateWin(BlackJack *self) {
     switch (self->phase) {
     case 0:
         self->timer = 0x14;

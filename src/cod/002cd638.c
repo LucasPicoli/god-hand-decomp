@@ -6,7 +6,7 @@
 extern cSndMemHeap D_00602F80, D_00603310, D_006036A0;
 extern void cSndMemHeap_Close(cSndMemHeap *heap);
 extern cSndMemHeap D_00602F80;
-extern void func_002CD668(cSndMemHeap *heap, int a1, int a2);
+extern void cSndMemHeap_OpenRoot(cSndMemHeap *heap, int a1, int a2);
 
 /* On the all-heaps id (0xFFFF), shuts all three heaps down when the first argument is set. */
 __attribute__((section(".text.cSndMemHeap_CloseAll")))
@@ -20,10 +20,10 @@ void cSndMemHeap_CloseAll(int on, int id)
 }
 
 /* Sets up the first heap with its two size values. */
-__attribute__((section(".text.Forward2CD668_2CD638")))
-void Forward2CD668_2CD638(void)
+__attribute__((section(".text.cSndMemHeap_OpenMain")))
+void cSndMemHeap_OpenMain(void)
 {
-    func_002CD668(&D_00602F80, 0x5080, 0xFAF80);
+    cSndMemHeap_OpenRoot(&D_00602F80, 0x5080, 0xFAF80);
 }
 
 /* Returns extra record idx, clamping idx to the last record. */

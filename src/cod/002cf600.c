@@ -11,10 +11,10 @@ extern int D_00747A2C;
 extern char D_0044CF68[];
 extern char D_00583F20[];
 extern void cSeData_Release(cSeData *);
-extern void func_002CFD50(cSeData *);
+extern void cSeData_SelectHeap(cSeData *);
 extern int cDvd_FileExist(char *, char *);
 extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
-extern void func_002CFCB0(cSeData *, int);
+extern void cSeData_AddLoadBits(cSeData *, int);
 extern char D_00603A40[];
 extern char D_0044CFB8[];
 
@@ -32,7 +32,7 @@ int cSeData_LoadFile(cSeData *d, int bankId, int arg)
     d->bankId = bankId;
     d->state = 1;
     d->f3C = 0x7FFFFFFF;
-    func_002CFD50(d);
+    cSeData_SelectHeap(d);
     func_003A6C58(name, D_0044CF68, arg);
     if (cDvd_FileExist(D_00583F20, name) == 0 ||
         (d->f38 = cDvd_ReadAlloc(D_00583F20, name, &d->buf, d->pool, 0, 0, 0, 0)) == 0 ||
@@ -40,7 +40,7 @@ int cSeData_LoadFile(cSeData *d, int bankId, int arg)
         cSeData_Release(d);
         return 0;
     } else {
-        func_002CFCB0(d, 1);
+        cSeData_AddLoadBits(d, 1);
         return 1;
     }
 }
@@ -81,13 +81,13 @@ int cSeData_CheckImage(cSeData *d)
         d->f3C = b->f08;
     d->f28 = d->bankId + 0x82;
     d->f20 = d->buf->f18;
-    func_002CFCB0(d, 4);
+    cSeData_AddLoadBits(d, 4);
     if (d->buf->f30 != 0) {
-        if (func_002CFBC0(d) == 0)
-            func_002CFCB0(d, 8);
+        if (cSeData_PrepareDecode(d) == 0)
+            cSeData_AddLoadBits(d, 8);
     } else {
-        func_002CFCB0(d, 8);
+        cSeData_AddLoadBits(d, 8);
     }
-    func_002CFCB0(d, 2);
+    cSeData_AddLoadBits(d, 2);
     return 1;
 }

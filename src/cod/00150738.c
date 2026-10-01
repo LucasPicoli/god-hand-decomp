@@ -173,8 +173,8 @@ char *func_002C53A8(char *p)
 
 extern cSnd D_005FEE00;
 /* Puts a BGM node at the head of the active list. */
-__attribute__((section(".text.func_002CC5C0")))
-void func_002CC5C0(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Link")))
+void cSndBgmNode_Link(cSndBgmNode *node)
 {
     node->next = D_005FEE00.bgmHead;
     if (D_005FEE00.bgmHead != 0) {
@@ -188,8 +188,8 @@ void func_002CC5C0(cSndBgmNode *node)
    reloaded after each store, as retail does (a typed pointer store lets it stay cached). */
 #define CSND_HEAP_BLK0(heap) ((cSndMemBlk *)*(int *)&(heap)->self)
 #define CSND_BLK0_SET(heap, field, v) (*(int *)&CSND_HEAP_BLK0(heap)->field = (int)(v))
-__attribute__((section(".text.func_002CD740")))
-void func_002CD740(cSndMemHeap *heap)
+__attribute__((section(".text.cSndMemHeap_ResetFirstBlk")))
+void cSndMemHeap_ResetFirstBlk(cSndMemHeap *heap)
 {
     CSND_BLK0_SET(heap, prev, 0);
     CSND_BLK0_SET(heap, next, 0);
@@ -204,8 +204,8 @@ void func_002CD740(cSndMemHeap *heap)
 
 
 /* Puts a voice at the head of the playing list. */
-__attribute__((section(".text.func_002CE3C0")))
-void func_002CE3C0(cSndSeVoice *voice)
+__attribute__((section(".text.cSndSeVoice_Link")))
+void cSndSeVoice_Link(cSndSeVoice *voice)
 {
     voice->next = D_005FEE00.voiceHead;
     if (D_005FEE00.voiceHead != 0) {
@@ -214,8 +214,8 @@ void func_002CE3C0(cSndSeVoice *voice)
     D_005FEE00.voiceHead = voice;
 }
 
-__attribute__((section(".text.func_002CF2D0")))
-char *func_002CF2D0(char *p) {
+__attribute__((section(".text.cSeData_Init")))
+char *cSeData_Init(char *p) {
     *(int *)(p + 0x0) = 0;
     *(int *)(p + 0x4) = 0;
     *(int *)(p + 0x10) = 0;

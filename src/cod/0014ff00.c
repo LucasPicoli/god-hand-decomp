@@ -272,8 +272,8 @@ void func_001EC820(int a0)
 }
 
 /* Kills the running screen fade, if the battle started one. */
-__attribute__((section(".text.func_001EFD00")))
-void func_001EFD00(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_KillFade")))
+void ColiseumBattle_KillFade(ColiseumBattle *self)
 {
     long t = self->flags;
 

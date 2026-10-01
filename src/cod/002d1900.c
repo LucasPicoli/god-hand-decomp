@@ -21,16 +21,16 @@ __attribute__((section(".text.cSnd_BgmEvDataInit")))
 void cSnd_BgmEvDataInit(cSnd *self, int arg)
 {
     cBgmData_Reset(cSnd_GetBgmData(self, 1));
-    func_002D0128(cSnd_GetBgmData(self, 1), 1, arg);
+    cBgmData_LoadNumbered(cSnd_GetBgmData(self, 1), 1, arg);
 }
 
 /* Is bgm data slot 1 free or loaded? */
 __attribute__((section(".text.cSnd_BgmEvDataCheck")))
 int cSnd_BgmEvDataCheck(cSnd *self)
 {
-    if (func_002CFF78(cSnd_GetBgmData(self, 1)) == 1)
+    if (cBgmData_IsEmpty(cSnd_GetBgmData(self, 1)) == 1)
         return 1;
-    return func_002CFF68(cSnd_GetBgmData(self, 1));
+    return cBgmData_IsReady(cSnd_GetBgmData(self, 1));
 }
 
 /* 1 when every table entry cut as reqNo is ready, 0 at the first that is not. */
@@ -40,7 +40,7 @@ int cSnd_BgmEvCutCheck(cSnd *self, int reqNo)
     cBgmHead *head;
     unsigned int i;
 
-    if (!func_002CFF68(cSnd_GetBgmData(self, 1)))
+    if (!cBgmData_IsReady(cSnd_GetBgmData(self, 1)))
         return 1;
     head = cBgmData_GetHeadPtr(cSnd_GetBgmData(self, 1));
     for (i = 0; i < head->tblNum; i++) {

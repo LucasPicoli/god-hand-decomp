@@ -30,8 +30,8 @@ extern long D_00747640;
 #define GAMEWORK_PAD(g) (*(long *)((g) + 0x1A0))
 /* Slot2 bet screen: the player raises or lowers the bet, then the reels
  * start. */
-__attribute__((section(".text.func_001E4E28")))
-void func_001E4E28(Slot2 *self)
+__attribute__((section(".text.Slot2_UpdateBet")))
+void Slot2_UpdateBet(Slot2 *self)
 {
     long v;
     int done;

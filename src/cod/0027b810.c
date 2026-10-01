@@ -12,7 +12,7 @@ extern int AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
-extern int AddActiveEntry_1FECE0(void *a0, int a1, int a2);
+extern int cDataManager_addPinnedData(void *a0, int a1, int a2);
 extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 extern void Obj1D00_ClearState_8(char *a0);
@@ -134,7 +134,7 @@ int func_0027B810(char *a0)
     q->d = 1.0f;
     cCollisionSolidManage_CreateSphere(&D_00462FC0, s1, s1 + 0x80, q, 0.5f);
     v0 = *(int *)(s1 + 0x304);
-    AddActiveEntry_1FECE0(&D_005864E0, 0x369, *(int *)(v0 + 0xC) + v0);
+    cDataManager_addPinnedData(&D_005864E0, 0x369, *(int *)(v0 + 0xC) + v0);
     {
         char *obj = CreateObj(0x369, 0xFFFF);
         *(char **)(s1 + 0x15B0) = obj;

@@ -35,9 +35,9 @@ extern void cTaskWork_exit(int a0);
 extern void classFADE_start(void *p, int b, int c, int d, int e, unsigned int f, int g);
 extern void classFADE_kill(void *p);
 extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
-extern void func_001E97B0(void *p);
+extern void DogRace_Load(void *p);
 extern void func_001EA1A8(void *p);
-extern void func_001E9E40(void *p);
+extern void DogRace_Release(void *p);
 extern void cSnd_BgmFlaggedNodeKick(void *p, float f);
 extern void cSceAtManager_SetEnable_2C2950(void *p, int a);
 
@@ -217,7 +217,7 @@ void func_001E9F68(char *p)
     while (!FadeIsEnd(D_00747470)) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
     }
-    func_001E97B0(p);
+    DogRace_Load(p);
     D_00747A80 |= 0x4000000;
     D_00747A80 |= 0x2000000;
     D_00747A80 |= 0x40000000;
@@ -244,7 +244,7 @@ void func_001E9F68(char *p)
     D_00747A80 &= 0xDFFFFFFF;
     D_00747A80 &= 0xEFFFFFFF;
     D_00747A80 &= 0xF7FFFFFF;
-    func_001E9E40(p);
+    DogRace_Release(p);
     classFADE_start(D_00747470, 0, 0xA, 0, 0xFF000000, 0, 0xF);
     while (!FadeIsEnd(D_00747470)) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);

@@ -145,8 +145,8 @@ void *func_002A9300(void)
     return &D_007854D8;
 }
 
-__attribute__((section(".text.func_002AA3D8")))
-void func_002AA3D8(void *a0)
+__attribute__((section(".text.cIDBase_initIDWork")))
+void cIDBase_initIDWork(void *a0)
 {
     void *v0 = cIDBase_getIDWork(a0);
     if (v0 != 0) {
@@ -227,8 +227,8 @@ void func_001DD5A0(int a0, int a1) {
     SetCustomIDDispOneOrAll_1DD258(a0, 0x2C, a1);
 }
 
-__attribute__((section(".text.func_00201108")))
-void func_00201108(int a0, int a1) {
+__attribute__((section(".text.cDvd_CheckWaitFrame")))
+void cDvd_CheckWaitFrame(int a0, int a1) {
     while (cDvd_Check(a0, a1) != 0) {
         func_002D5250(1);
     }

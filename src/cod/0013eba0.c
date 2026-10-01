@@ -106,18 +106,18 @@ void func_001C91B0(char *p, void *arg)
 typedef struct { int f0; int f4; int f8; unsigned short fC; unsigned short fE; } Arg;
 
 /* Starts a BGM request on a node if the bank's data is ready. */
-__attribute__((section(".text.func_002CC9C0")))
-int func_002CC9C0(cSndBgmNode *node, int bank, int reqNo, int state, int param, int wordA, int wordB)
+__attribute__((section(".text.cSnd_BgmNodeSet")))
+int cSnd_BgmNodeSet(cSndBgmNode *node, int bank, int reqNo, int state, int param, int wordA, int wordB)
 {
     cSndBgmReq req;
 
-    if (func_002CFF68(cSnd_GetBgmData((int)&D_005FEE00, bank)) == 0) return 0;
+    if (cBgmData_IsReady(cSnd_GetBgmData((int)&D_005FEE00, bank)) == 0) return 0;
     req.reqNo = reqNo;
     req.state = state;
     req.param = param;
     req.wordA = wordA;
     req.wordB = wordB;
-    return func_002CC728(node, bank, &req, 1);
+    return cSndBgmNode_Setup(node, bank, &req, 1);
 }
 
 __attribute__((section(".text.func_00160F38")))

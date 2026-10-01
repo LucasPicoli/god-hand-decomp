@@ -3,24 +3,24 @@
 #include "godhand/cBgmData.h"
 #define CSND_HIT(s) (*(cBgmHit **)((char *)(s) + 0x24))
 extern int func_002CB3A8(void *a0, int a1);
-extern void *GetIndexedEntry_2CC4B8(void *a0, int a1);
+extern void *cSnd_GetSeEntry(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
-extern int func_002CFC88(void *p);
+extern int cSeData_IsFailed(void *p);
 extern int D_0044CE48[];
 extern void *cSnd_AllocVoice(void *a0);
 extern int cSndSeVoice_StartAtOrigin(void *p, short a1, int a2, int a3, int a4, int a5, int a6);
 extern void cSndBgmNode_FadeOut(int a0, float f12);
 extern void cSndBgmNode_FadeIn(int a0, float f12);
-extern int func_002D22B0(int a0, int a1, int a2);
+extern int cSnd_FindBgmNode(int a0, int a1, int a2);
 extern void cSndBgmNode_Release(int a0);
 extern int cSnd_AllocBgmNode(int a0);
-extern int func_002CC9C0(int a0, int a1, int a2, int a3, unsigned int a4, int a5, int a6);
-extern void ClearActiveBit_2CCAC8(int a0);
+extern int cSnd_BgmNodeSet(int a0, int a1, int a2, int a3, unsigned int a4, int a5, int a6);
+extern void cSndBgmNode_Resume(int a0);
 extern int cSnd_BgmNodeStart(int a0, int a1, int a2, int a3, unsigned int a4, int a5, int a6);
 extern void SetSequenceParam_373A18(int a0, int a1);
 
-void func_002CD500(int, int, float);
-void func_002CD4E0(int, float, float);
+void cSndBgmNode_SetFlagsFadeOut(int, int, float);
+void cSndBgmNode_FadeTo(int, float, float);
 void UpdateSequenceNodeWeighted_373560(int, int, float);
 float GetSequenceBlendWeight_373938(int, int);
 void cSndBgmNode_FadeOut(int, float);
@@ -32,7 +32,7 @@ int cSnd_SeCall(cSnd *self, int slot, short key1, int mtx, int idA, int idB)
 {
     cSndSeVoice *voice;
 
-    if (cSeData_IsAlive(GetIndexedEntry_2CC4B8(self, slot)) == 0)
+    if (cSeData_IsAlive(cSnd_GetSeEntry(self, slot)) == 0)
         return 0;
     voice = cSnd_AllocVoice(self);
     if (voice == 0)
@@ -58,12 +58,12 @@ int cSnd_EmSeCheck(cSnd *self, int objId)
     slot = D_0044CE48;
     i = 0;
     do {
-        e = GetIndexedEntry_2CC4B8(self, *slot);
+        e = cSnd_GetSeEntry(self, *slot);
         if (cSeData_IsAlive(e) != 0) {
-            e = GetIndexedEntry_2CC4B8(self, *slot);
+            e = cSnd_GetSeEntry(self, *slot);
             if (e->owner == owner) {
-                e = GetIndexedEntry_2CC4B8(self, *slot);
-                if (func_002CFC88(e) != 1)
+                e = cSnd_GetSeEntry(self, *slot);
+                if (cSeData_IsFailed(e) != 1)
                     return *slot;
             }
         }
@@ -79,7 +79,7 @@ int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, i
 {
     cSndSeVoice *voice;
 
-    if (cSeData_IsAlive(GetIndexedEntry_2CC4B8(self, slot)) == 0)
+    if (cSeData_IsAlive(cSnd_GetSeEntry(self, slot)) == 0)
         return 0;
     voice = cSnd_AllocVoice(self);
     if (voice == 0)
@@ -100,7 +100,7 @@ int cSnd_SeFadeOut(cSnd *self, int handle, short fade)
 __attribute__((section(".text.cSnd_SeEndCk")))
 int cSnd_SeEndCk(cSnd *self, int handle)
 {
-    return func_002CBF48(self, handle) == 0;
+    return cSnd_FindVoiceByHandle(self, handle) == 0;
 }
 
 
@@ -111,7 +111,7 @@ void cSnd_BattleBgmAllPause(cSnd *self, float time)
     cSndBgmNode *node;
     for (node = self->bgmHead; node != 0; node = node->next) {
         if (node->state2 != 2)
-            func_002CD500((int)node, 0x100000, time);
+            cSndBgmNode_SetFlagsFadeOut((int)node, 0x100000, time);
     }
 }
 
@@ -123,7 +123,7 @@ void cSnd_BgmEventSet(cSnd *self, int reqNo, int wordA, int wordB)
     int node;
     node = cSnd_AllocBgmNode((int)self);
     if (node != 0)
-        func_002CC9C0(node, 0, reqNo, 5, 0xFFFFFFFF, wordA, wordB);
+        cSnd_BgmNodeSet(node, 0, reqNo, 5, 0xFFFFFFFF, wordA, wordB);
 }
 
 
@@ -138,13 +138,13 @@ static __inline__ int nodeActive(cSndBgmNode *n)
 __attribute__((section(".text.cSnd_BgmEventStart")))
 void cSnd_BgmEventStart(cSnd *self, int reqNo, int a2, int a3)
 {
-    cSndBgmNode *node = (cSndBgmNode *)func_002D22B0(self, 0, reqNo);
+    cSndBgmNode *node = (cSndBgmNode *)cSnd_FindBgmNode(self, 0, reqNo);
     cSndBgmNode *other;
     int active;
     int *pin;
 
     if (node != 0 && (node->flags & 1) != 0) {
-        ClearActiveBit_2CCAC8(node);
+        cSndBgmNode_Resume(node);
     } else {
         node = cSnd_AllocBgmNode(self);
         if (node == 0) {
@@ -173,13 +173,13 @@ __attribute__((section(".text.cSnd_BgmEventFade")))
 void cSnd_BgmEventFade(cSnd *self, int reqNo, float time, float level, float weight)
 {
     int node;
-    node = func_002D22B0((int)self, 0, reqNo);
+    node = cSnd_FindBgmNode((int)self, 0, reqNo);
     if (node != 0) {
         if (0.0f <= weight) {
             float w = GetSequenceBlendWeight_373938(node, 0);
             UpdateSequenceNodeWeighted_373560(node, -1, w * weight);
         }
-        func_002CD4E0(node, level, time);
+        cSndBgmNode_FadeTo(node, level, time);
     }
 }
 
@@ -229,23 +229,23 @@ __attribute__((section(".text.cSnd_BgmEvSet")))
 int cSnd_BgmEvSet(cSnd *self, int bgmPt, int reqNo)
 {
     int node;
-    node = func_002D22B0((int)self, bgmPt, reqNo);
+    node = cSnd_FindBgmNode((int)self, bgmPt, reqNo);
     if (node != 0)
         cSndBgmNode_Release(node);
     node = cSnd_AllocBgmNode((int)self);
     if (node == 0)
         return 0;
-    return func_002CC9C0(node, bgmPt, reqNo, 4, 0xFFFFFFFFu, 0, 0) != 0;
+    return cSnd_BgmNodeSet(node, bgmPt, reqNo, 4, 0xFFFFFFFFu, 0, 0) != 0;
 }
 /* Start request reqNo of bgm part bgmPt: re-arm its live node, or claim a free node for it. */
 __attribute__((section(".text.cSnd_BgmEvStart")))
 int cSnd_BgmEvStart(cSnd *self, int bgmPt, int reqNo, int param)
 {
     cSndBgmNode *node;
-    node = (cSndBgmNode *)func_002D22B0((int)self, bgmPt, reqNo);
+    node = (cSndBgmNode *)cSnd_FindBgmNode((int)self, bgmPt, reqNo);
     if (node != 0) {
         if (node->flags & 1)
-            ClearActiveBit_2CCAC8((int)node);
+            cSndBgmNode_Resume((int)node);
         return 1;
     }
     node = (cSndBgmNode *)cSnd_AllocBgmNode((int)self);
@@ -277,7 +277,7 @@ void cSnd_BgmEvReStart(cSnd *self, int bgmPt, int reqNo, int param)
     for (node = self->bgmHead; node != 0; node = node->next) {
         if ((reqNo == -1 || ((node->bank - 0x80) == bgmPt && node->reqNo == reqNo)) &&
             node->state == 4) {
-            ClearActiveBit_2CCAC8((int)node);
+            cSndBgmNode_Resume((int)node);
             if (param >= 0)
                 SetSequenceParam_373A18((int)node, param);
         }
@@ -317,13 +317,13 @@ void cSnd_BgmEvAllSignal(cSnd *self, float time)
 /* fields cSnd.h does not name yet; see cSnd_fields.h */
 
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
-extern int func_002CFF68(cBgmData *);
-extern int func_002CFF78(cBgmData *);
+extern int cBgmData_IsReady(cBgmData *);
+extern int cBgmData_IsEmpty(cBgmData *);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern int cSnd_BgmEvIsReady(cSnd *, int, int);
 extern void cBgmData_Reset(cBgmData *);
-extern int func_002D0128(cBgmData *, int, int);
+extern int cBgmData_LoadNumbered(cBgmData *, int, int);
 
 extern int func_003A5678(cBgmHit *, char *);
 extern char D_0044D100[];

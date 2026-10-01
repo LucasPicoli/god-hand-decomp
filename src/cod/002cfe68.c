@@ -17,8 +17,8 @@ extern int D_003C3118;
 
 
 
-__attribute__((section(".text.func_002CFE68")))
-void func_002CFE68(int a0, int sel, int val, int arg) {
+__attribute__((section(".text.cSeData_MakeFileName")))
+void cSeData_MakeFileName(int a0, int sel, int val, int arg) {
     switch (sel) {
     case 3:
         func_003A6C58(arg, D_0044D010, D_003C310C, val & 0xFF);

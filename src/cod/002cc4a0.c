@@ -8,8 +8,8 @@ typedef struct {
 } Obj;
 
 /* Marks a recent-call ring entry as empty. */
-__attribute__((section(".text.func_002CC4A0")))
-void func_002CC4A0(cSndSeRecent *r) {
+__attribute__((section(".text.cSndSeRecent_Clear")))
+void cSndSeRecent_Clear(cSndSeRecent *r) {
   r->b = -1;
   r->a = -1;
   r->tick = 0;

@@ -3,15 +3,15 @@
 #include "godhand/cSnd.h"
 
 extern void func_0030A538(float *pos, int mtx);
-extern void func_002CE3E8(cSndSeVoice *v);
+extern void cSndSeVoice_Unlink(cSndSeVoice *v);
 extern int D_0044CE48[];
-extern cSndSeEntry *GetIndexedEntry_2CC4B8(cSnd *self, int idx);
+extern cSndSeEntry *cSnd_GetSeEntry(cSnd *self, int idx);
 
 /* Starts a free voice with the given key pair and ids, at the global origin. */
 __attribute__((section(".text.cSndSeVoice_StartAtOrigin")))
 int cSndSeVoice_StartAtOrigin(cSndSeVoice *v, short key0, short key1, short idA, short idB, int a5, int a6)
 {
-    if (func_002CDA38(v) == 1)
+    if (cSndSeVoice_IsActive(v) == 1)
         return 0;
     v->idA = idA;
     v->idB = idB;
@@ -22,7 +22,7 @@ int cSndSeVoice_StartAtOrigin(cSndSeVoice *v, short key0, short key1, short idA,
     v->pos[1] = 0;
     v->pos[2] = 0;
     v->scale = 1.0f;
-    return func_002CDFF0(v, key0, key1, a5, a6);
+    return cSndSeVoice_Setup(v, key0, key1, a5, a6);
 }
 
 #define OBJ_MTX_OFFSET 0xF0
@@ -34,7 +34,7 @@ int cSndSeVoice_StartAtOrigin(cSndSeVoice *v, short key0, short key1, short idA,
 __attribute__((section(".text.cSndSeVoice_Detach")))
 void cSndSeVoice_Detach(cSndSeVoice *v, char *obj)
 {
-    if (func_002CDA38(v) == 0)
+    if (cSndSeVoice_IsActive(v) == 0)
         return;
     if (v->obj != obj)
         return;
@@ -52,7 +52,7 @@ void cSndSeVoice_Detach(cSndSeVoice *v, char *obj)
 __attribute__((section(".text.cSndSeVoice_Release")))
 void cSndSeVoice_Release(cSndSeVoice *v, short key, int mode)
 {
-    if (func_002CDA38(v) == 0)
+    if (cSndSeVoice_IsActive(v) == 0)
         return;
     if (v->key0 != key)
         return;
@@ -60,7 +60,7 @@ void cSndSeVoice_Release(cSndSeVoice *v, short key, int mode)
         if (v->flags & 1)
             return;
     }
-    func_002CE3E8(v);
+    cSndSeVoice_Unlink(v);
 }
 
 /* Returns the first slot id in the D_0044CE48 table whose entry has no owner, or -1. */
@@ -70,7 +70,7 @@ int cSnd_FindFreeSe(cSnd *self)
     int *p = D_0044CE48;
     unsigned int i;
     for (i = 0; i < 0xC; i++, p++) {
-        if (GetIndexedEntry_2CC4B8(self, *p)->owner == -1)
+        if (cSnd_GetSeEntry(self, *p)->owner == -1)
             return *p;
     }
     return -1;

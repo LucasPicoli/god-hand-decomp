@@ -11,7 +11,7 @@ extern void func_00147C88(void *a0, void *a1, int a2);
 extern void CopyVec3ToField20_173908(char *a0, float *a1);
 extern void CopyVec3ToField30_173938(char *a0, float *a1);
 extern void CopyVec3ToField40_173968(char *a0, float *a1);
-extern void *GetIndexedEntry_2CC4B8(void *a0, int a1);
+extern void *cSnd_GetSeEntry(void *a0, int a1);
 extern int D_0044CE48[];
 extern int cSaveLoad_openSave(void *p, int a1);
 extern char D_00747A24[];
@@ -89,8 +89,8 @@ void func_001BCB38(char *a0, int a1, float *a2, float *a3)
 }
 
 /* Like cSnd_EmSeCheck, but it skips entries that are not yet loaded instead of dead ones. */
-__attribute__((section(".text.func_002CB4E8")))
-int func_002CB4E8(cSnd *self, int objId)
+__attribute__((section(".text.cSnd_EmSeFind")))
+int cSnd_EmSeFind(cSnd *self, int objId)
 {
     int owner;
     int *slot;
@@ -104,12 +104,12 @@ int func_002CB4E8(cSnd *self, int objId)
     slot = D_0044CE48;
     i = 0;
     do {
-        e = GetIndexedEntry_2CC4B8(self, *slot);
-        if (func_002CFC78(e) != 1) {
-            e = GetIndexedEntry_2CC4B8(self, *slot);
+        e = cSnd_GetSeEntry(self, *slot);
+        if (cSeData_IsFree(e) != 1) {
+            e = cSnd_GetSeEntry(self, *slot);
             if (e->owner == owner) {
-                e = GetIndexedEntry_2CC4B8(self, *slot);
-                if (func_002CFC88(e) != 1)
+                e = cSnd_GetSeEntry(self, *slot);
+                if (cSeData_IsFailed(e) != 1)
                     return *slot;
             }
         }

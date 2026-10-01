@@ -16,13 +16,13 @@ extern int SearchCameraData(void *);
 
 
 
-__attribute__((section(".text.func_002C2D20")))
-void func_002C2D20(void *o) {
+__attribute__((section(".text.cSceAtManager_initUnitStates")))
+void cSceAtManager_initUnitStates(void *o) {
     char buf[16];
     char *p;
 
-    p = (char *)func_002C30C0(o);
-    while ((p = (char *)func_002C30C8(o, p)) != 0) {
+    p = (char *)cSceAtManager_getUnitList(o);
+    while ((p = (char *)cSceAtManager_getNextUnit(o, p)) != 0) {
         switch (*(unsigned char *)(p + 0x35)) {
         case 4: {
             unsigned int f = *(unsigned char *)(p + 0x3B);

@@ -10,8 +10,8 @@ extern char D_006036A0[];
 extern unsigned short D_00747A50;
 
 /* Point a sound-effect slot at the allocator and table set that its bank id uses. */
-__attribute__((section(".text.func_002CFD50")))
-void func_002CFD50(cSeData *d) {
+__attribute__((section(".text.cSeData_SelectHeap")))
+void cSeData_SelectHeap(cSeData *d) {
     switch (d->bankId) {
     case 0:
         d->pool = D_00754210;

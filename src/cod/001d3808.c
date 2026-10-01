@@ -30,8 +30,8 @@ extern long D_00747640;
 
 
 /* Lost-round state: clear the bet display, start bgm event 0x28, then end the round. */
-__attribute__((section(".text.func_001D3808")))
-void func_001D3808(BlackJack *self) {
+__attribute__((section(".text.BlackJack_UpdateLose")))
+void BlackJack_UpdateLose(BlackJack *self) {
     switch (self->phase) {
     case 0:
         self->timer = 0x14;

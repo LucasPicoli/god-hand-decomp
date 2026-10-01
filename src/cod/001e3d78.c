@@ -71,8 +71,8 @@ int func_003AE188(int a0, int a1, ...) {
 }
 
 /* Sets flag bits on a node, stores a fade time, and starts a short fade. */
-__attribute__((section(".text.func_002CD500")))
-void func_002CD500(cSndBgmNode *node, int setBits, float time) {
+__attribute__((section(".text.cSndBgmNode_SetFlagsFadeOut")))
+void cSndBgmNode_SetFlagsFadeOut(cSndBgmNode *node, int setBits, float time) {
     node->flags |= setBits;
     node->fadeTime = time;
     func_003735E0(node, -1, 0.01f, time);

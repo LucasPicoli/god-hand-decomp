@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002CC4A0(void *);
+extern void cSndSeRecent_Clear(void *);
 extern char D_005FFD80;
 extern char D_00601180;
 extern char D_005FEFF0;
@@ -31,7 +31,7 @@ void *func_002C9C88(void *a0) {
     p = this + 0x160;
     /* `i != -1`, not `i >= 0`: retail materialises -1 and closes with bne. */
     for (i = 0xF; i != -1; i--) {
-        func_002CC4A0(p);
+        cSndSeRecent_Clear(p);
         p += 0x8;
     }
 

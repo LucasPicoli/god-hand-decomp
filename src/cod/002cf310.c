@@ -16,11 +16,11 @@ extern void func_00322F58(void);
 extern void UnlinkAndCoalesceNode_2A9680(int, void *);
 extern void func_00375A78(int);
 extern void Tramp_sceSifFreeSysMemory_3B5A50(int);
-extern void func_002CFE48(cSeData *, int);
+extern void cSeData_HeapFree(cSeData *, int);
 extern void cSeData_Release(cSeData *);
-extern void func_002CFC98(cSeData *);
-extern void func_002CFCB0(cSeData *, int);
-extern void func_002CFB60(cSeData *);
+extern void cSeData_SetFailed(cSeData *);
+extern void cSeData_AddLoadBits(cSeData *, int);
+extern void cSeData_RegisterBank(cSeData *);
 
 /* fields cSnd.h does not name yet; see cSnd_fields.h */
 #define CSND_FLAGS_AC(s) (*(unsigned int*)((char *)(s) + 0xac))
@@ -51,7 +51,7 @@ __attribute__((section(".text.cSnd_BgmStageChange")))
 void cSnd_BgmStageChange(cSnd *self)
 {
     cSndBgmNode *node;
-    int keep = func_002D0D70(self, D_007474A0.stageNo);
+    int keep = cSnd_GetStageBgmReq(self, D_007474A0.stageNo);
 
     for (node = self->bgmHead; node != 0; node = node->next) {
         if (node->state2 != 2 && node->reqNo != keep)
@@ -72,12 +72,12 @@ __attribute__((section(".text.cSnd_BgmReqFromEnemies")))
 int cSnd_BgmReqFromEnemies(void *self)
 {
     int req = -2;
-    if (func_002D0C10(self, 0x209) != 0)
+    if (cSnd_IsEnemyAlive(self, 0x209) != 0)
         req = 0x1B;
-    else if (func_002D0C10(self, 0x223) != 0)
+    else if (cSnd_IsEnemyAlive(self, 0x223) != 0)
         req = 0x2E;
-    else if (func_002D0C10(self, 0x220) != 0 || func_002D0C10(self, 0x221) != 0 ||
-             func_002D0C10(self, 0x222) != 0)
+    else if (cSnd_IsEnemyAlive(self, 0x220) != 0 || cSnd_IsEnemyAlive(self, 0x221) != 0 ||
+             cSnd_IsEnemyAlive(self, 0x222) != 0)
         req = 1;
     return req;
 }
@@ -87,12 +87,12 @@ __attribute__((section(".text.cSeData_Release")))
 void cSeData_Release(cSeData *d)
 {
     cSnd_SeVoiceCallAll(&D_005FEE00, d->bankId, 0);
-    if (func_002CF830(d) == 0)
+    if (cSeData_IsReadDone(d) == 0)
         cDvd_cancel(D_00583F20, d->f38);
-    if (func_002CFD38(d, 4) == 1 && func_002CFD38(d, 8) == 0 && func_00323000(d->f28) == 2)
+    if (cSeData_HasLoadBits(d, 4) == 1 && cSeData_HasLoadBits(d, 8) == 0 && func_00323000(d->f28) == 2)
         func_00322F58();
     if (d->buf != 0) {
-        if (func_002CFD38(d, 0x100) == 0) {
+        if (cSeData_HasLoadBits(d, 0x100) == 0) {
             void *b = d->buf;
             void *pool = d->pool;
             if (b != 0)
@@ -103,7 +103,7 @@ void cSeData_Release(cSeData *d)
     if (d->sysMem != 0)
         Tramp_sceSifFreeSysMemory_3B5A50(d->sysMem);
     if (d->f1C != 0)
-        func_002CFE48(d, d->f1C);
+        cSeData_HeapFree(d, d->f1C);
     if (d->f24 != 0)
         UnlinkAndCoalesceNode_2A9680((int)d->pool, (void *)d->f24);
     func_003A52F0(d, 0, 0x40);
@@ -117,15 +117,15 @@ void cSeData_Update(cSeData *d)
 {
     int r;
 
-    if (func_002CFD38(d, 1) == 0)
+    if (cSeData_HasLoadBits(d, 1) == 0)
         return;
     if (d->state != CSEDATA_STATE_FREE) {
-        if (func_002CFC88(d) == 1) {
+        if (cSeData_IsFailed(d) == 1) {
             if (func_00375128(d->bankIdS) != 0)
                 return;
             if (cSeData_HasBankKeys(d) == 0)
                 return;
-            if (func_002CFD38(d, 4) == 1 && func_002CFD38(d, 8) == 0 && func_00323000(d->f28) == 2)
+            if (cSeData_HasLoadBits(d, 4) == 1 && cSeData_HasLoadBits(d, 8) == 0 && func_00323000(d->f28) == 2)
                 return;
             cSeData_Release(d);
             return;
@@ -133,27 +133,27 @@ void cSeData_Update(cSeData *d)
         if (d->state != CSEDATA_STATE_LOADING)
             return;
     }
-    if (func_002CFD38(d, 2) == 0) {
-        if (func_002CF830(d) != 1)
+    if (cSeData_HasLoadBits(d, 2) == 0) {
+        if (cSeData_IsReadDone(d) != 1)
             return;
         r = cSeData_CheckImage(d);
     } else {
-        if (func_002CFD38(d, 0x20) != 0)
+        if (cSeData_HasLoadBits(d, 0x20) != 0)
             goto loaded;
-        if (func_002CFD38(d, 0x10) == 0) {
-            if (func_002CF888(d) == 0)
+        if (cSeData_HasLoadBits(d, 0x10) == 0) {
+            if (cSeData_AllocSysMem(d) == 0)
                 return;
         }
-        if (func_002CF868(d) != 1)
+        if (cSeData_IsBankIdle(d) != 1)
             return;
         r = cSeData_ResolveBank(d);
     }
     if (r == 0)
-        func_002CFC98(d);
+        cSeData_SetFailed(d);
     return;
 loaded:
-    if (func_002CFD38(d, 4) == 1 && func_002CFD38(d, 8) == 0 && func_00323000(d->f28) == 3)
-        func_002CFCB0(d, 8);
+    if (cSeData_HasLoadBits(d, 4) == 1 && cSeData_HasLoadBits(d, 8) == 0 && func_00323000(d->f28) == 3)
+        cSeData_AddLoadBits(d, 8);
     if (cSeData_HasBankKeys(d) == 1)
-        func_002CFB60(d);
+        cSeData_RegisterBank(d);
 }

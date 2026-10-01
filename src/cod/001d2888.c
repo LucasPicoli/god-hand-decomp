@@ -91,8 +91,8 @@ void func_002B3EC8(unsigned char *a0)
 
 
 /* Player choice state, variant 5/6: pad buttons pick the next state. */
-__attribute__((section(".text.func_001D2A28")))
-void func_001D2A28(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateStandMenu")))
+void BlackJack_UpdateStandMenu(BlackJack *self)
 {
     switch (self->phase) {
     case 0:
@@ -148,8 +148,8 @@ void func_001D2A28(BlackJack *self)
 
 
 /* Player choice state, variant 7/8: pad buttons pick the next state. */
-__attribute__((section(".text.func_001D2888")))
-void func_001D2888(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateHitMenu")))
+void BlackJack_UpdateHitMenu(BlackJack *self)
 {
     switch (self->phase) {
     case 0:

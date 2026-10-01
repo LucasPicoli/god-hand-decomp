@@ -25,9 +25,9 @@ void InitFiveSubstructs2ABA78_13D0B8(char *a0)
 __attribute__((section(".text.InitFiveSubstructs2AABA0_13D100")))
 void InitFiveSubstructs2AABA0_13D100(char *a0)
 {
-    func_002AABA0(a0);
-    func_002AABA0(a0 + 0x140);
-    func_002AABA0(a0 + 0x190);
-    func_002AABA0(a0 + 0xA0);
-    func_002AABA0(a0 + 0xF0);
+    cIDBase_stepJitter(a0);
+    cIDBase_stepJitter(a0 + 0x140);
+    cIDBase_stepJitter(a0 + 0x190);
+    cIDBase_stepJitter(a0 + 0xA0);
+    cIDBase_stepJitter(a0 + 0xF0);
 }

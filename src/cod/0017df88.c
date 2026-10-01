@@ -13,7 +13,7 @@ extern char **D_003C2384;
 extern void KeyStop(void);
 extern void classFADE_kill(void *p);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
-extern void func_001EFD00(ColiseumBattle *self);
+extern void ColiseumBattle_KillFade(ColiseumBattle *self);
 extern void ColiseumBattle_StartFade(ColiseumBattle *self, unsigned char mode);
 extern void func_001F28C0(void *ui);
 extern void func_001F28F0(void *ui);
@@ -152,7 +152,7 @@ void ColiseumBattle_StepEnter(ColiseumBattle *self)
     case 1:
         if (((D_0074748C >> 2) & 1) != 0) {
             self->flags = self->flags | COLISEUM_FLAG_ENTERED;
-            func_001EFD00(self);
+            ColiseumBattle_KillFade(self);
             self->state = self->state + 1;
         }
         break;

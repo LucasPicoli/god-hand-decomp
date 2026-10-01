@@ -13,7 +13,7 @@ extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_00129718(void *a, void *b, int c);
 extern int D_005FEA60;
 extern int D_00568288;
-extern int func_002C2B58(void *a0, int a1, float *a2, float *a3);
+extern int cSceAtManager_findJumpPoint(void *a0, int a1, float *a2, float *a3);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern void func_002DCA58(void);
 extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, void *t0, int t1, int t2);
@@ -216,7 +216,7 @@ void SetActionJumpUp(void)
             g = (char *) &D_005864F0;
             if (*((int *) (g + 0x514)) <= 0) {
                 if (Obj293_IsByteSet_53C(g) == 0) {
-                    if (func_002C2B58(&D_005FEA60, *((int *) (s0 + 0xF0)), buf, buf + 4) != 0) {
+                    if (cSceAtManager_findJumpPoint(&D_005FEA60, *((int *) (s0 + 0xF0)), buf, buf + 4) != 0) {
                         t = Turn_dest_dir(*((float *) (s0 + 0x104)), buf[4], 3.14159274f);
                         if (t < 0.0f) {
                             at = -t;

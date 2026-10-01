@@ -92,8 +92,8 @@ void func_00299BA0(char *a0, int a1, int *pal, int mode)
 }
 
 /* Betting state: pad buttons confirm the bet or step it by 100 up to the table limit. */
-__attribute__((section(".text.func_001D1AA8")))
-void func_001D1AA8(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateDealMenu")))
+void BlackJack_UpdateDealMenu(BlackJack *self)
 {
     switch (self->phase) {
     case 0:

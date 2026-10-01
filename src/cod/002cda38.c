@@ -16,8 +16,8 @@ int func_0032F4C8(void *a0) {
 }
 
 /* True while the voice holds a sound-driver handle. */
-__attribute__((section(".text.func_002CDA38")))
-int func_002CDA38(cSndSeVoice *v) {
+__attribute__((section(".text.cSndSeVoice_IsActive")))
+int cSndSeVoice_IsActive(cSndSeVoice *v) {
     return v->handle != 0;
 }
 

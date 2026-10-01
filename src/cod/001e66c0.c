@@ -3,8 +3,8 @@
 
 /* Slot2 two-step pause screen: wait two updates, then return to the title
  * state. */
-__attribute__((section(".text.func_001E66C0")))
-void func_001E66C0(Slot2 *self) {
+__attribute__((section(".text.Slot2_PayoutNone")))
+void Slot2_PayoutNone(Slot2 *self) {
     switch (self->phase) {
     case 0:
         self->phase = 1;

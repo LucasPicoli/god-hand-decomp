@@ -37,8 +37,8 @@ void func_001467E8(void *a0) {
 
 
 
-__attribute__((section(".text.func_002C2F08")))
-int func_002C2F08(int a0, float *a1, int a2) {
+__attribute__((section(".text.cSceAtManager_AtHitCheckNo")))
+int cSceAtManager_AtHitCheckNo(int a0, float *a1, int a2) {
     float pos[4];
     int buf[12];
     int u;

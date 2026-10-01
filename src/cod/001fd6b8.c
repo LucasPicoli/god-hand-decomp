@@ -2,8 +2,8 @@
 
 extern unsigned int D_007476B0;
 
-__attribute__((section(".text.func_001FD6B8")))
-void func_001FD6B8(char *o, int id, int f, short val) {
+__attribute__((section(".text.cDamageUnit_SetDamageCollFlashActiveById")))
+void cDamageUnit_SetDamageCollFlashActiveById(char *o, int id, int f, short val) {
     char *n = *(char **)(o + 0x3C);
     unsigned int *q;
     while (n != 0) {

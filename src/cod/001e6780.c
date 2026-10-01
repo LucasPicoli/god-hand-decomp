@@ -59,8 +59,8 @@ typedef struct Owner {
     Node *head;
 } Owner;
 
-__attribute__((section(".text.func_002D0820")))
-void func_002D0820(Owner *owner, float value) {
+__attribute__((section(".text.cSnd_SetBgmFadeOutTimeAll")))
+void cSnd_SetBgmFadeOutTimeAll(Owner *owner, float value) {
     Node *n;
 
     for (n = owner->head; n != 0; n = n->next) {

@@ -18238,7 +18238,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_600_1B8640",
+      "name": "cOmbb_ckFire",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B8640",
       "size": 8,
@@ -18350,7 +18350,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_1EF740",
+      "name": "ColiseumBattle_StepIdle",
       "unit": "asm/cod/000000",
       "vaddr": "0x001EF740",
       "size": 8,
@@ -19092,7 +19092,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Clear_Field_28_And_Ptr4_Field_30_34",
+      "name": "CustomIDWork_ResetMoveOffsetPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D6870",
       "size": 36,
@@ -20374,7 +20374,7 @@
       "tu": "src/cod/merged_orphans_e.c"
     },
     {
-      "name": "GetResolvedActorVtable_295AB8",
+      "name": "cEmWrap_getPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295AB8",
       "size": 60,
@@ -23170,7 +23170,7 @@
       "tu": "src/cod/001398d0.c"
     },
     {
-      "name": "InitActorVtable_2CC500",
+      "name": "cSndBgmNode_Ctor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC500",
       "size": 60,
@@ -23485,7 +23485,7 @@
       "tu": "src/cod/001c25f0.c"
     },
     {
-      "name": "Forward2CF6F8_2CB6A0",
+      "name": "cSnd_SeLoadNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB6A0",
       "size": 64,
@@ -23625,7 +23625,7 @@
       "tu": "src/cod/002b5bb8.c"
     },
     {
-      "name": "ClearActiveBit_2CCAC8",
+      "name": "cSndBgmNode_Resume",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CCAC8",
       "size": 68,
@@ -23863,7 +23863,7 @@
       "tu": "src/cod/002bb1f0.c"
     },
     {
-      "name": "LoadFileStripExt_2CB638",
+      "name": "cSnd_SeLoadFile",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB638",
       "size": 104,
@@ -23975,14 +23975,14 @@
       "tu": "src/cod/00292e80.c"
     },
     {
-      "name": "IsSlotUsable_2CB830",
+      "name": "cSnd_SeIsLoadOk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB830",
       "size": 108,
       "tu": "src/cod/00292e80.c"
     },
     {
-      "name": "FindActiveSlot_2CC050",
+      "name": "cSnd_FindFreeSeSlot",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC050",
       "size": 108,
@@ -24038,14 +24038,14 @@
       "tu": "src/cod/001ffbf0.c"
     },
     {
-      "name": "IsSlotAvailable_2CB778",
+      "name": "cSnd_SeIsLoaded",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB778",
       "size": 112,
       "tu": "src/cod/002cb778.c"
     },
     {
-      "name": "InitSlotContext_2CD6D0",
+      "name": "cSndMemHeap_OpenSub",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD6D0",
       "size": 112,
@@ -25466,7 +25466,7 @@
       "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "SetVia4_Float_54C_295B80",
+      "name": "cEmWrap_setMutekiTimer",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295B80",
       "size": 64,
@@ -25501,7 +25501,7 @@
       "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "SetActorMaxValue_295D88",
+      "name": "cEmWrap_SetVitalMax",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295D88",
       "size": 64,
@@ -26250,7 +26250,7 @@
       "tu": "src/cod/001fe530.c"
     },
     {
-      "name": "GetActiveEntry_1FE9B8",
+      "name": "cDataManager_isLoaded",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FE9B8",
       "size": 72,
@@ -26264,14 +26264,14 @@
       "tu": "src/cod/system/cDataManager.c"
     },
     {
-      "name": "FreeActiveEntry_1FEC90",
+      "name": "cDataManager_freeKind",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FEC90",
       "size": 76,
       "tu": "src/cod/001fe530.c"
     },
     {
-      "name": "AddActiveEntry_1FECE0",
+      "name": "cDataManager_addPinnedData",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FECE0",
       "size": 152,
@@ -26334,14 +26334,14 @@
       "tu": "src/cod/001ff540.c"
     },
     {
-      "name": "SetClampedShortParam_295D30",
+      "name": "cEmWrap_SetVital",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295D30",
       "size": 88,
       "tu": "src/cod/00295d30.c"
     },
     {
-      "name": "SetByteParam531_295EE0",
+      "name": "cEmWrap_SetRaderType",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295EE0",
       "size": 68,
@@ -26355,7 +26355,7 @@
       "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "SetActorGoto_295F80",
+      "name": "cEmWrap_setGoto",
       "unit": "asm/cod/000000",
       "vaddr": "0x00295F80",
       "size": 152,
@@ -26516,14 +26516,14 @@
       "tu": "src/cod/event/cSceAtManager.c"
     },
     {
-      "name": "ResetEntityStateById_2C29F8",
+      "name": "cSceAtManager_SetDisableById",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C29F8",
       "size": 80,
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "FindEntityByTypeIndex_2C2AE0",
+      "name": "cSceAtManager_getUnitBySpawnIdx",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2AE0",
       "size": 116,
@@ -34157,7 +34157,7 @@
       "tu": "src/cod/001f29c0.c"
     },
     {
-      "name": "GetIndexedEntry_2CC4B8",
+      "name": "cSnd_GetSeEntry",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC4B8",
       "size": 16,
@@ -34199,7 +34199,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFC78",
+      "name": "cSeData_IsFree",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFC78",
       "size": 12,
@@ -34213,98 +34213,98 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFC88",
+      "name": "cSeData_IsFailed",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFC88",
       "size": 16,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFF78",
+      "name": "cBgmData_IsEmpty",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFF78",
       "size": 12,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFF68",
+      "name": "cBgmData_IsReady",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFF68",
       "size": 16,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFC98",
+      "name": "cSeData_SetFailed",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFC98",
       "size": 24,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFD38",
+      "name": "cSeData_HasLoadBits",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFD38",
       "size": 20,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CF868",
+      "name": "cSeData_IsBankIdle",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CF868",
       "size": 32,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFE28",
+      "name": "cSeData_HeapAlloc",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFE28",
       "size": 28,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFE48",
+      "name": "cSeData_HeapFree",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFE48",
       "size": 28,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0350",
+      "name": "cBgmData_AddLoadBits",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0350",
       "size": 16,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D03D0",
+      "name": "cBgmData_HasLoadBits",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D03D0",
       "size": 20,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0748",
+      "name": "cSnd_AddBgmAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0748",
       "size": 16,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0758",
+      "name": "cSnd_ClearBgmAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0758",
       "size": 20,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0578",
+      "name": "cSnd_GetBgmLinkPtr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0578",
       "size": 32,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0598",
+      "name": "cSnd_GetBgmEntryPtr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0598",
       "size": 32,
@@ -34318,7 +34318,7 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0728",
+      "name": "cSnd_SetBgmAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0728",
       "size": 28,
@@ -34332,14 +34332,14 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CF830",
+      "name": "cSeData_IsReadDone",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CF830",
       "size": 52,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0318",
+      "name": "cBgmData_IsReadDone",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0318",
       "size": 52,
@@ -34353,14 +34353,14 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D07A8",
+      "name": "cSnd_AddBgmDefAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D07A8",
       "size": 44,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D07D8",
+      "name": "cSnd_ClearBgmDefAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D07D8",
       "size": 44,
@@ -34374,42 +34374,42 @@
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFCB0",
+      "name": "cSeData_AddLoadBits",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFCB0",
       "size": 132,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CFB60",
+      "name": "cSeData_RegisterBank",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFB60",
       "size": 92,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CF888",
+      "name": "cSeData_AllocSysMem",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CF888",
       "size": 96,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002CF6F8",
+      "name": "cSeData_LoadNumbered",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CF6F8",
       "size": 100,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0360",
+      "name": "cBgmData_Relocate",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0360",
       "size": 108,
       "tu": "src/cod/002cf258.c"
     },
     {
-      "name": "func_002D0770",
+      "name": "cSnd_GetBgmAttr",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0770",
       "size": 8,
@@ -34815,7 +34815,7 @@
       "tu": "src/cod/002cda38.c"
     },
     {
-      "name": "func_002CDA38",
+      "name": "cSndSeVoice_IsActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CDA38",
       "size": 12,
@@ -35459,7 +35459,7 @@
       "tu": "src/cod/002af638.c"
     },
     {
-      "name": "func_002CC568",
+      "name": "cSndBgmNode_IsActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC568",
       "size": 12,
@@ -36250,7 +36250,7 @@
       "tu": "src/cod/001e3d78.c"
     },
     {
-      "name": "func_002CD500",
+      "name": "cSndBgmNode_SetFlagsFadeOut",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD500",
       "size": 68,
@@ -36390,7 +36390,7 @@
       "tu": "src/cod/001aad88.c"
     },
     {
-      "name": "func_002CD890",
+      "name": "cSndMemHeap_Free",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD890",
       "size": 100,
@@ -36803,7 +36803,7 @@
       "tu": "src/cod/00126770.c"
     },
     {
-      "name": "func_002AA3D8",
+      "name": "cIDBase_initIDWork",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AA3D8",
       "size": 56,
@@ -36845,7 +36845,7 @@
       "tu": "src/cod/00126770.c"
     },
     {
-      "name": "func_00201108",
+      "name": "cDvd_CheckWaitFrame",
       "unit": "asm/cod/000000",
       "vaddr": "0x00201108",
       "size": 88,
@@ -37076,7 +37076,7 @@
       "tu": "src/cod/002af628.c"
     },
     {
-      "name": "func_002C30C0",
+      "name": "cSceAtManager_getUnitList",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C30C0",
       "size": 8,
@@ -37363,7 +37363,7 @@
       "tu": "src/cod/002d5788.c"
     },
     {
-      "name": "func_002D8FF8",
+      "name": "cWorldLight_Get_LightNum",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D8FF8",
       "size": 8,
@@ -38490,7 +38490,7 @@
       "tu": "src/cod/002cb200.c"
     },
     {
-      "name": "func_002CFF30",
+      "name": "cBgmData_Init",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFF30",
       "size": 44,
@@ -41003,7 +41003,7 @@
       "tu": "src/cod/001ae700.c"
     },
     {
-      "name": "func_001B8648",
+      "name": "cOmbb_ckCountdown",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B8648",
       "size": 40,
@@ -41598,7 +41598,7 @@
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_002B8320",
+      "name": "cObjSimple_Dtor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B8320",
       "size": 28,
@@ -41654,7 +41654,7 @@
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "func_002CD4E0",
+      "name": "cSndBgmNode_FadeTo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD4E0",
       "size": 28,
@@ -42494,14 +42494,14 @@
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_002CC4E0",
+      "name": "cSnd_GlobalCtor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC4E0",
       "size": 32,
       "tu": "src/cod/00150078.c"
     },
     {
-      "name": "func_002CD9E8",
+      "name": "cSndMemHeap_GlobalCtor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD9E8",
       "size": 32,
@@ -42816,7 +42816,7 @@
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_002CDA08",
+      "name": "cSndSeVoice_Ctor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CDA08",
       "size": 40,
@@ -45588,7 +45588,7 @@
       "tu": "src/cod/00133888.c"
     },
     {
-      "name": "func_002B8340",
+      "name": "cObjSimple_GetTypeInfo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B8340",
       "size": 80,
@@ -45651,7 +45651,7 @@
       "tu": "src/cod/00133888.c"
     },
     {
-      "name": "func_002CD5C0",
+      "name": "cBgm_GetTypeInfo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD5C0",
       "size": 80,
@@ -48073,7 +48073,7 @@
       "tu": "src/cod/00124ec0.c"
     },
     {
-      "name": "func_002CC4A0",
+      "name": "cSndSeRecent_Clear",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC4A0",
       "size": 20,
@@ -48122,7 +48122,7 @@
       "tu": "src/cod/002abc18.c"
     },
     {
-      "name": "func_002C3040",
+      "name": "cSceAtManager_linkUnit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3040",
       "size": 24,
@@ -48535,7 +48535,7 @@
       "tu": "src/cod/002bb068.c"
     },
     {
-      "name": "func_002CBF48",
+      "name": "cSnd_FindVoiceByHandle",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CBF48",
       "size": 48,
@@ -48822,7 +48822,7 @@
       "tu": "src/cod/00384fa8.c"
     },
     {
-      "name": "func_001B8670",
+      "name": "cOmbb_initCountdown",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B8670",
       "size": 164,
@@ -49060,7 +49060,7 @@
       "tu": "src/cod/0014ff00.c"
     },
     {
-      "name": "func_001EFD00",
+      "name": "ColiseumBattle_KillFade",
       "unit": "asm/cod/000000",
       "vaddr": "0x001EFD00",
       "size": 80,
@@ -49214,7 +49214,7 @@
       "tu": "src/cod/002ab9a8.c"
     },
     {
-      "name": "func_002CC830",
+      "name": "cSndBgmNode_ApplyReq",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC830",
       "size": 204,
@@ -50579,7 +50579,7 @@
       "tu": "src/cod/002b3078.c"
     },
     {
-      "name": "func_002CFD50",
+      "name": "cSeData_SelectHeap",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFD50",
       "size": 216,
@@ -50768,7 +50768,7 @@
       "tu": "src/cod/002827c8.c"
     },
     {
-      "name": "func_002CC628",
+      "name": "cSndBgmNode_StepState",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC628",
       "size": 256,
@@ -50915,7 +50915,7 @@
       "tu": "src/cod/00155d60.c"
     },
     {
-      "name": "func_002C3000",
+      "name": "cSceAtManager_initFreeList",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3000",
       "size": 64,
@@ -51013,7 +51013,7 @@
       "tu": "src/cod/001e6780.c"
     },
     {
-      "name": "func_002D0820",
+      "name": "cSnd_SetBgmFadeOutTimeAll",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0820",
       "size": 48,
@@ -51279,7 +51279,7 @@
       "tu": "src/cod/003777c0.c"
     },
     {
-      "name": "func_002A9DF8",
+      "name": "cIDBase_clear",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A9DF8",
       "size": 164,
@@ -51426,7 +51426,7 @@
       "tu": "src/cod/002aec88.c"
     },
     {
-      "name": "func_002CBE18",
+      "name": "cSnd_SeDetachObj",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CBE18",
       "size": 76,
@@ -51587,7 +51587,7 @@
       "tu": "src/cod/001e7118.c"
     },
     {
-      "name": "func_001E9E40",
+      "name": "DogRace_Release",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E9E40",
       "size": 152,
@@ -51643,7 +51643,7 @@
       "tu": "src/cod/001d6fe0.c"
     },
     {
-      "name": "func_002CC3B8",
+      "name": "cSnd_StaticInit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC3B8",
       "size": 232,
@@ -51664,7 +51664,7 @@
       "tu": "src/cod/0013d540.c"
     },
     {
-      "name": "func_001FD770",
+      "name": "cDamageUnit_UpdateDamageCollFlash",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD770",
       "size": 64,
@@ -53358,7 +53358,7 @@
       "tu": "src/cod/0028b148.c"
     },
     {
-      "name": "func_002CC540",
+      "name": "cSndBgmNode_Dtor",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC540",
       "size": 40,
@@ -54303,7 +54303,7 @@
       "tu": "src/cod/00345598.c"
     },
     {
-      "name": "func_002CC4C8",
+      "name": "cSnd_GetVoice",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC4C8",
       "size": 20,
@@ -54562,7 +54562,7 @@
       "tu": "src/cod/002804f8.c"
     },
     {
-      "name": "func_002CC728",
+      "name": "cSndBgmNode_Setup",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC728",
       "size": 260,
@@ -54681,7 +54681,7 @@
       "tu": "src/cod/001f0498.c"
     },
     {
-      "name": "func_002CFE68",
+      "name": "cSeData_MakeFileName",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFE68",
       "size": 196,
@@ -54709,35 +54709,35 @@
       "tu": "src/cod/0037aba0.c"
     },
     {
-      "name": "func_001D3508",
+      "name": "BlackJack_UpdateWin",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D3508",
       "size": 768,
       "tu": "src/cod/001d3508.c"
     },
     {
-      "name": "func_001D3808",
+      "name": "BlackJack_UpdateLose",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D3808",
       "size": 576,
       "tu": "src/cod/001d3808.c"
     },
     {
-      "name": "func_001D3A48",
+      "name": "BlackJack_UpdatePush",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D3A48",
       "size": 672,
       "tu": "src/cod/001d3a48.c"
     },
     {
-      "name": "func_001D3CE8",
+      "name": "BlackJack_UpdateBlackJackWin",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D3CE8",
       "size": 692,
       "tu": "src/cod/001d3ce8.c"
     },
     {
-      "name": "func_001D3FA0",
+      "name": "BlackJack_UpdateFiveCardWin",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D3FA0",
       "size": 692,
@@ -55360,7 +55360,7 @@
       "tu": "src/cod/001f55c0.c"
     },
     {
-      "name": "func_001EFD70",
+      "name": "ColiseumBattle_UpdateCountdown",
       "unit": "asm/cod/000000",
       "vaddr": "0x001EFD70",
       "size": 244,
@@ -55570,7 +55570,7 @@
       "tu": "src/cod/0039a140.c"
     },
     {
-      "name": "func_001E5268",
+      "name": "Slot2_StartReels",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E5268",
       "size": 476,
@@ -55983,7 +55983,7 @@
       "tu": "src/cod/003002b0.c"
     },
     {
-      "name": "func_002C2D20",
+      "name": "cSceAtManager_initUnitStates",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2D20",
       "size": 404,
@@ -56123,7 +56123,7 @@
       "tu": "src/cod/001abd40.c"
     },
     {
-      "name": "func_001E58B8",
+      "name": "Slot2_UpdatePayout",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E58B8",
       "size": 60,
@@ -57481,28 +57481,28 @@
       "tu": "src/cod/00150738.c"
     },
     {
-      "name": "func_002CC5C0",
+      "name": "cSndBgmNode_Link",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC5C0",
       "size": 36,
       "tu": "src/cod/00150738.c"
     },
     {
-      "name": "func_002CD740",
+      "name": "cSndMemHeap_ResetFirstBlk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD740",
       "size": 64,
       "tu": "src/cod/00150738.c"
     },
     {
-      "name": "func_002CE3C0",
+      "name": "cSndSeVoice_Link",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CE3C0",
       "size": 36,
       "tu": "src/cod/00150738.c"
     },
     {
-      "name": "func_002CF2D0",
+      "name": "cSeData_Init",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CF2D0",
       "size": 52,
@@ -57740,14 +57740,14 @@
       "tu": "src/cod/002c7f88.c"
     },
     {
-      "name": "func_002CD968",
+      "name": "cSndMemHeap_FindFitBlk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD968",
       "size": 52,
       "tu": "src/cod/002c7f88.c"
     },
     {
-      "name": "func_002D22B0",
+      "name": "cSnd_FindBgmNode",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D22B0",
       "size": 64,
@@ -57775,7 +57775,7 @@
       "tu": "src/cod/002c7f88.c"
     },
     {
-      "name": "func_002D9000",
+      "name": "cWorldLight_Get_LightData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D9000",
       "size": 20,
@@ -58048,14 +58048,14 @@
       "tu": "src/cod/001bd178.c"
     },
     {
-      "name": "func_002CC5E8",
+      "name": "cSndBgmNode_Unlink",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC5E8",
       "size": 60,
       "tu": "src/cod/001bd178.c"
     },
     {
-      "name": "func_002CE3E8",
+      "name": "cSndSeVoice_Unlink",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CE3E8",
       "size": 68,
@@ -58398,14 +58398,14 @@
       "tu": "src/cod/001fe1e0.c"
     },
     {
-      "name": "func_002CD8F8",
+      "name": "cSndMemHeap_FindBlk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD8F8",
       "size": 56,
       "tu": "src/cod/001fe1e0.c"
     },
     {
-      "name": "func_002CD930",
+      "name": "cSndMemHeap_FindUnusedBlk",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD930",
       "size": 56,
@@ -58531,14 +58531,14 @@
       "tu": "src/cod/001efd50.c"
     },
     {
-      "name": "SetField_B98_1EFD50",
+      "name": "ColiseumBattle_SetCountdown",
       "unit": "asm/cod/000000",
       "vaddr": "0x001EFD50",
       "size": 32,
       "tu": "src/cod/001efd50.c"
     },
     {
-      "name": "func_002D6838",
+      "name": "CustomIDWork_SetMoveOffsetPosYSin",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D6838",
       "size": 52,
@@ -58818,7 +58818,7 @@
       "tu": "src/cod/00151630.c"
     },
     {
-      "name": "func_001E66C0",
+      "name": "Slot2_PayoutNone",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E66C0",
       "size": 88,
@@ -58860,7 +58860,7 @@
       "tu": "src/cod/002c9008.c"
     },
     {
-      "name": "func_002CBDC0",
+      "name": "cSnd_SeRecentPush",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CBDC0",
       "size": 88,
@@ -58965,7 +58965,7 @@
       "tu": "src/cod/002b4f98.c"
     },
     {
-      "name": "func_002C30C8",
+      "name": "cSceAtManager_getNextUnit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C30C8",
       "size": 76,
@@ -59154,7 +59154,7 @@
       "tu": "src/cod/00201098.c"
     },
     {
-      "name": "func_002D8E18",
+      "name": "cWorldLight_startFade",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D8E18",
       "size": 132,
@@ -59168,7 +59168,7 @@
       "tu": "src/cod/00201098.c"
     },
     {
-      "name": "func_002AABA0",
+      "name": "cIDBase_stepJitter",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AABA0",
       "size": 136,
@@ -59399,7 +59399,7 @@
       "tu": "src/cod/0033ad08.c"
     },
     {
-      "name": "func_002AA480",
+      "name": "cIDBase_linkParents",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AA480",
       "size": 180,
@@ -59882,7 +59882,7 @@
       "tu": "src/cod/00100870.c"
     },
     {
-      "name": "func_002B6FE8",
+      "name": "cObjSimple_FollowParent",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B6FE8",
       "size": 2548,
@@ -60148,7 +60148,7 @@
       "tu": "src/cod/00335360.c"
     },
     {
-      "name": "func_001FD6B8",
+      "name": "cDamageUnit_SetDamageCollFlashActiveById",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD6B8",
       "size": 96,
@@ -61170,7 +61170,7 @@
       "tu": "src/cod/001db9b8.c"
     },
     {
-      "name": "func_001E5F30",
+      "name": "Slot2_PayoutTicket",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E5F30",
       "size": 828,
@@ -61338,7 +61338,7 @@
       "tu": "src/cod/00121ac0.c"
     },
     {
-      "name": "func_001D1770",
+      "name": "BlackJack_UpdateMaxBetMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D1770",
       "size": 820,
@@ -61380,7 +61380,7 @@
       "tu": "src/cod/002f1d58.c"
     },
     {
-      "name": "func_001FEAA0",
+      "name": "cDataManager_loadSeWait",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FEAA0",
       "size": 476,
@@ -61779,7 +61779,7 @@
       "tu": "src/cod/00148bd8.c"
     },
     {
-      "name": "func_001D2BB0",
+      "name": "BlackJack_UpdateDoubleDownMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D2BB0",
       "size": 316,
@@ -61800,14 +61800,14 @@
       "tu": "src/cod/001d2888.c"
     },
     {
-      "name": "func_001D2A28",
+      "name": "BlackJack_UpdateStandMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D2A28",
       "size": 388,
       "tu": "src/cod/001d2888.c"
     },
     {
-      "name": "func_001D2888",
+      "name": "BlackJack_UpdateHitMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D2888",
       "size": 416,
@@ -63445,7 +63445,7 @@
       "tu": "src/cod/002780c0.c"
     },
     {
-      "name": "func_001D4258",
+      "name": "BlackJack_UpdateClearTable",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D4258",
       "size": 552,
@@ -63480,7 +63480,7 @@
       "tu": "src/cod/001d9d28.c"
     },
     {
-      "name": "func_001E4E28",
+      "name": "Slot2_UpdateBet",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E4E28",
       "size": 1088,
@@ -63627,7 +63627,7 @@
       "tu": "src/cod/00212c08.c"
     },
     {
-      "name": "func_001EF180",
+      "name": "ColiseumBattle_StepResult",
       "unit": "asm/cod/000000",
       "vaddr": "0x001EF180",
       "size": 1468,
@@ -63655,7 +63655,7 @@
       "tu": "src/cod/003958d8.c"
     },
     {
-      "name": "func_002B83B8",
+      "name": "cObjSimple_SetOneBodyFlag",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B83B8",
       "size": 316,
@@ -63669,7 +63669,7 @@
       "tu": "src/cod/001467e8.c"
     },
     {
-      "name": "func_002C2F08",
+      "name": "cSceAtManager_AtHitCheckNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2F08",
       "size": 136,
@@ -63921,7 +63921,7 @@
       "tu": "src/cod/0014a338.c"
     },
     {
-      "name": "func_002CE430",
+      "name": "cSndSeVoice_Stop",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CE430",
       "size": 88,
@@ -63949,7 +63949,7 @@
       "tu": "src/cod/001b7de8.c"
     },
     {
-      "name": "func_002CD668",
+      "name": "cSndMemHeap_OpenRoot",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD668",
       "size": 100,
@@ -64103,7 +64103,7 @@
       "tu": "src/cod/001793d0.c"
     },
     {
-      "name": "func_002CFBC0",
+      "name": "cSeData_PrepareDecode",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CFBC0",
       "size": 164,
@@ -64145,7 +64145,7 @@
       "tu": "src/cod/0013eba0.c"
     },
     {
-      "name": "func_002CC9C0",
+      "name": "cSnd_BgmNodeSet",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC9C0",
       "size": 180,
@@ -64551,7 +64551,7 @@
       "tu": "src/cod/001612c8.c"
     },
     {
-      "name": "func_001D32D8",
+      "name": "BlackJack_UpdateRevealDealerHand",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D32D8",
       "size": 344,
@@ -64978,7 +64978,7 @@
       "tu": "src/cod/001d79d8.c"
     },
     {
-      "name": "func_001D13B8",
+      "name": "BlackJack_UpdateAddBetMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D13B8",
       "size": 948,
@@ -65279,7 +65279,7 @@
       "tu": "src/cod/00160e78.c"
     },
     {
-      "name": "func_002CB4E8",
+      "name": "cSnd_EmSeFind",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CB4E8",
       "size": 208,
@@ -65405,7 +65405,7 @@
       "tu": "src/cod/001d1aa8.c"
     },
     {
-      "name": "func_001D1AA8",
+      "name": "BlackJack_UpdateDealMenu",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D1AA8",
       "size": 656,
@@ -65482,7 +65482,7 @@
       "tu": "src/cod/001158e8.c"
     },
     {
-      "name": "func_002CDA80",
+      "name": "cSndSeVoice_Update",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CDA80",
       "size": 664,
@@ -67456,7 +67456,7 @@
       "tu": "src/cod/002cd638.c"
     },
     {
-      "name": "Forward2CD668_2CD638",
+      "name": "cSndMemHeap_OpenMain",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CD638",
       "size": 44,

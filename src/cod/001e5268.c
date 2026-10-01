@@ -23,8 +23,8 @@ static inline unsigned char tick(int *p)
 
 /* Slot2 start-up screen: set the board, start the reels one after another,
  * then return to the title state once all three have settled. */
-__attribute__((section(".text.func_001E5268")))
-void func_001E5268(Slot2 *self)
+__attribute__((section(".text.Slot2_StartReels")))
+void Slot2_StartReels(Slot2 *self)
 {
     unsigned char buf[16] __attribute__((aligned(16)));
     Slot2Reel *reel;

@@ -5,32 +5,32 @@ extern int D_00747A34;
 extern char D_00754C10[];
 extern char D_00754220[];
 extern void func_003A52F0(void *, int, int);
-extern void func_002CD740(void *);
-extern int func_002CD7C8(int, int);
+extern void cSndMemHeap_ResetFirstBlk(void *);
+extern int cSndMemHeap_Alloc(int, int);
 
 /* A slot is available when it is unset (-1), has no owner, or its entry is alive. */
-__attribute__((section(".text.IsSlotAvailable_2CB778")))
-int IsSlotAvailable_2CB778(cSnd *self, int slot)
+__attribute__((section(".text.cSnd_SeIsLoaded")))
+int cSnd_SeIsLoaded(cSnd *self, int slot)
 {
     cSndSeEntry *e;
     if (slot == -1) return 1;
-    e = GetIndexedEntry_2CC4B8(self, slot);
+    e = cSnd_GetSeEntry(self, slot);
     if (e->owner == -1) return 1;
-    e = GetIndexedEntry_2CC4B8(self, slot);
+    e = cSnd_GetSeEntry(self, slot);
     return cSeData_IsAlive(e);
 }
 
 /* Sets up a sound heap that lives in a chunk taken from a parent heap. */
-__attribute__((section(".text.InitSlotContext_2CD6D0")))
-void InitSlotContext_2CD6D0(cSndMemHeap *heap, cSndMemHeap *parent, int size)
+__attribute__((section(".text.cSndMemHeap_OpenSub")))
+void cSndMemHeap_OpenSub(cSndMemHeap *heap, cSndMemHeap *parent, int size)
 {
     int base;
     heap->self = heap;
     func_003A52F0(heap, 0, sizeof(heap->blk));
     heap->size = size;
-    func_002CD740(heap);
+    cSndMemHeap_ResetFirstBlk(heap);
     heap->parent = parent;
-    base = func_002CD7C8(parent, size);
+    base = cSndMemHeap_Alloc(parent, size);
     heap->base = base;
     heap->self->blk[0].top = base;
 }

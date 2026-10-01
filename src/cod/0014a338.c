@@ -6,7 +6,7 @@ extern char *D_003BD6E8;
 extern void UnlinkAndCoalesceNode_2A9680(void *a0, void *a1);
 extern void __builtin_delete(void *a0);
 extern void func_00375050(void *, int);
-extern void func_002CE3E8(void *);
+extern void cSndSeVoice_Unlink(void *);
 extern void func_002B22E0(void *, int);
 extern int cCoreSave_getCostumeNo(void *a0);
 extern int D_00569B70;
@@ -36,18 +36,18 @@ void func_003128B0(char *a0) {
     *(int *)a0 = 0;
 }
 
-/* func_002CE430 — sn-2.95.3-136 */
+/* cSndSeVoice_Stop — sn-2.95.3-136 */
 
 
 
 /* Stops a voice: fades its live sound out, or frees a voice that never started. */
-__attribute__((section(".text.func_002CE430")))
-void func_002CE430(cSndSeVoice *v) {
-    if (func_002CDA38(v) == 0) return;
+__attribute__((section(".text.cSndSeVoice_Stop")))
+void cSndSeVoice_Stop(cSndSeVoice *v) {
+    if (cSndSeVoice_IsActive(v) == 0) return;
     if ((v->flags & 1) != 0)
         func_00375050(v->handle, 0);
     else
-        func_002CE3E8(v);
+        cSndSeVoice_Unlink(v);
 }
 
 /* cModel_setMeshDisplay — sn-2.95.3-136 */

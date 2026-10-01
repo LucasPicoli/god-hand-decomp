@@ -52,7 +52,7 @@ int cSnd_AllocBgmNode(cSnd *self)
 {
     int i;
     for (i = 0; i < 0x10; i++) {
-        if (func_002CC568(func_002D2DB0(self, i)) == 0) {
+        if (cSndBgmNode_IsActive(func_002D2DB0(self, i)) == 0) {
             cSndBgmNode_Init(func_002D2DB0(self, i));
             return func_002D2DB0(self, i);
         }

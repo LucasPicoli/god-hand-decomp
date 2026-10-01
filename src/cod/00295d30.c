@@ -6,8 +6,8 @@ extern void func_0026E7A8(int a0, int a1);
 extern void func_00297660(void *a0);
 extern int D_00569B70;
 
-__attribute__((section(".text.SetClampedShortParam_295D30")))
-void SetClampedShortParam_295D30(void *a0, int a1) {
+__attribute__((section(".text.cEmWrap_SetVital")))
+void cEmWrap_SetVital(void *a0, int a1) {
     if (FindResolveActor_295978(a0)) {
         char *p = *(char **)((char *)a0 + 4);
         if (a1 >= *(short *)(p + 0x548)) {
@@ -18,15 +18,15 @@ void SetClampedShortParam_295D30(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.SetByteParam531_295EE0")))
-void SetByteParam531_295EE0(void *a0, char a1) {
+__attribute__((section(".text.cEmWrap_SetRaderType")))
+void cEmWrap_SetRaderType(void *a0, char a1) {
     if (FindResolveActor_295978(a0)) {
         *(char *)(*(char **)((char *)a0 + 4) + 0x531) = a1;
     }
 }
 
-__attribute__((section(".text.SetActorGoto_295F80")))
-void SetActorGoto_295F80(void *a0,int a1,int a2,int a3,float f){
+__attribute__((section(".text.cEmWrap_setGoto")))
+void cEmWrap_setGoto(void *a0,int a1,int a2,int a3,float f){
  if(FindResolveActor_295978(a0)){
   char *p=*(char**)((char*)a0+4);
   if(*(short*)(p+0x54A)>0){

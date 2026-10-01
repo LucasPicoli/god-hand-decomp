@@ -34,7 +34,7 @@ void *GetSlotInstanceB_1FE5E0(void) {
 extern void cDataHolder_systemInit(cDataSlot *slot);
 extern void func_001FF448(cDataSlot *slot);
 extern void func_001FF470(cDataSlot *slot, int kind, void *buf);
-extern int FreeActiveEntry_1FEC90(cDataManager *self, int kind);
+extern int cDataManager_freeKind(cDataManager *self, int kind);
 /* Re-init every slot, then set the state word. */
 __attribute__((section(".text.ResetSlotArray_1FE6C8")))
 void ResetSlotArray_1FE6C8(cDataManager *self, int state) {
@@ -44,8 +44,8 @@ void ResetSlotArray_1FE6C8(cDataManager *self, int state) {
 }
 
 /* 1 if the slot holding kind has finished loading. */
-__attribute__((section(".text.GetActiveEntry_1FE9B8")))
-int GetActiveEntry_1FE9B8(cDataManager *self, int kind) {
+__attribute__((section(".text.cDataManager_isLoaded")))
+int cDataManager_isLoaded(cDataManager *self, int kind) {
     int i = cDataManager_findKind(self, kind);
     if (i >= 0)
         return UpdateStateReady_1FF238(&self->slot[i]);
@@ -53,8 +53,8 @@ int GetActiveEntry_1FE9B8(cDataManager *self, int kind) {
 }
 
 /* Free the slot holding kind. */
-__attribute__((section(".text.FreeActiveEntry_1FEC90")))
-int FreeActiveEntry_1FEC90(cDataManager *self, int kind) {
+__attribute__((section(".text.cDataManager_freeKind")))
+int cDataManager_freeKind(cDataManager *self, int kind) {
     int i = cDataManager_findKind(self, kind);
     if (i < 0) return 0;
     cDataHolder_systemInit(&self->slot[i]);
@@ -62,11 +62,11 @@ int FreeActiveEntry_1FEC90(cDataManager *self, int kind) {
 }
 
 /* Replace the slot holding kind with a fresh load, pinned. */
-__attribute__((section(".text.AddActiveEntry_1FECE0")))
-int AddActiveEntry_1FECE0(cDataManager *self, int kind, void *buf) {
+__attribute__((section(".text.cDataManager_addPinnedData")))
+int cDataManager_addPinnedData(cDataManager *self, int kind, void *buf) {
     int i = cDataManager_findKind(self, kind);
     if (i >= 0)
-        FreeActiveEntry_1FEC90(self, kind);
+        cDataManager_freeKind(self, kind);
     i = cDataManager_findFreeSlot(self);
     if (i < 0) return 0;
     func_001FF470(&self->slot[i], kind, buf);

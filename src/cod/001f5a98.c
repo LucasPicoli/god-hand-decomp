@@ -23,7 +23,7 @@ extern void ClearFlagBits_373858(cSndBgmNode *node, int bits);
 extern void cSndBgmNode_FadeOut(cSndBgmNode *node, float time);
 extern void UpdateSequenceNodeSetFlag_373488(cSndBgmNode *node);
 extern int GetSequenceResult_373770(cSndBgmNode *node);
-extern void func_002CC5E8(cSndBgmNode *node);
+extern void cSndBgmNode_Unlink(cSndBgmNode *node);
 extern void cSndBgmNode_FadeIn(cSndBgmNode *node, float time);
 
 /* sn-2.95.3-136 */
@@ -112,7 +112,7 @@ void cSndBgmNode_Run(cSndBgmNode *node)
         node->state2 = 1;
         /* fall through */
     case 1:
-        if ((func_002D0770(&D_005FEE00) & node->param) == 0) {
+        if ((cSnd_GetBgmAttr(&D_005FEE00) & node->param) == 0) {
             ClearFlagBits_373858(node, 8);
             cSndBgmNode_FadeOut(node, 0.0f);
             node->state2 = 2;
@@ -134,7 +134,7 @@ void cSndBgmNode_Run(cSndBgmNode *node)
     }
     if (GetSequenceResult_373770(node) != 0)
         return;
-    func_002CC5E8(node);
+    cSndBgmNode_Unlink(node);
 }
 
 /* Runs one BGM node's fade state machine: 0 idle, 1 playing, 2 fading out for a restart. */
@@ -146,7 +146,7 @@ void cSndBgmNode_Fade(cSndBgmNode *node)
     case 0:
         if (node->saveWt != node->matchWt)
             return;
-        if ((func_002D0770(&D_005FEE00) & node->param) == 0)
+        if ((cSnd_GetBgmAttr(&D_005FEE00) & node->param) == 0)
             return;
         if (node->flags & 0x1FF00)
             return;
@@ -157,7 +157,7 @@ void cSndBgmNode_Fade(cSndBgmNode *node)
         /* fall through */
     case 1:
         if (node->saveWt == node->matchWt) {
-            if (func_002D0770(&D_005FEE00) & node->param)
+            if (cSnd_GetBgmAttr(&D_005FEE00) & node->param)
                 return;
         }
         cSndBgmNode_FadeOut(node, 0.0f);
@@ -173,7 +173,7 @@ void cSndBgmNode_Fade(cSndBgmNode *node)
                 node->wait--;
             }
         }
-        if ((func_002D0770(&D_005FEE00) & node->param) == 0)
+        if ((cSnd_GetBgmAttr(&D_005FEE00) & node->param) == 0)
             return;
         if (node->saveWt != node->matchWt)
             return;

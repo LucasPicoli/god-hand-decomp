@@ -6,7 +6,7 @@ extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
 extern int D_00428A18;
 extern void func_003A52F0(void *a0, int a1, int a2);
-extern void func_002CD740(void *);
+extern void cSndMemHeap_ResetFirstBlk(void *);
 extern void func_002B43B0(void *);
 extern void func_002B45E8(void *);
 extern char *D_003C23A4;
@@ -27,16 +27,16 @@ void cOmBase_setTexChange(cOmBase *self, int arg) {
         SearchData(self->texKey, &D_00428A18, 0), arg);
 }
 
-/* func_002CD668 — sn-2.95.3-136 */
+/* cSndMemHeap_OpenRoot — sn-2.95.3-136 */
 
 
 /* Sets up a sound heap that starts at an address and spans a size. Its parent is itself. */
-__attribute__((section(".text.func_002CD668")))
-void func_002CD668(cSndMemHeap *heap, int start, int size) {
+__attribute__((section(".text.cSndMemHeap_OpenRoot")))
+void cSndMemHeap_OpenRoot(cSndMemHeap *heap, int start, int size) {
     heap->self = heap;
     func_003A52F0(heap, 0, sizeof(heap->blk));
     heap->size = size;
-    func_002CD740(heap);
+    cSndMemHeap_ResetFirstBlk(heap);
     heap->parent = heap;
     heap->base = 0;
     heap->self->blk[0].top = start;

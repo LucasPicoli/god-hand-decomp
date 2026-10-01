@@ -4,7 +4,7 @@
 extern void cDataHolder_systemInit(cDataSlot *slot);
 extern void func_001FF448(cDataSlot *slot);
 extern void func_001FF470(cDataSlot *slot, int kind, void *buf);
-extern int FreeActiveEntry_1FEC90(cDataManager *self, int kind);
+extern int cDataManager_freeKind(cDataManager *self, int kind);
 /* Load address of the slot holding kind, or 0. */
 __attribute__((section(".text.cDataManager_seeDataAddress")))
 int cDataManager_seeDataAddress(cDataManager *self, int kind) {

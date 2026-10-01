@@ -53,7 +53,7 @@ void func_002C8B68(char *a0)
             break;
         }
         if (*(unsigned short *)(s1 + 0xA) == 0) {
-            char *q = func_002CBF48(D_005FEE00, *(int *)(s0 + 0x14));
+            char *q = cSnd_FindVoiceByHandle(D_005FEE00, *(int *)(s0 + 0x14));
 
             if (q == 0) {
                 *(unsigned char *)(s0 + 0x13) = 4;

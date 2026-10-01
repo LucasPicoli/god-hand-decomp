@@ -117,13 +117,13 @@ void func_001B15C8(void *a0, int a1, int a2, float *a3, float *t0) {
 }
 
 /* Gives a chunk back to a heap: merges its block into the next one and marks the block unused. */
-__attribute__((section(".text.func_002CD890")))
-void func_002CD890(cSndMemHeap *heap, int addr) {
+__attribute__((section(".text.cSndMemHeap_Free")))
+void cSndMemHeap_Free(cSndMemHeap *heap, int addr) {
     cSndMemBlk *blk;
     cSndMemBlk *next;
     if (addr == 0) return;
     if (heap->self == 0) return;
-    blk = func_002CD8F8(heap, addr);
+    blk = cSndMemHeap_FindBlk(heap, addr);
     next = blk->next;
     next->prev = blk->prev;
     next->freeSize = next->freeSize + (blk->size + blk->freeSize);

@@ -6,8 +6,8 @@ extern void func_001FCCC0(void *a0);
 
 
 
-__attribute__((section(".text.func_001FD770")))
-void func_001FD770(void *a0) {
+__attribute__((section(".text.cDamageUnit_UpdateDamageCollFlash")))
+void cDamageUnit_UpdateDamageCollFlash(void *a0) {
     void *p = *(void **)((char *)a0 + 0x3C);
     while (p) {
         func_001FCCC0(p);

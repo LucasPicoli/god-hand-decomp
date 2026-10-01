@@ -105,8 +105,8 @@ void func_002B4A30(void)
 	func_00345610();
 }
 
-__attribute__((section(".text.func_002B8320")))
-void func_002B8320(void) {
+__attribute__((section(".text.cObjSimple_Dtor")))
+void cObjSimple_Dtor(void) {
     func_0014EA28();
 }
 
@@ -152,8 +152,8 @@ void func_002CA690(void) { Forward325C98_325DC0(0); }
 
 extern void func_003735E0(cSndBgmNode *node, int a1, float to, float time);
 /* Fades a node with the given target and time; -1 selects the whole sequence. */
-__attribute__((section(".text.func_002CD4E0")))
-void func_002CD4E0(cSndBgmNode *node, float to, float time) { func_003735E0(node, -1, to, time); }
+__attribute__((section(".text.cSndBgmNode_FadeTo")))
+void cSndBgmNode_FadeTo(cSndBgmNode *node, float to, float time) { func_003735E0(node, -1, to, time); }
 
 void func_002FBED0(void);
 

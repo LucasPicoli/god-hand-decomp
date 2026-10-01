@@ -31,8 +31,8 @@ extern char *D_003C2F84;
 
 /* Result sequence after a fight: marks the ring cleared, pays the prize
 * out thousand by thousand, then fades to the next room. */
-__attribute__((section(".text.func_001EF180")))
-void func_001EF180(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_StepResult")))
+void ColiseumBattle_StepResult(ColiseumBattle *self)
 {
     char buf[16];
     int done;

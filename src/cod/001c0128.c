@@ -84,7 +84,7 @@ int func_001C0128(void *a0)
         r1 = ((int (*)(void *))*(void **)(vt + 0x84))(s3 + *(short *)(vt + 0x80));
         vt = *(char **)(s3 + 0x214);
         r2 = ((int (*)(void *))*(void **)(vt + 0x8C))(s3 + *(short *)(vt + 0x88));
-        *(short *)(s3 + 0x662) = func_001FAFF0(lvl, h, r1, r2,
+        *(short *)(s3 + 0x662) = cCoreSave_addItem(lvl, h, r1, r2,
                                                *(int *)(s3 + 0x560), s3 + 0x676);
     }
     *(int *)(s3 + 0x67C) = *(int *)(s3 + 0x560);

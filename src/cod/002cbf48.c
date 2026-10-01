@@ -2,8 +2,8 @@
 #include "godhand/cSnd.h"
 
 /* Finds the voice that holds this sound-driver handle. */
-__attribute__((section(".text.func_002CBF48")))
-cSndSeVoice *func_002CBF48(cSnd *self, int handle) {
+__attribute__((section(".text.cSnd_FindVoiceByHandle")))
+cSndSeVoice *cSnd_FindVoiceByHandle(cSnd *self, int handle) {
     cSndSeVoice *v = self->voiceHead;
     if (v != 0) {
         do {
