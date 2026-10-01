@@ -1,36 +1,40 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDvd.h"
 
 extern int D_00747A84;
 
+extern char D_00580D40[];
+extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
+extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
+extern void func_00200B20(cDvd *self);
+/* 2 if id is the running job, 1 if it is queued, 0 if unknown. */
 __attribute__((section(".text.cDvd_Check")))
-int cDvd_Check(char *base, int h)
+int cDvd_Check(cDvd *self, int id)
 {
-    char *e;
-    char *p;
-    char *q;
-    char *end;
+    cDvdJob *job;
+    cDvdJob *end;
+    int *jobId;
 
-    if (h == 0) {
+    if (id == 0) {
         return 0;
     }
-    end = base + 0x1104;
-    e = *(char **)base;
-    if (e != 0) {
-        if (*(int *)(e + 4) == h) {
+    end = &self->job[CDVD_JOB_NUM];
+    if (self->cur != 0) {
+        if (self->cur->id == id) {
             return 2;
         }
     }
-    p = base + 4;
-    q = base + 8;
+    job = self->job;
+    jobId = &self->job[0].id;
     do {
-        if (*(int *)p != 0) {
-            if (*(int *)q == h) {
+        if (job->state != 0) {
+            if (*jobId == id) {
                 return 1;
             }
         }
-        p = p + 0x88;
-        q = q + 0x88;
-    } while ((int)p < (int)end);
+        job++;
+        jobId = (int *)((char *)jobId + sizeof(cDvdJob));
+    } while ((int)job < (int)end);
     return 0;
 }
 

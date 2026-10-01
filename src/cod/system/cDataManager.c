@@ -1,22 +1,50 @@
 /* TU: cDataManager [system] - recovered C++ class. */
+#include "godhand/cDataManager.h"
 
+extern void cDataHolder_systemInit(cDataSlot *slot);
+extern void func_001FF448(cDataSlot *slot);
+extern void func_001FF470(cDataSlot *slot, int kind, void *buf);
+extern int FreeActiveEntry_1FEC90(cDataManager *self, int kind);
+/* Load address of the slot holding kind, or 0. */
 __attribute__((section(".text.cDataManager_seeDataAddress")))
-int cDataManager_seeDataAddress(void *a0) {
-    int r = func_001FEE00(a0);
-    if (r >= 0)
-        return *(int*)(*(int*)((char*)a0+8) + r*0x5C + 0x10);
+int cDataManager_seeDataAddress(cDataManager *self, int kind) {
+    int i = func_001FEE00(self, kind);
+    if (i >= 0)
+        return self->slot[i].data;
     return 0;
 }
 
+/* Drop every slot, last to first. */
 __attribute__((section(".text.cDataManager_clear")))
-void cDataManager_clear(unsigned char *a0) {
-    int i = *(int *)(a0 + 0x4);
+void cDataManager_clear(cDataManager *self) {
+    int i = self->slotNum;
     i--;
     while (i != -1) {
-        func_001FF448(*(unsigned char **)(a0 + 0x8) + i * 0x5C);
+        func_001FF448(&self->slot[i]);
         i--;
     }
 }
-#include "include_asm.h"
 
-INCLUDE_ASM("nonmatching", cDataManager_loadWait);
+/* cDataManager_loadWait: return the load address of a kind, loading it into a free slot if needed. */
+
+__attribute__((section(".text.cDataManager_loadWait")))
+int cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep) {
+    int i = func_001FEE00(self, kind);
+    int data;
+    if (i >= 0) {
+        func_001FF090(&self->slot[i]);
+        return self->slot[i].data;
+    }
+    i = func_001FEEA0(self);
+    if (i < 0) return 0;
+    data = func_001FF180(&self->slot[i], kind, buf);
+    while (UpdateStateReady_1FF238(&self->slot[i]) == 0) {
+        func_002D5250(1);
+    }
+    if (keep != 0) {
+        func_001FF090(&self->slot[i]);
+    } else {
+        self->slot[i].useCount = CDATA_USE_PINNED;
+    }
+    return data;
+}

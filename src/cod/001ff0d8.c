@@ -1,18 +1,20 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDataManager.h"
 
+/* 1 if the slot holds data: counted in use, or loaded and not reserved. */
 __attribute__((section(".text.func_001FF0D8")))
-int func_001FF0D8(int *p) {
+int func_001FF0D8(cDataSlot *slot) {
     unsigned long t;
     unsigned long b;
-    if (p[1] != 0) {
+    if (slot->useCount != 0) {
         return 1;
     }
-    t = p[2];
+    t = slot->flags;
     b = (t >> 2) & 1;
     if (b != 0) {
         return 0;
     }
-    return p[4] != 0;
+    return slot->data != 0;
 }
 
 __attribute__((section(".text.func_0031D108")))

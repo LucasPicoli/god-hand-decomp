@@ -1,58 +1,61 @@
 /* TU: cDvd [system] - recovered C++ class. */
+#include "godhand/cDvd.h"
 extern char D_00580D40[];
-extern void func_00201228(char *a0, char *a1);
-extern void func_00201290(char *a0);
 extern int cDvd_Check(int a0, int a1);
-extern void func_00200B20(int a0);
 
+/* Queue a read of a named file. Returns the job id, 0 on failure. t1 overrides the size in bytes. */
 __attribute__((section(".text.cDvd_ReadAlloc")))
-int cDvd_ReadAlloc(char *a0, char *a1, int *a2, int a3, int t0, int t1, int t2, int t3)
+int cDvd_ReadAlloc(cDvd *self, char *name, int *outBuf, int a3, int id, int t1, int arg70, int arg6C)
 {
-    char *s0;
+    cDvdJob *job;
 
-    *a2 = 0;
-    s0 = func_002017A8(a0);
-    if (s0 == 0)
+    *outBuf = 0;
+    job = func_002017A8(self);
+    if (job == 0)
         return 0;
 
     {
-        int v0 = FindEntryValue_1FF9C0(D_00580D40, a1, s0 + 0x78, s0 + 0xC);
-        *(int *)(s0 + 0x8) = v0;
-        *(int *)(s0 + 0x7C) = a3;
-        *(int *)(s0 + 0x74) = (unsigned int)(*(int *)(s0 + 0x78) + 0x7FF) >> 11;
-        if (v0 < 0)
+        int fileNo = FindEntryValue_1FF9C0(D_00580D40, name, &job->size, job->unk0C);
+        job->fileNo = fileNo;
+        job->align = a3;
+        job->blockNum = (unsigned int)(job->size + 0x7FF) >> 11;
+        if (fileNo < 0)
             return 0;
     }
 
-    *(int *)(s0 + 0x0) = 1;
-    if (t0 == 0)
-        *(int *)(s0 + 0x4) = func_00201788(a0);
+    job->state = 1;
+    if (id == 0)
+        job->id = func_00201788(self);
     else
-        *(int *)(s0 + 0x4) = t0;
+        job->id = id;
 
-    *(int *)(s0 + 0x6C) = t3;
-    *(int *)(s0 + 0x70) = t2;
-    *(int *)(s0 + 0x80) = 0;
+    job->arg6C = arg6C;
+    job->arg70 = arg70;
+    job->buf = 0;
     if (t1 != 0)
-        *(int *)(s0 + 0x74) = (unsigned int)(t1 + 0x7FF) >> 11;
+        job->blockNum = (unsigned int)(t1 + 0x7FF) >> 11;
 
     {
-        int r = EnsureInitThenForward_2A9538_30EE08(*(int *)(s0 + 0x74) << 11, 0x80, a3);
-        *(int *)(s0 + 0x80) = r;
+        void *r = EnsureInitThenForward_2A9538_30EE08(job->blockNum << 11, 0x80, a3);
+        job->buf = r;
         if (r == 0) {
-            func_00201228(a0, s0);
+            func_00201228(self, job);
             return 0;
         }
-        *a2 = r;
+        *outBuf = (int)r;
     }
 
-    if (*(int *)(a0 + 0x0) == 0)
-        func_00201290(a0);
-    return *(int *)(s0 + 0x4);
+    if (self->cur == 0)
+        func_00201290(self);
+    return job->id;
 }
+extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
+extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
+extern void func_00200B20(cDvd *self);
+/* Wait until the job with the given id is no longer pending. */
 __attribute__((section(".text.cDvd_CheckWait")))
-void cDvd_CheckWait(int a0, int a1)
+void cDvd_CheckWait(cDvd *self, int id)
 {
-    while (cDvd_Check(a0, a1))
-        func_00200B20(a0);
+    while (cDvd_Check(self, id))
+        func_00200B20(self);
 }

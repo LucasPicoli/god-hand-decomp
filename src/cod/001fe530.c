@@ -1,4 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cDataManager.h"
 
 extern int D_007861A8;
 extern int D_00460D48;
@@ -30,39 +31,51 @@ void *GetSlotInstanceB_1FE5E0(void) {
     return &D_007861B8;
 }
 
+extern void cDataHolder_systemInit(cDataSlot *slot);
+extern void func_001FF448(cDataSlot *slot);
+extern void func_001FF470(cDataSlot *slot, int kind, void *buf);
+extern int FreeActiveEntry_1FEC90(cDataManager *self, int kind);
+/* Re-init every slot, then set the state word. */
 __attribute__((section(".text.ResetSlotArray_1FE6C8")))
-void ResetSlotArray_1FE6C8(int *a0, int a1) { int i = a0[1]; while (--i != -1) cDataHolder_systemInit((void *)(a0[2] + i * 0x5C)); a0[0] = a1; }
+void ResetSlotArray_1FE6C8(cDataManager *self, int state) {
+    int i = self->slotNum;
+    while (--i != -1) cDataHolder_systemInit(&self->slot[i]);
+    self->unk00 = state;
+}
 
+/* 1 if the slot holding kind has finished loading. */
 __attribute__((section(".text.GetActiveEntry_1FE9B8")))
-int GetActiveEntry_1FE9B8(void *a0) {
-    int v1 = func_001FEE00(a0);
-    if (v1 >= 0)
-        return UpdateStateReady_1FF238(*(int*)((char*)a0+8) + v1*0x5C);
+int GetActiveEntry_1FE9B8(cDataManager *self, int kind) {
+    int i = func_001FEE00(self, kind);
+    if (i >= 0)
+        return UpdateStateReady_1FF238(&self->slot[i]);
     return 0;
 }
 
+/* Free the slot holding kind. */
 __attribute__((section(".text.FreeActiveEntry_1FEC90")))
-int FreeActiveEntry_1FEC90(void *a0, int a1) {
-    int v1 = func_001FEE00(a0);
-    if (v1 < 0) return 0;
-    cDataHolder_systemInit(*(int*)((char*)a0+8) + v1*0x5C);
+int FreeActiveEntry_1FEC90(cDataManager *self, int kind) {
+    int i = func_001FEE00(self, kind);
+    if (i < 0) return 0;
+    cDataHolder_systemInit(&self->slot[i]);
     return 1;
 }
 
+/* Replace the slot holding kind with a fresh load, pinned. */
 __attribute__((section(".text.AddActiveEntry_1FECE0")))
-int AddActiveEntry_1FECE0(void *a0, int a1, int a2) {
-    int v0 = func_001FEE00(a0);
-    if (v0 >= 0)
-        FreeActiveEntry_1FEC90(a0, a1);
-    v0 = func_001FEEA0(a0);
-    if (v0 < 0) return 0;
-    func_001FF470(*(int*)((char*)a0+8) + v0*0x5C, a1, a2);
-    *(int*)(*(int*)((char*)a0+8) + v0*0x5C + 4) = -0x64;
+int AddActiveEntry_1FECE0(cDataManager *self, int kind, void *buf) {
+    int i = func_001FEE00(self, kind);
+    if (i >= 0)
+        FreeActiveEntry_1FEC90(self, kind);
+    i = func_001FEEA0(self);
+    if (i < 0) return 0;
+    func_001FF470(&self->slot[i], kind, buf);
+    self->slot[i].useCount = CDATA_USE_PINNED;
     return 1;
 }
 
 __attribute__((section(".text.UpdateStateReady_1FF238")))
-int UpdateStateReady_1FF238(void *a0) {
+int UpdateStateReady_1FF238(cDataSlot *a0) {
     int v1;
     int ret;
     if ((*(int*)((char*)a0+8) & 1) == 0) goto common;

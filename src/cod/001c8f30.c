@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDManager.h"
 
 extern void func_0031EC48(float *, int *);
 extern int D_007476B0;
@@ -57,27 +58,30 @@ void *func_001C8F30(void)
 	return &D_007858B8;
 }
 
+extern int D_007479F4;           /* address of the default id table */
+/* Address of entry idx in the data table of a slot. Falls back to the default table's
+   first entry when the slot is 0x21, idx is 0, or the table is missing or too short. */
 __attribute__((section(".text.cIDManager_getTexAddr")))
-int cIDManager_getTexAddr(int a0, int a1, unsigned int a2)
+int cIDManager_getTexAddr(cIDManager *self, int slot, unsigned int idx)
 {
-	int e, p, t, r;
+	int *tbl;
+	int off, r;
 
-	if (a1 != 0x21)
+	if (slot != 0x21)
 		goto work;
 common:
 	return *(int *)((char *)D_007479F4 + 0x8) + D_007479F4;
 work:
-	if (a2 == 0)
+	if (idx == 0)
 		goto common;
-	e = a0 + (a1 << 3);
-	p = *(int *)((char *)e + 0x4);
-	if (p == 0)
+	tbl = self->pair[slot].tex;
+	if (tbl == 0)
 		goto common;
-	if ((unsigned int)*(int *)p < a2)
+	if ((unsigned int)tbl[0] < idx)
 		goto common;
-	t = *(int *)((char *)(a2 << 2) + p);
-	r = t + p;
-	if (t == 0)
+	off = tbl[idx];
+	r = off + (int)tbl;
+	if (off == 0)
 		r = 0;
 	return r;
 }

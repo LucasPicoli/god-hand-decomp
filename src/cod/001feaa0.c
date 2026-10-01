@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDataManager.h"
 
-extern void AddQueueEntry_1FF4D0(int a0, int a1);
-extern int UpdateStateReady_1FF238(int a0);
 extern void func_002D5250(int a0);
 extern unsigned short D_00747A50;
 
@@ -13,15 +12,14 @@ extern unsigned short D_00747A50;
 
 
 
+extern void AddQueueEntry_1FF4D0(cDataSlot *slot, int id);
+/* Queue the load of data id on the slot of kind (plus its companions) and wait until it is ready.
+   Bit 0 of flags picks the alternate id of a few ids. */
 __attribute__((section(".text.func_001FEAA0")))
-void func_001FEAA0(void *a0, int a1, int a2, int a3) {
-    void *p = a0;
-    int kind = a1;
-    int id = a2;
-    int flags = a3;
+void func_001FEAA0(cDataManager *self, int kind, int id, int flags) {
     int v0;
 
-    v0 = func_001FEE00(p, kind);
+    v0 = func_001FEE00(self, kind);
     if (v0 < 0) {
         return;
     }
@@ -67,22 +65,22 @@ void func_001FEAA0(void *a0, int a1, int a2, int a3) {
             return;
         }
     }
-    AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, id);
+    AddQueueEntry_1FF4D0(&self->slot[v0], id);
     switch (kind) {
     case 0x264:
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x263);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x263);
         break;
     case 0x278:
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x20F);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x20F);
         break;
     case 0x211:
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x200);
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x203);
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x227);
-        AddQueueEntry_1FF4D0(*(int *)((char *)p + 8) + v0 * 0x5C, 0x22A);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x200);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x203);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x227);
+        AddQueueEntry_1FF4D0(&self->slot[v0], 0x22A);
         break;
     }
-    while (UpdateStateReady_1FF238(*(int *)((char *)p + 8) + v0 * 0x5C) == 0) {
+    while (UpdateStateReady_1FF238(&self->slot[v0]) == 0) {
         func_002D5250(1);
     }
 }

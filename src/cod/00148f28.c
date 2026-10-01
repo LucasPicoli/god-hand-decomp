@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDataManager.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
 
@@ -512,16 +513,16 @@ void func_001FBD00(cCoreSave *self, unsigned char v)
     }
 }
 
-/* sn-2.95.3-136 */
+/* Count one more use of the slot, unless it is pinned. */
 __attribute__((section(".text.func_001FF090")))
-void func_001FF090(char *p)
+void func_001FF090(cDataSlot *slot)
 {
-    int n = *(int *)(p + 0x4);
+    int n = slot->useCount;
 
     if (n >= 0) {
-        *(int *)(p + 0x4) = n + 1;
+        slot->useCount = n + 1;
     }
-    *(int *)(p + 0x0) = 3;
+    slot->state = 3;
 }
 
 /* sn-2.95.3-136 */

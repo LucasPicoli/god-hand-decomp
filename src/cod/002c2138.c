@@ -1,11 +1,11 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cSceAtManager.h"
+#define SCEAT_TYPE_HIT     0xB          /* units with the enable flag that FindNodeByHit looks at */
 
 extern char *D_003C2F84;
 extern char *D_003C23A4;
 extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
 extern void cTaskWork_exit(int a0);
-extern void func_002C1D68(int a0, int a1, int a2);
-extern void cSceAtUnit_getCenterPos(int a0, int a1);
 extern void func_002D56A8(void *a0);
 extern char D_007474A0[];
 extern char D_0061A990[];
@@ -34,19 +34,28 @@ void ForwardEntityAndExit_2C2368(char *a0) {
     cTaskWork_exit(*(int*)(D_003C2F84 + 0x20));
 }
 
+extern cSceAtUnit *func_002C30C0(cSceAtManager *self);
+extern cSceAtUnit *func_002C30C8(cSceAtManager *self, cSceAtUnit *e);
+extern void func_002C1D68(cSceAtManager *self, int *out, cSceAtUnit *e);
+extern int cArea_HitCheck_1F83E8(int *hit, void *shape);
+extern void cSceAtUnit_getCenterPos(cSceAtUnit *unit, void *out);
+extern cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id);
+extern int cSceAtManager_SetDisable(cSceAtManager *self, cSceAtUnit *unit);
+/* First enabled unit of type 0xB that the shape hits. Copies its position to out. */
 __attribute__((section(".text.FindNodeByHit_2C2490")))
-int FindNodeByHit_2C2490(int a0, int a1, float *a2) {
-    int s0;
-    int sp[12];
-    s0 = func_002C30C0(a0);
-    while ((s0 = func_002C30C8(a0, s0)) != 0) {
-        if ((*(int*)(s0 + 0x34) & 0xFF01) == 0xB01) {
-            func_002C1D68(a0, (int)sp, s0);
-            if (cArea_HitCheck_1F83E8((int)sp, a1) == 1) {
-                if (a2 != 0) {
-                    a2[0] = *(float*)(s0 + 0x5C);
-                    a2[1] = *(float*)(s0 + 0x60);
-                    a2[2] = *(float*)(s0 + 0x64);
+int FindNodeByHit_2C2490(cSceAtManager *self, void *shape, float *out) {
+    cSceAtUnit *e;
+    int hit[12];
+    e = func_002C30C0(self);
+    while ((e = func_002C30C8(self, e)) != 0) {
+        /* flags (0x34) and type (0x35) are read as one word to test both */
+        if ((*(int *)&e->flags & 0xFF01) == ((SCEAT_TYPE_HIT << 8) | SCEAT_FLAG_ENABLED)) {
+            func_002C1D68(self, hit, e);
+            if (cArea_HitCheck_1F83E8(hit, shape) == 1) {
+                if (out != 0) {
+                    out[0] = e->pos[0];
+                    out[1] = e->pos[1];
+                    out[2] = e->pos[2];
                 }
                 return 1;
             }
@@ -55,19 +64,20 @@ int FindNodeByHit_2C2490(int a0, int a1, float *a2) {
     return 0;
 }
 
+/* First unit of type 0xD that the shape hits. Copies its position to out. */
 __attribute__((section(".text.FindNodeByType_2C2568")))
-int FindNodeByType_2C2568(int a0, int a1, float *a2) {
-    int s0;
-    int sp[12];
-    s0 = func_002C30C0(a0);
-    while ((s0 = func_002C30C8(a0, s0)) != 0) {
-        if (*(unsigned char*)(s0 + 0x35) == 0xD) {
-            func_002C1D68(a0, (int)sp, s0);
-            if (cArea_HitCheck_1F83E8((int)sp, a1) == 1) {
-                if (a2 != 0) {
-                    a2[0] = *(float*)(s0 + 0x5C);
-                    a2[1] = *(float*)(s0 + 0x60);
-                    a2[2] = *(float*)(s0 + 0x64);
+int FindNodeByType_2C2568(cSceAtManager *self, void *shape, float *out) {
+    cSceAtUnit *e;
+    int hit[12];
+    e = func_002C30C0(self);
+    while ((e = func_002C30C8(self, e)) != 0) {
+        if (e->type == 0xD) {
+            func_002C1D68(self, hit, e);
+            if (cArea_HitCheck_1F83E8(hit, shape) == 1) {
+                if (out != 0) {
+                    out[0] = e->pos[0];
+                    out[1] = e->pos[1];
+                    out[2] = e->pos[2];
                 }
                 return 1;
             }
@@ -76,39 +86,42 @@ int FindNodeByType_2C2568(int a0, int a1, float *a2) {
     return 0;
 }
 
+/* First enabled unit of type 0xC that the shape hits. Gives its centre and extent. */
 __attribute__((section(".text.FindEntityAtPosition_2C2638")))
-int FindEntityAtPosition_2C2638(int a0, int a1, int a2, float *a3) {
-    int s0;
-    int buf[12];
-    s0 = func_002C30C0(a0);
-    while ((s0 = func_002C30C8(a0, s0)) != 0) {
-        if (((*(unsigned char *)(s0 + 0x34) ^ 1) & 1) != 0) continue;
-        if (*(unsigned char *)(s0 + 0x35) != 0xC) continue;
-        func_002C1D68(a0, buf, s0);
-        if (cArea_HitCheck_1F83E8(buf, a1) != 1) continue;
-        if (a2 != 0) cSceAtUnit_getCenterPos(s0, a2);
-        if (a3 != 0) *a3 = *(float *)(s0 + 0x10);
+int FindEntityAtPosition_2C2638(cSceAtManager *self, void *shape, void *centerOut, float *extentOut) {
+    cSceAtUnit *e;
+    int hit[12];
+    e = func_002C30C0(self);
+    while ((e = func_002C30C8(self, e)) != 0) {
+        if (((e->flags ^ SCEAT_FLAG_ENABLED) & SCEAT_FLAG_ENABLED) != 0) continue;
+        if (e->type != 0xC) continue;
+        func_002C1D68(self, hit, e);
+        if (cArea_HitCheck_1F83E8(hit, shape) != 1) continue;
+        if (centerOut != 0) cSceAtUnit_getCenterPos(e, centerOut);
+        if (extentOut != 0) *extentOut = e->extent;
         return 1;
     }
     return 0;
 }
 
+/* Turn off the unit with the given id. */
 __attribute__((section(".text.ResetEntityStateById_2C29F8")))
-int ResetEntityStateById_2C29F8(int a0, int a1) {
-    int r;
-    if (*(int*)a0 == 0) return 0;
-    r = cSceAtManager_getUnit(a0, a1 & 0xFFFF);
-    if (r == 0) return 0;
-    return cSceAtManager_SetDisable(a0, r);
+int ResetEntityStateById_2C29F8(cSceAtManager *self, int id) {
+    cSceAtUnit *unit;
+    if (self->enabled == 0) return 0;
+    unit = cSceAtManager_getUnit(self, id & 0xFFFF);
+    if (unit == 0) return 0;
+    return cSceAtManager_SetDisable(self, unit);
 }
 
+/* First placed unit (type 1) whose spawn index is idx. */
 __attribute__((section(".text.FindEntityByTypeIndex_2C2AE0")))
-int FindEntityByTypeIndex_2C2AE0(int a0, int a1) {
-    int e;
-    e = func_002C30C0(a0);
-    while ((e = func_002C30C8(a0, e)) != 0) {
-        if (*(unsigned char*)((char*)e + 0x35) == 1) {
-            if (*(unsigned char*)((char*)e + 0x79) == a1) return e;
+cSceAtUnit *FindEntityByTypeIndex_2C2AE0(cSceAtManager *self, int idx) {
+    cSceAtUnit *e;
+    e = func_002C30C0(self);
+    while ((e = func_002C30C8(self, e)) != 0) {
+        if (e->type == SCEAT_UNIT_TYPE_MARK) {
+            if (e->spawnIdx == idx) return e;
         }
     }
     return 0;

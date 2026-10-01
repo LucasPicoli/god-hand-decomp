@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cDvd.h"
 
 extern unsigned char D_0058503A;
 extern int D_005E8600;
@@ -16,17 +17,17 @@ void cOmDoor_setLock(char *p, int on)
     }
 }
 
-/* cygnus-2.96 | drop-freorder-blocks */
+/* Next job id. Skips 0, which means no job. */
 __attribute__((section(".text.func_00201788")))
-int func_00201788(char *p)
+int func_00201788(cDvd *self)
 {
-    int n = *(int *)(p + 0x1104) + 1;
+    int n = self->idCounter + 1;
 
-    *(int *)(p + 0x1104) = n;
+    self->idCounter = n;
     if (n == 0) {
-        *(int *)(p + 0x1104) = 1;
+        self->idCounter = 1;
     }
-    return *(int *)(p + 0x1104);
+    return self->idCounter;
 }
 
 /* cygnus-2.96 | drop-freorder-blocks */
