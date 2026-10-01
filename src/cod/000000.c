@@ -1939,12 +1939,13 @@ int cCoreSave_getStateBit0(cCoreSave *self)
     return 0;
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_BC0_Via_Ptr_1FC740")))
-int Obj0000_Get_Field_BC0_Via_Ptr_1FC740(int a0)
+__attribute__((section(".text.cCoreSave_GetOliviaCostumeNo")))
+/* Olivia's costume number, 0 without a record. */
+int cCoreSave_GetOliviaCostumeNo(cCoreSave *self)
 {
-    int p = *(int*)a0;
-    if (!p) return 0;
-    return *(int*)(p + 0xBC0);
+    cCoreSaveData *data = self->data;
+    if (!data) return 0;
+    return data->oliviaCostumeNo;
 }
 
 __attribute__((section(".text.NoOp_268500")))

@@ -2,7 +2,6 @@
 #include "godhand/cCoreSave.h"
 
 extern void displayScrollLayer(int, int);
-extern int Obj0000_Get_Field_BC0_Via_Ptr_1FC740(int *);
 
 __attribute__((section(".text.func_002987F8")))
 void func_002987F8(int idx, float val) {
@@ -16,7 +15,7 @@ void func_002987F8(int idx, float val) {
             break;
         case 0xD:
         case 0x16:
-            if (Obj0000_Get_Field_BC0_Via_Ptr_1FC740(&D_00569B70) != 0) {
+            if (cCoreSave_GetOliviaCostumeNo(&D_00569B70) != 0) {
                 displayScrollLayer(0x1E, 0);
                 displayScrollLayer(0x1F, 1);
             } else {

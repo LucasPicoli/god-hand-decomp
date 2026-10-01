@@ -166,6 +166,7 @@ int cCoreSave_addStock(cCoreSave *self, int i, int d);
 void cCoreSave_addUpgradeLv(cCoreSave *self, unsigned int kind, int n);
 int cCoreSave_ckClearStage(cCoreSave *self, unsigned int no);
 int cCoreSave_ckEventFlag(cCoreSave *self, int no);
+int cCoreSave_ckFightingRingClear(cCoreSave *self, unsigned int bit);
 int cCoreSave_ckGodReel(cCoreSave *self, int no);
 int cCoreSave_ckPaper(cCoreSave *self);
 int cCoreSave_ckReelSlot(cCoreSave *self, unsigned int no);
@@ -206,6 +207,7 @@ unsigned char cCoreSave_getCostumeNo(cCoreSave *self);
 int cCoreSave_getGameDifficulty(cCoreSave *self);
 int cCoreSave_getGameLevel(cCoreSave *self);
 unsigned char cCoreSave_getGodItem0(cCoreSave *self);
+int cCoreSave_GetOliviaCostumeNo(cCoreSave *self);
 unsigned int cCoreSave_getGodItemNum(cCoreSave *self);
 int cCoreSave_getGold(cCoreSave *self);
 int cCoreSave_getKeyCardNum(cCoreSave *self);
@@ -280,8 +282,5 @@ void cCoreSave_stageInit(cCoreSave *self);
 void cCoreSave_subGold(cCoreSave *self, int amount);
 void cCoreSave_systemInit(cCoreSave *self);
 void cCoreSave_updateVitalMax(cCoreSave *self);
-
-/* Not yet named: 1 when fightingRingClear has the given bit set. */
-int func_001FC4D0(cCoreSave *self, unsigned int bit);
 
 #endif /* GODHAND_CCORESAVE_H */

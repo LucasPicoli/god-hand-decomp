@@ -50,13 +50,13 @@ void ColiseumBattle_StepResult(ColiseumBattle *self)
         if ((done & 0xFF) == 0) {
             break;
         }
-        if (func_001FC4D0(&D_00569B70, self->ring.ringNo) == 0) {
+        if (cCoreSave_ckFightingRingClear(&D_00569B70, self->ring.ringNo) == 0) {
             cCoreSave_SetFightingRingClearFlag(&D_00569B70, self->ring.ringNo, 1);
             if ((D_00569B70.data->flags & 0x800000) == 0) {
                 all = 1;
                 i = 1;
                 for (; i < 0x33; i++) {
-                    if (func_001FC4D0(&D_00569B70, i) == 0) {
+                    if (cCoreSave_ckFightingRingClear(&D_00569B70, i) == 0) {
                         all = 0;
                         break;
                     }
@@ -65,7 +65,7 @@ void ColiseumBattle_StepResult(ColiseumBattle *self)
                     D_00569B70.data->flags = D_00569B70.data->flags | 0x800000;
                 }
             } else {
-                if (func_001FC4D0(&D_00569B70, 0x33) != 0) {
+                if (cCoreSave_ckFightingRingClear(&D_00569B70, 0x33) != 0) {
                     if ((D_00569B70.data->flags & 0x400000) == 0) {
                         self->flags = self->flags | 0x10;
                     }
@@ -94,7 +94,7 @@ void ColiseumBattle_StepResult(ColiseumBattle *self)
                 i = 1;
                 all = 1;
                 for (; i < 0x29; i++) {
-                    if (func_001FC4D0(&D_00569B70, i) == 0) {
+                    if (cCoreSave_ckFightingRingClear(&D_00569B70, i) == 0) {
                         all = 0;
                         break;
                     }
