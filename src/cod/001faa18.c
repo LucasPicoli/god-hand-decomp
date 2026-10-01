@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char D_00447AD0[];
 extern char D_00447E68[];
@@ -13,14 +14,15 @@ extern char D_00448948[];
 /* clone */
 
 __attribute__((section(".text.func_001FAA18")))
-void func_001FAA18(void *a0, int a1) {
-    if (!*(void **)a0)
+/* Add to the key count, clamped to 0..9. */
+void func_001FAA18(cCoreSave *self, int n) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0x6C) += a1;
-    if (*(int *)((char *)*(void **)a0 + 0x6C) >= 0xA)
-        *(int *)((char *)*(void **)a0 + 0x6C) = 9;
-    if (*(int *)((char *)*(void **)a0 + 0x6C) < 0)
-        *(int *)((char *)*(void **)a0 + 0x6C) = 0;
+    self->data->keyNum += n;
+    if (self->data->keyNum >= 0xA)
+        self->data->keyNum = 9;
+    if (self->data->keyNum < 0)
+        self->data->keyNum = 0;
 }
 
 /* clone */

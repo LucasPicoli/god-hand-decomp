@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_0015FD68")))
 int func_0015FD68(void *a0) {
@@ -12,17 +13,18 @@ int func_0015FD68(void *a0) {
 }
 
 __attribute__((section(".text.func_001FC198")))
-int func_001FC198(void *a0, int a1) {
-    void *p = *(void**)a0;
-    unsigned char v1;
-    if (p == 0) {
+/* God reel in slot `slot`; 0x1F (empty) when out of range. */
+int func_001FC198(cCoreSave *self, int slot) {
+    cCoreSaveData *data = self->data;
+    unsigned char idx;
+    if (data == 0) {
         return 0x1F;
     }
-    v1 = a1 & 0xFF;
-    if (v1 >= 0xA) {
+    idx = slot & 0xFF;
+    if (idx >= 0xA) {
         return 0x1F;
     }
-    return *(unsigned char*)((char*)p + v1 + 0x98);
+    return data->reelSlot[idx];
 }
 
 __attribute__((section(".text.func_001FD8D8")))

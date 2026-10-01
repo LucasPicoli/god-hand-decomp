@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_001D4918")))
 int func_001D4918(char *p)
@@ -33,17 +34,16 @@ ret0:
 }
 
 __attribute__((section(".text.func_001FC210")))
-int func_001FC210(void **pp)
+/* Index of the first empty reel slot, -1 when none. */
+int func_001FC210(cCoreSave *self)
 {
-    unsigned char *p;
     char i;
 
-    p = (unsigned char *)*pp;
-    if (p == 0) {
+    if (self->data == 0) {
         return -1;
     }
     for (i = 0; i < 10; i++) {
-        if (*((unsigned char *)*pp + i + 0x98) == 0x1F) {
+        if (self->data->reelSlot[i] == 0x1F) {
             break;
         }
     }

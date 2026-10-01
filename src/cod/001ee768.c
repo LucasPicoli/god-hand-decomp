@@ -1,3 +1,4 @@
+#include "godhand/cCoreSave.h"
 __attribute__((section(".text.ClearFields00And30_1EE768")))
 int ClearFields00And30_1EE768(int a0) {
     *(int*)((char*)a0 + 0x30) = 0;
@@ -23,33 +24,37 @@ int Clear_Field_00_14_1F8A40(int a0) {
 }
 
 __attribute__((section(".text.GetSubObjAt180_1F9FF0")))
-int GetSubObjAt180_1F9FF0(int a0) {
-    int v0 = *(int*)((char*)a0 + 0x0);
-    if (v0 == 0) {
+/* Address of the 0x180 block, or 0 without a record. */
+int GetSubObjAt180_1F9FF0(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
-    return v0 + 0x180;
+    return (int)data->unk180;
 }
 
 __attribute__((section(".text.Obj1FA6_Set_Short_1C_1FA638")))
-void Obj1FA6_Set_Short_1C_1FA638(int *a0, short a1)
+/* Set the level points. */
+void Obj1FA6_Set_Short_1C_1FA638(cCoreSave *self, short points)
 {
-    int p = *a0;
-    if (p != 0) *(short*)(p + 0x1C) = a1;
+    cCoreSaveData *data = self->data;
+    if (data != 0) data->levelPoint = points;
 }
 
 __attribute__((section(".text.GetArrayElemAt28_1FA838")))
-int GetArrayElemAt28_1FA838(int *a0, int a1)
+/* Recent gold pickup `i`, 0 without a record. */
+int GetArrayElemAt28_1FA838(cCoreSave *self, int i)
 {
-    char *p = (char*)*a0;
-    if (p == 0) return 0;
-    return *(int*)(p + (a1 << 2) + 0x28);
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    return data->addGold[i];
 }
 
 __attribute__((section(".text.GetByteAt134ByIndex_1FAD38")))
-unsigned char GetByteAt134ByIndex_1FAD38(int *a0, int a1)
+/* Stock count `i`, 0 without a record. */
+unsigned char GetByteAt134ByIndex_1FAD38(cCoreSave *self, int i)
 {
-    int p = *a0;
-    if (p == 0) return 0;
-    return *(unsigned char*)(p + a1 + 0x134);
+    cCoreSaveData *data = self->data;
+    if (data == 0) return 0;
+    return data->stock[i];
 }

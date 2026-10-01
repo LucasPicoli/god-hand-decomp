@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int D_007476B0;
 extern int D_004A6E10;
@@ -14,14 +15,15 @@ void func_0015B0C0(void) {
 }
 
 __attribute__((section(".text.func_001F9DD0")))
-void func_001F9DD0(void **a0) {
-    void *p = *a0;
-    if (p == 0) return;
+/* Record whether the world is active. */
+void func_001F9DD0(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) return;
     if (D_005E85F8 != 0) {
-        *(int *)((char *)p + 0x174) = 1;
+        data->worldActive = 1;
         return;
     }
-    *(int *)((char *)p + 0x174) = 0;
+    data->worldActive = 0;
 }
 
 __attribute__((section(".text.func_003186D0")))

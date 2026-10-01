@@ -1,29 +1,30 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned char D_00747A50[];
 
 __attribute__((section(".text.func_001FB2D8")))
-void func_001FB2D8(char *obj, unsigned short id)
+/* Free the remembered object with serial `id`. */
+void func_001FB2D8(cCoreSave *self, unsigned short id)
 {
-    unsigned short *p;
-    unsigned short *w;
+    cCoreSaveItem *item;
+    cCoreSaveItem *w;
     unsigned short val;
     unsigned int i;
 
     if (D_00747A50[1] == 0) return;
-    obj = *(char **)obj;
-    if (obj == 0) return;
-    p = (unsigned short *)(obj + 0x28A);
+    if (self->data == 0) return;
+    item = self->data->item;
     i = 0;
     val = 0xFFFF;
-    w = p;
-    for (; i < 0x80; i++) {
-        if (p[3] == id) {
-            *w = val;
+    w = item;
+    for (; i < CORESAVE_ITEM_NUM; i++) {
+        if (item->serial == id) {
+            w->stage = val;
             return;
         }
-        w += 8;
-        p += 8;
+        w++;
+        item++;
     }
 }
 

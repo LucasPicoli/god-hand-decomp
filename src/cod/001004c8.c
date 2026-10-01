@@ -1,3 +1,4 @@
+#include "godhand/cCoreSave.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -303,33 +304,37 @@ void InitVtablePtrAndClearFlags_1F7C60(unsigned int *a0) {
 }
 
 __attribute__((section(".text.CopyGlobalPairToTarget_1F9C30")))
-void CopyGlobalPairToTarget_1F9C30(int *a0) {
+/* Save the global world-time pair into the record. */
+void CopyGlobalPairToTarget_1F9C30(cCoreSave *self) {
     int d0, d1;
     d0 = D_0061A990[0];
-    *(int *)(*(int *)a0) = d0;
+    self->data->worldTime = d0;
     d1 = D_0061A990[1];
-    *(int *)(*(int *)a0 + 4) = d1;
+    self->data->worldTimeB = d1;
 }
 
 __attribute__((section(".text.UpdateCounterClamped_1F9C58")))
-void UpdateCounterClamped_1F9C58(int **a0) {
-    int *v1 = a0[0];
-    unsigned int c = v1[2] + 1;
-    v1[2] = c;
+/* Count up counter08, capped at 999. */
+void UpdateCounterClamped_1F9C58(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    unsigned int c = data->counter08 + 1;
+    data->counter08 = c;
     if (c >= 0x3E8) {
-        a0[0][2] = 0x3E7;
+        self->data->counter08 = 0x3E7;
     }
 }
 
 __attribute__((section(".text.SetFieldShorts0C0E_1F9C88")))
-void SetFieldShorts0C0E_1F9C88(int **a0) {
-    *(short *)((char *)*a0 + 0xC) = D_007474A0[0x2D8];
-    *(short *)((char *)*a0 + 0xE) = D_007474A0[0x2DB];
+/* Save the current stage ids into the record. */
+void SetFieldShorts0C0E_1F9C88(cCoreSave *self) {
+    self->data->saveStageA = D_007474A0[0x2D8];
+    self->data->saveStageB = D_007474A0[0x2DB];
 }
 
 __attribute__((section(".text.UpdateActiveFlag_1F9E00")))
-void UpdateActiveFlag_1F9E00(int **a0) {
-    if (a0[0][0x174 / 4]) {
+/* Copy the record's world-active flag to the global. */
+void UpdateActiveFlag_1F9E00(cCoreSave *self) {
+    if (self->data->worldActive) {
         D_005E85F8 = 1;
     } else {
         D_005E85F8 = 0;
@@ -362,129 +367,138 @@ int IsTimerExpired_1FA8E0(struct S001FA8E0 **a0) {
 }
 
 __attribute__((section(".text.GetField154Byte_1FAE60")))
-int GetField154Byte_1FAE60(int **a0) {
-    int *p = *a0;
-    if (p == 0) {
+/* state154, forced to its maximum by the 0x8000000 cheat. */
+int GetField154Byte_1FAE60(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
     if (D_00747A38 & 0x8000000) {
-        *((unsigned char *)p + 0x154) = 0xD;
+        data->state154 = 0xD;
     }
-    return *((unsigned char *)*a0 + 0x154);
+    return self->data->state154;
 }
 
 __attribute__((section(".text.GetField155Byte_1FAEA0")))
-int GetField155Byte_1FAEA0(int **a0) {
-    int *p = *a0;
-    if (p == 0) {
+/* state155, forced to its maximum by the 0x8000000 cheat. */
+int GetField155Byte_1FAEA0(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
     if (D_00747A38 & 0x8000000) {
-        *((unsigned char *)p + 0x155) = 5;
+        data->state155 = 5;
     }
-    return *((unsigned char *)*a0 + 0x155);
+    return self->data->state155;
 }
 
 __attribute__((section(".text.InitSlotTable_1FAFA8")))
-void InitSlotTable_1FAFA8(int **a0)
+/* Free every remembered-object slot and restart the serial count. */
+void InitSlotTable_1FAFA8(cCoreSave *self)
 {
     unsigned int i;
     unsigned int val;
-    if (*a0 == 0) {
+    if (self->data == 0) {
         return;
     }
     i = 0;
     val = 0xFFFF;
-    for (; i < 0x80; i++) {
-        *(unsigned short *)((char *)((i << 4) + (unsigned int)*a0) + 0x28A) = val;
+    for (; i < CORESAVE_ITEM_NUM; i++) {
+        /* Raw form kept: the typed index builds the address in the other operand order. */
+        *(unsigned short *)((char *)((i << 4) + (unsigned int)self->data) + CORESAVE_OFFSET(item[0].stage)) = val;
     }
-    *(unsigned short *)((char *)*a0 + 0x288) = 1;
+    self->data->itemNum = 1;
 }
 
 __attribute__((section(".text.GetField8AByte_1FBD60")))
-unsigned char GetField8AByte_1FBD60(unsigned char **a0) {
-    unsigned char *p;
-    unsigned char *q;
-    p = *a0;
-    if (p == 0) {
+/* stat8A, forced to its maximum by the 0x1000000 cheat. */
+unsigned char GetField8AByte_1FBD60(cCoreSave *self) {
+    cCoreSaveData *data;
+    cCoreSaveData *q;
+    data = self->data;
+    if (data == 0) {
         return 0;
     }
     if (D_00747A34 & 0x01000000) {
-        p[0x8A] = 6;
+        data->stat8A = 6;
     }
-    q = *a0;
-    return q[0x8A];
+    q = self->data;
+    return q->stat8A;
 }
 
 __attribute__((section(".text.ClearField46Array_1FBDD0")))
-void ClearField46Array_1FBDD0(int **a0) {
+/* Zero the per-level kill counts of this stage. */
+void ClearField46Array_1FBDD0(cCoreSave *self) {
     unsigned int i;
-    if (*a0 != 0) {
+    if (self->data != 0) {
         i = 0;
         do {
-            short *p = (short *)((char *)*a0 + i * 2);
+            self->data->killEmNum[i] = 0;
             i++;
-            p[0x46] = 0;
-        } while (i < 5);
+        } while (i < CORESAVE_LEVEL_NUM);
     }
 }
 
 __attribute__((section(".text.AddCounterFields12AndBB8_1FBF18")))
-void AddCounterFields12AndBB8_1FBF18(int **a0) {
-    int *p;
-    int *q;
-    p = *a0;
-    if (p) {
-        *(unsigned short *)((char *)p + 0x12) += 1;
-        q = *a0;
-        *(unsigned short *)((char *)q + 0xBB8) += 1;
+/* Count one more continue, this stage and in total. */
+void AddCounterFields12AndBB8_1FBF18(cCoreSave *self) {
+    cCoreSaveData *data;
+    cCoreSaveData *q;
+    data = self->data;
+    if (data) {
+        data->continueNum += 1;
+        q = self->data;
+        q->allContinueNum += 1;
     }
 }
 
 __attribute__((section(".text.IsSet_Field_A4_1FBFD0")))
-int IsSet_Field_A4_1FBFD0(int **a0, unsigned int a1) {
-    int *p;
-    int v1;
-    p = a0[0];
-    a1 = a1 & 0xFFFF;
-    if (p == 0) {
+/* 1 if stage `no` (0..8) is cleared; the 0x80000 cheat clears them all. */
+int IsSet_Field_A4_1FBFD0(cCoreSave *self, unsigned int no) {
+    cCoreSaveData *data;
+    int bit;
+    data = self->data;
+    no = no & 0xFFFF;
+    if (data == 0) {
         return 0;
     }
-    if (a1 >= 9) {
+    if (no >= 9) {
         return 0;
     }
     if ((D_00747A3C & 0x80000) != 0) {
         return 1;
     }
-    v1 = *(int *)((char *)p + 0xA4) & (1 << a1);
-    if (v1 == 0) {
+    bit = data->clearStageMask & (1 << no);
+    if (bit == 0) {
         return 0;
     }
     return 1;
 }
 
 __attribute__((section(".text.SetSlotField98_1FC170")))
-void SetSlotField98_1FC170(unsigned char **a0, unsigned int a1, unsigned int a2) {
-    unsigned char *p;
+/* Put god reel `no` in reel slot `slot` (0..9). */
+void SetSlotField98_1FC170(cCoreSave *self, unsigned int slot, unsigned int no) {
+    cCoreSaveData *data;
     unsigned int idx;
-    p = *a0;
-    if (p == 0) return;
-    idx = a1 & 0xFF;
+    data = self->data;
+    if (data == 0) return;
+    idx = slot & 0xFF;
     if (idx < 0xA) {
-        *(unsigned char *)(p + idx + 0x98) = a2;
+        data->reelSlot[idx] = no;
     }
 }
 
 __attribute__((section(".text.IsValueInField_98_1FC1C8")))
-int IsValueInField_98_1FC1C8(unsigned char **a0, unsigned int a1) {
-    unsigned char *base;
+/* 1 if god reel `no` sits in any reel slot. */
+int IsValueInField_98_1FC1C8(cCoreSave *self, unsigned int no) {
+    unsigned char *slots;
     unsigned int i;
-    if (*a0 == 0) {
+    if (self->data == 0) {
         return 0;
     }
-    base = *a0 + 0x98;
+    slots = self->data->reelSlot;
     for (i = 0; i < 0xA; i = i + 1) {
-        if (base[i] == a1) {
+        if (slots[i] == no) {
             return 1;
         }
     }
@@ -492,15 +506,16 @@ int IsValueInField_98_1FC1C8(unsigned char **a0, unsigned int a1) {
 }
 
 __attribute__((section(".text.IsFlagBitSet_1FC360")))
-int IsFlagBitSet_1FC360(int **a0, int a1) {
-    int *p;
-    int v1;
-    p = a0[0];
-    if (p == 0) {
+/* 1 if event flag `no` is set. */
+int IsFlagBitSet_1FC360(cCoreSave *self, int no) {
+    cCoreSaveData *data;
+    int bit;
+    data = self->data;
+    if (data == 0) {
         return 0;
     }
-    v1 = *(int *)((char *)p + 0xB90) & (1 << a1);
-    if (v1 == 0) {
+    bit = data->eventFlags & (1 << no);
+    if (bit == 0) {
         return 0;
     }
     return 1;

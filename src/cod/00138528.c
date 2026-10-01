@@ -1,3 +1,4 @@
+#include "godhand/cCoreSave.h"
 extern char D_003C532F;
 
 __attribute__((section(".text.ClearWordPair_201AD0")))
@@ -77,58 +78,63 @@ void ClearObjRef_1EE9A0(int *a0)
 }
 
 __attribute__((section(".text.SetStateIndexClamped_1FAD58")))
-void SetStateIndexClamped_1FAD58(int **a0, unsigned char a1) {
-    if (*a0) {
-        *((unsigned char *)*a0 + 0x154) = a1;
-        if ((unsigned char)*((unsigned char *)*a0 + 0x154) >= 0xE) {
-            *((unsigned char *)*a0 + 0x154) = 0xD;
+/* Set state154, capped at 0xD. */
+void SetStateIndexClamped_1FAD58(cCoreSave *self, unsigned char v) {
+    if (self->data) {
+        self->data->state154 = v;
+        if (self->data->state154 >= 0xE) {
+            self->data->state154 = 0xD;
         }
     }
 }
 
 __attribute__((section(".text.AddClampD_Byte_154_1FAD88")))
-void AddClampD_Byte_154_1FAD88(int **a0, unsigned char a1) {
-    if (*a0) {
-        *((unsigned char *)*a0 + 0x154) = a1 + *((unsigned char *)*a0 + 0x154);
-        if ((unsigned char)*((unsigned char *)*a0 + 0x154) >= 0xE) {
-            *((unsigned char *)*a0 + 0x154) = 0xD;
+/* Add to state154, capped at 0xD. */
+void AddClampD_Byte_154_1FAD88(cCoreSave *self, unsigned char n) {
+    if (self->data) {
+        self->data->state154 = n + self->data->state154;
+        if (self->data->state154 >= 0xE) {
+            self->data->state154 = 0xD;
         }
     }
 }
 
 __attribute__((section(".text.Set_Byte_155_Clamp5_1FADC0")))
-void Set_Byte_155_Clamp5_1FADC0(int **a0, unsigned char a1) {
-    if (*a0) {
-        *((unsigned char *)*a0 + 0x155) = a1;
-        if ((unsigned char)*((unsigned char *)*a0 + 0x155) >= 0x6) {
-            *((unsigned char *)*a0 + 0x155) = 0x5;
+/* Set state155, capped at 5. */
+void Set_Byte_155_Clamp5_1FADC0(cCoreSave *self, unsigned char v) {
+    if (self->data) {
+        self->data->state155 = v;
+        if (self->data->state155 >= 0x6) {
+            self->data->state155 = 0x5;
         }
     }
 }
 
 __attribute__((section(".text.AddSubStateIndexClamped_1FADF0")))
-void AddSubStateIndexClamped_1FADF0(int **a0, unsigned char a1) {
-    if (*a0) {
-        *((unsigned char *)*a0 + 0x155) = a1 + *((unsigned char *)*a0 + 0x155);
-        if ((unsigned char)*((unsigned char *)*a0 + 0x155) >= 0x6) {
-            *((unsigned char *)*a0 + 0x155) = 0x5;
+/* Add to state155, capped at 5. */
+void AddSubStateIndexClamped_1FADF0(cCoreSave *self, unsigned char n) {
+    if (self->data) {
+        self->data->state155 = n + self->data->state155;
+        if (self->data->state155 >= 0x6) {
+            self->data->state155 = 0x5;
         }
     }
 }
 
 __attribute__((section(".text.AddClamped_Byte_8A_1FBD28")))
-void AddClamped_Byte_8A_1FBD28(unsigned char **a0, int a1) {
-    unsigned char *p;
-    unsigned char *q;
+/* Add to stat8A, capped at 6. */
+void AddClamped_Byte_8A_1FBD28(cCoreSave *self, int n) {
+    cCoreSaveData *data;
+    cCoreSaveData *q;
     int s;
-    a1 = a1 & 0xFF;
-    p = *a0;
-    if (p != 0) {
-        s = a1 + p[0x8A];
-        p[0x8A] = s;
-        q = *a0;
-        if (q[0x8A] >= 7) {
-            q[0x8A] = 6;
+    n = n & 0xFF;
+    data = self->data;
+    if (data != 0) {
+        s = n + data->stat8A;
+        data->stat8A = s;
+        q = self->data;
+        if (q->stat8A >= 7) {
+            q->stat8A = 6;
         }
     }
 }

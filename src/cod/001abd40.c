@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 extern int func_0();
 extern char *InitFields_1B6E90(void *);
@@ -16,7 +18,6 @@ int cEvent_startReleaseObj(void) {
     return func_0(func_0);
 }
 
-#include "godhand/vu0.h"
 
 __attribute__((section(".text.func_001ABD40")))
 void *func_001ABD40(char *a0) {
@@ -80,15 +81,15 @@ void func_001E58B8(int a0) {
 }
 
 __attribute__((section(".text.func_001FC548")))
-void func_001FC548(int **a0) {
+/* Zero the whole-game per-level kill counts. */
+void func_001FC548(cCoreSave *self) {
     unsigned int i;
-    if (*a0 != 0) {
+    if (self->data != 0) {
         i = 0;
         do {
-            short *p = (short *)((char *)*a0 + i * 2);
+            self->data->allKillEmNum[i] = 0;
             i++;
-            p[0x5D6] = 0;
-        } while (i < 5);
+        } while (i < CORESAVE_LEVEL_NUM);
     }
 }
 

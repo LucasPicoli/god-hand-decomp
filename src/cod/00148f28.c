@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/vu0.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -310,7 +311,6 @@ void func_001B1630(char *p)
 
 
 
-#include "godhand/vu0.h"
 
 __attribute__((section(".text.func_001B2548")))
 int func_001B2548(char *p)
@@ -485,9 +485,10 @@ void func_001F7820(char *base, struct Node *target) {
 }
 
 __attribute__((section(".text.func_001FACF8")))
-int func_001FACF8(char **self, int i, int d) {
-    char *b = *self + 0x134;
-    unsigned char *p = (unsigned char *)(b + i);
+/* Add `d` to stock count `i`; at 0xFF it saturates and returns 0. */
+int func_001FACF8(cCoreSave *self, int i, int d) {
+    unsigned char *b = self->data->stock;
+    unsigned char *p = b + i;
     unsigned int v = *p + d;
 
     if (v < 0x100) {
@@ -498,15 +499,15 @@ int func_001FACF8(char **self, int i, int d) {
     return 0;
 }
 
-/* sn-2.95.3-136 */
 __attribute__((section(".text.func_001FBD00")))
-void func_001FBD00(char *p, unsigned char v)
+/* Set stat8A to 1..6; other values are ignored. */
+void func_001FBD00(cCoreSave *self, unsigned char v)
 {
-    char *q = *(char **)p;
+    cCoreSaveData *data = self->data;
 
-    if (q != 0) {
+    if (data != 0) {
         if ((unsigned int)(v - 1) < 6) {
-            *(unsigned char *)(q + 0x8A) = v;
+            data->stat8A = v;
         }
     }
 }

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int cIDBase_release();
 extern int cIDBase_trans();
@@ -88,12 +89,13 @@ void func_001F4B78(void *a0) { CustomIDWork_SetNumber((char *)a0 + 0x158); }
 /* clone */
 
 __attribute__((section(".text.func_001FA968")))
-void func_001FA968(void *a0, int a1) {
-    if (!*(void **)a0)
+/* Add to the key card count, clamped to 0..9. */
+void func_001FA968(cCoreSave *self, int n) {
+    if (!self->data)
         return;
-    *(int *)((char *)*(void **)a0 + 0x68) += a1;
-    if (*(int *)((char *)*(void **)a0 + 0x68) >= 0xA)
-        *(int *)((char *)*(void **)a0 + 0x68) = 9;
-    if (*(int *)((char *)*(void **)a0 + 0x68) < 0)
-        *(int *)((char *)*(void **)a0 + 0x68) = 0;
+    self->data->keyCardNum += n;
+    if (self->data->keyCardNum >= 0xA)
+        self->data->keyCardNum = 9;
+    if (self->data->keyCardNum < 0)
+        self->data->keyCardNum = 0;
 }

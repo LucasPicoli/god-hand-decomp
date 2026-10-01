@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char D_00583EC0[];
 extern char *D_00754C38;
@@ -8,20 +9,21 @@ extern int D_00773250[];
 
 
 __attribute__((section(".text.func_001F9ED0")))
-void func_001F9ED0(char **a0) {
+/* Save the player's current spawn point into the record. */
+void func_001F9ED0(cCoreSave *self) {
     char *base;
-    char *s;
-    if (*a0 != 0) {
+    cCoreSaveSpawnArg *s;
+    if (self->data != 0) {
         base = D_00583EC0;
-        s = base + 0x1C;
-        *(unsigned short *)(*a0 + 0x15A) = *(unsigned short *)(s + 0x10);
-        *(float *)(*a0 + 0x15C) = *(float *)(base + 0x1C);
-        *(float *)(*a0 + 0x160) = *(float *)(s + 0x4);
-        *(float *)(*a0 + 0x164) = *(float *)(s + 0x8);
-        *(float *)(*a0 + 0x168) = *(float *)(s + 0xC);
-        *(unsigned char *)(*a0 + 0x158) = *(unsigned char *)(s + 0x12);
-        *(unsigned char *)(*a0 + 0x159) = *(unsigned char *)(s + 0x13);
-        *(int *)(*a0 + 0x16C) = *(int *)(s + 0x14);
+        s = (cCoreSaveSpawnArg *)(base + 0x1C);
+        self->data->spawn.angle = s->angle;
+        self->data->spawn.pos[0] = *(float *)(base + 0x1C);
+        self->data->spawn.pos[1] = s->pos[1];
+        self->data->spawn.pos[2] = s->pos[2];
+        self->data->spawn.pos[3] = s->pos[3];
+        self->data->spawn.kind = s->kind;
+        self->data->spawn.sub = s->sub;
+        self->data->spawn.param = s->param;
     }
 }
 
