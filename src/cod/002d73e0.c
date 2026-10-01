@@ -1,38 +1,41 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cWorldLight.h"
 
 extern void func_003A52F0(void *dst, int val, int len);
 extern void UnlinkAndCoalesceNode_2A9680(void *list, int node);
 extern char D_00754220[];
 
+/* Clears every light and frees the lights each preset still owns. The far
+ * fields are reached through one 0x10000 base, as retail does. */
 __attribute__((section(".text.func_002D73E0")))
-void func_002D73E0(void *obj) {
-    char *base = (char *)obj;
-    char *q;
-    int *r;
+void func_002D73E0(cWorldLight *self)
+{
+    char *far;
+    int *slot;
     int i;
     int node;
 
-    func_003A52F0(base + 0x80, 0, 0x7000);
+    func_003A52F0(self->light, 0, sizeof(self->light));
 
     for (i = 255; i >= 0; i--) {
-        *(short *)(base + 0x80 + i * 0x70) = 0xFF;
+        self->light[i].state = WORLDLIGHT_LIGHT_FREE;
     }
 
-    *(int *)(base + 0x78) = 0;
+    self->lightNum = 0;
 
-    r = (int *)(base + 0x16100);
-    q = base + 0x10000;
-    for (i = 0; i < 8; i++) {
-        node = *(int *)(q + 0x5D74);
+    slot = (int *)self->slot;
+    far = (char *)self + WORLDLIGHT_FAR_BASE;
+    for (i = 0; i < WORLDLIGHT_PRESET_NUM; i++) {
+        node = *(int *)(far + (WORLDLIGHT_OFFSET(preset[0].lights) - WORLDLIGHT_FAR_BASE));
         if (node != 0) {
             UnlinkAndCoalesceNode_2A9680(D_00754220, node);
-            *(int *)(q + 0x5D74) = 0;
+            *(int *)(far + (WORLDLIGHT_OFFSET(preset[0].lights) - WORLDLIGHT_FAR_BASE)) = 0;
         }
-        *r = 0;
-        q += 0x80;
-        r++;
+        *slot = 0;
+        far += sizeof(cWorldLightPreset);
+        slot++;
     }
 
-    *(int *)(base + 0x16130) = 0;
-    *(int *)(base + 0x16120) = 0;
+    self->tbl = 0;
+    self->areaTbl = 0;
 }

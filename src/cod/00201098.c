@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDvd.h"
+#include "godhand/cWorldLight.h"
 
-extern int D_00747A84;
 
 extern char D_00580D40[];
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
@@ -66,25 +66,29 @@ int func_0037AD08(char *a0) {
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 
 
+extern unsigned int D_00747A84;
+/* Starts a fade toward preset `slot` over `frames` frames (an instant fade
+ * while the game flag is set). Ignored while a fade is already running. */
 __attribute__((section(".text.func_002D8E18")))
-void func_002D8E18(char *a0, int a1, short a2) {
+void func_002D8E18(cWorldLight *self, int slot, short frames)
+{
     int n;
-    if ((*(int *)(a0 + 0x16284) & 0x10) != 0) {
+    if ((self->flags & WORLDLIGHT_FLAG_FADING) != 0) {
         return;
     }
     n = 0;
     if ((D_00747A84 & 0x20000000) == 0) {
-        n = a2;
+        n = frames;
     }
-    *(char *)(a0 + 0x16168) = a1;
-    *(short *)(a0 + 0x16280) = 0;
-    *(short *)(a0 + 0x16282) = n;
+    self->fadeSlot = slot;
+    self->fadeFrame = 0;
+    self->fadeFrames = n;
     if (n <= 0) {
-        *(float *)(a0 + 0x1616C) = 1.0f;
+        self->fadeT = 1.0f;
     } else {
-        *(int *)(a0 + 0x1616C) = 0;
+        self->fadeT = 0.0f;
     }
-    *(unsigned int *)(a0 + 0x16284) = (*(unsigned int *)(a0 + 0x16284) | 0x10) & 0xFFFFFFDF;
+    self->flags = (self->flags | WORLDLIGHT_FLAG_FADING) & ~WORLDLIGHT_FLAG_FADED;
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */

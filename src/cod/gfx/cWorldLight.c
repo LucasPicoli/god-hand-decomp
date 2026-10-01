@@ -1,4 +1,5 @@
 /* TU: cWorldLight [gfx] - recovered C++ class. */
+#include "godhand/cWorldLight.h"
 #include "include_asm.h"
 
 /* cWorldLight_Set_LightData — sn-2.95.3-136.
@@ -10,28 +11,24 @@ extern unsigned int D_00747A84;
 
 INCLUDE_ASM("nonmatching", cWorldLight_Light_curent_set);
 
+/* Appends a copy of light src to the live lights and refreshes the preset.
+ * Returns 0 if src is unused (id 0) or all 256 slots are taken. */
 __attribute__((section(".text.cWorldLight_Set_LightData")))
-int cWorldLight_Set_LightData(void *a0, void *a1)
+int cWorldLight_Set_LightData(cWorldLight *self, cWorldLightRec *src)
 {
-    LightData *src;
-    LightData *base;
-    LightData *dst;
     int idx;
 
-    if (*(unsigned short *)((char *)a1 + 0x2) == 0)
+    if (src->id == 0)
         return 0;
-    idx = *(int *)((char *)a0 + 0x78);
-    if (idx >= 0x100)
+    idx = self->lightNum;
+    if (idx >= WORLDLIGHT_LIGHT_NUM)
         return 0;
 
-    src = (LightData *)a1;
-    base = (LightData *)a0;
-    dst = (LightData *)((char *)&base[idx] + 0x80);
-    *dst = *src;
+    self->light[idx] = *src;
 
-    *(int *)((char *)a0 + 0x78) = *(int *)((char *)a0 + 0x78) + 1;
+    WORLDLIGHT_RAW(self, int, lightNum) = WORLDLIGHT_RAW(self, int, lightNum) + 1;
 
     if ((D_00747A84 & 0x8000000) == 0)
-        cWorldLight_Light_curent_set2(a0, *(int *)((char *)a0 + 0x16288));
+        cWorldLight_Light_curent_set2(self, self->unk16288);
     return 1;
 }

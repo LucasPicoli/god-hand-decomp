@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/vu0.h"
+#include "godhand/cWorldLight.h"
 
 extern int cWorldLight_Set_LightData(void *a0, void *a1);
 extern void MaxField514_292030(void *a0, int a1);
@@ -40,7 +42,6 @@ extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 /* cWorldLight_Init_SatanLight — 0x002D98C0, 640 B — sn-2.95.3-136.
  * b3: pointer locals for the two vec4 fields + source order mirrors
  * retail's emitted store order. */
-#include "godhand/vu0.h"
 
 typedef struct {
     short f00;
@@ -70,26 +71,27 @@ typedef struct {
 
 
 
+/* Adds the three lights of the Satan fight; key is the owner key they carry. */
 __attribute__((section(".text.cWorldLight_Init_SatanLight")))
-void cWorldLight_Init_SatanLight(void *a0, int a1)
+void cWorldLight_Init_SatanLight(cWorldLight *self, int key)
 {
-    LightData d __attribute__((aligned(16)));
+    cWorldLightRec d;
     float *p;
     float *q;
     int c3;
 
-    p = d.v0;
+    p = d.v10;
     VU0_SQC2_VF0(&d, 0x10);
     VU0_SQC2_VF0(&d, 0x20);
-    q = d.v2;
+    q = d.v30;
     VU0_SQC2_VF0(&d, 0x30);
     c3 = 0x04040000;
 
     p[0] = -2.389967918395996f;
-    d.f54 = a1;
-    d.f00 = 1;
-    d.f02 = 1;
-    d.f04 = 0;
+    d.key = key;
+    d.state = 1;
+    d.id = 1;
+    d.unk04 = 0;
     p[1] = 1.700024962425232f;
     p[2] = 0.09997999668121338f;
     p[3] = 1.0f;
@@ -98,18 +100,18 @@ void cWorldLight_Init_SatanLight(void *a0, int a1)
     q[2] = 0.08f;
     q[3] = 1.0f;
     d.f44 = 0.8f;
-    d.f50 = 1;
-    d.f58 = 0x05040000;
+    d.ownerUse = 1;
+    d.flags = 0x05040000;
     d.f40 = 0;
     d.f48 = 0;
-    d.f4C = 0;
-    cWorldLight_Set_LightData(a0, &d);
+    d.ownerIdx = 0;
+    cWorldLight_Set_LightData(self, &d);
 
     p[0] = -1.0001519918441772f;
-    d.f54 = a1;
-    d.f00 = 1;
-    d.f02 = 2;
-    d.f04 = 0;
+    d.key = key;
+    d.state = 1;
+    d.id = 2;
+    d.unk04 = 0;
     p[1] = -12.299838066101074f;
     p[2] = -12.899819374084473f;
     p[3] = 1.0f;
@@ -119,36 +121,36 @@ void cWorldLight_Init_SatanLight(void *a0, int a1)
     q[3] = 1.0f;
     d.f60 = 1;
     d.f44 = 0.1f;
-    d.f50 = 1;
+    d.ownerUse = 1;
     d.f5E = 30;
     d.f5C = 0x5100;
     d.f61 = 50;
     d.f62 = 0x3667;
-    d.f58 = 0x04140000;
+    d.flags = 0x04140000;
     d.f40 = 0;
     d.f48 = 0;
-    d.f4C = 0;
-    cWorldLight_Set_LightData(a0, &d);
+    d.ownerIdx = 0;
+    cWorldLight_Set_LightData(self, &d);
 
-    d.f54 = a1;
-    d.f02 = 2;
+    d.key = key;
+    d.id = 2;
     p[0] = -21.199731826782227f;
-    d.f00 = 1;
-    d.f04 = 0;
+    d.state = 1;
+    d.unk04 = 0;
     p[1] = -5.809957027435303f;
     p[2] = -6.899814128875732f;
     p[3] = 1.0f;
     q[0] = 0.0f;
     q[1] = 0.53f;
-    d.v2[2] = 0.0f;
+    d.v30[2] = 0.0f;
     q[3] = 1.0f;
     d.f44 = 0.1f;
-    d.f50 = 1;
-    d.f58 = c3;
+    d.ownerUse = 1;
+    d.flags = c3;
     d.f40 = 0;
     d.f48 = 0;
-    d.f4C = 0;
-    cWorldLight_Set_LightData(a0, &d);
+    d.ownerIdx = 0;
+    cWorldLight_Set_LightData(self, &d);
 }
 
 /* func_00112318 — 0x00112318, 648 B — sn-2.95.3-136.

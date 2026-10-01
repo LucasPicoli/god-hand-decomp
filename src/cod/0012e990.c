@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/vu0.h"
+#include "godhand/cWorldLight.h"
 
 extern int D_003C2388;
 extern void *cIDManager_getTexAddr(int a, int b, int c);
@@ -55,7 +57,6 @@ Node *func_0012E990(char *self, void *obj, int flags, float *v1, float *v2,
 }
 
 /* sn-2.95.3-136 candidate. */
-#include "godhand/vu0.h"
 
 
 
@@ -217,8 +218,54 @@ static __inline__ void LightCopy(Light *d, Light *s)
     d->f62 = s->f62;
 }
 
+/* Copies the xyz of a vector unless both are the same vector. */
+static __inline__ void cWorldLight_CopyVec3(float *d, float *s)
+{
+    if (d != s) {
+        d[0] = s[0];
+        d[1] = s[1];
+        d[2] = s[2];
+    }
+}
+
+/* Copies one light record field by field. */
+static __inline__ void cWorldLight_CopyRec(cWorldLightRec *d, cWorldLightRec *s)
+{
+    int *dp;
+    int *sp;
+    int n;
+
+    d->state = s->state;
+    d->id = s->id;
+    d->unk04 = s->unk04;
+    cWorldLight_CopyVec3(d->v10, s->v10);
+    cWorldLight_CopyVec3(d->v20, s->v20);
+    cWorldLight_CopyVec3(d->v30, s->v30);
+    d->f40 = s->f40;
+    d->f44 = s->f44;
+    d->f48 = s->f48;
+    dp = &d->ownerIdx;
+    n = 1;
+    sp = &s->ownerIdx;
+    do {
+        *dp = *sp;
+        sp++;
+        dp++;
+    } while (--n != -1);
+    d->key = s->key;
+    d->flags = s->flags;
+    d->f5C = s->f5C;
+    d->f5E = s->f5E;
+    d->f60 = s->f60;
+    d->f61 = s->f61;
+    d->f62 = s->f62;
+}
+
+/* Frees every light with this id and owner key, then closes the gap in the
+ * array. row is the object shifted by i lights: retail adds i * 0x70 to self
+ * before the 0x80 field offset, so light[0] is read through it. */
 __attribute__((section(".text.cWorldLight_Del_LightData")))
-void cWorldLight_Del_LightData(World *self, unsigned short id, int key)
+void cWorldLight_Del_LightData(cWorldLight *self, unsigned short id, int key)
 {
     int i;
     int k;
@@ -226,23 +273,23 @@ void cWorldLight_Del_LightData(World *self, unsigned short id, int key)
     if (id == 0) {
         return;
     }
-    for (i = 0; i < 256; i++) {
-        char *p = (char *)self + i * 0x70;
-        if (*(unsigned short *)(p + 0x80) == 0xFF) {
+    for (i = 0; i < WORLDLIGHT_LIGHT_NUM; i++) {
+        cWorldLight *row = (cWorldLight *)((char *)self + i * sizeof(cWorldLightRec));
+        if (row->light[0].state == WORLDLIGHT_LIGHT_FREE) {
             continue;
         }
-        if (*(unsigned short *)(p + 0x82) != id) {
+        if (row->light[0].id != id) {
             continue;
         }
-        if (*(int *)(p + 0xD4) != key) {
+        if (row->light[0].key != key) {
             continue;
         }
-        *(unsigned short *)(p + 0x80) = 0xFF;
-        for (k = i; k < 0xFF && self->light[k + 1].state != 0xFF; k++) {
-            LightCopy(&self->light[k], &self->light[k + 1]);
-            self->light[k + 1].state = 0xFF;
+        row->light[0].state = WORLDLIGHT_LIGHT_FREE;
+        for (k = i; k < 0xFF && self->light[k + 1].state != WORLDLIGHT_LIGHT_FREE; k++) {
+            cWorldLight_CopyRec(&self->light[k], &self->light[k + 1]);
+            self->light[k + 1].state = WORLDLIGHT_LIGHT_FREE;
         }
-        self->count--;
+        self->lightNum--;
     }
 }
 
@@ -291,7 +338,6 @@ void func_00150AA8(char *self)
 }
 
 /* sn-2.95.3-136 candidate. */
-#include "godhand/vu0.h"
 
 typedef struct {
     short f00;
@@ -323,36 +369,38 @@ typedef struct {
 
 extern int cWorldLight_Set_LightData(void *a0, LightData *d);
 
+/* Resets the world light: saves the settings to the backup copy, clears all
+ * lights, sets the ambient colour and adds one default light. */
 __attribute__((section(".text.func_002D9778")))
-void func_002D9778(char *self)
+void func_002D9778(cWorldLight *self)
 {
-    LightData d __attribute__((aligned(16)));
+    cWorldLightRec d;
     float *p;
     float *q;
     float *v;
     int i;
 
-    func_002D9458(self + 0xE8A0, self);
-    *(int *)(self + 0x78) = 0;
-    func_003A52F0(self + 0x80, 0, 0x7000);
+    func_002D9458(self->backup, self);
+    self->lightNum = 0;
+    func_003A52F0(self->light, 0, sizeof(self->light));
     for (i = 255; i >= 0; i--) {
-        *(short *)(self + 0x80 + i * 0x70) = 0xFF;
+        self->light[i].state = WORLDLIGHT_LIGHT_FREE;
     }
-    v = (float *)(self + 0x40);
+    v = self->ambient;
     v[0] = 0.45f;
     v[1] = 0.45f;
     v[2] = 0.45f;
 
-    p = d.v0;
+    p = d.v10;
     VU0_SQC2_VF0(&d, 0x10);
     VU0_SQC2_VF0(&d, 0x20);
-    q = d.v2;
+    q = d.v30;
     VU0_SQC2_VF0(&d, 0x30);
 
-    d.f54 = 0;
-    d.f04 = 0;
-    d.f00 = 1;
-    d.f02 = 1;
+    d.key = 0;
+    d.unk04 = 0;
+    d.state = 1;
+    d.id = 1;
     *(int *)&p[0] = 0;
     p[1] = 0.4f;
     p[2] = 3.5f;
@@ -362,11 +410,11 @@ void func_002D9778(char *self)
     q[2] = 0.5f;
     q[3] = 1.0f;
     d.f40 = 0.01f;
-    d.f50 = 1;
-    d.f58 = 0x87000000;
+    d.ownerUse = 1;
+    d.flags = 0x87000000;
     d.f44 = 0;
     d.f48 = 0;
-    d.f4C = 0;
+    d.ownerIdx = 0;
     cWorldLight_Set_LightData(self, &d);
 }
 

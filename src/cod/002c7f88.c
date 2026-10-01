@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cWorldLight.h"
 
 extern unsigned char D_0061B289;
 extern int D_003C118C;
@@ -47,11 +48,11 @@ void func_002D65F8(char *a0, float x, float y, float z, float w) {
 __attribute__((section(".text.func_002D69A8")))
 void func_002D69A8(int a0,unsigned short a1,float f12,float f13){int p=*(int*)(a0+4);if(p==0)return;*(int*)(a0+0x5C)=3;*(float*)(a0+0x64)=f12;*(float*)(a0+0x68)=f13;*(float*)(a0+0x6C)=*(float*)(p+0x44);*(float*)(a0+0x70)=*(float*)(p+0x44);*(short*)(a0+0x74)=a1;if(a1==0)*(short*)(a0+0x74)=1;*(short*)(a0+0x76)=0;}
 
-/* sn-2.95.3-136 */
+/* Returns light idx. */
 __attribute__((section(".text.func_002D9000")))
-char *func_002D9000(char *p, int i)
+cWorldLightRec *func_002D9000(cWorldLight *self, int idx)
 {
-    return p + (i * 0x70 + 0x80);
+    return &self->light[idx];
 }
 
 __attribute__((section(".text.func_002E0AE0")))

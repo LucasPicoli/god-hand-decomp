@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cWorldLight.h"
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.func_001AE630")))
@@ -65,19 +66,19 @@ int func_002B2B08(char *p) {
     return 0;
 }
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Returns the highest unused light id (counting down from 0xFFFF). */
 __attribute__((section(".text.func_002D93E8")))
-unsigned int func_002D93E8(char *base) {
+unsigned int func_002D93E8(cWorldLight *self) {
     unsigned int id;
     int n;
     int i;
     int free;
-    n = *(int *)(base + 0x78);
+    n = self->lightNum;
     id = 0xFFFF;
     do {
         free = 1;
         for (i = 0; i < n; i++) {
-            if (*(unsigned short *)(base + i * 0x70 + 0x82) == id) { free = 0; break; }
+            if (self->light[i].id == id) { free = 0; break; }
         }
         if (free) break;
         id = (id - 1) & 0xFFFF;
