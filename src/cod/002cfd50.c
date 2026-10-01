@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
+#include "godhand/cBgmData.h"
 
 extern char D_00754210[];
 extern char D_00754220[];
@@ -7,17 +9,17 @@ extern char D_00603310[];
 extern char D_006036A0[];
 extern unsigned short D_00747A50;
 
+/* Point a sound-effect slot at the allocator and table set that its bank id uses. */
 __attribute__((section(".text.func_002CFD50")))
-void func_002CFD50(char *a0) {
-    char *a1 = a0;
-    switch (*(int *)(a1 + 0x2C)) {
+void func_002CFD50(cSeData *d) {
+    switch (d->bankId) {
     case 0:
-        *(void **)(a1 + 0x8) = D_00754210;
-        *(void **)(a1 + 0xC) = D_00602F80;
+        d->pool = D_00754210;
+        d->head = (cSeBuf *)D_00602F80;
         break;
     case 3:
-        *(void **)(a1 + 0x8) = D_00754210;
-        *(void **)(a1 + 0xC) = D_00602F80;
+        d->pool = D_00754210;
+        d->head = (cSeBuf *)D_00602F80;
         break;
     case 1:
     case 7:
@@ -33,11 +35,11 @@ void func_002CFD50(char *a0) {
     case 19:
         if (D_00747A50 == 0x504 || D_00747A50 == 0x506 || D_00747A50 == 0x801 ||
             D_00747A50 == 0x4F || D_00747A50 == 0x4E) {
-            *(void **)(a1 + 0x8) = D_00754220;
+            d->pool = D_00754220;
         } else {
-            *(void **)(a1 + 0x8) = D_00754210;
+            d->pool = D_00754210;
         }
-        *(void **)(a1 + 0xC) = D_006036A0;
+        d->head = (cSeBuf *)D_006036A0;
         break;
     case 2:
     case 4:
@@ -46,8 +48,8 @@ void func_002CFD50(char *a0) {
     case 14:
     case 15:
     default:
-        *(void **)(a1 + 0x8) = D_00754210;
-        *(void **)(a1 + 0xC) = D_00603310;
+        d->pool = D_00754210;
+        d->head = (cSeBuf *)D_00603310;
         break;
     }
 }

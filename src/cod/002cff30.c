@@ -1,4 +1,18 @@
 /* func_002CFF30 — accessor (symbolic decoder). */
+#include "godhand/cSnd.h"
+#include "godhand/cBgmData.h"
 
+/* Constructor of a bgm data record: nothing loaded, no allocations held. */
 __attribute__((section(".text.func_002CFF30")))
-void * func_002CFF30(void *a0) { *(signed char *)((char *)a0 + 0) = 0; *(signed char *)((char *)a0 + 1) = 0; *(int *)((char *)a0 + 4) = 0; *(int *)((char *)a0 + 12) = 0; *(int *)((char *)a0 + 16) = 0; *(int *)((char *)a0 + 20) = 0; *(int *)((char *)a0 + 24) = -1; *(int *)((char *)a0 + 32) = -1; return ((char *)a0); }
+cBgmData *func_002CFF30(cBgmData *d)
+{
+    d->loadMode = 0;
+    d->f01 = 0;
+    d->state = 0;
+    d->head = 0;
+    d->tbl = 0;
+    d->f14 = 0;
+    d->f18 = -1;
+    d->f20 = -1;
+    return d;
+}
