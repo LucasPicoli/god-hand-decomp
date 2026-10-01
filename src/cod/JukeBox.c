@@ -1,4 +1,5 @@
 /* TU: JukeBox - recovered C++ class. */
+#include "godhand/JukeBox.h"
 #include "include_asm.h"
 
 extern unsigned int D_00747A78;
@@ -22,16 +23,19 @@ extern void func_002D14F8(void *p, float f);
 
 extern void cIDBase(void *);
 
+/* Constructor: clears the done flag, builds the ID object, no data file yet. */
 __attribute__((section(".text.JukeBox")))
-void *JukeBox(void *a0) {
-    *((unsigned char *)a0 + 0x4) = 0;
-    cIDBase((char *)a0 + 0x30);
-    *(int *)((char *)a0 + 0x80) = 0;
-    return a0;
+JukeBoxObj *JukeBox(JukeBoxObj *self) {
+    self->done = 0;
+    cIDBase(self->idBase);
+    self->dataFile = 0;
+    return self;
 }
 
+/* Runs the whole jukebox screen: fade in, load, loop until the player leaves,
+* unload, fade out. */
 __attribute__((section(".text.JukeBox_Execute")))
-void JukeBox_Execute(void *a0)
+void JukeBox_Execute(JukeBoxObj *self)
 {
     unsigned int color;
 
@@ -46,22 +50,22 @@ void JukeBox_Execute(void *a0)
 
     pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
 
-    func_001F6B78(a0, 1);
-    func_001F6C40(a0, 1);
+    func_001F6B78(self, 1);
+    func_001F6C40(self, 1);
 
-    if (func_001F5A98(a0) && *(unsigned char *)((char *)a0 + 0x4) == 0) {
+    if (func_001F5A98(self) && self->done == 0) {
         do {
-            func_001F5E90(a0);
+            func_001F5E90(self);
             SetFieldsCESignalSemaSleep_2D5AA0(
                 *(void **)((char *)D_003C2F84 + 0x20), 1);
-        } while (*(unsigned char *)((char *)a0 + 0x4) == 0);
+        } while (self->done == 0);
     }
 
-    func_001F5C48(a0);
+    func_001F5C48(self);
 
     D_005CAC90.f = 0x1E;
     func_002D14F8(&D_005FEE00, 20.0f);
-    func_001F6B78(a0, 0);
+    func_001F6B78(self, 0);
 
     classFADE_start(&D_00747470, 0, 0xA, 0, 0xFF000000, 0, 0xF);
     SetFieldsCESignalSemaSleep_2D5AA0(*(void **)((char *)D_003C2F84 + 0x20), 0xF);
@@ -69,5 +73,5 @@ void JukeBox_Execute(void *a0)
 
     Set_bg_mode(1, color & 0xFF, (color >> 8) & 0xFF, (color >> 16) & 0xFF);
 
-    func_001F6C40(a0, 0);
+    func_001F6C40(self, 0);
 }

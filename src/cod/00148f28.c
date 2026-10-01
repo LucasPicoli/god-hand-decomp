@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/CustomIDWork.h"
 #include "godhand/cDataManager.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
@@ -156,57 +157,99 @@ void cOl2b_setInit(char *p)
     }
 }
 
+/* Binds the element to a screen object and remembers its resting values. */
 __attribute__((section(".text.CustomIDWork_Initialize")))
-void CustomIDWork_Initialize(char *a0, char *a1) {
-    if (a1 != 0) {
-        *(char **)(a0 + 0x4) = a1;
-        *(float *)(a0 + 0xC) = *(float *)(a1 + 0x38);
-        *(float *)(a0 + 0x10) = *(float *)(a1 + 0x3C);
-        *(int *)(a0 + 0x4C) = *(int *)(a1 + 0x4C);
-        *(unsigned char *)(a0 + 0x78) = *(unsigned char *)(a1 + 0x2B);
+void CustomIDWork_Initialize(CustomIDWork *self, CustomIDObj *obj) {
+    if (obj != 0) {
+        self->obj = obj;
+        self->restPos[0] = obj->localPos[0];
+        self->restPos[1] = obj->localPos[1];
+        *(int *)self->restColor = *(int *)obj->color;
+        self->unk78 = *(unsigned char *)((char *)obj + 0x2B);
     }
 }
 
-/* sn-2.95.3-136 */
+/* Stops the scale animation and snaps the scale back to its resting value. */
 __attribute__((section(".text.CustomIDWork_ResetScaleAnim")))
-void CustomIDWork_ResetScaleAnim(char *p)
+void CustomIDWork_ResetScaleAnim(CustomIDWork *self)
 {
-    char *q = *(char **)(p + 0x4);
+    CustomIDObj *obj = self->obj;
 
-    if (q != 0) {
-        *(int *)(p + 0x5C) = 0;
-        *(float *)(q + 0x40) = *(float *)(p + 0x60);
-        *(float *)(*(char **)(p + 0x4) + 0x44) = *(float *)(p + 0x60);
+    if (obj != 0) {
+        self->scaleFlags = 0;
+        obj->scale[0] = self->restScale;
+        self->obj->scale[1] = self->restScale;
     }
 }
 
+/* Blends the colour from its current value to `color` over `frames` frames. */
 __attribute__((section(".text.CustomIDWork_SetColorAnimNormal_2D6898")))
-void CustomIDWork_SetColorAnimNormal_2D6898(char *p, int a1, unsigned short a2) {
-    char *q = *(char **)(p + 0x4);
+void CustomIDWork_SetColorAnimNormal_2D6898(CustomIDWork *self, int color, unsigned short frames) {
+    CustomIDObj *obj = self->obj;
 
-    if (q != 0) {
-    /* SWEEP-BEGIN */
-        *(int *)(p + 0x48) = 3;
-        *(int *)(p + 0x50) = *(int *)(q + 0x4C);
-        *(int *)(p + 0x54) = a1;
-        *(short *)(p + 0x58) = a2;
-/* SWEEP-END */
-        if (a2 == 0) {
-            *(short *)(p + 0x58) = 1;
+    if (obj != 0) {
+        self->colorFlags = CIDW_ANIM_ON | CIDW_ANIM_LINEAR;
+        *(int *)self->colorFrom = *(int *)obj->color;
+        *(int *)self->colorTo = color;
+        self->colorTotal = frames;
+        if (frames == 0) {
+            self->colorTotal = 1;
         }
-        *(short *)(p + 0x5A) = 0;
+        self->colorCount = 0;
     }
 }
 
-/* CustomIDWork_SetNoDisp */
+/* Hides (`hide` nonzero) or shows the element. */
 __attribute__((section(".text.CustomIDWork_SetNoDisp")))
-void CustomIDWork_SetNoDisp(int a0,int a1){int p=*(int*)(a0+4);if(p==0)return;if(a1)*(int*)(p+0x2C)|=0x8000000;else *(int*)(p+0x2C)&=~0x8000000;}
+void CustomIDWork_SetNoDisp(CustomIDWork *self, int hide)
+{
+    CustomIDObj *obj = self->obj;
 
+    if (obj == 0) {
+        return;
+    }
+    if (hide) {
+        obj->flags |= CIDW_OBJ_HIDE_ALL;
+    } else {
+        obj->flags &= ~CIDW_OBJ_HIDE_ALL;
+    }
+}
+
+/* Starts a scale blend from `from` to `to` over `frames` frames (X and Y alike). */
 __attribute__((section(".text.CustomIDWork_SetScaleAnimNormal")))
-void CustomIDWork_SetScaleAnimNormal(int a0,unsigned short a1,float f12,float f13){if(*(int*)(a0+4)==0)return;*(int*)(a0+0x5C)=3;*(float*)(a0+0x64)=f12;*(float*)(a0+0x68)=f13;*(float*)(a0+0x6C)=f12;*(float*)(a0+0x70)=f13;*(short*)(a0+0x74)=a1;if(a1==0)*(short*)(a0+0x74)=1;*(short*)(a0+0x76)=0;}
+void CustomIDWork_SetScaleAnimNormal(CustomIDWork *self, unsigned short frames, float from, float to) {
+    if (self->obj == 0) {
+        return;
+    }
+    self->scaleFlags = CIDW_ANIM_ON | CIDW_ANIM_LINEAR;
+    self->scaleX[0] = from;
+    self->scaleX[1] = to;
+    self->scaleY[0] = from;
+    self->scaleY[1] = to;
+    self->scaleTotal = frames;
+    if (frames == 0) {
+        self->scaleTotal = 1;
+    }
+    self->scaleCount = 0;
+}
 
+/* Starts a scale sine between `from` and `to` over `frames` frames (X and Y alike). */
 __attribute__((section(".text.CustomIDWork_SetScaleAnimSin")))
-void CustomIDWork_SetScaleAnimSin(int a0,unsigned short a1,float f12,float f13){if(*(int*)(a0+4)==0)return;*(int*)(a0+0x5C)=5;*(float*)(a0+0x64)=f12;*(float*)(a0+0x68)=f13;*(float*)(a0+0x6C)=f12;*(float*)(a0+0x70)=f13;*(short*)(a0+0x74)=a1;if(a1==0)*(short*)(a0+0x74)=1;*(short*)(a0+0x76)=0;}
+void CustomIDWork_SetScaleAnimSin(CustomIDWork *self, unsigned short frames, float from, float to) {
+    if (self->obj == 0) {
+        return;
+    }
+    self->scaleFlags = CIDW_ANIM_ON | CIDW_ANIM_SINE;
+    self->scaleX[0] = from;
+    self->scaleX[1] = to;
+    self->scaleY[0] = from;
+    self->scaleY[1] = to;
+    self->scaleTotal = frames;
+    if (frames == 0) {
+        self->scaleTotal = 1;
+    }
+    self->scaleCount = 0;
+}
 
 /* sn-2.95.3-136 */
 

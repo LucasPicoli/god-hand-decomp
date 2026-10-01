@@ -1,3 +1,11 @@
-/* CustomIDWork_SetMessNo */
+/* Sets the message number the element shows. */
+#include "godhand/CustomIDWork.h"
 __attribute__((section(".text.CustomIDWork_SetMessNo")))
-void CustomIDWork_SetMessNo(int a0,int a1){int p=*(int*)(a0+4);if(p)*(short*)(p+0x90)=a1;}
+void CustomIDWork_SetMessNo(CustomIDWork *self, int messNo)
+{
+    CustomIDObj *obj = self->obj;
+
+    if (obj) {
+        obj->messNo = messNo;
+    }
+}

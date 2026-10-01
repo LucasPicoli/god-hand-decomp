@@ -1,3 +1,16 @@
-/* CustomIDWork_SetChildNoDisp */
+/* Hides (`hide` nonzero) or shows the element's children. */
+#include "godhand/CustomIDWork.h"
 __attribute__((section(".text.CustomIDWork_SetChildNoDisp")))
-void CustomIDWork_SetChildNoDisp(int a0,int a1){int p=*(int*)(a0+4);if(p==0)return;if(a1)*(int*)(p+0x2C)|=8;else *(int*)(p+0x2C)&=~8;}
+void CustomIDWork_SetChildNoDisp(CustomIDWork *self, int hide)
+{
+    CustomIDObj *obj = self->obj;
+
+    if (obj == 0) {
+        return;
+    }
+    if (hide) {
+        obj->flags |= CIDW_OBJ_HIDE_CHILD;
+    } else {
+        obj->flags &= ~CIDW_OBJ_HIDE_CHILD;
+    }
+}

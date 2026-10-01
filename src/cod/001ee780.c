@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/DogRace.h"
 
 extern void *CreateObj(int a0, int a1);
 extern void cOmBase_setTexChange(void *a0, int a1);
@@ -14,8 +15,10 @@ extern int Forward30F348_31CFE0(void);
 
 typedef struct { int a[9]; } T36;
 
+/* Spawns dog `n`: creates its object, picks a colour, copies the stat record
+* and rolls its speed and power. 0 if the object could not be made. */
 __attribute__((section(".text.func_001EE780")))
-int func_001EE780(char *s0, unsigned char n, char *s2) {
+int func_001EE780(DogRaceDog *dog, unsigned char n, DogRaceStats *stats) {
     char *obj;
     char *vt;
     int (*fp)();
@@ -25,7 +28,7 @@ int func_001EE780(char *s0, unsigned char n, char *s2) {
     unsigned int m;
 
     obj = (char *)CreateObj(0x371, 0xFFFF);
-    *(char **)s0 = obj;
+    dog->obj = obj;
     if (obj == 0) {
         return 0;
     }
@@ -33,29 +36,29 @@ int func_001EE780(char *s0, unsigned char n, char *s2) {
     fp = *(int (**)())(vt + 0x44);
     fp(obj + *(short *)(vt + 0x40));
     m = n;
-    s0[4] = n;
+    dog->no = n;
     switch (m & 0xFF) {
     case 0:
     default:
-        p = *(char **)s0;
+        p = dog->obj;
         if (p != 0) {
             cOmBase_setTexChange(p, 1);
         }
         break;
     case 1:
-        p = *(char **)s0;
+        p = dog->obj;
         if (p != 0) {
             cOmBase_setTexChange(p, 2);
         }
         break;
     case 2:
-        p = *(char **)s0;
+        p = dog->obj;
         if (p != 0) {
             cOmBase_setTexChange(p, 3);
         }
         break;
     case 3:
-        p = *(char **)s0;
+        p = dog->obj;
         if (p != 0) {
             cOmBase_setTexChange(p, 0);
         }
@@ -63,20 +66,20 @@ int func_001EE780(char *s0, unsigned char n, char *s2) {
     case 4:
         break;
     }
-    *(T36 *)(s0 + 8) = *(T36 *)s2;
-    r = frand(*(float *)(s0 + 0x24), *(float *)(s0 + 0x28));
-    *(float *)(s0 + 0x3C) = r;
-    *(float *)(s0 + 0x10) = *(float *)(s0 + 0x10) * r;
-    *(float *)(s0 + 0x18) = *(float *)(s0 + 0x18) * r;
+    dog->stats = *stats;
+    r = frand(dog->stats.rateMin, dog->stats.rateMax);
+    dog->speedRate = r;
+    dog->stats.speed = dog->stats.speed * r;
+    dog->stats.luck = dog->stats.luck * r;
     rem = (unsigned int)Forward30F348_31CFE0() % 100;
-    if (*(unsigned int *)(s0 + 0x20) >= rem) {
-        *(float *)(s0 + 0x1C) = frand(-43.0f, -25.0f);
+    if (dog->stats.burstChance >= rem) {
+        dog->stats.unk14 = frand(-43.0f, -25.0f);
     }
-    *(int *)(s0 + 0x2C) = 11;
-    *(int *)(s0 + 0x30) = 0;
-    *(int *)(s0 + 0x38) = (int)(*(float *)(s0 + 0x10) * 100.0f)
-                        - *(int *)(s0 + 0xC) * 10
-                        + (int)(*(float *)(s0 + 0x14) * 10.0f)
-                        + (int)(*(float *)(s0 + 0x18) * 100.0f);
+    dog->raceTime = 11;
+    dog->unk30 = 0;
+    dog->power = (int)(dog->stats.speed * 100.0f)
+               - dog->stats.grade * 10
+               + (int)(dog->stats.stamina * 10.0f)
+               + (int)(dog->stats.luck * 100.0f);
     return 1;
 }

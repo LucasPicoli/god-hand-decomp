@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/ColiseumBattle.h"
 #include "godhand/cOmBase.h"
 
 extern unsigned char D_005864F0[];
@@ -270,16 +271,17 @@ void func_001EC820(int a0)
     }
 }
 
+/* Kills the running screen fade, if the battle started one. */
 __attribute__((section(".text.func_001EFD00")))
-void func_001EFD00(unsigned char *a0)
+void func_001EFD00(ColiseumBattle *self)
 {
-    long v0 = *(unsigned int *)(a0 + 0x54);
+    long t = self->flags;
 
-    if (((v0 >> 1) & 1) == 0) {
+    if (((t >> 1) & 1) == 0) {
         return;
     }
     classFADE_kill(&D_00747470);
-    *(int *)(a0 + 0x54) &= ~2;
+    self->flags = (int)self->flags & ~COLISEUM_FLAG_FADE;
 }
 
 __attribute__((section(".text.func_001F44E0")))

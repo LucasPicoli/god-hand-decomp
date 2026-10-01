@@ -1,21 +1,24 @@
 /* TU: CustomIDWork [id] - recovered C++ class. */
+#include "godhand/CustomIDWork.h"
 
+/* Shows the element when `show` is 1, hides it otherwise. */
 __attribute__((section(".text.CustomIDWork_SetDisp")))
-void CustomIDWork_SetDisp(int *a0, int a1) {
-    int *p = (int *)a0[1];
-    if (p != 0) {
-        if ((a1 ^ 1) != 0) {
-            *(int *)((char *)p + 0x2C) |= 0x20000000;
+void CustomIDWork_SetDisp(CustomIDWork *self, int show) {
+    CustomIDObj *obj = self->obj;
+    if (obj != 0) {
+        if ((show ^ 1) != 0) {
+            obj->flags |= CIDW_OBJ_HIDE;
         } else {
-            *(int *)((char *)p + 0x2C) &= 0xDFFFFFFF;
+            obj->flags &= ~CIDW_OBJ_HIDE;
         }
     }
 }
 
+/* Sets the number the element displays. */
 __attribute__((section(".text.CustomIDWork_SetNumber")))
-void CustomIDWork_SetNumber(void *a0, int a1) {
-    int *v0 = *(int **)((char *)a0 + 0x4);
-    if (v0 != 0) {
-        *(int *)((char *)v0 + 0x84) = a1;
+void CustomIDWork_SetNumber(CustomIDWork *self, int number) {
+    CustomIDObj *obj = self->obj;
+    if (obj != 0) {
+        obj->number = number;
     }
 }

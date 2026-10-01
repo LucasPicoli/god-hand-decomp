@@ -1,4 +1,5 @@
 /* TU: DogRace - recovered C++ class. */
+#include "godhand/DogRace.h"
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern char D_00754C38[];
@@ -39,22 +40,27 @@ static inline int Find(char *tbl, signed char *str) {
     return cScrArray_SearchScroll(tbl, acc);
 }
 
+/* Looks the scroll layer named by `str` up in the layer table. The name is
+packed into a 64-bit key one byte at a time. Each call site inlines this
+helper; the argument copy it emits is what makes retail's register use
+reproduce. */
+/* Looks up the 15 scroll layers the race screen uses. */
 __attribute__((section(".text.DogRace_Initialize")))
-void DogRace_Initialize(char *p) {
+void DogRace_Initialize(DogRace *self) {
     displayScrollLayer(1, 0);
-    *(int *)(p + 0x1EC) = Find(D_00754C38, D_0042BBC0);
-    *(int *)(p + 0x1F0) = Find(D_00754C38, D_0042BBC8);
-    *(int *)(p + 0x1F4) = Find(D_00754C38, D_0042BBD0);
-    *(int *)(p + 0x1F8) = Find(D_00754C38, D_0042BBD8);
-    *(int *)(p + 0x1FC) = Find(D_00754C38, D_0042BBE0);
-    *(int *)(p + 0x1C4) = Find(D_00754C38, D_0042BBE8);
-    *(int *)(p + 0x1C8) = Find(D_00754C38, D_0042BBF8);
-    *(int *)(p + 0x1CC) = Find(D_00754C38, D_0042BC08);
-    *(int *)(p + 0x1D0) = Find(D_00754C38, D_0042BC18);
-    *(int *)(p + 0x1D4) = Find(D_00754C38, D_0042BC28);
-    *(int *)(p + 0x1D8) = Find(D_00754C38, D_0042BC38);
-    *(int *)(p + 0x1DC) = Find(D_00754C38, D_0042BC48);
-    *(int *)(p + 0x1E0) = Find(D_00754C38, D_0042BC58);
-    *(int *)(p + 0x1E4) = Find(D_00754C38, D_0042BC68);
-    *(int *)(p + 0x1E8) = Find(D_00754C38, D_0042BC78);
+    self->scroll[(0x1EC - 0x1C4) / 4] = Find(D_00754C38, D_0042BBC0);
+    self->scroll[(0x1F0 - 0x1C4) / 4] = Find(D_00754C38, D_0042BBC8);
+    self->scroll[(0x1F4 - 0x1C4) / 4] = Find(D_00754C38, D_0042BBD0);
+    self->scroll[(0x1F8 - 0x1C4) / 4] = Find(D_00754C38, D_0042BBD8);
+    self->scroll[(0x1FC - 0x1C4) / 4] = Find(D_00754C38, D_0042BBE0);
+    self->scroll[0] = Find(D_00754C38, D_0042BBE8);
+    self->scroll[1] = Find(D_00754C38, D_0042BBF8);
+    self->scroll[2] = Find(D_00754C38, D_0042BC08);
+    self->scroll[3] = Find(D_00754C38, D_0042BC18);
+    self->scroll[4] = Find(D_00754C38, D_0042BC28);
+    self->scroll[5] = Find(D_00754C38, D_0042BC38);
+    self->scroll[6] = Find(D_00754C38, D_0042BC48);
+    self->scroll[7] = Find(D_00754C38, D_0042BC58);
+    self->scroll[8] = Find(D_00754C38, D_0042BC68);
+    self->scroll[9] = Find(D_00754C38, D_0042BC78);
 }

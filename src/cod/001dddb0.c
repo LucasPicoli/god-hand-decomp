@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/ColiseumBattle.h"
 
 extern int Obj0000_Get_Field_BA8_Via_Ptr0_1FC530(void *p);
 extern char D_00569B70[];
@@ -53,8 +54,10 @@ extern void *cDvd_ReadAlloc(void *a, void *b, void *c, void *d,
 
 
 
+/* Loads the ring's rules record and the result UI data, then sets up the
+* player and the clock for the fight. */
 __attribute__((section(".text.ColiseumBattle_Initialize")))
-void ColiseumBattle_Initialize(char *self)
+void ColiseumBattle_Initialize(ColiseumBattle *self)
 {
     char name[0x40];
     int info[4];
@@ -64,36 +67,36 @@ void ColiseumBattle_Initialize(char *self)
     int t;
     char *g;
 
-    *(Blob28 *)(self + 0xB60) =
+    *(Blob28 *)&self->ring =
         D_003BE8B0[Obj0000_Get_Field_BA8_Via_Ptr0_1FC530(D_00569B70)];
-    *(int *)(self + 0xB94) = 0;
+    self->phase = 0;
     D_00568240 &= ~2;
     D_00568240 &= ~4;
-    q = (int *)(self + 0xC64);
+    q = self->unkC64;
     for (n = 0x1D; n >= 0; n--) q[n] = 0;
     D_005864F0[0x5B5] = 1;
     cIDManager_getLocalFileName(D_003C2388, name, D_0042BE30, -1);
     h = cDvd_ReadAlloc(D_00583F20, name, info, D_00754220, 0, 0, 0, 0);
     cDvd_CheckWait(D_00583F20, h);
     cIDManager_setIDData(*D_003C2384, 0x15, info[0]);
-    func_001F27B0(self + 0x60);
-    func_001F2A88(self + 0x60, *(int *)(self + 0xB6C) != 0);
-    func_001F2B28(self + 0x60, *(short *)(self + 0xB6A), 1);
-    if (*(int *)(self + 0xB6C) != 0) {
-        func_001F2B80(self + 0x60, 1, *(int *)(self + 0xB6C) / 60,
-                      *(int *)(self + 0xB6C) % 60, 0, 1);
+    func_001F27B0(self->ui);
+    func_001F2A88(self->ui, self->ring.timeLimit != 0);
+    func_001F2B28(self->ui, self->ring.unk0A, 1);
+    if (self->ring.timeLimit != 0) {
+        func_001F2B80(self->ui, 1, self->ring.timeLimit / 60,
+                      self->ring.timeLimit % 60, 0, 1);
     }
-    *(int *)(self + 0x4) = 0;
-    *(int *)(self + 0x8) = 0;
-    *(int *)(self + 0xC) = 0;
+    self->mode = 0;
+    self->state = 0;
+    self->unk0C = 0;
     t = func_001EF8B8(self);
-    *(int *)(self + 0xB88) = 0;
-    *(int *)(self + 0xB8C) = t;
+    self->unkB88 = 0;
+    self->enemyNum = t;
     func_001EFA50(self);
-    if (*(int *)(self + 0xB6C) != 0) SetField_B98_1EFD50(self);
+    if (self->ring.timeLimit != 0) SetField_B98_1EFD50(self);
     ColiseumBattle_PlCtrlOff(self, 1);
     g = D_007474A0;
-    SetBgmTbl(*(unsigned short *)(g + 0x5B0), *(int *)(self + 0xB84), 1);
+    SetBgmTbl(*(unsigned short *)(g + 0x5B0), self->ring.bgm, 1);
 }
 
 /* sn-2.95.3-136 */

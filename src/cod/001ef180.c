@@ -1,6 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
-
+#include "godhand/cCoreSave.h"
+#include "godhand/ColiseumBattle.h"
 #include "godhand/vu0.h"
+
 
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
@@ -27,35 +29,36 @@ extern long D_00747640;
 extern unsigned char D_0074748C;
 extern char *D_003C2F84;
 
+/* Result sequence after a fight: marks the ring cleared, pays the prize
+* out thousand by thousand, then fades to the next room. */
 __attribute__((section(".text.func_001EF180")))
-void func_001EF180(void *a0)
+void func_001EF180(ColiseumBattle *self)
 {
-    char *s1 = (char *)a0;
     char buf[16];
     int done;
     int all;
     int i;
 
-    switch (*(int *)(s1 + 0x8)) {
+    switch (self->state) {
     case 0:
         cSnd_SeCall(D_005FEE00, 0, 0x35, D_005CAFF0 + 0x210, 0, 0);
-        func_001F30B8(s1 + 0x60, 1);
-        *(int *)(s1 + 0x10) = 0x3C;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        func_001F30B8(self->ui, 1);
+        self->timer = 0x3C;
+        self->state = self->state + 1;
         break;
     case 1:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        if (func_001FC4D0(D_00569B70, *(short *)(s1 + 0xB60)) == 0) {
-            cCoreSave_SetFightingRingClearFlag(D_00569B70, *(short *)(s1 + 0xB60), 1);
-            if ((*(int *)(*(int *)D_00569B70 + 0x14) & 0x800000) == 0) {
+        if (func_001FC4D0(D_00569B70, self->ring.ringNo) == 0) {
+            cCoreSave_SetFightingRingClearFlag(D_00569B70, self->ring.ringNo, 1);
+            if ((((cCoreSave *)D_00569B70)->data->flags & 0x800000) == 0) {
                 all = 1;
                 i = 1;
                 for (; i < 0x33; i++) {
@@ -65,26 +68,26 @@ void func_001EF180(void *a0)
                     }
                 }
                 if (all != 0) {
-                    *(int *)(*(int *)D_00569B70 + 0x14) = *(int *)(*(int *)D_00569B70 + 0x14) | 0x800000;
+                    ((cCoreSave *)D_00569B70)->data->flags = ((cCoreSave *)D_00569B70)->data->flags | 0x800000;
                 }
             } else {
                 if (func_001FC4D0(D_00569B70, 0x33) != 0) {
-                    if ((*(int *)(*(int *)D_00569B70 + 0x14) & 0x400000) == 0) {
-                        *(int *)(s1 + 0x54) = *(int *)(s1 + 0x54) | 0x10;
+                    if ((((cCoreSave *)D_00569B70)->data->flags & 0x400000) == 0) {
+                        self->flags = self->flags | 0x10;
                     }
-                    *(int *)(*(int *)D_00569B70 + 0x14) = *(int *)(*(int *)D_00569B70 + 0x14) | 0x400000;
+                    ((cCoreSave *)D_00569B70)->data->flags = ((cCoreSave *)D_00569B70)->data->flags | 0x400000;
                     D_00747A24[1] = D_00747A24[1] | 0x400000;
                 }
             }
-            cCoreSave_addGold(D_00569B70, *(int *)(s1 + 0xB70), 0);
+            cCoreSave_addGold(D_00569B70, self->ring.prize, 0);
         }
-        *(int *)(s1 + 0x10) = 0x3C;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        self->timer = 0x3C;
+        self->state = self->state + 1;
         break;
     case 2:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
@@ -93,7 +96,7 @@ void func_001EF180(void *a0)
         }
         all = 0;
         if (cCoreSave_getClearNum(D_00569B70) == 0) {
-            if ((*(int *)(*(int *)D_00569B70 + 0x14) & 0x20000) == 0) {
+            if ((((cCoreSave *)D_00569B70)->data->flags & 0x20000) == 0) {
                 i = 1;
                 all = 1;
                 for (; i < 0x29; i++) {
@@ -105,118 +108,118 @@ void func_001EF180(void *a0)
             }
         }
         if (all != 0) {
-            *(int *)(s1 + 0xBA4) = 0xC350;
-            *(int *)(*(int *)D_00569B70 + 0x14) = *(int *)(*(int *)D_00569B70 + 0x14) | 0x20000;
-            func_001F30B8(s1 + 0x60, 0);
-            *(int *)(s1 + 0x10) = 0x1E;
-            *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+            self->prizeLeft = 0xC350;
+            ((cCoreSave *)D_00569B70)->data->flags = ((cCoreSave *)D_00569B70)->data->flags | 0x20000;
+            func_001F30B8(self->ui, 0);
+            self->timer = 0x1E;
+            self->state = self->state + 1;
         } else {
-            *(int *)(s1 + 0x10) = 0x1E;
-            *(int *)(s1 + 0x8) = 6;
+            self->timer = 0x1E;
+            self->state = 6;
         }
         break;
     case 3:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        func_001F33F8(s1 + 0x60, 1, *(int *)(s1 + 0xBA4));
-        *(int *)(s1 + 0x10) = 0x1E;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        func_001F33F8(self->ui, 1, self->prizeLeft);
+        self->timer = 0x1E;
+        self->state = self->state + 1;
         break;
     case 4:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        *(int *)(s1 + 0xBA8) = *(int *)(s1 + 0xBA4) / 0x3E8;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        self->prizeSteps = self->prizeLeft / 0x3E8;
+        self->state = self->state + 1;
         break;
     case 5:
-        if (*(int *)(s1 + 0xBA8) == 0 || (D_00747640 & 0xF00000000L) != 0) {
-            cCoreSave_setGold(D_00569B70, GetTimerValue_1FA710(D_00569B70) + *(int *)(s1 + 0xBA8) * 0x3E8);
-            *(int *)(s1 + 0x10) = 0x1E;
-            *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
-            *(int *)(s1 + 0xBA8) = 0;
+        if (self->prizeSteps == 0 || (D_00747640 & 0xF00000000L) != 0) {
+            cCoreSave_setGold(D_00569B70, GetTimerValue_1FA710(D_00569B70) + self->prizeSteps * 0x3E8);
+            self->timer = 0x1E;
+            self->state = self->state + 1;
+            self->prizeSteps = 0;
         } else {
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x165, -1, -1, 0, 0);
             cCoreSave_setGold(D_00569B70, GetTimerValue_1FA710(D_00569B70) + 0x3E8);
-            *(int *)(s1 + 0xBA8) = *(int *)(s1 + 0xBA8) - 1;
+            self->prizeSteps = self->prizeSteps - 1;
         }
-        func_001F33F8(s1 + 0x60, 1, *(int *)(s1 + 0xBA8) * 0x3E8);
+        func_001F33F8(self->ui, 1, self->prizeSteps * 0x3E8);
         break;
     case 6:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        func_001F33F8(s1 + 0x60, 0, 0);
-        { long t = *(unsigned int *)(s1 + 0x54);
+        func_001F33F8(self->ui, 0, 0);
+        { long t = self->flags;
         if (((t >> 4) % 2L) != 0L) {
-            func_001F30B8(s1 + 0x60, 0);
-            *(int *)(s1 + 0x10) = 0x1E;
-            *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+            func_001F30B8(self->ui, 0);
+            self->timer = 0x1E;
+            self->state = self->state + 1;
         } else {
-            *(int *)(s1 + 0x10) = 0x1E;
-            *(int *)(s1 + 0x8) = 9;
+            self->timer = 0x1E;
+            self->state = 9;
         } }
         break;
     case 7:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        func_001F3488(s1 + 0x60, 2);
-        *(int *)(s1 + 0x10) = 0x5A;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        func_001F3488(self->ui, 2);
+        self->timer = 0x5A;
+        self->state = self->state + 1;
         break;
     case 8:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        func_001F3488(s1 + 0x60, 0);
-        *(int *)(s1 + 0x10) = 0x1E;
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        func_001F3488(self->ui, 0);
+        self->timer = 0x1E;
+        self->state = self->state + 1;
         break;
     case 9:
-        if (*(int *)(s1 + 0x10) != 0) {
+        if (self->timer != 0) {
             done = 0;
-            *(int *)(s1 + 0x10) = *(int *)(s1 + 0x10) - 1;
+            self->timer = self->timer - 1;
         } else {
             done = 1;
         }
         if ((done & 0xFF) == 0) {
             break;
         }
-        func_001F33F8(s1 + 0x60, 0, 0);
+        func_001F33F8(self->ui, 0, 0);
         classFADE_start(D_00747470, 0, 0xA, 0, 0, 0xFF000000u, 0xF);
-        *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
+        self->state = self->state + 1;
         break;
     case 10:
         if (((D_0074748C >> 2) & 1) != 0) {
@@ -228,7 +231,7 @@ void func_001EF180(void *a0)
         }
         break;
     }
-    NoOp_1F0490(s1);
-    func_001F28F0(s1 + 0x60);
-    func_001F2990(s1 + 0x60);
+    NoOp_1F0490(self);
+    func_001F28F0(self->ui);
+    func_001F2990(self->ui);
 }

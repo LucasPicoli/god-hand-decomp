@@ -1,56 +1,82 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/CustomIDWork.h"
+#include "godhand/ColiseumBattle.h"
 
 extern int D_0044E808;
 extern void func_002D9F68(void *, int, ...);
 
+/* Sets the element's local position and stops its animation. */
 __attribute__((section(".text.CustomIDWork_SetLocalPosXY")))
-void CustomIDWork_SetLocalPosXY(char *p, int x, int y) {
-    if (*(int *)(p + 0x4) != 0) {
-        *(int *)(p + 0x8) = 0;
-        *(float *)(*(int *)(p + 0x4) + 0x38) = (float)x;
-        *(float *)(*(int *)(p + 0x4) + 0x3C) = (float)y;
+void CustomIDWork_SetLocalPosXY(CustomIDWork *self, int x, int y) {
+    if (self->obj != 0) {
+        self->localFlags = 0;
+        self->obj->localPos[0] = (float)x;
+        self->obj->localPos[1] = (float)y;
     }
 }
 
+/* Slides the X offset from `from` to `to` over `frames` frames. */
 __attribute__((section(".text.CustomIDWork_SetMoveOffsetPosX")))
-void CustomIDWork_SetMoveOffsetPosX(int a0,int a1,int a2,unsigned short a3){if(*(int*)(a0+4)==0)return;*(int*)(a0+0x28)=3;*(short*)(a0+0x44)=a3;*(float*)(a0+0x2C)=(float)a1;*(float*)(a0+0x34)=(float)a2;*(short*)(a0+0x46)=0;}
+void CustomIDWork_SetMoveOffsetPosX(CustomIDWork *self, int from, int to, unsigned short frames) {
+    if (self->obj == 0) {
+        return;
+    }
+    self->offsFlags = CIDW_ANIM_ON | CIDW_ANIM_LINEAR;
+    self->offsTotal = frames;
+    self->offsFrom[0] = (float)from;
+    self->offsTo[0] = (float)to;
+    self->offsCount = 0;
+}
 
+/* Swings the X offset by +-`amp` as a sine over `frames` frames. */
 __attribute__((section(".text.CustomIDWork_SetMoveOffsetPosXSin")))
-void CustomIDWork_SetMoveOffsetPosXSin(char *a0, int a1, unsigned short a2) {
-    if (*(int *)(a0 + 0x4) != 0) {
-        *(int *)(a0 + 0x28) = 5;
-        *(short *)(a0 + 0x44) = a2;
-        *(float *)(a0 + 0x3C) = (float)a1;
-        *(short *)(a0 + 0x46) = 0;
+void CustomIDWork_SetMoveOffsetPosXSin(CustomIDWork *self, int amp, unsigned short frames) {
+    if (self->obj != 0) {
+        self->offsFlags = CIDW_ANIM_ON | CIDW_ANIM_SINE;
+        self->offsTotal = frames;
+        self->offsAmp[0] = (float)amp;
+        self->offsCount = 0;
     }
 }
 
+/* Slides the Y offset from `from` to `to` over `frames` frames. */
 __attribute__((section(".text.CustomIDWork_SetMoveOffsetPosY")))
-void CustomIDWork_SetMoveOffsetPosY(int a0,int a1,int a2,unsigned short a3){if(*(int*)(a0+4)==0)return;*(int*)(a0+0x28)=9;*(short*)(a0+0x44)=a3;*(float*)(a0+0x30)=(float)a1;*(float*)(a0+0x38)=(float)a2;*(short*)(a0+0x46)=0;}
+void CustomIDWork_SetMoveOffsetPosY(CustomIDWork *self, int from, int to, unsigned short frames) {
+    if (self->obj == 0) {
+        return;
+    }
+    self->offsFlags = CIDW_ANIM_ON | CIDW_OFFS_LINEAR_Y;
+    self->offsTotal = frames;
+    self->offsFrom[1] = (float)from;
+    self->offsTo[1] = (float)to;
+    self->offsCount = 0;
+}
 
+/* Sets the element's offset position and stops its offset animation. */
 __attribute__((section(".text.CustomIDWork_SetOffsetPosXY")))
-void CustomIDWork_SetOffsetPosXY(char *p, int x, int y) {
-    if (*(int *)(p + 0x4) != 0) {
-        *(int *)(p + 0x28) = 0;
-        *(float *)(*(int *)(p + 0x4) + 0x30) = (float)x;
-        *(float *)(*(int *)(p + 0x4) + 0x34) = (float)y;
+void CustomIDWork_SetOffsetPosXY(CustomIDWork *self, int x, int y) {
+    if (self->obj != 0) {
+        self->offsFlags = 0;
+        self->obj->offsetPos[0] = (float)x;
+        self->obj->offsetPos[1] = (float)y;
     }
 }
 
-/* sn-2.95.3-136 | fp_hazard_rules mtc1 */
+/* Starts the battle clock at ring time limit * 30 frames. */
 __attribute__((section(".text.SetField_B98_1EFD50")))
-void SetField_B98_1EFD50(char *p)
+void SetField_B98_1EFD50(ColiseumBattle *self)
 {
-    *(float *)(p + 0xB98) = (float)(*(int *)(p + 0xB6C) * 30);
+    self->countdown = (float)(self->ring.timeLimit * 30);
 }
 
+/* Swings the Y offset by +-`amp` as a sine over `frames` frames. */
 __attribute__((section(".text.func_002D6838")))
-void func_002D6838(char *a0, int a1, unsigned short a2) {
-    if (*(int *)(a0 + 0x4) != 0) {
-        *(int *)(a0 + 0x28) = 0x11;
-        *(short *)(a0 + 0x44) = a2;
-        *(float *)(a0 + 0x40) = (float)a1;
-        *(short *)(a0 + 0x46) = 0;
+void func_002D6838(CustomIDWork *self, int amp, unsigned short frames) {
+    if (self->obj != 0) {
+        self->offsFlags = CIDW_ANIM_ON | CIDW_OFFS_SINE_Y;
+        self->offsTotal = frames;
+        self->offsAmp[1] = (float)amp;
+        self->offsCount = 0;
     }
 }
 

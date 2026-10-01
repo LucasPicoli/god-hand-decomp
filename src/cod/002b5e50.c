@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/CustomIDWork.h"
 
 extern void Obj3290_Tramp_0033E6A8_9070(void *);
 extern void func_00328488(void *, void *);
@@ -20,17 +21,19 @@ int func_00373A50(void *a0) {
     return *(int *)((char *)a0 + 0x48);
 }
 
+/* Stops the colour animation and restores the resting colour. */
 __attribute__((section(".text.CustomIDWork_ResetColorAnim")))
-void CustomIDWork_ResetColorAnim(void *a0) {
-    void *v1;
-    int v0;
-    v1 = *(void **)((char *)a0 + 4);
-    if (v1 == 0) {
+void CustomIDWork_ResetColorAnim(CustomIDWork *self) {
+    CustomIDObj *obj;
+    int rest;
+
+    obj = self->obj;
+    if (obj == 0) {
         return;
     }
-    v0 = *(int *)((char *)a0 + 0x4C);
-    *(int *)((char *)a0 + 0x48) = 0;
-    *(int *)((char *)v1 + 0x4C) = v0;
+    rest = *(int *)self->restColor;
+    self->colorFlags = 0;
+    *(int *)obj->color = rest;
 }
 
 __attribute__((section(".text.func_00328448")))

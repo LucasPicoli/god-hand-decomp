@@ -1,5 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/ColiseumBattle.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/vu0.h"
 
 extern char D_005F3970[];
 extern void func_003A52F0(void *, int, int);
@@ -38,7 +40,6 @@ void cCoreSave_setClearStage(cCoreSave *self, unsigned short stage) {
     }
 }
 
-#include "godhand/vu0.h"
 
 
 
@@ -64,29 +65,28 @@ void func_002C0A28(int a0, int a1) {
     *(int *)(base + 0xB8C) = 0;
 }
 
-#include "godhand/vu0.h"
 
 
 
 
+/* Clears the first 0x54 bytes, the UI object and the vector table. */
 __attribute__((section(".text.ColiseumBattle__ctor")))
-void *ColiseumBattle__ctor(void *this) {
+void *ColiseumBattle__ctor(ColiseumBattle *self) {
     unsigned char *p;
     int i;
 
-    func_003A52F0(this, 0, 0x54);
-    *(int *)((char *)this + 0x54) = 0;
-    func_001F2708((char *)this + 0x60);
-    *(int *)((char *)this + 0xBAC) = 0;
-    p = (unsigned char *)this + 0xBD0;
+    func_003A52F0(self, 0, 0x54);
+    self->flags = 0;
+    func_001F2708(self->ui);
+    self->unkBAC = 0;
+    p = self->vec[0];
     for (i = 8; i != -1; i--) {
         VU0_SQC2_VF0(p, 0x0);
         p += 0x10;
     }
-    return this;
+    return self;
 }
 
-#include "godhand/vu0.h"
 
 
 

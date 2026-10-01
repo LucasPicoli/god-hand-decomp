@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/CustomIDWork.h"
 
 extern int D_0044FAD0;
 extern unsigned int D_007476B0;
@@ -43,18 +44,19 @@ void func_002DB7A8(void) {
     LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0xB, 0x14, 0x11, 0, 0, 0);
 }
 
+/* Blends the colour back and forth between `from` and `to` over `frames` frames. */
 __attribute__((section(".text.CustomIDWork_SetColorAnimSin")))
-void CustomIDWork_SetColorAnimSin(int a0, int a1, int a2, int a3) {
-    if (*(int*)((char*)a0 + 0x4) != 0) {
-        a3 = a3 & 0xFFFF;
-        *(int*)((char*)a0 + 0x50) = a1;
-        *(int*)((char*)a0 + 0x48) = 5;
-        *(int*)((char*)a0 + 0x54) = a2;
-        *(short*)((char*)a0 + 0x58) = a3;
-        if (a3 == 0) {
-            *(short*)((char*)a0 + 0x58) = 1;
+void CustomIDWork_SetColorAnimSin(CustomIDWork *self, int from, int to, int frames) {
+    if (self->obj != 0) {
+        frames = frames & 0xFFFF;
+        *(int *)self->colorFrom = from;
+        self->colorFlags = CIDW_ANIM_ON | CIDW_ANIM_SINE;
+        *(int *)self->colorTo = to;
+        self->colorTotal = frames;
+        if (frames == 0) {
+            self->colorTotal = 1;
         }
-        *(short*)((char*)a0 + 0x5A) = 0;
+        self->colorCount = 0;
     }
 }
 
