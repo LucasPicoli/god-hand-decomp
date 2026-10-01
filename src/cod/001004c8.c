@@ -1,4 +1,5 @@
 #include "godhand/cCoreSave.h"
+#include "godhand/cOmBase.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -199,15 +200,16 @@ int SetActorLink_1B7118(int a0, int a1) {
     return 1;
 }
 
+/* Clear the hit flags unless the global freeze flag is set; returns 0 while frozen. */
 __attribute__((section(".text.ClearField5B4IfFlagUnset_1B76B0")))
-int ClearField5B4IfFlagUnset_1B76B0(int a0) {
-    int v0 = 1;
+int ClearField5B4IfFlagUnset_1B76B0(cOmBase *self) {
+    int ran = 1;
     if (D_00747A78 & 0x20000000) {
-        v0 = 0;
-        return v0;
+        ran = 0;
+        return ran;
     }
-    *(int*)((char*)a0 + 0x5B4) = 0;
-    return v0;
+    self->hitFlags = 0;
+    return ran;
 }
 
 __attribute__((section(".text.IsSpecialAnim_1C24A0")))
@@ -221,10 +223,11 @@ int IsSpecialAnim_1C24A0(void *a0) {
     return 0;
 }
 
+/* True in mode 0, phase 4. */
 __attribute__((section(".text.Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08")))
-int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0) {
-    if (*(unsigned char *)((char *)a0 + 0x2F4) != 0) return 0;
-    return (*(unsigned char *)((char *)a0 + 0x2F5) ^ 4) == 0;
+int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(cOmBase *self) {
+    if (self->mode != 0) return 0;
+    return (self->phase ^ 4) == 0;
 }
 
 __attribute__((section(".text.SetLinkedObjField2B_1D6D68")))

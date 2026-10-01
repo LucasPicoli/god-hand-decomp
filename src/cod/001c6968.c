@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cOmWeapon.h"
 
 extern void func_001C6C30(void *a0, void *a1);
 extern float DoubleFloatMinusHalf_31D020(void);
@@ -166,59 +167,60 @@ void cOmThrow_SetThrow(unsigned char *p, float *v)
 
 
 
+/* Throw a weapon with velocity v: let go of the holder, aim the collision body and enter state 3. */
 __attribute__((section(".text.cOmWeapon_setThrow")))
-void cOmWeapon_setThrow(unsigned char *p, float *v, int n)
+void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
 {
     char hold[16];
-    char *obj;
-    char *e;
+    cOmBase *par;
+    cOmBase *body;
     int cnt;
 
-    obj = *((char **) (p + 0x600));
-    if (obj != 0) {
-        float *d;
-        float *s;
+    par = self->parent;
+    if (par != 0) {
+        cVec *d;
+        cVec *s;
 
-        d = (float *) (p + 0x490);
-        s = *((float **) (obj + 0xF0));
+        d = &self->base.posA;
+        s = par->pos;
         if (d != s) {
-            d[0] = s[0];
-            d[1] = s[1];
-            d[2] = s[2];
+            d->x = s->x;
+            d->y = s->y;
+            d->z = s->z;
         }
     }
-    *((float *) (p + 0x24C)) = 1.0f;
-    *((unsigned int *) (p + 0x250)) = *((unsigned int *) (p + 0x250)) & 0xFFFFFFEF;
-    *((int *) (p + 0x600)) = 0;
-    *((int *) (p + 0x630)) = 0;
-    cnt = *((unsigned char *) (p + 0x2B4));
+    self->base.animRate = 1.0f;
+    self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
+    self->parent = 0;
+    self->fallSpeed = 0.0f;
+    cnt = self->base.childNum;
     *((int *) hold) = cnt;
     if (cnt != 0) {
-        e = *((char **) *((char **) (p + 0x278)));
+        body = self->base.children[0];
     } else {
-        e = 0;
+        body = 0;
     }
-    if (e != 0) {
-        float *d;
-        float *s;
+    if (body != 0) {
+        cVec *d;
+        cVec *s;
 
-        *((int *) (e + 0x148)) = (int) p;
-        *((int *) (e + 0x100)) = 0;
-        *((int *) (e + 0x104)) = 0;
-        *((int *) (e + 0x108)) = 0;
-        cModel_calcParts(p);
-        d = (float *) (p + 0x640);
+        body->owner = &self->base;
+        body->posPrev.x = 0.0f;
+        body->posPrev.y = 0.0f;
+        body->posPrev.z = 0.0f;
+        cModel_calcParts(self);
+        d = &self->vel;
         s = v;
         if (d != s) {
-            d[0] = s[0];
-            d[1] = s[1];
-            d[2] = s[2];
+            d->x = s->x;
+            d->y = s->y;
+            d->z = s->z;
         }
-        *((int *) (p + 0x670)) = n;
-        p[0x2F4] = 0;
-        p[0x2F5] = 3;
-        p[0x2F6] = 0;
-        p[0x2F7] = 0;
+        self->throwArg = n;
+        self->base.mode = 0;
+        self->base.phase = 3;
+        self->base.step = 0;
+        self->base.stepArg = 0;
     }
 }
 
@@ -227,59 +229,60 @@ void cOmWeapon_setThrow(unsigned char *p, float *v, int n)
 
 
 
+/* Throw a weapon at the player with velocity v: like setThrow, but the collision body gets a random spin (stored in posPrev.z) and the state is 5. */
 __attribute__((section(".text.cOmWeapon_setThrowPL")))
-void cOmWeapon_setThrowPL(unsigned char *p, float *v)
+void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
 {
     char hold[16];
-    char *obj;
-    char *e;
+    cOmBase *par;
+    cOmBase *body;
     int cnt;
 
-    obj = *((char **) (p + 0x600));
-    if (obj != 0) {
-        float *d;
-        float *s;
+    par = self->parent;
+    if (par != 0) {
+        cVec *d;
+        cVec *s;
 
-        d = (float *) (p + 0x490);
-        s = *((float **) (obj + 0xF0));
+        d = &self->base.posA;
+        s = par->pos;
         if (d != s) {
-            d[0] = s[0];
-            d[1] = s[1];
-            d[2] = s[2];
+            d->x = s->x;
+            d->y = s->y;
+            d->z = s->z;
         }
     }
-    *((float *) (p + 0x24C)) = 1.0f;
-    *((unsigned int *) (p + 0x250)) = *((unsigned int *) (p + 0x250)) & 0xFFFFFFEF;
-    *((int *) (p + 0x600)) = 0;
-    *((int *) (p + 0x630)) = 0;
-    cnt = *((unsigned char *) (p + 0x2B4));
+    self->base.animRate = 1.0f;
+    self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
+    self->parent = 0;
+    self->fallSpeed = 0.0f;
+    cnt = self->base.childNum;
     *((int *) hold) = cnt;
     if (cnt != 0) {
-        e = *((char **) *((char **) (p + 0x278)));
+        body = self->base.children[0];
     } else {
-        e = 0;
+        body = 0;
     }
-    if (e != 0) {
-        float *d;
-        float *s;
+    if (body != 0) {
+        cVec *d;
+        cVec *s;
 
-        *((int *) (e + 0x148)) = (int) p;
-        *((int *) (e + 0x100)) = 0;
-        *((int *) (e + 0x104)) = 0;
-        *((float *) (e + 0x108)) =
+        body->owner = &self->base;
+        body->posPrev.x = 0.0f;
+        body->posPrev.y = 0.0f;
+        body->posPrev.z =
             DoubleFloatMinusHalf_31D020() * 0.5235987901687622f + 0.5235987901687622f;
-        cModel_calcParts(p);
-        d = (float *) (p + 0x640);
+        cModel_calcParts(self);
+        d = &self->vel;
         s = v;
         if (d != s) {
-            d[0] = s[0];
-            d[1] = s[1];
-            d[2] = s[2];
+            d->x = s->x;
+            d->y = s->y;
+            d->z = s->z;
         }
-        p[0x2F4] = 0;
-        p[0x2F5] = 5;
-        p[0x2F6] = 0;
-        p[0x2F7] = 0;
+        self->base.mode = 0;
+        self->base.phase = 5;
+        self->base.step = 0;
+        self->base.stepArg = 0;
     }
 }
 
@@ -294,43 +297,44 @@ static inline int GetLayerObj(char *a0, int *frame, int idx)
     return 0;
 }
 
+/* Throw variant that also zeroes the body's anchor vector: velocity pos, throw argument arg, state 4. */
 __attribute__((section(".text.func_001CFB28")))
-void func_001CFB28(char *p, float *pos, int a2)
+void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
 {
     unsigned char frame[0x10];
-    char *m;
-    float *d;
-    char *e;
+    cOmBase *holder;
+    cVec *d;
+    cOmBase *body;
 
-    m = *(char **)(p + 0x600);
-    if (m != 0) {
-        m = *(char **)(m + 0xF0);
-        d = (float *)(p + 0x490);
-        if (d != (float *)m) { d[0] = ((float *)m)[0]; d[1] = ((float *)m)[1]; d[2] = ((float *)m)[2]; }
+    holder = self->parent;
+    if (holder != 0) {
+        cVec *m = holder->pos;
+        d = &self->base.posA;
+        if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    *(float *)(p + 0x24C) = 1.0f;
-    *(int *)(p + 0x250) = *(int *)(p + 0x250) & 0xFFFFFFEF;
-    *(int *)(p + 0x600) = 0;
-    *(int *)(p + 0x630) = 0;
-    e = (char *)GetLayerObj(p, (int *)frame, 0);
-    if (e != 0) {
-        *(int *)(e + 0x148) = (int)p;
-        *(int *)(e + 0x100) = 0;
-        *(int *)(e + 0x104) = 0;
-        *(int *)(e + 0x108) = 0;
-        *(int *)(*(int *)(e + 0xD0) + 0x0) = 0;
-        *(int *)(*(int *)(e + 0xD0) + 0x4) = 0;
-        *(int *)(*(int *)(e + 0xD0) + 0x8) = 0;
-        cModel_calcParts(p);
+    self->base.animRate = 1.0f;
+    self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
+    self->parent = 0;
+    self->fallSpeed = 0.0f;
+    body = cOmBase_childAt(&self->base, (int *)frame, 0);
+    if (body != 0) {
+        body->owner = &self->base;
+        body->posPrev.x = 0.0f;
+        body->posPrev.y = 0.0f;
+        body->posPrev.z = 0.0f;
+        body->anchor->x = 0.0f;
+        body->anchor->y = 0.0f;
+        body->anchor->z = 0.0f;
+        cModel_calcParts(self);
         {
-            float *d2 = (float *)(p + 0x640);
-            if (d2 != pos) { d2[0] = pos[0]; d2[1] = pos[1]; d2[2] = pos[2]; }
+            cVec *d2 = &self->vel;
+            if (d2 != pos) { d2->x = pos->x; d2->y = pos->y; d2->z = pos->z; }
         }
-        *(int *)(p + 0x670) = a2;
-        *(unsigned char *)(p + 0x2F5) = 4;
-        *(unsigned char *)(p + 0x2F4) = 0;
-        *(unsigned char *)(p + 0x2F6) = 0;
-        *(unsigned char *)(p + 0x2F7) = 0;
+        self->throwArg = arg;
+        self->base.phase = 4;
+        self->base.mode = 0;
+        self->base.step = 0;
+        self->base.stepArg = 0;
     }
 }
 

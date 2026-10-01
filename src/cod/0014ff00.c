@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cOmBase.h"
 
-extern long cOmBase_canItemDrop(int a0);
 extern unsigned char D_005864F0[];
 extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
 extern int D_00569B70;
@@ -50,55 +50,58 @@ void func_001889C8(unsigned char *a0)
     }
 }
 
+extern long cOmBase_canItemDrop(cOmBase *self);
+/* True when the object can be picked up: alive, not flagged unpickable, and either it drops an item for an ordinary actor type or flags2 bit 8 allows it. */
 __attribute__((section(".text.func_001B79E0")))
-long func_001B79E0(int a0)
+long func_001B79E0(cOmBase *self)
 {
     long v;
-    long b;
-    int h;
+    long bit;
+    int id;
 
-    v = *(unsigned int *)(a0 + 0x5B0);
-    b = v >> 1 & 1;
-    if (b == 1) {
+    v = (unsigned int)self->flags0;
+    bit = v >> 1 & 1;
+    if (bit == 1) {
         return 0;
     }
-    v = *(unsigned int *)(a0 + 0x5B8);
-    b = v >> 13 & 1;
-    if (b == 1) {
+    v = (unsigned int)self->flags2;
+    bit = v >> 13 & 1;
+    if (bit == 1) {
         return 0;
     }
-    if (cOmBase_canItemDrop(a0) == 1) {
-        h = *(unsigned short *)(a0 + 0x2FE);
-        if (h < 0x3DA) {
+    if (cOmBase_canItemDrop(self) == 1) {
+        id = self->actorId;
+        if (id < 0x3DA) {
             return 1;
         }
-        if (h >= 0x3DE) {
-            if (h != 0x3EA) {
+        if (id >= 0x3DE) {
+            if (id != 0x3EA) {
                 return 1;
             }
         }
     }
-    v = *(unsigned int *)(a0 + 0x5B8);
+    v = (unsigned int)self->flags2;
     return v >> 8 & 1;
 }
 
+/* Drop this object's item once: set the dropped flag and spawn the item at its position. */
 __attribute__((section(".text.func_001B7BB8")))
-void func_001B7BB8(int a0)
+void func_001B7BB8(cOmBase *self)
 {
     long v;
-    long b;
+    long dropped;
 
-    v = *(unsigned int *)(a0 + 0x5B0);
-    b = v >> 4 & 1;
-    if (b == 1) {
+    v = (unsigned int)self->flags0;
+    dropped = v >> 4 & 1;
+    if (dropped == 1) {
         return;
     }
-    *(int *)(a0 + 0x5B0) |= 0x10;
-    if (cOmBase_canItemDrop(a0) == 1) {
-        if (*(int *)(a0 + 0x560) != 0xFFFF) {
-            cEmManage__CreateItem(&D_005864F0, *(int *)(a0 + 0xF0), *(int *)(a0 + 0x560), 0);
+    self->flags0 |= COMBASE_F0_DROPPED;
+    if (cOmBase_canItemDrop(self) == 1) {
+        if (self->dropItem != 0xFFFF) {
+            cEmManage__CreateItem(&D_005864F0, (int)self->pos, self->dropItem, 0);
         } else {
-            cEmManage__CreateItem(&D_005864F0, *(int *)(a0 + 0xF0), 0xFFFF, 0);
+            cEmManage__CreateItem(&D_005864F0, (int)self->pos, 0xFFFF, 0);
         }
     }
 }

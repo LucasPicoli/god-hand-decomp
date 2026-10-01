@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cOmBase.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001A6558(void *a0);
@@ -88,16 +89,17 @@ void func_001BC0A0(void *a0)
     func_001B76D8(s0);
 }
 
+/* True when this object drops an item: not gone, not marked no-drop, and either an explicit item or one of the actor types that drop by default. */
 __attribute__((section(".text.cOmBase_canItemDrop")))
-long cOmBase_canItemDrop(int a0)
+long cOmBase_canItemDrop(cOmBase *self)
 {
     long v;
-    long b;
-    v = *(unsigned int *)(a0 + 0x5B0);
-    b = v >> 1 & 1;
-    if (b == 1 || *(int *)(a0 + 0x560) == 0x9C3) { return 0; }
-    if (*(int *)(a0 + 0x560) != 0xFFFF) { return 1; }
-    switch (*(unsigned short *)(a0 + 0x2FE)) {
+    long gone;
+    v = (unsigned int)self->flags0;
+    gone = v >> 1 & 1;
+    if (gone == 1 || self->dropItem == 0x9C3) { return 0; }
+    if (self->dropItem != 0xFFFF) { return 1; }
+    switch (self->actorId) {
     case 0x301: case 0x302: case 0x309: case 0x30A: case 0x30B: case 0x30C:
     case 0x325: case 0x32A: case 0x32B: case 0x32C: case 0x32E: case 0x32F:
     case 0x332: case 0x33D: case 0x33F: case 0x340: case 0x341: case 0x342:

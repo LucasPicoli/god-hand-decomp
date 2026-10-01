@@ -1,4 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cOmBase.h"
 
 extern int D_00747A84;
 extern char D_005E8658[];
@@ -12,20 +13,20 @@ extern int *D_003C2384;
 extern void func_002A9DF8(int a0);
 extern void cIDBase_resetAnim(int a0);
 
+/* Retire the object: unhide it, release its model and collision, drop its item and mark it gone. */
 __attribute__((section(".text.SetField5B0Bit2ClearBit8_1B7908")))
-void SetField5B0Bit2ClearBit8_1B7908(int a0)
-{
-    long v = *(unsigned int*)(a0 + 0x5B8);
+void SetField5B0Bit2ClearBit8_1B7908(cOmBase *self) {
+    long v = (unsigned int)self->flags2;
     if ((v >> 9 & 1) == 0) {
         if ((D_00747A84 & 0x01000000) == 0) {
-            *(int*)(a0 + 0x5B8) = *(int*)(a0 + 0x5B8) & ~0x40;
+            self->flags2 = self->flags2 & ~COMBASE_FLAG_HIDDEN;
         }
     }
-    func_002BECB0(D_005E8658, *(long*)(a0 + 0x538));
-    func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, (void*)a0);
-    func_001B7BB8((void*)a0);
-    *(int*)(a0 + 0x5B0) = (*(int*)(a0 + 0x5B0) | 2) & ~8;
+    func_002BECB0(D_005E8658, self->unk538);
+    func_001331B8(D_005CAE50, self->modelHandle, 0);
+    cCollisionSolidManage_ReleaseUnit(D_00462FC0, self);
+    func_001B7BB8(self);
+    self->flags0 = (self->flags0 | COMBASE_F0_GONE) & ~8;
 }
 
 struct node {
@@ -52,21 +53,22 @@ void UnlinkAndCoalesceNode_2A9680(int a0, struct node *a1) {
     }
 }
 
+/* Set or clear display flag bit 13 on every mesh node of one layer. */
 __attribute__((section(".text.SetField380Bit2000ForTag_1B7300")))
-void SetField380Bit2000ForTag_1B7300(int a0, int a1, int a2) {
-    char *p = (char *)cModel_getMeshPtr(a0, 0);
-    if (p != 0) {
+void SetField380Bit2000ForTag_1B7300(void *model, int layer, int clear) {
+    cMeshNode *node = (cMeshNode *)cModel_getMeshPtr(model, 0);
+    if (node != 0) {
         do {
-            if (*(unsigned char *)(p + 0x40C) == a1) {
-                int v;
-                if (a2 == 1) {
-                    v = *(int *)(p + 0x380) & 0xFFFFDFFF;
+            if (node->layer == layer) {
+                unsigned int v;
+                if (clear == 1) {
+                    v = node->dispFlags & 0xFFFFDFFF;
                 } else {
-                    v = *(int *)(p + 0x380) | 0x2000;
+                    v = node->dispFlags | 0x2000;
                 }
-                *(int *)(p + 0x380) = v;
+                node->dispFlags = v;
             }
-            p = *(char **)(p + 0x404);
-        } while (p != 0);
+            node = node->next;
+        } while (node != 0);
     }
 }

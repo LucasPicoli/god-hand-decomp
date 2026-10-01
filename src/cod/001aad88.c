@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cOmBase.h"
 
 extern char *D_00754C38;
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -25,24 +26,24 @@ void setAlphaScrollLayer(int a0, float f12) {
     }
 }
 
+/* Move the object to a new position: copy it into posA and the live position, then request a model resync (flags2 bit 4). */
 __attribute__((section(".text.func_001B7E50")))
-void func_001B7E50(char *a0, char *a1) {
-    char *v1;
-    char *v0;
-    v1 = a0 + 0x490;
-    if (v1 != a1) {
-        *(float *)(a0 + 0x490) = *(float *)(a1 + 0x0);
-        *(float *)(v1 + 0x4) = *(float *)(a1 + 0x4);
-        *(float *)(v1 + 0x8) = *(float *)(a1 + 0x8);
+void func_001B7E50(cOmBase *self, cVec *newPos) {
+    cVec *a;
+    cVec *live;
+    a = &self->posA;
+    if (a != newPos) {
+        self->posA.x = newPos->x;
+        a->y = newPos->y;
+        a->z = newPos->z;
     }
-    v0 = *(char **)(a0 + 0xF0);
-    if (v0 != v1) {
-        *(float *)(v0 + 0x0) = *(float *)(a0 + 0x490);
-        *(float *)(v0 + 0x4) = *(float *)(v1 + 0x4);
-        *(float *)(v0 + 0x8) = *(float *)(v1 + 0x8);
+    live = self->pos;
+    if (live != a) {
+        live->x = self->posA.x;
+        live->y = a->y;
+        live->z = a->z;
     }
-    v0 = *(char **)(a0 + 0x5B8);
-    *(int *)(a0 + 0x5B8) = (int)v0 | 0x10;
+    self->flags2 = self->flags2 | COMBASE_FLAG_FALL;
 }
 
 __attribute__((section(".text.func_001FFF30")))

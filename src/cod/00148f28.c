@@ -2,6 +2,8 @@
 #include "godhand/cDataManager.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
+#include "godhand/cOmWeapon.h"
+#include "godhand/cOl21.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -129,8 +131,18 @@ void classCFILTER_TAG_initialize(char *p) {
         (char *)((((unsigned int)(p + 0x10080)) | 0x20000000) + 0x10);
 }
 
+/* Switch all eight collision shapes on or off and store the collision radius. */
 __attribute__((section(".text.cOl21_setCollisionActive")))
-void cOl21_setCollisionActive(int a0,int a1,float f12){int i;int **arr=(int**)(a0+0x654);for(i=0;i<8;i++){int *q=arr[i];if(a1==1)q[2]|=1;else q[2]&=~1;}*(float*)(a0+0x608)=f12;}
+void cOl21_setCollisionActive(cOl21 *self, int active, float radius) {
+    int i;
+
+    for (i = 0; i < COL21_SHAPE_NUM; i++) {
+        cOl21Shape *q = self->shape[i];
+
+        if (active == 1) q->flags |= 1; else q->flags &= ~1;
+    }
+    self->collRadius = radius;
+}
 
 /* sn-2.95.3-136 */
 __attribute__((section(".text.cOl2b_setInit")))
@@ -452,16 +464,15 @@ void func_001BF2F0(char *p)
     }
 }
 
+/* Enter state 0x10: clear the hold bit, reset the animation rate. */
 __attribute__((section(".text.func_001D0108")))
-void func_001D0108(char *p) {
-    /* SWEEP-BEGIN */
-    *(unsigned int *)(p + 0x250) = *(unsigned int *)(p + 0x250) & 0xFFFFFFEFU;
-    *(unsigned char *)(p + 0x2F5) = 0x10;
-    *(unsigned char *)(p + 0x2F7) = 0;
-    *(unsigned char *)(p + 0x2F4) = 0;
-    *(unsigned char *)(p + 0x2F6) = 0;
-    *(float *)(p + 0x24C) = 1.0f;
-/* SWEEP-END */
+void func_001D0108(cOmWeapon *self) {
+    self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
+    self->base.phase = 0x10;
+    self->base.stepArg = 0;
+    self->base.mode = 0;
+    self->base.step = 0;
+    self->base.animRate = 1.0f;
 }
 
 struct Node {

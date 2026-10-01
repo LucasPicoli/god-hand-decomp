@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cOmBase.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
@@ -17,11 +18,12 @@ extern void func_003870E0(int);
 
 
 
+/* Start a texture exchange on this object's model: the new texture is looked up by texKey. */
 __attribute__((section(".text.cOmBase_setTexChange")))
-void cOmBase_setTexChange(char *a0, int a1) {
-    *(int *)(a0 + 0x254) |= 0x10000000;
-    cModel_setTextureExchange(a0, *(int *)(a0 + 0x284),
-        SearchData(*(int *)(a0 + 0x304), &D_00428A18, 0), a1);
+void cOmBase_setTexChange(cOmBase *self, int arg) {
+    self->texFlags |= 0x10000000;
+    cModel_setTextureExchange(self, self->texSet,
+        SearchData(self->texKey, &D_00428A18, 0), arg);
 }
 
 /* func_002CD668 — sn-2.95.3-136 */

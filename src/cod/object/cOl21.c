@@ -1,8 +1,9 @@
 /* TU: cOl21 [object] - recovered C++ class. */
+#include "godhand/vu0.h"
+#include "godhand/cOl21.h"
 extern float fRand0_1(void);
 extern unsigned int Rnd(void);
 
-#include "godhand/vu0.h"
 
 static __inline__ void cpy3(float *d, float *s) {
     if (d != s) {
@@ -12,18 +13,19 @@ static __inline__ void cpy3(float *d, float *s) {
     }
 }
 
+/* Set up a straight run: start at the current position, aim from goal towards end at speed ang, and start a random fraction of the way along it (mirrored half the time). */
 __attribute__((section(".text.cOl21_initMove")))
-void cOl21_initMove(char *s0, float *s1, float *a2, float ang) {
+void cOl21_initMove(cOl21 *self, float *goal, float *end, float ang) {
     unsigned char frame[0x20];
     float r, k, dx, dz;
 
-    cpy3((float *)(s0 + 0x610), *(float **)(s0 + 0xF0));
-    cpy3((float *)(s0 + 0x620), s1);
-    cpy3((float *)(s0 + 0x630), a2);
+    cpy3(self->start, self->pos);
+    cpy3(self->goal, goal);
+    cpy3(self->end, end);
 
     VU0_SQC2_VF0(frame, 0x10);
-    VU0_LQC2(4, a2, 0);
-    VU0_LQC2(5, s1, 0);
+    VU0_LQC2(4, end, 0);
+    VU0_LQC2(5, goal, 0);
     VU0_VSUB_XYZ(4, 4, 5);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, frame + 0x10, 0);
@@ -32,14 +34,14 @@ void cOl21_initMove(char *s0, float *s1, float *a2, float ang) {
     r = fRand0_1();
     k = ang * r;
     dx = *(float *)(frame + 0) / ang;
-    *(int *)(s0 + 0x644) = 0;
+    self->dir[1] = 0.0f;
     dz = *(float *)(frame + 8) / ang;
-    *(float *)(s0 + 0x640) = dx;
-    *(float *)(s0 + 0x648) = dz;
-    (*(float **)(s0 + 0xF0))[0] = s1[0] + *(float *)(s0 + 0x640) * k;
-    (*(float **)(s0 + 0xF0))[2] = s1[2] + *(float *)(s0 + 0x648) * k;
+    self->dir[0] = dx;
+    self->dir[2] = dz;
+    self->pos[0] = goal[0] + self->dir[0] * k;
+    self->pos[2] = goal[2] + self->dir[2] * k;
     if (((Rnd() ^ 1) & 1) != 0) {
-        *(float *)(s0 + 0x640) = -*(float *)(s0 + 0x640);
-        *(float *)(s0 + 0x648) = -*(float *)(s0 + 0x648);
+        self->dir[0] = -self->dir[0];
+        self->dir[2] = -self->dir[2];
     }
 }

@@ -1,46 +1,51 @@
 /* TU: cOmBase [object] - recovered C++ class. */
+#include "godhand/cOmBase.h"
 
 extern char D_005CAE50[];
 extern void func_001331B8(char *a0, long a1, int a2);
 
+/* Show or hide every mesh node on one layer. */
 __attribute__((section(".text.cOmBase_setMeshDispFromLayer")))
-void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2) {
-    char *v1 = (char *)cModel_getMeshPtr(a0, 0);
-    if (v1 != 0) {
+void cOmBase_setMeshDispFromLayer(void *model, int layer, int show) {
+    cMeshNode *node = (cMeshNode *)cModel_getMeshPtr(model, 0);
+    if (node != 0) {
         do {
-            if (*(unsigned char *)(v1 + 0x40C) == a1) {
-                if (a2 == 1) {
-                    *(int *)(v1 + 0x380) &= 0xFFFFFFFE;
+            if (node->layer == layer) {
+                if (show == 1) {
+                    node->dispFlags &= 0xFFFFFFFE;
                 } else {
-                    *(int *)(v1 + 0x380) |= 1;
+                    node->dispFlags |= 1;
                 }
             }
-            v1 = *(char **)(v1 + 0x404);
-        } while (v1 != 0);
+            node = node->next;
+        } while (node != 0);
     }
 }
 #include "include_asm.h"
 
+/* Set the colour of every mesh node on one layer. */
 __attribute__((section(".text.cOmBase_setMeshColorFromLayer")))
-void cOmBase_setMeshColorFromLayer(void *a0, int a1, float r, float g, float b) {
-    char *v1 = (char *)cModel_getMeshPtr(a0, 0);
-    if (v1 != 0) {
+void cOmBase_setMeshColorFromLayer(void *model, int layer, float r, float g, float b) {
+    cMeshNode *node = (cMeshNode *)cModel_getMeshPtr(model, 0);
+    if (node != 0) {
         do {
-            if (*(unsigned char *)(v1 + 0x40C) == a1) {
-                float *c = (float *)(v1 + 0x3A0);
+            if (node->layer == layer) {
+                float *c = node->color;
                 c[0] = r;
                 c[1] = g;
                 c[2] = b;
             }
-            v1 = *(char **)(v1 + 0x404);
-        } while (v1 != 0);
+            node = node->next;
+        } while (node != 0);
     }
 }
 
 
+/* Turn the scroll-collision (ScrSoll) test of this object's model on or off. */
 __attribute__((section(".text.cOmBase_setScrSollEnable")))
-void cOmBase_setScrSollEnable(char *a0, int a1) {
-    long v = *(long *)(a0 + 0x540);
-    func_001331B8(D_005CAE50, v, a1);
+void cOmBase_setScrSollEnable(cOmBase *self, int enable) {
+    long handle = self->modelHandle;
+
+    func_001331B8(D_005CAE50, handle, enable);
 }
 
