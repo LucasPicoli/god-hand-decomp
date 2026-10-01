@@ -1,3 +1,5 @@
+#include "godhand/vu0.h"
+#include "godhand/cSnd.h"
 extern void Tramp_func_0030A2E0_00147548(void *, int, void *);
 extern unsigned char D_00747A50[];
 extern unsigned char D_00586AB0;
@@ -58,17 +60,17 @@ void ClearInputState_2C33D8(void *a0)
     }
 }
 
+/* Cuts the extension off a file name, then loads it into the slot's entry. */
 __attribute__((section(".text.LoadFileStripExt_2CB638")))
-int LoadFileStripExt_2CB638(void *a0, void *a1, void *a2)
+int LoadFileStripExt_2CB638(cSnd *self, int slot, char *name)
 {
-    char *v0 = func_003A54D8(a2, 0x2E);
-    if (v0 != 0) {
-        *v0 = 0;
+    char *dot = func_003A54D8(name, 0x2E);
+    if (dot != 0) {
+        *dot = 0;
     }
-    return func_002CF600(GetIndexedEntry_2CC4B8(a0, a1), a1, a2);
+    return func_002CF600(GetIndexedEntry_2CC4B8(self, slot), slot, name);
 }
 
-#include "godhand/vu0.h"
 
 
 
@@ -92,7 +94,6 @@ void *Setup_Field_2B0_2F61C8(void *obj) {
     return obj;
 }
 
-#include "godhand/vu0.h"
 
 
 

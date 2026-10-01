@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void func_00143A90(void *);
 extern char *D_003BD6E8;
@@ -39,13 +40,14 @@ void func_003128B0(char *a0) {
 
 
 
+/* Stops a voice: fades its live sound out, or frees a voice that never started. */
 __attribute__((section(".text.func_002CE430")))
-void func_002CE430(char *a0) {
-    if (func_002CDA38(a0) == 0) return;
-    if ((*(int *)(a0 + 0xC) & 1) != 0)
-        func_00375050(*(void **)(a0 + 0x14), 0);
+void func_002CE430(cSndSeVoice *v) {
+    if (func_002CDA38(v) == 0) return;
+    if ((v->flags & 1) != 0)
+        func_00375050(v->handle, 0);
     else
-        func_002CE3E8(a0);
+        func_002CE3E8(v);
 }
 
 /* cModel_setMeshDisplay — sn-2.95.3-136 */

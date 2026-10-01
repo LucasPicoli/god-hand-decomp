@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cSnd.h"
 
 __attribute__((section(".text.cMessDrawFont_setRubyData")))
 void cMessDrawFont_setRubyData(int *a0, int a1, int a2) {
@@ -70,9 +71,10 @@ void func_002C4DD0(void *a0, int a1, int a2) {
     *(int*)((char*)a0+0xF8) = a2;
 }
 
+/* True while the node is in use. */
 __attribute__((section(".text.func_002CC568")))
-int func_002CC568(void *a0) {
-    return *(int*)((char*)a0+0x94) != 0;
+int func_002CC568(cSndBgmNode *node) {
+    return node->state != 0;
 }
 
 __attribute__((section(".text.func_002D3210")))

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void cIDBase_trans(void *p);
 extern int Obj0000_Get_Short_BBA_Bit0_Via_Ptr_1FC708(void *p);
@@ -104,18 +105,19 @@ void func_001C91B0(char *p, void *arg)
 
 typedef struct { int f0; int f4; int f8; unsigned short fC; unsigned short fE; } Arg;
 
+/* Starts a BGM request on a node if the bank's data is ready. */
 __attribute__((section(".text.func_002CC9C0")))
-int func_002CC9C0(char *p, int a1, int a2, int a3, int t0, int t1, int t2)
+int func_002CC9C0(cSndBgmNode *node, int bank, int reqNo, int state, int param, int wordA, int wordB)
 {
-    Arg q;
+    cSndBgmReq req;
 
-    if (func_002CFF68(cSnd_GetBgmData((int)&D_005FEE00, a1)) == 0) return 0;
-    q.f0 = a2;
-    q.f4 = a3;
-    q.f8 = t0;
-    q.fC = t1;
-    q.fE = t2;
-    return func_002CC728(p, a1, &q, 1);
+    if (func_002CFF68(cSnd_GetBgmData((int)&D_005FEE00, bank)) == 0) return 0;
+    req.reqNo = reqNo;
+    req.state = state;
+    req.param = param;
+    req.wordA = wordA;
+    req.wordB = wordB;
+    return func_002CC728(node, bank, &req, 1);
 }
 
 __attribute__((section(".text.func_00160F38")))

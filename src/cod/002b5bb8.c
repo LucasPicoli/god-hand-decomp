@@ -1,3 +1,4 @@
+#include "godhand/cSnd.h"
 __attribute__((section(".text.FreeEntrySlot_2B5BB8")))
 void FreeEntrySlot_2B5BB8(int a0, int a1, int a2)
 {
@@ -21,11 +22,12 @@ void ClearStructFields_2C8EB0(int *a0) {
     func_003A52F0((int)((char *)a0 + 0x14), 0, 0x80);
 }
 
+/* Clears the active flag of a used BGM node and refreshes its state. */
 __attribute__((section(".text.ClearActiveBit_2CCAC8")))
-void ClearActiveBit_2CCAC8(void *a0) {
-    if (func_002CC568(a0)) {
-        *(int *)((char *)a0 + 0x98) = *(int *)((char *)a0 + 0x98) & 0xFFFFFFFE;
-        UpdateStateAndClearFlag_3734F0(a0);
+void ClearActiveBit_2CCAC8(cSndBgmNode *node) {
+    if (func_002CC568(node)) {
+        node->flags = node->flags & 0xFFFFFFFE;
+        UpdateStateAndClearFlag_3734F0(node);
     }
 }
 

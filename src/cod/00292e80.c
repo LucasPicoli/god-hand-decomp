@@ -1,3 +1,5 @@
+#include "godhand/vu0.h"
+#include "godhand/cSnd.h"
 extern int D_00747A30;
 extern char D_00569B70[];
 extern int D_0044F448;
@@ -31,35 +33,36 @@ void SetCostumeFlagIfMatch_2982A0(int a0)
     }
 }
 
+/* A slot is usable when its entry is not loaded yet, or is idle. */
 __attribute__((section(".text.IsSlotUsable_2CB830")))
-int IsSlotUsable_2CB830(int a0, int a1)
+int IsSlotUsable_2CB830(cSnd *self, int slot)
 {
-	int s2;
+	int usable;
 
-	s2 = 1;
-	if (func_002CFC78(GetIndexedEntry_2CC4B8(a0, a1)) == 1) {
+	usable = 1;
+	if (func_002CFC78(GetIndexedEntry_2CC4B8(self, slot)) == 1) {
 		return 1;
 	}
-	if (func_002CFC88(GetIndexedEntry_2CC4B8(a0, a1)) != 0) {
-		s2 = 0;
+	if (func_002CFC88(GetIndexedEntry_2CC4B8(self, slot)) != 0) {
+		usable = 0;
 	}
-	return s2;
+	return usable;
 }
 
+/* Finds the first slot in 0x14..0x33 whose entry is idle, or -1. */
 __attribute__((section(".text.FindActiveSlot_2CC050")))
-int FindActiveSlot_2CC050(int a0)
+int FindActiveSlot_2CC050(cSnd *self)
 {
-	int s0;
+	int slot;
 
-	for (s0 = 0x14; s0 < 0x34; s0++) {
-		if (func_002CFC78(*(int *)(a0 + 0x3C) + (s0 << 6)) == 1) {
-			return s0;
+	for (slot = 0x14; slot < 0x34; slot++) {
+		if (func_002CFC78(&self->seEntry[slot]) == 1) {
+			return slot;
 		}
 	}
 	return -1;
 }
 
-#include "godhand/vu0.h"
 
 
 

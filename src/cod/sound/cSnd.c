@@ -1,4 +1,5 @@
 /* TU: cSnd [sound] - recovered C++ class. */
+#include "godhand/cSnd.h"
 extern int func_002CB3A8(void *a0, int a1);
 extern void *GetIndexedEntry_2CC4B8(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
@@ -23,76 +24,82 @@ float GetSequenceBlendWeight_373938(int, int);
 void func_002CD4A8(int, float);
 void func_002CD470(int, float);
 
+/* Plays a sound-effect slot on a free voice, at the origin or, with a matrix, at that position. */
 __attribute__((section(".text.cSnd_SeCall")))
-int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5)
+int cSnd_SeCall(cSnd *self, int slot, short key1, int mtx, int idA, int idB)
 {
-    void *p;
-    p = (void *)GetIndexedEntry_2CC4B8(a0, a1);
-    if (cSeData_IsAlive(p) == 0)
+    cSndSeVoice *voice;
+
+    if (cSeData_IsAlive(GetIndexedEntry_2CC4B8(self, slot)) == 0)
         return 0;
-    p = (void *)func_002CBEC0(a0);
-    if ((int)p == 0)
+    voice = func_002CBEC0(self);
+    if (voice == 0)
         return 0;
-    if (a3 == 0)
-        return func_002CDF18(p, (short)a1, a2, (short)a4, (short)a5, 0, 0);
-    return func_002CDE28(p, (short)a1, a2, a3, a4, a5);
+    if (mtx == 0)
+        return func_002CDF18(voice, (short)slot, key1, (short)idA, (short)idB, 0, 0);
+    return func_002CDE28(voice, (short)slot, key1, mtx, idA, idB);
 }
 #include "include_asm.h"
 
+/* Finds the first emergency-pool slot whose entry is alive, belongs to this owner and is not busy. */
 __attribute__((section(".text.cSnd_EmSeCheck")))
-int cSnd_EmSeCheck(void *a0, int a1)
+int cSnd_EmSeCheck(cSnd *self, int objId)
 {
-    int s1;
-    int *p;
+    int owner;
+    int *slot;
     unsigned int i;
+    cSndSeEntry *e;
 
-    s1 = func_002CB3A8(a0, a1);
-    if (s1 <= 0)
-        s1 = a1;
+    owner = func_002CB3A8(self, objId);
+    if (owner <= 0)
+        owner = objId;
 
-    p = D_0044CE48;
+    slot = D_0044CE48;
     i = 0;
     do {
-        void *e = GetIndexedEntry_2CC4B8(a0, *p);
+        e = GetIndexedEntry_2CC4B8(self, *slot);
         if (cSeData_IsAlive(e) != 0) {
-            e = GetIndexedEntry_2CC4B8(a0, *p);
-            if (*(int *)((char *)e + 0x3C) == s1) {
-                e = GetIndexedEntry_2CC4B8(a0, *p);
+            e = GetIndexedEntry_2CC4B8(self, *slot);
+            if (e->owner == owner) {
+                e = GetIndexedEntry_2CC4B8(self, *slot);
                 if (func_002CFC88(e) != 1)
-                    return *p;
+                    return *slot;
             }
         }
         i++;
-        p++;
+        slot++;
     } while (i < 0xC);
 
     return -1;
 }
+/* Plays a sound-effect slot on a free voice at the origin, with an id pair and two extra arguments. */
 __attribute__((section(".text.cSnd_SeCall_2CB8A0")))
-int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6)
+int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6)
 {
-    void *p;
-    p = GetIndexedEntry_2CC4B8(a0, a1);
-    if (cSeData_IsAlive(p) == 0)
+    cSndSeVoice *voice;
+
+    if (cSeData_IsAlive(GetIndexedEntry_2CC4B8(self, slot)) == 0)
         return 0;
-    p = func_002CBEC0(a0);
-    if ((int)p == 0)
+    voice = func_002CBEC0(self);
+    if (voice == 0)
         return 0;
-    return func_002CDF18(p, (short)a1, a2, a3, a4, a5, a6);
+    return func_002CDF18(voice, slot, key1, idA, idB, a5, a6);
 }
+/* Fades a playing sound out; -1 if there is no handle. */
 __attribute__((section(".text.cSnd_SeFadeOut")))
-int cSnd_SeFadeOut(int a0, int a1, short a2)
+int cSnd_SeFadeOut(cSnd *self, int handle, short fade)
 {
-    if (a1 == 0)
+    if (handle == 0)
         return -1;
-    return func_00375050(a1, a2);
+    return func_00375050(handle, fade);
 }
 
 
+/* True once no voice holds this handle any more. */
 __attribute__((section(".text.cSnd_SeEndCk")))
-int cSnd_SeEndCk(void)
+int cSnd_SeEndCk(cSnd *self, int handle)
 {
-    return func_002CBF48() == 0;
+    return func_002CBF48(self, handle) == 0;
 }
 
 

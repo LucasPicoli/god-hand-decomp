@@ -1,4 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cSnd.h"
 
 extern int D_00450FF0;
 extern void NoOp_33E6A8(void);
@@ -14,8 +15,9 @@ void func_0031EEC8(int *a0, int a1)
 	}
 }
 
+/* Returns slot idx of the sound-effect table. */
 __attribute__((section(".text.GetIndexedEntry_2CC4B8")))
-int GetIndexedEntry_2CC4B8(char *a0, int a1) { return *(int*)(a0 + 0x3C) + (a1 << 6); }
+cSndSeEntry *GetIndexedEntry_2CC4B8(cSnd *self, int idx) { return &self->seEntry[idx]; }
 
 __attribute__((section(".text.func_0032A6D0")))
 int func_0032A6D0(int a0, int a1, int a2)

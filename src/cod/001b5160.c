@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern int D_0077E6C0[];
 extern void Tramp_00312708_1B79B0(void);
@@ -16,7 +17,6 @@ extern void func_002BF170(void *a0);
 extern void func_002AE740(int a0);
 extern void func_002AE7F0(int a0);
 extern int Forward325C98_325DC0(int a0);
-extern void func_003735E0(void *a0, int a1);
 
 __attribute__((section(".text.func_003B2058")))
 int func_003B2058(int a0) { return D_0077E6C0[a0]; }
@@ -150,8 +150,10 @@ void func_002C0A08(void) { func_002AE7F0(2); }
 __attribute__((section(".text.func_002CA690")))
 void func_002CA690(void) { Forward325C98_325DC0(0); }
 
+extern void func_003735E0(cSndBgmNode *node, int a1, float to, float time);
+/* Fades a node with the given target and time; -1 selects the whole sequence. */
 __attribute__((section(".text.func_002CD4E0")))
-void func_002CD4E0(void *a0) { func_003735E0(a0, -1); }
+void func_002CD4E0(cSndBgmNode *node, float to, float time) { func_003735E0(node, -1, to, time); }
 
 void func_002FBED0(void);
 

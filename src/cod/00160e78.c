@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/vu0.h"
+#include "godhand/cSnd.h"
 
 extern float DoubleFloatMinusHalf_31D020(void);
 extern float fRand0_1(void);
@@ -38,7 +40,6 @@ extern void ExitDeleteThread(void);
 
 
 
-#include "godhand/vu0.h"
 
 __attribute__((section(".text.func_001BCB38")))
 void func_001BCB38(char *a0, int a1, float *a2, float *a3)
@@ -87,31 +88,33 @@ void func_001BCB38(char *a0, int a1, float *a2, float *a3)
     *(float *)(elem + 0x58) = neg;
 }
 
+/* Like cSnd_EmSeCheck, but it skips entries that are not yet loaded instead of dead ones. */
 __attribute__((section(".text.func_002CB4E8")))
-int func_002CB4E8(void *a0, int a1)
+int func_002CB4E8(cSnd *self, int objId)
 {
-    int s1;
-    int *p;
+    int owner;
+    int *slot;
     unsigned int i;
+    cSndSeEntry *e;
 
-    s1 = func_002CB3A8(a0, a1);
-    if (s1 <= 0)
-        s1 = a1;
+    owner = func_002CB3A8(self, objId);
+    if (owner <= 0)
+        owner = objId;
 
-    p = D_0044CE48;
+    slot = D_0044CE48;
     i = 0;
     do {
-        void *e = GetIndexedEntry_2CC4B8(a0, *p);
+        e = GetIndexedEntry_2CC4B8(self, *slot);
         if (func_002CFC78(e) != 1) {
-            e = GetIndexedEntry_2CC4B8(a0, *p);
-            if (*(int *)((char *)e + 0x3C) == s1) {
-                e = GetIndexedEntry_2CC4B8(a0, *p);
+            e = GetIndexedEntry_2CC4B8(self, *slot);
+            if (e->owner == owner) {
+                e = GetIndexedEntry_2CC4B8(self, *slot);
                 if (func_002CFC88(e) != 1)
-                    return *p;
+                    return *slot;
             }
         }
         i++;
-        p++;
+        slot++;
     } while (i < 0xC);
 
     return -1;

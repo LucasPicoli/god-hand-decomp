@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cSnd.h"
 
 typedef struct {
   short f0;
@@ -6,11 +7,12 @@ typedef struct {
   int f4;
 } Obj;
 
+/* Marks a recent-call ring entry as empty. */
 __attribute__((section(".text.func_002CC4A0")))
-void func_002CC4A0(Obj *o) {
-  o->f2 = -1;
-  o->f0 = -1;
-  o->f4 = 0;
+void func_002CC4A0(cSndSeRecent *r) {
+  r->b = -1;
+  r->a = -1;
+  r->tick = 0;
 }
 
 typedef struct {

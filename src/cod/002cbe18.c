@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void func_002CE488(void *a0, void *a1);
 
@@ -6,11 +7,12 @@ extern void func_002CE488(void *a0, void *a1);
 
 
 
+/* Detaches every voice from an object. */
 __attribute__((section(".text.func_002CBE18")))
-void func_002CBE18(void *a0, void *a1) {
-    void *p = *(void **)((char *)a0 + 0x1C);
-    while (p) {
-        func_002CE488(p, a1);
-        p = *(void **)((char *)p + 0x4);
+void func_002CBE18(cSnd *self, void *obj) {
+    cSndSeVoice *v = self->voiceHead;
+    while (v) {
+        func_002CE488(v, obj);
+        v = v->next;
     }
 }

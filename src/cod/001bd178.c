@@ -1,10 +1,9 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cDvd.h"
+#include "godhand/cSnd.h"
 
 extern unsigned char D_0058503A;
 extern int D_005E8600;
-extern char *D_005FEE18;
-extern int D_005FEE1C;
 
 /* cygnus-2.96 | drop-freorder-blocks */
 __attribute__((section(".text.cOmDoor_setLock")))
@@ -92,25 +91,39 @@ void func_002BE510(int a, int b)
     }
 }
 
+extern cSnd D_005FEE00;
+/* Takes a BGM node off the active list and marks it unused. */
 __attribute__((section(".text.func_002CC5E8")))
-void func_002CC5E8(char *p) {
-    char *prev = *(char **)(p + 0x84);
-    char *next;
+void func_002CC5E8(cSndBgmNode *node) {
+    cSndBgmNode *prev = node->prev;
+    cSndBgmNode *next;
 
     if (prev != 0) {
-        *(char **)(prev + 0x88) = *(char **)(p + 0x88);
+        prev->next = node->next;
     } else {
-        D_005FEE18 = *(char **)(p + 0x88);
+        D_005FEE00.bgmHead = node->next;
     }
-    next = *(char **)(p + 0x88);
+    next = node->next;
     if (next != 0) {
-        *(char **)(next + 0x84) = *(char **)(p + 0x84);
+        next->prev = node->prev;
     }
-    *(int *)(p + 0x94) = 0;
+    node->state = 0;
 }
 
+/* Takes a voice off the playing list and clears what it was bound to. */
 __attribute__((section(".text.func_002CE3E8")))
-void func_002CE3E8(int a0){if(*(int*)(a0)!=0)*(int*)(*(int*)(a0)+4)=*(int*)(a0+4);else D_005FEE1C=*(int*)(a0+4);if(*(int*)(a0+4)!=0)*(int*)(*(int*)(a0+4))=*(int*)(a0);*(int*)(a0+0x38)=0;*(int*)(a0+0x3C)=0;*(int*)(a0+0x14)=0;}
+void func_002CE3E8(cSndSeVoice *voice)
+{
+    if (voice->prev != 0)
+        voice->prev->next = voice->next;
+    else
+        D_005FEE00.voiceHead = voice->next;
+    if (voice->next != 0)
+        voice->next->prev = voice->prev;
+    voice->obj = 0;
+    voice->part = 0;
+    voice->handle = 0;
+}
 
 /* cygnus-2.96 | drop-freorder-blocks */
 __attribute__((section(".text.func_002D3190")))

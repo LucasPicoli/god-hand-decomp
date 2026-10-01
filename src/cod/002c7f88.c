@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern unsigned char D_0061B289;
 extern int D_003C118C;
@@ -6,15 +7,16 @@ extern int D_003C118C;
 __attribute__((section(".text.func_002C7F88")))
 int func_002C7F88(unsigned char *p){unsigned int v;if(p==0)return 0;v=p[0]|(p[1]<<8)|(p[2]<<16)|(p[3]<<24);return (v^0x514553)==0;}
 
+/* Finds the first block with at least this many free bytes behind it. */
 __attribute__((section(".text.func_002CD968")))
-char *func_002CD968(char *a0, unsigned int key) {
-    char *p = *(char **)(a0 + 0x380);
+cSndMemBlk *func_002CD968(cSndMemHeap *heap, unsigned int size) {
+    cSndMemBlk *p = heap->self;
 
     while (p != 0) {
-        if (*(unsigned int *)(p + 0xC) >= key) {
+        if ((unsigned int)p->freeSize >= size) {
             return p;
         }
-        p = *(char **)(p + 0x8);
+        p = p->prev;
     }
     return 0;
 }

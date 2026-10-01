@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void *GetIndexedEntry_2CC4B8(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
@@ -17,76 +18,78 @@ extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 
+/* Updates one voice every frame: waits out its start delay, starts or retunes the sound, tracks the
+   distance ratio, and frees the voice when its sound is gone. Each live frame ages the voice by one. */
 __attribute__((section(".text.func_002CDA80")))
-void func_002CDA80(char *s1)
+void func_002CDA80(cSndSeVoice *voice)
 {
     char buf[0x30] __attribute__((aligned(16)));
-    void *e;
-    char *p;
-    char *q;
-    int r, a, b, t;
+    cSndSeEntry *entry;
+    cSnd *snd;
+    cSnd *sndNow;
+    int found, total, played, state;
     unsigned long tl, tu;
     long bit;
-    float f;
+    float ratio;
 
-    if (func_002CDA38(s1) == 0) {
+    if (func_002CDA38(voice) == 0) {
         return;
     }
-    p = D_005FEE00;
-    e = GetIndexedEntry_2CC4B8(p, *(short *)(s1 + 8));
-    if (cSeData_IsAlive(e) == 0) {
+    snd = (cSnd *)D_005FEE00;
+    entry = GetIndexedEntry_2CC4B8(snd, voice->key0);
+    if (cSeData_IsAlive(entry) == 0) {
         goto reset;
     }
-    if (*(int *)(s1 + 0x20) > 0) {
+    if (voice->delay > 0) {
         if (D_00747A84 & 0x8000000) {
             return;
         }
-        if (*(int *)(s1 + 0xC) & 0x10) {
+        if (voice->flags & 0x10) {
             if (*(unsigned int *)((char *)&D_00747A84 - 0xC) & 0x8000000) {
                 return;
             }
         }
-        *(int *)(s1 + 0x20) = *(int *)(s1 + 0x20) - 1;
+        voice->delay = voice->delay - 1;
         return;
     }
-    r = func_002CF218(s1, *(short *)(s1 + 8), *(short *)(s1 + 0xA), buf);
-    if (r == -1) {
+    found = func_002CF218(voice, voice->key0, voice->key1, buf);
+    if (found == -1) {
         goto reset;
     }
     if (*(unsigned char *)(buf + 0x20) & 0x40) {
-        *(int *)(p + 0xB0) |= 0x4000000;
-        *(int *)(p + 0xAC) |= 0x4000000;
+        snd->flagsB0 |= 0x4000000;
+        snd->flagsAC |= 0x4000000;
     }
-    if (*(char **)(s1 + 0x38) != 0 && *(float *)(*(char **)(s1 + 0x38) + 0x5A8) < 0.5f && (*(int *)(s1 + 0x1C) & 1) != 0) {
-        *(int *)(s1 + 0x18) |= 0x10000;
+    if (voice->obj != 0 && *(float *)((char *)voice->obj + 0x5A8) < 0.5f && (voice->optFlags & 1) != 0) {
+        voice->stateFlags |= 0x10000;
     } else {
-        *(int *)(s1 + 0x18) &= 0xFFFEFFFF;
+        voice->stateFlags &= 0xFFFEFFFF;
     }
-    if ((*(unsigned char *)(s1 + 0xC) ^ 1) & 1) {
-        if (func_002CE588(s1, buf) == 0) {
+    if ((*(unsigned char *)&voice->flags ^ 1) & 1) {
+        if (func_002CE588(voice, buf) == 0) {
             goto reset;
         }
-        *(int *)(s1 + 0xC) |= 1;
-        goto inc;
+        voice->flags |= 1;
+        goto age;
     }
-    if (*(int *)(s1 + 0x18) & 0x10) {
-        a = func_002CF258(s1, buf);
-        b = func_002CF298(s1);
-        f = (float)((a - b) / a);
-        if (f < 0.0f) {
-            f = 0.0f;
+    if (voice->stateFlags & 0x10) {
+        total = func_002CF258(voice, buf);
+        played = func_002CF298(voice);
+        ratio = (float)((total - played) / total);
+        if (ratio < 0.0f) {
+            ratio = 0.0f;
         }
-        if (1.0f < f) {
-            f = 1.0f;
+        if (1.0f < ratio) {
+            ratio = 1.0f;
         }
-        q = D_005FEE00;
-        *(float *)(q + 0x9C) = f;
+        sndNow = (cSnd *)D_005FEE00;
+        sndNow->f9C = ratio;
     }
-    t = func_003750E0(*(int *)(s1 + 0x14));
-    switch ((unsigned int)t) {
+    state = func_003750E0(voice->handle);
+    switch ((unsigned int)state) {
     case 0:
-        if (*(unsigned char *)(buf + 0x22) < *(int *)(s1 + 0x24)) {
-            func_002CE3E8(s1);
+        if (*(unsigned char *)(buf + 0x22) < voice->pri) {
+            func_002CE3E8(voice);
         }
         break;
     case 1:
@@ -98,17 +101,17 @@ void func_002CDA80(char *s1)
         if (bit != 0) {
             return;
         }
-        if (func_002CEA00(s1, buf) == 0) {
+        if (func_002CEA00(voice, buf) == 0) {
             goto reset;
         }
         break;
     }
-    goto inc;
+    goto age;
 reset:
-    func_002CE3E8(s1);
+    func_002CE3E8(voice);
     return;
-inc:
-    *(int *)(s1 + 0x24) = *(int *)(s1 + 0x24) + 1;
+age:
+    voice->pri = voice->pri + 1;
 }
 
 __attribute__((section(".text.func_0011A8F8")))

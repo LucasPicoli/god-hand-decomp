@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 
 extern char *D_00754C38;
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -115,20 +116,21 @@ void func_001B15C8(void *a0, int a1, int a2, float *a3, float *t0) {
     }
 }
 
+/* Gives a chunk back to a heap: merges its block into the next one and marks the block unused. */
 __attribute__((section(".text.func_002CD890")))
-void func_002CD890(void *a0, int a1) {
-    int *p;
-    int *a2;
-    if (a1 == 0) return;
-    if (*(int*)((char*)a0 + 0x380) == 0) return;
-    p = func_002CD8F8();
-    a2 = (int*)p[1];
-    a2[2] = p[2];
-    a2[3] = a2[3] + (p[6] + p[3]);
-    if (p[2] != 0) {
-        *(int*)(p[2] + 4) = (int)a2;
+void func_002CD890(cSndMemHeap *heap, int addr) {
+    cSndMemBlk *blk;
+    cSndMemBlk *next;
+    if (addr == 0) return;
+    if (heap->self == 0) return;
+    blk = func_002CD8F8(heap, addr);
+    next = blk->next;
+    next->prev = blk->prev;
+    next->freeSize = next->freeSize + (blk->size + blk->freeSize);
+    if (blk->prev != 0) {
+        blk->prev->next = next;
     }
-    p[5] = 0;
+    blk->base = 0;
 }
 
 __attribute__((section(".text.InitEspWork")))

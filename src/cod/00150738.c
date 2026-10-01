@@ -1,9 +1,9 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjSimple.h"
+#include "godhand/cSnd.h"
 
 extern int D_00747A0C;
-extern char *D_005FEE00[];
 extern void func_002D5AD8(void);
 extern char D_00468CF0[];
 extern unsigned char D_003D9DD0[];
@@ -171,30 +171,47 @@ char *func_002C53A8(char *p)
 /* cygnus-2.96 */
 
 
+extern cSnd D_005FEE00;
+/* Puts a BGM node at the head of the active list. */
 __attribute__((section(".text.func_002CC5C0")))
-void func_002CC5C0(char *p)
+void func_002CC5C0(cSndBgmNode *node)
 {
-    *(char **)(p + 0x88) = D_005FEE00[6];
-    if (D_005FEE00[6] != 0) {
-        *(char **)(D_005FEE00[6] + 0x84) = p;
+    node->next = D_005FEE00.bgmHead;
+    if (D_005FEE00.bgmHead != 0) {
+        D_005FEE00.bgmHead->prev = node;
     }
-    D_005FEE00[6] = p;
+    D_005FEE00.bgmHead = node;
 }
 
+/* Resets block 0 of a heap to one free block that spans the whole heap.
+   Every store is an int store through a freshly read self pointer: the pointer is
+   reloaded after each store, as retail does (a typed pointer store lets it stay cached). */
+#define CSND_HEAP_BLK0(heap) ((cSndMemBlk *)*(int *)&(heap)->self)
+#define CSND_BLK0_SET(heap, field, v) (*(int *)&CSND_HEAP_BLK0(heap)->field = (int)(v))
 __attribute__((section(".text.func_002CD740")))
-void func_002CD740(int a0){*(int*)(*(int*)(a0+0x380)+8)=0;*(int*)(*(int*)(a0+0x380)+4)=0;*(int*)(*(int*)(a0+0x380)+0x18)=0;*(int*)(*(int*)(a0+0x380)+0xC)=*(int*)(a0+0x384);*(int*)(*(int*)(a0+0x380))=a0;*(int*)(*(int*)(a0+0x380)+0x10)=0;*(int*)(*(int*)(a0+0x380)+0x14)=0;}
+void func_002CD740(cSndMemHeap *heap)
+{
+    CSND_BLK0_SET(heap, prev, 0);
+    CSND_BLK0_SET(heap, next, 0);
+    CSND_BLK0_SET(heap, size, 0);
+    CSND_BLK0_SET(heap, freeSize, heap->size);
+    CSND_BLK0_SET(heap, owner, heap);
+    CSND_BLK0_SET(heap, top, 0);
+    CSND_BLK0_SET(heap, base, 0);
+}
 
 /* cygnus-2.96 */
 
 
+/* Puts a voice at the head of the playing list. */
 __attribute__((section(".text.func_002CE3C0")))
-void func_002CE3C0(char *p)
+void func_002CE3C0(cSndSeVoice *voice)
 {
-    *(char **)(p + 0x4) = D_005FEE00[7];
-    if (D_005FEE00[7] != 0) {
-        *(char **)(D_005FEE00[7] + 0x0) = p;
+    voice->next = D_005FEE00.voiceHead;
+    if (D_005FEE00.voiceHead != 0) {
+        D_005FEE00.voiceHead->prev = voice;
     }
-    D_005FEE00[7] = p;
+    D_005FEE00.voiceHead = voice;
 }
 
 __attribute__((section(".text.func_002CF2D0")))

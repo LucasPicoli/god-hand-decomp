@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
+#include "godhand/cSnd.h"
 
 extern void displayScrollLayer(int a0, int a1);
 extern void func_003735E0(void *a0, int a1, float f12, float f13);
@@ -69,9 +70,10 @@ int func_003AE188(int a0, int a1, ...) {
     return func_003AB158(a0, a1, (char*)__builtin_next_arg(a1) - 0x30);
 }
 
+/* Sets flag bits on a node, stores a fade time, and starts a short fade. */
 __attribute__((section(".text.func_002CD500")))
-void func_002CD500(void *a0, int a1, float f) {
-    *(int *)((char *)a0 + 0x98) |= a1;
-    *(float *)((char *)a0 + 0xC8) = f;
-    func_003735E0(a0, -1, 0.01f, f);
+void func_002CD500(cSndBgmNode *node, int setBits, float time) {
+    node->flags |= setBits;
+    node->fadeTime = time;
+    func_003735E0(node, -1, 0.01f, time);
 }

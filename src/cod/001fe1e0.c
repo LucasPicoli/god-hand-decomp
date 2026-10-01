@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/cSnd.h"
 
 extern char D_00569B80[];
 extern char D_0056C380[];
@@ -104,33 +105,35 @@ char *func_002B4FE8(char *base, int key) {
 __attribute__((section(".text.func_002C9060")))
 int func_002C9060(int a0,unsigned int a1){int p=*(int*)a0;if(p==0)return 0;{unsigned int n=*(unsigned int*)(a0+0xC);if(n==0)return 0;if(a1<n)return p+a1*0x24;return 0;}}
 
+/* Finds the block that holds the chunk at this address. */
 __attribute__((section(".text.func_002CD8F8")))
-char *func_002CD8F8(char *self, int key) {
-    char *p = *(char **)(self + 0x380) + 0x1C;
+cSndMemBlk *func_002CD8F8(cSndMemHeap *heap, int addr) {
+    cSndMemBlk *p = &heap->self->blk[1];
     int i = 1;
 
     do {
-        if (*(int *)(p + 0x14) == key) {
+        if (p->base == addr) {
             return p;
         }
         i++;
-        p += 0x1C;
-    } while (i < 0x20);
+        p++;
+    } while (i < CSND_HEAP_BLK_NUM);
     return 0;
 }
 
+/* Finds an unused block of the heap. */
 __attribute__((section(".text.func_002CD930")))
-char *func_002CD930(char *self) {
-    char *p = *(char **)(self + 0x380) + 0x1C;
+cSndMemBlk *func_002CD930(cSndMemHeap *heap) {
+    cSndMemBlk *p = &heap->self->blk[1];
     int i = 1;
 
     do {
-        if (*(int *)(p + 0x14) == 0) {
+        if (p->base == 0) {
             return p;
         }
         i++;
-        p += 0x1C;
-    } while (i < 0x20);
+        p++;
+    } while (i < CSND_HEAP_BLK_NUM);
     return 0;
 }
 

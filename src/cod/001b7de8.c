@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
@@ -29,15 +30,16 @@ void cOmBase_setTexChange(cOmBase *self, int arg) {
 /* func_002CD668 — sn-2.95.3-136 */
 
 
+/* Sets up a sound heap that starts at an address and spans a size. Its parent is itself. */
 __attribute__((section(".text.func_002CD668")))
-void func_002CD668(char *a0, int a1, int a2) {
-    *(char **)(a0 + 0x380) = a0;
-    func_003A52F0(a0, 0, 0x380);
-    *(int *)(a0 + 0x384) = a2;
-    func_002CD740(a0);
-    *(char **)(a0 + 0x38C) = a0;
-    *(int *)(a0 + 0x388) = 0;
-    *(int *)(*(char **)(a0 + 0x380) + 0x10) = a1;
+void func_002CD668(cSndMemHeap *heap, int start, int size) {
+    heap->self = heap;
+    func_003A52F0(heap, 0, sizeof(heap->blk));
+    heap->size = size;
+    func_002CD740(heap);
+    heap->parent = heap;
+    heap->base = 0;
+    heap->self->blk[0].top = start;
 }
 
 /* func_002B3B70 — sn-2.95.3-136 */

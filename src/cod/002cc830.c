@@ -1,37 +1,39 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern int D_005FEE00;
 
+/* Like func_002CC728 for a node that already has its bank and state: stores flags and the request's values. */
 __attribute__((section(".text.func_002CC830")))
-int func_002CC830(char *a0, char *a1, int a2)
+int func_002CC830(cSndBgmNode *node, cSndBgmReq *req, int flags)
 {
-    int val;
-    int sel;
+    int param;
+    int state;
 
-    val = *(int *)(a1 + 8);
-    sel = *(int *)(a0 + 0x94);
-    *(int *)(a0 + 0x98) = a2;
-    *(int *)(a0 + 0x9C) = val;
+    param = req->param;
+    state = node->state;
+    node->flags = flags;
+    node->param = param;
 
-    switch (sel) {
+    switch (state) {
     default:
         break;
     case 3:
-        *(int *)(a0 + 0xAC) = *(unsigned short *)(a1 + 0xC);
-        *(int *)(a0 + 0xA4) = func_002D0578(&D_005FEE00, *(unsigned short *)(a1 + 0xE));
+        node->matchWt = req->wordA;
+        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
         break;
     case 2:
-        *(int *)(a0 + 0xA8) = func_002D0598(&D_005FEE00, *(unsigned short *)(a1 + 0xC));
-        *(int *)(a0 + 0xA4) = func_002D0578(&D_005FEE00, *(unsigned short *)(a1 + 0xE));
+        node->entry = (int *)func_002D0598(&D_005FEE00, req->wordA);
+        node->link = (int *)func_002D0578(&D_005FEE00, req->wordB);
         break;
     case 1:
     case 4:
     case 5:
-        *(unsigned short *)(a0 + 0xA0) = *(unsigned short *)(a1 + 0xC);
-        *(unsigned short *)(a0 + 0xA2) = *(unsigned short *)(a1 + 0xE);
+        node->wordA = req->wordA;
+        node->wordB = req->wordB;
         break;
     case 0:
-        *(int *)(a0 + 0x94) = 0;
+        node->state = 0;
         return 0;
     }
     return 1;

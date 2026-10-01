@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void func_003A5148(void);
 extern void func_0034C2D0(void *, void *, void *, int);
@@ -14,9 +15,10 @@ int func_0032F4C8(void *a0) {
     return *(signed char *)((char *)a0 + 0xAC);
 }
 
+/* True while the voice holds a sound-driver handle. */
 __attribute__((section(".text.func_002CDA38")))
-int func_002CDA38(void *a0) {
-    return *(int *)((char *)a0 + 0x14) != 0;
+int func_002CDA38(cSndSeVoice *v) {
+    return v->handle != 0;
 }
 
 __attribute__((section(".text.func_00366960")))

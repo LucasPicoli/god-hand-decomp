@@ -1,13 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
+/* Finds the voice that holds this sound-driver handle. */
 __attribute__((section(".text.func_002CBF48")))
-void *func_002CBF48(void *a0, int a1) {
-    char *v1 = *(char**)((char*)a0 + 0x1C);
-    if (v1 != 0) {
+cSndSeVoice *func_002CBF48(cSnd *self, int handle) {
+    cSndSeVoice *v = self->voiceHead;
+    if (v != 0) {
         do {
-            if (*(int*)(v1 + 0x14) == a1) return v1;
-            v1 = *(char**)(v1 + 0x4);
-        } while (v1 != 0);
+            if (v->handle == handle) return v;
+            v = v->next;
+        } while (v != 0);
     }
     return 0;
 }

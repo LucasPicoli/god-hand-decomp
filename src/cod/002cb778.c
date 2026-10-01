@@ -1,3 +1,4 @@
+#include "godhand/cSnd.h"
 #include "include_asm.h"
 
 extern int D_00747A34;
@@ -7,29 +8,31 @@ extern void func_003A52F0(void *, int, int);
 extern void func_002CD740(void *);
 extern int func_002CD7C8(int, int);
 
+/* A slot is available when it is unset (-1), has no owner, or its entry is alive. */
 __attribute__((section(".text.IsSlotAvailable_2CB778")))
-int IsSlotAvailable_2CB778(int a0, int a1)
+int IsSlotAvailable_2CB778(cSnd *self, int slot)
 {
-    int *p;
-    if (a1 == -1) return 1;
-    p = GetIndexedEntry_2CC4B8(a0, a1);
-    if (p[0x3C/4] == -1) return 1;
-    p = GetIndexedEntry_2CC4B8(a0, a1);
-    return cSeData_IsAlive(p);
+    cSndSeEntry *e;
+    if (slot == -1) return 1;
+    e = GetIndexedEntry_2CC4B8(self, slot);
+    if (e->owner == -1) return 1;
+    e = GetIndexedEntry_2CC4B8(self, slot);
+    return cSeData_IsAlive(e);
 }
 
+/* Sets up a sound heap that lives in a chunk taken from a parent heap. */
 __attribute__((section(".text.InitSlotContext_2CD6D0")))
-void InitSlotContext_2CD6D0(int a0, int a1, int a2)
+void InitSlotContext_2CD6D0(cSndMemHeap *heap, cSndMemHeap *parent, int size)
 {
-    int ret;
-    *(int *)(a0 + 0x380) = a0;
-    func_003A52F0((void *)a0, 0, 0x380);
-    *(int *)(a0 + 0x384) = a2;
-    func_002CD740((void *)a0);
-    *(int *)(a0 + 0x38C) = a1;
-    ret = func_002CD7C8(a1, a2);
-    *(int *)(a0 + 0x388) = ret;
-    *(int *)(*(int *)(a0 + 0x380) + 0x10) = ret;
+    int base;
+    heap->self = heap;
+    func_003A52F0(heap, 0, sizeof(heap->blk));
+    heap->size = size;
+    func_002CD740(heap);
+    heap->parent = parent;
+    base = func_002CD7C8(parent, size);
+    heap->base = base;
+    heap->self->blk[0].top = base;
 }
 
 
