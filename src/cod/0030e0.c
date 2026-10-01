@@ -17,10 +17,6 @@ void Obj30E0_NoOp_E550(void) {}
 __attribute__((section(".text.Obj30E0_NoOp_E558")))
 void Obj30E0_NoOp_E558(void) {}
 
-/* ── 2 × accessor single-insn fragments (nonmatching — no jr $ra) ───────── */
-
-INCLUDE_ASM("nonmatching", func_0030E560);
-
 /* ── 2 × call_chain (nonmatching — T1 will match) ────────────────────────── */
 
 extern int D_00752C00;
@@ -32,10 +28,6 @@ void func_0030E568(int a0, int a1) {
         func_002D50C0(&D_00752C00);
     }
 }
-
-/* ── 1 × accessor single-insn fragment (nonmatching — no jr $ra) ─────────── */
-
-INCLUDE_ASM("nonmatching", func_0030E5B8);
 
 /* ── 1 × branched_leaf (nonmatching — T1 will match) ─────────────────────── */
 

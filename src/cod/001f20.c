@@ -9,10 +9,6 @@ extern void CustomIDWork(void *);
 /* func_001F2540 (beql+bnel, 0x108 B) stays in monolithic — PERMANENT.      */
 /* func_001F2650 (bnel, 0x40 B) stays in monolithic — PERMANENT.            */
 
-/* -- Ghidra fragment (no jr $ra) — stay in monolithic asm/cod/000000 ------ */
-/* func_001F26F0 (5 insn, no jr $ra) stays in monolithic — FRAGMENT.        */
-/* func_001F27A8 (1 insn, no jr $ra) stays in monolithic — FRAGMENT.        */
-
 /* -- Accessor C bodies (5) — jr $ra; nop empty functions ------------------ */
 
 /* jr $ra; nop */

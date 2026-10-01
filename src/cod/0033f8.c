@@ -12,10 +12,6 @@ extern void func_0033F130(void);
 extern char D_003EB858[];   /* struct array, size >= 0x3C0, Obj33F8_Init_D003EB858_F888   */
 extern int  D_003EB850;     /* boolean flag, Obj33F8_SetFlag_D003EB850_FB68 sets = 1          */
 
-/* ── Addiu-only / store-only stubs — no jr $ra; unrepresentable in C ─────── */
-INCLUDE_ASM("nonmatching", func_0033F810);
-INCLUDE_ASM("nonmatching", func_0033F8B0);
-
 /* ── Branched functions — T0 attempt failed (wrong code size) ────────────── */
 INCLUDE_ASM("nonmatching", func_0033F850);
 
@@ -145,14 +141,8 @@ void Obj33F8_NoOp_FCA8(void) {}
 __attribute__((section(".text.Obj33F8_Tramp_0033F130_FCB0")))
 void Obj33F8_Tramp_0033F130_FCB0(void) { func_0033F130(); }
 
-/* ── Store-only stub (sw $zero, 0x8($v1); no jr $ra) ────────────────────── */
-INCLUDE_ASM("nonmatching", func_0033FCC8);
-
 /* ── Call-chain functions deferred ───────────────────── */
 INCLUDE_ASM("nonmatching", func_0033FCD0);
-
-/* ── Addiu-only stub (no jr $ra) ─────────────────────────────────────────── */
-INCLUDE_ASM("nonmatching", func_0033FD68);
 
 /* ── Call-chain: calls func_0033FCD0 + global access ────────────────────── */
 INCLUDE_ASM("nonmatching", func_0033FD70);

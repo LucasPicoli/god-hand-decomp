@@ -45,9 +45,6 @@ int Obj3270_Tramp_0033D040_7728(void *a0) {
     return Forward33C548_33D040(a0);
 }
 
-/* sw $a1, 0x50($a0) only — 1-insn fallthrough, no jr $ra */
-INCLUDE_ASM("nonmatching", func_00327740);
-
 /* sw $a2, 0x4C($a0); jr $ra; sw $a1, 0x48($a0) [delay slot] */
 __attribute__((section(".text.Obj3270_SetField_48_4C")))
 void Obj3270_SetField_48_4C(void *a0, int a1, int a2) {

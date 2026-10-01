@@ -488,4 +488,3 @@ ok:
     return 1;
 }
 INCLUDE_ASM("nonmatching", func_0035D4A8);
-INCLUDE_ASM("nonmatching", func_0035D530);

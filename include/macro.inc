@@ -63,4 +63,12 @@
     "\label\().NON_MATCHING":
 .endm
 
+# Words between two functions that no code reaches: no jump, no call and no
+# reference lands on them. They emit no symbol, so they are not a function.
+.macro fragment label
+.endm
+
+.macro endfragment label
+.endm
+
 .endif

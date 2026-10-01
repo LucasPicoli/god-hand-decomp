@@ -64,27 +64,6 @@ int func_003297F0(int a0, int a1) {
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* addiu-only / no-jr-ra stubs — unrepresentable in C (INCLUDE_ASM)          */
-/* ────────────────────────────────────────────────────────────────────────── */
-
-/* func_00329218: 0x44 B; 9×(addiu $sp,+0x10; nop) + 3×(addiu $sp,+0x30;nop) —
- * pure addiu-only epilogue fragments, no jr $ra; cannot be expressed as C   */
-INCLUDE_ASM("nonmatching", func_00329218);
-
-/* func_00329270: 0x4 B; lw $v0,0x30($v1) — no jr $ra, 1-insn fallthrough   */
-INCLUDE_ASM("nonmatching", func_00329270);
-
-/* func_00329290: 0x4 B; addiu $sp,$sp,0x10 — no jr $ra, addiu-only stub    */
-INCLUDE_ASM("nonmatching", func_00329290);
-
-/* func_003292B0: 0x28 B; 2×(addiu $sp,+0x10;nop) then real accessor body —
- * dead addiu prefix makes the function body unrepresentable in C             */
-INCLUDE_ASM("nonmatching", func_003292B0);
-
-/* func_003293F0: 0x44 B; addiu stubs interspersed with lw/sw, no jr $ra     */
-INCLUDE_ASM("nonmatching", func_003293F0);
-
-/* ────────────────────────────────────────────────────────────────────────── */
 /* Accessor byte-matches — 9 functions                                        */
 /* ────────────────────────────────────────────────────────────────────────── */
 

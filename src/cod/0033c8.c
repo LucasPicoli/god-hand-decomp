@@ -15,7 +15,6 @@ void Obj33C8_SetFields_78_7C(char *a0, int a1, int a2) {
     *(int *)(a0 + 0x7C) = a2;
 }
 
-/* func_0033CE78 — standalone asm (alabel/.aent prevents INCLUDE_ASM) */
 __attribute__((section(".text.Obj33C8_GetShort_98")))
 int Obj33C8_GetShort_98(char *a0) {
     return *(short *)(a0 + 0x98);

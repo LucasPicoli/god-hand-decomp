@@ -94,8 +94,6 @@ int func_0034DB20(char *p)
     return -1;
 }
 
-/* ── func_0034DB48: single addiu $v0,$v0,0 — no jr $ra; unrepresentable ──── */
-
 /* ── Cmp_a1_Eq_0x37B0: equality test a1 == 0x37B0 ───────────────────────────── */
 /* xori v0,a1,0x37B0; jr $ra; sltiu v0,v0,1 */
 __attribute__((section(".text.Cmp_a1_Eq_0x37B0")))
@@ -222,7 +220,6 @@ int ReturnZero_DFF0(void) { return 0; }
 
 __attribute__((section(".text.ReturnZero_DFF8")))
 int ReturnZero_DFF8(void) { return 0; }
-INCLUDE_ASM("nonmatching", func_0034DB48);
 INCLUDE_ASM("nonmatching", func_0034DB60);
 INCLUDE_ASM("nonmatching", func_0034DBC8);
 INCLUDE_ASM("nonmatching", func_0034DDE0);

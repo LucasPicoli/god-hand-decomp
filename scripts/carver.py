@@ -107,6 +107,10 @@ _ENDLABEL_RE = re.compile(r"^\s*endlabel\s+(\S+)")
 _NONMATCHING_RE = re.compile(r"^\s*nonmatching\s+(\S+),")
 _ALIGN3_RE = re.compile(r"^\s*\.align\s+3\s*$")
 _ALABEL_LIKE_RE = re.compile(r"^\s*(alabel|jlabel|ehlabel)\s+(\S+)")
+# A split fragment (scripts/mark_split_fragments.py): inter-function words
+# with no symbol. It bounds the previous carve unit but is never carvable.
+_FRAGMENT_RE = re.compile(r"^\s*fragment\s+(\S+)")
+_ENDFRAGMENT_RE = re.compile(r"^\s*endfragment\s+(\S+)")
 # Instruction line in a splat-disassembled carve fragment:
 #   ``    /* FILE_OFF HEX_VRAM HEX_BYTES */  insn ...``
 # Each match contributes 4 bytes to the carve unit's .text size.
@@ -357,10 +361,16 @@ def _index_functions(lines: list[str]) -> dict[str, tuple[int, int, int]]:
     # First, walk forward once to collect (name, block_start, glabel) tuples.
     n = len(lines)
     func_pos: list[tuple[str, int, int, int]] = []  # name, block_start, glabel, endlabel
+    fragments: set[str] = set()
     for i, line in enumerate(lines):
         m = _GLABEL_RE.match(line)
+        end_re = _ENDLABEL_RE
         if not m:
-            continue
+            m = _FRAGMENT_RE.match(line)
+            if not m:
+                continue
+            end_re = _ENDFRAGMENT_RE
+            fragments.add(m.group(1))
         name = m.group(1)
         # Upward walk: find the leading `.align 3`.
         block_start = i
@@ -385,7 +395,7 @@ def _index_functions(lines: list[str]) -> dict[str, tuple[int, int, int]]:
         # block_end is derived from the next function's block_start).
         endlabel = i
         for k in range(i + 1, n):
-            em = _ENDLABEL_RE.match(lines[k])
+            em = end_re.match(lines[k])
             if em and em.group(1) == name:
                 endlabel = k
                 break
@@ -410,7 +420,8 @@ def _index_functions(lines: list[str]) -> dict[str, tuple[int, int, int]]:
                 f"carve indexer: function {name!r} has block_end < block_start "
                 f"({block_end_inclusive} < {block_start}); source order broken?"
             )
-        out[name] = (block_start, glabel, block_end_inclusive)
+        if name not in fragments:
+            out[name] = (block_start, glabel, block_end_inclusive)
     return out
 
 

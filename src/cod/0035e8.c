@@ -238,7 +238,6 @@ INCLUDE_ASM("nonmatching", func_0035EE98);
 INCLUDE_ASM("nonmatching", func_0035EEB8);
 INCLUDE_ASM("nonmatching", func_0035EED8);
 INCLUDE_ASM("nonmatching", func_0035EEF8);
-INCLUDE_ASM("nonmatching", func_0035EF20);
 INCLUDE_ASM("nonmatching", func_0035EF78);
 INCLUDE_ASM("permanent", func_0035ED08);
 INCLUDE_ASM("permanent", func_0035EDE0);

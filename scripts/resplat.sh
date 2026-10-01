@@ -14,4 +14,7 @@ git checkout -- include/labels.inc include/include_asm.h include/macro.inc
 # Re-apply raw-word jump-table entries for extern_jtbl dispatchers (splat
 # re-emits `.word .L<addr>` labels for them on every split).
 .venv/bin/python scripts/apply_jtbl_extern_words.py
+# Strip the function symbol from false splits: stray inter-function words
+# that splat started a function at (see the script's docstring).
+.venv/bin/python scripts/mark_split_fragments.py
 echo "resplat: done (include/ macros are now generation-disabled; checkout was a no-op)"

@@ -30,9 +30,6 @@ extern void func_003A52F0(void *a0, int a1, int a2);
 extern int D_003CF9E8;      /* reference counter for D_003CF9F0 region      */
 extern char D_003CF9F0[];   /* managed memory region (size 0xAC0)            */
 
-/* ── Weird fragment — no jr $ra, cannot be expressed as valid C ─────────── */
-INCLUDE_ASM("nonmatching", func_00326008);
-
 /* ── Call-chain functions (11 = deferred) ───────────── */
 INCLUDE_ASM("nonmatching", func_00326020);
 INCLUDE_ASM("nonmatching", func_00326050);
@@ -285,19 +282,6 @@ void Obj3260_NoOp_D2B8(void) {}
 
 __attribute__((section(".text.Obj3260_NoOp_D490")))
 void Obj3260_NoOp_D490(void) {}
-
-/* ── "addiu-only" stubs (no jr $ra; inserted as nonmatching) ────────────── */
-/* These consist entirely of `addiu $sp, $sp, 0x10` (with nops);            */
-/* they cannot be expressed as valid C that returns through $ra.             */
-INCLUDE_ASM("nonmatching", func_003261A0);
-INCLUDE_ASM("nonmatching", func_003261E0);
-INCLUDE_ASM("nonmatching", func_00326268);
-INCLUDE_ASM("nonmatching", func_00326310);
-INCLUDE_ASM("nonmatching", func_00326350);
-INCLUDE_ASM("nonmatching", func_003263A8);
-INCLUDE_ASM("nonmatching", func_00326440);
-INCLUDE_ASM("nonmatching", func_00326480);
-INCLUDE_ASM("nonmatching", func_003264B8);
 
 /* ── Byte getter ────────────────────────────────────────────────────────── */
 /* Obj3260_GetByte_1_D778: jr $ra; lb $v0, 0x1($a0) — signed byte in delay slot      */
