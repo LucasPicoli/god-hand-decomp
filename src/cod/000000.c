@@ -2328,8 +2328,6 @@ INCLUDE_ASM("nonmatching", MotionIsHaveParam);
 
 INCLUDE_ASM("nonmatching", cOm1f_setStart);
 
-INCLUDE_ASM("nonmatching", cOmb0_ReleaseCollision);
-
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
 INCLUDE_ASM("nonmatching", ColiseumBattle_PlCtrlOff);
@@ -2369,8 +2367,6 @@ INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
 
 INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
-
-INCLUDE_ASM("nonmatching", cWorldTime_getGlobalHMS);
 
 INCLUDE_ASM("nonmatching", KeyStop);
 
