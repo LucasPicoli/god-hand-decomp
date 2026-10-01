@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEvent.h"
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void pl00_reset(void *p);
@@ -21,15 +22,16 @@ extern int D_005864E0[];
 
 
 
+/* CLEAR stage: reset the player, release the enemies, then clear the data
+ * manager and its holders. Returns 1 once the stage hands over to CREATE. */
 __attribute__((section(".text.func_00296818")))
-int func_00296818(void *a0) {
-    char *s2 = (char *)a0;
+int func_00296818(cEvent *self) {
     pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
     if ((D_00586B30[1] & 1) == 0) {
-        switch (*(char *)(s2 + 5)) {
+        switch ((char)self->phase) {
         case 0:
             cEmManage_ReleaseEmAll(D_005864F0);
-            *(unsigned char *)(s2 + 5) = *(unsigned char *)(s2 + 5) + 1;
+            self->phase = self->phase + 1;
             goto ret0;
         case 6:
             if (D_00586B30[1] & 0x400) {
@@ -42,7 +44,7 @@ int func_00296818(void *a0) {
         case 4:
         case 5:
         case 7:
-            *(unsigned char *)(s2 + 5) = *(unsigned char *)(s2 + 5) + 1;
+            self->phase = self->phase + 1;
             goto ret0;
         case 8:
             {
@@ -62,10 +64,10 @@ int func_00296818(void *a0) {
             goto ret0;
         }
     }
-    *(unsigned char *)(s2 + 4) = 2;
-    *(unsigned char *)(s2 + 5) = 0;
-    *(unsigned char *)(s2 + 6) = 0;
-    *(unsigned char *)(s2 + 7) = 0;
+    self->state = CEVENT_STATE_CREATE;
+    self->phase = 0;
+    self->unk06 = 0;
+    self->unk07 = 0;
     return 1;
 ret0:
     return 0;

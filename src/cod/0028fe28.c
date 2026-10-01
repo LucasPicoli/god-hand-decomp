@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cEvent.h"
 
 __attribute__((section(".text.func_0028FE28")))
 int func_0028FE28(void) { return 0; }
@@ -27,12 +28,14 @@ void func_00294AD8(void) {}
 __attribute__((section(".text.func_002962A8")))
 int func_002962A8(int a0) { return a0; }
 
+/* Number of the cutscene. */
 __attribute__((section(".text.func_00297B80")))
-int func_00297B80(void *a0) { return *(int*)((char*)a0+0x18); }
+int func_00297B80(cEvent *self) { return self->dataNo; }
 
+/* Set the callback run once the data has loaded. */
 __attribute__((section(".text.func_00297C80")))
-void func_00297C80(int *a0, int a1) {
-    *(int*)((char*)a0+0) = a1;
+void func_00297C80(cEvent *self, void (*onLoaded)(void)) {
+    self->onLoaded = onLoaded;
 }
 
 __attribute__((section(".text.func_00299860")))
