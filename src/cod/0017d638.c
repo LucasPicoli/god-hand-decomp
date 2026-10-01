@@ -6,7 +6,7 @@ extern char D_00429EC8[];
 __attribute__((section(".text.InitField214AndSubfields_17D638")))
 void InitField214AndSubfields_17D638(int a0, int a1) {
     *(int *)((char *)a0 + 0x214) = (int)D_00421F20;
-    func_0017DF88(a0);
+    cOl21_releaseShapes(a0);
     SetField214PtrThenInit_1B6F38(a0, a1);
 }
 

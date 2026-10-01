@@ -84,9 +84,9 @@ void func_001E58B8(Slot2 *self) {
     fn((int)self + off);
 }
 
-__attribute__((section(".text.func_001FC548")))
+__attribute__((section(".text.cCoreSave_clearAllKillEmNum")))
 /* Zero the whole-game per-level kill counts. */
-void func_001FC548(cCoreSave *self) {
+void cCoreSave_clearAllKillEmNum(cCoreSave *self) {
     unsigned int i;
     if (self->data != 0) {
         i = 0;

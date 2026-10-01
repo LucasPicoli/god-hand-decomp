@@ -3,9 +3,9 @@
 
 extern unsigned char D_00747A50[];
 
-__attribute__((section(".text.func_001FB2D8")))
+__attribute__((section(".text.cCoreSave_freeItem")))
 /* Free the remembered object with serial `id`. */
-void func_001FB2D8(cCoreSave *self, unsigned short id)
+void cCoreSave_freeItem(cCoreSave *self, unsigned short id)
 {
     cCoreSaveItem *item;
     cCoreSaveItem *w;

@@ -8,7 +8,7 @@ extern int D_00569B70;
 extern void func_001D6E20();
 extern void func_001D6F30();
 extern void func_001DD238();
-extern int GetTimerValue_1FA710();
+extern int cCoreSave_getGold();
 extern void PokerId_Move();
 extern void PokerId__Trans();
 
@@ -152,7 +152,7 @@ void Poker_Main(Poker *self)
         s0 = s0 + 1;
     } while (s1 >= 0);
 
-    func_001DD238(self, GetTimerValue_1FA710(&D_00569B70));
+    func_001DD238(self, cCoreSave_getGold(&D_00569B70));
     PokerId_Move(self);
     PokerId__Trans(self);
 }

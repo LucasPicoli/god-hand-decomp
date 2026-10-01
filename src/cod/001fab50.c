@@ -2,8 +2,8 @@
 #include "godhand/cCoreSave.h"
 
 extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
-extern int func_001FC210(cCoreSave *self);
-extern void SetSlotField98_1FC170(cCoreSave *self, unsigned char slot, int no);
+extern int cCoreSave_findFreeReelSlot(cCoreSave *self);
+extern void cCoreSave_setReelSlot(cCoreSave *self, unsigned char slot, int no);
 
 /* Put an item in the first empty unlocked slot. 1 on success. */
 __attribute__((section(".text.cCoreSave_addGodItem")))
@@ -37,9 +37,9 @@ void cCoreSave_setGodReel(cCoreSave *self, int no) {
     if (data == 0) return;
     if (no >= CORESAVE_GOD_REEL_NUM) return;
     data->godReel |= 1 << no;
-    slot = func_001FC210(self);
+    slot = cCoreSave_findFreeReelSlot(self);
     if (slot == -1) return;
-    SetSlotField98_1FC170(self, slot, no);
+    cCoreSave_setReelSlot(self, slot, no);
 }
 
 /* 1 if god reel `no` is unlocked. The all-reels cheat (D_00747A34 & 2)

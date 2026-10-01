@@ -15,7 +15,7 @@ extern void Obj293_SetByte_53C_2(void *a0);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern void func_00129578(void *a0);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00129630(void *a0);
 extern void func_0012BC00(void *a0, int a1, int a2);
 extern void cSnd_SeStop(void *a0, int a1);
@@ -157,8 +157,8 @@ void func_001120A8(void *a0)
         *(short *)(s1 + 0x5E2) = 0;
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x870) + t, *(int *)(t + 0x874) + t,
                       0.0f, 3, 0, 0);

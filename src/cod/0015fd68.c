@@ -12,9 +12,9 @@ int func_0015FD68(void *a0) {
     return -1;
 }
 
-__attribute__((section(".text.func_001FC198")))
+__attribute__((section(".text.cCoreSave_getReelSlot")))
 /* God reel in slot `slot`; 0x1F (empty) when out of range. */
-int func_001FC198(cCoreSave *self, int slot) {
+int cCoreSave_getReelSlot(cCoreSave *self, int slot) {
     cCoreSaveData *data = self->data;
     unsigned char idx;
     if (data == 0) {

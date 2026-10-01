@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/ColiseumBattle.h"
 
-extern int Obj0000_Get_Field_BA8_Via_Ptr0_1FC530(void *p);
+extern int cCoreSave_getBonus(void *p);
 extern char D_00569B70[];
 extern int D_00568240;
 extern int D_003C2388;
@@ -68,7 +68,7 @@ void ColiseumBattle_Initialize(ColiseumBattle *self)
     char *g;
 
     *(Blob28 *)&self->ring =
-        D_003BE8B0[Obj0000_Get_Field_BA8_Via_Ptr0_1FC530(D_00569B70)];
+        D_003BE8B0[cCoreSave_getBonus(D_00569B70)];
     self->phase = 0;
     D_00568240 &= ~2;
     D_00568240 &= ~4;
@@ -89,7 +89,7 @@ void ColiseumBattle_Initialize(ColiseumBattle *self)
     self->mode = 0;
     self->state = 0;
     self->unk0C = 0;
-    t = func_001EF8B8(self);
+    t = ColiseumBattle_CountLiveEnemies(self);
     self->unkB88 = 0;
     self->enemyNum = t;
     func_001EFA50(self);

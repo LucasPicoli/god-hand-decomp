@@ -2,7 +2,7 @@
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
-extern void func_001FA1A0(void *a0);
+extern void cCoreSave_dropLevelPoint(void *a0);
 extern void func_0012C348(void *a0, int a1);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
@@ -30,7 +30,7 @@ void func_00103370(void *a0)
         p1 = *(int *)(v0 + 0x4C) + (int)v0;
         p2 = *(int *)(v0 + 0x50) + (int)v0;
         OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
-        func_001FA1A0(D_00569B70);
+        cCoreSave_dropLevelPoint(D_00569B70);
         func_0012C348(s3, 3);
         func_002A8578(s2, p1, p2, 0.0f, 2, 0, 0);
         SetEffect(0, 0x53, s2, 0, -1, 0xFFFFFFFF);

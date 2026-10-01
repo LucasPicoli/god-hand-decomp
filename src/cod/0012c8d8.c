@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120(void *a0);
+extern void cCoreSave_setPaper(void *a0);
 extern char *CreateObj(int a0, int a1);
 extern int cCoreSave_getCostumeNo(void *a0);
 extern int cOmWeapon_setParent();
@@ -25,7 +25,7 @@ void pl00_setPaper(void *a0) {
 
     if (*(int *)(s0 + 0x6A8) == 0) {
         w = (char *)&D_00569B70;
-        Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120(w);
+        cCoreSave_setPaper(w);
         obj = CreateObj(0x376, 0xFFFF);
         *(char **)(s0 + 0x6A8) = obj;
         if (obj != 0) {

@@ -33,9 +33,9 @@ ret0:
     return 0;
 }
 
-__attribute__((section(".text.func_001FC210")))
+__attribute__((section(".text.cCoreSave_findFreeReelSlot")))
 /* Index of the first empty reel slot, -1 when none. */
-int func_001FC210(cCoreSave *self)
+int cCoreSave_findFreeReelSlot(cCoreSave *self)
 {
     char i;
 

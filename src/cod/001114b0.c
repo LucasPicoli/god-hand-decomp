@@ -21,7 +21,7 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00124EC0(void *a0);
 extern void func_00129630(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
@@ -109,8 +109,8 @@ void func_001114B0(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -179,8 +179,8 @@ void func_001125A0(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:

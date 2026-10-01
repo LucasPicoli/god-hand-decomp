@@ -11,9 +11,9 @@ extern void func_0037C5F8(void *slot, void *obj, int bit);
 extern void func_0037C618(void *slot, void *obj, int bit);
 extern int *D_003C2384;
 extern int D_003C2388;
-extern void func_002AA1E0(int a0, int a1, int a2);
+extern void cIDBase_buildEntries(int a0, int a1, int a2);
 extern void func_002AA480(int a0);
-extern void func_001EF978(void *a0);
+extern void ColiseumBattle_DefeatAllEnemies(void *a0);
 extern void cEmSetParam_setEm(void *a0, int a1);
 extern void cEmWrap_StartAction(void *a0);
 extern char D_00586AB0[];
@@ -160,14 +160,14 @@ int cIDBase_setWorkFromData(int a0, int a1)
         goto ng;
     }
     if (*(int *)(a0 + 4) == 0) {
-        r = func_002ACE48(*D_003C2384, *(int *)(a0 + 0xC), *(int *)(a0 + 0x14),
+        r = cIDManager_allocBufRun(*D_003C2384, *(int *)(a0 + 0xC), *(int *)(a0 + 0x14),
                           *(int *)(a0 + 0x10));
         *(int *)(a0 + 4) = r;
         if (r == 0) {
             goto ng;
         }
     }
-    func_002AA1E0(a0, q, *(int *)(a0 + 0xC));
+    cIDBase_buildEntries(a0, q, *(int *)(a0 + 0xC));
     func_002AA480(a0);
     return 1;
 ng:
@@ -191,11 +191,11 @@ void func_001F2428(void *a0) {
     st = *(int *)(s0 + 0xB94);
     switch (st) {
     case 0:
-        func_001EF978(s0);
+        ColiseumBattle_DefeatAllEnemies(s0);
         *(int *)(s0 + 0xB94) = *(int *)(s0 + 0xB94) + 1;
         break;
     case 1:
-        if (func_001EF8B8(s0) != 0) break;
+        if (ColiseumBattle_CountLiveEnemies(s0) != 0) break;
         buf[0] = st;
         cEmSetParam_setEm(D_00586AB0, 1);
         cEmWrap_StartAction(buf);
@@ -203,7 +203,7 @@ void func_001F2428(void *a0) {
         *(int *)(s0 + 0xB94) = *(int *)(s0 + 0xB94) + 1;
         break;
     case 2:
-        if (func_001EF8B8(s0) != 0) break;
+        if (ColiseumBattle_CountLiveEnemies(s0) != 0) break;
         buf[0] = st;
         cEmSetParam_setEm(D_00586AB0, 2);
         cEmWrap_StartAction(buf);
@@ -211,7 +211,7 @@ void func_001F2428(void *a0) {
         *(int *)(s0 + 0xB94) = *(int *)(s0 + 0xB94) + 1;
         break;
     case 3:
-        if (func_001EF8B8(s0) != 0) break;
+        if (ColiseumBattle_CountLiveEnemies(s0) != 0) break;
         buf[0] = st;
         cEmSetParam_setEm(D_00586AB0, 3);
         cEmWrap_StartAction(buf);

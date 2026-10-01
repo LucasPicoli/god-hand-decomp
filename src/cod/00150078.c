@@ -522,7 +522,7 @@ int func_002CC4E0(void) {
 
 __attribute__((section(".text.func_002CD9E8")))
 int func_002CD9E8(void) {
-    return func_002CD9A0(1, 0xFFFF);
+    return cSndMemHeap_CloseAll(1, 0xFFFF);
 }
 
 __attribute__((section(".text.func_002D31E0")))

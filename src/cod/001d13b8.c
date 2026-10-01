@@ -7,7 +7,7 @@ extern void func_001D5500(void *a0, int a1);
 extern void SetBlendField5B4_1D57A0(void *a0, int a1);
 extern void NoOp_1D4B70(void *a0);
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
-extern int GetTimerValue_1FA710(char *a0);
+extern int cCoreSave_getGold(char *a0);
 extern void cCoreSave_addGold(char *a0, int a1, int a2);
 extern void cCoreSave_subGold(char *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
@@ -92,7 +92,7 @@ void func_001D13B8(BlackJack *self)
 
             if ((h & 0x10000000L) != 0) {
                 if (self->bet < self->betMax &&
-                    GetTimerValue_1FA710(D_00569B70) >= 0x64) {
+                    cCoreSave_getGold(D_00569B70) >= 0x64) {
                     int v;
 
                     cCoreSave_subGold(D_00569B70, 0x64);

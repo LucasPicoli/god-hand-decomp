@@ -20,11 +20,11 @@ extern void func_001F6A80(JukeBoxObj *self);
 extern cSnd D_005FEE00;
 extern void SetSequenceFlags_373810(cSndBgmNode *node, int bits);
 extern void ClearFlagBits_373858(cSndBgmNode *node, int bits);
-extern void func_002CD4A8(cSndBgmNode *node, float time);
+extern void cSndBgmNode_FadeOut(cSndBgmNode *node, float time);
 extern void UpdateSequenceNodeSetFlag_373488(cSndBgmNode *node);
 extern int GetSequenceResult_373770(cSndBgmNode *node);
 extern void func_002CC5E8(cSndBgmNode *node);
-extern void func_002CD470(cSndBgmNode *node, float time);
+extern void cSndBgmNode_FadeIn(cSndBgmNode *node, float time);
 
 /* sn-2.95.3-136 */
 
@@ -44,8 +44,8 @@ extern void func_002CD470(cSndBgmNode *node, float time);
 
 
 
-__attribute__((section(".text.func_001F5A98")))
-int func_001F5A98(JukeBoxObj *self)
+__attribute__((section(".text.JukeBox_Load")))
+int JukeBox_Load(JukeBoxObj *self)
 {
     char name[0x40];
     char *id;
@@ -98,12 +98,12 @@ int func_001F5A98(JukeBoxObj *self)
 }
 
 /* Runs one BGM node through its states: 0 start, 1 wait for the signal, 2 fade and wind down. */
-__attribute__((section(".text.func_002CD1D0")))
-void func_002CD1D0(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Run")))
+void cSndBgmNode_Run(cSndBgmNode *node)
 {
     switch (node->state2) {
     case 0:
-        if (func_002CD398(node) == 0)
+        if (cSndBgmNode_Start(node) == 0)
             return;
         if (node->wordA & 1) {
             SetSequenceFlags_373810(node, 8);
@@ -114,7 +114,7 @@ void func_002CD1D0(cSndBgmNode *node)
     case 1:
         if ((func_002D0770(&D_005FEE00) & node->param) == 0) {
             ClearFlagBits_373858(node, 8);
-            func_002CD4A8(node, 0.0f);
+            cSndBgmNode_FadeOut(node, 0.0f);
             node->state2 = 2;
         }
         if ((node->flags & 0x180000) == 0)
@@ -138,8 +138,8 @@ void func_002CD1D0(cSndBgmNode *node)
 }
 
 /* Runs one BGM node's fade state machine: 0 idle, 1 playing, 2 fading out for a restart. */
-__attribute__((section(".text.func_002CCBF8")))
-void func_002CCBF8(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Fade")))
+void cSndBgmNode_Fade(cSndBgmNode *node)
 {
     func_002CCB58(node);
     switch (node->state2) {
@@ -150,7 +150,7 @@ void func_002CCBF8(cSndBgmNode *node)
             return;
         if (node->flags & 0x1FF00)
             return;
-        if (func_002CD398(node) == 0)
+        if (cSndBgmNode_Start(node) == 0)
             return;
         SetSequenceFlags_373810(node, 8);
         node->state2 = 1;
@@ -160,7 +160,7 @@ void func_002CCBF8(cSndBgmNode *node)
             if (func_002D0770(&D_005FEE00) & node->param)
                 return;
         }
-        func_002CD4A8(node, 0.0f);
+        cSndBgmNode_FadeOut(node, 0.0f);
         node->wait = 0x3C;
         node->state2 = 2;
         return;
@@ -177,7 +177,7 @@ void func_002CCBF8(cSndBgmNode *node)
             return;
         if (node->saveWt != node->matchWt)
             return;
-        func_002CD470(node, 60.0f);
+        cSndBgmNode_FadeIn(node, 60.0f);
         node->wait = 0;
         node->state2 = 1;
         return;

@@ -41,8 +41,8 @@ void cSceAtUnit_getCenterPos(cSceAtUnit *self, float *pos)
 }
 
 /* Make the partner door follow this one: open it when we stand open, close it when we are shut. */
-__attribute__((section(".text.func_001A4F38")))
-void func_001A4F38(cOm4f *self)
+__attribute__((section(".text.cOm4f_syncDoor")))
+void cOm4f_syncDoor(cOm4f *self)
 {
     if (self->door == 0) return;
     if (cOm4f_isOpen(self) == 1) {

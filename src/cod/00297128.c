@@ -31,8 +31,8 @@ extern void Obj0000_Set_D_003C2555_One_2B65F0(int);
 
 /* Start reading the cutscene's display text; mark the record once the data
  * pointer has been filled in. */
-__attribute__((section(".text.func_00297540")))
-void func_00297540(cEvent *self) {
+__attribute__((section(".text.cEvent_startLoadText")))
+void cEvent_startLoadText(cEvent *self) {
     int name[8];
     char *fmt = D_0044A960;
     func_003A6C58(name, fmt, func_00297B80(self));
@@ -47,8 +47,8 @@ void func_00297540(cEvent *self) {
 /* Tear the cutscene down: free its data, clear the player's cutscene flags
  * (object offsets 0x250 and 0x6A8 are the flag word and the partner pointer),
  * put the player back, clear the cutscene globals and restore the screen. */
-__attribute__((section(".text.func_00297128")))
-void func_00297128(cEvent *self) {
+__attribute__((section(".text.cEvent_endPlay")))
+void cEvent_endPlay(cEvent *self) {
     char *player;
     char *jacket;
     char *partner;

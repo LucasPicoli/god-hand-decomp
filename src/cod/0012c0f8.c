@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int cCoreSave_getGameLevel(void *a0);
-extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *a0);
+extern int cCoreSave_getGameDifficulty(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float heat);
 extern char *D_00569B70;
 extern unsigned short D_005CAC94;
@@ -43,13 +43,13 @@ short func_0012C0F8(void *a0, int a1)
         f = 1.2f;
         break;
     }
-    if (Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(&D_00569B70) == 0 &&
+    if (cCoreSave_getGameDifficulty(&D_00569B70) == 0 &&
         (*(int *)(D_00569B70 + 0x14) & 0x4000000) == 0) {
         f *= 0.5f;
     } else {
         f *= 0.75f;
     }
-    if ((Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(&D_00569B70) ^ 2) != 0) {
+    if ((cCoreSave_getGameDifficulty(&D_00569B70) ^ 2) != 0) {
         unsigned short lv = D_005CAC94;
         if (lv >= 2) {
             if (lv >= 4) {

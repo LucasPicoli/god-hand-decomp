@@ -23,9 +23,9 @@ int Clear_Field_00_14_1F8A40(int a0) {
     return a0;
 }
 
-__attribute__((section(".text.GetSubObjAt180_1F9FF0")))
+__attribute__((section(".text.cCoreSave_getBlock180")))
 /* Address of the 0x180 block, or 0 without a record. */
-int GetSubObjAt180_1F9FF0(cCoreSave *self) {
+int cCoreSave_getBlock180(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) {
         return 0;
@@ -33,26 +33,26 @@ int GetSubObjAt180_1F9FF0(cCoreSave *self) {
     return (int)data->unk180;
 }
 
-__attribute__((section(".text.Obj1FA6_Set_Short_1C_1FA638")))
+__attribute__((section(".text.cCoreSave_setLevelPoint")))
 /* Set the level points. */
-void Obj1FA6_Set_Short_1C_1FA638(cCoreSave *self, short points)
+void cCoreSave_setLevelPoint(cCoreSave *self, short points)
 {
     cCoreSaveData *data = self->data;
     if (data != 0) data->levelPoint = points;
 }
 
-__attribute__((section(".text.GetArrayElemAt28_1FA838")))
+__attribute__((section(".text.cCoreSave_getAddGold")))
 /* Recent gold pickup `i`, 0 without a record. */
-int GetArrayElemAt28_1FA838(cCoreSave *self, int i)
+int cCoreSave_getAddGold(cCoreSave *self, int i)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;
     return data->addGold[i];
 }
 
-__attribute__((section(".text.GetByteAt134ByIndex_1FAD38")))
+__attribute__((section(".text.cCoreSave_getStock")))
 /* Stock count `i`, 0 without a record. */
-unsigned char GetByteAt134ByIndex_1FAD38(cCoreSave *self, int i)
+unsigned char cCoreSave_getStock(cCoreSave *self, int i)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;

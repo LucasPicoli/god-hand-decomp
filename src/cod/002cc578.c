@@ -13,8 +13,8 @@ extern void func_002CC5E8(cSndBgmNode *node);
 
 /* Clears a BGM node and marks it as having no bank and no request.
    The store order is pre-rotated by one: the scheduler emits bank second. */
-__attribute__((section(".text.func_002CC578")))
-void func_002CC578(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Init")))
+void cSndBgmNode_Init(cSndBgmNode *node)
 {
     func_003A52F0(node, 0, sizeof(cSndBgmNode));
     node->fadeTime = 0.0f;
@@ -26,8 +26,8 @@ void func_002CC578(cSndBgmNode *node)
 }
 
 /* Clears a voice and marks both ids unused. */
-__attribute__((section(".text.func_002CDA48")))
-void func_002CDA48(cSndSeVoice *v)
+__attribute__((section(".text.cSndSeVoice_Init")))
+void cSndSeVoice_Init(cSndSeVoice *v)
 {
     func_003A52F0(v, 0, sizeof(cSndSeVoice));
     v->idA = -1;
@@ -35,8 +35,8 @@ void func_002CDA48(cSndSeVoice *v)
 }
 
 /* Starts a BGM request on a node, if the bank's data is valid and the request number is in range. */
-__attribute__((section(".text.func_002CC900")))
-int func_002CC900(cSndBgmNode *node, int bank, int reqNo, int state, unsigned int param, int wordA, int wordB)
+__attribute__((section(".text.cSnd_BgmNodeStart")))
+int cSnd_BgmNodeStart(cSndBgmNode *node, int bank, int reqNo, int state, unsigned int param, int wordA, int wordB)
 {
     cSndBgmReq req;
     if (func_002CFF68((int *)cSnd_GetBgmData(D_005FEE00, bank)) == 0)
@@ -52,8 +52,8 @@ int func_002CC900(cSndBgmNode *node, int bank, int reqNo, int state, unsigned in
 }
 
 /* Tears down a used BGM node. */
-__attribute__((section(".text.func_002CCB10")))
-void func_002CCB10(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Release")))
+void cSndBgmNode_Release(cSndBgmNode *node)
 {
     if (func_002CC568(node) != 0) {
         UpdateSequenceNode_373430(node);

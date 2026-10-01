@@ -23,15 +23,15 @@ void InitDamageCollPair_1B18B8(unsigned char *a0) {
     cDamageUnit_SetDamageCollActive(*(unsigned char **)(a0 + 0x670), 1);
 }
 
-__attribute__((section(".text.FindFreeSlot_1FC020")))
-int FindFreeSlot_1FC020(int *a0) {
+__attribute__((section(".text.cCoreSave_findNextStage")))
+int cCoreSave_findNextStage(int *a0) {
     unsigned int s0;
     if (*a0 == 0) {
         return 0;
     }
     s0 = 1;
     while (s0 < 8) {
-        if (IsSet_Field_A4_1FBFD0(&D_00569B70, s0) == 0) {
+        if (cCoreSave_ckClearStage(&D_00569B70, s0) == 0) {
             break;
         }
         s0 = (s0 + 1) & 0xFF;

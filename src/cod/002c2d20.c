@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_0044C238;
-extern void func_002C2EB8(void *, void *);
+extern void cSceAtManager_refreshUnit(void *, void *);
 extern void func_002C2EF8(void *, void *);
 extern void func_003A6C58(void *, void *, ...);
 extern int SearchCameraData(void *);
@@ -66,7 +66,7 @@ void func_002C2D20(void *o) {
             break;
         }
         case 9:
-            func_002C2EB8(o, p);
+            cSceAtManager_refreshUnit(o, p);
             break;
         case 10: {
             unsigned int f = *(unsigned char *)(p + 0x3B);

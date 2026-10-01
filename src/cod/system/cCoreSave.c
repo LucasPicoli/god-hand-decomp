@@ -13,9 +13,9 @@ extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
 extern void cCoreSave_clearKillNpcNum(cCoreSave *self);
 extern void cCoreSave_initContinueNum(cCoreSave *self);
 extern void cCoreSave_setVital(cCoreSave *self, int vital);
-extern int GetField80ViaPtr_1FAC80(cCoreSave *self);
-extern void ClearField46Array_1FBDD0(cCoreSave *self);
-extern void InitSlotTable_1FAFA8(cCoreSave *self);
+extern int cCoreSave_getVitalMax(cCoreSave *self);
+extern void cCoreSave_clearKillEmNum(cCoreSave *self);
+extern void cCoreSave_initItem(cCoreSave *self);
 extern void func_002D9D48(int *a0, int a1);
 
 /* Game level 1..5 from the level points. Level 4 is never reported: a
@@ -194,13 +194,13 @@ void cCoreSave_addAllStageTime(cCoreSave *self, int ticks)
 /* Reset the per-stage counters. Health refills to max except on stage 0x20. */
 __attribute__((section(".text.cCoreSave_stageInit")))
 void cCoreSave_stageInit(cCoreSave *self) {
-    ClearField46Array_1FBDD0(self);
+    cCoreSave_clearKillEmNum(self);
     cCoreSave_clearKillNpcNum(self);
     cCoreSave_initContinueNum(self);
-    InitSlotTable_1FAFA8(self);
+    cCoreSave_initItem(self);
     func_002D9D48(D_0061A990, 0);
     if (D_00747A50 != 0x20) {
-        cCoreSave_setVital(self, GetField80ViaPtr_1FAC80(self));
+        cCoreSave_setVital(self, cCoreSave_getVitalMax(self));
     }
 }
 

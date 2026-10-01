@@ -23,7 +23,7 @@ extern void func_001E6E68(Slot2 *a0);
 extern void func_001E6FE8(Slot2 *a0);
 extern void func_001E79E8(void *a0);
 extern void func_001E8830(void *a0);
-extern int GetTimerValue_1FA710(void *a0);
+extern int cCoreSave_getGold(void *a0);
 extern void CustomIDWork_SetNumber(void *a0, int a1);
 extern void func_001E73C0(void *a0);
 extern void func_001E7440(void *a0);
@@ -41,8 +41,8 @@ extern int D_00747A2C;
 
 
 
-__attribute__((section(".text.func_001E4920")))
-void func_001E4920(Slot2 *self) {
+__attribute__((section(".text.Slot2_actBtnHandler")))
+void Slot2_actBtnHandler(Slot2 *self) {
     ResetEntityStateById_2C29F8((int)D_005FEA60, self->slotId);
     cScenario_taskExec(D_003C2F84, (void *)&func_001E4970, self, -1);
 }
@@ -54,8 +54,8 @@ void func_001E4920(Slot2 *self) {
 
 
 
-__attribute__((section(".text.func_001E6718")))
-void func_001E6718(Slot2 *self) {
+__attribute__((section(".text.Slot2_endGameStep")))
+void Slot2_endGameStep(Slot2 *self) {
     switch (self->step) {
     case 0:
         func_00143A90(D_003BD6E8 + 0x1AE0);
@@ -78,8 +78,8 @@ void func_001E6718(Slot2 *self) {
 
 
 
-__attribute__((section(".text.func_002AF590")))
-void func_002AF590(cMessDrawFont *self, int id) {
+__attribute__((section(".text.cMessDrawFont_setMessage")))
+void cMessDrawFont_setMessage(cMessDrawFont *self, int id) {
     void *msg;
     void *ruby;
 
@@ -114,8 +114,8 @@ extern Slot2VtTbl D_003BE140;
 
 
 
-__attribute__((section(".text.func_001E4D48")))
-void func_001E4D48(Slot2 *self) {
+__attribute__((section(".text.Slot2_update")))
+void Slot2_update(Slot2 *self) {
     Slot2VtTbl *vt = &D_003BE140;
     void *layer = self->layer;
     int t;
@@ -130,7 +130,7 @@ void func_001E4D48(Slot2 *self) {
     func_001E8830(&self->reel[0]);
     func_001E8830(&self->reel[1]);
     func_001E8830(&self->reel[2]);
-    t = GetTimerValue_1FA710(D_00569B70);
+    t = cCoreSave_getGold(D_00569B70);
     CustomIDWork_SetNumber(self->customId, t);
     func_001E73C0(layer);
     func_001E7440(layer);

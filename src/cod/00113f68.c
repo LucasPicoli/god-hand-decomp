@@ -6,7 +6,7 @@ extern void Obj293_SetByte_53D_2(void *a0);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
@@ -38,7 +38,7 @@ extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
 extern void func_001E97B0(void *p);
 extern void func_001EA1A8(void *p);
 extern void func_001E9E40(void *p);
-extern void func_002D14F8(void *p, float f);
+extern void cSnd_BgmFlaggedNodeKick(void *p, float f);
 extern void cSceAtManager_SetEnable_2C2950(void *p, int a);
 
 /* sn-2.95.3-136 matched TU. */
@@ -80,7 +80,7 @@ void func_00113F68(void *a0)
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
         func_00129578(s1);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x604) + t, *(int *)(t + 0x608) + t,
                       0.0f, 3, 0, 0);
@@ -249,7 +249,7 @@ void func_001E9F68(char *p)
     while (!FadeIsEnd(D_00747470)) {
         SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
     }
-    func_002D14F8(&D_005FEE00, 20.0f);
+    cSnd_BgmFlaggedNodeKick(&D_005FEE00, 20.0f);
     classFADE_kill(D_00747470);
     cSceAtManager_SetEnable_2C2950(&D_005FEA60, *(unsigned short *)(p + 0x1B0));
     cScenario__endSoftEvent(D_003C2F84);

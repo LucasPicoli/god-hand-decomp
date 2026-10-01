@@ -4,18 +4,18 @@
 #include "godhand/cWorldLight.h"
 
 extern cSndMemHeap D_00602F80, D_00603310, D_006036A0;
-extern void func_002CD780(cSndMemHeap *heap);
+extern void cSndMemHeap_Close(cSndMemHeap *heap);
 extern cSndMemHeap D_00602F80;
 extern void func_002CD668(cSndMemHeap *heap, int a1, int a2);
 
 /* On the all-heaps id (0xFFFF), shuts all three heaps down when the first argument is set. */
-__attribute__((section(".text.func_002CD9A0")))
-void func_002CD9A0(int on, int id)
+__attribute__((section(".text.cSndMemHeap_CloseAll")))
+void cSndMemHeap_CloseAll(int on, int id)
 {
     if (id == 0xFFFF && on != 0) {
-        func_002CD780(&D_00602F80);
-        func_002CD780(&D_00603310);
-        func_002CD780(&D_006036A0);
+        cSndMemHeap_Close(&D_00602F80);
+        cSndMemHeap_Close(&D_00603310);
+        cSndMemHeap_Close(&D_006036A0);
     }
 }
 
@@ -27,8 +27,8 @@ void Forward2CD668_2CD638(void)
 }
 
 /* Returns extra record idx, clamping idx to the last record. */
-__attribute__((section(".text.func_002D9018")))
-cWorldLightExtra *func_002D9018(cWorldLight *self, int idx)
+__attribute__((section(".text.cWorldLight_getExtra")))
+cWorldLightExtra *cWorldLight_getExtra(cWorldLight *self, int idx)
 {
     if (idx >= WORLDLIGHT_EXTRA_NUM) {
         idx = WORLDLIGHT_EXTRA_NUM - 1;

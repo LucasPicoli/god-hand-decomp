@@ -2,12 +2,12 @@
 #include "godhand/cEvent.h"
 
 
-extern int func_002965F0(cEvent *);
+extern int cEvent_updateStart(cEvent *);
 extern int func_00296818(cEvent *);
 extern int func_00296958(cEvent *);
 extern int UpdateSequenceState_296C28(cEvent *);
-extern void func_00297038(cEvent *);
-extern void func_00296DD8(cEvent *);
+extern void cEvent_updateRelease(cEvent *);
+extern void cEvent_movePlayStep(cEvent *);
 /* Run the stage the record is in. A stage that returns nonzero hands over to
  * the next one in the same call, so the cases fall through. */
 __attribute__((section(".text.func_00296530")))
@@ -21,7 +21,7 @@ void func_00296530(cEvent *self) {
         if (flags & CEVENT_F_ACTIVE) {
             switch ((signed char)self->state) {
             case CEVENT_STATE_START:
-                if (func_002965F0(self) == 0) {
+                if (cEvent_updateStart(self) == 0) {
                     return;
                 }
             case CEVENT_STATE_CLEAR:
@@ -37,10 +37,10 @@ void func_00296530(cEvent *self) {
                     return;
                 }
             case CEVENT_STATE_RELEASE:
-                func_00297038(self);
+                cEvent_updateRelease(self);
             }
         }
     } else {
-        func_00296DD8(self);
+        cEvent_movePlayStep(self);
     }
 }

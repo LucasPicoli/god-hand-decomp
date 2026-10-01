@@ -46,7 +46,7 @@ void ResetSlotArray_1FE6C8(cDataManager *self, int state) {
 /* 1 if the slot holding kind has finished loading. */
 __attribute__((section(".text.GetActiveEntry_1FE9B8")))
 int GetActiveEntry_1FE9B8(cDataManager *self, int kind) {
-    int i = func_001FEE00(self, kind);
+    int i = cDataManager_findKind(self, kind);
     if (i >= 0)
         return UpdateStateReady_1FF238(&self->slot[i]);
     return 0;
@@ -55,7 +55,7 @@ int GetActiveEntry_1FE9B8(cDataManager *self, int kind) {
 /* Free the slot holding kind. */
 __attribute__((section(".text.FreeActiveEntry_1FEC90")))
 int FreeActiveEntry_1FEC90(cDataManager *self, int kind) {
-    int i = func_001FEE00(self, kind);
+    int i = cDataManager_findKind(self, kind);
     if (i < 0) return 0;
     cDataHolder_systemInit(&self->slot[i]);
     return 1;
@@ -64,10 +64,10 @@ int FreeActiveEntry_1FEC90(cDataManager *self, int kind) {
 /* Replace the slot holding kind with a fresh load, pinned. */
 __attribute__((section(".text.AddActiveEntry_1FECE0")))
 int AddActiveEntry_1FECE0(cDataManager *self, int kind, void *buf) {
-    int i = func_001FEE00(self, kind);
+    int i = cDataManager_findKind(self, kind);
     if (i >= 0)
         FreeActiveEntry_1FEC90(self, kind);
-    i = func_001FEEA0(self);
+    i = cDataManager_findFreeSlot(self);
     if (i < 0) return 0;
     func_001FF470(&self->slot[i], kind, buf);
     self->slot[i].useCount = CDATA_USE_PINNED;

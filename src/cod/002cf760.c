@@ -5,13 +5,13 @@
 
 extern char D_00583F20[];
 extern unsigned char D_0044D070;
-extern void func_00200F50(char *, int);
+extern void cDvd_cancel(char *, int);
 extern void func_00322F58(void);
 extern void UnlinkAndCoalesceNode_2A9680(int, void *);
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
-extern void func_002CFF90(cBgmData *);
+extern void cBgmData_Reset(cBgmData *);
 extern void func_002D0360(cBgmData *);
 extern void func_002D0350(cBgmData *, int);
 extern char D_00603A40[];
@@ -19,16 +19,16 @@ extern char D_0044CF78[];
 extern unsigned int D_00747A34;
 extern void func_003A6A20(char *, int, int, int);
 extern void func_002CFCB0(cSeData *, int);
-extern void func_002CF310(cSeData *);
+extern void cSeData_Release(cSeData *);
 extern void func_002CFD50(cSeData *);
 extern void func_002CFC98(cSeData *);
 
 /* Release everything a bgm data slot holds and reset it. */
-__attribute__((section(".text.func_002CFF90")))
-void func_002CFF90(cBgmData *d)
+__attribute__((section(".text.cBgmData_Reset")))
+void cBgmData_Reset(cBgmData *d)
 {
     if (func_002D0318(d) == 0)
-        func_00200F50(D_00583F20, d->f1C);
+        cDvd_cancel(D_00583F20, d->f1C);
     if (func_002D03D0(d, 4) == 1 && func_002D03D0(d, 8) == 0 && func_00323000(d->f18) == 2)
         func_00322F58();
     if (d->head != 0)
@@ -42,15 +42,15 @@ void func_002CFF90(cBgmData *d)
 }
 
 /* Advance the bgm data slot's load state by one step. */
-__attribute__((section(".text.func_002D0068")))
-void func_002D0068(cBgmData *d)
+__attribute__((section(".text.cBgmData_UpdateLoad")))
+void cBgmData_UpdateLoad(cBgmData *d)
 {
     if (func_002D03D0(d, 1) != 0 && func_002CFF68(d) != 1) {
         if (func_002D03D0(d, 2) == 0) {
             if (func_002D0318(d) == 1) {
                 func_002D0360(d);
-                if (func_002D03E8(d) == 0)
-                    func_002CFF90(d);
+                if (cBgmData_PrepareDecode(d) == 0)
+                    cBgmData_Reset(d);
             }
         } else {
             if (func_002D03D0(d, 4) == 1 && func_00323000(d->f18) == 3)
@@ -60,8 +60,8 @@ void func_002D0068(cBgmData *d)
 }
 
 /* Resolve the slot's bank table entry once; 1 on success. */
-__attribute__((section(".text.func_002CF8E8")))
-int func_002CF8E8(cSeData *d)
+__attribute__((section(".text.cSeData_ResolveBank")))
+int cSeData_ResolveBank(cSeData *d)
 {
     int base;
 
@@ -81,21 +81,21 @@ int func_002CF8E8(cSeData *d)
 }
 
 /* Start loading bank bankId from buffer buf into the slot; 1 when it is usable. */
-__attribute__((section(".text.func_002CF760")))
-int func_002CF760(cSeData *d, int bankId, cSeBuf *buf, int f3C)
+__attribute__((section(".text.cSeData_LoadFromBuf")))
+int cSeData_LoadFromBuf(cSeData *d, int bankId, cSeBuf *buf, int f3C)
 {
     if (d->state != 0)
-        func_002CF310(d);
+        cSeData_Release(d);
     d->bankId = bankId;
     d->f3C = f3C;
     d->state = 1;
     func_002CFD50(d);
     d->buf = buf;
     func_002CFCB0(d, 0x181);
-    if (func_002CFA08(d) != 0) {
+    if (cSeData_CheckImage(d) != 0) {
         if (func_002CF868(d) != 1)
             return 1;
-        if (func_002CF888(d) != 0 && func_002CF8E8(d) != 0)
+        if (func_002CF888(d) != 0 && cSeData_ResolveBank(d) != 0)
             return 1;
     }
     func_002CFC98(d);

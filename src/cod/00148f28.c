@@ -539,9 +539,9 @@ void func_001F7820(char *base, struct Node *target) {
     }
 }
 
-__attribute__((section(".text.func_001FACF8")))
+__attribute__((section(".text.cCoreSave_addStock")))
 /* Add `d` to stock count `i`; at 0xFF it saturates and returns 0. */
-int func_001FACF8(cCoreSave *self, int i, int d) {
+int cCoreSave_addStock(cCoreSave *self, int i, int d) {
     unsigned char *b = self->data->stock;
     unsigned char *p = b + i;
     unsigned int v = *p + d;
@@ -554,9 +554,9 @@ int func_001FACF8(cCoreSave *self, int i, int d) {
     return 0;
 }
 
-__attribute__((section(".text.func_001FBD00")))
+__attribute__((section(".text.cCoreSave_setStat8A")))
 /* Set stat8A to 1..6; other values are ignored. */
-void func_001FBD00(cCoreSave *self, unsigned char v)
+void cCoreSave_setStat8A(cCoreSave *self, unsigned char v)
 {
     cCoreSaveData *data = self->data;
 

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_001EF978(void);
+extern void ColiseumBattle_DefeatAllEnemies(void);
 extern unsigned char D_00447BA0[];
 extern void func_002A84A8(void *p);
 extern void cCollisionSolidManage_ReleaseUnit_277540(void *p);
@@ -10,7 +10,7 @@ __attribute__((section(".text.func_001F0778")))
 void func_001F0778(int a0)
 {
     if (*(int *)(a0 + 0xB94) == 0) {
-        func_001EF978();
+        ColiseumBattle_DefeatAllEnemies();
         *(int *)(a0 + 0xB94) = *(int *)(a0 + 0xB94) + 1;
     }
 }
@@ -19,7 +19,7 @@ __attribute__((section(".text.func_001F0878")))
 void func_001F0878(int a0)
 {
     if (*(int *)(a0 + 0xB94) == 0) {
-        func_001EF978();
+        ColiseumBattle_DefeatAllEnemies();
         *(int *)(a0 + 0xB94) = *(int *)(a0 + 0xB94) + 1;
     }
 }
@@ -28,7 +28,7 @@ __attribute__((section(".text.func_001F1100")))
 void func_001F1100(int a0)
 {
     if (*(int *)(a0 + 0xB94) == 0) {
-        func_001EF978();
+        ColiseumBattle_DefeatAllEnemies();
         *(int *)(a0 + 0xB94) = *(int *)(a0 + 0xB94) + 1;
     }
 }
@@ -37,7 +37,7 @@ __attribute__((section(".text.func_001F17D0")))
 void func_001F17D0(int a0)
 {
     if (*(int *)(a0 + 0xB94) == 0) {
-        func_001EF978();
+        ColiseumBattle_DefeatAllEnemies();
         *(int *)(a0 + 0xB94) = *(int *)(a0 + 0xB94) + 1;
     }
 }
@@ -46,7 +46,7 @@ __attribute__((section(".text.func_001F2650")))
 void func_001F2650(int a0)
 {
     if (*(int *)(a0 + 0xB94) == 0) {
-        func_001EF978();
+        ColiseumBattle_DefeatAllEnemies();
         *(int *)(a0 + 0xB94) = *(int *)(a0 + 0xB94) + 1;
     }
 }

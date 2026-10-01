@@ -8,9 +8,9 @@ extern int D_00773250[];
 /* compiler: TBD ; extra keys: TBD */
 
 
-__attribute__((section(".text.func_001F9ED0")))
+__attribute__((section(".text.cCoreSave_saveSpawn")))
 /* Save the player's current spawn point into the record. */
-void func_001F9ED0(cCoreSave *self) {
+void cCoreSave_saveSpawn(cCoreSave *self) {
     char *base;
     cCoreSaveSpawnArg *s;
     if (self->data != 0) {

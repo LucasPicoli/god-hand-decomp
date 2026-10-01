@@ -39,7 +39,7 @@ void SetActorGoto_295F80(void *a0,int a1,int a2,int a3,float f){
 
 __attribute__((section(".text.ResetObjectState_2962B0")))
 void ResetObjectState_2962B0(void *a0) {
-    *(int *)((char *)a0 + 0x38) = GetSubObjAt180_1F9FF0(&D_00569B70);
+    *(int *)((char *)a0 + 0x38) = cCoreSave_getBlock180(&D_00569B70);
     func_00297660(a0);
     *(char *)((char *)a0 + 0x34) = 0;
     *(int *)((char *)a0 + 0) = 0;

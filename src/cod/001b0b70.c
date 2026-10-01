@@ -132,7 +132,7 @@ extern void cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
 extern void cDvd_CheckWait();
 extern void cIDManager_setIDData();
-extern int GetTimerValue_1FA710();
+extern int cCoreSave_getGold();
 extern void func_001F4648();
 extern void func_001F4B78();
 extern void func_001F4840();
@@ -174,7 +174,7 @@ void ColiseumEmSelect__Initialize(char *a0)
     cDvd_CheckWait(D_00583F20, r);
     cIDManager_setIDData(*D_003C2384, 0x15, *(int *)(a0 + 0x37D8));
     func_001F4648(a0 + 0x60);
-    func_001F4B78(a0 + 0x60, GetTimerValue_1FA710(&D_00569B70));
+    func_001F4B78(a0 + 0x60, cCoreSave_getGold(&D_00569B70));
     func_001F4840(a0 + 0x60);
     func_001F4068(a0, 0, &D_003BE8B0[*(short *)(a0 + 0x37D4)], 1);
     func_001F4068(a0, 1, &D_003BE8B0[*(short *)(a0 + 0x37D4) + 1], 1);

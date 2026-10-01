@@ -11,8 +11,8 @@ extern void MtxInitRotY(void *a0, float angle);
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 
 /* Reset a weapon to its resting state: release the hold bit, normal anim rate, state bytes cleared and phase 2. */
-__attribute__((section(".text.func_001CF340")))
-void func_001CF340(cOmWeapon *self) {
+__attribute__((section(".text.cOmWeapon_resetHold")))
+void cOmWeapon_resetHold(cOmWeapon *self) {
     self->base.animRate = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->base.phase = 2;
@@ -85,8 +85,8 @@ void cOmWeapon_setFall(cOmWeapon *self) {
 }
 
 /* Drop a held weapon at its holder's position (y taken from the child body) and put it in state 4. */
-__attribute__((section(".text.func_001CF8B0")))
-void func_001CF8B0(cOmWeapon *self) {
+__attribute__((section(".text.cOmWeapon_dropToGround")))
+void cOmWeapon_dropToGround(cOmWeapon *self) {
     float f[8] __attribute__((aligned(16)));
     cOmBase *body;
     cOmBase *body2;
@@ -127,8 +127,8 @@ void func_001CF8B0(cOmWeapon *self) {
 }
 
 /* Kick a held weapon off its holder: drop it at the holder's position, give it a small sideways velocity rotated by the player's heading, and enter state 0x13. */
-__attribute__((section(".text.func_001CF6E0")))
-void func_001CF6E0(cOmWeapon *self) {
+__attribute__((section(".text.cOmWeapon_kickOff")))
+void cOmWeapon_kickOff(cOmWeapon *self) {
     float f[24] __attribute__((aligned(16)));
     float *mtx;
     cOmBase *body;

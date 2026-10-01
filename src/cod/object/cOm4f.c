@@ -27,7 +27,7 @@ void cOm4f_setLock(cOm4f *self, int lock) {
     self->lock = (unsigned char)lock;
 }
 
-/* Remember the partner door that func_001A4F38 keeps in step. */
+/* Remember the partner door that cOm4f_syncDoor keeps in step. */
 __attribute__((section(".text.cOm4f_connectDoor")))
 void cOm4f_connectDoor(cOm4f *self, void *door) {
     self->door = door;

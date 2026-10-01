@@ -9,8 +9,8 @@ extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a
 #define DEAL_FRAMES 20
 
 /* Deal one card to the player: wait, slide it onto the table, then pick the next state. */
-__attribute__((section(".text.func_001D3110")))
-void func_001D3110(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateDealPlayer")))
+void BlackJack_UpdateDealPlayer(BlackJack *self)
 {
     switch ((unsigned int)self->phase) {
     case 0:
@@ -64,8 +64,8 @@ void func_001D3110(BlackJack *self)
 #define DEAL_FRAMES 20
 
 /* Deal one card to the dealer: wait, slide it onto the table, then pick the next state. */
-__attribute__((section(".text.func_001D2CF0")))
-void func_001D2CF0(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateDealDealer")))
+void BlackJack_UpdateDealDealer(BlackJack *self)
 {
     switch ((unsigned int)self->phase) {
     case 0:

@@ -12,7 +12,7 @@ extern cSceAtUnit *func_002C30C8(cSceAtManager *self, cSceAtUnit *e);
 extern void func_002C3058(cSceAtManager *self, unsigned int *list, cSceAtUnit *unit);
 extern cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id);
 extern int cSceAtManager_SetEnable_2C28F8(cSceAtManager *self, cSceAtUnit *unit);
-extern void cSceAtManager_AtDataSet_exec_2C2750(cSceAtManager *self, cSceAtUnit *unit, int a2, int a3, int a4, int a5);
+extern void cSceAtManager_AtDataSetExec(cSceAtManager *self, cSceAtUnit *unit, int a2, int a3, int a4, int a5);
 
 /* Turn one unit on, unless it already is. Returns 0 if the manager is off. */
 __attribute__((section(".text.cSceAtManager_SetEnable_2C28F8")))
@@ -82,24 +82,24 @@ __attribute__((section(".text.cSceAtManager_AtDataSet_exec")))
 void cSceAtManager_AtDataSet_exec(cSceAtManager *self, unsigned short id, int a2, int a3, int a4, int a5) {
     cSceAtUnit *unit = cSceAtManager_getUnit(self, id);
     if (unit) {
-        cSceAtManager_AtDataSet_exec_2C2750(self, unit, a2, a3, a4, a5);
+        cSceAtManager_AtDataSetExec(self, unit, a2, a3, a4, a5);
     }
 }
 
 /* Take one unit out of the manager's unit list. */
-/* cSceAtManager_AtExecute_2C2870: run the type handler of one unit with the full-strength argument. */
+/* cSceAtManager_AtExecuteUnit: run the type handler of one unit with the full-strength argument. */
 
-__attribute__((section(".text.cSceAtManager_AtExecute_2C2870")))
-void cSceAtManager_AtExecute_2C2870(cSceAtManager *self, cSceAtUnit *unit) {
+__attribute__((section(".text.cSceAtManager_AtExecuteUnit")))
+void cSceAtManager_AtExecuteUnit(cSceAtManager *self, cSceAtUnit *unit) {
     if (unit != 0) {
         D_003C2650[unit->type].handler(unit, SCEAT_ON_RESET);
     }
 }
 
-/* cSceAtManager_AtExecute_2C28B0: look a unit up by id and run its type handler. */
+/* cSceAtManager_AtExecuteById: look a unit up by id and run its type handler. */
 
-__attribute__((section(".text.cSceAtManager_AtExecute_2C28B0")))
-void cSceAtManager_AtExecute_2C28B0(cSceAtManager *self, unsigned short id) {
+__attribute__((section(".text.cSceAtManager_AtExecuteById")))
+void cSceAtManager_AtExecuteById(cSceAtManager *self, unsigned short id) {
     cSceAtUnit *unit = cSceAtManager_getUnit(self, id);
     if (unit != 0) {
         D_003C2650[unit->type].handler(unit, SCEAT_ON_RESET);

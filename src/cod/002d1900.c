@@ -6,12 +6,12 @@
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
-extern void func_002CFF90(cBgmData *);
+extern void cBgmData_Reset(cBgmData *);
 extern void cSnd_BgmEvFadeSet(cSnd *, int, int, float, float, float);
 
 /* Fade a bgm request over 15 with the default weight. */
-__attribute__((section(".text.func_002D1E18")))
-void func_002D1E18(cSnd *self, int bgmPt, int reqNo)
+__attribute__((section(".text.cSnd_BgmEvFadeDefault")))
+void cSnd_BgmEvFadeDefault(cSnd *self, int bgmPt, int reqNo)
 {
     cSnd_BgmEvFadeSet(self, bgmPt, reqNo, 0.0f, 15.0f, -1.0f);
 }
@@ -20,7 +20,7 @@ void func_002D1E18(cSnd *self, int bgmPt, int reqNo)
 __attribute__((section(".text.cSnd_BgmEvDataInit")))
 void cSnd_BgmEvDataInit(cSnd *self, int arg)
 {
-    func_002CFF90(cSnd_GetBgmData(self, 1));
+    cBgmData_Reset(cSnd_GetBgmData(self, 1));
     func_002D0128(cSnd_GetBgmData(self, 1), 1, arg);
 }
 
@@ -46,7 +46,7 @@ int cSnd_BgmEvCutCheck(cSnd *self, int reqNo)
     for (i = 0; i < head->tblNum; i++) {
         cBgmTbl *tbl = cBgmData_GetTblPtr(cSnd_GetBgmData(self, 1), i);
         if (tbl != 0 && tbl->type != 0x80 && tbl->reqNo == reqNo) {
-            if (func_002D1DD0(self, 1, i) != 1)
+            if (cSnd_BgmEvIsReady(self, 1, i) != 1)
                 return 0;
         }
     }

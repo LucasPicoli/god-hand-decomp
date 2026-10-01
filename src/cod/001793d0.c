@@ -21,14 +21,14 @@ extern void CustomIDWork_Initialize(void *p, void *w);
 extern void CustomIDWork_SetDisp(void *p, int f);
 extern void CustomIDWork_SetNumber_1DD218(void *p, int n);
 extern void func_001DD238(void *p, int n);
-extern void SetFieldShorts0C0E_1F9C88(void *p);
-extern void func_001F9ED0(void *p);
-extern void CopyGlobalPairToTarget_1F9C30(void *p);
-extern void UpdateCounterClamped_1F9C58(void *p);
-extern void func_001F9DD0(void *p);
-extern void func_001F9E28(void *p);
-extern void Obj0000_Set_Field_178_D_00747A0C_1F9E90(void *p);
-extern void func_001FACB0(void *p);
+extern void cCoreSave_saveStageIds(void *p);
+extern void cCoreSave_saveSpawn(void *p);
+extern void cCoreSave_saveWorldTime(void *p);
+extern void cCoreSave_addCounter08(void *p);
+extern void cCoreSave_saveWorldActive(void *p);
+extern void cCoreSave_saveWorldToggle(void *p);
+extern void cCoreSave_saveGlobalToggle(void *p);
+extern void cCoreSave_updateVitalMax(void *p);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void cCoreSave_setVital(void *p, int v);
 
@@ -140,19 +140,19 @@ void func_001DD0D8(char *p)
     func_001DD238(p, 0);
 }
 
-__attribute__((section(".text.func_001F9B88")))
-void func_001F9B88(char *p, int flag)
+__attribute__((section(".text.cCoreSave_snapshot")))
+void cCoreSave_snapshot(char *p, int flag)
 {
-    SetFieldShorts0C0E_1F9C88(p);
+    cCoreSave_saveStageIds(p);
     if (flag != 0) {
-        func_001F9ED0(p);
-        CopyGlobalPairToTarget_1F9C30(p);
-        UpdateCounterClamped_1F9C58(p);
-        func_001F9DD0(p);
-        func_001F9E28(p);
-        Obj0000_Set_Field_178_D_00747A0C_1F9E90(p);
+        cCoreSave_saveSpawn(p);
+        cCoreSave_saveWorldTime(p);
+        cCoreSave_addCounter08(p);
+        cCoreSave_saveWorldActive(p);
+        cCoreSave_saveWorldToggle(p);
+        cCoreSave_saveGlobalToggle(p);
     }
-    func_001FACB0(p);
+    cCoreSave_updateVitalMax(p);
     if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) > 0) {
         cCoreSave_setVital(p, *(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A));
     } else {

@@ -187,14 +187,14 @@ int func_002CF888(cSeData *d)
     return 1;
 }
 
-/* Load bank bankId through func_002CF600; on success remember arg in the slot. */
+/* Load bank bankId through cSeData_LoadFile; on success remember arg in the slot. */
 __attribute__((section(".text.func_002CF6F8")))
 int func_002CF6F8(cSeData *d, int bankId, int arg)
 {
     int buf[16];
     int r;
     func_002CFE68(d, bankId, arg, buf);
-    r = func_002CF600(d, bankId, buf);
+    r = cSeData_LoadFile(d, bankId, buf);
     if (r == 1)
         d->f3C = arg;
     return r;

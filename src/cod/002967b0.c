@@ -8,8 +8,8 @@ extern unsigned char D_0074748C;
 
 /* Nonzero when a cutscene is blocked by a screen flag. Needs the call-loop
  * pad: retail's assembler padded the short backward branch. */
-__attribute__((section(".text.func_002967B0")))
-int func_002967B0(cEvent *self)
+__attribute__((section(".text.cEvent_isScreenBusy")))
+int cEvent_isScreenBusy(cEvent *self)
 {
     unsigned long f;
 

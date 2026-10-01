@@ -13,7 +13,7 @@ extern void func_001F3488(char *a0, int a1);
 extern void cCoreSave_SetFightingRingClearFlag(char *a0, int a1, int a2);
 extern int cCoreSave_getClearNum(char *a0);
 extern void cCoreSave_setGold(char *a0, int a1);
-extern int GetTimerValue_1FA710(char *a0);
+extern int cCoreSave_getGold(char *a0);
 extern void cCoreSave_addGold(char *a0, int a1, int a2);
 extern void classFADE_start(void *p, int b, int c, int d, int e, unsigned int f, int g);
 extern void cScenario_beginRoomJump_2C4548(char *p, int a1, float f, void *buf, int a3, unsigned int t0, int t1);
@@ -147,13 +147,13 @@ void func_001EF180(ColiseumBattle *self)
         break;
     case 5:
         if (self->prizeSteps == 0 || (D_00747640 & 0xF00000000L) != 0) {
-            cCoreSave_setGold(D_00569B70, GetTimerValue_1FA710(D_00569B70) + self->prizeSteps * 0x3E8);
+            cCoreSave_setGold(D_00569B70, cCoreSave_getGold(D_00569B70) + self->prizeSteps * 0x3E8);
             self->timer = 0x1E;
             self->state = self->state + 1;
             self->prizeSteps = 0;
         } else {
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x165, -1, -1, 0, 0);
-            cCoreSave_setGold(D_00569B70, GetTimerValue_1FA710(D_00569B70) + 0x3E8);
+            cCoreSave_setGold(D_00569B70, cCoreSave_getGold(D_00569B70) + 0x3E8);
             self->prizeSteps = self->prizeSteps - 1;
         }
         func_001F33F8(self->ui, 1, self->prizeSteps * 0x3E8);

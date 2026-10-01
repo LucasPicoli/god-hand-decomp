@@ -9,7 +9,7 @@ extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
 extern void cCoreSave_addGold(void *a0, int a1, int a2);
 extern void cCoreSave_subGold(void *a0, int a1);
-extern int GetTimerValue_1FA710(void *a0);
+extern int cCoreSave_getGold(void *a0);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int D_007474A0;
 extern unsigned char D_005FEE00[];
@@ -47,7 +47,7 @@ void func_001D79D8(void *a0) {
             *(unsigned char *)(o + 0x3025) = 0;
             *(unsigned char *)(o + 0x3024) = 1;
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
-            while (*(int *)(o + 0x3034) < *(int *)(o + 0x3030) && GetTimerValue_1FA710(&D_00569B70) >= 0x64) {
+            while (*(int *)(o + 0x3034) < *(int *)(o + 0x3030) && cCoreSave_getGold(&D_00569B70) >= 0x64) {
                 cCoreSave_subGold(&D_00569B70, 0x64);
                 *(int *)(o + 0x3034) = *(int *)(o + 0x3034) + 0x64;
                 *(int *)(o + 0x3020) = *(int *)(o + 0x3020) | 8;

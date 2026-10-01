@@ -14,7 +14,7 @@ extern void cOmTrump_Initialize(BlackJackCardObj *obj, int rank);
 extern void func_001D4DF0(BlackJack *self);
 extern void BlackJackId_SetDefaultDisp(BlackJack *self);
 extern void CustomIDWork_SetNumber_1D5760(BlackJack *self, int n);
-extern int GetTimerValue_1FA710(int *save);
+extern int cCoreSave_getGold(int *save);
 extern void func_001D5780(BlackJack *self, int gold);
 extern int *D_003C2384;
 extern void *D_003C2380;
@@ -30,8 +30,8 @@ extern void cMessDrawFont_setEnvInit(void *a0);
 extern void func_002AF6A8(void *a0, int a1, int a2);
 
 /* State 0, first call: start the table sound-bank load and mark setup done. */
-__attribute__((section(".text.func_001D4480")))
-void func_001D4480(BlackJack *self)
+__attribute__((section(".text.BlackJack_StartSetup")))
+void BlackJack_StartSetup(BlackJack *self)
 {
     if (self->phase == 0) {
         func_00143A90(D_003BD6E8 + 0x1AE0);
@@ -41,8 +41,8 @@ void func_001D4480(BlackJack *self)
 }
 
 /* Both sides have stood: compare the totals and pick the result state (0xE dealer wins, 0xF player wins, 0x10 push, 0x11 blackjack). */
-__attribute__((section(".text.func_001D3430")))
-void func_001D3430(BlackJack *self)
+__attribute__((section(".text.BlackJack_PickResult")))
+void BlackJack_PickResult(BlackJack *self)
 {
     int player = func_001D4720(self);
     int dealer = func_001D47E8(self);
@@ -186,7 +186,7 @@ void BlackJack_Initialize(BlackJack *self, int level)
     func_001D4DF0(self);
     BlackJackId_SetDefaultDisp(self);
     CustomIDWork_SetNumber_1D5760(self, 0);
-    func_001D5780(self, GetTimerValue_1FA710(&D_00569B70));
+    func_001D5780(self, cCoreSave_getGold(&D_00569B70));
 }
 
 /* Bind a packed message resource: look up its font textures and the cursor

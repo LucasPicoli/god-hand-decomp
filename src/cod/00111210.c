@@ -30,7 +30,7 @@ extern void MaxField514_292030(void *a0, int a1);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern void func_00129578(void *a0);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00129630(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
 
@@ -256,8 +256,8 @@ void func_00111210(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:

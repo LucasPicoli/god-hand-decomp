@@ -7,8 +7,8 @@ extern char D_00583EC0[];
 extern void SetField_1C_2009B0(void *, cCoreSaveSpawnArg *);
 
 /* Hand the saved respawn point to the player-spawn setup. */
-__attribute__((section(".text.func_001F9F50")))
-void func_001F9F50(cCoreSave *self)
+__attribute__((section(".text.cCoreSave_loadSpawn")))
+void cCoreSave_loadSpawn(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     cCoreSaveSpawnArg spawn;

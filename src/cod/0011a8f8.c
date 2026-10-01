@@ -52,7 +52,7 @@ void func_002CDA80(cSndSeVoice *voice)
         voice->delay = voice->delay - 1;
         return;
     }
-    found = func_002CF218(voice, voice->key0, voice->key1, buf);
+    found = cSnd_SeCheckParam(voice, voice->key0, voice->key1, buf);
     if (found == -1) {
         goto reset;
     }

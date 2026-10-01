@@ -26,8 +26,8 @@ void cDamageUnit_SetDamageCollRadius(cDamageUnit *self, int id, float radius)
 }
 
 /* Close the screen: release its id, clear the two scenario words and free the card node. */
-__attribute__((section(".text.func_001F38A0")))
-void func_001F38A0(ColiseumEmSelect *self)
+__attribute__((section(".text.ColiseumEmSelect_close")))
+void ColiseumEmSelect_close(ColiseumEmSelect *self)
 {
     ColiseumHost *host;
     func_001F46E0(self->idBase);
@@ -39,11 +39,11 @@ void func_001F38A0(ColiseumEmSelect *self)
     }
 }
 
-/* cSceAtManager_AtDataSet_exec_2C2750: set hit kind, data and frame count on one unit. */
+/* cSceAtManager_AtDataSetExec: set hit kind, data and frame count on one unit. */
 
 
-__attribute__((section(".text.cSceAtManager_AtDataSet_exec_2C2750")))
-void cSceAtManager_AtDataSet_exec_2C2750(cSceAtManager *self, cSceAtUnit *unit, int a2, int a3, int a4, int a5) {
+__attribute__((section(".text.cSceAtManager_AtDataSetExec")))
+void cSceAtManager_AtDataSetExec(cSceAtManager *self, cSceAtUnit *unit, int a2, int a3, int a4, int a5) {
     if (unit != 0) {
         if (a5 != 0) {
             if (unit->prevHitKind == 0) {

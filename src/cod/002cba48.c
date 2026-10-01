@@ -47,10 +47,10 @@ int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int
     if (cSeData_IsAlive(r) == 0)
         return 0;
     {
-        int v = func_002CBEC0(s3);
+        int v = cSnd_AllocVoice(s3);
         if (v == 0)
             return 0;
-        return func_002CDD18(v, s4, sa2, (int)s5, s6, s7, fp);
+        return cSndSeVoice_Bind(v, s4, sa2, (int)s5, s6, s7, fp);
     }
 }
 

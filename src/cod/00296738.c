@@ -10,8 +10,8 @@ extern int D_00747A84;
 extern void func_0();
 
 /* Start the opening fade, unless a fade or movie flag already owns the screen. */
-__attribute__((section(".text.func_00296738")))
-void func_00296738(cEvent *self) {
+__attribute__((section(".text.cEvent_startPlayFade")))
+void cEvent_startPlayFade(cEvent *self) {
     unsigned long f;
     if (D_00747A2C >= 0) {
         f = D_00586B34;
@@ -53,8 +53,8 @@ void cEvent_movePlayInit(cEvent *self) {
 
 /* Run the move scene's stripped teardown hooks and return the last result,
  * or 0 when no move scene is running. */
-__attribute__((section(".text.func_00296DD8")))
-int func_00296DD8(cEvent *self) {
+__attribute__((section(".text.cEvent_movePlayStep")))
+int cEvent_movePlayStep(cEvent *self) {
     unsigned long f = self->flags;
     long on = (f >> 2) & 1;                /* CEVENT_F_MOVE_ON */
     if (on == 0) return 0;

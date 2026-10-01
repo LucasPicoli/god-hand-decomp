@@ -7,7 +7,7 @@ extern void *D_003C2F84;
 typedef struct { char pad[0x1B0]; short f; } CacT;
 extern CacT D_005CAC90;              /* struct base; sh @0x1B0 */
 extern int D_00747470;               /* fade obj base */
-extern int D_005FEE00;               /* arg to func_002D14F8 */
+extern int D_005FEE00;               /* arg to cSnd_BgmFlaggedNodeKick */
 extern void Set_bg_mode(int a, int b, int c, int d);
 extern void classFADE_start(void *p, int b, int c, int d, int e, unsigned int f, int g);
 extern void classFADE_kill(void *p);
@@ -16,10 +16,10 @@ extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void pl00_reset(void *p);
 extern void func_001F6B78(void *p, int a);
 extern void func_001F6C40(void *p, int a);
-extern int func_001F5A98(void *p);
+extern int JukeBox_Load(void *p);
 extern void func_001F5E90(void *p);
 extern void func_001F5C48(void *p);
-extern void func_002D14F8(void *p, float f);
+extern void cSnd_BgmFlaggedNodeKick(void *p, float f);
 
 extern void cIDBase(void *);
 
@@ -53,7 +53,7 @@ void JukeBox_Execute(JukeBoxObj *self)
     func_001F6B78(self, 1);
     func_001F6C40(self, 1);
 
-    if (func_001F5A98(self) && self->done == 0) {
+    if (JukeBox_Load(self) && self->done == 0) {
         do {
             func_001F5E90(self);
             SetFieldsCESignalSemaSleep_2D5AA0(
@@ -64,7 +64,7 @@ void JukeBox_Execute(JukeBoxObj *self)
     func_001F5C48(self);
 
     D_005CAC90.f = 0x1E;
-    func_002D14F8(&D_005FEE00, 20.0f);
+    cSnd_BgmFlaggedNodeKick(&D_005FEE00, 20.0f);
     func_001F6B78(self, 0);
 
     classFADE_start(&D_00747470, 0, 0xA, 0, 0xFF000000, 0, 0xF);

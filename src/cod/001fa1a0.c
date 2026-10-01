@@ -3,15 +3,15 @@
 
 extern int D_00569B70;
 extern unsigned int D_00568240;
-extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *a0);
+extern int cCoreSave_getGameDifficulty(void *a0);
 extern int cCoreSave_getGameLevel(void *a0);
 extern void cCoreSave_setGameLevel(void *a0, int level);
 
-__attribute__((section(".text.func_001FA1A0")))
+__attribute__((section(".text.cCoreSave_dropLevelPoint")))
 /* Drop the level points to the start of the level below the current one.
  * Skipped on difficulty 2, and when the 0x4000000 record flag is set
  * without the 0x2 cheat bit. */
-void func_001FA1A0(cCoreSave *self)
+void cCoreSave_dropLevelPoint(cCoreSave *self)
 {
     int byte;
     cCoreSaveData *global;
@@ -21,7 +21,7 @@ void func_001FA1A0(cCoreSave *self)
     if (self->data == 0) {
         return;
     }
-    byte = Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(self);
+    byte = cCoreSave_getGameDifficulty(self);
     if (byte == 2) {
         return;
     }

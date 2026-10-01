@@ -12,15 +12,15 @@ extern int cBgmData_GetHeadPtr(int data);
 extern int SetSequenceEntry_373158(cSndBgmNode *node, int reqNo);
 extern int UpdateSequenceEntry_373298(cSndBgmNode *node, int reqNo);
 extern void UpdateSequenceNodeWeighted_373560(cSndBgmNode *node, int a1, float w);
-extern void func_002CD470(cSndBgmNode *node, float time);
+extern void cSndBgmNode_FadeIn(cSndBgmNode *node, float time);
 extern void func_0030A538(float *pos, int mtx);
 
 /* Moves a fresh node from state 0 to 1, then releases it once its sequence has finished. */
-__attribute__((section(".text.func_002CD310")))
-void func_002CD310(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Update")))
+void cSndBgmNode_Update(cSndBgmNode *node)
 {
     if (node->state2 == 0) {
-        if (func_002CD398(node) == 0)
+        if (cSndBgmNode_Start(node) == 0)
             return;
         if (node->wordA == 0)
             ClearFlagBits_373858(node, 8);
@@ -35,8 +35,8 @@ void func_002CD310(cSndBgmNode *node)
 
 /* Starts a node's sequence from its bank and request. Returns 1 once it is running, 0 if it cannot start.
    Every failure after the first test jumps to one shared return 0, as retail lays it out. */
-__attribute__((section(".text.func_002CD398")))
-int func_002CD398(cSndBgmNode *node)
+__attribute__((section(".text.cSndBgmNode_Start")))
+int cSndBgmNode_Start(cSndBgmNode *node)
 {
     int ok;
     float zero;
@@ -58,7 +58,7 @@ ng:
         goto ng;
     zero = 0.0f;
     UpdateSequenceNodeWeighted_373560(node, -1, zero);
-    func_002CD470(node, zero);
+    cSndBgmNode_FadeIn(node, zero);
     node->wait = 0;
     return 1;
 }
@@ -70,8 +70,8 @@ ng:
 
 
 /* Binds a free voice to an object or part, places it at that object's position, then starts it. */
-__attribute__((section(".text.func_002CDD18")))
-int func_002CDD18(cSndSeVoice *v, short key0, short key1, char *obj, char *part, int a5, int a6)
+__attribute__((section(".text.cSndSeVoice_Bind")))
+int cSndSeVoice_Bind(cSndSeVoice *v, short key0, short key1, char *obj, char *part, int a5, int a6)
 {
     if (func_002CDA38(v) == 1)
         return 0;
@@ -95,8 +95,8 @@ int func_002CDD18(cSndSeVoice *v, short key0, short key1, char *obj, char *part,
 }
 
 /* Binds a free voice to a fixed matrix (0 = the global origin), places it there, then starts it. */
-__attribute__((section(".text.func_002CDE28")))
-int func_002CDE28(cSndSeVoice *v, short key0, short key1, int mtx, int a5, int a6)
+__attribute__((section(".text.cSndSeVoice_BindMtx")))
+int cSndSeVoice_BindMtx(cSndSeVoice *v, short key0, short key1, int mtx, int a5, int a6)
 {
     if (func_002CDA38(v) == 1)
         return 0;

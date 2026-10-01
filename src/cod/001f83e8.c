@@ -19,14 +19,14 @@ void func_00381D38(int a0, int *a1) {
     }
 }
 
-extern int func_001F8488(cArea *self, float *pt);
+extern int cArea_HitCheckQuad(cArea *self, float *pt);
 extern int func_001F8550(cArea *self, float *pt);
 /* Does the area contain the point? Picks the quad or circle test by area type. */
 __attribute__((section(".text.cArea_HitCheck_1F83E8")))
 int cArea_HitCheck_1F83E8(cArea *self, float *pt) {
     switch (self->type) {
     case CAREA_TYPE_QUAD:
-        return func_001F8488(self, pt);
+        return cArea_HitCheckQuad(self, pt);
     case CAREA_TYPE_CIRCLE:
         return func_001F8550(self, pt);
     }

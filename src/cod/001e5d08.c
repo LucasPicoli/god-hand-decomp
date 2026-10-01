@@ -10,7 +10,7 @@ extern void func_001E8E48(void *a0, void *a1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
-extern int IsTimerExpired_1FA8E0(void *a0);
+extern int cCoreSave_isGoldFull(void *a0);
 extern void cCoreSave_addGold(void *a0, int a1, int a2);
 extern char D_005FEE00[];
 extern char D_00569B70[];
@@ -35,8 +35,8 @@ extern void func_001E6C80(Slot2 *a0, int a1, int a2);
 
 
 
-__attribute__((section(".text.func_001E5D08")))
-void func_001E5D08(Slot2 *self) {
+__attribute__((section(".text.Slot2_payoutLine1")))
+void Slot2_payoutLine1(Slot2 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -65,7 +65,7 @@ void func_001E5D08(Slot2 *self) {
         self->phase = self->phase + 1;
         break;
     case 2:
-        if (self->coinNum == 0 || IsTimerExpired_1FA8E0(D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
+        if (self->coinNum == 0 || cCoreSave_isGoldFull(D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
             cSnd_SeStop(D_005FEE00, self->seId[1]);
             cCoreSave_addGold(D_00569B70, self->coinUnit * self->coinNum, 0);
             func_001E6ED8(self, 0, 0);
@@ -102,8 +102,8 @@ void func_001E5D08(Slot2 *self) {
 
 
 
-__attribute__((section(".text.func_001E6270")))
-void func_001E6270(Slot2 *self) {
+__attribute__((section(".text.Slot2_payoutLine2")))
+void Slot2_payoutLine2(Slot2 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -132,7 +132,7 @@ void func_001E6270(Slot2 *self) {
         self->phase = self->phase + 1;
         break;
     case 2:
-        if (self->coinNum == 0 || IsTimerExpired_1FA8E0(D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
+        if (self->coinNum == 0 || cCoreSave_isGoldFull(D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
             cSnd_SeStop(D_005FEE00, self->seId[1]);
             cCoreSave_addGold(D_00569B70, self->coinUnit * self->coinNum, 0);
             func_001E6ED8(self, 0, 0);

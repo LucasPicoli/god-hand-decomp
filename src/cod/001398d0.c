@@ -141,7 +141,7 @@ void *InitActorVtable_2CC500(void *a0)
 {
 	int r = Obj0000_Set_Field_80_372C68(a0);
 	*(int **)((char *)a0 + 0x80) = &D_0044CEE8;
-	func_002CC578(a0);
+	cSndBgmNode_Init(a0);
 	return a0;
 }
 

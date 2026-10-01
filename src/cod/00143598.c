@@ -4,7 +4,7 @@ extern int D_00421FE8;
 extern int InitFields_1B6E90(void *self);
 extern char D_00569B70[];
 extern void cIDBase_restartAnim(void *self);
-extern int GetTimerValue_1FA710(void *p);
+extern int cCoreSave_getGold(void *p);
 extern int cIDBase_getIDWork(void *self, int idx);
 extern void cCoreSave_initAddGold(void *p);
 extern void *D_003C23A4;
@@ -83,7 +83,7 @@ void func_00143598(void *self) {
 
     cIDBase_restartAnim(self);
     *(char *)((char *)self + 0x1C) = 1;
-    *(int *)((char *)self + 0x90) = GetTimerValue_1FA710(D_00569B70);
+    *(int *)((char *)self + 0x90) = cCoreSave_getGold(D_00569B70);
 
     for (i = 0; i < 4; i++) {
         ((S143598 *)self)->work[i] = cIDBase_getIDWork(self, i);

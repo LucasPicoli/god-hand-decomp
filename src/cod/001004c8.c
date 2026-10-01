@@ -306,9 +306,9 @@ void InitVtablePtrAndClearFlags_1F7C60(unsigned int *a0) {
     a0[0] = a1 & 0xFFFFF9FC;
 }
 
-__attribute__((section(".text.CopyGlobalPairToTarget_1F9C30")))
+__attribute__((section(".text.cCoreSave_saveWorldTime")))
 /* Save the global world-time pair into the record. */
-void CopyGlobalPairToTarget_1F9C30(cCoreSave *self) {
+void cCoreSave_saveWorldTime(cCoreSave *self) {
     int d0, d1;
     d0 = D_0061A990[0];
     self->data->worldTime = d0;
@@ -316,9 +316,9 @@ void CopyGlobalPairToTarget_1F9C30(cCoreSave *self) {
     self->data->worldTimeB = d1;
 }
 
-__attribute__((section(".text.UpdateCounterClamped_1F9C58")))
+__attribute__((section(".text.cCoreSave_addCounter08")))
 /* Count up counter08, capped at 999. */
-void UpdateCounterClamped_1F9C58(cCoreSave *self) {
+void cCoreSave_addCounter08(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     unsigned int c = data->counter08 + 1;
     data->counter08 = c;
@@ -327,16 +327,16 @@ void UpdateCounterClamped_1F9C58(cCoreSave *self) {
     }
 }
 
-__attribute__((section(".text.SetFieldShorts0C0E_1F9C88")))
+__attribute__((section(".text.cCoreSave_saveStageIds")))
 /* Save the current stage ids into the record. */
-void SetFieldShorts0C0E_1F9C88(cCoreSave *self) {
+void cCoreSave_saveStageIds(cCoreSave *self) {
     self->data->saveStageA = D_007474A0[0x2D8];
     self->data->saveStageB = D_007474A0[0x2DB];
 }
 
-__attribute__((section(".text.UpdateActiveFlag_1F9E00")))
+__attribute__((section(".text.cCoreSave_loadWorldActive")))
 /* Copy the record's world-active flag to the global. */
-void UpdateActiveFlag_1F9E00(cCoreSave *self) {
+void cCoreSave_loadWorldActive(cCoreSave *self) {
     if (self->data->worldActive) {
         D_005E85F8 = 1;
     } else {
@@ -347,8 +347,8 @@ void UpdateActiveFlag_1F9E00(cCoreSave *self) {
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
 struct S001FA710 { char pad[0x20]; int f20; };
-__attribute__((section(".text.GetTimerValue_1FA710")))
-int GetTimerValue_1FA710(struct S001FA710 **a0) {
+__attribute__((section(".text.cCoreSave_getGold")))
+int cCoreSave_getGold(struct S001FA710 **a0) {
     struct S001FA710 *p = *a0;
     if (p == 0) {
         return 0;
@@ -360,8 +360,8 @@ int GetTimerValue_1FA710(struct S001FA710 **a0) {
 }
 
 struct S001FA8E0 { char pad[0x20]; int f20; };
-__attribute__((section(".text.IsTimerExpired_1FA8E0")))
-int IsTimerExpired_1FA8E0(struct S001FA8E0 **a0) {
+__attribute__((section(".text.cCoreSave_isGoldFull")))
+int cCoreSave_isGoldFull(struct S001FA8E0 **a0) {
     struct S001FA8E0 *p = *a0;
     if (p == 0) {
         return 0;
@@ -369,9 +369,9 @@ int IsTimerExpired_1FA8E0(struct S001FA8E0 **a0) {
     return 0xF423E < p->f20;
 }
 
-__attribute__((section(".text.GetField154Byte_1FAE60")))
+__attribute__((section(".text.cCoreSave_getState154")))
 /* state154, forced to its maximum by the 0x8000000 cheat. */
-int GetField154Byte_1FAE60(cCoreSave *self) {
+int cCoreSave_getState154(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) {
         return 0;
@@ -382,9 +382,9 @@ int GetField154Byte_1FAE60(cCoreSave *self) {
     return self->data->state154;
 }
 
-__attribute__((section(".text.GetField155Byte_1FAEA0")))
+__attribute__((section(".text.cCoreSave_getState155")))
 /* state155, forced to its maximum by the 0x8000000 cheat. */
-int GetField155Byte_1FAEA0(cCoreSave *self) {
+int cCoreSave_getState155(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) {
         return 0;
@@ -395,9 +395,9 @@ int GetField155Byte_1FAEA0(cCoreSave *self) {
     return self->data->state155;
 }
 
-__attribute__((section(".text.InitSlotTable_1FAFA8")))
+__attribute__((section(".text.cCoreSave_initItem")))
 /* Free every remembered-object slot and restart the serial count. */
-void InitSlotTable_1FAFA8(cCoreSave *self)
+void cCoreSave_initItem(cCoreSave *self)
 {
     unsigned int i;
     unsigned int val;
@@ -413,9 +413,9 @@ void InitSlotTable_1FAFA8(cCoreSave *self)
     self->data->itemNum = 1;
 }
 
-__attribute__((section(".text.GetField8AByte_1FBD60")))
+__attribute__((section(".text.cCoreSave_getStat8A")))
 /* stat8A, forced to its maximum by the 0x1000000 cheat. */
-unsigned char GetField8AByte_1FBD60(cCoreSave *self) {
+unsigned char cCoreSave_getStat8A(cCoreSave *self) {
     cCoreSaveData *data;
     cCoreSaveData *q;
     data = self->data;
@@ -429,9 +429,9 @@ unsigned char GetField8AByte_1FBD60(cCoreSave *self) {
     return q->stat8A;
 }
 
-__attribute__((section(".text.ClearField46Array_1FBDD0")))
+__attribute__((section(".text.cCoreSave_clearKillEmNum")))
 /* Zero the per-level kill counts of this stage. */
-void ClearField46Array_1FBDD0(cCoreSave *self) {
+void cCoreSave_clearKillEmNum(cCoreSave *self) {
     unsigned int i;
     if (self->data != 0) {
         i = 0;
@@ -442,9 +442,9 @@ void ClearField46Array_1FBDD0(cCoreSave *self) {
     }
 }
 
-__attribute__((section(".text.AddCounterFields12AndBB8_1FBF18")))
+__attribute__((section(".text.cCoreSave_addContinueNum")))
 /* Count one more continue, this stage and in total. */
-void AddCounterFields12AndBB8_1FBF18(cCoreSave *self) {
+void cCoreSave_addContinueNum(cCoreSave *self) {
     cCoreSaveData *data;
     cCoreSaveData *q;
     data = self->data;
@@ -455,9 +455,9 @@ void AddCounterFields12AndBB8_1FBF18(cCoreSave *self) {
     }
 }
 
-__attribute__((section(".text.IsSet_Field_A4_1FBFD0")))
+__attribute__((section(".text.cCoreSave_ckClearStage")))
 /* 1 if stage `no` (0..8) is cleared; the 0x80000 cheat clears them all. */
-int IsSet_Field_A4_1FBFD0(cCoreSave *self, unsigned int no) {
+int cCoreSave_ckClearStage(cCoreSave *self, unsigned int no) {
     cCoreSaveData *data;
     int bit;
     data = self->data;
@@ -478,9 +478,9 @@ int IsSet_Field_A4_1FBFD0(cCoreSave *self, unsigned int no) {
     return 1;
 }
 
-__attribute__((section(".text.SetSlotField98_1FC170")))
+__attribute__((section(".text.cCoreSave_setReelSlot")))
 /* Put god reel `no` in reel slot `slot` (0..9). */
-void SetSlotField98_1FC170(cCoreSave *self, unsigned int slot, unsigned int no) {
+void cCoreSave_setReelSlot(cCoreSave *self, unsigned int slot, unsigned int no) {
     cCoreSaveData *data;
     unsigned int idx;
     data = self->data;
@@ -491,9 +491,9 @@ void SetSlotField98_1FC170(cCoreSave *self, unsigned int slot, unsigned int no) 
     }
 }
 
-__attribute__((section(".text.IsValueInField_98_1FC1C8")))
+__attribute__((section(".text.cCoreSave_ckReelSlot")))
 /* 1 if god reel `no` sits in any reel slot. */
-int IsValueInField_98_1FC1C8(cCoreSave *self, unsigned int no) {
+int cCoreSave_ckReelSlot(cCoreSave *self, unsigned int no) {
     unsigned char *slots;
     unsigned int i;
     if (self->data == 0) {
@@ -508,9 +508,9 @@ int IsValueInField_98_1FC1C8(cCoreSave *self, unsigned int no) {
     return 0;
 }
 
-__attribute__((section(".text.IsFlagBitSet_1FC360")))
+__attribute__((section(".text.cCoreSave_ckEventFlag")))
 /* 1 if event flag `no` is set. */
-int IsFlagBitSet_1FC360(cCoreSave *self, int no) {
+int cCoreSave_ckEventFlag(cCoreSave *self, int no) {
     cCoreSaveData *data;
     int bit;
     data = self->data;

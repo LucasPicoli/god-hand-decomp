@@ -3,8 +3,8 @@
 
 extern cCoreSaveData D_005686D0;   /* the record itself */
 extern cCoreSave D_00569B70;       /* the game's cCoreSave */
-extern void InitSlotTable_1FAFA8(cCoreSave *self);
-extern void func_001FC138(cCoreSave *self);
+extern void cCoreSave_initItem(cCoreSave *self);
+extern void cCoreSave_clearPaper(cCoreSave *self);
 extern void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty);
 
 /* sn-2.95.3-136 candidate. */
@@ -63,10 +63,10 @@ void cCoreSave_systemInit(cCoreSave *self)
 
     func_003A52F0(&D_005686D0, 0, sizeof(cCoreSaveData));
     D_00569B70.data = &D_005686D0;
-    InitSlotTable_1FAFA8(self);
+    cCoreSave_initItem(self);
     for (i = 0; i < 0x80; i++) {
         self->data->skill[i] = -1;
     }
-    func_001FC138(self);
+    cCoreSave_clearPaper(self);
     cCoreSave_setGameDifficulty(self, 1);
 }

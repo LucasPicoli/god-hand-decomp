@@ -1,13 +1,13 @@
 /* pl00_DiscardWeapon — if the player holds a weapon object (0x698), release it
- * (func_001CF8B0) and null the slot.  sn-2.95.3-136. */
+ * (cOmWeapon_dropToGround) and null the slot.  sn-2.95.3-136. */
 
-extern void func_001CF8B0(void *);
+extern void cOmWeapon_dropToGround(void *);
 
 __attribute__((section(".text.pl00_DiscardWeapon")))
 void pl00_DiscardWeapon(void *a0) {
     void *p = *(void **)((char *)a0 + 0x698);
     if (!p)
         return;
-    func_001CF8B0(p);
+    cOmWeapon_dropToGround(p);
     *(int *)((char *)a0 + 0x698) = 0;
 }

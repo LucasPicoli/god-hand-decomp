@@ -7,7 +7,7 @@ extern char D_00747B20[];
 extern char D_00747470[];
 extern int D_003C2F84;
 extern int D_003C2558;
-extern void func_00296738(cEvent *);
+extern void cEvent_startPlayFade(cEvent *);
 
 extern void HideModelMgr_ResetHiddenModels(char *);
 extern void HideModelMgr_ClearHiddenModelList(char *);
@@ -18,22 +18,22 @@ extern void cNowLoading_executeTask(int);
 /* START stage: wait until the screen is free, hide the models, fade out and
  * go to the CLEAR stage. The state value and the return value are one local
  * (ret = 1) so retail's single `li` serves both. */
-__attribute__((section(".text.func_002965F0")))
-int func_002965F0(cEvent *self) {
+__attribute__((section(".text.cEvent_updateStart")))
+int cEvent_updateStart(cEvent *self) {
     int ret;
     unsigned int a;
     unsigned int b;
     unsigned int c;
     switch ((signed char)self->phase) {
     case 0:
-        func_00296738(self);
+        cEvent_startPlayFade(self);
         self->phase++;
     case 1:
         break;
     default:
         return 0;
     }
-    if (func_002967B0(self) == 0) return 0;
+    if (cEvent_isScreenBusy(self) == 0) return 0;
     D_00747A80[0] |= 0x2000000;
     HideModelMgr_ResetHiddenModels(D_00747B20);
     HideModelMgr_ClearHiddenModelList(D_00747B20);

@@ -13,15 +13,15 @@ extern void func_002AF720(void *env, float a1);
 extern void func_002AF698(void *env, float a1, float a2);
 extern void func_002AF668(void *env, float a1, float a2);
 extern void cMessDrawFont_setDrawPos(void *env, int align, float x, float y);
-extern void func_002AF590(void *env, int id);
+extern void cMessDrawFont_setMessage(void *env, int id);
 extern void func_002ACC28(void *env, int a1, int a2);
 extern void cMessDrawFont_setDrawCounter(void *env, int a1, int a2);
 extern void cMessDrawFont_draw(void *env, int a1, int a2);
 
 /* Per-frame layout pass: work out every entry's final position, scale,
  * rotation and colour from its own values and its chain of parents. */
-__attribute__((section(".text.func_002AA6E0")))
-void func_002AA6E0(cIDBaseObj *self)
+__attribute__((section(".text.cIDBase_calcEntries")))
+void cIDBase_calcEntries(cIDBaseObj *self)
 {
     int i;
     for (i = 0; i < self->entNum; i++) {
@@ -110,8 +110,8 @@ void func_002AA6E0(cIDBaseObj *self)
 
 /* Draw a text entry: pick the alignment from b89, set up the shared message
  * environment (font, scale, position, message id) and draw it. */
-__attribute__((section(".text.func_002AB0B8")))
-void func_002AB0B8(cIDBaseObj *self, cIDBaseEnt *ent)
+__attribute__((section(".text.cIDBase_transText")))
+void cIDBase_transText(cIDBaseObj *self, cIDBaseEnt *ent)
 {
     int align = 1;
     int id;
@@ -141,7 +141,7 @@ void func_002AB0B8(cIDBaseObj *self, cIDBaseEnt *ent)
     cMessDrawFont_setDrawPos(&D_005E7510, align, ent->drawX, ent->drawY);
     id = 0x3000;
     if (ent->msg != 0) id = ent->msg;
-    func_002AF590(&D_005E7510, id);
+    cMessDrawFont_setMessage(&D_005E7510, id);
     fl = ent->flags;
     bit = (fl >> 2) & 1;
     if (bit != 0) {

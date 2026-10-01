@@ -12,8 +12,8 @@ extern int cHeatSys_SubHeatGage(void *a0, int a1, float f12);
 extern int cHeatSys_GetHeatLv(void *a0);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float SetField444SignedByFlag434_158288(void *a0, float f12);
-extern void func_001CF6E0(int a0);
-extern void func_001FC138(void *a0);
+extern void cOmWeapon_kickOff(int a0);
+extern void cCoreSave_clearPaper(void *a0);
 
 extern float D_003BD4A0;
 extern int D_00747A2C;
@@ -30,9 +30,9 @@ void func_00123460(void *arg)
     g = D_003BD4A0;
     if (*(int *)(s0 + 0x6A8) != 0) {
         if ((*(int *)(s0 + 0x15F4) & 0x20) == 0) {
-            func_001CF6E0(*(int *)(s0 + 0x6A8));
+            cOmWeapon_kickOff(*(int *)(s0 + 0x6A8));
             *(int *)(s0 + 0x6A8) = 0;
-            func_001FC138(&D_00569B70);
+            cCoreSave_clearPaper(&D_00569B70);
         }
     }
     ph = *(unsigned char *)(s0 + 0x2F4);

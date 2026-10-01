@@ -996,18 +996,18 @@ void Obj0000_Clear_Byte_D_003BD6E8_1380_94_Bit0_1F75B0(void) {
 
 extern int D_00747A0C;
 
-__attribute__((section(".text.Obj0000_Set_Field_178_D_00747A0C_1F9E90")))
+__attribute__((section(".text.cCoreSave_saveGlobalToggle")))
 /* Save the global toggle in the record. */
-void Obj0000_Set_Field_178_D_00747A0C_1F9E90(cCoreSave *self) {
+void cCoreSave_saveGlobalToggle(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) return;
     data->savedToggle = D_00747A0C;
 }
 
 
-__attribute__((section(".text.Obj0000_Set_D_00747A0C_Field_178_If_NonNull_1F9EB0")))
+__attribute__((section(".text.cCoreSave_loadGlobalToggle")))
 /* Restore the global toggle from the record. */
-void Obj0000_Set_D_00747A0C_Field_178_If_NonNull_1F9EB0(cCoreSave *self) {
+void cCoreSave_loadGlobalToggle(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data != 0) {
         D_00747A0C = data->savedToggle;
@@ -1243,9 +1243,9 @@ typedef struct CGUnk_00180310
 {
   unsigned char unk[0xA28];
 } CGUnk_00180310_t;
-__attribute__((section(".text.Obj0000_Set_Short_88_If_LT_1000")))
+__attribute__((section(".text.cCoreSave_setCounter88")))
 /* Set counter88; values from 1000 up are ignored. */
-void Obj0000_Set_Short_88_If_LT_1000(cCoreSave *self, short v) {
+void cCoreSave_setCounter88(cCoreSave *self, short v) {
     if ((unsigned short)v < 1000) {
         self->data->counter88 = v;
     }
@@ -1509,9 +1509,9 @@ void Obj0000_Set_D_007474A0_Fields_5D8_5E0(unsigned char *a0) {
     D_007474A0.field_5E0 = *(int *)(a0 + 0x6C);
 }
 
-__attribute__((section(".text.Obj0000_Or_Field_B90_Bit_A1")))
+__attribute__((section(".text.cCoreSave_setEventFlag")))
 /* Set event flag `no`. */
-void Obj0000_Or_Field_B90_Bit_A1(cCoreSave *self, int no) {
+void cCoreSave_setEventFlag(cCoreSave *self, int no) {
     cCoreSaveData *data = self->data;
     if (data == 0) return;
     data->eventFlags |= (1 << no);
@@ -1754,87 +1754,87 @@ void NoOp_1F7B58(void) {}
 __attribute__((section(".text.NoOp_1F7D18")))
 void NoOp_1F7D18(void) {}
 
-__attribute__((section(".text.Obj0000_Get_Short_1C_Via_Ptr_1FA620")))
+__attribute__((section(".text.cCoreSave_getLevelPoint")))
 /* Level points, 0 without a record. */
-short Obj0000_Get_Short_1C_Via_Ptr_1FA620(cCoreSave *self)
+short cCoreSave_getLevelPoint(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;
     return data->levelPoint;
 }
 
-__attribute__((section(".text.Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678")))
+__attribute__((section(".text.cCoreSave_getGameDifficulty")))
 /* Difficulty 0..2; 1 without a record. */
-char Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(cCoreSave *self)
+char cCoreSave_getGameDifficulty(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 1;
     return data->difficulty;
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_24_Via_Ptr0_1FA858")))
+__attribute__((section(".text.cCoreSave_getAddGoldNum")))
 /* Number of logged gold pickups, 0 without a record. */
-int Obj0000_Get_Field_24_Via_Ptr0_1FA858(cCoreSave *self)
+int cCoreSave_getAddGoldNum(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;
     return data->addGoldNum;
 }
 
-__attribute__((section(".text.Obj0000_Get_Byte_A8_Via_Ptr0_1FAC58")))
+__attribute__((section(".text.cCoreSave_getGodItem0")))
 /* The first god item slot. */
-unsigned char Obj0000_Get_Byte_A8_Via_Ptr0_1FAC58(cCoreSave *self)
+unsigned char cCoreSave_getGodItem0(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     return data->godItem[0];
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_84_Or_ReturnK_64_1FAC68")))
+__attribute__((section(".text.cCoreSave_getVital")))
 /* Current vitality; 100 without a record. */
-int Obj0000_Get_Field_84_Or_ReturnK_64_1FAC68(cCoreSave *self)
+int cCoreSave_getVital(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0x64;
     return data->vital;
 }
 
-__attribute__((section(".text.GetField80ViaPtr_1FAC80")))
+__attribute__((section(".text.cCoreSave_getVitalMax")))
 /* Max vitality; 100 without a record. */
-int GetField80ViaPtr_1FAC80(cCoreSave *self)
+int cCoreSave_getVitalMax(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0x64;
     return data->vitalMax;
 }
 
-__attribute__((section(".text.Obj0000_Set_Byte_156_If_NonNull_1FAE28")))
+__attribute__((section(".text.cCoreSave_setReelItemNum")))
 /* Set the number of usable god-item slots. */
-void Obj0000_Set_Byte_156_If_NonNull_1FAE28(cCoreSave *self, unsigned char n)
+void cCoreSave_setReelItemNum(cCoreSave *self, unsigned char n)
 {
     cCoreSaveData *data = self->data;
     if (data != 0) data->reelItemNum = n;
 }
 
-__attribute__((section(".text.Obj0000_Add_Byte_156_If_Ptr0_NonNull_1FAE40")))
+__attribute__((section(".text.cCoreSave_addReelItemNum")))
 /* Add to the number of usable god-item slots. */
-void Obj0000_Add_Byte_156_If_Ptr0_NonNull_1FAE40(cCoreSave *self, unsigned char n)
+void cCoreSave_addReelItemNum(cCoreSave *self, unsigned char n)
 {
     cCoreSaveData *data = self->data;
     if (data != 0) data->reelItemNum = n + data->reelItemNum;
 }
 
-__attribute__((section(".text.Obj0000_Get_Short_12_Via_Ptr_1FBF48")))
+__attribute__((section(".text.cCoreSave_getContinueNum")))
 /* Continues used this stage. */
-unsigned short Obj0000_Get_Short_12_Via_Ptr_1FBF48(cCoreSave *self)
+unsigned short cCoreSave_getContinueNum(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;
     return data->continueNum;
 }
 
-__attribute__((section(".text.Obj0000_Set_Short_12_If_Ptr_NonNull_1FBF78")))
+__attribute__((section(".text.cCoreSave_setContinueNum")))
 /* Set the continues used this stage. */
-void Obj0000_Set_Short_12_If_Ptr_NonNull_1FBF78(cCoreSave *self, unsigned short n)
+void cCoreSave_setContinueNum(cCoreSave *self, unsigned short n)
 {
     cCoreSaveData *data = self->data;
     if (data) {
@@ -1842,18 +1842,18 @@ void Obj0000_Set_Short_12_If_Ptr_NonNull_1FBF78(cCoreSave *self, unsigned short 
     }
 }
 
-__attribute__((section(".text.Obj0000_Get_Byte_AF_1FC0C0")))
+__attribute__((section(".text.cCoreSave_getPrevCostumeNo")))
 /* The previous costume number. */
-unsigned char Obj0000_Get_Byte_AF_1FC0C0(cCoreSave *self)
+unsigned char cCoreSave_getPrevCostumeNo(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
     return data->prevCostumeNo;
 }
 
-__attribute__((section(".text.Obj0000_Set_Bytes_AE_AF_1FC100")))
+__attribute__((section(".text.cCoreSave_resetCostumeNo")))
 /* Set the costume and the previous costume to `no`. */
-void Obj0000_Set_Bytes_AE_AF_1FC100(cCoreSave *self, unsigned char no)
+void cCoreSave_resetCostumeNo(cCoreSave *self, unsigned char no)
 {
     cCoreSaveData *data = self->data;
     if (data) {
@@ -1862,9 +1862,9 @@ void Obj0000_Set_Bytes_AE_AF_1FC100(cCoreSave *self, unsigned char no)
     }
 }
 
-__attribute__((section(".text.Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120")))
+__attribute__((section(".text.cCoreSave_setPaper")))
 /* Mark the paper as found. */
-void Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120(cCoreSave *self)
+void cCoreSave_setPaper(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data) {
@@ -1872,45 +1872,45 @@ void Obj0000_Set_Byte_157_If_Ptr_NonNull_1FC120(cCoreSave *self)
     }
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0")))
+__attribute__((section(".text.cCoreSave_getCasinoTicketNum")))
 /* Casino tickets held. */
-int Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0(cCoreSave *self)
+int cCoreSave_getCasinoTicketNum(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
     return data->casinoTicketNum;
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_BA8_Via_Ptr0_1FC530")))
+__attribute__((section(".text.cCoreSave_getBonus")))
 /* The bonus value. */
-int Obj0000_Get_Field_BA8_Via_Ptr0_1FC530(cCoreSave *self)
+int cCoreSave_getBonus(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
     return data->bonus;
 }
 
-__attribute__((section(".text.Obj0000_Get_Short_BB6_Via_Ptr_1FC5D0")))
+__attribute__((section(".text.cCoreSave_getAllKillNpcNum")))
 /* Whole-game NPC kill count. */
-unsigned short Obj0000_Get_Short_BB6_Via_Ptr_1FC5D0(cCoreSave *self)
+unsigned short cCoreSave_getAllKillNpcNum(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
     return data->allKillNpcNum;
 }
 
-__attribute__((section(".text.Obj0000_Get_Short_BB8_Via_Ptr_1FC600")))
+__attribute__((section(".text.cCoreSave_getAllContinueNum")))
 /* Whole-game continue count. */
-unsigned short Obj0000_Get_Short_BB8_Via_Ptr_1FC600(cCoreSave *self)
+unsigned short cCoreSave_getAllContinueNum(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
     return data->allContinueNum;
 }
 
-__attribute__((section(".text.Obj0000_Clear_Short_BBA_Bit0_1FC6C8")))
+__attribute__((section(".text.cCoreSave_clearStateBit0")))
 /* Clear bit 0 of stateBits. */
-void Obj0000_Clear_Short_BBA_Bit0_1FC6C8(cCoreSave *self)
+void cCoreSave_clearStateBit0(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data) {
@@ -1918,9 +1918,9 @@ void Obj0000_Clear_Short_BBA_Bit0_1FC6C8(cCoreSave *self)
     }
 }
 
-__attribute__((section(".text.Obj0000_Or_Short_BBA_Bit_1_1FC6E8")))
+__attribute__((section(".text.cCoreSave_setStateBit0")))
 /* Set bit 0 of stateBits. */
-void Obj0000_Or_Short_BBA_Bit_1_1FC6E8(cCoreSave *self)
+void cCoreSave_setStateBit0(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data) {
@@ -1928,9 +1928,9 @@ void Obj0000_Or_Short_BBA_Bit_1_1FC6E8(cCoreSave *self)
     }
 }
 
-__attribute__((section(".text.Obj0000_Get_Short_BBA_Bit0_Via_Ptr_1FC708")))
+__attribute__((section(".text.cCoreSave_getStateBit0")))
 /* Bit 0 of stateBits. */
-int Obj0000_Get_Short_BBA_Bit0_Via_Ptr_1FC708(cCoreSave *self)
+int cCoreSave_getStateBit0(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data) {

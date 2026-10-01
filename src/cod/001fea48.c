@@ -2,11 +2,11 @@
 
 #include "godhand/cDataManager.h"
 
-/* func_001FED78: reset every slot that holds the given kind. */
+/* cDataManager_resetKind: reset every slot that holds the given kind. */
 
 
-__attribute__((section(".text.func_001FED78")))
-void func_001FED78(cDataManager *self, int kind, int arg) {
+__attribute__((section(".text.cDataManager_resetKind")))
+void cDataManager_resetKind(cDataManager *self, int kind, int arg) {
     int i;
     for (i = 0; i < self->slotNum; i++) {
         if (self->slot[i].kind == kind) {
@@ -15,11 +15,11 @@ void func_001FED78(cDataManager *self, int kind, int arg) {
     }
 }
 
-/* func_001FEEA0: index of the first slot that is empty and not reserved, or -1. */
+/* cDataManager_findFreeSlot: index of the first slot that is empty and not reserved, or -1. */
 
 
-__attribute__((section(".text.func_001FEEA0")))
-int func_001FEEA0(cDataManager *self) {
+__attribute__((section(".text.cDataManager_findFreeSlot")))
+int cDataManager_findFreeSlot(cDataManager *self) {
     int i;
     unsigned long t;
     for (i = 0; i < self->slotNum; i++) {
@@ -31,12 +31,12 @@ int func_001FEEA0(cDataManager *self) {
     return -1;
 }
 
-/* func_001FEA48: find the slot of a kind, count one more use and return its load address. */
+/* cDataManager_useDataAddress: find the slot of a kind, count one more use and return its load address. */
 
 
-__attribute__((section(".text.func_001FEA48")))
-int func_001FEA48(cDataManager *self, int kind) {
-    int i = func_001FEE00(self, kind);
+__attribute__((section(".text.cDataManager_useDataAddress")))
+int cDataManager_useDataAddress(cDataManager *self, int kind) {
+    int i = cDataManager_findKind(self, kind);
     if (i >= 0) {
         func_001FF090(&self->slot[i]);
         return self->slot[i].data;
@@ -44,11 +44,11 @@ int func_001FEA48(cDataManager *self, int kind) {
     return 0;
 }
 
-/* func_001FEE00: index of the last slot that holds the given kind, or -1. */
+/* cDataManager_findKind: index of the last slot that holds the given kind, or -1. */
 
 
-__attribute__((section(".text.func_001FEE00")))
-int func_001FEE00(cDataManager *self, int kind) {
+__attribute__((section(".text.cDataManager_findKind")))
+int cDataManager_findKind(cDataManager *self, int kind) {
     int i = self->slotNum;
     i--;
     while (i != -1) {

@@ -10,8 +10,8 @@ void Forward2D9458_2D98A0(cWorldLight *self)
 }
 
 /* Fills preset dst from the live settings (src); every slot of its light array gets light 0. */
-__attribute__((section(".text.func_002D82A0")))
-void func_002D82A0(cWorldLight *self, cWorldLightPreset *dst, cWorldLight *src)
+__attribute__((section(".text.cWorldLight_savePreset")))
+void cWorldLight_savePreset(cWorldLight *self, cWorldLightPreset *dst, cWorldLight *src)
 {
     float *dv;
     float *sv;
@@ -59,8 +59,8 @@ void func_002D82A0(cWorldLight *self, cWorldLightPreset *dst, cWorldLight *src)
  * when there is no table or no match. vp walks the value fields, so the
  * entry id is the byte two before it. The union keeps the result in an
  * integer register, as retail does. */
-__attribute__((section(".text.func_002D9360")))
-float func_002D9360(cWorldLight *self, int id)
+__attribute__((section(".text.cWorldLight_getTblValue")))
+float cWorldLight_getTblValue(cWorldLight *self, int id)
 {
     union { float f; int i; } r;
     cWorldLightTbl *tbl = self->tbl;

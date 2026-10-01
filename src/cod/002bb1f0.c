@@ -68,7 +68,7 @@ int LoadFileStripExt_2CB638(cSnd *self, int slot, char *name)
     if (dot != 0) {
         *dot = 0;
     }
-    return func_002CF600(GetIndexedEntry_2CC4B8(self, slot), slot, name);
+    return cSeData_LoadFile(GetIndexedEntry_2CC4B8(self, slot), slot, name);
 }
 
 

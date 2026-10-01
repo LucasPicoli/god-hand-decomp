@@ -6,7 +6,7 @@ extern int D_00569B70;
 extern void func_001D0CE8();
 extern void func_001D0DF8();
 extern void func_001D5780();
-extern int GetTimerValue_1FA710();
+extern int cCoreSave_getGold();
 extern void BlackJackId_Move();
 extern void BlackJackId__Trans();
 
@@ -78,7 +78,7 @@ void BlackJack_Main(BlackJack *self)
         s0 = s0 + 1;
     } while (s1 >= 0);
 
-    func_001D5780(self, GetTimerValue_1FA710(&D_00569B70));
+    func_001D5780(self, cCoreSave_getGold(&D_00569B70));
     BlackJackId_Move(self);
     BlackJackId__Trans(self);
 }

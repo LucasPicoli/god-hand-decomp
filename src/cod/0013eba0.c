@@ -2,7 +2,7 @@
 #include "godhand/cSnd.h"
 
 extern void cIDBase_trans(void *p);
-extern int Obj0000_Get_Short_BBA_Bit0_Via_Ptr_1FC708(void *p);
+extern int cCoreSave_getStateBit0(void *p);
 extern char D_00747A24[];
 extern char D_00569B70[];
 extern int cDamageManage_ReleaseDamageGive(void *m, void *d);
@@ -40,7 +40,7 @@ void func_0013EBA0(char *p)
     if (*(int *)(g + 0x8) < 0) return;
     if (*(short *)(w + 0x548) == 0) return;
     if ((*(int *)(p + 0xA0) & 0x20000000) == 0) return;
-    if (Obj0000_Get_Short_BBA_Bit0_Via_Ptr_1FC708((void *)D_00569B70) != 0) return;
+    if (cCoreSave_getStateBit0((void *)D_00569B70) != 0) return;
     if ((*(int *)(g + 0x60) & 0x80000) != 0) return;
     cIDBase_trans(p);
 }

@@ -5,7 +5,7 @@
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cCoreSave_addCasinoTicket(void *a0, int a1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
-extern int Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0(void *a0);
+extern int cCoreSave_getCasinoTicketNum(void *a0);
 extern void func_001E6ED8(void *a0, int a1, int a2);
 extern void func_001E6D48(void *a0, int a1, int a2);
 extern void func_001E7908(void *a0, int a1, int a2);
@@ -80,7 +80,7 @@ void func_001E5F30(Slot2 *self) {
         }
         cCoreSave_addCasinoTicket(D_00569B70, 1);
         *(int *)(*(char **)D_003BD6E8 + 0x1A10) =
-            (short)Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0(D_00569B70);
+            (short)cCoreSave_getCasinoTicketNum(D_00569B70);
         func_001E6ED8(self, 0, 0);
         func_001E6D48(self, 0, 0);
         break;
@@ -99,7 +99,7 @@ void func_001E5F30(Slot2 *self) {
         break;
     }
     case 4:
-        if (Obj0000_Get_Field_B94_Via_Ptr0_1FC3D0(D_00569B70) >= 9) {
+        if (cCoreSave_getCasinoTicketNum(D_00569B70) >= 9) {
             {
                 int done;
                 int t = self->timer;

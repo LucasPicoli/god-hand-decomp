@@ -14,9 +14,9 @@ void func_0015B0C0(void) {
     D_00566E10 = base + flag * 0x60000;
 }
 
-__attribute__((section(".text.func_001F9DD0")))
+__attribute__((section(".text.cCoreSave_saveWorldActive")))
 /* Record whether the world is active. */
-void func_001F9DD0(cCoreSave *self) {
+void cCoreSave_saveWorldActive(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) return;
     if (D_005E85F8 != 0) {

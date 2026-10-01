@@ -8,7 +8,7 @@ extern void AddScaledXfmVecToField_F0_14F928(int *, float);
 extern void func_001DBEB0(void);
 extern void func_001DD340(char *a0);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
-extern int GetTimerValue_1FA710(int *a0);
+extern int cCoreSave_getGold(int *a0);
 extern void func_001DD238(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
 extern void func_001DEE60(char *a0, int a1, int a2);
@@ -132,7 +132,7 @@ void func_001D7450(char *a0)
     func_001DBEB0();
     func_001DD340(a0);
     CustomIDWork_SetNumber_1DD218(a0, *(int *)(a0 + 0x3034));
-    func_001DD238(a0, GetTimerValue_1FA710(&D_00569B70));
+    func_001DD238(a0, cCoreSave_getGold(&D_00569B70));
     SetCustomIDNumberIndexed_1DD648(a0, 0, 0x32);
     SetCustomIDNumberIndexed_1DD648(a0, 1, 0x14);
     SetCustomIDNumberIndexed_1DD648(a0, 2, 0xF);

@@ -41,14 +41,14 @@ void cEvent_movePlayQuit(cEvent *self) {
 }
 
 /* Nonzero when the cutscene data read has finished. */
-__attribute__((section(".text.func_00297428")))
-int func_00297428(cEvent *self) {
+__attribute__((section(".text.cEvent_isLoadEnd")))
+int cEvent_isLoadEnd(cEvent *self) {
     return cDvd_Check(D_00583F20, self->loadHandle) == 0;
 }
 
-/* Nonzero when the data read has finished (same body as func_00297428). */
-__attribute__((section(".text.func_002975D0")))
-int func_002975D0(cEvent *self) {
+/* Nonzero when the data read has finished (same body as cEvent_isLoadEnd). */
+__attribute__((section(".text.cEvent_isLoadEndAfterCut")))
+int cEvent_isLoadEndAfterCut(cEvent *self) {
     return cDvd_Check(D_00583F20, self->loadHandle) == 0;
 }
 

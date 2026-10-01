@@ -4,7 +4,7 @@
 #include "godhand/vu0.h"
 
 extern void func_001645E0(void *a0);
-extern int IsSet_Field_A4_1FBFD0(void *a0, int a1);
+extern int cCoreSave_ckClearStage(void *a0, int a1);
 extern void Set_Field_0_4_8_1646B0(void *a0, void *a1, void *a2, int a3);
 extern void func_001646C0(void *a0, void *a1, float f);
 extern unsigned char *D_00586B28;
@@ -48,7 +48,7 @@ void func_00162C98(void *a0)
     *(unsigned short *)(*(char **)(s0 + 0xE8) + 0x90) = 0x2022;
     *(char *)(s0 + 0xF0) = 1;
     while (*(char *)(s0 + 0xF0) < 8
-           && IsSet_Field_A4_1FBFD0(D_00569B70,
+           && cCoreSave_ckClearStage(D_00569B70,
                                     (unsigned short)*(char *)(s0 + 0xF0)) != 0) {
         *(char *)(s0 + 0xF0) = *(unsigned char *)(s0 + 0xF0) + 1;
     }

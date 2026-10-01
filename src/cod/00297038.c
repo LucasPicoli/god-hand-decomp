@@ -20,7 +20,7 @@ extern void func_00297FC8(void *, char *);
 extern int D_00586B34;
 extern int D_003C2558;
 extern char D_00747470[];
-extern void func_00297128(cEvent *);
+extern void cEvent_endPlay(cEvent *);
 extern void cEvent_startReleaseObj(cEvent *);
 extern void classFADE_start(char *, int, int, int, int, int, int);
 extern void Set_bg_mode(int, int, int, int);
@@ -62,8 +62,8 @@ void cEvent_clearSystem(cEvent *self, int dataNo) {
 
 /* Hand each section of the loaded display-text data to its stripped
  * consumer. Every section is passed as 0 when its offset is 0. */
-__attribute__((section(".text.func_002977E8")))
-void func_002977E8(cEvent *self) {
+__attribute__((section(".text.cEvent_setTextSections")))
+void cEvent_setTextSections(cEvent *self) {
     *(int *)(cEvent_nullStr00 + 8) = self->textData->kind;
     func_0(cEvent_nullStr01, CEVENT_TEXT_SEC(self->textData, 0x04), self->textData);
     func_0(cEvent_nullStr02, CEVENT_TEXT_SEC(self->textData, 0x08), self->textData->mode);
@@ -85,12 +85,12 @@ void func_002977E8(cEvent *self) {
 
 /* Release stage of the play state: fade out on phase 0, wait for the
  * release on phase 8, count up in between. */
-__attribute__((section(".text.func_00297038")))
-void func_00297038(cEvent *self) {
+__attribute__((section(".text.cEvent_updateRelease")))
+void cEvent_updateRelease(cEvent *self) {
     unsigned long f = self->flags;
     unsigned long t;
     if (((f >> 7) & 1) == 0 || (f & CEVENT_F_TEXT_DATA) == 0) {
-        func_00297128(self);
+        cEvent_endPlay(self);
         return;
     }
     switch ((signed char)self->phase) {
@@ -107,7 +107,7 @@ void func_00297038(cEvent *self) {
         break;
     case 8:
         if (func_00297AA8(self) != 0) {
-            func_00297128(self);
+            cEvent_endPlay(self);
         }
         break;
     }

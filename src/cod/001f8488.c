@@ -6,7 +6,7 @@
 #include "godhand/cObjSimple.h"
 
 extern cHeatSys D_005CB000;
-extern void func_002A9BF0(cHeatSys *self, float range);
+extern void cHeatSys_UpdateHeatMax(cHeatSys *self, float range);
 extern void cHeatSys_SetHeatGage(cHeatSys *self, float gage);
 extern void func_002A9C90(cHeatSys *self, float range);
 extern int func_001573C8(float *pt, cAreaVec4 *a, cAreaVec4 *b, cAreaVec4 *c, cAreaVec4 *d);
@@ -29,14 +29,14 @@ void cHeatSys_Initialize(cHeatSys *self)
     self->threshold = 0.0f;
     self->floor = 0.0f;
     self->lv = 0;
-    func_002A9BF0(&D_005CB000, range);
+    cHeatSys_UpdateHeatMax(&D_005CB000, range);
     cHeatSys_SetHeatGage(&D_005CB000, 0.0f);
     func_002A9C90(&D_005CB000, range);
 }
 
 /* Is point `pt` inside the quad area: inside the height band, then inside the four corners. */
-__attribute__((section(".text.func_001F8488")))
-int func_001F8488(cArea *self, float *pt)
+__attribute__((section(".text.cArea_HitCheckQuad")))
+int cArea_HitCheckQuad(cArea *self, float *pt)
 {
     cAreaVec4 q[4] __attribute__((aligned(16)));
     float top;
@@ -72,8 +72,8 @@ static __inline__ void cObjSimpleVec3_Copy(cObjSimpleVec3 *d, cObjSimpleVec3 *s)
 }
 
 /* Per-frame update: scroll the texture, step the model, then the pendulum, bust and ring physics. */
-__attribute__((section(".text.func_002B6930")))
-void func_002B6930(cObjSimple *self)
+__attribute__((section(".text.cObjSimple_Update")))
+void cObjSimple_Update(cObjSimple *self)
 {
     int state = self->state;
     if (state >= 0) { if (state >= 4) { if (state == COBJSIMPLE_STATE_ACTIVE) {

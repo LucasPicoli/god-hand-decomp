@@ -19,12 +19,12 @@ extern void GetOrInitGlobal785878_1B8058(void);
 extern int D_007854D8;
 extern int D_0044AEC8;
 extern void *cIDBase_getIDWork(void *a0);
-extern void func_002AA2D0(void *a0, int a1, void *a2);
+extern void cIDBase_initEntry(void *a0, int a1, void *a2);
 extern void func_002B64C0(int a0);
 extern char D_0045C470[];
 extern char D_0045C4A0[];
 extern char D_005FEE00[];
-extern int GetTimerValue_1FA710(int a0);
+extern int cCoreSave_getGold(int a0);
 extern int D_00569B70;
 extern void SetCustomIDDispOneOrAll_1DD258(int a0, int a1, int a2);
 extern void func_002D5250(int a0);
@@ -150,7 +150,7 @@ void func_002AA3D8(void *a0)
 {
     void *v0 = cIDBase_getIDWork(a0);
     if (v0 != 0) {
-        func_002AA2D0(a0, *(int*)((char*)v0 + 0x1C), v0);
+        cIDBase_initEntry(a0, *(int*)((char*)v0 + 0x1C), v0);
     }
 }
 
@@ -209,8 +209,8 @@ __attribute__((section(".text.func_00143A90")))
 void func_00143A90(int a0) {
     int *p = (int *)a0;
     if (p[0x94/4] != 0) {
-        p[0x90/4] = GetTimerValue_1FA710((int)&D_00569B70);
-        *(int *)(p[0x94/4] + 0x84) = GetTimerValue_1FA710((int)&D_00569B70);
+        p[0x90/4] = cCoreSave_getGold((int)&D_00569B70);
+        *(int *)(p[0x94/4] + 0x84) = cCoreSave_getGold((int)&D_00569B70);
         cCoreSave_initAddGold((int)&D_00569B70);
     }
 }

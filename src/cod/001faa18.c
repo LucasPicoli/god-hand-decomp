@@ -13,9 +13,9 @@ extern char D_00448948[];
 
 /* clone */
 
-__attribute__((section(".text.func_001FAA18")))
+__attribute__((section(".text.cCoreSave_addKeyNum")))
 /* Add to the key count, clamped to 0..9. */
-void func_001FAA18(cCoreSave *self, int n) {
+void cCoreSave_addKeyNum(cCoreSave *self, int n) {
     if (!self->data)
         return;
     self->data->keyNum += n;

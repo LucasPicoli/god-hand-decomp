@@ -6,7 +6,7 @@ extern unsigned char D_005864F0[];
 extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
 extern int D_00569B70;
 extern int D_005E8658;
-extern void func_001FB2D8();
+extern void cCoreSave_freeItem();
 extern void func_002BECB0();
 extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
@@ -132,7 +132,7 @@ void func_001C24E8(char *a0) {
     *(int *)(a0 + 0x630) = 0;
     v = *(unsigned int *)(a0 + 0x5B0);
     if (((v >> 5) & 1) == 0) {
-        func_001FB2D8(&D_00569B70, *(unsigned short *)(a0 + 0x662));
+        cCoreSave_freeItem(&D_00569B70, *(unsigned short *)(a0 + 0x662));
     } else {
         func_002BECB0(&D_005E8658, *(long *)(a0 + 0x538));
     }

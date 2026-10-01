@@ -17,7 +17,7 @@ extern void func_001E6D48(char *a0, int a1, int a2);
 extern void func_001E6E10(char *a0, int a1, int a2);
 extern void func_001E7660(char *a0, int a1);
 extern void func_001E77B0(char *a0, int a1);
-extern int GetTimerValue_1FA710(char *a0);
+extern int cCoreSave_getGold(char *a0);
 extern void cCoreSave_addGold(char *a0, int a1, int a2);
 extern void cCoreSave_subGold(char *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
@@ -108,7 +108,7 @@ void func_001E4E28(Slot2 *self)
                 if (self->betLv >= 3) {
                     return;
                 }
-                if (GetTimerValue_1FA710(D_00569B70) < self->betCost) {
+                if (cCoreSave_getGold(D_00569B70) < self->betCost) {
                     return;
                 }
                 self->betLv += 1;

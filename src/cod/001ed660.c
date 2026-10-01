@@ -88,9 +88,9 @@ void func_001F4B78(void *a0) { CustomIDWork_SetNumber((char *)a0 + 0x158); }
 
 /* clone */
 
-__attribute__((section(".text.func_001FA968")))
+__attribute__((section(".text.cCoreSave_addKeyCardNum")))
 /* Add to the key card count, clamped to 0..9. */
-void func_001FA968(cCoreSave *self, int n) {
+void cCoreSave_addKeyCardNum(cCoreSave *self, int n) {
     if (!self->data)
         return;
     self->data->keyCardNum += n;

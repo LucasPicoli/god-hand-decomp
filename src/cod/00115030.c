@@ -7,7 +7,7 @@ extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void MtxInitRotY(void *a0, float angle);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
-extern void func_001CF340(void *a0);
+extern void cOmWeapon_resetHold(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
@@ -96,7 +96,7 @@ void func_00115030(void *a0) {
             sceVu0ApplyMatrix(&mv[16], mv, &mv[16]);
             (*(float **)(s1 + 0xF0))[0] = (*(float **)(OTHER + 0xF0))[0] + mv[16];
             (*(float **)(s1 + 0xF0))[2] = (*(float **)(OTHER + 0xF0))[2] + mv[18];
-            func_001CF340(OTHER);
+            cOmWeapon_resetHold(OTHER);
             d = *(float **)(OTHER + 0xF0);
             s = *(float **)(s1 + 0xF0);
             if (d != s) {

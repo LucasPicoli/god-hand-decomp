@@ -14,7 +14,7 @@ extern void KeyStop(void);
 extern void classFADE_kill(void *p);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
 extern void func_001EFD00(ColiseumBattle *self);
-extern void func_001EFC48(ColiseumBattle *self, unsigned char mode);
+extern void ColiseumBattle_StartFade(ColiseumBattle *self, unsigned char mode);
 extern void func_001F28C0(void *ui);
 extern void func_001F28F0(void *ui);
 extern void func_001F2990(void *ui);
@@ -22,8 +22,8 @@ extern void func_001F3260(void *ui);
 extern void NoOp_1F0490(ColiseumBattle *self);
 
 /* Release every collision shape this object holds back to the collision manager. */
-__attribute__((section(".text.func_0017DF88")))
-void func_0017DF88(cOl21 *self) {
+__attribute__((section(".text.cOl21_releaseShapes")))
+void cOl21_releaseShapes(cOl21 *self) {
     int i;
 
     for (i = 0; i < COL21_SHAPE_NUM; i++) {
@@ -57,8 +57,8 @@ void func_0017DF88(cOl21 *self) {
 
 
 
-__attribute__((section(".text.func_001EF748")))
-void func_001EF748(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_StepUiIntro")))
+void ColiseumBattle_StepUiIntro(ColiseumBattle *self)
 {
     int done;
 
@@ -108,8 +108,8 @@ void func_001EF748(ColiseumBattle *self)
 
 
 
-__attribute__((section(".text.func_001EEC68")))
-void func_001EEC68(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_ResetUi")))
+void ColiseumBattle_ResetUi(ColiseumBattle *self)
 {
     char *obj;
 
@@ -138,14 +138,14 @@ void func_001EEC68(ColiseumBattle *self)
 
 
 
-__attribute__((section(".text.func_001EF810")))
-void func_001EF810(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_StepEnter")))
+void ColiseumBattle_StepEnter(ColiseumBattle *self)
 {
     switch (self->state) {
     case 0:
         if (((D_0074748C >> 2) & 1) != 0) {
-            func_001EEC68(self);
-            func_001EFC48(self, 0);
+            ColiseumBattle_ResetUi(self);
+            ColiseumBattle_StartFade(self, 0);
             self->state = self->state + 1;
         }
         break;

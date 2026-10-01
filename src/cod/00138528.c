@@ -77,9 +77,9 @@ void ClearObjRef_1EE9A0(int *a0)
     *(int *)((char *)a0 + 0x30) = 0;
 }
 
-__attribute__((section(".text.SetStateIndexClamped_1FAD58")))
+__attribute__((section(".text.cCoreSave_setState154")))
 /* Set state154, capped at 0xD. */
-void SetStateIndexClamped_1FAD58(cCoreSave *self, unsigned char v) {
+void cCoreSave_setState154(cCoreSave *self, unsigned char v) {
     if (self->data) {
         self->data->state154 = v;
         if (self->data->state154 >= 0xE) {
@@ -88,9 +88,9 @@ void SetStateIndexClamped_1FAD58(cCoreSave *self, unsigned char v) {
     }
 }
 
-__attribute__((section(".text.AddClampD_Byte_154_1FAD88")))
+__attribute__((section(".text.cCoreSave_addState154")))
 /* Add to state154, capped at 0xD. */
-void AddClampD_Byte_154_1FAD88(cCoreSave *self, unsigned char n) {
+void cCoreSave_addState154(cCoreSave *self, unsigned char n) {
     if (self->data) {
         self->data->state154 = n + self->data->state154;
         if (self->data->state154 >= 0xE) {
@@ -99,9 +99,9 @@ void AddClampD_Byte_154_1FAD88(cCoreSave *self, unsigned char n) {
     }
 }
 
-__attribute__((section(".text.Set_Byte_155_Clamp5_1FADC0")))
+__attribute__((section(".text.cCoreSave_setState155")))
 /* Set state155, capped at 5. */
-void Set_Byte_155_Clamp5_1FADC0(cCoreSave *self, unsigned char v) {
+void cCoreSave_setState155(cCoreSave *self, unsigned char v) {
     if (self->data) {
         self->data->state155 = v;
         if (self->data->state155 >= 0x6) {
@@ -110,9 +110,9 @@ void Set_Byte_155_Clamp5_1FADC0(cCoreSave *self, unsigned char v) {
     }
 }
 
-__attribute__((section(".text.AddSubStateIndexClamped_1FADF0")))
+__attribute__((section(".text.cCoreSave_addState155")))
 /* Add to state155, capped at 5. */
-void AddSubStateIndexClamped_1FADF0(cCoreSave *self, unsigned char n) {
+void cCoreSave_addState155(cCoreSave *self, unsigned char n) {
     if (self->data) {
         self->data->state155 = n + self->data->state155;
         if (self->data->state155 >= 0x6) {
@@ -121,9 +121,9 @@ void AddSubStateIndexClamped_1FADF0(cCoreSave *self, unsigned char n) {
     }
 }
 
-__attribute__((section(".text.AddClamped_Byte_8A_1FBD28")))
+__attribute__((section(".text.cCoreSave_addStat8A")))
 /* Add to stat8A, capped at 6. */
-void AddClamped_Byte_8A_1FBD28(cCoreSave *self, int n) {
+void cCoreSave_addStat8A(cCoreSave *self, int n) {
     cCoreSaveData *data;
     cCoreSaveData *q;
     int s;

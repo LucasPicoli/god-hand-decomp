@@ -17,7 +17,7 @@ extern int sceIpuRestartDMA(int chan);
 extern int D_003FA62C;
 extern void Obj0000_Get_D_0045FB80_3AD118(int a);
 extern void Deci2Call(int a, int *b);
-extern void func_002CDA48(void *a);
+extern void cSndSeVoice_Init(void *a);
 extern void cIDParam_initialize(void *a);
 extern void Setup_00309028_309028(void *a0);
 extern void func_00329EA8(void *p);
@@ -172,7 +172,7 @@ void func_003B7AA8(int a0) {
 
 __attribute__((section(".text.func_002CDA08")))
 void *func_002CDA08(void *a0) {
-    func_002CDA48(a0);
+    cSndSeVoice_Init(a0);
     return a0;
 }
 

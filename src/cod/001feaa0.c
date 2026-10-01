@@ -19,7 +19,7 @@ __attribute__((section(".text.func_001FEAA0")))
 void func_001FEAA0(cDataManager *self, int kind, int id, int flags) {
     int v0;
 
-    v0 = func_001FEE00(self, kind);
+    v0 = cDataManager_findKind(self, kind);
     if (v0 < 0) {
         return;
     }

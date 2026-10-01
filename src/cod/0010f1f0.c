@@ -5,7 +5,7 @@
 extern int cWorldLight_Set_LightData(void *a0, void *a1);
 extern void MaxField514_292030(void *a0, int a1);
 extern void MaxByte538_292EF0(void *a0, int a1);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -193,7 +193,7 @@ void func_00112318(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -352,8 +352,8 @@ void func_0010F1F0(void *a0)
         if (*(unsigned char *)(s1 + 0x2F7) != 0) {
             Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x190, 0xE, 0x1C, 0, 0x123);
             Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x190, 0xE, 0x1C, 0, 0x123);
-            ShiftDownBytesA8_FAC00(&D_00569B70);
-            ShiftDownBytesA8_FAC00(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
             {
                 int t = *(int *)(s1 + 0x304);
                 p = *(int *)(t + 0xC8) + t;
@@ -362,7 +362,7 @@ void func_0010F1F0(void *a0)
         } else {
             Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x5A, 0xE, 0x1C, 0, 0x123);
             Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x5A, 0xE, 0x1C, 0, 0x123);
-            ShiftDownBytesA8_FAC00(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
             {
                 int t = *(int *)(s1 + 0x304);
                 p = *(int *)(t + 0xC8) + t;

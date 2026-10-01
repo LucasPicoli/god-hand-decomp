@@ -6,7 +6,7 @@
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
-extern void func_002CFF90(cBgmData *);
+extern void cBgmData_Reset(cBgmData *);
 extern char D_005FEE00[];
 extern char D_00580D40[];
 extern char D_0044D0B0[];
@@ -23,15 +23,15 @@ extern int cDvd_FileExist(char *, char *);
 extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
 
 /* Is the request reqNo of bgm part 0 playing? */
-__attribute__((section(".text.func_002D1578")))
-int func_002D1578(void *unused, int reqNo)
+__attribute__((section(".text.cSnd_BgmEvIsPlaying")))
+int cSnd_BgmEvIsPlaying(void *unused, int reqNo)
 {
     return func_002D22B0(D_005FEE00, 0, reqNo) != 0;
 }
 
 /* Allocate the decode buffer for the slot's table and register it; 1 on success. */
-__attribute__((section(".text.func_002D03E8")))
-int func_002D03E8(cBgmData *d)
+__attribute__((section(".text.cBgmData_PrepareDecode")))
+int cBgmData_PrepareDecode(cBgmData *d)
 {
     char name[0x40];
     int key;
@@ -58,8 +58,8 @@ int func_002D03E8(cBgmData *d)
 }
 
 /* Like func_002D0128 for a named table; 1 when the data arrived. */
-__attribute__((section(".text.func_002D0220")))
-int func_002D0220(cBgmData *d, int kind, int req)
+__attribute__((section(".text.cBgmData_LoadNamed")))
+int cBgmData_LoadNamed(cBgmData *d, int kind, int req)
 {
     char name[0x40];
 
@@ -78,7 +78,7 @@ int func_002D0220(cBgmData *d, int kind, int req)
         return 0;
     d->f1C = cDvd_ReadAlloc(D_00583F20, name, &d->head, d->pool, 0, 0, 0, 0);
     if (d->f1C == 0 || d->head == 0) {
-        func_002CFF90(d);
+        cBgmData_Reset(d);
         return 0;
     } else {
         func_002D0350(d, 1);

@@ -3,9 +3,9 @@
 
 extern int D_00747A2C;
 
-__attribute__((section(".text.ShiftDownBytesA8_FAC00")))
+__attribute__((section(".text.cCoreSave_shiftGodItem")))
 /* Drop the first god item and shift the rest down (not with the 0x80000 cheat). */
-void ShiftDownBytesA8_FAC00(cCoreSave *self) {
+void cCoreSave_shiftGodItem(cCoreSave *self) {
     unsigned int i;
     if ((D_00747A2C & 0x80000) == 0) {
         i = 0;

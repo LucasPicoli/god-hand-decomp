@@ -8,8 +8,8 @@ extern int D_0044CE48[];
 extern cSndSeEntry *GetIndexedEntry_2CC4B8(cSnd *self, int idx);
 
 /* Starts a free voice with the given key pair and ids, at the global origin. */
-__attribute__((section(".text.func_002CDF18")))
-int func_002CDF18(cSndSeVoice *v, short key0, short key1, short idA, short idB, int a5, int a6)
+__attribute__((section(".text.cSndSeVoice_StartAtOrigin")))
+int cSndSeVoice_StartAtOrigin(cSndSeVoice *v, short key0, short key1, short idA, short idB, int a5, int a6)
 {
     if (func_002CDA38(v) == 1)
         return 0;
@@ -31,8 +31,8 @@ int func_002CDF18(cSndSeVoice *v, short key0, short key1, short idA, short idB, 
 
 /* Detaches a voice from the object it follows, first copying the object's position unless the voice is live (flag 1).
    The flag byte is read as ((unsigned char)flags ^ 1) & 1; the plain !(flags & 1) gives different bytes. */
-__attribute__((section(".text.func_002CE488")))
-void func_002CE488(cSndSeVoice *v, char *obj)
+__attribute__((section(".text.cSndSeVoice_Detach")))
+void cSndSeVoice_Detach(cSndSeVoice *v, char *obj)
 {
     if (func_002CDA38(v) == 0)
         return;
@@ -49,8 +49,8 @@ void func_002CE488(cSndSeVoice *v, char *obj)
 }
 
 /* Releases a voice with this key. With mode 1 a voice that has a live handle is left alone. */
-__attribute__((section(".text.func_002CE510")))
-void func_002CE510(cSndSeVoice *v, short key, int mode)
+__attribute__((section(".text.cSndSeVoice_Release")))
+void cSndSeVoice_Release(cSndSeVoice *v, short key, int mode)
 {
     if (func_002CDA38(v) == 0)
         return;
@@ -64,8 +64,8 @@ void func_002CE510(cSndSeVoice *v, short key, int mode)
 }
 
 /* Returns the first slot id in the D_0044CE48 table whose entry has no owner, or -1. */
-__attribute__((section(".text.func_002CB5B8")))
-int func_002CB5B8(cSnd *self)
+__attribute__((section(".text.cSnd_FindFreeSe")))
+int cSnd_FindFreeSe(cSnd *self)
 {
     int *p = D_0044CE48;
     unsigned int i;

@@ -12,8 +12,8 @@ extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a
 #define DEALER_HIT_MAX 0x10
 
 /* Deal the dealer's hand B one card at a time while its total stays under 17. */
-__attribute__((section(".text.func_001D2EE0")))
-void func_001D2EE0(BlackJack *self)
+__attribute__((section(".text.BlackJack_UpdateDealDealerHandB")))
+void BlackJack_UpdateDealDealerHandB(BlackJack *self)
 {
     switch (self->phase) {
     case 0:

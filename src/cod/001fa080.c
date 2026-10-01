@@ -9,9 +9,9 @@ extern int cCoreSave_getGameLevel(void *a0);
 
 
 
-__attribute__((section(".text.func_001FA080")))
+__attribute__((section(".text.cCoreSave_getLevelProgress")))
 /* Progress through the current game level, 0.0 to 1.0. */
-float func_001FA080(cCoreSave *self)
+float cCoreSave_getLevelProgress(cCoreSave *self)
 {
     int level;
     int hi;

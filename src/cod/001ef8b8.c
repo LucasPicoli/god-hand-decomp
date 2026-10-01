@@ -14,7 +14,7 @@ extern void KeyStop(void);
 extern void classFADE_kill(void *p);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
 extern void func_001EFD00(ColiseumBattle *self);
-extern void func_001EFC48(ColiseumBattle *self, unsigned char mode);
+extern void ColiseumBattle_StartFade(ColiseumBattle *self, unsigned char mode);
 extern void func_001F28C0(void *ui);
 extern void func_001F28F0(void *ui);
 extern void func_001F2990(void *ui);
@@ -30,8 +30,8 @@ extern void NoOp_1F0490(ColiseumBattle *self);
 /* Calls the defeat handler (vtable slot 27) on every regular enemy that is
  * still alive, then clears the arena's fight flag. */
 
-__attribute__((section(".text.func_001EF978")))
-void func_001EF978(void)
+__attribute__((section(".text.ColiseumBattle_DefeatAllEnemies")))
+void ColiseumBattle_DefeatAllEnemies(void)
 {
     ColiseumEmNode *node;
     ColiseumEm *em;
@@ -73,8 +73,8 @@ void func_001EF978(void)
 /* Counts the regular enemies (kind 0x200..0x29F) that are still alive. The
  * argument is unused; retail callers pass the battle object. */
 
-__attribute__((section(".text.func_001EF8B8")))
-int func_001EF8B8(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_CountLiveEnemies")))
+int ColiseumBattle_CountLiveEnemies(ColiseumBattle *self)
 {
     ColiseumEmNode *node;
     ColiseumEm *em;
@@ -162,8 +162,8 @@ void ColiseumBattle_PlCtrlOff(ColiseumBattle *self, int off)
 
 
 
-__attribute__((section(".text.func_001EFC48")))
-void func_001EFC48(ColiseumBattle *self, unsigned char mode)
+__attribute__((section(".text.ColiseumBattle_StartFade")))
+void ColiseumBattle_StartFade(ColiseumBattle *self, unsigned char mode)
 {
     long t = self->flags;
     unsigned int f;

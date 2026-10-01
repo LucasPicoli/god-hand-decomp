@@ -5,14 +5,14 @@
 extern void func_0();
 
 /* Number of the current cut. */
-__attribute__((section(".text.func_00297B98")))
-int func_00297B98(void) {
+__attribute__((section(".text.cEvent_getCutNo")))
+int cEvent_getCutNo(void) {
     return cEvent_work.cutNo;
 }
 
 /* Clear the first byte of the current cut's entry. */
-__attribute__((section(".text.func_00297BF8")))
-void func_00297BF8(void) {
+__attribute__((section(".text.cEvent_clearCutEntry")))
+void cEvent_clearCutEntry(void) {
     cEvent_work.cutTable[cEvent_work.cutNo * 16] = 0;
 }
 

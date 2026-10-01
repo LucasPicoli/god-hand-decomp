@@ -3,8 +3,8 @@
 #include "godhand/cHeatSys.h"
 
 /* cur / max, or 0 when max is 0. */
-__attribute__((section(".text.func_002A9C98")))
-float func_002A9C98(cHeatSys *self)
+__attribute__((section(".text.cHeatSys_GetHeatRatio")))
+float cHeatSys_GetHeatRatio(cHeatSys *self)
 {
     float ratio = 0.0f;
     if (self->max != 0.0f)

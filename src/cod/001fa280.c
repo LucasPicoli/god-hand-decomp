@@ -7,7 +7,7 @@ extern unsigned int D_00747A84;
 extern unsigned short D_00747A50;   /* current stage id */
 extern unsigned short D_005CAC94;
 extern int D_003BF160[];            /* levelPoint thresholds, one per game level */
-extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(cCoreSave *self); /* difficulty */
+extern int cCoreSave_getGameDifficulty(cCoreSave *self); /* difficulty */
 extern int cCoreSave_getGameLevel(cCoreSave *self);
 
 /* Add (or with a negative value, remove) level points, scaled by the current
@@ -28,7 +28,7 @@ void cCoreSave_addGameLevelPoint(cCoreSave *self, int point)
     if ((D_00747A84 & 0x400000) != 0) {
         return;
     }
-    if (Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(self) == 2) {
+    if (cCoreSave_getGameDifficulty(self) == 2) {
         return;
     }
     if ((D_00569B70.data->flags & 0x4000000) != 0) {
@@ -71,7 +71,7 @@ void cCoreSave_addGameLevelPoint(cCoreSave *self, int point)
     if (self->data->levelPoint < 0) {
         self->data->levelPoint = 0;
     }
-    if (Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(self) == 0) {
+    if (cCoreSave_getGameDifficulty(self) == 0) {
         q = self->data;
         if (q->levelPoint > D_003BF160[1] - 1) {
             q->levelPoint = D_003BF160[1] - 1;

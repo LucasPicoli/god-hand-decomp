@@ -6,7 +6,7 @@ extern void MaxByte538_292EF0(void *a0, int a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
@@ -65,9 +65,9 @@ void func_00111DD8(void *a0)
         *(short *)(s1 + 0x5E2) = 0;
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
-        ShiftDownBytesA8_FAC00(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_shiftGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x20) + t, *(int *)(t + 0x24) + t,
                       0.0f, 3, 0, 0);

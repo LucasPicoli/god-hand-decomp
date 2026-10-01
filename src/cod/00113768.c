@@ -9,7 +9,7 @@ extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1,
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void ShiftDownBytesA8_FAC00(void *a0);
+extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00124EC0(void *a0);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
@@ -50,14 +50,14 @@ void func_00113768(void *a0)
         *(char *)(s1 + 0x1684) = 1;
         if (*(unsigned char *)(s1 + 0x2F7)) {
             char *q;
-            ShiftDownBytesA8_FAC00(&D_00569B70);
-            ShiftDownBytesA8_FAC00(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
             q = *(char **)(s1 + 0x304);
             p1 = *(int *)(q + 0x70) + (int)q;
             p2 = *(int *)(q + 0x78) + (int)q;
         } else {
             char *r;
-            ShiftDownBytesA8_FAC00(&D_00569B70);
+            cCoreSave_shiftGodItem(&D_00569B70);
             r = *(char **)(s1 + 0x304);
             p1 = *(int *)(r + 0x70) + (int)r;
             p2 = *(int *)(r + 0x74) + (int)r;

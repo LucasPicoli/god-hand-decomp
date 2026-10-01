@@ -2,10 +2,10 @@
 #include "godhand/cSnd.h"
 
 extern void SetSequenceBlendWeight_3739A0(void *a0, int a1, float f);
-extern void func_002CCBF8(void *a0);
+extern void cSndBgmNode_Fade(void *a0);
 extern void func_002CCD80(void *a0);
-extern void func_002CD1D0(void *a0);
-extern void func_002CD310(void *a0);
+extern void cSndBgmNode_Run(void *a0);
+extern void cSndBgmNode_Update(void *a0);
 extern void func_00372CB0(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -33,17 +33,17 @@ void func_002CC628(cSndBgmNode *node) {
         }
         switch (node->state) {
         case 3:
-            func_002CCBF8(node);
+            cSndBgmNode_Fade(node);
             break;
         case 2:
             func_002CCD80(node);
             break;
         case 1:
         case 5:
-            func_002CD1D0(node);
+            cSndBgmNode_Run(node);
             break;
         case 4:
-            func_002CD310(node);
+            cSndBgmNode_Update(node);
             break;
         case 0:
         default:

@@ -5,23 +5,23 @@
 
 extern void func_002C0E20(cSceAtUnit *unit);
 
-/* func_002C2EB8: poke an active unit that is flagged for refresh. */
+/* cSceAtManager_refreshUnit: poke an active unit that is flagged for refresh. */
 
 
 
 
-__attribute__((section(".text.func_002C2EB8")))
-void func_002C2EB8(cSceAtManager *self, cSceAtUnit *unit) {
+__attribute__((section(".text.cSceAtManager_refreshUnit")))
+void cSceAtManager_refreshUnit(cSceAtManager *self, cSceAtUnit *unit) {
     if (unit->state == 1 && (unit->flags & 1)) {
         func_002C0E20(unit);
     }
 }
 
-/* func_002ACE48: take a run of n pool buffers, clear it, and queue a job that owns it. */
+/* cIDManager_allocBufRun: take a run of n pool buffers, clear it, and queue a job that owns it. */
 
 
-__attribute__((section(".text.func_002ACE48")))
-void *func_002ACE48(cIDManager *self, int n, int tag, int arg) {
+__attribute__((section(".text.cIDManager_allocBufRun")))
+void *cIDManager_allocBufRun(cIDManager *self, int n, int tag, int arg) {
     char *buf;
     if (n == 0) return 0;
     if (CIDMGR_POOL_MAX - self->poolUsed < n) return 0;

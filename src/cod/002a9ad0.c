@@ -2,16 +2,16 @@
 
 #include "godhand/cHeatSys.h"
 
-extern float func_002A9C98(cHeatSys *self);
-extern void func_002A9B50(cHeatSys *self);
+extern float cHeatSys_GetHeatRatio(cHeatSys *self);
+extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void KillEffect(void *eff, int a, int b);
 
 /* Recompute lv (0, 1 or 2) from the cur / max ratio. */
-__attribute__((section(".text.func_002A9B50")))
-void func_002A9B50(cHeatSys *self)
+__attribute__((section(".text.cHeatSys_UpdateHeatLv")))
+void cHeatSys_UpdateHeatLv(cHeatSys *self)
 {
-    float ratio = func_002A9C98(self);
+    float ratio = cHeatSys_GetHeatRatio(self);
     if (ratio < HEATSYS_LV_LOW_RATIO) {
         self->lv = 0;
     } else {
@@ -30,7 +30,7 @@ void cHeatSys_SetHeatGage(cHeatSys *self, float gage)
         self->cur = self->max;
     else
         self->cur = gage;
-    func_002A9B50(self);
+    cHeatSys_UpdateHeatLv(self);
 }
 
 /* Set the heat mode flag; the floor becomes cur - threshold (not below 0). A nonzero mode also kills the effect from Obj0000_Get_D_00747A94. */
@@ -55,7 +55,7 @@ int cHeatSys_SubHeatGage(cHeatSys *self, int check, float amount)
     self->cur = cur;
     if (cur < self->floor)
         self->cur = self->floor;
-    func_002A9B50(self);
+    cHeatSys_UpdateHeatLv(self);
     if (check) {
         if (self->cur <= self->floor) {
             self->cur = self->floor;

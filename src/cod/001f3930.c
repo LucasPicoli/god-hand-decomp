@@ -11,7 +11,7 @@ extern void func_001F4248(void *a0, int a1);
 extern void func_001F52A0(void *a0, int a1, int a2);
 extern void func_001F55C0(void *a0, int a1, int a2, int a3);
 
-extern void func_001FC518(void *a0, int a1);
+extern void cCoreSave_setBonus(void *a0, int a1);
 extern void func_001F53A8(void *a0, int a1);
 extern void func_001F4700(void *a0);
 extern void func_001F4758(void *a0);
@@ -107,7 +107,7 @@ void func_001F3930(void *a0)
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
             if (func_001F4530(s1, *(short *)(s1 + 0x37A8),
                               *(unsigned short *)(s1 + 0x37AC)) != 0) {
-                func_001FC518(&D_00569B70, *(short *)(s1 + 0x37D0));
+                cCoreSave_setBonus(&D_00569B70, *(short *)(s1 + 0x37D0));
                 D_00586AA4 = *(unsigned char *)(s1 + 0x37AE);
                 func_001F53A8(s1 + 0x60, 0);
                 func_001F4428(s1, 1);

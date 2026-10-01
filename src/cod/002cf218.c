@@ -6,14 +6,14 @@
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
-extern void func_002CFF90(cBgmData *);
+extern void cBgmData_Reset(cBgmData *);
 extern void func_002CD4E0(cSndBgmNode *, float, float);
 extern float GetSequenceBlendWeight_373938(cSndBgmNode *, int);
 extern void UpdateSequenceNodeWeighted_373560(cSndBgmNode *, int, float);
-extern void func_002CD4A8(cSndBgmNode *, float);
+extern void cSndBgmNode_FadeOut(cSndBgmNode *, float);
 
-__attribute__((section(".text.func_002CF218")))
-int func_002CF218(void *self, short a, short b, int c)
+__attribute__((section(".text.cSnd_SeCheckParam")))
+int cSnd_SeCheckParam(void *self, short a, short b, int c)
 {
     if (func_00374CB8(a, b, c) == -1)
         return -1;
@@ -44,18 +44,18 @@ void cSnd_BgmFadeOutAll(cSnd *self, int bgmPt, int keepReq, float time)
     for (node = self->bgmHead; node != 0; node = node->next) {
         if ((node->bank - 0x80) == bgmPt && node->reqNo != keepReq) {
             if (func_00373A58(node) == 1)
-                func_002CD4A8(node, 3.0f);
+                cSndBgmNode_FadeOut(node, 3.0f);
             else
-                func_002CD4A8(node, time);
+                cSndBgmNode_FadeOut(node, time);
         }
     }
 }
 
-__attribute__((section(".text.func_002D1DD0")))
-int func_002D1DD0(cSnd *self, int bgmPt, int reqNo)
+__attribute__((section(".text.cSnd_BgmEvIsReady")))
+int cSnd_BgmEvIsReady(cSnd *self, int bgmPt, int reqNo)
 {
     int node = func_002D22B0(self, bgmPt, reqNo);
-    if (node != 0 && func_002CCA78(node) == 0)
+    if (node != 0 && cSndBgmNode_IsDone(node) == 0)
         return 0;
     return 1;
 }

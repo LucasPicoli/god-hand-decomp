@@ -4,7 +4,7 @@
 
 extern void cEvent_movePlayInit(cEvent *self);
 extern void cEvent_movePlayQuit(cEvent *self);
-extern int func_00296DD8(cEvent *self);
+extern int cEvent_movePlayStep(cEvent *self);
 /* PLAY stage: start the move scene on phase 0, then step it until it ends
  * and fall back to the release stage. */
 __attribute__((section(".text.UpdateSequenceState_296C28")))
@@ -14,7 +14,7 @@ int UpdateSequenceState_296C28(cEvent *self) {
         cEvent_movePlayInit(self);
         self->phase = self->phase + 1;
     case 1:
-        if (func_00296DD8(self)) {
+        if (cEvent_movePlayStep(self)) {
             cEvent_movePlayQuit(self);
             self->unk07 = 0;
             self->phase = 0;

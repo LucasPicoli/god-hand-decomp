@@ -13,8 +13,8 @@ extern void func_002ABD78(cIDBaseObj *self, cIDBaseEnt *ent);
 
 /* Place the message window for a message entry: copy its position and scale
  * into the message record and tell the draw side which font to use. */
-__attribute__((section(".text.func_002AB2A0")))
-void func_002AB2A0(cIDBaseObj *self, cIDBaseEnt *ent)
+__attribute__((section(".text.cIDBase_transIcon")))
+void cIDBase_transIcon(cIDBaseObj *self, cIDBaseEnt *ent)
 {
     unsigned char *rec;
     short x, y;

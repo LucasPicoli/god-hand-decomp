@@ -2,12 +2,12 @@
 #include "godhand/cHeatSys.h"
 #include "include_asm.h"
 
-extern int Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(void *p);
+extern int cCoreSave_getGameDifficulty(void *p);
 extern void *D_00569B70;
 extern unsigned int D_00747A50;       /* lhu -> u16 */
 extern void *D_003BD6E8;
 
-extern void func_002A9B50(cHeatSys *self);
+extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
 /* Add `heat` to the gauge (boosted by 1.25 for some players and in heat mode), clamp at max,
  * move the floor up by the gain, and refresh lv. Does nothing while heat mode is on and heat > 0,
  * unless a1 is set. */
@@ -27,7 +27,7 @@ void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
 
     obj = D_00569B70;
     if ((*(int *)((char *)obj + 0x14) & 0x04000000) == 0) {
-        if (Obj0000_Get_Byte_1F_If_Ptr_NonNull_1FA678(&D_00569B70) == 0)
+        if (cCoreSave_getGameDifficulty(&D_00569B70) == 0)
             heat = heat * 1.25f;
     }
 
@@ -53,5 +53,5 @@ void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
             self->floor = self->max;
     }
 
-    func_002A9B50(self);
+    cHeatSys_UpdateHeatLv(self);
 }

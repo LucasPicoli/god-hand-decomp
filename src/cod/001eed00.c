@@ -31,8 +31,8 @@ extern void ColiseumBattle_PlCtrlOff(ColiseumBattle *self, int off);
 /* Per-frame update of the result scene: runs the seven-step sequence that
  * sets the ring up, fades in, waits for the fight, then hands control back. */
 
-__attribute__((section(".text.func_001EED00")))
-void func_001EED00(ColiseumBattle *self)
+__attribute__((section(".text.ColiseumBattle_Update")))
+void ColiseumBattle_Update(ColiseumBattle *self)
 {
     char *layers;
     char *player;
@@ -112,7 +112,7 @@ void func_001EED00(ColiseumBattle *self)
         }
         break;
     case 4:
-        alive = func_001EF8B8(self);
+        alive = ColiseumBattle_CountLiveEnemies(self);
         /* int-pointee store: keeps this ahead of the D_00747A84 load, as retail orders them */
         *(int *)&self->unkB88 = self->enemyNum - alive;
         bits = D_00747A84;

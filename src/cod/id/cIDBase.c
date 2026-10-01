@@ -49,19 +49,19 @@ cIDBaseObj *cIDBase(cIDBaseObj *self)
 }
 
 extern cIDBaseEnt *cIDBase_getIDWork(cIDBaseObj *self, int id);
-extern void func_002AA598(cIDBaseObj *self, cIDBaseEnt *ent, int show);
-extern void func_002AA5F0(cIDBaseObj *self, cIDBaseEnt *ent, int show);
+extern void cIDBase_setDispParent(cIDBaseObj *self, cIDBaseEnt *ent, int show);
+extern void cIDBase_setDispChildren(cIDBaseObj *self, cIDBaseEnt *ent, int show);
 /* Show or hide the entry with id `id`, its parent chain and its children. */
 __attribute__((section(".text.cIDBase_setDispFamily")))
 void cIDBase_setDispFamily(cIDBaseObj *self, int id, int show)
 {
     cIDBaseEnt *ent = cIDBase_getIDWork(self, id);
-    func_002AA598(self, ent, show);
-    func_002AA5F0(self, ent, show);
+    cIDBase_setDispParent(self, ent, show);
+    cIDBase_setDispChildren(self, ent, show);
 }
 
 
-extern void func_002AA6E0(cIDBaseObj *self);
+extern void cIDBase_calcEntries(cIDBaseObj *self);
 extern void func_002ABDC0(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AC048(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AC1C0(cIDBaseObj *self, cIDBaseEnt *ent);
@@ -78,7 +78,7 @@ void cIDBase_move(cIDBaseObj *self)
     unsigned long flags;
     if (self->stop != 0) return;
     if (self->ent == 0) return;
-    func_002AA6E0(self);
+    cIDBase_calcEntries(self);
     if (self->playing == 0) return;
     frame = self->frame + 1;
     self->frame = (short)frame;
@@ -119,8 +119,8 @@ extern void cMessDrawFont_setEnvInit(void *a0);
 extern void func_002AF6A8(void *a0, int a1, int a2);
 
 extern void func_002AAFF0(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
-extern void func_002AB0B8(cIDBaseObj *self, cIDBaseEnt *ent);
-extern void func_002AB2A0(cIDBaseObj *self, cIDBaseEnt *ent);
+extern void cIDBase_transText(cIDBaseObj *self, cIDBaseEnt *ent);
+extern void cIDBase_transIcon(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AB360(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AAEF0(cIDBaseObj *self, cIDBaseDraw *draw, cIDBaseEnt *ent);
 /* Draw every visible entry, layer 4 first and layer -4 last, picking the
@@ -182,10 +182,10 @@ void cIDBase_trans(cIDBaseObj *self)
                 func_002AAFF0(self, (cIDBaseDraw *)draw, ent);
                 break;
             case IDENT_KIND_TEXT:
-                func_002AB0B8(self, ent);
+                cIDBase_transText(self, ent);
                 break;
             case IDENT_KIND_ICON:
-                func_002AB2A0(self, ent);
+                cIDBase_transIcon(self, ent);
                 break;
             case IDENT_KIND_PANEL:
                 func_002AB360(self, ent);

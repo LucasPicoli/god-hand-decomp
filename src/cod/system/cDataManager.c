@@ -8,7 +8,7 @@ extern int FreeActiveEntry_1FEC90(cDataManager *self, int kind);
 /* Load address of the slot holding kind, or 0. */
 __attribute__((section(".text.cDataManager_seeDataAddress")))
 int cDataManager_seeDataAddress(cDataManager *self, int kind) {
-    int i = func_001FEE00(self, kind);
+    int i = cDataManager_findKind(self, kind);
     if (i >= 0)
         return self->slot[i].data;
     return 0;
@@ -29,13 +29,13 @@ void cDataManager_clear(cDataManager *self) {
 
 __attribute__((section(".text.cDataManager_loadWait")))
 int cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep) {
-    int i = func_001FEE00(self, kind);
+    int i = cDataManager_findKind(self, kind);
     int data;
     if (i >= 0) {
         func_001FF090(&self->slot[i]);
         return self->slot[i].data;
     }
-    i = func_001FEEA0(self);
+    i = cDataManager_findFreeSlot(self);
     if (i < 0) return 0;
     data = func_001FF180(&self->slot[i], kind, buf);
     while (UpdateStateReady_1FF238(&self->slot[i]) == 0) {

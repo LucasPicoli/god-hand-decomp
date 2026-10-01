@@ -4,11 +4,11 @@
 
 extern int *D_003C2384;
 extern int D_003C2388;
-extern void func_002AA2D0(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent);
+extern void cIDBase_initEntry(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent);
 
 /* Hide or show an entry and, recursively, its parent chain. */
-__attribute__((section(".text.func_002AA598")))
-void func_002AA598(cIDBaseObj *self, cIDBaseEnt *ent, int show)
+__attribute__((section(".text.cIDBase_setDispParent")))
+void cIDBase_setDispParent(cIDBaseObj *self, cIDBaseEnt *ent, int show)
 {
     cIDBaseEnt *parent = ent->parent;
     if (parent != 0) {
@@ -17,13 +17,13 @@ void func_002AA598(cIDBaseObj *self, cIDBaseEnt *ent, int show)
         } else {
             parent->flags &= ~IDENT_FLAG_HIDDEN;
         }
-        func_002AA598(self, ent->parent, show);
+        cIDBase_setDispParent(self, ent->parent, show);
     }
 }
 
 /* Hide or show every entry whose parent is `ent`, and recurse into them. */
-__attribute__((section(".text.func_002AA5F0")))
-void func_002AA5F0(cIDBaseObj *self, cIDBaseEnt *ent, int show)
+__attribute__((section(".text.cIDBase_setDispChildren")))
+void cIDBase_setDispChildren(cIDBaseObj *self, cIDBaseEnt *ent, int show)
 {
     int i;
     for (i = 0; i < self->entNum; i++) {
@@ -35,15 +35,15 @@ void func_002AA5F0(cIDBaseObj *self, cIDBaseEnt *ent, int show)
                 } else {
                     child->flags &= ~IDENT_FLAG_HIDDEN;
                 }
-                func_002AA5F0(self, &self->ent[i], show);
+                cIDBase_setDispChildren(self, &self->ent[i], show);
             }
         }
     }
 }
 
 /* Fill display entry `ent` from source record `src`. */
-__attribute__((section(".text.func_002AA2D0")))
-void func_002AA2D0(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent)
+__attribute__((section(".text.cIDBase_initEntry")))
+void cIDBase_initEntry(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent)
 {
     ent->src = src;
     ent->seed = 0xBC614E;
@@ -82,8 +82,8 @@ void func_002AA2D0(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent)
 
 /* Take `num` source records and build one display entry for each. When the
  * resource is the current one, records marked unused are skipped. */
-__attribute__((section(".text.func_002AA1E0")))
-void func_002AA1E0(cIDBaseObj *self, cIDBaseSrc *src, int num)
+__attribute__((section(".text.cIDBase_buildEntries")))
+void cIDBase_buildEntries(cIDBaseObj *self, cIDBaseSrc *src, int num)
 {
     int i;
     self->src = src;
@@ -92,7 +92,7 @@ void func_002AA1E0(cIDBaseObj *self, cIDBaseSrc *src, int num)
         if (*D_003C2384 == D_003C2388) {
             while (src->flags & IDENT_FLAG_SRC_SKIP) src++;
         }
-        func_002AA2D0(self, src, &self->ent[i]);
+        cIDBase_initEntry(self, src, &self->ent[i]);
         src++;
     }
 }

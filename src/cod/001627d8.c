@@ -6,7 +6,7 @@ extern void cIDBase_initialize();
 extern void cIDBase_restartAnim();
 extern int cIDBase_setPackedMessData();
 extern int cIDBase_getIDWork(void *self, int idx);
-extern int IsSet_Field_A4_1FBFD0(void *a0, int a1);
+extern int cCoreSave_ckClearStage(void *a0, int a1);
 extern void func_00162B18();
 extern void func_00162C98();
 extern void func_001630E8();
@@ -65,7 +65,7 @@ void func_001627D8(void *a0) {
         int *r = (int *)((int)p + m);
         int q = *r;
         *(int *)(q + 0x2C) |= 0x8000000;
-        if (IsSet_Field_A4_1FBFD0(D_00569B70, (unsigned short)i) == 0) {
+        if (cCoreSave_ckClearStage(D_00569B70, (unsigned short)i) == 0) {
             continue;
         }
         switch (i) {

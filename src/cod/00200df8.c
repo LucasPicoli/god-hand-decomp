@@ -6,11 +6,11 @@ extern char D_00580D40[];
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
 extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
 
-/* func_00201018: drop the running job, then give every queued job back. */
+/* cDvd_cancelAll: drop the running job, then give every queued job back. */
 
 
-__attribute__((section(".text.func_00201018")))
-void func_00201018(cDvd *self) {
+__attribute__((section(".text.cDvd_cancelAll")))
+void cDvd_cancelAll(cDvd *self) {
     cDvdJob *job, *cur;
     int i;
     cur = self->cur;
@@ -29,11 +29,11 @@ void func_00201018(cDvd *self) {
     self->queueNum = 0;
 }
 
-/* func_00200F50: cancel the job with the given id, running or queued. Returns 1 if one was found. */
+/* cDvd_cancel: cancel the job with the given id, running or queued. Returns 1 if one was found. */
 
 
-__attribute__((section(".text.func_00200F50")))
-int func_00200F50(cDvd *self, int id) {
+__attribute__((section(".text.cDvd_cancel")))
+int cDvd_cancel(cDvd *self, int id) {
     cDvdJob *cur;
     cDvdJob *job;
     int ret = 0;
@@ -64,15 +64,15 @@ int func_00200F50(cDvd *self, int id) {
     return ret;
 }
 
-/* func_00200DF8: queue a read of a named file into a heap block. Returns the job id, 0 on failure. */
+/* cDvd_ReadAllocSized: queue a read of a named file into a heap block. Returns the job id, 0 on failure. */
 
 
 
 
 
 
-__attribute__((section(".text.func_00200DF8")))
-int func_00200DF8(cDvd *self, char *name, void **outBuf, int a3, int id, unsigned int *outSize, int arg70, int arg6C) {
+__attribute__((section(".text.cDvd_ReadAllocSized")))
+int cDvd_ReadAllocSized(cDvd *self, char *name, void **outBuf, int a3, int id, unsigned int *outSize, int arg70, int arg6C) {
     cDvdJob *job;
     void *buf;
 

@@ -3,24 +3,24 @@
 
 extern int D_005FEE00;
 extern int D_003C2558;
-extern void func_002CBC58(int *, int, int);
+extern void cSnd_SeFadeVoicesByKey(int *, int, int);
 extern void LoadResourceEntry_297378();
 extern void cSnd_BgmEvDataInit();
 extern void LoadDisplayText_297450();
 extern void cEvent_clearSystem();
-extern void func_00297540();
+extern void cEvent_startLoadText();
 extern int cSnd_BgmEvDataCheck();
 extern void cSnd_BgmEvCutSet();
 extern int cSnd_BgmEvCutCheck();
-extern void func_002977E8();
+extern void cEvent_setTextSections();
 extern void cEvent_startCreateWork();
 extern int cEvent_isEndCreateWork();
 extern int func_0();
-extern void func_002D1E18();
+extern void cSnd_BgmEvFadeDefault();
 extern void Obj0000_Set_D_003C2555_One_2B65F0();
 
-extern int func_00297428(cEvent *);
-extern int func_002975D0(cEvent *);
+extern int cEvent_isLoadEnd(cEvent *);
+extern int cEvent_isLoadEndAfterCut(cEvent *);
 extern int func_00297B80(cEvent *);
 /* CREATE stage: load the entry and the display text, wait for the music
  * data, create the work and wait for it. Any failure goes to RELEASE; success
@@ -35,7 +35,7 @@ int func_00296958(cEvent *self) {
     switch ((signed char)self->phase) {
     case 0:
         for (i = 0; i < 0x34; i++) {
-            func_002CBC58(&D_005FEE00, i, 0);
+            cSnd_SeFadeVoicesByKey(&D_005FEE00, i, 0);
         }
         LoadResourceEntry_297378(self);
         cb = self->onLoaded;
@@ -48,7 +48,7 @@ int func_00296958(cEvent *self) {
         self->phase += 1;
         /* fall through */
     case 1:
-        if (func_00297428(self) == 0) {
+        if (cEvent_isLoadEnd(self) == 0) {
             return 0;
         }
         if (self->resData == 0) {
@@ -63,7 +63,7 @@ int func_00296958(cEvent *self) {
         self->phase += 1;
         /* fall through */
     case 2:
-        func_00297540(self);
+        cEvent_startLoadText(self);
         self->phase += 1;
         /* fall through */
     case 3:
@@ -76,7 +76,7 @@ int func_00296958(cEvent *self) {
         self->phase += 1;
         /* fall through */
     case 4:
-        if (func_002975D0(self) == 0) {
+        if (cEvent_isLoadEndAfterCut(self) == 0) {
             return 0;
         }
         if (CEVENT_FLAG_BYTE(self, 1) & 1) {
@@ -90,7 +90,7 @@ int func_00296958(cEvent *self) {
             self->unk07 = 0;
             return 0;
         }
-        func_002977E8(self);
+        cEvent_setTextSections(self);
         cEvent_startCreateWork(self);
         self->phase += 1;
         if (self->flags & CEVENT_F_NO_START) {
@@ -106,7 +106,7 @@ int func_00296958(cEvent *self) {
             return 0;
         }
         if (func_0(func_0) == 0) {
-            func_002D1E18(&D_005FEE00, 1, -1);
+            cSnd_BgmEvFadeDefault(&D_005FEE00, 1, -1);
             self->phase = 0;
             self->state = CEVENT_STATE_RELEASE;
             self->unk06 = 0;

@@ -1,6 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern void func_002CD4A8(void *a0, float f12);
+extern void cSndBgmNode_FadeOut(void *a0, float f12);
 extern void MtxInitCoord(void *a0, int a1, void *a2, void *a3, int t0);
 extern void CustomIDWork_SetDisp(void *a0, int a1);
 extern void InitFields_1B6E90(void *a0);
@@ -13,7 +13,7 @@ void OrChildField98AndSelfFieldB0AC_2CA718(void *a0)
     char *s0 = *(char **)(p + 0x18);
     while (s0 != 0) {
         *(unsigned int *)(s0 + 0x98) = *(unsigned int *)(s0 + 0x98) | 0x10000;
-        func_002CD4A8(s0, 180.0f);
+        cSndBgmNode_FadeOut(s0, 180.0f);
         s0 = *(char **)(s0 + 0x88);
     }
     *(unsigned int *)(p + 0xB0) = *(unsigned int *)(p + 0xB0) | 0x100000;
