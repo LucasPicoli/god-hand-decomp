@@ -131,8 +131,8 @@ extern volatile int D_003F8660;            /* the callback semaphore id */
 
 
 
-__attribute__((section(".text.func_003984D8")))
-void func_003984D8(int *arg)
+__attribute__((section(".text._sceCd_cd_callback")))
+void _sceCd_cd_callback(int *arg)
 {
     D_003F86A0 = arg[0];
     D_003F86A4 = D_003F86A0;
