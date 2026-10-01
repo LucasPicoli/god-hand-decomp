@@ -2364,13 +2364,12 @@ void cObjSimple_R0_Init(char *a0) {
 
 INCLUDE_ASM("nonmatching", cRoomSave_systemInit);
 
-INCLUDE_ASM("nonmatching", cSceAtManager_AtDataSet_exec_2C2750);
-
 INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 
 INCLUDE_ASM("nonmatching", KeyStop);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
