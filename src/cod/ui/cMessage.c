@@ -1,37 +1,42 @@
-/* TU: cMessage [ui] - recovered C++ class. */
-
+#include "godhand/cMessage.h"
+extern cMessageWin *cMessage_searchWorkId(cMessage *self, unsigned short workId);
+extern cMessageWin *func_002AEF10(cMessage *self, cMessageWin *win);
+/* Delete the window with this work id. 1 if it existed. */
 __attribute__((section(".text.cMessage_deleteWorkId")))
-int cMessage_deleteWorkId(void *a0, unsigned short a1)
+int cMessage_deleteWorkId(cMessage *self, unsigned short workId)
 {
-    int v;
-    v = cMessage_searchWorkId(a0, a1);
-    if (v == 0) {
+    cMessageWin *win;
+    win = cMessage_searchWorkId(self, workId);
+    if (win == 0) {
         return 0;
     }
-    func_002AEF10(a0, v);
+    func_002AEF10(self, win);
     return 1;
 }
 
+extern cMessageWin *func_002AED40(cMessage *self, unsigned short messNo);
+/* Delete the window showing message messNo. 1 if it existed. */
 __attribute__((section(".text.cMessage_deleteMessNo")))
-int cMessage_deleteMessNo(void *a0, unsigned short a1)
+int cMessage_deleteMessNo(cMessage *self, unsigned short messNo)
 {
-    int v;
-    v = func_002AED40(a0, a1);
-    if (v == 0) {
+    cMessageWin *win;
+    win = func_002AED40(self, messNo);
+    if (win == 0) {
         return 0;
     }
-    func_002AEF10(a0, v);
+    func_002AEF10(self, win);
     return 1;
 }
 #include "include_asm.h"
 
-extern void func_002B2400(void *a0);
 
+extern void func_002B2400(cMessageWin *win);
+/* Close every open window. */
 __attribute__((section(".text.cMessage_closeAll")))
-void cMessage_closeAll(void *a0) {
-    void *p = *(void **)((char *)a0 + 0x10);
-    while (p) {
-        func_002B2400(p);
-        p = *(void **)((char *)p + 0x8);
+void cMessage_closeAll(cMessage *self) {
+    cMessageWin *win = self->head;
+    while (win) {
+        func_002B2400(win);
+        win = win->next;
     }
 }

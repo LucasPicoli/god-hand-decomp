@@ -1,4 +1,4 @@
-/* cWorldTime_gameInit — zero the time field. */
-
+/* Reset the global tick counter. */
+#include "godhand/cWorldTime.h"
 __attribute__((section(".text.cWorldTime_gameInit")))
-void cWorldTime_gameInit(void *a0) { *(int *)((char *)a0 + 0) = 0; }
+void cWorldTime_gameInit(cWorldTime *self) { self->globalTime = 0; }

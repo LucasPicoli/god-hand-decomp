@@ -1,8 +1,10 @@
 /* TU: cWorldTime - recovered C++ class. */
-extern void func_002D9D50(int a0, int a1, int a2, int a3, int a4);
+#include "godhand/cWorldTime.h"
 
+extern void func_002D9D50(cWorldTime *self, unsigned int ticks, unsigned int *h, unsigned int *m, unsigned int *s);
+/* Split the stage tick counter into hours, minutes and seconds. */
 __attribute__((section(".text.cWorldTime_getStageHMS")))
-void cWorldTime_getStageHMS(int a0, int a1, int a2, int a3)
+void cWorldTime_getStageHMS(cWorldTime *self, unsigned int *h, unsigned int *m, unsigned int *s)
 {
-    func_002D9D50(a0, *(int *)(a0 + 4), a1, a2, a3);
+    func_002D9D50(self, self->stageTime, h, m, s);
 }

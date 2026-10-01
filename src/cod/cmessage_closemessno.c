@@ -1,14 +1,12 @@
-/* cMessage_closeMessNo — look up the message window for id a1 (func_002AED40);
- * if found, close it (func_002B2400) and return 1, else 0.  sn-2.95.3-136. */
-
-extern void *func_002AED40(void *, int);
-extern void func_002B2400(void *);
-
+#include "godhand/cMessage.h"
+extern cMessageWin *func_002AED40(cMessage *self, int messNo);
+extern void func_002B2400(cMessageWin *win);
+/* Close the window showing message messNo. 1 if it existed. */
 __attribute__((section(".text.cMessage_closeMessNo")))
-int cMessage_closeMessNo(void *a0, int a1) {
-    void *p = func_002AED40(a0, a1 & 0xFFFF);
-    if (!p)
+int cMessage_closeMessNo(cMessage *self, int messNo) {
+    cMessageWin *win = func_002AED40(self, messNo & 0xFFFF);
+    if (!win)
         return 0;
-    func_002B2400(p);
+    func_002B2400(win);
     return 1;
 }

@@ -1,4 +1,4 @@
-/* cWorldTime_setGlobalTime — set the time field. */
-
+/* Set the global tick counter. */
+#include "godhand/cWorldTime.h"
 __attribute__((section(".text.cWorldTime_setGlobalTime")))
-void cWorldTime_setGlobalTime(void *a0, int a1) { *(int *)((char *)a0 + 0) = a1; }
+void cWorldTime_setGlobalTime(cWorldTime *self, unsigned int ticks) { self->globalTime = ticks; }

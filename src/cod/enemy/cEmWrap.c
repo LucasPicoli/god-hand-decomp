@@ -1,4 +1,5 @@
 /* TU: cEmWrap [enemy] - recovered C++ class. */
+#include "godhand/cEmWrap.h"
 struct vec4 { int a; float b; int c; float d; };
 extern int D_00747B00[];
 extern unsigned char D_005864F0[];
@@ -44,128 +45,148 @@ void cEmWrap_setPos_295A08(int *a0, int a1, float f12)
     }
 }
 
+/* Pointer to the actor's rotation, or a shared default when the handle is dead. */
 __attribute__((section(".text.cEmWrap_getRot")))
-int *cEmWrap_getRot(int *a0)
+int *cEmWrap_getRot(cEmWrap *self)
 {
-    return FindResolveActor_295978(a0) ? (int *)(*(int *)((char *)a0 + 4) + 0x100) : D_00747B00;
+    return FindResolveActor_295978(self) ? (int *)self->actor->rot : D_00747B00;
 }
 
+extern int cEmManage_ReleaseEm();
+/* Give the actor back to the enemy manager. */
 __attribute__((section(".text.cEmWrap_release")))
-int cEmWrap_release(void *a0)
+int cEmWrap_release(cEmWrap *self)
 {
-    int v;
-    if (FindResolveActor_295978(a0) == 0) {
+    cEmActor *actor;
+    if (FindResolveActor_295978(self) == 0) {
         return 0;
     }
-    v = *(int *)((char *)a0 + 4);
-    if (v != 0) {
-        return cEmManage_ReleaseEm(D_005864F0, v);
+    actor = self->actor;
+    if (actor != 0) {
+        return cEmManage_ReleaseEm(D_005864F0, actor);
     }
     return 0;
 }
 
+/* Suspend or resume the actor through its method table. */
 __attribute__((section(".text.cEmWrap_setSuspend")))
-void cEmWrap_setSuspend(void *a0, int a1)
+void cEmWrap_setSuspend(cEmWrap *self, int flag)
 {
-    if (FindResolveActor_295978(a0)) {
-        char *a2 = *(char **)((char *)a0 + 4);
-        char *v0 = *(char **)(a2 + 0x214);
-        int off = *(short *)(v0 + 0x60);
-        void (*fp)(char *, int) = *(void (**)(char *, int))(v0 + 0x64);
-        fp(a2 + off, a1);
+    if (FindResolveActor_295978(self)) {
+        cEmActor *actor = self->actor;
+        cEmActorVt *vt = actor->vt;
+        int delta = vt->suspendDelta;
+        void (*suspend)(char *, int) = (void (*)(char *, int))vt->suspend;
+        suspend((char *)actor + delta, flag);
     }
 }
 
+extern int func_003A5678();
+extern void func_00276090();
+/* Set the lock-off flag unless the actor's kind is in the no-lock list. */
 __attribute__((section(".text.cEmWrap_setLockOff")))
-void cEmWrap_setLockOff(void *a0, int a1)
+void cEmWrap_setLockOff(cEmWrap *self, int flag)
 {
     extern unsigned char D_0044A870[];
-    if (FindResolveActor_295978(a0)) {
-        char *p = *(char **)((char *)a0 + 4);
-        if (func_003A5678(D_0044A870, *(int *)(p + 0x4AC)) == 0) {
-            func_00276090(*(void **)((char *)a0 + 4), a1);
+    if (FindResolveActor_295978(self)) {
+        cEmActor *actor = self->actor;
+        if (func_003A5678(D_0044A870, actor->kind) == 0) {
+            func_00276090(self->actor, flag);
         }
     }
 }
 
+extern void func_0028FB08(void *actor);
+/* Kill the actor. */
 __attribute__((section(".text.cEmWrap_setDead")))
-void cEmWrap_setDead(void *a0)
+void cEmWrap_setDead(cEmWrap *self)
 {
-    if (FindResolveActor_295978(a0)) {
-        func_0028FB08(*(void **)((char *)a0 + 4));
+    if (FindResolveActor_295978(self)) {
+        func_0028FB08(self->actor);
     }
 }
 
+extern int cEmBase_checkDeadFlag();
+/* 1 when the handle is dead or the actor's dead flag is set. */
 __attribute__((section(".text.cEmWrap_isDead")))
-int cEmWrap_isDead(int a0)
+int cEmWrap_isDead(cEmWrap *self)
 {
-    if (FindResolveActor_295978(a0) == 0) {
+    if (FindResolveActor_295978(self) == 0) {
         return 1;
     }
-    return cEmBase_checkDeadFlag(*(int *)(a0 + 4));
+    return cEmBase_checkDeadFlag(self->actor);
 }
 
+/* Start the actor's current action through its method table. */
 __attribute__((section(".text.cEmWrap_StartAction")))
-void cEmWrap_StartAction(void *a0)
+void cEmWrap_StartAction(cEmWrap *self)
 {
-    if (FindResolveActor_295978(a0)) {
-        char *a1 = *(char **)((char *)a0 + 4);
-        char *v0 = *(char **)(a1 + 0x214);
-        int off = *(short *)(v0 + 0xD8);
-        void (*fp)(char *) = *(void (**)(char *))(v0 + 0xDC);
-        fp(a1 + off);
+    if (FindResolveActor_295978(self)) {
+        cEmActor *actor = self->actor;
+        cEmActorVt *vt = actor->vt;
+        int delta = vt->startDelta;
+        void (*start)(char *) = (void (*)(char *))vt->startAction;
+        start((char *)actor + delta);
     }
 }
 
+/* Current vital of the actor, 0 if the handle is dead. */
 __attribute__((section(".text.cEmWrap_GetVital")))
-int cEmWrap_GetVital(void *a0, int a1) {
-    int *p;
-    if (FindResolveActor_295978(a0, a1) == 0) return 0;
-    p = *(int**)((char*)a0 + 4);
-    return *(short*)((char*)p + 0x54A);
+int cEmWrap_GetVital(cEmWrap *self, int a1) {
+    cEmActor *actor;
+    if (FindResolveActor_295978(self, a1) == 0) return 0;
+    actor = self->actor;
+    return actor->vital;
 }
 
+/* Maximum vital of the actor, 0 if the handle is dead. */
 __attribute__((section(".text.cEmWrap_GetVitalMax")))
-int cEmWrap_GetVitalMax(void *a0, int a1) {
-    int *p;
-    if (FindResolveActor_295978(a0, a1) == 0) return 0;
-    p = *(int**)((char*)a0 + 4);
-    return *(short*)((char*)p + 0x548);
+int cEmWrap_GetVitalMax(cEmWrap *self, int a1) {
+    cEmActor *actor;
+    if (FindResolveActor_295978(self, a1) == 0) return 0;
+    actor = self->actor;
+    return actor->vitalMax;
 }
 
+/* Set the item the actor drops. */
 __attribute__((section(".text.cEmWrap_setDropItem")))
-void cEmWrap_setDropItem(void *a0, int a1) {
-    if (FindResolveActor_295978(a0, a1)) {
-        *(int*)(*(char**)((char*)a0 + 4) + 0x560) = a1;
+void cEmWrap_setDropItem(cEmWrap *self, int item) {
+    if (FindResolveActor_295978(self, item)) {
+        self->actor->dropItem = item;
     }
 }
 
+/* Turn screen collision on (enable == 1) or off. */
 __attribute__((section(".text.cEmWrap_setScrCollEnable")))
-void cEmWrap_setScrCollEnable(void *a0, int a1) {
-    if (FindResolveActor_295978(a0, a1) == 0) return;
-    if (a1 == 1) {
-        *(int*)(*(char**)((char*)a0 + 4) + 0x5A0) &= ~4;
+void cEmWrap_setScrCollEnable(cEmWrap *self, int enable) {
+    if (FindResolveActor_295978(self, enable) == 0) return;
+    if (enable == 1) {
+        self->actor->scrFlags &= ~EMACTOR_FLAG_NOSCRCOLL;
     } else {
-        *(int*)(*(char**)((char*)a0 + 4) + 0x5A0) |= 4;
+        self->actor->scrFlags |= EMACTOR_FLAG_NOSCRCOLL;
     }
 }
 
+extern int Obj0000_IsSet_Field_16D0_Bit_1_26ECC0();
+/* Whether the actor is active; kinds in the no-lock list are never active. */
 __attribute__((section(".text.cEmWrap_CkActive")))
-int cEmWrap_CkActive(void *a0){
- extern unsigned char D_0044A870[];
- char *p;
- if(!FindResolveActor_295978(a0)) return 0;
- p=*(char**)((char*)a0+4);
- return func_003A5678(D_0044A870,*(int*)(p+0x4AC))?0:Obj0000_IsSet_Field_16D0_Bit_1_26ECC0(*(void**)((char*)a0+4));
+int cEmWrap_CkActive(cEmWrap *self){
+    extern unsigned char D_0044A870[];
+    cEmActor *actor;
+    if (!FindResolveActor_295978(self)) return 0;
+    actor = self->actor;
+    return func_003A5678(D_0044A870, actor->kind) ? 0 : Obj0000_IsSet_Field_16D0_Bit_1_26ECC0(self->actor);
 }
 
+extern int func_0026EA28();
+/* Whether the actor is heading for a goto point; kinds in the no-lock list never are. */
 __attribute__((section(".text.cEmWrap_ckGoto")))
-int cEmWrap_ckGoto(void *a0){
- extern unsigned char D_0044A870[];
- char *p;
- if(!FindResolveActor_295978(a0)) return 0;
- p=*(char**)((char*)a0+4);
- return func_003A5678(D_0044A870,*(int*)(p+0x4AC))?0:func_0026EA28(*(void**)((char*)a0+4));
+int cEmWrap_ckGoto(cEmWrap *self){
+    extern unsigned char D_0044A870[];
+    cEmActor *actor;
+    if (!FindResolveActor_295978(self)) return 0;
+    actor = self->actor;
+    return func_003A5678(D_0044A870, actor->kind) ? 0 : func_0026EA28(self->actor);
 }
 
 __attribute__((section(".text.cEmWrap_SetKeepPos")))
