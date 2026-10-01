@@ -1,42 +1,43 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDBase.h"
 
 extern char D_005E7910[];
 extern char *D_00754C58;
 
+/* Resolve each entry's parent: an entry whose parentRef (0x29) names the id
+ * (0x28) of another entry points `parent` at that entry. */
 __attribute__((section(".text.func_002AA480")))
-void func_002AA480(char *a) {
+void func_002AA480(cIDBaseObj *self) {
     int i;
     int j;
     int c;
-    int o1;
-    int o2;
-    int o3;
-    char *p;
-    char *q;
-    char *r;
+    int o1, o2, o3;
+    cIDBaseEnt *ent;
+    cIDBaseEnt *q;
+    cIDBaseEnt *r;
 
-    for (i = 0; i < *(int *)(a + 0xC); i++) {
-        o1 = i * 0xAC;
-        p = (char *)(o1 + *(int *)(a + 4));
-        c = *(char *)(p + 0x29);
+    for (i = 0; i < self->entNum; i++) {
+        o1 = i * IDBASE_ENT_SIZE;
+        ent = (cIDBaseEnt *)(o1 + (int)self->ent);
+        c = ent->parentRef;
         if (c < 0) {
-            *(int *)(p + 0x20) = 0;
+            ent->parent = 0;
             continue;
         }
-        if (c == *(unsigned char *)(p + 0x28)) {
-            *(int *)(p + 0x20) = 0;
+        if (c == ent->b28) {
+            ent->parent = 0;
             return;
         }
-        for (j = 0; j < *(int *)(a + 0xC); j++) {
+        for (j = 0; j < self->entNum; j++) {
             if (i == j) {
                 continue;
             }
-            o2 = i * 0xAC;
-            o3 = j * 0xAC;
-            q = (char *)(o2 + *(int *)(a + 4));
-            r = (char *)(o3 + *(int *)(a + 4));
-            if (*(char *)(q + 0x29) == *(unsigned char *)(r + 0x28)) {
-                *(int *)(q + 0x20) = (int)r;
+            o2 = i * IDBASE_ENT_SIZE;
+            o3 = j * IDBASE_ENT_SIZE;
+            q = (cIDBaseEnt *)(o2 + (int)self->ent);
+            r = (cIDBaseEnt *)(o3 + (int)self->ent);
+            if (q->parentRef == r->b28) {
+                q->parent = r;
             }
         }
     }

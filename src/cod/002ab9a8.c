@@ -1,10 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDBase.h"
 
 extern int D_005E7510;
 extern void func_002AF6A8(void *a0, int a1, int a2);
 
+/* Select the shared message environment's draw style from `val`: val % 10 in
+ * 1..7 picks style 3..9, anything else style 2. val / 10 is the second
+ * argument. */
 __attribute__((section(".text.func_002AB9A8")))
-void func_002AB9A8(void *unused, unsigned char val)
+void func_002AB9A8(cIDBaseObj *self, unsigned char val)
 {
     int quotient;
     int remainder;

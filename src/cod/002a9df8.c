@@ -1,10 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDBase.h"
 
 extern const float D_003BD880[4];
 
+/* Put a cIDBase in its empty state: no entries, not stopped or hidden, the
+ * two vectors copied from D_003BD880, default scale and colour mode. */
 __attribute__((section(".text.func_002A9DF8")))
-void func_002A9DF8(void *arg) {
-    char *p = (char *)arg;
+void func_002A9DF8(cIDBaseObj *self) {
     const float *src1;
     const float *src2;
     float *d1;
@@ -12,18 +14,18 @@ void func_002A9DF8(void *arg) {
     int i;
     int j;
 
-    *(int *)(p + 0x00) = 0;
-    *(int *)(p + 0x04) = 0;
-    *(int *)(p + 0x08) = 0;
-    *(int *)(p + 0x0C) = 0;
-    *(char *)(p + 0x18) = 0;
-    *(char *)(p + 0x19) = 0;
-    *(short *)(p + 0x1A) = 0;
-    *(char *)(p + 0x1C) = 0;
-    *(char *)(p + 0x1D) = 0;
-    *(char *)(p + 0x1E) = 0;
+    self->src = 0;
+    self->ent = 0;
+    self->packed = 0;
+    self->entNum = 0;
+    self->stop = 0;
+    self->hide = 0;
+    self->frame = 0;
+    self->playing = 0;
+    self->b1D = 0;
+    self->b1E = 0;
 
-    d1 = (float *)(p + 0x20);
+    d1 = self->vecA;
     i = 3;
     src1 = D_003BD880;
     for (; i != -1; i--) {
@@ -31,13 +33,13 @@ void func_002A9DF8(void *arg) {
     }
 
     src2 = D_003BD880;
-    d2 = (float *)(p + 0x30);
+    d2 = self->vecB;
     j = 3;
     for (; j != -1; j--) {
         *d2++ = *src2++;
     }
 
-    *(float *)(p + 0x40) = 0.01f;
-    *(short *)(p + 0x44) = 0x80;
-    *(char *)(p + 0x46) = 6;
+    self->f40 = 0.01f;
+    self->h44 = 0x80;
+    self->mode = 6;
 }

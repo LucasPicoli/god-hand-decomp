@@ -1,10 +1,12 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cIDBase.h"
 
+/* Clear an entry's first jitter value and its ANIM_ON flag. */
 __attribute__((section(".text.func_002ABC18")))
-void func_002ABC18(int a0, char *a1) {
-    int v0 = *(int *)(a1 + 0x2C);
-    *(short *)(a1 + 0xA0) = 0;
-    *(int *)(a1 + 0x2C) = v0 & ~0x4000;
+void func_002ABC18(cIDBaseObj *self, cIDBaseEnt *ent) {
+    int flags = ent->flags;
+    ent->jit[0] = 0;
+    ent->flags = flags & ~IDENT_FLAG_ANIM_ON;
 }
 
 __attribute__((section(".text.func_002AE3D0")))
