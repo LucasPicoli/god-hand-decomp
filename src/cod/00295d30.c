@@ -1,10 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned char D_0044A870[];
 extern void cEm00_setGoto(void*, int, int, int, float);
 extern void func_0026E7A8(int a0, int a1);
 extern void func_00297660(void *a0);
-extern int D_00569B70;
 
 __attribute__((section(".text.cEmWrap_SetVital")))
 void cEmWrap_SetVital(void *a0, int a1) {

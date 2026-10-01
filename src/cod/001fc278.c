@@ -1,8 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void cCoreSave_setReelSlot(void *obj, int idx, int val);
-
 typedef struct SlotObj {
     int base;
 } SlotObj;

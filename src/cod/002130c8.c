@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -10,13 +11,11 @@ extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern unsigned int Forward30F348_31CFE0(void);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
-extern int cCoreSave_getGameLevel(void *a0);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern int Obj293_IsByteSet_53C(void *a0);
 extern void func_002705D8(void *a0);
 extern unsigned char D_005864F0[];
 extern char D_005FEE00[];
-extern char D_00569B70[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -284,7 +283,7 @@ void func_002130C8(void *a0)
             case 0x266:
                 break;
             }
-            switch (cCoreSave_getGameLevel(D_00569B70)) {
+            switch (cCoreSave_getGameLevel(&D_00569B70)) {
             default:
             case 1:
                 if (*(unsigned int *)(p + 0x16D8) < 1) {

@@ -8,14 +8,6 @@ extern int D_003BF160[];            /* levelPoint thresholds, one per game level
 extern int D_00747A34;              /* cheat flags */
 extern int D_00747A38;              /* cheat flags */
 
-extern void cCoreSave_initAddGold(cCoreSave *self);
-extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
-extern void cCoreSave_clearKillNpcNum(cCoreSave *self);
-extern void cCoreSave_initContinueNum(cCoreSave *self);
-extern void cCoreSave_setVital(cCoreSave *self, int vital);
-extern int cCoreSave_getVitalMax(cCoreSave *self);
-extern void cCoreSave_clearKillEmNum(cCoreSave *self);
-extern void cCoreSave_initItem(cCoreSave *self);
 extern void func_002D9D48(int *a0, int a1);
 
 /* Game level 1..5 from the level points. Level 4 is never reported: a

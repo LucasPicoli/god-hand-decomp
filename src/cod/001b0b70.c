@@ -1,4 +1,5 @@
 #include "include_asm.h"
+#include "godhand/cCoreSave.h"
 
 /* ──────────────────────────── small picks ─────────────────────────────── */
 
@@ -132,7 +133,6 @@ extern void cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
 extern void cDvd_CheckWait();
 extern void cIDManager_setIDData();
-extern int cCoreSave_getGold();
 extern void func_001F4648();
 extern void func_001F4B78();
 extern void func_001F4840();
@@ -149,7 +149,6 @@ extern char D_0042BF40[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern int *D_003C2384;
-extern int *D_00569B70;
 extern int D_00747A2C;
 
 __attribute__((section(".text.ColiseumEmSelect__Initialize")))
@@ -186,9 +185,9 @@ void ColiseumEmSelect__Initialize(char *a0)
     func_001F4248(a0, 1);
     func_001F52A0(a0 + 0x60, *(unsigned short *)(a0 + 0x37D2), 1);
     if (D_00747A2C & 0x200) {
-        D_00569B70[5] |= 0x800000;
+        D_00569B70.data->flags |= 0x800000;
     }
-    if (D_00569B70[5] & 0x800000) {
+    if (D_00569B70.data->flags & 0x800000) {
         *(short *)(a0 + 0x37D6) = 0x33;
     } else {
         *(short *)(a0 + 0x37D6) = 0x32;

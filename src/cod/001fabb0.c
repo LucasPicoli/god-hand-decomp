@@ -3,9 +3,9 @@
 
 /* Count the filled god-item slots among the unlocked ones. */
 __attribute__((section(".text.cCoreSave_getGodItemNum")))
-int cCoreSave_getGodItemNum(cCoreSave *self) {
+unsigned int cCoreSave_getGodItemNum(cCoreSave *self) {
     unsigned int i;
-    int n;
+    unsigned int n;
 
     n = 0;
     for (i = 0; (i < CORESAVE_GOD_ITEM_NUM) && (i < self->data->reelItemNum); i++) {

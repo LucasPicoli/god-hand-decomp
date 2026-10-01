@@ -4,7 +4,6 @@ extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int moveMotion(void *a0);
@@ -16,7 +15,6 @@ extern void func_001C2280(void *a0, void *a1, int a2, void *a3, void *a4);
 extern void SetField_2F6_1C2308(void *a0);
 extern void func_002705D8(void *a0);
 extern void Tramp_00312708_1B79B0(void *a0);
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -40,6 +38,7 @@ extern int D_00569B70;
 
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_002258C0")))
 void func_002258C0(void *a0)

@@ -6,8 +6,6 @@ extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern int cCoreSave_getGameLevel(void *a0);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern int cHeatSys_SubHeatGage(void *a0, int a1, float f12);
@@ -18,7 +16,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_00569B70[];
 extern char D_005CB000[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -45,6 +42,7 @@ extern char D_005CB000[];
 
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_0011C988")))
 void func_0011C988(void *a0)
@@ -70,7 +68,7 @@ void func_0011C988(void *a0)
         v[3] = 1.0f;
         func_001299F0(s1, s2, v, 0, z);
         cEm00_GetPlMotion(s2, 0xB, z, z);
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             *(float *)(s1 + 0x15C0) = 0.1f;
@@ -83,7 +81,7 @@ void func_0011C988(void *a0)
         case 5:
             *(float *)(s1 + 0x15C0) = 1.0f;
         }
-        cCoreSave_addGameLevelPoint(D_00569B70, -0x140);
+        cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
         *(int *)(s1 + 0x15B0) = 0xA;
         *(short *)(s1 + 0x56E) = 0xF;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -109,7 +107,7 @@ void func_0011C988(void *a0)
         v[3] = 1.0f;
         func_001299F0(s1, s2, v, 0, z);
         cEm00_GetPlMotion(s2, 0xC, z, z);
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             *(float *)(s1 + 0x15C0) = 0.1f;

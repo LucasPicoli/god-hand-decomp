@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned int Rnd(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
@@ -7,7 +8,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_00569B70[];
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
 extern void MaxField514_292030(void *a0, int a1);
@@ -19,7 +19,6 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern float Adjust_theta(float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void SetField548AndGlobals_292F38(void *a0, float f12);

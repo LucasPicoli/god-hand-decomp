@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cCoreSave.h"
 
 extern unsigned char D_005864F0[];
 extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
-extern int D_00569B70;
 extern int D_005E8658;
-extern void cCoreSave_freeItem();
 extern void func_002BECB0();
 extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);

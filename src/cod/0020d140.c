@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern int Forward30F348_31CFE0(void);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_00274238(void *a0, int a1);
 extern unsigned char D_005CB010;
-extern int D_00569B70;
 
 __attribute__((section(".text.func_0020D140")))
 int func_0020D140(void *a0)

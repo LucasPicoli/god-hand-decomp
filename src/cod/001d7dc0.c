@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_001DD770(void *a0, int a1);
 extern void func_001DD840(void *a0, int a1);
@@ -8,11 +9,9 @@ extern void func_001DD5A0(void *a0, int a1);
 extern void SetBlendField4BCColor_1DDC60(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
-extern void cCoreSave_addGold(void *a0, int a1, int a2);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int D_007474A0;
 extern unsigned char D_005FEE00[];
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 

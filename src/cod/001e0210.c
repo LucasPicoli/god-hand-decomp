@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char D_003BE0B0[];
-extern int D_00569B70;
 extern int D_00747A2C;
 extern void func_001E3858(int a0);
 extern void func_001E39D0(int a0);
@@ -14,7 +14,6 @@ extern void func_001E44A8(int a0);
 extern void func_001E4610(int a0);
 extern void func_001E79E8(int a0);
 extern void func_001E7EA0(int a0);
-extern int cCoreSave_getGold(void *a0);
 extern void CustomIDWork_SetNumber(int a0, int a1);
 extern void func_001E73C0(int a0);
 extern void func_001E7440(int a0);

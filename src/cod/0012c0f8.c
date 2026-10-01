@@ -1,9 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(void *a0);
-extern int cCoreSave_getGameDifficulty(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float heat);
-extern char *D_00569B70;
 extern unsigned short D_005CAC94;
 extern int D_005CB000;
 
@@ -44,7 +42,7 @@ short func_0012C0F8(void *a0, int a1)
         break;
     }
     if (cCoreSave_getGameDifficulty(&D_00569B70) == 0 &&
-        (*(int *)(D_00569B70 + 0x14) & 0x4000000) == 0) {
+        (D_00569B70.data->flags & 0x4000000) == 0) {
         f *= 0.5f;
     } else {
         f *= 0.75f;

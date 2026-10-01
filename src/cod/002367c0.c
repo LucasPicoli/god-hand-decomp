@@ -1,12 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned char D_00462FC0[];
-extern unsigned char D_00569B70[];
 extern char D_007474A0[];
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
@@ -14,6 +12,7 @@ extern void func_002DB770(void);
 extern void func_00274FE8(void *a0);
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 
 

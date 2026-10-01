@@ -346,27 +346,27 @@ void cCoreSave_loadWorldActive(cCoreSave *self) {
 
 struct S001FA690 { char pad[0x10]; unsigned short f10; };
 struct W001FA690 { struct S001FA690 *p; };
-struct S001FA710 { char pad[0x20]; int f20; };
 __attribute__((section(".text.cCoreSave_getGold")))
-int cCoreSave_getGold(struct S001FA710 **a0) {
-    struct S001FA710 *p = *a0;
-    if (p == 0) {
+/* gold, forced to its maximum by the 0x2000000 cheat. */
+int cCoreSave_getGold(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
     if (D_00747A34 & 0x2000000) {
-        p->f20 = 0xF423F;
+        data->gold = CORESAVE_GOLD_MAX;
     }
-    return (*a0)->f20;
+    return self->data->gold;
 }
 
-struct S001FA8E0 { char pad[0x20]; int f20; };
 __attribute__((section(".text.cCoreSave_isGoldFull")))
-int cCoreSave_isGoldFull(struct S001FA8E0 **a0) {
-    struct S001FA8E0 *p = *a0;
-    if (p == 0) {
+/* 1 when gold sits at its maximum. */
+int cCoreSave_isGoldFull(cCoreSave *self) {
+    cCoreSaveData *data = self->data;
+    if (data == 0) {
         return 0;
     }
-    return 0xF423E < p->f20;
+    return data->gold >= CORESAVE_GOLD_MAX;
 }
 
 __attribute__((section(".text.cCoreSave_getState154")))
@@ -480,12 +480,12 @@ int cCoreSave_ckClearStage(cCoreSave *self, unsigned int no) {
 
 __attribute__((section(".text.cCoreSave_setReelSlot")))
 /* Put god reel `no` in reel slot `slot` (0..9). */
-void cCoreSave_setReelSlot(cCoreSave *self, unsigned int slot, unsigned int no) {
+void cCoreSave_setReelSlot(cCoreSave *self, unsigned char slot, unsigned int no) {
     cCoreSaveData *data;
     unsigned int idx;
     data = self->data;
     if (data == 0) return;
-    idx = slot & 0xFF;
+    idx = slot;
     if (idx < 0xA) {
         data->reelSlot[idx] = no;
     }

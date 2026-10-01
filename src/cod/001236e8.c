@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getCostumeNo(void *a0);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 

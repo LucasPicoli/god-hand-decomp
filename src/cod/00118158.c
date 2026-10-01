@@ -2,10 +2,10 @@
 
 /* func_00118158, 1336 B, sn-2.95.3-136. Wave 2026-08-31 V2 b3 + nested Duff do{}while(0) opened inside case 3 before the state++ (label 0x00118508, 0 mod 8), case 3/1 tails as goto tail3, plain barrier at case 7 (next label 0x00118620, 0 mod 8), cross-block short f15. */
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern int D_00569B70;
 extern int D_007474A8;
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
@@ -15,7 +15,6 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_002DB7A8(void);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);

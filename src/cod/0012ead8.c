@@ -2,10 +2,6 @@
 #include "godhand/cCoreSave.h"
 
 extern cCoreSaveData D_005686D0;   /* the record itself */
-extern cCoreSave D_00569B70;       /* the game's cCoreSave */
-extern void cCoreSave_initItem(cCoreSave *self);
-extern void cCoreSave_clearPaper(cCoreSave *self);
-extern void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty);
 
 /* sn-2.95.3-136 candidate. */
 

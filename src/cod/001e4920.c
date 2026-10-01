@@ -2,6 +2,7 @@
 
 #include "godhand/Slot2.h"
 #include "godhand/cMessDrawFont.h"
+#include "godhand/cCoreSave.h"
 
 extern int cSceAtManager_SetDisableById(int a0, int a1);
 extern void cScenario_taskExec(void *a0, void *a1, void *a2, int a3);
@@ -23,12 +24,10 @@ extern void func_001E6E68(Slot2 *a0);
 extern void func_001E6FE8(Slot2 *a0);
 extern void func_001E79E8(void *a0);
 extern void func_001E8830(void *a0);
-extern int cCoreSave_getGold(void *a0);
 extern void CustomIDWork_SetNumber(void *a0, int a1);
 extern void func_001E73C0(void *a0);
 extern void func_001E7440(void *a0);
 extern void func_001E6938(Slot2 *a0);
-extern char D_00569B70[];
 extern int D_00747A2C;
 
 /* Slot2 action-button handler: reset the slot's entity state, then run the
@@ -130,7 +129,7 @@ void Slot2_update(Slot2 *self) {
     func_001E8830(&self->reel[0]);
     func_001E8830(&self->reel[1]);
     func_001E8830(&self->reel[2]);
-    t = cCoreSave_getGold(D_00569B70);
+    t = cCoreSave_getGold(&D_00569B70);
     CustomIDWork_SetNumber(self->customId, t);
     func_001E73C0(layer);
     func_001E7440(layer);

@@ -1,14 +1,13 @@
 /* TU: Poker [casino] - recovered C++ class. */
 #include "godhand/Poker.h"
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 extern void func_001DD340();
 extern void SetCustomIDNumberIndexed_1DD648();
-extern int D_00569B70;
 extern void func_001D6E20();
 extern void func_001D6F30();
 extern void func_001DD238();
-extern int cCoreSave_getGold();
 extern void PokerId_Move();
 extern void PokerId__Trans();
 

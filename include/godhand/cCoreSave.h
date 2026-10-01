@@ -116,7 +116,8 @@ typedef struct cCoreSaveData {
     cCoreSaveCombo combo[CORESAVE_COMBO_SETS]; /* 0x1B0 */
     unsigned short itemNum;             /* 0x288 */
     cCoreSaveItem item[CORESAVE_ITEM_NUM]; /* 0x28A */
-    char unkA8A[0x106];
+    char unkA8A[0x102];
+    unsigned int unkB8C;                /* 0xB8C bit 0 set by the new-game reset */
     unsigned int eventFlags;            /* 0xB90 one bit per event */
     int casinoTicketNum;                /* 0xB94 */
     unsigned int fightingRingClear[4];  /* 0xB98 one bit per ring event */
@@ -140,5 +141,147 @@ typedef char cCoreSaveData_size_check[sizeof(cCoreSaveData) == 0x14A0 ? 1 : -1];
 typedef struct cCoreSave {
     cCoreSaveData *data;
 } cCoreSave;
+
+
+/* The game's one save record object. */
+extern cCoreSave D_00569B70;
+
+/* Methods, in name order. The types are those of the matched definitions. */
+void cCoreSave_addAllStageTime(cCoreSave *self, int ticks);
+void cCoreSave_addCasinoTicket(cCoreSave *self, int num);
+void cCoreSave_addContinueNum(cCoreSave *self);
+void cCoreSave_addCounter08(cCoreSave *self);
+void cCoreSave_addGameLevelPoint(cCoreSave *self, int point);
+int cCoreSave_addGodItem(cCoreSave *self, unsigned char item);
+void cCoreSave_addGold(cCoreSave *self, int amount, int clearLog);
+void cCoreSave_addKeyCardNum(cCoreSave *self, int n);
+void cCoreSave_addKeyNum(cCoreSave *self, int n);
+void cCoreSave_addKillEmNum(cCoreSave *self);
+void cCoreSave_addKillNpcNum(cCoreSave *self);
+void cCoreSave_addReelItemNum(cCoreSave *self, unsigned char n);
+void cCoreSave_addStat8A(cCoreSave *self, int n);
+void cCoreSave_addState154(cCoreSave *self, unsigned char n);
+void cCoreSave_addState155(cCoreSave *self, unsigned char n);
+int cCoreSave_addStock(cCoreSave *self, int i, int d);
+void cCoreSave_addUpgradeLv(cCoreSave *self, unsigned int kind, int n);
+int cCoreSave_ckClearStage(cCoreSave *self, unsigned int no);
+int cCoreSave_ckEventFlag(cCoreSave *self, int no);
+int cCoreSave_ckGodReel(cCoreSave *self, int no);
+int cCoreSave_ckPaper(cCoreSave *self);
+int cCoreSave_ckReelSlot(cCoreSave *self, unsigned int no);
+void cCoreSave_clearAllContinueNum(cCoreSave *self);
+void cCoreSave_clearAllKillEmNum(cCoreSave *self);
+void cCoreSave_clearAllKillNpcNum(cCoreSave *self);
+void cCoreSave_clearAllStageTime(cCoreSave *self);
+void cCoreSave_clearBlock180(cCoreSave *self);
+void cCoreSave_clearClearStage(cCoreSave *self);
+void cCoreSave_clearEventFlags(cCoreSave *self);
+void cCoreSave_clearFightingRing(cCoreSave *self);
+void cCoreSave_clearGodItem(cCoreSave *self);
+void cCoreSave_clearKillEmNum(cCoreSave *self);
+void cCoreSave_clearKillNpcNum(cCoreSave *self);
+void cCoreSave_clearPaper(cCoreSave *self);
+void cCoreSave_clearStateBit0(cCoreSave *self);
+void cCoreSave_dropLevelPoint(cCoreSave *self);
+int cCoreSave_findFreeReelSlot(cCoreSave *self);
+int cCoreSave_findNextStage(cCoreSave *self);
+void cCoreSave_freeItem(cCoreSave *self, unsigned short id);
+void cCoreSave_gameInit(cCoreSave *self);
+void cCoreSave_GameLevelUp(cCoreSave *self);
+int cCoreSave_getAddGold(cCoreSave *self, int i);
+int cCoreSave_getAddGoldNum(cCoreSave *self);
+unsigned short cCoreSave_getAllContinueNum(cCoreSave *self);
+int cCoreSave_getAllKillEmNum(cCoreSave *self, int level);
+unsigned short cCoreSave_getAllKillNpcNum(cCoreSave *self);
+void cCoreSave_getAllStageTime(cCoreSave *self, int *hour, int *min, int *sec);
+int cCoreSave_getBlock180(cCoreSave *self);
+int cCoreSave_getBonus(cCoreSave *self);
+int cCoreSave_getCasinoTicketNum(cCoreSave *self);
+int cCoreSave_getClearNum(cCoreSave *self);
+int cCoreSave_getCombo(cCoreSave *self, unsigned int set, unsigned int slot);
+int cCoreSave_getComboLv(cCoreSave *self, unsigned int set, unsigned int slot);
+int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
+unsigned short cCoreSave_getContinueNum(cCoreSave *self);
+unsigned char cCoreSave_getCostumeNo(cCoreSave *self);
+int cCoreSave_getGameDifficulty(cCoreSave *self);
+int cCoreSave_getGameLevel(cCoreSave *self);
+unsigned char cCoreSave_getGodItem0(cCoreSave *self);
+unsigned int cCoreSave_getGodItemNum(cCoreSave *self);
+int cCoreSave_getGold(cCoreSave *self);
+int cCoreSave_getKeyCardNum(cCoreSave *self);
+int cCoreSave_getKeyNum(cCoreSave *self);
+short cCoreSave_getKillEmNum(cCoreSave *self, int level);
+short cCoreSave_getKillNpcNum(cCoreSave *self);
+short cCoreSave_getLevelPoint(cCoreSave *self);
+float cCoreSave_getLevelProgress(cCoreSave *self);
+unsigned char cCoreSave_getPrevCostumeNo(cCoreSave *self);
+int cCoreSave_getReelItem(cCoreSave *self);
+int cCoreSave_getReelSlot(cCoreSave *self, int slot);
+int cCoreSave_getSkill(cCoreSave *self, int id);
+unsigned char cCoreSave_getStat8A(cCoreSave *self);
+int cCoreSave_getState154(cCoreSave *self);
+int cCoreSave_getState155(cCoreSave *self);
+int cCoreSave_getStateBit0(cCoreSave *self);
+unsigned char cCoreSave_getStock(cCoreSave *self, int i);
+int cCoreSave_getVital(cCoreSave *self);
+int cCoreSave_getVitalMax(cCoreSave *self);
+void cCoreSave_initAddGold(cCoreSave *self);
+void cCoreSave_initCombos(cCoreSave *self);
+void cCoreSave_initContinueNum(cCoreSave *self);
+void cCoreSave_initEasyStart(cCoreSave *self);
+void cCoreSave_initItem(cCoreSave *self);
+void cCoreSave_initReelSlots(cCoreSave *self);
+int cCoreSave_isGoldFull(cCoreSave *self);
+void cCoreSave_loadGlobalToggle(cCoreSave *self);
+void cCoreSave_loadSpawn(cCoreSave *self);
+void cCoreSave_loadWorldActive(cCoreSave *self);
+void cCoreSave_loadWorldToggle(cCoreSave *self);
+void cCoreSave_resetCostumeNo(cCoreSave *self, unsigned char no);
+void cCoreSave_saveGlobalToggle(cCoreSave *self);
+void cCoreSave_saveSpawn(cCoreSave *self);
+void cCoreSave_saveStageIds(cCoreSave *self);
+void cCoreSave_saveWorldActive(cCoreSave *self);
+void cCoreSave_saveWorldTime(cCoreSave *self);
+void cCoreSave_saveWorldToggle(cCoreSave *self);
+void cCoreSave_setBonus(cCoreSave *self, int v);
+void cCoreSave_setCasinoTicketNum(cCoreSave *self, int num);
+void cCoreSave_setClearNum(cCoreSave *self, unsigned short num);
+void cCoreSave_setClearStage(cCoreSave *self, unsigned short stage);
+void cCoreSave_setCombo(cCoreSave *self, unsigned int set, unsigned int slot, int id, int lv);
+void cCoreSave_setComboMax(cCoreSave *self, unsigned int set, int max);
+void cCoreSave_setContinueNum(cCoreSave *self, unsigned short n);
+void cCoreSave_setCostumeNo(cCoreSave *self, unsigned int no);
+void cCoreSave_setCounter88(cCoreSave *self, short v);
+void cCoreSave_setEventFlag(cCoreSave *self, int no);
+void cCoreSave_SetFightingRingClearFlag(cCoreSave *self, unsigned int bit, int set);
+void cCoreSave_setGameDifficulty(cCoreSave *self, int difficulty);
+void cCoreSave_setGameLevel(cCoreSave *self, int level);
+void cCoreSave_setGameLevel1_1F9AD0(cCoreSave *self);
+void cCoreSave_setGameLevel5_1F9AF0(cCoreSave *self);
+void cCoreSave_setGodReel(cCoreSave *self, int no);
+void cCoreSave_setGold(cCoreSave *self, int gold);
+void cCoreSave_setKeyCardNum(cCoreSave *self, int num);
+void cCoreSave_setKeyNum(cCoreSave *self, int num);
+void cCoreSave_setLevelPoint(cCoreSave *self, short points);
+void cCoreSave_SetOliviaCostumeNo(cCoreSave *self, int no);
+void cCoreSave_setPaper(cCoreSave *self);
+void cCoreSave_setReelItemNum(cCoreSave *self, unsigned char n);
+void cCoreSave_setReelSlot(cCoreSave *self, unsigned char slot, unsigned int no);
+void cCoreSave_setSkill(cCoreSave *self, int id, int lv);
+void cCoreSave_setStat8A(cCoreSave *self, unsigned char v);
+void cCoreSave_setState154(cCoreSave *self, unsigned char v);
+void cCoreSave_setState155(cCoreSave *self, unsigned char v);
+void cCoreSave_setStateBit0(cCoreSave *self);
+void cCoreSave_setUpgradeLv(cCoreSave *self, unsigned int kind, int lv);
+void cCoreSave_setVital(cCoreSave *self, int vital);
+void cCoreSave_shiftGodItem(cCoreSave *self);
+void cCoreSave_snapshot(cCoreSave *self, int full);
+void cCoreSave_stageInit(cCoreSave *self);
+void cCoreSave_subGold(cCoreSave *self, int amount);
+void cCoreSave_systemInit(cCoreSave *self);
+void cCoreSave_updateVitalMax(cCoreSave *self);
+
+/* Not yet named: 1 when fightingRingClear has the given bit set. */
+int func_001FC4D0(cCoreSave *self, unsigned int bit);
 
 #endif /* GODHAND_CCORESAVE_H */

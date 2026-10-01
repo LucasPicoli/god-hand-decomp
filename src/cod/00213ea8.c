@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -8,8 +9,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
-extern int cCoreSave_getGameLevel(void *a0);
-extern char D_00569B70[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -246,7 +245,7 @@ void func_00213EA8(void *a0)
             return;
         }
         flag = 1;
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             if (*(unsigned int *)(p + 0x16D8) != 0) {

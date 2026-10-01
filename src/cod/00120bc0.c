@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
@@ -6,7 +7,6 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
@@ -17,7 +17,6 @@ extern void func_0012C348(void *a0, int a1);
 extern unsigned int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5,
                               int a6, int a7);
@@ -40,7 +39,7 @@ void func_00120BC0(void *a0)
         func_0012B928(s1);
         if (s0 != 0)
             func_0012C0F8(s1, (int)(*(float *)(s0 + 0x76C) * 30.0f));
-        cCoreSave_addGameLevelPoint(D_00569B70, -0x140);
+        cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
         buf[1] = 0.0f;
         buf[0] = 0.0273f;
         buf[2] = 1.369f;

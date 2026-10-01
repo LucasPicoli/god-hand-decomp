@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
@@ -12,7 +12,6 @@ extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern char D_00569B70[];
 
 __attribute__((section(".text.func_00228E18")))
 void func_00228E18(void *a0)
@@ -24,7 +23,7 @@ void func_00228E18(void *a0)
     CheckSlotsShort2FEAndSetByte1864_262A10(s0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
-        char *sv;
+        cCoreSave *sv;
         int r;
         int w;
         int p1;
@@ -33,7 +32,7 @@ void func_00228E18(void *a0)
         r = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         StoreMotionParamsBoth_2609A8(s0, 0x28, 0, 0x37, -1, 0);
         w = *(int *)(s0 + 0x304);
-        sv = D_00569B70;
+        sv = &D_00569B70;
         p1 = *(int *)(w + 0x254C) + w;
         p2 = *(int *)(w + 0x2550) + w;
         if (cCoreSave_getGameLevel(sv) == 5) {
@@ -78,7 +77,7 @@ void func_00228E18(void *a0)
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
         break;
     case 2: {
-        char *sv;
+        cCoreSave *sv;
         int r;
         int w;
         int p1;
@@ -87,7 +86,7 @@ void func_00228E18(void *a0)
         r = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         StoreMotionParamsBoth_2609A8(s0, 0x28, 3, 0x37, -1, 0);
         w = *(int *)(s0 + 0x304);
-        sv = D_00569B70;
+        sv = &D_00569B70;
         p1 = *(int *)(w + 0x2558) + w;
         p2 = *(int *)(w + 0x255C) + w;
         if (cCoreSave_getGameLevel(sv) == 5) {

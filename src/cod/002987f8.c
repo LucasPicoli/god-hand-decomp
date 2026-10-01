@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void displayScrollLayer(int, int);
 extern int Obj0000_Get_Field_BC0_Via_Ptr_1FC740(int *);
-extern int D_00569B70;
 
 __attribute__((section(".text.func_002987F8")))
 void func_002987F8(int idx, float val) {

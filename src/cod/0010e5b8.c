@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int a4, int a5);
@@ -20,7 +20,6 @@ extern void cSnd_SeStop(void *a0, int a1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_007474A0;
 
@@ -61,7 +60,7 @@ void func_0010E5B8(void *a0)
         e = *(char **)(s1 + 0x640);
         if (e != 0) {
             if (inrange(*(unsigned short *)(e + 0x2FE), 0x200, 0x300) & 0xFF)
-                cCoreSave_addGameLevelPoint(D_00569B70, 0x14);
+                cCoreSave_addGameLevelPoint(&D_00569B70, 0x14);
         }
         Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 8, 0x13, 0, 0xA);
         Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 8, 0x13, 0, 0xA);

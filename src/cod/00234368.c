@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned int Forward30F348_31CFE0(void);
 extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
@@ -16,12 +17,10 @@ extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
 extern void func_002744E0(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 
 __attribute__((section(".text.func_00234368")))
@@ -85,7 +84,7 @@ void func_00234368(void *a0)
             int w = *(int *)(s0 + 0x304);
             lo = *(int *)(w + 0x2F54) + w;
             hi = *(int *)(w + 0x2F58) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int p = *(int *)(s0 + 0x708);
                 int w2 = *(int *)(s0 + 0x304);
                 hi = *(int *)(w2 + 0x2F5C) + w2;
@@ -113,7 +112,7 @@ void func_00234368(void *a0)
                 *(unsigned char *)(s0 + 0x2F6) = 6;
             else
                 *(unsigned char *)(s0 + 0x2F6) = 4;
-            if (cCoreSave_getGameLevel(D_00569B70) >= 2 &&
+            if (cCoreSave_getGameLevel(&D_00569B70) >= 2 &&
                 (Forward30F348_31CFE0() & 1))
                 *(unsigned char *)(s0 + 0x2F6) = 2;
         }

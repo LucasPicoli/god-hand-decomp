@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cCoreSave.h"
 
 extern int D_0077E6C0[];
 extern void Tramp_00312708_1B79B0(void);
-extern void cCoreSave_setGameLevel(void *, int);
 extern void func_001FDEA8(void *);
 extern void KeyStop(void);
 extern void func_0028CE70(void);
@@ -61,10 +61,10 @@ __attribute__((section(".text.Tramp_func_001B79B0_001C3070")))
 void Tramp_func_001B79B0_001C3070(void) { Tramp_00312708_1B79B0(); }
 
 __attribute__((section(".text.cCoreSave_setGameLevel1_1F9AD0")))
-void cCoreSave_setGameLevel1_1F9AD0(void *a0) { cCoreSave_setGameLevel(a0, 1); }
+void cCoreSave_setGameLevel1_1F9AD0(cCoreSave *self) { cCoreSave_setGameLevel(self, 1); }
 
 __attribute__((section(".text.cCoreSave_setGameLevel5_1F9AF0")))
-void cCoreSave_setGameLevel5_1F9AF0(void *a0) { cCoreSave_setGameLevel(a0, 5); }
+void cCoreSave_setGameLevel5_1F9AF0(cCoreSave *self) { cCoreSave_setGameLevel(self, 5); }
 
 __attribute__((section(".text.func_001FDF88")))
 void func_001FDF88(void *a0) { func_001FDEA8(a0); }

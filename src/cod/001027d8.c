@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned int func_0031ED08(float f12);
 extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
@@ -8,10 +9,8 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_0028FB08(void *a0);
-extern void cCoreSave_addKillNpcNum(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
-extern int D_00569B70;
 extern char D_005FEE00[];
 extern char *func_002DDAB0(void *a0, int a1, float f);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -20,13 +21,11 @@ extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void func_00289610(void *a0, int a1, float f12, float f13);
-extern unsigned char D_00569B70[];
 extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_0012C0F8(void *a0, int a1);
 extern void func_0012C348(void *a0, int a1);
 extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);

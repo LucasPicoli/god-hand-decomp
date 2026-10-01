@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
+#include "godhand/cCoreSave.h"
 
 extern void displayScrollLayer(int a0, int a1);
 extern void InitAllocBuffer_14FE08(void *a0, int a1);
@@ -14,7 +15,6 @@ extern void NoOp_1F5098(void *a0, int a1, int a2, int a3);
 extern void func_001F50A0(void *a0, int a1, int a2, int a3);
 extern void SetCustomIDSlotNumberAlt_1F5210(void *a0, int a1, int a2, int a3);
 extern void func_001F5278(void *a0, int a1, int a2);
-extern char D_00569B70[];
 extern void func_002E0DE8(int a0, int a1, int a2, void *a3);
 extern void func_00381CE0(void *a0, void *a1);
 extern void func_00380DC0(void *a0);
@@ -136,22 +136,22 @@ void func_001F4068(char *a0, unsigned short a1, short *a2, int a3)
         s2 = a0 + 0x60;
         SetCustomIDSlotNumber_1F4C40(s2, a1, a2[0]);
         if (func_001F4530(a0, a2[0], *(unsigned short *)((char *)a2 + 4)) != 0) {
-            func_001F4B98(s2, a1, func_001FC4D0(D_00569B70, a2[0]), a3);
+            func_001F4B98(s2, a1, func_001FC4D0(&D_00569B70, a2[0]), a3);
             func_001F4CA8(s2, a1, a2[4], a3);
             func_001F4FF0(s2, a1, a2[5], a3);
             NoOp_1F5098(s2, a1, 0, a3);
             func_001F50A0(s2, a1, *(int *)((char *)a2 + 0xC), a3);
             SetCustomIDSlotNumberAlt_1F5210(s2, a1,
-                func_001FC4D0(D_00569B70, a2[0]) ? 0 : *(int *)((char *)a2 + 0x10), a3);
+                func_001FC4D0(&D_00569B70, a2[0]) ? 0 : *(int *)((char *)a2 + 0x10), a3);
             func_001F5278(s2, a1, 0);
         } else {
-            func_001F4B98(s2, a1, func_001FC4D0(D_00569B70, a2[0]), 0);
+            func_001F4B98(s2, a1, func_001FC4D0(&D_00569B70, a2[0]), 0);
             func_001F4CA8(s2, a1, a2[4], 0);
             func_001F4FF0(s2, a1, a2[5], 0);
             NoOp_1F5098(s2, a1, 0, 0);
             func_001F50A0(s2, a1, *(int *)((char *)a2 + 0xC), 0);
             SetCustomIDSlotNumberAlt_1F5210(s2, a1,
-                func_001FC4D0(D_00569B70, a2[0]) ? 0 : *(int *)((char *)a2 + 0x10), 0);
+                func_001FC4D0(&D_00569B70, a2[0]) ? 0 : *(int *)((char *)a2 + 0x10), 0);
             func_001F5278(s2, a1, a3);
         }
     }

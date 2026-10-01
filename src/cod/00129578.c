@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
-extern int cCoreSave_getCostumeNo(void *);
-extern int D_00569B70;
 
 __attribute__((section(".text.func_00129578")))
 void func_00129578(void *this)

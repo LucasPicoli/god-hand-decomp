@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern unsigned short D_00747A50;
-extern int D_00569B70;
 extern char D_005FEE00[];
 
 /* func_0026ECD0 — two jump tables.  sn-2.95.3-136. */

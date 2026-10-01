@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern int moveMotion(void *a0);
@@ -25,12 +26,9 @@ extern int AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
-extern int cCoreSave_getVitalMax(void *a0);
-extern int cCoreSave_getVital(void *a0);
 extern int D_00462FC0;
 extern char D_00574380[];
 extern char D_003C3F58[];
-extern char D_00569B70[];
 extern char *D_00586A88;
 
 __attribute__((section(".text.func_002826C8")))
@@ -255,8 +253,8 @@ int func_00101EB8(char *a0)
     *(int *)(buf + 0x8) = 0;
     q->d = 1.0f;
     cCollisionSolidManage_CreateSphere(&D_00462FC0, s1, s1 + 0x80, q, 0.5f);
-    *(short *)(s1 + 0x548) = cCoreSave_getVitalMax(D_00569B70);
-    v3 = cCoreSave_getVital(D_00569B70);
+    *(short *)(s1 + 0x548) = cCoreSave_getVitalMax(&D_00569B70);
+    v3 = cCoreSave_getVital(&D_00569B70);
     if (v3 >= *(short *)(s1 + 0x548)) {
         *(short *)(s1 + 0x54A) = *(unsigned short *)(s1 + 0x548);
     } else {

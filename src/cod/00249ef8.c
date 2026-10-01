@@ -1,16 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void Obj2810_SetState_2_a1(char *a0, int a1);
 extern void SetBytes2F4Mode2_2831B0(char *a0, char a1);
 extern void ClearBytes2F4To2F7_283170(char *a0);
 extern void func_0026DB00(void *a0, int a1, int a2);
-extern int D_00569B70;
 
 __attribute__((section(".text.func_00249EF8")))
 void func_00249EF8(void *a0)

@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_001DEE40(void *p, int a1);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void func_001DF758(void *p, int a1);
 extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
-extern void cCoreSave_addGold(void *p, int a1, int a2);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
-extern char D_00569B70[];
 extern char D_005681C0[];
 extern char D_005FEE00[];
 extern long D_007474A0[];
@@ -152,7 +151,7 @@ void func_001DB558(void *arg)
         if ((D_00747640 & 0x30000000) != 0 || *(int *)(s1 + 0x302C) == 0) {
             char *p = s1 + 0x25B0;
 
-            cCoreSave_addGold(D_00569B70, *(int *)(s1 + 0x302C) * 10, 0);
+            cCoreSave_addGold(&D_00569B70, *(int *)(s1 + 0x302C) * 10, 0);
             *(int *)(s1 + 0x3034) = 0;
             func_001DEE40(p, 0);
             func_001DF528(p, 2, 3);
@@ -160,7 +159,7 @@ void func_001DB558(void *arg)
             *(unsigned char *)(s1 + 0x3025) = *(unsigned char *)(s1 + 0x3025) + 1;
         } else {
             *(int *)(s1 + 0x302C) = *(int *)(s1 + 0x302C) - 1;
-            cCoreSave_addGold(D_00569B70, 10, 0);
+            cCoreSave_addGold(&D_00569B70, 10, 0);
             *(int *)(s1 + 0x3034) = *(int *)(s1 + 0x3034) - 10;
             func_001DEE40(s1 + 0x25B0, *(int *)(s1 + 0x3034));
         }

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
@@ -11,7 +11,6 @@ extern void func_002DB770(void);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
 extern char D_00462FC0[];
-extern char D_00569B70[];
 extern char D_007474A0[];
 
 __attribute__((section(".text.func_00238F10")))
@@ -30,7 +29,7 @@ void func_00238F10(void *a0)
         func_002A8578(s0, *(int *)(p + 0x39DC) + p, *(int *)(p + 0x39E0) + p,
                       0.0f, 0, 0, 0);
         *(short *)(s0 + 0x56E) = 0xF;
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             *(short *)(s0 + 0x568) = 0xF;

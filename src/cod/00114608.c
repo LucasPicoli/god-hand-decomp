@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_00569B70[];
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00124EC0(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -12,7 +12,6 @@ extern void func_0012CC70(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void SetField548AndGlobals_292F38(void *a0, float f12);
 extern void SetField444SignedByFlag434_158288(void *a0, float f12);
-extern int cCoreSave_getCostumeNo(void *a0);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void func_00126770(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);

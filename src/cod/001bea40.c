@@ -2,13 +2,12 @@
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float capVu0LengthSq(void *a0);
-extern int cCoreSave_getCasinoTicketNum(int a0);
 extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, void *t0, void *t1, int t2);
-extern int D_00569B70;
 extern int D_00568288;
 extern void func_001BEB28();
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 
 
@@ -43,7 +42,7 @@ void cOmea_ChkTreasureBox(void *a0) {
         VU0_SQC2(4, buf, 0);
         d = capVu0LengthSq(buf);
         if (d < 1.0f) {
-            if (cCoreSave_getCasinoTicketNum((int)&D_00569B70) != 0) {
+            if (cCoreSave_getCasinoTicketNum(&D_00569B70) != 0) {
                 LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 4, 0, 0, (void *)&func_001BEB28, obj, 0);
             }
         }

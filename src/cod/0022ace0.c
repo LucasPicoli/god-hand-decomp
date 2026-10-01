@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* func_0022ACE0 — 0x0022ACE0, 688 B — sn-2.95.3-136.
  * Template src/cod/00225e30.c (func_00225E30, jaccard 0.67). */
 
 extern int  Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int Forward30F348_31CFE0(void);
-extern int  cCoreSave_getGameLevel(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int  Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
@@ -16,7 +16,6 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern void func_0026A638(void *a0, int a1);
 extern void func_0026A938(void *a0, int a1, int a2);
 extern void func_0026A838(void *a0, int a1);
-extern char D_00569B70[];
 
 __attribute__((section(".text.func_0022ACE0")))
 void func_0022ACE0(void *a0)
@@ -42,7 +41,7 @@ void func_0022ACE0(void *a0)
             int w = *(int *)(s0 + 0x304);
             p1 = *(int *)(w + 0xDD0) + w;
             p2 = *(int *)(w + 0xDD4) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int w2 = *(int *)(s0 + 0x304);
                 p2 = *(int *)(w2 + 0xDD4) + w2;
             }
@@ -51,7 +50,7 @@ void func_0022ACE0(void *a0)
             int w = *(int *)(s0 + 0x304);
             p1 = *(int *)(w + 0xDC4) + w;
             p2 = *(int *)(w + 0xDC8) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int w2 = *(int *)(s0 + 0x304);
                 p2 = *(int *)(w2 + 0xDCC) + w2;
             }

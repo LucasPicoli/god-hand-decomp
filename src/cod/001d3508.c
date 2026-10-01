@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
+#include "godhand/cCoreSave.h"
 
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
 extern void SetLinkedObjField2B_1D6D68(void *a0, int a1);
-extern void cCoreSave_addGold(void *a0, int a1, int a2);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void func_001D49E0(void *a0, int a1);
 extern void func_001D4AA8(void *a0, int a1);
@@ -12,7 +12,6 @@ extern void func_001D6A30(void *a0, int a1);
 extern void func_001D6A50(void *a0, int a1);
 extern void func_001D6A70(void *a0, int a1);
 extern void func_001D6D20(void *a0, int a1);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern long D_00747640;
 
@@ -90,7 +89,7 @@ void BlackJack_UpdateWin(BlackJack *self) {
         if ((D_00747640 & 0x30000000) != 0 || self->timer == 0) {
             self->payout = 0;
             CustomIDWork_SetNumber_1D5760(self, 0);
-            cCoreSave_addGold(D_00569B70, self->timer * 10, 0);
+            cCoreSave_addGold(&D_00569B70, self->timer * 10, 0);
             self->timer = 0x1E;
             self->phase = self->phase + 1;
         } else {
@@ -99,7 +98,7 @@ void BlackJack_UpdateWin(BlackJack *self) {
                 self->payout = v0 - 10;
                 CustomIDWork_SetNumber_1D5760(self, v0 - 10);
             }
-            cCoreSave_addGold(D_00569B70, 10, 0);
+            cCoreSave_addGold(&D_00569B70, 10, 0);
             self->timer = self->timer - 1;
         }
         break;

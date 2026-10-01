@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cCoreSave.h"
 
 extern void func_00143A90(void *);
 extern char *D_003BD6E8;
@@ -8,8 +9,6 @@ extern void __builtin_delete(void *a0);
 extern void func_00375050(void *, int);
 extern void cSndSeVoice_Unlink(void *);
 extern void func_002B22E0(void *, int);
-extern int cCoreSave_getCostumeNo(void *a0);
-extern int D_00569B70;
 
 /* func_001DBCF8 — sn-2.95.3-136 */
 

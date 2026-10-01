@@ -2,10 +2,6 @@
 
 #include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getState154(cCoreSave *);
-extern void cCoreSave_setCombo(cCoreSave *, unsigned int set, unsigned int slot, int id, int lv);
-extern void cCoreSave_setComboMax(cCoreSave *, unsigned int set, int max);
-extern void cCoreSave_setGodReel(cCoreSave *, int no);
 
 /* Max vitality grows by 20 for every vitality upgrade, from a base of 100. */
 __attribute__((section(".text.cCoreSave_updateVitalMax")))

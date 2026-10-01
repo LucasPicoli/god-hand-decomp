@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(void *a0);
 extern char D_004479A0[];
-extern char D_00569B70[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -26,7 +25,7 @@ void cEm00__offSunglass(void *a0) {
     *(int *)(s0 + 0x174C) = 0;
     *(int *)(s0 + 0x16D4) |= 0x4000000;
     *(float *)(s0 + 0x1750) = 300.0f;
-    switch (cCoreSave_getGameLevel(D_00569B70)) {
+    switch (cCoreSave_getGameLevel(&D_00569B70)) {
     default:
     case 1:
         *(float *)(s0 + 0x1750) = 300.0f;

@@ -25,8 +25,8 @@
  * RNG poll).  Helpers it leans on:
  *
  *   StoreMotionParamsBoth_2609A8(actor, anim, a, b)  set animation / pose for a state
- *   cCoreSave_getGameLevel(&D_00569B70, frame) query an animation/clip; ==5 marks
- *                                     a clip boundary in many branches
+ *   cCoreSave_getGameLevel(&D_00569B70) the game level, 1..5; ==5 picks the
+ *                                     hardest level's variant in many branches
  *   Forward30F348_31CFE0()                   poll input / RNG bits (masked &1,
  *                                     or used as the % N sub-selector)
  *   CheckSlotsShort2FEAndSetByte1864_262A10(actor)              per-frame pre-update
@@ -51,6 +51,7 @@
  * visibility cannot perturb the retail bytes / sha256. */
 #define INCLUDE_ASM_USE_MACRO_INC 1
 #include "include_asm.h"
+#include "godhand/cCoreSave.h"
 
 typedef signed char        s8;
 typedef unsigned char      u8;
@@ -62,9 +63,6 @@ typedef signed long long   s64;
 typedef unsigned long long u64;
 typedef float              f32;
 typedef double             f64;
-
-/* Global system/state object; queried via cCoreSave_getGameLevel(&D_00569B70, ...). */
-extern int D_00569B70;
 
 #ifdef NON_MATCHING
 __attribute__((section(".text.func_0021A538")))
@@ -665,7 +663,7 @@ block_689:
                     temp_a1 = (*(s32 *)((u8 *)(temp_v0_8) + 0x1DC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_8) + 0x1E4)) + temp_v0_8;
                     var_s3 = temp_a1 + temp_v0_8;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1E4));
 block_100:
                         var_s1 = var_v0 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -677,7 +675,7 @@ block_100:
                     temp_a1_2 = (*(s32 *)((u8 *)(temp_v0_9) + 0x1FC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_9) + 0x204)) + temp_v0_9;
                     var_s3 = temp_a1_2 + temp_v0_9;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_2) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x204));
                         goto block_100;
                     }
@@ -688,7 +686,7 @@ block_100:
                     temp_a1_3 = (*(s32 *)((u8 *)(temp_v0_10) + 0x20C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_10) + 0x214)) + temp_v0_10;
                     var_s3 = temp_a1_3 + temp_v0_10;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_3) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x214));
                         goto block_100;
                     }
@@ -699,7 +697,7 @@ block_100:
                     temp_a1_4 = (*(s32 *)((u8 *)(temp_v0_11) + 0x21C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_11) + 0x224)) + temp_v0_11;
                     var_s3 = temp_a1_4 + temp_v0_11;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_4) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x224));
                         goto block_100;
                     }
@@ -710,7 +708,7 @@ block_100:
                     temp_a1_5 = (*(s32 *)((u8 *)(temp_v0_12) + 0x22C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_12) + 0x234)) + temp_v0_12;
                     var_s3 = temp_a1_5 + temp_v0_12;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_5) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x234));
                         goto block_100;
                     }
@@ -723,7 +721,7 @@ block_100:
                         temp_a1_6 = (*(s32 *)((u8 *)(temp_v0_13) + 0x194));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_13) + 0x18C)) + temp_v0_13;
                         var_s1 = temp_a1_6 + temp_v0_13;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_6) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_2 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_2) + 0x194)) + temp_v1_2;
                         }
@@ -733,7 +731,7 @@ block_100:
                         temp_a1_7 = (*(s32 *)((u8 *)(temp_v0_14) + 0x1A4));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_14) + 0x19C)) + temp_v0_14;
                         var_s1 = temp_a1_7 + temp_v0_14;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_7) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_2 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1A4));
 block_430:
                             var_s1 = var_v0_2 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -757,21 +755,21 @@ block_431:
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_15) + 0x6A8)) + temp_v0_15;
                         var_s3 = var_a1 + temp_v0_15;
 block_117:
-                        if (cCoreSave_getGameLevel(&D_00569B70, var_a1) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_3 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_3) + 0x6AC)) + temp_v1_3;
                         }
                         break;
                     default:                        /* switch 8 */
                     case 0:                         /* switch 8 */
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_hi_2) >= 2) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) >= 2) {
                             StoreMotionParamsBoth_2609A8(arg0, 0x14, 2, 0x37);
                             temp_v0_16 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_a1_2 = (*(s32 *)((u8 *)(temp_v0_16) + 0x6F8));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_16) + 0x6F4)) + temp_v0_16;
                             var_s1 = var_a1_2 + temp_v0_16;
 block_143:
-                            if (cCoreSave_getGameLevel(&D_00569B70, var_a1_2) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_4 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_4) + 0x6FC)) + temp_v1_4;
                             }
@@ -806,7 +804,7 @@ block_143:
                             temp_a1_8 = (*(s32 *)((u8 *)(temp_v0_20) + 0x6E0));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_20) + 0x6DC)) + temp_v0_20;
                             var_s1 = temp_a1_8 + temp_v0_20;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_8) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_5 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_5) + 0x6E4)) + temp_v1_5;
                             }
@@ -829,7 +827,7 @@ block_126:
                             temp_a1_9 = (*(s32 *)((u8 *)(temp_v0_22) + 0x6D4));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_22) + 0x6D0)) + temp_v0_22;
                             var_s1 = temp_a1_9 + temp_v0_22;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_9) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_6 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_6) + 0x6D8)) + temp_v1_6;
                             }
@@ -848,7 +846,7 @@ block_126:
                         temp_a1_10 = (*(s32 *)((u8 *)(temp_v0_23) + 0x730));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_23) + 0x734)) + temp_v0_23;
                         var_s3 = temp_a1_10 + temp_v0_23;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_10) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_7 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_7) + 0x738)) + temp_v1_7;
                         }
@@ -878,7 +876,7 @@ block_147:
                     temp_a1_11 = (*(s32 *)((u8 *)(temp_v0_26) + 0x6DC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_26) + 0x6E0)) + temp_v0_26;
                     var_s3 = temp_a1_11 + temp_v0_26;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_11) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_8 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_8) + 0x6E4)) + temp_v1_8;
                     }
@@ -909,7 +907,7 @@ block_307:
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_28) + 0x2F64)) + temp_v0_28;
                 var_s3 = temp_a1_12 + temp_v0_28;
                 temp_a0_2 = (*(s32 *)((u8 *)(arg0) + 0x708));
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_12) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_9 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_9) + 0x2F68)) + temp_v1_9;
                     if (temp_a0_2 != 0) {
@@ -926,7 +924,7 @@ block_307:
                     temp_a1_13 = (*(s32 *)((u8 *)(temp_v0_29) + 0x3604));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_29) + 0x3608)) + temp_v0_29;
                     var_s3 = temp_a1_13 + temp_v0_29;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_13) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_3 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x360C));
 block_170:
                         var_s1 = var_v0_3 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -941,7 +939,7 @@ block_172:
                     temp_a1_14 = (*(s32 *)((u8 *)(temp_v0_30) + 0x3660));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_30) + 0x365C)) + temp_v0_30;
                     var_s1 = temp_a1_14 + temp_v0_30;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_14) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_10 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_10) + 0x3664)) + temp_v1_10;
                     }
@@ -955,7 +953,7 @@ block_172:
                     temp_a1_15 = (*(s32 *)((u8 *)(temp_v0_31) + 0x3678));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_31) + 0x367C)) + temp_v0_31;
                     var_s3 = temp_a1_15 + temp_v0_31;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_15) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_11 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_11) + 0x3680)) + temp_v1_11;
                     }
@@ -967,7 +965,7 @@ block_172:
                         temp_a1_16 = (*(s32 *)((u8 *)(temp_v0_32) + 0x3604));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_32) + 0x3608)) + temp_v0_32;
                         var_s3 = temp_a1_16 + temp_v0_32;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_16) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_3 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x360C));
                             goto block_170;
                         }
@@ -984,7 +982,7 @@ block_172:
                     temp_a1_17 = (*(s32 *)((u8 *)(temp_v0_33) + 0x3688));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_33) + 0x3684)) + temp_v0_33;
                     var_s1 = temp_a1_17 + temp_v0_33;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_17) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_4 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x368C));
 block_479:
                         var_s1 = var_v0_4 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -998,7 +996,7 @@ block_480:
                         temp_a1_18 = (*(s32 *)((u8 *)(temp_v0_34) + 0x366C));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_34) + 0x3670)) + temp_v0_34;
                         var_s3 = temp_a1_18 + temp_v0_34;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_18) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_3 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3674));
                             goto block_170;
                         }
@@ -1025,7 +1023,7 @@ block_480:
                     temp_a1_19 = (*(s32 *)((u8 *)(temp_v0_35) + 0x1134));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_35) + 0x1138)) + temp_v0_35;
                     var_s3 = temp_a1_19 + temp_v0_35;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_19) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_12 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_12) + 0x113C)) + temp_v1_12;
                     }
@@ -1042,7 +1040,7 @@ block_480:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_36) + 0x1150)) + temp_v0_36;
                     var_s3 = temp_a1_20 + temp_v0_36;
                     var_v0_5 = 0x32;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_20) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_6 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1154));
 block_473:
                         var_s1 = var_v0_6 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1056,7 +1054,7 @@ block_473:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_37) + 0x115C)) + temp_v0_37;
                     var_s3 = temp_a1_21 + temp_v0_37;
                     var_v0_5 = 0x32;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_21) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_6 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1160));
                         goto block_473;
                     }
@@ -1068,7 +1066,7 @@ block_473:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_38) + 0x1168)) + temp_v0_38;
                     var_s3 = temp_a1_22 + temp_v0_38;
                     var_v0_5 = 0x32;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_22) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_6 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x116C));
                         goto block_473;
                     }
@@ -1087,7 +1085,7 @@ block_474:
                         temp_a1_23 = (*(s32 *)((u8 *)(temp_v0_39) + 0x1504));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_39) + 0x1508)) + temp_v0_39;
                         var_s3 = temp_a1_23 + temp_v0_39;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_23) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_7 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x150C));
 block_622:
                             var_s1 = var_v0_7 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1104,7 +1102,7 @@ block_194:
                     temp_a1_24 = (*(s32 *)((u8 *)(temp_v0_40) + 0x114C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_40) + 0x1150)) + temp_v0_40;
                     var_s3 = temp_a1_24 + temp_v0_40;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_24) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_8 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1154));
 block_464:
                         var_s1 = var_v0_8 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1125,7 +1123,7 @@ block_465:
                     temp_a1_25 = (*(s32 *)((u8 *)(temp_v0_41) + 0x3CC8));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_41) + 0x3CCC)) + temp_v0_41;
                     var_s3 = temp_a1_25 + temp_v0_41;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_25) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_14 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_14) + 0x3CD0)) + temp_v1_14;
                     }
@@ -1137,7 +1135,7 @@ block_465:
                     temp_a1_26 = (*(s32 *)((u8 *)(temp_v0_42) + 0x3CD4));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_42) + 0x3CD8)) + temp_v0_42;
                     var_s3 = temp_a1_26 + temp_v0_42;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_26) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_4 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3CDC));
                         goto block_479;
                     }
@@ -1148,7 +1146,7 @@ block_465:
                     temp_a1_27 = (*(s32 *)((u8 *)(temp_v0_43) + 0x3D10));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_43) + 0x3D14)) + temp_v0_43;
                     var_s3 = temp_a1_27 + temp_v0_43;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_27) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3D18));
 block_488:
                         var_s1 = var_v0_9 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1164,7 +1162,7 @@ block_490:
                     temp_a1_28 = (*(s32 *)((u8 *)(temp_v0_44) + 0x3D20));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_44) + 0x3D1C)) + temp_v0_44;
                     var_s1 = temp_a1_28 + temp_v0_44;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_28) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3D24));
                         goto block_488;
                     }
@@ -1185,7 +1183,7 @@ block_490:
                     temp_a1_29 = (*(s32 *)((u8 *)(temp_v0_45) + 0x2544));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_45) + 0x2540)) + temp_v0_45;
                     var_s1 = temp_a1_29 + temp_v0_45;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_29) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 0x10;
                         var_v0_10 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2548));
 block_224:
@@ -1204,7 +1202,7 @@ block_224:
                     temp_a1_30 = (*(s32 *)((u8 *)(temp_v0_46) + 0x2538));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_46) + 0x2534)) + temp_v0_46;
                     var_s1 = temp_a1_30 + temp_v0_46;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_30) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 0xE;
                         var_v0_10 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x253C));
                         goto block_224;
@@ -1217,7 +1215,7 @@ block_224:
                     temp_a1_31 = (*(s32 *)((u8 *)(temp_v0_47) + 0x2574));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_47) + 0x2570)) + temp_v0_47;
                     var_s1 = temp_a1_31 + temp_v0_47;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_31) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_10 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2578));
                         goto block_224;
                     }
@@ -1229,7 +1227,7 @@ block_224:
                     temp_a1_32 = (*(s32 *)((u8 *)(temp_v0_48) + 0x2568));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_48) + 0x2564)) + temp_v0_48;
                     var_s1 = temp_a1_32 + temp_v0_48;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_32) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_10 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x256C));
                         goto block_224;
                     }
@@ -1261,7 +1259,7 @@ block_224:
                     temp_a1_33 = (*(s32 *)((u8 *)(temp_v0_51) + 0x1610));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_51) + 0x1614)) + temp_v0_51;
                     var_s3 = temp_a1_33 + temp_v0_51;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_33) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_4 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1618));
                         goto block_479;
                     }
@@ -1284,7 +1282,7 @@ block_224:
                     temp_a1_34 = (*(s32 *)((u8 *)(temp_v0_53) + 0x3A4C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_53) + 0x3A50)) + temp_v0_53;
                     var_s3 = temp_a1_34 + temp_v0_53;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_34) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3A54));
                         goto block_488;
                     }
@@ -1296,7 +1294,7 @@ block_224:
                     temp_a1_35 = (*(s32 *)((u8 *)(temp_v0_54) + 0x3A40));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_54) + 0x3A44)) + temp_v0_54;
                     var_s3 = temp_a1_35 + temp_v0_54;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_35) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_11 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3A48));
 block_452:
                         var_s1 = var_v0_11 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1310,7 +1308,7 @@ block_453:
                     temp_a1_36 = (*(s32 *)((u8 *)(temp_v0_55) + 0x3A58));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_55) + 0x3A5C)) + temp_v0_55;
                     var_s3 = temp_a1_36 + temp_v0_55;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_36) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3A60));
                         goto block_488;
                     }
@@ -1325,7 +1323,7 @@ block_453:
                         temp_a1_37 = (*(s32 *)((u8 *)(temp_v0_56) + 0x18C4));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_56) + 0x18C8)) + temp_v0_56;
                         var_s3 = temp_a1_37 + temp_v0_56;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_37) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x18CC));
                             goto block_488;
                         }
@@ -1336,7 +1334,7 @@ block_453:
                     temp_a1_38 = (*(s32 *)((u8 *)(temp_v0_57) + 0x1610));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_57) + 0x1614)) + temp_v0_57;
                     var_s3 = temp_a1_38 + temp_v0_57;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_38) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_4 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1618));
                         goto block_479;
                     }
@@ -1347,7 +1345,7 @@ block_453:
                 temp_a1_39 = (*(s32 *)((u8 *)(temp_v0_58) + 0x18D0));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_58) + 0x18D4)) + temp_v0_58;
                 var_s3 = temp_a1_39 + temp_v0_58;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_39) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x18D8));
                     goto block_488;
                 }
@@ -1360,7 +1358,7 @@ block_453:
                         temp_a1_40 = (*(s32 *)((u8 *)(temp_v0_59) + 0x1860));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_59) + 0x1864)) + temp_v0_59;
                         var_s3 = temp_a1_40 + temp_v0_59;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_40) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_12 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1868));
                             goto block_260;
                         }
@@ -1370,7 +1368,7 @@ block_453:
                         temp_a1_41 = (*(s32 *)((u8 *)(temp_v0_60) + 0x1878));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_60) + 0x187C)) + temp_v0_60;
                         var_s3 = temp_a1_41 + temp_v0_60;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_41) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_12 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1880));
 block_260:
                             var_s1 = var_v0_12 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1384,7 +1382,7 @@ block_260:
                     temp_a1_42 = (*(s32 *)((u8 *)(temp_v0_61) + 0x1888));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_61) + 0x1884)) + temp_v0_61;
                     var_s1 = temp_a1_42 + temp_v0_61;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_42) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_16 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_16) + 0x188C)) + temp_v1_16;
                     }
@@ -1395,7 +1393,7 @@ block_260:
                     temp_a1_43 = (*(s32 *)((u8 *)(temp_v0_62) + 0x186C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_62) + 0x1870)) + temp_v0_62;
                     var_s3 = temp_a1_43 + temp_v0_62;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_43) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_17 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_17) + 0x1874)) + temp_v1_17;
                     }
@@ -1416,7 +1414,7 @@ block_260:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_64) + 0x3480)) + temp_v0_64;
                     var_s3 = temp_a1_44 + temp_v0_64;
                     var_s5 = 1;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_44) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 2;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3484));
                         goto block_488;
@@ -1429,7 +1427,7 @@ block_260:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_65) + 0x348C)) + temp_v0_65;
                     var_s3 = temp_a1_45 + temp_v0_65;
                     var_s5 = 3;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_45) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 4;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3490));
                         goto block_488;
@@ -1442,7 +1440,7 @@ block_260:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_66) + 0x3498)) + temp_v0_66;
                     var_s3 = temp_a1_46 + temp_v0_66;
                     var_s5 = 5;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_46) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 6;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x349C));
                         goto block_488;
@@ -1455,7 +1453,7 @@ block_260:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_67) + 0x34B0)) + temp_v0_67;
                     var_s3 = temp_a1_47 + temp_v0_67;
                     var_s5 = 9;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_47) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 0xA;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x34B4));
                         goto block_488;
@@ -1469,7 +1467,7 @@ block_260:
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_68) + 0x34DC)) + temp_v0_68;
                     var_s1 = temp_a1_48 + temp_v0_68;
                     var_s5 = 0x11;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_48) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_18 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s5 = 0x12;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_18) + 0x34E4)) + temp_v1_18;
@@ -1491,7 +1489,7 @@ block_260:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_69) + 0x35B0)) + temp_v0_69;
                     var_s3 = temp_a1_49 + temp_v0_69;
                     var_s5 = 0x19;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_49) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 0x1A;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x35B4));
                         goto block_488;
@@ -1512,7 +1510,7 @@ block_260:
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_70) + 0x3564)) + temp_v0_70;
                             var_s1 = temp_a1_50 + temp_v0_70;
                             var_s5 = 0xF;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_50) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_s5 = 0x10;
                                 var_v0_13 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x356C));
                                 goto block_299;
@@ -1526,7 +1524,7 @@ block_260:
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_71) + 0x352C)) + temp_v0_71;
                         var_s1 = temp_a1_51 + temp_v0_71;
                         var_s5 = 6;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_51) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_s5 = 7;
                             var_v0_13 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3534));
 block_299:
@@ -1541,7 +1539,7 @@ block_289:
                         temp_a1_52 = (*(s32 *)((u8 *)(temp_v0_72) + 0x3514));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_72) + 0x3518)) + temp_v0_72;
                         var_s3 = temp_a1_52 + temp_v0_72;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_52) != 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) != 5) {
                             var_s5 = 2;
                         } else {
                             var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x351C));
@@ -1556,7 +1554,7 @@ block_289:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_73) + 0x3524)) + temp_v0_73;
                     var_s3 = temp_a1_53 + temp_v0_73;
                     var_s5 = 4;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_53) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 5;
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3528));
                         goto block_488;
@@ -1578,7 +1576,7 @@ block_289:
                         temp_a1_54 = (*(s32 *)((u8 *)(temp_v0_75) + 0x1E74));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_75) + 0x1E70)) + temp_v0_75;
                         var_s1 = temp_a1_54 + temp_v0_75;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_54) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_20 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_20) + 0x1E78)) + temp_v1_20;
                         }
@@ -1594,7 +1592,7 @@ block_324:
                 temp_a1_55 = (*(s32 *)((u8 *)(temp_v0_76) + 0xDB0));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_76) + 0xDB4)) + temp_v0_76;
                 var_s3 = temp_a1_55 + temp_v0_76;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_55) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_21 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_21) + 0xDB8)) + temp_v1_21;
                 }
@@ -1609,7 +1607,7 @@ block_324:
                         temp_a1_56 = (*(s32 *)((u8 *)(temp_v0_77) + 0xE24));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_77) + 0xE28)) + temp_v0_77;
                         var_s3 = temp_a1_56 + temp_v0_77;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_56) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_22 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_22) + 0xE2C)) + temp_v1_22;
                         }
@@ -1619,7 +1617,7 @@ block_324:
                         temp_a1_57 = (*(s32 *)((u8 *)(temp_v0_78) + 0xE30));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_78) + 0xE34)) + temp_v0_78;
                         var_s3 = temp_a1_57 + temp_v0_78;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_57) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_23 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_23) + 0xE38)) + temp_v1_23;
                         }
@@ -1631,7 +1629,7 @@ block_324:
                     temp_a1_58 = (*(s32 *)((u8 *)(temp_v0_79) + 0xE04));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_79) + 0xE00)) + temp_v0_79;
                     var_s1 = temp_a1_58 + temp_v0_79;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_58) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_24 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_24) + 0xE08)) + temp_v1_24;
                     }
@@ -1642,7 +1640,7 @@ block_324:
                     temp_a1_59 = (*(s32 *)((u8 *)(temp_v0_80) + 0xDF8));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_80) + 0xDF4)) + temp_v0_80;
                     var_s1 = temp_a1_59 + temp_v0_80;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_59) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_25 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_25) + 0xDFC)) + temp_v1_25;
                     }
@@ -1664,7 +1662,7 @@ block_324:
                     temp_a1_60 = (*(s32 *)((u8 *)(temp_v0_81) + 0x2218));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_81) + 0x221C)) + temp_v0_81;
                     var_s3 = temp_a1_60 + temp_v0_81;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_60) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_26 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_26) + 0x2220)) + temp_v1_26;
                     }
@@ -1686,7 +1684,7 @@ block_323:
                         temp_a1_61 = (*(s32 *)((u8 *)(temp_v1_28) + 0x8D8));
                         var_s3 = temp_a1_61 + temp_v1_28;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_28) + 0x8DC)) + temp_v1_28;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_61) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_29 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_29) + 0x8E0)) + temp_v1_29;
                         }
@@ -1699,7 +1697,7 @@ block_347:
                         temp_a1_62 = (*(s32 *)((u8 *)(temp_v1_30) + 0x8CC));
                         var_s3 = temp_a1_62 + temp_v1_30;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_30) + 0x8D0)) + temp_v1_30;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_62) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_31 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_31) + 0x8D4)) + temp_v1_31;
                         }
@@ -1712,7 +1710,7 @@ block_347:
                         temp_a1_63 = (*(s32 *)((u8 *)(temp_v0_82) + 0x93C));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_82) + 0x940)) + temp_v0_82;
                         var_s3 = temp_a1_63 + temp_v0_82;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_63) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_14 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x944));
                             goto block_362;
                         }
@@ -1723,7 +1721,7 @@ block_347:
                         temp_a1_64 = (*(s32 *)((u8 *)(temp_v0_83) + 0x918));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_83) + 0x91C)) + temp_v0_83;
                         var_s3 = temp_a1_64 + temp_v0_83;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_64) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_14 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x920));
                             goto block_362;
                         }
@@ -1760,7 +1758,7 @@ block_362:
                         temp_a1_65 = (*(s32 *)((u8 *)(temp_v1_33) + 0x924));
                         var_s3 = temp_a1_65 + temp_v1_33;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_33) + 0x928)) + temp_v1_33;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_65) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_14 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x92C));
                             goto block_362;
                         }
@@ -1771,7 +1769,7 @@ block_362:
                         temp_a1_66 = (*(s32 *)((u8 *)(temp_v0_86) + 0x930));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_86) + 0x934)) + temp_v0_86;
                         var_s3 = temp_a1_66 + temp_v0_86;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_66) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_14 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x938));
                             goto block_362;
                         }
@@ -1786,7 +1784,7 @@ block_362:
                         temp_a1_67 = (*(s32 *)((u8 *)(temp_v0_87) + 0x940));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_87) + 0x93C)) + temp_v0_87;
                         var_s1 = temp_a1_67 + temp_v0_87;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_67) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_15 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x944));
                             goto block_369;
                         }
@@ -1796,7 +1794,7 @@ block_362:
                         temp_a1_68 = (*(s32 *)((u8 *)(temp_v0_88) + 0x8D0));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_88) + 0x8CC)) + temp_v0_88;
                         var_s1 = temp_a1_68 + temp_v0_88;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_68) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_15 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x8D4));
 block_369:
                             var_s1 = var_v0_15 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1809,7 +1807,7 @@ block_369:
                     temp_a1_69 = (*(s32 *)((u8 *)(temp_v0_89) + 0x8F4));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_89) + 0x8F0)) + temp_v0_89;
                     var_s1 = temp_a1_69 + temp_v0_89;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_69) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_34 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_34) + 0x8F8)) + temp_v1_34;
                     }
@@ -1821,7 +1819,7 @@ block_428:
                         temp_a1_70 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x8E8));
                         var_s3 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x8E4)) + (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = temp_a1_70 + (*(s32 *)((u8 *)(arg0) + 0x304));
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_70) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_2 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x8EC));
                             goto block_430;
                         }
@@ -1840,7 +1838,7 @@ block_428:
                         temp_a1_71 = (*(s32 *)((u8 *)(temp_v1_36) + 0x3B54));
                         var_s3 = temp_a1_71 + temp_v1_36;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_36) + 0x3B58)) + temp_v1_36;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_71) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_37 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_37) + 0x3B5C)) + temp_v1_37;
                         }
@@ -1852,7 +1850,7 @@ block_428:
                         temp_a1_72 = (*(s32 *)((u8 *)(temp_v1_38) + 0xCC8));
                         var_s3 = temp_a1_72 + temp_v1_38;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_38) + 0xCCC)) + temp_v1_38;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_72) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_39 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_39) + 0xCD0)) + temp_v1_39;
                         }
@@ -1866,7 +1864,7 @@ block_428:
                     temp_a1_73 = (*(s32 *)((u8 *)(temp_v0_90) + 0x908));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_90) + 0x90C)) + temp_v0_90;
                     var_s3 = temp_a1_73 + temp_v0_90;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_73) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_40 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_40) + 0x910)) + temp_v1_40;
                     }
@@ -1877,7 +1875,7 @@ block_428:
                     temp_a1_74 = (*(s32 *)((u8 *)(temp_v0_91) + 0x3B4C));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_91) + 0x3B48)) + temp_v0_91;
                     var_s1 = temp_a1_74 + temp_v0_91;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_74) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_41 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_41) + 0x3B50)) + temp_v1_41;
                     }
@@ -1893,7 +1891,7 @@ block_428:
                         temp_a1_75 = (*(s32 *)((u8 *)(temp_v1_42) + 0x8CC));
                         var_s3 = temp_a1_75 + temp_v1_42;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_42) + 0x8D0)) + temp_v1_42;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_75) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_43 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_43) + 0x8D4)) + temp_v1_43;
                         }
@@ -1904,7 +1902,7 @@ block_428:
                         temp_a1_76 = (*(s32 *)((u8 *)(temp_v1_44) + 0xCC8));
                         var_s3 = temp_a1_76 + temp_v1_44;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_44) + 0xCCC)) + temp_v1_44;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_76) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_45 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_45) + 0xCD0)) + temp_v1_45;
                         }
@@ -1918,7 +1916,7 @@ block_414:
                         temp_a1_77 = (*(s32 *)((u8 *)(temp_v1_46) + 0x93C));
                         var_s3 = temp_a1_77 + temp_v1_46;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_46) + 0x940)) + temp_v1_46;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_77) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_47 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_47) + 0x944)) + temp_v1_47;
                         }
@@ -1934,7 +1932,7 @@ block_414:
                         temp_a1_78 = (*(s32 *)((u8 *)(temp_v0_92) + 0x908));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_92) + 0x90C)) + temp_v0_92;
                         var_s3 = temp_a1_78 + temp_v0_92;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_78) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_16 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x910));
                             goto block_421;
                         }
@@ -1944,7 +1942,7 @@ block_414:
                         temp_a1_79 = (*(s32 *)((u8 *)(temp_v0_93) + 0x930));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_93) + 0x934)) + temp_v0_93;
                         var_s3 = temp_a1_79 + temp_v0_93;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_79) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_16 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x938));
 block_421:
                             var_s1 = var_v0_16 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1961,7 +1959,7 @@ block_421:
                     temp_a1_80 = (*(s32 *)((u8 *)(temp_v0_94) + 0x2010));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_94) + 0x200C)) + temp_v0_94;
                     var_s1 = temp_a1_80 + temp_v0_94;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_80) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_49 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_49) + 0x2014)) + temp_v1_49;
                     }
@@ -1977,7 +1975,7 @@ block_421:
                         temp_a1_81 = (*(s32 *)((u8 *)(temp_v1_51) + 0xCC8));
                         var_s3 = temp_a1_81 + temp_v1_51;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_51) + 0xCD0)) + temp_v1_51;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_81) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_52 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_52) + 0xCD4)) + temp_v1_52;
                         }
@@ -1989,7 +1987,7 @@ block_421:
                         temp_a1_82 = (*(s32 *)((u8 *)(temp_v1_53) + 0x2018));
                         var_s3 = temp_a1_82 + temp_v1_53;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_53) + 0x201C)) + temp_v1_53;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_82) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_54 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_54) + 0x2020)) + temp_v1_54;
                         }
@@ -2003,7 +2001,7 @@ block_421:
                     temp_a1_83 = (*(s32 *)((u8 *)(temp_v0_95) + 0x908));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_95) + 0x910)) + temp_v0_95;
                     var_s3 = temp_a1_83 + temp_v0_95;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_83) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_55 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_55) + 0x914)) + temp_v1_55;
                     }
@@ -2018,7 +2016,7 @@ block_421:
                         temp_a1_84 = (*(s32 *)((u8 *)(temp_v0_96) + 0x1DB4));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_96) + 0x1DB8)) + temp_v0_96;
                         var_s3 = temp_a1_84 + temp_v0_96;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_84) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_11 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1DBC));
                             goto block_452;
                         }
@@ -2029,7 +2027,7 @@ block_421:
                     temp_a1_85 = (*(s32 *)((u8 *)(temp_v0_97) + 0x1DFC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_97) + 0x1E00)) + temp_v0_97;
                     var_s3 = temp_a1_85 + temp_v0_97;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_85) != 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) != 5) {
                         var_v0_5 = 0x28;
                     } else {
                         temp_v1_56 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2043,7 +2041,7 @@ block_421:
                 temp_a1_86 = (*(s32 *)((u8 *)(temp_v0_98) + 0x1E08));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_98) + 0x1E0C)) + temp_v0_98;
                 var_s3 = temp_a1_86 + temp_v0_98;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_86) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_57 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_57) + 0x1E10)) + temp_v1_57;
                 }
@@ -2056,7 +2054,7 @@ block_421:
                     temp_a1_87 = (*(s32 *)((u8 *)(temp_v0_99) + 0x1F00));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_99) + 0x1F04)) + temp_v0_99;
                     var_s3 = temp_a1_87 + temp_v0_99;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_87) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_8 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1F08));
                         goto block_464;
                     }
@@ -2067,7 +2065,7 @@ block_421:
                 temp_a1_88 = (*(s32 *)((u8 *)(temp_v0_100) + 0x1EF0));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_100) + 0x1EF4)) + temp_v0_100;
                 var_s3 = temp_a1_88 + temp_v0_100;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_88) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1EF8));
                     goto block_488;
                 }
@@ -2084,7 +2082,7 @@ block_421:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_101) + 0x1F04)) + temp_v0_101;
                     var_s3 = temp_a1_89 + temp_v0_101;
                     var_v0_5 = 0x32;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_89) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_6 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1F08));
                         goto block_473;
                     }
@@ -2095,7 +2093,7 @@ block_421:
                     temp_a1_90 = (*(s32 *)((u8 *)(temp_v0_102) + 0x1EF0));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_102) + 0x1EF4)) + temp_v0_102;
                     var_s3 = temp_a1_90 + temp_v0_102;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_90) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1EF8));
                         goto block_488;
                     }
@@ -2106,7 +2104,7 @@ block_421:
                     temp_a1_91 = (*(s32 *)((u8 *)(temp_v0_103) + 0x1F4C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_103) + 0x1F50)) + temp_v0_103;
                     var_s3 = temp_a1_91 + temp_v0_103;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_91) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_4 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1F54));
                         goto block_479;
                     }
@@ -2123,7 +2121,7 @@ block_421:
                     temp_a1_92 = (*(s32 *)((u8 *)(temp_v0_104) + 0x2FE4));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_104) + 0x2FE0)) + temp_v0_104;
                     var_s1 = temp_a1_92 + temp_v0_104;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_92) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_7 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2FE8));
                         goto block_622;
                     }
@@ -2135,7 +2133,7 @@ block_421:
                     temp_a1_93 = (*(s32 *)((u8 *)(temp_v0_105) + 0x2FD4));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_105) + 0x2FD8)) + temp_v0_105;
                     var_s3 = temp_a1_93 + temp_v0_105;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_93) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_9 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2FDC));
                         goto block_488;
                     }
@@ -2147,7 +2145,7 @@ block_421:
                     temp_a1_94 = (*(s32 *)((u8 *)(temp_v0_106) + 0x3004));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_106) + 0x3000)) + temp_v0_106;
                     var_s1 = temp_a1_94 + temp_v0_106;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_94) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_17 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x3008));
 block_617:
                         var_s1 = var_v0_17 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2199,7 +2197,7 @@ block_509:
                     temp_a1_95 = (*(s32 *)((u8 *)(temp_v0_110) + 0x924));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_110) + 0x928)) + temp_v0_110;
                     var_s3 = temp_a1_95 + temp_v0_110;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_95) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_18 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x92C));
                         goto block_509;
                     }
@@ -2213,7 +2211,7 @@ block_509:
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_111) + 0x19E8)) + temp_v0_111;
                     (*(f32 *)((u8 *)(arg0) + 0x604)) = 35.0f;
                     var_s1 = temp_a1_96 + temp_v0_111;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_96) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_61 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         (*(f32 *)((u8 *)(arg0) + 0x604)) = 25.0f;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_61) + 0x19F0)) + temp_v1_61;
@@ -2230,7 +2228,7 @@ block_509:
                     temp_a1_97 = (*(s32 *)((u8 *)(temp_v0_112) + 0x3084));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_112) + 0x3080)) + temp_v0_112;
                     var_s1 = temp_a1_97 + temp_v0_112;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_97) >= 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         temp_v1_62 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_62) + 0x3088)) + temp_v1_62;
                     }
@@ -2242,7 +2240,7 @@ block_509:
                     temp_a1_98 = (*(s32 *)((u8 *)(temp_v0_113) + 0x30CC));
                     var_s3 = temp_a1_98 + temp_v0_113;
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_113) + 0x30D0)) + temp_v0_113;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_98) >= 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         temp_v1_63 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_63) + 0x30D4)) + temp_v1_63;
                     }
@@ -2254,7 +2252,7 @@ block_509:
                     temp_a1_99 = (*(s32 *)((u8 *)(temp_v0_114) + 0x308C));
                     var_s3 = temp_a1_99 + temp_v0_114;
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_114) + 0x3090)) + temp_v0_114;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_99) >= 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         temp_v1_64 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_64) + 0x3094)) + temp_v1_64;
                     }
@@ -2266,7 +2264,7 @@ block_509:
                     temp_a1_100 = (*(s32 *)((u8 *)(temp_v0_115) + 0x30A4));
                     var_s3 = temp_a1_100 + temp_v0_115;
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_115) + 0x30A8)) + temp_v0_115;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_100) >= 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         temp_v1_65 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_65) + 0x30AC)) + temp_v1_65;
                     }
@@ -2279,7 +2277,7 @@ block_509:
                     temp_a1_101 = (*(s32 *)((u8 *)(temp_v0_116) + 0x30B4));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_116) + 0x30B0)) + temp_v0_116;
                     var_s1 = temp_a1_101 + temp_v0_116;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_101) >= 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         temp_v1_66 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_66) + 0x30B8)) + temp_v1_66;
                     }
@@ -2296,7 +2294,7 @@ block_509:
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_117) + 0x30D8)) + temp_v0_117;
                     (*(f32 *)((u8 *)(arg0) + 0x604)) = 35.0f;
                     var_s1 = temp_a1_102 + temp_v0_117;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_102) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_67 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         (*(f32 *)((u8 *)(arg0) + 0x604)) = 25.0f;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_67) + 0x30E0)) + temp_v1_67;
@@ -2310,7 +2308,7 @@ block_509:
                     temp_a1_103 = (*(s32 *)((u8 *)(temp_v0_118) + 0x328C));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_118) + 0x3290)) + temp_v0_118;
                     var_s3 = temp_a1_103 + temp_v0_118;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_103) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_68 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_68) + 0x3294)) + temp_v1_68;
                     }
@@ -2320,7 +2318,7 @@ block_509:
                     temp_a1_104 = (*(s32 *)((u8 *)(temp_v0_119) + 0x32B8));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_119) + 0x32BC)) + temp_v0_119;
                     var_s3 = temp_a1_104 + temp_v0_119;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_104) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_69 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_69) + 0x32C0)) + temp_v1_69;
                     }
@@ -2338,7 +2336,7 @@ block_575:
                         temp_a1_105 = (*(s32 *)((u8 *)(temp_v0_120) + 0x38FC));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_120) + 0x3900)) + temp_v0_120;
                         var_s3 = temp_a1_105 + temp_v0_120;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_105) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_70 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_70) + 0x3904)) + temp_v1_70;
                         }
@@ -2350,7 +2348,7 @@ block_575:
                         temp_a1_106 = (*(s32 *)((u8 *)(temp_v0_121) + 0x38F0));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_121) + 0x38F4)) + temp_v0_121;
                         var_s3 = temp_a1_106 + temp_v0_121;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_106) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_71 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_71) + 0x38F8)) + temp_v1_71;
                         }
@@ -2361,7 +2359,7 @@ block_575:
                         temp_a1_107 = (*(s32 *)((u8 *)(temp_v0_122) + 0x391C));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_122) + 0x3920)) + temp_v0_122;
                         var_s3 = temp_a1_107 + temp_v0_122;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_107) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_72 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_72) + 0x3924)) + temp_v1_72;
                         }
@@ -2375,7 +2373,7 @@ block_575:
                         temp_a1_108 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s3 = (*(s32 *)((u8 *)(temp_a1_108) + 0x37D0)) + temp_a1_108;
                         temp_v1_73 = (*(s32 *)((u8 *)(arg0) + 0x304));
-                        if (cCoreSave_getGameLevel(&D_00569B70, (u32) temp_a1_108) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_a0_4 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_73) + 0x37D4)) + temp_v1_73;
                             if (temp_a0_4 != 0) {
@@ -2395,7 +2393,7 @@ block_575:
                         temp_a1_109 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s3 = (*(s32 *)((u8 *)(temp_a1_109) + 0x37A0)) + temp_a1_109;
                         temp_v1_74 = (*(s32 *)((u8 *)(arg0) + 0x304));
-                        if (cCoreSave_getGameLevel(&D_00569B70, (u32) temp_a1_109) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_a0_6 = (*(s32 *)((u8 *)(arg0) + 0x744));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_74) + 0x37A8)) + temp_v1_74;
                             if (temp_a0_6 != 0) {
@@ -2446,7 +2444,7 @@ block_575:
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_124) + 0x1C34)) + temp_v0_124;
                 var_s3 = temp_a1_110 + temp_v0_124;
                 var_s6 = 0x58;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_110) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     var_s5 = 0x4D;
 block_594:
                     var_s1 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1C38)) + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2475,7 +2473,7 @@ block_594:
                     temp_a1_111 = (*(s32 *)((u8 *)(temp_v0_126) + 0x1CC4));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_126) + 0x1CC8)) + temp_v0_126;
                     var_s3 = temp_a1_111 + temp_v0_126;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_111) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_77 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_77) + 0x1CCC)) + temp_v1_77;
                     }
@@ -2484,7 +2482,7 @@ block_594:
                     temp_a1_112 = (*(s32 *)((u8 *)(temp_v1_78) + 0x1CB8));
                     var_s3 = temp_a1_112 + temp_v1_78;
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_78) + 0x1CBC)) + temp_v1_78;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_112) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_79 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_79) + 0x1CC0)) + temp_v1_79;
                     }
@@ -2495,7 +2493,7 @@ block_594:
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_127) + 0x1C34)) + temp_v0_127;
                     var_s3 = temp_a1_113 + temp_v0_127;
                     var_s6 = 0x58;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_113) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_s5 = 0xAF;
                         goto block_594;
                     }
@@ -2515,7 +2513,7 @@ block_594:
                 temp_a1_114 = (*(s32 *)((u8 *)(temp_v0_129) + 0x1C70));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_129) + 0x1C74)) + temp_v0_129;
                 var_s3 = temp_a1_114 + temp_v0_129;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_114) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_80 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_80) + 0x1C78)) + temp_v1_80;
                 }
@@ -2531,7 +2529,7 @@ block_594:
                         temp_a1_115 = (*(s32 *)((u8 *)(temp_v0_130) + 0x2D94));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_130) + 0x2D98)) + temp_v0_130;
                         var_s3 = temp_a1_115 + temp_v0_130;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_115) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_17 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2D9C));
                             goto block_617;
                         }
@@ -2542,7 +2540,7 @@ block_594:
                         temp_a1_116 = (*(s32 *)((u8 *)(temp_v1_81) + 0x2DB8));
                         var_s3 = temp_a1_116 + temp_v1_81;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_81) + 0x2DBC)) + temp_v1_81;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_116) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_82 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_82) + 0x2DC0)) + temp_v1_82;
                         }
@@ -2555,7 +2553,7 @@ block_594:
                         temp_a1_117 = (*(s32 *)((u8 *)(temp_v0_131) + 0x2DA0));
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_131) + 0x2DA4)) + temp_v0_131;
                         var_s3 = temp_a1_117 + temp_v0_131;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_117) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             var_v0_17 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2DA8));
                             goto block_617;
                         }
@@ -2570,7 +2568,7 @@ block_594:
                     temp_a1_118 = (*(s32 *)((u8 *)(temp_v0_132) + 0x2D80));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_132) + 0x2D7C)) + temp_v0_132;
                     var_s1 = temp_a1_118 + temp_v0_132;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_118) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_17 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2D84));
                         goto block_617;
                     }
@@ -2581,7 +2579,7 @@ block_594:
                 temp_a1_119 = (*(s32 *)((u8 *)(temp_v0_133) + 0x2E00));
                 var_s1 = (*(s32 *)((u8 *)(temp_v0_133) + 0x2E04)) + temp_v0_133;
                 var_s3 = temp_a1_119 + temp_v0_133;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_119) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     var_v0_7 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2E08));
                     goto block_622;
                 }
@@ -2594,7 +2592,7 @@ block_594:
                         temp_a1_120 = (*(s32 *)((u8 *)(temp_v1_83) + 0x22EC));
                         var_s3 = temp_a1_120 + temp_v1_83;
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_83) + 0x22F0)) + temp_v1_83;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_120) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_84 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_84) + 0x22F4)) + temp_v1_84;
                         }
@@ -2605,7 +2603,7 @@ block_594:
                     temp_a1_121 = (*(s32 *)((u8 *)(temp_v1_85) + 0x2324));
                     var_s3 = temp_a1_121 + temp_v1_85;
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_85) + 0x2328)) + temp_v1_85;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_121) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_86 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_86) + 0x232C)) + temp_v1_86;
                     }
@@ -2637,7 +2635,7 @@ block_635:
                             temp_a1_122 = (*(s32 *)((u8 *)(temp_v1_87) + 0x22C8));
                             var_s3 = temp_a1_122 + temp_v1_87;
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_87) + 0x22CC)) + temp_v1_87;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_122, temp_a2_2) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_88 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_88) + 0x22D0)) + temp_v1_88;
                             }
@@ -2651,7 +2649,7 @@ block_652:
                             temp_a1_123 = (*(s32 *)((u8 *)(temp_v1_89) + 0x2318));
                             var_s3 = temp_a1_123 + temp_v1_89;
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_89) + 0x231C)) + temp_v1_89;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_123, temp_a2_2) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_90 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_90) + 0x2320)) + temp_v1_90;
                             }
@@ -2665,7 +2663,7 @@ block_660:
                             temp_a1_124 = (*(s32 *)((u8 *)(temp_v1_91) + 0x22BC));
                             var_s3 = temp_a1_124 + temp_v1_91;
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_91) + 0x22C0)) + temp_v1_91;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_124, temp_a2_2) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_92 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_92) + 0x22C4)) + temp_v1_92;
                             }
@@ -2677,7 +2675,7 @@ block_660:
                             temp_a1_125 = (*(s32 *)((u8 *)(temp_v1_93) + 0x22D4));
                             var_s3 = temp_a1_125 + temp_v1_93;
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_93) + 0x22D8)) + temp_v1_93;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_125, temp_a2_2) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 temp_v1_94 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 var_s1 = (*(s32 *)((u8 *)(temp_v1_94) + 0x22DC)) + temp_v1_94;
                             }
@@ -2813,7 +2811,7 @@ block_691:
                     temp_a1_126 = (*(s32 *)((u8 *)(temp_v0_140) + 0x2CAC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_140) + 0x2CB0)) + temp_v0_140;
                     var_s3 = temp_a1_126 + temp_v0_140;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_126) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_20 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CB4));
 block_711:
                         var_s1 = var_v0_20 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2825,7 +2823,7 @@ block_711:
                     temp_a1_127 = (*(s32 *)((u8 *)(temp_v0_141) + 0x2CB8));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_141) + 0x2CBC)) + temp_v0_141;
                     var_s3 = temp_a1_127 + temp_v0_141;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_127) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_20 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CC0));
                         goto block_711;
                     }
@@ -2836,7 +2834,7 @@ block_711:
                     temp_a1_128 = (*(s32 *)((u8 *)(temp_v0_142) + 0x2CE8));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_142) + 0x2CEC)) + temp_v0_142;
                     var_s3 = temp_a1_128 + temp_v0_142;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_128) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_20 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CF0));
                         goto block_711;
                     }
@@ -2847,7 +2845,7 @@ block_711:
                     temp_a1_129 = (*(s32 *)((u8 *)(temp_v0_143) + 0x2CDC));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_143) + 0x2CE0)) + temp_v0_143;
                     var_s3 = temp_a1_129 + temp_v0_143;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_129) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_21 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CF0));
 block_705:
                         var_s1 = var_v0_21 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2861,7 +2859,7 @@ block_706:
                     temp_a1_130 = (*(s32 *)((u8 *)(temp_v0_144) + 0x2D24));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_144) + 0x2D28)) + temp_v0_144;
                     var_s3 = temp_a1_130 + temp_v0_144;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_130) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_21 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2D2C));
                         goto block_705;
                     }
@@ -2872,7 +2870,7 @@ block_706:
                     temp_a1_131 = (*(s32 *)((u8 *)(temp_v0_145) + 0x2CC4));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_145) + 0x2CC8)) + temp_v0_145;
                     var_s3 = temp_a1_131 + temp_v0_145;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_131) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_20 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CCC));
                         goto block_711;
                     }
@@ -2884,7 +2882,7 @@ block_706:
                     temp_a1_132 = (*(s32 *)((u8 *)(temp_v0_146) + 0x2CD0));
                     var_s1 = (*(s32 *)((u8 *)(temp_v0_146) + 0x2CD4)) + temp_v0_146;
                     var_s3 = temp_a1_132 + temp_v0_146;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_132) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_20 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x2CD8));
                         goto block_711;
                     }
@@ -2958,7 +2956,7 @@ block_706:
                 temp_a1_133 = (*(s32 *)((u8 *)(temp_v0_148) + 0x154));
                 var_s3 = (*(s32 *)((u8 *)(temp_v0_148) + 0x150)) + temp_v0_148;
                 var_s1 = temp_a1_133 + temp_v0_148;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_133) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     var_v0_22 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x158));
                     goto block_29;
                 }
@@ -2971,7 +2969,7 @@ block_706:
                     temp_a1_134 = (*(s32 *)((u8 *)(temp_v0_149) + 0x154));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_149) + 0x150)) + temp_v0_149;
                     var_s1 = temp_a1_134 + temp_v0_149;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_134) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_22 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x158));
 block_29:
                         var_s1 = var_v0_22 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2982,7 +2980,7 @@ block_27:
                     temp_a1_135 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1B0));
                     var_s3 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1AC)) + (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = temp_a1_135 + (*(s32 *)((u8 *)(arg0) + 0x304));
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_135) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_22 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1B4));
                         goto block_29;
                     }
@@ -2994,7 +2992,7 @@ block_27:
                     temp_a1_136 = (*(s32 *)((u8 *)(temp_v0_150) + 0x130));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_150) + 0x12C)) + temp_v0_150;
                     var_s1 = temp_a1_136 + temp_v0_150;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_136) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         var_v0_22 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x134));
                         goto block_29;
                     }
@@ -3007,7 +3005,7 @@ block_27:
                 temp_a1_137 = (*(s32 *)((u8 *)(temp_v0_151) + 0x1B1C));
                 var_s3 = (*(s32 *)((u8 *)(temp_v0_151) + 0x1B18)) + temp_v0_151;
                 var_s1 = temp_a1_137 + temp_v0_151;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_137) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_95 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_95) + 0x1B20)) + temp_v1_95;
                 }
@@ -3026,7 +3024,7 @@ block_27:
                             temp_a1_138 = (*(s32 *)((u8 *)(temp_v0_153) + 0x220));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_153) + 0x21C)) + temp_v0_153;
                             var_s1 = temp_a1_138 + temp_v0_153;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_138) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x224));
 block_61:
                                 var_s1 = var_v0_23 + (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -3040,7 +3038,7 @@ block_61:
                         temp_a1_139 = (*(s32 *)((u8 *)(temp_v0_154) + 0x230));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_154) + 0x22C)) + temp_v0_154;
                         var_s1 = temp_a1_139 + temp_v0_154;
-                        if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_139) == 5) {
+                        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                             temp_v1_96 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_96) + 0x234)) + temp_v1_96;
                         }
@@ -3051,7 +3049,7 @@ block_61:
                                 temp_a1_140 = (*(s32 *)((u8 *)(temp_v0_155) + 0x220));
                                 var_s3 = (*(s32 *)((u8 *)(temp_v0_155) + 0x21C)) + temp_v0_155;
                                 var_s1 = temp_a1_140 + temp_v0_155;
-                                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_140) == 5) {
+                                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                     var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x224));
                                     goto block_61;
                                 }
@@ -3061,7 +3059,7 @@ block_61:
                                 temp_a1_141 = (*(s32 *)((u8 *)(temp_v0_156) + 0x200));
                                 var_s3 = (*(s32 *)((u8 *)(temp_v0_156) + 0x1FC)) + temp_v0_156;
                                 var_s1 = temp_a1_141 + temp_v0_156;
-                                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_141) == 5) {
+                                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                     var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x204));
                                     goto block_61;
                                 }
@@ -3078,7 +3076,7 @@ block_61:
                             temp_a1_142 = (*(s32 *)((u8 *)(temp_v0_157) + 0x1E0));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_157) + 0x1DC)) + temp_v0_157;
                             var_s1 = temp_a1_142 + temp_v0_157;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_142) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x1E4));
                                 goto block_61;
                             }
@@ -3089,7 +3087,7 @@ block_61:
                             temp_a1_143 = (*(s32 *)((u8 *)(temp_v0_158) + 0x200));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_158) + 0x1FC)) + temp_v0_158;
                             var_s1 = temp_a1_143 + temp_v0_158;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_143) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x204));
                                 goto block_61;
                             }
@@ -3100,7 +3098,7 @@ block_61:
                             temp_a1_144 = (*(s32 *)((u8 *)(temp_v0_159) + 0x210));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_159) + 0x20C)) + temp_v0_159;
                             var_s1 = temp_a1_144 + temp_v0_159;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_144) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x214));
                                 goto block_61;
                             }
@@ -3111,7 +3109,7 @@ block_61:
                             temp_a1_145 = (*(s32 *)((u8 *)(temp_v0_160) + 0x220));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_160) + 0x21C)) + temp_v0_160;
                             var_s1 = temp_a1_145 + temp_v0_160;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_145) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x224));
                                 goto block_61;
                             }
@@ -3122,7 +3120,7 @@ block_61:
                             temp_a1_146 = (*(s32 *)((u8 *)(temp_v0_161) + 0x230));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_161) + 0x22C)) + temp_v0_161;
                             var_s1 = temp_a1_146 + temp_v0_161;
-                            if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_146) == 5) {
+                            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                                 var_v0_23 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x234));
                                 goto block_61;
                             }
@@ -3138,7 +3136,7 @@ block_61:
                 temp_a1_147 = (*(s32 *)((u8 *)(temp_v0_162) + 0x148));
                 var_s3 = (*(s32 *)((u8 *)(temp_v0_162) + 0x144)) + temp_v0_162;
                 var_s1 = temp_a1_147 + temp_v0_162;
-                if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_147) == 5) {
+                if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                     temp_v1_97 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_97) + 0x14C)) + temp_v1_97;
                 }
@@ -3150,7 +3148,7 @@ block_61:
                     temp_a1_148 = (*(s32 *)((u8 *)(temp_v0_163) + 0x190));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_163) + 0x18C)) + temp_v0_163;
                     var_s1 = temp_a1_148 + temp_v0_163;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_148) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_98 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_98) + 0x194)) + temp_v1_98;
                     }
@@ -3160,7 +3158,7 @@ block_61:
                     temp_a1_149 = (*(s32 *)((u8 *)(temp_v0_164) + 0x1A0));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_164) + 0x19C)) + temp_v0_164;
                     var_s1 = temp_a1_149 + temp_v0_164;
-                    if (cCoreSave_getGameLevel(&D_00569B70, temp_a1_149) == 5) {
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         temp_v1_99 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_99) + 0x1A4)) + temp_v1_99;
                     }

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern void ClearLinkedNodeList_12ECF0(void *p);
@@ -20,10 +21,8 @@ extern void func_002AF708(void *a0, int a1);
 extern void func_002AF710(void *a0, int a1, unsigned int a2);
 extern void func_002AF720(void *a0, float x);
 extern void cEmManage_EntryEm(void *, void *, int, void *);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern unsigned char D_005864F0[];
-extern char D_00569B70[];
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -282,11 +281,11 @@ void func_002606E8(unsigned char *p, int kind)
     ep.f31 = 0xFF;
     ep.f30 = 0;
     ep.f2C = 0;
-    if (cCoreSave_getGameLevel(D_00569B70) >= 2) {
+    if (cCoreSave_getGameLevel(&D_00569B70) >= 2) {
         if ((Forward30F348_31CFE0() & 3) == 0) {
             ep.f2C = 1;
         }
-        if (cCoreSave_getGameLevel(D_00569B70) >= 5) {
+        if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
             ep.f2C = 1;
         }
     }

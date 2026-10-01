@@ -1,7 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern int cCoreSave_ckClearStage(void *a0, int a1);
-extern int D_00569B70;
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_001645E0")))
 void func_001645E0(char *a0)

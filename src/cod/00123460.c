@@ -1,24 +1,20 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void KillEffect(void *a0, int a1, int a2);
-extern int cCoreSave_getCostumeNo(void *a0);
-extern unsigned int cCoreSave_getGodItemNum(void *a0);
-extern void cCoreSave_addGodItem(void *a0, int a1);
 extern void cHeatSys_SetHeatGage(void *a0, float f12);
 extern int cHeatSys_SubHeatGage(void *a0, int a1, float f12);
 extern int cHeatSys_GetHeatLv(void *a0);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float SetField444SignedByFlag434_158288(void *a0, float f12);
 extern void cOmWeapon_kickOff(int a0);
-extern void cCoreSave_clearPaper(void *a0);
 
 extern float D_003BD4A0;
 extern int D_00747A2C;
 extern char D_005CB000[];
-extern int D_00569B70;
 
 __attribute__((section(".text.func_00123460")))
 void func_00123460(void *arg)

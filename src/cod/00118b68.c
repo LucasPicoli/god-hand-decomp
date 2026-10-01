@@ -5,7 +5,6 @@
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_00569B70[];
 extern int D_007474A8;
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
@@ -14,7 +13,6 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_002DB7A8(void);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
@@ -24,6 +22,7 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_00118B68")))
 void func_00118B68(void *a0)

@@ -1,11 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern int D_00569B70;
 extern unsigned int D_00568240;
-extern int cCoreSave_getGameDifficulty(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
-extern void cCoreSave_setGameLevel(void *a0, int level);
 
 __attribute__((section(".text.cCoreSave_dropLevelPoint")))
 /* Drop the level points to the start of the level below the current one.
@@ -25,7 +21,7 @@ void cCoreSave_dropLevelPoint(cCoreSave *self)
     if (byte == 2) {
         return;
     }
-    global = ((cCoreSave *)&D_00569B70)->data;
+    global = D_00569B70.data;
     if ((global->flags & 0x4000000) != 0) {
         v = *(unsigned int *)&D_00568240;
         if (((v >> 1) & 1) == 0) {

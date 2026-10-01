@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void StoreMotionParams_2609E0(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Set_Fields_1884_1894_2609F8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
@@ -14,7 +14,6 @@ extern void func_002705D8(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern void func_00260B30(void *a0);
-extern char D_00569B70[];
 
 __attribute__((section(".text.func_002266F0")))
 void func_002266F0(void *a0)
@@ -69,7 +68,7 @@ void func_002266F0(void *a0)
             break;
         }
         func_002A8578(s0, s2v, s0v, 0.0f, 0xA, gb, 0);
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             *(int *)(s0 + 0x5F0) = 0x46;

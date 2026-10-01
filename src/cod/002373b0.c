@@ -5,17 +5,16 @@
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void func_002DB770(void);
-extern int D_00569B70;
 extern char D_00462FC0[];
 extern char D_007474A0[];
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_002373B0")))
 void func_002373B0(void *a0)

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* func_0010EE80 — 0x0010EE80, 880 B — sn-2.95.3-136.
  * +0x2F6 phase machine; template src/cod/00111750.c. */
@@ -6,7 +7,6 @@
 extern void MaxField514_292030(void *a0, int a1);
 extern void MaxByte538_292EF0(void *a0, int a1);
 
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00129578(void *a0);
 
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -24,7 +24,6 @@ extern void func_0010A438(void *a0);
 
 extern void cSnd_SeStop(void *a0, int a1);
 extern int  D_00747A0C;
-extern int  D_00569B70;
 extern char D_005864F0[];
 extern char D_005FEE00[];
 

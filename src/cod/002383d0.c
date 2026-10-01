@@ -2,9 +2,9 @@
 
 /* func_002383D0, 996 B, sn-2.95.3-136. Wave 2026-08-31 V2 h2 + a block-local base pointer per if/else arm (pa1..pa4) so local-alloc takes the base first. */
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 extern char D_00462FC0[];
-extern int D_00569B70;
 extern int D_007474A8;
 
 extern int Obj0000_Get_D_00747A94_2DB6B0();
@@ -12,7 +12,6 @@ extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern int cCoreSave_getGameLevel(void *a0);
 extern float SetField444SignedByFlag434_158288(void *a0, float f);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f12);

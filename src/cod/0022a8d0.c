@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern unsigned char D_00569B70[];
 extern unsigned char D_005864F0[];
 extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -12,7 +12,6 @@ extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Obj293_IsByteSet_53D(void *a0);
 extern int Obj293_IsByteSet_53C(void *a0);
 extern void func_002705D8(void *a0);

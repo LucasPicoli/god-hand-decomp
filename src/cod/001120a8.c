@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
@@ -15,13 +16,11 @@ extern void Obj293_SetByte_53C_2(void *a0);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern void func_00129578(void *a0);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00129630(void *a0);
 extern void func_0012BC00(void *a0, int a1, int a2);
 extern void cSnd_SeStop(void *a0, int a1);
 extern char D_005864F0[];
 extern char D_005FEE00[];
-extern int D_00569B70;
 
 __attribute__((section(".text.func_001156D8")))
 void func_001156D8(void *a0)

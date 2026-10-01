@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern int moveMotion(void *a0);
@@ -23,7 +23,6 @@ extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern unsigned char D_005FEE00[];
 extern int D_005864F0;
 extern char D_00462FC0[];
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 

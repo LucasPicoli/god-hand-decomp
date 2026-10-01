@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void MaxField514_292030(void *a0, int a1);
 extern void Obj293_SetByte_53C_2(void *a0);
@@ -9,7 +10,6 @@ extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1,
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00124EC0(void *a0);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
@@ -19,7 +19,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern int D_005864F0;
-extern int D_00569B70;
 extern int D_00462FC0;
 
 __attribute__((section(".text.func_00113A20")))

@@ -4,7 +4,6 @@ extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern int cCoreSave_getGameLevel(void *a0);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
@@ -19,10 +18,10 @@ extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern int D_00569B70;
 extern unsigned char D_005864F0[];
 extern unsigned char D_005FEE00[];
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 #define FRAME ((char *)va)
 static __inline__ void vcopy(float *d, float *s)
 {

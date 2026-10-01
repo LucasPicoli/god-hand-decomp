@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* sn-2.95.3-136 */
 
-extern int cCoreSave_getGameLevel(void *a0);
 extern float fRand0_1(void);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 
 __attribute__((section(".text.func_00274238")))
@@ -17,7 +16,7 @@ void func_00274238(char *a0, unsigned char a1) {
     if ((*(int *)(s1 + 0x16D0) & 0x2000) != 0) goto tail;
     switch (*(int *)(s1 + 0x564)) {
     default:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 1: default:
             *(float *)(s1 + 0x173C) = 40.0f;
             break;
@@ -42,7 +41,7 @@ void func_00274238(char *a0, unsigned char a1) {
     case 0x25B: case 0x260: case 0x264: case 0x265: case 0x26A: case 0x270:
     case 0x271: case 0x272: case 0x273: case 0x274: case 0x275: case 0x276:
     case 0x27E:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 2:
             *(float *)(s1 + 0x173C) = 8.0f;
             break;
@@ -67,7 +66,7 @@ void func_00274238(char *a0, unsigned char a1) {
     case 0x228: case 0x229: case 0x22A: case 0x22B: case 0x22C: case 0x22D:
     case 0x22E: case 0x22F: case 0x23A: case 0x246: case 0x24B: case 0x24D:
     case 0x25A:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 1: default:
             *(float *)(s1 + 0x173C) = 15.0f;
             break;
@@ -86,7 +85,7 @@ void func_00274238(char *a0, unsigned char a1) {
         }
         break;
     }
-    if (cCoreSave_getGameLevel(D_00569B70) < 5) {
+    if (cCoreSave_getGameLevel(&D_00569B70) < 5) {
         *(float *)(s1 + 0x173C) = *(float *)(s1 + 0x173C) + fRand0_1() * 4.0f;
     }
 tail:

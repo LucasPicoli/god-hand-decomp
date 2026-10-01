@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_0028FB08(void *a0);
-extern void cCoreSave_addKillNpcNum(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
@@ -9,7 +9,6 @@ extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern unsigned char D_005FEE00[];
-extern int D_00569B70;
 extern int D_00462FC0;
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);

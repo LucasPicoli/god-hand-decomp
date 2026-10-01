@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int D_00569B70;
-extern int cCoreSave_getCostumeNo(void *a0);
 extern void func_001038E0(char *a0, char *a1, char *a2, float f12, float f13);
 extern char D_003BBF80[];
 extern char D_003BBFA8[];

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern char D_005FEE00[];
@@ -21,16 +22,7 @@ extern void CustomIDWork_Initialize(void *p, void *w);
 extern void CustomIDWork_SetDisp(void *p, int f);
 extern void CustomIDWork_SetNumber_1DD218(void *p, int n);
 extern void func_001DD238(void *p, int n);
-extern void cCoreSave_saveStageIds(void *p);
-extern void cCoreSave_saveSpawn(void *p);
-extern void cCoreSave_saveWorldTime(void *p);
-extern void cCoreSave_addCounter08(void *p);
-extern void cCoreSave_saveWorldActive(void *p);
-extern void cCoreSave_saveWorldToggle(void *p);
-extern void cCoreSave_saveGlobalToggle(void *p);
-extern void cCoreSave_updateVitalMax(void *p);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void cCoreSave_setVital(void *p, int v);
 
 __attribute__((section(".text.func_001793D0")))
 void func_001793D0(char *p)
@@ -141,10 +133,10 @@ void func_001DD0D8(char *p)
 }
 
 __attribute__((section(".text.cCoreSave_snapshot")))
-void cCoreSave_snapshot(char *p, int flag)
+void cCoreSave_snapshot(cCoreSave *p, int full)
 {
     cCoreSave_saveStageIds(p);
-    if (flag != 0) {
+    if (full != 0) {
         cCoreSave_saveSpawn(p);
         cCoreSave_saveWorldTime(p);
         cCoreSave_addCounter08(p);

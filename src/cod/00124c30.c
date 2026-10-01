@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Forward30F348_31CFE0(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_00280EB8(void *a0, int a1, int a2);
-extern int D_00569B70;
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern int cEmManage_ChkActiveEm(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);

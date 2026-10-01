@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int D_00569B70;
-extern int cCoreSave_getCostumeNo(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 

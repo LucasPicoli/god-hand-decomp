@@ -11,13 +11,11 @@ extern int moveMotion(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_0012C0F8(void *a0, int a1);
 extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
 extern void func_0012C348(void *a0, int a1);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern int D_00747A24;
-extern int D_00569B70;
 extern char D_00462FC0[];
 extern char D_005864F0[];
 extern char D_005FEE00[];
@@ -56,6 +54,7 @@ extern char D_005CB000[];
 
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_0011CEE8")))
 void func_0011CEE8(void *a0)
@@ -234,7 +233,7 @@ void func_00122140(void *a0)
         AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
         if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0
             && *(int *)(s1 + 0x15B0) != 0) {
-            char *s2 = (char *)&D_00569B70;
+            cCoreSave *s2 = &D_00569B70;
 
             *(int *)(s1 + 0x15B0) = 0;
             cCoreSave_addGameLevelPoint(s2, -0x140);

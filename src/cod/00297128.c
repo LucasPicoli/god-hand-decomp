@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEvent.h"
+#include "godhand/cCoreSave.h"
 
 extern char D_0044A960[];
 extern char D_00583F20[];
 extern int D_003C3CF0;
 extern int cDvd_ReadAlloc(void *, void *, void *, void *, int, int, int, int);
-extern int D_00569B70;
 extern int D_003C2F84;
 extern int D_003C2558;
 extern unsigned int D_00747A84[];
@@ -70,7 +70,7 @@ void cEvent_endPlay(cEvent *self) {
     if (text != 0) {
         UnlinkAndCoalesceNode_2A9680(((int *)text)[-8], text);
     }
-    *(int *)(D_00569B70 + 0x14) &= ~0x40000000;
+    D_00569B70.data->flags &= ~0x40000000;
     player = Obj0000_Get_D_00747A94_2DB6B0();
     jacket = GetJacket();
     objFlags = *(unsigned int *)(player + 0x250) & 0xFFFF7FFF;

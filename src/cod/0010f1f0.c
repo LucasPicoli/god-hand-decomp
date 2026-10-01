@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cWorldLight.h"
+#include "godhand/cCoreSave.h"
 
 extern int cWorldLight_Set_LightData(void *a0, void *a1);
 extern void MaxField514_292030(void *a0, int a1);
 extern void MaxByte538_292EF0(void *a0, int a1);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -20,7 +20,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void func_0010A438(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
-extern int  D_00569B70;
 extern char D_005864F0[];
 extern char D_005FEE00[];
 extern void func_002E0DE8();

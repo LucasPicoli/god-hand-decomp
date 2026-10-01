@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -11,7 +11,6 @@ extern void func_002705D8(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void func_0026BEF0(void *a0, int a1, int a2);
-extern char D_00569B70[];
 extern char D_004365A8[];
 extern char D_004365B0[];
 
@@ -45,7 +44,7 @@ void func_002170B8(void *a0)
         v0 = *(char **)(s1 + 0x304);
         func_002A8578(s1, *(int *)(v0 + 0x1C8) + (int)v0, *(int *)(v0 + 0x1CC) + (int)v0, 0.0f, 3, gb, 0);
         *(int *)(s1 + 0x5F0) = 0x1E;
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         case 1: default: *(int *)(s1 + 0x5F0) = (int)((float)*(int *)(s1 + 0x5F0) * 0.75f); break;
         case 2: *(int *)(s1 + 0x5F0) = (int)((float)*(int *)(s1 + 0x5F0) * 0.8f); break;
         case 3: case 4: *(int *)(s1 + 0x5F0) = (int)((float)*(int *)(s1 + 0x5F0) * 0.9f); break;

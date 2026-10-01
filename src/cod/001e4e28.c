@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
+#include "godhand/cCoreSave.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -17,11 +18,7 @@ extern void func_001E6D48(char *a0, int a1, int a2);
 extern void func_001E6E10(char *a0, int a1, int a2);
 extern void func_001E7660(char *a0, int a1);
 extern void func_001E77B0(char *a0, int a1);
-extern int cCoreSave_getGold(char *a0);
-extern void cCoreSave_addGold(char *a0, int a1, int a2);
-extern void cCoreSave_subGold(char *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_007474A0;
 extern int D_00747A2C;
@@ -75,7 +72,7 @@ void Slot2_UpdateBet(Slot2 *self)
         if (D_00747A2C & 0x200) {
             char *o = (char *)&D_00747A2C;
             if (*(long *)(o - 0x3DC) & 0x33000000000L) {
-                cCoreSave_addGold(D_00569B70, 0x3E8, 0);
+                cCoreSave_addGold(&D_00569B70, 0x3E8, 0);
             }
         }
         v = self->reel[0].doneFlag;
@@ -108,11 +105,11 @@ void Slot2_UpdateBet(Slot2 *self)
                 if (self->betLv >= 3) {
                     return;
                 }
-                if (cCoreSave_getGold(D_00569B70) < self->betCost) {
+                if (cCoreSave_getGold(&D_00569B70) < self->betCost) {
                     return;
                 }
                 self->betLv += 1;
-                cCoreSave_subGold(D_00569B70, self->betCost);
+                cCoreSave_subGold(&D_00569B70, self->betCost);
                 func_001E6A48(self);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
                 return;
@@ -122,7 +119,7 @@ void Slot2_UpdateBet(Slot2 *self)
                     return;
                 }
                 self->betLv -= 1;
-                cCoreSave_addGold(D_00569B70, self->betCost, 0);
+                cCoreSave_addGold(&D_00569B70, self->betCost, 0);
                 func_001E6A48(self);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
                 return;

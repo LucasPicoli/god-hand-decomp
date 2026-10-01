@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* L1 w34 parked: 216/225 EXACT, insn delta -1, needs --assembler sn (ps2eeas supplies the mtc1 nop at .L0010E2EC). Residue: flag copy daddu $a0,$v0 (R allocated $v0 here), beqzl for beqz at 0x0010E334 (follows the flag register), mov.s $f12 placement before the func_002A8578 call. Edits this wave: int one = 1 hoisted, extern int func_00124540, stores 15C4/15B0 first. */
 /* func_0010E230 — 0x0010E230, 900 B — sn-2.95.3-136. */
 
 extern float capVu0MagnitudeXZ(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern int func_00124540(void *a0, int a1);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -17,7 +17,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern void func_0010A438(void *a0);
 
-extern int  D_00569B70;
 
 static __inline__ long InMidRange(unsigned short k, int lo, int hi)
 {

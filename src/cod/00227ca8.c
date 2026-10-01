@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* func_00227CA8 — 0x00227CA8, 828 B — sn-2.95.3-136.
  * Template src/cod/00225e30.c (func_00225E30, jaccard 0.93). */
 
 extern int  Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int Forward30F348_31CFE0(void);
-extern int  cCoreSave_getGameLevel(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int  Obj0000_Get_D_00747A94_2DB6B0(void);
@@ -16,7 +16,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_00260B30(void *a0);
-extern char D_00569B70[];
 
 __attribute__((section(".text.func_00227CA8")))
 void func_00227CA8(void *a0)
@@ -47,7 +46,7 @@ void func_00227CA8(void *a0)
             int w = *(int *)(s0 + 0x304);
             p1 = *(int *)(w + 0x300C) + w;
             p2 = *(int *)(w + 0x3010) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int w2 = *(int *)(s0 + 0x304);
                 p2 = *(int *)(w2 + 0x3014) + w2;
             }
@@ -58,7 +57,7 @@ void func_00227CA8(void *a0)
             int w = *(int *)(s0 + 0x304);
             p1 = *(int *)(w + 0x3018) + w;
             p2 = *(int *)(w + 0x301C) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int w2 = *(int *)(s0 + 0x304);
                 p2 = *(int *)(w2 + 0x3020) + w2;
             }
@@ -69,7 +68,7 @@ void func_00227CA8(void *a0)
             int w = *(int *)(s0 + 0x304);
             p1 = *(int *)(w + 0x3024) + w;
             p2 = *(int *)(w + 0x3028) + w;
-            if (cCoreSave_getGameLevel(D_00569B70) == 5) {
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                 int w2 = *(int *)(s0 + 0x304);
                 p2 = *(int *)(w2 + 0x302C) + w2;
             }

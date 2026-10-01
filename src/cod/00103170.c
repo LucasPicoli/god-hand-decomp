@@ -12,13 +12,12 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern unsigned char D_005FEE00[];
-extern unsigned char D_00569B70[];
 extern int D_00747A24;
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 __attribute__((section(".text.func_00103170")))
 void func_00103170(void *a0)
 {
@@ -81,7 +80,7 @@ void func_00122D18(void *a0)
         }
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
         OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
-        cCoreSave_addGameLevelPoint(D_00569B70, -1000);
+        cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
         func_0012C348(s1, 3);
         func_002A8578(s1, s2, s0, 0.0f, 2, 0, 0);
         *(int *)(s1 + 0x15B0) = 0x82;

@@ -2,7 +2,6 @@
 #include "godhand/cCoreSave.h"
 
 extern int D_003BF160[];
-extern int cCoreSave_getGameLevel(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 

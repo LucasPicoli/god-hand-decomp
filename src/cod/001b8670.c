@@ -1,7 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern int D_00569B70;
-extern int cCoreSave_getGameLevel(void *save);
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cOmbb_initCountdown")))
 void cOmbb_initCountdown(char *p) {

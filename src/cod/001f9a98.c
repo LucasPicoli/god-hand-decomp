@@ -2,9 +2,6 @@
 
 #include "godhand/cCoreSave.h"
 
-extern void cCoreSave_setReelItemNum(cCoreSave *, int);
-extern void cCoreSave_setGameLevel(cCoreSave *, int);
-
 /* Easy-difficulty start: three usable god-item slots, game level 1. */
 __attribute__((section(".text.cCoreSave_initEasyStart")))
 void cCoreSave_initEasyStart(cCoreSave *self)

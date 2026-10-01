@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int a4, int a5);
@@ -11,7 +11,6 @@ extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void func_0010A438(void *a0);
-extern char D_00569B70[];
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern float capVu0Atan2(float y, float x);
 extern float Turn_dest_dir(float f12, float f13, float f14);
@@ -63,7 +62,7 @@ void func_0010EBF8(void *a0)
         e = *(char **)(s1 + 0x640);
         if (e != 0) {
             if (inrange(*(unsigned short *)(e + 0x2FE), 0x200, 0x300) & 0xFF)
-                cCoreSave_addGameLevelPoint(D_00569B70, 0x14);
+                cCoreSave_addGameLevelPoint(&D_00569B70, 0x14);
         }
         Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);
         Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);

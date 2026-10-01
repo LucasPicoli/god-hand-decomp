@@ -1765,7 +1765,7 @@ short cCoreSave_getLevelPoint(cCoreSave *self)
 
 __attribute__((section(".text.cCoreSave_getGameDifficulty")))
 /* Difficulty 0..2; 1 without a record. */
-char cCoreSave_getGameDifficulty(cCoreSave *self)
+int cCoreSave_getGameDifficulty(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 1;

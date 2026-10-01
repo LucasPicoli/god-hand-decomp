@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
@@ -13,7 +13,6 @@ extern void func_002705D8(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern void func_00260B30(void *a0);
-extern int D_00569B70;
 extern int SetCustomIDDispOneOrAll_1EE1C0();
 extern int CustomIDWork_SetColorAnimSin();
 extern void MaxField514_292030(void *a0, int a1);
@@ -24,7 +23,6 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern void func_00124EC0(void *a0);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);

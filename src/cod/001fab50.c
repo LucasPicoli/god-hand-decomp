@@ -1,10 +1,6 @@
 /* sn-2.95.3-136 matched TU (--call-loop-pad). */
 #include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
-extern int cCoreSave_findFreeReelSlot(cCoreSave *self);
-extern void cCoreSave_setReelSlot(cCoreSave *self, unsigned char slot, int no);
-
 /* Put an item in the first empty unlocked slot. 1 on success. */
 __attribute__((section(".text.cCoreSave_addGodItem")))
 int cCoreSave_addGodItem(cCoreSave *self, unsigned char item) {

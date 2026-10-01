@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void func_001D0408(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern int getItemNumInRoom(void);
 extern int func_00273960(void *a0, float f12);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern char D_00569B70[];
 extern unsigned char D_005CB010;
 extern char D_005864F0[];
 
@@ -87,7 +86,7 @@ void func_002705D8(void *a0)
         return;
     }
     if (*(unsigned char *)(s0 + 0x1864) != 0) {
-        if (cCoreSave_getGameLevel(D_00569B70) >= 3) {
+        if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
             if (Forward30F348_31CFE0() & 1) {
                 *(unsigned char *)(s0 + 0x1864) = 0;
             }
@@ -122,7 +121,7 @@ void func_002705D8(void *a0)
                     *(unsigned char *)(s0 + 0x2F7) = 0;
                     return;
                 }
-                if (cCoreSave_getGameLevel(D_00569B70) >= 3) {
+                if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
                     *(unsigned char *)(s0 + 0x2F4) = 0;
                     *(unsigned char *)(s0 + 0x2F5) = 0x12;
                     *(unsigned char *)(s0 + 0x2F6) = 0;

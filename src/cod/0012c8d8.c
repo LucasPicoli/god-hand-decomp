@@ -1,10 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCoreSave_setPaper(void *a0);
 extern char *CreateObj(int a0, int a1);
-extern int cCoreSave_getCostumeNo(void *a0);
 extern int cOmWeapon_setParent();
-extern char *D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -15,16 +12,17 @@ extern char *D_00569B70;
 
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.pl00_setPaper")))
 void pl00_setPaper(void *a0) {
     char *s0 = (char *)a0;
     float buf[8];
-    char *w;
+    cCoreSave *w;
     char *obj;
 
     if (*(int *)(s0 + 0x6A8) == 0) {
-        w = (char *)&D_00569B70;
+        w = &D_00569B70;
         cCoreSave_setPaper(w);
         obj = CreateObj(0x376, 0xFFFF);
         *(char **)(s0 + 0x6A8) = obj;

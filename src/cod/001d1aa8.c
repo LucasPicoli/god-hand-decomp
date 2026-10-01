@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
+#include "godhand/cCoreSave.h"
 
 extern void func_002998D8(int a0, int a1, long a2);
 extern void func_00299908(int a0);
@@ -10,10 +11,8 @@ extern void func_001D5360(void *a0, int a1);
 extern void func_001D5500(void *a0, int a1);
 extern void SetBlendField6AC_1D58F0(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
-extern void cCoreSave_addGold(char *a0, int a1, int a2);
 extern void func_001D5430(void *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_007474A0;
 
@@ -146,7 +145,7 @@ void BlackJack_UpdateDealMenu(BlackJack *self)
                 if (self->bet > 0) {
                     int v;
 
-                    cCoreSave_addGold(D_00569B70, 0x64, 0);
+                    cCoreSave_addGold(&D_00569B70, 0x64, 0);
                     v = self->bet - 0x64;
                     self->bet = v;
                     CustomIDWork_SetNumber_1D5760(self, v);

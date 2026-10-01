@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned int Forward30F348_31CFE0(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
@@ -20,12 +21,10 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00124EC0(void *a0);
 extern void func_00129630(void *a0);
 extern void func_0010A438(void *a0);
 extern void func_0012BC00(void *a0, int a1, int a2);
-extern int D_00569B70;
 extern char D_005864F0[];
 extern void cSnd_SeStop(void *a0, int a1);
 extern int D_00747A0C;

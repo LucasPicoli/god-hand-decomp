@@ -3,38 +3,6 @@
 /* cCoreSave_gameInit - reset the record for a new game. */
 #include "godhand/cCoreSave.h"
 
-extern void cCoreSave_clearGodItem(cCoreSave *);
-extern void cCoreSave_setGold(cCoreSave *, int);
-extern void cCoreSave_setGameLevel(cCoreSave *, int);
-extern void cCoreSave_updateVitalMax(cCoreSave *);
-extern int cCoreSave_getVitalMax(cCoreSave *);
-extern void cCoreSave_setVital(cCoreSave *, int);
-extern void cCoreSave_initCombos(cCoreSave *);
-extern void cCoreSave_setCounter88(cCoreSave *, int);
-extern void cCoreSave_setStat8A(cCoreSave *, int);
-extern void cCoreSave_setUpgradeLv(cCoreSave *, int, int);
-extern void cCoreSave_setClearNum(cCoreSave *, int);
-extern void cCoreSave_clearKillEmNum(cCoreSave *);
-extern void cCoreSave_clearKillNpcNum(cCoreSave *);
-extern void cCoreSave_initAddGold(cCoreSave *);
-extern void cCoreSave_initContinueNum(cCoreSave *);
-extern void cCoreSave_clearClearStage(cCoreSave *);
-extern void cCoreSave_resetCostumeNo(cCoreSave *, int);
-extern void cCoreSave_clearBlock180(cCoreSave *);
-extern void cCoreSave_initReelSlots(cCoreSave *);
-extern void cCoreSave_clearEventFlags(cCoreSave *);
-extern void cCoreSave_setReelItemNum(cCoreSave *, int);
-extern void cCoreSave_clearFightingRing(cCoreSave *);
-extern void cCoreSave_clearAllContinueNum(cCoreSave *);
-extern void cCoreSave_clearAllKillEmNum(cCoreSave *);
-extern void cCoreSave_clearAllKillNpcNum(cCoreSave *);
-extern void cCoreSave_clearAllStageTime(cCoreSave *);
-extern int cCoreSave_getGameDifficulty(cCoreSave *);
-extern void cCoreSave_setGameLevel1_1F9AD0(cCoreSave *);
-extern void cCoreSave_initEasyStart(cCoreSave *);
-extern void cCoreSave_setGameLevel5_1F9AF0(cCoreSave *);
-extern void cCoreSave_addGodItem(cCoreSave *, int);
-
 __attribute__((section(".text.cCoreSave_gameInit")))
 void cCoreSave_gameInit(cCoreSave *self)
 {

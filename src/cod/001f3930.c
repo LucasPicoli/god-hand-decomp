@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -11,14 +12,12 @@ extern void func_001F4248(void *a0, int a1);
 extern void func_001F52A0(void *a0, int a1, int a2);
 extern void func_001F55C0(void *a0, int a1, int a2, int a3);
 
-extern void cCoreSave_setBonus(void *a0, int a1);
 extern void func_001F53A8(void *a0, int a1);
 extern void func_001F4700(void *a0);
 extern void func_001F4758(void *a0);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1,
                               int t2);
 extern unsigned char D_005FEE00[];
-extern int D_00569B70;
 extern int D_007474A0;
 extern unsigned char D_0074748C;
 extern unsigned char D_00586AA4;

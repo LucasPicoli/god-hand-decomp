@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -9,10 +10,8 @@ extern void func_001DF758(void *p, int a1);
 extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
 extern void CustomIDWork_SetNumber_1DD218(void *a0, int a1);
-extern void cCoreSave_addGold(void *p, int a1, int a2);
 extern void cSnd_SetBgmState(void *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_0042B2F0[];
 extern long D_007474A0[];
@@ -140,7 +139,7 @@ void func_001D9D28(void *arg)
         /* fallthrough */
     case 9:
         if ((D_00747640 & 0x30000000L) != 0 || *(int *)(s1 + 0x302C) == 0) {
-            cCoreSave_addGold(D_00569B70, *(int *)(s1 + 0x302C) * 0xA, 0);
+            cCoreSave_addGold(&D_00569B70, *(int *)(s1 + 0x302C) * 0xA, 0);
             *(int *)(s1 + 0x3034) = 0;
             CustomIDWork_SetNumber_1DD218(s1, 0);
             cSnd_SetBgmState(D_005FEE00, 0);
@@ -148,7 +147,7 @@ void func_001D9D28(void *arg)
             *(unsigned char *)(s1 + 0x3024) = 0xB;
         } else {
             *(int *)(s1 + 0x302C) = *(int *)(s1 + 0x302C) - 1;
-            cCoreSave_addGold(D_00569B70, 0xA, 0);
+            cCoreSave_addGold(&D_00569B70, 0xA, 0);
         }
         break;
     }

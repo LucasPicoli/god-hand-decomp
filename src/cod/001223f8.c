@@ -8,7 +8,6 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
@@ -22,10 +21,10 @@ extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5
 extern unsigned int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_00569B70[];
 extern char D_005FEE00[];
 
 #include "godhand/vu0.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.func_001223F8")))
 void func_001223F8(void *a0)
@@ -54,7 +53,7 @@ void func_001223F8(void *a0)
         func_0012B928(s1);
         cEm00_GetPlMotion(s0, 0x34, z, z);
         *(short *)(s1 + 0x56E) = 0xF;
-        cCoreSave_addGameLevelPoint(D_00569B70, -0x140);
+        cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
         /* fallthrough */
@@ -125,7 +124,7 @@ void func_001223F8(void *a0)
             *(short *)(s1 + 0x54A) = 0;
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
             OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
-            cCoreSave_addGameLevelPoint(D_00569B70, -0x3E8);
+            cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
             *(short *)(s1 + 0x434) = *(unsigned short *)(s1 + 0x434) | 8;
         } else {
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);

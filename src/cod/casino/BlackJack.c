@@ -1,12 +1,11 @@
 /* TU: BlackJack [casino] - recovered C++ class. */
 #include "godhand/BlackJack.h"
 #include "include_asm.h"
+#include "godhand/cCoreSave.h"
 
-extern int D_00569B70;
 extern void func_001D0CE8();
 extern void func_001D0DF8();
 extern void func_001D5780();
-extern int cCoreSave_getGold();
 extern void BlackJackId_Move();
 extern void BlackJackId__Trans();
 

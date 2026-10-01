@@ -1,7 +1,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
+#include "godhand/cCoreSave.h"
 extern int D_00747A30;
-extern char D_00569B70[];
 extern int D_0044F448;
 
 __attribute__((section(".text.UpdateConditionalNotify_292E80")))
@@ -24,7 +24,7 @@ void SetCostumeFlagIfMatch_2982A0(int a0)
 
     if (s1 != 0) {
         s0 = *(unsigned short *)((char *)s1 + 0x2FE);
-        v1 = cCoreSave_getCostumeNo(D_00569B70);
+        v1 = cCoreSave_getCostumeNo(&D_00569B70);
         if (s0 == 0x603) {
             if ((unsigned int)((v1 - 4) & 0xFF) < 2) {
                 *(int *)((char *)s1 + 0x250) = *(int *)((char *)s1 + 0x250) | 2;

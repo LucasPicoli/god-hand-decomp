@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
@@ -6,7 +7,6 @@ extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_0012C0F8(void *a0, int a1);
@@ -17,7 +17,6 @@ extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_00747A24;
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
@@ -110,13 +109,13 @@ void func_00121798(void *a0)
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
             if (*(int *)(s0 + 0x15B0) != 0) {
                 *(int *)(s0 + 0x15B0) = 0;
-                cCoreSave_addGameLevelPoint(D_00569B70, -0x140);
+                cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
                 if (s1 != 0)
                     func_0012C0F8(s0, (int)(*(float *)(s1 + 0x76C) * 100.0f));
                 if (*(short *)(s0 + 0x54A) <= 0) {
                     *(short *)(s0 + 0x54A) = 0;
                     OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
-                    cCoreSave_addGameLevelPoint(D_00569B70, -0x3E8);
+                    cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                     *(short *)(s0 + 0x434) = *(unsigned short *)(s0 + 0x434) | 8;
                 }
                 func_0012C348(s0, 2);
@@ -184,7 +183,7 @@ void func_00102418(void *a0)
     s2 = *(char **)(p + 0x34);
     func_0012C0F8(s3, n);
     if (n > 0)
-        cCoreSave_addGameLevelPoint(D_00569B70, -0x140);
+        cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
     {
         char *q = *(char **)(s1 + 0x5B0);
         int id = *(int *)(q + 0x40);

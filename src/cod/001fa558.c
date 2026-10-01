@@ -2,8 +2,6 @@
 #include "godhand/cCoreSave.h"
 
 extern int D_00747A84;
-extern int cCoreSave_getGameLevel(cCoreSave *self);
-extern void cCoreSave_setGameLevel(cCoreSave *self, int level);
 
 /* Step up one game level (3 goes straight to 5) and refill the graces. */
 __attribute__((section(".text.cCoreSave_GameLevelUp")))

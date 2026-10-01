@@ -1,5 +1,5 @@
+#include "godhand/cCoreSave.h"
 extern int D_00754200;
-extern int D_00569B70;
 extern char D_005FEE00[];
 
 __attribute__((section(".text.InitAllocBuffer_14FE08")))
@@ -24,9 +24,9 @@ void InitDamageCollPair_1B18B8(unsigned char *a0) {
 }
 
 __attribute__((section(".text.cCoreSave_findNextStage")))
-int cCoreSave_findNextStage(int *a0) {
+int cCoreSave_findNextStage(cCoreSave *self) {
     unsigned int s0;
-    if (*a0 == 0) {
+    if (self->data == 0) {
         return 0;
     }
     s0 = 1;

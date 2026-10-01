@@ -1,11 +1,7 @@
 /* TU: CasinoWork [casino] - recovered C++ class. */
+#include "godhand/cCoreSave.h"
 extern int Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void cCoreSave_setVital(void *a0, int a1);
 extern void cHeatSys_SetHeatGage(void *a0, float a1);
-extern void cCoreSave_setLevelPoint(void *a0, short a1);
-extern void cCoreSave_clearGodItem(void *a0);
-extern void cCoreSave_addGodItem(void *a0, int a1);
-extern int D_00569B70;
 extern int D_005CB000;
 
 __attribute__((section(".text.CasinoWork_ResetWarmUpRoom")))

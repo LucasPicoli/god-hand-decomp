@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern float fRand0_1(void);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
@@ -19,7 +19,6 @@ extern void Obj1D00_SetState_7_12(void *a0);
 extern void Obj1D00_SetState_7_14(void *a0);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern unsigned char D_005FEE00[];
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 

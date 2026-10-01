@@ -11,7 +11,6 @@ extern char D_00754C58[];
 extern char D_00583EC0[];
 extern int D_003C264C;
 extern int D_00747A24;
-extern int D_00569B70;
 extern char D_005E8658[];
 extern int ForwardCheckedRequest_2BED60();
 
@@ -29,6 +28,7 @@ int cScenario_setCam(void *a0, int a1) {
     return LoadScreenOverlay_2C3F10(a0, SearchCameraData(a1));
 }
 #include "include_asm.h"
+#include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cScenario_taskExec")))
 void *cScenario_taskExec(void *a0) {
@@ -59,11 +59,13 @@ INCLUDE_ASM("nonmatching", cScenario_beginCasinoBattle);
 __attribute__((section(".text.cScenario_endCasinoBattle")))
 void cScenario_endCasinoBattle(void)
 {
-    int *p;
+    int *flags;
     func_002C0038(D_003C264C);
     D_00747A24 = D_00747A24 & 0xF7FFFFFF;
-    p = (int *)D_00569B70;
-    p[5] = p[5] & 0xFBFFFFFF;
+    /* An int view of save flags: the struct-typed load is scheduled above
+     * the D_00747A24 store. */
+    flags = (int *)&D_00569B70.data->flags;
+    *flags = *flags & ~0x04000000;
 }
 
 

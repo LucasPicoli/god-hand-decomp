@@ -3,8 +3,6 @@
  * address first and indexing it second matches retail's address forming. */
 #include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(cCoreSave *self);
-
 __attribute__((section(".text.cCoreSave_addKillEmNum")))
 void cCoreSave_addKillEmNum(cCoreSave *self) {
     int lv, idx;

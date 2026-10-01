@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void MaxField514_292030(void *a0, int a1);
 extern void Obj293_SetByte_53C_2(void *a0);
@@ -6,7 +7,6 @@ extern void Obj293_SetByte_53D_2(void *a0);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
@@ -14,13 +14,9 @@ extern void func_00129630(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern void cCoreSave_setGameLevel(void *a0, int a1);
 extern char D_005864F0[];
-extern int D_00569B70;
 extern int Forward30F348_31CFE0(void);
 extern int cEmManage_SetEmAnger(void *a0, void *a1, float f12, float f13, float f14);
-extern int cCoreSave_getGameLevel(void *a0);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float heat);
 extern int D_005CB000;
 extern unsigned int D_00747A78;

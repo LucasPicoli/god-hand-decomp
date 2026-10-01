@@ -3,14 +3,11 @@
 #include "godhand/cCoreSave.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
-extern void cCoreSave_addCasinoTicket(void *a0, int a1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
-extern int cCoreSave_getCasinoTicketNum(void *a0);
 extern void func_001E6ED8(void *a0, int a1, int a2);
 extern void func_001E6D48(void *a0, int a1, int a2);
 extern void func_001E7908(void *a0, int a1, int a2);
 extern char D_003BD6E8[];
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern char D_007474A0[];
 
@@ -62,7 +59,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
             if ((unsigned char)done == 0) break;
         }
         {
-            cCoreSaveData *save = *(cCoreSaveData **)D_00569B70;
+            cCoreSaveData *save = D_00569B70.data;
             int f = save->flags;
             if ((f & SLOT2_CASINO_FLAG) == 0) {
                 char *g = D_007474A0;
@@ -78,9 +75,9 @@ void Slot2_PayoutTicket(Slot2 *self) {
                 self->phase = 4;
             }
         }
-        cCoreSave_addCasinoTicket(D_00569B70, 1);
+        cCoreSave_addCasinoTicket(&D_00569B70, 1);
         *(int *)(*(char **)D_003BD6E8 + 0x1A10) =
-            (short)cCoreSave_getCasinoTicketNum(D_00569B70);
+            (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
         func_001E6ED8(self, 0, 0);
         func_001E6D48(self, 0, 0);
         break;
@@ -99,7 +96,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
         break;
     }
     case 4:
-        if (cCoreSave_getCasinoTicketNum(D_00569B70) >= 9) {
+        if (cCoreSave_getCasinoTicketNum(&D_00569B70) >= 9) {
             {
                 int done;
                 int t = self->timer;

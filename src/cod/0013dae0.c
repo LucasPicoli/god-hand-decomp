@@ -1,5 +1,5 @@
+#include "godhand/cCoreSave.h"
 extern int D_00747A84;
-extern int *D_00569B70;
 extern int D_00420070;
 extern char D_00574380[];
 extern char D_007419A0[];
@@ -31,7 +31,7 @@ void func_0013DAE0(void *a0)
 	if ((v1 & 0x02000000) != 0) {
 		return;
 	}
-	if ((D_00569B70[5] & 0x04000000) != 0) {
+	if ((D_00569B70.data->flags & 0x04000000) != 0) {
 		cIDBase_trans((char *)a0 + 0xD0);
 	}
 	cIDBase_trans(a0);

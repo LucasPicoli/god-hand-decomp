@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0();
 extern void cIDManager_setIDData();
@@ -6,14 +7,12 @@ extern void cIDBase_initialize();
 extern void cIDBase_restartAnim();
 extern int cIDBase_setPackedMessData();
 extern int cIDBase_getIDWork(void *self, int idx);
-extern int cCoreSave_ckClearStage(void *a0, int a1);
 extern void func_00162B18();
 extern void func_00162C98();
 extern void func_001630E8();
 extern void cCockPlBar_initData();
 extern int D_0041F430;
 extern int *D_003C2384;
-extern char D_00569B70[];
 extern int D_00747A24;
 extern char *D_003BD6E8;
 
@@ -65,7 +64,7 @@ void func_001627D8(void *a0) {
         int *r = (int *)((int)p + m);
         int q = *r;
         *(int *)(q + 0x2C) |= 0x8000000;
-        if (cCoreSave_ckClearStage(D_00569B70, (unsigned short)i) == 0) {
+        if (cCoreSave_ckClearStage(&D_00569B70, (unsigned short)i) == 0) {
             continue;
         }
         switch (i) {

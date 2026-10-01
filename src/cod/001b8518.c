@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void KillEffect(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cSnd_SeStop(void *a0, int a1);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int D_005FEE00[];
-extern int D_00569B70;
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 

@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern unsigned char D_00569B70[];
 extern unsigned char D_005FEE00[];
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int Forward30F348_31CFE0(void);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, void *a1, float a2);
@@ -47,7 +46,7 @@ void func_0022BD10(void *a0)
     case 0: {
         int gb;
         char *v1;
-        char *s4;
+        cCoreSave *s4;
         int s2v, s1v;
         int t;
         int one;
@@ -58,7 +57,7 @@ void func_0022BD10(void *a0)
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         *(char *)(s0 + 0x2F7) = Forward30F348_31CFE0() & 1;
         v1 = *(char **)(s0 + 0x304);
-        s4 = (char *)&D_00569B70;
+        s4 = &D_00569B70;
         s2v = *(int *)(v1 + 0x2330) + (int)v1;
         s1v = *(int *)(v1 + 0x2334) + (int)v1;
         if (cCoreSave_getGameLevel(s4) == 5) {

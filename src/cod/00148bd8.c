@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
+#include "godhand/cCoreSave.h"
 
 extern long D_00747650;
 extern char D_0042BAC0[];
@@ -8,9 +9,7 @@ extern void func_002E0D60(int a, int b, int c, int d, int e, int f, char *g, int
 extern void func_001D5690(void *a0, int a1);
 extern void SetBlendField820_1D5B90(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
-extern void cCoreSave_subGold(char *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_00569B70[];
 extern char D_005FEE00[];
 extern int D_007474A0;
 extern int D_004664A0;
@@ -121,7 +120,7 @@ void BlackJack_UpdateDoubleDownMenu(void *a0)
             if ((h & 0x10000000L) != 0) {
                 int v;
 
-                cCoreSave_subGold(D_00569B70, *(int *)(s0 + 0x1814));
+                cCoreSave_subGold(&D_00569B70, *(int *)(s0 + 0x1814));
                 v = *(int *)(s0 + 0x1814) * 2;
                 *(int *)(s0 + 0x1814) = v;
                 CustomIDWork_SetNumber_1D5760(s0, v);

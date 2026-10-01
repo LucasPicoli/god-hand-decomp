@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int cDamageManage_CreateDamageGive(int a0, int a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
@@ -6,7 +7,6 @@ extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern void cOmItem_setGetRangeLong(void *a0, int a1);
 extern void cOmItem_setScrCheck(void *a0, int a1);
 extern int D_00574380;
-extern int D_00569B70;
 
 __attribute__((section(".text.func_001C0128")))
 int func_001C0128(void *a0)
@@ -19,7 +19,7 @@ int func_001C0128(void *a0)
     int r1;
     int r2;
     char *vt;
-    char *lvl;
+    cCoreSave *lvl;
 
     func_001B6FB8(s3);
     *(float *)(s3 + 0x600) = 0.02f;
@@ -79,7 +79,7 @@ int func_001C0128(void *a0)
     bits = *(unsigned int *)(s3 + 0x5B0);
     if (((bits >> 5) & 1) == 0 && *(short *)(s3 + 0x662) == 0) {
         vt = *(char **)(s3 + 0x214);
-        lvl = (char *)&D_00569B70;
+        lvl = &D_00569B70;
         h = *(unsigned short *)(s3 + 0x2FE);
         r1 = ((int (*)(void *))*(void **)(vt + 0x84))(s3 + *(short *)(vt + 0x80));
         vt = *(char **)(s3 + 0x214);

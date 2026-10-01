@@ -1,9 +1,8 @@
 /* TU: cHeatSys [battle] - recovered C++ class. */
 #include "godhand/cHeatSys.h"
 #include "include_asm.h"
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameDifficulty(void *p);
-extern void *D_00569B70;
 extern unsigned int D_00747A50;       /* lhu -> u16 */
 extern void *D_003BD6E8;
 
@@ -14,7 +13,7 @@ extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
 __attribute__((section(".text.cHeatSys_AddHeatGage")))
 void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
 {
-    void *obj;
+    cCoreSaveData *save;
     float oldCur;
     float newFloor;
     float cur;
@@ -25,8 +24,8 @@ void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
     if (a1 == 0 && self->mode != 0 && 0.0f < heat)
         return;
 
-    obj = D_00569B70;
-    if ((*(int *)((char *)obj + 0x14) & 0x04000000) == 0) {
+    save = D_00569B70.data;
+    if ((save->flags & 0x04000000) == 0) {
         if (cCoreSave_getGameDifficulty(&D_00569B70) == 0)
             heat = heat * 1.25f;
     }

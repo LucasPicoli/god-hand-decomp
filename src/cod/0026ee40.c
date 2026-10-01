@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int D_00569B70;
 extern int D_005864F0;
-extern int cCoreSave_getGameLevel(int *);
 
 __attribute__((section(".text.func_0026EE40")))
 void func_0026EE40(char *a0, int a1, int a2) {

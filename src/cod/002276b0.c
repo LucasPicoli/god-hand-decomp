@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
@@ -7,11 +8,9 @@ extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
 extern void func_00262AA8(void *a0);
-extern int D_00569B70;
 
 /* sn-2.95.3-136 matched TU. */
 

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void func_00326020(int a0);
 extern void func_003A6A20(const char *s);
@@ -20,9 +21,6 @@ extern char D_0044CE10[];
 extern char D_0044CE20[];
 extern char D_00601F80[];
 extern char D_00747A24[];
-extern char D_00569B70[];
-extern int cCoreSave_getKeyCardNum(void *p);
-extern int cCoreSave_getKeyNum(void *p);
 extern void cIDBase_move(void *p);
 extern char *cIDBase_getIDWork(void *this, int idx);
 extern int D_0071B7C0[];
@@ -93,15 +91,15 @@ void func_0013E4F0(char *p)
     g = D_00747A24;
     if (*(int *)(g + 0x8) < 0) return;
     if (*(int *)(p + 0x9C) == 0) return;
-    if (cCoreSave_getKeyCardNum(D_00569B70) > 0) {
+    if (cCoreSave_getKeyCardNum(&D_00569B70) > 0) {
         *(int *)(*(char **)(p + 0x9C) + 0x2C) &= ~0x08000000;
-        *(int *)(*(char **)(p + 0x9C) + 0x84) = cCoreSave_getKeyCardNum(D_00569B70);
+        *(int *)(*(char **)(p + 0x9C) + 0x84) = cCoreSave_getKeyCardNum(&D_00569B70);
     } else {
         *(int *)(*(char **)(p + 0x9C) + 0x2C) |= 0x08000000;
     }
-    if (cCoreSave_getKeyNum(D_00569B70) > 0) {
+    if (cCoreSave_getKeyNum(&D_00569B70) > 0) {
         *(int *)(*(char **)(p + 0xA0) + 0x2C) &= ~0x08000000;
-        *(int *)(*(char **)(p + 0xA0) + 0x84) = cCoreSave_getKeyNum(D_00569B70);
+        *(int *)(*(char **)(p + 0xA0) + 0x84) = cCoreSave_getKeyNum(&D_00569B70);
     } else {
         *(int *)(*(char **)(p + 0xA0) + 0x2C) |= 0x08000000;
     }

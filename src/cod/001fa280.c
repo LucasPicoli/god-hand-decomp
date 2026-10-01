@@ -1,14 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern cCoreSave D_00569B70;        /* the game's cCoreSave */
 extern unsigned int D_00568240;
 extern unsigned int D_00747A84;
 extern unsigned short D_00747A50;   /* current stage id */
 extern unsigned short D_005CAC94;
 extern int D_003BF160[];            /* levelPoint thresholds, one per game level */
-extern int cCoreSave_getGameDifficulty(cCoreSave *self); /* difficulty */
-extern int cCoreSave_getGameLevel(cCoreSave *self);
 
 /* Add (or with a negative value, remove) level points, scaled by the current
  * game level. A level drop is absorbed while levelDownGrace lasts: the grace

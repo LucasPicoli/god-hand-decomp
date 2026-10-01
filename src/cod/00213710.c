@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern int moveMotion(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
@@ -15,7 +15,6 @@ extern void func_002705D8(void *a0);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern int Obj293_IsByteSet_53C(void *a0);
 extern unsigned char D_005FEE00[];
-extern int D_00569B70;
 extern unsigned char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */

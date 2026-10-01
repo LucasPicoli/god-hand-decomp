@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -19,18 +20,15 @@ extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void Obj293_SetByte_53C_2(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
 extern void cEm00_GetPlMotion(void *a0, int a1, float a2, float a3);
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern void func_0012C0F8(void *a0, int a1);
 extern int D_00747A24;
-extern int D_00569B70;
 extern char D_00462FC0[];
 extern char D_005864F0[];
 extern void MaxField514_292030(void *a0, int a1);
 extern void MaxByte538_292EF0(void *a0, int a1);
 extern void SetField548AndGlobals_292F38(void *a0, float a1);
 extern void func_00129578(void *a0);
-extern void cCoreSave_shiftGodItem(void *a0);
 extern void func_00129630(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
 

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern int Obj2B28_SetField34_To1_ReturnZero(void *);
 extern int Obj2B28_SetField34_To2_ReturnZero(void *);
@@ -16,14 +17,12 @@ extern void Obj2810_ClearState_4(void *a0);
 extern void SetBytes2F4Mode4_283240(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern int moveMotion(void *a0);
-extern int cCoreSave_getGameLevel(void *a0);
 extern int Forward30F348_31CFE0(void);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_0026DB00(void *a0, int a1, int a2);
-extern int D_00569B70;
 extern char D_005FEE00[];
 
 /* sn-2.95.3-136 candidate. */

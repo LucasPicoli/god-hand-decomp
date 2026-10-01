@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
@@ -12,11 +13,9 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern void cHeatSys_SetHeatMode(void *a0, int a1);
 extern void func_0010A438(void *a0);
 extern unsigned char D_005CB000[];
-extern void cCoreSave_addGameLevelPoint(void *a0, int a1);
 extern void func_00124EC0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void SetField548AndGlobals_292F38(void *a0, float f12);
-extern int D_00569B70;
 extern char D_005864F0[];
 
 __attribute__((section(".text.func_00114120")))

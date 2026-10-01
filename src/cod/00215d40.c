@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
 extern unsigned int Forward30F348_31CFE0(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -7,11 +8,9 @@ extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern int cCoreSave_getGameLevel(void *a0);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern void func_002705D8(void *a0);
 extern void func_00262AA8(void *a0);
-extern char D_00569B70[];
 
 __attribute__((section(".text.func_00215D40")))
 void func_00215D40(void *a0)
@@ -54,7 +53,7 @@ void func_00215D40(void *a0)
         AddScaledDeltaToField_104_2A7498(s0, (int)(s0 + 0x16A0),
                                          *(float *)(s0 + 0x5A8) * 0.19634954f);
         moveMotion(s0);
-        if (cCoreSave_getGameLevel(D_00569B70) == 5)
+        if (cCoreSave_getGameLevel(&D_00569B70) == 5)
             *(float *)(s0 + 0x338) = *(float *)(s0 + 0x5A8) * 0.6f;
         else
             *(float *)(s0 + 0x338) = *(float *)(s0 + 0x5A8) * 0.3f;

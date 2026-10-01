@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCoreSave.h"
 
-extern int cCoreSave_getGameLevel(char *a0);
-extern char D_00569B70[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -17,7 +16,7 @@ void func_00273230(void *a0)
     switch (*(int *)(s0 + 0x564)) {
     case 0x200:
     default:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 50;
@@ -51,7 +50,7 @@ void func_00273230(void *a0)
     case 0x24B:
     case 0x25A:
     case 0x25B:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 200;
@@ -71,7 +70,7 @@ void func_00273230(void *a0)
     case 0x20F:
     case 0x210:
     case 0x226:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 30;
@@ -96,7 +95,7 @@ void func_00273230(void *a0)
     case 0x246:
     case 0x247:
     case 0x24F:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 100;
@@ -118,7 +117,7 @@ void func_00273230(void *a0)
     case 0x207:
     case 0x224:
     case 0x241:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 100;
@@ -138,7 +137,7 @@ void func_00273230(void *a0)
     case 0x250:
     case 0x251:
     case 0x252:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 2000;
@@ -159,7 +158,7 @@ void func_00273230(void *a0)
     case 0x264:
     case 0x265:
     case 0x26A:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 4000;
@@ -186,7 +185,7 @@ void func_00273230(void *a0)
     case 0x24C:
     case 0x24D:
     case 0x24E:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 50;
@@ -205,7 +204,7 @@ void func_00273230(void *a0)
         break;
     case 0x214:
     case 0x215:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 750;
@@ -225,7 +224,7 @@ void func_00273230(void *a0)
     case 0x208:
     case 0x20B:
     case 0x21C:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 2000;
@@ -248,7 +247,7 @@ void func_00273230(void *a0)
     case 0x221:
     case 0x222:
     case 0x223:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 500;
@@ -267,7 +266,7 @@ void func_00273230(void *a0)
         break;
     case 0x275:
     case 0x276:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 2000;
@@ -286,7 +285,7 @@ void func_00273230(void *a0)
         break;
     case 0x278:
     case 0x279:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 2000;
@@ -314,7 +313,7 @@ void func_00273230(void *a0)
     case 0x273:
     case 0x274:
     case 0x27E:
-        switch (cCoreSave_getGameLevel(D_00569B70)) {
+        switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
             v = 2000;
