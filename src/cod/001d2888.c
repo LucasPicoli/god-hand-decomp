@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/BlackJack.h"
 
 extern void func_002B46F0(unsigned char *, int, int, int);
 extern void func_002B4768(unsigned char *, unsigned char *, unsigned char *);
@@ -89,37 +90,36 @@ void func_002B3EC8(unsigned char *a0)
 
 
 
+/* Player choice state, variant 5/6: pad buttons pick the next state. */
 __attribute__((section(".text.func_001D2A28")))
-void func_001D2A28(void *a0)
+void func_001D2A28(BlackJack *self)
 {
-    char *s0 = (char *)a0;
-
-    switch (*(int *)(s0 + 0x1808)) {
+    switch (self->phase) {
     case 0:
-        SetFlagEntries5And6_1D5650(s0, 1);
-        SetBlendField2CC_1D5AE8(s0, 1);
-        *(int *)(s0 + 0x1808) += 1;
+        SetFlagEntries5And6_1D5650(self, 1);
+        SetBlendField2CC_1D5AE8(self, 1);
+        self->phase += 1;
         /* fallthrough */
     case 1: {
         char *g = (char *)&D_007474A0;
         long f = *(long *)(g + 0x1B0);
 
         if ((f & 0xCC0000C000000L) != 0) {
-            SetFlagEntries5And6_1D5650(s0, 0);
-            SetBlendField2CC_1D5AE8(s0, 0);
+            SetFlagEntries5And6_1D5650(self, 0);
+            SetBlendField2CC_1D5AE8(self, 0);
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
-            *(int *)(s0 + 0x1808) = 0;
-            *(int *)(s0 + 0x1804) = 6;
+            self->phase = 0;
+            self->state = 6;
             return;
         }
         if ((f & 0x3300003000000L) != 0) {
-            long q = *(unsigned int *)(s0 + 0x1800);
+            long q = (unsigned int)self->flags;
             if (((q >> 2) & 1) == 1) {
-                SetFlagEntries5And6_1D5650(s0, 0);
-                SetBlendField2CC_1D5AE8(s0, 0);
+                SetFlagEntries5And6_1D5650(self, 0);
+                SetBlendField2CC_1D5AE8(self, 0);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
-                *(int *)(s0 + 0x1808) = 0;
-                *(int *)(s0 + 0x1804) = 8;
+                self->phase = 0;
+                self->state = 8;
             }
             return;
         }
@@ -127,10 +127,10 @@ void func_001D2A28(void *a0)
             long h = *(long *)(g + 0x1A0);
 
             if ((h & 0x10000000L) != 0) {
-                SetBlendField2CC_1D5AE8(s0, 0);
+                SetBlendField2CC_1D5AE8(self, 0);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
-                *(int *)(s0 + 0x1808) = 0;
-                *(int *)(s0 + 0x1804) = 0xA;
+                self->phase = 0;
+                self->state = 0xA;
             }
         }
         break;
@@ -147,37 +147,36 @@ void func_001D2A28(void *a0)
 
 
 
+/* Player choice state, variant 7/8: pad buttons pick the next state. */
 __attribute__((section(".text.func_001D2888")))
-void func_001D2888(void *a0)
+void func_001D2888(BlackJack *self)
 {
-    char *s0 = (char *)a0;
-
-    switch (*(int *)(s0 + 0x1808)) {
+    switch (self->phase) {
     case 0:
-        SetFlagEntries7And8_1D5610(s0, 1);
-        SetBlendField3C4_1D5A40(s0, 1);
-        *(int *)(s0 + 0x1808) += 1;
+        SetFlagEntries7And8_1D5610(self, 1);
+        SetBlendField3C4_1D5A40(self, 1);
+        self->phase += 1;
         /* fallthrough */
     case 1: {
         char *g = (char *)&D_007474A0;
         long f = *(long *)(g + 0x1B0);
 
         if ((f & 0xCC0000C000000L) != 0) {
-            SetFlagEntries7And8_1D5610(s0, 0);
-            SetBlendField3C4_1D5A40(s0, 0);
+            SetFlagEntries7And8_1D5610(self, 0);
+            SetBlendField3C4_1D5A40(self, 0);
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
-            *(int *)(s0 + 0x1808) = 0;
-            *(int *)(s0 + 0x1804) = 7;
+            self->phase = 0;
+            self->state = 7;
             return;
         }
         if ((f & 0x3300003000000L) != 0) {
-            long q = *(unsigned int *)(s0 + 0x1800);
+            long q = (unsigned int)self->flags;
             if (((q >> 2) & 1) == 1) {
-                SetFlagEntries7And8_1D5610(s0, 0);
-                SetBlendField3C4_1D5A40(s0, 0);
+                SetFlagEntries7And8_1D5610(self, 0);
+                SetBlendField3C4_1D5A40(self, 0);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
-                *(int *)(s0 + 0x1808) = 0;
-                *(int *)(s0 + 0x1804) = 8;
+                self->phase = 0;
+                self->state = 8;
             }
             return;
         }
@@ -185,12 +184,12 @@ void func_001D2888(void *a0)
             long h = *(long *)(g + 0x1A0);
 
             if ((h & 0x10000000L) != 0) {
-                SetBlendField3C4_1D5A40(s0, 0);
-                func_001D5690(s0, 2);
-                *(int *)(s0 + 0x1800) = *(int *)(s0 + 0x1800) & ~4;
+                SetBlendField3C4_1D5A40(self, 0);
+                func_001D5690(self, 2);
+                self->flags = self->flags & ~4;
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
-                *(int *)(s0 + 0x1808) = 0;
-                *(int *)(s0 + 0x1804) = 9;
+                self->phase = 0;
+                self->state = 9;
             }
         }
         break;

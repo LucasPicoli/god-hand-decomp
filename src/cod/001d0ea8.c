@@ -1,16 +1,18 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/BlackJack.h"
 
 /* sn-2.95.3-136 candidate. */
 
-extern void func_001D4D80(void *o);
 extern void InitNode_1D0C78(void *o);
 
+extern void func_001D4D80(BlackJack *o);
+/* Constructor: set up the 52 deck nodes, then clear state, bet and both hands. */
 __attribute__((section(".text.BlackJack__ctor")))
-void *BlackJack__ctor(char *self)
+BlackJack *BlackJack__ctor(BlackJack *self)
 {
-    char *p;
-    int *q;
-    int *r;
+    BlackJackCard *card;
+    BlackJackCard **q;
+    BlackJackCard **r;
     short *u;
     short *w;
     int i;
@@ -21,28 +23,28 @@ void *BlackJack__ctor(char *self)
     int val;
 
     func_001D4D80(self);
-    p = self + 0x1634;
-    i = 0x33;
+    card = self->deck;
+    i = BLACKJACK_DECK_NUM - 1;
     do {
-        InitNode_1D0C78(p);
-        p += 8;
+        InitNode_1D0C78(card);
+        card += 1;
     } while (--i != -1);
-    *(int *)(self + 0x1800) = 0;
-    *(int *)(self + 0x1804) = 0;
-    *(int *)(self + 0x1808) = 0;
-    *(int *)(self + 0x181C) = 0;
-    *(int *)(self + 0x1814) = 0;
-    *(int *)(self + 0x1818) = 0;
-    q = (int *)(self + 0x17D4);
-    r = (int *)(self + 0x17E8);
-    u = (short *)(self + 0x1822);
-    w = (short *)(self + 0x182C);
+    self->flags = 0;
+    self->state = 0;
+    self->phase = 0;
+    self->camera = 0;
+    self->bet = 0;
+    self->payout = 0;
+    q = self->handA;
+    r = self->handB;
+    u = self->cardIdA;
+    w = self->cardIdB;
     for (j = 4; j >= 0; j--) q[j] = 0;
     for (k = 4; k >= 0; k--) r[k] = 0;
-    val = 0x34;
+    val = BLACKJACK_CARD_NONE;
     for (m = 4; m >= 0; m--) u[m] = val;
-    val = 0x34;
+    val = BLACKJACK_CARD_NONE;
     for (n = 4; n >= 0; n--) w[n] = val;
-    *(char *)(self + 0x1820) = 0;
+    self->unk1820[0] = 0;
     return self;
 }

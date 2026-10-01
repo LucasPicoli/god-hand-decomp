@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/Poker.h"
 
-extern void func_001DF858(void *a0);
 extern void Obj0000_Init_Fields_00_04_1D6DB0(void *a0);
 
 /* sn-2.95.3-136 matched TU. One call-loop → --call-loop-pad. */
@@ -8,42 +8,40 @@ extern void Obj0000_Init_Fields_00_04_1D6DB0(void *a0);
 
 
 
+extern void func_001DF858(Poker *a0);
+/* Constructor: set up the 52 deck nodes and the display node, then clear flags, bet and the hand. */
 __attribute__((section(".text.Poker__ctor")))
-void *Poker__ctor(void *a0) {
-    char *this = (char *)a0;
-    char *p;
-    short *p3;
+Poker *Poker__ctor(Poker *this) {
+    BlackJackCard *card;
     int i;
     int j;
 
     func_001DF858(this);
 
-    p = this + 0x2E64;
+    card = this->deck;
     /* `i != -1`: retail closes with `bne $s2,$s3` where $s3 = -1. */
-    for (i = 0x33; i != -1; i--) {
-        Obj0000_Init_Fields_00_04_1D6DB0(p);
-        p += 8;
+    for (i = POKER_DECK_NUM - 1; i != -1; i--) {
+        Obj0000_Init_Fields_00_04_1D6DB0(card);
+        card += 1;
     }
 
-    Obj0000_Init_Fields_00_04_1D6DB0(this + 0x3018);
+    Obj0000_Init_Fields_00_04_1D6DB0(this->node);
 
-    p3 = (short *)(this + 0x3052);
-
-    *(int *)(this + 0x3020) = 0;
-    *(int *)(this + 0x3048) = 9;
-    *(char *)(this + 0x3024) = 0;
-    *(char *)(this + 0x3025) = 0;
-    *(int *)(this + 0x304C) = 0;
-    *(int *)(this + 0x3034) = 0;
-    *(int *)(this + 0x3038) = 0;
+    this->flags = 0;
+    this->unk3048 = 9;
+    this->state = 0;
+    this->phase = 0;
+    this->unk304C = 0;
+    this->bet = 0;
+    this->payout = 0;
 
     for (j = 4; j >= 0; j--) {
-        ((int *)(this + 0x3004))[j] = 0;
+        this->hand[j] = 0;
     }
     for (j = 4; j >= 0; j--) {
-        p3[j] = 0x34;
+        this->cardId[j] = POKER_CARD_NONE;
     }
 
-    *(char *)(this + 0x3050) = 0;
+    this->unk3050 = 0;
     return this;
 }
