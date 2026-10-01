@@ -23,6 +23,7 @@
 #define CORESAVE_COMBO_SETS    6
 #define CORESAVE_COMBO_LEN     6
 #define CORESAVE_GOD_REEL_NUM  0x1F    /* valid bits of godReel */
+#define CORESAVE_ITEM_NUM      0x80    /* remembered pickups */
 
 /* Play time is counted in frames at 30 fps. */
 #define CORESAVE_TICKS_PER_SEC   30
@@ -36,8 +37,43 @@ typedef struct cCoreSaveCombo {
     int max;                            /* 0x20 used length of id[] */
 } cCoreSaveCombo;                       /* 0x24 */
 
+/* Where the player resumes: stored as shorts and floats, copied to a
+ * stack record for SetField_1C_2009B0. */
+typedef struct cCoreSaveSpawn {
+    unsigned char kind;                 /* 0x00 */
+    unsigned char sub;                  /* 0x01 */
+    unsigned short angle;               /* 0x02 */
+    float pos[4];                       /* 0x04 */
+    int param;                          /* 0x14 */
+} cCoreSaveSpawn;                       /* 0x18 */
+
+/* The same point as the spawn setup takes it: a different field order. */
+typedef struct cCoreSaveSpawnArg {
+    float pos[4];                       /* 0x00 */
+    unsigned short angle;               /* 0x10 */
+    unsigned char kind;                 /* 0x12 */
+    unsigned char sub;                  /* 0x13 */
+    int param;                          /* 0x14 */
+} cCoreSaveSpawnArg;                    /* 0x18 */
+
+/* One dropped object remembered for the stage it fell in. A slot is free
+ * when stage is 0xFFFF; serial counts up from itemNum. */
+typedef struct cCoreSaveItem {
+    unsigned short stage;               /* 0x00 */
+    unsigned short kind;                /* 0x02 object type */
+    unsigned char flag;                 /* 0x04 */
+    signed char yaw;                    /* 0x05 half degrees */
+    unsigned short serial;              /* 0x06 */
+    short pos[3];                       /* 0x08 tenths of a unit */
+    unsigned short extra;               /* 0x0E */
+} cCoreSaveItem;                        /* 0x10 */
+
 typedef struct cCoreSaveData {
-    char unk00[0x10];
+    int worldTime;                      /* 0x000 */
+    int worldTimeB;                     /* 0x004 */
+    unsigned int counter08;             /* 0x008 capped at 999 */
+    unsigned short saveStageA;          /* 0x00C */
+    unsigned short saveStageB;          /* 0x00E */
     unsigned short clearNum;            /* 0x010 times the game was cleared */
     unsigned short continueNum;         /* 0x012 this stage */
     unsigned int flags;                 /* 0x014 */
@@ -50,32 +86,45 @@ typedef struct cCoreSaveData {
     int addGold[CORESAVE_ADD_GOLD_LOG]; /* 0x028 recent gold pickups */
     int keyCardNum;                     /* 0x068 */
     int keyNum;                         /* 0x06C */
-    char unk70[0x10];
+    int upgradeLv[4];                   /* 0x070 (index 4 reads vitalMax) */
     int vitalMax;                       /* 0x080 */
     int vital;                          /* 0x084 */
-    char unk88[4];
+    unsigned short counter88;           /* 0x088 set only below 1000 */
+    unsigned char stat8A;               /* 0x08A clamped to 1..6 */
+    char unk8B;
     short killEmNum[CORESAVE_LEVEL_NUM];      /* 0x08C this stage, per level */
     unsigned short killNpcNum;          /* 0x096 this stage */
-    char unk98[0xC];
+    unsigned char reelSlot[10];         /* 0x098 god reel per slot, 0x1F = empty */
+    char unkA2[2];
     unsigned int clearStageMask;        /* 0x0A4 bit n = stage n cleared */
     unsigned char godItem[CORESAVE_GOD_ITEM_NUM]; /* 0x0A8 */
     unsigned char costumeNo;            /* 0x0AE */
     unsigned char prevCostumeNo;        /* 0x0AF */
     char skill[0x80];                   /* 0x0B0 -1 = not owned */
     unsigned int godReel;               /* 0x130 bit n = god reel n unlocked */
-    char unk134[0x22];
+    unsigned char stock[0x20];          /* 0x134 counts, capped at 0xFF */
+    unsigned char state154;             /* 0x154 clamped to 0..0xD */
+    unsigned char state155;             /* 0x155 clamped to 0..5 */
     unsigned char reelItemNum;          /* 0x156 usable godItem[] slots */
     unsigned char paper;                /* 0x157 */
-    char unk158[0x58];
+    cCoreSaveSpawn spawn;               /* 0x158 last respawn point */
+    int worldToggle;                    /* 0x170 */
+    int worldActive;                    /* 0x174 */
+    int savedToggle;                    /* 0x178 */
+    int unk17C;
+    char unk180[0x30];                  /* 0x180 cleared by gameInit */
     cCoreSaveCombo combo[CORESAVE_COMBO_SETS]; /* 0x1B0 */
-    char unk288[0x90C];
+    unsigned short itemNum;             /* 0x288 */
+    cCoreSaveItem item[CORESAVE_ITEM_NUM]; /* 0x28A */
+    char unkA8A[0x106];
+    unsigned int eventFlags;            /* 0xB90 one bit per event */
     int casinoTicketNum;                /* 0xB94 */
     unsigned int fightingRingClear[4];  /* 0xB98 one bit per ring event */
-    char unkBA8[4];
+    int bonus;                          /* 0xBA8 */
     short allKillEmNum[CORESAVE_LEVEL_NUM];   /* 0xBAC whole game */
     unsigned short allKillNpcNum;       /* 0xBB6 whole game */
     unsigned short allContinueNum;      /* 0xBB8 whole game */
-    char unkBBA[2];
+    unsigned short stateBits;           /* 0xBBA bit 0 = flag */
     unsigned int allStageTime;          /* 0xBBC ticks, whole game */
     int oliviaCostumeNo;                /* 0xBC0 */
     char unkBC4[0x8DC];
