@@ -799,7 +799,8 @@ def _insert_ee_fp_hazard_nops_file(s_path: Path, rules=None) -> None:
 # errata; patches/ee-as/02 pins the minimum to retail's 4).  But it SKIPS that
 # pad whenever the loop body contains a call -- proven with .set noreorder
 # probes: a call-free body pads, a body holding a %hi relocation pads, a body
-# holding jal or jalr does not.  Retail's assembler padded them in game code,
+# holding jal or jalr does not, and a body holding the epilogue `j $31` does
+# not either (cCoreSave_ckGodReel).  Retail's assembler padded them in game code,
 # so those functions are unmatchable no matter what C we write.
 #
 # This pass inserts the missing pad for a TU that opted in.  ee-as still sees
@@ -809,6 +810,18 @@ def _insert_ee_fp_hazard_nops_file(s_path: Path, rules=None) -> None:
 _SHORT_LOOP_MIN_PRE = 4
 
 _CALL_MNEMONICS = frozenset({"jal", "jalr"})
+
+# The epilogue jump (`j $31` / `jr $31`, numeric or ABI name) plus its delay
+# slot is the other control transfer ee-as declines to short-loop-pad over,
+# like a call.  Proven on cCoreSave_ckGodReel (sn-2.95.3-136): ee-as emits no
+# pad for that body, and 2 hand-inserted nops survive assembly with no
+# double-pad.  Retail's assembler DID pad it (the `jr / x / nop / nop / beq`
+# guard-chain shape, 7 functions), so the planner counts one as `has_call` --
+# but only inside a `.set noreorder` region, where cc1 emits the delay slot
+# explicitly.  A bare reorder-region `j $31` gains an ee-as-inserted slot nop
+# the planner cannot count, so that shape stays multi-block: decline rather
+# than mis-pad by one word.
+_RA_OPERANDS = frozenset({"$31", "$ra"})
 
 # Conditional branches only.  An unconditional `b` backward is not the
 # single-block conditional loop the errata concerns.  The branch-and-link forms
@@ -868,12 +881,21 @@ def _insn_words(stripped: str, macro_on: bool) -> int:
     return 1
 
 
+def _is_jump_to_ra(stripped: str) -> bool:
+    """True for an epilogue jump: ``j $31`` / ``jr $31``, numeric or ABI name."""
+    parts = stripped.split(None, 1)
+    return (len(parts) == 2 and parts[0] in ("j", "jr")
+            and parts[1].strip() in _RA_OPERANDS)
+
+
 def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
     """Map {index of a branch line -> how many nops to insert before it}.
 
     A loop qualifies when its body (target label .. branch, exclusive) contains
-    a call, contains no other control transfer (multi-block loops are out of
-    scope), and assembles to fewer than _SHORT_LOOP_MIN_PRE words.
+    a call (jal/jalr, or an epilogue `j $31` + its explicit delay slot, which
+    ee-as declines to pad over the same way), contains no other control
+    transfer (multi-block loops are out of scope), and assembles to fewer than
+    _SHORT_LOOP_MIN_PRE words.
     """
     labels: dict[str, int] = {}
     macro_at: list[bool] = []
@@ -920,6 +942,8 @@ def _plan_call_loop_pads(lines: list[str]) -> dict[int, int]:
                 continue
             mnem = body.split(None, 1)[0]
             if mnem in _CALL_MNEMONICS:
+                has_call = True
+            elif _is_jump_to_ra(body) and not reorder_at[j]:
                 has_call = True
             elif _is_branch_or_jump(body):
                 multi_block = True

@@ -1,6 +1,5 @@
-/* sn-2.95.3-136 matched TU. */
+/* sn-2.95.3-136 matched TU (--call-loop-pad). */
 #include "godhand/cCoreSave.h"
-#include "include_asm.h"
 
 extern int cCoreSave_getComboMax(cCoreSave *self, unsigned int set);
 extern int func_001FC210(cCoreSave *self);
@@ -44,11 +43,9 @@ void cCoreSave_setGodReel(cCoreSave *self, int no) {
 }
 
 /* 1 if god reel `no` is unlocked. The all-reels cheat (D_00747A34 & 2)
- * unlocks every reel. This C is exact except for the two nops retail's
- * assembler put before the `no` range test: the R5900 short-loop pad,
- * which our ee-as does not apply to a backward branch whose target block
- * ends in `jr $ra`. */
-#ifdef NON_MATCHING
+ * unlocks every reel. The TU opts into --call-loop-pad: retail's assembler
+ * padded the backward `beq` over the 4-word `j $31` return block to the
+ * R5900 short-loop minimum, which our ee-as does not do over a jump. */
 extern int D_00747A34;
 
 __attribute__((section(".text.cCoreSave_ckGodReel")))
@@ -64,6 +61,3 @@ int cCoreSave_ckGodReel(cCoreSave *self, int no) {
     if ((data->godReel & (1 << no)) == 0) ret = 0;
     return ret;
 }
-#else
-INCLUDE_ASM("nonmatching", cCoreSave_ckGodReel);
-#endif
