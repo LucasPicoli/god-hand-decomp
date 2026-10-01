@@ -2350,8 +2350,6 @@ void cEma2_SetPoisonDie(char *a0) {
     a0[0x2F7] = 0;
 }
 
-INCLUDE_ASM("nonmatching", cHeatSys_SetHeatGage);
-
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
 
 __attribute__((section(".text.cObjSimple_R0_Init")))
@@ -2369,6 +2367,7 @@ INCLUDE_ASM("nonmatching", cScenario_getStrFromObjId);
 INCLUDE_ASM("nonmatching", KeyStop);
 
 INCLUDE_ASM("nonmatching", SearchData);
+
 
 
 
