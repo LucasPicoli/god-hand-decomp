@@ -1,19 +1,21 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/Slot2.h"
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Slot2 two-step pause screen: wait two updates, then return to the title
+ * state. */
 __attribute__((section(".text.func_001E66C0")))
-void func_001E66C0(char *a0) {
-    switch (*(int *)(a0 + 0xC)) {
+void func_001E66C0(Slot2 *self) {
+    switch (self->phase) {
     case 0:
-        *(int *)(a0 + 0xC) = 1;
+        self->phase = 1;
         break;
     case 1:
-        *(int *)(a0 + 0xC) = 2;
+        self->phase = 2;
         break;
     case 2:
-        *(int *)(a0 + 0x4) = 0;
-        *(int *)(a0 + 0x8) = 0;
-        *(int *)(a0 + 0xC) = 0;
+        self->state = 0;
+        self->step = 0;
+        self->phase = 0;
         break;
     }
 }

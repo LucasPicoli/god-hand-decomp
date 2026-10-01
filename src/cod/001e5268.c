@@ -1,11 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/vu0.h"
+#include "godhand/Slot2.h"
 
 extern void func_001E8E48(void *a, void *b);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
-#include "godhand/vu0.h"
 
 
 
@@ -20,86 +21,87 @@ static inline unsigned char tick(int *p)
     return 1;
 }
 
+/* Slot2 start-up screen: set the board, start the reels one after another,
+ * then return to the title state once all three have settled. */
 __attribute__((section(".text.func_001E5268")))
-void func_001E5268(char *a0)
+void func_001E5268(Slot2 *self)
 {
     unsigned char buf[16] __attribute__((aligned(16)));
-    char *s0 = a0;
-    char *s1;
+    Slot2Reel *reel;
 
-    switch (*(int *)(s0 + 8)) {
+    switch (self->step) {
     case 0:
         {
-            char *p = s0 + 0x310;
-            *(int *)(p + 0xC) = 0;
-            *(int *)(p + 8) = 0;
-            *(int *)(p + 4) = 2;
+            Slot2Panel *p = &self->panel;
+            p->phase = 0;
+            p->step = 0;
+            p->state = 2;
         }
-        *(int *)(s0 + 8) = *(int *)(s0 + 8) + 1;
+        self->step = self->step + 1;
         /* fall through */
     case 1:
         {
-            long b364 = *(unsigned int *)(s0 + 0x364);
-            if ((b364 & 1) == 0) return;
+            long done = self->panel.doneFlag;
+            if ((done & 1) == 0) return;
         }
         VU0_SQC2_VF0(buf, 0);
-        s1 = s0 + 0x58;
-        func_001E8E48(s1, buf);
-        *(int *)(s0 + 0x3EC) = cSnd_SeCall(&D_005FEE00, 2, 1, (int)buf, 0, 0);
+        reel = &self->reel[0];
+        func_001E8E48(reel, buf);
+        self->seId[0] = cSnd_SeCall(&D_005FEE00, 2, 1, (int)buf, 0, 0);
         {
-            long b118 = *(unsigned int *)(s0 + 0x118);
-            if ((b118 & 1) == 0) goto skip118;
+            long done = self->reel[0].doneFlag;
+            if ((done & 1) == 0) goto skip118;
         }
-        *(int *)(s1 + 8) = 0;
-        *(int *)(s1 + 4) = 2;
-        *(int *)(s1 + 0xC) = 0;
+        reel->step = 0;
+        reel->state = 2;
+        reel->phase = 0;
     skip118:
-        *(int *)(s0 + 0x10) = 5;
-        *(int *)(s0 + 8) = *(int *)(s0 + 8) + 1;
+        self->timer = 5;
+        self->step = self->step + 1;
         return;
     case 2:
-        if (tick((int *)(s0 + 0x10)) == 0) return;
+        if (tick(&self->timer) == 0) return;
         {
-            char *p = s0 + 0x140;
-            long b200 = *(unsigned int *)(s0 + 0x200);
-            if ((b200 & 1) == 0) goto skip200;
-            *(int *)(p + 8) = 0;
-            *(int *)(p + 4) = 2;
-            *(int *)(p + 0xC) = 0;
+            Slot2Reel *r = &self->reel[1];
+            long done = self->reel[1].doneFlag;
+            if ((done & 1) == 0) goto skip200;
+            r->step = 0;
+            r->state = 2;
+            r->phase = 0;
         }
     skip200:
-        *(int *)(s0 + 0x10) = 5;
-        *(int *)(s0 + 8) = *(int *)(s0 + 8) + 1;
+        self->timer = 5;
+        self->step = self->step + 1;
         return;
     case 3:
-        if (tick((int *)(s0 + 0x10)) == 0) return;
+        if (tick(&self->timer) == 0) return;
         {
-            char *p = s0 + 0x228;
-            long b2E8 = *(unsigned int *)(s0 + 0x2E8);
-            if ((b2E8 & 1) == 0) goto skip2E8;
-            *(int *)(p + 8) = 0;
-            *(int *)(p + 4) = 2;
-            *(int *)(p + 0xC) = 0;
+            Slot2Reel *r = &self->reel[2];
+            long done = self->reel[2].doneFlag;
+            if ((done & 1) == 0) goto skip2E8;
+            r->step = 0;
+            r->state = 2;
+            r->phase = 0;
         }
     skip2E8:
-        *(int *)(s0 + 8) = *(int *)(s0 + 8) + 1;
+        self->step = self->step + 1;
         return;
     case 4:
         {
-            long c118 = *(unsigned int *)(s0 + 0x118);
-            if (((c118 >> 1) & 1) == 0) return;
+            long done = self->reel[0].doneFlag;
+            if (((done >> 1) & 1) == 0) return;
         }
         {
-            long c200 = *(unsigned int *)(s0 + 0x200);
-            if (((c200 >> 1) & 1) == 0) return;
+            long done = self->reel[1].doneFlag;
+            if (((done >> 1) & 1) == 0) return;
         }
         {
-            long c2E8 = *(unsigned int *)(s0 + 0x2E8);
-            if (((c2E8 >> 1) & 1) == 0) return;
+            long done = self->reel[2].doneFlag;
+            if (((done >> 1) & 1) == 0) return;
         }
-        *(int *)(s0 + 8) = 0;
-        *(int *)(s0 + 4) = 2;
-        *(int *)(s0 + 0xC) = 0;
+        self->step = 0;
+        self->state = 2;
+        self->phase = 0;
         return;
     }
 }

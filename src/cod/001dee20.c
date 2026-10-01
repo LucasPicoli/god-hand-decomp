@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/Slot2.h"
 
 extern int cIDBase_trans();
 extern int CustomIDWork_SetNumber();
@@ -93,20 +94,22 @@ void func_001E3388(void) {
 
 
 
+/* Slot2 camera set-up: switch to the sub-screen camera, remember its record
+ * and copy the two view positions into it. */
 __attribute__((section(".text.func_001E6870")))
-void func_001E6870(int a0, float *a1, float *a2) {
+void func_001E6870(Slot2 *self, float *a1, float *a2) {
     float *dst1;
     float *dst2;
 
     cCamManager_setSubScrCamera(D_00463050, 0);
-    *(int *)(a0 + 0x3DC) = (int)(D_00463050 + 0xC90);
+    self->camera = (int)(D_00463050 + 0xC90);
     dst1 = (float *)(D_00463050 + 0xEA0);
     if (a1 != dst1) {
         dst1[0] = a1[0];
         dst1[1] = a1[1];
         dst1[2] = a1[2];
     }
-    dst2 = (float *)(*(int *)(a0 + 0x3DC) + 0x200);
+    dst2 = (float *)(self->camera + 0x200);
     if (dst2 != a2) {
         dst2[0] = a2[0];
         dst2[1] = a2[1];

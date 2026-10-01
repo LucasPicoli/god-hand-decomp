@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/Slot2.h"
 
 extern int func_0();
 extern char *InitFields_1B6E90(void *);
@@ -72,12 +73,15 @@ void func_001E1CD0(int a0) {
     fn(a0 + off);
 }
 
+/* Slot2 step dispatch: call the handler for the current step from table
+ * D_003BE168 (8 byte entries: short delta, handler at +4). The table is
+ * read as byte arithmetic: a struct-indexed spelling merges the two loads. */
 __attribute__((section(".text.func_001E58B8")))
-void func_001E58B8(int a0) {
-    int i = *(int *)(a0 + 0x8);
+void func_001E58B8(Slot2 *self) {
+    int i = self->step;
     short off = *(short *)(D_003BE168 + i * 8);
     void (*fn)() = *(void (**)())(D_003BE168 + i * 8 + 4);
-    fn(a0 + off);
+    fn((int)self + off);
 }
 
 __attribute__((section(".text.func_001FC548")))

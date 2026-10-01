@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/Slot2.h"
 
 extern long D_00747650;
 extern char D_0042BAC0[];
@@ -55,27 +56,29 @@ void func_002A52E8(int a0, unsigned int col)
 
 typedef struct { char b[0x20]; } T32;
 
+/* Slot2 menu cursor: move it up or down with the d-pad, wrapping at 0..7,
+ * and draw the entry it points at. */
 __attribute__((section(".text.func_001E6938")))
-void func_001E6938(char *a0)
+void func_001E6938(Slot2 *self)
 {
     int tbl[8];
 
     if (D_00747650 & 0x0004400008000000L) {
-        int dn = *(unsigned short *)(a0 + 0xA80) - 1;
-        *(short *)(a0 + 0xA80) = dn;
+        int dn = self->menuSel - 1;
+        self->menuSel = dn;
         if ((short)dn < 0) {
-            *(short *)(a0 + 0xA80) = 7;
+            self->menuSel = 7;
         }
     } else if (D_00747650 & 0x0008800004000000L) {
-        int up = *(unsigned short *)(a0 + 0xA80) + 1;
-        *(short *)(a0 + 0xA80) = up;
+        int up = self->menuSel + 1;
+        self->menuSel = up;
         if ((short)up >= 8) {
-            *(short *)(a0 + 0xA80) = 0;
+            self->menuSel = 0;
         }
     }
     *(T32 *)tbl = *(T32 *)D_0042BAC0;
     func_002E0D60(8, 0x10, 0x20, 0x20, 0, 0, D_0042BAE0,
-                  tbl[*(short *)(a0 + 0xA80)]);
+                  tbl[(short)self->menuSel]);
 }
 
 /* sn-2.95.3-136, as=sn */

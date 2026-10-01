@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/Slot2.h"
 
 extern void func_002D4C20(void *a0, int a1, int a2, int a3);
 extern void func_001E87E0(void *dst, void *a, void *b, int n);
@@ -54,8 +55,10 @@ void func_002D4B08(void *a0, int a1, int a2, int a3, int t0, int t1)
 
 
 
+/* Slot2 setup: hand the three reels their strips, the prize board its
+ * layout and the machine its slot id. Bail out if any argument is missing. */
 __attribute__((section(".text.Slot2_Initialize")))
-void Slot2_Initialize(void *this, unsigned short id, void *p0, void *p1,
+void Slot2_Initialize(Slot2 *self, unsigned short id, void *p0, void *p1,
                       void *p2, void *p3, void *p4, void *p5,
                       unsigned short n, int last)
 {
@@ -67,18 +70,18 @@ void Slot2_Initialize(void *this, unsigned short id, void *p0, void *p1,
     if (p5 == 0) return;
     if (last == 0) return;
     if (n >= 0x16) return;
-    func_001E87E0((char *)this + 0x58, p0, p1, n);
-    func_001E87E0((char *)this + 0x140, p2, p3, n);
-    func_001E87E0((char *)this + 0x228, p4, p5, n);
-    InitClearStructAndSet_1E79A8((int *)((char *)this + 0x310), last);
-    *(short *)((char *)this + 0x3D0) = id;
-    func_001E67A8(this, 0);
-    *(short *)((char *)this + 0x3E0) = 0;
-    *(short *)((char *)this + 0x3E2) = 0;
-    *(short *)((char *)this + 0x3E4) = 0;
-    *(short *)((char *)this + 0x3E6) = 0;
-    *(short *)((char *)this + 0x3E8) = 0;
-    *(char *)((char *)this + 0x3D8) = 0;
+    func_001E87E0(&self->reel[0], p0, p1, n);
+    func_001E87E0(&self->reel[1], p2, p3, n);
+    func_001E87E0(&self->reel[2], p4, p5, n);
+    InitClearStructAndSet_1E79A8((int *)&self->panel, last);
+    self->slotId = id;
+    func_001E67A8(self, 0);
+    self->markFlag[0] = 0;
+    self->markFlag[1] = 0;
+    self->markFlag[2] = 0;
+    self->markFlag[3] = 0;
+    self->markFlag[4] = 0;
+    self->pattern = 0;
 }
 
 /* sn-2.95.3-136 */
