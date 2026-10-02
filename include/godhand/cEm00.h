@@ -141,7 +141,9 @@ typedef struct cEm00 {
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
     char unk642[0x6];
     unsigned char unk648;                   /* 0x648 set to 0x14 while the 0x640 link is held */
-    char unk649[0x4F];
+    char unk649[0x2F];
+    void *unk678;                           /* 0x678 link record of the enemy it works with, its 0x34 field is the target object */
+    char unk67C[0x1C];
     void *unk698;                           /* 0x698 link record, its 0x34 field is the enemy being watched */
     char unk69C[0x18];
     struct cEm00 *foe;                      /* 0x6B4 the other enemy this one works with */
