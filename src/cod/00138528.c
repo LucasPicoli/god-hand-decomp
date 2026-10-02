@@ -78,51 +78,51 @@ void ClearObjRef_1EE9A0(int *a0)
 }
 
 __attribute__((section(".text.cCoreSave_setState154")))
-/* Set state154, capped at 0xD. */
+/* Set vitalItemNum, capped at 0xD. */
 void cCoreSave_setState154(cCoreSave *self, unsigned char v) {
     if (self->data) {
-        self->data->state154 = v;
-        if (self->data->state154 >= 0xE) {
-            self->data->state154 = 0xD;
+        self->data->vitalItemNum = v;
+        if (self->data->vitalItemNum >= 0xE) {
+            self->data->vitalItemNum = 0xD;
         }
     }
 }
 
 __attribute__((section(".text.cCoreSave_addVitalItem")))
-/* Add to state154, capped at 0xD. */
+/* Add to vitalItemNum, capped at 0xD. */
 void cCoreSave_addVitalItem(cCoreSave *self, unsigned char n) {
     if (self->data) {
-        self->data->state154 = n + self->data->state154;
-        if (self->data->state154 >= 0xE) {
-            self->data->state154 = 0xD;
+        self->data->vitalItemNum = n + self->data->vitalItemNum;
+        if (self->data->vitalItemNum >= 0xE) {
+            self->data->vitalItemNum = 0xD;
         }
     }
 }
 
 __attribute__((section(".text.cCoreSave_setState155")))
-/* Set state155, capped at 5. */
+/* Set tensionItemNum, capped at 5. */
 void cCoreSave_setState155(cCoreSave *self, unsigned char v) {
     if (self->data) {
-        self->data->state155 = v;
-        if (self->data->state155 >= 0x6) {
-            self->data->state155 = 0x5;
+        self->data->tensionItemNum = v;
+        if (self->data->tensionItemNum >= 0x6) {
+            self->data->tensionItemNum = 0x5;
         }
     }
 }
 
 __attribute__((section(".text.cCoreSave_addTensionItem")))
-/* Add to state155, capped at 5. */
+/* Add to tensionItemNum, capped at 5. */
 void cCoreSave_addTensionItem(cCoreSave *self, unsigned char n) {
     if (self->data) {
-        self->data->state155 = n + self->data->state155;
-        if (self->data->state155 >= 0x6) {
-            self->data->state155 = 0x5;
+        self->data->tensionItemNum = n + self->data->tensionItemNum;
+        if (self->data->tensionItemNum >= 0x6) {
+            self->data->tensionItemNum = 0x5;
         }
     }
 }
 
 __attribute__((section(".text.cCoreSave_addComboST")))
-/* Add to stat8A, capped at 6. */
+/* Add to comboST, capped at 6. */
 void cCoreSave_addComboST(cCoreSave *self, int n) {
     cCoreSaveData *data;
     cCoreSaveData *q;
@@ -130,11 +130,11 @@ void cCoreSave_addComboST(cCoreSave *self, int n) {
     n = n & 0xFF;
     data = self->data;
     if (data != 0) {
-        s = n + data->stat8A;
-        data->stat8A = s;
+        s = n + data->comboST;
+        data->comboST = s;
         q = self->data;
-        if (q->stat8A >= 7) {
-            q->stat8A = 6;
+        if (q->comboST >= 7) {
+            q->comboST = 6;
         }
     }
 }

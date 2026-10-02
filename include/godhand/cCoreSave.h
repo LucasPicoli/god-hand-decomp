@@ -90,7 +90,7 @@ typedef struct cCoreSaveData {
     int vitalMax;                       /* 0x080 */
     int vital;                          /* 0x084 */
     unsigned short counter88;           /* 0x088 set only below 1000 */
-    unsigned char stat8A;               /* 0x08A clamped to 1..6 */
+    unsigned char comboST;              /* 0x08A clamped to 1..6 */
     char unk8B;
     short killEmNum[CORESAVE_LEVEL_NUM];      /* 0x08C this stage, per level */
     unsigned short killNpcNum;          /* 0x096 this stage */
@@ -103,8 +103,8 @@ typedef struct cCoreSaveData {
     char skill[0x80];                   /* 0x0B0 -1 = not owned */
     unsigned int godReel;               /* 0x130 bit n = god reel n unlocked */
     unsigned char stock[0x20];          /* 0x134 counts, capped at 0xFF */
-    unsigned char state154;             /* 0x154 clamped to 0..0xD */
-    unsigned char state155;             /* 0x155 clamped to 0..5 */
+    unsigned char vitalItemNum;         /* 0x154 clamped to 0..0xD */
+    unsigned char tensionItemNum;       /* 0x155 clamped to 0..5 */
     unsigned char reelItemNum;          /* 0x156 usable godItem[] slots */
     unsigned char paper;                /* 0x157 */
     cCoreSaveSpawn spawn;               /* 0x158 last respawn point */
@@ -121,7 +121,7 @@ typedef struct cCoreSaveData {
     unsigned int eventFlags;            /* 0xB90 one bit per event */
     int casinoTicketNum;                /* 0xB94 */
     unsigned int fightingRingClear[4];  /* 0xB98 one bit per ring event */
-    int bonus;                          /* 0xBA8 */
+    int fightingRingEmListNo;           /* 0xBA8 */
     short allKillEmNum[CORESAVE_LEVEL_NUM];   /* 0xBAC whole game */
     unsigned short allKillNpcNum;       /* 0xBB6 whole game */
     unsigned short allContinueNum;      /* 0xBB8 whole game */

@@ -2,8 +2,8 @@
 #include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cCoreSave_setBonus")))
-/* Set the bonus value. */
+/* Set the fighting ring enemy list number. */
 void cCoreSave_setBonus(cCoreSave *self, int v) {
     cCoreSaveData *data = self->data;
-    if (data) data->bonus = v;
+    if (data) data->fightingRingEmListNo = v;
 }

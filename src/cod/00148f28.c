@@ -555,14 +555,14 @@ int cCoreSave_addStock(cCoreSave *self, int i, int d) {
 }
 
 __attribute__((section(".text.cCoreSave_setStat8A")))
-/* Set stat8A to 1..6; other values are ignored. */
+/* Set comboST to 1..6; other values are ignored. */
 void cCoreSave_setStat8A(cCoreSave *self, unsigned char v)
 {
     cCoreSaveData *data = self->data;
 
     if (data != 0) {
         if ((unsigned int)(v - 1) < 6) {
-            data->stat8A = v;
+            data->comboST = v;
         }
     }
 }

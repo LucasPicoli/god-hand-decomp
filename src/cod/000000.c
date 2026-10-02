@@ -1882,12 +1882,12 @@ int cCoreSave_getCasinoTicketNum(cCoreSave *self)
 }
 
 __attribute__((section(".text.cCoreSave_GetFightingRingEmListNo")))
-/* The bonus value. */
+/* The fighting ring enemy list number. */
 int cCoreSave_GetFightingRingEmListNo(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
-    return data->bonus;
+    return data->fightingRingEmListNo;
 }
 
 __attribute__((section(".text.cCoreSave_getAllKillNpcNum")))

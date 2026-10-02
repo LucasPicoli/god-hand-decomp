@@ -370,29 +370,29 @@ int cCoreSave_isGoldFull(cCoreSave *self) {
 }
 
 __attribute__((section(".text.cCoreSave_getState154")))
-/* state154, forced to its maximum by the 0x8000000 cheat. */
+/* vitalItemNum, forced to its maximum by the 0x8000000 cheat. */
 int cCoreSave_getState154(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) {
         return 0;
     }
     if (D_00747A38 & 0x8000000) {
-        data->state154 = 0xD;
+        data->vitalItemNum = 0xD;
     }
-    return self->data->state154;
+    return self->data->vitalItemNum;
 }
 
 __attribute__((section(".text.cCoreSave_getState155")))
-/* state155, forced to its maximum by the 0x8000000 cheat. */
+/* tensionItemNum, forced to its maximum by the 0x8000000 cheat. */
 int cCoreSave_getState155(cCoreSave *self) {
     cCoreSaveData *data = self->data;
     if (data == 0) {
         return 0;
     }
     if (D_00747A38 & 0x8000000) {
-        data->state155 = 5;
+        data->tensionItemNum = 5;
     }
-    return self->data->state155;
+    return self->data->tensionItemNum;
 }
 
 __attribute__((section(".text.cCoreSave_initItem")))
@@ -414,7 +414,7 @@ void cCoreSave_initItem(cCoreSave *self)
 }
 
 __attribute__((section(".text.cCoreSave_getComboST")))
-/* stat8A, forced to its maximum by the 0x1000000 cheat. */
+/* comboST, forced to its maximum by the 0x1000000 cheat. */
 unsigned char cCoreSave_getComboST(cCoreSave *self) {
     cCoreSaveData *data;
     cCoreSaveData *q;
@@ -423,10 +423,10 @@ unsigned char cCoreSave_getComboST(cCoreSave *self) {
         return 0;
     }
     if (D_00747A34 & 0x01000000) {
-        data->stat8A = 6;
+        data->comboST = 6;
     }
     q = self->data;
-    return q->stat8A;
+    return q->comboST;
 }
 
 __attribute__((section(".text.cCoreSave_clearKillEmNum")))
