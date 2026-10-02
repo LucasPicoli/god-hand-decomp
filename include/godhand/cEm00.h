@@ -62,6 +62,14 @@ typedef struct cEm00Vt {
 /* The low byte of a word field (the record is little endian). */
 #define CEM00_LOBYTE(field) (*(unsigned char *)&(field))
 
+/* Emits no code in the object. gcc reduces the pair to a byte load and a
+ * store of the same value, which it deletes only after register allocation.
+ * While it exists the byte holds a register, so the pointers of the next
+ * vector copy move to other registers; func_0025AB70 needs a0 and v1 there
+ * and no other spelling of the pointers gave them. Put it between two
+ * statements and score. */
+#define CEM00_REGALLOC_NUDGE(self) (self)->phase++; (self)->phase--
+
 typedef struct cEm00 {
     char unk000[0xD0];
     cVec *anchor;                           /* 0x0D0 the vector the body is pinned to */
