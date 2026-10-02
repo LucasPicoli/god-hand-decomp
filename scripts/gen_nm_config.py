@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the NON_MATCHING *scored* build config (config/nm/) from the default
+"""Generate the NON_MATCHING *scored* build config (config/us-nm/) from the default
 matching config.
 
 Matching decomps can't commit a sub-100% function body: it wouldn't reproduce
@@ -16,12 +16,11 @@ behind a guard:
 - The DEFAULT build (`python compile.py`) compiles the `#else` INCLUDE_ASM, so the
   linked ELF stays byte-identical to retail.
 - This derived `nm` build defines NON_MATCHING and compiles the clean bodies into
-  `build-nm/`, so objdiff can score them. `scripts/score_nm.sh` regenerates
-  `progress/report.json` (the file decomp.dev ingests) from this build, so its
-  `fuzzy_match_percent` ("decompiled") credits the partials. `matched_code` /
-  `matched_functions` stay 100%-exact-only — partials never inflate them.
+  `build-nm/`, so objdiff can score them. `scripts/score_nm.sh` writes that score
+  to `progress/report.nm.json`, whose `fuzzy_match_percent` credits the partials.
+  `progress/report.json` (the file decomp.dev ingests) stays 100%-exact-only.
 
-config/nm/ is a generated artifact (gitignored); regenerate whenever
+config/us-nm/ is a generated artifact (gitignored); regenerate whenever
 compile_config.json or objdiff.json changes (scripts/score_nm.sh does this).
 """
 import json
@@ -30,7 +29,7 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-# --- derive config/nm/compile_config.json -----------------------------------
+# --- derive config/us-nm/compile_config.json --------------------------------
 c = json.load(open("compile_config.json"))
 c["defines"] = sorted(set(c.get("defines", [])) | {"NON_MATCHING"})
 c["build_dir"] = "build-nm"
@@ -42,18 +41,18 @@ if c.get("output_map"):
 od = c.setdefault("objdiff", {})
 od["name"] = od.get("name", "") + " — NON_MATCHING scored"
 od["base_dir"] = "build-nm"
-od["objdiff_project"] = "config/nm/objdiff.json"
-od["report_path"] = "progress/report.json"
-od["custom_args"] = ["compile.py", "--config", "config/nm/compile_config.json", "--single-file"]
+od["objdiff_project"] = "config/us-nm/objdiff.json"
+od["report_path"] = "progress/report.nm.json"
+od["custom_args"] = ["compile.py", "--config", "config/us-nm/compile_config.json", "--single-file"]
 
-os.makedirs("config/nm", exist_ok=True)
-with open("config/nm/compile_config.json", "w") as f:
+os.makedirs("config/us-nm", exist_ok=True)
+with open("config/us-nm/compile_config.json", "w") as f:
     json.dump(c, f, indent=2)
     f.write("\n")
-print("wrote config/nm/compile_config.json  (defines:", c["defines"], ", build_dir: build-nm)")
+print("wrote config/us-nm/compile_config.json  (defines:", c["defines"], ", build_dir: build-nm)")
 
-# --- derive config/nm/objdiff.json from the matching project ----------------
-# Paths are re-rooted: the project lives at config/nm/, so each path gains a
+# --- derive config/us-nm/objdiff.json from the matching project -------------
+# Paths are re-rooted: the project lives at config/us-nm/, so each path gains a
 # ../../ prefix; base objects come from build-nm/ instead of build/. build_target
 # is false because the matching linker script hardcodes build/ (so --setup can't
 # regenerate this for build-nm) — score_nm.sh pre-builds the objects instead.
@@ -65,7 +64,7 @@ for u in o["units"]:
         u["base_path"] = ("../../" + u["base_path"]).replace("../../build/", "../../build-nm/", 1)
 o["build_target"] = False
 o["name"] = o.get("name", "") + " — NON_MATCHING scored"
-with open("config/nm/objdiff.json", "w") as f:
+with open("config/us-nm/objdiff.json", "w") as f:
     json.dump(o, f, indent=1)
     f.write("\n")
-print("wrote config/nm/objdiff.json  (", len(o["units"]), "units, base -> build-nm )")
+print("wrote config/us-nm/objdiff.json  (", len(o["units"]), "units, base -> build-nm )")
