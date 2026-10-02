@@ -175,8 +175,26 @@ void func_00326718(int a0) {
     Forward33B670_33E690();
 }
 
-INCLUDE_ASM("nonmatching", func_00326780);
-INCLUDE_ASM("nonmatching", func_003267C0);
+/* Store the value at +8, then forward the child object at +4 to two updaters. */
+extern void func_0033C428(void *a0);
+extern void func_0033C240(void *a0, int a1);
+
+__attribute__((section(".text.func_00326780")))
+void func_00326780(void *obj, int a1) {
+    *(int *)((char *)obj + 8) = a1;
+    func_0033C428(*(void **)((char *)obj + 4));
+    func_0033C240(*(void **)((char *)obj + 4), a1);
+}
+/* Store the value at +0x38, then forward the child object at +4 to two updaters. */
+extern void func_0033C458(void *a0, int a1);
+extern void func_0033C270(void *a0, int a1);
+
+__attribute__((section(".text.func_003267C0")))
+void func_003267C0(void *obj, int a1) {
+    *(int *)((char *)obj + 0x38) = a1;
+    func_0033C458(*(void **)((char *)obj + 4), a1);
+    func_0033C270(*(void **)((char *)obj + 4), a1);
+}
 
 /* ── Obj3260_CallReturn0_003388F8_D498: simple call-then-return-zero (8 insns, jal) ─────────── */
 /* Pattern: addiu; sd $ra; jal func_003388F8; nop; ld $ra; move $v0,$zero; jr $ra; addiu */
