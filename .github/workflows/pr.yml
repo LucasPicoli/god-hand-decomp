@@ -1,13 +1,17 @@
 name: PR checks
 
-# Toolchain-free gates that run on every pull request (including from forks)
-# AND on every push to main.  The matching toolchain (ee-gcc / SN ProDG) and
-# the disc-derived target are non-redistributable, so this workflow never
-# builds the game — it runs only the checks that need nothing but Python + git:
+# Gates that run on every pull request (including from forks) AND on every
+# push to main.  The disc-derived target is not redistributable, so this
+# workflow never links the game.  The `checks` job needs nothing but
+# Python + git:
 #
 #   1. the pytest suite (build-helper / carver invariants),
 #   2. a game-data leak guard (no ISO/AFS/boot-ELF/SDK/binary blobs), and
 #   3. a progress-report consistency lint.
+#
+# The `link-symbols` job fetches the public compilers the way a fresh clone
+# does and compiles every TU without its asm, to prove that each symbol the
+# link needs comes from a committed file.
 #
 # Running on push (not just pull_request) is deliberate: these gates used to be
 # invisible while matching directly on main — a red suite only surfaced when a
@@ -128,3 +132,29 @@ jobs:
             exit 1
           fi
           exit $rc
+
+  # The link itself needs the retail ELF.  What a commit can break on its own
+  # is the naming: a TU that calls a symbol no committed file defines, or a
+  # carve whose name splat will not write (issue #3).  A 77 here means the
+  # install step left no toolchain, so it fails the job like any nonzero exit.
+  link-symbols:
+    # Pinned: its binutils (2.42) assembles the R5900 code; 2.46 rejects it.
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the toolchain
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -q
+          sudo apt-get install -yq binutils-mipsel-linux-gnu libc6:i386
+          bash scripts/setup_toolchain.sh
+
+      - name: Resolve every link symbol from committed files
+        run: python3 scripts/checks/link_symbols.py

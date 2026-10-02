@@ -136,6 +136,7 @@
 !scripts/checks/registers.sh
 !scripts/checks/c_flags_necessary.py
 !scripts/checks/c_flags_necessary.sh
+!scripts/checks/link_symbols.py
 !scripts/compiler_for_function.py
 !scripts/denylist.py
 !scripts/ee-cc-wrap.py
@@ -1201,6 +1202,7 @@
 !tests/test_gate_noop_exit_codes.py
 !tests/test_gen_part_funcs.py
 !tests/test_gen_unit_names.py
+!tests/test_link_symbols.py
 !tests/test_mark_complete.py
 !tests/test_report_lint.py
 !tests/test_session_finalize.py
