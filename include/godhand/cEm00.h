@@ -95,9 +95,9 @@ typedef struct cEm00 {
     unsigned short actorId;                 /* 0x2FE */
     char unk300[0x4];
     int resource;                           /* 0x304 address of the enemy's resource blob; motion records are offsets from it */
-    char unk308[0x30];
-    float unk338;                           /* 0x338 */
-    char unk33C[0x70];
+    char unk308[0x28];
+    cVec stepVec;                           /* 0x330 this frame's step: the 0x580 vector scaled by speedRate */
+    char unk340[0x6C];
     unsigned short moveFlags;               /* 0x3AC bits the move code sets: bit 0 and 1 end of a motion, 0x10 */
     char unk3AE[0xE2];
     cVec posA;                              /* 0x490 position copy */
@@ -126,7 +126,9 @@ typedef struct cEm00 {
     int timerC;                             /* 0x5FC third counter, also used as a 0 or 1 latch like 0x5F8 */
     float timer;                            /* 0x600 countdown, counted down by speedRate */
     float timer2;                           /* 0x604 second countdown */
-    char unk608[0x10];
+    float timer3;                           /* 0x608 third countdown, counted down by speedRate */
+    char unk60C[0xB];
+    unsigned char unk617;                   /* 0x617 set to 1 when the step starts */
     float playerDist;                       /* 0x618 distance to the player */
     char unk61C[0x24];
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
@@ -144,7 +146,9 @@ typedef struct cEm00 {
     int sub2;                               /* 0x750 */
     char unk754[0xC];
     float unk760;                           /* 0x760 */
-    char unk764[0xDFC];
+    char unk764[0x4];
+    float unk768;                           /* 0x768 angle tested against pi/4 before the attack */
+    char unk76C[0xDF4];
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
     char unk1564[0xC];
     cVec unk1570;                           /* 0x1570 */
@@ -164,7 +168,8 @@ typedef struct cEm00 {
     int emFlags;                            /* 0x16D0 */
     int emFlags2;                           /* 0x16D4 */
     unsigned int unk16D8;                   /* 0x16D8 */
-    char unk16DC[0xC];
+    char unk16DC[0x8];
+    float idleTimer;                        /* 0x16E4 countdown set when a motion ends: 150 to 300 frames */
     int unk16E8;                            /* 0x16E8 */
     int unk16EC;                            /* 0x16EC */
     char unk16F0[0x4];
