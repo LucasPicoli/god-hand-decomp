@@ -1,10 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern void SetPositionMulti_12CE60(char *a0, float *a1);
-extern int NoOp_15F2A8(char *a0, int x, float f1, int a2, int a3);
+extern int Circle_line2(char *a0, int x, float f1, int a2, int a3);
 
-__attribute__((section(".text.SetVecAndAction_12CE20")))
-void SetVecAndAction_12CE20(char *a0, float *a1, float a2) {
+__attribute__((section(".text.pl00_lookCliff")))
+void pl00_lookCliff(char *a0, float *a1, float a2) {
     float *p = (float*)(a0 + 0x660);
     int r = 0x35;
     if (p != a1) {
@@ -47,5 +47,5 @@ void SetPositionMulti_12CE60(char *a0, float *a1) {
 
 __attribute__((section(".text.Forward15F2A8_133B28")))
 void Forward15F2A8_133B28(char *a0, int a1) {
-    NoOp_15F2A8(a0 + 0x60, a1, *(float*)(a0 + 0x70), 1, 1);
+    Circle_line2(a0 + 0x60, a1, *(float*)(a0 + 0x70), 1, 1);
 }

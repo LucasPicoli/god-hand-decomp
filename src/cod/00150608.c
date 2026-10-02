@@ -22,7 +22,7 @@ extern void func_002A98A8(void *);
 extern int D_005E6900;
 extern void func_002AE3D0(void *);
 extern int D_005E75B0;
-extern void func_001380A8(void *);
+extern void cCamera(void *);
 extern int D_005E8040;
 extern void InitVtableEntry_2B8AE0(void *);
 extern int D_005FEC58;
@@ -371,7 +371,7 @@ void func_002AE940(int a0, int a1) {
 __attribute__((section(".text.func_002B4850")))
 void func_002B4850(int a0, int a1) {
     if (a1 == 0xFFFF && a0 != 0) {
-        func_001380A8(&D_005E75B0);
+        cCamera(&D_005E75B0);
     }
 }
 

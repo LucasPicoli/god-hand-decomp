@@ -7,13 +7,13 @@ extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj1D00_ClearState_6(void *a0);
 extern void Obj1D00_ClearState_7(void *a0);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0);
 extern void func_00260B30(void *a0);
 
@@ -140,7 +140,7 @@ void func_00233248(void *arg0)
             float d;
             *(int *)(s1 + 0x5F0) -= 1;
             tgt = *(char **)(s1 + 0xF0);
-            o = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+            o = (char *)Getplayer();
             d = Turn_dest(tgt, *(void **)(o + 0xF0), *(float *)(s1 + 0x600),
                           *(float *)(s1 + 0x5A8) * 0.19634955f);
             *(float *)(s1 + 0x600) += d;
@@ -149,14 +149,14 @@ void func_00233248(void *arg0)
             *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
         }
         if (moveMotion(s1) != 0) {
-            AddScaledVecToField_100_14F9F0(s1, 1.0f);
-            AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
             func_002705D8(s1);
             return;
         }
         *(float *)(s1 + 0x338) = *(float *)(s1 + 0x338) * *(float *)(s1 + 0x608);
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if (*(int *)(s1 + 0x564) == 0x222) {

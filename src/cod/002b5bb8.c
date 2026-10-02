@@ -9,7 +9,7 @@ void FreeEntrySlot_2B5BB8(int a0, int a1, int a2)
     v0 = s0[0];
     v1 = s0[1];
     if (v0 != 0) {
-        UnlinkAndCoalesceNode_2A9680(v1, v0);
+        cHeap_free(v1, v0);
     }
     s0[0] = 0;
     s0[1] = 0;

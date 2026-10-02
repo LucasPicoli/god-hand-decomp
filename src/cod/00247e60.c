@@ -9,8 +9,8 @@ extern void ReleaseObj(void *a0);
 extern void func_00275DA8(void *a0);
 
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int D_0042CAD0;
 
 typedef struct {
@@ -95,7 +95,7 @@ void func_00247E60(void *a0)
         s.b74 = 0;
         s.i78 = 0;
         SetEffect(0xBD, 0x19, s0, &s, 1, 0xFFFFFFFF);
-        v = func_0014B730(s0, &D_0042CAD0);
+        v = cModel_getMeshPtr_14B730(s0, &D_0042CAD0);
         if (v != 0) {
             *(int *)(v + 0x380) = *(int *)(v + 0x380) & 0xFFFFFFFE;
         }
@@ -109,8 +109,8 @@ void func_00247E60(void *a0)
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
 }

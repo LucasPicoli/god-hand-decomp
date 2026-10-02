@@ -3,17 +3,17 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void CopyVec3From110To120_14A2B0(void *a0);
-extern void Forward30A2B0_2DA9B8(void *a0);
+extern void cModel_calcNullPart(void *a0);
+extern void Add_nullspeed(void *a0);
 extern float fRand0_1(void);
 extern char D_00462FC0[];
 extern char D_005FEE00[];
 __attribute__((section(".text.func_00287090")))
 void func_00287090(void *a0){ char *s0=(char*)a0; int v0; float f;
- Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+ cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0:
   *(int*)(s0+0x15B0)=*(int*)(s0+0x15B0)|1;
@@ -23,8 +23,8 @@ void func_00287090(void *a0){ char *s0=(char*)a0; int v0; float f;
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   moveMotion(s0);
-  CopyVec3From110To120_14A2B0(s0);
-  Forward30A2B0_2DA9B8(s0);
+  cModel_calcNullPart(s0);
+  Add_nullspeed(s0);
   f=*(float*)(s0+0x600)-*(float*)(s0+0x5A8);
   *(float*)(s0+0x600)=f;
   if(f<=0.0f){
@@ -41,6 +41,6 @@ void func_00287090(void *a0){ char *s0=(char*)a0; int v0; float f;
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 3:
   moveMotion(s0);
-  CopyVec3From110To120_14A2B0(s0);
-  Forward30A2B0_2DA9B8(s0);
+  cModel_calcNullPart(s0);
+  Add_nullspeed(s0);
   break; } }

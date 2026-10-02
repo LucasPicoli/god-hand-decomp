@@ -2,16 +2,16 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002705D8(void *a0);
 extern char *func_002DDAB0(int a0, float f, int a1);
 extern void func_0026AB20(void *a0, char *a1, int a2);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00123938(void *a0, int a1);
 extern float D_003BD488;
 
@@ -31,8 +31,8 @@ void func_00102DE8(void *a0){ char *s0=(char*)a0; int p1,p2;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f); break; } }
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f); break; } }
 
 __attribute__((section(".text.func_0023F970")))
 void func_0023F970(void *a0){ char *s2=(char*)a0; int v0,p1,p2,t0;
@@ -45,8 +45,8 @@ void func_0023F970(void *a0){ char *s2=(char*)a0; int v0,p1,p2,t0;
   *(unsigned char*)(s2+0x2F6)=*(unsigned char*)(s2+0x2F6)+1;
  case 1:
   if(moveMotion(s2)!=0){ func_002705D8(s2); }
-  AddScaledVecToField_100_14F9F0(s2,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s2,1.0f); break; }
+  cObjBase_addNullSpeed_Rotation(s2,1.0f);
+  cObjBase_addNullSpeed(s2,1.0f); break; }
  if(*(int*)(s2+0x6EC)==0){
   if(*(unsigned short*)(s2+0x3AC)&1){
    char *a=func_002DDAB0(*(int*)(s2+0xF0),1.5f,1);
@@ -74,12 +74,12 @@ void func_001AB8F8(void *a0){ char *s0=(char*)a0; char *g; T3 c; T3 t;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f); break; } }
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f); break; } }
 
 __attribute__((section(".text.func_00237F98")))
 void func_00237F98(void *a0){ char *s0=(char*)a0; int v0;
- Forward_001346C8_00134608_1351D8(&D_00462FC0,s0,0);
+ cCollisionSolidManage_SetActive(&D_00462FC0,s0,0);
  *(float*)(s0+0x54C)=3.0f;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0: v0=*(int*)(s0+0x304);
@@ -91,8 +91,8 @@ void func_00237F98(void *a0){ char *s0=(char*)a0; int v0;
   *(int*)(s0+0x16D0)|=0x10000;
   if(moveMotion(s0)!=0){ *(int*)(s0+0x16D0)&=0xFFFEFFFF; *(unsigned char*)(s0+0x2F5)=0x6C; *(unsigned char*)(s0+0x2F4)=0;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f); break; } }
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f); break; } }
 
 __attribute__((section(".text.func_0010CB10")))
 void func_0010CB10(void *a0){ char *s0=(char*)a0; char *t0; int p1,p2; void *fl;
@@ -111,15 +111,15 @@ void func_0010CB10(void *a0){ char *s0=(char*)a0; char *t0; int p1,p2; void *fl;
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   *(float*)(s0+0x15F0)=D_003BD488;
-  if(moveMotion(s0)!=0){ ClearField15F4Bit1_124F60(s0,1,0); *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;
+  if(moveMotion(s0)!=0){ pl00_clearMotionCam(s0,1,0); *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f);
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f);
   func_00123938(s0,1); break; } }
 
 __attribute__((section(".text.func_00236ED0")))
 void func_00236ED0(void *a0){ char *s0=(char*)a0; int v0;
- Forward_001346C8_00134608_1351D8(&D_00462FC0,s0,0);
+ cCollisionSolidManage_SetActive(&D_00462FC0,s0,0);
  *(int*)(s0+0x16D0)=*(int*)(s0+0x16D0)|0x20000;
  *(float*)(s0+0x54C)=3.0f;
  *(int*)(s0+0x250)=*(int*)(s0+0x250)|0x10000;
@@ -131,8 +131,8 @@ void func_00236ED0(void *a0){ char *s0=(char*)a0; int v0;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0x6C;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f); break;
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f); break;
  case 2: v0=*(int*)(s0+0x304);
   *(char*)(s0+0x1864)=0;
   func_002A8578(s0,*(int*)(v0+0x1BA8)+v0,*(int*)(v0+0x1BAC)+v0,0.0f,0,0,0);
@@ -140,5 +140,5 @@ void func_00236ED0(void *a0){ char *s0=(char*)a0; int v0;
  case 3:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0x6C;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f); break; } }
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f); break; } }

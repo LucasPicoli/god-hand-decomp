@@ -3,8 +3,8 @@
 extern int *D_003C2384;
 extern void CustomIDWork_SetDisp(char *p, int v);
 
-__attribute__((section(".text.Forward30A2B0_2DA9B8")))
-int Forward30A2B0_2DA9B8(char *a0)
+__attribute__((section(".text.Add_nullspeed")))
+int Add_nullspeed(char *a0)
 {
 	return sceVu0ApplyMatrix(*(int *)(a0 + 0xF0), (int)(a0 + 0x80), (int)(a0 + 0x330));
 }

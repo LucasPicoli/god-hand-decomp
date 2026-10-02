@@ -55,8 +55,8 @@ void BuildGifPacket_2A5930(int a0) {
     }
 }
 
-__attribute__((section(".text.InitControllerState_2ACC70")))
-void InitControllerState_2ACC70(int a0, int a1) {
+__attribute__((section(".text.cIDManager_systemInit")))
+void cIDManager_systemInit(int a0, int a1) {
     func_003A52F0(a0 + 0x100, 0, 0x640);
     *(int *)((char *)a0 + 0x1B544) = 0;
     *(int *)((char *)a0 + 0x740) = 0;

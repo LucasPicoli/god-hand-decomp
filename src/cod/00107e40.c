@@ -6,7 +6,7 @@ extern int D_0042C320;
 extern int InitFields_1B6E90(void *obj);
 extern int D_00421F20;
 extern void func_002B46F0(void *obj, int a1, int a2, int a3);
-extern int InitObjectVtables_100280(void *obj);
+extern int cPlBase(void *obj);
 extern int D_0041D220;
 extern int D_0041B800;
 
@@ -124,7 +124,7 @@ void *func_00107E40(void *obj) {
     char *p;
     int i;
 
-    InitObjectVtables_100280(obj);
+    cPlBase(obj);
     *(int **)((char *)obj + 0x214) = &D_0041D220;
     VU0_SQC2_VF0(obj, 0x630);
     VU0_SQC2_VF0(obj, 0x650);

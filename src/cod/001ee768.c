@@ -12,8 +12,8 @@ int ClearField00_1F6CE0(int a0) {
     return a0;
 }
 
-__attribute__((section(".text.Clear_Field_00_14_1F8A40")))
-int Clear_Field_00_14_1F8A40(int a0) {
+__attribute__((section(".text.cBoundingBox")))
+int cBoundingBox(int a0) {
     *(int*)((char*)a0 + 0x0) = 0;
     *(int*)((char*)a0 + 0x4) = 0;
     *(int*)((char*)a0 + 0x8) = 0;

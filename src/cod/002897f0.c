@@ -8,10 +8,10 @@ extern void moveMotion(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cObjBase_KageInit(void *a, void *b, void *c);
-extern int AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
@@ -90,7 +90,7 @@ int func_002897F0(char *a0, char *a1, void *a2)
     cModel_calcParts(s1);
     IK_InverseKinematics(s1 + 0x448, s1);
     cModel_calcWorldParts(s1);
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
     {
         float *dst = (float *)(s1 + 0x1590);
         float *src = *(float **)(s1 + 0xF0);
@@ -102,7 +102,7 @@ int func_002897F0(char *a0, char *a1, void *a2)
     }
     cParts_setRotationOrder(s1, 4);
     cObjBase_KageInit(s1, s1 + 0x690, D_003C3F68);
-    *(int *)(s1 + 0x670) = AllocActiveSlot_1FE218(D_00574380, s1, 1);
+    *(int *)(s1 + 0x670) = cDamageManage_CreateDamageTake(D_00574380, s1, 1);
     n = *(unsigned char *)(s1 + 0x2B4);
     *(int *)(buf + 0x0) = n;
     {
@@ -173,14 +173,14 @@ int func_002897F0(char *a0, char *a1, void *a2)
     *(int *)(s1 + 0x15A8) = 0;
     *(float *)(s1 + 0x15A4) = 0.02f;
     *(float *)(s1 + 0x15AC) = fRand0_1() * 90.0f + 90.0f;
-    *(void **)(s1 + 0x15B4) = func_0014B730(s1, D_00448DB8);
-    *(void **)(s1 + 0x15B8) = func_0014B730(s1, D_00448DC0);
-    *(void **)(s1 + 0x15BC) = func_0014B730(s1, D_00448DC8);
-    *(void **)(s1 + 0x15C0) = func_0014B730(s1, D_00448DD0);
-    *(void **)(s1 + 0x15C4) = func_0014B730(s1, D_00448DD8);
-    *(void **)(s1 + 0x15C8) = func_0014B730(s1, D_00448DE0);
-    *(void **)(s1 + 0x15CC) = func_0014B730(s1, D_00448DE8);
-    *(void **)(s1 + 0x15D0) = func_0014B730(s1, D_00448DF0);
+    *(void **)(s1 + 0x15B4) = cModel_getMeshPtr_14B730(s1, D_00448DB8);
+    *(void **)(s1 + 0x15B8) = cModel_getMeshPtr_14B730(s1, D_00448DC0);
+    *(void **)(s1 + 0x15BC) = cModel_getMeshPtr_14B730(s1, D_00448DC8);
+    *(void **)(s1 + 0x15C0) = cModel_getMeshPtr_14B730(s1, D_00448DD0);
+    *(void **)(s1 + 0x15C4) = cModel_getMeshPtr_14B730(s1, D_00448DD8);
+    *(void **)(s1 + 0x15C8) = cModel_getMeshPtr_14B730(s1, D_00448DE0);
+    *(void **)(s1 + 0x15CC) = cModel_getMeshPtr_14B730(s1, D_00448DE8);
+    *(void **)(s1 + 0x15D0) = cModel_getMeshPtr_14B730(s1, D_00448DF0);
     { char *p = *(char **)(s1 + 0x15B4);
       if (p != 0) *(int *)(p + 0x380) |= 1; }
     { char *p = *(char **)(s1 + 0x15B8);

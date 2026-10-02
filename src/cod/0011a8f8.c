@@ -1,22 +1,22 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 
-extern void *cSnd_GetSeEntry(void *a0, int a1);
+extern void *cSnd_GetSeData(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
 extern void cSndSeVoice_Unlink(void *a0);
 extern char D_005FEE00[];
 extern unsigned int D_00747A84;
 extern int D_00747A78;
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0012C348(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 /* Updates one voice every frame: waits out its start delay, starts or retunes the sound, tracks the
    distance ratio, and frees the voice when its sound is gone. Each live frame ages the voice by one. */
@@ -36,7 +36,7 @@ void cSndSeVoice_Update(cSndSeVoice *voice)
         return;
     }
     snd = (cSnd *)D_005FEE00;
-    entry = cSnd_GetSeEntry(snd, voice->key0);
+    entry = cSnd_GetSeData(snd, voice->key0);
     if (cSeData_IsAlive(entry) == 0) {
         goto reset;
     }
@@ -124,7 +124,7 @@ void func_0011A8F8(void *a0)
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int p1, p2;
-        switch (Forward30F348_31CFE0() % 3) {
+        switch (irand() % 3) {
         case 0:
         default:
             {
@@ -151,7 +151,7 @@ void func_0011A8F8(void *a0)
         func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCE, s1, 0, 0, 0, 0);
         func_0012C348(s1, 0);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
         *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -168,8 +168,8 @@ void func_0011A8F8(void *a0)
             *(char *)(s1 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         f = *(float *)(s1 + 0x54C);
         break;
     default:

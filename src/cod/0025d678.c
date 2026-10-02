@@ -2,17 +2,17 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void SetField444SignedByFlag434_158288(void *a0, float f);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void *Getplayer(void);
+extern void SetMotionStep(void *a0, float f);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
@@ -39,14 +39,14 @@ void func_0025D678(void *a0)
 {
     float f[8] __attribute__((aligned(16)));
     char *s0 = (char *)a0;
-    char *s1 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    char *s1 = (char *)Getplayer();
     float t;
 
     t = *(float *)(s1 + 0x5A8);
     *(float *)(s0 + 0x5A8) = t;
-    SetField444SignedByFlag434_158288(s0, t);
+    SetMotionStep(s0, t);
     *(float *)(s0 + 0x54C) = 3.0f;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
 
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -74,8 +74,8 @@ void func_0025D678(void *a0)
         if (moveMotion(s0) != 0) {
             (*(unsigned char *)(s0 + 0x2F6))++;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 2:
     {
@@ -99,8 +99,8 @@ void func_0025D678(void *a0)
         VU0_VADD_XYZ_IP(p0, 0, q);
     }
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(unsigned short *)(s0 + 0x3AC) & 1) {
             if (*(int *)(s0 + 0x5F0) != 0) {
                 char *vt;
@@ -165,8 +165,8 @@ void func_0025D678(void *a0)
             }
             func_002705D8(s0);
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 6:
     {
@@ -204,8 +204,8 @@ void func_0025D678(void *a0)
             *(signed char *)(s0 + 0x2F6) = 0;
             *(signed char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
 
@@ -223,8 +223,8 @@ void func_0025D678(void *a0)
             }
             if (s1 != 0) {
                 VU0_SQC2_VF0(f, 0x10);
-                f[4] = DoubleFloatMinusHalf_31D020() * 0.1f;
-                f[5] = DoubleFloatMinusHalf_31D020() * 0.1f + 0.1f;
+                f[4] = fRand1_1() * 0.1f;
+                f[5] = fRand1_1() * 0.1f + 0.1f;
                 f[6] = fRand0_1() * 0.1f + 0.2f;
                 { float *e = &f[4]; sceVu0ApplyMatrix(e, s1 + 0x80, e); e = 0; }
                 SetEffectPos(0, 0x4F, 0, &f[4], -1, 1.0f);

@@ -13,9 +13,9 @@ extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern unsigned char D_005FEE00[];
-extern int AllocActiveSlot_1FE218(int a0, int a1, int a2);
+extern int cDamageManage_CreateDamageTake(int a0, int a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
-extern void SetListNodeBitByKey_14A398(int a0, int a1, int a2);
+extern void cModel_setLayerDisplay(int a0, int a1, int a2);
 extern int D_00574380;
 extern int D_003BD880;
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
@@ -378,7 +378,7 @@ int func_001B2548(char *p)
     int sph;
 
     func_001B6FB8(p);
-    dg = AllocActiveSlot_1FE218((int)&D_00574380, (int)p, 1);
+    dg = cDamageManage_CreateDamageTake((int)&D_00574380, (int)p, 1);
     *(int *)(p + 0x600) = dg;
     if (dg != 0) {
         flag = *(unsigned char *)(p + 0x2B4);
@@ -403,8 +403,8 @@ int func_001B2548(char *p)
     *(int *)(p + 0x5B8) |= 8;
     *(float *)(p + 0x620) = 1.8f;
     *(float *)(p + 0x628) = 0.036f;
-    SetListNodeBitByKey_14A398((int)p, 0, 1);
-    SetListNodeBitByKey_14A398((int)p, 0x40, 0);
+    cModel_setLayerDisplay((int)p, 0, 1);
+    cModel_setLayerDisplay((int)p, 0x40, 0);
     *(unsigned char *)(p + 0x62D) = 0;
     return 1;
 }

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
 
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 /* Three fields of D_00754C38 that reset clears; what they hold is not known. */
 typedef struct D_00754C38_t {
     int unk0;
@@ -34,7 +34,7 @@ void cEmManage_reset(cEmManage *self) {
     self->kindNum = 0;
     self->nextNo = 0;
     self->speedRate = EM_SPEED_RATE_NORMAL;
-    self->unk53F = Forward30F348_31CFE0() % 5;
+    self->unk53F = irand() % 5;
     special = self->specialEm;
     self->unk53E = 0;
     self->unk540 = 0;

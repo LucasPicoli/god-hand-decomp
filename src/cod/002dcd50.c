@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern int cEmManage_CkPlCatched(void *a0);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -28,7 +28,7 @@ extern void func_002DD9F0();
 
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
                    int a7, int a8, int a9, int a10, int a11, int a12);
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2,
+extern void cActionButton_set(void *a0, int a1, int a2,
                                                        int a3, void *t0,
                                                        void *t1, int t2);
 
@@ -60,7 +60,7 @@ void func_002DCD50(void *a0)
     char *g;
     float th;
 
-    o = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    o = (char *)Getplayer();
     g = D_005864F0;
     if (cEmManage_CkPlCatched(g) != 0) {
         return;
@@ -187,7 +187,7 @@ void func_002DCD50(void *a0)
         *(unsigned char *)(s1 + 0x620) = 1;
         switch (w) {
         default:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0xD, 0, (void *)&func_002DD300, s1, 0);
             break;
         case 0x20F:
@@ -199,7 +199,7 @@ void func_002DCD50(void *a0)
         case 0x272:
         case 0x273:
         case 0x274:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0xF, 0, (void *)&func_002DD3C0, s1, 0);
             break;
         case 0x20A:
@@ -210,28 +210,28 @@ void func_002DCD50(void *a0)
         case 0x245:
         case 0x247:
         case 0x24F:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x10, 0, (void *)&func_002DD480, s1, 0);
             break;
         case 0x246:
             switch (*(unsigned char *)(s1 + 0x621)) {
             default:
             case 0:
-                LookupSlotPopulateFieldsAndDispatch_1F7858(
+                cActionButton_set(
                     &D_00568288, 0xA, 0x26, 0, (void *)&func_002DD540, s1, 0);
                 break;
             case 1:
-                LookupSlotPopulateFieldsAndDispatch_1F7858(
+                cActionButton_set(
                     &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD270, s1, 0);
                 break;
             }
         case 0x218:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD270, s1, 0);
             break;
         case 0x278:
         case 0x279:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x26, 0, (void *)&func_002DD540, s1, 0);
             break;
         case 0x21A:
@@ -251,7 +251,7 @@ void func_002DCD50(void *a0)
         case 0x24E:
         case 0x252:
         case 0x25A:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x1A, 0, (void *)&func_002DD6C0, s1, 0);
             break;
         case 0x209:
@@ -271,7 +271,7 @@ void func_002DCD50(void *a0)
         case 0x275:
         case 0x276:
         case 0x27E:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD270, s1, 0);
             break;
         case 0x227:
@@ -288,29 +288,29 @@ void func_002DCD50(void *a0)
             switch (*(unsigned char *)(s1 + 0x621)) {
             default:
             case 0:
-                LookupSlotPopulateFieldsAndDispatch_1F7858(
+                cActionButton_set(
                     &D_00568288, 0xA, 0xD, 0, (void *)&func_002DD300, s1, 0);
                 break;
             case 1:
-                LookupSlotPopulateFieldsAndDispatch_1F7858(
+                cActionButton_set(
                     &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD270, s1, 0);
                 break;
             }
             break;
         case 0x260:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD7B0, s1, 0);
             break;
         case 0x264:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD870, s1, 0);
             break;
         case 0x265:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD930, s1, 0);
             break;
         case 0x26A:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x12, 0, (void *)&func_002DD9F0, s1, 0);
             break;
         case 0x205:
@@ -318,7 +318,7 @@ void func_002DCD50(void *a0)
         case 0x207:
         case 0x208:
         case 0x224:
-            LookupSlotPopulateFieldsAndDispatch_1F7858(
+            cActionButton_set(
                 &D_00568288, 0xA, 0x16, 0, (void *)&func_002DD600, s1, 0);
             break;
         }

@@ -2,7 +2,7 @@
 
 /* sn-2.95.3-136 candidate. */
 
-extern void CopyVec3From110To120_14A2B0(void *p);
+extern void cModel_calcNullPart(void *p);
 extern void func_00150138(int obj);
 extern void func_001501D0(int obj, int a);
 extern int func_002AD2B8(void *g, int a, void *b, int c, void *d, int e, float f);
@@ -41,7 +41,7 @@ int cOl30_SetInitialPosition(char *p, float *a1, float *a2)
 
     CopyVec3(*(float **)(p + 0xF0), a1);
     CopyVec3((float *)(p + 0x100), a2);
-    CopyVec3From110To120_14A2B0(p);
+    cModel_calcNullPart(p);
     j = 0;
     do {
         k = 0;

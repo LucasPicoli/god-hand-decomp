@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_001C29D0(void);
-extern void Tramp_00312708_1B79B0(void);
+extern void cOmBase_dieCommon(void);
 extern void func_001BFB80(void);
 extern void func_001BC0A0(void);
 
@@ -17,7 +17,7 @@ void func_0019AE28(void) {
 
 __attribute__((section(".text.Tramp_func_001B79B0_0019B760")))
 void Tramp_func_001B79B0_0019B760(void) {
-    Tramp_00312708_1B79B0();
+    cOmBase_dieCommon();
 }
 
 __attribute__((section(".text.func_0019BDB8")))
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_0019C518")))
 void func_0019C518(void) { func_001BC0A0(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0019CD80")))
-void Tramp_func_001B79B0_0019CD80(void) { Tramp_00312708_1B79B0(); }
+void Tramp_func_001B79B0_0019CD80(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.func_0019D538")))
 void func_0019D538(void) { func_001BC0A0(); }

@@ -4,7 +4,7 @@
 
 extern void func_00143A90(void *);
 extern char *D_003BD6E8;
-extern void UnlinkAndCoalesceNode_2A9680(void *a0, void *a1);
+extern void cHeap_free(void *a0, void *a1);
 extern void __builtin_delete(void *a0);
 extern void func_00375050(void *, int);
 extern void cSndSeVoice_Unlink(void *);
@@ -29,7 +29,7 @@ void func_003128B0(char *a0) {
     char *n = *(char **)a0;
     if (n != 0) {
         char *q = *(char **)(n + 0x4);
-        if (q != 0) UnlinkAndCoalesceNode_2A9680(*(void **)(q - 0x20), q);
+        if (q != 0) cHeap_free(*(void **)(q - 0x20), q);
         __builtin_delete(n);
     }
     *(int *)a0 = 0;
@@ -53,7 +53,7 @@ void cSndSeVoice_Stop(cSndSeVoice *v) {
 
 __attribute__((section(".text.cModel_setMeshDisplay")))
 int cModel_setMeshDisplay(void *a0, int a1, int flag) {
-    char *m = func_0014B730(a0, a1);
+    char *m = cModel_getMeshPtr_14B730(a0, a1);
     if (m == 0) return 0;
     if (flag != 0) *(int *)(m + 0x380) &= 0xFFFFFFFE;
     else *(int *)(m + 0x380) |= 1;

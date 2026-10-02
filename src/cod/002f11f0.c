@@ -8,7 +8,7 @@ extern int D_003C3BB4;
 extern unsigned char D_0061B670;
 extern int D_0044EC08;
 extern int D_0044EC28;
-extern void Tramp_func_0030A548_00147528(void *mtx, void *src);
+extern void MtxCopy(void *mtx, void *src);
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 extern char *D_005CAFF0;
 extern void cNode_setLocalTranslation(void *this, void *v);
@@ -94,7 +94,7 @@ void func_002F4DC8(char *p, float *dst)
         } else {
             e = 0;
         }
-        Tramp_func_0030A548_00147528(buf, e + 0x80);
+        MtxCopy(buf, e + 0x80);
         q2 = buf + 0x60;
         VU0_LQC2(4, p + 0x2D0, 0);
         VU0_SQC2(4, buf, 0x60);

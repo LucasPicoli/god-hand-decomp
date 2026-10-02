@@ -2,7 +2,7 @@
 #include "godhand/cScenario.h"
 
 extern void func_002D56A8(cTaskManager *task);
-extern void SetFieldsCESignalSemaSleep_2D5AA0(cTaskWork *work, int a1);
+extern void cTaskWork_sleep(cTaskWork *work, int a1);
 extern unsigned int D_00747A78;
 extern char D_00463050[];
 extern void cCamManager_setMotCamera(void *a0, int a1);
@@ -10,7 +10,7 @@ extern void cMotCamera_setMotion(void *a0, int a1, int a2, int a3, float f12, in
 extern void cCamera_move(void *a0);
 extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern void cCamManager_setPlCamera(void *a0, int a1);
-extern void ClearField15F4Bit1_124F60(int a0, int a1, int a2);
+extern void pl00_clearMotionCam(int a0, int a1, int a2);
 extern int D_003C23A4;
 extern void cMessage_deleteMessNo(int a0, int a1);
 extern void setPlayerPos(void *p, float w);
@@ -52,7 +52,7 @@ void cScenario_resetCam(cScenario *self) {
         cPlCamera_setCamUpdate(s0, 0);
     }
     cCamManager_setPlCamera(s0, 0);
-    ClearField15F4Bit1_124F60(Obj0000_Get_D_00747A94_2DB6B0(), 0, 1);
+    pl00_clearMotionCam(Getplayer(), 0, 1);
     self->camOn = 0;
 }
 
@@ -60,7 +60,7 @@ __attribute__((section(".text.cScenario_waitCam")))
 /* Sleep the script task until the camera move is over. */
 void cScenario_waitCam(cScenario *self) {
     while (cScenario_isCamEnd(self) == 0) {
-        SetFieldsCESignalSemaSleep_2D5AA0(D_003C2F84->task.cur, 1);
+        cTaskWork_sleep(D_003C2F84->task.cur, 1);
     }
 }
 
@@ -134,7 +134,7 @@ __attribute__((section(".text.cScenario_waitMess")))
 /* Sleep the script task while the message is up, then close it. */
 void cScenario_waitMess(cScenario *self) {
     while (cScenario_isMessOn(self) == 1) {
-        SetFieldsCESignalSemaSleep_2D5AA0(D_003C2F84->task.cur, 1);
+        cTaskWork_sleep(D_003C2F84->task.cur, 1);
     }
     cScenario_endMess(self);
 }

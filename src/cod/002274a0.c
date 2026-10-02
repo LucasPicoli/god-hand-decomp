@@ -6,8 +6,8 @@ extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
 extern void func_0026BEF0(void *a0, int a1, int a2);
@@ -66,8 +66,8 @@ void func_002274A0(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 1) {

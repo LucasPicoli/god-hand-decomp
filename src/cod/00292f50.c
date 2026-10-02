@@ -3,8 +3,8 @@
 extern float D_00747A14;
 extern float func_0030F518(void);
 
-__attribute__((section(".text.DoubleFloatMinusHalf_31D020")))
-float DoubleFloatMinusHalf_31D020(void) {
+__attribute__((section(".text.fRand1_1")))
+float fRand1_1(void) {
     float f = func_0030F518() - 0.5f;
     return f + f;
 }

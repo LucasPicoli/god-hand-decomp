@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern void cSescr_At_ck(void *a0, int a1, void *a2, float f12);
 extern int cSnd_SeCall(void *a0, int a1, short a2, void *a3, int a4, int a5);
 extern int cSnd_SeFadeOut(void *a0, int a1, short a2);
@@ -27,7 +27,7 @@ void func_002C8B68(char *a0)
     char buf[0x10];
 
     VU0_SQC2_VF0(buf, 0x0);
-    cSescr_At_ck(s0, *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0), buf, 1.5f);
+    cSescr_At_ck(s0, *(int *)(Getplayer() + 0xF0), buf, 1.5f);
     switch (*(unsigned char *)(s0 + 0x13)) {
     case 0:
         if (*(unsigned char *)(s0 + 0xC) & 2) {

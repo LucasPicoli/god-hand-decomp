@@ -3,7 +3,7 @@
 #include "godhand/cObjSimple.h"
 
 extern void func_001C6C30(void *a0, void *a1);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern void cModel_calcParts(void *a0);
 extern void func_001C6A90(void *a0, int a1, void *a2, void *a3, int t0);
 
@@ -161,7 +161,7 @@ void cOmThrow_SetThrow(unsigned char *p, float *v)
         *((int *) (e + 0x100)) = 0;
         *((int *) (e + 0x104)) = 0;
         *((float *) (e + 0x108)) =
-            DoubleFloatMinusHalf_31D020() * 0.5235987901687622f + 0.5235987901687622f;
+            fRand1_1() * 0.5235987901687622f + 0.5235987901687622f;
         p[0x640] = 0;
     }
 }
@@ -273,7 +273,7 @@ void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
         body->posPrev.x = 0.0f;
         body->posPrev.y = 0.0f;
         body->posPrev.z =
-            DoubleFloatMinusHalf_31D020() * 0.5235987901687622f + 0.5235987901687622f;
+            fRand1_1() * 0.5235987901687622f + 0.5235987901687622f;
         cModel_calcParts(self);
         d = &self->vel;
         s = v;

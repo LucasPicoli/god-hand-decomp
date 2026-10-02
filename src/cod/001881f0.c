@@ -3,8 +3,8 @@
 extern unsigned int Rnd(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void func_00279C20(void *a0);
 extern char *D_00586A7C;
 extern void func_00188798(void *a0);
@@ -18,8 +18,8 @@ extern float cEmManage_GetSpeedRate(void *a0);
 extern void Adjust_theta_vec(float *p);
 extern void MtxInitRotVec(void *a0, void *a1, int a2);
 extern void CopyVec3ToField30_147C40(void *a0, void *a1);
-extern void BuildAltMatrixAndForward_147BF8(void *a0, void *a1, void *a2);
-extern int Tramp_func_0030A548_00147528();
+extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
+extern int MtxCopy();
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern char D_005864F0[];
 
@@ -50,8 +50,8 @@ void func_00278C30(void *a0)
             }
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     case 2: {
         char *v0 = *(char **)(s0 + 0x304);
@@ -66,8 +66,8 @@ void func_00278C30(void *a0)
             }
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
     if (g != 0) {
@@ -194,10 +194,10 @@ void func_001881F0(void *a0)
             CopyVec3ToField30_147C40(m2, e);
             m2 = 0;
             m3 = buf + 0x30;
-            BuildAltMatrixAndForward_147BF8(m3, m3, e40);
+            MtxMulScaleVec(m3, m3, e40);
             m3 = 0;
             m4 = buf + 0x30;
-            Tramp_func_0030A548_00147528(*(int *)(e10 + 0x40), m4);
+            MtxCopy(*(int *)(e10 + 0x40), m4);
             m4 = 0;
             *(float *)(e10 + 0x14) = *(float *)(e10 + 0x14) + *(float *)(e10 + 0x48) * rate;
             if (*(float *)(e10 + 0x14) < lim) {

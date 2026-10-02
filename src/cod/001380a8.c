@@ -1,6 +1,6 @@
 #include "godhand/vu0.h"
 
-/* func_001380A8 — large object constructor: set the vtable at 0x35C, zero a
+/* cCamera — large object constructor: set the vtable at 0x35C, zero a
  * block of quadwords, lay down seven identity matrices at 0x0/0x40/0x80/0xC0/
  * 0x100/0x140/0x180 (each via vmove/vmr32 in its own scope so the base pointer
  * alternates v0/v1 as retail does), reset the camera, return the object.
@@ -9,8 +9,8 @@
 extern int D_0041D8B8;
 extern void cCamera_reset(void *);
 
-__attribute__((section(".text.func_001380A8")))
-void *func_001380A8(void *a0) {
+__attribute__((section(".text.cCamera")))
+void *cCamera(void *a0) {
     *(int **)((char *)a0 + 0x35C) = &D_0041D8B8;
     VU0_SQC2_VF0(a0, 0x1D0);
     VU0_SQC2_VF0(a0, 0x1E0);

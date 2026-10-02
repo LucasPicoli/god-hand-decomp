@@ -5,7 +5,7 @@ extern int read__7istreamPci(void);
 extern void get__7istreamRc(void);
 extern void __ls__7ostreamd(void);
 extern void __ls__7ostreami(void);
-extern int ostream___ls(void);
+extern int __ls__7ostreamPCc(void);
 extern int write__7ostreamPCci(void);
 extern int _IO_un_link(void);
 extern int _IO_link_in(void);
@@ -131,11 +131,11 @@ __attribute__((section(".text.func_0038A4E8")))
 void func_0038A4E8(void) { __ls__7ostreami(); }
 
 __attribute__((section(".text.Tramp_ostream___ls_38A548")))
-int Tramp_ostream___ls_38A548(void) { return ostream___ls(); }
+int Tramp_ostream___ls_38A548(void) { return __ls__7ostreamPCc(); }
 
 __attribute__((section(".text.Tramp_ostream___ls_38A568")))
 int Tramp_ostream___ls_38A568(void) {
-    return ostream___ls();
+    return __ls__7ostreamPCc();
 }
 
 __attribute__((section(".text.Tramp_write__7ostreamPCci_38A5C8")))

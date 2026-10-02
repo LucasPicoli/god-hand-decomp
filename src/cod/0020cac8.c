@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern int Forward30F348_31CFE0(void);
+extern void *Getplayer(void);
+extern int irand(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern unsigned char D_005CB010;
 
@@ -11,7 +11,7 @@ long func_0020CAC8(void *a0, int a1)
 {
     char *s0 = (char *)a0;
     int s2 = a1;
-    char *s1 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    char *s1 = (char *)Getplayer();
     int v1;
     int ok;
     int n;
@@ -23,7 +23,7 @@ long func_0020CAC8(void *a0, int a1)
     if (v == 2) goto body;
     return 0;
 arm1:
-    if ((Forward30F348_31CFE0() & 1) != 0) return 0;
+    if ((irand() & 1) != 0) return 0;
 body:
     if (D_005CB010 != 0) return 0;
     if (Obj0000_Get_Field_5FC_NE_Zero_12C748(s1) != 0) return 0;
@@ -44,16 +44,16 @@ body:
     }
     switch (cCoreSave_getGameLevel(&D_00569B70)) {
     case 1: default:
-        ok = (((unsigned int)Forward30F348_31CFE0() % 8) == 0);
+        ok = (((unsigned int)irand() % 8) == 0);
         break;
     case 2:
-        ok = (((unsigned int)Forward30F348_31CFE0() % 6) == 0);
+        ok = (((unsigned int)irand() % 6) == 0);
         break;
     case 3: case 4:
-        ok = (((unsigned int)Forward30F348_31CFE0() % 4) == 0);
+        ok = (((unsigned int)irand() % 4) == 0);
         break;
     case 5:
-        ok = (((unsigned int)Forward30F348_31CFE0() % 3) == 0);
+        ok = (((unsigned int)irand() % 3) == 0);
         break;
     }
     if (s2 == 1) ok = 1;

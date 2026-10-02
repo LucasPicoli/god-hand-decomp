@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_001501D0(int a0, int a1);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern void Obj0000_Set_Field_50_173998(int *a0, int a1);
@@ -51,19 +51,19 @@ void func_001A34C0(char *a0, int a1, float *a2, float *a3)
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
     if (*(unsigned char *)(a0 + 0xD9F) == 1) {
-        *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+        *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
         *(float *)(frame + 0x14) += fRand0_1() * 0.4f;
-        *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-        *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-        *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-        *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+        *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+        *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+        *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+        *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
     } else {
-        *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.05f;
+        *(float *)(frame + 0x10) += fRand1_1() * 0.05f;
         *(float *)(frame + 0x14) += fRand0_1() * 0.05f;
-        *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.05f;
-        *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.08f;
-        *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.08f;
-        *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.08f;
+        *(float *)(frame + 0x18) += fRand1_1() * 0.05f;
+        *(float *)(frame + 0x20) += fRand1_1() * 0.08f;
+        *(float *)(frame + 0x24) += fRand1_1() * 0.08f;
+        *(float *)(frame + 0x28) += fRand1_1() * 0.08f;
     }
 
     ok4 = ((*(int *)frame = b4 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b4));

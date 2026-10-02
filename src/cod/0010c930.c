@@ -1,17 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern float SetMotionStep(void *a0, float f12);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0012BFB8(void *a0);
 extern float D_003BD478;
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -19,8 +19,8 @@ extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void func_00124EC0(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void *Getplayer(void);
 extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern unsigned short D_00747A50;
 
@@ -51,7 +51,7 @@ void func_0010C930(void *a0)
         *(short *)(s0 + 0x54A) = 1;
     }
     *(float *)(s0 + 0x5A8) = 1.5f;
-    SetField444SignedByFlag434_158288(s0, 1.5f);
+    SetMotionStep(s0, 1.5f);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         *(short *)(s0 + 0x5E0) = 0;
@@ -89,8 +89,8 @@ void func_0010C930(void *a0)
             *(float *)(s0 + 0x104) = Adjust_theta(*(float *)(s0 + 0x104));
         }
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     if (func_00123938(s0, 0) == 0) {
@@ -148,7 +148,7 @@ void func_00117F78(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     s2 = *(char **)(s1 + 0x694);
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
     cEmManage_SetPlCatched(&D_005864F0);
     cEmManage_SetSlotWait(&D_005864F0, 2);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x80000;
@@ -180,14 +180,14 @@ void func_00117F78(void *a0)
             VU0_VADD_XYZ_IP(d, 0, e);
         }
         if (moveMotion(s1)) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(unsigned char *)(s1 + 0x2F4) = 0;
             *(unsigned char *)(s1 + 0x2F5) = 0;
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }
@@ -226,7 +226,7 @@ void cPlCamera_SetNormalZoomOutMode(void *a0, void *a1, int a2)
         cpy3((float *)(s0 + 0x450), (float *)(src + 0x20));
         *(float *)(s0 + 0x460) = *(float *)(src + 0x30);
     } else if (D_00747A50 != 0x104) {
-        *(int *)(s0 + 0x430) = (int)Obj0000_Get_D_00747A94_2DB6B0();
+        *(int *)(s0 + 0x430) = (int)Getplayer();
         *(float *)(s0 + 0x440) = -0.200000003f;
         *(float *)(s0 + 0x444) = 1.05999994f;
         *(float *)(s0 + 0x450) = 0.0700000003f;
@@ -235,7 +235,7 @@ void cPlCamera_SetNormalZoomOutMode(void *a0, void *a1, int a2)
         *(int *)(s0 + 0x454) = 0;
         *(int *)(s0 + 0x458) = 0;
     } else {
-        *(int *)(s0 + 0x430) = (int)Obj0000_Get_D_00747A94_2DB6B0();
+        *(int *)(s0 + 0x430) = (int)Getplayer();
         *(float *)(s0 + 0x440) = -0.200000003f;
         *(float *)(s0 + 0x444) = 1.15999997f;
         *(float *)(s0 + 0x450) = 0.0500000007f;

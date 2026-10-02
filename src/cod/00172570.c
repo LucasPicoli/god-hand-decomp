@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern float capVu0LengthSq(void *a0);
 extern float sqrtf(float x);
 
@@ -23,7 +23,7 @@ void func_00172570(void *a0) {
     int n;
 
     {
-        void *o = Obj0000_Get_D_00747A94_2DB6B0();
+        void *o = Getplayer();
         char *vt = *(char **)((char *)o + 0x214);
         void *p1 = (*(vfn *)(vt + 0x84))((char *)o + *(short *)(vt + 0x80));
         char *vt2 = *(char **)(s + 0x214);

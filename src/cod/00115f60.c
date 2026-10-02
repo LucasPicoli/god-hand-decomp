@@ -5,9 +5,9 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 __attribute__((section(".text.func_00115F60")))
 void func_00115F60(void *a0) {
     char *s0 = (char *)a0;
@@ -38,13 +38,13 @@ void func_00115F60(void *a0) {
     case 1:
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {
-            ClearField15F4Bit1_124F60(s0, 1, 0);
+            pl00_clearMotionCam(s0, 1, 0);
             *(unsigned char *)(s0 + 0x2F4) = 0; *(unsigned char *)(s0 + 0x2F5) = 0;
             *(unsigned char *)(s0 + 0x2F6) = 0; *(unsigned char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
 }

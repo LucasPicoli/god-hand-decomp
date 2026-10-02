@@ -5,11 +5,11 @@ extern void GetOrInitSingleton_100328(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_0041B7D0[];
 extern char D_007854C8[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, void *a1, void *a2, float f, int a3, int t0, int t1);
 extern char D_00462FC0[];
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 __attribute__((section(".text.GetOrInitSubSingleton_103880")))
 void *GetOrInitSubSingleton_103880(void) {
@@ -23,10 +23,10 @@ void *GetOrInitSubSingleton_103880(void) {
 
 __attribute__((section(".text.ForwardAndSyncPosition_102EE0")))
 void ForwardAndSyncPosition_102EE0(void *a0) {
-    int s1 = Obj0000_Get_D_00747A94_2DB6B0();
+    int s1 = Getplayer();
     int g;
     int p0, p1;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, a0, 0);
     *(int *)((char *)a0 + 0x250) |= 2;
     *(float *)((char *)a0 + 0x54C) = 2.0f;
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
@@ -76,8 +76,8 @@ void UpdateAttackMovePhase_102FE8(void *a0) {
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;
             *(unsigned char *)((char *)a0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(a0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(a0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(a0, 1.0f);
+        cObjBase_addNullSpeed(a0, 1.0f);
         break;
     }
 }

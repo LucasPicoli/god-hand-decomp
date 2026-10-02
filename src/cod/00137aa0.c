@@ -1,5 +1,5 @@
 extern int D_0076A7A4;
-extern void Tramp_func_0030A2E0_00147548(int a, int b, void *buf);
+extern void MtxMultiply(int a, int b, void *buf);
 
 __attribute__((section(".text.SetGlobalToggle_375700")))
 void SetGlobalToggle_375700(int a0) {
@@ -27,9 +27,9 @@ void InitStructDefaults_137AA0(char *a0) {
     *(float *)(a0 + 0x1C) = 1.06f;
 }
 
-__attribute__((section(".text.BuildAndApplyTranslationMatrix_147B18")))
-void BuildAndApplyTranslationMatrix_147B18(int a0, int a1, int a2) {
+__attribute__((section(".text.MtxMulTransVec")))
+void MtxMulTransVec(int a0, int a1, int a2) {
     int buf[16];
-    BuildTranslationMatrix_1476D0(buf, a2);
-    Tramp_func_0030A2E0_00147548(a0, a1, buf);
+    MtxInitTransVec(buf, a2);
+    MtxMultiply(a0, a1, buf);
 }

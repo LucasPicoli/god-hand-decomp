@@ -3,7 +3,7 @@
 #include "godhand/cSnd.h"
 
 extern int cSnd_FindFreeSeSlot(cSnd *self);
-extern cSndSeEntry *cSnd_GetSeEntry(cSnd *self, int idx);
+extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int idx);
 extern void cSnd_SeVoiceCallAll(cSnd *self, int idx, int flag);
 extern void cSndSeVoice_Stop(cSndSeVoice *v);
 extern void cSndMemHeap_Free(cSndMemHeap *parent, int addr);
@@ -18,7 +18,7 @@ int cSnd_ReserveSeSlot(cSnd *self, int id)
         return slot;
     slot = cSnd_FindFreeSeSlot(self);
     if (slot != -1) {
-        if (cSeData_LoadFromBuf(cSnd_GetSeEntry(self, slot), slot, id, 0x7FFFFFFF) == 0)
+        if (cSeData_LoadFromBuf(cSnd_GetSeData(self, slot), slot, id, 0x7FFFFFFF) == 0)
             return -1;
     }
     return slot;
@@ -32,7 +32,7 @@ int cSndSeVoice_CheckEnd(cSnd *self, int idx)
 {
     cSnd_SeVoiceCallAll(self, idx, 1);
     do { } while (0);
-    return cSeData_SetFailed(cSnd_GetSeEntry(self, idx));
+    return cSeData_SetFailed(cSnd_GetSeData(self, idx));
 }
 
 /* Fades out every voice with this key, or releases it if it has no live handle.

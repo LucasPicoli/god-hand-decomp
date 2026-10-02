@@ -8,7 +8,7 @@ extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
 extern int D_007474A8;
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -18,10 +18,10 @@ extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void func_002DB7A8(void);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f12);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f12);
+extern float SetMotionStep(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
+extern void cObjBase_addNullSpeed(void *a0, float f12);
 
 __attribute__((section(".text.func_00118158")))
 void func_00118158(char *s1)
@@ -36,7 +36,7 @@ void func_00118158(char *s1)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) |= 0x10000;
     s2 = *(char **)(s1 + 0x694);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
     s0 = (char *)&D_005864F0;
     cEmManage_SetPlCatched(s0);
     cEmManage_SetSlotWait(s0, 2);
@@ -135,7 +135,7 @@ void func_00118158(char *s1)
         case 3: *(float *)(s1 + 0x5A8) = 1.79999995f; break;
         case 4: *(float *)(s1 + 0x5A8) = 2.20000005f; break;
         }
-        SetField444SignedByFlag434_158288(s1, *(float *)(s1 + 0x5A8));
+        SetMotionStep(s1, *(float *)(s1 + 0x5A8));
         func_00124EC0(s1);
         if (moveMotion(s1) == 0 || *(short *)(s1 + 0x568) > 0)
             goto tail3;
@@ -160,15 +160,15 @@ void func_00118158(char *s1)
     join5:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
     tail3:
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 6:
         cEm00_GetPlMotion(s2, 0x40, 0.0f, 0.0f);
@@ -191,14 +191,14 @@ void func_00118158(char *s1)
         }
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     default:
         break;

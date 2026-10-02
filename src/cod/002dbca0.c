@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
 extern int cEmManage_CkPlCatched(void *p);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern int D_005864F0;
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern void func_00129718(void *a, void *b, int c);
@@ -16,7 +16,7 @@ void func_002DBCA0(void *arg)
     char *g;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -28,7 +28,7 @@ void func_002DBCA0(void *arg)
                     r[0x2F7] = 0;
                     r[0x2F5] = 0x11;
                     r[0x648] = 0x14;
-                    ClearField15F4Bit1_124F60(r, 0, 0);
+                    pl00_clearMotionCam(r, 0, 0);
                 }
             }
         }
@@ -43,7 +43,7 @@ void func_002DC2F0(void *arg)
     char *g;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -69,7 +69,7 @@ void func_002DC420(void *arg)
     char *g;
 
     s0 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -94,7 +94,7 @@ void func_002DC548(void *arg)
     char *g;
 
     s0 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -119,7 +119,7 @@ void func_002DC898(void *arg)
     char *g;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -144,7 +144,7 @@ void func_002DD270(void *arg)
     char *g;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (s1 == 0) {
         return;
     }

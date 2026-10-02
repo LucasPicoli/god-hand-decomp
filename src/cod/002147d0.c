@@ -1,15 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern int Forward30F348_31CFE0(void);
+extern void *Getplayer(void);
+extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float f);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int Obj0000_Get_Byte_2F4_EQ_1_10B5B8(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -38,13 +38,13 @@ void func_002147D0(void *a0)
     int bs;
     int gb;
 
-    g = Obj0000_Get_D_00747A94_2DB6B0();
+    g = Getplayer();
     *(int *)(p + 0x16D0) = *(int *)(p + 0x16D0) | 0x400;
     switch (*(unsigned char *)(p + 0x2F6)) {
     case 0:
         s1v = *(unsigned char *)(p + 0x2F7);
         if (s1v == 2) {
-            s1v = Forward30F348_31CFE0() & 1;
+            s1v = irand() & 1;
         }
         if (*(unsigned char *)(p + 0x17C3) != 0) {
             s1v = s1v ^ 1;
@@ -372,15 +372,15 @@ void func_002147D0(void *a0)
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     case 1:
         {
-            char *q = (char *)Obj0000_Get_D_00747A94_2DB6B0();
-            AddScaledDeltaToField_104_2A7498(p, *(int *)(q + 0xF0),
+            char *q = (char *)Getplayer();
+            cGameObj_SetTgtTurn(p, *(int *)(q + 0xF0),
                                             *(float *)(p + 0x5A8) * 0.0981747732f);
         }
         if (moveMotion(p) != 0 && *(unsigned char *)(p + 0x2F7) != 2) {
             func_002705D8(p);
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
     }
     switch (*(int *)(p + 0x564)) {
     default:

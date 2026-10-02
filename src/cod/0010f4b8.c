@@ -2,7 +2,7 @@
 #include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int moveMotion(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj2810_SetState_D_a1(void *a0, int a1);
@@ -18,10 +18,10 @@ extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1,
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 extern void func_00124EC0(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float fRand0_1(void);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern unsigned char D_00462FC0[];
@@ -32,7 +32,7 @@ void func_0025B5A8(void *a0){ char *s0=(char*)a0;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0: {
   int nb=Obj0000_Get_Byte_17C3_NZ_2_276468(s0)&0xFFFF;
-  int f=Forward30F348_31CFE0()&1; int s2, s1;
+  int f=irand()&1; int s2, s1;
   *(unsigned char*)(s0+0x2F7)=f;
   if(*(unsigned char*)(s0+0x2F7)){ int b=*(int*)(s0+0x304); s2=*(int*)(b+0x3DF4)+b; s1=*(int*)(b+0x3DF8)+b; }
   else { int b=*(int*)(s0+0x304); s2=*(int*)(b+0x3DEC)+b; s1=*(int*)(b+0x3DF0)+b; }
@@ -52,7 +52,7 @@ void func_0027C2B8(void *a0){ char *s0=(char*)a0; int v0; float f;
  *(int*)(s0+0x1560)|=3;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0:
-  *(unsigned char*)(s0+0x2F7)=Forward30F348_31CFE0()&1;
+  *(unsigned char*)(s0+0x2F7)=irand()&1;
   if(*(unsigned char*)(s0+0x2F7)){ v0=*(int*)(s0+0x304);
    func_002A8578(s0,*(int*)(v0+0x18)+v0,*(int*)(v0+0x1C)+v0,0.0f,5,0,0);
    InitRenderStruct_2A8608(s0,0xBC,0x1E,0,2,*(int*)(s0+0x15B0)); }
@@ -126,7 +126,7 @@ void func_0010F4B8(void *a0)
         if (moveMotion(s0) != 0) {
             if (*(unsigned char *)(s0 + 0x2F7) == 0)
                 Obj0000_Clear_Fields_640_648_124E58(s0);
-            ClearField15F4Bit1_124F60(s0, 1, 0);
+            pl00_clearMotionCam(s0, 1, 0);
             *(char *)(s0 + 0x2F4) = 0;
             *(char *)(s0 + 0x2F5) = 0;
             *(char *)(s0 + 0x2F6) = 0;
@@ -141,7 +141,7 @@ void func_0010F4B8(void *a0)
     if (func_00123938(s0, 1) != 0) {
         if (*(unsigned char *)(s0 + 0x2F7) == 0)
             Obj0000_Clear_Fields_640_648_124E58(s0);
-        ClearField15F4Bit1_124F60(s0, 1, 0);
+        pl00_clearMotionCam(s0, 1, 0);
     }
 }
 
@@ -151,7 +151,7 @@ void func_00287E50(void *a0)
     char *s0 = (char *)a0;
     *(float *)(s0 + 0x54C) = 3.0f;
     *(int *)(s0 + 0x15B0) = *(int *)(s0 + 0x15B0) | 0x10000;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     *(int *)(s0 + 0x258) = *(int *)(s0 + 0x258) | 0x80000000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {

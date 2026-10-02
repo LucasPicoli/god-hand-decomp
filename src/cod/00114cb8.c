@@ -4,16 +4,16 @@
 extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern unsigned char D_005FEE00[];
 extern int D_00462FC0;
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern void func_0012A8D8(void *a0);
 
@@ -22,7 +22,7 @@ void func_0028A9E8(void *a0)
 {
     char *s0 = (char *)a0;
     float one;
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
@@ -46,8 +46,8 @@ void func_0028A9E8(void *a0)
             *(unsigned char *)(s0 + 0x2F7) = 0;
         } else {
             one = 1.0f;
-            AddScaledVecToField_100_14F9F0(s0, one);
-            AddScaledXfmVecToField_F0_14F928(s0, one);
+            cObjBase_addNullSpeed_Rotation(s0, one);
+            cObjBase_addNullSpeed(s0, one);
         }
         break;
     }
@@ -67,7 +67,7 @@ void func_00114CB8(void *a0)
         func_001268F0(s0);
         Obj0000_Clear_Fields_640_648_124E58(s0);
         func_00126770(s0);
-        ClearField15F4Bit1_124F60(s0, 0, 0);
+        pl00_clearMotionCam(s0, 0, 0);
         v0 = *(char **)(s0 + 0x304);
         p1 = *(int *)(v0 + 0x3D8) + (int)v0;
         p2 = *(int *)(v0 + 0x3DC) + (int)v0;
@@ -84,8 +84,8 @@ void func_00114CB8(void *a0)
             *(char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
     if ((*(unsigned short *)(s0 + 0x3AC) & 1) && *(int *)(s0 + 0x698) == 0) {

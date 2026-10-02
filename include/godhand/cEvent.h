@@ -24,7 +24,7 @@
 
 /* cEvent.flags bits. */
 #define CEVENT_F_ACTIVE       0x1         /* a cutscene is running */
-#define CEVENT_F_INITED       0x2         /* InitSubState_2975F8 has run */
+#define CEVENT_F_INITED       0x2         /* cEvent_initEnv has run */
 #define CEVENT_F_MOVE_ON      0x4         /* a move scene is running */
 #define CEVENT_F_MOVE_STEP    0x8         /* the move scene steps before anything else */
 #define CEVENT_F_CREATED      0x10        /* the create stage has finished */

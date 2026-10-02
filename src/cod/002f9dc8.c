@@ -3,7 +3,7 @@
 extern void UpdateObjByIndexedOp_2FBE50(void *a0);
 extern void cNode_setLocalTranslation(void *self, void *v);
 extern void func_002FBED0(void *self);
-extern void Tramp_func_0030A548_00147528(void *a, void *b);
+extern void MtxCopy(void *a, void *b);
 extern int D_0076B580[];
 
 /* sn-2.95.3-136 */
@@ -110,7 +110,7 @@ void func_00318700(char *this, char *other) {
     b = *(char **)(other + 0x144);
     a = *(char **)(this + 0x144);
     for (i = 0; i < *(unsigned char *)(this + 0x2B4); i++) {
-        Tramp_func_0030A548_00147528(a, b);
+        MtxCopy(a, b);
         *(int *)(a + 0x154) |= 8;
         a = *(char **)(a + 0x144);
         b = *(char **)(b + 0x144);

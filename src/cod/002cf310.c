@@ -13,7 +13,7 @@ extern char D_00583F20[];
 extern void cSnd_SeVoiceCallAll(cSnd *, int, int);
 extern void cDvd_cancel(char *, int);
 extern void func_00322F58(void);
-extern void UnlinkAndCoalesceNode_2A9680(int, void *);
+extern void cHeap_free(int, void *);
 extern void func_00375A78(int);
 extern void Tramp_sceSifFreeSysMemory_3B5A50(int);
 extern void cSeData_HeapFree(cSeData *, int);
@@ -96,7 +96,7 @@ void cSeData_Release(cSeData *d)
             void *b = d->buf;
             void *pool = d->pool;
             if (b != 0)
-                UnlinkAndCoalesceNode_2A9680((int)pool, b);
+                cHeap_free((int)pool, b);
         }
         func_00375A78(d->bankIdS);
     }
@@ -105,7 +105,7 @@ void cSeData_Release(cSeData *d)
     if (d->f1C != 0)
         cSeData_HeapFree(d, d->f1C);
     if (d->f24 != 0)
-        UnlinkAndCoalesceNode_2A9680((int)d->pool, (void *)d->f24);
+        cHeap_free((int)d->pool, (void *)d->f24);
     func_003A52F0(d, 0, 0x40);
     d->f28 = -1;
     d->f3C = -1;

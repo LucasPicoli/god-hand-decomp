@@ -17,7 +17,7 @@ extern void cEvent_startCreateWork();
 extern int cEvent_isEndCreateWork();
 extern int func_0();
 extern void cSnd_BgmEvFadeDefault();
-extern void Obj0000_Set_D_003C2555_One_2B65F0();
+extern void cNowLoading_exitTask();
 
 extern int cEvent_isLoadEnd(cEvent *);
 extern int cEvent_isLoadEndAfterCut(cEvent *);
@@ -117,7 +117,7 @@ int func_00296958(cEvent *self) {
         self->flags = flags;
         t = flags;
         if (!(((unsigned long)t >> 5) & 1)) {
-            Obj0000_Set_D_003C2555_One_2B65F0(D_003C2558);
+            cNowLoading_exitTask(D_003C2558);
             self->phase = 0;
             self->state = CEVENT_STATE_PLAY;
             self->unk06 = 0;
@@ -136,7 +136,7 @@ int func_00296958(cEvent *self) {
         self->state = CEVENT_STATE_PLAY;
         self->unk06 = 0;
         self->unk07 = 0;
-        Obj0000_Set_D_003C2555_One_2B65F0(D_003C2558);
+        cNowLoading_exitTask(D_003C2558);
         return 1;
     }
     return 0;

@@ -5,10 +5,10 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int a4, int a5);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0010A438(void *a0);
 
 
@@ -91,7 +91,7 @@ void func_0010DE70(void *a0)
         if (*(int *)(s1 + 0x640) != 0)
             *(char *)(s1 + 0x648) = 0x14;
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
@@ -109,8 +109,8 @@ void func_0010DE70(void *a0)
         }
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x200) != 0)
             *(float *)(s1 + 0x338) = *(float *)(s1 + 0x338) * 1.5f;
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     }
@@ -119,5 +119,5 @@ void func_0010DE70(void *a0)
         func_0010A438(s1);
     }
     if (func_00123938(s1, 1) != 0)
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
 }

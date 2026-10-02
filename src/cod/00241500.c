@@ -4,8 +4,8 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern char *D_00586A58;
 extern char *D_00586A5C;
 
@@ -226,8 +226,8 @@ void func_00241500(void *a0)
         *(char *)(p + 0x617) = 1;
         *(float *)(p + 0x54C) = 3.0f;
         moveMotion(p);
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         {
             int bit = *(int *)(p + 0x16D0) & 0x20000000;
             int flg = bit != 0;
@@ -264,8 +264,8 @@ void func_00241500(void *a0)
         *(char *)(p + 0x617) = 1;
         *(float *)(p + 0x54C) = 3.0f;
         moveMotion(p);
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         {
             float d = *(float *)(p + 0x600) - *(float *)(p + 0x5A8);
 

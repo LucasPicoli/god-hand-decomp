@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -8,12 +8,12 @@ extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
 extern void cEm00_GetPlMotion(void *a0, int a1, float a2, float a3);
 extern void func_00124EC0(void *a0);
 extern int  moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0012C0F8(void *a0, int a1);
 extern void func_0012C348(void *a0, int a1);
-extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
+extern void cSnd_DieDemoStart(void *a0);
 extern int  D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
@@ -62,7 +62,7 @@ void func_001212D0(void *a0)
     *(float *)(s0 + 0x54C) = 5.0f;
     *(int *)(s0 + 0x250) |= 0x10000;
     s1 = *(char **)(s0 + 0x694);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -104,7 +104,7 @@ void func_001212D0(void *a0)
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {
             if (*(short *)(s0 + 0x54A) > 0) {
-                ClearField15F4Bit1_124F60(s0, 0, 0);
+                pl00_clearMotionCam(s0, 0, 0);
                 *(char *)(s0 + 0x2F4) = 1;
                 *(char *)(s0 + 0x2F5) = 4;
                 *(char *)(s0 + 0x2F6) = 0;
@@ -113,8 +113,8 @@ void func_001212D0(void *a0)
                 D_00747A24 |= 8;
             }
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
             if (*(int *)(s0 + 0x15B0) != 0) {
                 *(int *)(s0 + 0x15B0) = 0;
@@ -134,7 +134,7 @@ void func_001212D0(void *a0)
                 }
                 if (*(short *)(s0 + 0x54A) <= 0) {
                     *(short *)(s0 + 0x54A) = 0;
-                    OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
+                    cSnd_DieDemoStart(D_005FEE00);
                     cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                     *(unsigned short *)(s0 + 0x434) |= 8;
                 }

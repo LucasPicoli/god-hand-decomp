@@ -1269,7 +1269,7 @@ extern "C" {
 extern const char D_0045D130[];
 }
 
-__attribute__((section(".text.ostream___ls")))
+__attribute__((section(".text.__ls__7ostreamPCc")))
 ostream& ostream::operator<<(const char *s)
 {
   if (opfx())

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void func_00280EB8(void *a0, int a1, int a2);
@@ -65,7 +65,7 @@ void func_0027F970(void *a0)
         if (p != 0) {
             ok = *(short *)(p + 0x548) / 2 >= *(short *)(p + 0x54A);
         }
-        if (ok && (Forward30F348_31CFE0() & 1)) {
+        if (ok && (irand() & 1)) {
             char *t = *(char **)(s0 + 0x304);
             func_002A8578(s0, *(int *)(t + 0x98) + (int)t, *(int *)(t + 0x9C) + (int)t, 0.0f, 5, z, 0);
         } else {

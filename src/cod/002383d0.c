@@ -7,15 +7,15 @@
 extern char D_00462FC0[];
 extern int D_007474A8;
 
-extern int Obj0000_Get_D_00747A94_2DB6B0();
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern int Getplayer();
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
+extern float SetMotionStep(void *a0, float f);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f12);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f12);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
+extern void cObjBase_addNullSpeed(void *a0, float f12);
 extern void func_00260B30(void *a0);
 
 __attribute__((section(".text.func_002383D0")))
@@ -25,8 +25,8 @@ void func_002383D0(char *s0)
     char *s1;
     char *s2;
 
-    s3 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    s3 = (char *)Getplayer();
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {
@@ -80,14 +80,14 @@ void func_002383D0(char *s0)
         }
         *(float *)(s0 + 0x54C) = 5.0f;
         if ((*(int *)(s0 + 0x16D4) & 0x4000000) != 0) {
-            SetField444SignedByFlag434_158288(s0, *(float *)(s0 + 0x5A8) * 3.0f);
+            SetMotionStep(s0, *(float *)(s0 + 0x5A8) * 3.0f);
         } else {
-            SetField444SignedByFlag434_158288(s0,
+            SetMotionStep(s0,
                 *(float *)(s0 + 0x5A8) + *(float *)(s0 + 0x5A8));
         }
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         {
             int t = *(unsigned short *)(s0 + 0x568) - 1;
 
@@ -156,8 +156,8 @@ void func_002383D0(char *s0)
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     default:
         break;

@@ -2,7 +2,7 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern int D_005FEE00;
 
@@ -33,7 +33,7 @@ void func_0027C460(void *a0)
             f0 = f1 - *(float *)(s0 + 0x5A8);
             *(float *)(s0 + 0x600) = f0;
             if (f0 <= 0.0f) {
-                switch (Forward30F348_31CFE0() % 5) {
+                switch (irand() % 5) {
                 case 0:
                 default: cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xA, s0, 0, 0, 0, 0); break;
                 case 1: cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xB, s0, 0, 0, 0, 0); break;

@@ -30,8 +30,8 @@ void SetField_ACD0_1FE348(int a0, int a1) {
     *(int*)(a0 + 0xACD0) = a1;
 }
 
-__attribute__((section(".text.IsFieldActive_1FE358")))
-int IsFieldActive_1FE358(int a0) {
+__attribute__((section(".text.cDamageManage_CkHitStop")))
+int cDamageManage_CkHitStop(int a0) {
     return *(int*)(a0 + 0xACD0) != 0;
 }
 
@@ -255,8 +255,8 @@ extern int D_00747A80;
 extern unsigned char D_0041D5A8[];
 extern unsigned char D_0041D540[];
 
-__attribute__((section(".text.SetFlagBitF30IfField35Active_1F6EE0")))
-void SetFlagBitF30IfField35Active_1F6EE0(unsigned char *a0)
+__attribute__((section(".text.cActionButtonUnit_setOk")))
+void cActionButtonUnit_setOk(unsigned char *a0)
 {
     if (a0[0x35] != 1) {
         return;
@@ -413,9 +413,9 @@ void cCoreSave_initItem(cCoreSave *self)
     self->data->itemNum = 1;
 }
 
-__attribute__((section(".text.cCoreSave_getStat8A")))
+__attribute__((section(".text.cCoreSave_getComboST")))
 /* stat8A, forced to its maximum by the 0x1000000 cheat. */
-unsigned char cCoreSave_getStat8A(cCoreSave *self) {
+unsigned char cCoreSave_getComboST(cCoreSave *self) {
     cCoreSaveData *data;
     cCoreSaveData *q;
     data = self->data;
@@ -556,7 +556,7 @@ void SetField198AndForward_12E640(int *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.Forward30F348_31CFE0")))
-void Forward30F348_31CFE0(void) {
+__attribute__((section(".text.irand")))
+void irand(void) {
     func_0030F348();
 }

@@ -17,9 +17,9 @@ extern void Obj2810_ClearState_4(void *a0);
 extern void SetBytes2F4Mode4_283240(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern int moveMotion(void *a0);
-extern int Forward30F348_31CFE0(void);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern int irand(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_0026DB00(void *a0, int a1, int a2);
@@ -143,7 +143,7 @@ void func_0024A768(void *a0)
         *(int *)(s0 + 0x16D0) |= 0x800000;
         if (moveMotion(s0) != 0) {
             if (cCoreSave_getGameLevel(&D_00569B70) < 3) {
-                if ((Forward30F348_31CFE0() & 1) != 0) {
+                if ((irand() & 1) != 0) {
                     if (*(float *)(s0 + 0x618) > 64.0f) {
                         *(char *)(s0 + 0x2F4) = 0;
                         *(unsigned char *)(s0 + 0x2F5) = 0x6C;
@@ -158,8 +158,8 @@ void func_0024A768(void *a0)
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
@@ -169,7 +169,7 @@ void func_0024A768(void *a0)
         if (t <= 0.0f) {
             *(float *)(s0 + 0x600) = 35.0f;
             cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x1E, s0, 0, 0, 0, 0);
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 func_0026BEF0(s0, 0x19, 0);
                 func_0026BEF0(s0, 0x19, 2);
                 if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {

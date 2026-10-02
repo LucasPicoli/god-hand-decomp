@@ -12,9 +12,9 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void func_002A8578(void *a0, int a1, int a2, int a4, float a3, int a5, int a6);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0010A438(void *a0);
 
 
@@ -109,7 +109,7 @@ void func_0010E230(void *a0)
         if (*(int *)(s1 + 0x640) != 0)
             *(char *)(s1 + 0x648) = 0x14;
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
@@ -132,8 +132,8 @@ void func_0010E230(void *a0)
         acc = *(float *)(s1 + 0x1588);
         *(float *)(s1 + 0x338) = *(float *)(s1 + 0x338) + acc;
         *(float *)(s1 + 0x1588) = acc * 0.9f;
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     default:
@@ -141,5 +141,5 @@ void func_0010E230(void *a0)
     }
     func_0010A438(s1);
     if (func_00123938(s1, 1) != 0)
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
 }

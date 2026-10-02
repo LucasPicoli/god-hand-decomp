@@ -1,7 +1,7 @@
-/* Forward2D0658_2D0630: `func_002D0658(0.0f)` — forwarding call with a float arg. */
+/* cSnd_SetBgmTblNo: `func_002D0658(0.0f)` — forwarding call with a float arg. */
 extern void func_002D0658(float);
-__attribute__((section(".text.Forward2D0658_2D0630")))
-void Forward2D0658_2D0630(void) { func_002D0658(0.0f); }
+__attribute__((section(".text.cSnd_SetBgmTblNo")))
+void cSnd_SetBgmTblNo(void) { func_002D0658(0.0f); }
 
 /* cSceAtManager_isHit: chain — alloc via cSceAtManager_getUnit(a0,a1); if non-null,
  * tail-process via func_002C0ED0(obj, a2); else return 0. */

@@ -11,7 +11,7 @@ extern void ReleaseObj(char *a0);
 extern void func_001FE370(char *a0, char *a1);
 extern void func_002A73C8(char *a0, char *a1);
 extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(int a0, int a1, int *a2);
-extern void UnlinkAndCoalesceNode_2A9680(int, int *);
+extern void cHeap_free(int, int *);
 extern int D_00747A34;
 
 __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
@@ -39,8 +39,8 @@ void ReleaseField6ECByTag564_26B1E8(void *a0)
     }
 }
 
-__attribute__((section(".text.LookupSlotPopulateFieldsAndDispatch_1F7858")))
-void LookupSlotPopulateFieldsAndDispatch_1F7858(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
+__attribute__((section(".text.cActionButton_set")))
+void cActionButton_set(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
 {
     int *p = func_001F7798(a0);
     if (p != 0) {
@@ -58,7 +58,7 @@ void LookupSlotPopulateFieldsAndDispatch_1F7858(int a0, int a1, int a2, int a3, 
 __attribute__((section(".text.__builtin_delete")))
 void __builtin_delete(int *a0) {
     if (a0) {
-        UnlinkAndCoalesceNode_2A9680(*(int*)((char*)a0 - 0x20), a0);
+        cHeap_free(*(int*)((char*)a0 - 0x20), a0);
     }
 }
 

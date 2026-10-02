@@ -8,8 +8,8 @@ extern void KillEffect(void *a0, int a1, int a2);
 extern void cHeatSys_SetHeatGage(void *a0, float f12);
 extern int cHeatSys_SubHeatGage(void *a0, int a1, float f12);
 extern int cHeatSys_GetHeatLv(void *a0);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern void *Getplayer(void);
+extern float SetMotionStep(void *a0, float f12);
 extern void cOmWeapon_kickOff(int a0);
 
 extern float D_003BD4A0;
@@ -81,13 +81,13 @@ void func_00123460(void *arg)
             case 4:
             case 6:
             default:
-                SetEffect(0, 0x25, Obj0000_Get_D_00747A94_2DB6B0(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x25, Getplayer(), 0, 3, 0xFFFFFFFFu);
                 break;
             case 1:
             case 3:
             case 5:
             case 7:
-                SetEffect(0, 0x73, Obj0000_Get_D_00747A94_2DB6B0(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x73, Getplayer(), 0, 3, 0xFFFFFFFFu);
                 break;
             }
             }
@@ -108,7 +108,7 @@ void func_00123460(void *arg)
             case 3:
             case 5:
             case 7:
-                SetEffect(0, 0x72, Obj0000_Get_D_00747A94_2DB6B0(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x72, Getplayer(), 0, 3, 0xFFFFFFFFu);
                 break;
             }
         }
@@ -116,5 +116,5 @@ void func_00123460(void *arg)
 
     *(float *)(s0 + 0x5DC) = 1.0f;
     *(float *)(s0 + 0x5A8) = 1.0f;
-    SetField444SignedByFlag434_158288(s0, 1.0f);
+    SetMotionStep(s0, 1.0f);
 }

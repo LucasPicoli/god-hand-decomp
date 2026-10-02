@@ -16,9 +16,9 @@ extern void func_00124EC0(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
 extern void func_00129630(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_0010A438(void *a0);
 
@@ -40,7 +40,7 @@ void func_0010EE80(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -92,10 +92,10 @@ void func_0010EE80(void *a0)
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
@@ -104,7 +104,7 @@ void func_0010EE80(void *a0)
     func_0010A438(s1);
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
     } else {
         if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
             char *g = D_005FEE00;

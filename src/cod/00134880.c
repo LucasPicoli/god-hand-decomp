@@ -10,10 +10,10 @@ extern int D_00429DD8;
 extern int SetField214PtrThenInit_1B6F38(void *obj);
 extern char *InitFields_1B6E90(char *a0);
 extern void func_00305908(void);
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
+extern void cActionButton_set(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
 extern char D_00568288;
 extern void MtxInitRotVec(void *a0, int a1, int a2);
-extern void Tramp_func_0030A2E0_00147548(int a0, int a1, void *a2);
+extern void MtxMultiply(int a0, int a1, void *a2);
 
 __attribute__((section(".text.func_002A8578")))
 int func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12) {
@@ -117,7 +117,7 @@ void espSys_effDataRegist(void)
 __attribute__((section(".text.func_002DB770")))
 void func_002DB770(void)
 {
-    LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0xB, 0x13, 0x10, 0, 0, 0);
+    cActionButton_set(&D_00568288, 0xB, 0x13, 0x10, 0, 0, 0);
 }
 
 struct buf_00147B60 { char b[0x40]; };
@@ -127,5 +127,5 @@ void MtxMulRotVec(int a0, int a1, int a2, int a3)
 {
     struct buf_00147B60 buf;
     MtxInitRotVec(&buf, a2, a3 & 0xFF);
-    Tramp_func_0030A2E0_00147548(a0, a1, &buf);
+    MtxMultiply(a0, a1, &buf);
 }

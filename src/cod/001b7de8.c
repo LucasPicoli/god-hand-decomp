@@ -11,7 +11,7 @@ extern void func_002B43B0(void *);
 extern void func_002B45E8(void *);
 extern char *D_003C23A4;
 extern int cDamageManage_ReleaseDamageGive(void *a, void *b);
-extern void Tramp_00312708_1B79B0(void *a0);
+extern void cOmBase_dieCommon(void *a0);
 extern int D_00574380;
 extern void func_003870E0(int);
 
@@ -76,7 +76,7 @@ void func_001C8DD8(char *a0) {
         }
     }
     if (*(unsigned char *)(a0 + 0x640) != 0) {
-        Tramp_00312708_1B79B0(a0);
+        cOmBase_dieCommon(a0);
         return;
     }
     vt = *(struct VtEnt **)(a0 + 0x214);

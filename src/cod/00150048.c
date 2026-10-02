@@ -176,8 +176,8 @@ void *cSndSeVoice_Ctor(void *a0) {
     return a0;
 }
 
-__attribute__((section(".text.func_00308F18")))
-void *func_00308F18(void *a0) {
+__attribute__((section(".text.cIDParam")))
+void *cIDParam(void *a0) {
     cIDParam_initialize(a0);
     return a0;
 }

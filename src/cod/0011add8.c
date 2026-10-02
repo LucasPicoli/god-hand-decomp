@@ -2,9 +2,9 @@
 
 extern unsigned char D_005FEE00[];
 extern unsigned char D_007474A0[];
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
@@ -12,8 +12,8 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
@@ -57,7 +57,7 @@ void func_0011ADD8(void *a0)
 
         switch (*(unsigned char *)(s1 + 0x2F7)) {
         case 0: default:
-            switch (Forward30F348_31CFE0() % 5) {
+            switch (irand() % 5) {
             case 0: default: {
                 char *v0 = *(char **)(s1 + 0x304);
                 s3v = *(int *)(v0 + 0x158) + (int)v0;
@@ -130,7 +130,7 @@ void func_0011ADD8(void *a0)
         g = (char *)&D_005FEE00;
         cSnd_SeCall_2CBA48(g, 0, 0xD7, s1, 0, 0, 0, 0);
         cSnd_SeCall_2CBA48(g, 0, 0x123, s1, 0, 0, 0, 0);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
         func_0012C348(s1, 2);
         p = *(char **)(s1 + 0x678);
         if (p != 0) {
@@ -171,8 +171,8 @@ void func_0011ADD8(void *a0)
             }
             break;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x20) != 0) {
             *(int *)(s1 + 0x15B0) = 1;
             if (*(unsigned char *)(s1 + 0x61E) != 0 || (*(int *)(g + 8) & 0xF0) != 0) {
@@ -218,8 +218,8 @@ void func_0011ADD8(void *a0)
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         if (func_00123938(s1, 1) == 0) {
             func_0010A438(s1);
         }

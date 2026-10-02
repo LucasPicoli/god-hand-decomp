@@ -2,14 +2,14 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void CopyVec3From110To120_14A2B0(void *a0);
-extern void Forward30A2B0_2DA9B8(void *a0);
+extern void cModel_calcNullPart(void *a0);
+extern void Add_nullspeed(void *a0);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 extern void func_002A7CA0(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, void *a1, float a2);
+extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int D_007476B0;
 extern char D_005FEE00[];
 __attribute__((section(".text.func_00286D10"))) void func_00286D10(void *a0)
@@ -52,7 +52,7 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(void *a0)
       switch (*((int *) (s0 + 0x564)))
       {
         default:
-          if (Forward30F348_31CFE0() & 1)
+          if (irand() & 1)
         {
           v0 = *((int *) (s0 + 0x304));
           func_002A8578(s0, (*((int *) (v0 + 0x38))) + v0, (*((int *) (v0 + 0x3C))) + v0, 0.0f, 10, 0, 0);
@@ -78,14 +78,14 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(void *a0)
       *((unsigned char *) (s0 + 0x2F6)) = (*((unsigned char *) (s0 + 0x2F6))) + 1;
 
     case 1:
-      AddScaledDeltaToField_104_2A7498(s0, s0 + 0x1570, 0.098174773f);
-      if ((((((moveMotion(s0) != 0) && (((*((int *) (s0 + 0x15B0))) & 0x200) == 0)) && (f20 > 100.0f)) && ((*((int *) (s0 + 0x564))) != 0x2A7)) && ((*((int *) (s0 + 0x564))) != 0x2AB)) && ((Forward30F348_31CFE0() & 7) == 0))
+      cGameObj_SetTgtTurn(s0, s0 + 0x1570, 0.098174773f);
+      if ((((((moveMotion(s0) != 0) && (((*((int *) (s0 + 0x15B0))) & 0x200) == 0)) && (f20 > 100.0f)) && ((*((int *) (s0 + 0x564))) != 0x2A7)) && ((*((int *) (s0 + 0x564))) != 0x2AB)) && ((irand() & 7) == 0))
     {
       *((unsigned char *) (s0 + 0x2F6)) = 2;
       *((int *) (s0 + 0x15B0)) = (*((int *) (s0 + 0x15B0))) | 0x200;
     }
-      CopyVec3From110To120_14A2B0(s0);
-      Forward30A2B0_2DA9B8(s0);
+      cModel_calcNullPart(s0);
+      Add_nullspeed(s0);
       if (f20 < 1.0f)
     {
       float d;
@@ -112,13 +112,13 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(void *a0)
       *((unsigned char *) (s0 + 0x2F6)) = (*((unsigned char *) (s0 + 0x2F6))) + 1;
 
     case 3:
-      AddScaledDeltaToField_104_2A7498(s0, s0 + 0x1570, 0.098174773f);
+      cGameObj_SetTgtTurn(s0, s0 + 0x1570, 0.098174773f);
       if (moveMotion(s0) != 0)
     {
       *((unsigned char *) (s0 + 0x2F6)) = 0;
     }
-      CopyVec3From110To120_14A2B0(s0);
-      Forward30A2B0_2DA9B8(s0);
+      cModel_calcNullPart(s0);
+      Add_nullspeed(s0);
       break;
 
   }

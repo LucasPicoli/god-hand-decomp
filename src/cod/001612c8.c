@@ -13,7 +13,7 @@ extern char *D_003C23A4;
 extern unsigned int D_00747A8C[];
 extern int D_00747A84;
 extern int D_005FEE00;
-extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
+extern void cTaskWork_sleep(void *p, int a);
 extern void cMessage_deleteAll(void *p);
 extern void func_002CA6B0(void *p);
 extern void func_00306140(void);
@@ -22,7 +22,7 @@ extern void cTaskWork_exit(void *a0);
 extern void func_001D0C98(void *a0, int a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 extern void *cIDBase(void *a0);
-extern void Obj0000_Store_D_00747A44_2BE968(void *a0);
+extern void cRoomJump(void *a0);
 extern char D_0041F190[];
 extern char D_0041F6C8[];
 extern char D_0041FF30[];
@@ -121,7 +121,7 @@ void cScenario_endTask(void)
     char *f;
 
     while (f = D_00747470, *(unsigned char *)(f + 0x1C) != 0)
-        SetFieldsCESignalSemaSleep_2D5AA0(D_003C2F84->task.cur, 1);
+        cTaskWork_sleep(D_003C2F84->task.cur, 1);
     b = D_003C2F84->endFlagNo;
     if (b >= 0)
         if (b < 0x40)
@@ -279,7 +279,7 @@ void *func_001612C8(char *p)
     Ctor_0041F5E0(p + 0x730);
     VU0_SQC2_VF0(p, 0x830);
     VU0_SQC2_VF0(p, 0x840);
-    Obj0000_Store_D_00747A44_2BE968(p + 0x868);
+    cRoomJump(p + 0x868);
     Ctor_0041FB20(p + 0x880);
     cIDBase(p + 0x960);
     Ctor_0041FBE8(p + 0x9C0);

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void cEm00_setGoto(void *a0, int a1, int a2, int a3, float f);
 
@@ -29,7 +29,7 @@ int func_0026E588(void *a0) {
     if (*(int *)(s0 + 0x16EC) > 0) return 0;
     {
         char *vec = s0 + 0x1660;
-        char *r = Obj0000_Get_D_00747A94_2DB6B0();
+        char *r = Getplayer();
         float mag = capVu0MagnitudeSqXZ(vec, *(void **)(r + 0xF0));
         float sq = *(float *)(s0 + 0x16C8);
         if (mag < sq * sq) return 0;

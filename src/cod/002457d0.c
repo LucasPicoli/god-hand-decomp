@@ -3,8 +3,8 @@
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -33,8 +33,8 @@ void func_002457D0(void *a0)
         if (moveMotion(s0) != 0) {
             *(unsigned char *)(s0 + 0x2F6) += 1;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 2: {
         char *v0 = *(char **)(s0 + 0x304);
@@ -72,8 +72,8 @@ void func_002457D0(void *a0)
         if (moveMotion(s0) != 0) {
             *(unsigned char *)(s0 + 0x2F6) += 1;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 4: {
         char *v0 = *(char **)(s0 + 0x304);
@@ -86,8 +86,8 @@ void func_002457D0(void *a0)
         if (moveMotion(s0) != 0) {
             func_002705D8(s0);
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
 }

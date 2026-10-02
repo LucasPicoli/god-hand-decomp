@@ -5,7 +5,7 @@ extern void CopyVec3ToField30_147C40(float *a0, float *a1);
 extern void MtxInverse(void *a0, void *a1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern void func_001B6FB8(void *);
-extern int AllocActiveSlot_1FE218(int a0, int a1, int a2);
+extern int cDamageManage_CreateDamageTake(int a0, int a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a, void *b, int c, float d);
 extern void cCollisionSolidManage_CreateSphere(void *a, void *b, void *c, void *d, float e);
@@ -80,7 +80,7 @@ int func_001B0340(char *p)
     buf[1] = 0.0f;
     buf[2] = 0.0f;
     buf[3] = 1.0f;
-    *(int *)(p + 0x600) = AllocActiveSlot_1FE218((int)&D_00574380, (int)p, 1);
+    *(int *)(p + 0x600) = cDamageManage_CreateDamageTake((int)&D_00574380, (int)p, 1);
     if (*(int *)(p + 0x600) != 0) {
         flag = *(unsigned char *)(p + 0x2B4);
         *(int *)(buf + 4) = flag;

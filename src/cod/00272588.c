@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *func_002DDAB0(void *a0, int a1, float f);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_001D0AD0(void *a0);
 extern void cEm00_setGoto(void *a0, int a1, int a2, int a3, float f);
@@ -25,7 +25,7 @@ int func_00272588(char *a0) {
             return 0;
         }
         {
-            void *o = Obj0000_Get_D_00747A94_2DB6B0();
+            void *o = Getplayer();
             if (capVu0MagnitudeSqXZ(*(void **)((char *)o + 0xF0), *(void **)(s0 + 0xF0)) < 6.25f) {
                 return 0;
             }

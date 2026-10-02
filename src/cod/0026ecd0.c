@@ -2,7 +2,7 @@
 #include "godhand/cCoreSave.h"
 
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern unsigned short D_00747A50;
 extern char D_005FEE00[];
@@ -51,7 +51,7 @@ void func_0026ECD0(void *a0, int a1) {
     }
     p = D_005FEE00;
     cSnd_SeCall_2CBA48(p, 0, 0xF7, s1, 0, 0, 0, 0);
-    cSnd_SeCall_2CBA48(p, 1, (short)(Obj0000_Get_Field_424_1595F0(s1) + 0x14), s1, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(p, 1, (short)(GetSeqSEBase(s1) + 0x14), s1, 0, 0, 0, 0);
 lvl:
     switch (cCoreSave_getGameLevel(&D_00569B70)) {
     case 1:

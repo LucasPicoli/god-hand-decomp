@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *cSnd_GetSeEntry(void *a0, int a1);
+extern void *cSnd_GetSeData(void *a0, int a1);
 extern int D_0044CE48[];
 extern void func_002FBFB0(int a0);
 extern void UpdateObjByIndexedOp_2FBE50(int a0);
@@ -35,7 +35,7 @@ int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int
         p = D_0044CE48;
         s2 = 0;
         do {
-            void *e = cSnd_GetSeEntry(s3, *p);
+            void *e = cSnd_GetSeData(s3, *p);
             if (*(int *)((char *)e + 0x3C) == s1)
                 s4 = *(short *)p;
             s2++;
@@ -43,7 +43,7 @@ int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int
         } while (s2 < 0xC);
     }
 
-    r = cSnd_GetSeEntry(s3, s4);
+    r = cSnd_GetSeData(s3, s4);
     if (cSeData_IsAlive(r) == 0)
         return 0;
     {

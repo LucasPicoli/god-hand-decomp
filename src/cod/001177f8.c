@@ -4,7 +4,7 @@
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -13,9 +13,9 @@ extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -49,7 +49,7 @@ void func_001177F8(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     s2 = *(char **)(s1 + 0x694);
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
     cEmManage_SetPlCatched(&D_005864F0);
     cEmManage_SetSlotWait(&D_005864F0, 2);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x80000;
@@ -79,14 +79,14 @@ void func_001177F8(void *a0)
         }
         func_00124EC0(s1);
         if (moveMotion(s1)) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(unsigned char *)(s1 + 0x2F4) = 0;
             *(unsigned char *)(s1 + 0x2F5) = 0;
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }

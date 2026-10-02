@@ -3,12 +3,12 @@
 /* func_002373B0, 784 B, sn-2.95.3-136. Wave 2026-08-30 VU0P parked + nested Duff do{}while(0) before case 1 (label 0x002374E0, 0 mod 8; dispatch beq slot filled from before so no beql), case 3 store order 2F4 2F5 2F6 2F7. */
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002DB770(void);
 extern char D_00462FC0[];
 extern char D_007474A0[];
@@ -20,12 +20,12 @@ __attribute__((section(".text.func_002373B0")))
 void func_002373B0(void *a0)
 {
     char *s0 = (char *)a0;
-    char *s1 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    char *s1 = (char *)Getplayer();
     char *p;
     char *q;
     int b;
 
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -62,8 +62,8 @@ void func_002373B0(void *a0)
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(short *)(s1 + 0x54A) > 0) {
             if (*(short *)(s0 + 0x56A) != 0) {
                 *(short *)(s0 + 0x56A) = *(unsigned short *)(s0 + 0x56A) - 1;
@@ -99,8 +99,8 @@ void func_002373B0(void *a0)
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 0x1) != 0) {
             char *vt = *(char **)(s0 + 0x214);
             int (*fp)() = *(int (**)())(vt + 0xAC);

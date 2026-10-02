@@ -6,7 +6,7 @@
 extern void func_001331B8(char *a0, long a1, int a2);
 extern char D_005CAE50[];
 extern void cModel_calcParts(void *model);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern void MtxInitRotY(void *a0, float angle);
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 
@@ -155,7 +155,7 @@ void cOmWeapon_kickOff(cOmWeapon *self) {
     self->fallSpeed = 0.065f;
     self->parent = 0;
     mtx = &f[8];
-    MtxInitRotY(mtx, *(float *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x104));
+    MtxInitRotY(mtx, *(float *)(Getplayer() + 0x104));
     self->vel.x = 0.1f;
     self->vel.y = 0.05f;
     self->vel.z = -0.1f;

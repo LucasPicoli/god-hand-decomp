@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_0026B9E8(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005FEE00[];
 
@@ -98,7 +98,7 @@ void func_00242880(void *a0)
     fr.h72 = 0;
     fr.b74 = 0;
     fr.i78 = 0;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
 
     *(int *)(s0 + 0x16D0) |= 0x10000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
@@ -152,8 +152,8 @@ void func_00242880(void *a0)
             *(unsigned char *)(s0 + 0x2F6) = 0;
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     default:

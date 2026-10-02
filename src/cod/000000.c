@@ -40,18 +40,18 @@ void Obj0000_Clear_Fields_50_To_7C_13C5C8(void *a0) {
 
 INCLUDE_ASM("nonmatching", func_00100000);
 
-__attribute__((section(".text.NoOp_14E768")))
-void NoOp_14E768(void) {
+__attribute__((section(".text.cObj_R0_scenario")))
+void cObj_R0_scenario(void) {
 
 }
 
-__attribute__((section(".text.NoOp_14E928")))
-void NoOp_14E928(void) {
+__attribute__((section(".text.cObj_Release")))
+void cObj_Release(void) {
 
 }
 
-__attribute__((section(".text.NoOp_14E4C8")))
-void NoOp_14E4C8(void) {}
+__attribute__((section(".text.cModel_Trans_Extra")))
+void cModel_Trans_Extra(void) {}
 
 __attribute__((section(".text.GetField_2B1_14B638")))
 unsigned char GetField_2B1_14B638(unsigned char *arg0) { return arg0[0x2B1]; }
@@ -89,11 +89,11 @@ void NoOp_146F90(void) {}
 __attribute__((section(".text.NoOp_100318")))
 void NoOp_100318(void) {}
 
-/* The section attribute pins this function to the `.text.ReturnOne_100320`
+/* The section attribute pins this function to the `.text.cPlBase_Initialize`
  * slot the build-time lcf reserves for it (per-function .text sections
  * are needed for multi-carve TUs). */
-__attribute__((section(".text.ReturnOne_100320")))
-int ReturnOne_100320(void) { return 1; }
+__attribute__((section(".text.cPlBase_Initialize")))
+int cPlBase_Initialize(void) { return 1; }
 
 /* 10 matched candidates */
 __attribute__((section(".text.Obj0000_Set_Field_424_1595E8")))
@@ -101,19 +101,19 @@ void Obj0000_Set_Field_424_1595E8(int *arg0, int arg1) {
     *((int *)((char *)arg0 + 0x424)) = arg1;
 }
 
-__attribute__((section(".text.Obj0000_Get_Field_424_1595F0")))
-int Obj0000_Get_Field_424_1595F0(int *arg0) {
+__attribute__((section(".text.GetSeqSEBase")))
+int GetSeqSEBase(int *arg0) {
     return *((int *)((char *)arg0 + 0x424));
 }
 
-__attribute__((section(".text.NoOp_15F2A8")))
-void NoOp_15F2A8(void) {}
+__attribute__((section(".text.Circle_line2")))
+void Circle_line2(void) {}
 
-__attribute__((section(".text.NoOp_15FB98")))
-void NoOp_15FB98(void) {}
+__attribute__((section(".text.drawArrow")))
+void drawArrow(void) {}
 
-__attribute__((section(".text.NoOp_15FBA0")))
-void NoOp_15FBA0(void) {}
+__attribute__((section(".text.drawArrow3D")))
+void drawArrow3D(void) {}
 
 __attribute__((section(".text.NoOp_161610")))
 void NoOp_161610(void) {}
@@ -173,8 +173,8 @@ unsigned short GetField_BEE_2B1290(void) {
     return *(unsigned short *)(D_003C23A4 + 0xBEE);
 }
 
-__attribute__((section(".text.Obj0000_Set_D_003C2555_One_2B65F0")))
-void Obj0000_Set_D_003C2555_One_2B65F0(void) {
+__attribute__((section(".text.cNowLoading_exitTask")))
+void cNowLoading_exitTask(void) {
     D_003C2555 = 1;
 }
 
@@ -225,8 +225,8 @@ int Obj0000_Set_D_005FEAC0_2C23E0(int arg0) {
     return 0;
 }
 
-__attribute__((section(".text.Obj0000_Get_D_00747A94_2DB6B0")))
-int Obj0000_Get_D_00747A94_2DB6B0(void) {
+__attribute__((section(".text.Getplayer")))
+int Getplayer(void) {
     return D_00747A94;
 }
 
@@ -269,8 +269,8 @@ void NoOp_17F1C8(void) {
 __attribute__((section(".text.NoOp_17FD78")))
 void NoOp_17FD78(void) {}
 
-__attribute__((section(".text.GetField_A24_180688")))
-int GetField_A24_180688(char *a0) {
+__attribute__((section(".text.cOl2b_getState")))
+int cOl2b_getState(char *a0) {
     return *(int *)(a0 + 0xA24);
 }
 
@@ -389,8 +389,8 @@ __attribute__((section(".text.NoOp_1A97E0")))
 void NoOp_1A97E0(void) {
 }
 
-__attribute__((section(".text.GetField_60E_1ADA80")))
-unsigned char GetField_60E_1ADA80(unsigned char *a0) {
+__attribute__((section(".text.cOm5a_isActive")))
+unsigned char cOm5a_isActive(unsigned char *a0) {
     return a0[0x60E];
 }
 
@@ -703,8 +703,8 @@ void Obj0000_Clear_Bytes_D_003C2554_D_003C2555_2B6598(void) {
 
 extern int D_00747A44;
 
-__attribute__((section(".text.Obj0000_Store_D_00747A44_2BE968")))
-int *Obj0000_Store_D_00747A44_2BE968(int *arg0) {
+__attribute__((section(".text.cRoomJump")))
+int *cRoomJump(int *arg0) {
     *arg0 = D_00747A44;
     return arg0;
 }
@@ -1576,8 +1576,8 @@ void UpdateObj0000Fields_34F6C0(void *obj) {
 __attribute__((section(".text.Obj0000_Get_Field_5FC_NE_Zero_12C748")))
 int Obj0000_Get_Field_5FC_NE_Zero_12C748(char *a0) { return *(int *)(a0 + 0x5FC) != 0; }
 
-__attribute__((section(".text.Obj0000_Get_Field_1028_Masked_138F88")))
-int Obj0000_Get_Field_1028_Masked_138F88(char *a0, int a1) { return a1 & *(int *)(a0 + 0x1028); }
+__attribute__((section(".text.cCamManager_isCk_CamClass")))
+int cCamManager_isCk_CamClass(char *a0, int a1) { return a1 & *(int *)(a0 + 0x1028); }
 
 __attribute__((section(".text.Obj0000_Clear_Fields_94_9C_13C808")))
 void Obj0000_Clear_Fields_94_9C_13C808(char *a0) { *(int *)(a0 + 0x94) = 0; *(int *)(a0 + 0x9C) = 0; }
@@ -1638,16 +1638,16 @@ int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(char *a0) {
     return v != 0;
 }
 
-__attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_10BD08")))
-void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_10BD08(char *a0, unsigned char a1) {
+__attribute__((section(".text.pl00_SetCannonReflect")))
+void pl00_SetCannonReflect(char *a0, unsigned char a1) {
     *(unsigned char*)(a0 + 0x2F7) = a1;
     *(unsigned char*)(a0 + 0x2F4) = 6;
     *(unsigned char*)(a0 + 0x2F6) = 2;
     *(unsigned char*)(a0 + 0x2F5) = 0;
 }
 
-__attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_12C0D8")))
-void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_12C0D8(char *a0) {
+__attribute__((section(".text.pl00_setEventWait")))
+void pl00_setEventWait(char *a0) {
     *(unsigned char*)(a0 + 0x2F4) = 0;
     *(unsigned char*)(a0 + 0x2F5) = 0x45;
     *(unsigned char*)(a0 + 0x2F6) = 0;
@@ -1688,8 +1688,8 @@ void SetField_8_133B80(char *a0) {
     *(int*)(a0 + 0x8) = *(int*)(a0 + 0x8) & ~0x2;
 }
 
-__attribute__((section(".text.Obj0000_Set_Fields_360_364_368_139B68")))
-void Obj0000_Set_Fields_360_364_368_139B68(char *a0, int a1, int a2, int a3) {
+__attribute__((section(".text.cPartsCamera_SetParts")))
+void cPartsCamera_SetParts(char *a0, int a1, int a2, int a3) {
     *(int*)(a0 + 0x360) = a1;
     *(int*)(a0 + 0x364) = a2;
     *(int*)(a0 + 0x368) = a3;
@@ -1754,9 +1754,9 @@ void NoOp_1F7B58(void) {}
 __attribute__((section(".text.NoOp_1F7D18")))
 void NoOp_1F7D18(void) {}
 
-__attribute__((section(".text.cCoreSave_getLevelPoint")))
+__attribute__((section(".text.cCoreSave_getGameLevelPoint")))
 /* Level points, 0 without a record. */
-short cCoreSave_getLevelPoint(cCoreSave *self)
+short cCoreSave_getGameLevelPoint(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (data == 0) return 0;
@@ -1781,9 +1781,9 @@ int cCoreSave_getAddGoldNum(cCoreSave *self)
     return data->addGoldNum;
 }
 
-__attribute__((section(".text.cCoreSave_getGodItem0")))
+__attribute__((section(".text.cCoreSave_getGodItem")))
 /* The first god item slot. */
-unsigned char cCoreSave_getGodItem0(cCoreSave *self)
+unsigned char cCoreSave_getGodItem(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     return data->godItem[0];
@@ -1815,9 +1815,9 @@ void cCoreSave_setReelItemNum(cCoreSave *self, unsigned char n)
     if (data != 0) data->reelItemNum = n;
 }
 
-__attribute__((section(".text.cCoreSave_addReelItemNum")))
+__attribute__((section(".text.cCoreSave_addReelItem")))
 /* Add to the number of usable god-item slots. */
-void cCoreSave_addReelItemNum(cCoreSave *self, unsigned char n)
+void cCoreSave_addReelItem(cCoreSave *self, unsigned char n)
 {
     cCoreSaveData *data = self->data;
     if (data != 0) data->reelItemNum = n + data->reelItemNum;
@@ -1881,9 +1881,9 @@ int cCoreSave_getCasinoTicketNum(cCoreSave *self)
     return data->casinoTicketNum;
 }
 
-__attribute__((section(".text.cCoreSave_getBonus")))
+__attribute__((section(".text.cCoreSave_GetFightingRingEmListNo")))
 /* The bonus value. */
-int cCoreSave_getBonus(cCoreSave *self)
+int cCoreSave_GetFightingRingEmListNo(cCoreSave *self)
 {
     cCoreSaveData *data = self->data;
     if (!data) return 0;
@@ -1986,8 +1986,8 @@ void func_00273630(void) {
     (void)buf;
 }
 
-__attribute__((section(".text.Obj0000_Or_Field_16D4_Bit_1000_274140")))
-void Obj0000_Or_Field_16D4_Bit_1000_274140(void *a0) {
+__attribute__((section(".text.cEm00_setNoLost")))
+void cEm00_setNoLost(void *a0) {
     *(int *)((char *)a0 + 0x16D4) |= 0x1000;
 }
 

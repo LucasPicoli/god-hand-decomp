@@ -22,7 +22,7 @@ extern void CustomIDWork_Initialize(void *p, void *w);
 extern void CustomIDWork_SetDisp(void *p, int f);
 extern void CustomIDWork_SetNumber_1DD218(void *p, int n);
 extern void func_001DD238(void *p, int n);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 
 __attribute__((section(".text.func_001793D0")))
 void func_001793D0(char *p)
@@ -145,8 +145,8 @@ void cCoreSave_snapshot(cCoreSave *p, int full)
         cCoreSave_saveGlobalToggle(p);
     }
     cCoreSave_updateVitalMax(p);
-    if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) > 0) {
-        cCoreSave_setVital(p, *(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A));
+    if (*(short *)(Getplayer() + 0x54A) > 0) {
+        cCoreSave_setVital(p, *(short *)(Getplayer() + 0x54A));
     } else {
         cCoreSave_setVital(p, 1);
     }

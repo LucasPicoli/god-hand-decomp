@@ -3,9 +3,9 @@
 
 extern int D_00747A2C;
 
-__attribute__((section(".text.cCoreSave_shiftGodItem")))
+__attribute__((section(".text.cCoreSave_useGodItem")))
 /* Drop the first god item and shift the rest down (not with the 0x80000 cheat). */
-void cCoreSave_shiftGodItem(cCoreSave *self) {
+void cCoreSave_useGodItem(cCoreSave *self) {
     unsigned int i;
     if ((D_00747A2C & 0x80000) == 0) {
         i = 0;

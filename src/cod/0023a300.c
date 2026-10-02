@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0();
+extern void *Getplayer();
 extern unsigned int func_0031ED08(float f12);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
@@ -18,7 +18,7 @@ void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13)
     int t0;
     void *s2;
 
-    s2 = Obj0000_Get_D_00747A94_2DB6B0();
+    s2 = Getplayer();
     switch (a1) {
     default:
     case 0:

@@ -17,8 +17,8 @@ extern unsigned char D_00604700[];
 extern short D_005CAE40;
 extern char D_00747470[];
 extern void cEvent_releaseWork(cEvent *);
-extern void UnlinkAndCoalesceNode_2A9680(int, void *);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void cHeap_free(int, void *);
+extern char *Getplayer(void);
 extern char *GetJacket(void);
 extern void cScenario_moveObjPos(int, char *, float, float, float, float);
 extern void func_0();
@@ -27,7 +27,7 @@ extern void func_00297660(cEvent *);
 extern void cEmSetParam_setEmAll(char *);
 extern void Set_bg_mode(int, int, int, int);
 extern void classFADE_start(char *, int, int, int, int, int, int);
-extern void Obj0000_Set_D_003C2555_One_2B65F0(int);
+extern void cNowLoading_exitTask(int);
 
 /* Start reading the cutscene's display text; mark the record once the data
  * pointer has been filled in. */
@@ -68,10 +68,10 @@ void cEvent_endPlay(cEvent *self) {
     cEvent_releaseWork(self);
     text = self->textData;
     if (text != 0) {
-        UnlinkAndCoalesceNode_2A9680(((int *)text)[-8], text);
+        cHeap_free(((int *)text)[-8], text);
     }
     D_00569B70.data->flags &= ~0x40000000;
-    player = Obj0000_Get_D_00747A94_2DB6B0();
+    player = Getplayer();
     jacket = GetJacket();
     objFlags = *(unsigned int *)(player + 0x250) & 0xFFFF7FFF;
     *(unsigned int *)(player + 0x250) = objFlags & 0xFFFFFFFD;
@@ -95,7 +95,7 @@ void cEvent_endPlay(cEvent *self) {
         ClearDisplayText_2974F0(self);
         res = (char *)self->resData;
         if (res != 0) {
-            UnlinkAndCoalesceNode_2A9680(((int *)res)[-8], res);
+            cHeap_free(((int *)res)[-8], res);
         }
         self->resData = 0;
     }
@@ -121,6 +121,6 @@ skip:
     shiftB = flagsB >> 6;
     bit0A = shiftB & 1;
     if (bit0A == 0) {
-        Obj0000_Set_D_003C2555_One_2B65F0(D_003C2558);
+        cNowLoading_exitTask(D_003C2558);
     }
 }

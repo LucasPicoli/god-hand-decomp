@@ -2,21 +2,21 @@
 
 extern void cModel_calcParts(void *a0);
 extern int cModel_getMeshPtr(void *a0, int a1);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
 extern int cEmManage_CkPlCatched(void *p);
 extern int D_005864F0;
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int D_00462FC0;
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_00129718(void *a, void *b, int c);
 extern int D_005FEA60;
 extern int D_00568288;
 extern int cSceAtManager_findJumpPoint(void *a0, int a1, float *a2, float *a3);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern void func_002DCA58(void);
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2, int a3, void *t0, int t1, int t2);
+extern void cActionButton_set(void *a0, int a1, int a2, int a3, void *t0, int t1, int t2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_002DC898(void *arg);
 
@@ -142,7 +142,7 @@ void func_002DC670(void *arg)
     char *g;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -170,7 +170,7 @@ void func_002DD6C0(void *arg)
     char *g;
 
     s0 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (s0 == 0) {
         return;
     }
@@ -189,7 +189,7 @@ void func_002DD6C0(void *arg)
                     s0[0x2F7] = 0;
                     s0[0x2F4] = 1;
                     s0[0x2F5] = 0x22;
-                    Forward_001346C8_00134608_1351D8(&D_00462FC0, s0, 0);
+                    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
                     func_00129718(r, s0, 0x22);
                 }
             }
@@ -209,7 +209,7 @@ void SetActionJumpUp(void)
     float t;
     float at;
 
-    s0 = Obj0000_Get_D_00747A94_2DB6B0();
+    s0 = Getplayer();
     VU0_SQC2_VF0(buf, 0);
     if (*((short *) (s0 + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(s0) == 0) {
@@ -234,7 +234,7 @@ void SetActionJumpUp(void)
                         }
                         *((float *) (s0 + 0x670)) = buf[4];
                         t = 0.0f;
-                        LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0x4, 0x8, 0, func_002DCA58, 0, 0);
+                        cActionButton_set(&D_00568288, 0x4, 0x8, 0, func_002DCA58, 0, 0);
                     }
                 }
             }
@@ -254,7 +254,7 @@ void func_002DC740(void *arg)
     float at;
 
     s1 = (char *) arg;
-    r = Obj0000_Get_D_00747A94_2DB6B0();
+    r = Getplayer();
     if (*((short *) (r + 0x54A)) > 0) {
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
@@ -285,7 +285,7 @@ void func_002DC740(void *arg)
                     if (at > 0.785398185f) {
                         return;
                     }
-                    LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0xA, 0x11, 0, func_002DC898, (int) s1, 0);
+                    cActionButton_set(&D_00568288, 0xA, 0x11, 0, func_002DC898, (int) s1, 0);
                 }
             }
         }

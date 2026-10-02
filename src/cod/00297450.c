@@ -44,8 +44,8 @@ void ClearDisplayText_2974F0(cEvent *self) {
 }
 
 /* Start the cutscene numbered `no`, once per record. */
-__attribute__((section(".text.InitSubState_2975F8")))
-void InitSubState_2975F8(cEvent *self, int no) {
+__attribute__((section(".text.cEvent_initEnv")))
+void cEvent_initEnv(cEvent *self, int no) {
     unsigned long t = self->flags;
     if (((t >> 1) & 1) == 0) {
         func_00297660();

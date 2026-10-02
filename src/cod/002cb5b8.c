@@ -5,7 +5,7 @@
 extern void func_0030A538(float *pos, int mtx);
 extern void cSndSeVoice_Unlink(cSndSeVoice *v);
 extern int D_0044CE48[];
-extern cSndSeEntry *cSnd_GetSeEntry(cSnd *self, int idx);
+extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int idx);
 
 /* Starts a free voice with the given key pair and ids, at the global origin. */
 __attribute__((section(".text.cSndSeVoice_StartAtOrigin")))
@@ -70,7 +70,7 @@ int cSnd_FindFreeSe(cSnd *self)
     int *p = D_0044CE48;
     unsigned int i;
     for (i = 0; i < 0xC; i++, p++) {
-        if (cSnd_GetSeEntry(self, *p)->owner == -1)
+        if (cSnd_GetSeData(self, *p)->owner == -1)
             return *p;
     }
     return -1;

@@ -2,12 +2,12 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 candidate. */
@@ -65,7 +65,7 @@ void func_002311A8(void *a0)
         }
         func_002A8578(s1, o1, o2, 0.0f, 0xA, t0, 0);
         cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                           (short)Obj0000_Get_Field_424_1595F0(s1),
+                           (short)GetSeqSEBase(s1),
                            s1, 0, 0, 0, 0);
         *(float *)(s1 + 0x54C) = 2.0f;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -74,8 +74,8 @@ void func_002311A8(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }

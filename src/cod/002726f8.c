@@ -129,93 +129,93 @@ void func_002726F8(void *a0)
     }
     switch (*(int *)(s3 + 0x564)) {
     case 0x204:
-        r = (char *)func_0014B730(s3, D_0042CA40);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA40);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA48);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA48);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA58);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA58);
         if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
         break;
     case 0x201:
     case 0x228:
-        r = (char *)func_0014B730(s3, D_004365A8);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_004365A8);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_004365B0);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_004365B0);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         if (*(int *)(s3 + 0x16D4) & 8) {
-            r = (char *)func_0014B730(s3, D_0042CA88);
+            r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA88);
             if (r != 0) { *(int *)(r + 0x380) |= 1; }
         } else {
-            r = (char *)func_0014B730(s3, D_0042CA88);
+            r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA88);
             if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
         }
         break;
     case 0x240:
-        r = (char *)func_0014B730(s3, D_0042CA60);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA60);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA68);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA68);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA78);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA78);
         if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
         break;
     case 0x243:
-        r = (char *)func_0014B730(s3, D_0042CA98);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA98);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CAA0);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CAA0);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA90);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA90);
         if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
         break;
     case 0x206:
-        r = (char *)func_0014B730(s3, D_004365A8);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_004365A8);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_004365B0);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_004365B0);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         break;
     case 0x207:
-        r = (char *)func_0014B730(s3, D_0042CA60);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA60);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA68);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA68);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         break;
     case 0x244:
-        r = (char *)func_0014B730(s3, D_0042CA98);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA98);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CAA0);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CAA0);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_0042CA90);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CA90);
         if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
-        r = (char *)func_0014B730(s3, D_0042CAA8);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_0042CAA8);
         if (r != 0) { *(int *)(r + 0x380) &= 0xFFFFFFFE; }
-        r = (char *)func_0014B730(s3, D_00446600);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446600);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446610);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446610);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         break;
     case 0x218:
-        r = (char *)func_0014B730(s3, D_00446620);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446620);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         break;
     case 0x247:
-        r = (char *)func_0014B730(s3, D_00446628);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446628);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446638);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446638);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446648);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446648);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446650);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446650);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446658);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446658);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446660);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446660);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446668);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446668);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446670);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446670);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446678);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446678);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
-        r = (char *)func_0014B730(s3, D_00446680);
+        r = (char *)cModel_getMeshPtr_14B730(s3, D_00446680);
         if (r != 0) { *(int *)(r + 0x380) |= 1; }
         q = *(char **)(s3 + 0x1794);
         if (q != 0) { *(int *)(q + 0x380) |= 1; }

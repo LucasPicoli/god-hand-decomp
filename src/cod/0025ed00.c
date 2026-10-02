@@ -1,14 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -96,7 +96,7 @@ void func_0025ED00(void *a0)
         switch (*(int *)(s3 + 0x564)) {
         default:
             if ((*(unsigned short *)(s3 + 0x3AC) & 0x200) != 0) {
-                if ((Forward30F348_31CFE0() & 1) != 0) {
+                if ((irand() & 1) != 0) {
                     int b = *(int *)(s3 + 0x304);
                     s2 = *(int *)(b + 0x380) + b;
                     s1 = *(int *)(b + 0x384) + b;
@@ -106,7 +106,7 @@ void func_0025ED00(void *a0)
                     s1 = *(int *)(b + 0x38C) + b;
                 }
             } else {
-                if ((Forward30F348_31CFE0() & 1) != 0) {
+                if ((irand() & 1) != 0) {
                     int b = *(int *)(s3 + 0x304);
                     s2 = *(int *)(b + 0x370) + b;
                     s1 = *(int *)(b + 0x374) + b;
@@ -151,7 +151,7 @@ void func_0025ED00(void *a0)
                 s1 = *(int *)(b + 0xB40) + b;
             }
             cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(Obj0000_Get_Field_424_1595F0(s3) + 0x23),
+                               (short)(GetSeqSEBase(s3) + 0x23),
                                s3, 0, 0, 0, 0);
             break;
         case 0x260:
@@ -264,7 +264,7 @@ void func_0025ED00(void *a0)
         }
         func_002A8578(s3, s2, s1, 0.0f, 5, nb, 0);
         cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                           (short)(Obj0000_Get_Field_424_1595F0(s3) + 8),
+                           (short)(GetSeqSEBase(s3) + 8),
                            s3, 0, 0, 0, 0);
         switch (*(int *)(s3 + 0x564)) {
         case 0x207:
@@ -274,7 +274,7 @@ void func_0025ED00(void *a0)
         case 0x24E:
             SetEffect(0x58, 0x9F, s3, &s, -1, 0xFFFFFFFF);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(Obj0000_Get_Field_424_1595F0(s3) + 0x22),
+                               (short)(GetSeqSEBase(s3) + 0x22),
                                s3, 0, 0, 0, 0);
             break;
         }
@@ -294,8 +294,8 @@ void func_0025ED00(void *a0)
                 *(signed char *)(s3 + 0x2F7) = 0;
             }
         } else {
-            AddScaledVecToField_100_14F9F0(s3, 1.0f);
-            AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
+            cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+            cObjBase_addNullSpeed(s3, 1.0f);
         }
         break;
     }

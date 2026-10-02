@@ -5,7 +5,7 @@ extern int D_00747A78;
 extern int D_00747A80;
 extern int D_00747A84;
 extern char D_005864F0[];
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void pl00_reset(void *a0);
 extern void func_002948E8(void *a0, int a1);
 extern void func_002FA470(int a0);
@@ -61,7 +61,7 @@ void cScenario__endSoftEvent(cScenario *self)
             break;
         case 4:
             D_00747A84 = D_00747A84 & ~0x00080000;
-            pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
+            pl00_reset(Getplayer());
             cScenario_resetCam(self);
             break;
         case 5:
@@ -72,7 +72,7 @@ void cScenario__endSoftEvent(cScenario *self)
     func_002948E8(D_005864F0, 0);
     cScenario_setOmSuspend(self, 0);
     {
-        char *p = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+        char *p = (char *)Getplayer();
         char *vt = *(char **)(p + 0x214);
         (*(void (**)(char *, int))(vt + 0x64))(p + *(short *)(vt + 0x60), 0);
     }

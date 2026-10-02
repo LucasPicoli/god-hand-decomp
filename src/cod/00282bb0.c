@@ -2,8 +2,8 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
+extern void *Getplayer(void);
+extern float SetMotionStep(void *a0, float f);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -17,9 +17,9 @@ __attribute__((section(".text.func_00282BB0")))
 void func_00282BB0(void *a0) {
     char *s0 = (char *)a0;
     unsigned long t0 = 0;
-    float r = *(float *)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0x5A8);
+    float r = *(float *)((char *)Getplayer() + 0x5A8);
     *(float *)(s0 + 0x5A8) = r;
-    SetField444SignedByFlag434_158288(s0, r);
+    SetMotionStep(s0, r);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         if (*(unsigned char *)(s0 + 0x15B0)) {

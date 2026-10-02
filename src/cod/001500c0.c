@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *, int, int, int, void *, void *, int);
+extern void cActionButton_set(void *, int, int, int, void *, void *, int);
 extern char D_00568288;
 extern void func_001E9F18(void);
 extern int D_00466470[];
@@ -25,7 +25,7 @@ extern char D_00427E60[];
 
 __attribute__((section(".text.DogRace_SetActBtn")))
 void DogRace_SetActBtn(void *a0) {
-    LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 4, 0x18, 0, (void *)&func_001E9F18, a0, 0);
+    cActionButton_set(&D_00568288, 4, 0x18, 0, (void *)&func_001E9F18, a0, 0);
 }
 
 /* clone */

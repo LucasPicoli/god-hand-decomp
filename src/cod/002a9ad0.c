@@ -4,7 +4,7 @@
 
 extern float cHeatSys_GetHeatRatio(cHeatSys *self);
 extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void KillEffect(void *eff, int a, int b);
 
 /* Recompute lv (0, 1 or 2) from the cur / max ratio. */
@@ -44,7 +44,7 @@ void cHeatSys_SetHeatMode(cHeatSys *self, unsigned char mode)
     if (floor < 0.0f)
         self->floor = 0.0f;
     if (mode)
-        KillEffect(Obj0000_Get_D_00747A94_2DB6B0(), 3, 2);
+        KillEffect(Getplayer(), 3, 2);
 }
 
 /* Drain cur by `amount`, not below floor, refresh lv. Returns 1 if cur sits on the floor. */

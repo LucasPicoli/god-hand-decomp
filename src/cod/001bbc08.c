@@ -6,7 +6,7 @@
 
 extern int D_005FEE00;
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern void func_0014FA60(void *a0, float f12, float f13);
 
 __attribute__((section(".text.func_001BBC08")))
@@ -29,7 +29,7 @@ void func_001BBC08(char *s0)
         *(short *)(s0 + 0x568) = 0x1E;
         *(short *)(s0 + 0x56A) = 0xF;
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x110, s0, 0, 0, 0, 0);
-        *(float *)(s0 + 0x330) = DoubleFloatMinusHalf_31D020() * 0.200000003f;
+        *(float *)(s0 + 0x330) = fRand1_1() * 0.200000003f;
         *(float *)(s0 + 0x334) = 0.100000001f;
         *(float *)(s0 + 0x338) = -0.100000001f;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;

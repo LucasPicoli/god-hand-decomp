@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern void cDamageUnit_SetDamageCollFlashActive(void *a0, int a1, short a2);
 extern int cOmSub_move(void *a0);
 extern void cOmSub_setReverse(void *a0, int a1);
@@ -58,7 +58,7 @@ void func_00194D10(void *a0)
             i4 = 2;
         ok4 = ((*(int *)frame = b4 = *(unsigned char *)(s0 + 0x2B4)), (i4 < b4));
             if (ok4) s1 = *(int *)(*(int *)(s0 + 0x278) + i4 * 4); else s1 = 0;
-            d = DoubleFloatMinusHalf_31D020() * 0.05f;
+            d = fRand1_1() * 0.05f;
             *(float *)(*(int *)(s1 + 0xD0) + 4) = *(float *)(s0 + 0xB08) + d;
         }
         t = *(unsigned short *)(s0 + 0xAF0) - 1;

@@ -12,7 +12,7 @@ extern void func_002A5D40(void *a0);
 extern void func_002A5EC0(void *a0);
 extern void cGame_gameLoop(void *a0);
 extern void func_002A67D0(void *a0);
-extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
+extern void cTaskWork_sleep(int a0, int a1);
 extern void cTaskWork_exit(int a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -48,7 +48,7 @@ void func_002A5998(void) {
         case 5: func_002A67D0(&D_005CAC90); break;
         default: break;
         }
-        SetFieldsCESignalSemaSleep_2D5AA0(D_00752C00[1], 1);
+        cTaskWork_sleep(D_00752C00[1], 1);
     }
     cTaskWork_exit(D_00752C00[1]);
 }

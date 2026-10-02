@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_00747A2C;
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
+extern int Getplayer(void);
 extern void func_002C8AD8(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -24,7 +24,7 @@ void func_002CB128(void *a0) {
     if (*(int *)(p + 0x2C) == 0) {
         return;
     }
-    if (Obj0000_Get_D_00747A94_2DB6B0() == 0) {
+    if (Getplayer() == 0) {
         return;
     }
 

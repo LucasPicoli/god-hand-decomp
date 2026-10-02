@@ -28,19 +28,19 @@ extern char D_003C0340[];
 extern char D_00585720[];
 extern char D_005FEE00[];
 extern int cSnd_SeCall_2CB8A0(char *a0, int a1, int a2, int a3, int t0, int t1, int t2);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern char D_00463050[];
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void Obj1D00_SetState_7_1C(int a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
-extern void Obj0000_Set_Fields_360_364_368_139B68(void *parts, void *obj, int a2, int a3);
+extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
 extern int moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_002DC390(void *a0);
@@ -199,7 +199,7 @@ void func_0017AEB0(char *p)
                 o2 = *(int *)(*(int *)(p + 0x278));
             else
                 o2 = 0;
-            x = DoubleFloatMinusHalf_31D020();
+            x = fRand1_1();
             *(float *)(o2 + 0x100) = *(float *)(p + 0x608) + (x + x) * 0.0174532924f;
         } else {
             if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
@@ -239,7 +239,7 @@ void func_00247588(char *p)
     char *parts;
     unsigned char st;
 
-    ptr = Obj0000_Get_D_00747A94_2DB6B0();
+    ptr = Getplayer();
     *(int *)(p + 0x16D0) |= 0x30000;
     *(float *)(p + 0x54C) = 3.0f;
     *(int *)(p + 0x250) |= 0x10000;
@@ -270,13 +270,13 @@ common:
         o2 = *(int *)(*(int *)(p + 0x278) + i2 * 4);
     else
         o2 = 0;
-    Obj0000_Set_Fields_360_364_368_139B68(parts, p, o1, o2);
+    cPartsCamera_SetParts(parts, p, o1, o2);
     if (moveMotion(p) != 0) {
-        ClearField15F4Bit1_124F60(ptr, 0, 1);
+        pl00_clearMotionCam(ptr, 0, 1);
         func_002705D8(p);
     }
-    AddScaledVecToField_100_14F9F0(p, 1.0f);
-    AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+    cObjBase_addNullSpeed_Rotation(p, 1.0f);
+    cObjBase_addNullSpeed(p, 1.0f);
 }
 
 __attribute__((section(".text.func_00271298")))
@@ -300,14 +300,14 @@ void func_00271298(char *p)
         o = *(int *)(*(int *)(p + 0x278) + i4 * 4);
     else
         o = 0;
-    g = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    g = (char *)Getplayer();
     z = 0.0f;
     if (*(float *)(g + 0x54C) > z) return;
     if (*(int *)(g + 0x6A0) != 0) return;
     if (o == 0) return;
-    q = *(char **)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0xF0);
+    q = *(char **)((char *)Getplayer() + 0xF0);
     dy = Turn_dest(q, *(char **)(o + 0xF0),
-                   *(float *)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0x104),
+                   *(float *)((char *)Getplayer() + 0x104),
                    3.14159274f);
     r = dy;
     if (r < z) t = -r; else t = r;
@@ -316,7 +316,7 @@ void func_00271298(char *p)
     dy = m;
     if (dy < z) u = -dy; else u = dy;
     if (u > 0.5f) return;
-    m = capVu0MagnitudeSqXZ(*(char **)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+    m = capVu0MagnitudeSqXZ(*(char **)((char *)Getplayer() + 0xF0),
                             *(char **)(o + 0xF0));
     if (m < 9.0f) func_002DC390(p);
 }

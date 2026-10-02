@@ -7,7 +7,7 @@ extern char D_00747A24[];
 extern int cDamageManage_ReleaseDamageGive(void *m, void *d);
 extern void KillEffect(void *p, int a, int b);
 extern void espSys_effDataRelease(void *a, int b);
-extern void Tramp_00312708_1B79B0(void *p);
+extern void cOmBase_dieCommon(void *p);
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
 extern char D_0042AA98[];
 extern char D_00574380[];
@@ -95,7 +95,7 @@ void func_001C91B0(char *p, void *arg)
     }
 
     if (*(void **)(p + 0x68C) != 0) {
-        Tramp_00312708_1B79B0(*(void **)(p + 0x68C));
+        cOmBase_dieCommon(*(void **)(p + 0x68C));
         *(int *)(p + 0x68C) = 0;
     }
 

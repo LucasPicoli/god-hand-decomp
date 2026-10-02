@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern float capVu0Atan2(float x, float z);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -8,10 +8,10 @@ extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, in
 extern void func_00281368(void *a0, int a1);
 extern void func_002832A0(void *a0, int a1);
 extern void func_002498A8(void *a0, float a1);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026DB00(void *a0, int a1, int a2);
 extern int D_005850B0;
 
@@ -42,7 +42,7 @@ void func_0024AE50(void *a0)
     char *o;
 
     VU0_SQC2_VF0(v, 0);
-    o = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    o = (char *)Getplayer();
     sb = &D_005850B0;
     dist = capVu0MagnitudeSqXZ(*(void **)(o + 0xF0), sb);
     *(int *)(s0 + 0x16D0) |= 0x30400;
@@ -71,13 +71,13 @@ void func_0024AE50(void *a0)
         if (moveMotion(s0) != 0) {
             *(unsigned char *)(s0 + 0x2F6) = 2;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 2: {
         int gb;
         float ang;
-        void *q = *(void **)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0xF0);
+        void *q = *(void **)((char *)Getplayer() + 0xF0);
         float *cs = v + 4;
         float *tq = v + 8;
         VU0_SQC2_VF0(v, 0x20);
@@ -93,8 +93,8 @@ void func_0024AE50(void *a0)
             v[2] = v[6];
         }
         ang = capVu0Atan2(v[0], v[2]);
-        if (capVu0MagnitudeSqXZ(*(void **)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0xF0), sb) < 64.0f) {
-            ang = DoubleFloatMinusHalf_31D020() * 3.14159274f;
+        if (capVu0MagnitudeSqXZ(*(void **)((char *)Getplayer() + 0xF0), sb) < 64.0f) {
+            ang = fRand1_1() * 3.14159274f;
         }
         func_002498A8(s0, ang);
         *(char *)(s0 + 0x1864) = 0;
@@ -140,8 +140,8 @@ void func_0024AE50(void *a0)
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     if (*(unsigned short *)(s0 + 0x3AC) & 1) {

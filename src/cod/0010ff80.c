@@ -4,12 +4,12 @@
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern float *func_0012A2E0(void *a0);
 extern int func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0012A3C0(void *a0);
 extern void func_00123938(void *a0, int a1);
 
@@ -39,7 +39,7 @@ void func_0010FF80(void *a0)
         Obj0000_Clear_Fields_640_648_124E58(s0);
         s1 = s0 + 0x580;
         func_00126770(s0);
-        ClearField15F4Bit1_124F60(s0, 0, 0);
+        pl00_clearMotionCam(s0, 0, 0);
         src = func_0012A2E0(s0);
         if ((float *)s1 != src) {
             *(float *)(s0 + 0x580) = src[0];
@@ -107,9 +107,9 @@ void func_0010FF80(void *a0)
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
         if (!(*(unsigned short *)(s0 + 0x3AC) & 4)) {
-            AddScaledXfmVecToField_F0_14F928(s0, one);
+            cObjBase_addNullSpeed(s0, one);
         }
         break;
     }

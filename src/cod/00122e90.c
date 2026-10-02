@@ -2,15 +2,15 @@
 
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_0012C348(void *a0, int a1);
-extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
-extern unsigned int Forward30F348_31CFE0(void);
+extern void cSnd_DieDemoStart(void *a0);
+extern unsigned int irand(void);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 
@@ -50,12 +50,12 @@ void func_00122E90(void *a0)
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x123, s1, 0, 0, 0, 0);
         func_0012C348(s1, 3);
-        OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
+        cSnd_DieDemoStart(D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
         switch (*(unsigned char *)(s1 + 0x2F7)) {
         case 0:
         default:
-            switch (Forward30F348_31CFE0() % 5) {
+            switch (irand() % 5) {
             case 0:
             default:
             {
@@ -164,8 +164,8 @@ void func_00122E90(void *a0)
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         break;
     }
 }

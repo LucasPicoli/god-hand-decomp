@@ -21,16 +21,16 @@
  * Dispatch is via 13 jump tables (reconstructed below as switch()es):
  * a 125-way table on (state - 0x202) at the head, a 116-way table on
  * (state - 0x20B), a 59-way table on (state - 0x200), and eleven small
- * 5-8-way sub-dispatches selected by `Forward30F348_31CFE0() % N` (an input /
+ * 5-8-way sub-dispatches selected by `irand() % N` (an input /
  * RNG poll).  Helpers it leans on:
  *
  *   StoreMotionParamsBoth_2609A8(actor, anim, a, b)  set animation / pose for a state
  *   cCoreSave_getGameLevel(&D_00569B70) the game level, 1..5; ==5 picks the
  *                                     hardest level's variant in many branches
- *   Forward30F348_31CFE0()                   poll input / RNG bits (masked &1,
+ *   irand()                   poll input / RNG bits (masked &1,
  *                                     or used as the % N sub-selector)
  *   CheckSlotsShort2FEAndSetByte1864_262A10(actor)              per-frame pre-update
- *   Obj0000_Get_D_00747A94_2DB6B0()                   fetch a global system object
+ *   Getplayer()                   fetch a global system object
  *
  * Clean-C body under the NON_MATCHING guard.  The default `us`
  * build compiles the `#else INCLUDE_ASM` branch, which pulls the
@@ -592,7 +592,7 @@ void func_0021A538(void *arg0) {
 
     var_s5 = 1;
     var_s6 = 0x4E2;
-    temp_fp = Obj0000_Get_D_00747A94_2DB6B0();
+    temp_fp = Getplayer();
     (*(u8 *)((u8 *)(arg0) + 0x186A)) = 2;
     (*(s32 *)((u8 *)(arg0) + 0x16D4)) = (s32) ((*(s32 *)((u8 *)(arg0) + 0x16D4)) | 0x400);
     sp0 = 0;
@@ -620,7 +620,7 @@ void func_0021A538(void *arg0) {
             case 0x23B:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 temp_v0_4 = (*(s32 *)((u8 *)(arg0) + 0x304));
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     var_v1 = (*(s32 *)((u8 *)(temp_v0_4) + 0x1AC));
                     var_a0 = (*(s32 *)((u8 *)(temp_v0_4) + 0x1B0));
                 } else {
@@ -637,7 +637,7 @@ void func_0021A538(void *arg0) {
                 }
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) > 4.0f) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                    if (!(Forward30F348_31CFE0() & 1)) {
+                    if (!(irand() & 1)) {
                         StoreMotionParamsBoth_2609A8(arg0, 0xF, 0, 0x37);
                         temp_v0_6 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_6) + 0x19C)) + temp_v0_6;
@@ -655,7 +655,7 @@ block_689:
                 break;
             case 0x204:                             /* switch 2 */
                 (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x1E;
-                temp_hi = Forward30F348_31CFE0(temp_a0) % 5U;
+                temp_hi = irand(temp_a0) % 5U;
                 switch (temp_hi) {                  /* switch 7 */
                 default:                            /* switch 7 */
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 2, 0x37);
@@ -716,7 +716,7 @@ block_100:
                 }
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) > 4.0f) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         temp_v0_13 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_6 = (*(s32 *)((u8 *)(temp_v0_13) + 0x194));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_13) + 0x18C)) + temp_v0_13;
@@ -746,7 +746,7 @@ block_431:
             case 0x216:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 2.89f) {
-                    temp_hi_2 = Forward30F348_31CFE0(arg0) % 3U;
+                    temp_hi_2 = irand(arg0) % 3U;
                     switch (temp_hi_2) {            /* switch 8; irregular */
                     case 1:                         /* switch 8 */
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 2, 0x37);
@@ -792,7 +792,7 @@ block_143:
                     }
                 } else {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                    temp_hi_3 = Forward30F348_31CFE0() % 3U;
+                    temp_hi_3 = irand() % 3U;
                     if (temp_hi_3 >= 2U) {
                         if (temp_hi_3 == 2) {
                             temp_v0_19 = cCoreSave_getGameLevel(&D_00569B70);
@@ -822,7 +822,7 @@ block_126:
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_21) + 0x6A0)) + temp_v0_21;
                     }
                     if ((*(s32 *)((u8 *)(arg0) + 0x564)) == 0x216) {
-                        if (Forward30F348_31CFE0() & 1) {
+                        if (irand() & 1) {
                             temp_v0_22 = (*(s32 *)((u8 *)(arg0) + 0x304));
                             temp_a1_9 = (*(s32 *)((u8 *)(temp_v0_22) + 0x6D4));
                             var_s3 = (*(s32 *)((u8 *)(temp_v0_22) + 0x6D0)) + temp_v0_22;
@@ -840,7 +840,7 @@ block_126:
             case 0x229:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 2.89f) {
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 2, 0x37);
                         temp_v0_23 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_10 = (*(s32 *)((u8 *)(temp_v0_23) + 0x730));
@@ -859,7 +859,7 @@ block_142:
                         var_s3 = var_a1_2 + temp_v0_24;
                         goto block_143;
                     }
-                } else if (Forward30F348_31CFE0() & 1) {
+                } else if (irand() & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x1E, 0, 0x3E);
                     temp_v0_25 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_a1_3 = 0x32;
@@ -890,7 +890,7 @@ block_307:
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 2.89f) {
                     goto block_142;
                 }
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x1E, 0, 0x3E);
                     temp_v0_27 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_a1_3 = 0x32;
@@ -918,7 +918,7 @@ block_307:
                 }
                 break;
             case 0x242:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                     temp_v0_29 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_13 = (*(s32 *)((u8 *)(temp_v0_29) + 0x3604));
@@ -947,7 +947,7 @@ block_172:
                 }
                 break;
             case 0x243:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x37);
                     temp_v0_31 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_15 = (*(s32 *)((u8 *)(temp_v0_31) + 0x3678));
@@ -959,7 +959,7 @@ block_172:
                     }
                     (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x20;
                 } else {
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                         temp_v0_32 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_16 = (*(s32 *)((u8 *)(temp_v0_32) + 0x3604));
@@ -975,7 +975,7 @@ block_172:
                 }
                 break;
             case 0x244:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     StoreMotionParams_2609E0(arg0, 0x14, 0, 0x37);
                     Set_Fields_1884_1894_2609F8(arg0, 0x14, 2, 0x4E);
                     temp_v0_33 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -990,7 +990,7 @@ block_479:
 block_480:
                     (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x3C;
                 } else {
-                    if (Forward30F348_31CFE0(arg0) & 1) {
+                    if (irand(arg0) & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x37);
                         temp_v0_34 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_18 = (*(s32 *)((u8 *)(temp_v0_34) + 0x366C));
@@ -1017,7 +1017,7 @@ block_480:
             case 0x24C:                             /* switch 2 */
             case 0x24E:                             /* switch 2 */
             case 0x25A:                             /* switch 2 */
-                if (!(Forward30F348_31CFE0(temp_a0) & 3) && ((*(s32 *)((u8 *)(arg0) + 0x6F0)) == 0)) {
+                if (!(irand(temp_a0) & 3) && ((*(s32 *)((u8 *)(arg0) + 0x6F0)) == 0)) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                     temp_v0_35 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_19 = (*(s32 *)((u8 *)(temp_v0_35) + 0x1134));
@@ -1030,7 +1030,7 @@ block_480:
                     goto block_307;
                 }
                 var_s0 = 1;
-                temp_hi_4 = Forward30F348_31CFE0() % 3U;
+                temp_hi_4 = irand() % 3U;
                 switch (temp_hi_4) {                /* switch 9; irregular */
                 default:                            /* switch 9 */
                 case 0:                             /* switch 9 */
@@ -1078,7 +1078,7 @@ block_474:
                 break;
             case 0x21B:                             /* switch 2 */
             case 0x22D:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     if ((*(s32 *)((u8 *)(arg0) + 0x6F0)) == 0) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                         temp_v0_39 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1114,7 +1114,7 @@ block_465:
                 break;
             case 0x225:                             /* switch 2 */
             case 0x24D:                             /* switch 2 */
-                temp_v1_13 = Forward30F348_31CFE0(temp_a0) & 3;
+                temp_v1_13 = irand(temp_a0) & 3;
                 switch (temp_v1_13) {               /* switch 10; irregular */
                 default:                            /* switch 10 */
                 case 0:                             /* switch 10 */
@@ -1170,7 +1170,7 @@ block_490:
                 }
                 break;
             case 0x252:                             /* switch 2 */
-                temp_v1_15 = Forward30F348_31CFE0(temp_a0) & 3;
+                temp_v1_15 = irand(temp_a0) & 3;
                 switch (temp_v1_15) {               /* switch 11; irregular */
                 case 1:                             /* switch 11 */
                     sp4 = (*(s32 *)((u8 *)(arg0) + 0x734));
@@ -1235,7 +1235,7 @@ block_224:
                 }
                 (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x32;
                 if (Obj0000_IsSet_Field_15F4_Bit_1000_12C530(temp_fp) != 0) {
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 5, 3, 0x37);
                         temp_v0_49 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_v1_4 = (*(s32 *)((u8 *)(temp_v0_49) + 0x257C));
@@ -1253,7 +1253,7 @@ block_224:
                 }
                 break;
             case 0x207:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 3) {
+                if (irand(temp_a0) & 3) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 8, 0x37);
                     temp_v0_51 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_33 = (*(s32 *)((u8 *)(temp_v0_51) + 0x1610));
@@ -1273,7 +1273,7 @@ block_224:
                 var_a0_3 = (*(s32 *)((u8 *)(temp_v0_52) + 0x15E0));
                 goto block_234;
             case 0x241:                             /* switch 2 */
-                temp_s0 = Forward30F348_31CFE0(temp_a0) % 3U;
+                temp_s0 = irand(temp_a0) % 3U;
                 temp_a0_3 = (func_0012C4F0(temp_fp) == 0) ? temp_s0 : 2U;
                 switch (temp_a0_3) {                /* switch 12; irregular */
                 case 1:                             /* switch 12 */
@@ -1317,7 +1317,7 @@ block_453:
                 break;
             case 0x224:                             /* switch 2 */
                 if ((*(u8 *)((u8 *)(arg0) + 0x2F7)) == 0) {
-                    if (Forward30F348_31CFE0(temp_a0, 0x28) & 1) {
+                    if (irand(temp_a0, 0x28) & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x37);
                         temp_v0_56 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_37 = (*(s32 *)((u8 *)(temp_v0_56) + 0x18C4));
@@ -1352,7 +1352,7 @@ block_453:
                 goto block_490;
             case 0x206:                             /* switch 2 */
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.0f) {
-                    if (Forward30F348_31CFE0(temp_a0) & 1) {
+                    if (irand(temp_a0) & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                         temp_v0_59 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_40 = (*(s32 *)((u8 *)(temp_v0_59) + 0x1860));
@@ -1375,7 +1375,7 @@ block_260:
                         }
                     }
                     (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0xD;
-                } else if (Forward30F348_31CFE0(temp_a0) & 1) {
+                } else if (irand(temp_a0) & 1) {
                     StoreMotionParams_2609E0(arg0, 0xF, 5, 0x37);
                     Set_Fields_1884_1894_2609F8(arg0, 0xF, 4, 0x37);
                     temp_v0_61 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1403,7 +1403,7 @@ block_260:
             case 0x209:                             /* switch 2 */
                 var_s6 = 0x61;
                 sp4 = (*(s32 *)((u8 *)(arg0) + 0x704));
-                temp_v0_63 = Forward30F348_31CFE0(temp_a0);
+                temp_v0_63 = irand(temp_a0);
                 sp0 = 2;
                 temp_hi_5 = temp_v0_63 % 5U;
                 switch (temp_hi_5) {                /* switch 13 */
@@ -1496,7 +1496,7 @@ block_260:
                     }
                     goto block_489;
                 }
-                temp_v1_19 = Forward30F348_31CFE0(temp_a0) & 3;
+                temp_v1_19 = irand(temp_a0) & 3;
                 if (temp_v1_19 != 1) {
                     if (temp_v1_19 != 0) {
                         if (temp_v1_19 != sp0) {
@@ -1601,7 +1601,7 @@ block_324:
             case 0x211:                             /* switch 2 */
             case 0x226:                             /* switch 2 */
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.0f) {
-                    if (Forward30F348_31CFE0(temp_a0) & 1) {
+                    if (irand(temp_a0) & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0xF, 2, 0x37);
                         temp_v0_77 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_56 = (*(s32 *)((u8 *)(temp_v0_77) + 0xE24));
@@ -1622,7 +1622,7 @@ block_324:
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_23) + 0xE38)) + temp_v1_23;
                         }
                     }
-                } else if (Forward30F348_31CFE0(temp_a0) & 1) {
+                } else if (irand(temp_a0) & 1) {
                     StoreMotionParams_2609E0(arg0, 5, 0, 0x37);
                     Set_Fields_1884_1894_2609F8(arg0, 5, 2, 0x37);
                     temp_v0_79 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1652,7 +1652,7 @@ block_324:
             case 0x273:                             /* switch 2 */
             case 0x274:                             /* switch 2 */
                 var_a1_4 = 5;
-                if (!(Forward30F348_31CFE0(temp_a0) & 1)) {
+                if (!(irand(temp_a0) & 1)) {
                     if ((*(u8 *)((u8 *)(arg0) + 0x186B)) == 3) {
                         var_a1_4 = 5;
                         goto block_323;
@@ -1677,7 +1677,7 @@ block_323:
             case 0x247:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 2.89f) {
-                    temp_v1_27 = Forward30F348_31CFE0(arg0) & 3;
+                    temp_v1_27 = irand(arg0) & 3;
                     switch (temp_v1_27) {           /* switch 14; irregular */
                     case 1:                         /* switch 14 */
                         temp_v1_28 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1729,7 +1729,7 @@ block_347:
                     }
                 } else {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                    temp_v1_32 = Forward30F348_31CFE0() & 3;
+                    temp_v1_32 = irand() & 3;
                     switch (temp_v1_32) {           /* switch 15; irregular */
                     case 1:                         /* switch 15 */
                         temp_v0_84 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1778,7 +1778,7 @@ block_362:
                 }
                 if ((*(u8 *)((u8 *)(arg0) + 0x2F7)) == 1) {
                     var_s6 = 0x4E2;
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0xF, 2, 0x3E);
                         temp_v0_87 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         temp_a1_67 = (*(s32 *)((u8 *)(temp_v0_87) + 0x940));
@@ -1801,7 +1801,7 @@ block_369:
                         }
                     }
                 }
-                if (((*(f32 *)((u8 *)(arg0) + 0x760)) > 0.5235988f) && ((Forward30F348_31CFE0() % 3U) == 0)) {
+                if (((*(f32 *)((u8 *)(arg0) + 0x760)) > 0.5235988f) && ((irand() % 3U) == 0)) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x3E);
                     temp_v0_89 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_69 = (*(s32 *)((u8 *)(temp_v0_89) + 0x8F4));
@@ -1813,7 +1813,7 @@ block_369:
                     }
                 }
                 if (cCoreSave_getGameLevel(&D_00569B70) >= 2) {
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
 block_428:
                         temp_a1_70 = (*(s32 *)((u8 *)((*(s32 *)((u8 *)(arg0) + 0x304))) + 0x8E8));
@@ -1831,7 +1831,7 @@ block_428:
             case 0x246:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 6.25f) {
-                    temp_v1_35 = Forward30F348_31CFE0() & 1;
+                    temp_v1_35 = irand() & 1;
                     switch (temp_v1_35) {           /* switch 16; irregular */
                     case 2:                         /* switch 16 */
                         temp_v1_36 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1869,7 +1869,7 @@ block_428:
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_40) + 0x910)) + temp_v1_40;
                     }
                 }
-                if (((cCoreSave_getGameLevel(&D_00569B70) >= 2) && (Forward30F348_31CFE0() & 1)) || ((*(u8 *)((u8 *)(arg0) + 0x2F7)) != 0)) {
+                if (((cCoreSave_getGameLevel(&D_00569B70) >= 2) && (irand() & 1)) || ((*(u8 *)((u8 *)(arg0) + 0x2F7)) != 0)) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x28, 0x29, 0x3E);
                     temp_v0_91 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_74 = (*(s32 *)((u8 *)(temp_v0_91) + 0x3B4C));
@@ -1884,7 +1884,7 @@ block_428:
             case 0x278:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 6.25f) {
-                    temp_hi_6 = Forward30F348_31CFE0(arg0) % 3U;
+                    temp_hi_6 = irand(arg0) % 3U;
                     switch (temp_hi_6) {            /* switch 17; irregular */
                     case 1:                         /* switch 17 */
                         temp_v1_42 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1925,7 +1925,7 @@ block_414:
                     }
                 } else {
                     StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                    temp_v1_48 = Forward30F348_31CFE0() & 1;
+                    temp_v1_48 = irand() & 1;
                     if ((temp_v1_48 == 0) || (temp_v1_48 != 1)) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x3E);
                         temp_v0_92 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -1949,8 +1949,8 @@ block_421:
                         }
                     }
                 }
-                if (((cCoreSave_getGameLevel(&D_00569B70) >= 2) && (Forward30F348_31CFE0() & 1)) || ((*(u8 *)((u8 *)(arg0) + 0x2F7)) != 0)) {
-                    if (Forward30F348_31CFE0() & 1) {
+                if (((cCoreSave_getGameLevel(&D_00569B70) >= 2) && (irand() & 1)) || ((*(u8 *)((u8 *)(arg0) + 0x2F7)) != 0)) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                         goto block_428;
                     }
@@ -1968,7 +1968,7 @@ block_421:
             case 0x279:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 6.25f) {
-                    temp_v1_50 = Forward30F348_31CFE0() & 1;
+                    temp_v1_50 = irand() & 1;
                     switch (temp_v1_50) {           /* switch 18; irregular */
                     case 1:                         /* switch 18 */
                         temp_v1_51 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2009,7 +2009,7 @@ block_421:
                 break;
             case 0x20B:                             /* switch 2 */
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) < 2.89f) {
-                    var_s0 = Forward30F348_31CFE0(temp_a0, 0x14) & 1;
+                    var_s0 = irand(temp_a0, 0x14) & 1;
                     if ((var_s0 == 0) || (var_s0 != 1)) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x3E);
                         temp_v0_96 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2048,7 +2048,7 @@ block_421:
                 (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x2D;
                 break;
             case 0x20C:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0xA, 0, 0x3D);
                     temp_v0_99 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_87 = (*(s32 *)((u8 *)(temp_v0_99) + 0x1F00));
@@ -2072,7 +2072,7 @@ block_421:
                 goto block_490;
             case 0x24F:                             /* switch 2 */
                 var_s0 = 1;
-                temp_hi_7 = Forward30F348_31CFE0(temp_a0) % 3U;
+                temp_hi_7 = irand(temp_a0) % 3U;
                 switch (temp_hi_7) {                /* switch 19; irregular */
                 default:                            /* switch 19 */
                 case 0:                             /* switch 19 */
@@ -2112,7 +2112,7 @@ block_421:
                 }
                 break;
             case 0x20E:                             /* switch 2 */
-                temp_hi_8 = Forward30F348_31CFE0(temp_a0) % 3U;
+                temp_hi_8 = irand(temp_a0) % 3U;
                 switch (temp_hi_8) {                /* switch 20; irregular */
                 case 1:                             /* switch 20 */
                     StoreMotionParams_2609E0(arg0, 0xA, 0, 0x37);
@@ -2158,7 +2158,7 @@ block_619:
             case 0x250:                             /* switch 2 */
             case 0x251:                             /* switch 2 */
                 StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x37);
-                temp_v1_58 = Forward30F348_31CFE0() & 3;
+                temp_v1_58 = irand() & 3;
                 switch (temp_v1_58) {               /* switch 21; irregular */
                 default:                            /* switch 21 */
                 case 0:                             /* switch 21 */
@@ -2166,7 +2166,7 @@ block_619:
                     temp_v0_107 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_107) + 0x1974)) + temp_v0_107;
                     temp_v1_59 = (*(s32 *)((u8 *)(arg0) + 0x304));
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         var_v0_18 = (*(s32 *)((u8 *)(temp_v1_59) + 0x197C));
                     } else {
                         var_v0_18 = (*(s32 *)((u8 *)(temp_v1_59) + 0x1980));
@@ -2179,7 +2179,7 @@ block_509:
                     temp_v0_108 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_108) + 0x19D0)) + temp_v0_108;
                     temp_v1_60 = (*(s32 *)((u8 *)(arg0) + 0x304));
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         var_v0_18 = (*(s32 *)((u8 *)(temp_v1_60) + 0x19D4));
                     } else {
                         var_v0_18 = (*(s32 *)((u8 *)(temp_v1_60) + 0x19DC));
@@ -2203,7 +2203,7 @@ block_509:
                     }
                     break;
                 }
-                if ((cCoreSave_getGameLevel(&D_00569B70) >= 2) && !(Forward30F348_31CFE0() & 3) && ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.84f)) {
+                if ((cCoreSave_getGameLevel(&D_00569B70) >= 2) && !(irand() & 3) && ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.84f)) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x32, 0x1B, 0x45);
                     var_s6 = 0x4E2;
                     temp_v0_111 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2219,7 +2219,7 @@ block_509:
                 }
                 break;
             case 0x260:                             /* switch 2 */
-                temp_hi_9 = Forward30F348_31CFE0(temp_a0) % 5U;
+                temp_hi_9 = irand(temp_a0) % 5U;
                 switch (temp_hi_9) {                /* switch 22 */
                 default:                            /* switch 22 */
                     StoreMotionParams_2609E0(arg0, 0x46, 0x30, 0x37);
@@ -2286,7 +2286,7 @@ block_509:
                 }
                 (*(s32 *)((u8 *)(arg0) + 0x5F0)) = var_v0_19;
                 (*(f32 *)((u8 *)(arg0) + 0x604)) = 30.0f;
-                if ((cCoreSave_getGameLevel(&D_00569B70) >= 2) && !(Forward30F348_31CFE0() & 3) && ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.84f)) {
+                if ((cCoreSave_getGameLevel(&D_00569B70) >= 2) && !(irand() & 3) && ((*(f32 *)((u8 *)(arg0) + 0x618)) < 4.84f)) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x46, 0x1B, 0x45);
                     var_s6 = 0x4E2;
                     temp_v0_117 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2302,7 +2302,7 @@ block_509:
                 }
                 break;
             case 0x264:                             /* switch 2 */
-                if (Forward30F348_31CFE0(temp_a0) & 1) {
+                if (irand(temp_a0) & 1) {
                     StoreMotionParamsBoth_2609A8(arg0, 0x50, 0x33, 0x3E);
                     temp_v0_118 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_103 = (*(s32 *)((u8 *)(temp_v0_118) + 0x328C));
@@ -2328,7 +2328,7 @@ block_575:
                 break;
             case 0x265:                             /* switch 2 */
                 if ((*(s32 *)((u8 *)(arg0) + 0x16D4)) & 0x20000000) {
-                    temp_hi_10 = Forward30F348_31CFE0(temp_a0) % 3U;
+                    temp_hi_10 = irand(temp_a0) % 3U;
                     switch (temp_hi_10) {           /* switch 23; irregular */
                     case 1:                         /* switch 23 */
                         StoreMotionParamsBoth_2609A8(arg0, 0x28, 0x39, 0x37);
@@ -2366,7 +2366,7 @@ block_575:
                         break;
                     }
                 } else {
-                    temp_hi_11 = Forward30F348_31CFE0(temp_a0) % 3U;
+                    temp_hi_11 = irand(temp_a0) % 3U;
                     switch (temp_hi_11) {           /* switch 24; irregular */
                     case 1:                         /* switch 24 */
                         StoreMotionParamsBoth_2609A8(arg0, 0x50, 0x39, 0x3E);
@@ -2461,7 +2461,7 @@ block_594:
                 }
                 Obj0000_Get_Byte_17C3_NZ_2_276468(arg0);
                 if ((*(f32 *)((u8 *)(arg0) + 0x618)) > 4.0f) {
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         StoreMotionParamsBoth_2609A8(arg0, 0x32, 0, 0x3E);
                         temp_v0_125 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_v1_2 = (*(s32 *)((u8 *)(temp_v0_125) + 0x1C28));
@@ -2477,7 +2477,7 @@ block_594:
                         temp_v1_77 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s1 = (*(s32 *)((u8 *)(temp_v1_77) + 0x1CCC)) + temp_v1_77;
                     }
-                } else if (Forward30F348_31CFE0() & 1) {
+                } else if (irand() & 1) {
                     temp_v1_78 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_112 = (*(s32 *)((u8 *)(temp_v1_78) + 0x1CB8));
                     var_s3 = temp_a1_112 + temp_v1_78;
@@ -2520,8 +2520,8 @@ block_594:
                 break;
             case 0x223:                             /* switch 2 */
                 (*(f32 *)((u8 *)(arg0) + 0x604)) = 30.0f;
-                if ((Forward30F348_31CFE0(temp_a0) & 1) && ((*(s32 *)((u8 *)(arg0) + 0x6F4)) != 0)) {
-                    temp_hi_12 = Forward30F348_31CFE0() % 3U;
+                if ((irand(temp_a0) & 1) && ((*(s32 *)((u8 *)(arg0) + 0x6F4)) != 0)) {
+                    temp_hi_12 = irand() % 3U;
                     switch (temp_hi_12) {           /* switch 25; irregular */
                     case 1:                         /* switch 25 */
                         StoreMotionParamsBoth_2609A8(arg0, 0x28, 0x2E, 0x3E);
@@ -2561,7 +2561,7 @@ block_594:
                     }
                     goto block_619;
                 }
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     StoreMotionParams_2609E0(arg0, 0x1E, 0x2F, 0x37);
                     Set_Fields_1884_1894_2609F8(arg0, 0x1E, 0x2F, 0x3E);
                     temp_v0_132 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2609,9 +2609,9 @@ block_594:
                     }
                     StoreMotionParamsBoth_2609A8(arg0, 0x1E, 0xA, 0x3E);
                 } else {
-                    var_s0_2 = Forward30F348_31CFE0(temp_a0) % 3U;
+                    var_s0_2 = irand(temp_a0) % 3U;
                     if ((*(s32 *)((u8 *)(arg0) + 0x16D4)) & 0x80) {
-                        var_s0_2 = (Forward30F348_31CFE0() & 1) ? 3U : 1U;
+                        var_s0_2 = (irand() & 1) ? 3U : 1U;
                     }
                     temp_a2_2 = (*(s32 *)((u8 *)(arg0) + 0x16D4));
                     var_s0_3 = (temp_a2_2 & 0x10000) ? 1U : ((temp_a2_2 & 0x100) ? 1U : var_s0_2);
@@ -2688,7 +2688,7 @@ block_660:
                 (*(f32 *)((u8 *)(arg0) + 0x604)) = 35.0f;
                 break;
             case 0x256:                             /* switch 2 */
-                temp_hi_13 = Forward30F348_31CFE0(temp_a0) % 6U;
+                temp_hi_13 = irand(temp_a0) % 6U;
                 switch (temp_hi_13) {               /* switch 27 */
                 default:                            /* switch 27 */
                     StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x3E);
@@ -2765,7 +2765,7 @@ block_691:
                 }
                 break;
             case 0x27E:                             /* switch 2 */
-                temp_hi_14 = Forward30F348_31CFE0(temp_a0) % 6U;
+                temp_hi_14 = irand(temp_a0) % 6U;
                 switch (temp_hi_14) {               /* switch 28 */
                 default:                            /* switch 28 */
                     StoreMotionParamsBoth_2609A8(arg0, 0x28, 0, 0x3E);
@@ -2803,7 +2803,7 @@ block_691:
                 }
                 break;
             case 0x25B:                             /* switch 2 */
-                temp_hi_15 = Forward30F348_31CFE0(temp_a0) % 7U;
+                temp_hi_15 = irand(temp_a0) % 7U;
                 switch (temp_hi_15) {               /* switch 29 */
                 default:                            /* switch 29 */
                     StoreMotionParamsBoth_2609A8(arg0, 0x1E, 0, 0x37);
@@ -2949,7 +2949,7 @@ block_706:
             temp_v0_147 = cCoreSave_getGameLevel(&D_00569B70);
             if ((temp_v0_147 == 1) || (temp_v0_147 <= 0) || (temp_v0_147 >= 6)) {
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     goto block_27;
                 }
                 temp_v0_148 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2962,7 +2962,7 @@ block_706:
                 }
             } else {
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                temp_hi_16 = Forward30F348_31CFE0() % 3U;
+                temp_hi_16 = irand() % 3U;
                 switch (temp_hi_16) {               /* switch 3; irregular */
                 case 1:                             /* switch 3 */
                     temp_v0_149 = (*(s32 *)((u8 *)(arg0) + 0x304));
@@ -2999,7 +2999,7 @@ block_27:
                     break;
                 }
             }
-            if (((*(s32 *)((u8 *)(arg0) + 0x564)) == 0x214) && (Forward30F348_31CFE0() & 1)) {
+            if (((*(s32 *)((u8 *)(arg0) + 0x564)) == 0x214) && (irand() & 1)) {
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0x11, 0x4E);
                 temp_v0_151 = (*(s32 *)((u8 *)(arg0) + 0x304));
                 temp_a1_137 = (*(s32 *)((u8 *)(temp_v0_151) + 0x1B1C));
@@ -3010,7 +3010,7 @@ block_27:
                     var_s1 = (*(s32 *)((u8 *)(temp_v1_95) + 0x1B20)) + temp_v1_95;
                 }
             }
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 temp_v0_152 = (*(s32 *)((u8 *)(arg0) + 0x564));
                 (*(s32 *)((u8 *)(arg0) + 0x5F0)) = 0x1E;
                 temp_a0_10 = temp_v0_152 - 0x200;
@@ -3043,7 +3043,7 @@ block_61:
                             var_s1 = (*(s32 *)((u8 *)(temp_v1_96) + 0x234)) + temp_v1_96;
                         }
                         if (((u8) (*(u8 *)((u8 *)(arg0) + 0x186B)) >= 5U) && (Rnd() & 1)) {
-                            if (Forward30F348_31CFE0() & 1) {
+                            if (irand() & 1) {
                                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
                                 temp_v0_155 = (*(s32 *)((u8 *)(arg0) + 0x304));
                                 temp_a1_140 = (*(s32 *)((u8 *)(temp_v0_155) + 0x220));
@@ -3068,7 +3068,7 @@ block_61:
                         break;
                     case 0x204:                     /* switch 4 */
                     case 0x23A:                     /* switch 4 */
-                        temp_hi_17 = Forward30F348_31CFE0() % 5U;
+                        temp_hi_17 = irand() % 5U;
                         switch (temp_hi_17) {       /* switch 5 */
                         default:                    /* switch 5 */
                             StoreMotionParamsBoth_2609A8(arg0, 0x14, 2, 0x37);
@@ -3143,7 +3143,7 @@ block_61:
             }
             if ((*(f32 *)((u8 *)(arg0) + 0x618)) > 4.0f) {
                 StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37);
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     temp_v0_163 = (*(s32 *)((u8 *)(arg0) + 0x304));
                     temp_a1_148 = (*(s32 *)((u8 *)(temp_v0_163) + 0x190));
                     var_s3 = (*(s32 *)((u8 *)(temp_v0_163) + 0x18C)) + temp_v0_163;
@@ -3167,7 +3167,7 @@ block_61:
                 temp_v1_100 = (*(s32 *)((u8 *)(arg0) + 0x564));
                 switch (temp_v1_100) {              /* switch 6; irregular */
                 case 0x227:                         /* switch 6 */
-                    if (Forward30F348_31CFE0() & 1) {
+                    if (irand() & 1) {
                         temp_v0_165 = (*(s32 *)((u8 *)(arg0) + 0x304));
                         var_s3 = (*(s32 *)((u8 *)(temp_v0_165) + 0x6B8)) + temp_v0_165;
                         var_s1 = (*(s32 *)((u8 *)(temp_v0_165) + 0x6C0)) + temp_v0_165;
@@ -3264,7 +3264,7 @@ block_740:
         if (temp_v0_168 != 0) {
             temp_s0_2 = (*(s32 *)((u8 *)(arg0) + 0xF0));
             (*(s32 *)((u8 *)(arg0) + 0x5F0)) = (s32) (temp_v0_168 - 1);
-            temp_f0 = Turn_dest(temp_s0_2, (*(s32 *)((u8 *)(Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), (*(f32 *)((u8 *)(arg0) + 0x600)), (*(f32 *)((u8 *)(arg0) + 0x5A8)) * 0.19634955f);
+            temp_f0 = Turn_dest(temp_s0_2, (*(s32 *)((u8 *)(Getplayer()) + 0xF0)), (*(f32 *)((u8 *)(arg0) + 0x600)), (*(f32 *)((u8 *)(arg0) + 0x5A8)) * 0.19634955f);
             temp_f1_2 = (*(f32 *)((u8 *)(arg0) + 0x600)) + temp_f0;
             (*(f32 *)((u8 *)(arg0) + 0x600)) = temp_f1_2;
             (*(f32 *)((u8 *)(arg0) + 0x600)) = Adjust_theta(temp_f1_2);
@@ -3274,8 +3274,8 @@ block_740:
         }
         if (moveMotion(arg0) == 0) {
             (*(f32 *)((u8 *)(arg0) + 0x338)) = (f32) ((*(f32 *)((u8 *)(arg0) + 0x338)) * (*(f32 *)((u8 *)(arg0) + 0x608)));
-            AddScaledVecToField_100_14F9F0(arg0, 0x3F800000);
-            AddScaledXfmVecToField_F0_14F928(arg0, 0x3F800000);
+            cObjBase_addNullSpeed_Rotation(arg0, 0x3F800000);
+            cObjBase_addNullSpeed(arg0, 0x3F800000);
         default:                                    /* switch 1 */
             if ((*(s32 *)((u8 *)(arg0) + 0x5F4)) == 0) {
                 if ((*(s32 *)((u8 *)(arg0) + 0x564)) == 0x222) {
@@ -3373,7 +3373,7 @@ block_778:
                     } else {
                         SetOrientByType_26AF20(arg0, temp_a1_150, 8);
                     }
-                    if (((*(u16 *)((u8 *)(arg0) + 0x3AC)) & 0x10) && (Forward30F348_31CFE0() & 1) && (cCoreSave_getGameLevel(&D_00569B70) >= 2)) {
+                    if (((*(u16 *)((u8 *)(arg0) + 0x3AC)) & 0x10) && (irand() & 1) && (cCoreSave_getGameLevel(&D_00569B70) >= 2)) {
                         (*(u8 *)((u8 *)(arg0) + 0x2F6)) = 0U;
                         (*(u8 *)((u8 *)(arg0) + 0x2F7)) = 1U;
                     }
@@ -3409,8 +3409,8 @@ block_810:
                 }
             }
         } else {
-            AddScaledVecToField_100_14F9F0(arg0, 0x3F800000);
-            AddScaledXfmVecToField_F0_14F928(arg0, 0x3F800000);
+            cObjBase_addNullSpeed_Rotation(arg0, 0x3F800000);
+            cObjBase_addNullSpeed(arg0, 0x3F800000);
             if (Obj0000_IsSet_Field_15F4_Bit_1000_12C530(temp_fp) == 0) {
                 func_002705D8(arg0);
             } else {

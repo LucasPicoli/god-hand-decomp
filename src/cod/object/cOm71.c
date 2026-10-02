@@ -2,13 +2,13 @@
 #include "include_asm.h"
 
 extern void func_002A8578(void *a0, void *a1, void *a2, float f, int a3, int t0, int t1);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
+extern float SetMotionStep(void *a0, float f);
 
 __attribute__((section(".text.cOm71_SetMotionWait")))
 void cOm71_SetMotionWait(void *a0) {
     int base = *(int *)((char *)a0 + 0x304);
     func_002A8578(a0, (void *)(*(int *)(base + 0x10) + base), 0, 0.0f, 5, 0, 0);
-    SetField444SignedByFlag434_158288(a0, 1.0f);
+    SetMotionStep(a0, 1.0f);
 }
 
 

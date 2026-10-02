@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_001B6FB8(void *a0);
-extern void *AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern void cDamageUnit_AddDamageCollCylinder(void *a0, void *a1, float *a2, float *a3, float f0, float f1);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern int D_00574380;
@@ -43,7 +43,7 @@ int func_00173AD8(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -113,7 +113,7 @@ int func_0017C708(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -183,7 +183,7 @@ int func_00186A80(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -253,7 +253,7 @@ int func_0018CF88(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -323,7 +323,7 @@ int func_0018DD40(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -393,7 +393,7 @@ int func_0019C670(char *p)
     f[10] = 0.0f;
     f[6] = ca;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];

@@ -8,7 +8,7 @@ extern char D_005864F0[];
 extern void HideModelMgr_ResetHiddenModels(void *a0);
 extern void HideModelMgr_ClearHiddenModelList(void *a0);
 extern void KeyStop(void);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_00126770(void *a0);
 extern void func_002948E8(void *a0, int a1);
 extern void func_002FA470(int a0);
@@ -37,7 +37,7 @@ void cScenario_startSoftEvent(cScenario *self, int type)
         *(int *)(g - 0x4) = *(int *)(g - 0x4) | 0x00100000;
         *(int *)(g - 0xC) = *(int *)(g - 0xC) | 0x00100000;
         *(int *)(g - 0x4) = *(int *)(g - 0x4) | 0x02000000;
-        func_00126770(Obj0000_Get_D_00747A94_2DB6B0());
+        func_00126770(Getplayer());
 
         switch (self->softEventType) {
         case 0:
@@ -55,7 +55,7 @@ void cScenario_startSoftEvent(cScenario *self, int type)
                 func_002948E8(D_005864F0, 1);
                 cScenario_setOmSuspend(self, 1);
                 func_002FA470(1);
-                p = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+                p = (char *)Getplayer();
                 vt = *(char **)(p + 0x214);
                 (*(void (**)(char *, int))(vt + 0x64))(p + *(short *)(vt + 0x60), 1);
                 *(int *)(g2 + 0xC) = *(int *)(g2 + 0xC) | 0x01000000;

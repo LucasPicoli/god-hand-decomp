@@ -1,17 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0012C348(void *a0, int a1);
 extern void func_00126770(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern char D_005FEE00[];
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -30,7 +30,7 @@ extern void cSnd_SeStop(void *a0, int a1);
 extern int D_00747A0C;
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern unsigned char D_00462FC0[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 
 __attribute__((section(".text.func_0011B900")))
 void func_0011B900(void *a0)
@@ -41,7 +41,7 @@ void func_0011B900(void *a0)
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int p1, p2;
-        switch (Forward30F348_31CFE0() & 3) {
+        switch (irand() & 3) {
         case 0:
         default:
             {
@@ -73,13 +73,13 @@ void func_0011B900(void *a0)
             break;
         }
         func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
-        if (Forward30F348_31CFE0() & 1) {
+        if (irand() & 1) {
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
         } else {
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD0, s1, 0, 0, 0, 0);
         }
         func_0012C348(s1, 1);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
         func_00126770(s1);
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
@@ -97,8 +97,8 @@ void func_0011B900(void *a0)
             *(char *)(s1 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         break;
     default:
         break;
@@ -137,7 +137,7 @@ void func_001127F8(void *a0)
         Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x8C, 0x1E, 0x25, 0, 0x123);
         Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x8C, 0x1E, 0x25, 0, 0x123);
         *(char *)(s1 + 0x1684) = 1;
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
         func_00129578(s1);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x4A4) + t, *(int *)(t + 0x4A8) + t,
@@ -151,14 +151,14 @@ void func_001127F8(void *a0)
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_0010A438(s1);
@@ -171,7 +171,7 @@ void func_001127F8(void *a0)
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
     } else {
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;
         *(float *)(s1 + 0x674) = 0.05f;
@@ -198,7 +198,7 @@ void func_00112A48(void *a0)
         *(short *)(s1 + 0x5E2) = 0;
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
         if (*(unsigned char *)(s1 + 0x2F7) != 0) {
             char *v0 = *(char **)(s1 + 0x304);
             p1 = *(int *)(v0 + 0x450) + (int)v0;
@@ -218,14 +218,14 @@ void func_00112A48(void *a0)
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0 && *(int *)(s1 + 0x15B0) != 0) {
@@ -243,7 +243,7 @@ void func_00112A48(void *a0)
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
     } else {
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;
         *(float *)(s1 + 0x674) = 0.05f;
@@ -266,7 +266,7 @@ void func_00111A20(void *a0)
         *(unsigned char *)(s1 + 0x649) == 0 &&
         func_0010B2E8(s1, 1) != 0) {
         *(char *)(s1 + 0x649) = 1;
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -306,11 +306,11 @@ void func_00111A20(void *a0)
     case 1:
         func_00124EC0(s1);
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-            Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
         }
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
@@ -328,8 +328,8 @@ void func_00111A20(void *a0)
                 }
             }
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_0010A438(s1);
@@ -345,7 +345,7 @@ void func_00111A20(void *a0)
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
     } else {
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;
         *(float *)(s1 + 0x674) = 0.05f;

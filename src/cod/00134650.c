@@ -6,7 +6,7 @@
 extern char D_005F3970[];
 extern void func_003A52F0(void *, int, int);
 extern void func_001F2708(void *);
-extern void func_002A7338(void *);
+extern void cGameObj(void *);
 extern int D_0044A660;
 extern int D_0044A630;
 
@@ -97,7 +97,7 @@ void *func_0028EB00(void *a0) {
     char *p;
     int i;
 
-    func_002A7338(a0);
+    cGameObj(a0);
     *(int **)((char *)a0 + 0x214) = &D_0044A660;
     p = (char *)a0 + 0x5C0;
     for (i = 1; i != -1; i--) {

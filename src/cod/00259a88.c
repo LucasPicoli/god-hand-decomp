@@ -2,15 +2,15 @@
 #include "godhand/cCoreSave.h"
 
 extern float fRand0_1(void);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
+extern char *Getplayer(void);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern float Adjust_theta(float f12);
 extern void Obj1D00_SetState_7_E_a1(void *a0, int a1);
@@ -68,7 +68,7 @@ void func_00259A88(void *a0)
     case 0x213: case 0x217:
         if (*(unsigned char *)(s1 + 0x2F6) == 0) {
             if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
-                if (Forward30F348_31CFE0() & 1) {
+                if (irand() & 1) {
                     *(unsigned char *)(s1 + 0x2F6) = 8;
                 }
             }
@@ -81,7 +81,7 @@ void func_00259A88(void *a0)
         int nb;
 
         if (func_002740D8(s1) != 0) {
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 *(char *)(s1 + 0x17C3) = 1;
             } else {
                 *(char *)(s1 + 0x17C3) = 0;
@@ -134,7 +134,7 @@ void func_00259A88(void *a0)
                 p2 = *(int *)(b + 0xB38) + b;
             }
             cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(Obj0000_Get_Field_424_1595F0(s1) + 0x23),
+                               (short)(GetSeqSEBase(s1) + 0x23),
                                s1, 0, 0, 0, 0);
             break;
         case 0x260:
@@ -291,8 +291,8 @@ void func_00259A88(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, *(float *)(s1 + 0x600));
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, *(float *)(s1 + 0x600));
         if (*(unsigned short *)(s1 + 0x3AC) & 8) {
             *(float *)(s1 + 0x54C) = 2.0f;
         }
@@ -311,8 +311,8 @@ void func_00259A88(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = 4;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 4: {
         int b = *(int *)(s1 + 0x304);
@@ -328,7 +328,7 @@ void func_00259A88(void *a0)
         float t;
 
         *(int *)(s1 + 0x16D4) |= 0x80000;
-        g = Obj0000_Get_D_00747A94_2DB6B0();
+        g = Getplayer();
         t = Turn_dest(*(void **)(g + 0xF0), *(float *)(s1 + 0x104),
                       *(float *)(s1 + 0x5A8) * 0.098174773f,
                       *(void **)(s1 + 0xF0));
@@ -340,8 +340,8 @@ void func_00259A88(void *a0)
                 *(unsigned char *)(s1 + 0x2F6) = 6;
             }
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     case 6: {
@@ -356,8 +356,8 @@ void func_00259A88(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 8:
         if (*(unsigned short *)(s1 + 0x3AC) & 0x200) {
@@ -387,8 +387,8 @@ void func_00259A88(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = 0xA;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 10: {
         int b = *(int *)(s1 + 0x304);
@@ -408,8 +408,8 @@ void func_00259A88(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = 0xC;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 12: {
         int b = *(int *)(s1 + 0x304);
@@ -435,14 +435,14 @@ void func_00259A88(void *a0)
     }
         /* fallthrough */
     case 13: {
-        char *g = Obj0000_Get_D_00747A94_2DB6B0();
+        char *g = Getplayer();
 
-        AddScaledDeltaToField_104_2A7498(s1, *(int *)(g + 0xF0),
+        cGameObj_SetTgtTurn(s1, *(int *)(g + 0xF0),
                                          *(float *)(s1 + 0x5A8) * 0.049087387f);
         moveMotion(s1);
         *(float *)(s1 + 0x338) = *(float *)(s1 + 0x5A8) * -0.05f;
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
         if (*(float *)(s1 + 0x600) <= 0.0f) {
             func_0026BEF0(s1, 0x12, 0);
@@ -474,8 +474,8 @@ void func_00259A88(void *a0)
             *(unsigned char *)(s1 + 0x2F4) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }

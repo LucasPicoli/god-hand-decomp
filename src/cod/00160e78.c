@@ -2,7 +2,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
 
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern void Obj0000_Set_Field_50_173998(int *a0, int a1);
@@ -11,7 +11,7 @@ extern void func_00147C88(void *a0, void *a1, int a2);
 extern void CopyVec3ToField20_173908(char *a0, float *a1);
 extern void CopyVec3ToField30_173938(char *a0, float *a1);
 extern void CopyVec3ToField40_173968(char *a0, float *a1);
-extern void *cSnd_GetSeEntry(void *a0, int a1);
+extern void *cSnd_GetSeData(void *a0, int a1);
 extern int D_0044CE48[];
 extern int cSaveLoad_openSave(void *p, int a1);
 extern char D_00747A24[];
@@ -63,12 +63,12 @@ void func_001BCB38(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.3f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.2f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -104,11 +104,11 @@ int cSnd_EmSeFind(cSnd *self, int objId)
     slot = D_0044CE48;
     i = 0;
     do {
-        e = cSnd_GetSeEntry(self, *slot);
+        e = cSnd_GetSeData(self, *slot);
         if (cSeData_IsFree(e) != 1) {
-            e = cSnd_GetSeEntry(self, *slot);
+            e = cSnd_GetSeData(self, *slot);
             if (e->owner == owner) {
-                e = cSnd_GetSeEntry(self, *slot);
+                e = cSnd_GetSeData(self, *slot);
                 if (cSeData_IsFailed(e) != 1)
                     return *slot;
             }

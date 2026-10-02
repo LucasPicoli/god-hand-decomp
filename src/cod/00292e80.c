@@ -43,10 +43,10 @@ int cSnd_SeIsLoadOk(cSnd *self, int slot)
 	int usable;
 
 	usable = 1;
-	if (cSeData_IsFree(cSnd_GetSeEntry(self, slot)) == 1) {
+	if (cSeData_IsFree(cSnd_GetSeData(self, slot)) == 1) {
 		return 1;
 	}
-	if (cSeData_IsFailed(cSnd_GetSeEntry(self, slot)) != 0) {
+	if (cSeData_IsFailed(cSnd_GetSeData(self, slot)) != 0) {
 		usable = 0;
 	}
 	return usable;

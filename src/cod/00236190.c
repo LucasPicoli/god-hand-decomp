@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
 extern void func_002DB770(void);
 extern void func_00129718(void *a0, void *a1, int a2);
@@ -33,9 +33,9 @@ __attribute__((section(".text.func_00236190")))
 void func_00236190(void *a0)
 {
     char *s1 = (char *)a0;
-    char *s2 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    char *s2 = (char *)Getplayer();
 
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
     {
@@ -82,15 +82,15 @@ void func_00236190(void *a0)
             func_002705D8(s1);
             return;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x10) != 0) {
             if (*(short *)(s1 + 0x568) <= 0) {
                 *(char *)(s1 + 0x2F4) = 1;
                 *(char *)(s1 + 0x2F6) = 0;
                 *(char *)(s1 + 0x2F5) = 0x1D;
                 (*(unsigned char *)(s1 + 0x2F7))++;
-                Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
+                cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
                 func_00129718(s2, s1, 0x1D);
             }
             func_002DB770();

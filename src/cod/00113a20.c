@@ -11,12 +11,12 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void func_0010A438(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00124EC0(void *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void func_00129630(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern int D_005864F0;
 extern int D_00462FC0;
@@ -57,13 +57,13 @@ void func_00113A20(void *a0)
         func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
         if (*(unsigned char *)(s1 + 0x2F7)) {
             s2 = *(short *)(s1 + 0x548);
-            cCoreSave_shiftGodItem(&D_00569B70);
-            cCoreSave_shiftGodItem(&D_00569B70);
-            cCoreSave_shiftGodItem(&D_00569B70);
+            cCoreSave_useGodItem(&D_00569B70);
+            cCoreSave_useGodItem(&D_00569B70);
+            cCoreSave_useGodItem(&D_00569B70);
         } else {
             s2 = (int)(*(short *)(s1 + 0x548) * 0.3f);
-            cCoreSave_shiftGodItem(&D_00569B70);
-            cCoreSave_shiftGodItem(&D_00569B70);
+            cCoreSave_useGodItem(&D_00569B70);
+            cCoreSave_useGodItem(&D_00569B70);
         }
         t = *(unsigned short *)(s1 + 0x54A) + s2;
         *(short *)(s1 + 0x54A) = t;
@@ -77,25 +77,25 @@ void func_00113A20(void *a0)
         float one;
         func_00124EC0(s1);
         if (*(unsigned short *)(s1 + 0x3AC) & 0x100) {
-            Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
         }
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         break;
     }
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
     } else {
         cEmManage_SetSpeedRate(&D_005864F0, 0.1f);
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;

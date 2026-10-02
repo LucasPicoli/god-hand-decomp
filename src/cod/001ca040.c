@@ -6,7 +6,7 @@ extern void KillEffect(void *a0, int a1, int a2);
 extern float Adjust_theta(float f12);
 extern int D_005864E0[];
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void cEmManage_EntryEm(void *, void *, int, void *);
 extern char D_003BF958[];
 extern char D_003BF970[];
@@ -178,7 +178,7 @@ void func_00260278(char *this)
         ep.f00 = id;
         ep.f24 = 0;
         ep.f2C = 0;
-        r = Forward30F348_31CFE0();
+        r = irand();
         {
             unsigned int three = 3;
             r = r % three;

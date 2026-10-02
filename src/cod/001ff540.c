@@ -82,5 +82,5 @@ __attribute__((section(".text.InitSlotParams_200658")))
 void InitSlotParams_200658(void) {
     func_003A52F0(&D_00747A78, 0, 8);
     D_00747A78[2] = D_00747A78[2] & ~0x100000;
-    *(float*)((char*)Obj0000_Get_D_00747A94_2DB6B0() + 0x54C) = 30.0f;
+    *(float*)((char*)Getplayer() + 0x54C) = 30.0f;
 }

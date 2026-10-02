@@ -11,14 +11,14 @@ extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern void func_0012CC70(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
-extern void SetField444SignedByFlag434_158288(void *a0, float f12);
+extern void SetMotionStep(void *a0, float f12);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void func_00126770(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void FreeFieldObject_1267F8(void *a0);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 __attribute__((section(".text.func_00114608")))
 void func_00114608(void *a0)
@@ -85,7 +85,7 @@ void func_00114608(void *a0)
                             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 4, s1, 0, 0, 0, 0);
                     cEmManage_SetSpeedRate(&D_005864F0, 0.03f);
                     *(float *)(s1 + 0x5A8) = 0.03f;
-                    SetField444SignedByFlag434_158288(s1, 0.03f);
+                    SetMotionStep(s1, 0.03f);
                     {
                         char *g = (char *)&D_005FEE00;
                         *(int *)(g + 0xB0) = *(int *)(g + 0xB0) | 0x400000;
@@ -123,7 +123,7 @@ void func_00114608(void *a0)
                     *(unsigned char *)(s1 + 0x623) = 0;
                     *(int *)(s1 + 0x15B8) = 1;
                     func_00126770(s1);
-                    ClearField15F4Bit1_124F60(s1, 1, 0);
+                    pl00_clearMotionCam(s1, 1, 0);
                     *(unsigned char *)(s1 + 0x2F6) = 2;
                 }
             }
@@ -131,15 +131,15 @@ void func_00114608(void *a0)
         if (*(int *)(s1 + 0x15B0) == 0 && *(int *)(s1 + 0x15B8) == 0)
             FreeFieldObject_1267F8(s1);
         if (moveMotion(s1)) {
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             func_00126770(s1);
             *(unsigned char *)(s1 + 0x2F4) = 0;
             *(unsigned char *)(s1 + 0x2F5) = 0;
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         if (*(unsigned short *)(s1 + 0x3AC) & 0x100) {
             *(short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) | 0x800;
             *(float *)(s1 + 0x674) = 0.05f;
@@ -162,8 +162,8 @@ void func_00114608(void *a0)
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     default:
         break;
@@ -172,6 +172,6 @@ void func_00114608(void *a0)
         *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x400000;
     if (func_00123938(s1, 1)) {
         func_00126770(s1);
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
     }
 }

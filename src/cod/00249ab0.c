@@ -4,7 +4,7 @@
 
 extern unsigned char D_005850B0[];
 extern unsigned char D_005CB010;
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int t0, int t1);
@@ -14,15 +14,15 @@ extern void func_002495E0(void *a0, float f12);
 extern void func_00249770(void *a0, float f12);
 extern float fRand0_1(void);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 __attribute__((section(".text.func_00249AB0")))
 void func_00249AB0(void *a0)
 {
     char *s0 = (char *)a0;
 
-    capVu0MagnitudeSqXZ(*(void **)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0), &D_005850B0);
+    capVu0MagnitudeSqXZ(*(void **)(Getplayer() + 0xF0), &D_005850B0);
     *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x30400;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
@@ -55,8 +55,8 @@ void func_00249AB0(void *a0)
 
         func_002495E0(s0, 0.0f);
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (D_005CB010 != 0) {
             *(char *)(s0 + 0x2F5) = 0x6B;
             *(char *)(s0 + 0x2F4) = 0;
@@ -128,8 +128,8 @@ void func_00249AB0(void *a0)
         }
         func_00249770(s0, *(float *)(s0 + 0x604) * *(float *)(s0 + 0x5A8));
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (D_005CB010 != 0) {
             *(char *)(s0 + 0x2F6) = 4;
         }
@@ -170,8 +170,8 @@ void func_00249AB0(void *a0)
         }
         func_00249770(s0, *(float *)(s0 + 0x604) * *(float *)(s0 + 0x5A8));
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     }

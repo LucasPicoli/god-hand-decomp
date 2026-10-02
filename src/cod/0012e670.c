@@ -21,15 +21,15 @@ extern void func_002AF708(void *a0, int a1);
 extern void func_002AF710(void *a0, int a1, unsigned int a2);
 extern void func_002AF720(void *a0, float x);
 extern void cEmManage_EntryEm(void *, void *, int, void *);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern unsigned char D_005864F0[];
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
+extern float fRand1_1(void);
 extern void Obj1D00_SetState_6_E_a1(void *a0, int a1);
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
@@ -282,7 +282,7 @@ void func_002606E8(unsigned char *p, int kind)
     ep.f30 = 0;
     ep.f2C = 0;
     if (cCoreSave_getGameLevel(&D_00569B70) >= 2) {
-        if ((Forward30F348_31CFE0() & 3) == 0) {
+        if ((irand() & 3) == 0) {
             ep.f2C = 1;
         }
         if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
@@ -327,8 +327,8 @@ void func_002464E0(void *a0)
         if (moveMotion(s2) != 0) {
             *(unsigned char *)(s2 + 0x2F6) = *(unsigned char *)(s2 + 0x2F6) + 1;
         }
-        AddScaledVecToField_100_14F9F0(s2, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s2, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s2, 1.0f);
+        cObjBase_addNullSpeed(s2, 1.0f);
         break;
     case 2:
         *(char *)(s2 + 0x1864) = 0;
@@ -339,8 +339,8 @@ void func_002464E0(void *a0)
         *(unsigned char *)(s2 + 0x2F6) = *(unsigned char *)(s2 + 0x2F6) + 1;
     case 3:
         moveMotion(s2);
-        AddScaledVecToField_100_14F9F0(s2, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s2, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s2, 1.0f);
+        cObjBase_addNullSpeed(s2, 1.0f);
         if (*(int *)(s2 + 0x16D0) & 0x20000000) {
             func_002705D8(s2);
         }
@@ -373,12 +373,12 @@ void func_00247050(void *a0)
         v1 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v1 + 0x10A8) + v1, *(int *)(v1 + 0x10AC) + v1,
                       0.0f, 0xA, t0, 0);
-        *(float *)(s0 + 0x600) = DoubleFloatMinusHalf_31D020() * 150.0f + 150.0f;
+        *(float *)(s0 + 0x600) = fRand1_1() * 150.0f + 150.0f;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         *(float *)(s0 + 0x600) = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
         if (*(float *)(s0 + 0x600) <= 0.0f) {
             *(unsigned char *)(s0 + 0x2F6) = 2;
@@ -400,8 +400,8 @@ void func_00247050(void *a0)
         if (moveMotion(s0) != 0) {
             *(unsigned char *)(s0 + 0x2F6) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
 }

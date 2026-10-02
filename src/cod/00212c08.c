@@ -2,16 +2,16 @@
 
 #include "godhand/vu0.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
-extern void Obj0000_Set_Fields_360_364_368_139B68(void *parts, void *obj, int a2, int a3);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void Obj1D00_ClearState_9(void *a0);
 extern int D_00463050;
@@ -59,7 +59,7 @@ void func_00212C08(void *a0)
     int nb;
     int spill[2];
 
-    s2 = Obj0000_Get_D_00747A94_2DB6B0();
+    s2 = Getplayer();
     s.f00 = 1.0f;
     s.f04 = 1.0f;
     s.f08 = 1.0f;
@@ -112,8 +112,8 @@ void func_00212C08(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         return;
     case 2:
         nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -141,15 +141,15 @@ void func_00212C08(void *a0)
         } else {
             a3v = 0;
         }
-        Obj0000_Set_Fields_360_364_368_139B68(parts, s1, a2v, a3v);
+        cPartsCamera_SetParts(parts, s1, a2v, a3v);
         *(float *)(s1 + 0x54C) = 3.0f;
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s2, 0, 1);
+            pl00_clearMotionCam(s2, 0, 1);
             func_002705D8(s1);
             *(unsigned char *)(s1 + 0x616) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         return;
     case 4:
         nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -168,8 +168,8 @@ void func_00212C08(void *a0)
             func_002705D8(s1);
             *(unsigned char *)(s1 + 0x616) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         return;
     case 6:
         nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -181,8 +181,8 @@ void func_00212C08(void *a0)
     case 7:
         *(float *)(s1 + 0x54C) = 3.0f;
         moveMotion(s1);
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
         if (*(float *)(s1 + 0x600) <= 0.0f) {
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -199,8 +199,8 @@ void func_00212C08(void *a0)
             func_002705D8(s1);
             *(unsigned char *)(s1 + 0x616) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }

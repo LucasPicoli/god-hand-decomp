@@ -3,7 +3,7 @@
 extern int Setup_Fields_2B0_2F56C0();
 extern int Setup_Field_2B0_2F61C8();
 extern char D_0044FCF8[];
-extern int UnlinkAndCoalesceNode_2A9680();
+extern int cHeap_free();
 
 /* clone */
 
@@ -98,6 +98,6 @@ int func_00304F58(void *a0) {
 __attribute__((section(".text.__builtin_vec_delete")))
 void __builtin_vec_delete(int *a0) {
     if (a0) {
-        UnlinkAndCoalesceNode_2A9680(*(int*)((char*)a0 - 0x20), a0);
+        cHeap_free(*(int*)((char*)a0 - 0x20), a0);
     }
 }

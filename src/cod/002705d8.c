@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_001D0408(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int getItemNumInRoom(void);
 extern int func_00273960(void *a0, float f12);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
@@ -38,7 +38,7 @@ void func_002705D8(void *a0)
     char *s0 = (char *)a0;
     void *s1;
 
-    s1 = Obj0000_Get_D_00747A94_2DB6B0();
+    s1 = Getplayer();
     if (*(void **)(s0 + 0x738) != 0) {
         func_001D0408(*(void **)(s0 + 0x738));
         *(int *)(s0 + 0x738) = 0;
@@ -87,7 +87,7 @@ void func_002705D8(void *a0)
     }
     if (*(unsigned char *)(s0 + 0x1864) != 0) {
         if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 *(unsigned char *)(s0 + 0x1864) = 0;
             }
         }
@@ -219,7 +219,7 @@ void func_002705D8(void *a0)
         case 110:
         case 111:
             if (*(float *)(s0 + 0x618) < 9.0f &&
-                ((Forward30F348_31CFE0() & 1) != 0 || func_0012C4F0(s1) != 0)) {
+                ((irand() & 1) != 0 || func_0012C4F0(s1) != 0)) {
                 if (func_00273960(s0, 6.0f) != 0) {
                     return;
                 }
@@ -255,7 +255,7 @@ void func_002705D8(void *a0)
             if (func_0012C4F0(s1) != 0) {
                 break;
             }
-            if (*(float *)(s0 + 0x618) < 9.0f && (Forward30F348_31CFE0() & 1) != 0) {
+            if (*(float *)(s0 + 0x618) < 9.0f && (irand() & 1) != 0) {
                 *(unsigned char *)(s0 + 0x2F4) = 0;
                 *(unsigned char *)(s0 + 0x2F5) = 0xA;
                 *(unsigned char *)(s0 + 0x2F6) = 0;
@@ -294,7 +294,7 @@ void func_002705D8(void *a0)
             return;
         case 30:
             if (func_0012C4F0(s1) == 0 && *(float *)(s0 + 0x618) < 9.0f &&
-                (Forward30F348_31CFE0() & 1) != 0) {
+                (irand() & 1) != 0) {
                 *(unsigned char *)(s0 + 0x2F4) = 0;
                 *(unsigned char *)(s0 + 0x2F5) = 0xA;
                 *(unsigned char *)(s0 + 0x2F6) = 0;
@@ -303,7 +303,7 @@ void func_002705D8(void *a0)
             }
             break;
         case 116:
-            if (*(float *)(s0 + 0x618) < 25.0f && (Forward30F348_31CFE0() & 1) != 0) {
+            if (*(float *)(s0 + 0x618) < 25.0f && (irand() & 1) != 0) {
                 *(unsigned char *)(s0 + 0x2F4) = 0;
                 *(unsigned char *)(s0 + 0x2F5) = 9;
                 *(unsigned char *)(s0 + 0x2F6) = 0;

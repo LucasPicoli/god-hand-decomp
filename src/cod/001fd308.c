@@ -11,8 +11,8 @@ int Rnd(void)
     return (unsigned char)D_00747B10;
 }
 
-__attribute__((section(".text.CopyVec3At10_FD308")))
-void CopyVec3At10_FD308(char *a0, float *a1)
+__attribute__((section(".text.cDamageGive_SetDmgGiveHitVec")))
+void cDamageGive_SetDmgGiveHitVec(char *a0, float *a1)
 {
     float *v0 = (float *)(a0 + 0x10);
     if (v0 != a1) {

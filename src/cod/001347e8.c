@@ -4,7 +4,7 @@
 extern int D_0044FAD0;
 extern unsigned int D_007476B0;
 extern int D_00568288;
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(int *a0, int a1, int a2, int a3, int t0, int t1, int t2);
+extern void cActionButton_set(int *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int cModel_getMeshPtr(int a0, int a1);
 extern void func_001344A0(int *a0);
 extern void func_00134458(int *a0, int a1);
@@ -41,7 +41,7 @@ long func_00151368(int a0, int a1) {
 
 __attribute__((section(".text.func_002DB7A8")))
 void func_002DB7A8(void) {
-    LookupSlotPopulateFieldsAndDispatch_1F7858(&D_00568288, 0xB, 0x14, 0x11, 0, 0, 0);
+    cActionButton_set(&D_00568288, 0xB, 0x14, 0x11, 0, 0, 0);
 }
 
 /* Blends the colour back and forth between `from` and `to` over `frames` frames. */

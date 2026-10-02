@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00126770(void *a0);
 extern unsigned short func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void moveMotion(void *a0);
@@ -56,7 +56,7 @@ __attribute__((section(".text.func_0012C540"))) void func_0012C540(void *a0, int
       if (s1 != 0)
     {
       *((int *) (s0 + 0x15F4)) = (*((int *) (s0 + 0x15F4))) & (~0x1000);
-      ClearField15F4Bit1_124F60(s0, 0, 0);
+      pl00_clearMotionCam(s0, 0, 0);
       func_00126770(s0);
       *((int *) (s0 + 0x250)) = (*((int *) (s0 + 0x250))) | 2;
       func_00103760(s1, 1);

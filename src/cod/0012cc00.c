@@ -69,7 +69,7 @@ void MtxInitCoord(void *a0, int a1, int a2, int a3, int t0)
 	unsigned char e;
 
 	e = t0;
-	BuildTranslationMatrix_1476D0(a0);
+	MtxInitTransVec(a0);
 	MtxMulRotVec(a0, a0, a2, e);
-	BuildAltMatrixAndForward_147BF8(a0, a0, a3);
+	MtxMulScaleVec(a0, a0, a3);
 }

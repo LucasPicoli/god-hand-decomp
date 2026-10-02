@@ -7,8 +7,8 @@ extern int moveMotion(void *a0);
 
 extern void func_0010A438(void *a0);
 extern int D_007474A0;
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 __attribute__((section(".text.func_0011B280")))
 void func_0011B280(void *a0){ char *s0=(char*)a0; int s2,s1;
  *(float*)(s0+0x54C)=15.0f;
@@ -28,6 +28,6 @@ void func_0011B280(void *a0){ char *s0=(char*)a0; int s2,s1;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;
    *(unsigned char*)(s0+0x2F6)=0; *(unsigned char*)(s0+0x2F7)=0; }
-  AddScaledVecToField_100_14F9F0(s0,1.0f);
-  AddScaledXfmVecToField_F0_14F928(s0,1.0f);
+  cObjBase_addNullSpeed_Rotation(s0,1.0f);
+  cObjBase_addNullSpeed(s0,1.0f);
   if(func_00123938(s0,1)==0) func_0010A438(s0); break; } }

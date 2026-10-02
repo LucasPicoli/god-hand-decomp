@@ -13,8 +13,8 @@ extern float Adjust_theta(float f12);
 
 
 
-__attribute__((section(".text.AddScaledXfmVecToField_F0_14F928")))
-void AddScaledXfmVecToField_F0_14F928(char *a0, float f12) {
+__attribute__((section(".text.cObjBase_addNullSpeed")))
+void cObjBase_addNullSpeed(char *a0, float f12) {
     float v[4];
     if (!(D_00747A84 & 0x20000000)) {
         VU0_SQC2_VF0(v, 0);
@@ -28,8 +28,8 @@ void AddScaledXfmVecToField_F0_14F928(char *a0, float f12) {
     }
 }
 
-__attribute__((section(".text.AddScaledVecToField_100_14F9F0")))
-void AddScaledVecToField_100_14F9F0(char *a0, float f12) {
+__attribute__((section(".text.cObjBase_addNullSpeed_Rotation")))
+void cObjBase_addNullSpeed_Rotation(char *a0, float f12) {
     if (!(D_00747A84 & 0x20000000)) {
         *(float*)(a0 + 0x100) += *(float*)(a0 + 0x360) * f12;
         *(float*)(a0 + 0x104) += *(float*)(a0 + 0x364) * f12;
@@ -38,16 +38,16 @@ void AddScaledVecToField_100_14F9F0(char *a0, float f12) {
     }
 }
 
-__attribute__((section(".text.Forward_001346C8_00134608_1351D8")))
-void Forward_001346C8_00134608_1351D8(int a0, int a1, int a2) {
+__attribute__((section(".text.cCollisionSolidManage_SetActive")))
+void cCollisionSolidManage_SetActive(int a0, int a1, int a2) {
     void *v0 = func_001346C8(a0, a1);
     if (v0 != 0) {
         SetNodeListFlag_134608(v0, a2);
     }
 }
 
-__attribute__((section(".text.AddScaledDeltaToField_104_2A7498")))
-void AddScaledDeltaToField_104_2A7498(int a0, float f12) {
+__attribute__((section(".text.cGameObj_SetTgtTurn")))
+void cGameObj_SetTgtTurn(int a0, float f12) {
     int s0 = a0;
     float r = Turn_dest(*(int*)(s0 + 0xF0), *(float*)(s0 + 0x104), f12 * D_007479FC);
     *(float*)(s0 + 0x104) = Adjust_theta(*(float*)(s0 + 0x104) + r);

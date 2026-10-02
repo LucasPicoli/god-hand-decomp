@@ -67,7 +67,7 @@ void ColiseumBattle_Initialize(ColiseumBattle *self)
     char *g;
 
     *(Blob28 *)&self->ring =
-        D_003BE8B0[cCoreSave_getBonus(&D_00569B70)];
+        D_003BE8B0[cCoreSave_GetFightingRingEmListNo(&D_00569B70)];
     self->phase = 0;
     D_00568240 &= ~2;
     D_00568240 &= ~4;

@@ -10,7 +10,7 @@ extern char D_005CAE50[];
 extern int *D_003BD6E8;
 extern ColiseumVtEnt D_003BE570[];
 extern ColiseumVtEnt D_003BE710[];
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
+extern int Getplayer(void);
 extern void cCockPlBar_initData(void *bar);
 extern void cCollisionScroll_SetLayerCollEnable(void *scroll, int layer, int on);
 extern void displayScrollLayer(int layer, int on);
@@ -122,7 +122,7 @@ void ColiseumBattle_Update(ColiseumBattle *self)
             func_001F2B28(self->ui, self->ring.unk0A - self->unkB88, 1);
         }
         D_003BE710[self->ring.ringNo].pfn((char *)self + D_003BE710[self->ring.ringNo].delta);
-        player = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+        player = (char *)Getplayer();
         hp = 0;
         if (player != 0) {
             hp = *(short *)(player + 0x54A);

@@ -4,11 +4,11 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int t0, int t1);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(char *a0, int a1, float f12);
+extern char *Getplayer(void);
+extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern char D_005FEE00[];
@@ -37,15 +37,15 @@ void func_0022B9E0(void *a0)
     }
     case 1:
         if (*(unsigned char *)(p + 0x2F7) == 0) {
-            char *h = Obj0000_Get_D_00747A94_2DB6B0();
+            char *h = Getplayer();
 
-            AddScaledDeltaToField_104_2A7498(p, *(int *)(h + 0xF0), *(float *)(p + 0x5A8) * 0.19634955f);
+            cGameObj_SetTgtTurn(p, *(int *)(h + 0xF0), *(float *)(p + 0x5A8) * 0.19634955f);
         }
         if (moveMotion(p) != 0) {
             *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         break;
     case 2: {
         int gb;
@@ -69,8 +69,8 @@ void func_0022B9E0(void *a0)
                 char *h;
 
                 *(int *)(p + 0x5F0) = t - 1;
-                h = Obj0000_Get_D_00747A94_2DB6B0();
-                AddScaledDeltaToField_104_2A7498(p, *(int *)(h + 0xF0), *(float *)(p + 0x5A8) * 0.049087387f);
+                h = Getplayer();
+                cGameObj_SetTgtTurn(p, *(int *)(h + 0xF0), *(float *)(p + 0x5A8) * 0.049087387f);
             }
         }
         if (moveMotion(p) != 0) {
@@ -81,8 +81,8 @@ void func_0022B9E0(void *a0)
                 *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
             }
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         break;
     case 4: {
         int gb;
@@ -103,8 +103,8 @@ void func_0022B9E0(void *a0)
             *(char *)(p + 0x2F4) = 0;
             *(char *)(p + 0x2F6) = 0;
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         break;
     }
     d = *(float *)(p + 0x600);

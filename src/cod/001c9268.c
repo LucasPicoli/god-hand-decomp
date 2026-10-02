@@ -3,7 +3,7 @@
 extern int cDamageManage_CreateDamageGive(int a0, int a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
 extern void cDamageUnit_SetDamageCollActive(int a0, int a1);
-extern void CopyVec3At10_FD308(char *a0, float *a1);
+extern void cDamageGive_SetDmgGiveHitVec(char *a0, float *a1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int espSys_effDataRegist(void *a0, int a1, void *a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
@@ -150,7 +150,7 @@ int func_001C9268(char *p)
         cDamageUnit_SetDamageCollActive(*(int *)(p + 0x658), 0);
         *(short *)(*(int *)(p + 0x658) + 0x46) = 0x2F;
         *(int *)(*(int *)(p + 0x658) + 0x4C) = 0x32;
-        CopyVec3At10_FD308(*(char **)(p + 0x658), (float *)&D_00747B00);
+        cDamageGive_SetDmgGiveHitVec(*(char **)(p + 0x658), (float *)&D_00747B00);
         {
             char *dg = *(char **)(p + 0x658);
             *(int *)(dg + 0x40) = -1;

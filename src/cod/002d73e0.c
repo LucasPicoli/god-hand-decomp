@@ -2,7 +2,7 @@
 #include "godhand/cWorldLight.h"
 
 extern void func_003A52F0(void *dst, int val, int len);
-extern void UnlinkAndCoalesceNode_2A9680(void *list, int node);
+extern void cHeap_free(void *list, int node);
 extern char D_00754220[];
 
 /* Clears every light and frees the lights each preset still owns. The far
@@ -28,7 +28,7 @@ void func_002D73E0(cWorldLight *self)
     for (i = 0; i < WORLDLIGHT_PRESET_NUM; i++) {
         node = *(int *)(far + (WORLDLIGHT_OFFSET(preset[0].lights) - WORLDLIGHT_FAR_BASE));
         if (node != 0) {
-            UnlinkAndCoalesceNode_2A9680(D_00754220, node);
+            cHeap_free(D_00754220, node);
             *(int *)(far + (WORLDLIGHT_OFFSET(preset[0].lights) - WORLDLIGHT_FAR_BASE)) = 0;
         }
         *slot = 0;

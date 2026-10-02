@@ -52,8 +52,8 @@ int ForwardAttackByMode_14B5D8(int a0, int a1) {
     return func_00148D30(a1, *(int*)(a0 + 0x2C4));
 }
 
-__attribute__((section(".text.LoadAcdBlock_137AE8")))
-int LoadAcdBlock_137AE8(int a0, int a1)
+__attribute__((section(".text.cAreaCamManager_SetData")))
+int cAreaCamManager_SetData(int a0, int a1)
 {
     if (a1 == 0) goto fail;
     memcpy((void *)(a0 + 4), (void *)a1, 0x2C);

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 
 __attribute__((section(".text.func_001D45A0")))
 void func_001D45A0(char *a0, int *a1, unsigned short a2)
@@ -31,7 +31,7 @@ void func_001D45A0(char *a0, int *a1, unsigned short a2)
     }
     if (n != 0) {
         if (a2 == 0xFFFF) {
-            *a1 = buf[(unsigned int)Forward30F348_31CFE0() % (unsigned int)n];
+            *a1 = buf[(unsigned int)irand() % (unsigned int)n];
         } else {
             *a1 = (int)(a0 + 0x1634 + a2 * 8);
         }

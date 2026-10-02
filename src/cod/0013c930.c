@@ -9,8 +9,8 @@ void ResetBlendFields_13C930(char *a0) {
     *(int *)(a0 + 0xB8) = 0;
 }
 
-__attribute__((section(".text.BuildTranslationMatrix_1476D0")))
-void BuildTranslationMatrix_1476D0(float *a0, float *a1) {
+__attribute__((section(".text.MtxInitTransVec")))
+void MtxInitTransVec(float *a0, float *a1) {
     a0[1] = 0.0f;
     a0[0] = 1.0f;
     a0[2] = 0.0f;

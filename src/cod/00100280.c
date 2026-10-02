@@ -16,8 +16,8 @@ extern int D_007854F8;
 extern void func_0014FD20(void);
 extern float D_003BC7C0;
 extern void func_002A8578(void *, void *, void *, int, int, int, float);
-extern void AddScaledVecToField_100_14F9F0(void *, float);
-extern void AddScaledXfmVecToField_F0_14F928(void *, float);
+extern void cObjBase_addNullSpeed_Rotation(void *, float);
+extern void cObjBase_addNullSpeed(void *, float);
 
 __attribute__((section(".text.IsStateByteIdle_10B5F0")))
 int IsStateByteIdle_10B5F0(unsigned char *a0) {
@@ -30,10 +30,10 @@ int IsStateByteIdle_10B5F0(unsigned char *a0) {
     return 1;
 }
 
-__attribute__((section(".text.InitObjectVtables_100280")))
-void *InitObjectVtables_100280(void *a0) {
+__attribute__((section(".text.cPlBase")))
+void *cPlBase(void *a0) {
     void *r;
-    func_002A7338(a0);
+    cGameObj(a0);
     *(int **)((char*)a0 + 0x214) = &D_0041B598;
     r = a0;
     *(int **)((char*)a0 + 0x4AC) = &D_0041B590;
@@ -67,7 +67,7 @@ void *GetOrInitSingletonAlt_101E48(void) {
 
 __attribute__((section(".text.UpdateAttackMoveState_102BD8")))
 void UpdateAttackMoveState_102BD8(void *a0) {
-    void *r = Obj0000_Get_D_00747A94_2DB6B0();
+    void *r = Getplayer();
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
     case 0: {
         void *p = *(void **)((char *)a0 + 0x304);
@@ -83,8 +83,8 @@ void UpdateAttackMoveState_102BD8(void *a0) {
             *(unsigned char *)((char *)a0 + 0x2F6) = 0;
             *(unsigned char *)((char *)a0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(a0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(a0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(a0, 1.0f);
+        cObjBase_addNullSpeed(a0, 1.0f);
         break;
     default:
         break;

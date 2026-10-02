@@ -5,13 +5,13 @@ extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern int Forward30F348_31CFE0(void);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
+extern int irand(void);
+extern void *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00260B30(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -52,7 +52,7 @@ void func_002261C8(void *a0)
         a2v = *(int *)(v0 + 0x1994) + (int)v0;
         *(int *)(s1 + 0x5F0) = 0x25;
         if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 char *v1 = *(char **)(s1 + 0x304);
                 int f = *(int *)(v1 + 0x1998);
                 *(int *)(s1 + 0x5F0) = 0x14;
@@ -80,8 +80,8 @@ void func_002261C8(void *a0)
         if (*(int *)(s1 + 0x5F0) != 0) {
             char *v0;
             *(int *)(s1 + 0x5F0) -= 1;
-            v0 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
-            AddScaledDeltaToField_104_2A7498(s1, *(int *)(v0 + 0xF0), *(float *)(s1 + 0x5A8) * 0.19634955f);
+            v0 = (char *)Getplayer();
+            cGameObj_SetTgtTurn(s1, *(int *)(v0 + 0xF0), *(float *)(s1 + 0x5A8) * 0.19634955f);
         }
         if (*(int *)(s1 + 0x5F4) != 0) {
             *(int *)(s1 + 0x5F4) -= 1;
@@ -90,8 +90,8 @@ void func_002261C8(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_00260B30(s1);

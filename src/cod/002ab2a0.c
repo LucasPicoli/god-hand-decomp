@@ -4,7 +4,7 @@
 
 extern unsigned char *D_003C23A4;
 extern void func_002AB9A8(cIDBaseObj *self, int a1);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void func_002ABC18(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002ABC30(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002ABCE8(cIDBaseObj *self, cIDBaseEnt *ent);
@@ -53,11 +53,11 @@ void cIDBase_resetAnim(cIDBaseObj *self)
             flags = ent->flags;
             rnd = (flags >> IDENT_FLAG_RAND_BIT) & 1;
             if (rnd != 0) {
-                ent->jit[0] = Forward30F348_31CFE0() % IDBASE_RAND_MAX;
-                ent->jit[1] = Forward30F348_31CFE0() % IDBASE_RAND_MAX;
-                ent->jit[3] = Forward30F348_31CFE0() % IDBASE_RAND_MAX;
-                ent->jit[4] = Forward30F348_31CFE0() % IDBASE_RAND_MAX;
-                ent->jit[2] = Forward30F348_31CFE0() % IDBASE_RAND_MAX;
+                ent->jit[0] = irand() % IDBASE_RAND_MAX;
+                ent->jit[1] = irand() % IDBASE_RAND_MAX;
+                ent->jit[3] = irand() % IDBASE_RAND_MAX;
+                ent->jit[4] = irand() % IDBASE_RAND_MAX;
+                ent->jit[2] = irand() % IDBASE_RAND_MAX;
             } else {
                 ent->jit[0] = 0;
                 ent->jit[1] = 0;

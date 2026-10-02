@@ -11,11 +11,11 @@ extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_00129630(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern char D_005864F0[];
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int cEmManage_SetEmAnger(void *a0, void *a1, float f12, float f13, float f14);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float heat);
 extern int D_005CB000;
@@ -30,7 +30,7 @@ extern void cScenario__endSoftEvent(int a0);
 extern void cTaskWork_exit(int a0);
 extern void classFADE_start(void *p, int b, int c, int d, int e, unsigned int f, int g);
 extern void classFADE_kill(void *p);
-extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
+extern void cTaskWork_sleep(void *p, int a);
 extern void DogRace_Load(void *p);
 extern void func_001EA1A8(void *p);
 extern void DogRace_Release(void *p);
@@ -76,7 +76,7 @@ void func_00113F68(void *a0)
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
         func_00129578(s1);
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x604) + t, *(int *)(t + 0x608) + t,
                       0.0f, 3, 0, 0);
@@ -90,14 +90,14 @@ void func_00113F68(void *a0)
             cEmManage_SetPlSorry(D_005864F0);
         }
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
@@ -108,7 +108,7 @@ void func_00113F68(void *a0)
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
     }
 }
 
@@ -140,7 +140,7 @@ void func_00114460(void *a0)
         int p1, p2;
         *(short *)(s0 + 0x5E0) = 0;
         *(short *)(s0 + 0x5E2) = 0;
-        if (Forward30F348_31CFE0() & 1) {
+        if (irand() & 1) {
             p1 = *(int *)(*(char **)(s0 + 0x304) + 0x230) + *(int *)(s0 + 0x304);
             p2 = *(int *)(*(char **)(s0 + 0x304) + 0x234) + *(int *)(s0 + 0x304);
         } else {
@@ -159,8 +159,8 @@ void func_00114460(void *a0)
             *(unsigned char *)(s0 + 0x2F6) = 0;
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0 && *(short *)(s0 + 0x568) != 0) {
             *(short *)(s0 + 0x568) = 0;
             VU0_LQC2(4, *(char **)(s0 + 0xF0), 0);
@@ -211,7 +211,7 @@ void func_001E9F68(char *p)
     D_00747A78 = D_00747A78 & 0xFDFFFFFF;
     classFADE_start(D_00747470, 0, 0xA, 0, 0, 0xFF000000, 0xF);
     while (!FadeIsEnd(D_00747470)) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
+        cTaskWork_sleep(*(void **)(D_003C2F84 + 0x20), 1);
     }
     DogRace_Load(p);
     D_00747A80 |= 0x4000000;
@@ -227,7 +227,7 @@ void func_001E9F68(char *p)
             long w;
             do {
                 func_001EA1A8(p);
-                SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
+                cTaskWork_sleep(*(void **)(D_003C2F84 + 0x20), 1);
                 w = *(unsigned int *)(p + 0x54);
             } while ((w & 1) == 0);
         }
@@ -243,7 +243,7 @@ void func_001E9F68(char *p)
     DogRace_Release(p);
     classFADE_start(D_00747470, 0, 0xA, 0, 0xFF000000, 0, 0xF);
     while (!FadeIsEnd(D_00747470)) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
+        cTaskWork_sleep(*(void **)(D_003C2F84 + 0x20), 1);
     }
     cSnd_BgmFlaggedNodeKick(&D_005FEE00, 20.0f);
     classFADE_kill(D_00747470);

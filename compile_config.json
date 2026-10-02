@@ -13863,7 +13863,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "ReturnOne_100320",
+      "name": "cPlBase_Initialize",
       "unit": "asm/cod/000000",
       "vaddr": "0x00100320",
       "size": 8,
@@ -13968,7 +13968,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_14E4C8",
+      "name": "cModel_Trans_Extra",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014E4C8",
       "size": 8,
@@ -13982,14 +13982,14 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_14E768",
+      "name": "cObj_R0_scenario",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014E768",
       "size": 8,
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_14E928",
+      "name": "cObj_Release",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014E928",
       "size": 8,
@@ -15082,28 +15082,28 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Get_Field_424_1595F0",
+      "name": "GetSeqSEBase",
       "unit": "asm/cod/000000",
       "vaddr": "0x001595F0",
       "size": 8,
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_15F2A8",
+      "name": "Circle_line2",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015F2A8",
       "size": 8,
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_15FB98",
+      "name": "drawArrow",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015FB98",
       "size": 8,
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "NoOp_15FBA0",
+      "name": "drawArrow3D",
       "unit": "asm/cod/000000",
       "vaddr": "0x0015FBA0",
       "size": 8,
@@ -15803,14 +15803,14 @@
       "tu": "src/cod/001d00.c"
     },
     {
-      "name": "Obj1D00_ClearState_A",
+      "name": "cOmWeapon_setWing",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D07C8",
       "size": 24,
       "tu": "src/cod/001d00.c"
     },
     {
-      "name": "Obj1D00_GetField_664",
+      "name": "cOmWeapon_ckGetEnable",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D07E0",
       "size": 8,
@@ -15824,7 +15824,7 @@
       "tu": "src/cod/001d00.c"
     },
     {
-      "name": "Obj1D00_TickTimer_668",
+      "name": "cOmWeapon_SetDamage",
       "unit": "asm/cod/000000",
       "vaddr": "0x001D07F0",
       "size": 36,
@@ -18042,7 +18042,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_D_003C2555_One_2B65F0",
+      "name": "cNowLoading_exitTask",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B65F0",
       "size": 16,
@@ -18063,7 +18063,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Get_D_00747A94_2DB6B0",
+      "name": "Getplayer",
       "unit": "asm/cod/000000",
       "vaddr": "0x002DB6B0",
       "size": 12,
@@ -18168,7 +18168,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "GetField_A24_180688",
+      "name": "cOl2b_getState",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180688",
       "size": 8,
@@ -18462,7 +18462,7 @@
       "tu": "src/cod/object/cOm5a.c"
     },
     {
-      "name": "GetField_60E_1ADA80",
+      "name": "cOm5a_isActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001ADA80",
       "size": 8,
@@ -18777,7 +18777,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Store_D_00747A44_2BE968",
+      "name": "cRoomJump",
       "unit": "asm/cod/000000",
       "vaddr": "0x002BE968",
       "size": 20,
@@ -19281,14 +19281,14 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Tramp_func_0030A548_00147528",
+      "name": "MtxCopy",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147528",
       "size": 28,
       "tu": "src/cod/001b5160.c"
     },
     {
-      "name": "Tramp_func_0030A2E0_00147548",
+      "name": "MtxMultiply",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147548",
       "size": 28,
@@ -20315,7 +20315,7 @@
       "tu": "src/cod/merged_orphans_d.c"
     },
     {
-      "name": "GetObjVtabPtr_2A9458",
+      "name": "cGameObj_getPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A9458",
       "size": 8,
@@ -20353,7 +20353,7 @@
       "_comment": "merged-orphan boundary-fix batch E (src/cod/merged_orphans_e.c)."
     },
     {
-      "name": "Forward2D0658_2D0630",
+      "name": "cSnd_SetBgmTblNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D0630",
       "size": 32,
@@ -20412,7 +20412,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Get_Field_1028_Masked_138F88",
+      "name": "cCamManager_isCk_CamClass",
       "unit": "asm/cod/000000",
       "vaddr": "0x00138F88",
       "size": 12,
@@ -20517,7 +20517,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_10BD08",
+      "name": "pl00_SetCannonReflect",
       "unit": "asm/cod/000000",
       "vaddr": "0x0010BD08",
       "size": 28,
@@ -20531,7 +20531,7 @@
       "tu": "src/cod/player/pl00.c"
     },
     {
-      "name": "Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_12C0D8",
+      "name": "pl00_setEventWait",
       "unit": "asm/cod/000000",
       "vaddr": "0x0012C0D8",
       "size": 24,
@@ -20587,7 +20587,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "Obj0000_Set_Fields_360_364_368_139B68",
+      "name": "cPartsCamera_SetParts",
       "unit": "asm/cod/000000",
       "vaddr": "0x00139B68",
       "size": 16,
@@ -20762,7 +20762,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "cCoreSave_getLevelPoint",
+      "name": "cCoreSave_getGameLevelPoint",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FA620",
       "size": 24,
@@ -20797,7 +20797,7 @@
       "tu": "src/cod/system/cCoreSave.c"
     },
     {
-      "name": "cCoreSave_getGodItem0",
+      "name": "cCoreSave_getGodItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FAC58",
       "size": 12,
@@ -20825,7 +20825,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "cCoreSave_addReelItemNum",
+      "name": "cCoreSave_addReelItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FAE40",
       "size": 32,
@@ -20895,7 +20895,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "cCoreSave_getBonus",
+      "name": "cCoreSave_GetFightingRingEmListNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FC530",
       "size": 24,
@@ -21007,7 +21007,7 @@
       "tu": "src/cod/enemy/cEm00.c"
     },
     {
-      "name": "Obj0000_Or_Field_16D4_Bit_1000_274140",
+      "name": "cEm00_setNoLost",
       "unit": "asm/cod/000000",
       "vaddr": "0x00274140",
       "size": 16,
@@ -21868,7 +21868,7 @@
       "tu": "src/cod/001ee768.c"
     },
     {
-      "name": "Clear_Field_00_14_1F8A40",
+      "name": "cBoundingBox",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F8A40",
       "size": 32,
@@ -21987,7 +21987,7 @@
       "tu": "src/cod/0013c618.c"
     },
     {
-      "name": "InitFields_604_608_1ADAE8",
+      "name": "cOm5a_setFaceOpen",
       "unit": "asm/cod/000000",
       "vaddr": "0x001ADAE8",
       "size": 16,
@@ -22001,7 +22001,7 @@
       "tu": "src/cod/object/cOm5e.c"
     },
     {
-      "name": "IsSet_Field_600_1B1620",
+      "name": "cOm60_ckParent",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B1620",
       "size": 12,
@@ -22022,7 +22022,7 @@
       "tu": "src/cod/object/cOmb3.c"
     },
     {
-      "name": "IsSet_Field_5B0_Bit3_1B79D0",
+      "name": "cOmBase_canCarry",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B79D0",
       "size": 16,
@@ -22036,7 +22036,7 @@
       "tu": "src/cod/0013c618.c"
     },
     {
-      "name": "InitBytes_2F4_To_2F7_1BE830",
+      "name": "cOme9_setSwell",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BE830",
       "size": 24,
@@ -22365,7 +22365,7 @@
       "tu": "src/cod/00138528.c"
     },
     {
-      "name": "cCoreSave_addState154",
+      "name": "cCoreSave_addVitalItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FAD88",
       "size": 56,
@@ -22379,14 +22379,14 @@
       "tu": "src/cod/00138528.c"
     },
     {
-      "name": "cCoreSave_addState155",
+      "name": "cCoreSave_addTensionItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FADF0",
       "size": 56,
       "tu": "src/cod/00138528.c"
     },
     {
-      "name": "cCoreSave_addStat8A",
+      "name": "cCoreSave_addComboST",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FBD28",
       "size": 56,
@@ -22512,7 +22512,7 @@
       "tu": "src/cod/001004c8.c"
     },
     {
-      "name": "IsFieldActive_1FE358",
+      "name": "cDamageManage_CkHitStop",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FE358",
       "size": 20,
@@ -22694,7 +22694,7 @@
       "tu": "src/cod/001004c8.c"
     },
     {
-      "name": "SetFlagBitF30IfField35Active_1F6EE0",
+      "name": "cActionButtonUnit_setOk",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F6EE0",
       "size": 44,
@@ -22813,7 +22813,7 @@
       "tu": "src/cod/001004c8.c"
     },
     {
-      "name": "cCoreSave_getStat8A",
+      "name": "cCoreSave_getComboST",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FBD60",
       "size": 60,
@@ -23058,7 +23058,7 @@
       "tu": "src/cod/001398d0.c"
     },
     {
-      "name": "ClearFlagAndCallEffect_180648",
+      "name": "cOl2b_clearFire",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180648",
       "size": 60,
@@ -23114,7 +23114,7 @@
       "tu": "src/cod/001398d0.c"
     },
     {
-      "name": "InitClearStructAndSubfields_1F3580",
+      "name": "ColiseumEmSelect",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F3580",
       "size": 60,
@@ -23184,7 +23184,7 @@
       "tu": "src/cod/001398d0.c"
     },
     {
-      "name": "UpdateD007419A0_2FA310",
+      "name": "EffectEventEndProc",
       "unit": "asm/cod/000000",
       "vaddr": "0x002FA310",
       "size": 60,
@@ -23660,7 +23660,7 @@
       "tu": "src/cod/00137aa0.c"
     },
     {
-      "name": "BuildAndApplyTranslationMatrix_147B18",
+      "name": "MtxMulTransVec",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147B18",
       "size": 72,
@@ -23674,7 +23674,7 @@
       "tu": "src/cod/00147bb0.c"
     },
     {
-      "name": "BuildAltMatrixAndForward_147BF8",
+      "name": "MtxMulScaleVec",
       "unit": "asm/cod/000000",
       "vaddr": "0x00147BF8",
       "size": 72,
@@ -23835,7 +23835,7 @@
       "tu": "src/cod/00284a90.c"
     },
     {
-      "name": "InitControllerState_2ACC70",
+      "name": "cIDManager_systemInit",
       "unit": "asm/cod/000000",
       "vaddr": "0x002ACC70",
       "size": 104,
@@ -26215,7 +26215,7 @@
       "tu": "src/cod/001fd530.c"
     },
     {
-      "name": "AllocActiveSlot_1FE218",
+      "name": "cDamageManage_CreateDamageTake",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FE218",
       "size": 96,
@@ -26411,7 +26411,7 @@
       "tu": "src/cod/enemy/cEmWrap.c"
     },
     {
-      "name": "SetTimerByFlag_296230",
+      "name": "cEmWrap_setAlphaMode",
       "unit": "asm/cod/000000",
       "vaddr": "0x00296230",
       "size": 116,
@@ -26453,7 +26453,7 @@
       "tu": "src/cod/00297450.c"
     },
     {
-      "name": "InitSubState_2975F8",
+      "name": "cEvent_initEnv",
       "unit": "asm/cod/000000",
       "vaddr": "0x002975F8",
       "size": 100,
@@ -26523,7 +26523,7 @@
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "cSceAtManager_getUnitBySpawnIdx",
+      "name": "cSceAtManager_getJumpPointAt",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C2AE0",
       "size": 116,
@@ -27251,7 +27251,7 @@
       "tu": "src/cod/0019ec40.c"
     },
     {
-      "name": "InitObjectVtables_100280",
+      "name": "cPlBase",
       "unit": "asm/cod/000000",
       "vaddr": "0x00100280",
       "size": 64,
@@ -27454,7 +27454,7 @@
       "tu": "src/cod/0012cd70.c"
     },
     {
-      "name": "SetVecAndAction_12CE20",
+      "name": "pl00_lookCliff",
       "unit": "asm/cod/000000",
       "vaddr": "0x0012CE20",
       "size": 64,
@@ -27531,7 +27531,7 @@
       "tu": "src/cod/00138528.c"
     },
     {
-      "name": "Forward30F348_31CFE0",
+      "name": "irand",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031CFE0",
       "size": 28,
@@ -27587,7 +27587,7 @@
       "tu": "src/cod/00107ec8.c"
     },
     {
-      "name": "SetAnimSlotIfFree_13F238",
+      "name": "cCockMess_SetMessNo",
       "unit": "asm/cod/000000",
       "vaddr": "0x0013F238",
       "size": 56,
@@ -27601,14 +27601,14 @@
       "tu": "src/cod/00107ec8.c"
     },
     {
-      "name": "SetEnemyActiveState_10B888",
+      "name": "pl00_SubscreenMode",
       "unit": "asm/cod/000000",
       "vaddr": "0x0010B888",
       "size": 244,
       "tu": "src/cod/0010b888.c"
     },
     {
-      "name": "InitStateFields2F4_10B980",
+      "name": "pl00_SubscreenMotSet",
       "unit": "asm/cod/000000",
       "vaddr": "0x0010B980",
       "size": 64,
@@ -27629,7 +27629,7 @@
       "tu": "src/cod/001161e0.c"
     },
     {
-      "name": "LoadAcdBlock_137AE8",
+      "name": "cAreaCamManager_SetData",
       "unit": "asm/cod/000000",
       "vaddr": "0x00137AE8",
       "size": 204,
@@ -27678,7 +27678,7 @@
       "tu": "src/cod/0013c930.c"
     },
     {
-      "name": "BuildTranslationMatrix_1476D0",
+      "name": "MtxInitTransVec",
       "unit": "asm/cod/000000",
       "vaddr": "0x001476D0",
       "size": 88,
@@ -27713,14 +27713,14 @@
       "tu": "src/cod/00146748.c"
     },
     {
-      "name": "SetLinkedObjFlags_1471A8",
+      "name": "cCockTutorial_TutorialON",
       "unit": "asm/cod/000000",
       "vaddr": "0x001471A8",
       "size": 68,
       "tu": "src/cod/00146748.c"
     },
     {
-      "name": "SetListNodeBitByKey_14A398",
+      "name": "cModel_setLayerDisplay",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014A398",
       "size": 76,
@@ -27790,7 +27790,7 @@
       "tu": "src/cod/00124e68.c"
     },
     {
-      "name": "SetFieldsCESignalSemaSleep_2D5AA0",
+      "name": "cTaskWork_sleep",
       "unit": "asm/cod/000000",
       "vaddr": "0x002D5AA0",
       "size": 52,
@@ -27804,7 +27804,7 @@
       "tu": "src/cod/00124e68.c"
     },
     {
-      "name": "ClearField15F4Bit1_124F60",
+      "name": "pl00_clearMotionCam",
       "unit": "asm/cod/000000",
       "vaddr": "0x00124F60",
       "size": 100,
@@ -27846,7 +27846,7 @@
       "tu": "src/cod/0012ac28.c"
     },
     {
-      "name": "Tramp_00312708_1B79B0",
+      "name": "cOmBase_dieCommon",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B79B0",
       "size": 28,
@@ -27860,21 +27860,21 @@
       "tu": "src/cod/0012ac28.c"
     },
     {
-      "name": "Forward_001346C8_00134608_1351D8",
+      "name": "cCollisionSolidManage_SetActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001351D8",
       "size": 52,
       "tu": "src/cod/001351d8.c"
     },
     {
-      "name": "AddScaledXfmVecToField_F0_14F928",
+      "name": "cObjBase_addNullSpeed",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014F928",
       "size": 196,
       "tu": "src/cod/001351d8.c"
     },
     {
-      "name": "AddScaledVecToField_100_14F9F0",
+      "name": "cObjBase_addNullSpeed_Rotation",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014F9F0",
       "size": 112,
@@ -27888,7 +27888,7 @@
       "tu": "src/cod/battle/cDamageUnit.c"
     },
     {
-      "name": "AddScaledDeltaToField_104_2A7498",
+      "name": "cGameObj_SetTgtTurn",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A7498",
       "size": 72,
@@ -27902,14 +27902,14 @@
       "tu": "src/cod/00147c40.c"
     },
     {
-      "name": "SetField444SignedByFlag434_158288",
+      "name": "SetMotionStep",
       "unit": "asm/cod/000000",
       "vaddr": "0x00158288",
       "size": 24,
       "tu": "src/cod/00147c40.c"
     },
     {
-      "name": "CopyVec3From110To120_14A2B0",
+      "name": "cModel_calcNullPart",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014A2B0",
       "size": 120,
@@ -27937,7 +27937,7 @@
       "tu": "src/cod/0014a2b0.c"
     },
     {
-      "name": "OrChildField98AndSelfFieldB0AC_2CA718",
+      "name": "cSnd_DieDemoStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CA718",
       "size": 128,
@@ -27993,7 +27993,7 @@
       "tu": "src/cod/001b6f38.c"
     },
     {
-      "name": "LookupSlotPopulateFieldsAndDispatch_1F7858",
+      "name": "cActionButton_set",
       "unit": "asm/cod/000000",
       "vaddr": "0x001F7858",
       "size": 168,
@@ -28035,7 +28035,7 @@
       "tu": "src/cod/001b7300.c"
     },
     {
-      "name": "UnlinkAndCoalesceNode_2A9680",
+      "name": "cHeap_free",
       "unit": "asm/cod/000000",
       "vaddr": "0x002A9680",
       "size": 64,
@@ -28056,7 +28056,7 @@
       "tu": "src/cod/id/cIDBase.c"
     },
     {
-      "name": "cCoreSave_shiftGodItem",
+      "name": "cCoreSave_useGodItem",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FAC00",
       "size": 88,
@@ -28070,7 +28070,7 @@
       "tu": "src/cod/id/CustomIDWork.c"
     },
     {
-      "name": "CopyVec3At10_FD308",
+      "name": "cDamageGive_SetDmgGiveHitVec",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD308",
       "size": 44,
@@ -28175,7 +28175,7 @@
       "tu": "src/cod/enemy/cEmManage.c"
     },
     {
-      "name": "DoubleFloatMinusHalf_31D020",
+      "name": "fRand1_1",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031D020",
       "size": 44,
@@ -34101,7 +34101,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "name": "SetField5B8Bit0_1B6680",
+      "name": "cOmb5_setActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001B6680",
       "size": 36,
@@ -34143,7 +34143,7 @@
       "tu": "src/cod/001ee1c0.c"
     },
     {
-      "name": "Forward30A2B0_2DA9B8",
+      "name": "Add_nullspeed",
       "unit": "asm/cod/000000",
       "vaddr": "0x002DA9B8",
       "size": 40,
@@ -34157,7 +34157,7 @@
       "tu": "src/cod/001f29c0.c"
     },
     {
-      "name": "cSnd_GetSeEntry",
+      "name": "cSnd_GetSeData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002CC4B8",
       "size": 16,
@@ -36761,7 +36761,7 @@
       "tu": "src/cod/00126770.c"
     },
     {
-      "name": "func_0014E990",
+      "name": "cObjBase",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014E990",
       "size": 152,
@@ -39645,7 +39645,7 @@
       "tu": "src/cod/00134430.c"
     },
     {
-      "name": "func_00133988",
+      "name": "cCollisionSolid",
       "unit": "asm/cod/000000",
       "vaddr": "0x00133988",
       "size": 52,
@@ -39799,14 +39799,14 @@
       "tu": "src/cod/001503b8.c"
     },
     {
-      "name": "func_001380A8",
+      "name": "cCamera",
       "unit": "asm/cod/000000",
       "vaddr": "0x001380A8",
       "size": 360,
       "tu": "src/cod/001380a8.c"
     },
     {
-      "name": "func_00139BC8",
+      "name": "cPlCamera",
       "unit": "asm/cod/000000",
       "vaddr": "0x00139BC8",
       "size": 144,
@@ -40807,7 +40807,7 @@
       "tu": "src/cod/createeventobj.c"
     },
     {
-      "name": "func_0031BE58",
+      "name": "PathFinding",
       "unit": "asm/cod/000000",
       "vaddr": "0x0031BE58",
       "size": 20,
@@ -40828,7 +40828,7 @@
       "tu": "src/cod/00344780.c"
     },
     {
-      "name": "ostream___ls_38A478",
+      "name": "__ls__7ostreamPFR7ostream_R7ostream",
       "unit": "asm/cod/000000",
       "vaddr": "0x0038A478",
       "size": 28,
@@ -42823,7 +42823,7 @@
       "tu": "src/cod/00150048.c"
     },
     {
-      "name": "func_00308F18",
+      "name": "cIDParam",
       "unit": "asm/cod/000000",
       "vaddr": "0x00308F18",
       "size": 40,
@@ -51405,7 +51405,7 @@
       "tu": "src/cod/001fc278.c"
     },
     {
-      "name": "func_001E90F8",
+      "name": "DogRace",
       "unit": "asm/cod/000000",
       "vaddr": "0x001E90F8",
       "size": 256,
@@ -58832,7 +58832,7 @@
       "tu": "src/cod/001e66c0.c"
     },
     {
-      "name": "func_001FD610",
+      "name": "cDamageUnit_SetDamageCollActive_1FD610",
       "unit": "asm/cod/000000",
       "vaddr": "0x001FD610",
       "size": 88,
@@ -59105,7 +59105,7 @@
       "tu": "src/cod/0031cf78.c"
     },
     {
-      "name": "func_0014B730",
+      "name": "cModel_getMeshPtr_14B730",
       "unit": "asm/cod/000000",
       "vaddr": "0x0014B730",
       "size": 104,
@@ -63200,7 +63200,7 @@
       "tu": "src/cod/00309d40.c"
     },
     {
-      "name": "ostream___ls",
+      "name": "__ls__7ostreamPCc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00388E30",
       "size": 384,

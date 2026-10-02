@@ -4,7 +4,7 @@
 extern void *CreateObj(int a0, int a1);
 extern void cOmBase_setTexChange(void *a0, int a1);
 extern float frand(float a0, float a1);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -71,7 +71,7 @@ int func_001EE780(DogRaceDog *dog, unsigned char n, DogRaceStats *stats) {
     dog->speedRate = r;
     dog->stats.speed = dog->stats.speed * r;
     dog->stats.luck = dog->stats.luck * r;
-    rem = (unsigned int)Forward30F348_31CFE0() % 100;
+    rem = (unsigned int)irand() % 100;
     if (dog->stats.burstChance >= rem) {
         dog->stats.unk14 = frand(-43.0f, -25.0f);
     }

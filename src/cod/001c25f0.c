@@ -118,7 +118,7 @@ void *GetOrInit_460D68_2BAFA0(void) {
 
 __attribute__((section(".text.cSnd_SeLoadNo")))
 int cSnd_SeLoadNo(int a0, int a1, int a2) {
-    return cSeData_LoadNumbered(cSnd_GetSeEntry(a0), a1, a2);
+    return cSeData_LoadNumbered(cSnd_GetSeData(a0), a1, a2);
 }
 
 __attribute__((section(".text.GetOrInit_460D78_2D5BB8")))

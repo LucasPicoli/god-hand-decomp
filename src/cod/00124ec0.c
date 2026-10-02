@@ -22,7 +22,7 @@ typedef struct Obj_00124ec0 {
 
 
 void cCamManager_setPartsCamera(void *cam, int mode);
-void Obj0000_Set_Fields_360_364_368_139B68(void *parts, Obj_00124ec0 *obj, int a2, int a3);
+void cPartsCamera_SetParts(void *parts, Obj_00124ec0 *obj, int a2, int a3);
 
 __attribute__((section(".text.func_00124EC0")))
 void func_00124EC0(Obj_00124ec0 *obj) {
@@ -56,6 +56,6 @@ void func_00124EC0(Obj_00124ec0 *obj) {
         a3v = 0;
     }
 
-    Obj0000_Set_Fields_360_364_368_139B68(parts, obj, a2v, a3v);
+    cPartsCamera_SetParts(parts, obj, a2v, a3v);
     obj->unk15F4 |= 2;
 }

@@ -6,8 +6,8 @@ extern void CustomIDWork_SetDisp(void *a0, int a1);
 extern void InitFields_1B6E90(void *a0);
 extern int D_00429C80;
 
-__attribute__((section(".text.OrChildField98AndSelfFieldB0AC_2CA718")))
-void OrChildField98AndSelfFieldB0AC_2CA718(void *a0)
+__attribute__((section(".text.cSnd_DieDemoStart")))
+void cSnd_DieDemoStart(void *a0)
 {
     char *p = (char *)a0;
     char *s0 = *(char **)(p + 0x18);
@@ -20,8 +20,8 @@ void OrChildField98AndSelfFieldB0AC_2CA718(void *a0)
     *(unsigned int *)(p + 0xAC) = *(unsigned int *)(p + 0xAC) | 0x100000;
 }
 
-__attribute__((section(".text.CopyVec3From110To120_14A2B0")))
-void CopyVec3From110To120_14A2B0(void *a0)
+__attribute__((section(".text.cModel_calcNullPart")))
+void cModel_calcNullPart(void *a0)
 {
     char *s0 = (char *)a0;
     char *s1;

@@ -81,14 +81,14 @@ void SetField_9E0_1AA500(void *a0) {
     *(int *)((char *)a0 + 0x9E0) = 8;
 }
 
-__attribute__((section(".text.InitFields_604_608_1ADAE8")))
-void InitFields_604_608_1ADAE8(void *a0) {
+__attribute__((section(".text.cOm5a_setFaceOpen")))
+void cOm5a_setFaceOpen(void *a0) {
     *(int *)((char *)a0 + 0x604) = 0;
     *(int *)((char *)a0 + 0x608) = 1;
 }
 
-__attribute__((section(".text.IsSet_Field_600_1B1620")))
-int IsSet_Field_600_1B1620(void *a0) {
+__attribute__((section(".text.cOm60_ckParent")))
+int cOm60_ckParent(void *a0) {
     return *(int *)((char *)a0 + 0x600) != 0;
 }
 
@@ -99,8 +99,8 @@ void SetEntryParams_1B1928(void *a0, int a1, short a2) {
     *(char *)((char *)a0 + 0x666) = 0;
 }
 
-__attribute__((section(".text.IsSet_Field_5B0_Bit3_1B79D0")))
-long long IsSet_Field_5B0_Bit3_1B79D0(void *a0) {
+__attribute__((section(".text.cOmBase_canCarry")))
+long long cOmBase_canCarry(void *a0) {
     long long v = *(unsigned int *)((char *)a0 + 0x5B0);
     return (v >> 3) & 0x1;
 }
@@ -111,8 +111,8 @@ int SetFlagBit_1BD698(int a0) {
     return 1;
 }
 
-__attribute__((section(".text.InitBytes_2F4_To_2F7_1BE830")))
-void InitBytes_2F4_To_2F7_1BE830(int a0) {
+__attribute__((section(".text.cOme9_setSwell")))
+void cOme9_setSwell(int a0) {
     *(char*)((char*)a0 + 0x2F4) = 1;
     *(char*)((char*)a0 + 0x2F5) = 0;
     *(char*)((char*)a0 + 0x2F6) = 0;

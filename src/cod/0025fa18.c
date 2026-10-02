@@ -1,15 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_0025FE30(void *a0, int a1, int a2);
 extern void cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern void moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
-extern void Obj0000_Set_Fields_360_364_368_139B68(void *parts, void *obj, int a2, int a3);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern int D_00463050;
 
 __attribute__((section(".text.func_0025FA18")))
@@ -29,7 +29,7 @@ void func_0025FA18(void *a0) {
     int spill[2];
 
     s1 = (char *)a0;
-    s3 = Obj0000_Get_D_00747A94_2DB6B0();
+    s3 = Getplayer();
     p = *(int *)(s1 + 0x214);
     s2 = (*(void *(**)(void *))(p + 0xB4))(s1 + *(short *)(p + 0xB0));
     *(float *)(s1 + 0x54C) = 3.0f;
@@ -68,8 +68,8 @@ void func_0025FA18(void *a0) {
         one = 1.0f;
         *(unsigned short *)(s1 + 0x434) = *(unsigned short *)(s1 + 0x434) | 8;
         moveMotion(s1);
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         if (*(short *)(s1 + 0x568) != 0) {
             *(unsigned short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
         } else {
@@ -109,15 +109,15 @@ void func_0025FA18(void *a0) {
             a3v = 0;
         }
         one = 1.0f;
-        Obj0000_Set_Fields_360_364_368_139B68(parts, s1, a2v, a3v);
+        cPartsCamera_SetParts(parts, s1, a2v, a3v);
         *(unsigned short *)(s1 + 0x434) = *(unsigned short *)(s1 + 0x434) | 8;
         moveMotion(s1);
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         if (*(short *)(s1 + 0x568) != 0) {
             *(unsigned short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
         } else {
-            ClearField15F4Bit1_124F60(s3, 0, 1);
+            pl00_clearMotionCam(s3, 0, 1);
             *(unsigned char *)(s1 + 0x2F4) = 2;
             *(unsigned char *)(s1 + 0x2F5) = 2;
             *(unsigned char *)(s1 + 0x2F6) = 0;

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern void Obj0000_Set_Field_50_173998(int *a0, int a1);
@@ -34,12 +34,12 @@ void func_0018ADA8(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.4f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -85,12 +85,12 @@ void func_0018BAC0(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.4f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -136,12 +136,12 @@ void func_0018C8C8(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.4f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -187,12 +187,12 @@ void func_0018D6B8(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.2f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -238,12 +238,12 @@ void func_0018E470(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.2f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -289,12 +289,12 @@ void func_0018FC10(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.3f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.3f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.6f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.3f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.3f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -340,12 +340,12 @@ void func_001953E8(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.1f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.3f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
@@ -391,12 +391,12 @@ void func_001997E8(char *a0, int a1, float *a2, float *a3)
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
     VU0_SQC2(4, frame, 0x20);
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.2f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.2f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.4f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.2f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.2f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;

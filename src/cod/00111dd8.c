@@ -11,9 +11,9 @@ extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_00129630(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0012BC00(void *a0, int a1, int a2);
 extern void cSnd_SeStop(void *a0, int a1);
 extern char D_005864F0[];
@@ -63,9 +63,9 @@ void func_00111DD8(void *a0)
         *(short *)(s1 + 0x5E2) = 0;
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
-        cCoreSave_shiftGodItem(&D_00569B70);
-        cCoreSave_shiftGodItem(&D_00569B70);
-        cCoreSave_shiftGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
+        cCoreSave_useGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x20) + t, *(int *)(t + 0x24) + t,
                       0.0f, 3, 0, 0);
@@ -78,14 +78,14 @@ void func_00111DD8(void *a0)
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
             *(char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
@@ -121,7 +121,7 @@ void func_00111DD8(void *a0)
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
     } else {
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;
         *(float *)(s1 + 0x674) = 0.05f;

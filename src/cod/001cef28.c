@@ -3,19 +3,19 @@
 extern unsigned char D_005864F0[];
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005FEE00[];
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, void *a1, float a2);
+extern char *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int cOmbb_ckFire(int a0);
 extern void cOmbb_setFire(int a0);
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern float SetMotionStep(void *a0, float f12);
 extern float cEmManage_GetSpeedRate(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 
@@ -29,7 +29,7 @@ void func_00244708(void *a0)
 
     s1 = func_002948C8(D_005864F0, *(unsigned char *)(s0 + 0x17B1));
     VU0_SQC2_VF0(buf, 0);
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
     *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x10000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -42,7 +42,7 @@ void func_00244708(void *a0)
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
     {
-        float *p = (float *)(*(char **)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0));
+        float *p = (float *)(*(char **)(Getplayer() + 0xF0));
         if (buf != p) {
             buf[0] = p[0];
             buf[1] = p[1];
@@ -57,12 +57,12 @@ void func_00244708(void *a0)
             }
         }
     }
-        AddScaledDeltaToField_104_2A7498(s0, buf, *(float *)(s0 + 0x5A8) * 0.392699093f);
+        cGameObj_SetTgtTurn(s0, buf, *(float *)(s0 + 0x5A8) * 0.392699093f);
         if (moveMotion(s0) != 0) {
             func_002705D8(s0);
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     if (*(unsigned short *)(s0 + 0x3AC) & 1) {
@@ -83,7 +83,7 @@ void func_001CEF28(void *a0)
 
     sp = cEmManage_GetSpeedRate(D_005864F0);
     *(float *)(s0 + 0x5A8) = sp;
-    SetField444SignedByFlag434_158288(s0, sp);
+    SetMotionStep(s0, sp);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {
@@ -95,7 +95,7 @@ void func_001CEF28(void *a0)
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         moveMotion(s0);
-        if (capVu0MagnitudeSqXZ(*(void **)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0), *(void **)(s0 + 0xF0)) < 4.0f)
+        if (capVu0MagnitudeSqXZ(*(void **)(Getplayer() + 0xF0), *(void **)(s0 + 0xF0)) < 4.0f)
             *(short *)(s0 + 0x568) = 1;
         if (*(short *)(s0 + 0x568) != 0) {
             t = *(float *)(s0 + 0x674) - sp;
@@ -114,8 +114,8 @@ void func_001CEF28(void *a0)
     case 3:
         one = 1.0f;
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         t = *(float *)(s0 + 0x674) - sp;
         *(float *)(s0 + 0x674) = t;
         if (t <= 0.0f) {

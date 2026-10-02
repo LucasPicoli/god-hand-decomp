@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern float func_0031CF30(void);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -29,7 +29,7 @@ void func_00186598(void *a0, float x)
     *(float *)(p + 0xE14) = t * r;
     r = func_0031CF30();
     *(float *)(p + 0xE18) = t * r;
-    if (Forward30F348_31CFE0() & 1) {
+    if (irand() & 1) {
         *(float *)(p + 0xE1C) = 0.0f;
     } else {
         *(float *)(p + 0xE1C) = 3.14159274f;

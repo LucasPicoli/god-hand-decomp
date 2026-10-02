@@ -4,7 +4,7 @@
 extern void cModel_calcParts(void *m);
 extern void cOmBase_setMeshColorFromLayer(void *a0, int a1, float r, float g, float b);
 extern float fRand0_1(void);
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 
 /* sn-2.95.3-136 */
 
@@ -280,7 +280,7 @@ void func_001CFD60(cOmWeapon *self, int target)
         self->unk6A0 = 0;
         self->unk6A4 = fRand0_1() * 2.0f + 2.0f;
         self->unk6A8 = fRand0_1() * 2.0f + 7.0f;
-        f = DoubleFloatMinusHalf_31D020();
+        f = fRand1_1();
         self->base.phase = 0xC;
         self->base.stepArg = 0;
         self->base.mode = 0;

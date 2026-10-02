@@ -1,6 +1,6 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
-extern void Tramp_func_0030A2E0_00147548(void *, int, void *);
+extern void MtxMultiply(void *, int, void *);
 extern unsigned char D_00747A50[];
 extern unsigned char D_00586AB0;
 extern int D_00747A24;
@@ -15,7 +15,7 @@ void UpdateObjWithVtableDispatch_2BB1F0(void *a0)
     long a0v = v1 & 1;
     int *v0;
     if (a0v == 1 && ((v1 >> 1) & 1) == a0v) {
-        Tramp_func_0030A2E0_00147548(s0 + 0x80, *(int *)(s0 + 0x8), s0 + 0x10);
+        MtxMultiply(s0 + 0x80, *(int *)(s0 + 0x8), s0 + 0x10);
     }
     v0 = *(int **)(s0 + 0x100);
     (*(void (**)(void *))((char *)v0 + 0x4C))(s0 + *(short *)((char *)v0 + 0x48));
@@ -68,7 +68,7 @@ int cSnd_SeLoadFile(cSnd *self, int slot, char *name)
     if (dot != 0) {
         *dot = 0;
     }
-    return cSeData_LoadFile(cSnd_GetSeEntry(self, slot), slot, name);
+    return cSeData_LoadFile(cSnd_GetSeData(self, slot), slot, name);
 }
 
 

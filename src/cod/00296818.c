@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEvent.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void pl00_reset(void *p);
 extern void cEmManage_ReleaseEmAll(void *a0);
 extern void cDataManager_clear(void *a0);
@@ -26,7 +26,7 @@ extern int D_005864E0[];
  * manager and its holders. Returns 1 once the stage hands over to CREATE. */
 __attribute__((section(".text.func_00296818")))
 int func_00296818(cEvent *self) {
-    pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
+    pl00_reset(Getplayer());
     if ((D_00586B30[1] & 1) == 0) {
         switch ((char)self->phase) {
         case 0:

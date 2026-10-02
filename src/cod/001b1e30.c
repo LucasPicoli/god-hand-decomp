@@ -4,8 +4,8 @@
 extern float Adjust_theta(float);
 extern int moveMotion(int *);
 extern void cOm71_SetMotionRun(int *);
-extern void AddScaledVecToField_100_14F9F0(int *, float);
-extern void AddScaledXfmVecToField_F0_14F928(int *, float);
+extern void cObjBase_addNullSpeed_Rotation(int *, float);
+extern void cObjBase_addNullSpeed(int *, float);
 extern void func_001DBEB0(void);
 extern void func_001DD340(char *a0);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
@@ -114,10 +114,10 @@ void func_001B1E30(int *a0) {
     L88:
         *(int *)((char *)s0 + 0x600) |= 0x100;
     }
-    AddScaledVecToField_100_14F9F0(s0, 1.0f);
+    cObjBase_addNullSpeed_Rotation(s0, 1.0f);
     m = *(unsigned int *)((char *)s0 + 0x600);
     if (((m >> 7) & 1) == 0) {
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
     }
 }
 

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern unsigned int D_00747A78;
 
 #include "godhand/vu0.h"
@@ -28,7 +28,7 @@ int func_002C1CC8(void) {
     char *p;
     int i;
 
-    obj = (Obj *)Obj0000_Get_D_00747A94_2DB6B0();
+    obj = (Obj *)Getplayer();
 
     p = (char *)v;
     for (i = 1; i != -1; i--) {

@@ -3,7 +3,7 @@
 #include "godhand/cBgmData.h"
 #define CSND_HIT(s) (*(cBgmHit **)((char *)(s) + 0x24))
 extern int func_002CB3A8(void *a0, int a1);
-extern void *cSnd_GetSeEntry(void *a0, int a1);
+extern void *cSnd_GetSeData(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
 extern int cSeData_IsFailed(void *p);
 extern int D_0044CE48[];
@@ -32,7 +32,7 @@ int cSnd_SeCall(cSnd *self, int slot, short key1, int mtx, int idA, int idB)
 {
     cSndSeVoice *voice;
 
-    if (cSeData_IsAlive(cSnd_GetSeEntry(self, slot)) == 0)
+    if (cSeData_IsAlive(cSnd_GetSeData(self, slot)) == 0)
         return 0;
     voice = cSnd_AllocVoice(self);
     if (voice == 0)
@@ -58,11 +58,11 @@ int cSnd_EmSeCheck(cSnd *self, int objId)
     slot = D_0044CE48;
     i = 0;
     do {
-        e = cSnd_GetSeEntry(self, *slot);
+        e = cSnd_GetSeData(self, *slot);
         if (cSeData_IsAlive(e) != 0) {
-            e = cSnd_GetSeEntry(self, *slot);
+            e = cSnd_GetSeData(self, *slot);
             if (e->owner == owner) {
-                e = cSnd_GetSeEntry(self, *slot);
+                e = cSnd_GetSeData(self, *slot);
                 if (cSeData_IsFailed(e) != 1)
                     return *slot;
             }
@@ -79,7 +79,7 @@ int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, i
 {
     cSndSeVoice *voice;
 
-    if (cSeData_IsAlive(cSnd_GetSeEntry(self, slot)) == 0)
+    if (cSeData_IsAlive(cSnd_GetSeData(self, slot)) == 0)
         return 0;
     voice = cSnd_AllocVoice(self);
     if (voice == 0)

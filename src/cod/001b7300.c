@@ -37,8 +37,8 @@ struct node {
     int d;               /* 0x10 */
 };
 
-__attribute__((section(".text.UnlinkAndCoalesceNode_2A9680")))
-void UnlinkAndCoalesceNode_2A9680(int a0, struct node *a1) {
+__attribute__((section(".text.cHeap_free")))
+void cHeap_free(int a0, struct node *a1) {
     struct node *p;
     struct node *q;
     if (a1 != 0) {

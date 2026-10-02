@@ -3,7 +3,7 @@
 /* sn-2.95.3-136, -f=-fno-gcse */
 
 extern void func_001B6FB8(void *a0);
-extern void *AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern void cDamageUnit_AddDamageCollCylinder(void *a0, void *a1, float *a2, float *a3, float f0, float f1);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern int D_00574380;
@@ -25,7 +25,7 @@ int func_00179E40(char *p)
     f[1] = 0.0f;
     f[2] = 0.0f;
     f[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[4];

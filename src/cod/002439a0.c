@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
+extern int Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0026B600(void *a0);
 extern void func_0026BAD8(void *a0, int a1, int a2);
 extern float capVu0Sin(float f12);
@@ -22,7 +22,7 @@ void func_002439A0(void *a0)
     float th;
     int p;
 
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     *(int *)(s0 + 0x16D0) |= 0x10000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
@@ -36,13 +36,13 @@ void func_002439A0(void *a0)
     }
     /* fallthrough */
     case 1:
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         if (moveMotion(s0))
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) && *(int *)(s0 + 0x5F0) != 0) {
             *(int *)(s0 + 0x5F0) = 0;
             func_0026B600(s0);
@@ -59,12 +59,12 @@ void func_002439A0(void *a0)
     /* fallthrough */
     case 3: {
         float d;
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         d = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
         *(float *)(s0 + 0x600) = d;
         if (d <= 0.0f)
@@ -82,13 +82,13 @@ void func_002439A0(void *a0)
     }
     /* fallthrough */
     case 5:
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         if (moveMotion(s0))
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(unsigned short *)(s0 + 0x3AC) & 3) {
             if (*(short *)(s0 + 0x568) > 0)
                 goto chk;
@@ -115,12 +115,12 @@ void func_002439A0(void *a0)
     }
     /* fallthrough */
     case 7:
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(short *)(s0 + 0x568) != 0) {
             if (0.0f < *(float *)(s0 + 0x600)) {
                 *(float *)(s0 + 0x600) = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
@@ -142,13 +142,13 @@ void func_002439A0(void *a0)
     }
     /* fallthrough */
     case 9:
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         if (moveMotion(s0))
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 10: {
         int t = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
@@ -161,12 +161,12 @@ void func_002439A0(void *a0)
     /* fallthrough */
     case 11: {
         float d;
-        AddScaledDeltaToField_104_2A7498(s0,
-                                         *(int *)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        cGameObj_SetTgtTurn(s0,
+                                         *(int *)(Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         d = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
         *(float *)(s0 + 0x600) = d;
         if (d <= 0.0f) {

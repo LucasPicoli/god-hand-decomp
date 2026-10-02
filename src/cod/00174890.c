@@ -6,7 +6,7 @@ extern int cOmSub_move(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern float D_00568020[];
 extern void func_001B6FB8(void *a0);
-extern void *AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern int cModel_getMeshPtr(void *a0, int a1);
 extern int D_00574380;
@@ -245,7 +245,7 @@ int func_00174890(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];

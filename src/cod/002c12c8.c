@@ -21,7 +21,7 @@ typedef struct Table {
 extern char D_007474A0[];
 extern char D_0044C230[];
 extern Table *SearchData(int a0, char *a1, int a2);
-extern int cSceAtManager_getUnitBySpawnIdx(void *a0, int a1);
+extern int cSceAtManager_getJumpPointAt(void *a0, int a1);
 
 extern void cSceAtUnit_AtInit(void *u, int a1, int a2, int a3, int t0);
 extern void cSceAtUnit_AreaSet(void *u, float *v, int n, float f12, float f13);
@@ -76,7 +76,7 @@ void func_002C12C8(char *self)
         if (n >= 8) {
             return;
         }
-        if (cSceAtManager_getUnitBySpawnIdx(self, j) != 0) {
+        if (cSceAtManager_getJumpPointAt(self, j) != 0) {
             goto next;
         }
         u = func_0030F550(0x9C);

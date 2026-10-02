@@ -1,17 +1,17 @@
 #include "godhand/vu0.h"
 
-/* func_00139BC8 — extends func_001380A8: run the base constructor, then set
+/* cPlCamera — extends cCamera: run the base constructor, then set
  * (and re-set) the vtable at 0x35C while zeroing two further blocks of
  * quadwords and a tail word block.  The inline-asm memory clobbers keep the
  * first (overwritten) 0x35C store live.  sn-2.95.3-136. */
 
-extern void *func_001380A8(void *);
+extern void *cCamera(void *);
 extern int D_0041D8F8;
 extern int D_0041DBB0;
 
-__attribute__((section(".text.func_00139BC8")))
-void *func_00139BC8(void *a0) {
-    func_001380A8(a0);
+__attribute__((section(".text.cPlCamera")))
+void *cPlCamera(void *a0) {
+    cCamera(a0);
     *(int **)((char *)a0 + 0x35C) = &D_0041D8F8;
     VU0_SQC2_VF0(a0, 0x370);
     VU0_SQC2_VF0(a0, 0x380);

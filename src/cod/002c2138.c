@@ -114,8 +114,8 @@ int cSceAtManager_SetDisableById(cSceAtManager *self, int id) {
 }
 
 /* First placed unit (type 1) whose spawn index is idx. */
-__attribute__((section(".text.cSceAtManager_getUnitBySpawnIdx")))
-cSceAtUnit *cSceAtManager_getUnitBySpawnIdx(cSceAtManager *self, int idx) {
+__attribute__((section(".text.cSceAtManager_getJumpPointAt")))
+cSceAtUnit *cSceAtManager_getJumpPointAt(cSceAtManager *self, int idx) {
     cSceAtUnit *e;
     e = cSceAtManager_getUnitList(self);
     while ((e = cSceAtManager_getNextUnit(self, e)) != 0) {

@@ -3,15 +3,15 @@
 extern void func_0012C348(void *a0, int a1);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void *Getplayer(void);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
+extern void cSnd_DieDemoStart(void *a0);
 extern void func_00124EC0(void *a0);
 extern unsigned char D_005FEE00[];
 extern int D_00747A24;
@@ -25,7 +25,7 @@ void func_00103170(void *a0)
     char *s0 = (char *)a0;
     void *s1;
     float one;
-    s1 = Obj0000_Get_D_00747A94_2DB6B0();
+    s1 = Getplayer();
     *(float *)(s0 + 0x54C) = 5.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -35,7 +35,7 @@ void func_00103170(void *a0)
     }
         SetEffect(0, 0x52, s0, 0, -1, 0xFFFFFFFFu);
         func_0012C348(s1, 0);
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
         {
             char *p = *(char **)(s0 + 0x5B0);
             if (p != 0) {
@@ -56,8 +56,8 @@ void func_00103170(void *a0)
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
 }
@@ -79,7 +79,7 @@ void func_00122D18(void *a0)
             s0 = *(int *)(b + 0x170) + b;
         }
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
-        OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
+        cSnd_DieDemoStart(D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
         func_0012C348(s1, 3);
         func_002A8578(s1, s2, s0, 0.0f, 2, 0, 0);
@@ -97,8 +97,8 @@ void func_00122D18(void *a0)
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         break;
     case 2:
         break;

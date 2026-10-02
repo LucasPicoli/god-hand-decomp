@@ -6,8 +6,8 @@ extern void cCamManager_setPlCamera(void *a0, int a1);
 extern void func_0030F518(void);
 extern void func_00150710(float a, float b, float c);
 
-__attribute__((section(".text.ClearField15F4Bit1_124F60")))
-void ClearField15F4Bit1_124F60(void *a0, int a1, int a2) {
+__attribute__((section(".text.pl00_clearMotionCam")))
+void pl00_clearMotionCam(void *a0, int a1, int a2) {
     void *s0;
     if (((a2 ^ 1) & 1) != 0) {
         int v1 = *(int*)((char*)a0 + 0x15F4);

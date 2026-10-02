@@ -14,9 +14,9 @@ int cSnd_SeIsLoaded(cSnd *self, int slot)
 {
     cSndSeEntry *e;
     if (slot == -1) return 1;
-    e = cSnd_GetSeEntry(self, slot);
+    e = cSnd_GetSeData(self, slot);
     if (e->owner == -1) return 1;
-    e = cSnd_GetSeEntry(self, slot);
+    e = cSnd_GetSeData(self, slot);
     return cSeData_IsAlive(e);
 }
 

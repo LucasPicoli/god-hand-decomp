@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
+extern int GetSeqSEBase(void *a0);
+extern int Getplayer(void);
 extern int moveMotion(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
@@ -15,9 +15,9 @@ extern void Obj1D00_SetState_7_2(int a0);
 extern void Obj1D00_SetState_7_4(int a0);
 extern void Obj1D00_SetState_7_8(int a0);
 extern void Obj1D00_ClearState_7(int a0);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
 extern void func_002744E0(void *a0);
 extern unsigned char D_005FEE00[];
@@ -63,7 +63,7 @@ void func_0023B968(void *a0)
         switch (*(int *)(s3 + 0x564)) {
         default:
         case 0x202:
-            switch (Forward30F348_31CFE0() % 5) {
+            switch (irand() % 5) {
             case 0:
             default:
             {
@@ -103,8 +103,8 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x204:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
-                switch (Forward30F348_31CFE0() % 5) {
+            if ((irand() & 1) != 0) {
+                switch (irand() % 5) {
                 case 0:
                 default:
                 {
@@ -150,7 +150,7 @@ void func_0023B968(void *a0)
             break;
         case 0x213:
         case 0x217:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x2FA4) + b;
                 s1 = *(int *)(b + 0x2FA8) + b;
@@ -193,7 +193,7 @@ void func_0023B968(void *a0)
                 s2 = *(int *)(p + 0x13E8) + p;
                 s1 = 0;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                                   (short)(Obj0000_Get_Field_424_1595F0(s3) + 0xB),
+                                   (short)(GetSeqSEBase(s3) + 0xB),
                                    s3, 0, 0, 0, 0);
             }
         }
@@ -214,7 +214,7 @@ void func_0023B968(void *a0)
         case 0x24D:
         case 0x24E:
         case 0x25A:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x13E8) + b;
                 s1 = *(int *)(b + 0x13EC) + b;
@@ -235,7 +235,7 @@ void func_0023B968(void *a0)
         case 0x20D:
         case 0x245:
         case 0x247:
-            switch (Forward30F348_31CFE0() % 9) {
+            switch (irand() % 9) {
             case 0:
             default:
             {
@@ -304,7 +304,7 @@ void func_0023B968(void *a0)
             break;
         case 0x218:
         case 0x246:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -324,7 +324,7 @@ void func_0023B968(void *a0)
             break;
         case 0x278:
         case 0x279:
-            switch (Forward30F348_31CFE0() & 3) {
+            switch (irand() & 3) {
             case 0:
             default:
             {
@@ -357,7 +357,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x20B:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -377,7 +377,7 @@ void func_0023B968(void *a0)
             break;
         case 0x20C:
         case 0x24F:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -396,7 +396,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x20E:
-            switch (Forward30F348_31CFE0() % 3) {
+            switch (irand() % 3) {
             case 0:
             default:
             {
@@ -430,7 +430,7 @@ void func_0023B968(void *a0)
         }
             break;
         case 0x224:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x18DC) + b;
                 s1 = *(int *)(b + 0x18E0) + b;
@@ -441,7 +441,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x241:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x3B1C) + b;
                 s1 = *(int *)(b + 0x3B20) + b;
@@ -466,7 +466,7 @@ void func_0023B968(void *a0)
         }
             break;
         case 0x209:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x34F4) + b;
                 s1 = *(int *)(b + 0x34F8) + b;
@@ -477,7 +477,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x21F:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x35C0) + b;
                 s1 = *(int *)(b + 0x35C4) + b;
@@ -489,7 +489,7 @@ void func_0023B968(void *a0)
             break;
         case 0x250:
         case 0x251:
-            switch (Forward30F348_31CFE0() % 3) {
+            switch (irand() % 3) {
             case 0:
             default:
             {
@@ -515,7 +515,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x260:
-            switch (Forward30F348_31CFE0() & 3) {
+            switch (irand() & 3) {
             case 0:
             default:
             {
@@ -633,7 +633,7 @@ void func_0023B968(void *a0)
         case 0x220:
         case 0x221:
         case 0x222:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(s3 + 0x304);
                 s2 = *(int *)(b + 0x1D68) + b;
                 s1 = *(int *)(b + 0x1D6C) + b;
@@ -662,7 +662,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x256:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -681,7 +681,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x27E:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -700,7 +700,7 @@ void func_0023B968(void *a0)
             }
             break;
         case 0x26A:
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             case 0:
             default:
             {
@@ -753,15 +753,15 @@ void func_0023B968(void *a0)
         int t = *(int *)(s3 + 0x564);
 
         if (t < 0x264 || (t >= 0x266 && t != 0x26A)) {
-            int r = Obj0000_Get_D_00747A94_2DB6B0();
-            AddScaledDeltaToField_104_2A7498(s3, *(int *)(r + 0xF0),
+            int r = Getplayer();
+            cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0),
                                              *(float *)(s3 + 0x5A8) * 0.19634955f);
         }
         if (moveMotion(s3) != 0) {
             func_002705D8(s3);
         }
-        AddScaledVecToField_100_14F9F0(s3, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+        cObjBase_addNullSpeed(s3, 1.0f);
     }
         break;
     case 2:
@@ -801,15 +801,15 @@ void func_0023B968(void *a0)
     case 5:
     L26C:
     {
-        int r = Obj0000_Get_D_00747A94_2DB6B0();
+        int r = Getplayer();
 
-        AddScaledDeltaToField_104_2A7498(s3, *(int *)(r + 0xF0),
+        cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0),
                                          *(float *)(s3 + 0x5A8) * 0.09817477f);
         if (moveMotion(s3) != 0) {
             *(unsigned char *)(s3 + 0x2F6) += 1;
         }
-        AddScaledVecToField_100_14F9F0(s3, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+        cObjBase_addNullSpeed(s3, 1.0f);
     }
         break;
     case 6:
@@ -830,21 +830,21 @@ void func_0023B968(void *a0)
         /* fallthrough */
     case 7:
     {
-        int r = Obj0000_Get_D_00747A94_2DB6B0();
+        int r = Getplayer();
 
-        AddScaledDeltaToField_104_2A7498(s3, *(int *)(r + 0xF0),
+        cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0),
                                          *(float *)(s3 + 0x5A8) * 0.09817477f);
         if (moveMotion(s3) != 0) {
-            AddScaledVecToField_100_14F9F0(s3, 1.0f);
-            AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
+            cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+            cObjBase_addNullSpeed(s3, 1.0f);
             func_002705D8(s3);
             if (*(int *)(s3 + 0x708) != 0) {
                 Obj1D00_ClearState_7(*(int *)(s3 + 0x708));
             }
             return;
         }
-        AddScaledVecToField_100_14F9F0(s3, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+        cObjBase_addNullSpeed(s3, 1.0f);
     }
         break;
     default:

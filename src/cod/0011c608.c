@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -10,10 +10,10 @@ extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_0012C0F8(void *a0, int a1);
 extern void func_0012C348(void *a0, int a1);
-extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cSnd_DieDemoStart(void *a0);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005864F0[];
 extern char D_005FEE00[];
@@ -53,7 +53,7 @@ void func_0011C608(void *a0)
     *(int *)(s0 + 0x250) |= 0x10000;
     *(float *)(s0 + 0x54C) = 5.0f;
     s1 = *(char **)(s0 + 0x694);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
@@ -83,8 +83,8 @@ void func_0011C608(void *a0)
         func_00124EC0(s0);
         if (moveMotion(s0))
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 2: {
         float z;
@@ -112,13 +112,13 @@ void func_0011C608(void *a0)
                 func_0012C348(s0, 0);
             }
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 4:
         cEm00_GetPlMotion(s1, 9, 3.0f, 0.0f);
         *(int *)(s0 + 0x15B0) = 0x1E;
-        OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
+        cSnd_DieDemoStart(D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     /* fallthrough */
@@ -127,8 +127,8 @@ void func_0011C608(void *a0)
         *(short *)(s0 + 0x434) = *(unsigned short *)(s0 + 0x434) | 8;
         if (moveMotion(s0))
             D_00747A24 |= 8;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     case 6:
         cEm00_GetPlMotion(s1, 0xA, 3.0f, 0.0f);
@@ -137,14 +137,14 @@ void func_0011C608(void *a0)
     case 7:
         func_00124EC0(s0);
         if (moveMotion(s0)) {
-            ClearField15F4Bit1_124F60(s0, 0, 0);
+            pl00_clearMotionCam(s0, 0, 0);
             *(unsigned char *)(s0 + 0x2F4) = 0;
             *(unsigned char *)(s0 + 0x2F5) = 0;
             *(unsigned char *)(s0 + 0x2F6) = 0;
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     default:
         break;

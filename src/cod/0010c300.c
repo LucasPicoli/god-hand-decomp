@@ -1,17 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern float SetMotionStep(void *a0, float f12);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0012BFB8(void *a0);
 
 extern float D_003BD478;
 extern float D_003BD480;
 extern float Turn_dest_dir(float f12, float f13, float f14);
-extern void CopyVec3From110To120_14A2B0(void *a0);
+extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeedDir(void *a0, float f12);
 __attribute__((section(".text.func_0010C300")))
 void func_0010C300(void *a0)
@@ -29,10 +29,10 @@ void func_0010C300(void *a0)
     }
     if (*(unsigned short *)(s0 + 0x5F2) == 3) {
         *(float *)(s0 + 0x5A8) = 1.6f;
-        SetField444SignedByFlag434_158288(s0, 1.6f);
+        SetMotionStep(s0, 1.6f);
     } else {
         *(float *)(s0 + 0x5A8) = 1.3f;
-        SetField444SignedByFlag434_158288(s0, 1.3f);
+        SetMotionStep(s0, 1.3f);
     }
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -73,14 +73,14 @@ void func_0010C300(void *a0)
                 *(float *)(s0 + 0x104) = Adjust_theta(*(float *)(s0 + 0x104));
             }
             moveMotion(s0);
-            AddScaledVecToField_100_14F9F0(s0, 1.0f);
-            AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+            cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+            cObjBase_addNullSpeed(s0, 1.0f);
         } else {
             v = Turn_dest_dir(*(float *)(s0 + 0x104), *(float *)(s0 + 0x15FC), 0.39269909f);
             *(float *)(s0 + 0x104) = *(float *)(s0 + 0x104) + v;
             *(float *)(s0 + 0x104) = Adjust_theta(*(float *)(s0 + 0x104));
             moveMotion(s0);
-            CopyVec3From110To120_14A2B0(s0);
+            cModel_calcNullPart(s0);
             Add_nullspeedDir(s0, *(float *)(s0 + 0x15FC));
         }
         break;

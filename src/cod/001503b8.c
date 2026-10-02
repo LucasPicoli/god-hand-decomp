@@ -4,7 +4,7 @@
  * row's xyz with the vector at a0+0xC0..0xC8, and forward (a1, a0+0x80, &mtx)
  * to the 0030A2E0 matrix trampoline, returning its result.  sn-2.95.3-136. */
 
-extern void *Tramp_func_0030A2E0_00147548(void *, void *, void *);
+extern void *MtxMultiply(void *, void *, void *);
 
 __attribute__((section(".text.func_001503B8")))
 void *func_001503B8(void *a0, void *a1) {
@@ -20,5 +20,5 @@ void *func_001503B8(void *a0, void *a1) {
     *(float *)(buf + 0x30) = *(float *)((char *)a0 + 0xC0);
     *(float *)(buf + 0x34) = *(float *)((char *)a0 + 0xC4);
     *(float *)(buf + 0x38) = *(float *)((char *)a0 + 0xC8);
-    return Tramp_func_0030A2E0_00147548(a1, (char *)a0 + 0x80, buf);
+    return MtxMultiply(a1, (char *)a0 + 0x80, buf);
 }

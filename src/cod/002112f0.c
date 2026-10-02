@@ -2,17 +2,17 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
+extern void *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int a4, int a5);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern unsigned int D_007476B0;
 __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
 {
@@ -342,12 +342,12 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
       if (0.0f < (*((float *) (s2 + 0x24C))))
       {
         moveMotion(s2);
-        AddScaledVecToField_100_14F9F0(s2, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s2, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s2, 1.0f);
+        cObjBase_addNullSpeed(s2, 1.0f);
       }
     }
       sp0 = *((char **) (s2 + 0xF0));
-      d = Turn_dest(sp0, *((void **) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
+      d = Turn_dest(sp0, *((void **) (((char *) Getplayer()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
       if (d < 0.0f)
     {
       ad = (new_var = -d);
@@ -365,7 +365,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
     case 2:
       gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
       sp0 = *((char **) (s2 + 0xF0));
-      d = Turn_dest(sp0, *((void **) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
+      d = Turn_dest(sp0, *((void **) (((char *) Getplayer()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
       if (d < 0.0f)
     {
       switch (*((int *) (s2 + 0x564)))
@@ -948,7 +948,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
       *((unsigned char *) (s2 + 0x2F6)) = (*((unsigned char *) (s2 + 0x2F6))) + 1;
 
     case 3:
-      AddScaledDeltaToField_104_2A7498(s2, *((int *) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), (*((float *) (s2 + 0x5A8))) * 0.09817477f);
+      cGameObj_SetTgtTurn(s2, *((int *) (((char *) Getplayer()) + 0xF0)), (*((float *) (s2 + 0x5A8))) * 0.09817477f);
       if (900.0f < (*((float *) (s2 + 0x618))))
     {
       if ((D_007476B0 & 7) == ((*((unsigned int *) (s2 + 0x17D0))) & 7))
@@ -961,7 +961,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
       moveMotion(s2);
     }
       sp0 = *((char **) (s2 + 0xF0));
-      d = Turn_dest(sp0, *((void **) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
+      d = Turn_dest(sp0, *((void **) (((char *) Getplayer()) + 0xF0)), *((float *) (s2 + 0x104)), 3.14159274f);
       if (d < 0.0f)
     {
       ad = -d;
@@ -985,7 +985,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
     if ((D_007476B0 & 7) == ((*((unsigned int *) (s2 + 0x17D0))) & 7))
     {
       *((int *) (s2 + 0x16D4)) = (*((int *) (s2 + 0x16D4))) & 0xF7FFFFFF;
-      func_002A74E0(s2, *((void **) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), 1);
+      func_002A74E0(s2, *((void **) (((char *) Getplayer()) + 0xF0)), 1);
       if (func_002A7CA0(s2, s2 + 0x16A0) != 0)
       {
         *((int *) (s2 + 0x16D4)) = (*((int *) (s2 + 0x16D4))) | 0x8000000;
@@ -993,7 +993,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(void *a0)
       if (((*((float *) (s2 + 0x510))) < 8.0f) || ((*((int *) (s2 + 0x16EC))) != 0))
       {
         *((int *) (s2 + 0x16D0)) = ((*((int *) (s2 + 0x16D0))) | 2) & 0xFFFF7FFF;
-        if ((((Forward30F348_31CFE0() & 1) != 0) && ((*((float *) (s2 + 0x16C0))) <= 0.0f)) && ((*((int *) (s2 + 0x16EC))) <= 0))
+        if ((((irand() & 1) != 0) && ((*((float *) (s2 + 0x16C0))) <= 0.0f)) && ((*((int *) (s2 + 0x16EC))) <= 0))
         {
           *((unsigned char *) (s2 + 0x2F7)) = 0;
           *((unsigned char *) (s2 + 0x2F4)) = 0;

@@ -16,8 +16,8 @@ void func_0031EEC8(int *a0, int a1)
 }
 
 /* Returns slot idx of the sound-effect table. */
-__attribute__((section(".text.cSnd_GetSeEntry")))
-cSndSeEntry *cSnd_GetSeEntry(cSnd *self, int idx) { return &self->seEntry[idx]; }
+__attribute__((section(".text.cSnd_GetSeData")))
+cSndSeEntry *cSnd_GetSeData(cSnd *self, int idx) { return &self->seEntry[idx]; }
 
 __attribute__((section(".text.func_0032A6D0")))
 int func_0032A6D0(int a0, int a1, int a2)

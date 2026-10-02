@@ -1,20 +1,20 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern int Getplayer(void);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern int moveMotion(void *a0);
 extern void func_00274FE8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_002376C0(void);
 extern char D_00462FC0[];
 extern char D_00568288[];
 extern int D_007474A8;
 
-extern void LookupSlotPopulateFieldsAndDispatch_1F7858(void *a0, int a1, int a2,
+extern void cActionButton_set(void *a0, int a1, int a2,
                                                        int a3, void *t0, void *t1,
                                                        int t2);
 
@@ -27,9 +27,9 @@ __attribute__((section(".text.func_002376D0")))
 void func_002376D0(void *a0)
 {
     char *s0 = (char *)a0;
-    char *s1 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+    char *s1 = (char *)Getplayer();
 
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     *(int *)(s0 + 0x16D0) |= 0x21000;
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
@@ -58,7 +58,7 @@ void func_002376D0(void *a0)
             *(short *)(s0 + 0x56A) = 0x48;
             break;
         }
-        *(short *)(s0 + 0x56C) = Forward30F348_31CFE0() & 3;
+        *(short *)(s0 + 0x56C) = irand() & 3;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     /* fallthrough */
@@ -67,8 +67,8 @@ void func_002376D0(void *a0)
             func_00274FE8(s0);
             return;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(short *)(s0 + 0x56A) != 0) {
             *(short *)(s0 + 0x56A) = *(unsigned short *)(s0 + 0x56A) - 1;
         } else if (*(short *)(s1 + 0x54A) > 0 && *(short *)(s0 + 0x568) == 0) {
@@ -77,25 +77,25 @@ void func_002376D0(void *a0)
             case 0:
                 if ((D_007474A8 & 0xD0) != 0)
                     *(short *)(s0 + 0x56A) = 0;
-                LookupSlotPopulateFieldsAndDispatch_1F7858(D_00568288, 0xB, 0x25,
+                cActionButton_set(D_00568288, 0xB, 0x25,
                                                            0, func_002376C0, s0, 0);
                 break;
             case 1:
                 if ((D_007474A8 & 0xE0) != 0)
                     *(short *)(s0 + 0x56A) = 0;
-                LookupSlotPopulateFieldsAndDispatch_1F7858(D_00568288, 0xB, 0x25,
+                cActionButton_set(D_00568288, 0xB, 0x25,
                                                            1, func_002376C0, s0, 0);
                 break;
             case 2:
                 if ((D_007474A8 & 0xB0) != 0)
                     *(short *)(s0 + 0x56A) = 0;
-                LookupSlotPopulateFieldsAndDispatch_1F7858(D_00568288, 0xB, 0x25,
+                cActionButton_set(D_00568288, 0xB, 0x25,
                                                            2, func_002376C0, s0, 0);
                 break;
             case 3:
                 if ((D_007474A8 & 0x70) != 0)
                     *(short *)(s0 + 0x56A) = 0;
-                LookupSlotPopulateFieldsAndDispatch_1F7858(D_00568288, 0xB, 0x25,
+                cActionButton_set(D_00568288, 0xB, 0x25,
                                                            3, func_002376C0, s0, 0);
                 break;
             }
@@ -132,8 +132,8 @@ void func_002376D0(void *a0)
             *(unsigned char *)(s0 + 0x2F6) = 0;
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     default:
         break;

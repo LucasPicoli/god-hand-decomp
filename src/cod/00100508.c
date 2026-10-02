@@ -2,7 +2,7 @@
 
 extern char D_0041B6A0[];
 extern char D_0041B730[];
-extern void SetFlagBitF30IfField35Active_1F6EE0(int x);
+extern void cActionButtonUnit_setOk(int x);
 extern void ClearLinkedNodeList_12ECF0(void *p);
 
 __attribute__((section(".text.GetNextAnimIndex_1451E0")))
@@ -43,7 +43,7 @@ int InitAltVtableAndSetup_102128(void *a0) {
 __attribute__((section(".text.FreeFieldObject_1267F8")))
 void FreeFieldObject_1267F8(char *a0) {
     if (*(int*)(a0 + 0x165C)) {
-        SetFlagBitF30IfField35Active_1F6EE0(*(int*)(a0 + 0x165C));
+        cActionButtonUnit_setOk(*(int*)(a0 + 0x165C));
     }
 }
 

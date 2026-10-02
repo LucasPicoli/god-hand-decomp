@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_001B6FB8(void *a0);
-extern void *AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern void func_001BFB28(void *a0);
 extern int D_00574380;
@@ -35,7 +35,7 @@ int func_001705D0(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -80,7 +80,7 @@ int func_00170860(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -125,7 +125,7 @@ int func_00170AF0(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -170,7 +170,7 @@ int func_00170D80(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -215,7 +215,7 @@ int func_001833E0(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = AllocActiveSlot_1FE218(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];

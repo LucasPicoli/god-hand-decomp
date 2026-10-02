@@ -4,7 +4,7 @@
 
 #include "godhand/vu0.h"
 
-extern float DoubleFloatMinusHalf_31D020(void);
+extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern void Obj0000_Set_Field_50_173998(int *a0, int a1);
@@ -71,12 +71,12 @@ void func_00186038(char *a0, int a1)
     VU0_LQC2(4, D_00747B00, 0);
     VU0_SQC2(4, frame, 0x20);
 
-    *(float *)(frame + 0x10) += DoubleFloatMinusHalf_31D020() * 0.05f;
+    *(float *)(frame + 0x10) += fRand1_1() * 0.05f;
     *(float *)(frame + 0x14) += fRand0_1() * 0.15f + 0.1f;
-    *(float *)(frame + 0x18) += DoubleFloatMinusHalf_31D020() * 0.05f;
-    *(float *)(frame + 0x20) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x24) += DoubleFloatMinusHalf_31D020() * 0.1f;
-    *(float *)(frame + 0x28) += DoubleFloatMinusHalf_31D020() * 0.1f;
+    *(float *)(frame + 0x18) += fRand1_1() * 0.05f;
+    *(float *)(frame + 0x20) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x24) += fRand1_1() * 0.1f;
+    *(float *)(frame + 0x28) += fRand1_1() * 0.1f;
 
     ok4 = ((*(int *)frame = b4 = *(unsigned char *)(a0 + 0x2B4)), (n >= 0 && n < b4));
     if (ok4) obj4 = *(int *)(*(int *)(a0 + 0x278) + n * 4); else obj4 = 0;

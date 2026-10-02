@@ -8,13 +8,13 @@ extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, in
 extern void func_0012B928(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cHeatSys_SetHeatMode(void *a0, int a1);
 extern void func_0010A438(void *a0);
 extern unsigned char D_005CB000[];
 extern void func_00124EC0(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
 
@@ -50,8 +50,8 @@ void func_00114120(void *a0)
             *(char *)(s1 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s1, one);
-        AddScaledXfmVecToField_F0_14F928(s1, one);
+        cObjBase_addNullSpeed_Rotation(s1, one);
+        cObjBase_addNullSpeed(s1, one);
         break;
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 1) {
@@ -104,15 +104,15 @@ void func_00111010(void *a0)
     case 1:
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {
-            ClearField15F4Bit1_124F60(s0, 1, 0);
+            pl00_clearMotionCam(s0, 1, 0);
             *(char *)(s0 + 0x2F4) = 0;
             *(char *)(s0 + 0x2F5) = 0;
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
     func_0010A438(s0);
@@ -120,6 +120,6 @@ void func_00111010(void *a0)
         cEmManage_SetSpeedRate(D_005864F0, 0.05f);
     }
     if (func_00123938(s0, 1) != 0) {
-        ClearField15F4Bit1_124F60(s0, 1, 0);
+        pl00_clearMotionCam(s0, 1, 0);
     }
 }

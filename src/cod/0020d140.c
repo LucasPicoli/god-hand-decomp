@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern void func_00274238(void *a0, int a1);
 extern unsigned char D_005CB010;
 
@@ -20,7 +20,7 @@ int func_0020D140(void *a0)
     int q;
     short w;
 
-    if (Obj0000_Get_Field_5FC_NE_Zero_12C748(Obj0000_Get_D_00747A94_2DB6B0()) != 0)
+    if (Obj0000_Get_Field_5FC_NE_Zero_12C748(Getplayer()) != 0)
         return 0;
     if (0.0f < *(float *)(s0 + 0x1740)) return 0;
     v1 = *(unsigned short *)(s0 + 0x3AC);
@@ -49,16 +49,16 @@ int func_0020D140(void *a0)
     if (*(int *)(s0 + 0x17AC) <= 0) return 0;
     switch (cCoreSave_getGameLevel(&D_00569B70)) {
     case 1: default:
-        lim = (Forward30F348_31CFE0() & 3) + 5;
+        lim = (irand() & 3) + 5;
         break;
     case 2:
-        lim = (Forward30F348_31CFE0() & 3) + 4;
+        lim = (irand() & 3) + 4;
         break;
     case 3: case 4:
-        lim = (Forward30F348_31CFE0() & 3) + 3;
+        lim = (irand() & 3) + 3;
         break;
     case 5:
-        lim = (Forward30F348_31CFE0() & 3) + 2;
+        lim = (irand() & 3) + 2;
         break;
     }
     if (*(unsigned char *)(s0 + 0x17C1) != 0) lim = lim - 2;
@@ -69,7 +69,7 @@ int func_0020D140(void *a0)
         return 0;
     ok = 1;
     if (1.5707964f < *(float *)(s0 + 0x760)) ok = 0;
-    if ((Forward30F348_31CFE0() & 3) != 0) ok = 0;
+    if ((irand() & 3) != 0) ok = 0;
     if (ok == 0) return 0;
     q = *(int *)(s0 + 0x17AC);
     w = *(short *)(s0 + 0x548);
@@ -80,7 +80,7 @@ int func_0020D140(void *a0)
     func_00274238(s0, 1);
     *(short *)(s0 + 0x17C8) = 0;
     *(int *)(s0 + 0x17C4) = -1;
-    *(unsigned char *)(s0 + 0x17BF) = (unsigned int)Forward30F348_31CFE0() % 3;
+    *(unsigned char *)(s0 + 0x17BF) = (unsigned int)irand() % 3;
     return 1;
 ret0:
     return 0;

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern unsigned char D_00747A50[];
 extern unsigned char D_005CB010;
@@ -25,7 +25,7 @@ short func_0028FB88(void *a0, int a1, void *a2, void *a3, int t0)
     short r;
     int ri;
 
-    g = Obj0000_Get_D_00747A94_2DB6B0();
+    g = Getplayer();
     f = 1.0f;
     if (a3 != 0) {
         switch (D_00747A50[1]) {

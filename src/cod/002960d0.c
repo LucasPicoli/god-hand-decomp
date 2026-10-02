@@ -19,8 +19,8 @@ void cEmWrap_StartEscape(void *a0, float f) {
     }
 }
 
-__attribute__((section(".text.SetTimerByFlag_296230")))
-void SetTimerByFlag_296230(void *a0, int a1, float f) {
+__attribute__((section(".text.cEmWrap_setAlphaMode")))
+void cEmWrap_setAlphaMode(void *a0, int a1, float f) {
     if (FindResolveActor_295978(a0, f)) {
         int *p = *(int **)((char *)a0 + 4);
         if (func_003A5678(&D_0044A870, p[0x4AC / 4]) == 0) {

@@ -5,14 +5,14 @@
  * Template src/cod/00225e30.c (func_00225E30, jaccard 0.67). */
 
 extern int  Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern int  Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
+extern int  Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int  moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0026A638(void *a0, int a1);
 extern void func_0026A938(void *a0, int a1, int a2);
 extern void func_0026A838(void *a0, int a1);
@@ -32,7 +32,7 @@ void func_0022ACE0(void *a0)
         int p2;
 
         r = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        c = Forward30F348_31CFE0() & 1;
+        c = irand() & 1;
         if (64.0f < *(float *)(s0 + 0x618))
             c = 0;
         if (*(float *)(s0 + 0x618) < 16.0f)
@@ -68,14 +68,14 @@ void func_0022ACE0(void *a0)
         if (*(int *)(s0 + 0x5F0) != 0) {
             int q;
             *(int *)(s0 + 0x5F0) = *(int *)(s0 + 0x5F0) - 1;
-            q = Obj0000_Get_D_00747A94_2DB6B0();
-            AddScaledDeltaToField_104_2A7498(s0, *(int *)(q + 0xF0),
+            q = Getplayer();
+            cGameObj_SetTgtTurn(s0, *(int *)(q + 0xF0),
                                              *(float *)(s0 + 0x5A8) * 0.19634954f);
         }
         if (moveMotion(s0))
             func_002705D8(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if (*(unsigned short *)(s0 + 0x3AC) & 1) {
             if (*(unsigned char *)(s0 + 0x17C3) != 0) {
                 func_0026A638(s0, 1);

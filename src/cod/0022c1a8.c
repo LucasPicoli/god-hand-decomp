@@ -2,16 +2,16 @@
 #include "godhand/cCoreSave.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, void *a1, float a2);
+extern void *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
 
 extern void func_0026BDD0(void *a0, int a1);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 __attribute__((section(".text.func_0022C1A8")))
 void func_0022C1A8(void *a0)
@@ -29,7 +29,7 @@ void func_0022C1A8(void *a0)
         int s2v, s1v;
         *(char *)(s0 + 0x1864) = 0;
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        *(char *)(s0 + 0x2F7) = Forward30F348_31CFE0() & 1;
+        *(char *)(s0 + 0x2F7) = irand() & 1;
         v1 = *(char **)(s0 + 0x304);
         s2v = *(int *)(v1 + 0x22E0) + (int)v1;
         s1v = *(int *)(v1 + 0x22E4) + (int)v1;
@@ -50,13 +50,13 @@ void func_0022C1A8(void *a0)
             *(float *)(s0 + 0x604) = *(float *)(s0 + 0x604) - *(float *)(s0 + 0x5A8);
             *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
         }
-        p = (char *)Obj0000_Get_D_00747A94_2DB6B0();
-        AddScaledDeltaToField_104_2A7498(s0, *(void **)(p + 0xF0), *(float *)(s0 + 0x5A8) * 0.19634955f);
+        p = (char *)Getplayer();
+        cGameObj_SetTgtTurn(s0, *(void **)(p + 0xF0), *(float *)(s0 + 0x5A8) * 0.19634955f);
         if (moveMotion(s0) != 0) {
             func_002705D8(s0);
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     }

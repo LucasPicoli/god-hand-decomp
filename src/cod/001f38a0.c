@@ -6,7 +6,7 @@
 
 extern ColiseumHost **D_003C2384;
 extern void func_001F46E0(void *idBase);
-extern void UnlinkAndCoalesceNode_2A9680(int heap, int *node);
+extern void cHeap_free(int heap, int *node);
 
 /* Set the radius of the hit volume with the given id (first match only). */
 __attribute__((section(".text.cDamageUnit_SetDamageCollRadius")))
@@ -35,7 +35,7 @@ void ColiseumEmSelect_close(ColiseumEmSelect *self)
     host->pickB = 0;
     host->pickA = 0;
     if (self->cardNode != 0) {
-        UnlinkAndCoalesceNode_2A9680(self->cardNode[-8], self->cardNode);
+        cHeap_free(self->cardNode[-8], self->cardNode);
     }
 }
 

@@ -3,8 +3,8 @@
 extern int D_00747A78;
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void CopyVec3From110To120_14A2B0(void *a0);
-extern void Forward30A2B0_2DA9B8(void *a0);
+extern void cModel_calcNullPart(void *a0);
+extern void Add_nullspeed(void *a0);
 extern void cObjBase_SetSeqEffect(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
@@ -241,8 +241,8 @@ void func_0028BEC8(void *a0)
     /* fallthrough */
     case 1:
         moveMotion(s0);
-        CopyVec3From110To120_14A2B0(s0);
-        Forward30A2B0_2DA9B8(s0);
+        cModel_calcNullPart(s0);
+        Add_nullspeed(s0);
         break;
     default:
         break;

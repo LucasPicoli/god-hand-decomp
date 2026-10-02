@@ -55,7 +55,7 @@ typedef union cWorldLightHead {
 } cWorldLightHead;
 
 /* The object the lights are attached to (returned by
- * Obj0000_Get_D_00747A94_2DB6B0): a list of owner handles. */
+ * Getplayer): a list of owner handles. */
 typedef struct cWorldLightOwner {
     char unk00[0x278];
     int *list;                          /* 0x278 owner keys */

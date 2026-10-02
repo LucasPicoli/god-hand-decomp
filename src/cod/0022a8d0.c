@@ -8,7 +8,7 @@ extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void StoreMotionParams_2609E0(char *a0, int a1, int a2, int a3, int t0, short t1);
 extern void Set_Fields_1884_1894_2609F8(char *a0, int a1, int a2, int a3, int t0, short t1);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
@@ -16,8 +16,8 @@ extern int cEmManage_CkPlSorry(void *a0);
 extern int cEmManage_CkPlCatched(void *a0);
 extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -71,7 +71,7 @@ void func_0022A8D0(void *a0)
         float th;
 
         *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x800000;
-        t = Turn_dest(e, *(void **)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        t = Turn_dest(e, *(void **)(Getplayer() + 0xF0),
                       *(float *)(s1 + 0x600), *(float *)(s1 + 0x5A8) * 0.09817477f);
         th = *(float *)(s1 + 0x600) + t;
         *(float *)(s1 + 0x600) = th;
@@ -82,8 +82,8 @@ void func_0022A8D0(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     case 2: {
@@ -120,7 +120,7 @@ void func_0022A8D0(void *a0)
         char *g;
 
         *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x800000;
-        t = Turn_dest(e, *(void **)(Obj0000_Get_D_00747A94_2DB6B0() + 0xF0),
+        t = Turn_dest(e, *(void **)(Getplayer() + 0xF0),
                       *(float *)(s1 + 0x600), *(float *)(s1 + 0x5A8) * 0.09817477f);
         th = *(float *)(s1 + 0x600) + t;
         *(float *)(s1 + 0x600) = th;
@@ -141,8 +141,8 @@ void func_0022A8D0(void *a0)
         } else if (cEmManage_CkPlCatched(g) != 0) {
             *(char *)(s1 + 0x2F6) = 4;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     case 4: {
@@ -160,8 +160,8 @@ void func_0022A8D0(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_00260B30(s1);

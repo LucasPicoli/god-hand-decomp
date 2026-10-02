@@ -2,7 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -11,19 +11,19 @@ extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_0012C0F8(void *a0, int a1);
 extern void func_0012C348(void *a0, int a1);
-extern void OrChildField98AndSelfFieldB0AC_2CA718(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cSnd_DieDemoStart(void *a0);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005FEE00[];
 extern int D_00747A24;
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern void func_0012C540(void *a0, int a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern void cSnd_SeCall_2CB8A0(char *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern void func_00102418(void *a0);
 extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
@@ -43,7 +43,7 @@ extern int *D_003BF0C0[];
 extern int D_003BF0D0[];
 extern void func_00294AD8(void *a0);
 extern void func_00125F38(void *a0);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
+extern float SetMotionStep(void *a0, float f);
 extern void func_00291D48(void *a0);
 extern void func_00292F68(void *a0);
 
@@ -56,7 +56,7 @@ void func_00121798(void *a0)
     *(float *)(s0 + 0x54C) = 5.0f;
     *(int *)(s0 + 0x250) = *(int *)(s0 + 0x250) | 0x10000;
     s1 = *(char **)(s0 + 0x694);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     cEmManage_SetPlCatched(&D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -93,7 +93,7 @@ void func_00121798(void *a0)
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {
             if (*(short *)(s0 + 0x54A) > 0) {
-                ClearField15F4Bit1_124F60(s0, 0, 0);
+                pl00_clearMotionCam(s0, 0, 0);
                 *(char *)(s0 + 0x2F4) = 1;
                 *(char *)(s0 + 0x2F5) = 4;
                 *(char *)(s0 + 0x2F6) = 0;
@@ -102,8 +102,8 @@ void func_00121798(void *a0)
                 D_00747A24 |= 8;
             }
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
             if (*(int *)(s0 + 0x15B0) != 0) {
                 *(int *)(s0 + 0x15B0) = 0;
@@ -112,7 +112,7 @@ void func_00121798(void *a0)
                     func_0012C0F8(s0, (int)(*(float *)(s1 + 0x76C) * 100.0f));
                 if (*(short *)(s0 + 0x54A) <= 0) {
                     *(short *)(s0 + 0x54A) = 0;
-                    OrChildField98AndSelfFieldB0AC_2CA718(D_005FEE00);
+                    cSnd_DieDemoStart(D_005FEE00);
                     cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                     *(short *)(s0 + 0x434) = *(unsigned short *)(s0 + 0x434) | 8;
                 }
@@ -131,14 +131,14 @@ void func_00121798(void *a0)
     case 3:
         func_00124EC0(s0);
         if (moveMotion(s0) != 0) {
-            ClearField15F4Bit1_124F60(s0, 0, 0);
+            pl00_clearMotionCam(s0, 0, 0);
             *(char *)(s0 + 0x2F4) = 0;
             *(char *)(s0 + 0x2F5) = 0;
             *(char *)(s0 + 0x2F6) = 0;
             *(char *)(s0 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     default:
         break;
@@ -156,7 +156,7 @@ void func_00102418(void *a0)
     char *s2;
     short k;
 
-    s3 = Obj0000_Get_D_00747A94_2DB6B0();
+    s3 = Getplayer();
     if ((*(int *)(s1 + 0x14B0) & 1) == 0)
         return;
     if (*(short *)(s3 + 0x54A) > 0 && *(unsigned char *)(s1 + 0x2F4) == 0 &&
@@ -211,21 +211,21 @@ void func_00102418(void *a0)
     case 0x4A:
         SetEffect(0x58, 0x2A, 0, 0, -1, -1);
         if (s2 != 0)
-            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(Obj0000_Get_Field_424_1595F0(s2) + 0x1F), -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
     case 0x4B:
         SetEffect(0xA8, 0xE, 0, 0, -1, -1);
         if (s2 != 0)
-            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(Obj0000_Get_Field_424_1595F0(s2) + 0x1F), -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
     case 0x4C:
         SetEffect(0x63, 0xE, 0, 0, -1, -1);
         if (s2 != 0)
-            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(Obj0000_Get_Field_424_1595F0(s2) + 0x1F), -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
     }
     *(float *)(s1 + 0x54C) = 5.0f;
-    ClearField15F4Bit1_124F60(s3, 0, 0);
+    pl00_clearMotionCam(s3, 0, 0);
     k = *(short *)(*(char **)(s1 + 0x5B0) + 0x46);
     if (k == 0x48 || k == 0x52)
         cEmManage_SetPlBombHit(&D_005864F0);
@@ -257,13 +257,13 @@ void func_00102150(void *a0)
     char *s1 = (char *)a0;
     char *s3;
 
-    s3 = Obj0000_Get_D_00747A94_2DB6B0();
+    s3 = Getplayer();
     if (D_00747A78 < 0)
         return;
     if (*(int *)(s1 + 0x14B4) != 0)
         *(int *)(s1 + 0x14B4) = *(int *)(s1 + 0x14B4) - 1;
     func_00102418(s1);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 1);
+    cCollisionSolidManage_SetActive(D_00462FC0, s1, 1);
     *(int *)(s1 + 0x250) &= 0xFFFEFFFF;
     {
         char *e;
@@ -502,7 +502,7 @@ void cEmManage_Main(cEmManage *self)
         self->unk5A1 = 0;
         self->unk5A2 = 0;
     }
-    func_00125F38(Obj0000_Get_D_00747A94_2DB6B0());
+    func_00125F38(Getplayer());
     slot = self->list.top;
     if (slot != 0) {
         char *g = D_007474A0;
@@ -514,7 +514,7 @@ void cEmManage_Main(cEmManage *self)
             float v = self->speedRate * *(float *)(g + 0x574);
 
             e->speedRate = v;
-            SetField444SignedByFlag434_158288(e, v);
+            SetMotionStep(e, v);
         }
         }
     }

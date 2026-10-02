@@ -2,7 +2,7 @@
 #include "godhand/cScenario.h"
 
 extern int func_002D5580(cTaskManager *task, void *entry, void *arg, int slot);
-extern void SetFieldsCESignalSemaSleep_2D5AA0(cTaskWork *work, int a1);
+extern void cTaskWork_sleep(cTaskWork *work, int a1);
 extern int SearchCameraData(const char *name);
 
 extern void *cObjBaseArray_SearchOM(char *arr, long mask);
@@ -20,7 +20,7 @@ __attribute__((section(".text.cScenario_waitEventStartOk")))
 void cScenario_waitEventStartOk(cScenario *self) {
     cTaskManager *task = &self->task;
     while (cScenario_isEventStartOk(self) == 0) {
-        SetFieldsCESignalSemaSleep_2D5AA0(task->cur, 1);
+        cTaskWork_sleep(task->cur, 1);
     }
 }
 
@@ -47,7 +47,7 @@ int cScenario_isEventStartOk(cScenario *self)
 {
     if (D_00747A84 & 0x40000000)
         return 0;
-    return func_0012BAF0(Obj0000_Get_D_00747A94_2DB6B0()) != 0;
+    return func_0012BAF0(Getplayer()) != 0;
 }
 
 

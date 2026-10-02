@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern char D_00462FC0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -28,7 +28,7 @@ void func_00210EE8(void *a0)
     int gb;
 
     *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x400;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -218,8 +218,8 @@ void func_00210EE8(void *a0)
             float *fp2;
             float fv = 1.0f;
             moveMotion(s1);
-            AddScaledVecToField_100_14F9F0(s1, fv);
-            AddScaledXfmVecToField_F0_14F928(s1, fv);
+            cObjBase_addNullSpeed_Rotation(s1, fv);
+            cObjBase_addNullSpeed(s1, fv);
             fp1 = *(float **)(s1 + 0xF0);
             fp1[0] = fp1[0] * 0.99000001f + *(float *)(s1 + 0x5C0) * 0.0099999998f;
             fp2 = *(float **)(s1 + 0xF0);

@@ -35,8 +35,8 @@ __attribute__((section(".text.NoOp_1F0530")))
 void NoOp_1F0530(void) {}
 
 /* `jr $ra ; lw $v0, 0xF0($a0)` — return obj->field_F0. */
-__attribute__((section(".text.GetObjVtabPtr_2A9458")))
-int GetObjVtabPtr_2A9458(void *obj) { return *(int *)((char *)obj + 0xF0); }
+__attribute__((section(".text.cGameObj_getPos")))
+int cGameObj_getPos(void *obj) { return *(int *)((char *)obj + 0xF0); }
 
 /* `sb $a2,0x54($a0) ; jr $ra ; sb $a1,0x3A($a0)` — two byte stores. */
 /* Source order is swapped vs the asm: SN -O2 schedules the second store

@@ -42,8 +42,8 @@ void InitEntryPool_1FE188(int a0) {
     } while (p < end);
 }
 
-__attribute__((section(".text.AllocActiveSlot_1FE218")))
-int AllocActiveSlot_1FE218(int a0, int a1, int a2) {
+__attribute__((section(".text.cDamageManage_CreateDamageTake")))
+int cDamageManage_CreateDamageTake(int a0, int a1, int a2) {
     int p = func_001FE310(a0);
     if (p == 0) return 0;
     if (SetTarget_1FD530(p, a1, a2) == 0) p = 0;

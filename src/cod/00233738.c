@@ -6,13 +6,13 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
-extern int Forward30F348_31CFE0(void);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
+extern int irand(void);
+extern void *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00260B30(void *a0);
 
 /* sn-2.95.3-136 candidate TU. */
@@ -70,7 +70,7 @@ void func_00233738(void *a0)
                 } else {
                     InitRenderStruct_2A8608(s1, 0x58, 0x79, 0, 2, *(int *)(s1 + 0x6EC));
                 }
-            } else if ((Forward30F348_31CFE0() & 1) != 0 ||
+            } else if ((irand() & 1) != 0 ||
                        *(unsigned char *)(s1 + 0x2F7) != 0) {
                 char *pb = *(char **)(s1 + 0x304);
                 int m, k;
@@ -190,18 +190,18 @@ void func_00233738(void *a0)
         if (*(int *)(s1 + 0x5F0) != 0) {
             char *v0;
             *(int *)(s1 + 0x5F0) -= 1;
-            v0 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
-            AddScaledDeltaToField_104_2A7498(s1, *(int *)(v0 + 0xF0),
+            v0 = (char *)Getplayer();
+            cGameObj_SetTgtTurn(s1, *(int *)(v0 + 0xF0),
                                              *(float *)(s1 + 0x5A8) * 0.19634955f);
         }
         if (moveMotion(s1) != 0) {
-            AddScaledVecToField_100_14F9F0(s1, 1.0f);
-            AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
             func_002705D8(s1);
             return;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_00260B30(s1);

@@ -4,12 +4,12 @@ extern int D_0041D220[];
 extern int D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void InitObjectVtableAndRegister_1002C0(void *a0, void *a1);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern float SetField444SignedByFlag434_158288(void *a0, float f);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
+extern float SetMotionStep(void *a0, float f);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
-__attribute__((section(".text.SetAnimSlotIfFree_13F238")))
-void SetAnimSlotIfFree_13F238(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
+__attribute__((section(".text.cCockMess_SetMessNo")))
+void cCockMess_SetMessNo(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
     if (*(int *)(a0 + 0x9C) == 0xFFFF) {
         *(int *)(a0 + 0x9C) = a1;
         *(float *)(*(char **)(a0 + 0x90) + 0x38) = f12;
@@ -44,10 +44,10 @@ void UpdateBossPhase_10B780(void *a0) {
     int st;
     int base;
     *(float*)((char*)a0 + 0x54C) = 5.0f;
-    Forward_001346C8_00134608_1351D8(D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, a0, 0);
     *(int*)((char*)a0 + 0x15F4) = *(int*)((char*)a0 + 0x15F4) | 0x2000;
     *(float*)((char*)a0 + 0x5A8) = 1.0f;
-    SetField444SignedByFlag434_158288(a0, 1.0f);
+    SetMotionStep(a0, 1.0f);
     st = *(unsigned char*)((char*)a0 + 0x2F6);
     switch (st) {
     case 0:

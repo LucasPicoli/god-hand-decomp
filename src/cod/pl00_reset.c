@@ -4,7 +4,7 @@
  * model (move/calcParts/IK/calcWorldParts), refreshes the held-object model,
  * fixes the 0x15F4 flag word, resets heat mode and clears 0x640. */
 
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00126770(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void moveMotion(void *a0);
@@ -21,7 +21,7 @@ void pl00_reset(void *a0)
     char *s0 = (char *)a0;
     int v0;
 
-    ClearField15F4Bit1_124F60(s0, 0, 0);
+    pl00_clearMotionCam(s0, 0, 0);
     func_00126770(s0);
     v0 = *(int *)(s0 + 0x304);
     *(unsigned char *)(s0 + 0x2F4) = 0;

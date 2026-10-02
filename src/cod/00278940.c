@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float f12);
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern char *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
+extern float SetMotionStep(void *a0, float f12);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 #include "godhand/vu0.h"
 
@@ -88,17 +88,17 @@ void func_00278940(void *a0)
         float *dp;
 
         if (900.0f < *(float *)(s0 + 0x618)) {
-            char *o = Obj0000_Get_D_00747A94_2DB6B0();
+            char *o = Getplayer();
 
-            AddScaledDeltaToField_104_2A7498(s0, *(int *)(o + 0xF0),
+            cGameObj_SetTgtTurn(s0, *(int *)(o + 0xF0),
                                              *(float *)(s0 + 0x608) *
                                              *(float *)(s0 + 0x5A8));
         }
-        SetField444SignedByFlag434_158288(s0, *(float *)(s0 + 0x5A8) *
+        SetMotionStep(s0, *(float *)(s0 + 0x5A8) *
                                               *(float *)(s0 + 0x600));
         moveMotion(s0);
         {
-            char *o = Obj0000_Get_D_00747A94_2DB6B0();
+            char *o = Getplayer();
             float d = *(float *)(*(int *)(s0 + 0xF0) + 4) -
                       *(float *)(*(int *)(o + 0xF0) + 4);
 
@@ -130,8 +130,8 @@ void func_00278940(void *a0)
             t2 = *(volatile float *)&buf[2];
             dp[2] = t2;
         }
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         break;
     }
     default:

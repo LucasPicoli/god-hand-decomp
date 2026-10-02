@@ -1,18 +1,18 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern float Adjust_theta(float f12);
-extern float SetField444SignedByFlag434_158288(void *a0, float f12);
+extern float SetMotionStep(void *a0, float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -36,7 +36,7 @@ void func_00244FC8(void *a0)
     char *s1 = (char *)a0;
     int s2v, s0v;
 
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int gb;
@@ -96,8 +96,8 @@ void func_00244FC8(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     case 2: {
@@ -136,7 +136,7 @@ void func_00244FC8(void *a0)
             break;
         }
         func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
-        if ((Forward30F348_31CFE0() & 1) != 0) {
+        if ((irand() & 1) != 0) {
             *(float *)(s1 + 0x600) = 0.0099999998f;
         } else {
             *(float *)(s1 + 0x600) = -0.019999999f;
@@ -152,11 +152,11 @@ void func_00244FC8(void *a0)
                       *(void **)(s1 + 0xF0));
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + r;
         *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
-        SetField444SignedByFlag434_158288(s1, *(float *)(s1 + 0x5A8) * 1.5f);
+        SetMotionStep(s1, *(float *)(s1 + 0x5A8) * 1.5f);
         moveMotion(s1);
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         *(float *)(s1 + 0x338) = *(float *)(s1 + 0x600) * *(float *)(s1 + 0x5A8);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         mag = capVu0MagnitudeSqXZ(*(void **)(s1 + 0xF0), v580);
         if (mag < 4.0f) {
             *(unsigned char *)(s1 + 0x2F6) = 4;
@@ -214,8 +214,8 @@ void func_00244FC8(void *a0)
             *(char *)(s1 + 0x2F7) = 1;
             *(char *)(s1 + 0x2F6) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) | 0x400;
         break;
     case 6: {
@@ -260,8 +260,8 @@ void func_00244FC8(void *a0)
         if (moveMotion(s1) != 0) {
             func_002705D8(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
 }

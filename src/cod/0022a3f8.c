@@ -5,14 +5,14 @@ extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
 extern int cEmManage_CkPlSorry(void *a0);
 extern int cEmManage_CkPlCatched(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0014FA60(void *a0, float f12, float f13);
 extern void func_00270C78(void *a0);
 extern void func_00260B30(void *a0);
@@ -67,7 +67,7 @@ void func_0022A3F8(void *a0)
         char *v0;
         float th;
         s0 = *(void **)(s1 + 0xF0);
-        v0 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+        v0 = (char *)Getplayer();
         th = Turn_dest(s0, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x600), *(float *)(s1 + 0x5A8) * 0.09817477f);
         *(float *)(s1 + 0x600) += th;
         *(float *)(s1 + 0x600) = Adjust_theta(*(float *)(s1 + 0x600));
@@ -76,8 +76,8 @@ void func_0022A3F8(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     case 2: {
@@ -103,7 +103,7 @@ void func_0022A3F8(void *a0)
             char *v0;
             float th;
             s0 = *(void **)(s1 + 0xF0);
-            v0 = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+            v0 = (char *)Getplayer();
             th = Turn_dest(s0, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x600), *(float *)(s1 + 0x5A8) * 0.09817477f);
             *(float *)(s1 + 0x600) += th;
             *(float *)(s1 + 0x600) = Adjust_theta(*(float *)(s1 + 0x600));
@@ -126,7 +126,7 @@ void func_0022A3F8(void *a0)
         if (cEmManage_CkPlSorry(g) != 0 || cEmManage_CkPlCatched(g) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = 4;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         *(int *)(s1 + 0x330) = 0;
         *(int *)(s1 + 0x334) = 0;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
@@ -159,8 +159,8 @@ void func_0022A3F8(void *a0)
         if (moveMotion(s1) != 0) {
             func_00270C78(s1);
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     func_00260B30(s1);

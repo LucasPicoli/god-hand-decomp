@@ -62,8 +62,8 @@ void func_002D5080(long long *a0, int *a1, int *a2) {
 
 
 
-__attribute__((section(".text.func_0014E990")))
-void *func_0014E990(void *a0) {
+__attribute__((section(".text.cObjBase")))
+void *cObjBase(void *a0) {
     func_0014E598(a0);
     *(int*)((char*)a0 + 0x214) = (int)D_0041EBE8;
     VU0_SQC2_VF0(a0, 0x310);

@@ -6,8 +6,8 @@ extern void func_001ECA80(void *a0);
 extern void func_001ED548(void *a0);
 extern void func_001EDE38(void *a0);
 
-__attribute__((section(".text.func_001E90F8")))
-void *func_001E90F8(void *a0) {
+__attribute__((section(".text.DogRace")))
+void *DogRace(void *a0) {
     char *p = (char *)a0;
     int i;
     int j;

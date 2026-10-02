@@ -8,9 +8,9 @@ extern void moveMotion(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
-extern int AllocActiveSlot_1FE218(void *a0, void *a1, int a2);
+extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
@@ -56,13 +56,13 @@ int func_0027EF10(char *a0)
     *(short *)(s1 + 0x2AE) = 0x1770;
     *(unsigned char *)(s1 + 0x616) = 1;
     *(char *)(s1 + 0x531) = -1;
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
     cParts_setRotationOrder(s1, 4);
     *(short *)(s1 + 0x54A) = *(short *)(s1 + 0x548) = 1;
     *(int *)(s1 + 0x670) = 0;
     if (*(int *)(s1 + 0x564) != 0x26B) {
         struct sph *r;
-        *(int *)(s1 + 0x670) = AllocActiveSlot_1FE218(&D_00574380, s1, 1);
+        *(int *)(s1 + 0x670) = cDamageManage_CreateDamageTake(&D_00574380, s1, 1);
         n = *(unsigned char *)(s1 + 0x2B4);
         *(int *)(buf + 0x40) = n;
         {

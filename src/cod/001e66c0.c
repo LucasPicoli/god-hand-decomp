@@ -38,8 +38,8 @@ void func_001E8DF0(char *a0, void *src, int *tbl, int n) {
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
-__attribute__((section(".text.func_001FD610")))
-void func_001FD610(char *a0, int id, int on) {
+__attribute__((section(".text.cDamageUnit_SetDamageCollActive_1FD610")))
+void cDamageUnit_SetDamageCollActive_1FD610(char *a0, int id, int on) {
     char *p;
     char *q;
     p = *(char **)(a0 + 0x3C);

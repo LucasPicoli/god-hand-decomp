@@ -2,7 +2,7 @@
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(char *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void MtxInitRotY(void *a0, float angle);
@@ -12,10 +12,10 @@ extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int
 extern void func_00124EC0(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012A8D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int func_00123938(void *a0, int a1);
 extern char D_005864F0[];
 extern char D_00462FC0[];
@@ -75,7 +75,7 @@ void func_00115030(void *a0) {
     *(float *)(s1 + 0x54C) = 5.0f;
     cEmManage_SetSlotWait(D_005864F0, 2);
     cEmManage_SetPlCatched(D_005864F0);
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
         *(short *)(s1 + 0x5E0) = 0;
@@ -137,19 +137,19 @@ void func_00115030(void *a0) {
         }
         InvokeVirtualAtField214AndForward_124E68(s1, 0.19634954f);
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 0, 0);
+            pl00_clearMotionCam(s1, 0, 0);
             func_0012A8D8(s1);
             *(unsigned char *)(s1 + 0x2F4) = 0;
             *(unsigned char *)(s1 + 0x2F5) = 0;
             *(unsigned char *)(s1 + 0x2F6) = 0;
             *(unsigned char *)(s1 + 0x2F7) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     if (func_00123938(s1, 1) != 0) {
-        ClearField15F4Bit1_124F60(s1, 0, 0);
+        pl00_clearMotionCam(s1, 0, 0);
         func_0012A8D8(s1);
     }
 }

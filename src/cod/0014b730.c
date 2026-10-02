@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-__attribute__((section(".text.func_0014B730")))
-void *func_0014B730(char *obj, char *name)
+__attribute__((section(".text.cModel_getMeshPtr_14B730")))
+void *cModel_getMeshPtr_14B730(char *obj, char *name)
 {
     long key;
     int i;

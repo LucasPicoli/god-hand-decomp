@@ -51,8 +51,8 @@ void Obj1D00_ClearState_9(cOmBase *self) {
 }
 
 /* Set the four state bytes: mode 0, phase 0xA, step 0, stepArg 0. */
-__attribute__((section(".text.Obj1D00_ClearState_A")))
-void Obj1D00_ClearState_A(cOmBase *self) {
+__attribute__((section(".text.cOmWeapon_setWing")))
+void cOmWeapon_setWing(cOmBase *self) {
     self->mode = 0;
     self->phase = 0xA;
     self->step = 0;
@@ -260,8 +260,8 @@ void Obj1D00_SetState_7_1C(cOmBase *self) {
 /* ── Group E: 2-insn getters (2 functions) ───────────────────────────────── */
 /* jr ra; lbu v0, offset(a0) */
 
-__attribute__((section(".text.Obj1D00_GetField_664")))
-int Obj1D00_GetField_664(cOmWeapon *self) {
+__attribute__((section(".text.cOmWeapon_ckGetEnable")))
+int cOmWeapon_ckGetEnable(cOmWeapon *self) {
     return self->unk664;
 }
 
@@ -272,8 +272,8 @@ int Obj1D00_GetField_665(cOmWeapon *self) {
 
 /* ── Group F: BRANCHED-LEAF (1 function) ─────────────────────────────────── */
 /* Count the timer down by dt frames; returns 1 once it has run out (and clamps it to 0). */
-__attribute__((section(".text.Obj1D00_TickTimer_668")))
-int Obj1D00_TickTimer_668(cOmWeapon *self, int dt) {
+__attribute__((section(".text.cOmWeapon_SetDamage")))
+int cOmWeapon_SetDamage(cOmWeapon *self, int dt) {
     int val = self->timer - dt;
     self->timer = val;
     if (val <= 0) { self->timer = 0; return 1; }

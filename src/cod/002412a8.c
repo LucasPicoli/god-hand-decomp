@@ -3,8 +3,8 @@
 extern unsigned char D_005864F0[];
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
 
 #include "godhand/vu0.h"
 
@@ -40,8 +40,8 @@ void func_002412A8(void *a0)
         *(int *)(s0 + 0x16D0) = m;
         if (moveMotion(s0))
             *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f / *(float *)(s0 + 0x118));
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f / *(float *)(s0 + 0x118));
         break;
     }
     case 2: {
@@ -61,8 +61,8 @@ void func_002412A8(void *a0)
         m |= 0x20000;
         *(int *)(s0 + 0x16D0) = m;
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s0, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
+        cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(int *)(s0 + 0x16D0) & 0x20000000) == 0) {
             int n;
             float *q = *(float **)(s0 + 0xF0);

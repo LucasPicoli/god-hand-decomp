@@ -1,15 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00274FE8(void *a0);
 extern unsigned char D_005FEE00[];
 
@@ -55,7 +55,7 @@ void func_0025A3E8(void *a0)
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
         if (func_002740D8(s1) != 0) {
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 *(char *)(s1 + 0x17C3) = 1;
             } else {
                 *(char *)(s1 + 0x17C3) = 0;
@@ -94,7 +94,7 @@ void func_0025A3E8(void *a0)
             s3 = *(int *)(b + 0xB5C) + b;
             s2 = *(int *)(b + 0xB60) + b;
             cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(Obj0000_Get_Field_424_1595F0(s1) + 0x23),
+                               (short)(GetSeqSEBase(s1) + 0x23),
                                s1, 0, 0, 0, 0);
         }
             break;
@@ -199,12 +199,12 @@ void func_0025A3E8(void *a0)
                 *(char *)(s1 + 0x2F7) = 1;
             }
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 2:
         if (func_002740D8(s1) != 0) {
-            if (Forward30F348_31CFE0() & 1) {
+            if (irand() & 1) {
                 *(char *)(s1 + 0x17C3) = 1;
             } else {
                 *(char *)(s1 + 0x17C3) = 0;
@@ -230,8 +230,8 @@ void func_0025A3E8(void *a0)
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     case 4: {
         int nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -245,8 +245,8 @@ void func_0025A3E8(void *a0)
     case 5:
         *(int *)(s1 + 0x16D0) |= 0x40000;
         moveMotion(s1);
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         *(float *)(s1 + 0x600) -= *(float *)(s1 + 0x5A8);
         if (*(float *)(s1 + 0x600) <= 0.0f) {
             func_00274FE8(s1);

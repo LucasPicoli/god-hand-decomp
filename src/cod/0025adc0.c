@@ -6,8 +6,8 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00262750(void *a0, int a1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -162,8 +162,8 @@ void func_0025ADC0(void *a0)
             *(char *)(s1 + 0x2F7) = 1;
             *(char *)(s1 + 0x2F6) = 0;
         }
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         if (*(unsigned short *)(s1 + 0x3AC) & 0x10) {
             float *q;
             int r;

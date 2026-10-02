@@ -4,7 +4,7 @@
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *a0);
 extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
-extern void SetField444SignedByFlag434_158288(void *a0, float f12);
+extern void SetMotionStep(void *a0, float f12);
 extern float D_00747A14;
 extern char D_00462FC0[];
 extern void func_001AA478(void *a0);
@@ -17,8 +17,8 @@ extern float cEmManage_GetSpeedRate(void *a0);
 extern void Adjust_theta_vec(float *p);
 extern void MtxInitRotVec(void *a0, void *a1, int a2);
 extern void CopyVec3ToField30_147C40(void *a0, void *a1);
-extern void BuildAltMatrixAndForward_147BF8(void *a0, void *a1, void *a2);
-extern int Tramp_func_0030A548_00147528();
+extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
+extern int MtxCopy();
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern char D_005864F0[];
 extern char D_00427C50[];
@@ -57,7 +57,7 @@ void func_001AA188(void *a0)
     cCollisionSolidManage_ChkHit(D_00462FC0, s2);
     pr = cEmManage_GetSpeedRate(D_005864F0) * D_00747A14;
     *(float *)(s2 + 0x5A8) = pr;
-    SetField444SignedByFlag434_158288(s2, pr);
+    SetMotionStep(s2, pr);
     *(Tbl32 *)frame = *(Tbl32 *)D_00427C50;
     pm = (struct Pmf *)frame + *(unsigned char *)(s2 + 0x2F4);
     ix = pm->index;
@@ -117,10 +117,10 @@ void func_001AA188(void *a0)
             CopyVec3ToField30_147C40(m2, e);
             m2 = 0;
             m3 = frame + 0x40;
-            BuildAltMatrixAndForward_147BF8(m3, m3, e40);
+            MtxMulScaleVec(m3, m3, e40);
             m3 = 0;
             m4 = frame + 0x40;
-            Tramp_func_0030A548_00147528(*(int *)(e10 + 0x40), m4);
+            MtxCopy(*(int *)(e10 + 0x40), m4);
             m4 = 0;
             *(float *)(e10 + 0x14) = *(float *)(e10 + 0x14) + *(float *)(e10 + 0x48) * rate;
             if (*(float *)(e10 + 0x14) < lim) {

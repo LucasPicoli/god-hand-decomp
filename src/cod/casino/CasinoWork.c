@@ -1,6 +1,6 @@
 /* TU: CasinoWork [casino] - recovered C++ class. */
 #include "godhand/cCoreSave.h"
-extern int Obj0000_Get_D_00747A94_2DB6B0(void);
+extern int Getplayer(void);
 extern void cHeatSys_SetHeatGage(void *a0, float a1);
 extern int D_005CB000;
 
@@ -11,7 +11,7 @@ void CasinoWork_ResetWarmUpRoom(int *a0)
     int i;
     int v;
 
-    obj = Obj0000_Get_D_00747A94_2DB6B0();
+    obj = Getplayer();
     v = a0[1];
     if (v >= *(short *)(obj + 0x548)) {
         *(short *)(obj + 0x54A) = *(unsigned short *)(obj + 0x548);

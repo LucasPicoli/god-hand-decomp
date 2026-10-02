@@ -4,7 +4,7 @@ extern void ClearObjRef_1EE9A0(void *a0);
 extern void func_001EDF60(void *a0);
 extern void func_001ED660(void *a0);
 extern void func_001ECBD0(void *a0);
-extern void UnlinkAndCoalesceNode_2A9680(void *a0, void *a1);
+extern void cHeap_free(void *a0, void *a1);
 extern void func_001EB9F8(void *a0);
 extern void **D_003C2384;
 
@@ -33,7 +33,7 @@ void DogRace_Release(void *a0) {
 
     node = *(void **)(p + 0x2A0C);
     if (node != 0) {
-        UnlinkAndCoalesceNode_2A9680(*(void **)((char *)node - 0x20), node);
+        cHeap_free(*(void **)((char *)node - 0x20), node);
     }
     func_001EB9F8(p);
 }

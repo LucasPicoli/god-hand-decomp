@@ -3,13 +3,13 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void *Getplayer(void);
 extern void func_002A74E0(void *a0, int a1, int a2);
 
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
+extern void cObjBase_addNullSpeed(void *a0, float f);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_007476B0;
 extern char D_00462FC0[];
 
@@ -19,7 +19,7 @@ void func_00244CF8(void *a0)
     char *s0 = (char *)a0;
     float one;
 
-    Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {
@@ -39,7 +39,7 @@ void func_00244CF8(void *a0)
             if (*(int *)(s0 + 0x16D0) & 0x200000) {
                 if (*(float *)(s0 + 0x618) < 64.0f && (D_007476B0 & 7) == (*(int *)(s0 + 0x17D0) & 7)) {
                     *(int *)(s0 + 0x16D4) = *(int *)(s0 + 0x16D4) & 0xF7FFFFFF;
-                    func_002A74E0(s0, *(int *)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0xF0), 1);
+                    func_002A74E0(s0, *(int *)((char *)Getplayer() + 0xF0), 1);
                     if (func_002A7CA0(s0, s0 + 0x16A0) != 0) {
                         *(int *)(s0 + 0x16D4) = *(int *)(s0 + 0x16D4) | 0x8000000;
                     }
@@ -79,8 +79,8 @@ void func_00244CF8(void *a0)
             func_002705D8(s0);
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
 }

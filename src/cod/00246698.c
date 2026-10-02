@@ -3,11 +3,11 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern float DoubleFloatMinusHalf_31D020(void);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
+extern float fRand1_1(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern void func_002744E0(void *a0);
 extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
@@ -142,7 +142,7 @@ void func_00246698(void *a0)
             }
             break;
         case 60:
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 int b = *(int *)(p + 0x304);
                 s2v = *(int *)(b + 0x3B1C) + b;
                 s1v = *(int *)(b + 0x3B20) + b;
@@ -235,20 +235,20 @@ void func_00246698(void *a0)
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(p);
         func_002A8578(p, s2v, s1v, fv, 10, gb & 0xFFFF, 0);
         *(int *)(p + 0x5F0) = 1;
-        *(float *)(p + 0x600) = DoubleFloatMinusHalf_31D020() * 300.0f + 150.0f;
+        *(float *)(p + 0x600) = fRand1_1() * 300.0f + 150.0f;
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     }
     case 1:
         moveMotion(p);
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         if ((*(int *)(p + 0x16D0) & 0x20000000) != 0) {
             if ((*(unsigned short *)(p + 0x3AC) & 3) != 0 && *(int *)(p + 0x5F0) != 0) {
                 *(int *)(p + 0x5F0) = 0;
                 func_002744E0(p);
             }
             if (func_00294A68(D_005864F0) != 0) {
-                *(float *)(p + 0x600) = DoubleFloatMinusHalf_31D020() * 300.0f + 150.0f;
+                *(float *)(p + 0x600) = fRand1_1() * 300.0f + 150.0f;
             } else {
                 *(float *)(p + 0x600) = *(float *)(p + 0x600) - *(float *)(p + 0x5A8);
                 if (*(float *)(p + 0x600) <= 0.0f) {
@@ -291,8 +291,8 @@ void func_00246698(void *a0)
         if (moveMotion(p) != 0) {
             *(char *)(p + 0x2F6) = 0;
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         if ((*(unsigned short *)(p + 0x3AC) & 1) != 0 && *(int *)(p + 0x738) == 0) {
             char *obj = CreateObj(0x3B1, 0xFFFF);
             *(char **)(p + 0x738) = obj;

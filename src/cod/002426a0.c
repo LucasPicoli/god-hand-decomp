@@ -2,13 +2,13 @@
 
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002705D8(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
+extern void *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_00281260(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
@@ -22,7 +22,7 @@ void func_002426A0(void *a0)
     char *s0 = (char *)a0;
     float one;
 
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
     *(int *)(s0 + 0x16D0) |= 0x11000;
     *(int *)(s0 + 0x16D0) |= 0x20000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
@@ -45,8 +45,8 @@ void func_002426A0(void *a0)
     case 1:
         one = 1.0f;
         moveMotion(s0);
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         if (0.0f < *(float *)(s0 + 0x16C0)) {
             func_002705D8(s0);
         }
@@ -67,8 +67,8 @@ void func_002426A0(void *a0)
             *(unsigned char *)(s0 + 0x2F6) = 0;
         }
         one = 1.0f;
-        AddScaledVecToField_100_14F9F0(s0, one);
-        AddScaledXfmVecToField_F0_14F928(s0, one);
+        cObjBase_addNullSpeed_Rotation(s0, one);
+        cObjBase_addNullSpeed(s0, one);
         break;
     }
 }
@@ -80,11 +80,11 @@ __attribute__((section(".text.func_00249960"))) void func_00249960(void *a0)
   int t0;
   float one;
   unsigned char *hs;
-  capVu0MagnitudeSqXZ(*((void **) (((char *) Obj0000_Get_D_00747A94_2DB6B0()) + 0xF0)), &D_005850B0);
+  capVu0MagnitudeSqXZ(*((void **) (((char *) Getplayer()) + 0xF0)), &D_005850B0);
   *((int *) (s0 + 0x16D0)) = (*((int *) (s0 + 0x16D0))) | 0x30400;
   switch (*((unsigned char *) (s0 + 0x2F6)))
   {
- do { case 0: *((char *) (s0 + 0x1864)) = 0; t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF; v0 = *((int *) (s0 + 0x304)); func_002A8578(s0, (*((int *) (v0 + 0x3D34))) + v0, (*((int *) (v0 + 0x3D38))) + v0, 0.0f, 10, t0, 0); if ((*((void **) (s0 + 0x748))) != 0) { func_00281260(*((void **) (s0 + 0x748))); } if ((*((void **) (s0 + 0x74C))) != 0) { ClearBytes2F4To2F7_283170(*((void **) (s0 + 0x74C))); } if ((*((void **) (s0 + 0x750))) != 0) { ClearBytes2F4To2F7_283170(*((void **) (s0 + 0x750))); } *((int *) (s0 + 0x16D0)) = (*((int *) (s0 + 0x16D0))) & 0xFCFFFFFF; *((unsigned char *) (s0 + 0x2F6)) = (*((unsigned char *) (s0 + 0x2F6))) + 1; case 1: func_002495E0(s0, 0.0f); moveMotion(s0); one = 1.0f; AddScaledVecToField_100_14F9F0(s0, one); AddScaledXfmVecToField_F0_14F928(s0, one); hs = (unsigned char *) D_005CB000; break; } while (0);
+ do { case 0: *((char *) (s0 + 0x1864)) = 0; t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF; v0 = *((int *) (s0 + 0x304)); func_002A8578(s0, (*((int *) (v0 + 0x3D34))) + v0, (*((int *) (v0 + 0x3D38))) + v0, 0.0f, 10, t0, 0); if ((*((void **) (s0 + 0x748))) != 0) { func_00281260(*((void **) (s0 + 0x748))); } if ((*((void **) (s0 + 0x74C))) != 0) { ClearBytes2F4To2F7_283170(*((void **) (s0 + 0x74C))); } if ((*((void **) (s0 + 0x750))) != 0) { ClearBytes2F4To2F7_283170(*((void **) (s0 + 0x750))); } *((int *) (s0 + 0x16D0)) = (*((int *) (s0 + 0x16D0))) & 0xFCFFFFFF; *((unsigned char *) (s0 + 0x2F6)) = (*((unsigned char *) (s0 + 0x2F6))) + 1; case 1: func_002495E0(s0, 0.0f); moveMotion(s0); one = 1.0f; cObjBase_addNullSpeed_Rotation(s0, one); cObjBase_addNullSpeed(s0, one); hs = (unsigned char *) D_005CB000; break; } while (0);
     default:
       hs = (unsigned char *) D_005CB000;
       break;

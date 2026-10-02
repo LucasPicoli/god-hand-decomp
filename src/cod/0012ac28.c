@@ -21,7 +21,7 @@ __attribute__((section(".text.InitFields_1B6E90")))
 char *InitFields_1B6E90(char *a0) {
     char *p490;
     char *p5D0;
-    func_002A7338(a0);
+    cGameObj(a0);
     *(int*)(a0 + 0x5B0) = 0;
     *(int*)(a0 + 0x5B4) = 0;
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
@@ -58,8 +58,8 @@ void CallWithAndClearField698_12AC28(char *a0) {
     }
 }
 
-__attribute__((section(".text.Tramp_00312708_1B79B0")))
-void Tramp_00312708_1B79B0(void) { ReleaseObj(); }
+__attribute__((section(".text.cOmBase_dieCommon")))
+void cOmBase_dieCommon(void) { ReleaseObj(); }
 
 __attribute__((section(".text.GetOrInitGlobal785878_1B8058")))
 void *GetOrInitGlobal785878_1B8058(void) {

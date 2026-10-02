@@ -3,9 +3,9 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float s);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float s);
-extern int Forward30F348_31CFE0(void);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
+extern void cObjBase_addNullSpeed(void *a0, float s);
+extern int irand(void);
 extern void func_002705D8(void *a0);
 extern void func_0026A638(void *a0, int a1);
 extern void func_0026A938(void *a0, int a1, int a2);
@@ -79,7 +79,7 @@ void func_0023F5C8(void *a0)
         case 0x245: case 0x246: case 0x247: case 0x24F: case 0x250: case 0x251:
         case 0x278: case 0x279:
             if ((*(unsigned short *)(p + 0x3AC) & 0x200) != 0) {
-                if ((Forward30F348_31CFE0() & 1) != 0) {
+                if ((irand() & 1) != 0) {
                     int b = *(int *)(p + 0x304);
                     s1v = *(int *)(b + 0xB04) + b;
                     s0v = *(int *)(b + 0xB08) + b;
@@ -232,8 +232,8 @@ void func_0023F5C8(void *a0)
         if (moveMotion(p) != 0) {
             func_002705D8(p);
         }
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         break;
     }
     if (*(int *)(p + 0x564) == 0x20F && (*(unsigned short *)(p + 0x3AC) & 1) != 0) {

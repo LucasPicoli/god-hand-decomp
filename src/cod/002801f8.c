@@ -2,16 +2,16 @@
 #include "godhand/cCoreSave.h"
 
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
-extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
+extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
-extern void CopyVec3From110To120_14A2B0(void *a0);
-extern void Forward30A2B0_2DA9B8(void *a0);
+extern void cModel_calcNullPart(void *a0);
+extern void Add_nullspeed(void *a0);
 extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
 extern char D_005FEE00[];
-extern unsigned int Forward30F348_31CFE0(void);
-extern int Obj0000_Get_Field_424_1595F0(void *a0);
+extern unsigned int irand(void);
+extern int GetSeqSEBase(void *a0);
 
 __attribute__((section(".text.func_00288178")))
 void func_00288178(void *a0)
@@ -22,7 +22,7 @@ void func_00288178(void *a0)
 
     *(int *)(s0 + 0x15B0) = *(int *)(s0 + 0x15B0) | 0x10020;
     *(float *)(s0 + 0x54C) = 3.0f;
-    Forward_001346C8_00134608_1351D8(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         v0 = *(int *)(s0 + 0x304);
@@ -30,8 +30,8 @@ void func_00288178(void *a0)
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         moveMotion(s0);
-        CopyVec3From110To120_14A2B0(s0);
-        Forward30A2B0_2DA9B8(s0);
+        cModel_calcNullPart(s0);
+        Add_nullspeed(s0);
         if ((*(int *)(s0 + 0x15B0) & 8) != 0) {
             *(short *)(s0 + 0x54A) = 0;
             *(unsigned char *)(s0 + 0x2F6) = 2;
@@ -54,8 +54,8 @@ void func_00288178(void *a0)
             *(unsigned char *)(s0 + 0x2F5) = 2;
             *(unsigned char *)(s0 + 0x2F7) = 0;
         }
-        CopyVec3From110To120_14A2B0(s0);
-        Forward30A2B0_2DA9B8(s0);
+        cModel_calcNullPart(s0);
+        Add_nullspeed(s0);
         break;
     }
 }
@@ -70,7 +70,7 @@ void func_002801F8(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         if (func_0026F1D8(s2) != 0) {
-            switch (Forward30F348_31CFE0() & 1) {
+            switch (irand() & 1) {
             default:
             case 0:
                 v0 = *(int *)(s0 + 0x304);
@@ -82,7 +82,7 @@ void func_002801F8(void *a0)
                 break;
             }
         } else {
-            switch (Forward30F348_31CFE0() % 3) {
+            switch (irand() % 3) {
             default:
             case 0:
                 v0 = *(int *)(s0 + 0x304);
@@ -98,7 +98,7 @@ void func_002801F8(void *a0)
                 break;
             }
         }
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)Obj0000_Get_Field_424_1595F0(s0), s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(s0), s0, 0, 0, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s0) != 0) {

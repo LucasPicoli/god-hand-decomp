@@ -6,20 +6,20 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int a4, int a5);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
-extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
+extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern float capVu0MagnitudeXZ(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0010A438(void *a0);
 
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void SetField444SignedByFlag434_158288(void *a0, float f12);
+extern void SetMotionStep(void *a0, float f12);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void cSnd_SeStop(void *a0, int a1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
-extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
+extern char *Getplayer(void);
 extern char D_005FEE00[];
 extern int D_007474A0;
 
@@ -117,7 +117,7 @@ void func_0010E5B8(void *a0)
                 *(float *)(s1 + 0x5A8) = sp;
                 *(float *)(s1 + 0x5DC) = sp;
                 *(float *)(s1 + 0x15C4) = *(float *)(s1 + 0x15C4) - sp;
-                SetField444SignedByFlag434_158288(s1, sp);
+                SetMotionStep(s1, sp);
                 *(float *)(s1 + 0x15C0) = *(float *)(s1 + 0x15C0) + 0.0500000007f;
                 if (*(float *)(s1 + 0x15C4) <= 0.0f)
                     *(float *)(s1 + 0x15C0) = *(float *)(s1 + 0x15C0) + 1.0f;
@@ -135,11 +135,11 @@ void func_0010E5B8(void *a0)
                 *(int *)(s1 + 0x15B0) = 0;
         } else {
             if (*(unsigned short *)(s1 + 0x3AC) & 3)
-                KillEffect(Obj0000_Get_D_00747A94_2DB6B0(), 2, 2);
+                KillEffect(Getplayer(), 2, 2);
             if (*(int *)(s1 + 0x15B4) != 0) {
                 *(int *)(s1 + 0x15B4) = 0;
                 if (*(float *)(s1 + 0x15C0) >= 2.5f) {
-                    KillEffect(Obj0000_Get_D_00747A94_2DB6B0(), 2, 2);
+                    KillEffect(Getplayer(), 2, 2);
                     SetEffect(0, 0x32, s1, 0, -1, 0xFFFFFFFFu);
                 }
                 cSnd_SeStop(D_005FEE00, *(int *)(s1 + 0x1620));
@@ -147,7 +147,7 @@ void func_0010E5B8(void *a0)
             }
         }
         if (moveMotion(s1) != 0) {
-            ClearField15F4Bit1_124F60(s1, 1, 0);
+            pl00_clearMotionCam(s1, 1, 0);
             *(char *)(s1 + 0x2F4) = 0;
             *(char *)(s1 + 0x2F5) = 0;
             *(char *)(s1 + 0x2F6) = 0;
@@ -167,8 +167,8 @@ void func_0010E5B8(void *a0)
         }
         *(float *)(s1 + 0x338) = *(float *)(s1 + 0x338) + *(float *)(s1 + 0x1588);
         *(float *)(s1 + 0x1588) = *(float *)(s1 + 0x1588) * 0.899999976f;
-        AddScaledVecToField_100_14F9F0(s1, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(s1, 1.0f);
+        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+        cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
     }
@@ -188,5 +188,5 @@ void func_0010E5B8(void *a0)
         }
     }
     if (func_00123938(s1, 1) != 0)
-        ClearField15F4Bit1_124F60(s1, 1, 0);
+        pl00_clearMotionCam(s1, 1, 0);
 }

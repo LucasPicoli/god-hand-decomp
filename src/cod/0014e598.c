@@ -17,7 +17,7 @@ extern void func_001BFAC8(void *);
 extern int D_00422B48;
 extern int D_00423C70;
 extern int D_00425AC0;
-extern void func_0014E990(void *);
+extern void cObjBase(void *);
 extern int D_00450C38;
 extern int D_003FA62C;
 extern int D_003FBEA8;
@@ -110,7 +110,7 @@ void *func_0019C118(void *a0){
 
 __attribute__((section(".text.func_003184E0")))
 void *func_003184E0(void *a0){
-  func_0014E990(a0);
+  cObjBase(a0);
   *(int**)((char*)a0+0x214) = &D_00450C38;
   return a0;
 }

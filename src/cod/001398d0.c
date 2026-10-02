@@ -13,15 +13,15 @@ extern int D_0044EA10;
 
 __attribute__((section(".text.InitObjectFields364_1398D0")))
 void *InitObjectFields364_1398D0(void *a0) {
-    func_001380A8(a0);
+    cCamera(a0);
     *(int *)((char *)a0 + 0x364) = 0;
     *(int *)((char *)a0 + 0x35C) = (int)&D_0041D930;
     *(int *)((char *)a0 + 0x368) = 0;
     return a0;
 }
 
-__attribute__((section(".text.ClearFlagAndCallEffect_180648")))
-void ClearFlagAndCallEffect_180648(void *a0) {
+__attribute__((section(".text.cOl2b_clearFire")))
+void cOl2b_clearFire(void *a0) {
     if (*(unsigned char *)((char *)a0 + 0xA29)) {
         KillEffect_306168(1, 3, 2);
         *(unsigned char *)((char *)a0 + 0xA29) = 0;
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_001BB508")))
 void func_001BB508(void *a0) {
     *(char *)((char *)a0 + 0x531) = -1;
     KillEffect(a0, 0, 2);
-    Tramp_00312708_1B79B0(a0);
+    cOmBase_dieCommon(a0);
 }
 
 __attribute__((section(".text.SetFlagEntries21And22_1D55D0")))
@@ -77,8 +77,8 @@ int InitStructSubfieldsAndFloat_1E8798(int a0)
     return a0;
 }
 
-__attribute__((section(".text.InitClearStructAndSubfields_1F3580")))
-int InitClearStructAndSubfields_1F3580(int a0)
+__attribute__((section(".text.ColiseumEmSelect")))
+int ColiseumEmSelect(int a0)
 {
     func_003A52F0(a0, 0, 0x54);
     *(int *)(a0 + 0x54) = 0;
@@ -154,8 +154,8 @@ void FreeResourceNode_2D3710(int *a0)
 	func_002D40F8(a0);
 }
 
-__attribute__((section(".text.UpdateD007419A0_2FA310")))
-void UpdateD007419A0_2FA310(void)
+__attribute__((section(".text.EffectEventEndProc")))
+void EffectEventEndProc(void)
 {
 	KillEventEsp();
 	KillEventEmitter();

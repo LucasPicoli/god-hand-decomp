@@ -88,9 +88,9 @@ void cCoreSave_setState154(cCoreSave *self, unsigned char v) {
     }
 }
 
-__attribute__((section(".text.cCoreSave_addState154")))
+__attribute__((section(".text.cCoreSave_addVitalItem")))
 /* Add to state154, capped at 0xD. */
-void cCoreSave_addState154(cCoreSave *self, unsigned char n) {
+void cCoreSave_addVitalItem(cCoreSave *self, unsigned char n) {
     if (self->data) {
         self->data->state154 = n + self->data->state154;
         if (self->data->state154 >= 0xE) {
@@ -110,9 +110,9 @@ void cCoreSave_setState155(cCoreSave *self, unsigned char v) {
     }
 }
 
-__attribute__((section(".text.cCoreSave_addState155")))
+__attribute__((section(".text.cCoreSave_addTensionItem")))
 /* Add to state155, capped at 5. */
-void cCoreSave_addState155(cCoreSave *self, unsigned char n) {
+void cCoreSave_addTensionItem(cCoreSave *self, unsigned char n) {
     if (self->data) {
         self->data->state155 = n + self->data->state155;
         if (self->data->state155 >= 0x6) {
@@ -121,9 +121,9 @@ void cCoreSave_addState155(cCoreSave *self, unsigned char n) {
     }
 }
 
-__attribute__((section(".text.cCoreSave_addStat8A")))
+__attribute__((section(".text.cCoreSave_addComboST")))
 /* Add to stat8A, capped at 6. */
-void cCoreSave_addStat8A(cCoreSave *self, int n) {
+void cCoreSave_addComboST(cCoreSave *self, int n) {
     cCoreSaveData *data;
     cCoreSaveData *q;
     int s;

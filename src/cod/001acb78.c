@@ -2,7 +2,7 @@
 
 extern int D_005FEE00;
 extern void cSnd_SeCall_2CBA48(int *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern int Forward30F348_31CFE0(void);
+extern int irand(void);
 extern void cDamageUnit_SetDamageCollFlashActive(void *a0, int a1, short a2);
 
 /* sn-2.95.3-136 matched TU. */
@@ -35,7 +35,7 @@ void func_001ACB78(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         *(float *)(s0 + 0x794) = 0.0f;
-        r = Forward30F348_31CFE0();
+        r = irand();
         *(char *)(s0 + 0x2F6) = 1;
         *(short *)(s0 + 0x61E) = (r & 0xF) + 0xF;
         *(char *)(s0 + 0x620) = 0;
@@ -134,7 +134,7 @@ void func_001ACB78(void *a0)
                 PART(2, 8)
                 *(int *)(obj + 0x104) = 0;
             }
-            if ((Forward30F348_31CFE0() & 1) != 0) {
+            if ((irand() & 1) != 0) {
                 *(char *)(s0 + 0x2F7) = 0;
                 *(char *)(s0 + 0x2F6) = 6;
                 break;

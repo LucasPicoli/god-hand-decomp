@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned int Forward30F348_31CFE0(void);
+extern unsigned int irand(void);
 extern void cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern unsigned short D_00747A50;
 extern unsigned char D_005864F0[];
@@ -26,7 +26,7 @@ void func_00273D30(void *a0)
     switch (*(int *)(s0 + 0x564)) {
     case 0x220: case 0x221: case 0x222: case 0x223:
         if (D_00747A50 == 0x801) {
-            unsigned int r = Forward30F348_31CFE0() % 100;
+            unsigned int r = irand() % 100;
 
             *(int *)(s0 + 0x560) = 0x3C1;
             if (r >= 0x14) {
@@ -55,7 +55,7 @@ void func_00273D30(void *a0)
             }
         } else {
             *(int *)(s0 + 0x560) = func_002920B0(&D_005864F0);
-            if (Forward30F348_31CFE0() % 100 >= 0x46) {
+            if (irand() % 100 >= 0x46) {
                 *(int *)(s0 + 0x560) = 0x3D8;
             }
         }

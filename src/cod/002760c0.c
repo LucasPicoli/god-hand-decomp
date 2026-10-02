@@ -18,7 +18,7 @@ void cEm00__offSunglass(void *a0) {
     if ((*(int *)(s0 + 0x564) ^ 0x256) != 0) {
         return;
     }
-    r = (char *)func_0014B730(a0, D_004479A0);
+    r = (char *)cModel_getMeshPtr_14B730(a0, D_004479A0);
     if (r != 0) {
         *(int *)(r + 0x380) |= 1;
     }

@@ -3,8 +3,8 @@
 extern unsigned char D_005864F0[];
 extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void CopyVec3From110To120_14A2B0(void *a0);
-extern void Forward30A2B0_2DA9B8(void *a0);
+extern void cModel_calcNullPart(void *a0);
+extern void Add_nullspeed(void *a0);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 
 #include "godhand/vu0.h"
@@ -82,8 +82,8 @@ void func_00286AA8(void *a0)
         }
         if (0.0f < *(float *)(s0 + 0x24C)) {
             moveMotion(s0);
-            CopyVec3From110To120_14A2B0(s0);
-            Forward30A2B0_2DA9B8(s0);
+            cModel_calcNullPart(s0);
+            Add_nullspeed(s0);
         }
         if (*(unsigned char *)(s0 + 0x1560) != 5) {
             if (*(float *)(s0 + 0x618) < 16.0f) {

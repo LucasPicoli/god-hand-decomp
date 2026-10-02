@@ -7,7 +7,7 @@ extern char D_00583F20[];
 extern unsigned char D_0044D070;
 extern void cDvd_cancel(char *, int);
 extern void func_00322F58(void);
-extern void UnlinkAndCoalesceNode_2A9680(int, void *);
+extern void cHeap_free(int, void *);
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
@@ -32,9 +32,9 @@ void cBgmData_Reset(cBgmData *d)
     if (cBgmData_HasLoadBits(d, 4) == 1 && cBgmData_HasLoadBits(d, 8) == 0 && func_00323000(d->f18) == 2)
         func_00322F58();
     if (d->head != 0)
-        UnlinkAndCoalesceNode_2A9680((int)d->pool, d->head);
+        cHeap_free((int)d->pool, d->head);
     if (d->f14 != 0)
-        UnlinkAndCoalesceNode_2A9680((int)d->pool, d->f14);
+        cHeap_free((int)d->pool, d->f14);
     func_003A52F0(d, 0, 0x44);
     d->f20 = -1;
     d->f18 = -1;

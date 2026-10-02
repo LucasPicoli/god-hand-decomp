@@ -2,11 +2,11 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
-extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
+extern void *Getplayer(void);
+extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
-extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
-extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
+extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
+extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -211,14 +211,14 @@ void func_0021A218(void *a0)
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     }
     case 1: {
-        char *o = (char *)Obj0000_Get_D_00747A94_2DB6B0();
+        char *o = (char *)Getplayer();
 
-        AddScaledDeltaToField_104_2A7498(p, *(int *)(o + 0xF0),
+        cGameObj_SetTgtTurn(p, *(int *)(o + 0xF0),
                                          *(float *)(p + 0x5A8) *
                                              0.09817477315664291f);
         moveMotion(p);
-        AddScaledVecToField_100_14F9F0(p, 1.0f);
-        AddScaledXfmVecToField_F0_14F928(p, 1.0f);
+        cObjBase_addNullSpeed_Rotation(p, 1.0f);
+        cObjBase_addNullSpeed(p, 1.0f);
         break;
     }
     }

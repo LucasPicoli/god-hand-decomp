@@ -10,8 +10,8 @@ extern float cEmManage_GetSpeedRate(void *a0);
 extern void Adjust_theta_vec(float *p);
 extern void MtxInitRotVec(void *a0, void *a1, int a2);
 extern void CopyVec3ToField30_147C40(void *a0, void *a1);
-extern void BuildAltMatrixAndForward_147BF8(void *a0, void *a1, void *a2);
-extern int Tramp_func_0030A548_00147528();
+extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
+extern int MtxCopy();
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
 extern char D_005864F0[];
 extern char D_00420E90[];
@@ -105,10 +105,10 @@ void func_001721D0(void *a0)
             CopyVec3ToField30_147C40(m2, e);
             m2 = 0;
             m3 = frame + 0x40;
-            BuildAltMatrixAndForward_147BF8(m3, m3, e40);
+            MtxMulScaleVec(m3, m3, e40);
             m3 = 0;
             m4 = frame + 0x40;
-            Tramp_func_0030A548_00147528(*(int *)(e10 + 0x40), m4);
+            MtxCopy(*(int *)(e10 + 0x40), m4);
             m4 = 0;
             *(float *)(e10 + 0x14) = *(float *)(e10 + 0x14) + *(float *)(e10 + 0x48) * rate;
             if (*(float *)(e10 + 0x14) < lim) {
