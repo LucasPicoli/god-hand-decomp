@@ -64,6 +64,12 @@ typedef struct cMeshInfo {
     unsigned int flags;                 /* 0x34 */
 } cMeshInfo;
 
+/* What a node's data pointer reaches. */
+typedef struct cMeshData {
+    char unk00[8];
+    unsigned short num;                 /* 0x08 the draw path switches on num >= 2 */
+} cMeshData;
+
 /* One mesh of the model's mesh list. A node holds two draw packets, one per
  * frame parity, then its state. cOmBase.h's cMeshNode is the same record with
  * fewer fields named. */
@@ -71,7 +77,8 @@ typedef struct cModelNode {
     char packet[2][0xB0];               /* 0x000 draw packet, index = frame parity */
     char unk160[0x220];
     unsigned int dispFlags;             /* 0x380 CMODEL_NODE_* */
-    char unk384[0x8];
+    char unk384[0x4];
+    struct cMeshData *data;             /* 0x388 */
     float uvScroll[2];                  /* 0x38C */
     char unk394[0xC];
     float color[3];                     /* 0x3A0 r, g, b */
@@ -83,6 +90,32 @@ typedef struct cModelNode {
     char unk40D[0x7];
     cMeshInfo *info;                    /* 0x414 */
 } cModelNode;
+
+/* One entry of a g++ 2.x vtable: the function, and the offset to add to the
+ * object pointer before the call. Entry n sits at vtable + 8 * n. */
+typedef struct cVtEnt {
+    short delta;                        /* 0x0 */
+    short index;                        /* 0x2 */
+    void *pfn;                          /* 0x4 */
+} cVtEnt;
+
+/* Call virtual method number n of obj, whose record has a vtable pointer. */
+#define CVCALL_THIS(obj, n)  ((char *)(obj) + (obj)->vtable[n].delta)
+#define CVCALL_FN(obj, n, type) ((type)(obj)->vtable[n].pfn)
+
+/* One part of a model as the script header lists it. */
+typedef struct cPartEntry {
+    float pos[3];                       /* 0x00 local position */
+    short link;                         /* 0x0C part index the part follows, or -1 */
+    short parent;                       /* 0x0E parent part index, or -1 for the model */
+} cPartEntry;                           /* 0x10 */
+
+/* The head of a model script: where the part table is and how many parts. */
+typedef struct cScrHeader {
+    char unk00[4];
+    int partOfs;                        /* 0x04 offset of the part table from the header */
+    unsigned short partNum;             /* 0x08 */
+} cScrHeader;
 
 struct cParts;
 
@@ -107,7 +140,7 @@ struct cParts;
     char unk150[0x4]; \
     int partFlags;                      /* 0x154 CPARTS_* */ \
     char unk158[0xBC]; \
-    void *vtable;                       /* 0x214 */ \
+    cVtEnt *vtable;                     /* 0x214 */ \
     char unk218[0x8];
 
 typedef struct cParts {
@@ -128,7 +161,9 @@ typedef struct cParts {
     float blend;                        /* 0x27C */ \
     char unk280[0x4]; \
     int texSet;                         /* 0x284 */ \
-    char unk288[0x24]; \
+    char unk288[0x4]; \
+    char *extraPacket[2][2];            /* 0x28C [kind][frame parity] */ \
+    char *extraPacketB[2][2];           /* 0x29C [kind][frame parity] */ \
     short id;                           /* 0x2AC */ \
     char unk2AE[0x2]; \
     unsigned char unk2B0; \

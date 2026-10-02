@@ -79,11 +79,15 @@ typedef struct cEm00 {
     unsigned char phase;                    /* 0x2F5 */
     unsigned char step;                     /* 0x2F6 the phase machines switch on this byte */
     unsigned char stepArg;                  /* 0x2F7 */
-    char unk2F8[0x6];
+    char unk2F8[0x4];
+    unsigned char unk2FC;                   /* 0x2FC low 3 bits are compared with D_007476B0 */
+    char unk2FD[0x1];
     unsigned short actorId;                 /* 0x2FE */
     char unk300[0x4];
     int resource;                           /* 0x304 address of the enemy's resource blob; motion records are offsets from it */
-    char unk308[0xA4];
+    char unk308[0x30];
+    float unk338;                           /* 0x338 */
+    char unk33C[0x70];
     unsigned short moveFlags;               /* 0x3AC bits the move code sets: bit 0 and 1 end of a motion, 0x10 */
     char unk3AE[0xE2];
     cVec posA;                              /* 0x490 position copy */
@@ -97,7 +101,7 @@ typedef struct cEm00 {
     short unk568;                           /* 0x568 set when a hit lands; the end-of-motion code clears it and calls the hit method */
     char unk56A[0x16];
     cVec unk580;                            /* 0x580 */
-    char unk590[0x10];
+    cVec unk590;                            /* 0x590 */
     int scrFlags;                           /* 0x5A0 */
     char unk5A4[0x4];
     float speedRate;                        /* 0x5A8 copied from cEmManage every frame; timers count down by it */
@@ -105,15 +109,20 @@ typedef struct cEm00 {
     int unk5B4;                             /* 0x5B4 */
     char unk5B8[0x8];
     cVec home;                              /* 0x5C0 the point the position is eased toward */
-    char unk5D0[0x28];
+    char unk5D0[0x20];
+    int unk5F0;                             /* 0x5F0 */
+    char unk5F4[0x4];
     int unk5F8;                             /* 0x5F8 set again when moveFlags bit 0 is clear; the first set bit calls the effect once */
     int unk5FC;                             /* 0x5FC the same for bit 1 */
     float timer;                            /* 0x600 countdown, counted down by speedRate */
-    char unk604[0x14];
+    float unk604;                           /* 0x604 */
+    char unk608[0x10];
     float playerDist;                       /* 0x618 distance to the player */
     char unk61C[0x24];
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
-    char unk642[0x8E];
+    char unk642[0x72];
+    struct cEm00 *foe;                      /* 0x6B4 the other enemy this one works with */
+    char unk6B8[0x18];
     cVec unk6D0;                            /* 0x6D0 */
     float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
     char unk6E4[0x4C];
@@ -136,12 +145,16 @@ typedef struct cEm00 {
     float unk15B4;                          /* 0x15B4 */
     char unk15B8[0x4];
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
-    char unk15C0[0x110];
+    char unk15C0[0x4];
+    int unk15C4;                            /* 0x15C4 handle of the item this enemy dropped, 0 while none */
+    char unk15C8[0x108];
     int emFlags;                            /* 0x16D0 */
     int emFlags2;                           /* 0x16D4 */
     char unk16D8[0x1C];
     float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
-    char unk16F8[0x38];
+    char unk16F8[0x28];
+    float unk1720;                          /* 0x1720 */
+    char unk1724[0xC];
     float unk1730;                          /* 0x1730 */
     char unk1734[0xC];
     float unk1740;                          /* 0x1740 */
@@ -149,7 +162,9 @@ typedef struct cEm00 {
     unsigned char unk17BB;                  /* 0x17BB */
     char unk17BC[0x10];
     float unk17CC;                          /* 0x17CC set to 150.0 by func_0026F120, tested positive by func_0026F1D8 */
-    char unk17D0[0xA0];
+    char unk17D0[0x94];
+    unsigned char unk1864;                  /* 0x1864 */
+    char unk1865[0xB];
 } cEm00;
 
 typedef char cEm00_size_check[(sizeof(cEm00) == 0x1870) ? 1 : -1];

@@ -90,7 +90,10 @@ typedef struct cEmManage {
     short unk542;                   /* 0x542 wait, func_00294A88 */
     float unk544;                   /* 0x544 wait, counted down by speedRate */
     float speedRate;                /* 0x548 SetSpeedRate, back to 1.0 every frame */
-    char unk54C[0x10];
+    int unk54C;
+    int turnBehind;                 /* 0x550 set to 2 by func_00292F70: the target is behind the player */
+    int turnPlus;                   /* 0x554 set to 2: it is to the player's positive-turn side */
+    int turnMinus;                  /* 0x558 set to 2: it is to the other side */
     int nextNo;                     /* 0x55C getNextNo */
     cEmActor *unk560[5];            /* 0x560 */
     cEmActor *specialEm[EM_SPECIAL_NUM];  /* 0x574 emNo 0x274, then 0x270..0x273 */
@@ -117,6 +120,7 @@ typedef char cEmManage_chk_top[EMMANAGE_OFFSET(list.top) == 0x500 ? 1 : -1];
 typedef char cEmManage_chk_vec[EMMANAGE_OFFSET(unk520) == 0x520 ? 1 : -1];
 typedef char cEmManage_chk_wait[EMMANAGE_OFFSET(bigHitEffWait) == 0x538 ? 1 : -1];
 typedef char cEmManage_chk_rate[EMMANAGE_OFFSET(speedRate) == 0x548 ? 1 : -1];
+typedef char cEmManage_chk_turn[EMMANAGE_OFFSET(turnBehind) == 0x550 ? 1 : -1];
 typedef char cEmManage_chk_no[EMMANAGE_OFFSET(nextNo) == 0x55C ? 1 : -1];
 typedef char cEmManage_chk_special[EMMANAGE_OFFSET(specialEm) == 0x574 ? 1 : -1];
 typedef char cEmManage_chk_flags[EMMANAGE_OFFSET(unk5A0) == 0x5A0 ? 1 : -1];

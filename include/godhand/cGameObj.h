@@ -39,6 +39,10 @@ typedef struct cGameObjVt {
     short lockOnDelta;                  /* 0x80 */
     short pad82;
     void (*lockOn)(void *self);         /* 0x84 getLockOnPos and getHitCheckPos both call it */
+    char unk88[0xC0 - 0x88];
+    short canAngerDelta;                /* 0xC0 */
+    short padC2;
+    int (*canAnger)(void *self);        /* 0xC4 nonzero if the enemy can be angered */
 } cGameObjVt;
 
 /* One effect the object has started (cGameObj.effList). The retail table
@@ -93,7 +97,8 @@ typedef struct cGameObj {
     char unk532[0x548 - 0x532];
     short hpMax;                        /* 0x548 */
     short hp;                           /* 0x54A */
-    char unk54C[0x570 - 0x54C];
+    float hitFlash;                     /* 0x54C counts down after a hit */
+    char unk550[0x570 - 0x550];
     short effNo;                        /* 0x570 one more effect to kill with the object, -1 if none */
     short pad572;
     int effArg;                         /* 0x574 the mode to kill it with */
