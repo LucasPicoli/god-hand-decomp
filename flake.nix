@@ -147,7 +147,10 @@
 
         # From the nixos-25.05 pin (binutils 2.44) — see the input comment:
         # nixos-unstable's 2.46 rejects this repo's R5900/EABI assembly.
-        crossBin = pkgsBinutils.pkgsCross.mipsel-linux-gnu.buildPackages.binutils;
+        # Unwrapped: the wrapper depends on a mipsel glibc, which makes a fresh
+        # store build a cross GCC and glibc from source (~25 min). The build
+        # links with its own linker scripts and needs none of the wrapper's flags.
+        crossBin = pkgsBinutils.pkgsCross.mipsel-linux-gnu.buildPackages.binutils-unwrapped;
 
         # On ARM-Linux the i386-ELF compiler blobs can't run natively, so we
         # replace each entrypoint the wrappers invoke (cc1, cc1plus, cpp0,
