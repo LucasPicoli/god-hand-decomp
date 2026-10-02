@@ -158,14 +158,6 @@ dptofp          = 0x31EAE0;
  * mul-div in func_0036C920). Same hand-maintained alias pattern as above. */
 __divdi3        = 0x3B7FE0;
 
-/* A C++ carve TU defines the MANGLED symbol, because cc1plus mangles the
- * declaration itself and no source spelling reaches the emitted name. The
- * monolith label at the same address carries the splat name instead, and every
- * caller, trampoline and data table references THAT. Assign the splat name to
- * the carve address so both spellings resolve to one body. Added 2026-09-10 for
- * the libstdc++ iostream carves. */
-func_003874C0   = 0x3874C0;   /* = __7istreamiP9streambufP7ostream */
-
 /* undefined_syms_auto.txt (49 entries) */
 D_1000          = 0x1000;
 D_4000          = 0x4000;

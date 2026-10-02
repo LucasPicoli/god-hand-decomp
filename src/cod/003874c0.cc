@@ -1253,7 +1253,7 @@ extern void _IO_flush_all_linebuffered __P ((void));
 	(fp)->_IO_read_ptr = (g), (fp)->_IO_read_end = (eg))
 
 /* ---- body ---- */
-__attribute__((section(".text.func_003874C0")))
+__attribute__((section(".text.__7istreamiP9streambufP7ostream")))
 istream::istream(streambuf *sb, ostream* tied)
 {
   init (sb, tied);
