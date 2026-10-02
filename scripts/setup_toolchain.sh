@@ -109,13 +109,18 @@ for cmd in curl tar python3 git; do
     command -v "$cmd" >/dev/null 2>&1 || die "missing required tool: $cmd"
 done
 
-if [[ ! -e /lib/ld-linux.so.2 && ! -e /usr/lib/ld-linux.so.2 ]]; then
+if [[ "$(readlink -f "$CC_DIR")" == /nix/store/* ]]; then
+    # flake.nix links the blobs against the store's 32-bit glibc (or runs
+    # them under qemu-i386 on ARM), so the host needs no loader.
+    ok "ee-gcc comes from the nix store, no host 32-bit glibc needed"
+elif [[ ! -e /lib/ld-linux.so.2 && ! -e /usr/lib/ld-linux.so.2 ]]; then
     die "32-bit dynamic loader not found.
 Install multilib glibc:
     sudo pacman -S lib32-glibc   # Arch / CachyOS
     sudo apt install libc6:i386  # Debian / Ubuntu"
+else
+    ok "32-bit glibc / multilib present"
 fi
-ok "32-bit glibc / multilib present"
 
 # -----------------------------------------------------------------------------
 # 2. ee-gcc 2.96  (decompme/compilers)

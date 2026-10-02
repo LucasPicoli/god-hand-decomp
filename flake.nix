@@ -192,7 +192,7 @@
             # nixpkgs prefixes the cross tools mipsel-unknown-linux-gnu-*;
             # compile.py and the wrappers call mipsel-linux-gnu-*. Alias them.
             _aliasbin="$(mktemp -d)/bin"; mkdir -p "$_aliasbin"
-            for _t in as ld objcopy objdump strip nm ar ranlib; do
+            for _t in as ld objcopy objdump readelf strip nm ar ranlib c++filt; do
               _src="$(command -v "mipsel-unknown-linux-gnu-$_t" 2>/dev/null || true)"
               [ -n "$_src" ] && ln -sf "$_src" "$_aliasbin/mipsel-linux-gnu-$_t"
             done

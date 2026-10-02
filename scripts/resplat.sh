@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Re-run splat split for the main EE ELF.
 #
 # As of the `generate_asm_macros_files: False` option in config/SLUS_215.03.yaml,
