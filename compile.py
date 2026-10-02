@@ -1666,6 +1666,17 @@ def _cc(unit: CompileUnit, cfg: Config, log: Logger) -> None:
     if g is not None:
         argv = [a for a in argv if not a.startswith("-G")] + [g]
     run(argv, log, stage=f"cc[{unit.rel}]")
+    if lang == "c++":
+        # The link takes only `.text.<name>` from a TU, never its plain
+        # `.text`, where cc1plus emits the header-inline members it could not
+        # inline (`ios::~ios` and kin). Left in, the expected mirror copies
+        # them and the report counts each copy as a matched function.
+        # objcopy refuses, and leaves the file as it was, when a kept section
+        # calls into `.text`. Only a c_flags_necessary probe compile does that;
+        # the link would reject such an object anyway.
+        subprocess.run([cfg.tool("mipsel_objcopy"), "--remove-section=.text",
+                        "--remove-section=.rel.text", str(unit.obj)],
+                       check=False, capture_output=True)
     # Apply section flag overrides to the C TU's .o too.  When INCLUDE_ASM
     # pulls a carved function into the TU's .text, that .text needs the
     # SHF_WRITE bit (PS2 retail flag W|A|X) just like the asm .o files;

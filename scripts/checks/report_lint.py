@@ -22,6 +22,9 @@ Checks:
   - ``total_units == len(units)``.
   - ``total_functions`` / ``matched_functions`` equal the count / the
     100%-matched count re-derived from the per-function detail.
+  - no function name appears in two units. Retail places each function
+    once, so a repeat is a copy the link never uses (a C++ header-inline
+    member left in an unplaced section) and inflates both counts.
 
 Usage:
     python3 scripts/checks/report_lint.py            # lint progress/report.json
@@ -141,6 +144,7 @@ def lint_report(report) -> list[str]:
     # Re-derive function totals from the per-function detail.
     detail_total = 0
     detail_matched = 0
+    first_unit = {}
     for unit in units:
         if not isinstance(unit, dict):
             problems.append("units contains a non-object entry")
@@ -156,6 +160,11 @@ def lint_report(report) -> list[str]:
         for fn in unit.get("functions") or []:
             detail_total += 1
             fname = fn.get("name", "<unnamed>")
+            if first_unit.setdefault(fname, uname) != uname:
+                problems.append(
+                    f"function {fname} appears in unit {first_unit[fname]} "
+                    f"and in unit {uname}"
+                )
             if "size" in fn and _to_int(fn["size"]) is None:
                 problems.append(
                     f"unit {uname}: function {fname} size not an integer: "

@@ -111,6 +111,15 @@ def test_matched_functions_disagreeing_with_detail_is_flagged(lint):
     assert any("matched_functions" in p for p in problems)
 
 
+def test_function_in_two_units_is_flagged(lint):
+    r = _good_report()
+    copy = dict(r["units"][0], name="src/cod/000100")
+    r["units"].append(copy)
+    r["measures"].update(total_units=2, total_functions=4, matched_functions=2)
+    problems = lint.lint_report(r)
+    assert any("f_done appears in unit src/cod/000000" in p for p in problems)
+
+
 def test_total_functions_disagreeing_with_detail_is_flagged(lint):
     r = _good_report()
     r["measures"]["total_functions"] = 5  # detail only has 2
