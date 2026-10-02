@@ -44,4 +44,7 @@ typedef char cEma2_chk_esc[EMA2_OFFSET(escPos) == 0x1590 ? 1 : -1];
 typedef char cEma2_chk_flags[EMA2_OFFSET(flags) == 0x15B0 ? 1 : -1];
 typedef char cEma2_chk_mesh[EMA2_OFFSET(mesh) == 0x15B4 ? 1 : -1];
 
+/* The name every cEma2 carries in cGameObj.kindName; cEmManage compares it. */
+extern char D_0044A7A8[];
+
 #endif /* GODHAND_CEMA2_H */

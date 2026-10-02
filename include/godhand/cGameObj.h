@@ -84,7 +84,9 @@ typedef struct cGameObj {
     cGameObjEffectList *effList;        /* 0x42C effects started by this object */
     char unk430[0x490 - 0x430];
     cVec posA;                          /* 0x490 position copy used by setPos */
-    char unk4A0[0x520 - 0x4A0];
+    char unk4A0[0x4AC - 0x4A0];
+    const char *kindName;               /* 0x4AC class name of the object, set by its constructor */
+    char unk4B0[0x520 - 0x4B0];
     cVec stored;                        /* 0x520 position remembered with storedWait (w is 1.0) */
     unsigned char storedWait;           /* 0x530 */
     signed char unk531;                 /* 0x531 -1 after construction */
@@ -110,6 +112,7 @@ typedef char cGameObj_chk_posA[GAMEOBJ_OFFSET(posA) == 0x490 ? 1 : -1];
 typedef char cGameObj_chk_stored[GAMEOBJ_OFFSET(stored) == 0x520 ? 1 : -1];
 typedef char cGameObj_chk_motion[GAMEOBJ_OFFSET(motionFlags) == 0x3AC ? 1 : -1];
 typedef char cGameObj_chk_hp[GAMEOBJ_OFFSET(hp) == 0x54A ? 1 : -1];
+typedef char cGameObj_chk_kind[GAMEOBJ_OFFSET(kindName) == 0x4AC ? 1 : -1];
 typedef char cGameObj_chk_eff[GAMEOBJ_OFFSET(effList) == 0x42C ? 1 : -1];
 typedef char cGameObj_chk_effno[GAMEOBJ_OFFSET(effNo) == 0x570 ? 1 : -1];
 typedef char cGameObj_chk_scr[GAMEOBJ_OFFSET(scrFlags) == 0x5A0 ? 1 : -1];

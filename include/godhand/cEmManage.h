@@ -39,10 +39,13 @@
 /* What a room's enemy table hands to EntryEm (the game's SET_EM_DATA). */
 typedef struct SET_EM_DATA {
     int objId;                      /* 0x00 actor to create and whose data to load */
-    char unk04[0x24];
+    char unk04[0xC];
+    cVec pos;                       /* 0x10 where to put it (w is 0) */
+    float rot;                      /* 0x20 heading in radians */
+    unsigned int flags;             /* 0x24 copied from the room entry's flags */
     int seBank;                     /* 0x28 passed on to cDataManager_loadSeWait */
     int seNo;                       /* 0x2C */
-    char unk30;
+    unsigned char appPattern;       /* 0x30 how it appears */
     unsigned char entryNo;          /* 0x31 copied to cEmActor.entryNo */
 } SET_EM_DATA;
 
@@ -106,6 +109,9 @@ typedef struct cEmManage {
 } cEmManage;
 
 #define EMMANAGE_OFFSET(field) ((int)&((cEmManage *)0)->field)
+typedef char SET_EM_DATA_chk_size[sizeof(SET_EM_DATA) == 0x34 ? 1 : -1];
+typedef char SET_EM_DATA_chk_pos[(int)&((SET_EM_DATA *)0)->pos == 0x10 ? 1 : -1];
+typedef char SET_EM_DATA_chk_flags[(int)&((SET_EM_DATA *)0)->flags == 0x24 ? 1 : -1];
 typedef char cEmSlot_chk_size[sizeof(cEmSlot) == 0x14 ? 1 : -1];
 typedef char cEmManage_chk_top[EMMANAGE_OFFSET(list.top) == 0x500 ? 1 : -1];
 typedef char cEmManage_chk_vec[EMMANAGE_OFFSET(unk520) == 0x520 ? 1 : -1];
@@ -116,6 +122,26 @@ typedef char cEmManage_chk_special[EMMANAGE_OFFSET(specialEm) == 0x574 ? 1 : -1]
 typedef char cEmManage_chk_flags[EMMANAGE_OFFSET(unk5A0) == 0x5A0 ? 1 : -1];
 typedef char cEmManage_chk_5ac[EMMANAGE_OFFSET(unk5AC) == 0x5AC ? 1 : -1];
 typedef char cEmManage_chk_5b5[EMMANAGE_OFFSET(unk5B5) == 0x5B5 ? 1 : -1];
+
+/* Takes slot out of the list. Does nothing for a null slot. */
+static __inline__ void cEmList_unlink(cEmList *list, cEmSlot *slot)
+{
+    cEmSlot *prev;
+    cEmSlot *next;
+
+    if (slot != 0) {
+        prev = slot->prev;
+        next = slot->next;
+        if (prev == 0)
+            list->top = next;
+        else
+            prev->next = next;
+        if (next == 0)
+            list->last = prev;
+        else
+            next->prev = prev;
+    }
+}
 
 /* The game's one enemy manager. */
 extern cEmManage D_005864F0;
@@ -128,7 +154,7 @@ cEmManage *cEmManage_construct(cEmManage *self);
 void cEmManage_reset(cEmManage *self);
 void cEmManage_Main(cEmManage *self);
 cEmActor *cEmManage_EntryEm(cEmManage *self, SET_EM_DATA *data, int kind, void *parent);
-void cEmManage_ReleaseEm(cEmManage *self, cEmActor *em);
+int cEmManage_ReleaseEm(cEmManage *self, cEmActor *em);
 cEmActor *cEmManage_GetEm(cEmManage *self, unsigned char entryNo);
 void cEmManage_ReleaseEmAll(cEmManage *self);
 int cEmManage_findFreeSlot(cEmManage *self);

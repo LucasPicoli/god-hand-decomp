@@ -29,6 +29,7 @@ typedef struct cBoundingBox {
 /* Bits of cParts.partFlags (0x154). */
 #define CPARTS_NO_LOCAL     0x08        /* skip the local matrix build */
 #define CPARTS_NO_PARENT    0x10        /* skip the multiply by the parent */
+#define CPARTS_NO_BLEND     0x100000    /* leave the part out of the blend */
 
 /* Bits of cModel.objFlags (0x250). */
 #define CMODEL_F_NEAR       0x20        /* parts are rebuilt every frame */
@@ -87,7 +88,7 @@ struct cParts;
 
 #define CPARTS_FIELDS \
     float mtxLocal[16];                 /* 0x000 */ \
-    char unk040[0x40]; \
+    float mtxBind[16];                  /* 0x040 */ \
     float mtx[16];                      /* 0x080 world matrix */ \
     cVec invPos;                        /* 0x0C0 */ \
     cVec *anchor;                       /* 0x0D0 normally &mtxLocal[12] */ \
@@ -104,7 +105,7 @@ struct cParts;
     struct cParts *parent;              /* 0x148 */ \
     struct cParts *link;                /* 0x14C */ \
     char unk150[0x4]; \
-    unsigned int partFlags;             /* 0x154 CPARTS_* */ \
+    int partFlags;                      /* 0x154 CPARTS_* */ \
     char unk158[0xBC]; \
     void *vtable;                       /* 0x214 */ \
     char unk218[0x8];

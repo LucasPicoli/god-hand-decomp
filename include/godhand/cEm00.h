@@ -41,13 +41,21 @@ typedef struct cEm00Vt {
     short setScaleDelta;                    /* 0x78 */
     short pad7A;
     void (*setScale)(void *self, void *scale); /* 0x7C */
-    char unk80[0xA8 - 0x80];
+    short getPosDelta;                      /* 0x80 */
+    short pad82;
+    cVec *(*getPos)(void *self);            /* 0x84 pointer to the object's position */
+    short getScaleDelta;                    /* 0x88 */
+    short pad8A;
+    cVec *(*getScale)(void *self);          /* 0x8C */
+    char unk90[0xA8 - 0x90];
     short hitDelta;                         /* 0xA8 */
     short padAA;
     void (*hit)(void *self, int power, void *attacker, int a, int b); /* 0xAC */
 } cEm00Vt;
 
 /* Call method m of the object's table: the delta of entry m goes to this. */
+#define CEM00_VCALL0(self, m) \
+    ((self)->vt->m((char *)(self) + (self)->vt->m##Delta))
 #define CEM00_VCALL(self, m, args...) \
     ((self)->vt->m((char *)(self) + (self)->vt->m##Delta, args))
 
@@ -87,7 +95,9 @@ typedef struct cEm00 {
     int dropItem;                           /* 0x560 */
     int emNo;                               /* 0x564 enemy number */
     short unk568;                           /* 0x568 set when a hit lands; the end-of-motion code clears it and calls the hit method */
-    char unk56A[0x36];
+    char unk56A[0x16];
+    cVec unk580;                            /* 0x580 */
+    char unk590[0x10];
     int scrFlags;                           /* 0x5A0 */
     char unk5A4[0x4];
     float speedRate;                        /* 0x5A8 copied from cEmManage every frame; timers count down by it */
@@ -95,13 +105,20 @@ typedef struct cEm00 {
     int unk5B4;                             /* 0x5B4 */
     char unk5B8[0x8];
     cVec home;                              /* 0x5C0 the point the position is eased toward */
-    char unk5D0[0x30];
+    char unk5D0[0x28];
+    int unk5F8;                             /* 0x5F8 set again when moveFlags bit 0 is clear; the first set bit calls the effect once */
+    int unk5FC;                             /* 0x5FC the same for bit 1 */
     float timer;                            /* 0x600 countdown, counted down by speedRate */
     char unk604[0x14];
     float playerDist;                       /* 0x618 distance to the player */
     char unk61C[0x24];
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
-    char unk642[0x106];
+    char unk642[0x8E];
+    cVec unk6D0;                            /* 0x6D0 */
+    float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
+    char unk6E4[0x4C];
+    int unk730;                             /* 0x730 effect handle, released when moveFlags bit 0 is set */
+    char unk734[0x14];
     int sub0;                               /* 0x748 child object, its own state bytes follow the enemy's */
     int sub1;                               /* 0x74C */
     int sub2;                               /* 0x750 */
@@ -121,9 +138,16 @@ typedef struct cEm00 {
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
     char unk15C0[0x110];
     int emFlags;                            /* 0x16D0 */
-    char unk16D4[0x20];
+    int emFlags2;                           /* 0x16D4 */
+    char unk16D8[0x1C];
     float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
-    char unk16F8[0xD4];
+    char unk16F8[0x38];
+    float unk1730;                          /* 0x1730 */
+    char unk1734[0xC];
+    float unk1740;                          /* 0x1740 */
+    char unk1744[0x77];
+    unsigned char unk17BB;                  /* 0x17BB */
+    char unk17BC[0x10];
     float unk17CC;                          /* 0x17CC set to 150.0 by func_0026F120, tested positive by func_0026F1D8 */
     char unk17D0[0xA0];
 } cEm00;
