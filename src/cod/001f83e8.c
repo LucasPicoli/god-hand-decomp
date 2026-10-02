@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cArea.h"
+#include "godhand/cEmManage.h"
 
 extern void func_00380EB0(void);
 extern void func_00381D60(void);
@@ -57,12 +58,13 @@ int cCoreSave_getComboMax(cCoreSave *self, unsigned int set) {
     return data->combo[set].max;
 }
 
+/* Entry no of unk5AC, or 0 when no is out of range. */
 __attribute__((section(".text.func_002948C8")))
-int func_002948C8(int a0, unsigned int a1) {
-    if (a1 >= 2) {
+cEmActor *func_002948C8(cEmManage *self, unsigned int no) {
+    if (no >= 2) {
         return 0;
     }
-    return *(int *)(a0 + (a1 << 2) + 0x5AC);
+    return self->unk5AC[no];
 }
 
 __attribute__((section(".text.cMessage_getMessageAddr")))

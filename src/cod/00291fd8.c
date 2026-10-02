@@ -1,23 +1,28 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cEmManage.h"
 
+/* 1 while the unk530 wait runs. */
 __attribute__((section(".text.func_00291FD8")))
-int func_00291FD8(void *a0) {
-    return 0 < *(int*)((char*)a0 + 0x530);
+int func_00291FD8(cEmManage *self) {
+    return 0 < self->unk530;
 }
 
-__attribute__((section(".text.func_00292F08")))
-int func_00292F08(void *a0) {
-    return *(signed char*)((char*)a0 + 0x538) != 0;
+/* 1 while the big-hit effect wait runs. */
+__attribute__((section(".text.cEmManage_CkBigHitEffWait")))
+int cEmManage_CkBigHitEffWait(cEmManage *self) {
+    return self->bigHitEffWait != 0;
 }
 
+/* 1 while the unk540 wait runs. */
 __attribute__((section(".text.func_00294A68")))
-int func_00294A68(void *a0) {
-    return *(signed char*)((char*)a0 + 0x540) != 0;
+int func_00294A68(cEmManage *self) {
+    return self->unk540 != 0;
 }
 
+/* 1 while the unk541 wait runs. */
 __attribute__((section(".text.func_00294A78")))
-int func_00294A78(void *a0) {
-    return *(signed char*)((char*)a0 + 0x541) != 0;
+int func_00294A78(cEmManage *self) {
+    return self->unk541 != 0;
 }
 
 __attribute__((section(".text.func_00297CA0")))

@@ -4,14 +4,14 @@
 #include "godhand/cCoreSave.h"
 
 extern int cWorldLight_Set_LightData(void *a0, void *a1);
-extern void MaxField514_292030(void *a0, int a1);
-extern void MaxByte538_292EF0(void *a0, int a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
-extern void SetField548AndGlobals_292F38(void *a0, float a1);
+extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_00124EC0(void *a0);
 extern int  moveMotion(void *a0);
 extern void func_00129630(void *a0);
@@ -185,8 +185,8 @@ void func_00112318(void *a0)
     char *s1 = (char *)a0;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(D_005864F0, 2);
-    MaxByte538_292EF0(D_005864F0, 2);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetBigHitEffWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     if (*(unsigned char *)(s1 + 0x2F6) != 0 &&
         *(unsigned char *)(s1 + 0x649) == 0 &&
@@ -209,7 +209,7 @@ void func_00112318(void *a0)
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x218) + t, *(int *)(t + 0x21C) + t,
                       0.0f, 3, 0, 0);
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
         /* fallthrough */
@@ -229,7 +229,7 @@ void func_00112318(void *a0)
     }
     func_0010A438(s1);
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
         char *g = D_005FEE00;
@@ -336,8 +336,8 @@ void func_0010F1F0(void *a0)
     char *s1 = (char *)a0;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(D_005864F0, 2);
-    MaxByte538_292EF0(D_005864F0, 2);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetBigHitEffWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -389,7 +389,7 @@ void func_0010F1F0(void *a0)
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     func_0010A438(s1);
     if (func_00123938(s1, 1) != 0) {

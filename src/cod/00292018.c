@@ -1,4 +1,8 @@
-/* func_00292018 — null-checked conditional field write (sn-2.95.3-136 branch-likely). */
+/* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
+/* Raises the unk510 wait to at least wait. */
 __attribute__((section(".text.func_00292018")))
-void func_00292018(void *a0, int a1) { if (*(int *)((char *)a0 + 1296) < a1) *(int *)((char *)a0 + 1296) = a1; }
+void func_00292018(cEmManage *self, int wait) {
+    if (self->unk510 < wait) self->unk510 = wait;
+}

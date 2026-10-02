@@ -12,7 +12,7 @@ extern unsigned int Forward30F348_31CFE0(void);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern int Obj293_IsByteSet_53C(void *a0);
+extern int cEmManage_CkPlCatched(void *a0);
 extern void func_002705D8(void *a0);
 extern unsigned char D_005864F0[];
 extern char D_005FEE00[];
@@ -346,7 +346,7 @@ void func_002130C8(void *a0)
 
     if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) <= 0
         || D_005864F0[0x5B5] != 0
-        || Obj293_IsByteSet_53C(D_005864F0) != 0) {
+        || cEmManage_CkPlCatched(D_005864F0) != 0) {
         func_002705D8(p);
     } else if (flag == 0 || func_00262AA8(p) == 0) {
         if (*(int *)(p + 0x16EC) > 0) {

@@ -1,4 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cEmManage.h"
 
 extern void PushEsp(void *a0);
 extern int D_003FA62C;
@@ -23,9 +24,11 @@ void UpdateGlobalPtrWithParam_3A7CC0(int a0) {
     __malloc_unlock(D_003FA62C);
 }
 
-__attribute__((section(".text.SetField548AndGlobals_292F38")))
-void SetField548AndGlobals_292F38(void *a0, float f12) {
-    *(float*)((char*)a0 + 0x548) = f12;
-    D_00741DC0 = f12;
-    D_00754C48 = f12;
+/* Sets the enemies' speed rate for this frame and copies it to the two
+ * globals that hold it; Main puts it back to 1.0 at the end of the frame. */
+__attribute__((section(".text.cEmManage_SetSpeedRate")))
+void cEmManage_SetSpeedRate(cEmManage *self, float rate) {
+    self->speedRate = rate;
+    D_00741DC0 = rate;
+    D_00754C48 = rate;
 }

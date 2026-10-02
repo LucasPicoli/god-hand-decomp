@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cObjSimple.h"
 #include "godhand/cScenario.h"
+#include "godhand/cEmManage.h"
 
 /* Turn the ring physics on or off. */
 __attribute__((section(".text.cObjSimple_SetRingFlag")))
@@ -21,9 +22,10 @@ void cScenario_SetRoomExitFunc(cScenario *self, void (*func)(void *), void *arg)
     self->roomExitArg = arg;
 }
 
+/* 1 while the dark world is on. */
 __attribute__((section(".text.cEmManage_DarkWorldCk")))
-int cEmManage_DarkWorldCk(int a0) {
-    return *(unsigned char*)((char*)a0 + 0x518) != 0;
+int cEmManage_DarkWorldCk(cEmManage *self) {
+    return self->darkWorld != 0;
 }
 
 __attribute__((section(".text.cEma2_ckKiss")))

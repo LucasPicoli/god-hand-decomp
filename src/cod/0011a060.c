@@ -9,8 +9,8 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
-extern void MaxField514_292030(void *a0, int a1);
+extern void cEmManage_SetPlCatched(void *a0);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -21,7 +21,7 @@ extern float Adjust_theta(float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void func_00124EC0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void SetField548AndGlobals_292F38(void *a0, float f12);
+extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void func_00270C78(void *a0);
@@ -93,8 +93,8 @@ void func_0011A060(void *a0)
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     s2 = *(char **)(s1 + 0x694);
     Forward_001346C8_00134608_1351D8(&D_00462FC0, s1, 0);
-    Obj293_SetByte_53C_2(&D_005864F0);
-    MaxField514_292030(&D_005864F0, 2);
+    cEmManage_SetPlCatched(&D_005864F0);
+    cEmManage_SetSlotWait(&D_005864F0, 2);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x200;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -137,7 +137,7 @@ void func_0011A060(void *a0)
     if (func_00123938(s1, 1) != 0) {
         ClearField15F4Bit1_124F60(s1, 0, 0);
     } else if (*(unsigned short *)(s1 + 0x3AC) & 0x100) {
-        SetField548AndGlobals_292F38(&D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(&D_005864F0, 0.1f);
     }
 }
 

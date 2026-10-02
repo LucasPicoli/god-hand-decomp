@@ -5,7 +5,7 @@
 #include "godhand/cScenario.h"
 
 extern unsigned char D_005864F0[];
-extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
+extern void cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern int D_005E8658;
 extern void func_002BECB0();
 extern unsigned char D_005FEE00[];
@@ -100,9 +100,9 @@ void func_001B7BB8(cOmBase *self)
     self->flags0 |= COMBASE_F0_DROPPED;
     if (cOmBase_canItemDrop(self) == 1) {
         if (self->dropItem != 0xFFFF) {
-            cEmManage__CreateItem(&D_005864F0, (int)self->pos, self->dropItem, 0);
+            cEmManage_CreateItem(&D_005864F0, (int)self->pos, self->dropItem, 0);
         } else {
-            cEmManage__CreateItem(&D_005864F0, (int)self->pos, 0xFFFF, 0);
+            cEmManage_CreateItem(&D_005864F0, (int)self->pos, 0xFFFF, 0);
         }
     }
 }

@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEmManage.h"
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -16,7 +16,6 @@ extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float f);
 extern char D_00462FC0[];
-extern char D_005864F0[];
 extern char D_005FEE00[];
 extern int D_00747A24;
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
@@ -26,7 +25,6 @@ extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int Obj0000_Get_Field_424_1595F0(void *a0);
 extern void cSnd_SeCall_2CB8A0(char *a0, int a1, int a2, int a3, int t0, int t1, int t2);
-extern void Obj293_SetByte_53B_3C(void *a0);
 extern void func_00102418(void *a0);
 extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
 extern int ChkCollScrWall(void *a0, void *a1, int a2, void *a3, int t0, int t1, float f12);
@@ -59,7 +57,7 @@ void func_00121798(void *a0)
     *(int *)(s0 + 0x250) = *(int *)(s0 + 0x250) | 0x10000;
     s1 = *(char **)(s0 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(&D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {
@@ -230,7 +228,7 @@ void func_00102418(void *a0)
     ClearField15F4Bit1_124F60(s3, 0, 0);
     k = *(short *)(*(char **)(s1 + 0x5B0) + 0x46);
     if (k == 0x48 || k == 0x52)
-        Obj293_SetByte_53B_3C(D_005864F0);
+        cEmManage_SetPlBombHit(&D_005864F0);
     if (*(short *)(s3 + 0x54A) > 0) {
         *(char *)(s1 + 0x2F4) = 1;
         *(char *)(s1 + 0x2F5) = 0;
@@ -431,93 +429,96 @@ void func_001F6208(void *a0)
     }
 }
 
-#define DEC_W(o) if (*(int *)(s0 + (o)) != 0) *(int *)(s0 + (o)) = *(int *)(s0 + (o)) - 1
-#define DEC_B(o) if (*(signed char *)(s0 + (o)) != 0) *(unsigned char *)(s0 + (o)) = *(unsigned char *)(s0 + (o)) - 1
-#define CLR_DEAD(o) if (*(char **)(s0 + (o)) != 0 && *(int *)(*(char **)(s0 + (o)) + 0x250) < 0) *(char **)(s0 + (o)) = 0
+/* Main's two steps: a wait counts down to 0; a kept actor pointer is
+ * dropped once the actor's dead bit (the sign bit of objFlags) is set. */
+#define EM_COUNT_DOWN(f) if (self->f != 0) self->f = self->f - 1
+#define EM_DROP_DEAD(f) if (self->f != 0 && self->f->objFlags < 0) self->f = 0
 
+/* Runs once a frame: counts every wait down, drops kept actors that are
+ * dead, works out the unk5A0..unk5A2 flags, copies the speed rate (times
+ * the game rate at D_007474A0 + 0x574) to every listed enemy, then puts
+ * the rate back to 1.0. */
 __attribute__((section(".text.cEmManage_Main")))
-void cEmManage_Main(void *a0)
+void cEmManage_Main(cEmManage *self)
 {
-    char *s0 = (char *)a0;
-    char *n;
+    cEmSlot *slot;
     unsigned int i;
 
-    func_00294AD8(s0);
+    func_00294AD8(self);
     if (D_00747A78 & 0x40000000)
         return;
-    DEC_W(0x510);
-    DEC_W(0x514);
-    DEC_W(0x530);
-    DEC_B(0x538);
-    DEC_B(0x539);
-    DEC_B(0x53A);
-    DEC_B(0x53B);
-    DEC_B(0x53C);
-    DEC_B(0x53D);
-    if (0.0f < *(float *)(s0 + 0x544))
-        *(float *)(s0 + 0x544) = *(float *)(s0 + 0x544) - *(float *)(s0 + 0x548);
-    DEC_B(0x540);
-    DEC_B(0x541);
-    if (*(short *)(s0 + 0x542) != 0)
-        *(unsigned short *)(s0 + 0x542) = *(unsigned short *)(s0 + 0x542) - 1;
-    CLR_DEAD(0x560);
-    CLR_DEAD(0x564);
-    CLR_DEAD(0x568);
-    CLR_DEAD(0x56C);
-    CLR_DEAD(0x570);
-    CLR_DEAD(0x588);
-    CLR_DEAD(0x58C);
-    CLR_DEAD(0x590);
-    CLR_DEAD(0x594);
+    EM_COUNT_DOWN(unk510);
+    EM_COUNT_DOWN(slotWait);
+    EM_COUNT_DOWN(unk530);
+    EM_COUNT_DOWN(bigHitEffWait);
+    EM_COUNT_DOWN(unk539);
+    EM_COUNT_DOWN(unk53A);
+    EM_COUNT_DOWN(plBombHit);
+    EM_COUNT_DOWN(plCatched);
+    EM_COUNT_DOWN(plSorry);
+    if (0.0f < self->unk544)
+        self->unk544 = self->unk544 - self->speedRate;
+    EM_COUNT_DOWN(unk540);
+    EM_COUNT_DOWN(unk541);
+    EM_COUNT_DOWN(unk542);
+    EM_DROP_DEAD(unk560[0]);
+    EM_DROP_DEAD(unk560[1]);
+    EM_DROP_DEAD(unk560[2]);
+    EM_DROP_DEAD(unk560[3]);
+    EM_DROP_DEAD(unk560[4]);
+    EM_DROP_DEAD(unk588[0]);
+    EM_DROP_DEAD(unk588[1]);
+    EM_DROP_DEAD(unk588[2]);
+    EM_DROP_DEAD(unk588[3]);
     i = 0;
     {
-        char **p2 = (char **)(s0 + 0x5AC);
-        char **pp;
+        cEmActor **p2 = self->unk5AC;
+        cEmActor **pp;
 
-        for (; i < 5; i++) {
-            pp = (char **)(s0 + 0x574) + i;
-            if (*pp != 0 && (*(int *)(*pp + 0x250) & 0x80000000))
+        for (; i < EM_SPECIAL_NUM; i++) {
+            pp = &self->specialEm[i];
+            if (*pp != 0 && ((*pp)->objFlags & EMACTOR_FLAG_DEAD))
                 *pp = 0;
         }
         for (i = 0, pp = p2; i < 2; i++, pp++) {
-            if (*pp != 0 && (*(int *)(*pp + 0x250) & 0x80000000))
+            if (*pp != 0 && ((*pp)->objFlags & EMACTOR_FLAG_DEAD))
                 *pp = 0;
         }
     }
-    if (*(unsigned char *)(s0 + 0x5A3) == 3)
-        *(char *)(s0 + 0x5A0) = 1;
+    if (self->unk5A3 == 3)
+        self->unk5A0 = 1;
     else
-        *(char *)(s0 + 0x5A0) = 0;
-    if (*(unsigned char *)(s0 + 0x5A4) == 3)
-        *(char *)(s0 + 0x5A1) = 1;
+        self->unk5A0 = 0;
+    if (self->unk5A4 == 3)
+        self->unk5A1 = 1;
     else
-        *(char *)(s0 + 0x5A1) = 0;
-    if (*(unsigned char *)(s0 + 0x5A5) != 0)
-        *(char *)(s0 + 0x5A2) = 1;
+        self->unk5A1 = 0;
+    if (self->unk5A5 != 0)
+        self->unk5A2 = 1;
     else
-        *(char *)(s0 + 0x5A2) = 0;
-    if (*(int *)(s0 + 0x560) == 0 || *(int *)(s0 + 0x564) == 0) {
-        *(char *)(s0 + 0x5A0) = 0;
-        *(char *)(s0 + 0x5A1) = 0;
-        *(char *)(s0 + 0x5A2) = 0;
+        self->unk5A2 = 0;
+    if (self->unk560[0] == 0 || self->unk560[1] == 0) {
+        self->unk5A0 = 0;
+        self->unk5A1 = 0;
+        self->unk5A2 = 0;
     }
     func_00125F38(Obj0000_Get_D_00747A94_2DB6B0());
-    n = *(char **)(s0 + 0x500);
-    if (n != 0) {
+    slot = self->list.top;
+    if (slot != 0) {
         char *g = D_007474A0;
 
-        for (; n != 0; n = *(char **)(n + 4)) {
-        char *e = *(char **)(n + 8);
+        for (; slot != 0; slot = slot->next) {
+        cEmActor *e = slot->em;
 
         if (e != 0) {
-            float v = *(float *)(s0 + 0x548) * *(float *)(g + 0x574);
+            float v = self->speedRate * *(float *)(g + 0x574);
 
-            *(float *)(e + 0x5A8) = v;
+            e->speedRate = v;
             SetField444SignedByFlag434_158288(e, v);
         }
         }
     }
-    *(float *)(s0 + 0x548) = 1.0f;
-    func_00291D48(s0);
-    func_00292F68(s0);
+    self->speedRate = EM_SPEED_RATE_NORMAL;
+    func_00291D48(self);
+    func_00292F68(self);
 }

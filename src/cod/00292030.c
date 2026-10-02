@@ -1,4 +1,5 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cEmManage.h"
 
 __attribute__((section(".text.NoOp_33E6A8")))
 void NoOp_33E6A8(void) {}
@@ -6,9 +7,10 @@ void NoOp_33E6A8(void) {}
 __attribute__((section(".text.NoOp_33E6B0")))
 void NoOp_33E6B0(void) {}
 
-__attribute__((section(".text.MaxField514_292030")))
-void MaxField514_292030(int a0, int a1)
+/* Raises the slot wait to at least wait. */
+__attribute__((section(".text.cEmManage_SetSlotWait")))
+void cEmManage_SetSlotWait(cEmManage *self, int wait)
 {
-    if (*(int*)(a0 + 0x514) < a1)
-        *(int*)(a0 + 0x514) = a1;
+    if (self->slotWait < wait)
+        self->slotWait = wait;
 }

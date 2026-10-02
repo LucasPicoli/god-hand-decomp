@@ -17,7 +17,7 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern char D_005FEE00[];
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
+extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
 extern void cEm00_GetPlMotion(void *a0, int a1, float a2, float a3);
 extern void func_00124EC0(void *a0);
@@ -25,9 +25,9 @@ extern void func_0012C0F8(void *a0, int a1);
 extern int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern void MaxField514_292030(void *a0, int a1);
-extern void MaxByte538_292EF0(void *a0, int a1);
-extern void SetField548AndGlobals_292F38(void *a0, float a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
+extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_00129578(void *a0);
 extern void func_00129630(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
@@ -184,7 +184,7 @@ void func_001209A0(void *a0)
     *(int *)(s0 + 0x250) |= 0x10000;
     s1 = *(char **)(s0 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {
@@ -246,9 +246,9 @@ void func_00111210(void *a0)
     char *s1 = (char *)a0;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(D_005864F0, 2);
-    Obj293_SetByte_53C_2(D_005864F0);
-    MaxByte538_292EF0(D_005864F0, 2);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetPlCatched(D_005864F0);
+    cEmManage_SetBigHitEffWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     if (*(unsigned char *)(s1 + 0x2F6) != 0 &&
         *(unsigned char *)(s1 + 0x649) == 0 &&
@@ -272,7 +272,7 @@ void func_00111210(void *a0)
         func_002A8578(s1, *(int *)(t + 0x19C) + t, *(int *)(t + 0x1A0) + t,
                       0.0f, 3, 0, 0);
         func_00129578(s1);
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
         /* fallthrough */
@@ -292,7 +292,7 @@ void func_00111210(void *a0)
     }
     func_0010A438(s1);
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
         char *g = D_005FEE00;

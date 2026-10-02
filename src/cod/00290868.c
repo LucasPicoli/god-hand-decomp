@@ -1,19 +1,21 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
 extern int D_00747A0C;
 extern char *D_0077E524;
 extern char *D_0077E52C;
 
+/* The listed enemy with the given entry number, or 0. */
 __attribute__((section(".text.cEmManage_GetEm")))
-void *cEmManage_GetEm(char *self, unsigned char id) {
-    char *node;
-    char *em;
-    if (id == 0xFF) return 0;
-    node = *(char **)(self + 0x500);
-    while (node != 0) {
-        em = *(char **)(node + 8);
-        if (*(unsigned short *)(em + 0x640) == (unsigned short)id) return em;
-        node = *(char **)(node + 4);
+cEmActor *cEmManage_GetEm(cEmManage *self, unsigned char entryNo) {
+    cEmSlot *slot;
+    cEmActor *em;
+    if (entryNo == EM_ENTRY_NONE) return 0;
+    slot = self->list.top;
+    while (slot != 0) {
+        em = slot->em;
+        if (em->entryNo == (unsigned short)entryNo) return em;
+        slot = slot->next;
     }
     return 0;
 }

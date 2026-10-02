@@ -15,7 +15,7 @@ extern void func_0010A438(void *a0);
 extern unsigned char D_005CB000[];
 extern void func_00124EC0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void SetField548AndGlobals_292F38(void *a0, float f12);
+extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
 
 __attribute__((section(".text.func_00114120")))
@@ -117,7 +117,7 @@ void func_00111010(void *a0)
     }
     func_0010A438(s0);
     if (*(unsigned short *)(s0 + 0x3AC) & 0x100) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.05f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.05f);
     }
     if (func_00123938(s0, 1) != 0) {
         ClearField15F4Bit1_124F60(s0, 1, 0);

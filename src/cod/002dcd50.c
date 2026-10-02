@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern int Obj293_IsByteSet_53C(void *a0);
+extern int cEmManage_CkPlCatched(void *a0);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
@@ -62,7 +62,7 @@ void func_002DCD50(void *a0)
 
     o = (char *)Obj0000_Get_D_00747A94_2DB6B0();
     g = D_005864F0;
-    if (Obj293_IsByteSet_53C(g) != 0) {
+    if (cEmManage_CkPlCatched(g) != 0) {
         return;
     }
     if (*(short *)(o + 0x54A) <= 0) {
@@ -74,7 +74,7 @@ void func_002DCD50(void *a0)
     if (*(int *)(g + 0x514) > 0) {
         return;
     }
-    if (Obj293_IsByteSet_53C(g) != 0) {
+    if (cEmManage_CkPlCatched(g) != 0) {
         return;
     }
 

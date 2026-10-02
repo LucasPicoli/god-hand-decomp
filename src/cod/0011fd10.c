@@ -8,7 +8,7 @@ extern char D_005FEE00[];
 extern int D_007474A8;
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
+extern void cEmManage_SetPlCatched(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -48,7 +48,7 @@ void func_0011FD10(void *a0)
     s1 = *(char **)(s0 + 0x694);
     *(char **)(s0 + 0x640) = s1;
     Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
         float v;

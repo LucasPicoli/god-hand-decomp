@@ -4,7 +4,7 @@ extern void cModel_calcParts(void *a0);
 extern int cModel_getMeshPtr(void *a0, int a1);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
-extern int Obj293_IsByteSet_53C(void *p);
+extern int cEmManage_CkPlCatched(void *p);
 extern int D_005864F0;
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -147,7 +147,7 @@ void func_002DC670(void *arg)
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
             if (*((int *) (g + 0x514)) <= 0) {
-                if (Obj293_IsByteSet_53C(g) == 0) {
+                if (cEmManage_CkPlCatched(g) == 0) {
                     r[0x2F5] = 0x17;
                     r[0x2F7] = 1;
                     r[0x2F4] = 0;
@@ -178,7 +178,7 @@ void func_002DD6C0(void *arg)
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
             if (*((int *) (g + 0x514)) <= 0) {
-                if (Obj293_IsByteSet_53C(g) == 0) {
+                if (cEmManage_CkPlCatched(g) == 0) {
                     *((float *) (s0 + 0x54C)) = 30.0f;
                     if (*((float *) (s0 + 0x770)) > 0.0f) {
                         if (*((float *) (s0 + 0x770)) < 10.0f) {
@@ -215,7 +215,7 @@ void SetActionJumpUp(void)
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(s0) == 0) {
             g = (char *) &D_005864F0;
             if (*((int *) (g + 0x514)) <= 0) {
-                if (Obj293_IsByteSet_53C(g) == 0) {
+                if (cEmManage_CkPlCatched(g) == 0) {
                     if (cSceAtManager_findJumpPoint(&D_005FEA60, *((int *) (s0 + 0xF0)), buf, buf + 4) != 0) {
                         t = Turn_dest_dir(*((float *) (s0 + 0x104)), buf[4], 3.14159274f);
                         if (t < 0.0f) {
@@ -259,7 +259,7 @@ void func_002DC740(void *arg)
         if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(r) == 0) {
             g = (char *) &D_005864F0;
             if (*((int *) (g + 0x514)) <= 0) {
-                if (Obj293_IsByteSet_53C(g) == 0) {
+                if (cEmManage_CkPlCatched(g) == 0) {
                     if (capVu0MagnitudeSqXZ(*((void **) (s1 + 0xF0)),
                                             *((void **) (r + 0xF0))) > 4.0f) {
                         return;

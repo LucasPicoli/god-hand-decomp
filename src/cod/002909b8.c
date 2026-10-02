@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
 extern char D_0071B940[];
 extern unsigned int D_00741960[];
@@ -9,16 +10,17 @@ void func_003005D8(char *p) {
     D_00741960[i >> 5] |= 0x80000000U >> (i & 0x1F);
 }
 
+/* 1 when em is listed and its slot is in use. */
 __attribute__((section(".text.cEmManage_ChkActiveEm")))
-int cEmManage_ChkActiveEm(char *self, void *em) {
-    char *node;
+int cEmManage_ChkActiveEm(cEmManage *self, cEmActor *em) {
+    cEmSlot *slot;
     if (em == 0) return 0;
-    node = *(char **)(self + 0x500);
-    while (node != 0) {
-        if (*(void **)(node + 8) == em) {
-            if (*(unsigned char *)(node + 0x10) == 1) return 1;
+    slot = self->list.top;
+    while (slot != 0) {
+        if (slot->em == em) {
+            if (slot->used == EM_SLOT_USED) return 1;
         }
-        node = *(char **)(node + 4);
+        slot = slot->next;
     }
     return 0;
 }

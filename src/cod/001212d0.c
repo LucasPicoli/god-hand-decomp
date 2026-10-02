@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
+extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
@@ -63,7 +63,7 @@ void func_001212D0(void *a0)
     *(int *)(s0 + 0x250) |= 0x10000;
     s1 = *(char **)(s0 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s0, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {

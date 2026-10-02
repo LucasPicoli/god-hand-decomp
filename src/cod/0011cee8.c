@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
+extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
 extern void cEm00_GetPlMotion(void *a0, int a1, float a2, float a3);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -68,7 +68,7 @@ void func_0011CEE8(void *a0)
     *(int *)(s1 + 0x250) |= 0x10000;
     s0 = *(char **)(s1 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
     {
@@ -184,7 +184,7 @@ void func_00122140(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     s0 = *(char **)(s1 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetPlCatched(D_005864F0);
     *(int *)(s1 + 0x250) |= 0x10000;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:

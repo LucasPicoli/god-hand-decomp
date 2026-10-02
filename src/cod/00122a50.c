@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
-extern void Obj293_SetByte_53C_2(void *a0);
-extern void MaxField514_292030(void *a0, int a1);
+extern void cEmManage_SetPlCatched(void *a0);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
@@ -41,8 +41,8 @@ void func_00122A50(void *a0) {
     *(float *)(s1 + 0x54C) = 5.0f;
     o = *(char **)(s1 + 0x694);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
-    Obj293_SetByte_53C_2(D_005864F0);
-    MaxField514_292030(D_005864F0, 2);
+    cEmManage_SetPlCatched(D_005864F0);
+    cEmManage_SetSlotWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x80000;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:

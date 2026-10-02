@@ -12,8 +12,8 @@ extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
-extern int Obj293_IsByteSet_53D(void *a0);
-extern int Obj293_IsByteSet_53C(void *a0);
+extern int cEmManage_CkPlSorry(void *a0);
+extern int cEmManage_CkPlCatched(void *a0);
 extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float f);
@@ -136,9 +136,9 @@ void func_0022A8D0(void *a0)
             }
         }
         g = (char *)&D_005864F0;
-        if (Obj293_IsByteSet_53D(g) != 0) {
+        if (cEmManage_CkPlSorry(g) != 0) {
             *(char *)(s1 + 0x2F6) = 4;
-        } else if (Obj293_IsByteSet_53C(g) != 0) {
+        } else if (cEmManage_CkPlCatched(g) != 0) {
             *(char *)(s1 + 0x2F6) = 4;
         }
         AddScaledVecToField_100_14F9F0(s1, 1.0f);

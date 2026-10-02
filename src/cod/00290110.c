@@ -1,53 +1,63 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
-extern void func_00290028(void *p);
 extern unsigned int Forward30F348_31CFE0(void);
-extern char D_00754C38[];
+/* Three fields of D_00754C38 that reset clears; what they hold is not known. */
+typedef struct D_00754C38_t {
+    int unk0;
+    unsigned char unk4;
+    char unk5[3];
+    int unk8;
+    int unkC;
+} D_00754C38_t;
+extern D_00754C38_t D_00754C38;
 
-__attribute__((section(".text.func_00290110")))
-void func_00290110(void *obj) {
-    char *base = (char *)obj;
-    char *end = base + 0x500;
-    char *p = base;
-    int *q;
-    char *d;
+/* Empties every slot and clears the room state: the list, the waits, the
+ * kept actors and the flags. The speed rate goes back to 1.0 and unk53F
+ * gets a new random number 0..4. */
+__attribute__((section(".text.cEmManage_reset")))
+void cEmManage_reset(cEmManage *self) {
+    cEmSlot *end = &self->slot[EM_SLOT_NUM];
+    cEmSlot *slot = self->slot;
+    cEmActor **special;
+    D_00754C38_t *d;
     unsigned int i;
 
     do {
-        func_00290028(p);
-        p += 0x14;
-    } while (p < end);
+        cEmManage_clearSlot(slot);
+        slot++;
+    } while (slot < end);
 
-    *(int *)(base + 0x500) = 0;
-    *(int *)(base + 0x504) = 0;
-    *(int *)(base + 0x508) = 0;
-    *(int *)(base + 0x50C) = 0;
-    *(int *)(base + 0x55C) = 0;
-    *(float *)(base + 0x548) = 1.0f;
-    *(unsigned char *)(base + 0x53F) = Forward30F348_31CFE0() % 5;
-    q = (int *)(base + 0x574);
-    *(char *)(base + 0x53E) = 0;
-    *(char *)(base + 0x540) = 0;
-    *(char *)(base + 0x541) = 0;
-    *(int *)(base + 0x560) = 0;
-    *(int *)(base + 0x564) = 0;
-    *(int *)(base + 0x568) = 0;
-    *(int *)(base + 0x56C) = 0;
-    *(int *)(base + 0x570) = 0;
-    *(int *)(base + 0x588) = 0;
-    *(int *)(base + 0x58C) = 0;
-    *(int *)(base + 0x590) = 0;
-    *(int *)(base + 0x594) = 0;
+    self->list.top = 0;
+    self->list.last = 0;
+    self->emNum = 0;
+    self->kindNum = 0;
+    self->nextNo = 0;
+    self->speedRate = EM_SPEED_RATE_NORMAL;
+    self->unk53F = Forward30F348_31CFE0() % 5;
+    special = self->specialEm;
+    self->unk53E = 0;
+    self->unk540 = 0;
+    self->unk541 = 0;
+    self->unk560[0] = 0;
+    self->unk560[1] = 0;
+    self->unk560[2] = 0;
+    self->unk560[3] = 0;
+    self->unk560[4] = 0;
+    self->unk588[0] = 0;
+    self->unk588[1] = 0;
+    self->unk588[2] = 0;
+    self->unk588[3] = 0;
     for (i = 0; i < 2; i++) {
-        *(int *)(base + 0x5AC + i * 4) = 0;
+        self->unk5AC[i] = 0;
     }
-    for (i = 0; i < 5; i++) {
-        q[i] = 0;
+    for (i = 0; i < EM_SPECIAL_NUM; i++) {
+        special[i] = 0;
     }
-    *(char *)(base + 0x518) = 0;
-    d = D_00754C38;
-    *(char *)(d + 0x4) = 0;
-    *(int *)(d + 0x8) = 0;
-    *(int *)(d + 0xC) = 0;
-    *(char *)(base + 0x5B5) = 0;
+    self->darkWorld = 0;
+    d = &D_00754C38;
+    d->unk4 = 0;
+    d->unk8 = 0;
+    d->unkC = 0;
+    self->unk5B5 = 0;
 }

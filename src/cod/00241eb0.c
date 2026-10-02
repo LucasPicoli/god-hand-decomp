@@ -13,7 +13,7 @@ extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
                    int a7, int a8, int a9, int a10, int a11, int a12);
 extern void func_0026E7A8(void *a0, int a1);
-extern int cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
+extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern void func_001C2280(void *a0, void *a1, int a2, void *a3, void *a4);
 extern void SetField_2F6_1C2308(void *a0);
 extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
@@ -125,7 +125,7 @@ void func_00241EB0(void *a0)
         AddScaledXfmVecToField_F0_14F928(s3, 1.0f);
         if (*(unsigned short *)(s3 + 0x3AC) & 1) {
             if (*(int *)(s3 + 0x70C) == 0) {
-                int it = cEmManage__CreateItem((void *)D_005864F0, *(int *)(s3 + 0xF0),
+                int it = cEmManage_CreateItem((void *)D_005864F0, *(int *)(s3 + 0xF0),
                                                0x3D1, 0);
                 *(int *)(s3 + 0x70C) = it;
                 if (it != 0) {

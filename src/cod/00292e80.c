@@ -1,16 +1,19 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEmManage.h"
 extern int D_00747A30;
 extern int D_0044F448;
 
-__attribute__((section(".text.UpdateConditionalNotify_292E80")))
-void UpdateConditionalNotify_292E80(int a0)
+/* Plays the big-hit effect unless its wait runs or flag 0x800 of
+ * D_00747A30 is set, then starts the wait. */
+__attribute__((section(".text.cEmManage_setBigHitEff")))
+void cEmManage_setBigHitEff(cEmManage *self)
 {
     if ((D_00747A30 & 0x800) == 0) {
-        if (func_00292F08() == 0) {
+        if (cEmManage_CkBigHitEffWait(self) == 0) {
             SetEffect(0, 0xF, 0, 0, -1, 0xFFFFFFFFu);
-            MaxByte538_292EF0(a0, 2);
+            cEmManage_SetBigHitEffWait(self, EM_BIG_HIT_EFF_TIME);
         }
     }
 }

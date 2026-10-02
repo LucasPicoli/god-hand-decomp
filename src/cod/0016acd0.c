@@ -7,7 +7,7 @@ extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
-extern int cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
+extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern void func_0019BA08(void *a0, int a1, int a2);
 extern void SetField5B0Bit2ClearBit8_1B7908(int a0);
 extern float capVu0Atan2(float y, float x);
@@ -103,7 +103,7 @@ void func_0019B580(void *a0)
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, s0, 0, 0, 0, 0);
         if (*(char *)(s0 + 0xA92) == 0) {
             func_0019BA08(s0, 0, 2);
-            cEmManage__CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), 0xFFFF, 0);
+            cEmManage_CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), 0xFFFF, 0);
             *(short *)(s0 + 0x54A) = *(unsigned short *)(s0 + 0x548);
             *(unsigned char *)(s0 + 0xA92) = *(unsigned char *)(s0 + 0xA92) + 1;
             *(unsigned char *)(s0 + 0x2F4) = 0;

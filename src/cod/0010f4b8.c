@@ -19,7 +19,7 @@ extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, i
 extern void func_0010A438(void *a0);
 extern void func_00124EC0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
-extern void SetField548AndGlobals_292F38(void *a0, float f12);
+extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern float fRand0_1(void);
@@ -136,7 +136,7 @@ void func_0010F4B8(void *a0)
     }
     func_0010A438(s0);
     if (*(unsigned short *)(s0 + 0x3AC) & 0x100) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if (func_00123938(s0, 1) != 0) {
         if (*(unsigned char *)(s0 + 0x2F7) == 0)

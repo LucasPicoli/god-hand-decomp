@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-extern void MaxField514_292030(void *a0, int a1);
-extern void Obj293_SetByte_53C_2(void *a0);
-extern void MaxByte538_292EF0(void *a0, int a1);
-extern void SetField548AndGlobals_292F38(void *a0, float a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetPlCatched(void *a0);
+extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
+extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -49,9 +49,9 @@ void func_00111DD8(void *a0)
     char *s1 = (char *)a0;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(D_005864F0, 2);
-    Obj293_SetByte_53C_2(D_005864F0);
-    MaxByte538_292EF0(D_005864F0, 2);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetPlCatched(D_005864F0);
+    cEmManage_SetBigHitEffWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -69,7 +69,7 @@ void func_00111DD8(void *a0)
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x20) + t, *(int *)(t + 0x24) + t,
                       0.0f, 3, 0, 0);
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         *(int *)(s1 + 0x15B0) = 1;
         (*(unsigned char *)(s1 + 0x2F6))++;
     }
@@ -110,7 +110,7 @@ void func_00111DD8(void *a0)
         }
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
         char *g = D_005FEE00;

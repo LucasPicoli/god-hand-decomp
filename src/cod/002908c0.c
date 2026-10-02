@@ -1,25 +1,32 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
-extern void cEmManage_ReleaseEm(void *a0, int a1);
 extern void ReleaseObj(void *a0);
-extern void *D_00754C58;
+/* The game object list: begin and end of an array of object pointers. */
+typedef struct ObjList {
+    int unk0;
+    cOmBase **begin;            /* 0x4 */
+    cOmBase **end;              /* 0x8 */
+} ObjList;
+extern ObjList *D_00754C58;
 
+/* Releases every listed enemy, then every object of actor id 0x364 in the
+ * object list. */
 __attribute__((section(".text.cEmManage_ReleaseEmAll")))
-void cEmManage_ReleaseEmAll(void *a0) {
-    char *this = (char *)a0;
-    char *node;
-    char *p;
-    char *obj;
-    node = *(char **)(this + 0x500);
-    while (node != 0) {
-        char *next = *(char **)(node + 0x4);
-        cEmManage_ReleaseEm(this, *(int *)(node + 0x8));
-        node = next;
+void cEmManage_ReleaseEmAll(cEmManage *self) {
+    cEmSlot *slot;
+    cOmBase **p;
+    cOmBase *obj;
+    slot = self->list.top;
+    while (slot != 0) {
+        cEmSlot *next = slot->next;
+        cEmManage_ReleaseEm(self, slot->em);
+        slot = next;
     }
-    p = *(char **)((char *)D_00754C58 + 0x4);
-    while (p != *(char **)((char *)D_00754C58 + 0x8)) {
-        obj = *(char **)p;
-        if (*(unsigned short *)(obj + 0x2FE) == 0x364) ReleaseObj(obj);
-        p += 4;
+    p = D_00754C58->begin;
+    while (p != D_00754C58->end) {
+        obj = *p;
+        if (obj->actorId == 0x364) ReleaseObj(obj);
+        p++;
     }
 }

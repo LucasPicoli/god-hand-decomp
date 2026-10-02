@@ -2,7 +2,7 @@
 
 #include "godhand/vu0.h"
 
-extern void MaxField514_292030(void *a0, int a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);

@@ -1,70 +1,69 @@
 /* TU: cEmManage [enemy] - recovered C++ class. */
+#include "godhand/cEmManage.h"
+
 extern float D_00747A14;
 
+/* The manager's speed rate scaled by the global rate in D_00747A14. */
 __attribute__((section(".text.cEmManage_GetSpeedRate")))
-float cEmManage_GetSpeedRate(void *a0) {
-    return *(float*)((char*)a0 + 0x548) * D_00747A14;
+float cEmManage_GetSpeedRate(cEmManage *self) {
+    return self->speedRate * D_00747A14;
 }
-extern int func_00290958(void *a0);
 extern int cDataManager_isLoaded(void *a0, int a1);
 extern void cDataManager_loadWait(void *a0, int a1, void *a2, int a3);
 extern void cDataManager_loadSeWait(void *a0, int a1, int a2, int a3);
 extern char *CreateObj(int a0, int a1);
-extern void func_00290048(void *node, void *obj, int kind);
-extern int func_00290988(void *a0, int a1);
-extern void cEmManage_ReleaseEm(void *a0, void *a1);
 extern char D_005864E0[];
 extern char D_00754220[];
 
-typedef struct Node { struct Node *prev; struct Node *next; } Node;
-typedef struct List { Node *head; Node *tail; } List;
-
+/* Creates the actor a room's SET_EM_DATA names, links it into a free slot at
+ * the end of the list and runs its entry setup. Returns the actor, or 0 when
+ * no slot is free, the actor can't be made, or its setup fails. */
 __attribute__((section(".text.cEmManage_EntryEm")))
-char *cEmManage_EntryEm(char *this, int *ep, int kind, void *a3)
+cEmActor *cEmManage_EntryEm(cEmManage *self, SET_EM_DATA *data, int kind, void *parent)
 {
-    int slot;
-    char *obj;
-    Node *node;
-    List *list;
-    char *vt;
+    int no;
+    cEmActor *em;
+    cEmSlot *slot;
+    cEmList *list;
+    cEmActorVt *vt;
 
-    if (ep == 0)
+    if (data == 0)
         goto ng;
-    if (kind < -1)
+    if (kind < EM_KIND_NONE)
         return 0;
-    slot = func_00290958(this);
-    if (slot == -1)
+    no = cEmManage_findFreeSlot(self);
+    if (no == -1)
         goto ng;
-    if (cDataManager_isLoaded(D_005864E0, ep[0]) == 0)
-        cDataManager_loadWait(D_005864E0, ep[0], D_00754220, 1);
-    cDataManager_loadSeWait(D_005864E0, ep[0], ep[10], ep[11]);
-    obj = CreateObj(ep[0], 0xFFFF);
-    if (obj == 0)
+    if (cDataManager_isLoaded(D_005864E0, data->objId) == 0)
+        cDataManager_loadWait(D_005864E0, data->objId, D_00754220, 1);
+    cDataManager_loadSeWait(D_005864E0, data->objId, data->seBank, data->seNo);
+    em = (cEmActor *)CreateObj(data->objId, 0xFFFF);
+    if (em == 0)
         return 0;
-    node = (Node *)(this + slot * 0x14);
-    func_00290048(node, obj, kind);
-    if (node != 0) {
-        list = (List *)(this + 0x500);
-        if (list->tail == 0) {
-            list->head = node;
-            node->prev = 0;
-            list->head->next = 0;
-            list->tail = node;
+    slot = &self->slot[no];
+    cEmManage_setSlot(slot, em, kind);
+    if (slot != 0) {
+        list = &self->list;
+        if (list->last == 0) {
+            list->top = slot;
+            slot->prev = 0;
+            list->top->next = 0;
+            list->last = slot;
         } else {
-            list->tail->next = node;
-            node->prev = list->tail;
-            list->tail = node;
-            node->next = 0;
+            list->last->next = slot;
+            slot->prev = list->last;
+            list->last = slot;
+            slot->next = 0;
         }
     }
-    *(int *)(this + 0x508) += 1;
-    if (func_00290988(this, kind) == 1)
-        *(int *)(this + 0x50C) += 1;
-    *(short *)(obj + 0x640) = *((unsigned char *)ep + 0x31);
-    vt = *(char **)(obj + 0x214);
-    if ((*(int (**)(char *, int *, void *))(vt + 0x9C))(obj + *(short *)(vt + 0x98), ep, a3) != 0)
-        return obj;
-    cEmManage_ReleaseEm(this, obj);
+    self->emNum += 1;
+    if (cEmManage_countKind(self, kind) == 1)
+        self->kindNum += 1;
+    em->entryNo = data->entryNo;
+    vt = em->vt;
+    if (vt->entry((char *)em + vt->entryDelta, data, parent) != 0)
+        return em;
+    cEmManage_ReleaseEm(self, em);
 ng:
     return 0;
 }

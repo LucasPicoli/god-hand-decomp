@@ -13,7 +13,7 @@ extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern float Adjust_theta(float f12);
-extern int Obj293_IsByteSet_53C(void *a0);
+extern int cEmManage_CkPlCatched(void *a0);
 extern void func_0026A638(void *a0, int a1);
 extern void func_0026A838(void *a0, int a1);
 extern char D_005864F0[];
@@ -116,7 +116,7 @@ void func_0022AF90(void *a0)
         if (*(short *)((char *)Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) <= 0) {
             return;
         }
-        if (Obj293_IsByteSet_53C(D_005864F0) != 0) {
+        if (cEmManage_CkPlCatched(D_005864F0) != 0) {
             return;
         }
         f = *(float *)(s1 + 0x618);

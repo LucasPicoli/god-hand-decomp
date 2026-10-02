@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEmManage.h"
 
 extern int D_0077E6C0[];
 extern void Tramp_00312708_1B79B0(void);
 extern void func_001FDEA8(void *);
 extern void KeyStop(void);
 extern void func_0028CE70(void);
-extern void func_00290110(void);
 extern void func_00297660(void);
 extern void func_002B4560(void);
 extern void func_00345610(void);
@@ -81,10 +81,11 @@ void func_0028BEA8(void)
 	func_0028CE70();
 }
 
+/* Forwards to cEmManage_reset. */
 __attribute__((section(".text.func_00290230")))
-void func_00290230(void)
+void func_00290230(cEmManage *self)
 {
-	func_00290110();
+	cEmManage_reset(self);
 }
 
 __attribute__((section(".text.func_00296350")))

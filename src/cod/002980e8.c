@@ -15,7 +15,7 @@ extern char D_005864F0[];
 extern char D_00462FC0[];
 extern char *Obj0000_Get_D_00747A94_2DB6B0();
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
-extern int Obj293_IsByteSet_53C(void *p);
+extern int cEmManage_CkPlCatched(void *p);
 extern void Forward_001346C8_00134608_1351D8(void *a, void *b, int c);
 extern void func_00129718(void *a, void *b, int c);
 
@@ -109,7 +109,7 @@ void func_002DD300(char *a0) {
     if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(o) != 0) return;
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
-    if (Obj293_IsByteSet_53C(g) != 0) return;
+    if (cEmManage_CkPlCatched(g) != 0) return;
     *(char *)(a0 + 0x2F6) = 0;
     *(char *)(a0 + 0x2F7) = 0;
     *(float *)(a0 + 0x54C) = 30.0f;
@@ -129,7 +129,7 @@ void func_002DD3C0(char *a0) {
     if (Obj0000_IsSet_Field_15F4_Bit_400000_10B698(o) != 0) return;
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
-    if (Obj293_IsByteSet_53C(g) != 0) return;
+    if (cEmManage_CkPlCatched(g) != 0) return;
     *(char *)(a0 + 0x2F6) = 0;
     *(char *)(a0 + 0x2F7) = 0;
     *(float *)(a0 + 0x54C) = 30.0f;

@@ -9,8 +9,8 @@ extern void AddScaledDeltaToField_104_2A7498(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern int Obj293_IsByteSet_53D(void *a0);
-extern int Obj293_IsByteSet_53C(void *a0);
+extern int cEmManage_CkPlSorry(void *a0);
+extern int cEmManage_CkPlCatched(void *a0);
 extern void func_00262750(void *a0, int a1);
 extern void func_002705D8(void *a0);
 extern void func_00260B30(void *a0);
@@ -175,8 +175,8 @@ void func_00225110(void *a0)
                 *(int *)(s1 + 0x5F0) = 1;
             }
         }
-        if (Obj293_IsByteSet_53D(D_005864F0) != 0 ||
-            Obj293_IsByteSet_53C(D_005864F0) != 0) {
+        if (cEmManage_CkPlSorry(D_005864F0) != 0 ||
+            cEmManage_CkPlCatched(D_005864F0) != 0) {
             *(char *)(s1 + 0x1864) = 1;
         }
         if (*(unsigned char *)(s1 + 0x1864) != 0) {

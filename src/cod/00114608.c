@@ -10,7 +10,7 @@ extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, i
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern void func_0012CC70(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void SetField548AndGlobals_292F38(void *a0, float f12);
+extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern void SetField444SignedByFlag434_158288(void *a0, float f12);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void func_00126770(void *a0);
@@ -83,7 +83,7 @@ void func_00114608(void *a0)
                     if (*(int *)(s1 + 0x161C) == 0)
                         *(int *)(s1 + 0x161C) =
                             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 4, s1, 0, 0, 0, 0);
-                    SetField548AndGlobals_292F38(&D_005864F0, 0.03f);
+                    cEmManage_SetSpeedRate(&D_005864F0, 0.03f);
                     *(float *)(s1 + 0x5A8) = 0.03f;
                     SetField444SignedByFlag434_158288(s1, 0.03f);
                     {

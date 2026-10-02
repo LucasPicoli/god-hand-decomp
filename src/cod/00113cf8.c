@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void MaxField514_292030(void *a0, int a1);
-extern void Obj293_SetByte_53C_2(void *a0);
-extern void MaxByte538_292EF0(void *a0, int a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetPlCatched(void *a0);
+extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void func_00129BA0(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -12,7 +12,7 @@ extern void func_00124EC0(void *a0);
 
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern void SetField548AndGlobals_292F38(void *a0, float a1);
+extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern int D_005864F0;
 
 __attribute__((section(".text.func_00113CF8")))
@@ -23,9 +23,9 @@ void func_00113CF8(void *a0)
     float one;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(&D_005864F0, 2);
-    Obj293_SetByte_53C_2(&D_005864F0);
-    MaxByte538_292EF0(&D_005864F0, 2);
+    cEmManage_SetSlotWait(&D_005864F0, 2);
+    cEmManage_SetPlCatched(&D_005864F0);
+    cEmManage_SetBigHitEffWait(&D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -48,7 +48,7 @@ void func_00113CF8(void *a0)
         one = 1.0f;
         AddScaledVecToField_100_14F9F0(s1, one);
         AddScaledXfmVecToField_F0_14F928(s1, one);
-        SetField548AndGlobals_292F38(&D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(&D_005864F0, 0.1f);
         break;
     case 2:
         Obj0000_Clear_Fields_640_648_124E58(s1);

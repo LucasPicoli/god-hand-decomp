@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
 __attribute__((section(".text.func_00276090")))
 void func_00276090(int *a0, int a1) {
@@ -9,28 +10,32 @@ void func_00276090(int *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00290958")))
-int func_00290958(char *a0) {
+/* Index of the first unused slot, or -1 when all 64 are in use. */
+__attribute__((section(".text.cEmManage_findFreeSlot")))
+int cEmManage_findFreeSlot(cEmManage *self) {
+    cEmSlot *slot = self->slot;
     unsigned int i;
-    for (i = 0; i < 0x40; i++) {
-        if (*(unsigned char*)(a0+0x10) == 0) {
+    for (i = 0; i < EM_SLOT_NUM; i++) {
+        if (slot->used == 0) {
             return i;
         }
-        a0 += 0x14;
+        slot++;
     }
     return -1;
 }
 
+/* Puts an actor into the first empty unk5AC entry; does nothing when both
+ * are taken. */
 __attribute__((section(".text.func_00294898")))
-void func_00294898(char *a0, int a1) {
+void func_00294898(cEmManage *self, cEmActor *actor) {
+    cEmActor **p = self->unk5AC;
     unsigned int i;
-    a0 += 0x5AC;
     for (i = 0; i < 2; i++) {
-        if (*(int*)a0 == 0) {
-            *(int*)a0 = a1;
+        if (*p == 0) {
+            *p = actor;
             return;
         }
-        a0 += 4;
+        p++;
     }
 }
 

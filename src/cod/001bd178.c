@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cDvd.h"
 #include "godhand/cSnd.h"
+#include "godhand/cEmManage.h"
 
 extern unsigned char D_0058503A;
 extern int D_005E8600;
@@ -53,8 +54,18 @@ void func_002896B0(char *p)
     }
 }
 
-__attribute__((section(".text.func_00290048")))
-void func_00290048(int a0,int a1,int a2){if(a1==0)return;if(a2<-1)return;if(*(int*)(a0+8)!=0)return;if(*(int*)(a0+0xC)!=-1)return;if(*(unsigned char*)(a0+0x10)==1)return;*(int*)(a0+8)=a1;*(int*)(a0+0xC)=a2;*(unsigned char*)(a0+0x10)=1;}
+/* Fills an empty slot with an enemy and its kind; a used slot is left alone. */
+__attribute__((section(".text.cEmManage_setSlot")))
+void cEmManage_setSlot(cEmSlot *slot, cEmActor *em, int kind) {
+    if (em == 0) return;
+    if (kind < EM_KIND_NONE) return;
+    if (slot->em != 0) return;
+    if (slot->kind != EM_KIND_NONE) return;
+    if (slot->used == EM_SLOT_USED) return;
+    slot->em = em;
+    slot->kind = kind;
+    slot->used = EM_SLOT_USED;
+}
 
 /* cygnus-2.96 | drop-freorder-blocks */
 __attribute__((section(".text.func_002B45B0")))

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEmManage.h"
 
 extern char D_0076A880[];
 
@@ -57,25 +58,14 @@ void cCoreSave_clearGodItem(cCoreSave *self) {
     }
 }
 
-typedef struct Ent {
-    int unk0;
-    struct Ent *next;
-    int unk8;
-    int id;
-} Ent;
-
-typedef struct Mgr {
-    char pad0[0x500];
-    Ent *head;
-} Mgr;
-
-__attribute__((section(".text.func_00290988")))
-int func_00290988(Mgr *this, int id) {
-    Ent *p;
+/* Counts the listed slots of one kind. */
+__attribute__((section(".text.cEmManage_countKind")))
+int cEmManage_countKind(cEmManage *self, int kind) {
+    cEmSlot *slot;
     int n = 0;
 
-    for (p = this->head; p != 0; p = p->next) {
-        if (p->id == id) {
+    for (slot = self->list.top; slot != 0; slot = slot->next) {
+        if (slot->kind == kind) {
             n++;
         }
     }

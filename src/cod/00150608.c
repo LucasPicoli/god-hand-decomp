@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
 extern void SetFlagOnEntries7C_1D51B8(void *a0, int a1, int a2);
 extern void SetCustomIDDispOneOrAll_1DD258(void *a0, int a1, int a2);
@@ -14,8 +15,6 @@ extern int D_00580D40;
 extern void InitSlotTable_1FF800(void *);
 extern int D_00583F20;
 extern void GetSelf_200AB0(void *);
-extern int D_005864F0;
-extern void func_00290090(void *);
 extern int D_00586AB0;
 extern void cEmSetParam_roomInit(void *);
 extern int D_005CB000;
@@ -320,15 +319,11 @@ void func_00201A80(int a0, int a1) {
     }
 }
 
-/* sn-2.95.3-136 matched TU. */
-
-
-
-
+/* Static initialiser of the cEmManage TU: constructs D_005864F0. */
 __attribute__((section(".text.func_00294AE0")))
-void func_00294AE0(int a0, int a1) {
-    if (a1 == 0xFFFF && a0 != 0) {
-        func_00290090(&D_005864F0);
+void func_00294AE0(int initialize, int priority) {
+    if (priority == 0xFFFF && initialize != 0) {
+        cEmManage_construct(&D_005864F0);
     }
 }
 

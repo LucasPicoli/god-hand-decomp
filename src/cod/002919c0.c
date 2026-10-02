@@ -1,57 +1,53 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEmManage.h"
 
 extern char D_0044BAB0[];
 extern int D_00747A88;
 extern char D_003C26C0[];
 
+/* Counts the listed enemies with the given enemy number. */
 __attribute__((section(".text.func_002919C0")))
-int func_002919C0(char *self, int unused, int key) {
-    char *node = *(char **)(self + 0x500);
+int func_002919C0(cEmManage *self, int unused, int emNo) {
+    cEmSlot *slot = self->list.top;
     int count = 0;
 
-    while (node != 0) {
-        char *q = *(char **)(node + 0x8);
-        if (q != 0) {
-            if (*(int *)(q + 0x564) == key) {
+    while (slot != 0) {
+        cEmActor *em = slot->em;
+        if (em != 0) {
+            if (em->emNo == emNo) {
                 count = count + 1;
             }
         }
-        node = *(char **)(node + 0x4);
+        slot = slot->next;
     }
     return count;
 }
 
-/* sn-2.95.3-136 */
+/* Stores a position and starts the wait that goes with it. */
 __attribute__((section(".text.func_00291FE8")))
-void func_00291FE8(char *p, float *s, int n)
+void func_00291FE8(cEmManage *self, cVec *pos, int wait)
 {
-    float *d = (float *)(p + 0x520);
-
-    if (d != s) {
-        d[0] = s[0];
-        d[1] = s[1];
-        d[2] = s[2];
-    }
-    *(int *)(p + 0x530) = n;
+    cVec_copy3(&self->unk520, pos);
+    self->unk530 = wait;
 }
 
-/* sn-2.95.3-136 */
+/* Starts the 15-frame unk539 wait and returns 1; returns 0 while it runs. */
 __attribute__((section(".text.func_00292F18")))
-int func_00292F18(char *p)
+int func_00292F18(cEmManage *self)
 {
-    if (*(signed char *)(p + 0x539) != 0) {
+    if (self->unk539 != 0) {
         return 0;
     }
-    *(unsigned char *)(p + 0x539) = 0xF;
+    self->unk539 = 0xF;
     return 1;
 }
 
-/* sn-2.95.3-136 */
+/* Counts unk53E down to 0. */
 __attribute__((section(".text.func_002949C8")))
-void func_002949C8(char *p)
+void func_002949C8(cEmManage *self)
 {
-    if (*(signed char *)(p + 0x53E) != 0) {
-        *(unsigned char *)(p + 0x53E) = *(unsigned char *)(p + 0x53E) - 1;
+    if (self->unk53E != 0) {
+        self->unk53E = self->unk53E - 1;
     }
 }
 

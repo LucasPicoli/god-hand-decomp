@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned int Forward30F348_31CFE0(void);
-extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
+extern void cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern unsigned short D_00747A50;
 extern unsigned char D_005864F0[];
 
@@ -66,5 +66,5 @@ void func_00273D30(void *a0)
     default:
         break;
     }
-    cEmManage__CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), *(int *)(s0 + 0x560), 1);
+    cEmManage_CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), *(int *)(s0 + 0x560), 1);
 }

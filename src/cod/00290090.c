@@ -1,29 +1,25 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern void func_00290000(void *a0);
-
-/* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
+#include "godhand/cEmManage.h"
 
-
-
-__attribute__((section(".text.func_00290090")))
-void *func_00290090(void *a0) {
-    char *p = (char *)a0;
-    char *q;
+/* Constructor: builds the 64 slots, empties the list and sets unk520 to
+ * (0, 0, 0, 1) from $vf0. */
+__attribute__((section(".text.cEmManage_construct")))
+cEmManage *cEmManage_construct(cEmManage *self) {
+    cEmSlot *slot;
     int i;
 
-    q = p;
+    slot = self->slot;
     /* `!= -1`, not `>= 0`: retail materialises -1 and closes with `bne`. */
-    for (i = 0x3F; i != -1; i--) {
-        func_00290000(q);
-        q += 0x14;
+    for (i = EM_SLOT_NUM - 1; i != -1; i--) {
+        cEmManage_constructSlot(slot);
+        slot++;
     }
 
-    *(int *)(p + 0x500) = 0;
-    *(int *)(p + 0x504) = 0;
-    VU0_SQC2_VF0(p, 0x520);
-    *(int *)(p + 0x508) = 0;
-    *(int *)(p + 0x50C) = 0;
-    return p;
+    self->list.top = 0;
+    self->list.last = 0;
+    VU0_SQC2_VF0(self, EMMANAGE_OFFSET(unk520));
+    self->emNum = 0;
+    self->kindNum = 0;
+    return self;
 }

@@ -4,8 +4,8 @@
 /* func_0010EE80 — 0x0010EE80, 880 B — sn-2.95.3-136.
  * +0x2F6 phase machine; template src/cod/00111750.c. */
 
-extern void MaxField514_292030(void *a0, int a1);
-extern void MaxByte538_292EF0(void *a0, int a1);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 
 extern void func_00129578(void *a0);
 
@@ -19,7 +19,7 @@ extern void func_00129630(void *a0);
 extern void ClearField15F4Bit1_124F60(void *a0, int a1, int a2);
 extern void AddScaledVecToField_100_14F9F0(void *a0, float a1);
 extern void AddScaledXfmVecToField_F0_14F928(void *a0, float a1);
-extern void SetField548AndGlobals_292F38(void *a0, float a1);
+extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_0010A438(void *a0);
 
 extern void cSnd_SeStop(void *a0, int a1);
@@ -33,8 +33,8 @@ void func_0010EE80(void *a0)
     char *s1 = (char *)a0;
 
     *(float *)(s1 + 0x54C) = 30.0f;
-    MaxField514_292030(D_005864F0, 2);
-    MaxByte538_292EF0(D_005864F0, 2);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetBigHitEffWait(D_005864F0, 2);
     *(int *)(s1 + 0x15F4) |= 0x200;
     if (*(unsigned char *)(s1 + 0x2F6) != 0 &&
         *(unsigned char *)(s1 + 0x649) == 0 &&
@@ -99,7 +99,7 @@ void func_0010EE80(void *a0)
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-        SetField548AndGlobals_292F38(D_005864F0, 0.1f);
+        cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     func_0010A438(s1);
     if (func_00123938(s1, 1) != 0) {

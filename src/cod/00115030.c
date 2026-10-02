@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void MaxField514_292030(void *a0, int a1);
-extern void Obj293_SetByte_53C_2(char *a0);
+extern void cEmManage_SetSlotWait(void *a0, int a1);
+extern void cEmManage_SetPlCatched(char *a0);
 extern void Forward_001346C8_00134608_1351D8(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -73,8 +73,8 @@ void func_00115030(void *a0) {
     int p2;
 
     *(float *)(s1 + 0x54C) = 5.0f;
-    MaxField514_292030(D_005864F0, 2);
-    Obj293_SetByte_53C_2(D_005864F0);
+    cEmManage_SetSlotWait(D_005864F0, 2);
+    cEmManage_SetPlCatched(D_005864F0);
     Forward_001346C8_00134608_1351D8(D_00462FC0, s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
