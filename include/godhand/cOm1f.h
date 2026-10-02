@@ -11,6 +11,16 @@
 
 #include "godhand/cOmBase.h"
 
+/* Bits of the mesh flag word at 0x154 of a child body that changeSetType
+ * sets or clears together with the mesh layers. */
+#define COM1F_CHILD_FLAG_A   0x08
+#define COM1F_CHILD_FLAG_B   0x10
+
+typedef struct cOm1fChild {
+    char unk000[0x154];
+    int meshFlags;                      /* 0x154 */
+} cOm1fChild;
+
 typedef struct cOm1f {
     cOmBase base;                       /* 0x000 */
     char unk5E0[0x20];
