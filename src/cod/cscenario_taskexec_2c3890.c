@@ -1,16 +1,15 @@
-/* cScenario_taskExec_2C3890 — run the scenario task manager at a0+0x1C, then
- * post-process its result via func_002C3968(scenario, result), returning the
- * result.  The do-while(0) block boundary pins the s0/s1 allocation to retail
- * (found via decomp-permuter).  sn-2.95.3-136. */
+/* sn-2.95.3-136. The do-while(0) block boundary pins the s0/s1 allocation
+ * to retail (found via decomp-permuter). */
+#include "godhand/cScenario.h"
 
-extern void *cTaskManager_execute(void *);
-extern void func_002C3968(void *, void *);
+extern int cTaskManager_execute(cTaskManager *task, void *entry, int slot);
 
 __attribute__((section(".text.cScenario_taskExec_2C3890")))
-void *cScenario_taskExec_2C3890(void *a0) {
-    void *v0 = cTaskManager_execute((char *)a0 + 0x1C);
+/* Start entry as a script task in `slot`; returns its index or -1. */
+int cScenario_taskExec_2C3890(cScenario *self, void *entry, int slot) {
+    int no = cTaskManager_execute(&self->task, entry, slot);
     do {
-        func_002C3968(a0, v0);
-        return v0;
+        cScenario_clearTaskData(self, no);
+        return no;
     } while (0);
 }

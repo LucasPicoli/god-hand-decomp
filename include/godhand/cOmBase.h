@@ -105,7 +105,7 @@ typedef struct cOmBase {
     char unk308[0x188];
     cVec posA;                              /* 0x490 position copy used for model sync */
     char unk4A0[0x98];
-    long unk538;                            /* 0x538 */
+    long name;                              /* 0x538 object name, up to 8 chars packed low byte first */
     long modelHandle;                       /* 0x540 */
     short hpMax;                            /* 0x548 */
     short hp;                               /* 0x54A */

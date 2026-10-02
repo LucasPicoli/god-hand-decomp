@@ -1,8 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern char D_0044A408[];
 extern int Tramp_func_0030A548_00147528();
-extern int cTaskManager_execute_2D54F0();
+extern int cTaskManager_execute_2D54F0(cTaskManager *task, void *entry, void *arg, int slot);
 extern char D_0044CEE8[];
 extern char D_0044E090[];
 
@@ -83,12 +84,13 @@ void func_002BE858(void *a0, int a1) {
 
 
 
-__attribute__((section(".text.func_002C38D8")))
-void *func_002C38D8(void *a0) {
-    void *v0 = cTaskManager_execute_2D54F0((char *)a0 + 0x1C);
+__attribute__((section(".text.cScenario_taskExec_2C38D8")))
+/* Start entry(arg) as a script task in `slot`; returns its index or -1. */
+int cScenario_taskExec_2C38D8(cScenario *self, void *entry, void *arg, int slot) {
+    int no = cTaskManager_execute_2D54F0(&self->task, entry, arg, slot);
     do {
-        func_002C3968(a0, v0);
-        return v0;
+        cScenario_clearTaskData(self, no);
+        return no;
     } while (0);
 }
 

@@ -20,7 +20,7 @@ extern void cEvent_releaseWork(cEvent *);
 extern void UnlinkAndCoalesceNode_2A9680(int, void *);
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern char *GetJacket(void);
-extern void SetObjectTransform_2C4440(int, char *, float, float, float, float);
+extern void cScenario_moveObjPos(int, char *, float, float, float, float);
 extern void func_0();
 extern void ClearDisplayText_2974F0(cEvent *);
 extern void func_00297660(cEvent *);
@@ -84,7 +84,7 @@ void cEvent_endPlay(cEvent *self) {
         *(unsigned int *)(partner + 0x250) &= 0xFFFF7FFF;
         *(unsigned int *)(*(char **)(player + 0x6A8) + 0x250) &= 0xFFFFFFFD;
     }
-    SetObjectTransform_2C4440(D_003C2F84, player, self->pos[0], self->pos[1], self->pos[2], self->angle);
+    cScenario_moveObjPos(D_003C2F84, player, self->pos[0], self->pos[1], self->pos[2], self->angle);
     /* D_00747A84[-3] is D_00747A78: the negative index is what puts retail's
      * single base register on D_00747A84. */
     D_00747A84[0] &= 0xDFFFFFFF;

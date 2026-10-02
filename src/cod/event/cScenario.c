@@ -1,10 +1,11 @@
 /* TU: cScenario [event] - recovered C++ class. */
-extern void *func_002D5580(void *);
-extern void func_002C3968(void *, void *);
-extern void SetFieldsCESignalSemaSleep_2D5AA0(int a0, int a1);
+#include "godhand/cScenario.h"
+
+extern int func_002D5580(cTaskManager *task, void *entry, void *arg, int slot);
+extern void SetFieldsCESignalSemaSleep_2D5AA0(cTaskWork *work, int a1);
+extern int SearchCameraData(const char *name);
 
 extern void *cObjBaseArray_SearchOM(char *arr, long mask);
-extern int cScenario_isOmBreak(int a0, void *om);
 
 extern int D_00747A84;
 extern char D_00754C58[];
@@ -15,31 +16,34 @@ extern char D_005E8658[];
 extern int ForwardCheckedRequest_2BED60();
 
 __attribute__((section(".text.cScenario_waitEventStartOk")))
-void cScenario_waitEventStartOk(void *a0) {
-    char *s0 = (char *)a0;
-    char *s1 = s0 + 0x1C;
-    while (cScenario_isEventStartOk(s0) == 0) {
-        SetFieldsCESignalSemaSleep_2D5AA0(*(int *)(s1 + 4), 1);
+/* Sleep the script task until an event may start. */
+void cScenario_waitEventStartOk(cScenario *self) {
+    cTaskManager *task = &self->task;
+    while (cScenario_isEventStartOk(self) == 0) {
+        SetFieldsCESignalSemaSleep_2D5AA0(task->cur, 1);
     }
 }
 
 __attribute__((section(".text.cScenario_setCam")))
-int cScenario_setCam(void *a0, int a1) {
-    return LoadScreenOverlay_2C3F10(a0, SearchCameraData(a1));
+/* Start the camera move stored under `name`. */
+int cScenario_setCam(cScenario *self, const char *name) {
+    return cScenario_startCamMotion(self, SearchCameraData(name));
 }
 #include "include_asm.h"
 #include "godhand/cCoreSave.h"
 
 __attribute__((section(".text.cScenario_taskExec")))
-void *cScenario_taskExec(void *a0) {
-    void *v0 = func_002D5580((char *)a0 + 0x1C);
+/* Start entry(arg) as a script task in `slot`; returns its index or -1. */
+int cScenario_taskExec(cScenario *self, void *entry, void *arg, int slot) {
+    int no = func_002D5580(&self->task, entry, arg, slot);
     do {
-        func_002C3968(a0, v0);
-        return v0;
+        cScenario_clearTaskData(self, no);
+        return no;
     } while (0);
 }
 __attribute__((section(".text.cScenario_isEventStartOk")))
-int cScenario_isEventStartOk(void *a0)
+/* 0 while events are locked out or the player cannot take one. */
+int cScenario_isEventStartOk(cScenario *self)
 {
     if (D_00747A84 & 0x40000000)
         return 0;
@@ -77,42 +81,45 @@ INCLUDE_ASM("nonmatching", cScenario_endKurohukuBattle);
    up.  The table base must be bound at block top: it stays live across the
    loop, and no call intervenes. */
 __attribute__((section(".text.cScenario_isOmBreak_2C5168")))
-int cScenario_isOmBreak_2C5168(int a0, signed char *a1)
+/* isOmBreak for the object with this name. */
+int cScenario_isOmBreak_2C5168(cScenario *self, const char *name)
 {
     char *arr = D_00754C58;
     long acc = 0;
     int i = 0;
-    if (*a1 != 0) {
+    if (*name != 0) {
         do {
-            acc |= (long)*a1 << (i * 8);
+            acc |= (long)*name << (i * 8);
             i++;
-            a1++;
+            name++;
             if (i >= 8) break;
-        } while (*a1 != 0);
+        } while (*name != 0);
     }
-    return cScenario_isOmBreak(a0, cObjBaseArray_SearchOM(arr, acc));
+    return cScenario_isOmBreak(self, cObjBaseArray_SearchOM(arr, acc));
 }
 
 __attribute__((section(".text.cScenario_isOmBreak_2C5220")))
-int cScenario_isOmBreak_2C5220(int a0, unsigned short a1, signed char *a2)
+/* Break-list check of entry `no` under this name. */
+int cScenario_isOmBreak_2C5220(cScenario *self, unsigned short no, const char *name)
 {
     char *arr = D_005E8658;
     long acc = 0;
     int i = 0;
-    if (*a2 != 0) {
+    if (*name != 0) {
         do {
-            acc |= (long)*a2 << (i * 8);
+            acc |= (long)*name << (i * 8);
             i++;
-            a2++;
+            name++;
             if (i >= 8) break;
-        } while (*a2 != 0);
+        } while (*name != 0);
     }
-    return ForwardCheckedRequest_2BED60(arr, a1, acc);
+    return ForwardCheckedRequest_2BED60(arr, no, acc);
 }
 
 __attribute__((section(".text.cScenario_isOmBreak_2C5288")))
-int cScenario_isOmBreak_2C5288(int a0, unsigned short a1)
+/* Break-list check of entry `no` under a packed name. */
+int cScenario_isOmBreak_2C5288(cScenario *self, unsigned short no, long name)
 {
-    return ForwardCheckedRequest_2BED60(D_005E8658, a1);
+    return ForwardCheckedRequest_2BED60(D_005E8658, no, name);
 }
 

@@ -1,23 +1,25 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cScenario.h"
 
 extern char D_00754C58[];
 extern int D_00747A78;
 extern void func_00319520(int);
 extern void *cObjBaseArray_SearchOM(char *arr, long mask);
-extern int cScenario_isOmBreak(int a0, void *om);
 
-__attribute__((section(".text.ForwardStoredCallback_2C4DE0")))
-void ForwardStoredCallback_2C4DE0(void *a0) {
-    void (*fp)(int) = *(void(**)(int))((char*)a0 + 0xF4);
+__attribute__((section(".text.cScenario_runExitFunc")))
+/* Run exitFunc(exitArg) once. */
+void cScenario_runExitFunc(cScenario *self) {
+    void (*fp)(void *) = self->exitFunc;
     if (fp != 0) {
-        fp(*(int*)((char*)a0 + 0xF8));
-        *(int*)((char*)a0 + 0xF4) = 0;
+        fp(self->exitArg);
+        self->exitFunc = 0;
     }
 }
 
-__attribute__((section(".text.Forward2C5110_2C51E8")))
-int Forward2C5110_2C51E8(int a0, long mask) {
-    return cScenario_isOmBreak(a0, cObjBaseArray_SearchOM(D_00754C58, mask));
+__attribute__((section(".text.cScenario_isOmBreak_2C51E8")))
+/* isOmBreak for the object with this packed name. */
+int cScenario_isOmBreak_2C51E8(cScenario *self, long name) {
+    return cScenario_isOmBreak(self, cObjBaseArray_SearchOM(D_00754C58, name));
 }
 
 __attribute__((section(".text.ForwardListEntries_2C5470")))

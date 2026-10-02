@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_00747A78;
 extern int D_00747A84;
@@ -10,22 +11,22 @@ extern void KeyStop(void);
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void func_00126770(void *a0);
 extern void func_002948E8(void *a0, int a1);
-extern void cScenario_setOmSuspend(void *a0, int a1);
 extern void func_002FA470(int a0);
 
 __attribute__((section(".text.cScenario_startSoftEvent")))
-void cScenario_startSoftEvent(void *a0, int a1)
+/* Enter a soft event of the given type: the first call freezes play the
+ * way the type asks, nested calls only count. */
+void cScenario_startSoftEvent(cScenario *self, int type)
 {
-    char *s2 = (char *)a0;
     int t;
     int v;
 
-    t = *(unsigned short *)(s2 + 0xE8) + 1;
-    *(unsigned short *)(s2 + 0xE8) = t;
+    t = (unsigned short)self->softEventDepth + 1;
+    self->softEventDepth = t;
     if ((short)t >= 2) return;
 
-    *(int *)(s2 + 0xE0) = a1;
-    if (a1 == 5) {
+    self->softEventType = type;
+    if (type == 5) {
         HideModelMgr_ResetHiddenModels(D_00747B20);
         HideModelMgr_ClearHiddenModelList(D_00747B20);
     } else {
@@ -38,7 +39,7 @@ void cScenario_startSoftEvent(void *a0, int a1)
         *(int *)(g - 0x4) = *(int *)(g - 0x4) | 0x02000000;
         func_00126770(Obj0000_Get_D_00747A94_2DB6B0());
 
-        switch (*(int *)(s2 + 0xE0)) {
+        switch (self->softEventType) {
         case 0:
         case 1:
         case 3:
@@ -52,7 +53,7 @@ void cScenario_startSoftEvent(void *a0, int a1)
                 HideModelMgr_ResetHiddenModels(D_00747B20);
                 HideModelMgr_ClearHiddenModelList(D_00747B20);
                 func_002948E8(D_005864F0, 1);
-                cScenario_setOmSuspend(s2, 1);
+                cScenario_setOmSuspend(self, 1);
                 func_002FA470(1);
                 p = (char *)Obj0000_Get_D_00747A94_2DB6B0();
                 vt = *(char **)(p + 0x214);
@@ -85,10 +86,10 @@ void cScenario_startSoftEvent(void *a0, int a1)
             break;
         }
     }
-    v = *(int *)(s2 + 0x24);
+    v = self->task.curNo;
     if (v >= 0) {
-        char *e = (char *)(v * 0x58 + *(int *)(s2 + 0x1C));
-        *(unsigned char *)(e + 0x50) = *(unsigned char *)(e + 0x50) | 1;
+        cTaskWork *e = (cTaskWork *)(v * TASKMGR_WORK_SIZE + (int)self->task.works);
+        e->attr = e->attr | SCENARIO_TASK_SOFT_EVENT;
     }
-    *(int *)(s2 + 0x48) = *(int *)(s2 + 0x48) | 1;
+    self->task.flags = self->task.flags | SCENARIO_F_SOFT_EVENT;
 }

@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cObjSimple.h"
+#include "godhand/cScenario.h"
 
 /* Turn the ring physics on or off. */
 __attribute__((section(".text.cObjSimple_SetRingFlag")))
@@ -14,9 +15,10 @@ void cObjSimple_SetBustFlag(cObjSimple *self, int on) {
 }
 
 __attribute__((section(".text.cScenario_SetRoomExitFunc")))
-void cScenario_SetRoomExitFunc(void *a0, int a1, int a2) {
-    *(int*)((char*)a0+0xEC) = a1;
-    *(int*)((char*)a0+0xF0) = a2;
+/* Set the callback run once when the room is left. */
+void cScenario_SetRoomExitFunc(cScenario *self, void (*func)(void *), void *arg) {
+    self->roomExitFunc = func;
+    self->roomExitArg = arg;
 }
 
 __attribute__((section(".text.cEmManage_DarkWorldCk")))

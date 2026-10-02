@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_00747A78;
 extern int D_00747A80;
@@ -6,23 +7,21 @@ extern int D_00747A84;
 extern char D_005864F0[];
 extern void *Obj0000_Get_D_00747A94_2DB6B0(void);
 extern void pl00_reset(void *a0);
-extern void ClearCameraOverlayState_2C3FC0(void *a0);
 extern void func_002948E8(void *a0, int a1);
-extern void cScenario_setOmSuspend(void *a0, int a1);
 extern void func_002FA470(int a0);
 
 __attribute__((section(".text.cScenario__endSoftEvent")))
-void cScenario__endSoftEvent(int a0)
+/* Leave a soft event; the last nested call undoes what startSoftEvent did. */
+void cScenario__endSoftEvent(cScenario *self)
 {
-    char *s2 = (char *)a0;
     int t;
     int c;
     int v;
 
-    c = *(unsigned short *)(s2 + 0xE8);
-    if (*(short *)(s2 + 0xE8) <= 0) return;
+    c = (unsigned short)self->softEventDepth;
+    if (self->softEventDepth <= 0) return;
     t = c - 1;
-    *(unsigned short *)(s2 + 0xE8) = t;
+    self->softEventDepth = t;
     if ((short)t > 0) return;
 
     {
@@ -46,13 +45,15 @@ void cScenario__endSoftEvent(int a0)
         *(int *)(g - 0x4) = *(int *)(g - 0x4) & ~0x00100000;
         *(int *)(g - 0xC) = *(int *)(g - 0xC) & ~0x00800000;
 
-        switch (*(int *)(s2 + 0xE0)) {
+        /* An int view: through the struct type this load is scheduled
+         * above the flag stores just before it. */
+        switch (*(int *)&self->softEventType) {
         case 0:
         case 1:
         case 3:
             D_00747A80 = D_00747A80 & ~0x02000000;
             func_002FA470(0);
-            ClearCameraOverlayState_2C3FC0(s2);
+            cScenario_resetCam(self);
             break;
         case 2:
             D_00747A80 = D_00747A80 & ~0x02000000;
@@ -61,24 +62,24 @@ void cScenario__endSoftEvent(int a0)
         case 4:
             D_00747A84 = D_00747A84 & ~0x00080000;
             pl00_reset(Obj0000_Get_D_00747A94_2DB6B0());
-            ClearCameraOverlayState_2C3FC0(s2);
+            cScenario_resetCam(self);
             break;
         case 5:
-            ClearCameraOverlayState_2C3FC0(s2);
+            cScenario_resetCam(self);
             break;
         }
     }
     func_002948E8(D_005864F0, 0);
-    cScenario_setOmSuspend(s2, 0);
+    cScenario_setOmSuspend(self, 0);
     {
         char *p = (char *)Obj0000_Get_D_00747A94_2DB6B0();
         char *vt = *(char **)(p + 0x214);
         (*(void (**)(char *, int))(vt + 0x64))(p + *(short *)(vt + 0x60), 0);
     }
-    v = *(int *)(s2 + 0x24);
+    v = self->task.curNo;
     if (v >= 0) {
-        char *e = (char *)(v * 0x58 + *(int *)(s2 + 0x1C));
-        *(unsigned char *)(e + 0x50) = *(unsigned char *)(e + 0x50) & 0xFE;
+        cTaskWork *e = (cTaskWork *)(v * TASKMGR_WORK_SIZE + (int)self->task.works);
+        e->attr = e->attr & ~SCENARIO_TASK_SOFT_EVENT;
     }
-    *(int *)(s2 + 0x48) = *(int *)(s2 + 0x48) & ~1;
+    self->task.flags = self->task.flags & ~SCENARIO_F_SOFT_EVENT;
 }

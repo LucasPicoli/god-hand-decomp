@@ -108459,7 +108459,7 @@
       ],
       "functions": [
         {
-          "name": "func_002C3968",
+          "name": "cScenario_clearTaskData",
           "size": "52",
           "metadata": {},
           "address": "0"
@@ -108851,13 +108851,13 @@
       ],
       "functions": [
         {
-          "name": "func_002C4150",
+          "name": "cScenario_execUpCutData",
           "size": "120",
           "metadata": {},
           "address": "0"
         },
         {
-          "name": "func_002C41C8",
+          "name": "cScenario_upCutTask",
           "size": "276",
           "metadata": {},
           "address": "120"
@@ -108898,7 +108898,7 @@
       ],
       "functions": [
         {
-          "name": "func_002C4350",
+          "name": "cScenario_isMessOn",
           "size": "60",
           "metadata": {},
           "address": "0"
@@ -109565,7 +109565,7 @@
       ],
       "functions": [
         {
-          "name": "func_002C4E18",
+          "name": "cScenario_checkEnd",
           "size": "212",
           "metadata": {},
           "address": "0"
@@ -285219,6 +285219,7 @@
         {
           "name": ".data",
           "size": "320640",
+          "fuzzy_match_percent": 0.0012477463,
           "metadata": {}
         },
         {
@@ -310222,25 +310223,25 @@
           "address": "0"
         },
         {
+          "name": "cScenario_endTask",
+          "size": "312",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "344"
+        },
+        {
           "name": "func_001612C8",
           "size": "440",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "344"
+          "address": "656"
         },
         {
           "name": "func_00288930",
           "size": "296",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "784"
-        },
-        {
-          "name": "func_002C4EF0",
-          "size": "312",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "1080"
+          "address": "1096"
         },
         {
           "name": "func_00300C00",
@@ -358054,74 +358055,74 @@
           "metadata": {}
         },
         {
-          "name": ".text.cSndBgmNode_Dtor",
+          "name": ".text.cScenario_taskExec_2C38D8",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
+          "name": "cScenario_taskExec_2C38D8",
+          "size": "68",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
           "name": "cSndBgmNode_Dtor",
           "size": "40",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "0"
+          "address": "72"
         },
         {
           "name": "func_0028B148",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "40"
+          "address": "112"
         },
         {
           "name": "func_0028CE70",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "112"
+          "address": "184"
         },
         {
           "name": "func_002AF6B8",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "168"
+          "address": "240"
         },
         {
           "name": "func_002AF6E0",
           "size": "36",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "208"
+          "address": "280"
         },
         {
           "name": "func_002B6350",
           "size": "28",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "248"
+          "address": "320"
         },
         {
           "name": "func_002BDBD0",
           "size": "48",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "280"
+          "address": "352"
         },
         {
           "name": "func_002BE858",
           "size": "52",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "328"
-        },
-        {
-          "name": "func_002C38D8",
-          "size": "68",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "384"
+          "address": "400"
         },
         {
           "name": "func_002E16B0",
@@ -364473,77 +364474,77 @@
           "address": "16"
         },
         {
-          "name": "cSndBgmNode_IsActive",
+          "name": "cScenario_SetExitFunc",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "32"
         },
         {
-          "name": "func_002AF6A8",
+          "name": "cSndBgmNode_IsActive",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "48"
         },
         {
-          "name": "func_002AF710",
+          "name": "func_002AF6A8",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "64"
         },
         {
-          "name": "func_002B5AE8",
+          "name": "func_002AF710",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "80"
         },
         {
-          "name": "func_002B6510",
+          "name": "func_002B5AE8",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "96"
         },
         {
-          "name": "func_002BAC88",
+          "name": "func_002B6510",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "112"
         },
         {
-          "name": "func_002BE980",
+          "name": "func_002BAC88",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "128"
         },
         {
-          "name": "func_002BEDC8",
+          "name": "func_002BE980",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "144"
         },
         {
-          "name": "func_002BEDD8",
+          "name": "func_002BEDC8",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "160"
         },
         {
-          "name": "func_002C0E68",
+          "name": "func_002BEDD8",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "176"
         },
         {
-          "name": "func_002C4DD0",
+          "name": "func_002C0E68",
           "size": "12",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
@@ -370654,7 +370655,7 @@
           "address": "1208"
         },
         {
-          "name": "func_002C3820",
+          "name": "cScenario_runRoomExitFunc",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
@@ -371356,60 +371357,60 @@
           "metadata": {}
         },
         {
-          "name": ".text.ClearCameraOverlayState_2C3FC0",
+          "name": ".text.cScenario_endMess",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "ClearCameraOverlayState_2C3FC0",
-          "size": "128",
+          "name": "cScenario_endMess",
+          "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
-          "name": "ClearSoundSlot_2C4390",
-          "size": "72",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "128"
-        },
-        {
-          "name": "ForwardCallbackAndRelease_2C3858",
-          "size": "52",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "200"
-        },
-        {
-          "name": "ForwardWithResolvedHandle_2C40C8",
+          "name": "cScenario_execUpCut",
           "size": "136",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "256"
+          "address": "72"
         },
         {
-          "name": "LoadScreenOverlay_2C3F10",
-          "size": "176",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "392"
-        },
-        {
-          "name": "SetObjectTransform_2C4440",
+          "name": "cScenario_moveObjPos",
           "size": "204",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "568"
+          "address": "208"
         },
         {
-          "name": "SetSoundSlot_2C42E0",
+          "name": "cScenario_release",
+          "size": "52",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "416"
+        },
+        {
+          "name": "cScenario_resetCam",
+          "size": "128",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "472"
+        },
+        {
+          "name": "cScenario_setMess",
           "size": "108",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "776"
+          "address": "600"
+        },
+        {
+          "name": "cScenario_startCamMotion",
+          "size": "176",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "712"
         },
         {
           "name": "cScenario_waitCam",
@@ -371574,28 +371575,28 @@
           "metadata": {}
         },
         {
-          "name": ".text.Forward2C5110_2C51E8",
+          "name": ".text.ForwardListEntries_2C5470",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "Forward2C5110_2C51E8",
-          "size": "56",
+          "name": "ForwardListEntries_2C5470",
+          "size": "120",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
-          "name": "ForwardListEntries_2C5470",
-          "size": "120",
+          "name": "cScenario_isOmBreak_2C51E8",
+          "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "56"
+          "address": "120"
         },
         {
-          "name": "ForwardStoredCallback_2C4DE0",
+          "name": "cScenario_runExitFunc",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {},

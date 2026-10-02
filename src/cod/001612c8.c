@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_00741940[];
 extern int D_00741960[];
@@ -8,7 +9,6 @@ extern void func_00302918(void *p);
 extern int IsEntryActive_1C2490(int a0);
 extern void SetField_630_1C2370(int a0);
 extern char D_00747470[];
-extern char *D_003C2F84;
 extern char *D_003C23A4;
 extern unsigned int D_00747A8C[];
 extern int D_00747A84;
@@ -17,7 +17,6 @@ extern void SetFieldsCESignalSemaSleep_2D5AA0(void *p, int a);
 extern void cMessage_deleteAll(void *p);
 extern void func_002CA6B0(void *p);
 extern void func_00306140(void);
-extern void cScenario_taskExec(void *a0, int a1, int a2, int a3);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, int f, int g);
 extern void cTaskWork_exit(void *a0);
 extern void func_001D0C98(void *a0, int a1);
@@ -113,27 +112,32 @@ void func_00288930(char *s0)
     fp((int)(s0 + arg));
 }
 
-__attribute__((section(".text.func_002C4EF0")))
-void func_002C4EF0(void)
+__attribute__((section(".text.cScenario_endTask")))
+/* Task entry for the end of a script: wait for the fade, set the end flag,
+ * clear messages and sounds, start the next script, then exit. */
+void cScenario_endTask(void)
 {
     int b;
     char *f;
 
     while (f = D_00747470, *(unsigned char *)(f + 0x1C) != 0)
-        SetFieldsCESignalSemaSleep_2D5AA0(*(void **)(D_003C2F84 + 0x20), 1);
-    b = *(signed char *)(D_003C2F84 + 0x109);
+        SetFieldsCESignalSemaSleep_2D5AA0(D_003C2F84->task.cur, 1);
+    b = D_003C2F84->endFlagNo;
     if (b >= 0)
         if (b < 0x40)
             D_00747A8C[(unsigned int)b >> 5] |= 0x80000000u >> (b & 0x1F);
     cMessage_deleteAll(D_003C23A4);
     func_002CA6B0(&D_005FEE00);
     func_00306140();
-    if (*(int *)(D_003C2F84 + 0xFC) != 0)
-        cScenario_taskExec(D_003C2F84, *(int *)(D_003C2F84 + 0xFC), *(int *)(D_003C2F84 + 0x100), *(int *)(D_003C2F84 + 0x10C));
-    if (*(unsigned char *)(D_003C2F84 + 0x110) != 0)
+    if (D_003C2F84->nextTask != 0)
+        cScenario_taskExec(D_003C2F84, D_003C2F84->nextTask, D_003C2F84->nextTaskArg,
+                           D_003C2F84->scriptTaskNo);
+    if (D_003C2F84->fadeOnEnd != 0)
         classFADE_start(D_00747470, 0, 8, 0, 0xFF000000U, 0, 0xF);
     D_00747A84 &= ~0x10;
-    cTaskWork_exit(*(void **)(D_003C2F84 + 0x20));
+    /* A plain pointer load: through the struct it is scheduled above the
+     * D_00747A84 store. */
+    cTaskWork_exit(*(void **)&D_003C2F84->task.cur);
 }
 
 __attribute__((section(".text.BlackJack_UpdateRevealDealerHand")))

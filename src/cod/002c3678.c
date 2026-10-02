@@ -1,32 +1,34 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_007474A0;
 extern int D_00747A2C;
-extern int D_003C2F84;
 extern int D_005FEA60;
 extern char *Obj0000_Get_D_00747A94_2DB6B0(void);
-extern void ClearSoundSlot_2C4390(int a0);
 extern void func_002C14F8(int *a0);
-extern void func_002D5358(char *a0);
-extern void func_002C4E18(char *a0);
+extern void func_002D5358(cTaskManager *task);
 
 __attribute__((section(".text.cScenario_move")))
-void cScenario_move(char *a0)
+/* Every frame: track the player's death, then run the room script and
+ * the script tasks unless the game is paused. */
+void cScenario_move(cScenario *self)
 {
     char *g = (char *)&D_007474A0;
 
     if (*(unsigned short *)(g + 0x5B0) != 0x20) {
         if (Obj0000_Get_D_00747A94_2DB6B0() != 0) {
-            long t = *(unsigned int *)(a0 + 0x48);
+            long t = (unsigned int)self->task.flags;
             if (((t >> 1) & 1) == 0) {
                 if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) <= 0) {
-                    *(int *)(a0 + 0x48) = *(int *)(a0 + 0x48) | 2;
-                    ClearSoundSlot_2C4390(D_003C2F84);
+                    /* Stored through an int: as a struct store, the
+                     * D_003C2F84 load below is scheduled above it. */
+                    *(int *)&self->task.flags = self->task.flags | SCENARIO_F_PL_DEAD;
+                    cScenario_endMess(D_003C2F84);
                     *(int *)(g + 0x5E0) = *(int *)(g + 0x5E0) | 0x100000;
                 }
             } else {
                 if (*(short *)(Obj0000_Get_D_00747A94_2DB6B0() + 0x54A) > 0) {
-                    *(int *)(a0 + 0x48) = *(int *)(a0 + 0x48) & -3;
+                    self->task.flags = self->task.flags & ~SCENARIO_F_PL_DEAD;
                     *(int *)(g + 0x5E0) = *(int *)(g + 0x5E0) & 0xFFEFFFFF;
                 }
             }
@@ -40,19 +42,19 @@ void cScenario_move(char *a0)
             (w8 = *(int *)(o - 0x8), ((w8 >> 3) & 1) == 0) &&
             (*(int *)(o + 0x4C) & 0x10000) == 0 &&
             (*(int *)(o + 0x4) & 1) == 0) {
-            char *p = a0 + 0x1C;
-            long t2 = *(unsigned int *)(a0 + 0x48);
+            cTaskManager *p = &self->task;
+            long t2 = (unsigned int)self->task.flags;
             if (((t2 >> 1) & 1) == 0) {
-                int (*fp)();
+                void (*fp)(void);
                 func_002C14F8(&D_005FEA60);
-                fp = *(int (**)())(*(int *)(a0 + 0xD4) + 0xC);
+                fp = self->script->move;
                 if (fp)
                     (*fp)();
                 func_002D5358(p);
-                func_002C4E18(a0);
+                cScenario_checkEnd(self);
             } else {
-                int (*fp)();
-                fp = *(int (**)())(*(int *)(a0 + 0xD4) + 0xC);
+                void (*fp)(void);
+                fp = self->script->move;
                 if (fp)
                     (*fp)();
                 func_002D5358(p);

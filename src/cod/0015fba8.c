@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_003C2FB0;
-extern int D_003C2F84;
 extern int D_003C23A4;
 extern int D_003BD6E8;
 extern int D_003BD930;
@@ -51,17 +51,18 @@ void Trans(void) {
 }
 
 __attribute__((section(".text.cScenario_setOmBreak")))
-void cScenario_setOmBreak(int a0, signed char *a1) {
+/* Put the object with this name on the break list. */
+void cScenario_setOmBreak(cScenario *self, const char *name) {
     unsigned char *p = D_005E8658;
     long acc = 0;
     int i = 0;
-    if (*a1 != 0) {
+    if (*name != 0) {
         do {
-            long c = *a1;
+            long c = *name;
             acc |= c << (i * 8);
             i++;
-            a1++;
-        } while (i < 8 && *a1 != 0);
+            name++;
+        } while (i < 8 && *name != 0);
     }
     func_002BECB0(p, acc);
 }

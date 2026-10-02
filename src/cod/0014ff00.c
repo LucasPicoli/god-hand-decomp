@@ -2,6 +2,7 @@
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cScenario.h"
 
 extern unsigned char D_005864F0[];
 extern void cEmManage__CreateItem(void *a0, int a1, int a2, int a3);
@@ -313,19 +314,21 @@ void func_002A9210(Elem *a0, Elem *a1, int a2, int a3) {
 }
 
 __attribute__((section(".text.cScenario_isOmBreak")))
-int cScenario_isOmBreak(int a0, int a1)
+/* 1 when the object counts as broken: missing, named in the break list,
+ * or flagged gone. */
+int cScenario_isOmBreak(cScenario *self, cOmBase *om)
 {
     long v;
     int r;
-    if (a1 == 0) {
+    if (om == 0) {
         return 1;
     }
-    if (func_002BED08(&D_005E8658, *(long *)((char *)a1 + 0x538)) == 1) {
+    if (func_002BED08(&D_005E8658, om->name) == 1) {
         return 1;
     }
     r = 0;
-    v = *(unsigned int *)((char *)a1 + 0x5B0);
-    if ((v >> 1) & 1) {
+    v = (unsigned int)om->flags0;
+    if ((v >> 1) & 1) {             /* COMBASE_F0_GONE */
         r = 1;
     }
     return r;

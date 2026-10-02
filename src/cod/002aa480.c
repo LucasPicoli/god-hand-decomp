@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cIDBase.h"
+#include "godhand/cScenario.h"
 
 extern char D_005E7910[];
 extern char *D_00754C58;
@@ -53,7 +54,8 @@ void func_002B2080(void *dst) {
 }
 
 __attribute__((section(".text.cScenario_setOmSuspend")))
-void cScenario_setOmSuspend(void *self, int susp) {
+/* Hold (1) or release (0) every placed object of id 0x300..0x4FF. */
+void cScenario_setOmSuspend(cScenario *self, int suspend) {
     char **cur;
     char *o;
     long ok;
@@ -73,7 +75,7 @@ void cScenario_setOmSuspend(void *self, int susp) {
             ok = tmp;
         }
         if (ok & 0xFF) {
-            if (susp == 1) {
+            if (suspend == 1) {
                 t = *(unsigned int *)(o + 0x5B8);
                 if (((t >> 6) & 1) == 0) {
                     *(int *)(o + 0x250) = *(int *)(o + 0x250) | 0x8000;

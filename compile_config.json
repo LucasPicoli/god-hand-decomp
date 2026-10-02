@@ -26551,14 +26551,14 @@
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "func_002C3820",
+      "name": "cScenario_runRoomExitFunc",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3820",
       "size": 56,
       "tu": "src/cod/002c2138.c"
     },
     {
-      "name": "ForwardCallbackAndRelease_2C3858",
+      "name": "cScenario_release",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3858",
       "size": 52,
@@ -26579,14 +26579,14 @@
       "tu": "src/cod/event/cScenario.c"
     },
     {
-      "name": "LoadScreenOverlay_2C3F10",
+      "name": "cScenario_startCamMotion",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3F10",
       "size": 176,
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "ClearCameraOverlayState_2C3FC0",
+      "name": "cScenario_resetCam",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C3FC0",
       "size": 128,
@@ -26600,21 +26600,21 @@
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "ForwardWithResolvedHandle_2C40C8",
+      "name": "cScenario_execUpCut",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C40C8",
       "size": 136,
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "SetSoundSlot_2C42E0",
+      "name": "cScenario_setMess",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C42E0",
       "size": 108,
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "ClearSoundSlot_2C4390",
+      "name": "cScenario_endMess",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4390",
       "size": 72,
@@ -26628,21 +26628,21 @@
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "SetObjectTransform_2C4440",
+      "name": "cScenario_moveObjPos",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4440",
       "size": 204,
       "tu": "src/cod/002c3858.c"
     },
     {
-      "name": "ForwardStoredCallback_2C4DE0",
+      "name": "cScenario_runExitFunc",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4DE0",
       "size": 56,
       "tu": "src/cod/002c4de0.c"
     },
     {
-      "name": "Forward2C5110_2C51E8",
+      "name": "cScenario_isOmBreak_2C51E8",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C51E8",
       "size": 56,
@@ -35452,7 +35452,7 @@
       "tu": "src/cod/002af638.c"
     },
     {
-      "name": "func_002C4DD0",
+      "name": "cScenario_SetExitFunc",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4DD0",
       "size": 12,
@@ -53351,7 +53351,7 @@
       "tu": "src/cod/0028b148.c"
     },
     {
-      "name": "func_002C38D8",
+      "name": "cScenario_taskExec_2C38D8",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C38D8",
       "size": 68,
@@ -64544,7 +64544,7 @@
       "tu": "src/cod/001612c8.c"
     },
     {
-      "name": "func_002C4EF0",
+      "name": "cScenario_endTask",
       "unit": "asm/cod/000000",
       "vaddr": "0x002C4EF0",
       "size": 312,

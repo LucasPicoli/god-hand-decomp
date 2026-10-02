@@ -16,6 +16,9 @@ typedef struct cTaskWork {
     int tid;                    /* 0x04 kernel thread id, -1 when none */
     int unk08;
     unsigned short running;     /* 0x0C nonzero while the task is alive */
-} cTaskWork;
+    char unk0E[0x42];
+    unsigned char attr;         /* 0x50 copied into each task this one starts */
+    char unk51[7];
+} cTaskWork;                    /* 0x58, TASKMGR_WORK_SIZE */
 
 #endif

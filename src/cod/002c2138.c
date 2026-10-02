@@ -1,11 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cSceAtManager.h"
+#include "godhand/cScenario.h"
 #define SCEAT_TYPE_HIT     0xB          /* units with the enable flag that FindNodeByHit looks at */
 
-extern char *D_003C2F84;
 extern char *D_003C23A4;
-extern void func_002C4150(char *a0, int a1, int a2, int a3, int t0, int t1);
-extern void cTaskWork_exit(int a0);
+extern void cTaskWork_exit(cTaskWork *work);
 extern void func_002D56A8(void *a0);
 extern char D_007474A0[];
 extern char D_0061A990[];
@@ -18,8 +17,8 @@ int SetNodeCallback_2C2138(char *a0, int a1) {
     if (*(int*)(a0+0x3C) == 0) {
         return 0;
     }
-    t = func_002C38D8(D_003C2F84, *(int*)(a0+0x3C), *(int*)(a0+0x40), *(char*)(a0+0x44));
-    *(int*)(D_003C2F84 + (t << 3) + 0x58) = a1;
+    t = cScenario_taskExec_2C38D8(D_003C2F84, *(void **)(a0+0x3C), *(void **)(a0+0x40), *(char*)(a0+0x44));
+    D_003C2F84->taskData[t].owner = a1;
     return 1;
 }
 
@@ -30,8 +29,8 @@ void ForwardEntityAndExit_2C2368(char *a0) {
     if ((unsigned int)v1 < 0x1000) {
         v1 = func_002AEB50(D_003C23A4, *(unsigned short*)(a0 + 0x5C), v1);
     }
-    func_002C4150(D_003C2F84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
-    cTaskWork_exit(*(int*)(D_003C2F84 + 0x20));
+    cScenario_execUpCutData(D_003C2F84, v1, *(int*)(s1 + 0xC), 0, 0, 1);
+    cTaskWork_exit(D_003C2F84->task.cur);
 }
 
 extern cSceAtUnit *cSceAtManager_getUnitList(cSceAtManager *self);
@@ -161,11 +160,12 @@ void ResetActorState_2C3440(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_002C3820")))
-void func_002C3820(void *a0) {
-    void (*f)(int) = *(void (**)(int))((char*)a0 + 0xEC);
+__attribute__((section(".text.cScenario_runRoomExitFunc")))
+/* Run roomExitFunc(roomExitArg) once. */
+void cScenario_runRoomExitFunc(cScenario *self) {
+    void (*f)(void *) = self->roomExitFunc;
     if (f != 0) {
-        f(*(int*)((char*)a0 + 0xF0));
-        *(int*)((char*)a0 + 0xEC) = 0;
+        f(self->roomExitArg);
+        self->roomExitFunc = 0;
     }
 }

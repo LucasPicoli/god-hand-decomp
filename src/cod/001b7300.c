@@ -22,7 +22,7 @@ void SetField5B0Bit2ClearBit8_1B7908(cOmBase *self) {
             self->flags2 = self->flags2 & ~COMBASE_FLAG_HIDDEN;
         }
     }
-    func_002BECB0(D_005E8658, self->unk538);
+    func_002BECB0(D_005E8658, self->name);
     func_001331B8(D_005CAE50, self->modelHandle, 0);
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, self);
     func_001B7BB8(self);

@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cScenario.h"
 
 __attribute__((section(".text.cMessDrawFont_setRubyData")))
 void cMessDrawFont_setRubyData(int *a0, int a1, int a2) {
@@ -65,10 +66,11 @@ int func_002C0E68(void *a0) {
     return *(unsigned char*)((char*)a0+0x34) & 1;
 }
 
-__attribute__((section(".text.func_002C4DD0")))
-void func_002C4DD0(void *a0, int a1, int a2) {
-    *(int*)((char*)a0+0xF4) = a1;
-    *(int*)((char*)a0+0xF8) = a2;
+__attribute__((section(".text.cScenario_SetExitFunc")))
+/* Set the callback run once when the scenario is released. */
+void cScenario_SetExitFunc(cScenario *self, void (*func)(void *), void *arg) {
+    self->exitFunc = func;
+    self->exitArg = arg;
 }
 
 /* True while the node is in use. */

@@ -21,8 +21,11 @@ typedef struct cTaskManagerVt {
 
 typedef struct cTaskManager {
     char *works;                /* 0x00 array of TASKMGR_WORK_SIZE records */
-    char unk04[0x2C];
+    struct cTaskWork *cur;      /* 0x04 the record of the running task */
+    int curNo;                  /* 0x08 its index, TASKMGR_NONE when idle */
+    char unk0C[0x20];
+    int flags;                  /* 0x2C set at init; the owner keeps its own bits here */
     cTaskManagerVt *vt;         /* 0x30 */
-} cTaskManager;
+} cTaskManager;                 /* 0x34 */
 
 #endif

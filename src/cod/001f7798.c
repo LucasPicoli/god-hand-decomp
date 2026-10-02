@@ -1,16 +1,18 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/cScenario.h"
 
 extern int D_00463964;
 
 __attribute__((section(".text.cScenario_isCamEnd")))
-int cScenario_isCamEnd(unsigned char *p) {
-    if (p[0x111] == 0) {
+/* 1 once the setCam camera move has finished (the camera sets bit 1). */
+int cScenario_isCamEnd(cScenario *self) {
+    if (self->camOn == 0) {
         return 1;
     }
     if ((D_00463964 & 2) == 0) {
         return 0;
     }
-    p[0x111] = 0;
+    self->camOn = 0;
     return 1;
 }
 
