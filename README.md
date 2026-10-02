@@ -138,6 +138,10 @@ venv, the Python tools, the assembler patches, and the git hooks.
     nix develop --extra-experimental-features 'nix-command flakes' --command bash
   ```
 
+- **Windows:** use WSL2, not WSL1 (WSL1 cannot run the 32-bit compiler). Clone
+  inside the WSL filesystem (e.g. `~/`), not under `/mnt/c`, then follow the
+  Linux flow.
+
 ## Measuring progress
 
 Progress is measured two complementary ways:
