@@ -48,9 +48,7 @@ from pathlib import Path
 
 # Resolve repo root from this file's location: patches/ee-as/<this>.py
 ROOT = Path(__file__).resolve().parent.parent.parent
-# argv[1] overrides the path; flake.nix patches its store copy this way.
-BINARY_PATH = (Path(sys.argv[1]) if len(sys.argv) > 1 else
-               ROOT / "compiler" / "linux" / "ee" / "gcc" / "bin" / "ee-as")
+BINARY_PATH = ROOT / "compiler" / "linux" / "ee" / "gcc" / "bin" / "ee-as"
 
 # File offset of the `mov [ebp-0x18],5` immediate (VMA 0x8068ACD): the R5900
 # short-loop minimum pre-branch length.

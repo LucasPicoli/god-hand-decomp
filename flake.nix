@@ -67,9 +67,14 @@
             }} $out/bin/ee-dvp-as
             # The store copy is read-only, so setup_toolchain.sh can't patch
             # ee-as in place. Apply the repo's patches here, before fixup
-            # (patchelf) moves the byte offsets they check.
-            for p in ${./patches/ee-as}/*.py; do
-              ${pkgs.python3}/bin/python3 "$p" "$out/bin/ee-as"
+            # (patchelf) moves the byte offsets they check. Each script finds
+            # ee-as from its own repo root, so give it a root whose
+            # compiler/linux/ee/gcc is $out.
+            mkdir -p "$TMPDIR/root/patches" "$TMPDIR/root/compiler/linux/ee"
+            cp -r ${./patches/ee-as} "$TMPDIR/root/patches/ee-as"
+            ln -s "$out" "$TMPDIR/root/compiler/linux/ee/gcc"
+            for p in "$TMPDIR"/root/patches/ee-as/*.py; do
+              ${pkgs.python3}/bin/python3 "$p"
             done
             runHook postInstall
           '';
