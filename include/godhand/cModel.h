@@ -254,7 +254,8 @@ typedef struct cParts {
     int drawKind;                       /* 0x2C0 */ \
     int drawPrio;                       /* 0x2C4 */ \
     void *arena;                        /* 0x2C8 where the packet block is allocated from, or 0 */ \
-    char unk2CC[0x4]; \
+    unsigned char lightOwner;           /* 0x2CC owner index lights are matched against */ \
+    unsigned char lightSlot[3];         /* 0x2CD the three light records chosen for this model, 0xFF = none */ \
     unsigned int actorGroup;            /* 0x2D0 bit for the id range, set by cObj_setId */ \
     unsigned char texSlot[0x10];        /* 0x2D4 */
 

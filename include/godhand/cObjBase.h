@@ -88,13 +88,14 @@ typedef struct cEffectParam {
     void *shadowData;                   /* 0x44C what KageInit was given */ \
     char *kageWork;                     /* 0x450 two shadow work areas, 0x750 bytes each */ \
     char unk454[0xC]; \
-    cVec unk460;                        /* 0x460 zero at construction */ \
-    char unk470[0x10]; \
+    cVec kageHit;                       /* 0x460 where the shadow ray hit the ground; zero at construction */ \
+    float kageHitY;                     /* 0x470 height of that hit */ \
+    char unk474[0xC]; \
     cVec unk480;                        /* 0x480 zero at construction */ \
     cVec posA;                          /* 0x490 */ \
     int unk4A0;                         /* 0x4A0 -1 at construction */ \
     int unk4A4; \
-    int unk4A8; \
+    int kageFlags;                      /* 0x4A8 negative: no shadow; bit 0x20000000: skip the distance test */ \
     void *unk4AC; \
     int unk4B0; \
     int unk4B4; \
