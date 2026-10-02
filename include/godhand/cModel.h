@@ -35,10 +35,18 @@ typedef struct cBoundingBox {
 #define CMODEL_F_NO_CALC    0x800       /* the owner builds the matrix itself */
 #define CMODEL_F_LATE       0x2000      /* sort into the later draw layers */
 
+/* Bits of cModel.texFlags (0x254). */
+#define CMODEL_TEX_EXCHANGE 0x10000000  /* nodes take the model's texture exchange table */
+
 /* Bits of cModelNode.dispFlags (0x380). */
 #define CMODEL_NODE_HIDE    0x00000001  /* node is not drawn */
+#define CMODEL_NODE_BACK    0x01000000  /* node draws in the back layer */
 #define CMODEL_NODE_ALPHA   0x20000000  /* node blends with the model alpha */
 #define CMODEL_NODE_SPECIAL 0x40000000  /* node uses the special draw path */
+#define CMODEL_NODE_SORTED  0x00004080  /* node picks draw kind 2 on a per-node model */
+
+/* Bits of cMeshInfo.flags (0x34). */
+#define CMODEL_MESH_SPECIAL 0x00200000  /* mesh draws in the special pass */
 
 /* cModel.drawKind: the draw-queue kind a model is sorted into. 0xA picks the
  * kind per node from the node's flags. */
@@ -145,5 +153,11 @@ typedef struct cModel {
 } cModel;                               /* 0x2E4 */
 
 typedef char cModel_size_check[(sizeof(cModel) == 0x2E4) ? 1 : -1];
+
+/* The model's overall alpha: the tint alpha scaled by the three alpha bytes.
+ * 1.0 means fully opaque, which lets a node sort with the opaque ones. */
+static __inline__ float cModel_alpha(cModel *self) {
+    return self->tint.w * (self->alphaA / 255.0f) * (self->alphaB / 255.0f) * (self->alphaC / 255.0f);
+}
 
 #endif
