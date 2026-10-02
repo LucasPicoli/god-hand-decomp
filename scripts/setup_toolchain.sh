@@ -10,6 +10,10 @@
 #                                  SN-Systems ProDG v1.36 ee-gcc 2.95.3 (Win32
 #                                  PE binaries), the opt-in per-TU compiler
 #                                  for sq-prologue functions. Runs under `wibo`.
+#   compiler/linux/ee/gcc/lib/gcc-lib/ee/2.9-ee-990721/
+#                                  ee-gcc 2.9-990721 cc1 + cc1plus (opt-in per TU).
+#   compiler/windows/ee/gcc/lib/gcc-lib/ee/2.95.2-sn-273a/ps2eeas.exe
+#                                  SN assembler for the "as": "sn" units.
 #   tools/wibo                     decompals/wibo 0.6.13 (Linux-x86_64 PE
 #                                  loader for SN's Win32 cc1.exe).
 #   .venv/                         Python venv with splat64, m2c deps, etc.
@@ -52,6 +56,16 @@ SN_EE_GCC_SHA256="3b6ae6897229ad005aaf1b0afaa1f3cb46e74b4c21a42e01130c07c0c59806
 # cc1 is needed; cpp0 + ee-as backends are shared with cygnus-2.96.
 EE_GCC_991111_URL="https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.9-991111-01.tar.xz"
 EE_GCC_991111_SHA256="ed684fd98f89d36b0121caab311052089103e3b36241fcef4338cc9ea41c75b8"
+
+# ee-gcc 2.9-990721 (SCE 1.x).  Opt-in per-TU via "compiler": "ee-2.9-990721";
+# only its cc1 + cc1plus are needed, cpp0 + ee-as are shared with cygnus-2.96.
+EE_GCC_990721_URL="https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.9-990721.tar.xz"
+EE_GCC_990721_SHA256="ad2ea68afff2be25d21a1d51a75e8a0eea8f259018e6580622355cd01b95676b"
+
+# SN ee-gcc 2.95.2-273a (Win32 PE).  Only its ps2eeas.exe is needed: units with
+# "as": "sn" in compile_config.json assemble through it under wibo.
+SN_273A_URL="https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.95.2-273a.tar.gz"
+SN_273A_SHA256="ee9d9a7fccb59aebfa78a5587f6f8059660b91f705acddbc292ad2243c8e562e"
 
 # wibo — decompals/wibo 0.6.13. A small Win32 PE loader for Linux-x86_64,
 # similar in role to wine but pure-static (~2 MB, no install). Pinned to
@@ -142,6 +156,22 @@ else
     ok "ee-gcc 2.9-991111-01 already installed"
 fi
 
+if [[ ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-990721/cc1" \
+      || ! -x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-990721/cc1plus" ]]; then
+    log "Downloading ee-gcc 2.9-990721 (cc1 + cc1plus)"
+    mkdir -p "$CC_DIR/lib/gcc-lib/ee/2.9-ee-990721"
+    curl -fL --progress-bar -o /tmp/ee-gcc2.9-990721.tar.xz "$EE_GCC_990721_URL"
+    verify_sha /tmp/ee-gcc2.9-990721.tar.xz "$EE_GCC_990721_SHA256"
+    tar -xf /tmp/ee-gcc2.9-990721.tar.xz -C "$CC_DIR" \
+        lib/gcc-lib/ee/2.9-ee-990721/cc1 \
+        lib/gcc-lib/ee/2.9-ee-990721/cc1plus
+    chmod +x "$CC_DIR/lib/gcc-lib/ee/2.9-ee-990721/"{cc1,cc1plus}
+    rm /tmp/ee-gcc2.9-990721.tar.xz
+    ok "ee-gcc 2.9-990721 → $CC_DIR/"
+else
+    ok "ee-gcc 2.9-990721 already installed"
+fi
+
 # -----------------------------------------------------------------------------
 # 3. ee-dvp-as  (vendored from recvx-decomp; needed for .DVP.overlay sections)
 # -----------------------------------------------------------------------------
@@ -160,8 +190,10 @@ fi
 # wibo is a 32-bit static binary, requires the same multilib glibc that
 # the Cygnus ee-gcc 2.96 binaries already depend on (verified above).
 # -----------------------------------------------------------------------------
+# The SN .exe files carry no exec bit (wibo loads them as data), so the SN
+# guards test -f, not -x.
 SN_CC_PREFIX="$SN_CC_DIR/lib/gcc-lib/ee/$SN_CC_LEAF"
-if [[ ! -x "$SN_CC_PREFIX/cc1.exe" ]]; then
+if [[ ! -f "$SN_CC_PREFIX/cc1.exe" ]]; then
     log "Downloading SN ee-gcc 2.95.3-136 (ProDG v1.36)"
     mkdir -p "$SN_CC_PREFIX"
     curl -fL --progress-bar -o /tmp/ee-gcc2.95.3-136.tar.gz "$SN_EE_GCC_URL"
@@ -183,6 +215,20 @@ if [[ ! -x "$SN_CC_PREFIX/cc1.exe" ]]; then
     ok "SN ee-gcc 2.95.3-136 → $SN_CC_PREFIX/"
 else
     ok "SN ee-gcc 2.95.3-136 already installed"
+fi
+
+SN_273A_PREFIX="$SN_CC_DIR/lib/gcc-lib/ee/2.95.2-sn-273a"
+if [[ ! -f "$SN_273A_PREFIX/ps2eeas.exe" ]]; then
+    log "Downloading SN ee-gcc 2.95.2-273a (ps2eeas.exe)"
+    mkdir -p "$SN_273A_PREFIX"
+    curl -fL --progress-bar -o /tmp/ee-gcc2.95.2-273a.tar.gz "$SN_273A_URL"
+    verify_sha /tmp/ee-gcc2.95.2-273a.tar.gz "$SN_273A_SHA256"
+    tar -xzf /tmp/ee-gcc2.95.2-273a.tar.gz -C "$SN_273A_PREFIX" \
+        --strip-components=4 lib/gcc-lib/ee/2.95.2/ps2eeas.exe
+    rm /tmp/ee-gcc2.95.2-273a.tar.gz
+    ok "SN ps2eeas.exe 2.95.2-273a → $SN_273A_PREFIX/"
+else
+    ok "SN ps2eeas.exe 2.95.2-273a already installed"
 fi
 
 if [[ ! -x "$WIBO_PATH" ]]; then
@@ -224,7 +270,11 @@ fi
 # must remain stdlib-only.
 # -----------------------------------------------------------------------------
 EEAS_PATCH_DIR="$ROOT/patches/ee-as"
-if [[ -d "$EEAS_PATCH_DIR" ]]; then
+if [[ "$(readlink -f "$CC_DIR/bin/ee-as")" == /nix/store/* ]]; then
+    # nix develop links a read-only store copy. flake.nix applied these
+    # patches before patchelf shifted the offsets they check.
+    ok "ee-as comes from the nix store, patched by flake.nix"
+elif [[ -d "$EEAS_PATCH_DIR" ]]; then
     shopt -s nullglob
     for patch in "$EEAS_PATCH_DIR"/*.py; do
         patch_name="$(basename "$patch")"

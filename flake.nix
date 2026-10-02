@@ -53,10 +53,24 @@
             }} -C $out \
               lib/gcc-lib/ee/2.9-ee-991111-01/cc1 \
               lib/gcc-lib/ee/2.9-ee-991111-01/cc1plus
+            # Fourth compiler: ee-gcc 2.9-990721 cc1 + cc1plus, opt-in per TU.
+            # Pin mirrors setup_toolchain.sh EE_GCC_990721_{URL,SHA256}.
+            tar -xf ${pkgs.fetchurl {
+              url = "https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.9-990721.tar.xz";
+              sha256 = "ad2ea68afff2be25d21a1d51a75e8a0eea8f259018e6580622355cd01b95676b";
+            }} -C $out \
+              lib/gcc-lib/ee/2.9-ee-990721/cc1 \
+              lib/gcc-lib/ee/2.9-ee-990721/cc1plus
             install -Dm755 ${pkgs.fetchurl {
               url = "https://raw.githubusercontent.com/fmil95/recvx-decomp/master/compiler/linux/ee/gcc/bin/ee-dvp-as";
               sha256 = "9011fe9218487cb97aa6ffc2b59ce19ae3a5f3ec575bc0f0e30c4cd00f65cdeb";
             }} $out/bin/ee-dvp-as
+            # The store copy is read-only, so setup_toolchain.sh can't patch
+            # ee-as in place. Apply the repo's patches here, before fixup
+            # (patchelf) moves the byte offsets they check.
+            for p in ${./patches/ee-as}/*.py; do
+              ${pkgs.python3}/bin/python3 "$p" "$out/bin/ee-as"
+            done
             runHook postInstall
           '';
         } // pkgs.lib.optionalAttrs (!ee-gccArm) {
@@ -116,6 +130,16 @@
           '';
         };
 
+        # SN 2.95.2-273a: only its ps2eeas.exe, the assembler for the "as": "sn"
+        # units. Pin mirrors setup_toolchain.sh SN_273A_{URL,SHA256}.
+        sn-ps2eeas = pkgs.runCommand "sn-ps2eeas" { } ''
+          mkdir -p $out
+          tar -xzf ${pkgs.fetchurl {
+            url = "https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.95.2-273a.tar.gz";
+            sha256 = "ee9d9a7fccb59aebfa78a5587f6f8059660b91f705acddbc292ad2243c8e562e";
+          }} -C $out --strip-components=4 lib/gcc-lib/ee/2.95.2/ps2eeas.exe
+        '';
+
         # From the nixos-25.05 pin (binutils 2.44) — see the input comment:
         # nixos-unstable's 2.46 rejects this repo's R5900/EABI assembly.
         crossBin = pkgsBinutils.pkgsCross.mipsel-linux-gnu.buildPackages.binutils;
@@ -135,8 +159,9 @@
             cp -r ${ee-gcc} $out; chmod -R u+w $out
             _g=$out/lib/gcc-lib/ee/2.96-ee-001003-1
             _g9=$out/lib/gcc-lib/ee/2.9-ee-991111-01
+            _g7=$out/lib/gcc-lib/ee/2.9-ee-990721
             for f in "$_g/cc1" "$_g/cc1plus" "$_g/cpp0" "$out/bin/ee-dvp-as" \
-                     "$_g9/cc1" "$_g9/cc1plus"; do
+                     "$_g9/cc1" "$_g9/cc1plus" "$_g7/cc1" "$_g7/cc1plus"; do
               mv "$f" "$f.real"
               makeWrapper ${pkgs.qemu}/bin/qemu-i386 "$f" --add-flags "$f.real"
             done
@@ -188,6 +213,8 @@
             _provision "${ee-gcc-run}"  "compiler/linux/ee/gcc"
             _provision "${sn-ee-gcc}/lib/gcc-lib/ee/2.95.3-sn-136" \
                        "compiler/windows/ee/gcc/lib/gcc-lib/ee/2.95.3-sn-136"
+            _provision "${sn-ps2eeas}" \
+                       "compiler/windows/ee/gcc/lib/gcc-lib/ee/2.95.2-sn-273a"
             _provision "${wibo-run}"    "tools/wibo"
             _provision "${objdiff-cli}" "tools/objdiff-cli"
           '';
