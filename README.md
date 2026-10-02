@@ -85,8 +85,9 @@ repo** and none should ever be committed.
 
 ```bash
 # 1. Place your own dumped ISO at the repo root as 'God Hand (USA).iso',
-#    then extract + verify the boot ELF:
+#    then extract + verify the boot ELF and the .rel overlays:
 ./scripts/extract_iso.sh
+python3 scripts/afs_extract.py
 
 # 2. Provision the toolchain (ee-gcc 2.96 + SN linker + dvp-as, splat, m2c,
 #    objdiff, asm-differ, decomp-permuter), the venv, and the git hooks:
@@ -95,7 +96,14 @@ repo** and none should ever be committed.
 # 3. One-time host dependency (the cross assembler the build calls):
 #    install your distro's mipsel-linux-gnu binutils.
 
-# 4. Generate the asm split + objdiff scoring project:
+# 4. Split the boot ELF and the r207 overlay into asm, dump the ELF metadata the
+#    link replays, and write the objdiff scoring project. Splat reads the loaded
+#    image (.rom), not the ELF:
+mkdir -p build
+mipsel-linux-gnu-objcopy -O binary disc_extract/SLUS_215.03 build/SLUS_215.03.rom
+./scripts/resplat.sh
+.venv/bin/python -m splat split config/r207.yaml
+.venv/bin/python scripts/extract_elf_metadata.py
 .venv/bin/python compile.py --setup
 
 # 5. Build (an empty matching link to start — every byte comes from re-assembled asm):
@@ -117,11 +125,11 @@ script already guards, so the script skips the blob fetches and only sets up the
 venv, the Python tools, the assembler patches, and the git hooks.
 
 - **Linux (x86_64 or ARM):** `nix develop`, then `./scripts/setup_toolchain.sh`
-  (the blobs are already provisioned), then `python compile.py`. On x86_64 the
+  (the blobs are already provisioned), then Setup steps 4 and 5. On x86_64 the
   i386 compiler blobs run natively; on ARM they run transparently under
   `qemu-i386` (wired into the shell).
 - **Without Nix:** install the host prerequisites and run
-  `./scripts/setup_toolchain.sh` as before, then `python compile.py`.
+  `./scripts/setup_toolchain.sh` as before, then Setup steps 4 and 5.
 - **macOS:** the compiler is an i386-Linux binary, so run the Linux flow inside a
   `linux/amd64` container:
 

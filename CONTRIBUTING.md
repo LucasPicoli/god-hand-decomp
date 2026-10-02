@@ -50,9 +50,9 @@ Regenerate the current numbers with `scripts/progress.sh` — never hand-type th
 ## 2. One-time setup
 
 See the [README → Setup](./README.md#setup) section. In short: supply your own
-legally-dumped NTSC-U disc, run `./scripts/extract_iso.sh` then
-`./scripts/setup_toolchain.sh` (or `nix develop` first), and
-`.venv/bin/python compile.py --setup`. A fresh "empty" build already reproduces
+legally-dumped NTSC-U disc, extract it, provision the toolchain with
+`./scripts/setup_toolchain.sh` (or `nix develop` first), split the ELF and the
+r207 overlay, then build. A fresh "empty" build already reproduces
 the retail boot ELF byte-for-byte; that's how you confirm your environment is
 correct.
 
