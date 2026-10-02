@@ -246,4 +246,3 @@ int func_002815D0(char *a0) {
 INCLUDE_ASM("nonmatching", func_00281638);
 
 /* ── PERMANENT: func_002816E0 (0x260 B) — complex init — stays in asm ── */
-INCLUDE_ASM("permanent", func_002816E0);
