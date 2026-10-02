@@ -35,7 +35,11 @@
 /* The method table every game object points at (0x214). Each entry is a g++
  * 2.x delta (short) and function pointer; only the pair at 0x80 is used here. */
 typedef struct cGameObjVt {
-    char unk00[0x80];
+    char unk00[0x68];
+    short getPosDelta;                  /* 0x68 */
+    short pad6A;
+    cVec *(*getPos)(void *self);        /* 0x6C the object's current position */
+    char unk70[0x80 - 0x70];
     short lockOnDelta;                  /* 0x80 */
     short pad82;
     void (*lockOn)(void *self);         /* 0x84 getLockOnPos and getHitCheckPos both call it */
@@ -43,6 +47,9 @@ typedef struct cGameObjVt {
     short canAngerDelta;                /* 0xC0 */
     short padC2;
     int (*canAnger)(void *self);        /* 0xC4 nonzero if the enemy can be angered */
+    short ckTargetDelta;                /* 0xC8 */
+    short padCA;
+    int (*ckTarget)(void *self);        /* 0xCC nonzero: skip the height test of GetTargetNear */
 } cGameObjVt;
 
 /* One effect the object has started (cGameObj.effList). The retail table
@@ -65,15 +72,24 @@ typedef struct cGameObjEffectList {
 
 /* The fields the cGameObj methods and the move code share. */
 typedef struct cGameObj {
-    char unk000[0xF0];
+    char unk000[0x80];
+    float mtx[16];                      /* 0x080 orientation matrix, as in cOmBase */
+    char unk0C0[0x30];
     cVec *pos;                          /* 0x0F0 the object's live position */
     char unk0F4[0xC];
     float rot[3];                       /* 0x100 rotation, rot[1] is the heading */
-    char unk10C[0x214 - 0x10C];
+    char unk10C[4];
+    float scale[3];                     /* 0x110 model scale, 1.0 normal */
+    char unk11C[0x214 - 0x11C];
     cGameObjVt *vt;                     /* 0x214 */
-    char unk218[0x250 - 0x218];
+    char unk218[0x24C - 0x218];
+    float animRate;                     /* 0x24C 1.0 normal */
     int objFlags;                       /* 0x250 */
-    char unk254[0x2F4 - 0x254];
+    char unk254[0x278 - 0x254];
+    cOmBase **children;                 /* 0x278 child bodies, as in cOmBase */
+    char unk27C[0x2B4 - 0x27C];
+    unsigned char childNum;             /* 0x2B4 */
+    char unk2B5[0x2F4 - 0x2B5];
     unsigned char mode;                 /* 0x2F4 the four state bytes the move code writes together */
     unsigned char phase;                /* 0x2F5 */
     unsigned char step;                 /* 0x2F6 the phase machines switch on it */
@@ -86,7 +102,10 @@ typedef struct cGameObj {
     unsigned short motionFlags;         /* 0x3AC GAMEOBJ_MOTION_* */
     char unk3AE[0x42C - 0x3AE];
     cGameObjEffectList *effList;        /* 0x42C effects started by this object */
-    char unk430[0x490 - 0x430];
+    char unk430[4];
+    unsigned short unk434;              /* 0x434 bit 1 makes the effect start flagged (InitRenderStruct) */
+    char unk436[0x448 - 0x436];
+    char ik[0x48];                      /* 0x448 inverse kinematics work area */
     cVec posA;                          /* 0x490 position copy used by setPos */
     char unk4A0[0x4AC - 0x4A0];
     const char *kindName;               /* 0x4AC class name of the object, set by its constructor */
@@ -98,19 +117,24 @@ typedef struct cGameObj {
     short hpMax;                        /* 0x548 */
     short hp;                           /* 0x54A */
     float hitFlash;                     /* 0x54C counts down after a hit */
-    char unk550[0x570 - 0x550];
+    char unk550[0x560 - 0x550];
+    int dropItem;                       /* 0x560 item id it drops, as in cOmBase */
+    int emNo;                           /* 0x564 enemy number of an enemy */
+    char unk568[0x570 - 0x568];
     short effNo;                        /* 0x570 one more effect to kill with the object, -1 if none */
     short pad572;
     int effArg;                         /* 0x574 the mode to kill it with */
     char unk578[0x5A0 - 0x578];
-    unsigned int scrFlags;              /* 0x5A0 GAMEOBJ_SCR_* */
+    int scrFlags;                       /* 0x5A0 GAMEOBJ_SCR_* */
     char unk5A4[4];
     float speedRate;                    /* 0x5A8 1.0 normal, copied from the manager every frame */
 } cGameObj;
 
 #define GAMEOBJ_OFFSET(field) ((int)&((cGameObj *)0)->field)
+typedef char cGameObj_chk_mtx[GAMEOBJ_OFFSET(mtx) == 0x80 ? 1 : -1];
 typedef char cGameObj_chk_pos[GAMEOBJ_OFFSET(pos) == 0xF0 ? 1 : -1];
 typedef char cGameObj_chk_rot[GAMEOBJ_OFFSET(rot) == 0x100 ? 1 : -1];
+typedef char cGameObj_chk_anim[GAMEOBJ_OFFSET(animRate) == 0x24C ? 1 : -1];
 typedef char cGameObj_chk_vt[GAMEOBJ_OFFSET(vt) == 0x214 ? 1 : -1];
 typedef char cGameObj_chk_step[GAMEOBJ_OFFSET(step) == 0x2F6 ? 1 : -1];
 typedef char cGameObj_chk_posA[GAMEOBJ_OFFSET(posA) == 0x490 ? 1 : -1];
@@ -118,9 +142,15 @@ typedef char cGameObj_chk_stored[GAMEOBJ_OFFSET(stored) == 0x520 ? 1 : -1];
 typedef char cGameObj_chk_motion[GAMEOBJ_OFFSET(motionFlags) == 0x3AC ? 1 : -1];
 typedef char cGameObj_chk_hp[GAMEOBJ_OFFSET(hp) == 0x54A ? 1 : -1];
 typedef char cGameObj_chk_kind[GAMEOBJ_OFFSET(kindName) == 0x4AC ? 1 : -1];
+typedef char cGameObj_chk_emno[GAMEOBJ_OFFSET(emNo) == 0x564 ? 1 : -1];
 typedef char cGameObj_chk_eff[GAMEOBJ_OFFSET(effList) == 0x42C ? 1 : -1];
 typedef char cGameObj_chk_effno[GAMEOBJ_OFFSET(effNo) == 0x570 ? 1 : -1];
 typedef char cGameObj_chk_scr[GAMEOBJ_OFFSET(scrFlags) == 0x5A0 ? 1 : -1];
+typedef char cGameObj_chk_scale[GAMEOBJ_OFFSET(scale) == 0x110 ? 1 : -1];
+typedef char cGameObj_chk_child[GAMEOBJ_OFFSET(children) == 0x278 ? 1 : -1];
+typedef char cGameObj_chk_childn[GAMEOBJ_OFFSET(childNum) == 0x2B4 ? 1 : -1];
+typedef char cGameObj_chk_ik[GAMEOBJ_OFFSET(ik) == 0x448 ? 1 : -1];
+typedef char cGameObj_chk_drop[GAMEOBJ_OFFSET(dropItem) == 0x560 ? 1 : -1];
 typedef char cGameObj_chk_rate[GAMEOBJ_OFFSET(speedRate) == 0x5A8 ? 1 : -1];
 
 /* The sort uses insertion sort alone below this many entries. */

@@ -84,17 +84,36 @@ typedef struct cEffectParam {
     float motionStart;                  /* 0x438 */ \
     char unk43C[0x4]; \
     float motionRate;                   /* 0x440 */ \
-    char unk444[0x74]; \
+    char unk444[0x8]; \
+    void *shadowData;                   /* 0x44C what KageInit was given */ \
+    char *kageWork;                     /* 0x450 two shadow work areas, 0x750 bytes each */ \
+    char unk454[0xC]; \
+    cVec unk460;                        /* 0x460 zero at construction */ \
+    char unk470[0x10]; \
+    cVec unk480;                        /* 0x480 zero at construction */ \
+    cVec posA;                          /* 0x490 */ \
+    int unk4A0;                         /* 0x4A0 -1 at construction */ \
+    int unk4A4; \
+    int unk4A8; \
+    void *unk4AC; \
+    int unk4B0; \
+    int unk4B4; \
     float turnRate;                     /* 0x4B8 */ \
     char unk4BC[0x4]; \
     cVec turnTarget;                    /* 0x4C0 */
 
-typedef struct cObjBase {
+struct cObjBase {
     COBJBASE_FIELDS
-} cObjBase;                             /* 0x4D0 */
+};                                      /* 0x4D0 */
+
+/* As in cModel.h: the constructor is the function cObjBase, so its TU defines
+ * COBJBASE_NO_TYPEDEF before this include and writes struct cObjBase. */
+#ifndef COBJBASE_NO_TYPEDEF
+typedef struct cObjBase cObjBase;
+#endif
 
 /* Byte offset of a cObjBase field, for the few bodies that must form the
  * address by hand to match retail. */
-#define COBJBASE_OFFSET(field) ((int)&((cObjBase *)0)->field)
+#define COBJBASE_OFFSET(field) ((int)&((struct cObjBase *)0)->field)
 
 #endif

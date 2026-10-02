@@ -92,7 +92,7 @@ void func_00242388(cEm00 *self)
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         res = self->resource;
         func_002A8578(self, EM_RES_REC(res, 0x1678), EM_RES_REC(res, 0x167C), 0.0f, 0,
-                      (self->unk5F8 = 1, self->unk5FC = 1, motion), 0);
+                      (self->unk5F8 = 1, self->timerC = 1, motion), 0);
         self->step = self->step + 1;
     case 3:
         player = Getplayer();
@@ -120,15 +120,15 @@ void func_00242388(cEm00 *self)
         self->unk5F8 = 1;
     }
     if (self->moveFlags & 2) {
-        if (self->unk5FC != 0) {
-            self->unk5FC = 0;
+        if (self->timerC != 0) {
+            self->timerC = 0;
             r = func_0026AA30(self, 0x365);
             if (r != 0) {
                 func_0026B240(self, r, 0x365, 0x10);
             }
         }
     } else {
-        self->unk5FC = 1;
+        self->timerC = 1;
     }
 }
 

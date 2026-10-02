@@ -27,7 +27,7 @@ extern int irand(void);
 extern char D_00569B70[];
 extern int GetField_2B1_14B638(cModel *self);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
-extern void func_001F91D0(cBoundingBox *dst, cBoundingBox *src);
+extern void func_001F91D0(cBox *dst, cBox *src);
 extern void func_002A8A08(cGameObjSortEnt *first, int holeIndex, int topIndex, long val, void *tag);
 
 /* func_002866F8: a knocked-about enemy that drifts toward a goal and starts a
@@ -278,7 +278,7 @@ charge:
 /* Append a mesh node to the model's list and grow the model's box by the
  * node's own box; the first mesh sets the box. */
 __attribute__((section(".text.func_0014B640")))
-void func_0014B640(cModel *self, cModelNode *node, cBoundingBox *box) {
+void func_0014B640(cModel *self, cModelNode *node, cBox *box) {
     int num = GetField_2B1_14B638(self);
     if (num == 0) {
         self->meshHead = node;

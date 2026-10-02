@@ -34,8 +34,10 @@ typedef struct cBox {
 #define CPARTS_NO_BLEND     0x100000    /* leave the part out of the blend */
 
 /* Bits of cModel.objFlags (0x250). */
+#define CMODEL_F_SHOWN      0x02        /* skip the view test: always drawn */
 #define CMODEL_F_NEAR       0x20        /* parts are rebuilt every frame */
 #define CMODEL_F_NO_CALC    0x800       /* the owner builds the matrix itself */
+#define CMODEL_F_HIDDEN     0x10000     /* never drawn */
 #define CMODEL_F_LATE       0x2000      /* sort into the later draw layers */
 
 /* Bits of cModel.texFlags (0x254). */
@@ -173,20 +175,21 @@ typedef struct cParts {
     CPARTS_FIELDS \
     char *packet[2];                    /* 0x220 the model's own draw packet, index = frame parity */ \
     char *tailPacket[2];                /* 0x228 second buffer of each packet pair */ \
-    char unk230[0x8]; \
+    int unk230; \
+    int unk234; \
     char *alloc;                        /* 0x238 the block packet, tailPacket and children live in */ \
     char unk23C[0x4]; \
     cVec tint;                          /* 0x240 rgb, and alpha in w */ \
     int objFlags;                       /* 0x250 CMODEL_F_* */ \
     int texFlags;                       /* 0x254 */ \
-    char unk258[0x4]; \
+    int unk258; \
     cModelNode *meshHead;               /* 0x25C */ \
     cBox box;                           /* 0x260 around every mesh */ \
     struct cOmBase **children;          /* 0x278 */ \
     float blend;                        /* 0x27C */ \
     char *script;                       /* 0x280 the model script header */ \
     int texSet;                         /* 0x284 */ \
-    char unk288[0x4]; \
+    int unk288; \
     char *extraPacket[2][2];            /* 0x28C [kind][frame parity] */ \
     char *extraPacketB[2][2];           /* 0x29C [kind][frame parity] */ \
     short id;                           /* 0x2AC */ \
@@ -200,7 +203,7 @@ typedef struct cParts {
     unsigned char alphaB;               /* 0x2B7 */ \
     float fadeIn;                       /* 0x2B8 */ \
     unsigned char alphaC;               /* 0x2BC */ \
-    char unk2BD[0x1]; \
+    char unk2BD; \
     unsigned char layerForce;           /* 0x2BE */ \
     char unk2BF[0x1]; \
     int drawKind;                       /* 0x2C0 */ \
@@ -210,15 +213,23 @@ typedef struct cParts {
     unsigned int actorGroup;            /* 0x2D0 bit for the id range, set by cObj_setId */ \
     unsigned char texSlot[0x10];        /* 0x2D4 */
 
-typedef struct cModel {
+struct cModel {
     CMODEL_FIELDS
-} cModel;                               /* 0x2E4 */
+};                                      /* 0x2E4 */
 
-typedef char cModel_size_check[(sizeof(cModel) == 0x2E4) ? 1 : -1];
+/* The constructor of a class is a function with the class's name, and C
+ * keeps functions and typedefs in one namespace. A TU that defines or
+ * declares that constructor defines CMODEL_NO_TYPEDEF before this include
+ * and writes struct cModel. */
+#ifndef CMODEL_NO_TYPEDEF
+typedef struct cModel cModel;
+#endif
+
+typedef char cModel_size_check[(sizeof(struct cModel) == 0x2E4) ? 1 : -1];
 
 /* The model's overall alpha: the tint alpha scaled by the three alpha bytes.
  * 1.0 means fully opaque, which lets a node sort with the opaque ones. */
-static __inline__ float cModel_alpha(cModel *self) {
+static __inline__ float cModel_alpha(struct cModel *self) {
     return self->tint.w * (self->alphaA / 255.0f) * (self->alphaB / 255.0f) * (self->alphaC / 255.0f);
 }
 

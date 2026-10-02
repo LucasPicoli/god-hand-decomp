@@ -38,10 +38,16 @@
     char *pack;                         /* 0x304 the data pack: offset tables read as pack + pack[N] */ \
     char unk308[0x8];
 
-typedef struct cObj {
+struct cObj {
     COBJ_FIELDS
-} cObj;                                 /* 0x310 */
+};                                      /* 0x310 */
 
-typedef char cObj_size_check[(sizeof(cObj) == 0x310) ? 1 : -1];
+/* As in cModel.h: a TU that defines or declares the constructor cObj defines
+ * COBJ_NO_TYPEDEF before this include and writes struct cObj. */
+#ifndef COBJ_NO_TYPEDEF
+typedef struct cObj cObj;
+#endif
+
+typedef char cObj_size_check[(sizeof(struct cObj) == 0x310) ? 1 : -1];
 
 #endif

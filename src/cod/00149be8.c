@@ -3,7 +3,7 @@
 #include "godhand/cModel.h"
 
 extern void Forward1494F8_149350(cModelNode *node);
-extern void func_001F8A88(cBoundingBox *box, float x0, float x1, float y0, float y1, float z0, float z1);
+extern void func_001F8A88(cBox *box, float x0, float x1, float y0, float y1, float z0, float z1);
 extern int D_007476B0;
 extern char D_00754C80[];
 extern void func_0031A650(void *queue, int kind, int id, void *start, void *end);
