@@ -127,7 +127,8 @@ typedef struct cEm00 {
     float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
     char unk6E4[0x4C];
     int unk730;                             /* 0x730 effect handle, released when moveFlags bit 0 is set */
-    char unk734[0x14];
+    char unk734[0x10];
+    int unk744;                             /* 0x744 */
     int sub0;                               /* 0x748 child object, its own state bytes follow the enemy's */
     int sub1;                               /* 0x74C */
     int sub2;                               /* 0x750 */
@@ -147,10 +148,13 @@ typedef struct cEm00 {
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
     char unk15C0[0x4];
     int unk15C4;                            /* 0x15C4 handle of the item this enemy dropped, 0 while none */
-    char unk15C8[0x108];
+    char unk15C8[0xD8];
+    cVec unk16A0;                           /* 0x16A0 */
+    char unk16B0[0x20];
     int emFlags;                            /* 0x16D0 */
     int emFlags2;                           /* 0x16D4 */
-    char unk16D8[0x1C];
+    unsigned int unk16D8;                   /* 0x16D8 */
+    char unk16DC[0x18];
     float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
     char unk16F8[0x28];
     float unk1720;                          /* 0x1720 */
@@ -160,7 +164,9 @@ typedef struct cEm00 {
     float unk1740;                          /* 0x1740 */
     char unk1744[0x77];
     unsigned char unk17BB;                  /* 0x17BB */
-    char unk17BC[0x10];
+    char unk17BC[0x7];
+    unsigned char unk17C3;                  /* 0x17C3 */
+    char unk17C4[0x8];
     float unk17CC;                          /* 0x17CC set to 150.0 by func_0026F120, tested positive by func_0026F1D8 */
     char unk17D0[0x94];
     unsigned char unk1864;                  /* 0x1864 */

@@ -20,11 +20,13 @@
 
 #include "godhand/cOmBase.h"            /* cVec, cMeshNode */
 
-/* A box as centre plus half extents. cModel keeps one around all its meshes. */
-typedef struct cBoundingBox {
+/* A box as centre plus half extents: the game's cBoundingBox class. The C
+ * name stays free for its constructor, which retail also calls cBoundingBox.
+ * cModel keeps one around all its meshes. */
+typedef struct cBox {
     float center[3];                    /* 0x00 */
     float half[3];                      /* 0x0C */
-} cBoundingBox;                         /* 0x18 */
+} cBox;                                 /* 0x18 */
 
 /* Bits of cParts.partFlags (0x154). */
 #define CPARTS_NO_LOCAL     0x08        /* skip the local matrix build */
@@ -47,6 +49,11 @@ typedef struct cBoundingBox {
 #define CMODEL_NODE_SORTED  0x00004080  /* node picks draw kind 2 on a per-node model */
 
 /* Bits of cMeshInfo.flags (0x34). */
+#define CMODEL_MESH_TAG     0x00000008  /* sets bit 29 of the node's tag word (0x410) */
+#define CMODEL_MESH_HIDDEN  0x00000010  /* the node starts hidden */
+#define CMODEL_MESH_TO_SPECIAL 0x00002000 /* gives the node CMODEL_NODE_SPECIAL */
+#define CMODEL_MESH_TO_BIT23 0x00100000 /* sets bit 23 of the node's flags */
+#define CMODEL_MESH_BACK    0x01000000  /* the mesh draws in the back layer */
 #define CMODEL_MESH_SPECIAL 0x00200000  /* mesh draws in the special pass */
 
 /* cModel.drawKind: the draw-queue kind a model is sorted into. 0xA picks the
@@ -56,12 +63,17 @@ typedef struct cBoundingBox {
 /* Draw layer a node of an unforced model sorts into (see cModel_nodeLayer). */
 #define CMODEL_LAYER_AUTO   0xFE        /* cModel.layerForce: pick per node */
 
-/* What cModel points at through a node's info pointer: the mesh's header. */
+/* A mesh descriptor from the model script: what a node's info pointer reaches. */
 typedef struct cMeshInfo {
-    char unk00[8];
+    int dataOfs;                        /* 0x00 offset of the mesh data from this record */
+    char unk04[4];
     long name;                          /* 0x08 up to 8 chars packed low byte first */
     char unk10[0x24];
-    unsigned int flags;                 /* 0x34 */
+    unsigned int flags;                 /* 0x34 CMODEL_MESH_* */
+    char unk38[0xB];
+    unsigned char layer;                /* 0x43 */
+    char unk44[0x14];
+    unsigned char alpha;                /* 0x58 nonzero: the node blends */
 } cMeshInfo;
 
 /* What a node's data pointer reaches. */
@@ -87,7 +99,8 @@ typedef struct cModelNode {
     struct cModelNode *next;            /* 0x404 */
     char unk408[0x4];
     unsigned char layer;                /* 0x40C */
-    char unk40D[0x7];
+    char unk40D[0x3];
+    unsigned int tag;                   /* 0x410 */
     cMeshInfo *info;                    /* 0x414 */
 } cModelNode;
 
@@ -116,6 +129,15 @@ typedef struct cScrHeader {
     int partOfs;                        /* 0x04 offset of the part table from the header */
     unsigned short partNum;             /* 0x08 */
 } cScrHeader;
+
+/* The head of a whole model script: the mesh descriptors are found through
+ * a table of offsets. */
+typedef struct cModelScript {
+    char unk00[8];
+    unsigned short meshNum;             /* 0x08 */
+    char unk0A[6];
+    int meshOfs[1];                     /* 0x10 offset of each mesh descriptor from the script */
+} cModelScript;
 
 struct cParts;
 
@@ -150,37 +172,41 @@ typedef struct cParts {
 #define CMODEL_FIELDS \
     CPARTS_FIELDS \
     char *packet[2];                    /* 0x220 the model's own draw packet, index = frame parity */ \
-    char unk228[0x18]; \
+    char *tailPacket[2];                /* 0x228 second buffer of each packet pair */ \
+    char unk230[0x8]; \
+    char *alloc;                        /* 0x238 the block packet, tailPacket and children live in */ \
+    char unk23C[0x4]; \
     cVec tint;                          /* 0x240 rgb, and alpha in w */ \
     int objFlags;                       /* 0x250 CMODEL_F_* */ \
     int texFlags;                       /* 0x254 */ \
     char unk258[0x4]; \
     cModelNode *meshHead;               /* 0x25C */ \
-    cBoundingBox box;                   /* 0x260 around every mesh */ \
+    cBox box;                           /* 0x260 around every mesh */ \
     struct cOmBase **children;          /* 0x278 */ \
     float blend;                        /* 0x27C */ \
-    char unk280[0x4]; \
+    char *script;                       /* 0x280 the model script header */ \
     int texSet;                         /* 0x284 */ \
     char unk288[0x4]; \
     char *extraPacket[2][2];            /* 0x28C [kind][frame parity] */ \
     char *extraPacketB[2][2];           /* 0x29C [kind][frame parity] */ \
     short id;                           /* 0x2AC */ \
-    char unk2AE[0x2]; \
-    unsigned char unk2B0; \
+    short life;                         /* 0x2AE */ \
+    unsigned char fadeLen;              /* 0x2B0 */ \
     unsigned char meshNum;              /* 0x2B1 */ \
-    char unk2B2[0x2]; \
+    unsigned short endTime;             /* 0x2B2 */ \
     unsigned char partNum;              /* 0x2B4 */ \
-    char unk2B5[0x1]; \
+    signed char depthBias;              /* 0x2B5 */ \
     unsigned char alphaA;               /* 0x2B6 */ \
     unsigned char alphaB;               /* 0x2B7 */ \
-    char unk2B8[0x4]; \
+    float fadeIn;                       /* 0x2B8 */ \
     unsigned char alphaC;               /* 0x2BC */ \
     char unk2BD[0x1]; \
     unsigned char layerForce;           /* 0x2BE */ \
     char unk2BF[0x1]; \
     int drawKind;                       /* 0x2C0 */ \
     int drawPrio;                       /* 0x2C4 */ \
-    char unk2C8[0x8]; \
+    void *arena;                        /* 0x2C8 where the packet block is allocated from, or 0 */ \
+    char unk2CC[0x4]; \
     unsigned int actorGroup;            /* 0x2D0 bit for the id range, set by cObj_setId */ \
     unsigned char texSlot[0x10];        /* 0x2D4 */
 

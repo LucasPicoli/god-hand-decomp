@@ -93,4 +93,8 @@ typedef struct cObjBase {
     COBJBASE_FIELDS
 } cObjBase;                             /* 0x4D0 */
 
+/* Byte offset of a cObjBase field, for the few bodies that must form the
+ * address by hand to match retail. */
+#define COBJBASE_OFFSET(field) ((int)&((cObjBase *)0)->field)
+
 #endif

@@ -126,6 +126,22 @@ typedef char cGameObj_chk_rate[GAMEOBJ_OFFSET(speedRate) == 0x5A8 ? 1 : -1];
 /* The sort uses insertion sort alone below this many entries. */
 #define GAMEOBJ_SORT_THRESHOLD 16
 
+/* Whether the actor id of obj lies in [lo, hi), as a long flag. The retail
+ * range tests build the flag with a branch and a copy, then mask it with 0xFF
+ * where it is tested: write `if (cGameObj_idInRange(obj, lo, hi) & 0xFF)`. */
+static __inline__ long cGameObj_idInRange(const cGameObj *obj, int lo, int hi)
+{
+    int id = obj->actorId;
+    long in = 0;
+
+    if (id >= lo) {
+        int below = id < hi;
+
+        in = below;
+    }
+    return in;
+}
+
 /* One entry of the sorted target list: an id and the key it is ordered by. */
 typedef struct cGameObjSortEnt {
     int id;                             /* 0x0 */
