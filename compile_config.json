@@ -13927,6 +13927,20 @@
     {
       "path": "src/cod/001ecaf0.c",
       "compiler": "sn-2.95.3-136"
+    },
+    {
+      "path": "src/cod/00252070.c",
+      "compiler": "sn-2.95.3-136",
+      "extern_jtbl": [
+        "D_0043FCD0",
+        "D_0043FEC0",
+        "D_0043FEE0",
+        "D_0043FF00",
+        "D_0043FF20",
+        "D_0043FF40",
+        "D_0043FF60"
+      ],
+      "fp_hazard_rules": "mtc1"
     }
   ],
   "_carved_funcs_doc": [
@@ -68690,6 +68704,13 @@
       "vaddr": "0x001ECAF0",
       "size": 220,
       "tu": "src/cod/001ecaf0.c"
+    },
+    {
+      "name": "func_00252070",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00252070",
+      "size": 4052,
+      "tu": "src/cod/00252070.c"
     }
   ],
   "build_dir": "build",

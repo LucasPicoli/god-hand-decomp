@@ -77,9 +77,10 @@ typedef struct cEm00 {
     cVec *pos;                              /* 0x0F0 the enemy's live position */
     char unk0F4[0xC];
     cVec rot;                               /* 0x100 rotation, rot.y is the facing angle */
-    char unk110[0x4];
+    float unk110;                           /* 0x110 x of a second vector, scaled by 0.0902 in step 6 */
     float unk114;                           /* 0x114 */
-    char unk118[0xFC];
+    float unk118;                           /* 0x118 z of that vector, scaled by 1.8281 in step 6 */
+    char unk11C[0xF8];
     cEm00Vt *vt;                            /* 0x214 method table of the second base; entries are delta/pfn pairs */
     char unk218[0x34];
     float animRate;                         /* 0x24C 1.0 normal */
@@ -99,7 +100,9 @@ typedef struct cEm00 {
     cVec stepVec;                           /* 0x330 this frame's step: the 0x580 vector scaled by speedRate */
     char unk340[0x6C];
     unsigned short moveFlags;               /* 0x3AC bits the move code sets: bit 0 and 1 end of a motion, 0x10 */
-    char unk3AE[0xE2];
+    char unk3AE[0x86];
+    unsigned short unk434;                  /* 0x434 flag word, bit 3 is set before each move */
+    char unk436[0x5A];
     cVec posA;                              /* 0x490 position copy */
     char unk4A0[0xA8];
     short vitalMax;                         /* 0x548 */
@@ -115,11 +118,15 @@ typedef struct cEm00 {
     int scrFlags;                           /* 0x5A0 */
     char unk5A4[0x4];
     float speedRate;                        /* 0x5A8 copied from cEmManage every frame; timers count down by it */
-    char unk5AC[0x8];
+    char unk5AC[0x4];
+    int unk5B0;                             /* 0x5B0 flag word of the derived enemy, bit 0 is set when the step ends */
     int unk5B4;                             /* 0x5B4 */
     char unk5B8[0x8];
     cVec home;                              /* 0x5C0 the point the position is eased toward */
-    char unk5D0[0x20];
+    cVec posB;                              /* 0x5D0 the point the turn aims at (cOmBase posB) */
+    short unk5E0;                           /* 0x5E0 cleared with unk5E2 when a motion starts */
+    short unk5E2;                           /* 0x5E2 cleared every frame while the counter at 0x15B4 runs */
+    char unk5E4[0xC];
     int timerA;                             /* 0x5F0 countdown of the turn toward the target, one per frame */
     int timerB;                             /* 0x5F4 second counter */
     int unk5F8;                             /* 0x5F8 set again when moveFlags bit 0 is clear; the first set bit calls the effect once */
@@ -132,12 +139,18 @@ typedef struct cEm00 {
     float playerDist;                       /* 0x618 distance to the player */
     char unk61C[0x24];
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
-    char unk642[0x72];
+    char unk642[0x6];
+    unsigned char unk648;                   /* 0x648 set to 0x14 while the 0x640 link is held */
+    char unk649[0x4F];
+    void *unk698;                           /* 0x698 link record, its 0x34 field is the enemy being watched */
+    char unk69C[0x18];
     struct cEm00 *foe;                      /* 0x6B4 the other enemy this one works with */
     char unk6B8[0x18];
     cVec unk6D0;                            /* 0x6D0 */
     float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
-    char unk6E4[0x4C];
+    char unk6E4[0x8];
+    int unk6EC;                             /* 0x6EC handle released by ReleaseField6ECByTag564_26B1E8 */
+    char unk6F0[0x40];
     int unk730;                             /* 0x730 effect handle, released when moveFlags bit 0 is set */
     char unk734[0x10];
     int unk744;                             /* 0x744 */
@@ -148,7 +161,9 @@ typedef struct cEm00 {
     float unk760;                           /* 0x760 */
     char unk764[0x4];
     float unk768;                           /* 0x768 angle tested against pi/4 before the attack */
-    char unk76C[0xDF4];
+    char unk76C[0x194];
+    int unk900;                             /* 0x900 countdown of the derived enemy, ticks down once per frame */
+    char unk904[0xC5C];
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
     char unk1564[0xC];
     cVec unk1570;                           /* 0x1570 */
@@ -162,7 +177,15 @@ typedef struct cEm00 {
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
     char unk15C0[0x4];
     int unk15C4;                            /* 0x15C4 handle of the item this enemy dropped, 0 while none */
-    char unk15C8[0xD8];
+    char unk15C8[0x2C];
+    int unk15F4;                            /* 0x15F4 flag word of the derived enemy, 0x10000 is set while the counter runs */
+    char unk15F8[0xB];
+    unsigned char unk1603;                  /* 0x1603  */
+    char unk1604[0x10];
+    unsigned char unk1614;                  /* 0x1614 selector of the derived enemy, 0 to 2 */
+    char unk1615[0xB];
+    int unk1620;                            /* 0x1620 sound handle, stopped with cSnd_SeStop */
+    char unk1624[0x7C];
     cVec unk16A0;                           /* 0x16A0 */
     char unk16B0[0x20];
     int emFlags;                            /* 0x16D0 */
@@ -175,7 +198,9 @@ typedef struct cEm00 {
     char unk16F0[0x4];
     float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
     int unk16F8;                            /* 0x16F8 */
-    char unk16FC[0x24];
+    char unk16FC[0x14];
+    int unk1710;                            /* 0x1710 cleared at the start of a step */
+    char unk1714[0xC];
     float unk1720;                          /* 0x1720 */
     char unk1724[0xC];
     float unk1730;                          /* 0x1730 */
