@@ -227,6 +227,37 @@ typedef struct { int w[4]; } vu0_q128_t;
         : "m"(*(vu0_q128_t *)((char *)(v) + (off))), "r"((void *)(b))  \
         : "memory")
 
+/* (v+off) = 0, then (v+off).xyz = a.xyz - b.xyz. Five instructions:
+ * sqc2 vf0, lqc2 vf4, lqc2 vf5, vsub.xyz, sqc2 vf4. */
+#define VU0_ZERO_VSUB_XYZ_MEM(v, off, a, b)                            \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "sqc2  $vf0, %0\n"                                             \
+        "lqc2  $vf4, 0(%1)\n"                                          \
+        "lqc2  $vf5, 0(%2)\n"                                          \
+        "vsub.xyz $vf4, $vf4, $vf5\n"                                  \
+        "sqc2  $vf4, %0\n"                                             \
+        ".set pop\n"                                                   \
+        :                                                              \
+        : "m"(*(vu0_q128_t *)((char *)(v) + (off))),                   \
+          "r"((void *)(a)), "r"((void *)(b))                           \
+        : "memory")
+
+/* (v+off).xyz *= f, in place. Five instructions:
+ * lqc2 vf4, mfc1 $8, qmtc2.ni vf5, vmulx.xyz, sqc2 vf4. */
+#define VU0_VSCALE_XYZ_MEM(v, off, f)                                  \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "lqc2  $vf4, %0\n"                                             \
+        "mfc1  $8, %1\n"                                               \
+        "qmtc2.ni $8, $vf5\n"                                          \
+        "vmulx.xyz $vf4, $vf4, $vf5x\n"                                \
+        "sqc2  $vf4, %0\n"                                             \
+        ".set pop\n"                                                   \
+        :                                                              \
+        : "m"(*(vu0_q128_t *)((char *)(v) + (off))), "f"(f)            \
+        : "$8", "memory")
+
 /* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */
 #define VU0_VMOVE_XYZW(dst, src)                                       \
     __asm__ __volatile__ (                                             \
