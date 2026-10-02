@@ -19,6 +19,7 @@
 #define GODHAND_CMODEL_H
 
 #include "godhand/cOmBase.h"            /* cVec, cMeshNode */
+#include "godhand/vu0.h"                /* cMtxMulVu0 */
 
 /* A box as centre plus half extents: the game's cBoundingBox class. The C
  * name stays free for its constructor, which retail also calls cBoundingBox.
@@ -106,6 +107,51 @@ typedef struct cModelNode {
     cMeshInfo *info;                    /* 0x414 */
 } cModelNode;
 
+/* The display-list header that opens each of the model's draw packets. The
+ * DMA tags chain into the tail buffer and, on a model with a part packet,
+ * into the part matrices. */
+typedef struct cModelPktHead {
+    long tag;                           /* 0x00 call tag to the tail buffer */
+    int unk08;
+    int unk0C;
+    long call;                          /* 0x10 */
+    int vif;                            /* 0x18 */
+    int direct;                         /* 0x1C */
+    long gifTag;                        /* 0x20 */
+    int gifReg;                         /* 0x28 */
+    int unk2C;
+    long color;                         /* 0x30 */
+    long arg;                           /* 0x38 */
+    long chain;                         /* 0x40 tag of the part packet, or an empty tag */
+    int unk48;
+    int unk4C;
+    long clear1;                        /* 0x50 */
+    int unk58;
+    int unk5C;
+    long clear2;                        /* 0x60 */
+    int unk68;
+    int unk6C;
+    long end;                           /* 0x70 */
+    int unk78;
+    int unk7C;
+} cModelPktHead;                        /* 0x80 */
+
+/* The four words at the head of a tail or part buffer. */
+typedef struct cModelPktTail {
+    int unk00;
+    int unk04;
+    int vif;                            /* 0x08 */
+    int unk0C;                          /* 0x0C unpack command word */
+} cModelPktTail;
+
+/* One quadword of a display list or DMA chain: the low half as a tag or a
+ * GIF register word, the high half as two words. */
+typedef struct cQuad {
+    unsigned long lo;                   /* 0x00 */
+    int w2;                             /* 0x08 */
+    int w3;                             /* 0x0C */
+} cQuad;
+
 /* One entry of a g++ 2.x vtable: the function, and the offset to add to the
  * object pointer before the call. Entry n sits at vtable + 8 * n. */
 typedef struct cVtEnt {
@@ -175,8 +221,7 @@ typedef struct cParts {
     CPARTS_FIELDS \
     char *packet[2];                    /* 0x220 the model's own draw packet, index = frame parity */ \
     char *tailPacket[2];                /* 0x228 second buffer of each packet pair */ \
-    int unk230; \
-    int unk234; \
+    char *partPacket[2];                /* 0x230 matrix buffer per frame parity, 16 * (4 * parts + 1) bytes */ \
     char *alloc;                        /* 0x238 the block packet, tailPacket and children live in */ \
     char unk23C[0x4]; \
     cVec tint;                          /* 0x240 rgb, and alpha in w */ \
@@ -231,6 +276,39 @@ typedef char cModel_size_check[(sizeof(struct cModel) == 0x2E4) ? 1 : -1];
  * 1.0 means fully opaque, which lets a node sort with the opaque ones. */
 static __inline__ float cModel_alpha(struct cModel *self) {
     return self->tint.w * (self->alphaA / 255.0f) * (self->alphaB / 255.0f) * (self->alphaC / 255.0f);
+}
+
+/* dst = a * b for 4x4 matrices on VU0: both go into $vf4..$vf11, the product
+ * rows come out of $vf12..$vf15. dst may be a or b. */
+static __inline__ void cMtxMulVu0(void *dst, void *a, void *b) {
+    VU0_LQC2(4, a, 0);
+    VU0_LQC2(5, a, 0x10);
+    VU0_LQC2(6, a, 0x20);
+    VU0_LQC2(7, a, 0x30);
+    VU0_LQC2(8, b, 0);
+    VU0_LQC2(9, b, 0x10);
+    VU0_LQC2(10, b, 0x20);
+    VU0_LQC2(11, b, 0x30);
+    VU0_VMULAX_XYZW(4, 8);
+    VU0_VMADDAY_XYZW(5, 8);
+    VU0_VMADDAZ_XYZW(6, 8);
+    VU0_VMADDW_XYZW(12, 7, 8);
+    VU0_VMULAX_XYZW(4, 9);
+    VU0_VMADDAY_XYZW(5, 9);
+    VU0_VMADDAZ_XYZW(6, 9);
+    VU0_VMADDW_XYZW(13, 7, 9);
+    VU0_VMULAX_XYZW(4, 10);
+    VU0_VMADDAY_XYZW(5, 10);
+    VU0_VMADDAZ_XYZW(6, 10);
+    VU0_VMADDW_XYZW(14, 7, 10);
+    VU0_VMULAX_XYZW(4, 11);
+    VU0_VMADDAY_XYZW(5, 11);
+    VU0_VMADDAZ_XYZW(6, 11);
+    VU0_VMADDW_XYZW(15, 7, 11);
+    VU0_SQC2(12, dst, 0);
+    VU0_SQC2(13, dst, 0x10);
+    VU0_SQC2(14, dst, 0x20);
+    VU0_SQC2(15, dst, 0x30);
 }
 
 #endif

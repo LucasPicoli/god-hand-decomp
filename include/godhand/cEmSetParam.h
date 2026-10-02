@@ -27,6 +27,7 @@
 /* Entry positions are stored in 1/20 units, rotation in 1/100 degrees. */
 #define EMSET_POS_SCALE  0.05f
 #define EMSET_ROT_SCALE  0.017453292f
+#define EMSET_ROT_PER_RAD 57.2957763671875f  /* 1 / EMSET_ROT_SCALE, as the game rounds it */
 
 /* One placement of an enemy in the room file. */
 typedef struct cEmSetEntry {
