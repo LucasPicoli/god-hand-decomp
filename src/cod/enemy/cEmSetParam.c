@@ -4,9 +4,30 @@
 
 INCLUDE_ASM("nonmatching", cEmSetParam_setEmAll);
 
-INCLUDE_ASM("nonmatching", cEmSetParam_setEm);
-
 extern cEmSetEntry *func_002BEF60();
+extern cEmActor *func_002951B0(cEmSetParam *self, cEmSetEntry *entry);
+
+/* Creates the enemy of entry no, unless the table is not loaded, the entry
+ * is missing or done, or an enemy with its entry number is already listed.
+ * Returns the new enemy, or 0. */
+__attribute__((section(".text.cEmSetParam_setEm")))
+cEmActor *cEmSetParam_setEm(cEmSetParam *self, unsigned char no)
+{
+    cEmSetEntry *entry;
+
+    if ((D_005E8658.block->flags & EMSET_LOADED) == 0)
+        return 0;
+    entry = func_002BEF60(&D_005E8658, no);
+    if (entry == 0)
+        return 0;
+    if ((entry->done ^ EMSET_ENTRY_DONE) == 0)
+        return 0;
+    if (cEmManage_GetEm(&D_005864F0, entry->entryNo) != 0)
+        return 0;
+    if (entry->flags & EMSET_LOADED)
+        entry->flags &= ~EMSET_LOADED;
+    return func_002951B0(self, entry);
+}
 
 /* Stores the heading f (radians) in the current entry, in room-file units. */
 __attribute__((section(".text.cEmSetParam_updateSetDataRot")))
