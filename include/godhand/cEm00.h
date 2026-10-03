@@ -203,10 +203,15 @@ typedef struct cEm00 {
     int unk1620;                            /* 0x1620 sound handle, stopped with cSnd_SeStop */
     char unk1624[0x20];
     int flags1644;                          /* 0x1644 flag word, bit 0x800000 keeps the body down */
-    char unk1648[0x48];
+    char unk1648[0x8];
+    unsigned char unk1650;                  /* 0x1650 set to 4 when a knockdown ends in a stand-up */
+    char unk1651[0x3F];
     cVec wallPoint;                         /* 0x1690 the wall point the dodge checks against */
     cVec unk16A0;                           /* 0x16A0 */
-    char unk16B0[0x20];
+    cVec unk16B0;                           /* 0x16B0 the point the turn aims at when hitKind is 12 */
+    float slideTime;                        /* 0x16C0 countdown of the knock-back slide, zeroed when it ends */
+    int hitKind;                            /* 0x16C4 which hit this reaction answers, 0 to 16 */
+    char unk16C8[0x8];
     int emFlags;                            /* 0x16D0 */
     int emFlags2;                           /* 0x16D4 */
     unsigned int unk16D8;                   /* 0x16D8 */
@@ -231,16 +236,24 @@ typedef struct cEm00 {
     float unk1768;                          /* 0x1768 */
     char unk176C[0x34];
     int unk17A0;                            /* 0x17A0 the object this enemy turns toward, cleared when its motion ends */
-    char unk17A4[0x17];
+    char unk17A4[0xD];
+    unsigned char unk17B1;                  /* 0x17B1 index passed to func_002948C8 */
+    char unk17B2[0x7];
+    unsigned char counterReady;             /* 0x17B9 nonzero lets the enemy start a counter attack */
+    char unk17BA[0x1];
     unsigned char unk17BB;                  /* 0x17BB */
-    char unk17BC[0x7];
+    char unk17BC[0x5];
+    unsigned char slowFlinch;               /* 0x17C1 nonzero keeps the slow flinch speed of stepArg 3 */
+    char unk17C2[0x1];
     unsigned char unk17C3;                  /* 0x17C3 */
     char unk17C4[0x6];
     unsigned short unk17CA;                 /* 0x17CA 30 before a motion ends */
     float unk17CC;                          /* 0x17CC set to 150.0 by func_0026F120, tested positive by func_0026F1D8 */
     char unk17D0[0x94];
     unsigned char unk1864;                  /* 0x1864 */
-    char unk1865[0x5];
+    char unk1865[0x2];
+    unsigned char hitCount;                 /* 0x1867 the hits taken in a row, counted up to 4 */
+    char unk1868[0x2];
     unsigned char unk186A;                  /* 0x186A */
     unsigned char unk186B;                  /* 0x186B a scalar byte */
     char unk186C[0x4];

@@ -36,7 +36,7 @@ typedef struct cDoorPoint {
 } cDoorPoint;                           /* 0x18 */
 
 typedef struct cDoor {
-    short state;                        /* 0x00 set to 5 once the jump is under way */
+    short wait;                         /* 0x00 frames counted down to 0; the jump step sets it to 5 */
     short unk02;
     cDoorPoint point[2];                /* 0x04 the door's point, 0x1C the casino point */
     cRoomJump roomJump;                 /* 0x34 */
