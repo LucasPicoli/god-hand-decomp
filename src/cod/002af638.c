@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/cScenario.h"
+#include "godhand/cRoomSave.h"
 
 __attribute__((section(".text.cMessDrawFont_setRubyData")))
 void cMessDrawFont_setRubyData(int *a0, int a1, int a2) {
@@ -49,16 +50,16 @@ void *func_002BE980(void *a0, int a1) {
     return a0;
 }
 
+/* Set the number of enemy records in use on the current page. */
 __attribute__((section(".text.func_002BEDC8")))
-void func_002BEDC8(void *a0, int a1) {
-    char *p = *(char**)a0;
-    *(char*)(p+8) = (char)a1;
+void func_002BEDC8(cRoomSave *self, int num) {
+    self->data->emNum = num;
 }
 
+/* Number of enemy records in use on the current page. */
 __attribute__((section(".text.func_002BEDD8")))
-unsigned char func_002BEDD8(void *a0) {
-    char *p = *(char**)a0;
-    return *(unsigned char*)(p+8);
+unsigned char func_002BEDD8(cRoomSave *self) {
+    return self->data->emNum;
 }
 
 __attribute__((section(".text.func_002C0E68")))

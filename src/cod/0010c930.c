@@ -1,9 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cPlCamera.h"
 
 extern float SetMotionStep(void *a0, float f12);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern float Adjust_theta(float f12);
+extern void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -21,7 +22,6 @@ extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void func_00124EC0(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void *Getplayer(void);
-extern void cPlCamera_setCamUpdate(void *a0, int a1);
 extern unsigned short D_00747A50;
 
 /* sn-2.95.3-136 matched TU. */
@@ -209,58 +209,58 @@ static inline void cpy3(float *d, float *s)
     }
 }
 
+/* Switch the camera to the normal zoom-out pose: take the pose in `src`, or
+ * the player with the default offsets (two sets, picked by the stage state),
+ * make it the current pose, restart the wait counters and place the camera. */
 __attribute__((section(".text.cPlCamera_SetNormalZoomOutMode")))
-void cPlCamera_SetNormalZoomOutMode(void *a0, void *a1, int a2)
+void cPlCamera_SetNormalZoomOutMode(struct cPlCamera *self, cPlCamPose *src, int snap)
 {
-    char *s0 = (char *)a0;
-    char *src = (char *)a1;
-    int s1 = a2;
-    char *m;
-    char *d;
-    char *e;
+    cPlCamPose *d;
+    cPlCamPose *e;
+    float *m;
     int v;
 
     if (src != 0) {
-        *(int *)(s0 + 0x430) = *(int *)src;
-        cpy3((float *)(s0 + 0x440), (float *)(src + 0x10));
-        cpy3((float *)(s0 + 0x450), (float *)(src + 0x20));
-        *(float *)(s0 + 0x460) = *(float *)(src + 0x30);
+        self->nextPose.obj = src->obj;
+        cVec_copy3(&self->nextPose.ofs, &src->ofs);
+        cVec_copy3(&self->nextPose.rotOfs, &src->rotOfs);
+        self->nextPose.dist = src->dist;
     } else if (D_00747A50 != 0x104) {
-        *(int *)(s0 + 0x430) = (int)Getplayer();
-        *(float *)(s0 + 0x440) = -0.200000003f;
-        *(float *)(s0 + 0x444) = 1.05999994f;
-        *(float *)(s0 + 0x450) = 0.0700000003f;
-        *(float *)(s0 + 0x460) = 4.0f;
-        *(int *)(s0 + 0x448) = 0;
-        *(int *)(s0 + 0x454) = 0;
-        *(int *)(s0 + 0x458) = 0;
+        self->nextPose.obj = Getplayer();
+        self->nextPose.ofs.x = -0.200000003f;
+        self->nextPose.ofs.y = 1.05999994f;
+        self->nextPose.rotOfs.x = 0.0700000003f;
+        self->nextPose.dist = 4.0f;
+        self->nextPose.ofs.z = 0;
+        self->nextPose.rotOfs.y = 0;
+        self->nextPose.rotOfs.z = 0;
     } else {
-        *(int *)(s0 + 0x430) = (int)Getplayer();
-        *(float *)(s0 + 0x440) = -0.200000003f;
-        *(float *)(s0 + 0x444) = 1.15999997f;
-        *(float *)(s0 + 0x450) = 0.0500000007f;
-        *(float *)(s0 + 0x460) = 4.0f;
-        *(int *)(s0 + 0x448) = 0;
-        *(int *)(s0 + 0x454) = 0;
-        *(int *)(s0 + 0x458) = 0;
+        self->nextPose.obj = Getplayer();
+        self->nextPose.ofs.x = -0.200000003f;
+        self->nextPose.ofs.y = 1.15999997f;
+        self->nextPose.rotOfs.x = 0.0500000007f;
+        self->nextPose.dist = 4.0f;
+        self->nextPose.ofs.z = 0;
+        self->nextPose.rotOfs.y = 0;
+        self->nextPose.rotOfs.z = 0;
     }
-    d = s0 + 0x3F0;
-    e = s0 + 0x430;
-    *(int *)d = *(int *)e;
-    cpy3((float *)(d + 0x10), (float *)(e + 0x10));
-    cpy3((float *)(d + 0x20), (float *)(e + 0x20));
-    *(float *)(d + 0x30) = *(float *)(e + 0x30);
-    *(int *)(s0 + 0x51C) = 0;
-    v = *(int *)(s0 + 0x520);
-    *(int *)(s0 + 0x520) = 0;
-    *(int *)(s0 + 0x524) = v;
-    *(int *)(s0 + 0x528) = 0;
-    if (s1 != 0) {
-        cPlCamera_setCamUpdate(s0, 1);
+    d = &self->pose;
+    e = &self->nextPose;
+    d->obj = e->obj;
+    cVec_copy3(&d->ofs, &e->ofs);
+    cVec_copy3(&d->rotOfs, &e->rotOfs);
+    d->dist = e->dist;
+    self->unk51C = 0;
+    v = self->unk520;
+    self->unk520 = 0;
+    self->unk524 = v;
+    self->flags528 = 0;
+    if (snap != 0) {
+        cPlCamera_setCamUpdate(self, 1);
     } else {
-        cPlCamera_setCamUpdate(s0, 0);
+        cPlCamera_setCamUpdate(self, 0);
     }
-    m = s0 + 0x180;
+    m = self->base.mtx[6];
     VU0_VMOVE_XYZW(4, 0);
     VU0_VMR32_XYZW(5, 4);
     VU0_VMR32_XYZW(6, 5);

@@ -1,29 +1,33 @@
+#include "godhand/cOmDoor.h"
+
 /* sn-2.95.3-136 matched TU. */
 
+/* Swing the door shut: only while it is open (bit 0) and not already
+ * closing (bit 1), and only before the move state byte reaches 2. */
 __attribute__((section(".text.cOmDoor_setClose")))
-void cOmDoor_setClose(int a0)
+void cOmDoor_setClose(cOmDoor *self)
 {
-  int new_var;
-  long v = *((unsigned int *) (((char *) a0) + 0x620));
-  long b;
-  unsigned char *new_var2;
-  if ((v & 1) == 0)
-  {
- do { } while (0);
-    return;
-  }
-  b = (v >> (new_var = 1)) & new_var;
-  new_var2 = (unsigned char *) (((char *) a0) + 0x2F7);
-  if (b == new_var)
-  {
-    return;
-  }
-  if ((*((unsigned char *) (((char *) a0) + 0x2F4))) < 2)
-  {
-    *((unsigned char *) (((char *) a0) + 0x2F5)) = 2;
-    *((int *) (((char *) a0) + 0x620)) &= ~new_var;
-    *((unsigned char *) (((char *) a0) + 0x2F4)) = 0;
-    *((unsigned char *) (((char *) a0) + 0x2F6)) = 0;
-    *new_var2 = 0;
-  }
+    int one;
+    long v = (unsigned int)self->flags620;
+    long b;
+    unsigned char *stepArg;
+    if ((v & DOOR_FLAG_OPEN) == 0)
+    {
+        do { } while (0);
+        return;
+    }
+    b = (v >> (one = 1)) & one;
+    stepArg = &self->base.stepArg;
+    if (b == one)
+    {
+        return;
+    }
+    if (self->base.mode < 2)
+    {
+        self->base.phase = 2;
+        self->flags620 &= ~one;
+        self->base.mode = 0;
+        self->base.step = 0;
+        *stepArg = 0;
+    }
 }

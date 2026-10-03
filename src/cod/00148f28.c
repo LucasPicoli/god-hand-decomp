@@ -6,6 +6,7 @@
 #include "godhand/cOmWeapon.h"
 #include "godhand/cOl21.h"
 #include "godhand/cEma2.h"
+#include "godhand/cGame.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -116,12 +117,12 @@ void cEma2_gotoSwitch(cEma2 *self, float *src) {
     self->flags |= EMA2_F_GOTO;
 }
 
-/* sn-2.95.3-136 */
+/* Count the heap-release wait down; 1 once it has run out. */
 __attribute__((section(".text.cGame_isReleaseActiveHeap")))
-int cGame_isReleaseActiveHeap(char *p)
+int cGame_isReleaseActiveHeap(cGame *self)
 {
-    if (*(short *)(p + 0x1B2) > 0) {
-        *(unsigned short *)(p + 0x1B2) = *(unsigned short *)(p + 0x1B2) - 1;
+    if (self->heapWait > 0) {
+        self->heapWait = self->heapWait - 1;
         return 0;
     }
     return 1;

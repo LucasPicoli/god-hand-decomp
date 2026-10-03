@@ -2,18 +2,19 @@
 #include "godhand/cDvd.h"
 #include "godhand/cSnd.h"
 #include "godhand/cEmManage.h"
+#include "godhand/cOmDoor.h"
 
 extern unsigned char D_0058503A;
 extern int D_005E8600;
 
-/* cygnus-2.96 | drop-freorder-blocks */
+/* Lock the door (on == 1) or unlock it. */
 __attribute__((section(".text.cOmDoor_setLock")))
-void cOmDoor_setLock(char *p, int on)
+void cOmDoor_setLock(cOmDoor *self, int on)
 {
     if (on == 1) {
-        *(int *)(p + 0x620) |= 2;
+        self->flags620 |= DOOR_FLAG_LOCKED;
     } else {
-        *(int *)(p + 0x620) &= ~2;
+        self->flags620 &= ~DOOR_FLAG_LOCKED;
     }
 }
 

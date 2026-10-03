@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/CustomIDWork.h"
+#include "godhand/cMessCommon.h"
 
 extern int D_0044FAD0;
 extern unsigned int D_007476B0;
@@ -16,11 +17,13 @@ int cSnd_GetBgmData(int a0, int a1) {
     return v0 + t;
 }
 
+/* Size in 16-bit codes of the code at the stream head: 1 for a printable
+ * code, the low nibble for a control code. */
 __attribute__((section(".text.cMessCommon_getCodeSize")))
-int cMessCommon_getCodeSize(unsigned int a0) {
-    a0 = a0 & 0xFFFF;
-    if (a0 >> 15) {
-        return a0 & 0xF;
+int cMessCommon_getCodeSize(unsigned int code) {
+    code = code & 0xFFFF;
+    if (code >> 15) {
+        return code & 0xF;
     }
     return 1;
 }

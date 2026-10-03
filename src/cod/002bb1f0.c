@@ -1,5 +1,6 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
+#include "godhand/cRoomSave.h"
 extern void MtxMultiply(void *, int, void *);
 extern unsigned char D_00747A50[];
 extern unsigned char D_00586AB0;
@@ -21,22 +22,26 @@ void UpdateObjWithVtableDispatch_2BB1F0(void *a0)
     (*(void (**)(void *))((char *)v0 + 0x4C))(s0 + *(short *)((char *)v0 + 0x48));
 }
 
+extern void func_002BEBC8(cRoomSave *self, unsigned short room);
+extern int func_002BED08(cRoomSave *self, unsigned long key);
+/* Look up a one-shot key in another room's page: only when the room's high
+ * byte is the current stage, switch the page, test the key, and put the
+ * original page back. */
 __attribute__((section(".text.ForwardCheckedRequest_2BED60")))
-int ForwardCheckedRequest_2BED60(void *a0, int a1, int a2)
+int ForwardCheckedRequest_2BED60(cRoomSave *self, int room, int key)
 {
-    int *s1 = (int *)a0;
-    int s2 = a2;
-    int s0;
-    int v0;
-    a1 = a1 & 0xFFFF;
-    if (D_00747A50[1] != ((unsigned int)a1 >> 8)) {
+    cRoomSaveData *saved;
+    int found;
+
+    room = room & 0xFFFF;
+    if (D_00747A50[1] != ((unsigned int)room >> 8)) {
         return 0;
     }
-    s0 = s1[0];
-    func_002BEBC8(s1, a1);
-    v0 = func_002BED08(s1, s2);
-    s1[0] = s0;
-    return v0;
+    saved = self->data;
+    func_002BEBC8(self, room);
+    found = func_002BED08(self, key);
+    self->data = saved;
+    return found;
 }
 
 __attribute__((section(".text.ClearInputState_2C33D8")))

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cOm1f.h"
 
 extern int cOm5a_setCloseFix();
 extern int cOm5a_setOpenFix();
@@ -38,13 +39,14 @@ void *cMessage_searchWorkId(void *a0, int a1) {
 
 /* clone */
 
+/* Copy x, y and z of the new home point (w is left alone). */
 __attribute__((section(".text.cOm1f_setHomePos")))
-void cOm1f_setHomePos(char *a0, float *a1) {
-    float *p = (float*)(a0 + 0xB10);
-    if (p == a1) return;
-    *(float*)(a0 + 0xB10) = a1[0];
-    p[1] = a1[1];
-    p[2] = a1[2];
+void cOm1f_setHomePos(cOm1f *self, float *pos) {
+    float *p = self->homePos;
+    if (p == pos) return;
+    self->homePos[0] = pos[0];
+    p[1] = pos[1];
+    p[2] = pos[2];
 }
 
 /* clone */

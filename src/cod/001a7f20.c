@@ -1,3 +1,5 @@
+#include "godhand/cOm53.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 __attribute__((section(".text._IO_switch_to_backup_area")))
@@ -13,15 +15,16 @@ void _IO_switch_to_backup_area(int *fp) {
     fp[1] = fp[2];
 }
 
+/* Count n more riders as off the lift. 0 when nobody rides or n is 0. */
 __attribute__((section(".text.cOm53_setGetOffEm")))
-int cOm53_setGetOffEm(unsigned char *p, int n) {
-    if (p[0x612] == 0) {
+int cOm53_setGetOffEm(cOm53 *self, int n) {
+    if (self->riderNum == 0) {
         return 0;
     }
     if (n == 0) {
         return 0;
     }
-    p[0x615] = p[0x615] + n;
+    self->getOffNum = self->getOffNum + n;
     return 1;
 }
 

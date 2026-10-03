@@ -3,6 +3,7 @@
 #include "godhand/cScenario.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cEma2.h"
+#include "godhand/cOm53.h"
 
 /* Turn the ring physics on or off. */
 __attribute__((section(".text.cObjSimple_SetRingFlag")))
@@ -35,5 +36,6 @@ int cEma2_ckKiss(cEma2 *self) {
     return ((unsigned char *)&self->flags)[1] & 1;
 }
 
+/* Set the height the lift goes down to. */
 __attribute__((section(".text.cOm53_setDownPos")))
-void cOm53_setDownPos(void *a0, float x) { *(float *)((char *)a0 + 0x620) = x; }
+void cOm53_setDownPos(cOm53 *self, float x) { self->downPos = x; }

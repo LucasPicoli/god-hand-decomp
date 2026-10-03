@@ -1,5 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cActionButton.h"
 
 extern int D_00428A20;
 extern char D_005CAE50[];
@@ -10,7 +11,8 @@ extern void cCollisionSolidManage_ReleaseUnit(char *a0, char *a1);
 extern void ReleaseObj(char *a0);
 extern void func_001FE370(char *a0, char *a1);
 extern void func_002A73C8(char *a0, char *a1);
-extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(int a0, int a1, int *a2);
+extern cActionButtonEnt *func_001F7798(cActionButton *self);
+extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(cActionButton *self, int priority, cActionButtonEnt *ent);
 extern void cHeap_free(int, int *);
 extern int D_00747A34;
 
@@ -39,19 +41,21 @@ void ReleaseField6ECByTag564_26B1E8(void *a0)
     }
 }
 
+/* Take a free entry and set its life, kind, flags and priority, then let
+ * the manager sort it in by priority. */
 __attribute__((section(".text.cActionButton_set")))
-void cActionButton_set(int a0, int a1, int a2, int a3, int t0, int t1, int t2)
+void cActionButton_set(cActionButton *self, int priority, int life, int a3, int a4, int a5, int kind)
 {
-    int *p = func_001F7798(a0);
-    if (p != 0) {
-        p[7] = a2;
-        p[8] = a3;
-        p[0] |= 1;
-        p[4] = t0;
-        p[5] = t1;
-        p[9] = t2;
-        p[6] = a1;
-        Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(a0, a1, p);
+    cActionButtonEnt *ent = func_001F7798(self);
+    if (ent != 0) {
+        ent->life = life;
+        ent->unk20 = a3;
+        ent->flags |= ACTBTN_ENT_USED;
+        ent->unk10 = a4;
+        ent->unk14 = a5;
+        ent->kind = kind;
+        ent->priority = priority;
+        Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(self, priority, ent);
     }
 }
 

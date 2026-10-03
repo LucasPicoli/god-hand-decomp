@@ -1,3 +1,6 @@
+#include "godhand/cOm60.h"
+#include "godhand/cCockTutorial.h"
+
 __attribute__((section(".text.ClearBytesAt74And79To7C_13C618")))
 void ClearBytesAt74And79To7C_13C618(char *a0) {
     *(char*)(a0 + 0x74) = 0;
@@ -34,13 +37,15 @@ void ClearFields_B0_AC_147018(char *a0) {
     *(short*)(a0 + 0xAC) = v;
 }
 
+/* End the tutorial: forget the loaded pack, set the message number back to
+ * none and clear the flag byte. */
 __attribute__((section(".text.ClearActiveSlot_147188")))
-void ClearActiveSlot_147188(char *a0) {
-    unsigned int v = 0xFFFF;
-    if (*(int*)(a0 + 0xB0)) {
-        *(int*)(a0 + 0xB0) = 0;
-        *(short*)(a0 + 0xAC) = v;
-        *(char*)(a0 + 0xB8) = 0;
+void ClearActiveSlot_147188(cCockTutorial *self) {
+    unsigned int none = COCKTUT_MSG_NONE;
+    if (self->data) {
+        self->data = 0;
+        self->curMsg = none;
+        self->unkB8 = 0;
     }
 }
 
@@ -87,9 +92,10 @@ void cOm5a_setFaceOpen(void *a0) {
     *(int *)((char *)a0 + 0x608) = 1;
 }
 
+/* 1 while the object is still held by a parent. */
 __attribute__((section(".text.cOm60_ckParent")))
-int cOm60_ckParent(void *a0) {
-    return *(int *)((char *)a0 + 0x600) != 0;
+int cOm60_ckParent(cOm60 *self) {
+    return self->parent != 0;
 }
 
 __attribute__((section(".text.SetEntryParams_1B1928")))

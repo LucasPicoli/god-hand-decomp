@@ -1,15 +1,20 @@
+#include "godhand/cCamera.h"
+
 struct vtbl {
     char pad[0x10];
     short off;
     void (*fn)(int);
 };
 
+extern void func_00138558(struct cCamera *self);
+extern void cCamera_update(struct cCamera *self);
+/* One camera step: the subclass move method, the vibration, the update. */
 __attribute__((section(".text.cCamera_move")))
-void cCamera_move(int a0) {
-    struct vtbl *v0 = *(struct vtbl**)((char*)a0 + 0x35C);
-    v0->fn(a0 + v0->off);
-    func_00138558(a0);
-    cCamera_update(a0);
+void cCamera_move(struct cCamera *self) {
+    cCamVt *vt = self->vt;
+    vt->move((int)self + vt->moveDelta);
+    func_00138558(self);
+    cCamera_update(self);
 }
 
 __attribute__((section(".text.InitFiveSubstructs2ABA78_13D0B8")))

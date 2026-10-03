@@ -1,4 +1,5 @@
 #include "godhand/cModel.h"
+#include "godhand/cCockTutorial.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
@@ -6,17 +7,15 @@ extern char D_0041DCC8[];
 extern void __builtin_delete(void);
 extern void cIDBase_trans(void *);
 
+/* Start a tutorial message once the pack is loaded: remember the message
+ * number, raise the flag byte and hide entries 5 and 6. */
 __attribute__((section(".text.cCockTutorial_TutorialON")))
-void cCockTutorial_TutorialON(int a0, unsigned short a1) {
-    if (*(int *)((char*)a0 + 0xB0)) {
-        int *p1;
-        int *p2;
-        *(short *)((char*)a0 + 0xAC) = a1;
-        *(char *)((char*)a0 + 0xB8) = 1;
-        p1 = *(int **)((char*)a0 + 0xA4);
-        *(int *)((char*)p1 + 0x2C) = *(int *)((char*)p1 + 0x2C) | 0x8000000;
-        p2 = *(int **)((char*)a0 + 0xA8);
-        *(int *)((char*)p2 + 0x2C) = *(int *)((char*)p2 + 0x2C) | 0x8000000;
+void cCockTutorial_TutorialON(cCockTutorial *self, unsigned short msg) {
+    if (self->data) {
+        self->curMsg = msg;
+        self->unkB8 = 1;
+        self->ent[5]->flags = self->ent[5]->flags | IDENT_FLAG_NO_DRAW;
+        self->ent[6]->flags = self->ent[6]->flags | IDENT_FLAG_NO_DRAW;
     }
 }
 

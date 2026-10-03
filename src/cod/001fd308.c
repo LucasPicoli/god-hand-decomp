@@ -1,3 +1,5 @@
+#include "godhand/cDamageGive.h"
+
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern unsigned int D_00747B10;
@@ -11,13 +13,9 @@ int Rnd(void)
     return (unsigned char)D_00747B10;
 }
 
+/* Take x, y and z of the vector as the push direction. */
 __attribute__((section(".text.cDamageGive_SetDmgGiveHitVec")))
-void cDamageGive_SetDmgGiveHitVec(char *a0, float *a1)
+void cDamageGive_SetDmgGiveHitVec(cDamageGive *self, cVec *dir)
 {
-    float *v0 = (float *)(a0 + 0x10);
-    if (v0 != a1) {
-        v0[0] = a1[0];
-        v0[1] = a1[1];
-        v0[2] = a1[2];
-    }
+    cVec_copy3(&self->hitVec, dir);
 }

@@ -1,3 +1,5 @@
+#include "godhand/cScrSpriteDraw.h"
+
 /* cygnus-2.96 matched TU. */
 
 extern int GetArrayElemA0C_35A1C8(int a0, int a1);
@@ -167,20 +169,27 @@ float func_0032AE10(void *a0) {
     return r;
 }
 
+#define SPRITE_COLOR_NO_DEFAULT  6
+
+#define SPRITE_FONT_NO_DEFAULT   5
+
+#define SPRITE_CLIP_NONE         0xFFFF
+
+/* Reset the draw state: no clip, colour table 6, font 5, every scale 1.0. */
 __attribute__((section(".text.cScrSpriteDraw_drawInit")))
-void cScrSpriteDraw_drawInit(char *a0) {
-    int five = 5;
-    int six = 6;
-    unsigned int u = 0xFFFF;
-    *(short *)(a0 + 0x30) = u;
-    *(int *)(a0 + 0x2C) = five;
-    *(int *)(a0 + 0x28) = six;
-    *(float *)(a0 + 0x24) = 1.0f;
-    *(float *)(a0 + 0x20) = 1.0f;
-    *(float *)(a0 + 0x1C) = 1.0f;
-    *(float *)(a0 + 0x18) = 1.0f;
-    *(float *)(a0 + 0x14) = 1.0f;
-    *(float *)(a0 + 0x10) = 1.0f;
-    *(float *)(a0 + 0xC) = 1.0f;
-    *(float *)(a0 + 0x8) = 1.0f;
+void cScrSpriteDraw_drawInit(cScrSpriteDraw *self) {
+    int five = SPRITE_FONT_NO_DEFAULT;
+    int six = SPRITE_COLOR_NO_DEFAULT;
+    unsigned int u = SPRITE_CLIP_NONE;
+    self->clip = u;
+    self->fontNo = five;
+    self->colorNo = six;
+    self->blueScale = 1.0f;
+    self->greenScale = 1.0f;
+    self->redScale = 1.0f;
+    self->alphaScale = 1.0f;
+    self->scaleY = 1.0f;
+    self->scaleX = 1.0f;
+    self->shiftY = 1.0f;
+    self->shiftX = 1.0f;
 }

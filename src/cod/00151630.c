@@ -1,3 +1,5 @@
+#include "godhand/cRoomSave.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern char D_0076C8C0[];
@@ -7,19 +9,25 @@ typedef struct {
     unsigned long f8;
 } Slot;
 
+/* slot[0].used. The member form picks other registers; only the raw sum matches. */
+
+#define ROOMSAVE_SLOT0_USED_OFS 0x618
+
+/* Is the one-shot slot named by `key` already used? Search the page's 256
+ * slots for the key; 0 when the key is 0 or not found. */
 __attribute__((section(".text.func_002BED08")))
-int func_002BED08(char *obj, unsigned long key)
+int func_002BED08(cRoomSave *self, unsigned long key)
 {
-    char *base;
-    Slot *t;
+    cRoomSaveData *base;
+    cRoomSaveSlot *t;
     unsigned int i;
 
     if (key == 0) return 0;
-    base = *(char **)obj;
-    t = (Slot *)(base + 0x610);
-    for (i = 0; i < 0x100; i++) {
-        if (t[i].k == key) {
-            return *(unsigned char *)(base + i * 0x10 + 0x618) == 1;
+    base = self->data;
+    t = base->slot;
+    for (i = 0; i < ROOMSAVE_SLOT_NUM; i++) {
+        if (t[i].key == key) {
+            return *(unsigned char *)((char *)base + i * sizeof(cRoomSaveSlot) + ROOMSAVE_SLOT0_USED_OFS) == 1;
         }
     }
     return 0;

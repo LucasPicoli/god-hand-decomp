@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjSimple.h"
 #include "godhand/cSnd.h"
+#include "godhand/cOm1f.h"
 
 extern int D_00747A0C;
 extern void func_002D5AD8(void);
@@ -57,14 +58,14 @@ void cOl40_setVitalMax(char *p, int v)
     *(short *)(p + 0x624) = v;
 }
 
-/* cygnus-2.96 */
+/* Set the box the object roams in. */
 __attribute__((section(".text.cOm1f_setMoveRange")))
-void cOm1f_setMoveRange(char *p, float x, float y, float z, float w)
+void cOm1f_setMoveRange(cOm1f *self, float x, float y, float z, float w)
 {
-    *(float *)(p + 0xAF8) = x;
-    *(float *)(p + 0xAFC) = y;
-    *(float *)(p + 0xB00) = z;
-    *(float *)(p + 0xB04) = w;
+    self->moveRange[0] = x;
+    self->moveRange[1] = y;
+    self->moveRange[2] = z;
+    self->moveRange[3] = w;
 }
 
 /* cygnus-2.96 */
