@@ -258,6 +258,21 @@ typedef struct { int w[4]; } vu0_q128_t;
         : "m"(*(vu0_q128_t *)((char *)(v) + (off))), "f"(f)            \
         : "$8", "memory")
 
+/* (v+off).xyz += f, in place: the vaddx twin of VU0_VSCALE_XYZ_MEM. Five instructions:
+ * lqc2 vf4, mfc1 $8, qmtc2.ni vf5, vaddx.xyz, sqc2 vf4. */
+#define VU0_VADDX_XYZ_MEM(v, off, f)                                   \
+    __asm__ __volatile__ (                                             \
+        ".set push\n.set noreorder\n"                                  \
+        "lqc2  $vf4, %0\n"                                             \
+        "mfc1  $8, %1\n"                                               \
+        "qmtc2.ni $8, $vf5\n"                                          \
+        "vaddx.xyz $vf4, $vf4, $vf5x\n"                                \
+        "sqc2  $vf4, %0\n"                                             \
+        ".set pop\n"                                                   \
+        :                                                              \
+        : "m"(*(vu0_q128_t *)((char *)(v) + (off))), "f"(f)            \
+        : "$8", "memory")
+
 /* VU0_VMOVE_XYZW(dst, src): $vf<dst> = $vf<src> (all four fields). */
 #define VU0_VMOVE_XYZW(dst, src)                                       \
     __asm__ __volatile__ (                                             \

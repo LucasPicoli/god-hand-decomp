@@ -25,6 +25,16 @@ typedef struct { cSaveQ16 m[SAVEMGR_CORE_SIZE / 16]; } cSaveCore;
 typedef struct __attribute__((aligned(8))) { int m[SAVEMGR_ROOM_SIZE / 4]; } cSaveRooms;
 typedef struct { char m[SAVEMGR_TAIL_SIZE]; } cSaveTail;
 
+/* Two smaller blocks the reload helpers carry across a reload: the combo
+ * table (6 sets of 0x24 bytes = 0xD8) and the skill table (0x80 bytes). The
+ * attribute sits on the typedef, so the size stays 0xD8 and the copy is
+ * quadword moves with a 24 byte tail, as in retail. */
+typedef struct { long q[27]; } cSaveComboBlock __attribute__((aligned(16)));
+typedef struct { cSaveQ16 m[8]; } cSaveSkillBlock;
+typedef struct { char b[8]; } cSave8;                                               /* flags word pair at 0x14 */
+typedef struct { unsigned char b[10]; } cSaveReel10 __attribute__((aligned(8)));   /* reelSlot[10] */
+typedef struct { short s[5]; } cSaveKills;                                          /* killEmNum[5], allKillEmNum[5] */
+
 /* One checkpoint snapshot. */
 typedef struct cSaveSlot {
     cSaveCore core;                     /* 0x0000 */

@@ -31,7 +31,16 @@ typedef struct cCamVib {
     char unk11[3];
 } cCamVib;                              /* 0x14 */
 
-typedef struct cCamera {
+/* The camera method table: a g++ delta and function pointer at 0x10 and
+ * 0x14 that move calls first. */
+typedef struct cCamVt {
+    char unk00[0x10];
+    short moveDelta;                    /* 0x10 */
+    short pad12;
+    void (*move)(int self);             /* 0x14 */
+} cCamVt;
+
+struct cCamera {
     float mtx[CAMERA_MTX_NUM][16];      /* 0x000 */
     int unk1C0;                         /* 0x1C0 cleared by reset */
     char unk1C4[0x3C];
@@ -43,8 +52,10 @@ typedef struct cCamera {
     float fov;                          /* 0x250 */
     cCamVib vib[CAMERA_VIB_NUM];        /* 0x254 */
     char unk27C[0x35C - 0x27C];
-    void *vt;                           /* 0x35C */
-} cCamera;
+    cCamVt *vt;                         /* 0x35C */
+};
+
+/* The type is only ever written `struct cCamera`: the constructor function has the same name. */
 
 extern float Adjust_theta(float angle);
 

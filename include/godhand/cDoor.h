@@ -36,10 +36,12 @@ typedef struct cDoorPoint {
 } cDoorPoint;                           /* 0x18 */
 
 typedef struct cDoor {
-    int unk00;
+    short state;                        /* 0x00 set to 5 once the jump is under way */
+    short unk02;
     cDoorPoint point[2];                /* 0x04 the door's point, 0x1C the casino point */
     cRoomJump roomJump;                 /* 0x34 */
-    char unk38[2];
+    signed char step;                   /* 0x38 0 start the jump, 1 finish it */
+    signed char phase;                  /* 0x39 step of the jump: 0 enter, 1 wait */
     unsigned char unk3A;                /* 0x3A set by getJumpData */
 } cDoor;
 
@@ -63,6 +65,22 @@ typedef struct cDoorWorld {
     char unk000[0x5AC];
     void *pack;                         /* 0x5AC room data pack holding the jump table */
     unsigned short room;                /* 0x5B0 current room id */
+    char unk5B2[2];
+    unsigned short nextRoom;            /* 0x5B4 room the jump goes to */
+    char unk5B6[2];
+    unsigned char nextArg;              /* 0x5B8 */
+    unsigned char kindA;                /* 0x5B9 jump point kind, current */
+    unsigned char kindB;                /* 0x5BA */
+    unsigned char kindC;                /* 0x5BB previous kind */
+    char unk5BC[4];
+    float pos[3];                       /* 0x5C0 where the player lands */
+    char unk5CC[4];
+    float angle;                        /* 0x5D0 */
+    char unk5D4[4];
+    unsigned int flags5D8;              /* 0x5D8 */
+    char unk5DC[4];
+    unsigned int flags5E0;              /* 0x5E0 */
+    unsigned int flags5E4;              /* 0x5E4 */
 } cDoorWorld;
 
 typedef char cDoorPoint_size_check[(sizeof(cDoorPoint) == 0x18) ? 1 : -1];

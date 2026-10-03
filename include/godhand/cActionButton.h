@@ -35,7 +35,7 @@ typedef struct cActionButtonEnt {
     int unk14;                          /* 0x14 */
     int priority;                       /* 0x18 */
     int life;                           /* 0x1C */
-    char unk20[4];
+    int unk20;                          /* 0x20 */
     int kind;                           /* 0x24 */
     void *matrix;                       /* 0x28 the matrix the prompt is drawn with */
     char unk2C[4];

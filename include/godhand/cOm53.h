@@ -31,11 +31,12 @@ typedef struct cOm53 {
     char unk5E0[0x20];
     unsigned char rider[COM53_RIDER_NUM]; /* 0x600 enemy id per slot, COM53_RIDER_NONE = empty */
     unsigned char head;                 /* 0x610 first slot of the ring */
-    char unk611;
+    unsigned char tail;                 /* 0x611 next slot to unload */
     unsigned char riderNum;             /* 0x612 riders on board */
     char unk613[2];
     unsigned char getOffNum;            /* 0x615 riders that got off */
-    char unk616[0xA];
+    char unk616[6];
+    float exitY;                        /* 0x61C height the unloaded riders appear at */
     float downPos;                      /* 0x620 */
     char unk624[4];
     int riseWaitTime;                   /* 0x628 */

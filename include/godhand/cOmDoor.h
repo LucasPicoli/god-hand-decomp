@@ -33,7 +33,9 @@
 
 typedef struct cOmDoor {
     cGameObj base;                      /* 0x000 */
-    char unk5AC[0x620 - 0x5AC];
+    char unk5AC[0x610 - 0x5AC];
+    float size[3];                      /* 0x610 width, height, depth of the collision box */
+    char unk61C[4];
     unsigned int flags620;              /* 0x620 */
     char unk624[0x638 - 0x624];
     float closedHeading;                /* 0x638 heading while closed */
