@@ -32,7 +32,27 @@ __attribute__((section(".text.Obj1F20_NoOp_2690")))
 void Obj1F20_NoOp_2690(void) {}
 
 /* -- Call-chain (nonmatching) --------------------------------------------- */
-INCLUDE_ASM("nonmatching", func_001F2698);
+/* Arena enemy intro: step 0 defeats every enemy and moves on, step 1 moves to the last step. */
+typedef struct ArenaEm {
+    char unk000[0xB94];
+    int introStep;                      /* 0xB94 */
+} ArenaEm;
+
+extern void ColiseumBattle_DefeatAllEnemies(ArenaEm *self);
+
+__attribute__((section(".text.func_001F2698")))
+void func_001F2698(ArenaEm *self)
+{
+    switch (self->introStep) {
+    case 0:
+        ColiseumBattle_DefeatAllEnemies(self);
+        self->introStep = self->introStep + 1;
+        break;
+    case 1:
+        self->introStep = 2;
+        break;
+    }
+}
 
 __attribute__((section(".text.func_001F2708")))
 void *func_001F2708(void *a0) {
