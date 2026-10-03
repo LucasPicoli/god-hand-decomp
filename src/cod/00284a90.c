@@ -1,5 +1,7 @@
+#include "godhand/cEmManage.h"
+
 extern int D_00448CA0;
-extern int D_005864F0;
+extern int cOmbb_ckFire(cEmActor *em);
 extern int D_00448E20;
 extern int D_00754C80;
 
@@ -15,14 +17,15 @@ void ResetStateVtable_284A90(int a0, int a1) {
     func_0028EB88(a0, a1);
 }
 
+/* 1 if either of the two actors the manager keeps in slots 0 and 1 is firing. */
 __attribute__((section(".text.IsAnyActorActive_289418")))
 int IsAnyActorActive_289418(void) {
     unsigned int i;
-    int r;
+    cEmActor *em;
     for (i = 0; i < 2; i++) {
-        r = func_002948C8(&D_005864F0, i);
-        if (r != 0) {
-            if (cOmbb_ckFire(r) != 0) {
+        em = func_002948C8(&D_005864F0, i);
+        if (em != 0) {
+            if (cOmbb_ckFire(em) != 0) {
                 return 1;
             }
         }

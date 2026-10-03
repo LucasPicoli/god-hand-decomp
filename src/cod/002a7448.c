@@ -1,12 +1,16 @@
+#include "godhand/cGameObj.h"
+
 /* ee-2.9-991111 matched TU. */
 
 extern int IsTargetVisible_14B470();
 
+/* 1 when the object is cut off by the screen frustum or lies behind the camera,
+ * else whether it is visible at all. */
 __attribute__((section(".text.cGameObj_isClip")))
-int cGameObj_isClip(void *a0) {
-    long f = *(unsigned int *)((char *)a0 + 0x5A0);
+int cGameObj_isClip(cGameObj *self) {
+    long f = (unsigned)self->scrFlags;
     long t;
-    t = f & 1;
+    t = f & GAMEOBJ_SCR_CLIP;
     if (t != 0) {
         return 1;
     }
@@ -14,5 +18,5 @@ int cGameObj_isClip(void *a0) {
     if (t != 0) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return IsTargetVisible_14B470(self) != 0;
 }

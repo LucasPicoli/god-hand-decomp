@@ -1,12 +1,15 @@
+#include "godhand/cGameObj.h"
+
 /* sn-2.95.3-136 matched TU. */
 
+/* Copies the remembered position to *out and returns the wait byte kept with it. */
 __attribute__((section(".text.func_002A7CA0")))
-unsigned char func_002A7CA0(char *a0, float *a1) {
-    float *v0 = (float *)(a0 + 0x520);
-    if (a1 != v0) {
-        a1[0] = *(float *)(a0 + 0x520);
-        a1[1] = v0[1];
-        a1[2] = v0[2];
+unsigned char func_002A7CA0(cGameObj *self, cVec *out) {
+    cVec *stored = &self->stored;
+    if (out != stored) {
+        out->x = self->stored.x;
+        out->y = stored->y;
+        out->z = stored->z;
     }
-    return *(unsigned char *)(a0 + 0x530);
+    return self->storedWait;
 }

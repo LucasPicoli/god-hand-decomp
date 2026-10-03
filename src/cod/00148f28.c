@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmWeapon.h"
 #include "godhand/cOl21.h"
+#include "godhand/cEma2.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -102,16 +103,17 @@ void cEm00_setEm65Separate(char *p)
     *(unsigned char *)(p + 0x2F7) = 0;
 }
 
+/* Stores src as the goal (unless it is the goal already) and sets the goto flag. */
 __attribute__((section(".text.cEma2_gotoSwitch")))
-void cEma2_gotoSwitch(char *p, float *src) {
-    float *dst = (float *)(p + 0x15A0);
+void cEma2_gotoSwitch(cEma2 *self, float *src) {
+    float *dst = &self->goal.x;
 
     if (dst != src) {
         dst[0] = src[0];
         dst[1] = src[1];
         dst[2] = src[2];
     }
-    *(int *)(p + 0x15B0) |= 0x80;
+    self->flags |= EMA2_F_GOTO;
 }
 
 /* sn-2.95.3-136 */

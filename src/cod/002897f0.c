@@ -1,8 +1,30 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/cEma2.h"
 
-extern void func_0028EBF0(char *a0, void *a1, void *a2);
+extern void func_0028EBF0(cEma2 *self, SET_EM_DATA *data, void *arg);
+extern int func_0028AC58(cEma2 *self);
+extern int cDamageUnit_AddDamageCollSphere(int unit, void *joint, cVec *offset, float radius);
+extern cMeshNode *cModel_getMeshPtr_14B730(void *model, char *name);
+
+/* The int stored at byte ofs of the motion block, plus the block address. */
+static __inline__ int motionBlock_at(char *block, int ofs) {
+    return *(int *)(block + ofs) + (int)block;
+}
+
+/* Hides a mesh node, if the model has it. */
+static __inline__ void cMeshNode_hide(cMeshNode *node) {
+    if (node != 0)
+        node->dispFlags |= 1;
+}
+
+/* Shows a mesh node again, if the model has it. */
+static __inline__ void cMeshNode_show(cMeshNode *node) {
+    if (node != 0)
+        node->dispFlags &= ~1;
+}
+
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void moveMotion(void *a0);
 extern void cModel_calcParts(void *a0);
@@ -12,7 +34,6 @@ extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cObjBase_KageInit(void *a, void *b, void *c);
 extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern float fRand0_1(void);
@@ -30,187 +51,170 @@ extern char D_00448DE0[];
 extern char D_00448DE8[];
 extern char D_00448DF0[];
 struct sph { int a; float b; int c; float d; };
+/* Sets up the enemy from its room entry: copies the entry, clears the state
+ * bytes, picks the motion set, builds the damage spheres and the solid
+ * collision, looks up the eight meshes and rolls the item it drops.
+ * Returns 0 if the model can't be loaded. */
 __attribute__((section(".text.func_002897F0")))
-int func_002897F0(char *a0, char *a1, void *a2)
+int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
 {
-    char buf[0x20];
-    char *s1 = a0;
-    char *s0 = a1;
-    int v0;
+    cVec centre;
+    cVec first;
+    cVec *offset;
+    SET_EM_DATA *set = &self->setData;
+    char *motion;
+    cOmBase *child;
     int n;
-    int base;
-    struct sph *r;
-    {
-        char *a = s1 + 0x1530;
-        float *dst = (float *)(s1 + 0x1540);
-        float *src = (float *)(s0 + 0x10);
-        *(int *)a = *(int *)s0;
-        if (dst != src) {
-            dst[0] = src[0];
-            dst[1] = src[1];
-            dst[2] = src[2];
-        }
-        *(float *)(a + 0x20) = *(float *)(s0 + 0x20);
-        *(int *)(a + 0x24) = *(int *)(s0 + 0x24);
-        *(int *)(a + 0x28) = *(int *)(s0 + 0x28);
-        *(int *)(a + 0x2C) = *(int *)(s0 + 0x2C);
-        *(unsigned char *)(a + 0x30) = *(unsigned char *)(s0 + 0x30);
-        *(unsigned char *)(a + 0x31) = *(unsigned char *)(s0 + 0x31);
-    }
-    *(int *)(s1 + 0x564) = *(int *)(s0 + 0x28);
-    if (func_0028AC58(s1) == 0) {
+    unsigned int roll;
+
+    set->objId = data->objId;
+    cVec_copy3(&set->pos, &data->pos);
+    set->rot = data->rot;
+    set->flags = data->flags;
+    set->seBank = data->seBank;
+    set->seNo = data->seNo;
+    set->appPattern = data->appPattern;
+    set->entryNo = data->entryNo;
+    /* The room entry's number is also the enemy number. */
+    self->base.emNo = data->seBank;
+    if (func_0028AC58(self) == 0) {
         return 0;
     }
-    func_0028EBF0(s1, s0, a2);
+    func_0028EBF0(self, data, arg);
     {
-        float f = 1.1f;
-        *(unsigned char *)(s1 + 0x616) = 1;
-        *(float *)(s1 + 0x118) = f;
-        *(float *)(s1 + 0x114) = f;
-        *(float *)(s1 + 0x110) = f;
-        *(char *)(s1 + 0x531) = 0;
-        *(short *)(s1 + 0x548) = 500;
-        *(short *)(s1 + 0x54A) = 500;
+        float one_one = 1.1f;
+        self->unk616 = 1;
+        self->base.scale[2] = one_one;
+        self->base.scale[1] = one_one;
+        self->base.scale[0] = one_one;
+        self->base.unk531 = 0;
+        self->base.hpMax = 500;
+        self->base.hp = 500;
     }
-    *(unsigned char *)(s1 + 0x2F4) = 0;
-    *(unsigned char *)(s1 + 0x2F5) = 0;
-    *(unsigned char *)(s1 + 0x2F6) = 0;
-    *(unsigned char *)(s1 + 0x2F7) = 0;
-    switch (*(int *)(s1 + 0x564)) {
+    self->base.mode = 0;
+    self->base.phase = 0;
+    self->base.step = 0;
+    self->base.stepArg = 0;
+    switch (self->base.emNo) {
     default:
-        v0 = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(v0 + 0x50) + v0, *(int *)(v0 + 0x54) + v0, 0.0f, 0, 0, 0);
+        motion = self->base.motionData;
+        func_002A8578(self, motionBlock_at(motion, 0x50), motionBlock_at(motion, 0x54), 0.0f, 0, 0, 0);
         break;
     case 0x2A7: case 0x2AB:
-        v0 = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(v0 + 0x78) + v0, *(int *)(v0 + 0x7C) + v0, 0.0f, 0, 0, 0);
+        motion = self->base.motionData;
+        func_002A8578(self, motionBlock_at(motion, 0x78), motionBlock_at(motion, 0x7C), 0.0f, 0, 0, 0);
         break;
     }
-    moveMotion(s1);
-    cModel_calcParts(s1);
-    IK_InverseKinematics(s1 + 0x448, s1);
-    cModel_calcWorldParts(s1);
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
-    {
-        float *dst = (float *)(s1 + 0x1590);
-        float *src = *(float **)(s1 + 0xF0);
-        if (dst != src) {
-            dst[0] = src[0];
-            dst[1] = src[1];
-            dst[2] = src[2];
-        }
-    }
-    cParts_setRotationOrder(s1, 4);
-    cObjBase_KageInit(s1, s1 + 0x690, D_003C3F68);
-    *(int *)(s1 + 0x670) = cDamageManage_CreateDamageTake(D_00574380, s1, 1);
-    n = *(unsigned char *)(s1 + 0x2B4);
-    *(int *)(buf + 0x0) = n;
+    moveMotion(self);
+    cModel_calcParts(self);
+    IK_InverseKinematics(self->base.ik, self);
+    cModel_calcWorldParts(self);
+    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cVec_copy3(&self->escPos, self->base.pos);
+    cParts_setRotationOrder(self, 4);
+    cObjBase_KageInit(self, self->shadow, D_003C3F68);
+    self->damageTake = cDamageManage_CreateDamageTake(D_00574380, self, 1);
+
+    /* Four damage spheres, each centred on a joint of the model. */
+    n = self->base.childNum;
+    *(int *)&centre.x = n;
     {
         int one = 1;
         if (one < n) {
-            base = *(int *)(*(int *)(s1 + 0x278) + 4);
+            child = self->base.children[1];
         } else {
-            base = 0;
+            child = 0;
         }
     }
-    r = (struct sph *)(buf + 0x10);
-    *(int *)(buf + 0x10) = 0;
-    *(int *)(buf + 0x14) = 0;
-    *(int *)(buf + 0x18) = 0;
-    r->d = 1.0f;
-    *(int *)(s1 + 0x674) = cDamageUnit_AddDamageCollSphere(*(int *)(s1 + 0x670), base + 0x80, r, 0.25f);
-    n = *(unsigned char *)(s1 + 0x2B4);
-    *(int *)(buf + 0x0) = n;
+    first.x = 0;
+    first.y = 0;
+    first.z = 0;
+    offset = &first;
+    offset->w = 1.0f;
+    self->hitSphere[0] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, offset, 0.25f);
+    n = self->base.childNum;
+    *(int *)&centre.x = n;
     {
         int three = 3;
         if (three < n) {
-            base = *(int *)(*(int *)(s1 + 0x278) + 0xC);
+            child = self->base.children[3];
         } else {
-            base = 0;
+            child = 0;
         }
     }
-    *(float *)(buf + 0xC) = 1.0f;
-    *(int *)(buf + 0x0) = 0;
-    *(int *)(buf + 0x4) = 0;
-    *(int *)(buf + 0x8) = 0;
-    *(int *)(s1 + 0x678) = cDamageUnit_AddDamageCollSphere(*(int *)(s1 + 0x670), base + 0x80, buf, 0.25f);
-    n = *(unsigned char *)(s1 + 0x2B4);
-    *(int *)(buf + 0x0) = n;
+    centre.w = 1.0f;
+    centre.x = 0;
+    centre.y = 0;
+    centre.z = 0;
+    self->hitSphere[1] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+    n = self->base.childNum;
+    *(int *)&centre.x = n;
     {
-        int t19 = 0x13;
-        if (t19 < n) {
-            base = *(int *)(*(int *)(s1 + 0x278) + 0x4C);
+        int joint19 = 0x13;
+        if (joint19 < n) {
+            child = self->base.children[0x13];
         } else {
-            base = 0;
+            child = 0;
         }
     }
-    *(float *)(buf + 0xC) = 1.0f;
-    *(int *)(buf + 0x0) = 0;
-    *(int *)(buf + 0x4) = 0;
-    *(int *)(buf + 0x8) = 0;
-    *(int *)(s1 + 0x67C) = cDamageUnit_AddDamageCollSphere(*(int *)(s1 + 0x670), base + 0x80, buf, 0.25f);
-    n = *(unsigned char *)(s1 + 0x2B4);
-    *(int *)(buf + 0x0) = n;
+    centre.w = 1.0f;
+    centre.x = 0;
+    centre.y = 0;
+    centre.z = 0;
+    self->hitSphere[2] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+    n = self->base.childNum;
+    *(int *)&centre.x = n;
     {
-        int t23 = 0x17;
-        if (t23 < n) {
-            base = *(int *)(*(int *)(s1 + 0x278) + 0x5C);
+        int joint23 = 0x17;
+        if (joint23 < n) {
+            child = self->base.children[0x17];
         } else {
-            base = 0;
+            child = 0;
         }
     }
-    *(int *)(buf + 0x0) = 0;
-    *(int *)(buf + 0x4) = 0;
-    *(int *)(buf + 0x8) = 0;
-    *(float *)(buf + 0xC) = 1.0f;
-    *(int *)(s1 + 0x680) = cDamageUnit_AddDamageCollSphere(*(int *)(s1 + 0x670), base + 0x80, buf, 0.25f);
-    cCollisionSolidManage_CreateUnit(&D_00462FC0, s1, 5, 0.2f);
-    *(float *)(buf + 0xC) = 1.0f;
-    *(float *)(buf + 0x4) = 0.5f;
-    *(int *)(buf + 0x0) = 0;
-    *(int *)(buf + 0x8) = 0;
-    cCollisionSolidManage_CreateSphere(&D_00462FC0, s1, s1 + 0x80, buf, 0.5f);
-    *(int *)(s1 + 0x15A8) = 0;
-    *(float *)(s1 + 0x15A4) = 0.02f;
-    *(float *)(s1 + 0x15AC) = fRand0_1() * 90.0f + 90.0f;
-    *(void **)(s1 + 0x15B4) = cModel_getMeshPtr_14B730(s1, D_00448DB8);
-    *(void **)(s1 + 0x15B8) = cModel_getMeshPtr_14B730(s1, D_00448DC0);
-    *(void **)(s1 + 0x15BC) = cModel_getMeshPtr_14B730(s1, D_00448DC8);
-    *(void **)(s1 + 0x15C0) = cModel_getMeshPtr_14B730(s1, D_00448DD0);
-    *(void **)(s1 + 0x15C4) = cModel_getMeshPtr_14B730(s1, D_00448DD8);
-    *(void **)(s1 + 0x15C8) = cModel_getMeshPtr_14B730(s1, D_00448DE0);
-    *(void **)(s1 + 0x15CC) = cModel_getMeshPtr_14B730(s1, D_00448DE8);
-    *(void **)(s1 + 0x15D0) = cModel_getMeshPtr_14B730(s1, D_00448DF0);
-    { char *p = *(char **)(s1 + 0x15B4);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15B8);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15BC);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15C0);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15C4);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15C8);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15CC);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15D0);
-      if (p != 0) *(int *)(p + 0x380) |= 1; }
-    { char *p = *(char **)(s1 + 0x15B4);
-      if (p != 0) *(int *)(p + 0x380) &= 0xFFFFFFFE; }
-    { char *p = *(char **)(s1 + 0x15C4);
-      if (p != 0) *(int *)(p + 0x380) &= 0xFFFFFFFE; }
-    *(unsigned char *)(s1 + 0x15F4) = 1;
-    {
-        unsigned int k = Rnd() & 0xF;
-        *(int *)(s1 + 0x560) = 0x3C1;
-        if (k >= 7) *(int *)(s1 + 0x560) = 0x3C8;
-        if (k >= 13) *(int *)(s1 + 0x560) = 0x3D1;
-        if (k >= 15) *(int *)(s1 + 0x560) = 0x3D0;
-    }
-    if ((Rnd() & 7) == 0) *(int *)(s1 + 0x560) = 0x3D8;
-    if (*(int *)(s1 + 0x1554) & 0x10000000)
-        *(int *)(s1 + 0x15A0) |= 0x40;
+    centre.x = 0;
+    centre.y = 0;
+    centre.z = 0;
+    centre.w = 1.0f;
+    self->hitSphere[3] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+
+    cCollisionSolidManage_CreateUnit(&D_00462FC0, self, 5, 0.2f);
+    centre.w = 1.0f;
+    centre.y = 0.5f;
+    centre.x = 0;
+    centre.z = 0;
+    cCollisionSolidManage_CreateSphere(&D_00462FC0, self, self->base.mtx, &centre, 0.5f);
+
+    /* The goal's first word holds flags, its w the random wait. */
+    *(int *)&self->goal.z = 0;
+    self->goal.y = 0.02f;
+    self->goal.w = fRand0_1() * 90.0f + 90.0f;
+    self->mesh[0] = cModel_getMeshPtr_14B730(self, D_00448DB8);
+    self->mesh[1] = cModel_getMeshPtr_14B730(self, D_00448DC0);
+    self->mesh[2] = cModel_getMeshPtr_14B730(self, D_00448DC8);
+    self->mesh[3] = cModel_getMeshPtr_14B730(self, D_00448DD0);
+    self->mesh[4] = cModel_getMeshPtr_14B730(self, D_00448DD8);
+    self->mesh[5] = cModel_getMeshPtr_14B730(self, D_00448DE0);
+    self->mesh[6] = cModel_getMeshPtr_14B730(self, D_00448DE8);
+    self->mesh[7] = cModel_getMeshPtr_14B730(self, D_00448DF0);
+    cMeshNode_hide(self->mesh[0]);
+    cMeshNode_hide(self->mesh[1]);
+    cMeshNode_hide(self->mesh[2]);
+    cMeshNode_hide(self->mesh[3]);
+    cMeshNode_hide(self->mesh[4]);
+    cMeshNode_hide(self->mesh[5]);
+    cMeshNode_hide(self->mesh[6]);
+    cMeshNode_hide(self->mesh[7]);
+    cMeshNode_show(self->mesh[0]);
+    cMeshNode_show(self->mesh[4]);
+    *(unsigned char *)&self->aim.y = 1;
+    roll = Rnd() & 0xF;
+    self->base.dropItem = 0x3C1;
+    if (roll >= 7) self->base.dropItem = 0x3C8;
+    if (roll >= 13) self->base.dropItem = 0x3D1;
+    if (roll >= 15) self->base.dropItem = 0x3D0;
+    if ((Rnd() & 7) == 0) self->base.dropItem = 0x3D8;
+    if (self->setData.flags & 0x10000000)
+        *(int *)&self->goal.x |= 0x40;
     return 1;
 }

@@ -1,3 +1,5 @@
+#include "godhand/cGameObj.h"
+
 /* ── 1. id/mask thunks ──────────────────────────────────────────────
  * `addiu $a0,1 ; jal helper ; ori $a1,0xFFFF` — a forwarding call with
  * a stack frame (the helper is not a tail call).  $v0 is left as the
@@ -34,9 +36,9 @@ int Forward31D9F0_31DA28(void) { return func_0031D9F0(1, 0xFFFF); }
 __attribute__((section(".text.NoOp_1F0530")))
 void NoOp_1F0530(void) {}
 
-/* `jr $ra ; lw $v0, 0xF0($a0)` — return obj->field_F0. */
+/* The object's live position. */
 __attribute__((section(".text.cGameObj_getPos")))
-int cGameObj_getPos(void *obj) { return *(int *)((char *)obj + 0xF0); }
+cVec *cGameObj_getPos(cGameObj *self) { return self->pos; }
 
 /* `sb $a2,0x54($a0) ; jr $ra ; sb $a1,0x3A($a0)` — two byte stores. */
 /* Source order is swapped vs the asm: SN -O2 schedules the second store

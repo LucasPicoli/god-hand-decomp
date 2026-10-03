@@ -1,27 +1,30 @@
 /* TU: cEmSetParam [enemy] - recovered C++ class. */
 #include "include_asm.h"
+#include "godhand/cEmSetParam.h"
 
 INCLUDE_ASM("nonmatching", cEmSetParam_setEmAll);
 
 INCLUDE_ASM("nonmatching", cEmSetParam_setEm);
 
-extern int D_005E8658;
+extern cEmSetEntry *func_002BEF60();
 
+/* Stores the heading f (radians) in the current entry, in room-file units. */
 __attribute__((section(".text.cEmSetParam_updateSetDataRot")))
 void cEmSetParam_updateSetDataRot(float f) {
-    short *p = (short *)func_002BEF60(&D_005E8658);
-    if (p != 0) {
-        *(short *)((char *)p + 6) = (short)(int)(f * 57.2957763671875f);
+    cEmSetEntry *entry = func_002BEF60(&D_005E8658);
+    if (entry != 0) {
+        entry->rot = (short)(int)(f * EMSET_ROT_PER_RAD);
     }
 }
 
 
+/* Stores how the current entry's enemy appears. */
 __attribute__((section(".text.cEmSetParam_updateSetDataAppPattern")))
 void cEmSetParam_updateSetDataAppPattern(int a, int b, unsigned char c) {
-    char *p = (char *)func_002BEF60(&D_005E8658);
+    cEmSetEntry *entry = func_002BEF60(&D_005E8658);
     c = c & 0xFF;
-    if (p != 0) {
-        *(char *)(p + 0x10) = c;
+    if (entry != 0) {
+        entry->appPattern = c;
     }
 }
 

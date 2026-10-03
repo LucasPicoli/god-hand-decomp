@@ -1,6 +1,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjSimple.h"
 #include "include_asm.h"
+#include "godhand/cEma2.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -2357,20 +2358,22 @@ INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
 INCLUDE_ASM("nonmatching", capVu0Acos);
 
+/* Starts the poison state machine: mode 0, phase 5, step 0. */
 __attribute__((section(".text.cEma2_SetPoison")))
-void cEma2_SetPoison(char *a0) {
-    a0[0x2F4] = 0;
-    a0[0x2F5] = 5;
-    a0[0x2F6] = 0;
-    a0[0x2F7] = 0;
+void cEma2_SetPoison(cEma2 *self) {
+    self->base.mode = 0;
+    self->base.phase = 5;
+    self->base.step = 0;
+    self->base.stepArg = 0;
 }
 
+/* Same as SetPoison but at step 2, the poison death. */
 __attribute__((section(".text.cEma2_SetPoisonDie")))
-void cEma2_SetPoisonDie(char *a0) {
-    a0[0x2F4] = 0;
-    a0[0x2F5] = 5;
-    a0[0x2F6] = 2;
-    a0[0x2F7] = 0;
+void cEma2_SetPoisonDie(cEma2 *self) {
+    self->base.mode = 0;
+    self->base.phase = 5;
+    self->base.step = 2;
+    self->base.stepArg = 0;
 }
 
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);

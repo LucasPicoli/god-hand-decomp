@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cOmBase.h"
 #include "godhand/cSnd.h"
+#include "godhand/cGameObj.h"
 
 extern char *D_00754C38;
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -61,20 +62,22 @@ int func_001FFF30(void *a0, short a1, float *a2, unsigned char a3, float f, int 
     return cDoor_setDoorJump(a0);
 }
 
+/* Stores pos as the object's position copy and writes it through to the live
+ * position (each copy is skipped when both point at one vector). */
 __attribute__((section(".text.cGameObj_setPos")))
-void cGameObj_setPos(void *a0, float *a1) {
-    float *d = (float*)((char*)a0 + 0x490);
-    float *p;
-    if (d != a1) {
-        d[0] = a1[0];
-        d[1] = a1[1];
-        d[2] = a1[2];
+void cGameObj_setPos(cGameObj *self, float *pos) {
+    float *copy = &self->posA.x;
+    float *live;
+    if (copy != pos) {
+        copy[0] = pos[0];
+        copy[1] = pos[1];
+        copy[2] = pos[2];
     }
-    p = *(float**)((char*)a0 + 0xF0);
-    if (p != d) {
-        p[0] = d[0];
-        p[1] = d[1];
-        p[2] = d[2];
+    live = (float *)self->pos;
+    if (live != copy) {
+        live[0] = copy[0];
+        live[1] = copy[1];
+        live[2] = copy[2];
     }
 }
 

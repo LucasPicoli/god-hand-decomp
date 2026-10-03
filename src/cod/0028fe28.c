@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cEvent.h"
+#include "godhand/cGameObj.h"
 
 __attribute__((section(".text.func_0028FE28")))
 int func_0028FE28(void) { return 0; }
@@ -42,9 +43,10 @@ __attribute__((section(".text.func_00299860")))
 void func_00299860(void) {
 }
 
+/* The object's rotation array. */
 __attribute__((section(".text.cGameObj_getRot")))
-int cGameObj_getRot(int a0) {
-    return a0 + 0x100;
+float *cGameObj_getRot(cGameObj *self) {
+    return self->rot;
 }
 
 __attribute__((section(".text.func_002AEF90")))

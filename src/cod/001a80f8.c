@@ -2,6 +2,7 @@
 #include "godhand/cObjSimple.h"
 #include "godhand/cScenario.h"
 #include "godhand/cEmManage.h"
+#include "godhand/cEma2.h"
 
 /* Turn the ring physics on or off. */
 __attribute__((section(".text.cObjSimple_SetRingFlag")))
@@ -28,9 +29,10 @@ int cEmManage_DarkWorldCk(cEmManage *self) {
     return self->darkWorld != 0;
 }
 
+/* Bit 8 of flags (EMA2_F_KISS), read as the low bit of byte 1. */
 __attribute__((section(".text.cEma2_ckKiss")))
-int cEma2_ckKiss(void *a0) {
-    return *(unsigned char*)((char*)a0+0x15B1) & 1;
+int cEma2_ckKiss(cEma2 *self) {
+    return ((unsigned char *)&self->flags)[1] & 1;
 }
 
 __attribute__((section(".text.cOm53_setDownPos")))

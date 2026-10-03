@@ -22,9 +22,11 @@
  * `int` (retail does no sign-extend), and the sqc2 $vf0 zero-quad idiom is
  * correct (objdump mislabels the identical bytes as `sdc2 $0`). */
 #include "godhand/vu0.h"
+#include "godhand/cGameObj.h"
 
 extern int SetEffect();
 
+/* The effect descriptor SetEffect reads. */
 typedef struct {
     float f00;      /* 0x00 */
     float f04;      /* 0x04 */
@@ -36,9 +38,9 @@ typedef struct {
     float f34;      /* 0x34 */
     float f38;      /* 0x38 */
     float f3C;      /* 0x3C */
-    float f40;      /* 0x40 */
+    float f40;      /* 0x40 object scale */
     int   i44;      /* 0x44 */
-    int   i48;      /* 0x48 */
+    int   i48;      /* 0x48 flags, 0x80 when the object's unk434 has bit 1 */
     signed char b4C;/* 0x4C */
     signed char b4D;/* 0x4D */
     signed char b4E;/* 0x4E */
@@ -53,8 +55,12 @@ typedef struct {
     int   i78;      /* 0x78 */
 } S;
 
+
+/* Fills the effect descriptor and calls SetEffect for object a0. With no
+ * t1 the effect follows a0 itself, and starts flagged when a0's unk434 has
+ * bit 1; otherwise it follows t1. a0 keeps the effect number and mode. */
 __attribute__((section(".text.InitRenderStruct_2A8608")))
-void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t1) {
+void InitRenderStruct_2A8608(cGameObj *a0, int a1, void *a2, int a3, int t0, void *t1) {
     S s;
     s.f00 = 1.0f;
     s.f04 = 1.0f;
@@ -78,23 +84,23 @@ void InitRenderStruct_2A8608(void *a0, int a1, void *a2, int a3, int t0, void *t
     s.b4E = 0;
     s.i50 = 0;
     VU0_SQC2_VF0(&s, 0x60);
-    *(int *)((char *)a0 + 0x574) = t0;
+    a0->effArg = t0;
     s.h70 = 0;
     s.h72 = 0;
     s.b74 = 0;
     s.i78 = 0;
-    *(unsigned short *)((char *)a0 + 0x570) = a3;
+    a0->effNo = a3;
     if (t1 == 0) {
         if (a0 != 0) {
-            if (*(unsigned short *)((char *)a0 + 0x434) & 2) {
+            if (a0->unk434 & 2) {
                 s.i48 |= 0x80;
-                s.f40 = *(float *)((char *)a0 + 0x114);
+                s.f40 = a0->scale[1];
             }
         }
         SetEffect(a1, a2, a0, &s, a3, a0);
     } else {
         if (a0 != 0) {
-            s.f40 = *(float *)((char *)a0 + 0x114);
+            s.f40 = a0->scale[1];
         }
         SetEffect(a1, a2, t1, &s, a3, a0);
     }
