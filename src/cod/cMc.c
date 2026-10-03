@@ -9,7 +9,7 @@ extern void *D_003BD6E8;
 extern cMcObjList *D_00754C58;
 extern void cCamera_move(void *cam);
 extern void MoveEffect(void);
-extern void func_002AEFA8(void *p);
+extern void cMessage_updateAll(void *p);
 extern void func_00140E58(void *p);
 
 /* One frame of the loading screen: move the camera, the effects and two
@@ -22,7 +22,7 @@ void cMc_Move(cMc *self) {
     cMcObj *obj;
     cCamera_move(D_005CAFF0);
     MoveEffect();
-    func_002AEFA8(D_003C23A4);
+    cMessage_updateAll(D_003C23A4);
     func_00140E58(D_003BD6E8);
     for (p = D_00754C58->begin; p != D_00754C58->end; p++) {
         obj = *p;

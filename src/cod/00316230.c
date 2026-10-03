@@ -38,7 +38,7 @@ int ForwardInitObject_316380(void){
     s0 = EnsureInitThenForward_2A9538_30EE08(0x970, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x970);
-    return func_001B39D0(s0);
+    return InitVuBlockObject(s0);
 }
 
 __attribute__((section(".text.ForwardInitObject_3163F0")))
@@ -88,7 +88,7 @@ int ForwardInitObject_3165B0(void){
     s0 = EnsureInitThenForward_2A9538_30EE08(0x640, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x640);
-    return func_001B87A8(s0);
+    return InitAndClearVuFieldsB(s0);
 }
 
 __attribute__((section(".text.ForwardInitObject_316620")))

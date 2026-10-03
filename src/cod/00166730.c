@@ -28,8 +28,8 @@ extern char **D_003C2384;
 
 
 
-__attribute__((section(".text.func_001E9F18")))
-void func_001E9F18(char *self) {
+__attribute__((section(".text.ActBtnHandler_Variant2")))
+void ActBtnHandler_Variant2(char *self) {
     cSceAtManager_SetDisableById((int)D_005FEA60, *(unsigned short *)(self + 0x1B0));
     cScenario_taskExec(D_003C2F84, (void *)&func_001E9F68, self, -1);
 }
@@ -41,8 +41,8 @@ void func_001E9F18(char *self) {
 
 
 
-__attribute__((section(".text.func_00190178")))
-void *func_00190178(void) {
+__attribute__((section(".text.GetSingletonA")))
+void *GetSingletonA(void) {
     void *p = &D_00785BD8;
     if (D_00785BD8 == 0) {
         func_001C8F30();
@@ -58,8 +58,8 @@ void *func_00190178(void) {
 
 
 
-__attribute__((section(".text.func_001A6D18")))
-void *func_001A6D18(void) {
+__attribute__((section(".text.GetSingletonB")))
+void *GetSingletonB(void) {
     void *p = &D_00785F88;
     if (D_00785F88 == 0) {
         GetOrInitGlobal785878_1B8058();
@@ -75,8 +75,8 @@ void *func_001A6D18(void) {
 
 
 
-__attribute__((section(".text.func_001B5650")))
-void *func_001B5650(void) {
+__attribute__((section(".text.GetSingletonC")))
+void *GetSingletonC(void) {
     void *p = &D_007860B8;
     if (D_007860B8 == 0) {
         GetOrInitGlobal785878_1B8058();
@@ -91,8 +91,8 @@ void *func_001B5650(void) {
 
 
 
-__attribute__((section(".text.func_00166730")))
-void func_00166730(int a0) {
+__attribute__((section(".text.ResetObjAndReleaseIdsA")))
+void ResetObjAndReleaseIdsA(int a0) {
     char *p;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     cIDBase_release(a0 + 0xE0);
@@ -109,8 +109,8 @@ void func_00166730(int a0) {
 
 
 
-__attribute__((section(".text.func_001674C8")))
-void func_001674C8(int a0) {
+__attribute__((section(".text.ResetObjAndReleaseIdsB")))
+void ResetObjAndReleaseIdsB(int a0) {
     char *p;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     cIDBase_release(a0 + 0xC0);

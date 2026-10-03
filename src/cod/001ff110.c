@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int UpdateStateReady_1FF238(void *a0);
-extern void func_001FF338(void *a0);
+extern void cDataManager_retireSlot(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -23,7 +23,7 @@ void func_001FF110(void *a0) {
         *a1 = 7;
         break;
     case 7:
-        func_001FF338(a1);
+        cDataManager_retireSlot(a1);
         break;
     case 0:
     case 2:

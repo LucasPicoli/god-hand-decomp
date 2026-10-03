@@ -15,8 +15,8 @@ extern void func_0026F328(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void *Getplayer(void);
 extern void func_002A74E0(void *a0, void *a1, int a2);
-extern int func_002919F8(void *a0, void *a1, float f12);
-extern int func_00291AC8(void *a0, void *a1, void *a2, float f12);
+extern int cEmManage_ckEnemyActiveNear(void *a0, void *a1, float f12);
+extern int cEmManage_ckEmNear(void *a0, void *a1, void *a2, float f12);
 extern void func_002736F8(int a0);
 extern char D_00462FC0[];
 extern unsigned short D_00747A50;
@@ -1151,10 +1151,10 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                 if (*(int *)(s1 + 0x16D0) & 0x200000) {
                     char *g = D_007474A0;
                     if ((*(int *)(g + 0x210) & 7) == (*(int *)(s1 + 0x17D0) & 7)) {
-                        if (func_002919F8(D_005864F0, *(void **)(s1 + 0xF0), 4.0f) != 0) {
+                        if (cEmManage_ckEnemyActiveNear(D_005864F0, *(void **)(s1 + 0xF0), 4.0f) != 0) {
                             *(unsigned char *)(s1 + 0x2F6) = 2;
                         }
-                        if (func_00291AC8(D_005864F0, *(void **)(s1 + 0xF0), s1, 3.0f) != 0) {
+                        if (cEmManage_ckEmNear(D_005864F0, *(void **)(s1 + 0xF0), s1, 3.0f) != 0) {
                             *(unsigned char *)(s1 + 0x2F6) = 2;
                         }
                     }

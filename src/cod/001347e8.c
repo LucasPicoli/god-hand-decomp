@@ -7,8 +7,8 @@ extern unsigned int D_007476B0;
 extern int D_00568288;
 extern void cActionButton_set(int *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int cModel_getMeshPtr(int a0, int a1);
-extern void func_001344A0(int *a0);
-extern void func_00134458(int *a0, int a1);
+extern void NodeList_clear(int *a0);
+extern void NodeList_deletingDtor(int *a0, int a1);
 
 __attribute__((section(".text.cSnd_GetBgmData")))
 int cSnd_GetBgmData(int a0, int a1) {
@@ -120,9 +120,9 @@ void cCollisionSolidManage_ReleaseUnit(int *a0, int a1){
     } else {
         *(int *)a0 = next;
     }
-    func_001344A0(node);
+    NodeList_clear(node);
     if (node != 0) {
-        func_00134458(node, 3);
+        NodeList_deletingDtor(node, 3);
     }
     *(int *)((char *)a0 + 0x4) = *(int *)((char *)a0 + 0x4) - 1;
 }

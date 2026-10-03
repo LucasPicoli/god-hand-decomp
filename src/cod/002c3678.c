@@ -5,8 +5,8 @@ extern int D_007474A0;
 extern int D_00747A2C;
 extern int D_005FEA60;
 extern char *Getplayer(void);
-extern void func_002C14F8(int *a0);
-extern void func_002D5358(cTaskManager *task);
+extern void cSceAtManager_clearCursor(int *a0);
+extern void cTaskManager_runTasksWithWait(cTaskManager *task);
 
 __attribute__((section(".text.cScenario_move")))
 /* Every frame: track the player's death, then run the room script and
@@ -46,18 +46,18 @@ void cScenario_move(cScenario *self)
             long t2 = (unsigned int)self->task.flags;
             if (((t2 >> 1) & 1) == 0) {
                 void (*fp)(void);
-                func_002C14F8(&D_005FEA60);
+                cSceAtManager_clearCursor(&D_005FEA60);
                 fp = self->script->move;
                 if (fp)
                     (*fp)();
-                func_002D5358(p);
+                cTaskManager_runTasksWithWait(p);
                 cScenario_checkEnd(self);
             } else {
                 void (*fp)(void);
                 fp = self->script->move;
                 if (fp)
                     (*fp)();
-                func_002D5358(p);
+                cTaskManager_runTasksWithWait(p);
             }
         }
     }

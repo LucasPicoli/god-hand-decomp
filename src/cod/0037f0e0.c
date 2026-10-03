@@ -4,7 +4,7 @@ extern unsigned int strlen(const char *);
 extern void *D_003C4030[16];
 extern const char D_0045C210[];
 extern const char D_0045C220[];
-extern void func_00384C60(void *);
+extern void UpdateChildAndFreeSoundHandle(void *);
 extern void func_003A6A20(const char *);
 extern void func_003229D0(int, const char *, int, void *);
 
@@ -147,7 +147,7 @@ void func_0037F0E0(char *self)
         func_003BB178(ths, ((Rep *)(*(char **)(self + 0x40) - 16))->len, 0, cs, n);
     }
 
-    func_00384C60(self);
+    UpdateChildAndFreeSoundHandle(self);
     h = func_0031C890(0x31C);
     *(void **)(sub + 0xFC) = h;
     if (h == 0) {

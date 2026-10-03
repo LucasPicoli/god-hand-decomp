@@ -7,8 +7,8 @@
 
 extern void func_002B4A50(cMovie *self);
 extern void func_002D42F8(cMovieTrack *track);
-extern void func_00201C28(cE3 *self);
-extern void func_00201D20(cE3 *self);
+extern void cE3_stepMenuClock(cE3 *self);
+extern void cE3_runDemo(cE3 *self);
 extern void KeyStop(void);
 extern void *Getplayer(void);
 extern unsigned int D_00747A84;
@@ -26,8 +26,8 @@ static __inline__ unsigned char cMovieTrack_inUse(cMovieTrack *t) {
 }
 
 /* 1 when no track holds a player. */
-__attribute__((section(".text.func_002B4E48")))
-int func_002B4E48(cMovie *self) {
+__attribute__((section(".text.cMovie_isIdle")))
+int cMovie_isIdle(cMovie *self) {
     cMovieTrack *t;
     int i;
     func_002B4A50(self);
@@ -39,22 +39,22 @@ int func_002B4E48(cMovie *self) {
 }
 
 /* Hand the active track, if there is one, to func_002D42F8. */
-__attribute__((section(".text.func_002B4D38")))
-void func_002B4D38(void) {
+__attribute__((section(".text.cMovie_haltActive")))
+void cMovie_haltActive(void) {
     cMovieTrack *track = func_002B4F98();
     if (track)
         func_002D42F8(track);
 }
 
 /* Run the step for the current state: the menu or the demo. */
-__attribute__((section(".text.func_00201BE0")))
-void func_00201BE0(cE3 *self) {
+__attribute__((section(".text.cE3_exec")))
+void cE3_exec(cE3 *self) {
     switch (self->state) {
     case CE3_STATE_MENU:
-        func_00201C28(self);
+        cE3_stepMenuClock(self);
         break;
     case CE3_STATE_DEMO:
-        func_00201D20(self);
+        cE3_runDemo(self);
         break;
     }
 }

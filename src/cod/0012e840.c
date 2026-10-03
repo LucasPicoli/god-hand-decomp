@@ -40,8 +40,8 @@ typedef struct ListOwner {
 #define CAM_FOCUS_OFFSET     0x200
 
 /* Run method 3 of every listed child; when the follow flag is set, point the owner at the camera focus (or the player) and run method 2 of every child. */
-__attribute__((section(".text.func_0012E840")))
-void func_0012E840(ListOwner *self)
+__attribute__((section(".text.ListOwner_updateFollowFocus")))
+void ListOwner_updateFollowFocus(ListOwner *self)
 {
     cVec pos __attribute__((aligned(16)));
     ListNode *n;

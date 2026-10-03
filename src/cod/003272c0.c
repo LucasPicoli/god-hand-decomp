@@ -466,7 +466,7 @@ void func_00334698(void *a0) {
         s0 = func_00331F50(*(int *)(s1 + 0x18));
         PushGlobalD8478History_331C78(0x5001);
         if (s0 < 0) {
-            func_00326050(D_00454948);
+            LogPrintf(D_00454948);
         }
     }
     s1[0] = 0;

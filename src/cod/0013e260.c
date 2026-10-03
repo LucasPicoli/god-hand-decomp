@@ -25,8 +25,8 @@ typedef struct cOmShakeHigh {
 } cOmShakeHigh;
 
 /* Shake the object's height: count the timer down and jitter its y by a small random amount, then restore the rest height when it runs out. */
-__attribute__((section(".text.func_001AC908")))
-void func_001AC908(cOmShakeHigh *self)
+__attribute__((section(".text.cOmShake_updateHeight")))
+void cOmShake_updateHeight(cOmShakeHigh *self)
 {
     if (self->timer > 0) {
         self->timer--;
@@ -38,8 +38,8 @@ void func_001AC908(cOmShakeHigh *self)
 }
 
 /* Show or hide sub-elements 6 to 10 of a UI record. */
-__attribute__((section(".text.func_001DF758")))
-void func_001DF758(void *ui, int on) {
+__attribute__((section(".text.UiRecord_setDispSubs6to10")))
+void UiRecord_setDispSubs6to10(void *ui, int on) {
     func_001DEE60(ui, 6, on);
     func_001DEE60(ui, 7, on);
     func_001DEE60(ui, 8, on);
@@ -64,8 +64,8 @@ typedef struct cKidOwner {
 #define KID_MODE_END 1
 
 /* Destructor: release the handle, send both children to mode 1, run the base destructor. */
-__attribute__((section(".text.func_001B5768")))
-void func_001B5768(cKidOwner *self, int flag) {
+__attribute__((section(".text.cKidOwner_destruct")))
+void cKidOwner_destruct(cKidOwner *self, int flag) {
     self->base.vt = (cGameObjVt *)&D_00428840;
     if (self->handle != 0) {
         ClearAndResetFields_1FE278(D_00574380, self->handle);
@@ -86,8 +86,8 @@ void func_001B5768(cKidOwner *self, int flag) {
 #define DMA_ADDR_MASK    0x0FFFFFFF
 
 /* Close a GIF packet: its end pointer lives at +0x10000. Fill the DMA tag and VIF words at the head with the payload size, then queue the packet. */
-__attribute__((section(".text.func_00299948")))
-void func_00299948(char *pkt) {
+__attribute__((section(".text.GifPacket_closeAndQueue")))
+void GifPacket_closeAndQueue(char *pkt) {
     unsigned int end = *(unsigned int *)(pkt + 0x10000) & DMA_ADDR_MASK;
     unsigned int qwc = ((end - (unsigned int)pkt) >> 4) - 1;
     char *vif = pkt + 8;
@@ -139,8 +139,8 @@ void func_0013E260(MarkerSet *self) {
 #define ROW_FN            4
 
 /* Call the function of the dispatch row selected by the phase byte, with this adjusted by the row and by the table entry. */
-__attribute__((section(".text.func_001C7F80")))
-void func_001C7F80(void *a0) {
+__attribute__((section(".text.PhaseDispatch_callRow")))
+void PhaseDispatch_callRow(void *a0) {
     char *s0 = (char *)a0;
     char *e;
     int i8;

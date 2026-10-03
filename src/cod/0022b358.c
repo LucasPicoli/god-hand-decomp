@@ -7,7 +7,7 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void func_0026A638(void *a0, int a1);
-extern void func_0026A938(void *a0, int a1, int a2);
+extern void EmThrower_throwHeld(void *a0, int a1, int a2);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -154,8 +154,8 @@ void func_0022B358(char *s0)
     while (s2 < 2) {
         void *e = *(void **)s1;
         if (e != 0 && func_001B1A80(e) != 0) {
-            func_0026A938(s0, 0, 1);
-            func_0026A938(s0, 1, 1);
+            EmThrower_throwHeld(s0, 0, 1);
+            EmThrower_throwHeld(s0, 1, 1);
             break;
         }
         s1 += 4;

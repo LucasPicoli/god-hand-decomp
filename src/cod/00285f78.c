@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_00285F78: a patrolling enemy. It walks to the player (steps 0 to 5),
+/* cEm00_stepPatrolAttackDrop: a patrolling enemy. It walks to the player (steps 0 to 5),
  * then picks one of three attack motions (steps 6 and 7), and on the drop
  * steps (8 to 13) it spawns its drop item once and winds down. */
 #include "godhand/cEm00.h"
@@ -23,8 +23,8 @@ extern unsigned char D_005864F0[];
 extern unsigned char D_005FEE00[];
 extern int D_007476B0;
 
-__attribute__((section(".text.func_00285F78")))
-void func_00285F78(cEm00 *self)
+__attribute__((section(".text.cEm00_stepPatrolAttackDrop")))
+void cEm00_stepPatrolAttackDrop(cEm00 *self)
 {
     unsigned char fr[0x20] __attribute__((aligned(16)));
     int next;

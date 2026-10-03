@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_00318700(void *a0, void *a1);
-extern void func_0014A170(void *a0);
+extern void cModel_calcPartsInline(void *a0);
 
 __attribute__((section(".text.func_00318570")))
 void func_00318570(char *a0)
@@ -46,7 +46,7 @@ void func_00318570(char *a0)
             return;
         }
         func_00318700(s0, q);
-        func_0014A170(s0);
+        cModel_calcPartsInline(s0);
         *(int *)(buf + 0x0) = 0x20;
         *(long *)(buf + 0x30) = 0x32001;
         *(int *)(buf + 0x50) = 0;

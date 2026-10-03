@@ -47,8 +47,8 @@ extern char D_00462FC0[];
         w[3] = 1.0f;                                \
     }
 
-__attribute__((section(".text.func_0027A7F0")))
-void func_0027A7F0(void *a0, int a1)
+__attribute__((section(".text.InitTrailSpriteTableA")))
+void InitTrailSpriteTableA(void *a0, int a1)
 {
     char *e;
 
@@ -106,8 +106,8 @@ void func_0027A7F0(void *a0, int a1)
         w[3] = 1.0f;                                \
     }
 
-__attribute__((section(".text.func_0027B2E8")))
-void func_0027B2E8(void *a0, int a1)
+__attribute__((section(".text.InitTrailSpriteTableB")))
+void InitTrailSpriteTableB(void *a0, int a1)
 {
     char *e;
 
@@ -145,8 +145,8 @@ void func_0027B2E8(void *a0, int a1)
 
 
 
-__attribute__((section(".text.func_00168080")))
-void func_00168080(int a0) {
+__attribute__((section(".text.ResetObjModeAndReleaseId")))
+void ResetObjModeAndReleaseId(int a0) {
     char *p;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(a0);
     if (*(unsigned char *)(a0 + 0x64) == 1) {
@@ -161,7 +161,7 @@ void func_00168080(int a0) {
 
 /* Phase machine of the enemy that hops away from the player: it picks a random hop vector, counts
  * the hop down by speedRate, moves along it, then plays the landing motions. */
-__attribute__((section(".text.func_00249250"))) void func_00249250(cEm00 *self)
+__attribute__((section(".text.cEm00_stepHopAway"))) void cEm00_stepHopAway(cEm00 *self)
 {
     float va[4];
     float vb[4];
@@ -286,8 +286,8 @@ __attribute__((section(".text.func_00249250"))) void func_00249250(cEm00 *self)
 }
 
 /* Enemy record number idx of the current page, or 0 past the used count. */
-__attribute__((section(".text.func_002BEF08")))
-cRoomSaveEm *func_002BEF08(cRoomSave *self, unsigned int idx) {
+__attribute__((section(".text.cRoomSave_getEm")))
+cRoomSaveEm *cRoomSave_getEm(cRoomSave *self, unsigned int idx) {
     if (idx < func_002BEDD8(self)) {
         return &self->data->em[idx];
     }
@@ -295,13 +295,13 @@ cRoomSaveEm *func_002BEF08(cRoomSave *self, unsigned int idx) {
 }
 
 /* The enemy record whose id is `id` (0xFF means none), or 0. */
-__attribute__((section(".text.func_002BEF60")))
-cRoomSaveEm *func_002BEF60(cRoomSave *self, unsigned int id) {
+__attribute__((section(".text.cRoomSave_findEm")))
+cRoomSaveEm *cRoomSave_findEm(cRoomSave *self, unsigned int id) {
     unsigned int i;
     cRoomSaveEm *em;
     if (id == 0xFF) return 0;
     for (i = 0; i < func_002BEDD8(self); i++) {
-        em = func_002BEF08(self, i);
+        em = cRoomSave_getEm(self, i);
         if (em != 0 && em->id == id) return em;
     }
     return 0;

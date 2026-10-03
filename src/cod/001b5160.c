@@ -164,12 +164,12 @@ void func_002E1710(void)
     func_002FBED0();
 }
 
-void func_002FEB18(void);
+void LinkObj_callLockOn(void);
 
 __attribute__((section(".text.func_002E28D0")))
 void func_002E28D0(void)
 {
-    func_002FEB18();
+    LinkObj_callLockOn();
 }
 
 void func_002FBED0(void);
@@ -301,7 +301,7 @@ extern void func_0015FF10(void);
 extern void func_001BC0A0(void);
 extern void func_001BD6B0(void);
 extern void func_001BFB80(void);
-extern void func_001C29D0(void);
+extern void cOmBase_tickModeTableSkip381(void);
 extern void func_0030A2E0(void);
 extern void func_0030A548(void);
 extern void sceVu0ApplyMatrix(void);
@@ -340,22 +340,22 @@ __attribute__((section(".text.Tramp_func_002AAC28_001682A8_1682A8")))
 void Tramp_func_002AAC28_001682A8_1682A8(void) { cIDBase_trans(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016F5E8_16F5E8")))
-void Tramp_func_001C29D0_0016F5E8_16F5E8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_0016F5E8_16F5E8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016F8E0")))
-void Tramp_func_001C29D0_0016F8E0(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_0016F8E0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016FBD8")))
-void Tramp_func_001C29D0_0016FBD8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_0016FBD8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0016FE48")))
-void Tramp_func_001C29D0_0016FE48(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_0016FE48(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00170130")))
-void Tramp_func_001C29D0_00170130(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00170130(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00170418")))
-void Tramp_func_001C29D0_00170418(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00170418(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001BFB80_001706E0")))
 void Tramp_func_001BFB80_001706E0(void) { func_001BFB80(); }
@@ -394,19 +394,19 @@ __attribute__((section(".text.Tramp_func_001B79B0_00177DC0")))
 void Tramp_func_001B79B0_00177DC0(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_001784F8")))
-void Tramp_func_001C29D0_001784F8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_001784F8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_001787A0")))
-void Tramp_func_001C29D0_001787A0(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_001787A0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_001789F8")))
 void Tramp_func_001B79B0_001789F8(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00178CC0")))
-void Tramp_func_001C29D0_00178CC0(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00178CC0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00178F58")))
-void Tramp_func_001C29D0_00178F58(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00178F58(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00179798")))
 void Tramp_func_001B79B0_00179798(void) { cOmBase_dieCommon(); }
@@ -466,7 +466,7 @@ __attribute__((section(".text.Tramp_func_001B79B0_00182020")))
 void Tramp_func_001B79B0_00182020(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00182818")))
-void Tramp_func_001C29D0_00182818(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00182818(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00182FD8")))
 void Tramp_func_001B79B0_00182FD8(void) { cOmBase_dieCommon(); }
@@ -475,7 +475,7 @@ __attribute__((section(".text.Tramp_func_001BFB80_001834F0")))
 void Tramp_func_001BFB80_001834F0(void) { func_001BFB80(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_001837D8")))
-void Tramp_func_001C29D0_001837D8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_001837D8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00184A20")))
 void Tramp_func_001B79B0_00184A20(void) { cOmBase_dieCommon(); }
@@ -490,19 +490,19 @@ __attribute__((section(".text.Tramp_func_001B79B0_00187190")))
 void Tramp_func_001B79B0_00187190(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00187958")))
-void Tramp_func_001C29D0_00187958(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00187958(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00187C18")))
-void Tramp_func_001C29D0_00187C18(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00187C18(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00188528")))
 void Tramp_func_001B79B0_00188528(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00188C88")))
-void Tramp_func_001C29D0_00188C88(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00188C88(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00188F10")))
-void Tramp_func_001C29D0_00188F10(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00188F10(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_0018A110")))
 void Tramp_func_001B79B0_0018A110(void) { cOmBase_dieCommon(); }
@@ -523,7 +523,7 @@ __attribute__((section(".text.Tramp_func_001B79B0_0018E450")))
 void Tramp_func_001B79B0_0018E450(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_0018EC28")))
-void Tramp_func_001C29D0_0018EC28(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_0018EC28(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001BFB80_0018EE38")))
 void Tramp_func_001BFB80_0018EE38(void) { func_001BFB80(); }
@@ -538,7 +538,7 @@ __attribute__((section(".text.Tramp_func_001B79B0_001915B8")))
 void Tramp_func_001B79B0_001915B8(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00191CC8")))
-void Tramp_func_001C29D0_00191CC8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00191CC8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001BC0A0_00191F30")))
 void Tramp_func_001BC0A0_00191F30(void) { func_001BC0A0(); }
@@ -550,11 +550,11 @@ __attribute__((section(".text.Tramp_func_001B79B0_001928B0")))
 void Tramp_func_001B79B0_001928B0(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00192BC8")))
-void Tramp_func_001C29D0_00192BC8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00192BC8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00192EF8")))
-void Tramp_func_001C29D0_00192EF8(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00192EF8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001C29D0_00193180")))
-void Tramp_func_001C29D0_00193180(void) { func_001C29D0(); }
+void Tramp_func_001C29D0_00193180(void) { cOmBase_tickModeTableSkip381(); }
 

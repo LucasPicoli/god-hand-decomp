@@ -3,7 +3,7 @@
 /* sn-2.95.3-136 candidate. */
 
 extern void cModel_calcNullPart(void *o);
-extern void func_00150138(void *o);
+extern void cParts_calcLocal(void *o);
 extern void func_001501D0(void *o, int a1);
 extern void func_002AD2B8(void *a0, int a1, void *a2, int a3, void *t0, int t1,
                           float f12);
@@ -66,7 +66,7 @@ void func_001717C0(char *self, float *p1, float *p2)
             } else {
                 ent = 0;
             }
-            func_00150138(ent);
+            cParts_calcLocal(ent);
             func_001501D0(ent, *(int *)(self + 0x250));
             fx = *(float *)(ent + 0xB0);
             fy = *(float *)(ent + 0xB4);

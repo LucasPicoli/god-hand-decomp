@@ -39,8 +39,8 @@ extern int cDamageUnit_AddDamageCollSphere(int unit, void *mtx, void *ofs, float
 extern void cDamageUnit_SetDamageCollActive(int unit, int active);
 extern char D_00574380[];
 
-__attribute__((section(".text.func_001B0DE8")))
-int func_001B0DE8(cOmTwoVol *self)
+__attribute__((section(".text.cOmTwoVol_init")))
+int cOmTwoVol_init(cOmTwoVol *self)
 {
     float vb[4] __attribute__((aligned(16)));
     float va[4] __attribute__((aligned(16)));

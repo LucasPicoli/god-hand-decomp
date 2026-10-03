@@ -6,7 +6,7 @@
 extern void func_001DD6D8(void *a0, int a1);
 extern void func_001DE5F8(void *a0, int a1, int a2);
 extern void func_001DD910(void *a0, int a1);
-extern void func_001DF758(void *p, int a1);
+extern void UiRecord_setDispSubs6to10(void *p, int a1);
 extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
 extern void CustomIDWork_SetNumber_1DD218(void *a0, int a1);
@@ -76,7 +76,7 @@ void func_001D9D28(void *arg)
             char *s0 = s1 + 0x25B0;
 
             *(int *)(s1 + 0x3040) = 0;
-            func_001DF758(s0, 1);
+            UiRecord_setDispSubs6to10(s0, 1);
             func_001DF7D0(s0, 1);
             func_001DF820(s0, 1);
             *(unsigned char *)(s1 + 0x3025) = *(unsigned char *)(s1 + 0x3025) + 1;
@@ -106,7 +106,7 @@ void func_001D9D28(void *arg)
 
             func_001DD910(s1, 1);
             s0 = s1 + 0x25B0;
-            func_001DF758(s0, 0);
+            UiRecord_setDispSubs6to10(s0, 0);
             func_001DF7D0(s0, 0);
             func_001DF820(s0, 0);
             func_001DE5F8(s1, *(unsigned char *)(s1 + 0x3048), 3);

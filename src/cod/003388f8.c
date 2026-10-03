@@ -18,8 +18,8 @@ extern char D_003E7FF0[];
 
 
 
-__attribute__((section(".text.func_003388F8")))
-int func_003388F8(void) {
+__attribute__((section(".text.RefreshEntryIfActive")))
+int RefreshEntryIfActive(void) {
     if (D_003E0710 == 1) {
         if (D_003E0708 <= 0) {
             return 0;
@@ -34,8 +34,8 @@ int func_003388F8(void) {
 
 
 
-__attribute__((section(".text.func_00338AC0")))
-void func_00338AC0(void) {
+__attribute__((section(".text.ResetBufferOnFirstEnterA")))
+void ResetBufferOnFirstEnterA(void) {
     if (D_003E3AC8 == 0) {
         func_003A52F0(D_003E3AD0, 0, 0x480);
     }
@@ -47,8 +47,8 @@ void func_00338AC0(void) {
 
 
 
-__attribute__((section(".text.func_003394D0")))
-void func_003394D0(void) {
+__attribute__((section(".text.ResetBufferOnFirstEnterB")))
+void ResetBufferOnFirstEnterB(void) {
     if (D_003E3FB0 == 0) {
         func_003A52F0(D_003E3FB8, 0, 0x4000);
     }
@@ -60,8 +60,8 @@ void func_003394D0(void) {
 
 
 
-__attribute__((section(".text.func_0033A0C0")))
-void func_0033A0C0(void) {
+__attribute__((section(".text.ResetBufferOnFirstEnterC")))
+void ResetBufferOnFirstEnterC(void) {
     if (D_003E7FE8 == 0) {
         func_003A52F0(D_003E7FF0, 0, 0xC00);
     }

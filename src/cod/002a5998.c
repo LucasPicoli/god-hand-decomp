@@ -8,7 +8,7 @@ extern void func_002A6CA8(void *a0);
 extern void func_002A6DA8(void *a0);
 extern void func_002A5B18(void *a0);
 extern void func_002A5BB8(void *a0);
-extern void func_002A5D40(void *a0);
+extern void GameLoop_stageClearToState3(void *a0);
 extern void func_002A5EC0(void *a0);
 extern void cGame_gameLoop(void *a0);
 extern void func_002A67D0(void *a0);
@@ -42,7 +42,7 @@ void func_002A5998(void) {
         switch (D_005CAC90) {
         case 0: func_002A5B18(&D_005CAC90); break;
         case 1: func_002A5BB8(&D_005CAC90); break;
-        case 2: func_002A5D40(&D_005CAC90); break;
+        case 2: GameLoop_stageClearToState3(&D_005CAC90); break;
         case 3: func_002A5EC0(&D_005CAC90); break;
         case 4: cGame_gameLoop(&D_005CAC90); break;
         case 5: func_002A67D0(&D_005CAC90); break;

@@ -26,7 +26,7 @@ extern void cCamera(void *);
 extern int D_005E8040;
 extern void InitVtableEntry_2B8AE0(void *);
 extern int D_005FEC58;
-extern void func_002C8E60(void *);
+extern void ClearHeadAndSubblocksReturnSelf(void *);
 extern int D_00603A40;
 extern void func_002D2DC8(void *);
 extern int D_00604700;
@@ -395,7 +395,7 @@ void func_002BA428(int a0, int a1) {
 __attribute__((section(".text.func_002C9C38")))
 void func_002C9C38(int a0, int a1) {
     if (a1 == 0xFFFF && a0 != 0) {
-        func_002C8E60(&D_005FEC58);
+        ClearHeadAndSubblocksReturnSelf(&D_005FEC58);
     }
 }
 

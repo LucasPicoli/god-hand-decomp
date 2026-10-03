@@ -12,7 +12,7 @@ extern void cEmSetParam_setEm(void *a0, int a1);
 extern void cEmWrap_StartAction(void *a0);
 extern char D_00586AB0[];
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
-extern void func_001C7E30(void *a0);
+extern void cOmBase_updateWithHitRecord(void *a0);
 extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);
 extern unsigned short D_003F2060[];
@@ -33,8 +33,8 @@ struct Entry_func_0028A8D0 { short f0; short f2; short f4; short f6; };
 typedef struct { char b[0x10]; } Blob10;
 extern Blob10 D_00448E00;
 
-__attribute__((section(".text.func_0028A8D0")))
-void func_0028A8D0(char *s0)
+__attribute__((section(".text.UpdateStateTableWithPendingEntry")))
+void UpdateStateTableWithPendingEntry(char *s0)
 {
     struct Entry_func_0028A8D0 tbl[2];
     char *e;
@@ -80,8 +80,8 @@ void func_0028A8D0(char *s0)
 
 
 
-__attribute__((section(".text.func_001F1B20")))
-void func_001F1B20(void *a0) {
+__attribute__((section(".text.ColiseumWaveDirectorB")))
+void ColiseumWaveDirectorB(void *a0) {
     char *s0 = (char *)a0;
     char buf[0x10];
     int st;
@@ -127,8 +127,8 @@ extern struct Table_173 D_00423E10;
 struct Entry_173 { short f0; unsigned short type; unsigned short f4; short f6; };
 struct Table_173 { struct Entry_173 e[4]; };
 
-__attribute__((section(".text.func_0018F488")))
-void func_0018F488(void *a0)
+__attribute__((section(".text.UpdatePhaseWithFlagGate")))
+void UpdatePhaseWithFlagGate(void *a0)
 {
     char *s0 = (char *)a0;
     struct Table_173 buf;
@@ -161,7 +161,7 @@ void func_0018F488(void *a0)
             func_002A87E8(s0, 0);
         func_001B76D8(s0);
     } else {
-        func_001C7E30(s0);
+        cOmBase_updateWithHitRecord(s0);
     }
 }
 
@@ -170,8 +170,8 @@ void func_0018F488(void *a0)
 
 
 
-__attribute__((section(".text.func_00381150")))
-void func_00381150(char *a0, char *a1)
+__attribute__((section(".text.AdjustRowScrollPosition")))
+void AdjustRowScrollPosition(char *a0, char *a1)
 {
     char *p;
     char *q;
@@ -237,8 +237,8 @@ call1:
 
 
 
-__attribute__((section(".text.func_001E26D8")))
-void func_001E26D8(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine3")))
+void Slot1_payoutLine3(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 

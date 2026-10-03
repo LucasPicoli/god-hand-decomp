@@ -20,8 +20,8 @@ static __inline__ void plcam_vec(cVec *v, float x, float y, float z, float w) {
  * move the camera target a quarter of the way to it, place the eye from the
  * rotation's third row, reset the up vector, and count the wait down; when
  * it is spent go back to follow mode 1. */
-__attribute__((section(".text.func_0013B450")))
-void func_0013B450(struct cPlCamera *self) {
+__attribute__((section(".text.cPlCamera_followEnd")))
+void cPlCamera_followEnd(struct cPlCamera *self) {
     struct {
         float mtx[16];                  /* 0x00 */
         cVec out;                       /* 0x40 */

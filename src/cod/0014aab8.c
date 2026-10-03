@@ -7,12 +7,12 @@ extern void func_0014D0E8(cModel *self);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern void func_00153B00(cModel *self, cModelNode *node);
 extern void func_00155BE8(cModel *self, unsigned int flag, int bit);
-extern void func_0014B4D0(cModel *self, cModelNode *node);
+extern void cModel_setNodeMaterial(cModel *self, cModelNode *node);
 extern void ForwardAttackByMode_14B5D8(cModel *self, cModelNode *node);
-extern int func_0014BEF8(cModel *self, cModelNode *node);
+extern int cModel_nodeLayer(cModel *self, cModelNode *node);
 extern void func_00155AE8(cModelNode *node, int a, int b);
 extern void func_0014B810(cModel *self, cModelNode *node, int id);
-extern void func_0014C6B8(cModel *self, int id);
+extern void cModel_queuePacket(cModel *self, int id);
 
 /* cModel_Tag_set_scr — sn-2.95.3-136, --call-loop-pad.
    The first mesh walk `do { func_00153B00(this, mesh); mesh = mesh->0x404; }
@@ -69,13 +69,13 @@ void cModel_Tag_set_scr(cModel *self, int arg1, int arg2) {
                     arg2 == ((*(volatile int *)&node->info->flags & CMODEL_MESH_BACK) > 0)) {
                     int flags2;
                     if ((flags & 0x80) == 0) {
-                        func_0014B4D0(self, node);
+                        cModel_setNodeMaterial(self, node);
                     }
                     flags2 = self->objFlags;
                     if ((flags2 & 0x00400000) != 0) {
                         ForwardAttackByMode_14B5D8(self, node);
                     }
-                    layer = func_0014BEF8(self, node);
+                    layer = cModel_nodeLayer(self, node);
                     func_00155AE8(node, layer | 0x80000000, bit);
                     if (last != layer && prev != 0) {
                         func_00155AE8(prev, last, bit);
@@ -92,5 +92,5 @@ void cModel_Tag_set_scr(cModel *self, int arg1, int arg2) {
     if (prev != 0) {
         func_00155AE8(prev, last, bit);
     }
-    func_0014C6B8(self, (short)arg1);
+    cModel_queuePacket(self, (short)arg1);
 }

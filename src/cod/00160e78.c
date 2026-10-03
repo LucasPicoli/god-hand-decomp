@@ -97,7 +97,7 @@ int cSnd_EmSeFind(cSnd *self, int objId)
     unsigned int i;
     cSndSeEntry *e;
 
-    owner = func_002CB3A8(self, objId);
+    owner = cSnd_getEmSeGroupOwner(self, objId);
     if (owner <= 0)
         owner = objId;
 

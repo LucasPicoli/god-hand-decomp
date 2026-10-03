@@ -28,9 +28,9 @@ extern char D_00569B70[];
 extern int GetField_2B1_14B638(cModel *self);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern void func_001F91D0(cBox *dst, cBox *src);
-extern void func_002A8A08(cGameObjSortEnt *first, int holeIndex, int topIndex, long val, void *tag);
+extern void cGameObjSortEnt_pushHeap(cGameObjSortEnt *first, int holeIndex, int topIndex, long val, void *tag);
 
-/* func_002866F8: a knocked-about enemy that drifts toward a goal and starts a
+/* cEm00_updateKnockDrift: a knocked-about enemy that drifts toward a goal and starts a
  * move once it is close to it or the player gets in range. */
 
 
@@ -51,8 +51,8 @@ extern void func_002A8A08(cGameObjSortEnt *first, int holeIndex, int topIndex, l
 
 
 
-__attribute__((section(".text.func_002866F8")))
-void func_002866F8(cEm00 *self)
+__attribute__((section(".text.cEm00_updateKnockDrift")))
+void cEm00_updateKnockDrift(cEm00 *self)
 {
     float buf[4] __attribute__((aligned(16)));
     int inFront = 1;
@@ -100,7 +100,7 @@ void func_002866F8(cEm00 *self)
         }
         if (CEM00_LOBYTE(self->unk1560) != 5) {
             if (self->playerDist < 16.0f) {
-                if (func_00289328(self) != 0) {
+                if (cEma2_ckLineToPlayer(self) != 0) {
                     self->step = 2;
                 }
             }
@@ -156,7 +156,7 @@ void func_002866F8(cEm00 *self)
     }
 }
 
-/* func_0027BFA8: a fighter that watches another enemy and, once its own
+/* cEm00_stepWatchTargetAttack: a fighter that watches another enemy and, once its own
  * cooldown is over and the player is alive, turns toward the player and
  * picks an attack. */
 
@@ -172,8 +172,8 @@ void func_002866F8(cEm00 *self)
 
 
 
-__attribute__((section(".text.func_0027BFA8")))
-void func_0027BFA8(cEm00 *self)
+__attribute__((section(".text.cEm00_stepWatchTargetAttack")))
+void cEm00_stepWatchTargetAttack(cEm00 *self)
 {
     unsigned char fr[0x20] __attribute__((aligned(16)));
     cVec *cpos;
@@ -277,8 +277,8 @@ charge:
 
 /* Append a mesh node to the model's list and grow the model's box by the
  * node's own box; the first mesh sets the box. */
-__attribute__((section(".text.func_0014B640")))
-void func_0014B640(cModel *self, cModelNode *node, cBox *box) {
+__attribute__((section(".text.cModel_addMesh")))
+void cModel_addMesh(cModel *self, cModelNode *node, cBox *box) {
     int num = GetField_2B1_14B638(self);
     if (num == 0) {
         self->meshHead = node;
@@ -295,8 +295,8 @@ void func_0014B640(cModel *self, cModelNode *node, cBox *box) {
 
 /* STL __unguarded_partition: split [first, last) around pivot and return the
  * split point. Both scans stop at an entry that does not sort on their side. */
-__attribute__((section(".text.func_002A8E48")))
-cGameObjSortEnt *func_002A8E48(cGameObjSortEnt *first, cGameObjSortEnt *last, cGameObjSortEnt pivot)
+__attribute__((section(".text.cGameObjSortEnt_unguardedPartition")))
+cGameObjSortEnt *cGameObjSortEnt_unguardedPartition(cGameObjSortEnt *first, cGameObjSortEnt *last, cGameObjSortEnt pivot)
 {
     for (;;) {
         while (cGameObjSortEnt_less(first, &pivot))
@@ -318,8 +318,8 @@ cGameObjSortEnt *func_002A8E48(cGameObjSortEnt *first, cGameObjSortEnt *last, cG
 /* STL __unguarded_linear_insert: move the entries before last up by one
  * while val sorts before them, then drop val into the hole. The caller
  * guarantees an entry that does not sort after val sits in front. */
-__attribute__((section(".text.func_002A9098")))
-void func_002A9098(cGameObjSortEnt *last, cGameObjSortEnt val, void *tag)
+__attribute__((section(".text.cGameObjSortEnt_unguardedLinearInsert")))
+void cGameObjSortEnt_unguardedLinearInsert(cGameObjSortEnt *last, cGameObjSortEnt val, void *tag)
 {
     cGameObjSortEnt *next = last - 1;
 
@@ -333,8 +333,8 @@ void func_002A9098(cGameObjSortEnt *last, cGameObjSortEnt val, void *tag)
 
 /* STL __adjust_heap: sink the hole at holeIndex to the bottom along the
  * larger child, then float val back up with the push-heap step. */
-__attribute__((section(".text.func_002A8AA8")))
-void func_002A8AA8(cGameObjSortEnt *first, int holeIndex, int len, cGameObjSortEnt val, void *tag)
+__attribute__((section(".text.cGameObjSortEnt_adjustHeap")))
+void cGameObjSortEnt_adjustHeap(cGameObjSortEnt *first, int holeIndex, int len, cGameObjSortEnt val, void *tag)
 {
     cGameObjSortEnt copy;
     int topIndex = holeIndex;
@@ -352,5 +352,5 @@ void func_002A8AA8(cGameObjSortEnt *first, int holeIndex, int len, cGameObjSortE
         holeIndex = child - 1;
     }
     copy = val;
-    func_002A8A08(first, holeIndex, topIndex, cGameObjSortEnt_pack(&copy), tag);
+    cGameObjSortEnt_pushHeap(first, holeIndex, topIndex, cGameObjSortEnt_pack(&copy), tag);
 }

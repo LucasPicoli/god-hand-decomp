@@ -30,8 +30,8 @@ extern void func_001E7470(int a0, int a1, int a2);
 
 
 
-__attribute__((section(".text.func_001E28D0")))
-void func_001E28D0(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine4")))
+void Slot1_payoutLine4(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -91,8 +91,8 @@ void func_001E28D0(Slot1 *self) {
 
 
 
-__attribute__((section(".text.func_001E2AC8")))
-void func_001E2AC8(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine5")))
+void Slot1_payoutLine5(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -152,8 +152,8 @@ void func_001E2AC8(Slot1 *self) {
 
 
 
-__attribute__((section(".text.func_001E2CC0")))
-void func_001E2CC0(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine6")))
+void Slot1_payoutLine6(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -215,8 +215,8 @@ void func_001E2CC0(Slot1 *self) {
 
 
 
-__attribute__((section(".text.func_001E2008")))
-void func_001E2008(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine1")))
+void Slot1_payoutLine1(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -280,8 +280,8 @@ void func_001E2008(Slot1 *self) {
 
 
 
-__attribute__((section(".text.func_001E24A0")))
-void func_001E24A0(Slot1 *self) {
+__attribute__((section(".text.Slot1_payoutLine2")))
+void Slot1_payoutLine2(Slot1 *self) {
     unsigned char buf[16] __attribute__((aligned(16)));
     int done;
 
@@ -333,8 +333,8 @@ void func_001E24A0(Slot1 *self) {
 /* Set the display flag of custom-ID works 2 to 8 on one UI object. */
 
 
-__attribute__((section(".text.func_001E77B0")))
-void func_001E77B0(int a0, int a1) {
+__attribute__((section(".text.SetUiIdWorkDispRange")))
+void SetUiIdWorkDispRange(int a0, int a1) {
     func_001E7470(a0, 2, a1);
     func_001E7470(a0, 3, a1);
     func_001E7470(a0, 4, a1);

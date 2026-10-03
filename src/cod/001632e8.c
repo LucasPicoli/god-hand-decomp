@@ -21,8 +21,8 @@ extern void UpdateObjByIndexedOp_2FBE50(void *slot);
 #define EM_FADE_STEP       0.1f
 
 /* Phase 0: start the death and flash the body. Phase 1: slow the animation to a stop, then release the enemy. */
-__attribute__((section(".text.func_00288C98")))
-void func_00288C98(cEm00 *self) {
+__attribute__((section(".text.cEm00_stepFadeOutAndRelease")))
+void cEm00_stepFadeOutAndRelease(cEm00 *self) {
     self->hitFlash = EM_HIT_FLASH_FULL;
     switch (self->step) {
     case 0:
@@ -45,8 +45,8 @@ void func_00288C98(cEm00 *self) {
 #define SLOT_SE_NONE       (-1)
 
 /* Try to drop every sound handle of the slot whose sound has finished loading; 1 if the last one tried was dropped (or none was held). */
-__attribute__((section(".text.func_001FF638")))
-int func_001FF638(cDataSlot *slot) {
+__attribute__((section(".text.cDataSlot_releaseLoadedSe")))
+int cDataSlot_releaseLoadedSe(cDataSlot *slot) {
     int *p = SLOT_SE(slot);
     int ok = 1;
     int i;
@@ -72,8 +72,8 @@ int func_001FF638(cDataSlot *slot) {
 #define EM_FLAG_FADING     0x10         /* objFlags: the fade is still running */
 
 /* Advance the fade-in: deactivate the collision, count the timer down and ramp the animation rate up to 1.0. Returns 0 once the timer has run out. */
-__attribute__((section(".text.func_0026EA50")))
-int func_0026EA50(cEm00 *self) {
+__attribute__((section(".text.cEm00_stepFadeIn")))
+int cEm00_stepFadeIn(cEm00 *self) {
     float t;
     float rate;
     if (EM_FADETIMER(self) <= 0.0f) {
@@ -117,8 +117,8 @@ extern void func_00163F00(GoldPanel *self);
 #define GOLDPANEL_ENT_FLAG_27  0x08000000
 
 /* Per-frame update: refresh the gold number, clear the frame entry's flag, run the state handler, advance the animation. */
-__attribute__((section(".text.func_001632E8")))
-void func_001632E8(GoldPanel *self) {
+__attribute__((section(".text.GoldPanel_update")))
+void GoldPanel_update(GoldPanel *self) {
     self->goldDisp->value = cCoreSave_getGold(&D_00569B70);
     self->frameEnt->flags &= ~GOLDPANEL_ENT_FLAG_27;
     switch (self->state) {
@@ -162,8 +162,8 @@ typedef struct CutCmd {
 } CutCmd;
 
 /* Resolve the first and last cut of the command (0xFF means the current cut). Returns nonzero if the current cut is before the first one. Does nothing, returning 0, while no cutscene runs. */
-__attribute__((section(".text.func_002B2BD8")))
-int func_002B2BD8(CutCmd *self) {
+__attribute__((section(".text.CutCmd_resolveCuts")))
+int CutCmd_resolveCuts(CutCmd *self) {
     if ((D_00747A84 & SYSFLAG_EVENT_RUNNING) == 0) {
         return 0;
     }

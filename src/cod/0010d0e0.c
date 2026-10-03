@@ -23,7 +23,7 @@ extern int D_00747A84;
 
 /* Phase machine of the enemy with the counted attack: step 1 counts 0x15B4 down each frame, and
  * when it reaches zero it raises the 0x15B0 state to 2 and calls func_00129430. */
-__attribute__((section(".text.func_0010D0E0"))) void func_0010D0E0(cEm00 *self)
+__attribute__((section(".text.cEm00_stepCountedAttack"))) void cEm00_stepCountedAttack(cEm00 *self)
 {
     float v[4] __attribute__((aligned(16)));
     float one;
@@ -131,8 +131,8 @@ static __inline__ unsigned char cMovieTrack_inUse(cMovieTrack *t) {
 /* Stop every track that holds a player, then clear the "movie playing" bit.
  * Two byte offsets walk the table, as in retail; the read offset is added
  * to the table pointer as an integer, which keeps retail's operand order. */
-__attribute__((section(".text.func_002B4DA8")))
-void func_002B4DA8(cMovie *self) {
+__attribute__((section(".text.cMovie_stopAllTracks")))
+void cMovie_stopAllTracks(cMovie *self) {
     int off2 = 0;
     int off = 0;
     int n = MOVIE_TRACK_NUM - 1;

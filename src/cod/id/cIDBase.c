@@ -63,7 +63,7 @@ void cIDBase_setDispFamily(cIDBaseObj *self, int id, int show)
 
 extern void cIDBase_calcEntries(cIDBaseObj *self);
 extern void func_002ABDC0(cIDBaseObj *self, cIDBaseEnt *ent);
-extern void func_002AC048(cIDBaseObj *self, cIDBaseEnt *ent);
+extern void cIDBase_stepMoveAnim(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AC1C0(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AC298(cIDBaseObj *self, cIDBaseEnt *ent);
 extern void func_002AC378(cIDBaseObj *self, cIDBaseEnt *ent);
@@ -88,7 +88,7 @@ void cIDBase_move(cIDBaseObj *self)
         cIDBaseEnt *ent = &self->ent[i];
         if (ent != 0) {
             func_002ABDC0(self, ent);
-            func_002AC048(self, ent);
+            cIDBase_stepMoveAnim(self, ent);
             func_002AC1C0(self, ent);
             func_002AC298(self, ent);
             func_002AC378(self, ent);

@@ -15,8 +15,8 @@ extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, 
 extern int D_007474A0;
 extern unsigned char D_005FEE00[];
 
-__attribute__((section(".text.func_001D8120")))
-void func_001D8120(void *a0) {
+__attribute__((section(".text.UpdateBetAdjustScreenB")))
+void UpdateBetAdjustScreenB(void *a0) {
     char *o = (char *)a0;
     char *g;
 

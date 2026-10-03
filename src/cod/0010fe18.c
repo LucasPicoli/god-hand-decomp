@@ -20,7 +20,7 @@ extern unsigned char D_005864F0[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
-extern void func_00289610(void *a0, int a1, float f12, float f13);
+extern void cEma2_startPlayerMotion(void *a0, int a1, float f12, float f13);
 extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -119,7 +119,7 @@ void func_001228D8(void *a0)
         buf[3] = 1.0f;
         v = buf[1];
         func_001299F0(s1, s2, buf, 0, v);
-        func_00289610(s2, 0, v, v);
+        cEma2_startPlayerMotion(s2, 0, v, v);
         *(short *)(s1 + 0x56E) = 0xF;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
     case 1:

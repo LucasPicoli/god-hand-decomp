@@ -21,8 +21,8 @@ extern char *func_001F0498(void *owner, int obj, cVec *pos, float angle);     /*
 #define DEG_TO_RAD    0.017453292f
 
 /* Place five pieces (object 0x3ED) evenly on a circle of radius 8 around the origin. */
-__attribute__((section(".text.func_001F1D00")))
-void func_001F1D00(void *self) {
+__attribute__((section(".text.Ring_spawnPieces")))
+void Ring_spawnPieces(void *self) {
     int i;
     for (i = 0; i < RING_NUM; i++) {
         cVec pos;
@@ -55,8 +55,8 @@ typedef struct FadeOverlay {
 #define FADE_RGB_MASK  0xFFFFFF
 
 /* Advance the fade one tick: set the alpha from the tick count and switch state when the fade ends. */
-__attribute__((section(".text.func_00160C48")))
-void func_00160C48(FadeOverlay *self) {
+__attribute__((section(".text.FadeOverlay_tick")))
+void FadeOverlay_tick(FadeOverlay *self) {
     if (self->state == FADE_IDLE) return;
     if (self->state == FADE_HOLD) return;
     if (self->state == FADE_IN) {
@@ -88,8 +88,8 @@ typedef struct cScreenNode {
 } cScreenNode;
 
 /* Update the node, project its world position to the screen and store it, clamped inside the screen, in the node. */
-__attribute__((section(".text.func_002E9C30")))
-void func_002E9C30(cScreenNode *self) {
+__attribute__((section(".text.cScreenNode_updateScreenPos")))
+void cScreenNode_updateScreenPos(cScreenNode *self) {
     float world[4] __attribute__((aligned(16)));
     float scr[4] __attribute__((aligned(16)));
 

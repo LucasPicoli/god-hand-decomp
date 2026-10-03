@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_002478D8 parked, sn-2.95.3-136 --fp-hazard-rules mtc1: EXACT 137/143, insn delta -1, ONE missing nop: retail has 'mtc1 $at,$f1 ; L: nop ; c.lt.s $f0,$f1' (nop AFTER the branch-target label). cc1 emits no #nop hint across a label, so no source or listed rule reaches it. Tool ask: an mtc1 rule that pads a label-separated mtc1 -> c.<cond>.s. */
+/* cEm00_stepSetGrabPrompt parked, sn-2.95.3-136 --fp-hazard-rules mtc1: EXACT 137/143, insn delta -1, ONE missing nop: retail has 'mtc1 $at,$f1 ; L: nop ; c.lt.s $f0,$f1' (nop AFTER the branch-target label). cc1 emits no #nop hint across a label, so no source or listed rule reaches it. Tool ask: an mtc1 rule that pads a label-separated mtc1 -> c.<cond>.s. */
 #include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -12,8 +12,8 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cActionButton_set(void *, int, int, int, void *, void *, int);
 extern void InitStateBytes_2478B8(void);
 extern char D_00568288;
-__attribute__((section(".text.func_002478D8")))
-void func_002478D8(cEm00 *self)
+__attribute__((section(".text.cEm00_stepSetGrabPrompt")))
+void cEm00_stepSetGrabPrompt(cEm00 *self)
 {
         float one;
     switch (self->step) {

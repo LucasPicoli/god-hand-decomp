@@ -25,8 +25,8 @@ typedef struct KeyTrack {
 
 extern float Ang_mult_late(float hi, float lo, float frac);
 
-__attribute__((section(".text.func_00159200")))
-float func_00159200(KeyHead *head, KeyCtx *ctx, float t)
+__attribute__((section(".text.KeyTrack_sample")))
+float KeyTrack_sample(KeyHead *head, KeyCtx *ctx, float t)
 {
     int idx = (int)t;
     KeyTrack *trk = (KeyTrack *)((char *)head + ctx->trackOfs);

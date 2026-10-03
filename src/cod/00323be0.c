@@ -3,7 +3,7 @@
 extern void func_003228C0(int a, int b, void *c, void *d, int e);
 extern char D_004518B0[];
 extern char D_004518D8[];
-extern void func_00323F18(void *a0);
+extern void OpenStreamHandle(void *a0);
 extern void func_0033F130(int a0);
 extern void func_00328368(int a0);
 extern void Forward33B658_33E678(void);
@@ -12,7 +12,7 @@ extern void func_00328E38(void *a0, int a1);
 extern void func_00328DD8(void *a0, int a1);
 extern void func_003280D8(int a0, int a1);
 extern void Forward33B670_33E690(void);
-extern void func_00326780(int a0, int a1);
+extern void StoreArgAndUpdateChildA(int a0, int a1);
 extern void func_00326830(int a0);
 extern int D_003C7418;
 extern void func_0033C088(int a0);
@@ -25,7 +25,7 @@ int func_003242B0(void *a0, int a1, int a2) {
         return -3;
     }
     if (*(signed char *)((char *)a0 + 1) == 2)
-        func_00323F18(a0);
+        OpenStreamHandle(a0);
     if (a2 == 0) {
         *(int *)((char *)a0 + 0x14) = a1;
     } else if (a2 == 1) {
@@ -84,7 +84,7 @@ void func_00329B60(void *a0, int a1) {
             i++;
         } while (i < *(signed char *)((char *)a0 + 3));
     }
-    func_00326780(*(int *)((char *)a0 + 4), a1);
+    StoreArgAndUpdateChildA(*(int *)((char *)a0 + 4), a1);
     *(int *)((char *)a0 + 0x14) = a1;
     func_00326830(*(int *)((char *)a0 + 4));
     *(char *)((char *)a0 + 1) = 1;

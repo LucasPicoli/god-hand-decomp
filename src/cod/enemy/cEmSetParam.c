@@ -4,7 +4,7 @@
 
 INCLUDE_ASM("nonmatching", cEmSetParam_setEmAll);
 
-extern cEmSetEntry *func_002BEF60();
+extern cEmSetEntry *cRoomSave_findEm();
 extern cEmActor *func_002951B0(cEmSetParam *self, cEmSetEntry *entry);
 
 /* Creates the enemy of entry no, unless the table is not loaded, the entry
@@ -17,7 +17,7 @@ cEmActor *cEmSetParam_setEm(cEmSetParam *self, unsigned char no)
 
     if ((D_005E8658.block->flags & EMSET_LOADED) == 0)
         return 0;
-    entry = func_002BEF60(&D_005E8658, no);
+    entry = cRoomSave_findEm(&D_005E8658, no);
     if (entry == 0)
         return 0;
     if ((entry->done ^ EMSET_ENTRY_DONE) == 0)
@@ -32,7 +32,7 @@ cEmActor *cEmSetParam_setEm(cEmSetParam *self, unsigned char no)
 /* Stores the heading f (radians) in the current entry, in room-file units. */
 __attribute__((section(".text.cEmSetParam_updateSetDataRot")))
 void cEmSetParam_updateSetDataRot(float f) {
-    cEmSetEntry *entry = func_002BEF60(&D_005E8658);
+    cEmSetEntry *entry = cRoomSave_findEm(&D_005E8658);
     if (entry != 0) {
         entry->rot = (short)(int)(f * EMSET_ROT_PER_RAD);
     }
@@ -42,7 +42,7 @@ void cEmSetParam_updateSetDataRot(float f) {
 /* Stores how the current entry's enemy appears. */
 __attribute__((section(".text.cEmSetParam_updateSetDataAppPattern")))
 void cEmSetParam_updateSetDataAppPattern(int a, int b, unsigned char c) {
-    cEmSetEntry *entry = func_002BEF60(&D_005E8658);
+    cEmSetEntry *entry = cRoomSave_findEm(&D_005E8658);
     c = c & 0xFF;
     if (entry != 0) {
         entry->appPattern = c;

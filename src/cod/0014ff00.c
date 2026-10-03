@@ -12,7 +12,7 @@ extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern int D_00747470;
 extern void classFADE_kill(void *p);
-extern void func_002A9098();
+extern void cGameObjSortEnt_unguardedLinearInsert();
 extern char D_003BE548[];
 extern short D_005CAE40;
 
@@ -308,7 +308,7 @@ void func_002A9210(Elem *a0, Elem *a1, int a2, int a3) {
 
     while (a0 != a1) {
         tmp = *a0;
-        func_002A9098(a0, ((long)tmp.hi << 32) | tmp.lo, a3);
+        cGameObjSortEnt_unguardedLinearInsert(a0, ((long)tmp.hi << 32) | tmp.lo, a3);
         a0 = a0 + 1;
     }
 }

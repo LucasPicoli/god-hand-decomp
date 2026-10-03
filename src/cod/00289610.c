@@ -8,8 +8,8 @@ extern void func_002A8578(void *obj, int a1, int a2, float f, int a3, int t0, in
 
 /* Starts a motion on the player from the data block of this enemy's model:
  * the two tables at 0x160 and 0x164 give the motion's start and end. */
-__attribute__((section(".text.func_00289610")))
-void func_00289610(cEma2 *self, float f12, float f13)
+__attribute__((section(".text.cEma2_startPlayerMotion")))
+void cEma2_startPlayerMotion(cEma2 *self, float f12, float f13)
 {
     void *player = Getplayer();
     char *data = self->base.motionData;

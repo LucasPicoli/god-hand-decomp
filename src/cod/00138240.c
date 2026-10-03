@@ -26,7 +26,7 @@ extern void MtxInitRotVec(void *mtx, cVec *dir, int roll);
 
 /* Phase machine of the enemy that turns toward its target: it starts the motion, turns toward the
  * 0x17A0 object while the motion runs, then runs the end-of-motion bookkeeping. */
-__attribute__((section(".text.func_00230F20"))) void func_00230F20(cEm00 *self)
+__attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTurnToLinkedObject(cEm00 *self)
 {
     self->unk186A = 2;
     self->emFlags2 |= 0x400;
@@ -108,8 +108,8 @@ typedef struct { char b[0x10]; } cPlCamTbl;
 
 /* Call the follow routine for the current mode. The table is copied to the
  * stack and the pointer to member is decoded by hand, as retail does. */
-__attribute__((section(".text.func_0013B388")))
-void func_0013B388(struct cPlCamera *self) {
+__attribute__((section(".text.cPlCamera_callFollow")))
+void cPlCamera_callFollow(struct cPlCamera *self) {
     char frame[0x10];
     char *s2 = (char *)self;
     cPlCamPmf *pm;
@@ -141,8 +141,8 @@ void func_0013B388(struct cPlCamera *self) {
 }
 
 /* Advance both screen-shake channels one frame. */
-__attribute__((section(".text.func_00138558")))
-void func_00138558(struct cCamera *self) {
+__attribute__((section(".text.cCamera_stepVib")))
+void cCamera_stepVib(struct cCamera *self) {
     if (self->vib[1].count != 0) {
         self->vib[1].amp = self->vib[1].amp * self->vib[1].decay;
         self->vib[1].phase = self->vib[1].phase + self->vib[1].speed;

@@ -18,8 +18,8 @@ typedef struct GripBuf {
 
 extern int cOmWeapon_setParent();
 
-__attribute__((section(".text.func_0028D3D8")))
-void func_0028D3D8(cOmBase *self, void *weapon, int left)
+__attribute__((section(".text.cOmBase_attachWeaponGrip")))
+void cOmBase_attachWeaponGrip(cOmBase *self, void *weapon, int left)
 {
     GripBuf grip;
     int idx;

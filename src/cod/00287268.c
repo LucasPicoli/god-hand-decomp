@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_00287268: an enemy that holds one pose and growls at random intervals
+/* cEm00_stepGrowlWhileActive: an enemy that holds one pose and growls at random intervals
  * while any actor is active. */
 #include "godhand/cEm00.h"
 
@@ -15,8 +15,8 @@ extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int 
 extern char D_00462FC0[];
 extern char D_005FEE00[];
 
-__attribute__((section(".text.func_00287268")))
-void func_00287268(cEm00 *self)
+__attribute__((section(".text.cEm00_stepGrowlWhileActive")))
+void cEm00_stepGrowlWhileActive(cEm00 *self)
 {
     int res;
     float t;

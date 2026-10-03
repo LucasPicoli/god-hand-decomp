@@ -60,8 +60,8 @@ extern unsigned char D_00747A2C[];
  * steps 2 and 3 play the get-up motion and hand over to the next action; steps 4 and 5 are the
  * dazed motion; steps 6 and 7 are the recovery, which waits out a random time and may start a
  * counter attack. A step 6 reaction is also forced for the enemies that always recover. */
-__attribute__((section(".text.func_00254450")))
-void func_00254450(void *a0)
+__attribute__((section(".text.cEm00_hitReaction")))
+void cEm00_hitReaction(void *a0)
 {
     cEm00 *self = (cEm00 *)a0;
     cVec vecA, vecB, vecC, vecD;

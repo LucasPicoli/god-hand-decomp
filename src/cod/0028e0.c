@@ -9,7 +9,7 @@ extern int D_0044A528;
 /* Type-name string (loaded into obj+0x4AC). Lives in .rodata at 0x0044A510. */
 extern int D_0044A510;
 
-/* Setup_0028E018_28E018 — sq + VU0 + byte-store object constructor (80 B / 20 insns); see file header.
+/* cEmad_construct — sq + VU0 + byte-store object constructor (80 B / 20 insns); see file header.
  *
  * Retail (asm/cod/000000.s, 0x0028E018..0x0028E067, 80 B):
  *
@@ -38,8 +38,8 @@ extern int D_0044A510;
  * default (byte-identical) build exact. scripts/score_nm.sh compiles this body and
  * scores it as a fuzzy partial in the published progress report. */
 #ifdef NON_MATCHING
-__attribute__((section(".text.Setup_0028E018_28E018")))
-void *Setup_0028E018_28E018(void *obj) {
+__attribute__((section(".text.cEmad_construct")))
+void *cEmad_construct(void *obj) {
     int *vtable;
     int *type_name;
     unsigned char *p;
@@ -55,6 +55,6 @@ void *Setup_0028E018_28E018(void *obj) {
     return obj;
 }
 #else
-INCLUDE_ASM("nonmatching", Setup_0028E018_28E018);
+INCLUDE_ASM("nonmatching", cEmad_construct);
 #endif
 

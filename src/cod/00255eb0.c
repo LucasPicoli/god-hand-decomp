@@ -33,8 +33,8 @@ typedef struct cEmLink {
  * aims at the linked enemy. Step 1 applies gravity and waits for the floor. Step 2
  * starts the fall motion. Step 3 falls until the line check hits the floor, then
  * picks the next state from the game level. */
-__attribute__((section(".text.func_00255EB0")))
-void func_00255EB0(cEm00 *self)
+__attribute__((section(".text.cEm00_stepLeapAndLand")))
+void cEm00_stepLeapAndLand(cEm00 *self)
 {
     float va[4], vb[4], vc[4], vd[4];
     cVec *p = self->pos;

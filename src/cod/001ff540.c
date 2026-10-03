@@ -26,7 +26,7 @@ void ClearSlotArray_1FF5B8(int *a0) {
     for (i = 9; i >= 0; i--) {
         if (p[0] >= 0) {
             a0[2] |= 4;
-            func_002CB340(&D_005FEE00, p[0]);
+            cSnd_CheckSeEnd(&D_005FEE00, p[0]);
             p[0] = -1;
         }
         p++;

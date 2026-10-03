@@ -22,8 +22,8 @@ struct VtEnt { short delta; short index; void *pfn; };
 struct Pmf { short delta; short index; union { void *fn; short vo; } u; };
 typedef struct { char b[0x20]; } Tbl32;
 
-__attribute__((section(".text.func_0019B1A8")))
-void func_0019B1A8(void *a0)
+__attribute__((section(".text.UpdatePartsScrollAndRetire")))
+void UpdatePartsScrollAndRetire(void *a0)
 {
     char frame[0x80] __attribute__((aligned(16)));
     char *s2 = (char *)a0;

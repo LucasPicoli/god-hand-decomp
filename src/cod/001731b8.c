@@ -32,8 +32,8 @@ typedef struct EmStagger {
 
 
 
-__attribute__((section(".text.func_001731B8")))
-void func_001731B8(EmStagger *self) {
+__attribute__((section(".text.cEm00_startStagger")))
+void cEm00_startStagger(EmStagger *self) {
     self->staggerHeight = CEM00_VCALL0(self, getScale)->y;
     self->staggerTime = EM_STAGGER_FRAMES;
     cSnd_SeCall_2CBA48(D_005FEE00, 2, EM_SE_STAGGER_A, self, 0, 0, 0, 0);
@@ -54,8 +54,8 @@ extern int func_002C0B38(HitNode *node, void *arg);   /* kind 0 */
 extern int func_002C0C28(HitNode *node, void *arg);   /* kind 2 */
 extern int func_002C0CB0(HitNode *node, void *arg);   /* kind 4 */
 
-__attribute__((section(".text.func_002C0A98")))
-int func_002C0A98(HitNode *node, void *arg, int mode) {
+__attribute__((section(".text.HitNode_dispatchByKind")))
+int HitNode_dispatchByKind(HitNode *node, void *arg, int mode) {
     int kind;
     if (mode == HITNODE_MODE_LIVE) {
         if (((node->flags ^ HITNODE_ACTIVE) & 1) != 0) {
@@ -82,8 +82,8 @@ int func_002C0A98(HitNode *node, void *arg, int mode) {
 
 
 
-__attribute__((section(".text.func_001F05F8")))
-void func_001F05F8(ColiseumBattle *self) {
+__attribute__((section(".text.ColiseumBattle_spawnWave")))
+void ColiseumBattle_spawnWave(ColiseumBattle *self) {
     char act[4][COLI_ACT_SIZE];
     switch (self->phase) {
     case 0:
@@ -117,8 +117,8 @@ void func_001F05F8(ColiseumBattle *self) {
 
 extern void func_002D57C8(cTaskWork *work);     /* run one task's step */
 
-__attribute__((section(".text.func_002D52A0")))
-void func_002D52A0(cTaskManager *self) {
+__attribute__((section(".text.cTaskManager_runAllMatching")))
+void cTaskManager_runAllMatching(cTaskManager *self) {
     unsigned int i;
     int off;
     if (TASKMGR_NUM(self) != 0) {
@@ -161,8 +161,8 @@ void func_002D52A0(cTaskManager *self) {
 
 extern char *func_001F0498(void *owner, int obj, cVec *pos, float angle);     /* create one piece */
 
-__attribute__((section(".text.func_001F06A8")))
-void func_001F06A8(void *self) {
+__attribute__((section(".text.ColiseumBattle_throwConfetti")))
+void ColiseumBattle_throwConfetti(void *self) {
     int i;
     for (i = CONFETTI_NUM - 1; i >= 0; i--) {
         cVec pos;
@@ -193,8 +193,8 @@ typedef struct PhaseEnt {
 typedef struct { char b[0x10]; } PhaseTbl;
 extern PhaseTbl D_004482B8;             /* the two entries */
 
-__attribute__((section(".text.func_0027E4E8")))
-void func_0027E4E8(cEm00 *self) {
+__attribute__((section(".text.cEm00_tickPhaseTable")))
+void cEm00_tickPhaseTable(cEm00 *self) {
     PhaseEnt tbl[PHASE_NUM];
     char *e;
     int i8;

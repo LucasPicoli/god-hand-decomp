@@ -7,7 +7,7 @@ extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
-extern void func_0027E7F0(void *a0, void *a1);
+extern void cEm00_attachToTarget(void *a0, void *a1);
 
 extern void cCamManager_setPartsCamera(void *cam, int mode);
 extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
@@ -49,7 +49,7 @@ typedef struct {
 } S;
 
 /* Phase machine on the step byte, 4 case labels. Calls Getplayer,
- * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, func_0027E7F0, cModel_getMeshPtr_14B730,
+ * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, cEm00_attachToTarget, cModel_getMeshPtr_14B730,
  * cCamManager_setPartsCamera and 9 more. */
 __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
 {
@@ -73,7 +73,7 @@ __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
             b = *(int *)(s1 + 0x304);
             func_002A8578(s1, EM_RES_REC(b, 0x38B0), EM_RES_REC(b, 0x38B4), 0.0f, 0, nb, 0);
             if (*(void **)(s1 + 0x744) != 0) {
-                func_0027E7F0(*(void **)(s1 + 0x744), s1);
+                cEm00_attachToTarget(*(void **)(s1 + 0x744), s1);
             }
             *(float *)(s1 + 0x1768) = 600.0f;
             v = cModel_getMeshPtr_14B730(s1, &D_0042CAD0);

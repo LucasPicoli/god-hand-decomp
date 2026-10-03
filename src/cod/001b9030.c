@@ -35,8 +35,8 @@ typedef struct cEmSetParamRoom {
 
 
 
-__attribute__((section(".text.func_00295600")))
-void func_00295600(cEmSetParamRoom *self)
+__attribute__((section(".text.cEmSetParam_resetRoom")))
+void cEmSetParam_resetRoom(cEmSetParamRoom *self)
 {
     if ((D_00747A24 & SYSFLAG_NO_ROOM_RESET) == 0) {
         if (*((unsigned char *)D_003C2F84 + SCENARIO_OFFSET_MODE) != 1) {
@@ -56,8 +56,8 @@ void func_00295600(cEmSetParamRoom *self)
 
 
 
-__attribute__((section(".text.func_001E67A8")))
-void func_001E67A8(Slot2 *self, int all)
+__attribute__((section(".text.Slot2_showMarkLayers")))
+void Slot2_showMarkLayers(Slot2 *self, int all)
 {
     func_001E6820(self);
     if (all) {
@@ -102,8 +102,8 @@ extern char D_00754220[];               /* heap the file is read into */
 
 
 
-__attribute__((section(".text.func_002BE560")))
-unsigned char func_002BE560(cRelSlot *slot, const char *name)
+__attribute__((section(".text.cRelSys_loadSlot")))
+unsigned char cRelSys_loadSlot(cRelSlot *slot, const char *name)
 {
     int id = cDvd_ReadAlloc(D_00583F20, name, slot, D_00754220, 0, 0, 0, 0);
     cDvd_CheckWaitFrame(D_00583F20, id);
@@ -139,8 +139,8 @@ extern char D_00574380[];               /* damage manager */
 
 
 
-__attribute__((section(".text.func_001B9030")))
-void func_001B9030(cOmTwoGive *self, void *arg)
+__attribute__((section(".text.cOmTwoGive_destroy")))
+void cOmTwoGive_destroy(cOmTwoGive *self, void *arg)
 {
     *(void **)((char *)self + OM_OFFSET_VTABLE) = D_004290C8;
     if (cDamageManage_ReleaseDamageGive(D_00574380, self->ref[0].give) != 0) {
@@ -183,8 +183,8 @@ extern char *D_003C23A4;                /* window slot pool */
 extern void func_002B4428(MessWin *self, int a1, int a2);
 extern void func_002B45E8(MessWin *self);
 
-__attribute__((section(".text.func_002B2348")))
-void func_002B2348(MessWin *self)
+__attribute__((section(".text.cMessageWin_close")))
+void cMessageWin_close(MessWin *self)
 {
     if ((self->flags & MWIN_FLAG_OPEN) == 0)
         return;

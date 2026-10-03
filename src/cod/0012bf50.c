@@ -18,8 +18,8 @@ extern void cMc_DllRelease(cMc *self);
 extern void cTaskWork_exit(void *task);
 
 /* Constructor of a game object subclass: base init, method table, seven cleared quadwords at 0x610, tag the block at 0x630. */
-__attribute__((section(".text.func_001A5FD8")))
-cGameObj *func_001A5FD8(cGameObj *self) {
+__attribute__((section(".text.cGameObj_constructSubclassA")))
+cGameObj *cGameObj_constructSubclassA(cGameObj *self) {
     char *blk;
     InitFields_1B6E90(self);
     self->vt = (cGameObjVt *)&D_00427400;
@@ -50,8 +50,8 @@ typedef struct BlendWork {
 
 
 /* Copy num words from src into the table (clamped to the table size) and mark the table ready. */
-__attribute__((section(".text.func_00145100")))
-void func_00145100(BlendWork *self, void *src, short num) {
+__attribute__((section(".text.BlendWork_copyTable")))
+void BlendWork_copyTable(BlendWork *self, void *src, short num) {
     if (num >= BLENDWORK_TABLE_MAX + 1) {
         self->tableNum = BLENDWORK_TABLE_MAX;
     } else {
@@ -95,8 +95,8 @@ int pl00_ckAtkActBtnEnable(Pl00 *self) {
 }
 
 /* Load the memory card module, run its two stripped log hooks, release it and end the calling task. */
-__attribute__((section(".text.func_002AE788")))
-void func_002AE788(void) {
+__attribute__((section(".text.cMc_loadRunRelease")))
+void cMc_loadRunRelease(void) {
     cMc_DllLoad(&D_005E6900, 0);
     func_0(cEvent_nullStr00);
     func_0(cEvent_nullStr00);
@@ -114,8 +114,8 @@ typedef struct KeySlot {
 
 
 /* Store value under key: replace the value of an existing key, else take a free slot. 1 on success, 0 if full. */
-__attribute__((section(".text.func_002BB0C8")))
-int func_002BB0C8(KeySlot *tbl, int key, int value) {
+__attribute__((section(".text.KeySlotTable_set")))
+int KeySlotTable_set(KeySlot *tbl, int key, int value) {
     KeySlot *found = func_002BB068(tbl, key);
     KeySlot *fresh;
     if (found != 0) {

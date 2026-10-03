@@ -2,7 +2,7 @@
 #include "godhand/cCoreSave.h"
 
 extern int cIDBase_getIDWork(void *this, int idx);
-extern void func_0013D698(void *this);
+extern void IconScreen_stepGrow(void *this);
 extern void func_0013D7B0(void *this);
 extern void func_0013DA98(void *this);
 extern void func_0013DB50(void *this);
@@ -39,7 +39,7 @@ void func_0013D540(void *this) {
 
     switch (*(unsigned short *)(base + 0x92)) {
     case 0:
-        func_0013D698(this);
+        IconScreen_stepGrow(this);
         break;
     case 1:
         func_0013D7B0(this);

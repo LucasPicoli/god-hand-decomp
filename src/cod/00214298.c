@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_00214298: an enemy that picks its first motion from a table keyed by
+/* cEm00_stepMotionByEmNo: an enemy that picks its first motion from a table keyed by
  * its enemy number: step 0 turns toward a point, derives the motion and its
  * speed from the turn, then both steps run the move and a level-dependent
  * chance to end the action. */
@@ -18,8 +18,8 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int cCoreSave_getGameLevel(void *a0);
 extern char D_00569B70[];
 
-__attribute__((section(".text.func_00214298")))
-void func_00214298(cEm00 *self)
+__attribute__((section(".text.cEm00_stepMotionByEmNo")))
+void cEm00_stepMotionByEmNo(cEm00 *self)
 {
     int motion;
     int s1v;

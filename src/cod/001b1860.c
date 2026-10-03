@@ -19,8 +19,8 @@ typedef struct cCollisionShapePos {
     float pos[3];                       /* 0x110 */
 } cCollisionShapePos;
 
-__attribute__((section(".text.func_002BAAA8")))
-void func_002BAAA8(cCollisionShapePos *self, float *pos) {
+__attribute__((section(".text.cCollisionShape_setPos")))
+void cCollisionShape_setPos(cCollisionShapePos *self, float *pos) {
     float *dst = self->pos;
     cDamageVtEnt *ent;
     if (dst != pos) {
@@ -47,8 +47,8 @@ typedef struct UiPanel {
 
 extern void func_001E7538(UiPanel *self, int no, int on);   /* show or hide element no, 2 = both */
 
-__attribute__((section(".text.func_001E7908")))
-void func_001E7908(UiPanel *self, int messNo, int on) {
+__attribute__((section(".text.UiPanel_setMessAndShow")))
+void UiPanel_setMessAndShow(UiPanel *self, int messNo, int on) {
     CustomIDWork_SetMessNo(&self->work[1], messNo);
     func_001E7538(self, 0, on);
     func_001E7538(self, 1, on);
@@ -74,8 +74,8 @@ typedef struct DamagePairObj {
 
 
 
-__attribute__((section(".text.func_001B1860")))
-void func_001B1860(DamagePairObj *self) {
+__attribute__((section(".text.DamagePairObj_clearHits")))
+void DamagePairObj_clearHits(DamagePairObj *self) {
     self->unitA->hitA = 0;
     self->unitA->hitB = 0;
     cDamageUnit_SetDamageCollActive(&self->unitA->base, 0);
@@ -87,8 +87,8 @@ void func_001B1860(DamagePairObj *self) {
 /* cDvd: give all 32 jobs back, then reset the running job, the id counter and the queue length. */
 
 
-__attribute__((section(".text.func_00200AC0")))
-void func_00200AC0(cDvd *self) {
+__attribute__((section(".text.cDvd_init")))
+void cDvd_init(cDvd *self) {
     cDvdJob *job = self->job;
     int i;
     for (i = CDVD_JOB_NUM - 1; i >= 0; i--) {
@@ -114,8 +114,8 @@ typedef struct EmWeaponHolder {
 
 
 
-__attribute__((section(".text.func_0026BB70")))
-void func_0026BB70(EmWeaponHolder *self) {
+__attribute__((section(".text.cEm_breakHeldWeapons")))
+void cEm_breakHeldWeapons(EmWeaponHolder *self) {
     unsigned int i;
     /* The xor spelling is what gives retail's xori + bnez; a plain == gives li + bne. */
     if ((self->emNo ^ EM_NO_WEAPON_HOLDER) == 0) {

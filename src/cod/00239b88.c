@@ -21,7 +21,7 @@ extern unsigned char D_00462FC0[];
 /* Phase machine of the enemy that charges the player: it turns toward the player, derives a charge
  * vector from the player's matrix, slides along it until the timer runs out, then plays its end
  * motions. */
-__attribute__((section(".text.func_00239B88"))) void func_00239B88(cEm00 *self)
+__attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePlayer(cEm00 *self)
 {
     float va[4], vb[4], vc[4];
     int gb;

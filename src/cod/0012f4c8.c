@@ -5,7 +5,7 @@
 extern void func_002D4C20(void *a0, int a1, int a2, int a3);
 extern void func_001E87E0(void *dst, void *a, void *b, int n);
 extern void InitClearStructAndSet_1E79A8(int *a0, int a1);
-extern void func_001E67A8(void *a0, int a1);
+extern void Slot2_showMarkLayers(void *a0, int a1);
 extern void cOmBase_setMeshDispFromLayer(int a0, int a1, int a2);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 extern void SetEffect(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
@@ -73,7 +73,7 @@ void Slot2_Initialize(Slot2 *self, unsigned short id, void *p0, void *p1,
     func_001E87E0(&self->reel[2], p4, p5, n);
     InitClearStructAndSet_1E79A8((int *)&self->panel, last);
     self->slotId = id;
-    func_001E67A8(self, 0);
+    Slot2_showMarkLayers(self, 0);
     self->markFlag[0] = 0;
     self->markFlag[1] = 0;
     self->markFlag[2] = 0;

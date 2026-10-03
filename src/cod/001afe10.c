@@ -9,8 +9,8 @@ extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
 extern void cModel_calcParts(void *a0);
 extern void func_001AFBD0(char *a0, int a1, float *a2, float *a3);
 
-__attribute__((section(".text.func_001AFE10")))
-void func_001AFE10(char *p)
+__attribute__((section(".text.SwitchToSecondPose")))
+void SwitchToSecondPose(char *p)
 {
     unsigned char frame[0x30] __attribute__((aligned(16)));
     int i, j, n;

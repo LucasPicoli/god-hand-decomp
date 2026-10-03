@@ -26,8 +26,8 @@ extern void Forward33B670_33E690(void);
 
 
 
-__attribute__((section(".text.func_00337C00")))
-void func_00337C00(void) {
+__attribute__((section(".text.PollUrpcOnce")))
+void PollUrpcOnce(void) {
     int buf[4];
     if (D_003E0710 == 1) {
         if (D_003E0708 <= 0) {
@@ -52,8 +52,8 @@ void func_00337C00(void) {
 
 
 
-__attribute__((section(".text.func_003462D8")))
-void func_003462D8(void)
+__attribute__((section(".text.LatchDmaModeAndQueueTransfers")))
+void LatchDmaModeAndQueueTransfers(void)
 {
     int s0;
     int *s1;
@@ -83,8 +83,8 @@ void func_003462D8(void)
 
 
 
-__attribute__((section(".text.func_00323F18")))
-int func_00323F18(int *a0) {
+__attribute__((section(".text.OpenStreamHandle")))
+int OpenStreamHandle(int *a0) {
     func_003228C0(5, 0, a0, -1, -1);
     if (a0 == 0) {
         func_0033F130(&D_00451800);

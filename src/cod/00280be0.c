@@ -2,7 +2,7 @@
 
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void cNode_setLocalTranslation(void *self, void *v);
-extern void func_002FEB18(void *a0);
+extern void LinkObj_callLockOn(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
@@ -167,6 +167,6 @@ void func_002F9E80(char *this)
         fac = one - (d - lim) / *(float *)(this + 0x2BC);
     }
     *(float *)(this + 0x194) = *(float *)(this + 0x194) * fac;
-    func_002FEB18(this);
+    LinkObj_callLockOn(this);
     *(float *)(this + 0x194) = sv;
 }

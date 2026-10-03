@@ -18,10 +18,10 @@ extern void cMessDrawFont_setRubyData(cMessDrawFont *a0, void *a1, void *a2);
 extern void cMessDrawFont_setDrawCounter(cMessDrawFont *a0, int a1, int a2);
 extern void *D_003C23A4;
 extern void func_001E6BE8(Slot2 *a0);
-extern void func_001E6CD8(Slot2 *a0);
+extern void Slot2_updateLineMark1(Slot2 *a0);
 extern void func_001E6DA0(Slot2 *a0);
 extern void func_001E6E68(Slot2 *a0);
-extern void func_001E6FE8(Slot2 *a0);
+extern void Slot2_blinkMarkSet(Slot2 *a0);
 extern void func_001E79E8(void *a0);
 extern void func_001E8830(void *a0);
 extern void CustomIDWork_SetNumber(void *a0, int a1);
@@ -121,10 +121,10 @@ void Slot2_update(Slot2 *self) {
 
     ((void (*)(void *))vt->e[self->state].pfn)((char *)self + vt->e[self->state].delta);
     func_001E6BE8(self);
-    func_001E6CD8(self);
+    Slot2_updateLineMark1(self);
     func_001E6DA0(self);
     func_001E6E68(self);
-    func_001E6FE8(self);
+    Slot2_blinkMarkSet(self);
     func_001E79E8(&self->panel);
     func_001E8830(&self->reel[0]);
     func_001E8830(&self->reel[1]);

@@ -49,7 +49,7 @@ int cSeData_LoadFile(cSeData *d, int bankId, int arg)
 __attribute__((section(".text.cSeData_HasBankKeys")))
 int cSeData_HasBankKeys(cSeData *d)
 {
-    if (func_002D2EE8(D_00603A40, d->f30) == 0 || func_002D2EE8(D_00603A40, d->f34) == 0)
+    if (BankTable_isKeyFree(D_00603A40, d->f30) == 0 || BankTable_isKeyFree(D_00603A40, d->f34) == 0)
         return 0;
     return 1;
 }

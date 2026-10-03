@@ -12,8 +12,8 @@ extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned
 
 
 /* Phase 1: start the stored motion, then play it until it ends. */
-__attribute__((section(".text.func_0014EAD8")))
-void func_0014EAD8(cObjBase *self) {
+__attribute__((section(".text.cObjBase_runPhase1")))
+void cObjBase_runPhase1(cObjBase *self) {
     switch (self->step) {
     case 0:
         setMotionInfo(self, self->motion, self->motionEnd, func_0031ED08(self->motionStart),
@@ -38,8 +38,8 @@ extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned
 
 /* Phase 5: play the stored motion, and each step turn the model to the
  * quaternion the motion leaves behind. */
-__attribute__((section(".text.func_0014EE60")))
-void func_0014EE60(cObjBase *self) {
+__attribute__((section(".text.cObjBase_runPhase5")))
+void cObjBase_runPhase5(cObjBase *self) {
     switch (self->step) {
     case 0:
         setMotionInfo(self, self->motion, self->motionEnd, func_0031ED08(self->motionStart),

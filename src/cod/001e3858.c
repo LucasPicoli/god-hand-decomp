@@ -38,8 +38,8 @@ typedef struct StreamBuf {
 
 
 
-__attribute__((section(".text.func_002D3278")))
-void func_002D3278(StreamBuf *self, int slot)
+__attribute__((section(".text.StreamBuf_startRead")))
+void StreamBuf_startRead(StreamBuf *self, int slot)
 {
     unsigned int n;
     unsigned int left;
@@ -86,8 +86,8 @@ void func_002D3278(StreamBuf *self, int slot)
 
 
 
-__attribute__((section(".text.func_002991D8")))
-void func_002991D8(char *model, int unused, int level, float rate)
+__attribute__((section(".text.cModel_setBossMeshes")))
+void cModel_setBossMeshes(char *model, int unused, int level, float rate)
 {
     if (model == 0)
         return;
@@ -128,8 +128,8 @@ void func_002991D8(char *model, int unused, int level, float rate)
 extern int D_003BE130[MARK_NUM];        /* layer index of each mark */
 
 
-__attribute__((section(".text.func_001E3858")))
-void func_001E3858(Slot2 *self)
+__attribute__((section(".text.Slot2_blinkMarkTick")))
+void Slot2_blinkMarkTick(Slot2 *self)
 {
     unsigned short *blink = (unsigned short *)((char *)self + SLOT2_OFFSET_MARK);
     int *index = D_003BE130;

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_0030A538(void);
-extern void func_001C29D0(void);
+extern void cOmBase_tickModeTableSkip381(void);
 extern void cOmBase_dieCommon(void);
 extern void func_001BFB80(void);
 
@@ -9,19 +9,19 @@ __attribute__((section(".text.func_001506F0")))
 void func_001506F0(void) { func_0030A538(); }
 
 __attribute__((section(".text.func_001933F8")))
-void func_001933F8(void) { func_001C29D0(); }
+void func_001933F8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_001936A8")))
-void func_001936A8(void) { func_001C29D0(); }
+void func_001936A8(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_00193928")))
-void func_00193928(void) { func_001C29D0(); }
+void func_00193928(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_00193BB0")))
-void func_00193BB0(void) { func_001C29D0(); }
+void func_00193BB0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_00193E38")))
-void func_00193E38(void) { func_001C29D0(); }
+void func_00193E38(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_001953C8")))
 void Tramp_func_001B79B0_001953C8(void) {
@@ -30,7 +30,7 @@ void Tramp_func_001B79B0_001953C8(void) {
 
 __attribute__((section(".text.func_00195E58")))
 void func_00195E58(void) {
-    func_001C29D0();
+    cOmBase_tickModeTableSkip381();
 }
 
 __attribute__((section(".text.Tramp_func_001B79B0_00195FE8")))
@@ -60,13 +60,13 @@ __attribute__((section(".text.func_00199F60")))
 void func_00199F60(void) { func_001BFB80(); }
 
 __attribute__((section(".text.func_0019A1D0")))
-void func_0019A1D0(void) { func_001C29D0(); }
+void func_0019A1D0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_0019A438")))
-void func_0019A438(void) { func_001C29D0(); }
+void func_0019A438(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_0019A6B0")))
-void func_0019A6B0(void) { func_001C29D0(); }
+void func_0019A6B0(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.func_0019A928")))
-void func_0019A928(void) { func_001C29D0(); }
+void func_0019A928(void) { cOmBase_tickModeTableSkip381(); }

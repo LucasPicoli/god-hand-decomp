@@ -42,7 +42,7 @@ extern int D_003D9F74;
 extern char D_003D9FE0[];
 extern void func_003340F0(char *a0);
 extern char D_00455788[];
-extern void func_00326050(char *a0);
+extern void LogPrintf(char *a0);
 extern int D_003E8DD4;
 extern int D_003E9068;
 extern int D_003E8DDC;
@@ -692,7 +692,7 @@ void func_00338710(int a0, int a1) {
         }
     }
     if (0xBB80 % s0 != 0) {
-        func_00326050(D_00455788);
+        LogPrintf(D_00455788);
     }
     *(int *)((char *)s1 + 0x30) = s0;
 }

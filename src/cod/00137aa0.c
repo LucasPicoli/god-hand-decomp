@@ -15,7 +15,7 @@ __attribute__((section(".text.InitObjectFull_3806D8")))
 void InitObjectFull_3806D8(char *a0) {
     func_00380E10(a0);
     func_00381D38(a0, a0 + 0x348, a0 + 0x318);
-    func_00384C60(a0);
+    UpdateChildAndFreeSoundHandle(a0);
     func_00385A20(a0);
 }
 

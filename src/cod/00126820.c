@@ -31,8 +31,8 @@ typedef struct cMessageWinKind {
 
 
 
-__attribute__((section(".text.func_002AEFA8")))
-void func_002AEFA8(cMessage *self) {
+__attribute__((section(".text.cMessage_updateAll")))
+void cMessage_updateAll(cMessage *self) {
     cMessageWinKind *win;
     if (D_00747A78 & MESS_LOCK) return;
     win = (cMessageWinKind *)self->head;
@@ -84,8 +84,8 @@ typedef char ScrObj_unk4D0_check[((int)&((ScrObj *)0)->unk4D0 == 0x4D0) ? 1 : -1
 extern void func_00144C90(ScrObj *self);
 
 
-__attribute__((section(".text.func_00144C08")))
-void func_00144C08(ScrObj *self) {
+__attribute__((section(".text.ScrObj_reset")))
+void ScrObj_reset(ScrObj *self) {
     unsigned short i;
     func_00144C90(self);
     for (i = 0; i < SCR_SLOT_NUM; i++) {
@@ -114,8 +114,8 @@ typedef struct EmSlotObj {
 extern void func_001268F0(EmSlotObj *self);
 extern void SetFirstFreeSlot_Field_1644_1268B0(EmSlotObj *self, int kind);
 
-__attribute__((section(".text.func_00126820")))
-void func_00126820(EmSlotObj *self) {
+__attribute__((section(".text.cEm00_updateSlotCooldown")))
+void cEm00_updateSlotCooldown(EmSlotObj *self) {
     unsigned int keys = D_007474A8;
     if ((keys & PAD_KEY_ANY) == 0) {
         if (self->cooldown != 0) {
@@ -141,8 +141,8 @@ void func_00126820(EmSlotObj *self) {
 extern const unsigned char D_0041D7E0[];        /* sphere table */
 
 
-__attribute__((section(".text.func_001339F0")))
-cCollisionSolidObj *func_001339F0(cCollisionSolidObj *self, void *owner, cVec *center, float radius) {
+__attribute__((section(".text.cCollisionSolid_constructSphere")))
+cCollisionSolidObj *cCollisionSolid_constructSphere(cCollisionSolidObj *self, void *owner, cVec *center, float radius) {
     cVec *dst;
     cCollisionSolid(self);
     dst = &self->center;
@@ -191,8 +191,8 @@ extern int func_00398DA0(int mode);                             /* sceCdSync */
 
 extern void *func_003A52F0(void *dst, int val, int n);          /* memset */
 
-__attribute__((section(".text.func_002BE458")))
-void func_002BE458(FileLoader *self) {
+__attribute__((section(".text.FileLoader_readWholeFile")))
+void FileLoader_readWholeFile(FileLoader *self) {
     CdRMode mode;
     CdFile file;
     unsigned int sectors;
@@ -235,8 +235,8 @@ typedef struct MessWin {
 extern void func_002B43B0(MessWin *self);
 extern void func_002B45E8(MessWin *self);
 
-__attribute__((section(".text.func_002B3A38")))
-int func_002B3A38(MessWin *self) {
+__attribute__((section(".text.cMessageWin_takeCode")))
+int cMessageWin_takeCode(MessWin *self) {
     int pen;
     int size;
     pen = self->pen + func_002AF218(self->cursor);

@@ -18,7 +18,7 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 /* Phase machine of the enemy that turns toward the target of its link record: step 0 starts the
  * motion and sets the facing angle from the vector to the target, step 1 waits for the motion to
  * end. */
-__attribute__((section(".text.func_0011B3E8"))) void func_0011B3E8(cEm00 *self)
+__attribute__((section(".text.cEm00_stepFaceLinkTarget"))) void cEm00_stepFaceLinkTarget(cEm00 *self)
 {
     char buf[0x30] __attribute__((aligned(16)));
     int s2v, s1v;

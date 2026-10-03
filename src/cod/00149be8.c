@@ -13,8 +13,8 @@ extern int GetField_2B1_14B638(cModel *self);
 extern void func_00155D60(cModelNode *node, int value, int slot);
 
 /* Part number n of the model's part list, or 0 when the list is shorter. */
-__attribute__((section(".text.func_00149BE8")))
-cParts *func_00149BE8(cModel *self, int n) {
+__attribute__((section(".text.cModel_getPart")))
+cParts *cModel_getPart(cModel *self, int n) {
     int i = n - 1;
     cParts *part = self->next;
     if (n != 0) {
@@ -46,8 +46,8 @@ void cModel_removeMesh(cModel *self) {
 
 /* Queue the node's draw packet for this frame's parity. A model that sorts
  * per node goes in as kind 6, id 4; any other model uses its own kind and id. */
-__attribute__((section(".text.func_0014B918")))
-void func_0014B918(cModel *self, cModelNode *node) {
+__attribute__((section(".text.cModel_queueNodeKind6")))
+void cModel_queueNodeKind6(cModel *self, cModelNode *node) {
     int parity = D_007476B0 & 1;
     if (node->dispFlags & CMODEL_NODE_HIDE) {
         return;
@@ -61,8 +61,8 @@ void func_0014B918(cModel *self, cModelNode *node) {
 
 /* Queue the node's draw packet for this frame's parity. A model that sorts
  * per node goes in as kind 4, id 5; any other model uses its own kind and id. */
-__attribute__((section(".text.func_0014BDB0")))
-void func_0014BDB0(cModel *self, cModelNode *node) {
+__attribute__((section(".text.cModel_queueNodeKind4")))
+void cModel_queueNodeKind4(cModel *self, cModelNode *node) {
     int parity = D_007476B0 & 1;
     if (node->dispFlags & CMODEL_NODE_HIDE) {
         return;
@@ -78,8 +78,8 @@ void func_0014BDB0(cModel *self, cModelNode *node) {
 
 /* Queue the model's own packet for this frame's parity. The first mesh's
  * flags pick the kind for a per-node model, as in func_0014B810. */
-__attribute__((section(".text.func_0014C6B8")))
-void func_0014C6B8(cModel *self, short id) {
+__attribute__((section(".text.cModel_queuePacket")))
+void cModel_queuePacket(cModel *self, short id) {
     char *start = self->packet[D_007476B0 & 1];
     unsigned int flags = cModel_getMeshPtr(self, 0)->dispFlags;
     int kind = self->drawKind;
@@ -99,8 +99,8 @@ void func_0014C6B8(cModel *self, short id) {
 }
 
 /* Set value in both slots of every mesh node, by index. */
-__attribute__((section(".text.func_0014E778")))
-void func_0014E778(cModel *self, int value) {
+__attribute__((section(".text.cObj_setMeshValue")))
+void cObj_setMeshValue(cModel *self, int value) {
     int num = GetField_2B1_14B638(self);
     int i = 0;
     if (num > 0) {

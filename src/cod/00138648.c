@@ -23,8 +23,8 @@ extern char D_00462FC0[];
 /* Build the view matrix: take the target and the eye through the model
  * matrix, find the view direction (eye minus target) and call the camera
  * matrix builder with the camera's own up vector. */
-__attribute__((section(".text.func_00138648")))
-void func_00138648(struct cCamera *self) {
+__attribute__((section(".text.cCamera_calcViewMatrix")))
+void cCamera_calcViewMatrix(struct cCamera *self) {
     struct {
         cVec p;                         /* 0x00 target in view space */
         cVec e;                         /* 0x10 eye in view space */
@@ -72,8 +72,8 @@ void func_00138648(struct cCamera *self) {
 
 extern void func_001F0360(ColiseumBattle *self, void *obj);    /* weigh one object as the nearest */
 
-__attribute__((section(".text.func_001F03E8")))
-void func_001F03E8(ColiseumBattle *self) {
+__attribute__((section(".text.ColiseumBattle_findNearEnemy")))
+void ColiseumBattle_findNearEnemy(ColiseumBattle *self) {
     ColiseumEmNode *node;
     ColiseumEm *em;
     long ok;
@@ -106,8 +106,8 @@ void func_001F03E8(ColiseumBattle *self) {
 
 
 
-__attribute__((section(".text.func_00185E68")))
-void func_00185E68(cOmBase *self, int mode)
+__attribute__((section(".text.cOmBase_setDispMode")))
+void cOmBase_setDispMode(cOmBase *self, int mode)
 {
     cOmBase_setMeshDispFromLayer(self, 0x32, 0);
     cOmBase_setMeshDispFromLayer(self, 0x33, 0);
@@ -154,8 +154,8 @@ typedef struct cOmOffBody {
 
 
 
-__attribute__((section(".text.func_001AAC90")))
-void func_001AAC90(cOmOffBody *self)
+__attribute__((section(".text.cOmBase_switchOff")))
+void cOmBase_switchOff(cOmOffBody *self)
 {
     if (self->unit[1] != 0)
         cDamageUnit_SetDamageCollActive(self->unit[1], 0);

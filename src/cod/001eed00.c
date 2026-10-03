@@ -17,7 +17,7 @@ extern void displayScrollLayer(int layer, int on);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
 extern void classFADE_kill(void *p);
 extern void func_001EFFF8(ColiseumBattle *self);
-extern void func_001F03E8(ColiseumBattle *self);
+extern void ColiseumBattle_findNearEnemy(ColiseumBattle *self);
 extern void func_001F0498(ColiseumBattle *self, float v0, int id, float *vec);
 extern void func_001F2CF0(void *ui);
 extern void func_001F2B28(void *ui, int n, int on);
@@ -177,7 +177,7 @@ void ColiseumBattle_Update(ColiseumBattle *self)
         long t = self->flags;
 
         if (((t >> 3) % 2L) != 0L) {
-            func_001F03E8(self);
+            ColiseumBattle_findNearEnemy(self);
         }
     }
     NoOp_1F0490(self);

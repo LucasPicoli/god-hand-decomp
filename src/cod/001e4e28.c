@@ -17,7 +17,7 @@ extern void func_001E6C80(char *a0, int a1, int a2);
 extern void func_001E6D48(char *a0, int a1, int a2);
 extern void func_001E6E10(char *a0, int a1, int a2);
 extern void func_001E7660(char *a0, int a1);
-extern void func_001E77B0(char *a0, int a1);
+extern void SetUiIdWorkDispRange(char *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
 extern char D_005FEE00[];
 extern int D_007474A0;
@@ -150,7 +150,7 @@ void Slot2_UpdateBet(Slot2 *self)
             done = 1;
         }
         if ((done & 0xFF) != 0) {
-            func_001E77B0(self->layer, 1);
+            SetUiIdWorkDispRange(self->layer, 1);
             self->timer = 0xA;
             self->step = self->step + 1;
         }
@@ -165,7 +165,7 @@ void Slot2_UpdateBet(Slot2 *self)
         if ((done & 0xFF) != 0) {
             if (D_00747640 & 0x33F00000000L) {
                 char *layer = self->layer;
-                func_001E77B0(layer, 0);
+                SetUiIdWorkDispRange(layer, 0);
                 func_001E7660(layer, 2);
                 self->timer = 0xA;
                 self->step = self->step + 1;

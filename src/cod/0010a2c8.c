@@ -31,8 +31,8 @@ extern int ColiseumBattle_CountLiveEnemies(ArenaEm *self);
 
 
 
-__attribute__((section(".text.func_001F0538")))
-void func_001F0538(ArenaEm *self)
+__attribute__((section(".text.ArenaEm_stepWave")))
+void ArenaEm_stepWave(ArenaEm *self)
 {
     char buf[0x10];
     switch (self->introStep) {
@@ -79,8 +79,8 @@ typedef struct DmgObj {
 extern void cDamageUnit_SetDamageCollActive(DmgUnit *unit, int active);
 extern void cDamageUnit_SetDamageCollRadius(DmgUnit *unit, int id, float radius);
 
-__attribute__((section(".text.func_0010A2C8")))
-void func_0010A2C8(DmgObj *self)
+__attribute__((section(".text.DmgObj_stopDamageVolumes")))
+void DmgObj_stopDamageVolumes(DmgObj *self)
 {
     float zero;
     if (self->pair[0].unit == 0) return;
@@ -160,8 +160,8 @@ extern void func_002B8A70(PoolObj *obj, int arg);
 
 
 
-__attribute__((section(".text.func_002B9EF0")))
-PoolObj *func_002B9EF0(Pool *pool, int arg, int a, int b, void *table, float scaleA, float scaleB)
+__attribute__((section(".text.Pool_createObjWithTable")))
+PoolObj *Pool_createObjWithTable(Pool *pool, int arg, int a, int b, void *table, float scaleA, float scaleB)
 {
     PoolObj *obj = create(pool, 2);
     PoolObj *sub;
@@ -229,8 +229,8 @@ typedef struct PhaseEnt {
 typedef struct { char b[0x8]; } PhaseTbl;
 extern PhaseTbl D_00448DF8;             /* the entry */
 
-__attribute__((section(".text.func_0028A6B8")))
-void func_0028A6B8(cEm00 *self) {
+__attribute__((section(".text.cEm00_tickPhaseDispatch1")))
+void cEm00_tickPhaseDispatch1(cEm00 *self) {
     PhaseEnt tbl[PHASE_NUM];
     char *e;
     int i8;

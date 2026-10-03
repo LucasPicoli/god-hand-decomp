@@ -25,11 +25,11 @@ extern void MtxMulScaleVec(cParts *dst, cParts *src, cVec *scale);
 extern void MtxMultiply(float *dst, float *a, cParts *b);
 extern void func_002BEDC8(cEmSetTable *table, int arg);
 extern void func_002BEDE8(cEmSetTable *table, int entryNum, cEmSetEntry *entry);
-extern void func_00295600(cEmSetParam *self);
+extern void cEmSetParam_resetRoom(cEmSetParam *self);
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 extern void cEma2_setDamage(cEma2 *self);
 
-/* func_00242388: an enemy that circles the player, turning its aim toward
+/* cEm00_stepCircleTargetTurn: an enemy that circles the player, turning its aim toward
  * the player each frame, and spawns an effect each time a motion contact
  * flag rises. */
 
@@ -44,8 +44,8 @@ extern void cEma2_setDamage(cEma2 *self);
 
 
 
-__attribute__((section(".text.func_00242388")))
-void func_00242388(cEm00 *self)
+__attribute__((section(".text.cEm00_stepCircleTargetTurn")))
+void cEm00_stepCircleTargetTurn(cEm00 *self)
 {
     cEm00 *player;
     int res;
@@ -176,8 +176,8 @@ void cModel_calcWorldParts(cModel *self) {
 
 /* Rebuild the model's matrix and every part's matrix from its rotation,
  * scale and anchor, then multiply it into its parent's. */
-__attribute__((section(".text.func_0014A170")))
-void func_0014A170(cModel *self) {
+__attribute__((section(".text.cModel_calcPartsInline")))
+void cModel_calcPartsInline(cModel *self) {
     cVec rot;
     float x, y, z;
     cParts *part;
@@ -220,8 +220,8 @@ void func_0014A170(cModel *self) {
  * object and marks the table loaded. Returns 1 on success, and also 1 when
  * the table is already loaded; 0 for a missing file, a wrong tag or an
  * empty one. */
-__attribute__((section(".text.func_00294B98")))
-int func_00294B98(cEmSetParam *self, cEmSetFile *file)
+__attribute__((section(".text.cEmSetParam_loadSetFile")))
+int cEmSetParam_loadSetFile(cEmSetParam *self, cEmSetFile *file)
 {
     if ((D_005E8658.block->flags & EMSET_LOADED) == 0) {
         if (file == 0)
@@ -239,7 +239,7 @@ int func_00294B98(cEmSetParam *self, cEmSetFile *file)
         }
         self->entry = file->entry;
         func_002BEDE8(&D_005E8658, file->entryNum, self->entry);
-        func_00295600(self);
+        cEmSetParam_resetRoom(self);
         D_005E8658.block->flags |= EMSET_LOADED;
     }
     return 1;
@@ -247,8 +247,8 @@ int func_00294B98(cEmSetParam *self, cEmSetFile *file)
 
 /* Damages every listed cEma2 that is alive and no farther than 2 units
  * (compared squared, in the xz plane) from pos. */
-__attribute__((section(".text.func_00292D18")))
-void func_00292D18(cEmManage *self, cVec *pos)
+__attribute__((section(".text.cEmManage_damageEma2Near")))
+void cEmManage_damageEma2Near(cEmManage *self, cVec *pos)
 {
     cEmSlot *slot;
     cEma2 *em;
@@ -269,8 +269,8 @@ void func_00292D18(cEmManage *self, cVec *pos)
 
 /* The first listed cEma2 that is alive and within radius of pos (compared
  * squared, in the xz plane), or 0. */
-__attribute__((section(".text.func_00292DC8")))
-cEma2 *func_00292DC8(cEmManage *self, cVec *pos, float radius)
+__attribute__((section(".text.cEmManage_findEma2Near")))
+cEma2 *cEmManage_findEma2Near(cEmManage *self, cVec *pos, float radius)
 {
     cEmSlot *slot;
     cEma2 *em;

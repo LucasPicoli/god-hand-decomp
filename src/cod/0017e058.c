@@ -26,8 +26,8 @@ extern int D_005864F0;                  /* enemy manager */
 extern float D_00747A14;                /* global speed rate */
 
 /* Wait step: load the countdown from the start time, count it down by the frame rate, and when it is spent go back to phase 0 in mode 1. */
-__attribute__((section(".text.func_001B43C8")))
-void func_001B43C8(WaitObj *self)
+__attribute__((section(".text.WaitObj_stepCountdown")))
+void WaitObj_stepCountdown(WaitObj *self)
 {
     switch (self->base.phase) {
     case 0:
@@ -52,8 +52,8 @@ void func_001B43C8(WaitObj *self)
 
 
 
-__attribute__((section(".text.func_002987B0")))
-void func_002987B0(void) {
+__attribute__((section(".text.RegisterScrollLayerHooks")))
+void RegisterScrollLayerHooks(void) {
     func_00297B20(&D_00586AF0, (void *)&func_002987F8);
     func_00297B40(&D_00586AF0, (void *)&func_002988A8);
 }
@@ -73,8 +73,8 @@ typedef struct CornerPanel {
 
 extern void func_002B1C80(CornerPanel *self);
 
-__attribute__((section(".text.func_002B1BE8")))
-void func_002B1BE8(CornerPanel *self)
+__attribute__((section(".text.CornerPanel_setPointsState4")))
+void CornerPanel_setPointsState4(CornerPanel *self)
 {
     self->x0 = 0x100;
     self->y0 = 0x170;
@@ -86,8 +86,8 @@ void func_002B1BE8(CornerPanel *self)
 }
 
 /* 1 if the squared XZ distance from target to the object's position is within range, else 0. */
-__attribute__((section(".text.func_0017E058")))
-int func_0017E058(cGameObj *self, cVec *target, float range) {
+__attribute__((section(".text.cGameObj_isWithinRangeXZ")))
+int cGameObj_isWithinRangeXZ(cGameObj *self, cVec *target, float range) {
     int in = 0;
     cVec *pos = self->pos;
     if (capVu0MagnitudeSqXZ(target, pos) <= range) {
@@ -97,8 +97,8 @@ int func_0017E058(cGameObj *self, cVec *target, float range) {
 }
 
 /* Destructor of a game object subclass: set its method table, release effect data 0x27D, run the base destructor. */
-__attribute__((section(".text.func_0017EC40")))
-void func_0017EC40(cGameObj *self, int flag) {
+__attribute__((section(".text.cGameObj_destructSubclass")))
+void cGameObj_destructSubclass(cGameObj *self, int flag) {
     self->vt = (cGameObjVt *)&D_00422240;
     espSys_effDataRelease(D_007419A0, 0x27D);
     SetField214PtrThenInit_1B6F38(self, flag);
@@ -114,8 +114,8 @@ typedef struct Arena {
 extern void func_002A94F0(Arena *self);
 
 /* Set up an arena over a block; an empty block or size leaves it cleared. */
-__attribute__((section(".text.func_002A9498")))
-void func_002A9498(Arena *self, char *block, int size, int user) {
+__attribute__((section(".text.Arena_init")))
+void Arena_init(Arena *self, char *block, int size, int user) {
     if (block == 0 || size == 0) {
         self->block = 0;
         self->size = 0;

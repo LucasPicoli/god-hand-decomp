@@ -11,8 +11,8 @@ extern unsigned char cOmbb_ckFire(void *actor);
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 
 /* Construct a node: set its name and method table, clear its links, scale it to 1, give both matrices the identity and attach it to parent. */
-__attribute__((section(".text.func_002B5C20")))
-cNode *func_002B5C20(cNode *self, int name, cNode *parent) {
+__attribute__((section(".text.cNode_construct")))
+cNode *cNode_construct(cNode *self, int name, cNode *parent) {
     char *m;
     char *m2;
     float one = 1.0f;
@@ -62,8 +62,8 @@ cNode *func_002B5C20(cNode *self, int name, cNode *parent) {
 #define FIRE_RANGE_SQ     12.25f        /* squared XZ distance (3.5 units) */
 
 /* Find the position of a burning actor within range of this object and return it; return this object's own position when there is none. */
-__attribute__((section(".text.func_0012A2E0")))
-cVec *func_0012A2E0(cGameObj *self) {
+__attribute__((section(".text.cGameObj_findBurningPos")))
+cVec *cGameObj_findBurningPos(cGameObj *self) {
     cVec pos __attribute__((aligned(16)));
     cEmActor *actor;
     unsigned int i;

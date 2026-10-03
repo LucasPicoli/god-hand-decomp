@@ -19,8 +19,8 @@ typedef struct CostumeObj {
 
 
 
-__attribute__((section(".text.func_00298110")))
-void func_00298110(CostumeObj *self, int unused, int costume)
+__attribute__((section(".text.CostumeObj_applyPartMeshes")))
+void CostumeObj_applyPartMeshes(CostumeObj *self, int unused, int costume)
 {
     if (self == 0) {
         return;
@@ -57,8 +57,8 @@ typedef struct Slot2Marks {
 
 
 
-__attribute__((section(".text.func_001E3C08")))
-void func_001E3C08(Slot2Marks *self, int show, int startLit)
+__attribute__((section(".text.Slot2_setMarkLayers")))
+void Slot2_setMarkLayers(Slot2Marks *self, int show, int startLit)
 {
     self->markFlag = 0;
     if (startLit) {

@@ -10,8 +10,8 @@ typedef struct PanelObj {
 
 extern void func_001DEE60(PanelObj *self, int element, int show);
 
-__attribute__((section(".text.func_001DEF48")))
-void func_001DEF48(PanelObj *self, unsigned char mode)
+__attribute__((section(".text.PanelObj_setCursorMode")))
+void PanelObj_setCursorMode(PanelObj *self, unsigned char mode)
 {
     switch (mode) {
     case 0:
@@ -41,8 +41,8 @@ typedef struct Slot2Part {
 
 extern void func_001E4520(Slot2Part *self, int mode);
 
-__attribute__((section(".text.func_001E3128")))
-void func_001E3128(Slot2Part *self)
+__attribute__((section(".text.Slot2Part_stepWait")))
+void Slot2Part_stepWait(Slot2Part *self)
 {
     switch (self->phase) {
     case 0:
@@ -81,8 +81,8 @@ typedef struct BankTable {
 
 extern int func_002D3210(BankEntry *entry);     /* entry in use */
 
-__attribute__((section(".text.func_002D2EE8")))
-int func_002D2EE8(BankTable *self, int key)
+__attribute__((section(".text.BankTable_isKeyFree")))
+int BankTable_isKeyFree(BankTable *self, int key)
 {
     BankEntry *e;
     int i;

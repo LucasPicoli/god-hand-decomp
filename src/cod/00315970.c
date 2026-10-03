@@ -38,7 +38,7 @@ int ForwardInit1A5FD8_315AC0(void){
     s0 = EnsureInitThenForward_2A9538_30EE08(0x690, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x690);
-    return func_001A5FD8(s0);
+    return cGameObj_constructSubclassA(s0);
 }
 
 __attribute__((section(".text.ForwardInit1A6D68_315B30")))

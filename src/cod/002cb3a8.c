@@ -8,8 +8,8 @@
 
 extern int *D_003C30C0[EMSE_GROUP_NUM];
 
-__attribute__((section(".text.func_002CB3A8")))
-int func_002CB3A8(cSnd *self, int id)
+__attribute__((section(".text.cSnd_getEmSeGroupOwner")))
+int cSnd_getEmSeGroupOwner(cSnd *self, int id)
 {
     int i;
     for (i = 0; i < EMSE_GROUP_NUM; i++) {

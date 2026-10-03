@@ -10,7 +10,7 @@ extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int irand(void);
 extern void func_002705D8(void *a0);
 extern void func_0026A638(void *a0, int a1);
-extern void func_0026A938(void *a0, int a1, int a2);
+extern void EmThrower_throwHeld(void *a0, int a1, int a2);
 extern void func_00260B30(void *a0);
 extern unsigned short D_00747A50;
 
@@ -282,7 +282,7 @@ __attribute__((section(".text.func_0023F5C8"))) void func_0023F5C8(cEm00 *self)
             break;
     }
     if (*(int *)(p + 0x564) == 0x20F && (*(unsigned short *)(p + 0x3AC) & 1) != 0) {
-        func_0026A938(p, 0, 0);
+        EmThrower_throwHeld(p, 0, 0);
     }
     func_00260B30(p);
 }

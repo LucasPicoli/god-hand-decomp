@@ -34,8 +34,8 @@ typedef struct DamagedObj {
     void *damage;                       /* 0x608 */
 } DamagedObj;
 
-__attribute__((section(".text.func_001A6098")))
-int func_001A6098(DamagedObj *self) {
+__attribute__((section(".text.DamagedObj_setupHitCylinder")))
+int DamagedObj_setupHitCylinder(DamagedObj *self) {
     float f[16];
     float *pos;
     float *dir;
@@ -98,8 +98,8 @@ typedef struct EmThrower {
     cOm60 *held[3];                     /* 0x6E4 */
 } EmThrower;
 
-__attribute__((section(".text.func_0026A938")))
-void func_0026A938(EmThrower *self, int no, int fast) {
+__attribute__((section(".text.EmThrower_throwHeld")))
+void EmThrower_throwHeld(EmThrower *self, int no, int fast) {
     cVec dir;
     cOm60 *obj;
     float side;
@@ -137,8 +137,8 @@ void func_0026A938(EmThrower *self, int no, int fast) {
 #define PANEL_ELEM_A       0xE
 #define PANEL_ELEM_B       0xF
 
-__attribute__((section(".text.func_001DF428")))
-void func_001DF428(char *self, unsigned char mode) {
+__attribute__((section(".text.UiPanel_setSlideMode")))
+void UiPanel_setSlideMode(char *self, unsigned char mode) {
     switch (mode) {
     default:
     case 0:

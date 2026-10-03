@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_0025AB70: an enemy that starts a motion picked by its enemy number,
+/* cEm00_stepMotionThenTimedEnd: an enemy that starts a motion picked by its enemy number,
  * waits out a 150 frame timer and then ends the step. */
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
@@ -15,8 +15,8 @@ extern void func_00274238(void *a0, int a1);
 extern void func_002705D8(void *a0);
 extern int D_00462FC0;
 
-__attribute__((section(".text.func_0025AB70")))
-void func_0025AB70(cEm00 *self)
+__attribute__((section(".text.cEm00_stepMotionThenTimedEnd")))
+void cEm00_stepMotionThenTimedEnd(cEm00 *self)
 {
     float f[8];
 

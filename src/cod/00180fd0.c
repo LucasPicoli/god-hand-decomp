@@ -12,8 +12,8 @@ extern void func_002FBA60(int a0, int a1, int a2);
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);
-extern void func_001AC908(void *);
-extern void func_001810A0(void *);
+extern void cOmShake_updateHeight(void *);
+extern void cOmBase_shakeHeight(void *);
 extern void cModel_calcParts(void *);
 extern void cModel_calcWorldParts(void *);
 
@@ -24,8 +24,8 @@ extern void cModel_calcWorldParts(void *);
 
 
 
-__attribute__((section(".text.func_001F4428")))
-void func_001F4428(ColiseumBattle *self, unsigned char mode)
+__attribute__((section(".text.ColiseumUi_StartFade")))
+void ColiseumUi_StartFade(ColiseumBattle *self, unsigned char mode)
 {
     long t = self->flags;
     unsigned int f;
@@ -75,8 +75,8 @@ void KillEffect_306168(int a0, int a1, int a2) {
 
 
 
-__attribute__((section(".text.func_003063B8")))
-void func_003063B8(int a0, int a1, int a2, unsigned char a3) {
+__attribute__((section(".text.KillEffectWithFlag")))
+void KillEffectWithFlag(int a0, int a1, int a2, unsigned char a3) {
     if (a0 == 0 && a1 == -1) {
         return;
     }
@@ -104,8 +104,8 @@ struct Table_func_001AC838 { struct Entry_func_001AC838 e[1]; };
 extern struct Table_func_001AC838 D_003BDC18;
 
 
-__attribute__((section(".text.func_001AC838")))
-void func_001AC838(void *a0)
+__attribute__((section(".text.UpdatePhaseWithPostStepA")))
+void UpdatePhaseWithPostStepA(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -129,7 +129,7 @@ void func_001AC838(void *a0)
     else
         arg = f0;
     fp((int)(s0 + arg));
-    func_001AC908(s0);
+    cOmShake_updateHeight(s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
 }
@@ -144,8 +144,8 @@ struct Table_func_00180FD0 { struct Entry_func_00180FD0 e[1]; };
 extern struct Table_func_00180FD0 D_003BDAF8;
 
 
-__attribute__((section(".text.func_00180FD0")))
-void func_00180FD0(void *a0)
+__attribute__((section(".text.UpdatePhaseWithPostStepB")))
+void UpdatePhaseWithPostStepB(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -169,7 +169,7 @@ void func_00180FD0(void *a0)
     else
         arg = f0;
     fp((int)(s0 + arg));
-    func_001810A0(s0);
+    cOmBase_shakeHeight(s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
 }
@@ -185,8 +185,8 @@ extern struct Table_func_001B5A58 D_003BDD60;
 
 
 
-__attribute__((section(".text.func_001B5A58")))
-void func_001B5A58(void *a0)
+__attribute__((section(".text.UpdatePhaseThenCalcParts")))
+void UpdatePhaseThenCalcParts(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;

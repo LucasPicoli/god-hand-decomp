@@ -165,7 +165,7 @@ void EffectEventEndProc(void)
 
 __attribute__((section(".text.InitObjectVtable_2FBD98")))
 void *InitObjectVtable_2FBD98(void *a0) {
-    func_002B5C20(a0, 0, 0);
+    cNode_construct(a0, 0, 0);
     *(int **)((char *)a0 + 0xF0) = &D_0044FB60;
     return a0;
 }

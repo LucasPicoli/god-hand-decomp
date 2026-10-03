@@ -21,8 +21,8 @@ extern void cEm00_setGoto(cEm00 *self, cVec *pos, int a2, int a3, float f);
 #define EM_HELD_OBJ(self)   (*(cEm00 **)((char *)(self) + 0x6EC))
 
 /* In the fire room: find a burning-free fire actor while the enemy holds the fire prop, and send the enemy to it. Returns 1 if it set the goto up. */
-__attribute__((section(".text.func_0026E458")))
-int func_0026E458(cEm00 *self) {
+__attribute__((section(".text.cEm00_startGotoToFire")))
+int cEm00_startGotoToFire(cEm00 *self) {
     cVec pos __attribute__((aligned(16)));
     cEmActor *actor;
     unsigned int i;

@@ -15,8 +15,8 @@ extern void CopyVec3ToField30_147C40(float *mtx, cVec *v);
 extern void sceVu0ApplyMatrix(void *dst, void *mtx, void *v);
 extern void cModel_calcParts(void *model);
 
-__attribute__((section(".text.func_0027E7F0")))
-void func_0027E7F0(cEm00 *self, cEm00 *target) {
+__attribute__((section(".text.cEm00_attachToTarget")))
+void cEm00_attachToTarget(cEm00 *self, cEm00 *target) {
     unsigned char f[0x80] __attribute__((aligned(16)));
     float *rot;
     float *work;

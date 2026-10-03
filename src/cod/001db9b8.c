@@ -3,9 +3,9 @@
 extern void cSnd_SetBgmState(void *a0, int a1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_001DF358(void *a0, int a1);
-extern void func_001DF198(void *a0, int a1);
+extern void PokerUi_slidePanel(void *a0, int a1);
 extern void func_001DF278(void *a0, int a1);
-extern void func_001DF428(void *a0, int a1);
+extern void UiPanel_setSlideMode(void *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(void *a0, int a1, int a2);
 extern void func_001DD5A0(void *a0, int a1);
 extern void func_001DE088(void *a0, int a1);
@@ -91,9 +91,9 @@ void func_001DB9B8(void *a0)
         if (n == 0) {
             p = s1 + 0x25B0;
             func_001DF358(p, 3);
-            func_001DF198(p, 3);
+            PokerUi_slidePanel(p, 3);
             func_001DF278(p, 3);
-            func_001DF428(p, 3);
+            UiPanel_setSlideMode(p, 3);
             *(int *)(s1 + 0x3028) = 0x14;
             *(unsigned char *)(s1 + 0x3025) += 1;
         } else {

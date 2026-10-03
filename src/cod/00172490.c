@@ -11,7 +11,7 @@ extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int fra
 extern void func_001DEE60(void *ui, int sub, int on);
 extern int cOmBase_checkDamage(cOmBase *self, cDamageTake *take);
 extern void func_002B0480(cMessDrawFont *self, float *frame);
-extern unsigned short *func_002B0700(cMessDrawFont *self, unsigned short *text, float *frame, float *w, float *h);
+extern unsigned short *cMessDrawFont_measureText(cMessDrawFont *self, unsigned short *text, float *frame, float *w, float *h);
 extern int cMessCommon_getCodeSize(unsigned int code);
 extern int cMessCommon_isPageEndCode(unsigned short code);
 
@@ -31,8 +31,8 @@ extern int cMessCommon_isPageEndCode(unsigned short code);
 
 
 
-__attribute__((section(".text.func_001E3B40")))
-void func_001E3B40(Slot2 *self)
+__attribute__((section(".text.Slot2_blinkMarks")))
+void Slot2_blinkMarks(Slot2 *self)
 {
     unsigned short *blink = (unsigned short *)((char *)self + SLOT2_OFFSET_BLINK);
     unsigned int v = *blink;
@@ -74,8 +74,8 @@ typedef struct { char b[0x10]; } PhaseTbl;
 
 extern PhaseTbl D_00448768;
 
-__attribute__((section(".text.func_00282D70")))
-void func_00282D70(char *s0)
+__attribute__((section(".text.cOmBase_runPhaseHandler")))
+void cOmBase_runPhaseHandler(char *s0)
 {
     PhaseMemFn tbl[2];
     char *e;
@@ -116,8 +116,8 @@ void func_00282D70(char *s0)
 
 
 
-__attribute__((section(".text.func_001DF198")))
-void func_001DF198(void *ui, int mode)
+__attribute__((section(".text.PokerUi_slidePanel")))
+void PokerUi_slidePanel(void *ui, int mode)
 {
     char *s0 = (char *)ui;
     switch (mode & 0xFF) {
@@ -160,12 +160,12 @@ typedef struct cOmLifeCounter {
 } cOmLifeCounter;
 
 
-extern void func_001731B8(cOmLifeCounter *self);
+extern void cEm00_startStagger(cOmLifeCounter *self);
 extern void func_001B7EE0(cOmLifeCounter *self, float amount);
 extern void func_00173258(cOmLifeCounter *self);
 
-__attribute__((section(".text.func_00172490")))
-void func_00172490(cOmLifeCounter *self)
+__attribute__((section(".text.cOmLifeCounter_checkHit")))
+void cOmLifeCounter_checkHit(cOmLifeCounter *self)
 {
     int i;
     for (i = 0; i < OMHIT_REC_NUM; i++) {
@@ -180,7 +180,7 @@ void func_00172490(cOmLifeCounter *self)
                 self->base.stepArg = 0;
                 self->lastHit = i;
             } else {
-                func_001731B8(self);
+                cEm00_startStagger(self);
             }
         }
     }
@@ -188,7 +188,7 @@ void func_00172490(cOmLifeCounter *self)
     func_00173258(self);
 }
 
-/* Measure one page of a message: lay out each code with func_002B0700, keep the widest line in *maxW and add every line height (plus the line spacing between lines) to *sumH, until a page end code. */
+/* Measure one page of a message: lay out each code with cMessDrawFont_measureText, keep the widest line in *maxW and add every line height (plus the line spacing between lines) to *sumH, until a page end code. */
 
 
 
@@ -197,8 +197,8 @@ void func_00172490(cOmLifeCounter *self)
 
 
 
-__attribute__((section(".text.func_002B0610")))
-void func_002B0610(cMessDrawFont *self, unsigned short *text, float *maxW, float *sumH)
+__attribute__((section(".text.cMessDrawFont_measurePage")))
+void cMessDrawFont_measurePage(cMessDrawFont *self, unsigned short *text, float *maxW, float *sumH)
 {
     float frame[4];                     /* sp+0x00 layout state */
     float w;                            /* sp+0x10 */
@@ -207,7 +207,7 @@ void func_002B0610(cMessDrawFont *self, unsigned short *text, float *maxW, float
     *maxW = 0;
     *sumH = 0;
     func_002B0480(self, frame);
-    while (text = func_002B0700(self, text, frame, &w, &h),
+    while (text = cMessDrawFont_measureText(self, text, frame, &w, &h),
            (*maxW < w ? (*maxW = w, 0) : 0),
            *sumH += h,
            cMessCommon_isPageEndCode(*text) == 0) {

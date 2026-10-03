@@ -5,7 +5,7 @@
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
-extern float *func_0012A2E0(void *a0);
+extern float *cGameObj_findBurningPos(void *a0);
 extern int func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -40,7 +40,7 @@ void func_0010FF80(void *a0)
         s1 = s0 + 0x580;
         func_00126770(s0);
         pl00_clearMotionCam(s0, 0, 0);
-        src = func_0012A2E0(s0);
+        src = cGameObj_findBurningPos(s0);
         if ((float *)s1 != src) {
             *(float *)(s0 + 0x580) = src[0];
             *(float *)(s1 + 4) = src[1];

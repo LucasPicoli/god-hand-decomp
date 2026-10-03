@@ -3,7 +3,7 @@
 extern void cOmBase_dieCommon(void);
 extern void func_001BC0A0(void);
 extern void func_001BD6B0(void);
-extern void func_001C29D0(void);
+extern void cOmBase_tickModeTableSkip381(void);
 extern void cOmSub_move(void *);
 
 __attribute__((section(".text.Tramp_func_001B79B0_001A6EE0")))
@@ -61,7 +61,7 @@ __attribute__((section(".text.Tramp_func_001B79B0_001B1EE0")))
 void Tramp_func_001B79B0_001B1EE0(void) { cOmBase_dieCommon(); }
 
 __attribute__((section(".text.func_001B2478")))
-void func_001B2478(void) { func_001C29D0(); }
+void func_001B2478(void) { cOmBase_tickModeTableSkip381(); }
 
 __attribute__((section(".text.Tramp_func_001B79B0_001B3658")))
 void Tramp_func_001B79B0_001B3658(void) { cOmBase_dieCommon(); }

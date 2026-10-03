@@ -21,8 +21,8 @@ typedef struct EnemyOwner {
 
 
 
-__attribute__((section(".text.func_0027BB30")))
-void func_0027BB30(EnemyOwner *self)
+__attribute__((section(".text.EnemyOwner_releaseChild")))
+void EnemyOwner_releaseChild(EnemyOwner *self)
 {
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, self);
     if (self->child != 0) {
@@ -37,21 +37,21 @@ typedef struct NodeList {
     void *head;                         /* 0x04 first node */
 } NodeList;
 
-extern void func_001344A0(NodeList *self);
+extern void NodeList_clear(NodeList *self);
 
 
-__attribute__((section(".text.func_00134458")))
-void func_00134458(NodeList *self, int flags)
+__attribute__((section(".text.NodeList_deletingDtor")))
+void NodeList_deletingDtor(NodeList *self, int flags)
 {
-    func_001344A0(self);
+    NodeList_clear(self);
     if (flags & 1) {
         __builtin_delete(self);
     }
 }
 
 /* Check whether the sound slot has ended; a slot owned by an enemy object (id 0x200..0x2FF) takes the same check (two plain calls, so jump2 keeps both arms). */
-__attribute__((section(".text.func_002CB340")))
-void func_002CB340(cSnd *self, int slot)
+__attribute__((section(".text.cSnd_CheckSeEnd")))
+void cSnd_CheckSeEnd(cSnd *self, int slot)
 {
     unsigned int owner = cSnd_GetSeData(self, slot)->owner;
     if (owner - 0x200 < 0x100) {
@@ -80,8 +80,8 @@ typedef struct HolderObj {
 extern void ReleaseObj(OwnedObj *obj);
 extern void func_002FBE28(HolderObj *self, int flag);
 
-__attribute__((section(".text.func_002F27E8")))
-void func_002F27E8(HolderObj *self, int flag)
+__attribute__((section(".text.HolderObj_destroyOwned")))
+void HolderObj_destroyOwned(HolderObj *self, int flag)
 {
     self->vt = D_0044EE38;
     if (self->owned != 0) {
@@ -98,8 +98,8 @@ void func_002F27E8(HolderObj *self, int flag)
 extern void *D_003C23A4;                /* message table */
 
 
-__attribute__((section(".text.func_002B0EB8")))
-int func_002B0EB8(void *unused, unsigned short *code)
+__attribute__((section(".text.cMessDrawFont_isListedCode")))
+int cMessDrawFont_isListedCode(void *unused, unsigned short *code)
 {
     unsigned short *list = cMessage_getMessageAddr(D_003C23A4, MESS_BREAK_LIST_ID);
     unsigned short c = *code;

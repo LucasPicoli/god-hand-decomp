@@ -9,8 +9,8 @@ extern void func_00148690(cModelNode *node, int prio, unsigned char *texSlot, in
 /* Draw layer of a node when the model is drawn to the screen layer: 2, or 0x14
  * for a late model, 0x1E when the node blends and the model is opaque, and
  * 0x20 for a special node while the special pass is on. */
-__attribute__((section(".text.func_0014BE38")))
-int func_0014BE38(cModel *self, cModelNode *node) {
+__attribute__((section(".text.cModel_nodeLayerScreen")))
+int cModel_nodeLayerScreen(cModel *self, cModelNode *node) {
     int layer = 2;
     if (self->objFlags & CMODEL_F_LATE) {
         layer = 0x14;
@@ -31,8 +31,8 @@ int func_0014BE38(cModel *self, cModelNode *node) {
 /* Draw layer of a node: the model's forced layer when it has one, else 0xA
  * (0xE for a back node), 0x14 for a late model, 0x1E when the node blends and
  * the model is opaque, and 0x22 for a special mesh while the special pass is on. */
-__attribute__((section(".text.func_0014BEF8")))
-int func_0014BEF8(cModel *self, cModelNode *node) {
+__attribute__((section(".text.cModel_nodeLayer")))
+int cModel_nodeLayer(cModel *self, cModelNode *node) {
     unsigned int flags;
     int layer;
     if (self->layerForce != CMODEL_LAYER_AUTO) {
@@ -61,8 +61,8 @@ int func_0014BEF8(cModel *self, cModelNode *node) {
 
 /* Set up one node's material: mode 3 when the node blends and the model is
  * opaque, then the special-pass material or the model's own texture exchange. */
-__attribute__((section(".text.func_0014B4D0")))
-void func_0014B4D0(cModel *self, cModelNode *node) {
+__attribute__((section(".text.cModel_setNodeMaterial")))
+void cModel_setNodeMaterial(cModel *self, cModelNode *node) {
     int mode = 0;
     if (node->dispFlags & CMODEL_NODE_ALPHA) {
         if (cModel_alpha(self) == 1.0f) {

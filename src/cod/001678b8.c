@@ -56,8 +56,8 @@ void cOmDoor_setObjCollision(cOmDoor *self) {
 
 
 
-__attribute__((section(".text.func_002A5D40")))
-void func_002A5D40(char *state) {
+__attribute__((section(".text.GameLoop_stageClearToState3")))
+void GameLoop_stageClearToState3(char *state) {
     cSaveManager_stageClear(D_003C264C);
     func_002CABE0(D_005FEE00);
     *state = 3;
@@ -82,8 +82,8 @@ typedef struct cSceAtManagerCursor {
 
 extern void func_002C1618(cSceAtManagerCursor *self);
 
-__attribute__((section(".text.func_002C14F8")))
-void func_002C14F8(cSceAtManagerCursor *self) {
+__attribute__((section(".text.cSceAtManager_clearCursor")))
+void cSceAtManager_clearCursor(cSceAtManagerCursor *self) {
     if ((D_00747A78 & SCEAT_LOCK_CURSOR) == 0) {
         self->unk60 = 0;
         self->posA = 0;
@@ -104,8 +104,8 @@ typedef struct IdDrawObj {
 
 
 
-__attribute__((section(".text.func_001678B8")))
-void func_001678B8(IdDrawObj *self) {
+__attribute__((section(".text.IdDrawObj_transDual")))
+void IdDrawObj_transDual(IdDrawObj *self) {
     int mode = self->mode;
     if (mode >= 0) {
         if (mode >= 2) {

@@ -12,8 +12,8 @@ extern cGameObj *Getplayer(void);
 extern float capVu0Atan2(float x, float z);
 
 /* Moves the object by its null-bone speed rotated about the y axis by yaw. */
-__attribute__((section(".text.func_0014FA60")))
-void func_0014FA60(cObjBase *self, float yaw, float scale) {
+__attribute__((section(".text.cObjBase_MoveByNullSpeed")))
+void cObjBase_MoveByNullSpeed(cObjBase *self, float yaw, float scale) {
     float v[4] __attribute__((aligned(16)));
     float r[4] __attribute__((aligned(16)));
     float *rp;
@@ -104,7 +104,7 @@ cEmActor *func_00292C28(cEmManage *self, cVec *pos)
 
     VU0_SQC2_VF0(&f, 0x10);
     f.data.entryNo = EM_ENTRY_NONE;
-    if (func_00292AF0(self, &f.data) == 0xFFFF)
+    if (cEmManage_pickStandInEm(self, &f.data) == 0xFFFF)
         return 0;
     VU0_SQC2_VF0(&f, 0x40);
     target = Getplayer()->pos;

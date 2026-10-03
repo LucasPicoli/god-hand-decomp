@@ -14,8 +14,8 @@ typedef struct cOmScripted {
 
 extern void func_001A6AF8(cOmScripted *self);
 
-__attribute__((section(".text.func_001A6A78")))
-void func_001A6A78(cOmScripted *self)
+__attribute__((section(".text.cOmScripted_startSeq")))
+void cOmScripted_startSeq(cOmScripted *self)
 {
     int no;
     char *works;

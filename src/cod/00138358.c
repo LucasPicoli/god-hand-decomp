@@ -27,8 +27,8 @@ extern void NoOp_164978(void *p);
 extern void cIDBase_trans(cIDBaseObj *self);
 
 /* Follow the player: the normal chase, or the lock-on chase in state 4. */
-__attribute__((section(".text.func_00139FA8")))
-void func_00139FA8(struct cPlCamera *self) {
+__attribute__((section(".text.cPlCamera_update")))
+void cPlCamera_update(struct cPlCamera *self) {
     if (Getplayer()->camState != PLCAM_STATE_LOCKON) {
         func_00139FF8(self);
     } else {
@@ -99,8 +99,8 @@ typedef struct cOmDamaged {
 
 
 
-__attribute__((section(".text.func_001928D8")))
-void func_001928D8(cOmDamaged *self) {
+__attribute__((section(".text.cOmDamaged_switchOff")))
+void cOmDamaged_switchOff(cOmDamaged *self) {
     if (self->damage != 0) {
         cDamageUnit_SetDamageCollActive(self->damage, 0);
     }
@@ -133,8 +133,8 @@ extern ModeTbl D_00429C60;              /* the four entries */
 
 
 
-__attribute__((section(".text.func_001C29D0")))
-void func_001C29D0(cOmBase *self) {
+__attribute__((section(".text.cOmBase_tickModeTableSkip381")))
+void cOmBase_tickModeTableSkip381(cOmBase *self) {
     ModeEnt tbl[MODE_NUM];
     char *e;
     int i8;
@@ -183,8 +183,8 @@ extern PokerHost **D_003C2384;
 
 
 
-__attribute__((section(".text.func_001DF940")))
-void func_001DF940(Poker *self)
+__attribute__((section(".text.Poker_releaseIds")))
+void Poker_releaseIds(Poker *self)
 {
     PokerHost *host;
     func_001DEDA8((char *)self + POKER_OFFSET_DISP_ID);
@@ -210,8 +210,8 @@ extern void func_00163C58(cIDPanel *self);
 
 
 
-__attribute__((section(".text.func_001640E8")))
-void func_001640E8(cIDPanel *self)
+__attribute__((section(".text.cIDPanel_trans")))
+void cIDPanel_trans(cIDPanel *self)
 {
     if (self->state == 1 && self->sub == 1)
         func_00163C58(self);

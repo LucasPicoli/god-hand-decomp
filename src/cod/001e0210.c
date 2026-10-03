@@ -3,9 +3,9 @@
 
 extern char D_003BE0B0[];
 extern int D_00747A2C;
-extern void func_001E3858(int a0);
+extern void Slot2_blinkMarkTick(int a0);
 extern void func_001E39D0(int a0);
-extern void func_001E3B40(int a0);
+extern void Slot2_blinkMarks(int a0);
 extern void func_001E3CB0(int a0);
 extern void func_001E3DD0(int a0);
 extern void func_001E4010(int a0);
@@ -28,9 +28,9 @@ void func_001E0210(int a0)
     short off = *(short *)(D_003BE0B0 + i * 8);
     void (*fn)() = *(void (**)())(D_003BE0B0 + i * 8 + 4);
     fn(a0 + off);
-    func_001E3858(a0);
+    Slot2_blinkMarkTick(a0);
     func_001E39D0(a0);
-    func_001E3B40(a0);
+    Slot2_blinkMarks(a0);
     func_001E3CB0(a0);
     func_001E3DD0(a0);
     func_001E4010(a0);

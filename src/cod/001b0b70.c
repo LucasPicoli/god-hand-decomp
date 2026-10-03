@@ -133,14 +133,14 @@ extern void cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
 extern void cDvd_CheckWait();
 extern void cIDManager_setIDData();
-extern void func_001F4648();
+extern void InitUiIdWorksAndShowAll();
 extern void func_001F4B78();
 extern void func_001F4840();
 extern void func_001F4068();
 extern void func_001F4248();
 extern void func_001F52A0();
 extern void func_001F5510();
-extern void func_001F53A8();
+extern void MarkObj_setPulse();
 
 extern short D_00568240[];
 extern EmEntry D_003BE8B0[];
@@ -172,7 +172,7 @@ void ColiseumEmSelect__Initialize(char *a0)
     r = cDvd_ReadAlloc(D_00583F20, buf, a0 + 0x37D8, D_00754220, 0, 0, 0, 0);
     cDvd_CheckWait(D_00583F20, r);
     cIDManager_setIDData(*D_003C2384, 0x15, *(int *)(a0 + 0x37D8));
-    func_001F4648(a0 + 0x60);
+    InitUiIdWorksAndShowAll(a0 + 0x60);
     func_001F4B78(a0 + 0x60, cCoreSave_getGold(&D_00569B70));
     func_001F4840(a0 + 0x60);
     func_001F4068(a0, 0, &D_003BE8B0[*(short *)(a0 + 0x37D4)], 1);
@@ -193,7 +193,7 @@ void ColiseumEmSelect__Initialize(char *a0)
         *(short *)(a0 + 0x37D6) = 0x32;
     }
     func_001F5510(a0 + 0x60, *(short *)(a0 + 0x37D6), 7);
-    func_001F53A8(a0 + 0x60, 1);
+    MarkObj_setPulse(a0 + 0x60, 1);
     *(int *)(a0 + 0x4) = 0;
     *(int *)(a0 + 0x8) = 0;
     *(int *)(a0 + 0xC) = 0;

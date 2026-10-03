@@ -2,7 +2,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
 #define CSND_HIT(s) (*(cBgmHit **)((char *)(s) + 0x24))
-extern int func_002CB3A8(void *a0, int a1);
+extern int cSnd_getEmSeGroupOwner(void *a0, int a1);
 extern void *cSnd_GetSeData(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
 extern int cSeData_IsFailed(void *p);
@@ -51,7 +51,7 @@ int cSnd_EmSeCheck(cSnd *self, int objId)
     unsigned int i;
     cSndSeEntry *e;
 
-    owner = func_002CB3A8(self, objId);
+    owner = cSnd_getEmSeGroupOwner(self, objId);
     if (owner <= 0)
         owner = objId;
 

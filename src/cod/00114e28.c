@@ -17,7 +17,7 @@ extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void KillEffect(void *a0, int a1, int a2);
-extern void func_003063B8(void *a0, int a1, int a2, int a3);
+extern void KillEffectWithFlag(void *a0, int a1, int a2, int a3);
 extern void func_001AAB10(void *a0);
 extern void SetField5B0Bit2ClearBit8_1B7908(int a0);
 extern void func_001268F0(void *a0);
@@ -154,7 +154,7 @@ void func_001AA6C0(void *a0)
         int b;
         int part;
         KillEffect(s1, 0xB, 0);
-        func_003063B8(s1, 3, 2, 0x1E);
+        KillEffectWithFlag(s1, 3, 2, 0x1E);
         VU0_SQC2_VF0(buf, 0);
         vt = *(char **)(s1 + 0x214);
         off = *(short *)(vt + 0x80);

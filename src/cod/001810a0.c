@@ -24,8 +24,8 @@ typedef struct cOmHitReact {
 
 
 
-__attribute__((section(".text.func_001BFC88")))
-void func_001BFC88(cOmHitReact *self)
+__attribute__((section(".text.cOmBase_reactHit")))
+void cOmBase_reactHit(cOmHitReact *self)
 {
     if (cOmBase_checkDamage(&self->base, self->damageTake) == 1) {
         int flags = self->base.flags0;
@@ -45,8 +45,8 @@ void func_001BFC88(cOmHitReact *self)
 
 
 
-__attribute__((section(".text.func_002962F0")))
-void func_002962F0(cEvent *self)
+__attribute__((section(".text.cEvent_freeData")))
+void cEvent_freeData(cEvent *self)
 {
     unsigned long b = *(unsigned char *)&self->flags;
     int *node;
@@ -67,8 +67,8 @@ void func_002962F0(cEvent *self)
 
 
 
-__attribute__((section(".text.func_001FF338")))
-int func_001FF338(cDataSlot *slot)
+__attribute__((section(".text.cDataManager_retireSlot")))
+int cDataManager_retireSlot(cDataSlot *slot)
 {
     unsigned long f;
     unsigned long bit;
@@ -80,7 +80,7 @@ int func_001FF338(cDataSlot *slot)
     bit = (f >> CDATA_FLAG_KEEP_BIT) & 1;
     if (bit)
         return 0;
-    if (func_001FF638(slot) == 0)
+    if (cDataSlot_releaseLoadedSe(slot) == 0)
         return 0;
     func_001FF3A0(slot);
     return 1;
@@ -112,8 +112,8 @@ typedef struct LinkObj {
 #define LINKPARTNER_F_HIDE  0x2         /* objFlags bit 1 */
 #define LINKVT_HOOK         16          /* vtable entry 16, byte offset 0x80 */
 
-__attribute__((section(".text.func_002FEB18")))
-void func_002FEB18(LinkObj *self)
+__attribute__((section(".text.LinkObj_callLockOn")))
+void LinkObj_callLockOn(LinkObj *self)
 {
     unsigned long f = self->flags;
     unsigned long bit;
@@ -136,8 +136,8 @@ void func_002FEB18(LinkObj *self)
 
 
 
-__attribute__((section(".text.func_00201718")))
-void func_00201718(cDvd *self)
+__attribute__((section(".text.cDvd_pollJob")))
+void cDvd_pollJob(cDvd *self)
 {
     switch (func_002018D0(self)) {
     case 1:
@@ -166,8 +166,8 @@ typedef struct cOmShake {
 
 
 
-__attribute__((section(".text.func_001810A0")))
-void func_001810A0(cOmShake *self)
+__attribute__((section(".text.cOmBase_shakeHeight")))
+void cOmBase_shakeHeight(cOmShake *self)
 {
     if (self->timer > 0) {
         self->timer--;

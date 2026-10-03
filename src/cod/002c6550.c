@@ -3,8 +3,8 @@
 #include "godhand/cScrSpriteDraw.h"
 
 /* Draw a texture centred on (x, y): move the corner back by half the scaled size. */
-__attribute__((section(".text.func_002C6550")))
-void func_002C6550(cScrSpriteDraw *self, unsigned int tex, unsigned int color,
+__attribute__((section(".text.cScrSpriteDraw_drawTexCentered")))
+void cScrSpriteDraw_drawTexCentered(cScrSpriteDraw *self, unsigned int tex, unsigned int color,
                    float x, float y, float w, float h,
                    float u0, float v0, float u1, float v1) {
     cScrSpriteDraw_drawTex(self, tex, color,

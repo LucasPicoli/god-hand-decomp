@@ -43,8 +43,8 @@ typedef struct RecOut {
 
 extern void func_00159DA0(RecOut *out);
 
-__attribute__((section(".text.func_001599B0")))
-void func_001599B0(RecOut *out, char *blob, RecIn *in)
+__attribute__((section(".text.RecDecode_readHeader")))
+void RecDecode_readHeader(RecOut *out, char *blob, RecIn *in)
 {
     int kind = (in->hdr >> 12) & 0xF;
     char *p;
@@ -106,8 +106,8 @@ void func_001599B0(RecOut *out, char *blob, RecIn *in)
 
 
 
-__attribute__((section(".text.func_002B0700")))
-unsigned short *func_002B0700(cMessDrawFont *self, unsigned short *text, void *arg, float *width, float *height)
+__attribute__((section(".text.cMessDrawFont_measureText")))
+unsigned short *cMessDrawFont_measureText(cMessDrawFont *self, unsigned short *text, void *arg, float *width, float *height)
 {
     float w;
     float h;
@@ -143,8 +143,8 @@ test:
 #define COMBASE_F0_BIT2   0x04          /* flags0 bit 2 */
 
 /* Start the knock step: aim the knock vector from the anchor body at the object, set mode 2 step 0, and flag the object active. */
-__attribute__((section(".text.func_0019D248")))
-void func_0019D248(cOmBase *self)
+__attribute__((section(".text.cOmBase_startKnockStep")))
+void cOmBase_startKnockStep(cOmBase *self)
 {
     cVec frame[2] __attribute__((aligned(16)));
     unsigned int f = self->flags0;
@@ -190,8 +190,8 @@ typedef struct DoorBoxObj {
 
 
 
-__attribute__((section(".text.func_00192050")))
-int func_00192050(DoorBoxObj *self)
+__attribute__((section(".text.DoorBoxObj_construct")))
+int DoorBoxObj_construct(DoorBoxObj *self)
 {
     float f[16];
     float *m;

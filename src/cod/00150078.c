@@ -365,7 +365,7 @@ int func_00201F80(void)
 __attribute__((section(".text.func_002767E8")))
 int func_002767E8(void)
 {
-    return func_00276618(1, 0xFFFF);
+    return WayPoints_initTable(1, 0xFFFF);
 }
 
 __attribute__((section(".text.func_00277288")))
@@ -377,14 +377,14 @@ int func_00277288(void)
 __attribute__((section(".text.func_0027AC50")))
 int func_0027AC50(void)
 {
-    return func_0027A7F0(1, 0xFFFF);
+    return InitTrailSpriteTableA(1, 0xFFFF);
 }
 
-void func_0027B2E8(int a, int b);
+void InitTrailSpriteTableB(int a, int b);
 
 __attribute__((section(".text.func_0027B748")))
 void func_0027B748(void) {
-    func_0027B2E8(1, 0xFFFF);
+    InitTrailSpriteTableB(1, 0xFFFF);
 }
 
 void func_00283C70(int a, int b);

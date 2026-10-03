@@ -16,7 +16,7 @@ extern int cOmWeapon_setParent();
 extern void func_001D0340(void *a0);
 extern void func_001D0408(void *a0);
 extern void func_002705D8(void *a0);
-extern int func_00292DC8(void *a0, void *a1, float f);
+extern int cEmManage_findEma2Near(void *a0, void *a1, float f);
 extern char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -340,7 +340,7 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
             }
             break;
     }
-    if (func_00292DC8(D_005864F0, *(void **)(p + 0xF0), 10.0f) == 0) {
+    if (cEmManage_findEma2Near(D_005864F0, *(void **)(p + 0xF0), 10.0f) == 0) {
         if (*(int *)(p + 0x738) != 0) {
             func_001D0408(*(void **)(p + 0x738));
             *(int *)(p + 0x738) = 0;

@@ -34,8 +34,8 @@ typedef struct SeEmitter {
 
 extern void func_002C8B68(SeEmitter *self);
 
-__attribute__((section(".text.func_002C8AD8")))
-void func_002C8AD8(SeEmitter *self)
+__attribute__((section(".text.SeEmitter_update")))
+void SeEmitter_update(SeEmitter *self)
 {
     /* (flags ^ 1) & 1 is the "off" test; retail keeps the xori, `!(flags & 1)` drops it. */
     if (((self->flags ^ 1) & 1) || func_002CB198(D_005FEE00) == 1) {
@@ -74,8 +74,8 @@ typedef struct ScaleObj {
 
 #define SCALESRC_F_FORCE  0x2000
 
-__attribute__((section(".text.func_002FDD10")))
-void func_002FDD10(ScaleObj *self)
+__attribute__((section(".text.ScaleObj_applyScale")))
+void ScaleObj_applyScale(ScaleObj *self)
 {
     float v[4] __attribute__((aligned(16)));
     v[0] = self->vec[0];
@@ -103,8 +103,8 @@ extern ReqJob *func_002D3110(ReqQueue *self);               /* take a free job *
 extern int func_002D3190(ReqQueue *self);                   /* next request id */
 extern void func_002D3240(ReqJob *job, int kind, int a2, int a3, int a4, int id);
 
-__attribute__((section(".text.func_002D2F78")))
-int func_002D2F78(ReqQueue *self, int kind, int a2, int a3, int a4)
+__attribute__((section(".text.ReqQueue_push")))
+int ReqQueue_push(ReqQueue *self, int kind, int a2, int a3, int a4)
 {
     ReqJob *job;
     int id;
@@ -130,8 +130,8 @@ typedef struct cOmTimed {
     unsigned short timer;                      /* 0xA90 frames left in phase 1 */
 } cOmTimed;
 
-__attribute__((section(".text.func_0019B4D0")))
-void func_0019B4D0(cOmTimed *self)
+__attribute__((section(".text.cOmTimed_tick")))
+void cOmTimed_tick(cOmTimed *self)
 {
     cVec pos __attribute__((aligned(16)));
     cGameObjVt *vt;
@@ -181,8 +181,8 @@ extern char D_005850B0[];               /* anchor vector */
 
 
 
-__attribute__((section(".text.func_002498A8")))
-void func_002498A8(cGameObj *self, float angle)
+__attribute__((section(".text.cGameObj_placeBeforeAnchor")))
+void cGameObj_placeBeforeAnchor(cGameObj *self, float angle)
 {
     OffsetFrame fr __attribute__((aligned(16)));
 
@@ -214,8 +214,8 @@ extern int ChkLine(void *a0, void *a1, void *a2, void *a3, int a4, int a5, int a
                    int a7, int a8, int a9, int a10, int a11, int a12);
 
 
-__attribute__((section(".text.func_002E6FD8")))
-void func_002E6FD8(cOmBase *self)
+__attribute__((section(".text.cOmBase_dropTest")))
+void cOmBase_dropTest(cOmBase *self)
 {
     cVec pos;                           /* sp+0x30 object position */
     cVec from;                          /* sp+0x40 */

@@ -25,8 +25,8 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
  * clear, the player is alive and a line from just above this enemy to just
  * above the player is blocked: sets hitFlash to 30 and switches the enemy's
  * solid collision off. Returns 1 when it started, else 0. */
-__attribute__((section(".text.func_002894B8")))
-int func_002894B8(cEma2 *self)
+__attribute__((section(".text.cEma2_startHitCooldown")))
+int cEma2_startHitCooldown(cEma2 *self)
 {
     cGameObj *player = Getplayer();
     cVec from;
@@ -68,8 +68,8 @@ int func_002894B8(cEma2 *self)
  * picked: counts those that are nearer to the player than skip in the xz
  * plane, and those at equal range whose height is within EM_NEAR_HEIGHT of
  * the player. */
-__attribute__((section(".text.func_002917F8")))
-int func_002917F8(cEmManage *self, cEmActor *skip)
+__attribute__((section(".text.cEmManage_countEmNearerPlayer")))
+int cEmManage_countEmNearerPlayer(cEmManage *self, cEmActor *skip)
 {
     cEmSlot *slot;
     cGameObj *em;

@@ -6,7 +6,7 @@ extern void CustomIDWork(void *);
 /* -- PERMANENT (bnel/beql) — stay in monolithic asm/cod/000000 ------------ */
 /* func_001F20F8 (beql+bnel, 0x324 B) stays in monolithic — PERMANENT.      */
 /* func_001F2428 (bnel, 0x110 B) stays in monolithic — PERMANENT.           */
-/* func_001F2540 (beql+bnel, 0x108 B) stays in monolithic — PERMANENT.      */
+/* ArenaEm_stepBossIntro (beql+bnel, 0x108 B) stays in monolithic — PERMANENT.      */
 /* func_001F2650 (bnel, 0x40 B) stays in monolithic — PERMANENT.            */
 
 /* -- Accessor C bodies (5) — jr $ra; nop empty functions ------------------ */
@@ -40,8 +40,8 @@ typedef struct ArenaEm {
 
 extern void ColiseumBattle_DefeatAllEnemies(ArenaEm *self);
 
-__attribute__((section(".text.func_001F2698")))
-void func_001F2698(ArenaEm *self)
+__attribute__((section(".text.ArenaEm_stepIntro")))
+void ArenaEm_stepIntro(ArenaEm *self)
 {
     switch (self->introStep) {
     case 0:

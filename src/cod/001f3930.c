@@ -5,14 +5,14 @@
 
 typedef struct { char b[0x28]; } T28;
 
-extern void func_001F4428(void *a0, int a1);
+extern void ColiseumUi_StartFade(void *a0, int a1);
 extern void func_001F44E0(void *a0);
 extern void func_001F4068(void *a0, unsigned short a1, void *a2, int a3);
 extern void func_001F4248(void *a0, int a1);
 extern void func_001F52A0(void *a0, int a1, int a2);
 extern void func_001F55C0(void *a0, int a1, int a2, int a3);
 
-extern void func_001F53A8(void *a0, int a1);
+extern void MarkObj_setPulse(void *a0, int a1);
 extern void func_001F4700(void *a0);
 extern void func_001F4758(void *a0);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1,
@@ -30,7 +30,7 @@ void func_001F3930(void *a0)
 
     switch (*(int *)(s1 + 8)) {
     case 0:
-        func_001F4428(s1, 0);
+        ColiseumUi_StartFade(s1, 0);
         *(int *)(s1 + 8) = *(int *)(s1 + 8) + 1;
         break;
     case 1:
@@ -100,7 +100,7 @@ void func_001F3930(void *a0)
                           *(short *)(s1 + 0x37D4));
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & 0x20000000) {
-            func_001F4428(s1, 1);
+            ColiseumUi_StartFade(s1, 1);
             cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             *(int *)(s1 + 8) = *(int *)(s1 + 8) + 1;
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
@@ -108,8 +108,8 @@ void func_001F3930(void *a0)
                               *(unsigned short *)(s1 + 0x37AC)) != 0) {
                 cCoreSave_setBonus(&D_00569B70, *(short *)(s1 + 0x37D0));
                 D_00586AA4 = *(unsigned char *)(s1 + 0x37AE);
-                func_001F53A8(s1 + 0x60, 0);
-                func_001F4428(s1, 1);
+                MarkObj_setPulse(s1 + 0x60, 0);
+                ColiseumUi_StartFade(s1, 1);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 *(int *)(s1 + 8) = *(int *)(s1 + 8) + 2;
             }

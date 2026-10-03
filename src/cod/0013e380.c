@@ -21,8 +21,8 @@ extern int D_00450B98;
 
 
 
-__attribute__((section(".text.func_001E31B0")))
-void func_001E31B0(char *self) {
+__attribute__((section(".text.Slot1_endGameStep")))
+void Slot1_endGameStep(char *self) {
     switch (SLOT_STEP(self)) {
     case 0:
         func_00143A90(D_003BD6E8 + 0x1AE0);
@@ -38,8 +38,8 @@ void func_001E31B0(char *self) {
 
 
 
-__attribute__((section(".text.func_0013E380")))
-void func_0013E380(void *a0) {
+__attribute__((section(".text.InitTwoIdWorks")))
+void InitTwoIdWorks(void *a0) {
     int *tbl;
     unsigned short i;
     tbl = (int *)((char *)a0 + 0x9C);
@@ -57,8 +57,8 @@ void func_0013E380(void *a0) {
 
 
 
-__attribute__((section(".text.func_002B2500")))
-int func_002B2500(char *self) {
+__attribute__((section(".text.UpdatePlayStage")))
+int UpdatePlayStage(char *self) {
     int ret;
     switch (*(unsigned char *)(self + 0xD)) {
     case 0:
@@ -86,8 +86,8 @@ int func_002B2500(char *self) {
 
 
 
-__attribute__((section(".text.func_003139E0")))
-void *func_003139E0(void) {
+__attribute__((section(".text.CreateObjectWithVtableA")))
+void *CreateObjectWithVtableA(void) {
     char *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x4E0, 0x10, D_00754C10);
@@ -106,8 +106,8 @@ void *func_003139E0(void) {
 
 
 
-__attribute__((section(".text.func_00317E80")))
-void *func_00317E80(void) {
+__attribute__((section(".text.CreateObjectWithVtableB")))
+void *CreateObjectWithVtableB(void) {
     char *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x4D0, 0x10, D_00754C10);

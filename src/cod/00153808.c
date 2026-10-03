@@ -15,8 +15,8 @@ extern void func_0030A2E0(float *dst, float *a, float *b);              /* dst =
 
 
 
-__attribute__((section(".text.func_00153808")))
-void func_00153808(cOmBase *model, cParts *part, cVec *target) {
+__attribute__((section(".text.cModel_aimIkPart")))
+void cModel_aimIkPart(cOmBase *model, cParts *part, cVec *target) {
     cVec frame[6] __attribute__((aligned(16)));
     cParts *child = part->next;
     float *mtx = part->mtx;
@@ -59,8 +59,8 @@ typedef struct Heap {
 
 extern void func_002A9620(Heap *heap, HeapBlk *blk, HeapBlk *after);      /* link blk after `after` */
 
-__attribute__((section(".text.func_002A9538")))
-void *func_002A9538(Heap *heap, unsigned int size, unsigned int align) {
+__attribute__((section(".text.cHeap_allocFirstFit")))
+void *cHeap_allocFirstFit(Heap *heap, unsigned int size, unsigned int align) {
     HeapBlk *blk;
     HeapBlk *fresh;
     unsigned int need;

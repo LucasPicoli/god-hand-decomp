@@ -19,7 +19,7 @@ extern void func_00338B40(void);
 extern void Forward33B670_338A10(void);
 extern void func_003389C8(void);
 extern void func_00338990(void);
-extern void func_00338AC0(void);
+extern void ResetBufferOnFirstEnterA(void);
 extern void func_003396F8(int);
 extern void func_003404B0(int);
 extern void Obj3290_Tramp_0033E6A8_9070(void);
@@ -36,7 +36,7 @@ extern void PushGlobalD8478History_331C78(int);
 extern void func_00398DA0(int);
 extern void func_00328FA0(int);
 extern void Tramp_Obj3270_Tramp_0033D040_7728_32BB20(int);
-extern void func_0033A0C0(void);
+extern void ResetBufferOnFirstEnterC(void);
 extern void func_00338CD0(int);
 extern void func_0032AFB0(void);
 extern void func_0033A4F8(int);
@@ -128,7 +128,7 @@ __attribute__((section(".text.func_00338A90")))
 void func_00338A90(void) {
     func_00338990();
     Forward33B658_3389F8();
-    func_00338AC0();
+    ResetBufferOnFirstEnterA();
     Forward33B670_338A10();
 }
 
@@ -205,7 +205,7 @@ __attribute__((section(".text.func_0033A090")))
 void func_0033A090(void) {
     func_00338990();
     Forward33B658_3389F8();
-    func_0033A0C0();
+    ResetBufferOnFirstEnterC();
     Forward33B670_338A10();
 }
 

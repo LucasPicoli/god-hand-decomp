@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_00586AF0;
-extern void func_00298110(void);
+extern void CostumeObj_applyPartMeshes(void);
 extern void func_00297B40(void *a, void *b);
 extern void func_002981D8(void);
 extern void SetCostumeFlagIfMatch_2982A0(void);
@@ -10,7 +10,7 @@ extern void func_00297B20(void *a, void *b);
 extern void func_00298A78(void);
 extern void func_00298C18(void);
 extern void func_00298EF8(void);
-extern void func_002991D8(void);
+extern void cModel_setBossMeshes(void);
 extern char D_005864F0[];
 extern char D_00462FC0[];
 extern char *Getplayer();
@@ -26,7 +26,7 @@ extern void func_00129718(void *a, void *b, int c);
 
 __attribute__((section(".text.Forward297B40_2980E8")))
 void Forward297B40_2980E8(void) {
-    func_00297B40(&D_00586AF0, (void *)&func_00298110);
+    func_00297B40(&D_00586AF0, (void *)&CostumeObj_applyPartMeshes);
 }
 
 /* clone */
@@ -96,7 +96,7 @@ void Forward297B40_298ED0(void) {
 
 __attribute__((section(".text.Forward297B40_2991B0")))
 void Forward297B40_2991B0(void) {
-    func_00297B40(&D_00586AF0, (void *)&func_002991D8);
+    func_00297B40(&D_00586AF0, (void *)&cModel_setBossMeshes);
 }
 
 __attribute__((section(".text.func_002DD300")))

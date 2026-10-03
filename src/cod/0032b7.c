@@ -23,7 +23,7 @@ extern char D_00452C20[];
 extern void func_00335D40(int);
 extern char D_00454FA0[];
 extern void func_003412D8(int);
-extern void func_00341120(int);
+extern void AdxDecodeSwapCopy(int);
 extern void func_0033F130(int);
 extern char D_00452318[];
 extern int D_003D1414;
@@ -65,7 +65,7 @@ void func_00341458(int a0) {
     if (*(short *)((char *)a0 + 0x9C) == 1) {
         func_003412D8(a0);
     } else {
-        func_00341120(a0);
+        AdxDecodeSwapCopy(a0);
     }
 }
 

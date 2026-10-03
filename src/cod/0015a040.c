@@ -59,8 +59,8 @@ typedef struct IdDispObj {
 
 
 
-__attribute__((section(".text.func_00161BD0")))
-void func_00161BD0(IdDispObj *self)
+__attribute__((section(".text.IdDispObj_construct")))
+void IdDispObj_construct(IdDispObj *self)
 {
     unsigned short i;
     Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(self);
@@ -85,7 +85,7 @@ void func_00161BD0(IdDispObj *self)
     self->bEF = 0;
 }
 
-/* Visit every task record as func_002D52A0 does, but a step may ask to wait: when it leaves a frame count in the wait field, sleep the running task that long and visit the same record again. */
+/* Visit every task record as cTaskManager_runAllMatching does, but a step may ask to wait: when it leaves a frame count in the wait field, sleep the running task that long and visit the same record again. */
 
 
 
@@ -98,8 +98,8 @@ void func_00161BD0(IdDispObj *self)
 extern void func_002D57C8(cTaskWork *work);     /* run one task's step */
 
 
-__attribute__((section(".text.func_002D5358")))
-void func_002D5358(cTaskManager *self)
+__attribute__((section(".text.cTaskManager_runTasksWithWait")))
+void cTaskManager_runTasksWithWait(cTaskManager *self)
 {
     unsigned int i;
     int off;
@@ -159,8 +159,8 @@ extern void func_001DBFB8(SlotObj *self, unsigned short *x0, unsigned short *y0,
                           unsigned short *x2, unsigned short *y2, unsigned short *x3, unsigned short *y3,
                           unsigned short *x4, unsigned short *y4);
 
-__attribute__((section(".text.func_001DC5F8")))
-int func_001DC5F8(SlotObj *self)
+__attribute__((section(".text.SlotObj_markIfBothKinds")))
+int SlotObj_markIfBothKinds(SlotObj *self)
 {
     unsigned short x[8];
     unsigned short y[8];
@@ -230,8 +230,8 @@ typedef struct MarkObj {
 
 
 
-__attribute__((section(".text.func_001F53A8")))
-void func_001F53A8(MarkObj *self, int on)
+__attribute__((section(".text.MarkObj_setPulse")))
+void MarkObj_setPulse(MarkObj *self, int on)
 {
     int base;
     int peak;
@@ -296,8 +296,8 @@ extern void func_002B8A70(PoolObj *obj, int arg);
 
 
 
-__attribute__((section(".text.func_002B9DF0")))
-PoolObj *func_002B9DF0(Pool *pool, int arg, int a, int b, float scale)
+__attribute__((section(".text.Pool_createObjWithScale")))
+PoolObj *Pool_createObjWithScale(Pool *pool, int arg, int a, int b, float scale)
 {
     PoolObj *obj = create(pool, 0);
     PoolObj *sub;

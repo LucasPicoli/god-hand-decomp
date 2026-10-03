@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* func_0025B9F0: an enemy that goes down and gets up; steps 0 and 2 start a
+/* cEm00_stepGetUp: an enemy that goes down and gets up; steps 0 and 2 start a
  * get-up motion, step 1 and 3 wait for it to end. */
 #include "godhand/cEm00.h"
 
@@ -14,8 +14,8 @@ extern void func_00283378(int a0, unsigned char a1);
 
 extern void func_002705D8(void *a0);
 
-__attribute__((section(".text.func_0025B9F0")))
-void func_0025B9F0(cEm00 *self)
+__attribute__((section(".text.cEm00_stepGetUp")))
+void cEm00_stepGetUp(cEm00 *self)
 {
     void *player;
     int motion;

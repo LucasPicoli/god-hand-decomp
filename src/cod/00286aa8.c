@@ -99,7 +99,7 @@ __attribute__((section(".text.func_00286AA8"))) void func_00286AA8(cEm00 *self)
             }
             if (*(unsigned char *)((char *)self + 0x1560) != 5) {
                 if (self->playerDist < 16.0f) {
-                    if (func_00289328(self) != 0)
+                    if (cEma2_ckLineToPlayer(self) != 0)
                         goto doit;
                 }
                 if (s1 == 0)

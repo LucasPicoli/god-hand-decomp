@@ -7,7 +7,7 @@ extern void func_00326860(void *a0);
 extern void func_00326830(void *a0);
 extern void func_00327370(void *a0);
 extern int Obj3260_GetByte_1_D778(void *a0);
-extern void func_003267C0(void *a0, int a1);
+extern void StoreArgAndUpdateChildB(void *a0, int a1);
 extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
 extern void Obj3270_SetField_3C(void *a0, int a1);
 extern void Obj3270_SetField_44(void *a0, int a1);
@@ -126,7 +126,7 @@ blockD:
         func_0032B660(s4, 0);
         return;
     }
-    func_003267C0(s2, *(int *)(s4 + 0x48));
+    StoreArgAndUpdateChildB(s2, *(int *)(s4 + 0x48));
     Obj3270_SetField_3C(s2, Obj3270_GetVia4_Obj33C8_18_77E8(s2));
     Obj3270_SetField_44(s2, 0);
     Obj3270_SetField_40(s2, 0);

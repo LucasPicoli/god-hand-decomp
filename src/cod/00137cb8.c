@@ -50,8 +50,8 @@ typedef struct DoorLikeObj {
     char hitRecData[0x20];              /* 0x650 */
 } DoorLikeObj;
 
-__attribute__((section(".text.func_00191DE8")))
-int func_00191DE8(DoorLikeObj *self) {
+__attribute__((section(".text.cOmDoor_initWithBox")))
+int cOmDoor_initWithBox(DoorLikeObj *self) {
     float f[16];
     float *t;
     float *m;
@@ -126,8 +126,8 @@ typedef struct MenuInput {
 #define MENU_SE_MOVE      0x15F
 #define MENU_SE_BACK      0x160
 
-__attribute__((section(".text.func_001F6520")))
-void func_001F6520(void *a0)
+__attribute__((section(".text.MenuInput_stepPad")))
+void MenuInput_stepPad(void *a0)
 {
     MenuInput *s0 = (MenuInput *)a0;
     char *pad = D_007474A0;
@@ -174,8 +174,8 @@ typedef struct Vec4 {
     float w;
 } Vec4;
 
-__attribute__((section(".text.func_00276618")))
-void func_00276618(void *a0, int a1)
+__attribute__((section(".text.WayPoints_initTable")))
+void WayPoints_initTable(void *a0, int a1)
 {
     Vec4 *pa;
     Vec4 *org;
@@ -243,8 +243,8 @@ typedef struct { int w[MARK_NUM]; } MarkTbl;
 extern MarkTbl D_0042BAF0;              /* layer index of each mark */
 
 
-__attribute__((section(".text.func_001E6FE8")))
-void func_001E6FE8(Slot2 *self)
+__attribute__((section(".text.Slot2_blinkMarkSet")))
+void Slot2_blinkMarkSet(Slot2 *self)
 {
     unsigned short *blink = (unsigned short *)((char *)self + SLOT2_OFFSET_BLINK2);
     unsigned int v = *blink;
@@ -313,8 +313,8 @@ typedef struct HitHost {
 
 
 
-__attribute__((section(".text.func_002CAE10")))
-int func_002CAE10(HitHost *self, float *pos)
+__attribute__((section(".text.cSndSeVoice_ckHitSet")))
+int cSndSeVoice_ckHitSet(HitHost *self, float *pos)
 {
     float vec[4];
     HitSet *set = self->set;
@@ -342,7 +342,7 @@ int func_002CAE10(HitHost *self, float *pos)
     if (i < set->num) {
         do {
             if (node->disabled == 0) {
-                if (func_002C0A98(node, vec, 1) != 0)
+                if (HitNode_dispatchByKind(node, vec, 1) != 0)
                     return node->result != 0;
             }
             i++;
@@ -385,8 +385,8 @@ extern float func_00137E70(PathHost *self, void *a, void *b);
 
 #define FR(off) ((cVec *)(fr + (off)))
 
-__attribute__((section(".text.func_00137CB8")))
-void func_00137CB8(PathHost *self, float *turn, float *height, cVec *ref, cVec *target)
+__attribute__((section(".text.PathHost_calcTurn")))
+void PathHost_calcTurn(PathHost *self, float *turn, float *height, cVec *ref, cVec *target)
 {
     char fr[0x40] __attribute__((aligned(16)));
     PathRec *rec = self->rec;

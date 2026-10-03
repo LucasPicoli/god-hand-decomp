@@ -9,7 +9,7 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00281368(void *a0, int a1);
 extern void func_002832A0(void *a0, int a1);
-extern void func_002498A8(void *a0, float a1);
+extern void cGameObj_placeBeforeAnchor(void *a0, float a1);
 extern float fRand1_1(void);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -100,7 +100,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             if (capVu0MagnitudeSqXZ(*(void **)((char *)Getplayer() + 0xF0), sb) < 64.0f) {
                 ang = fRand1_1() * 3.14159274f;
             }
-            func_002498A8(self, ang);
+            cGameObj_placeBeforeAnchor(self, ang);
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             if (100.0f < dist) {

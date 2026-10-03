@@ -5,7 +5,7 @@ extern void func_001FFEB8();
 extern void func_001FFF30();
 extern void func_0016B1F8();
 extern void *D_005FEC68;
-extern void func_002BE560(void *, int);
+extern void cRelSys_loadSlot(void *, int);
 extern void *D_003C3CF0;
 extern int EnsureInitThenForward_2A9538_30EE08(void *, int, void *);
 extern void *D_003FA62C;
@@ -35,7 +35,7 @@ __attribute__((section(".text.func_002ACCD8")))
 int func_002ACCD8(void *a0) { return func_003A52F0(a0, 0, 0x100); }
 
 __attribute__((section(".text.func_002BE838")))
-void func_002BE838(void *a0, int a1, int a2) { func_002BE560((char *)a0 + a2 * 8, a1); }
+void func_002BE838(void *a0, int a1, int a2) { cRelSys_loadSlot((char *)a0 + a2 * 8, a1); }
 
 __attribute__((section(".text.func_002D3220")))
 int func_002D3220(void *a0) { return func_003A52F0(a0, 0, 0xC0); }

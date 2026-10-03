@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_003810F8();
-extern void func_00381150();
+extern void AdjustRowScrollPosition();
 extern void func_003812B0();
 extern void func_003813C8();
 
@@ -15,7 +15,7 @@ void func_00381070(unsigned char *arg)
         func_003810F8(arg);
         break;
     case 1:
-        func_00381150(arg);
+        AdjustRowScrollPosition(arg);
         break;
     case 2:
     case 3:

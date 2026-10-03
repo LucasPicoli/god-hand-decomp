@@ -3,7 +3,7 @@
 
 extern void func_001DEE40(void *p, int a1);
 extern void func_001DF528(void *p, int a1, int a2);
-extern void func_001DF758(void *p, int a1);
+extern void UiRecord_setDispSubs6to10(void *p, int a1);
 extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
@@ -68,7 +68,7 @@ void func_001DB558(void *arg)
             char *p = s1 + 0x25B0;
 
             *(int *)(s1 + 0x3040) = 0;
-            func_001DF758(p, 1);
+            UiRecord_setDispSubs6to10(p, 1);
             func_001DF7D0(p, 1);
             func_001DF820(p, 1);
             *(int *)(s1 + 0x3028) = 0x14;
@@ -117,7 +117,7 @@ void func_001DB558(void *arg)
                         *(unsigned char *)(s1 + 0x3025) + 3;
                     *(int *)(s1 + 0x302C) = q;
                 }
-                func_001DF758(p, 0);
+                UiRecord_setDispSubs6to10(p, 0);
                 func_001DF820(p, 0);
                 cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
             }

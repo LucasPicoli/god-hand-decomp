@@ -3,7 +3,7 @@
 extern void UpdateObjByIndexedOp_2FBE50(void *slot);
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern int cDamageManage_CkHitStop(void *mgr);
-extern void func_001B1860(void *a0);
+extern void DamagePairObj_clearHits(void *a0);
 extern void func_001B1938(void *a0);
 extern void func_001B1630(void *a0);
 extern void func_001B76D8(void *a0);
@@ -22,8 +22,8 @@ extern unsigned char D_0061B7C0[];      /* the 0x400 effect slots, 0x400 bytes e
 #define ESP_SLOT_GROUPS  0x104          /* offset of the slot's group mask word */
 
 /* Run the kill handler of every effect slot that is in use, neither paused nor hidden, and whose group mask has a bit of mask. */
-__attribute__((section(".text.func_002FB7B0")))
-void func_002FB7B0(int mask) {
+__attribute__((section(".text.Esp_killByGroup")))
+void Esp_killByGroup(int mask) {
     unsigned char *p;
     int i;
     unsigned int bit;
@@ -49,8 +49,8 @@ struct Table_func_001B0F70 { struct Entry_func_001B0F70 e[1]; };
 extern struct Table_func_001B0F70 D_003BDCC0;
 
 /* Mode tick: unless a hit stop is running, refresh the speed rate, run the handler of the mode's table row, then the shared post-update steps. */
-__attribute__((section(".text.func_001B0F70")))
-void func_001B0F70(void *a0)
+__attribute__((section(".text.ModeDispatch_tickWithHitStop")))
+void ModeDispatch_tickWithHitStop(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -60,7 +60,7 @@ void func_001B0F70(void *a0)
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
     if (cDamageManage_CkHitStop(D_00574380) != 0) return;
-    func_001B1860(s0);
+    DamagePairObj_clearHits(s0);
     rate = cEmManage_GetSpeedRate(D_005864F0);
     *(float *)(s0 + 0x5A8) = rate;
     i8 = *(unsigned char *)(s0 + 0x2F4) * 8;

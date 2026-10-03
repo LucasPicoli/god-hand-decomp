@@ -15,7 +15,7 @@ extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0026A638(void *a0, int a1);
-extern void func_0026A938(void *a0, int a1, int a2);
+extern void EmThrower_throwHeld(void *a0, int a1, int a2);
 extern void func_0026A838(void *a0, int a1);
 
 /* Phase machine on the step byte, 2 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468, irand,
@@ -84,8 +84,8 @@ __attribute__((section(".text.func_0022ACE0"))) void func_0022ACE0(cEm00 *self)
             }
             if (self->moveFlags & 2) {
                 if (self->stepArg != 0) {
-                    func_0026A938(self, 0, 0);
-                    func_0026A938(self, 1, 0);
+                    EmThrower_throwHeld(self, 0, 0);
+                    EmThrower_throwHeld(self, 1, 0);
                 } else {
                     func_0026A838(self, 0);
                     func_0026A838(self, 1);

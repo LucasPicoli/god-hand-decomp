@@ -9,12 +9,12 @@ typedef struct {
     unsigned char req;                    /* +0x2CB */
 } Obj;
 
-extern void func_002FEB18(Obj *p);
+extern void LinkObj_callLockOn(Obj *p);
 
 __attribute__((section(".text.func_002E7FA8")))
 void func_002E7FA8(Obj *p)
 {
     if (p->flags & 0x800000) return;
     if (p->req == 0) return;
-    func_002FEB18(p);
+    LinkObj_callLockOn(p);
 }

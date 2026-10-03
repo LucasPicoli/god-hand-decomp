@@ -6,7 +6,7 @@ extern void func_002CB070(void *this);
 extern void func_00375050(int a, int b);
 extern void func_002CA470(void *this);
 extern void sceGsSyncV(int a);
-extern void func_002CA148(void *this);
+extern void cSnd_resetAll(void *this);
 extern void cSndMemHeap_Close(void *a);
 extern void func_0032D250(void);
 extern void func_00324AC8(void);
@@ -63,7 +63,7 @@ void func_002CA040(void *this) {
         func_002CA470(this);
         sceGsSyncV(0);
     }
-    func_002CA148(this);
+    cSnd_resetAll(this);
     cSndMemHeap_Close(D_006036A0);
     cSndMemHeap_Close(D_00603310);
     cSndMemHeap_Close(D_00602F80);

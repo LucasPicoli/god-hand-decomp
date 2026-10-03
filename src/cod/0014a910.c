@@ -9,10 +9,10 @@
 extern int D_007476B0;
 extern char D_00754C80[];
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
-extern void func_0014B4D0(cModel *self, cModelNode *node);
-extern void func_0014B918(cModel *self, cModelNode *node, short id);
-extern void func_0014BDB0(cModel *self, cModelNode *node, short id);
-extern void func_0014C6B8(cModel *self, short id);
+extern void cModel_setNodeMaterial(cModel *self, cModelNode *node);
+extern void cModel_queueNodeKind6(cModel *self, cModelNode *node, short id);
+extern void cModel_queueNodeKind4(cModel *self, cModelNode *node, short id);
+extern void cModel_queuePacket(cModel *self, short id);
 extern void func_0014C5A0(cModel *self, short id);
 extern void func_0031A600(void *queue, int kind, int id, void *packet);
 extern void KillEffect(void *owner, int handle, int arg);
@@ -44,7 +44,7 @@ void cModel_Trans_screen(cModel *self) {
     node = cModel_getMeshPtr(self, 0);
     if (node != 0) {
         if ((self->objFlags & 0x80) == 0) {
-            func_0014B4D0(self, node);
+            cModel_setNodeMaterial(self, node);
         }
         data = node->data;
         *(int *)hold = (int)data;
@@ -52,14 +52,14 @@ void cModel_Trans_screen(cModel *self) {
         if (!multi) {
             CVCALL_FN(self, 4, cModelDrawFn)(CVCALL_THIS(self, 4), id, 0);
             do {
-                func_0014B918(self, node, id);
+                cModel_queueNodeKind6(self, node, id);
                 node = node->next;
             } while (node != 0);
-            func_0014C6B8(self, id);
+            cModel_queuePacket(self, id);
         } else {
             CVCALL_FN(self, 5, cModelDrawFn)(CVCALL_THIS(self, 5), id, 0);
             do {
-                func_0014BDB0(self, node, id);
+                cModel_queueNodeKind4(self, node, id);
                 node = node->next;
             } while (node != 0);
             func_0014C5A0(self, id);
@@ -152,14 +152,14 @@ void cObjBase_SetSeqEffect(cObjBase *self) {
  * (ids 0x202/0x208/0x278, 0x207/0x20D/0x270, 0x21D/0x276) and returns the
  * sound bank of that group, 0xFFFF when none is loaded. When out is given
  * it receives the actor id and the bank. */
-__attribute__((section(".text.func_00292AF0")))
-int func_00292AF0(cEmManage *self, SET_EM_DATA *out)
+__attribute__((section(".text.cEmManage_pickStandInEm")))
+int cEmManage_pickStandInEm(cEmManage *self, SET_EM_DATA *out)
 {
     unsigned int i;
     int id;
 
-    for (i = 0; i < func_0028FE58(D_005864E0); i++) {
-        id = func_0028FED8(D_005864E0, i);
+    for (i = 0; i < cDataManager_countReady(D_005864E0); i++) {
+        id = cDataManager_getReadyKind(D_005864E0, i);
         switch (id) {
         case 0x202:
         case 0x208:
@@ -192,8 +192,8 @@ int func_00292AF0(cEmManage *self, SET_EM_DATA *out)
 /* 1 when some listed enemy (not in the actor id range 0x2A0..0x2FF) is in
  * move mode 1 or phase 2 and within radius of pos, compared squared in
  * the xz plane. */
-__attribute__((section(".text.func_002919F8")))
-int func_002919F8(cEmManage *self, cVec *pos, float radius)
+__attribute__((section(".text.cEmManage_ckEnemyActiveNear")))
+int cEmManage_ckEnemyActiveNear(cEmManage *self, cVec *pos, float radius)
 {
     cEmSlot *slot;
     cGameObj *em;

@@ -293,7 +293,7 @@ typedef struct T {
     float k;
 } T;
 
-extern void func_002A8D30(T *first, T *last, T *mid, T *dummy, void *comp);
+extern void cGameObjSortEnt_partialSort(T *first, T *last, T *mid, T *dummy, void *comp);
 
 
 static __inline__ unsigned char fcmp(float a, float b)
@@ -328,12 +328,12 @@ void func_002A8EF0(T *first, T *last, T *dummy, int depth, void *comp)
 
     while (last - first > 16) {
         if (depth == 0) {
-            func_002A8D30(first, last, last, 0, comp);
+            cGameObjSortEnt_partialSort(first, last, last, 0, comp);
             return;
         }
         --depth;
         pivot = *median(first, first + (last - first) / 2, last - 1);
-        cut = func_002A8E48(first, last,
+        cut = cGameObjSortEnt_unguardedPartition(first, last,
                             ((long)*(int *)((char *)&pivot + 4) << 32)
                                 | *(unsigned int *)&pivot,
                             comp);

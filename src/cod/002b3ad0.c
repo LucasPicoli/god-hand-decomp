@@ -12,8 +12,8 @@ typedef struct ScrElem {
 } ScrElem;
 
 /* Pick the mode for the element's panel state, clear its step bytes, and report state 2. */
-__attribute__((section(".text.func_002B3AD0")))
-int func_002B3AD0(ScrElem *self) {
+__attribute__((section(".text.ScrElem_selectModeByState")))
+int ScrElem_selectModeByState(ScrElem *self) {
     switch (self->state) {
     case 0:
     default:

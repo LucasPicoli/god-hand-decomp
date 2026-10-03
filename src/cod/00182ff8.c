@@ -3,7 +3,7 @@
 /* sn-2.95.3-136 candidate. */
 
 extern void cModel_calcNullPart(void *p);
-extern void func_00150138(int obj);
+extern void cParts_calcLocal(int obj);
 extern void func_001501D0(int obj, int a);
 extern int func_002AD2B8(void *g, int a, void *b, int c, void *d, int e, float f);
 extern unsigned char D_00422A10[];
@@ -51,7 +51,7 @@ int cOl30_SetInitialPosition(char *p, float *a1, float *a2)
             i = D_00422A10[k] + j;
             ok = ((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (i >= 0 && i < b));
             if (ok) obj = *(int *)(*(int *)(p + 0x278) + i * 4); else obj = 0;
-            func_00150138(obj);
+            cParts_calcLocal(obj);
             func_001501D0(obj, *(int *)(p + 0x250));
             SetVec4(v, *(float *)(obj + 0xB0), *(float *)(obj + 0xB4), *(float *)(obj + 0xB8));
             off = (*(int *)(p + 0xB10) * j + j + k) * 0x50;

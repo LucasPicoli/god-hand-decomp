@@ -7,7 +7,7 @@
 extern int D_005FEE00;
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern float fRand1_1(void);
-extern void func_0014FA60(void *a0, float f12, float f13);
+extern void cObjBase_MoveByNullSpeed(void *a0, float f12, float f13);
 
 __attribute__((section(".text.func_001BBC08")))
 void func_001BBC08(char *s0)
@@ -35,7 +35,7 @@ void func_001BBC08(char *s0)
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
         /* fallthrough */
     case 3:
-        func_0014FA60(s0, *(float *)(s0 + 0x104), 1.0f);
+        cObjBase_MoveByNullSpeed(s0, *(float *)(s0 + 0x104), 1.0f);
         {
         float k = 0.0199999996f;
         *(float *)(s0 + 0x100) = *(float *)(s0 + 0x100) + -0.17453292f;

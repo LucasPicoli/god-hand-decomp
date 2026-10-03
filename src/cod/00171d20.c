@@ -31,8 +31,8 @@ extern struct Table_func_001788A0 D_003BDA08;
 
 
 
-__attribute__((section(".text.func_001788A0")))
-void func_001788A0(void *a0)
+__attribute__((section(".text.UpdatePhaseThenCalcPartsB")))
+void UpdatePhaseThenCalcPartsB(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -73,8 +73,8 @@ extern struct Table_func_001B0468 D_003BDC98;
 
 
 
-__attribute__((section(".text.func_001B0468")))
-void func_001B0468(void *a0)
+__attribute__((section(".text.UpdatePhaseWithHitCheck")))
+void UpdatePhaseWithHitCheck(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -113,8 +113,8 @@ struct Table_func_001C0378 { struct Entry_func_001C0378 e[1]; };
 extern struct Table_func_001C0378 D_003BDE40;
 
 
-__attribute__((section(".text.func_001C0378")))
-void func_001C0378(void *a0)
+__attribute__((section(".text.UpdatePhaseConditionalSync")))
+void UpdatePhaseConditionalSync(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -159,8 +159,8 @@ extern struct Table_func_001AEDB0 D_003BDC68;
 
 
 
-__attribute__((section(".text.func_001AEDB0")))
-void func_001AEDB0(void *a0)
+__attribute__((section(".text.UpdatePhaseWithScroll")))
+void UpdatePhaseWithScroll(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -197,8 +197,8 @@ void func_001AEDB0(void *a0)
 
 
 
-__attribute__((section(".text.func_0028A4A0")))
-void func_0028A4A0(void *a0) {
+__attribute__((section(".text.UpdateActionTable")))
+void UpdateActionTable(void *a0) {
     char *s0 = (char *)a0;
     char *e;
     int i8;
@@ -233,8 +233,8 @@ void func_0028A4A0(void *a0) {
 
 
 
-__attribute__((section(".text.func_00171D20")))
-void *func_00171D20(void *a0, void *a1) {
+__attribute__((section(".text.ReleaseObjSlotsAndEffect")))
+void *ReleaseObjSlotsAndEffect(void *a0, void *a1) {
     int *p = (int *)((char *)a0 + 0x600);
     int i = 0;
     *(int **)((char *)a0 + 0x214) = &D_00420EF0;

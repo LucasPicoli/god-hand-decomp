@@ -28,8 +28,8 @@ extern cRoomSaveData D_005E9CB8[ROOMSAVE_PAGE_NUM];
 
 
 
-__attribute__((section(".text.func_001F4648")))
-void func_001F4648(char *p)
+__attribute__((section(".text.InitUiIdWorksAndShowAll")))
+void InitUiIdWorksAndShowAll(char *p)
 {
     int i;
 
@@ -51,8 +51,8 @@ void func_001F4648(char *p)
 
 
 
-__attribute__((section(".text.func_001ED5B8")))
-void func_001ED5B8(char *p)
+__attribute__((section(".text.InitDogRaceUiIdWorks")))
+void InitDogRaceUiIdWorks(char *p)
 {
     int i;
 
@@ -76,8 +76,8 @@ void func_001ED5B8(char *p)
 
 
 
-__attribute__((section(".text.func_001EDEA8")))
-void func_001EDEA8(char *p)
+__attribute__((section(".text.InitDogRaceListIdWorks")))
+void InitDogRaceListIdWorks(char *p)
 {
     int i;
 
@@ -102,8 +102,8 @@ void func_001EDEA8(char *p)
 
 
 
-__attribute__((section(".text.func_001ECAF0")))
-void func_001ECAF0(char *p)
+__attribute__((section(".text.InitDogRaceResultIdWorks")))
+void InitDogRaceResultIdWorks(char *p)
 {
     int i;
 

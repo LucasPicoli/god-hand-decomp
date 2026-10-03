@@ -26,8 +26,8 @@ extern char D_003BC7B8[];
 
 
 
-__attribute__((section(".text.func_00317F70")))
-void *func_00317F70(void) {
+__attribute__((section(".text.CreateObjectWithVtableC")))
+void *CreateObjectWithVtableC(void) {
     char *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = EnsureInitThenForward_2A9538_30EE08(0x4D0, 0x10, D_00754C10);
@@ -47,7 +47,7 @@ int cRoomSave_setEmDeadFlag(void *a0, int a1) {
     int i;
     unsigned char *e;
     for (i = 0; (unsigned int)i < func_002BEDD8(a0); i++) {
-        e = func_002BEF08(a0, i);
+        e = cRoomSave_getEm(a0, i);
         if (e != 0 && e[0x13] == a1) {
             e[0x14] = 1;
             return 1;
@@ -75,8 +75,8 @@ int func_002D5580(cTaskManager *self, void *entry, int arg, int allocArg)
 
 
 
-__attribute__((section(".text.func_001B39D0")))
-void *func_001B39D0(void *a0){
+__attribute__((section(".text.InitVuBlockObject")))
+void *InitVuBlockObject(void *a0){
   char *s0; int i;
   InitFields_1B6E90(a0);
   s0 = (char*)a0 + 0x660;
@@ -104,8 +104,8 @@ void *func_001B39D0(void *a0){
 /* Dispatch the current action: pick the table entry for state byte +0x2F5 (reset to 0 when out of range) and call its handler. */
 
 
-__attribute__((section(".text.func_001030C8")))
-void func_001030C8(void *a0) {
+__attribute__((section(".text.DispatchActionTableA")))
+void DispatchActionTableA(void *a0) {
     char *s0 = (char *)a0;
     char *e;
     int i8;
@@ -133,8 +133,8 @@ void func_001030C8(void *a0) {
 /* Dispatch the current action: pick the table entry for state byte +0x2F5 (reset to 0 when out of range) and call its handler. */
 
 
-__attribute__((section(".text.func_001032C8")))
-void func_001032C8(void *a0) {
+__attribute__((section(".text.DispatchActionTableB")))
+void DispatchActionTableB(void *a0) {
     char *s0 = (char *)a0;
     char *e;
     int i8;

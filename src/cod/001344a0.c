@@ -47,8 +47,8 @@ extern PhaseTbl D_00429DD0;
 
 
 
-__attribute__((section(".text.func_001C7E30")))
-void func_001C7E30(cOmHitHolder *self)
+__attribute__((section(".text.cOmBase_updateWithHitRecord")))
+void cOmBase_updateWithHitRecord(cOmHitHolder *self)
 {
     PhaseMemFn tbl[1];
     char *e;
@@ -110,8 +110,8 @@ typedef struct NodeStats {
 
 extern NodeStats D_00460D18;
 
-__attribute__((section(".text.func_001344A0")))
-void func_001344A0(NodeList *self)
+__attribute__((section(".text.NodeList_clear")))
+void NodeList_clear(NodeList *self)
 {
     if (self->head != 0) {
         do {
@@ -136,7 +136,7 @@ int cEmBase_checkDeadFlag(cEm00 *self)
     if (entryNo == 0xFF) {
         return 0;
     }
-    entry = func_002BEF60(&D_005E8658, entryNo);
+    entry = cRoomSave_findEm(&D_005E8658, entryNo);
     if (entry == 0) {
         dead = 1;
     } else {
@@ -153,8 +153,8 @@ int cEmBase_checkDeadFlag(cEm00 *self)
 
 
 /* Init of an object that owns effect data 0x241: base init, show layer 0, hide layer 0x40, register the data record. */
-__attribute__((section(".text.func_001BDF30")))
-int func_001BDF30(cOmBase *self)
+__attribute__((section(".text.cOmBase_initEffData241")))
+int cOmBase_initEffData241(cOmBase *self)
 {
     int res;
     func_001B6FB8(self);
@@ -179,8 +179,8 @@ extern unsigned char D_003C2555;        /* the loading is finished */
 
 
 /* Task body of the now-loading screen: set it up, then update and draw it every frame until the loading is finished, when the task exits. */
-__attribute__((section(".text.func_002B6600")))
-void func_002B6600(void)
+__attribute__((section(".text.cNowLoading_taskBody")))
+void cNowLoading_taskBody(void)
 {
     func_0013ED28(D_003BD6E8 + NOWLOADING_SUB_OFFSET);
     for (;;) {

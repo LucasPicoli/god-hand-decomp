@@ -2,10 +2,10 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002B17A8(void *a0);
+extern void CornerPanel_initState0(void *a0);
 extern void func_002B17F8(void *a0);
 extern void func_002B1830(void *a0);
-extern void func_002B1BE8(void *a0);
+extern void CornerPanel_setPointsState4(void *a0);
 extern void func_002B1C30(void *a0);
 extern int D_00747A2C;
 
@@ -27,7 +27,7 @@ void func_002B16F0(void *a0)
     }
     switch (*(unsigned char *)(p + 0xA4)) {
     case 0:
-        func_002B17A8(p);
+        CornerPanel_initState0(p);
         break;
     case 2:
         func_002B17F8(p);
@@ -36,7 +36,7 @@ void func_002B16F0(void *a0)
         func_002B1830(p);
         break;
     case 4:
-        func_002B1BE8(p);
+        CornerPanel_setPointsState4(p);
         break;
     case 5:
         func_002B1C30(p);

@@ -19,7 +19,7 @@ extern char D_004A6940[];
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *v);
 extern void Draw_Line2(void *pts, int n, unsigned color, int flag);
 extern void ClearFields_4_8_C_E_159998(int a0);
-extern void func_001599B0(void *a0, void *a1, void *a2);
+extern void RecDecode_readHeader(void *a0, void *a1, void *a2);
 
 typedef struct { unsigned long lo; int w2; int w3; } Q;
 typedef int TI __attribute__((mode(TI)));
@@ -189,21 +189,21 @@ void func_001595F8(char *this)
     if ((*(int *)p & 0xFFF) == 0xFF) {
         q = p;
         p += 0xC;
-        func_001599B0(this + 0x1B4, hdr, q);
+        RecDecode_readHeader(this + 0x1B4, hdr, q);
     } else {
         ClearFields_4_8_C_E_159998((int)(this + 0x1B4));
     }
     if ((*(int *)p & 0xFFF) == 0x1FF) {
         q = p;
         p += 0xC;
-        func_001599B0(this + 0x1D4, hdr, q);
+        RecDecode_readHeader(this + 0x1D4, hdr, q);
     } else {
         ClearFields_4_8_C_E_159998((int)(this + 0x1D4));
     }
     if ((*(int *)p & 0xFFF) == 0x2FF) {
         q = p;
         p += 0xC;
-        func_001599B0(this + 0x1F4, hdr, q);
+        RecDecode_readHeader(this + 0x1F4, hdr, q);
     } else {
         ClearFields_4_8_C_E_159998((int)(this + 0x1F4));
     }
@@ -244,7 +244,7 @@ void func_001595F8(char *this)
         if ((*(int *)p & 0xF00) != 0x300) goto clr1;
         q = p;
         p += 0xC;
-        func_001599B0(o2 + 0x1B4, hdr, q);
+        RecDecode_readHeader(o2 + 0x1B4, hdr, q);
         goto n1;
 clr1:
         ClearFields_4_8_C_E_159998((int)(o2 + 0x1B4));
@@ -253,7 +253,7 @@ n1:
         if ((*(int *)p & 0xF00) != 0x400) goto clr2;
         q = p;
         p += 0xC;
-        func_001599B0(o2 + 0x1D4, hdr, q);
+        RecDecode_readHeader(o2 + 0x1D4, hdr, q);
         goto n2;
 clr2:
         ClearFields_4_8_C_E_159998((int)(o2 + 0x1D4));
@@ -262,7 +262,7 @@ n2:
         if ((*(int *)p & 0xF00) != 0x500) goto clr3;
         q = p;
         p += 0xC;
-        func_001599B0(o2 + 0x1F4, hdr, q);
+        RecDecode_readHeader(o2 + 0x1F4, hdr, q);
         goto n3;
 clr3:
         ClearFields_4_8_C_E_159998((int)(o2 + 0x1F4));

@@ -2,7 +2,7 @@
 
 extern void MPV_GoNextDelimSj(void *a0);
 extern long long func_003A9228(int a0, int *buf, int size);
-extern void func_00326050(char *fmt, int val);
+extern void LogPrintf(char *fmt, int val);
 extern char D_00454570[];
 extern char D_00454588[];
 extern char D_00454598[];
@@ -64,9 +64,9 @@ int func_00333B40(int a0, int *a1, int *a2) {
 
     if (a2) *a2 = func_003A9228(buf[0], buf, 0x10);
 
-    func_00326050(D_00454570, a0);
-    func_00326050(D_00454588, *a1);
-    func_00326050(D_00454598, *a2);
+    LogPrintf(D_00454570, a0);
+    LogPrintf(D_00454588, *a1);
+    LogPrintf(D_00454598, *a2);
 
     return 1;
 }

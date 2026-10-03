@@ -28,8 +28,8 @@ extern const unsigned char D_0044A408[];    /* method table */
 extern const char D_00448F30[];             /* "cEma6" */
 extern void *func_0028EB00(void *self);     /* enemy base constructor */
 
-__attribute__((section(".text.Obj28B0_Setup_Field_214_Field_4AC_28B0F0")))
-cEma6 *Obj28B0_Setup_Field_214_Field_4AC_28B0F0(cEma6 *self)
+__attribute__((section(".text.cEma6_construct")))
+cEma6 *cEma6_construct(cEma6 *self)
 {
     cEma6Aim *aim;
     func_0028EB00(self);

@@ -14,8 +14,8 @@ extern void cDamageUnit_AddDamageCollCylinder(void *a0, void *a1, float *a2, flo
 
 
 
-__attribute__((section(".text.func_0018C180")))
-int func_0018C180(char *p)
+__attribute__((section(".text.SpawnDamageVolumeAndFlagParts_A")))
+int SpawnDamageVolumeAndFlagParts_A(char *p)
 {
     float f[16];
     float *m;
@@ -90,8 +90,8 @@ int func_0018C180(char *p)
 
 
 
-__attribute__((section(".text.func_001990A0")))
-int func_001990A0(char *p)
+__attribute__((section(".text.SpawnDamageVolumeAndFlagParts_B")))
+int SpawnDamageVolumeAndFlagParts_B(char *p)
 {
     float f[16];
     float *m;
@@ -166,8 +166,8 @@ int func_001990A0(char *p)
 
 
 
-__attribute__((section(".text.func_0018B378")))
-int func_0018B378(char *p)
+__attribute__((section(".text.SpawnCylinderDamageAndFlagPartsB")))
+int SpawnCylinderDamageAndFlagPartsB(char *p)
 {
     float f[16];
     float *m;
@@ -240,8 +240,8 @@ int func_0018B378(char *p)
 
 
 
-__attribute__((section(".text.func_0018A680")))
-int func_0018A680(char *p)
+__attribute__((section(".text.SpawnCylinderDamageAndFlagPartsA")))
+int SpawnCylinderDamageAndFlagPartsA(char *p)
 {
     float f[16];
     float *m;

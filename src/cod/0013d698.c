@@ -15,7 +15,7 @@ extern void func_001E4200(Slot2 *self, int a1, int a2, int a3);
 extern void func_001E3E40(Slot2 *self, unsigned short a1, int a2, int a3);
 extern void func_001E3928(Slot2 *self, int a1, int a2);
 extern void func_001E3A98(Slot2 *self, int a1, int a2);
-extern void func_001E3C08(Slot2 *self, int a1, int a2);
+extern void Slot2_setMarkLayers(Slot2 *self, int a1, int a2);
 extern float func_002AC650(cIDBaseObj *obj, int frame, int recNo, int a3);
 extern int func_002AC6E0(cIDBaseObj *obj, float t, float *x, float *y, cIDBaseEnt *ent);
 extern int func_002AC878(cIDBaseObj *obj, float t, float *x, float *y, cIDBaseEnt *ent);
@@ -42,8 +42,8 @@ typedef struct IconScreen {
 extern void func_002AC9B8(IconScreen *self, cIDBaseEnt *ent, int arg);   /* refresh one entry */
 
 
-__attribute__((section(".text.func_0013D698")))
-void func_0013D698(IconScreen *self) {
+__attribute__((section(".text.IconScreen_stepGrow")))
+void IconScreen_stepGrow(IconScreen *self) {
     self->ent[ICON_ENT_MAIN]->sclX += ICON_SCALE_STEP;
     self->ent[ICON_ENT_MAIN]->f70[2] += ICON_SPIN_STEP;
     if (self->ent[ICON_ENT_MAIN]->sclX >= ICON_SCALE_DONE) {
@@ -82,8 +82,8 @@ extern ModeTbl D_00423318;              /* the four entries */
 
 
 
-__attribute__((section(".text.func_00187FE8")))
-void func_00187FE8(cOmBase *self) {
+__attribute__((section(".text.cOmBase_tickModeTable")))
+void cOmBase_tickModeTable(cOmBase *self) {
     ModeEnt tbl[MODE_NUM];
     char *e;
     int i8;
@@ -133,8 +133,8 @@ void func_00187FE8(cOmBase *self) {
 
 
 
-__attribute__((section(".text.func_001E2FD0")))
-void func_001E2FD0(Slot2 *self)
+__attribute__((section(".text.Slot2_introStage")))
+void Slot2_introStage(Slot2 *self)
 {
     int done;
 
@@ -162,7 +162,7 @@ void func_001E2FD0(Slot2 *self)
         if ((done & 0xFF) != 0) {
             func_001E3928(self, 0, 0);
             func_001E3A98(self, 0, 0);
-            func_001E3C08(self, 0, 0);
+            Slot2_setMarkLayers(self, 0, 0);
             func_001E4200(self, SLOT2_FIELD(self, unsigned short, SLOT2_LAMP_SEL_OFFSET), 0, 0);
             func_001E3E40(self, SLOT2_FIELD(self, unsigned short, SLOT2_LAMP_SEL_OFFSET), 0, 0);
             self->phase = self->phase + 1;
@@ -216,8 +216,8 @@ typedef struct IdMoveSrc {
 
 
 
-__attribute__((section(".text.func_002AC048")))
-void func_002AC048(cIDBaseObj *obj, cIDBaseEnt *ent)
+__attribute__((section(".text.cIDBase_stepMoveAnim")))
+void cIDBase_stepMoveAnim(cIDBaseObj *obj, cIDBaseEnt *ent)
 {
     IdMoveSrc *src;
     unsigned int flags;
@@ -290,8 +290,8 @@ typedef struct CornerPanel {
 
 extern void func_002B1C80(CornerPanel *self);
 
-__attribute__((section(".text.func_002B17A8")))
-void func_002B17A8(CornerPanel *self)
+__attribute__((section(".text.CornerPanel_initState0")))
+void CornerPanel_initState0(CornerPanel *self)
 {
     self->x0 = 0x100;
     self->y0 = 0x182;
@@ -306,16 +306,16 @@ void func_002B17A8(CornerPanel *self)
 
 
 
-__attribute__((section(".text.func_002956A0")))
-void func_002956A0(cEmSetParam *setParam, cEmActor *em)
+__attribute__((section(".text.cEmSetParam_storeVital")))
+void cEmSetParam_storeVital(cEmSetParam *setParam, cEmActor *em)
 {
     unsigned int no = em->entryNo;
     int vital;
     if (no < EM_SLOT_NUM) {
         vital = em->vital;
         if (vital > 0)
-            func_002954D0(setParam, no, vital);
+            cEmSetParam_updateSetDataVital(setParam, no, vital);
         else
-            func_002954D0(setParam, no, 1);
+            cEmSetParam_updateSetDataVital(setParam, no, 1);
     }
 }

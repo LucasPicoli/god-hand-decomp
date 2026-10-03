@@ -8,8 +8,8 @@ typedef struct TurnObj {
 
 extern void func_001E8F78(TurnObj *self, float angle);
 
-__attribute__((section(".text.func_001E9028")))
-void func_001E9028(TurnObj *self, float step, float limit)
+__attribute__((section(".text.TurnObj_addAngleClamped")))
+void TurnObj_addAngleClamped(TurnObj *self, float step, float limit)
 {
     self->angle += step;
     if (limit > 0.0f) {

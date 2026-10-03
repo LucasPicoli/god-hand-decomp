@@ -45,8 +45,8 @@ extern SysFlags D_00747A78;
 /* The frame rate scale D_00747A14 sits 0x64 bytes below the flags; retail reaches it from the flags address. */
 #define SYS_FRAME_RATE  (*(float *)((char *)&D_00747A78 - 0x64))
 
-__attribute__((section(".text.func_001FD448")))
-void func_001FD448(FlashDriver *self)
+__attribute__((section(".text.FlashDriver_resetFlash")))
+void FlashDriver_resetFlash(FlashDriver *self)
 {
     cVec *floor;
     self->flags &= ~0x1;
@@ -100,8 +100,8 @@ extern char D_00580D40[];               /* entry table */
 
 
 
-__attribute__((section(".text.func_002E1348")))
-void func_002E1348(void)
+__attribute__((section(".text.FileBuf_init")))
+void FileBuf_init(void)
 {
     FileBuf *fb = &D_0061B280;
     fb->count = 0;
@@ -125,8 +125,8 @@ void func_002E1348(void)
 #define SLOT2_MODE(self)       (*(unsigned short *)((char *)(self) + SLOT2_OFFSET_MODE))
 
 /* Show the scroll layers for the mode: 0 shows none, 1 shows layer 0, 2 shows layers 0 to 2, 3 shows all five. */
-__attribute__((section(".text.func_001E3630")))
-void func_001E3630(Slot2 *self)
+__attribute__((section(".text.Slot2_showLayersForMode")))
+void Slot2_showLayersForMode(Slot2 *self)
 {
     switch (SLOT2_MODE(self)) {
     case 0:
@@ -197,8 +197,8 @@ extern void SetupFields10And14_13D3C0(DispMgr *mgr);
 #define VT_RESET         2              /* vtable entry called on every registered object */
 
 /* Reset the manager: clear the slot table, set up the eleven sub-records, then call the reset method of every registered object. */
-__attribute__((section(".text.func_00140C88")))
-void func_00140C88(DispMgr *self)
+__attribute__((section(".text.DispMgr_reset")))
+void DispMgr_reset(DispMgr *self)
 {
     int i;
     void **po;
@@ -239,8 +239,8 @@ typedef struct HitBox {
 } HitBox;
 
 /* 1 if point lies inside the box (centre moved by mtx), with each half extent widened by the margins; else 0. */
-__attribute__((section(".text.func_001F9070")))
-int func_001F9070(HitBox *box, void *mtx, cVec *point, float mx, float my, float mz)
+__attribute__((section(".text.HitBox_containsPoint")))
+int HitBox_containsPoint(HitBox *box, void *mtx, cVec *point, float mx, float my, float mz)
 {
     char frame[0x30] __attribute__((aligned(16)));
     float *c = (float *)frame;
@@ -277,8 +277,8 @@ int func_001F9070(HitBox *box, void *mtx, cVec *point, float mx, float my, float
 #define EMFLAGS_SHOW_HOOK  0x400000         /* emFlags: the hooked meshes are shown */
 
 /* Show or hide the hooked node and the named mesh to match the enemy's show flag. */
-__attribute__((section(".text.func_00269AC0")))
-void func_00269AC0(cEm00 *self) {
+__attribute__((section(".text.cEm00_setMeshHookDisplay")))
+void cEm00_setMeshHookDisplay(cEm00 *self) {
     cModelNode *mesh;
     if (EM_MESHHOOK(self) != 0) {
         mesh = cModel_getMeshPtr_14B730(self, D_0042CAB8);

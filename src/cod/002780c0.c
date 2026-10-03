@@ -5,7 +5,7 @@ extern void func_002A84A8(void *p);
 extern void cCollisionSolidManage_ReleaseUnit_278368(void *p);
 extern void func_0028EB88(void *p, int f);
 extern unsigned char D_004481A8[];
-extern void func_0027BB30(void *p);
+extern void EnemyOwner_releaseChild(void *p);
 extern unsigned char D_00448598[];
 extern void ForwardDispatchByMode_27F170(void *p);
 
@@ -23,7 +23,7 @@ void func_0027B7C0(void *p, int f)
 {
     *(void **)((char *)p + 0x214) = (void *)D_004481A8;
     func_002A84A8(p);
-    func_0027BB30(p);
+    EnemyOwner_releaseChild(p);
     func_0028EB88(p, f);
 }
 

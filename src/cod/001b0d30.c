@@ -46,8 +46,8 @@ extern void cEmWrap_setSuspend(EmHandle *h, int flag);
 
 extern int D_003C2F84;                  /* scenario */
 
-__attribute__((section(".text.func_001F2540")))
-void func_001F2540(ArenaEm *self)
+__attribute__((section(".text.ArenaEm_stepBossIntro")))
+void ArenaEm_stepBossIntro(ArenaEm *self)
 {
     EmHandle h;
     int vitalMax;
@@ -99,8 +99,8 @@ typedef struct cGiveOwner {
 
 
 /* Destructor: install the class method table, stop the sound, release both damage-give records, kill the effects and run the base destructor. */
-__attribute__((section(".text.func_001B0D30")))
-void func_001B0D30(cGiveOwner *self, int flag) {
+__attribute__((section(".text.cGiveOwner_destruct")))
+void cGiveOwner_destruct(cGiveOwner *self, int flag) {
     self->base.vt = (cGameObjVt *)&D_004282F0;
     if (self->seHandle != 0) {
         cSnd_SeStop(D_005FEE00, self->seHandle);
@@ -134,8 +134,8 @@ typedef struct PhaseEnt {
 typedef struct { char b[0x10]; } PhaseTbl;
 extern PhaseTbl D_00448170;             /* the two entries */
 
-__attribute__((section(".text.func_0027D000")))
-void func_0027D000(cEm00 *self) {
+__attribute__((section(".text.cEm00_tickPhaseDispatch2")))
+void cEm00_tickPhaseDispatch2(cEm00 *self) {
     PhaseEnt tbl[PHASE_NUM];
     char *e;
     int i8;

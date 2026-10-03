@@ -17,8 +17,8 @@ extern void func_002B0420(cMessDrawFont *self, void *cmd);
 
 
 
-__attribute__((section(".text.func_001A9588")))
-int func_001A9588(cEm00 *self, cVec *pos) {
+__attribute__((section(".text.cEm00_setPosA")))
+int cEm00_setPosA(cEm00 *self, cVec *pos) {
     cVec *posA = &self->posA;
     cVec_copy3(posA, pos);
     cVec_copy3(self->pos, posA);
@@ -50,8 +50,8 @@ void cOmb2_SetMove(cOmb2 *self, cVec *dir, int moveArg, float rate) {
 
 
 
-__attribute__((section(".text.func_001E6CD8")))
-void func_001E6CD8(Slot2 *self) {
+__attribute__((section(".text.Slot2_updateLineMark1")))
+void Slot2_updateLineMark1(Slot2 *self) {
     unsigned int flag = self->markFlag[1];
     if (flag & MARK_BLINK) {
         unsigned short next;    /* short: the store keeps retail's andi 0xFFFF */
@@ -80,8 +80,8 @@ typedef struct WaveObj {
 
 extern int D_0061B540[WAVE_TABLE_MAX];  /* wave heights */
 
-__attribute__((section(".text.func_002E8168")))
-void func_002E8168(WaveObj *self, float step) {
+__attribute__((section(".text.WaveObj_fillWaveTable")))
+void WaveObj_fillWaveTable(WaveObj *self, float step) {
     unsigned int i;
     float x;
     D_0061B540[0] = 0;
@@ -113,8 +113,8 @@ typedef struct BgmObj {
     BgmRec *rec;                        /* 0x8C */
 } BgmObj;
 
-__attribute__((section(".text.func_002B3CF8")))
-int func_002B3CF8(BgmObj *self) {
+__attribute__((section(".text.BgmObj_startEventAndArmTimer")))
+int BgmObj_startEventAndArmTimer(BgmObj *self) {
     int event = self->rec->event;
     cSnd_BgmEventStart(D_005FEE00, event, 0, 0);
     /* Every arm arms the same timer; retail keeps the four-way compare tree. */
@@ -149,8 +149,8 @@ int func_002B3CF8(BgmObj *self) {
 
 
 
-__attribute__((section(".text.func_002B0028")))
-void func_002B0028(cMessDrawFont *self, void *cmd) {
+__attribute__((section(".text.cMessDrawFont_execCommand")))
+void cMessDrawFont_execCommand(cMessDrawFont *self, void *cmd) {
     unsigned short *code = (unsigned short *)self->cursor;
     switch (*code & 0xFF00) {
     case MESS_CMD_A8:

@@ -59,8 +59,8 @@ extern unsigned char D_005FEE00[];
 /* The idle step of an enemy: step 0 picks and starts the motion for the enemy number
  * (and its sound and turn target); step 1 waits for the motion to end, then picks the
  * next action from the enemy number, the game level and a few random rolls. */
-__attribute__((section(".text.func_0023D7D0")))
-void func_0023D7D0(void *a0)
+__attribute__((section(".text.cEm00_idleChooseNext")))
+void cEm00_idleChooseNext(void *a0)
 {
     char hold[16];              /* the frame object at $sp+0: the child count is stored through it */
     cEm00 *self = (cEm00 *)a0;

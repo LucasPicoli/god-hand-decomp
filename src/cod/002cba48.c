@@ -24,11 +24,11 @@ int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int
         int *p;
         unsigned int s2;
         if (s0t0 != 0) {
-            s1 = func_002CB3A8(s3, *(int *)((char *)s0t0 + 0x564));
+            s1 = cSnd_getEmSeGroupOwner(s3, *(int *)((char *)s0t0 + 0x564));
             if (s1 <= 0)
                 s1 = *(unsigned short *)((char *)s0t0 + 0x300);
         } else {
-            s1 = func_002CB3A8(s3, *(int *)((char *)s5 + 0x564));
+            s1 = cSnd_getEmSeGroupOwner(s3, *(int *)((char *)s5 + 0x564));
             if (s1 <= 0)
                 s1 = *(unsigned short *)((char *)s5 + 0x300);
         }

@@ -2,7 +2,7 @@
 
 extern int D_00747A2C;
 extern int Getplayer(void);
-extern void func_002C8AD8(void *a0);
+extern void SeEmitter_update(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -30,7 +30,7 @@ void func_002CB128(void *a0) {
 
     q = *(int **)(p + 0x2C);
     do {
-        func_002C8AD8(q);
+        SeEmitter_update(q);
         q = *(int **)q;
     } while (q != 0);
 }

@@ -9,7 +9,7 @@ extern void SetLinkedObjField2B_1D6D68(BlackJack *, int);
 extern void CustomIDWork_SetNumber_1D5760(BlackJack *, int);
 extern int  cSnd_SeCall_2CBA48(void *, int, int, int, int, int, int, int);
 extern void func_001D6030(BlackJack *, int);
-extern void func_001D60F8(BlackJack *, int);
+extern void BlackJack_slidePanel(BlackJack *, int);
 extern void func_001D61C0(BlackJack *, int);
 extern void func_001D5C38(BlackJack *, int);
 extern void func_001D5D20(BlackJack *, int);
@@ -71,7 +71,7 @@ void BlackJack_UpdateClearTable(BlackJack *self)
             break;
         }
         func_001D6030(self, 3);
-        func_001D60F8(self, 3);
+        BlackJack_slidePanel(self, 3);
         func_001D61C0(self, 3);
         self->timer = 0x1E;
         self->phase++;

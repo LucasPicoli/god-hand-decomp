@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
-extern void func_001C7E30(void *a0);
+extern void cOmBase_updateWithHitRecord(void *a0);
 extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);
 extern struct Table_func_00179FD0 D_00421918;
@@ -41,6 +41,6 @@ void func_00179FD0(void *a0)
         func_002A87E8(s0, 0);
         func_001B76D8(s0);
     } else {
-        func_001C7E30(s0);
+        cOmBase_updateWithHitRecord(s0);
     }
 }

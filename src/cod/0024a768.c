@@ -75,7 +75,7 @@ int func_002B2638(void *obj) {
     case 0xE100: return Obj2B28_ReturnZero_F68(obj);
     case 0xE000: return Obj2B28_ReturnZero_F70(obj);
     case 0xE200: return Obj2B28_ReturnZero_F78(obj);
-    case 0xE400: return func_002B2BD8(obj);
+    case 0xE400: return CutCmd_resolveCuts(obj);
     case 0xE500: return func_002B2C98(obj);
     case 0xD300: return func_002B2F80(obj);
     case 0x8800: return Obj2B28_ReturnZero_FA8(obj);

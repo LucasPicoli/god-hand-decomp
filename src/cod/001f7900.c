@@ -28,7 +28,7 @@ extern int D_00752CF0;
 extern char D_00585038[];
 extern int D_005CAFF4;
 extern void *D_003BD930;
-extern void func_00201BE0(void *e3);
+extern void cE3_exec(void *e3);
 extern void func_002A6FF8(cGame *self);
 extern void *Getplayer(void);
 extern int pl00_CkSubScreen(void *player);
@@ -69,8 +69,8 @@ void cDoor_setCasinoJumpPoint(cDoor *self, unsigned short id, unsigned char kind
 /* Demo step: while no stage blocks it, compare the world clock against the
  * time limit (the cursor, in minutes) and end the demo when it runs out; show the
  * time left. Cheat bit 3 of D_00747A24 ends the demo too. */
-__attribute__((section(".text.func_00201C28")))
-void func_00201C28(cE3 *self) {
+__attribute__((section(".text.cE3_stepMenuClock")))
+void cE3_stepMenuClock(cE3 *self) {
     cE3World *w = &D_007474A0;
     unsigned int hms[4];
     unsigned long cheat;
@@ -95,8 +95,8 @@ void func_00201C28(cE3 *self) {
 /* Demo run: fade out (the ending kind picks the fade colours), wait for the
  * fade to end, then lock the screen state and stop the fade; the last phase
  * swaps the cheat flags. */
-__attribute__((section(".text.func_00201D20")))
-void func_00201D20(cE3 *self) {
+__attribute__((section(".text.cE3_runDemo")))
+void cE3_runDemo(cE3 *self) {
     switch (self->phase) {
     case 0:
         if (self->ending != 0) {
@@ -228,7 +228,7 @@ void cGame_gameLoop(cGame *self) {
     int idle;
     D_00752CF0 = start;
     if ((sys->flags & 0x800) != 0) {
-        func_00201BE0(D_00585038);
+        cE3_exec(D_00585038);
     }
     func_002A6FF8(self);
     w = (cGameWorld *)((char *)sys - 0x58C);

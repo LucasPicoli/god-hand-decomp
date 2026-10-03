@@ -2320,10 +2320,10 @@ int Forward325F20_3466A8(int a0, int a1, int a2, int a3) {
     return func_00325F20(a0, a1, a2, a3);
 }
 
-extern int func_003462D8(int a0, int a1, int a2, int a3);
+extern int LatchDmaModeAndQueueTransfers(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward3462D8_3466C0")))
 int Forward3462D8_3466C0(int a0, int a1, int a2, int a3) {
-    return func_003462D8(a0, a1, a2, a3);
+    return LatchDmaModeAndQueueTransfers(a0, a1, a2, a3);
 }
 
 extern int func_00346368(int a0, int a1, int a2, int a3);

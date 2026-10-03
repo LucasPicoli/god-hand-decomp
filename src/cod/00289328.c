@@ -13,8 +13,8 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
 
 /* Line test from just above this enemy to just above the player: 1 when
  * nothing blocks it. */
-__attribute__((section(".text.func_00289328")))
-int func_00289328(cEma2 *self)
+__attribute__((section(".text.cEma2_ckLineToPlayer")))
+int cEma2_ckLineToPlayer(cEma2 *self)
 {
     cVec from;
     cVec to;

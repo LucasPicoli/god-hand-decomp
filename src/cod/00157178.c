@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void StoreVecFromFieldB0_2B6160(void *dst, void *obj);
-extern void func_002FEB18(void *obj);
+extern void LinkObj_callLockOn(void *obj);
 extern int D_005CAFF0;
 
 /* sn-2.95.3-136 candidate. */
@@ -76,6 +76,6 @@ void func_002F6F48(char *p) {
         }
     }
     *(float *)(p + 0x194) = *(float *)(p + 0x194) * scale;
-    func_002FEB18(p);
+    LinkObj_callLockOn(p);
     *(float *)(p + 0x194) = save;
 }

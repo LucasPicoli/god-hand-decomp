@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_00185E68(void *a0, int a1);
+extern void cOmBase_setDispMode(void *a0, int a1);
 extern void func_00185F50(void *a0, int a1);
 extern int D_006046C0;
 extern void cSpline_setBasePoint(void *a0, void *a1);
@@ -17,10 +17,10 @@ void func_00184FE0(void *a0) {
     float f1 = (float)*(short *)(s0 + 0x626) / (float)*(short *)(s0 + 0x634);
     switch (*(unsigned char *)(s0 + 0x659)) {
     case 0:
-        if (f1 <= 0.5f) { func_00185E68(s0, 1); *(unsigned char *)(s0 + 0x659) += 1; }
+        if (f1 <= 0.5f) { cOmBase_setDispMode(s0, 1); *(unsigned char *)(s0 + 0x659) += 1; }
         break;
     case 1:
-        if (f1 <= 0.0f) { func_00185E68(s0, 4); *(unsigned char *)(s0 + 0x659) += 1; }
+        if (f1 <= 0.0f) { cOmBase_setDispMode(s0, 4); *(unsigned char *)(s0 + 0x659) += 1; }
         break;
     case 2:
         *(unsigned char *)(s0 + 0x660) = 1;

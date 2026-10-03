@@ -20,7 +20,7 @@ extern void Obj0000_Clear_Fields_00_08_0C_0E_10_12_1F6CF8(void *p);
 
 /* Phase machine of the enemy that waits out a counted pause: it plays its start motion, counts
  * 0x900 down once the motion ends, then resets the state bytes and sets bit 0 of 0x5B0. */
-__attribute__((section(".text.func_001BE068"))) void func_001BE068(cEm00 *self)
+__attribute__((section(".text.cEm00_stepCountedPause"))) void cEm00_stepCountedPause(cEm00 *self)
 {
     int v0;
 

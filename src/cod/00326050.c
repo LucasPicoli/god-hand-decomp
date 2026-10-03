@@ -5,8 +5,8 @@ extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
 extern int D_003CF9E0;
 
-__attribute__((section(".text.func_00326050")))
-void func_00326050(void *a0, ...)
+__attribute__((section(".text.LogPrintf")))
+void LogPrintf(void *a0, ...)
 {
     char buf[0x80];
     if (D_003CF9E0 == 0) {

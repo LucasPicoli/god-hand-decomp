@@ -6,14 +6,14 @@ struct vtbl {
     void (*fn)(int);
 };
 
-extern void func_00138558(struct cCamera *self);
+extern void cCamera_stepVib(struct cCamera *self);
 extern void cCamera_update(struct cCamera *self);
 /* One camera step: the subclass move method, the vibration, the update. */
 __attribute__((section(".text.cCamera_move")))
 void cCamera_move(struct cCamera *self) {
     cCamVt *vt = self->vt;
     vt->move((int)self + vt->moveDelta);
-    func_00138558(self);
+    cCamera_stepVib(self);
     cCamera_update(self);
 }
 

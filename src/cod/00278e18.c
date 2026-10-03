@@ -19,7 +19,7 @@ extern unsigned char D_005FEE00[];
 /* Phase machine of the enemy that circles the player: it turns toward the player, drifts its height
  * toward the player's, and steps along the 0x580 vector scaled by speedRate until the countdown
  * ends. */
-__attribute__((section(".text.func_00278E18"))) void func_00278E18(cEm00 *self)
+__attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePlayer(cEm00 *self)
 {
     char *g = D_00586A7C;
     float dist = 1.0e16f;

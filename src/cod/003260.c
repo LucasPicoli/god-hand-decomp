@@ -3,7 +3,7 @@
 
 /* ── Forward declarations for called external functions ─────────────────── */
 extern void func_00336E88(void);
-extern void func_00337C00(void);
+extern void PollUrpcOnce(void);
 extern void func_00337C88(void);
 extern void func_00337B30(int a0);
 extern void func_00337B80(int a0);
@@ -178,8 +178,8 @@ void func_00326718(int a0) {
 extern void func_0033C428(void *a0);
 extern void func_0033C240(void *a0, int a1);
 
-__attribute__((section(".text.func_00326780")))
-void func_00326780(void *obj, int a1) {
+__attribute__((section(".text.StoreArgAndUpdateChildA")))
+void StoreArgAndUpdateChildA(void *obj, int a1) {
     *(int *)((char *)obj + 8) = a1;
     func_0033C428(*(void **)((char *)obj + 4));
     func_0033C240(*(void **)((char *)obj + 4), a1);
@@ -188,18 +188,18 @@ void func_00326780(void *obj, int a1) {
 extern void func_0033C458(void *a0, int a1);
 extern void func_0033C270(void *a0, int a1);
 
-__attribute__((section(".text.func_003267C0")))
-void func_003267C0(void *obj, int a1) {
+__attribute__((section(".text.StoreArgAndUpdateChildB")))
+void StoreArgAndUpdateChildB(void *obj, int a1) {
     *(int *)((char *)obj + 0x38) = a1;
     func_0033C458(*(void **)((char *)obj + 4), a1);
     func_0033C270(*(void **)((char *)obj + 4), a1);
 }
 
 /* ── Obj3260_CallReturn0_003388F8_D498: simple call-then-return-zero (8 insns, jal) ─────────── */
-/* Pattern: addiu; sd $ra; jal func_003388F8; nop; ld $ra; move $v0,$zero; jr $ra; addiu */
-extern void func_003388F8(void);
+/* Pattern: addiu; sd $ra; jal RefreshEntryIfActive; nop; ld $ra; move $v0,$zero; jr $ra; addiu */
+extern void RefreshEntryIfActive(void);
 __attribute__((section(".text.Obj3260_CallReturn0_003388F8_D498")))
-int Obj3260_CallReturn0_003388F8_D498(void) { func_003388F8(); return 0; }
+int Obj3260_CallReturn0_003388F8_D498(void) { RefreshEntryIfActive(); return 0; }
 
 /* ── Simple trampolines (addiu; sd $ra; ld $ra; j target; addiu) ────────── */
 /* 5 insns each: prologue saves $ra, epilogue restores $ra then tail-jumps.  */
@@ -208,9 +208,9 @@ int Obj3260_CallReturn0_003388F8_D498(void) { func_003388F8(); return 0; }
 __attribute__((section(".text.Obj3260_Tramp_00336E88_D148")))
 void Obj3260_Tramp_00336E88_D148(void) { func_00336E88(); }
 
-/* Obj3260_Tramp_00337C00_D1F0 → j func_00337C00 */
+/* Obj3260_Tramp_00337C00_D1F0 → j PollUrpcOnce */
 __attribute__((section(".text.Obj3260_Tramp_00337C00_D1F0")))
-void Obj3260_Tramp_00337C00_D1F0(void) { func_00337C00(); }
+void Obj3260_Tramp_00337C00_D1F0(void) { PollUrpcOnce(); }
 
 /* Obj3260_Tramp_00337C88_D208 → j func_00337C88 */
 __attribute__((section(".text.Obj3260_Tramp_00337C88_D208")))

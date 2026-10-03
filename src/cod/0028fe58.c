@@ -27,8 +27,8 @@ extern void cBgmData_Reset(cBgmData *data);
 
 
 
-__attribute__((section(".text.func_002CA148")))
-void func_002CA148(cSnd *self)
+__attribute__((section(".text.cSnd_resetAll")))
+void cSnd_resetAll(cSnd *self)
 {
     int i;
     self->voiceHead = 0;
@@ -46,8 +46,8 @@ void func_002CA148(cSnd *self)
 /* Count the slots whose load has finished (state ready). */
 
 
-__attribute__((section(".text.func_0028FE58")))
-int func_0028FE58(cDataManager *self)
+__attribute__((section(".text.cDataManager_countReady")))
+int cDataManager_countReady(cDataManager *self)
 {
     int count = 0;
     int i;
@@ -62,8 +62,8 @@ int func_0028FE58(cDataManager *self)
 /* Kind of the nth ready slot (counting ready slots only), or 0xFFFF when there are fewer than n + 1. */
 
 
-__attribute__((section(".text.func_0028FED8")))
-int func_0028FED8(cDataManager *self, int n)
+__attribute__((section(".text.cDataManager_getReadyKind")))
+int cDataManager_getReadyKind(cDataManager *self, int n)
 {
     int count = 0;
     int i;

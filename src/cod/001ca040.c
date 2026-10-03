@@ -159,8 +159,8 @@ void func_00260278(char *this)
     *(int *)pos = 0;
     sceVu0ApplyMatrix(pos, (void *)(obj + 0x80), pos);
     pos[1] = pos[1] - 1.0f;
-    for (i = 0; i < func_0028FE58(D_005864E0); i++) {
-        id = func_0028FED8(D_005864E0, i);
+    for (i = 0; i < cDataManager_countReady(D_005864E0); i++) {
+        id = cDataManager_getReadyKind(D_005864E0, i);
         if (id == 0x220) break;
     }
     VU0_SQC2_VF0(frame, 0x30);

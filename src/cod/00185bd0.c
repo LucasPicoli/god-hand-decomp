@@ -24,8 +24,8 @@ extern struct Table_func_00194480 D_003BDB48;
 
 
 
-__attribute__((section(".text.func_00194480")))
-void func_00194480(void *a0)
+__attribute__((section(".text.UpdatePhaseWithHitCheckB")))
+void UpdatePhaseWithHitCheckB(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -63,8 +63,8 @@ extern struct Table_func_001A5470 D_003BDB98;
 
 
 
-__attribute__((section(".text.func_001A5470")))
-void func_001A5470(void *a0)
+__attribute__((section(".text.UpdatePhaseWithHitCheckC")))
+void UpdatePhaseWithHitCheckC(void *a0)
 {
     char *s0 = (char *)a0;
     char *e;
@@ -98,8 +98,8 @@ void func_001A5470(void *a0)
 
 
 
-__attribute__((section(".text.func_00185BD0")))
-void func_00185BD0(int arg0, int arg1)
+__attribute__((section(".text.SetMeshLayerAndPlayEffect")))
+void SetMeshLayerAndPlayEffect(int arg0, int arg1)
 {
     cOmBase_setMeshDispFromLayer(arg0, 0x28, 0);
     cOmBase_setMeshDispFromLayer(arg0, 0x29, 0);
@@ -124,8 +124,8 @@ void func_00185BD0(int arg0, int arg1)
 
 
 
-__attribute__((section(".text.func_0018ED30")))
-int func_0018ED30(char *p)
+__attribute__((section(".text.SpawnDamageTakeVolumeC")))
+int SpawnDamageTakeVolumeC(char *p)
 {
     float f[16];
     float *m;
@@ -176,8 +176,8 @@ int func_0018ED30(char *p)
 
 
 
-__attribute__((section(".text.func_0019D848")))
-int func_0019D848(char *p)
+__attribute__((section(".text.SpawnDamageTakeVolumeD")))
+int SpawnDamageTakeVolumeD(char *p)
 {
     float f[16];
     float *m;
@@ -228,8 +228,8 @@ int func_0019D848(char *p)
 
 
 
-__attribute__((section(".text.func_0019C1B0")))
-int func_0019C1B0(char *p)
+__attribute__((section(".text.SpawnDamageTakeVolumeE")))
+int SpawnDamageTakeVolumeE(char *p)
 {
     float f[16];
     float *m;

@@ -16,7 +16,7 @@ void func_002B2438(char *a0)
 
     switch (idx) {
     case 0:
-        if (func_002B2500(a0) == 0) {
+        if (UpdatePlayStage(a0) == 0) {
             break;
         }
     case 1:

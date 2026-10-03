@@ -37,8 +37,8 @@ typedef struct FxObj {
 
 
 
-__attribute__((section(".text.func_0012BB38")))
-void func_0012BB38(FxObj *self)
+__attribute__((section(".text.FxObj_updateStateEffect")))
+void FxObj_updateStateEffect(FxObj *self)
 {
     if ((self->stateWord & FX_STATE_MASK) == FX_STATE_ACTIVE) {
         if ((self->fxFlags & FX_F_RUNNING) == 0) {
@@ -116,8 +116,8 @@ typedef struct PromptOwner {
     void *target;                       /* 0xF0 */
 } PromptOwner;
 
-__attribute__((section(".text.func_002DB8B8")))
-void func_002DB8B8(PromptOwner *owner)
+__attribute__((section(".text.PromptOwner_offerActionPrompt")))
+void PromptOwner_offerActionPrompt(PromptOwner *owner)
 {
     cOmBase *player = Getplayer();
     if (player->hp > 0) {
@@ -146,8 +146,8 @@ void func_002DB8B8(PromptOwner *owner)
 
 
 
-__attribute__((section(".text.func_001D60F8")))
-void func_001D60F8(BlackJack *self, unsigned short mode)
+__attribute__((section(".text.BlackJack_slidePanel")))
+void BlackJack_slidePanel(BlackJack *self, unsigned short mode)
 {
     int m = mode;
     if (m == 1) {
@@ -185,8 +185,8 @@ done:
 
 
 
-__attribute__((section(".text.func_002BD3D8")))
-int func_002BD3D8(void *mtx, void *line, float k, float h)
+__attribute__((section(".text.Mtx_checkLineDistance")))
+int Mtx_checkLineDistance(void *mtx, void *line, float k, float h)
 {
     char buf[0x40] __attribute__((aligned(16)));
     float *v;
@@ -229,8 +229,8 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
 
 #define FRAME ((char *)&from - 0x30)
 
-__attribute__((section(".text.func_002DDD18")))
-float func_002DDD18(cVec *pos)
+__attribute__((section(".text.Pos_getGroundY")))
+float Pos_getGroundY(cVec *pos)
 {
     cVec from;
     cVec to;

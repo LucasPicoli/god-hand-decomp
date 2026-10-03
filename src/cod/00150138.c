@@ -36,8 +36,8 @@ extern void MtxMulScaleVec(cParts *dst, cParts *src, cVec *scale);
 
 
 
-__attribute__((section(".text.func_0019D640")))
-int func_0019D640(char *p)
+__attribute__((section(".text.SpawnDamageTakeVolumeF")))
+int SpawnDamageTakeVolumeF(char *p)
 {
     float f[16];
     float *m;
@@ -88,8 +88,8 @@ int func_0019D640(char *p)
 
 
 
-__attribute__((section(".text.func_00199E58")))
-int func_00199E58(char *p)
+__attribute__((section(".text.SpawnDamageTakeVolumeG")))
+int SpawnDamageTakeVolumeG(char *p)
 {
     float f[16];
     float *m;
@@ -141,8 +141,8 @@ int func_00199E58(char *p)
 
 
 
-__attribute__((section(".text.func_002FB5C0")))
-void func_002FB5C0(int a0, int a1)
+__attribute__((section(".text.ForEachSlotRunHandler")))
+void ForEachSlotRunHandler(int a0, int a1)
 {
     char *p;
     int i;
@@ -163,7 +163,7 @@ next: ;
     }
 }
 
-/* func_00240FA0: 190/194 exact (97.9%), insn delta 0, REG 4: in case 2 the vector-sub block, retail holds the *(F0) pointer in a0 and the s0+0x6D0 pointer in v1, ours v1 and v0. Bodies 3 (see w/), permuter run ~9k iters no better. */
+/* cEm00_stepDropToFloor: 190/194 exact (97.9%), insn delta 0, REG 4: in case 2 the vector-sub block, retail holds the *(F0) pointer in a0 and the s0+0x6D0 pointer in v1, ours v1 and v0. Bodies 3 (see w/), permuter run ~9k iters no better. */
 
 
 
@@ -179,8 +179,8 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
 
 
 #define FRAME ((char *)va - 0x30)
-__attribute__((section(".text.func_00240FA0")))
-void func_00240FA0(cEm00 *self)
+__attribute__((section(".text.cEm00_stepDropToFloor")))
+void cEm00_stepDropToFloor(cEm00 *self)
 {
     float va[4], vb[4], vc[4];
         int gb;
@@ -285,8 +285,8 @@ void func_00240FA0(cEm00 *self)
     }
 }
 
-__attribute__((section(".text.func_00150138")))
-void func_00150138(cParts *part) {
+__attribute__((section(".text.cParts_calcLocal")))
+void cParts_calcLocal(cParts *part) {
     cVec rot;
     rot.x = part->rot.x + part->rotAdd.x;
     rot.y = part->rot.y + part->rotAdd.y;

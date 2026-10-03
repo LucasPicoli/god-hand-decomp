@@ -14,7 +14,7 @@ extern int cEmManage_CkPlSorry(void *a0);
 extern int cEmManage_CkPlCatched(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_0014FA60(void *a0, float f12, float f13);
+extern void cObjBase_MoveByNullSpeed(void *a0, float f12, float f13);
 extern void func_00270C78(void *a0);
 extern void func_00260B30(void *a0);
 extern char D_005864F0[];
@@ -166,7 +166,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
                     break;
             }
             *(float *)(s1 + 0x338) = *(float *)(s1 + 0x338) * *(float *)(s1 + 0x5A8);
-            func_0014FA60(s1, *(float *)(s1 + 0x600), 1.0f);
+            cObjBase_MoveByNullSpeed(s1, *(float *)(s1 + 0x600), 1.0f);
             break;
         }
         case 4: {

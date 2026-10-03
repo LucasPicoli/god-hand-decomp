@@ -8,7 +8,7 @@ extern void CopyVec16From20_B62E0(void *dst, void *self);
 extern void cNode_setLocalScale(void *self, void *v);
 extern void func_002B60D0(void *dst, void *self);
 extern void ForwardToAllNodes_14D700(void *a0, long a1, int a2);
-extern void func_0014E778(void *a0, long a1);
+extern void cObj_setMeshValue(void *a0, long a1);
 extern void func_002D9F68(void *, int, ...);
 extern void func_0014D7D0(void *a0);
 
@@ -150,7 +150,7 @@ go:
     ForwardToAllNodes_14D700(*(char **)(o + 0x2B0), mask, 0);
     ForwardToAllNodes_14D700(*(char **)(o + 0x2B0), mask, 1);
     if ((*(int *)(o + 0x11C) & 0x80000) != 0) {
-        func_0014E778(*(char **)(o + 0x2B0), 0x51011L);
+        cObj_setMeshValue(*(char **)(o + 0x2B0), 0x51011L);
     }
     {
         int f = *(int *)(o + 0x11C);
