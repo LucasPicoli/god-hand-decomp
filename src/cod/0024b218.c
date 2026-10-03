@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -18,11 +19,13 @@ extern void SetBytes2F4Mode7_283270(char *a0, char a1);
 extern void ClearBytes2F4To2F7_283170(void *a0);
 extern void func_0026DB00(void *a0, int a1, int a2);
 
-__attribute__((section(".text.func_0025FCF8")))
-void func_0025FCF8(void *a0)
+/* Phase machine on the step byte, 2 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
+ * func_002A8578, cDamageUnit_SetDamageCollActive, cSnd_SeCall_2CBA48, GetSeqSEBase, moveMotion and
+ * 2 more. */
+__attribute__((section(".text.func_0025FCF8"))) void func_0025FCF8(cEm00 *self)
 {
-    char *s1 = (char *)a0;
-    void *s0;
+    char *s1 = (char *)self;
+    void *self;
     int p;
     int nb;
     int b;
@@ -30,77 +33,81 @@ void func_0025FCF8(void *a0)
     float one;
 
     p = *(int *)(s1 + 0x214);
-    s0 = (*(void *(**)(void *))(p + 0xB4))(s1 + *(short *)(p + 0xB0));
+    self = (*(void *(**)(void *))(p + 0xB4))(s1 + *(short *)(p + 0xB0));
     switch (*(unsigned char *)(s1 + 0x2F6)) {
-    case 0:
-        nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-        b = *(int *)(s1 + 0x304);
-        o = *(int *)(b + 0x108C) + b;
-        func_002A8578(s1, o, o, 0.0f, 3, nb, 0);
-        cDamageUnit_SetDamageCollActive(s0, 0);
-        cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                           (short)(GetSeqSEBase(s1) + 8),
-                           s1, 0, 0, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
-    case 1:
-        if (moveMotion(s1) != 0) {
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F4) = 2;
-            *(unsigned char *)(s1 + 0x2F5) = 2;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
-        } else {
-            one = 1.0f;
-            cObjBase_addNullSpeed_Rotation(s1, one);
-            cObjBase_addNullSpeed(s1, one);
-        }
-        break;
+        case 0:
+            nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
+            b = *(int *)(s1 + 0x304);
+            o = EM_RES_REC(b, 0x108C);
+            func_002A8578(s1, o, o, 0.0f, 3, nb, 0);
+            cDamageUnit_SetDamageCollActive(self, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 8), s1, 0, 0, 0, 0);
+            *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        case 1:
+            if (moveMotion(s1) != 0) {
+                *(unsigned char *)(s1 + 0x2F6) = 0;
+                *(unsigned char *)(s1 + 0x2F4) = 2;
+                *(unsigned char *)(s1 + 0x2F5) = 2;
+                *(unsigned char *)(s1 + 0x2F7) = 0;
+            } else {
+                one = 1.0f;
+                cObjBase_addNullSpeed_Rotation(s1, one);
+                cObjBase_addNullSpeed(s1, one);
+            }
+            break;
     }
     *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) | 0x400;
 }
 
-__attribute__((section(".text.func_0024B218")))
-void func_0024B218(void *a0)
+/* Phase machine on the step byte, 2 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
+ * cCoreSave_getGameLevel, Obj2810_SetState_8_a1, SetBytes2F4Mode7_283270,
+ * ClearBytes2F4To2F7_283170, func_002A8578 and 4 more. */
+__attribute__((section(".text.func_0024B218"))) void func_0024B218(cEm00 *self)
 {
-    char *s0 = (char *)a0;
     float one;
 
-    *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x30400;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0:
-    {
-        int t0, b, b2, a1v, a2v;
-        *(unsigned char *)(s0 + 0x1864) = 0;
-        t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        b = *(int *)(s0 + 0x304);
-        a1v = *(int *)(b + 0x3DA4) + b;
-        a2v = *(int *)(b + 0x3DA8) + b;
-        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-            b2 = *(int *)(s0 + 0x304);
-            a2v = *(int *)(b2 + 0x3DAC) + b2;
-            if (*(int *)(s0 + 0x748) != 0) Obj2810_SetState_8_a1(*(char **)(s0 + 0x748), 1);
-            if (*(int *)(s0 + 0x74C) != 0) SetBytes2F4Mode7_283270(*(char **)(s0 + 0x74C), 1);
-            if (*(int *)(s0 + 0x750) != 0) ClearBytes2F4To2F7_283170(*(char **)(s0 + 0x750));
-        } else {
-            if (*(int *)(s0 + 0x748) != 0) Obj2810_SetState_8_a1(*(char **)(s0 + 0x748), 0);
-            if (*(int *)(s0 + 0x74C) != 0) SetBytes2F4Mode7_283270(*(char **)(s0 + 0x74C), 0);
-            if (*(int *)(s0 + 0x750) != 0) ClearBytes2F4To2F7_283170(*(char **)(s0 + 0x750));
+    self->emFlags = self->emFlags | 0x30400;
+    switch (self->step) {
+        case 0: {
+            int t0, b, b2, a1v, a2v;
+            self->unk1864 = 0;
+            t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            b = self->resource;
+            a1v = EM_RES_REC(b, 0x3DA4);
+            a2v = EM_RES_REC(b, 0x3DA8);
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
+                b2 = self->resource;
+                a2v = EM_RES_REC(b2, 0x3DAC);
+                if (self->sub0 != 0)
+                    Obj2810_SetState_8_a1((char *)self->sub0, 1);
+                if (self->sub1 != 0)
+                    SetBytes2F4Mode7_283270((char *)self->sub1, 1);
+                if (self->sub2 != 0)
+                    ClearBytes2F4To2F7_283170((char *)self->sub2);
+            } else {
+                if (self->sub0 != 0)
+                    Obj2810_SetState_8_a1((char *)self->sub0, 0);
+                if (self->sub1 != 0)
+                    SetBytes2F4Mode7_283270((char *)self->sub1, 0);
+                if (self->sub2 != 0)
+                    ClearBytes2F4To2F7_283170((char *)self->sub2);
+            }
+            func_002A8578(self, a1v, a2v, 0.0f, 0xA, t0, 0);
         }
-        func_002A8578(s0, a1v, a2v, 0.0f, 0xA, t0, 0);
+            self->step++;
+        case 1:
+            if (moveMotion(self) != 0) {
+                self->mode = 0;
+                self->phase = 0xA1;
+                self->step = 0;
+                self->stepArg = 0;
+            }
+            one = 1.0f;
+            cObjBase_addNullSpeed_Rotation(self, one);
+            cObjBase_addNullSpeed(self, one);
+            break;
     }
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    case 1:
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0xA1;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
-        }
-        one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
-        break;
-    }
-    if (*(unsigned short *)(s0 + 0x3AC) & 1) {
-        func_0026DB00(s0, 4, 0);
+    if (self->moveFlags & 1) {
+        func_0026DB00(self, 4, 0);
     }
 }

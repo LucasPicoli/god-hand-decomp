@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 /* func_00227CA8 — 0x00227CA8, 828 B — sn-2.95.3-136.
  * Template src/cod/00225e30.c (func_00225E30, jaccard 0.93). */
@@ -17,117 +18,115 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_00260B30(void *a0);
 
-__attribute__((section(".text.func_00227CA8")))
-void func_00227CA8(void *a0)
+/* Phase machine on the step byte, 8 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468, irand,
+ * cCoreSave_getGameLevel, StoreMotionParamsBoth_2609A8, func_002A8578, Getplayer and 7 more. */
+__attribute__((section(".text.func_00227CA8"))) void func_00227CA8(cEm00 *self)
 {
-    char *s0 = (char *)a0;
-
-    *(unsigned char *)(s0 + 0x186A) = 2;
-    *(int *)(s0 + 0x16D4) |= 0x400;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0: {
-        int r;
-        int p1;
-        int p2;
-
-        *(unsigned char *)(s0 + 0x1864) = 0;
-        r = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        if (9.0f < *(float *)(s0 + 0x618)) {
-            *(unsigned char *)(s0 + 0x2F7) = 0;
-        } else {
-            *(unsigned char *)(s0 + 0x2F7) = 1;
-        }
-        if ((irand() & 3) == 0) {
-            *(unsigned char *)(s0 + 0x2F7) = 2;
-        }
-        switch (*(unsigned char *)(s0 + 0x2F7)) {
-        default:
+    self->unk186A = 2;
+    self->emFlags2 |= 0x400;
+    switch (self->step) {
         case 0: {
-            int w = *(int *)(s0 + 0x304);
-            p1 = *(int *)(w + 0x300C) + w;
-            p2 = *(int *)(w + 0x3010) + w;
-            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                int w2 = *(int *)(s0 + 0x304);
-                p2 = *(int *)(w2 + 0x3014) + w2;
-            }
-            *(float *)(s0 + 0x600) = 35.0f;
-            break;
-        }
-        case 1: {
-            int w = *(int *)(s0 + 0x304);
-            p1 = *(int *)(w + 0x3018) + w;
-            p2 = *(int *)(w + 0x301C) + w;
-            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                int w2 = *(int *)(s0 + 0x304);
-                p2 = *(int *)(w2 + 0x3020) + w2;
-            }
-            *(float *)(s0 + 0x600) = 25.0f;
-            break;
-        }
-        case 2: {
-            int w = *(int *)(s0 + 0x304);
-            p1 = *(int *)(w + 0x3024) + w;
-            p2 = *(int *)(w + 0x3028) + w;
-            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                int w2 = *(int *)(s0 + 0x304);
-                p2 = *(int *)(w2 + 0x302C) + w2;
-            }
-            *(float *)(s0 + 0x600) = 90.0f;
-            break;
-        }
-        }
-        StoreMotionParamsBoth_2609A8(s0, 0x14, 0x1B, 0x3E, -1, 0);
-        func_002A8578(s0, p1, p2, 0.0f, 3, r, 0);
-        *(int *)(s0 + 0x5F4) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    }
-    /* fallthrough */
-    case 1: {
-        float t = *(float *)(s0 + 0x600);
+            int r;
+            int p1;
+            int p2;
 
-        if (0.0f < t) {
-            int q;
-            *(float *)(s0 + 0x600) = t - *(float *)(s0 + 0x5A8);
-            q = Getplayer();
-            cGameObj_SetTgtTurn(s0, *(int *)(q + 0xF0),
-                                             *(float *)(s0 + 0x5A8) * 0.19634954f);
-        }
-        if (moveMotion(s0)) {
-            if (25.0f < *(float *)(s0 + 0x618)) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+            self->unk1864 = 0;
+            r = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            if (9.0f < self->playerDist) {
+                self->stepArg = 0;
             } else {
-                func_002705D8(s0);
+                self->stepArg = 1;
             }
-        }
-        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
-        cObjBase_addNullSpeed(s0, 1.0f);
-        if (*(unsigned short *)(s0 + 0x3AC) & 2) {
-            if (*(int *)(s0 + 0x5F4) != 0) {
-                *(int *)(s0 + 0x5F4) = 0;
-                switch (*(unsigned char *)(s0 + 0x2F7)) {
+            if ((irand() & 3) == 0) {
+                self->stepArg = 2;
+            }
+            switch (self->stepArg) {
                 default:
-                case 0:
-                    func_0026BEF0(s0, 0xA, 0);
+                case 0: {
+                    int w = self->resource;
+                    p1 = EM_RES_REC(w, 0x300C);
+                    p2 = EM_RES_REC(w, 0x3010);
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
+                        int w2 = self->resource;
+                        p2 = EM_RES_REC(w2, 0x3014);
+                    }
+                    self->timer = 35.0f;
                     break;
-                case 1:
-                    func_0026BEF0(s0, 0xB, 0);
+                }
+                case 1: {
+                    int w = self->resource;
+                    p1 = EM_RES_REC(w, 0x3018);
+                    p2 = EM_RES_REC(w, 0x301C);
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
+                        int w2 = self->resource;
+                        p2 = EM_RES_REC(w2, 0x3020);
+                    }
+                    self->timer = 25.0f;
                     break;
-                case 2:
-                    func_0026BEF0(s0, 0xC, 0);
+                }
+                case 2: {
+                    int w = self->resource;
+                    p1 = EM_RES_REC(w, 0x3024);
+                    p2 = EM_RES_REC(w, 0x3028);
+                    if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
+                        int w2 = self->resource;
+                        p2 = EM_RES_REC(w2, 0x302C);
+                    }
+                    self->timer = 90.0f;
                     break;
                 }
             }
-        } else {
-            *(int *)(s0 + 0x5F4) = 1;
+            StoreMotionParamsBoth_2609A8(self, 0x14, 0x1B, 0x3E, -1, 0);
+            func_002A8578(self, p1, p2, 0.0f, 3, r, 0);
+            self->timerB = 0;
+            self->step++;
         }
-        if (*(unsigned short *)(s0 + 0x3AC) & 1)
-            func_00260B30(s0);
-        break;
-    }
-    default:
-        break;
+        /* fallthrough */
+        case 1: {
+            float t = self->timer;
+
+            if (0.0f < t) {
+                int q;
+                self->timer = t - self->speedRate;
+                q = Getplayer();
+                cGameObj_SetTgtTurn(self, *(int *)(q + 0xF0), self->speedRate * 0.19634954f);
+            }
+            if (moveMotion(self)) {
+                if (25.0f < self->playerDist) {
+                    self->mode = 0;
+                    self->phase = 0x6C;
+                    self->step = 0;
+                    self->stepArg = 0;
+                } else {
+                    func_002705D8(self);
+                }
+            }
+            cObjBase_addNullSpeed_Rotation(self, 1.0f);
+            cObjBase_addNullSpeed(self, 1.0f);
+            if (self->moveFlags & 2) {
+                if (self->timerB != 0) {
+                    self->timerB = 0;
+                    switch (self->stepArg) {
+                        default:
+                        case 0:
+                            func_0026BEF0(self, 0xA, 0);
+                            break;
+                        case 1:
+                            func_0026BEF0(self, 0xB, 0);
+                            break;
+                        case 2:
+                            func_0026BEF0(self, 0xC, 0);
+                            break;
+                    }
+                }
+            } else {
+                self->timerB = 1;
+            }
+            if (self->moveFlags & 1)
+                func_00260B30(self);
+            break;
+        }
+        default:
+            break;
     }
 }

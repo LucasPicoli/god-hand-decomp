@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern int irand(void);
 extern int GetSeqSEBase(void *a0);
@@ -58,10 +59,11 @@ extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f,
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5,
                           int a6);
 
-__attribute__((section(".text.func_0022C3F8")))
-void func_0022C3F8(void *a0)
+/* Phase machine on the step byte, 14 case labels. Calls func_002A8578, cSnd_SeCall_2CBA48,
+ * GetSeqSEBase, cGameObj_SetTgtTurn, moveMotion, cObjBase_addNullSpeed_Rotation and 16 more. */
+__attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
 {
-    char *s1 = (char *)a0;
+    char *s1 = (char *)self;
     char *s2;
     int flag = 0;
 
@@ -90,234 +92,228 @@ void func_0022C3F8(void *a0)
         }
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
-    case 0: {
-        char *b = *(char **)(s1 + 0x304);
+        case 0: {
+            char *b = *(char **)(s1 + 0x304);
 
-        *(char *)(s1 + 0x1864) = 0;
-        func_002A8578(s1, *(int *)(b + 0x10C0) + (int)b,
-                      *(int *)(b + 0x10C8) + (int)b, 0.0f, 0xA, 0, 0);
-        cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                           (short)(GetSeqSEBase(s1) + 0xA),
-                           s1, 0, 0, 0, 0);
-        *(float *)(s1 + 0x600) = 150.0f;
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 1: {
-        char *m = s1 + 0x580;
-
-        cGameObj_SetTgtTurn(s1, (int)m,
-                                         *(float *)(s1 + 0x5A8) * 0.196349546f);
-        moveMotion(s1);
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        if (capVu0MagnitudeSqXZ(m, *(void **)(s1 + 0xF0)) < 1.0f) {
+            *(char *)(s1 + 0x1864) = 0;
+            func_002A8578(s1, EM_RES_REC((int)b, 0x10C0), EM_RES_REC((int)b, 0x10C8), 0.0f, 0xA, 0,
+                          0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0xA), s1, 0, 0, 0, 0);
+            *(float *)(s1 + 0x600) = 150.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
-        *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
-        if (s2 == 0 || *(float *)(s1 + 0x600) <= 0.0f) {
-            char *g = (char *)&D_005864F0;
+            /* fallthrough */
+        case 1: {
+            char *m = s1 + 0x580;
 
-            Obj293_ClearBytes_5A0_5A3(g);
-            func_002705D8(s1);
+            cGameObj_SetTgtTurn(s1, (int)m, *(float *)(s1 + 0x5A8) * 0.196349546f);
+            moveMotion(s1);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            if (capVu0MagnitudeSqXZ(m, *(void **)(s1 + 0xF0)) < 1.0f) {
+                *(unsigned char *)(s1 + 0x2F6) += 1;
+            }
+            *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
+            if (s2 == 0 || *(float *)(s1 + 0x600) <= 0.0f) {
+                char *g = (char *)&D_005864F0;
+
+                Obj293_ClearBytes_5A0_5A3(g);
+                func_002705D8(s1);
+            }
+            break;
         }
-        break;
-    }
-    case 2: {
-        char *b = *(char **)(s1 + 0x304);
+        case 2: {
+            char *b = *(char **)(s1 + 0x304);
 
-        func_002A8578(s1, *(int *)(b + 0x1A98) + (int)b,
-                      *(int *)(b + 0x1A9C) + (int)b, 0.0f, 0xA, 0, 0);
-        {
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1A98), EM_RES_REC((int)b, 0x1A9C), 0.0f, 0xA, 0,
+                          0);
+            {
+                char *g = (char *)&D_005864F0;
+
+                if (*(int *)(s1 + 0x564) == 0x214) {
+                    Obj293_OrByte_5A3(g, 1);
+                } else {
+                    Obj293_OrByte_5A3(g, 2);
+                }
+            }
+            *(float *)(s1 + 0x600) = 90.0f;
+            *(unsigned char *)(s1 + 0x2F6) += 1;
+        }
+            /* fallthrough */
+        case 3:
+            if (s2 != 0) {
+                cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
+            }
+            moveMotion(s1);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
+            if (s2 == 0 || *(float *)(s1 + 0x600) <= 0.0f) {
+                goto L784;
+            }
+            {
+                char *g = (char *)&D_005864F0;
+
+                if (*(unsigned char *)(g + 0x5A0) != 0) {
+                    *(unsigned char *)(s1 + 0x2F6) += 1;
+                }
+            }
+            break;
+        case 4:
+            if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
+                *(float *)(s1 + 0x600) = 16.0f;
+            } else {
+                *(float *)(s1 + 0x600) = 45.0f;
+            }
+            *(unsigned char *)(s1 + 0x2F6) += 1;
+            /* fallthrough */
+        case 5:
+            if (s2 != 0) {
+                cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
+            }
+            moveMotion(s1);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            if (s2 != 0) {
+                goto L79C;
+            }
+        L784:
+            {
+                char *g = (char *)&D_005864F0;
+
+                Obj293_ClearBytes_5A0_5A3(g);
+            }
+            func_002705D8(s1);
+            break;
+        L79C:
+            *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
+            if (*(float *)(s1 + 0x600) <= 0.0f) {
+                *(unsigned char *)(s1 + 0x2F6) += 1;
+            }
+            break;
+        case 6: {
+            char *b;
             char *g = (char *)&D_005864F0;
 
             if (*(int *)(s1 + 0x564) == 0x214) {
-                Obj293_OrByte_5A3(g, 1);
+                Obj293_OrByte_5A4(g, 1);
             } else {
-                Obj293_OrByte_5A3(g, 2);
+                Obj293_OrByte_5A4(g, 2);
             }
-        }
-        *(float *)(s1 + 0x600) = 90.0f;
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 3:
-        if (s2 != 0) {
-            cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0),
-                                             *(float *)(s1 + 0x5A8) * 0.196349546f);
-        }
-        moveMotion(s1);
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
-        if (s2 == 0 || *(float *)(s1 + 0x600) <= 0.0f) {
-            goto L784;
-        }
-        {
-            char *g = (char *)&D_005864F0;
-
-            if (*(unsigned char *)(g + 0x5A0) != 0) {
-                *(unsigned char *)(s1 + 0x2F6) += 1;
-            }
-        }
-        break;
-    case 4:
-        if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-            *(float *)(s1 + 0x600) = 16.0f;
-        } else {
-            *(float *)(s1 + 0x600) = 45.0f;
-        }
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-        /* fallthrough */
-    case 5:
-        if (s2 != 0) {
-            cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0),
-                                             *(float *)(s1 + 0x5A8) * 0.196349546f);
-        }
-        moveMotion(s1);
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        if (s2 != 0) {
-            goto L79C;
-        }
-    L784:
-        {
-            char *g = (char *)&D_005864F0;
-
-            Obj293_ClearBytes_5A0_5A3(g);
-        }
-        func_002705D8(s1);
-        break;
-    L79C:
-        *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
-        if (*(float *)(s1 + 0x600) <= 0.0f) {
+            b = *(char **)(s1 + 0x304);
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AA0), EM_RES_REC((int)b, 0x1AA4), 0.0f, 3, 0,
+                          0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
-        break;
-    case 6: {
-        char *b;
-        char *g = (char *)&D_005864F0;
-
-        if (*(int *)(s1 + 0x564) == 0x214) {
-            Obj293_OrByte_5A4(g, 1);
-        } else {
-            Obj293_OrByte_5A4(g, 2);
-        }
-        b = *(char **)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(b + 0x1AA0) + (int)b,
-                      *(int *)(b + 0x1AA4) + (int)b, 0.0f, 3, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 7:
-        if (moveMotion(s1) != 0) {
-            func_002705D8(s1);
-        }
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        {
-            char *g = (char *)&D_005864F0;
-
-            if (*(unsigned char *)(g + 0x5A1) != 0) {
-                *(unsigned char *)(s1 + 0x2F6) += 1;
+            /* fallthrough */
+        case 7:
+            if (moveMotion(s1) != 0) {
+                func_002705D8(s1);
             }
-        }
-        break;
-    case 8: {
-        char *b = *(char **)(s1 + 0x304);
-
-        func_002A8578(s1, *(int *)(b + 0x1AB0) + (int)b,
-                      *(int *)(b + 0x1AB4) + (int)b, 0.0f, 0, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 9:
-        if (moveMotion(s1) != 0) {
-            *(unsigned char *)(s1 + 0x2F6) += 1;
-        }
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        goto LA64;
-    case 10: {
-        char *b = *(char **)(s1 + 0x304);
-
-        func_002A8578(s1, *(int *)(b + 0x1AC0) + (int)b,
-                      *(int *)(b + 0x1AC4) + (int)b, 0.0f, 0, 0, 0);
-        *(float *)(s1 + 0x604) = 1.0f;
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 11: {
-        float acc;
-        float theta;
-        float turn;
-
-        acc = *(float *)(s1 + 0x604) + *(float *)(s1 + 0x5A8) * 0.0199999996f;
-        *(float *)(s1 + 0x604) = acc;
-        if (2.0f < acc) {
-            *(float *)(s1 + 0x604) = 2.0f;
-        }
-        SetMotionStep(s1, *(float *)(s2 + 0x5A8) *
-                                              *(float *)(s1 + 0x604));
-        moveMotion(s1);
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        if (2.0f <= *(float *)(s1 + 0x604)) {
-            theta = Adjust_theta(*(float *)(s1 + 0x104) + 3.14159274f);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
             {
-                char *o = *(char **)(s1 + 0xF0);
-                char *r = Getplayer();
+                char *g = (char *)&D_005864F0;
 
-                turn = Turn_dest(o, theta, 3.14159274f, *(void **)(r + 0xF0));
+                if (*(unsigned char *)(g + 0x5A1) != 0) {
+                    *(unsigned char *)(s1 + 0x2F6) += 1;
+                }
             }
-            if (irand() & 1) {
-                if (-0.785398185f < turn) {
-                    if (turn < -0.261799395f) {
-                        char *g = (char *)&D_005864F0;
+            break;
+        case 8: {
+            char *b = *(char **)(s1 + 0x304);
 
-                        Obj293_OrByte_5A5_1(g);
-                        *(float *)(g + 0x59C) = Adjust_theta(theta + turn);
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AB0), EM_RES_REC((int)b, 0x1AB4), 0.0f, 0, 0,
+                          0);
+            *(unsigned char *)(s1 + 0x2F6) += 1;
+        }
+            /* fallthrough */
+        case 9:
+            if (moveMotion(s1) != 0) {
+                *(unsigned char *)(s1 + 0x2F6) += 1;
+            }
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            goto LA64;
+        case 10: {
+            char *b = *(char **)(s1 + 0x304);
+
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AC0), EM_RES_REC((int)b, 0x1AC4), 0.0f, 0, 0,
+                          0);
+            *(float *)(s1 + 0x604) = 1.0f;
+            *(unsigned char *)(s1 + 0x2F6) += 1;
+        }
+            /* fallthrough */
+        case 11: {
+            float acc;
+            float theta;
+            float turn;
+
+            acc = *(float *)(s1 + 0x604) + *(float *)(s1 + 0x5A8) * 0.0199999996f;
+            *(float *)(s1 + 0x604) = acc;
+            if (2.0f < acc) {
+                *(float *)(s1 + 0x604) = 2.0f;
+            }
+            SetMotionStep(s1, *(float *)(s2 + 0x5A8) * *(float *)(s1 + 0x604));
+            moveMotion(s1);
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            if (2.0f <= *(float *)(s1 + 0x604)) {
+                theta = Adjust_theta(*(float *)(s1 + 0x104) + 3.14159274f);
+                {
+                    char *o = *(char **)(s1 + 0xF0);
+                    char *r = Getplayer();
+
+                    turn = Turn_dest(o, theta, 3.14159274f, *(void **)(r + 0xF0));
+                }
+                if (irand() & 1) {
+                    if (-0.785398185f < turn) {
+                        if (turn < -0.261799395f) {
+                            char *g = (char *)&D_005864F0;
+
+                            Obj293_OrByte_5A5_1(g);
+                            *(float *)(g + 0x59C) = Adjust_theta(theta + turn);
+                        }
                     }
                 }
             }
+        LA64:
+            if (*(unsigned short *)(s1 + 0x3AC) & 1) {
+                StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
+                func_00260B30(s1);
+            }
+            if (flag != 0) {
+                break;
+            }
+            *(unsigned char *)(s1 + 0x2F4) = 1;
+            *(unsigned char *)(s1 + 0x2F5) = 0x11;
+            *(unsigned char *)(s1 + 0x2F6) = 0;
+            *(unsigned char *)(s1 + 0x2F7) = 0;
+            return;
         }
-    LA64:
-        if (*(unsigned short *)(s1 + 0x3AC) & 1) {
-            StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
-            func_00260B30(s1);
-        }
-        if (flag != 0) {
-            break;
-        }
-        *(unsigned char *)(s1 + 0x2F4) = 1;
-        *(unsigned char *)(s1 + 0x2F5) = 0x11;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
-        return;
-    }
-    case 12: {
-        char *b;
-        char *g = (char *)&D_005864F0;
+        case 12: {
+            char *b;
+            char *g = (char *)&D_005864F0;
 
-        *(float *)(s1 + 0x104) = *(float *)(g + 0x59C) + 3.14159274f;
-        *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
-        b = *(char **)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(b + 0x1AD0) + (int)b,
-                      *(int *)(b + 0x1AD4) + (int)b, 0.0f, 0, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 13:
-        if (moveMotion(s1) != 0) {
-            func_002705D8(s1);
+            *(float *)(s1 + 0x104) = *(float *)(g + 0x59C) + 3.14159274f;
+            *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
+            b = *(char **)(s1 + 0x304);
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AD0), EM_RES_REC((int)b, 0x1AD4), 0.0f, 0, 0,
+                          0);
+            *(unsigned char *)(s1 + 0x2F6) += 1;
         }
-        cObjBase_addNullSpeed_Rotation(s1, 1.0f);
-        cObjBase_addNullSpeed(s1, 1.0f);
-        if (*(unsigned short *)(s1 + 0x3AC) & 1) {
-            StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
-            func_00260B30(s1);
-        }
-        break;
+            /* fallthrough */
+        case 13:
+            if (moveMotion(s1) != 0) {
+                func_002705D8(s1);
+            }
+            cObjBase_addNullSpeed_Rotation(s1, 1.0f);
+            cObjBase_addNullSpeed(s1, 1.0f);
+            if (*(unsigned short *)(s1 + 0x3AC) & 1) {
+                StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
+                func_00260B30(s1);
+            }
+            break;
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 0x20) {
         cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);

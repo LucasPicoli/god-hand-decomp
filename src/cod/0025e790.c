@@ -1,3 +1,5 @@
+#include "godhand/cEm00.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned int irand(void);
@@ -61,10 +63,11 @@ typedef struct {
     int i78;            /* 0x78 */
 } S;
 
-__attribute__((section(".text.func_0025E790")))
-void func_0025E790(void *a0)
+/* Phase machine on the step byte, 58 case labels. Calls VU0_SQC2_VF0, fp,
+ * Obj0000_Get_Byte_17C3_NZ_2_276468, irand, cSnd_SeCall_2CBA48, GetSeqSEBase and 9 more. */
+__attribute__((section(".text.func_0025E790"))) void func_0025E790(cEm00 *self)
 {
-    char *s3 = (char *)a0;
+    char *s3 = (char *)self;
     S s;
     int s2;
     int s1;
@@ -105,212 +108,206 @@ void func_0025E790(void *a0)
         s5 = fp(s3 + off);
     }
     switch (*(unsigned char *)(s3 + 0x2F6)) {
-    case 0:
-        nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
-        switch (*(int *)(s3 + 0x564)) {
-        default:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x340) + b;
-                s1 = *(int *)(b + 0x344) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x338) + b;
-                s1 = *(int *)(b + 0x33C) + b;
+        case 0:
+            nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
+            switch (*(int *)(s3 + 0x564)) {
+                default:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x340);
+                        s1 = EM_RES_REC(b, 0x344);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x338);
+                        s1 = EM_RES_REC(b, 0x33C);
+                    }
+                    break;
+                case 0x20A:
+                case 0x20B:
+                case 0x20C:
+                case 0x20D:
+                case 0x20E:
+                case 0x218:
+                case 0x245:
+                case 0x246:
+                case 0x247:
+                case 0x24F:
+                case 0x278:
+                case 0x279:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xACC);
+                        s1 = EM_RES_REC(b, 0xAD0);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xAD4);
+                        s1 = EM_RES_REC(b, 0xAD8);
+                    }
+                    break;
+                case 0x250:
+                case 0x251:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xACC);
+                        s1 = EM_RES_REC(b, 0xAD0);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xAD4);
+                        s1 = EM_RES_REC(b, 0xAD8);
+                    }
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 0x23), s3, 0, 0,
+                                       0, 0);
+                    break;
+                case 0x260:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x31A4);
+                        s1 = EM_RES_REC(b, 0x31A8);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x31A4);
+                        s1 = EM_RES_REC(b, 0x31A8);
+                    }
+                    break;
+                case 0x264:
+                    if ((*(int *)(s3 + 0x16D4) & 0x10000000) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        int o = *(int *)(s3 + 0x740);
+                        s2 = EM_RES_REC(b, 0x33A8);
+                        s1 = EM_RES_REC(b, 0x33AC);
+                        if (o != 0) {
+                            Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(o, 1);
+                        }
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        int o = *(int *)(s3 + 0x740);
+                        s2 = EM_RES_REC(b, 0x33B0);
+                        s1 = EM_RES_REC(b, 0x33B4);
+                        if (o != 0) {
+                            Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(o, 0);
+                        }
+                    }
+                    break;
+                case 0x265: {
+                    int b = *(int *)(s3 + 0x304);
+                    s2 = EM_RES_REC(b, 0x3988);
+                    s1 = EM_RES_REC(b, 0x398C);
+                    KillEffect(s3, 1, 2);
+                } break;
+                case 0x205:
+                case 0x206:
+                case 0x207:
+                case 0x208:
+                case 0x224:
+                case 0x241:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1768);
+                        s1 = EM_RES_REC(b, 0x176C);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1760);
+                        s1 = EM_RES_REC(b, 0x1764);
+                    }
+                    break;
+                case 0x209:
+                case 0x21F:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1768);
+                        s1 = EM_RES_REC(b, 0x176C);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1760);
+                        s1 = EM_RES_REC(b, 0x1764);
+                    }
+                    break;
+                case 0x20F:
+                case 0x210:
+                case 0x211:
+                case 0x226:
+                case 0x270:
+                case 0x271:
+                case 0x272:
+                case 0x273:
+                case 0x274:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xF0C);
+                        s1 = EM_RES_REC(b, 0xF10);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0xF14);
+                        s1 = EM_RES_REC(b, 0xF18);
+                    }
+                    break;
+                case 0x21A:
+                case 0x21B:
+                case 0x21C:
+                case 0x21D:
+                case 0x21E:
+                case 0x225:
+                case 0x22C:
+                case 0x22D:
+                case 0x22E:
+                case 0x22F:
+                case 0x248:
+                case 0x249:
+                case 0x24C:
+                case 0x24D:
+                case 0x24E:
+                case 0x252:
+                case 0x25A:
+                    if ((irand() & 1) != 0) {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1340);
+                        s1 = EM_RES_REC(b, 0x1344);
+                    } else {
+                        int b = *(int *)(s3 + 0x304);
+                        s2 = EM_RES_REC(b, 0x1338);
+                        s1 = EM_RES_REC(b, 0x133C);
+                    }
+                    break;
             }
-            break;
-        case 0x20A:
-        case 0x20B:
-        case 0x20C:
-        case 0x20D:
-        case 0x20E:
-        case 0x218:
-        case 0x245:
-        case 0x246:
-        case 0x247:
-        case 0x24F:
-        case 0x278:
-        case 0x279:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xACC) + b;
-                s1 = *(int *)(b + 0xAD0) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xAD4) + b;
-                s1 = *(int *)(b + 0xAD8) + b;
+            func_002A8578(s3, s2, s1, 0.0f, 5, nb, 0);
+            if ((*(int *)(s3 + 0x1644) & 0x800000) == 0) {
+                if (func_0025FE30(s3, 0, 0) != 0) {
+                    cDamageUnit_SetDamageCollActive(s5, 0);
+                }
             }
-            break;
-        case 0x250:
-        case 0x251:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xACC) + b;
-                s1 = *(int *)(b + 0xAD0) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xAD4) + b;
-                s1 = *(int *)(b + 0xAD8) + b;
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 8), s3, 0, 0, 0, 0);
+            switch (*(int *)(s3 + 0x564)) {
+                case 0x207:
+                case 0x240:
+                case 0x249:
+                case 0x24A:
+                case 0x24E:
+                    SetEffect(0x58, 0x9F, s3, &s, -1, 0xFFFFFFFF);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 0x22), s3, 0, 0,
+                                       0, 0);
+                    break;
             }
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(GetSeqSEBase(s3) + 0x23),
-                               s3, 0, 0, 0, 0);
-            break;
-        case 0x260:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x31A4) + b;
-                s1 = *(int *)(b + 0x31A8) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x31A4) + b;
-                s1 = *(int *)(b + 0x31A8) + b;
-            }
-            break;
-        case 0x264:
-            if ((*(int *)(s3 + 0x16D4) & 0x10000000) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                int o = *(int *)(s3 + 0x740);
-                s2 = *(int *)(b + 0x33A8) + b;
-                s1 = *(int *)(b + 0x33AC) + b;
-                if (o != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(o, 1);
+            *(unsigned char *)(s3 + 0x2F6) += 1;
+            /* fallthrough */
+        case 1:
+            *(float *)(s3 + 0x54C) = 3.0f;
+            *(unsigned short *)(s3 + 0x434) |= 8;
+            if (moveMotion(s3) != 0) {
+                if ((*(int *)(s3 + 0x1644) & 0x800000) != 0) {
+                    *(signed char *)(s3 + 0x2F4) = 2;
+                    *(signed char *)(s3 + 0x2F5) = 3;
+                    *(signed char *)(s3 + 0x2F6) = 0;
+                    *(signed char *)(s3 + 0x2F7) = 0;
+                } else {
+                    *(signed char *)(s3 + 0x2F4) = 2;
+                    *(signed char *)(s3 + 0x2F5) = 2;
+                    *(signed char *)(s3 + 0x2F6) = 0;
+                    *(signed char *)(s3 + 0x2F7) = 0;
                 }
             } else {
-                int b = *(int *)(s3 + 0x304);
-                int o = *(int *)(s3 + 0x740);
-                s2 = *(int *)(b + 0x33B0) + b;
-                s1 = *(int *)(b + 0x33B4) + b;
-                if (o != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(o, 0);
-                }
+                cObjBase_addNullSpeed_Rotation(s3, 1.0f);
+                cObjBase_addNullSpeed(s3, 1.0f);
             }
             break;
-        case 0x265:
-        {
-            int b = *(int *)(s3 + 0x304);
-            s2 = *(int *)(b + 0x3988) + b;
-            s1 = *(int *)(b + 0x398C) + b;
-            KillEffect(s3, 1, 2);
-        }
-            break;
-        case 0x205:
-        case 0x206:
-        case 0x207:
-        case 0x208:
-        case 0x224:
-        case 0x241:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1768) + b;
-                s1 = *(int *)(b + 0x176C) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1760) + b;
-                s1 = *(int *)(b + 0x1764) + b;
-            }
-            break;
-        case 0x209:
-        case 0x21F:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1768) + b;
-                s1 = *(int *)(b + 0x176C) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1760) + b;
-                s1 = *(int *)(b + 0x1764) + b;
-            }
-            break;
-        case 0x20F:
-        case 0x210:
-        case 0x211:
-        case 0x226:
-        case 0x270:
-        case 0x271:
-        case 0x272:
-        case 0x273:
-        case 0x274:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xF0C) + b;
-                s1 = *(int *)(b + 0xF10) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0xF14) + b;
-                s1 = *(int *)(b + 0xF18) + b;
-            }
-            break;
-        case 0x21A:
-        case 0x21B:
-        case 0x21C:
-        case 0x21D:
-        case 0x21E:
-        case 0x225:
-        case 0x22C:
-        case 0x22D:
-        case 0x22E:
-        case 0x22F:
-        case 0x248:
-        case 0x249:
-        case 0x24C:
-        case 0x24D:
-        case 0x24E:
-        case 0x252:
-        case 0x25A:
-            if ((irand() & 1) != 0) {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1340) + b;
-                s1 = *(int *)(b + 0x1344) + b;
-            } else {
-                int b = *(int *)(s3 + 0x304);
-                s2 = *(int *)(b + 0x1338) + b;
-                s1 = *(int *)(b + 0x133C) + b;
-            }
-            break;
-        }
-        func_002A8578(s3, s2, s1, 0.0f, 5, nb, 0);
-        if ((*(int *)(s3 + 0x1644) & 0x800000) == 0) {
-            if (func_0025FE30(s3, 0, 0) != 0) {
-                cDamageUnit_SetDamageCollActive(s5, 0);
-            }
-        }
-        cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                           (short)(GetSeqSEBase(s3) + 8),
-                           s3, 0, 0, 0, 0);
-        switch (*(int *)(s3 + 0x564)) {
-        case 0x207:
-        case 0x240:
-        case 0x249:
-        case 0x24A:
-        case 0x24E:
-            SetEffect(0x58, 0x9F, s3, &s, -1, 0xFFFFFFFF);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1,
-                               (short)(GetSeqSEBase(s3) + 0x22),
-                               s3, 0, 0, 0, 0);
-            break;
-        }
-        *(unsigned char *)(s3 + 0x2F6) += 1;
-        /* fallthrough */
-    case 1:
-        *(float *)(s3 + 0x54C) = 3.0f;
-        *(unsigned short *)(s3 + 0x434) |= 8;
-        if (moveMotion(s3) != 0) {
-            if ((*(int *)(s3 + 0x1644) & 0x800000) != 0) {
-                *(signed char *)(s3 + 0x2F4) = 2;
-                *(signed char *)(s3 + 0x2F5) = 3;
-                *(signed char *)(s3 + 0x2F6) = 0;
-                *(signed char *)(s3 + 0x2F7) = 0;
-            } else {
-                *(signed char *)(s3 + 0x2F4) = 2;
-                *(signed char *)(s3 + 0x2F5) = 2;
-                *(signed char *)(s3 + 0x2F6) = 0;
-                *(signed char *)(s3 + 0x2F7) = 0;
-            }
-        } else {
-            cObjBase_addNullSpeed_Rotation(s3, 1.0f);
-            cObjBase_addNullSpeed(s3, 1.0f);
-        }
-        break;
     }
 }

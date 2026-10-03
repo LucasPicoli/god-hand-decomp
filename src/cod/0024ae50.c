@@ -1,3 +1,5 @@
+#include "godhand/cEm00.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
@@ -32,10 +34,11 @@ extern int D_005850B0;
 
 
 
-__attribute__((section(".text.func_0024AE50")))
-void func_0024AE50(void *a0)
+/* Phase machine on the step byte, 4 case labels. Calls VU0_SQC2_VF0, Getplayer,
+ * capVu0MagnitudeSqXZ, Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, func_00281368 and 11 more.
+ */
+__attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
 {
-    char *s0 = (char *)a0;
     float v[12];
     float dist;
     void *sb;
@@ -45,106 +48,109 @@ void func_0024AE50(void *a0)
     o = (char *)Getplayer();
     sb = &D_005850B0;
     dist = capVu0MagnitudeSqXZ(*(void **)(o + 0xF0), sb);
-    *(int *)(s0 + 0x16D0) |= 0x30400;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0: {
-        int gb;
-        char *p;
-        *(char *)(s0 + 0x1864) = 0;
-        gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        p = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(p + 0x3D3C) + (int)p, *(int *)(p + 0x3D40) + (int)p, 0.0f, 0xA, gb, 0);
-        if (*(int *)(s0 + 0x748) != 0) {
-            func_00281368(*(void **)(s0 + 0x748), 0);
+    self->emFlags |= 0x30400;
+    switch (self->step) {
+        case 0: {
+            int gb;
+            char *p;
+            self->unk1864 = 0;
+            gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            p = (char *)self->resource;
+            func_002A8578(self, EM_RES_REC((int)p, 0x3D3C), EM_RES_REC((int)p, 0x3D40), 0.0f, 0xA,
+                          gb, 0);
+            if (self->sub0 != 0) {
+                func_00281368((void *)self->sub0, 0);
+            }
+            if (self->sub1 != 0) {
+                func_002832A0((void *)self->sub1, 0);
+            }
+            if (self->sub2 != 0) {
+                func_002832A0((void *)self->sub2, 0);
+            }
+            self->step += 1;
         }
-        if (*(int *)(s0 + 0x74C) != 0) {
-            func_002832A0(*(void **)(s0 + 0x74C), 0);
+            /* fallthrough */
+        case 1:
+            *(char *)((char *)self + 0x617) = 1;
+            if (moveMotion(self) != 0) {
+                self->step = 2;
+            }
+            cObjBase_addNullSpeed_Rotation(self, 1.0f);
+            cObjBase_addNullSpeed(self, 1.0f);
+            break;
+        case 2: {
+            int gb;
+            float ang;
+            void *q = *(void **)((char *)Getplayer() + 0xF0);
+            float *cs = v + 4;
+            float *tq = v + 8;
+            VU0_SQC2_VF0(v, 0x20);
+            VU0_LQC2(4, q, 0);
+            VU0_LQC2(5, sb, 0);
+            VU0_VSUB_XYZ(4, 4, 5);
+            VU0_SQC2(4, v, 0x20);
+            VU0_LQC2(4, tq, 0);
+            VU0_SQC2(4, v, 0x10);
+            if (v != cs) {
+                v[0] = v[4];
+                v[1] = v[5];
+                v[2] = v[6];
+            }
+            ang = capVu0Atan2(v[0], v[2]);
+            if (capVu0MagnitudeSqXZ(*(void **)((char *)Getplayer() + 0xF0), sb) < 64.0f) {
+                ang = fRand1_1() * 3.14159274f;
+            }
+            func_002498A8(self, ang);
+            self->unk1864 = 0;
+            gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            if (100.0f < dist) {
+                char *p = (char *)self->resource;
+                func_002A8578(self, EM_RES_REC((int)p, 0x3D44), EM_RES_REC((int)p, 0x3D48), 0.0f,
+                              0xA, gb, 0);
+                if (self->sub0 != 0) {
+                    func_00281368((void *)self->sub0, 1);
+                }
+                if (self->sub1 != 0) {
+                    func_002832A0((void *)self->sub1, 1);
+                }
+                if (self->sub2 != 0) {
+                    func_002832A0((void *)self->sub2, 1);
+                }
+                self->timer = 35.0f;
+            } else {
+                char *p = (char *)self->resource;
+                func_002A8578(self, EM_RES_REC((int)p, 0x3D4C), EM_RES_REC((int)p, 0x3D50), 0.0f,
+                              0xA, gb, 0);
+                if (self->sub0 != 0) {
+                    func_00281368((void *)self->sub0, 2);
+                }
+                if (self->sub1 != 0) {
+                    func_002832A0((void *)self->sub1, 2);
+                }
+                if (self->sub2 != 0) {
+                    func_002832A0((void *)self->sub2, 2);
+                }
+                self->timer = 15.0f;
+            }
+            self->step += 1;
         }
-        if (*(int *)(s0 + 0x750) != 0) {
-            func_002832A0(*(void **)(s0 + 0x750), 0);
-        }
-        *(unsigned char *)(s0 + 0x2F6) += 1;
+            /* fallthrough */
+        case 3:
+            if (0.0f < self->timer) {
+                *(char *)((char *)self + 0x617) = 1;
+                self->timer -= self->speedRate;
+            }
+            if (moveMotion(self) != 0) {
+                self->mode = 0;
+                self->phase = 0xA1;
+                self->step = 0;
+                self->stepArg = 0;
+            }
+            cObjBase_addNullSpeed_Rotation(self, 1.0f);
+            cObjBase_addNullSpeed(self, 1.0f);
+            break;
     }
-        /* fallthrough */
-    case 1:
-        *(char *)(s0 + 0x617) = 1;
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F6) = 2;
-        }
-        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
-        cObjBase_addNullSpeed(s0, 1.0f);
-        break;
-    case 2: {
-        int gb;
-        float ang;
-        void *q = *(void **)((char *)Getplayer() + 0xF0);
-        float *cs = v + 4;
-        float *tq = v + 8;
-        VU0_SQC2_VF0(v, 0x20);
-        VU0_LQC2(4, q, 0);
-        VU0_LQC2(5, sb, 0);
-        VU0_VSUB_XYZ(4, 4, 5);
-        VU0_SQC2(4, v, 0x20);
-        VU0_LQC2(4, tq, 0);
-        VU0_SQC2(4, v, 0x10);
-        if (v != cs) {
-            v[0] = v[4];
-            v[1] = v[5];
-            v[2] = v[6];
-        }
-        ang = capVu0Atan2(v[0], v[2]);
-        if (capVu0MagnitudeSqXZ(*(void **)((char *)Getplayer() + 0xF0), sb) < 64.0f) {
-            ang = fRand1_1() * 3.14159274f;
-        }
-        func_002498A8(s0, ang);
-        *(char *)(s0 + 0x1864) = 0;
-        gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        if (100.0f < dist) {
-            char *p = *(char **)(s0 + 0x304);
-            func_002A8578(s0, *(int *)(p + 0x3D44) + (int)p, *(int *)(p + 0x3D48) + (int)p, 0.0f, 0xA, gb, 0);
-            if (*(int *)(s0 + 0x748) != 0) {
-                func_00281368(*(void **)(s0 + 0x748), 1);
-            }
-            if (*(int *)(s0 + 0x74C) != 0) {
-                func_002832A0(*(void **)(s0 + 0x74C), 1);
-            }
-            if (*(int *)(s0 + 0x750) != 0) {
-                func_002832A0(*(void **)(s0 + 0x750), 1);
-            }
-            *(float *)(s0 + 0x600) = 35.0f;
-        } else {
-            char *p = *(char **)(s0 + 0x304);
-            func_002A8578(s0, *(int *)(p + 0x3D4C) + (int)p, *(int *)(p + 0x3D50) + (int)p, 0.0f, 0xA, gb, 0);
-            if (*(int *)(s0 + 0x748) != 0) {
-                func_00281368(*(void **)(s0 + 0x748), 2);
-            }
-            if (*(int *)(s0 + 0x74C) != 0) {
-                func_002832A0(*(void **)(s0 + 0x74C), 2);
-            }
-            if (*(int *)(s0 + 0x750) != 0) {
-                func_002832A0(*(void **)(s0 + 0x750), 2);
-            }
-            *(float *)(s0 + 0x600) = 15.0f;
-        }
-        *(unsigned char *)(s0 + 0x2F6) += 1;
-    }
-        /* fallthrough */
-    case 3:
-        if (0.0f < *(float *)(s0 + 0x600)) {
-            *(char *)(s0 + 0x617) = 1;
-            *(float *)(s0 + 0x600) -= *(float *)(s0 + 0x5A8);
-        }
-        if (moveMotion(s0) != 0) {
-            *(char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0xA1;
-            *(char *)(s0 + 0x2F6) = 0;
-            *(char *)(s0 + 0x2F7) = 0;
-        }
-        cObjBase_addNullSpeed_Rotation(s0, 1.0f);
-        cObjBase_addNullSpeed(s0, 1.0f);
-        break;
-    }
-    if (*(unsigned short *)(s0 + 0x3AC) & 1) {
-        func_0026DB00(s0, 6, 0);
+    if (self->moveFlags & 1) {
+        func_0026DB00(self, 6, 0);
     }
 }

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -41,76 +42,76 @@ typedef struct {
     int i78;
 } S;
 
-__attribute__((section(".text.func_00247E60")))
-void func_00247E60(void *a0)
+/* Phase machine on the step byte, 2 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
+ * func_002A8578, ReleaseObj, func_00275DA8, VU0_SQC2_VF0, SetEffect and 4 more. */
+__attribute__((section(".text.func_00247E60"))) void func_00247E60(cEm00 *self)
 {
-    char *s0 = (char *)a0;
     S s;
     char *v;
     int t0, b, p1, p2;
     float one;
 
-    *(int *)(s0 + 0x250) = *(int *)(s0 + 0x250) | 0x40000;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0:
-        *(char *)(s0 + 0x1864) = 0;
-        t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        b = *(int *)(s0 + 0x304);
-        p1 = *(int *)(b + 0x38C0) + b;
-        p2 = *(int *)(b + 0x38C4) + b;
-        *(int *)(s0 + 0x16D4) = *(int *)(s0 + 0x16D4) | 0x20000000;
-        *(char *)(s0 + 0x186C) = 2;
-        func_002A8578(s0, p1, p2, 0.0f, 10, t0, 0);
-        *(float *)(s0 + 0x1768) = 600.0f;
-        if (*(void **)(s0 + 0x744) != 0) {
-            ReleaseObj(*(void **)(s0 + 0x744));
-            *(int *)(s0 + 0x744) = 0;
-            func_00275DA8(s0);
-        }
-        s.f00 = 1.0f;
-        s.f04 = 1.0f;
-        s.f08 = 1.0f;
-        s.f0C = 1.0f;
-        VU0_SQC2_VF0(&s, 0x10);
-        VU0_SQC2_VF0(&s, 0x20);
-        {
-            float *q = &s.f30;
-            s.f30 = 1.0f;
-            q[1] = 1.0f;
-            q[2] = 1.0f;
-            q[3] = 1.0f;
-        }
-        s.f40 = 1.0f;
-        s.b4C = -1;
-        s.b4F = 0xFF;
-        s.i44 = 0;
-        s.i48 = 0;
-        s.b4D = 0;
-        s.b4E = 0;
-        s.i50 = 0;
-        VU0_SQC2_VF0(&s, 0x60);
-        s.h70 = 0;
-        s.f40 = *(float *)(s0 + 0x114);
-        s.h72 = 0;
-        s.b74 = 0;
-        s.i78 = 0;
-        SetEffect(0xBD, 0x19, s0, &s, 1, 0xFFFFFFFF);
-        v = cModel_getMeshPtr_14B730(s0, &D_0042CAD0);
-        if (v != 0) {
-            *(int *)(v + 0x380) = *(int *)(v + 0x380) & 0xFFFFFFFE;
-        }
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    case 1:
-        *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x9C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
-        }
-        one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
-        break;
+    self->objFlags = self->objFlags | 0x40000;
+    switch (self->step) {
+        case 0:
+            self->unk1864 = 0;
+            t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            b = self->resource;
+            p1 = EM_RES_REC(b, 0x38C0);
+            p2 = EM_RES_REC(b, 0x38C4);
+            self->emFlags2 = self->emFlags2 | 0x20000000;
+            *(char *)((char *)self + 0x186C) = 2;
+            func_002A8578(self, p1, p2, 0.0f, 10, t0, 0);
+            self->unk1768 = 600.0f;
+            if ((void *)self->unk744 != 0) {
+                ReleaseObj((void *)self->unk744);
+                self->unk744 = 0;
+                func_00275DA8(self);
+            }
+            s.f00 = 1.0f;
+            s.f04 = 1.0f;
+            s.f08 = 1.0f;
+            s.f0C = 1.0f;
+            VU0_SQC2_VF0(&s, 0x10);
+            VU0_SQC2_VF0(&s, 0x20);
+            {
+                float *q = &s.f30;
+                s.f30 = 1.0f;
+                q[1] = 1.0f;
+                q[2] = 1.0f;
+                q[3] = 1.0f;
+            }
+            s.f40 = 1.0f;
+            s.b4C = -1;
+            s.b4F = 0xFF;
+            s.i44 = 0;
+            s.i48 = 0;
+            s.b4D = 0;
+            s.b4E = 0;
+            s.i50 = 0;
+            VU0_SQC2_VF0(&s, 0x60);
+            s.h70 = 0;
+            s.f40 = self->unk114;
+            s.h72 = 0;
+            s.b74 = 0;
+            s.i78 = 0;
+            SetEffect(0xBD, 0x19, self, &s, 1, 0xFFFFFFFF);
+            v = cModel_getMeshPtr_14B730(self, &D_0042CAD0);
+            if (v != 0) {
+                *(int *)(v + 0x380) = *(int *)(v + 0x380) & 0xFFFFFFFE;
+            }
+            self->step++;
+        case 1:
+            self->emFlags = self->emFlags | 0x800000;
+            if (moveMotion(self) != 0) {
+                self->mode = 0;
+                self->phase = 0x9C;
+                self->step = 0;
+                self->stepArg = 0;
+            }
+            one = 1.0f;
+            cObjBase_addNullSpeed_Rotation(self, one);
+            cObjBase_addNullSpeed(self, one);
+            break;
     }
 }

@@ -1,3 +1,5 @@
+#include "godhand/cEm00.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -13,98 +15,100 @@ extern void func_0028FB08(void *a0);
 extern void cEmManage_ReleaseEm(void *a0, void *a1);
 extern char D_005864F0[];
 
-__attribute__((section(".text.func_0022A258")))
-void func_0022A258(void *a0)
+/* Phase machine on the step byte, 2 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
+ * func_002A8578, Getplayer, cGameObj_SetTgtTurn, moveMotion, func_002705D8 and 4 more. */
+__attribute__((section(".text.func_0022A258"))) void func_0022A258(cEm00 *self)
 {
-    char *s0 = (char *)a0;
     char *v;
     float one;
     int r, t;
 
-    *(char *)(s0 + 0x186A) = 2;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0:
-        t = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        v = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v + 0x3914) + (int)v, *(int *)(v + 0x3918) + (int)v, 0.0f, 3, t, 0);
-        *(int *)(s0 + 0x5F0) = 1;
-        *(int *)(s0 + 0x5F4) = 1;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    case 1:
-        v = (char *)Getplayer();
-        cGameObj_SetTgtTurn(s0, *(int *)(v + 0xF0), *(float *)(s0 + 0x5A8) * 0.09817477f);
-        *(int *)(s0 + 0x16D0) |= 0x800000;
-        if (moveMotion(s0) != 0) {
-            func_002705D8(s0);
-        }
-        one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
-        if (*(unsigned short *)(s0 + 0x3AC) & 1) {
-            if (*(int *)(s0 + 0x5F0) != 0) {
-                *(int *)(s0 + 0x5F0) = 0;
-                r = func_0026AA30(s0, 0x37E);
-                if (r != 0) {
-                    func_0026B240(s0, r, 0x37E, 0xE);
-                }
+    self->unk186A = 2;
+    switch (self->step) {
+        case 0:
+            t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
+            v = (char *)self->resource;
+            func_002A8578(self, EM_RES_REC((int)v, 0x3914), EM_RES_REC((int)v, 0x3918), 0.0f, 3, t,
+                          0);
+            self->timerA = 1;
+            self->timerB = 1;
+            self->step++;
+        case 1:
+            v = (char *)Getplayer();
+            cGameObj_SetTgtTurn(self, *(int *)(v + 0xF0), self->speedRate * 0.09817477f);
+            self->emFlags |= 0x800000;
+            if (moveMotion(self) != 0) {
+                func_002705D8(self);
             }
-        } else {
-            *(int *)(s0 + 0x5F0) = 1;
-        }
-        if (*(unsigned short *)(s0 + 0x3AC) & 1) {
-            if (*(int *)(s0 + 0x5F4) != 0) {
-                *(int *)(s0 + 0x5F4) = 0;
-                r = func_0026AA30(s0, 0x37E);
-                if (r != 0) {
-                    func_0026B240(s0, r, 0x37E, 0x12);
+            one = 1.0f;
+            cObjBase_addNullSpeed_Rotation(self, one);
+            cObjBase_addNullSpeed(self, one);
+            if (self->moveFlags & 1) {
+                if (self->timerA != 0) {
+                    self->timerA = 0;
+                    r = func_0026AA30(self, 0x37E);
+                    if (r != 0) {
+                        func_0026B240(self, r, 0x37E, 0xE);
+                    }
                 }
+            } else {
+                self->timerA = 1;
             }
-        } else {
-            *(int *)(s0 + 0x5F4) = 1;
-        }
-        break;
+            if (self->moveFlags & 1) {
+                if (self->timerB != 0) {
+                    self->timerB = 0;
+                    r = func_0026AA30(self, 0x37E);
+                    if (r != 0) {
+                        func_0026B240(self, r, 0x37E, 0x12);
+                    }
+                }
+            } else {
+                self->timerB = 1;
+            }
+            break;
     }
 }
 
-__attribute__((section(".text.func_00277D38")))
-void func_00277D38(void *a0)
+/* Phase machine on the step byte, 4 case labels. Calls func_002A8578, moveMotion,
+ * cObjBase_addNullSpeed_Rotation, cObjBase_addNullSpeed, func_0028FB08, cEmManage_ReleaseEm. */
+__attribute__((section(".text.func_00277D38"))) void func_00277D38(cEm00 *self)
 {
-    char *s0 = (char *)a0;
     char *v;
     float one;
 
-    *(int *)(s0 + 0x1560) |= 1;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0:
-        *(float *)(s0 + 0x104) = 2.5918138f;
-        *(float *)(*(char **)(s0 + 0xF0) + 0) = -80.327904f;
-        *(float *)(*(char **)(s0 + 0xF0) + 4) = -26.400499f;
-        *(float *)(*(char **)(s0 + 0xF0) + 8) = -22.3136f;
-        v = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v + 0xC) + (int)v, *(int *)(v + 0x10) + (int)v, 0.0f, 0, 0, 0);
-        *(short *)(s0 + 0x568) = 0x3C;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    case 1:
-        one = 1.0f;
-        moveMotion(s0);
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
-        if (--*(short *)(s0 + 0x568) <= 0) {
-            *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        }
-        break;
-    case 2:
-        func_002A8578(s0, *(int *)(*(char **)(s0 + 0x304) + 0x6C) + *(int *)(s0 + 0x304), *(int *)(*(char **)(s0 + 0x304) + 0x70) + *(int *)(s0 + 0x304), 0.0f, 3, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-    case 3:
-        if (moveMotion(s0) != 0) {
-            func_0028FB08(s0);
-            cEmManage_ReleaseEm(D_005864F0, s0);
+    self->unk1560 |= 1;
+    switch (self->step) {
+        case 0:
+            self->rot.y = 2.5918138f;
+            *(float *)((char *)self->pos + 0) = -80.327904f;
+            *(float *)((char *)self->pos + 4) = -26.400499f;
+            *(float *)((char *)self->pos + 8) = -22.3136f;
+            v = (char *)self->resource;
+            func_002A8578(self, EM_RES_REC((int)v, 0xC), EM_RES_REC((int)v, 0x10), 0.0f, 0, 0, 0);
+            self->unk568 = 0x3C;
+            self->step++;
+        case 1:
+            one = 1.0f;
+            moveMotion(self);
+            cObjBase_addNullSpeed_Rotation(self, one);
+            cObjBase_addNullSpeed(self, one);
+            if (--self->unk568 <= 0) {
+                self->step++;
+            }
             break;
-        }
-        one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
-        break;
+        case 2:
+            func_002A8578(self, *(int *)((char *)self->resource + 0x6C) + self->resource,
+                          *(int *)((char *)self->resource + 0x70) + self->resource, 0.0f, 3, 0, 0);
+            self->step++;
+        case 3:
+            if (moveMotion(self) != 0) {
+                func_0028FB08(self);
+                cEmManage_ReleaseEm(D_005864F0, self);
+                break;
+            }
+            one = 1.0f;
+            cObjBase_addNullSpeed_Rotation(self, one);
+            cObjBase_addNullSpeed(self, one);
+            break;
     }
 }

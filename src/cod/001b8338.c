@@ -1,3 +1,5 @@
+#include "godhand/cEm00.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern float cEmManage_GetSpeedRate(void *a0);
@@ -13,40 +15,41 @@ extern int D_005864F0;
 
 
 
-__attribute__((section(".text.func_001B8338")))
-void func_001B8338(void *a0) {
-    char *s0 = (char *)a0;
-    int v0;
+/* Phase machine on the step byte, 6 case labels. Calls cEmManage_GetSpeedRate, SetMotionStep,
+ * func_002A8578, moveMotion. */
+__attribute__((section(".text.func_001B8338"))) void func_001B8338(cEm00 *self)
+{
+    int res;
     float r = cEmManage_GetSpeedRate(&D_005864F0);
-    float f2 = *(float *)(s0 + 0x604);
+    float f2 = self->timer2;
     if (0.0f < f2) {
-        *(float *)(s0 + 0x604) = f2 - r;
+        self->timer2 = f2 - r;
     }
-    *(float *)(s0 + 0x5A8) = r;
-    SetMotionStep(s0, r);
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
-    case 0:
-        v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0xC) + v0, 0, 0.0f, 0, 0, 0);
-        moveMotion(s0);
-        *(unsigned short *)(s0 + 0x434) |= 8;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        break;
-    case 1:
-        break;
-    case 2:
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        /* fallthrough */
-    case 3:
-        *(unsigned short *)(s0 + 0x434) |= 8;
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x601) = 1;
-        }
-        break;
-    case 4:
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
-        break;
-    case 5:
-        break;
+    self->speedRate = r;
+    SetMotionStep(self, r);
+    switch (self->step) {
+        case 0:
+            res = self->resource;
+            func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0.0f, 0, 0, 0);
+            moveMotion(self);
+            *(unsigned short *)((char *)self + 0x434) |= 8;
+            self->step++;
+            break;
+        case 1:
+            break;
+        case 2:
+            self->step++;
+            /* fallthrough */
+        case 3:
+            *(unsigned short *)((char *)self + 0x434) |= 8;
+            if (moveMotion(self) != 0) {
+                *(unsigned char *)((char *)self + 0x601) = 1;
+            }
+            break;
+        case 4:
+            self->step++;
+            break;
+        case 5:
+            break;
     }
 }
