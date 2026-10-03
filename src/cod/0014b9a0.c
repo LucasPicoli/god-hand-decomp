@@ -1,3 +1,5 @@
+#include "godhand/cModel.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern int PostInc_D_00566E10_0015B0F0_15B0F0(int a0);
@@ -25,8 +27,12 @@ typedef int TI __attribute__((mode(TI)));
 #define CP4B(d, s) { float *dp = (d); int k = 3; float *sp_ = (s); for (; k != -1; k--) *dp++ = *sp_++; }
 #define CP4(d, s) { float *dp = (d); float *sp_ = (s); int k; for (k = 3; k != -1; k--) *dp++ = *sp_++; }
 
+/* Build the 0x120 byte display list that draws one mesh node's colour pass:
+ * a DMA header, light and colour matrices, the node's uv scroll as a
+ * translation, and two empty tags that func_00155C68 patches. Then queue it
+ * under the model's draw kind. A late-sorted model uses draw flag 0x14. */
 __attribute__((section(".text.func_0014B9A0")))
-void func_0014B9A0(char *this, char *obj, short id)
+void func_0014B9A0(cModel *self, cModelNode *node, short id)
 {
     char *w;
     char *pkt;
@@ -45,19 +51,19 @@ void func_0014B9A0(char *this, char *obj, short id)
 
     bit = D_007476B0 & 1;
     flag = 2;
-    if (*(int *)(this + 0x250) & 0x2000) flag = 0x14;
-    func_00155BE8(this, flag, bit);
+    if (self->objFlags & CMODEL_F_LATE) flag = 0x14;
+    func_00155BE8(self, flag, bit);
     w = (char *)PostInc_D_00566E10_0015B0F0_15B0F0(0x120);
     pkt = w;
     if (w == 0) return;
-    ((Q *)w)->w2 = 0;
-    ((Q *)w)->lo = 0x1000000D;
-    ((Q *)w)->w3 = 0;
+    ((cQuad *)w)->w2 = 0;
+    ((cQuad *)w)->lo = 0x1000000D;
+    ((cQuad *)w)->w3 = 0;
     w += 0x10;
-    *(int *)(w + 0) = 0;
-    *(int *)(w + 4) = 0;
-    *(int *)(w + 8) = 0x01000404;
-    *(int *)(w + 0xC) = 0x6C0C00C8;
+    ((cModelPktTail *)w)->unk00 = 0;
+    ((cModelPktTail *)w)->unk04 = 0;
+    ((cModelPktTail *)w)->vif = 0x01000404;
+    ((cModelPktTail *)w)->unk0C = 0x6C0C00C8;
     CP4((float *)(w + 0x10), D_003BD860)
     CP4B((float *)(w + 0x20), D_003BD870)
     CP4((float *)(w + 0x30), D_003BD870)
@@ -71,27 +77,27 @@ void func_0014B9A0(char *this, char *obj, short id)
     func_0030A548(m, D_004A6940);
     sceVu0UnitMatrix(m);
     one = 1.0f;
-    vec[0] = *(float *)(obj + 0x38C);
-    vec[1] = *(float *)(obj + 0x390);
+    vec[0] = node->uvScroll[0];
+    vec[1] = node->uvScroll[1];
     vec[3] = one;
     vec[2] = 0.0f;
     *(TI *)tmp = *(TI *)vec;
     CP4B((float *)(w + 0xC0), tmp)
     w += 0xD0;
     vD = w;
-    ((Q *)w)->lo = 0x10000000; ((Q *)w)->w2 = 0; ((Q *)w)->w3 = 0;
+    ((cQuad *)w)->lo = 0x10000000; ((cQuad *)w)->w2 = 0; ((cQuad *)w)->w3 = 0;
     w += 0x10;
-    ((Q *)w)->lo = 0x10000000; ((Q *)w)->w2 = 0; ((Q *)w)->w3 = 0;
+    ((cQuad *)w)->lo = 0x10000000; ((cQuad *)w)->w2 = 0; ((cQuad *)w)->w3 = 0;
     vC = w;
     w += 0x10;
-    ((Q *)w)->lo = *(unsigned long *)(obj + bit * 0xB0 + 0x90); ((Q *)w)->w2 = 0; ((Q *)w)->w3 = 0;
+    ((cQuad *)w)->lo = *(unsigned long *)(node->packet[bit] + 0x90); ((cQuad *)w)->w2 = 0; ((cQuad *)w)->w3 = 0;
     w += 0x10;
-    ((Q *)w)->lo = 0; ((Q *)w)->w2 = 0; ((Q *)w)->w3 = 0;
+    ((cQuad *)w)->lo = 0; ((cQuad *)w)->w2 = 0; ((cQuad *)w)->w3 = 0;
     func_00155C68(vD, vC, flag);
-    st = *(int *)(this + 0x2C0);
-    flags = *(int *)(obj + 0x380);
-    if (st == 0xA) {
-        if ((flags & 0x4080) != 0) {
+    st = self->drawKind;
+    flags = node->dispFlags;
+    if (st == CMODEL_KIND_PER_NODE) {
+        if ((flags & CMODEL_NODE_SORTED) != 0) {
             if (w == 0) func_0031A600(D_00754C80, 2, id, (int)pkt);
             else func_0031A650(D_00754C80, 2, id, (int)pkt, (int)w);
         } else {
@@ -99,8 +105,8 @@ void func_0014B9A0(char *this, char *obj, short id)
             else func_0031A650(D_00754C80, 1, 0xD, (int)pkt, (int)w);
         }
     } else {
-        if (w == 0) func_0031A600(D_00754C80, st, *(short *)(this + 0x2AC), (int)pkt);
-        else func_0031A650(D_00754C80, st, *(short *)(this + 0x2AC), (int)pkt, (int)w);
+        if (w == 0) func_0031A600(D_00754C80, st, self->id, (int)pkt);
+        else func_0031A650(D_00754C80, st, self->id, (int)pkt, (int)w);
     }
 }
 

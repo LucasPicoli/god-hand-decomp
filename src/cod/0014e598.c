@@ -1,3 +1,5 @@
+#include "godhand/cObj.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern void flush__7ostream(void *a0);
@@ -7,7 +9,7 @@ extern int D_003BAFE0[];
 extern void __builtin_delete(void);
 extern void func_003B9DE0(void *);
 extern int D_00460AA8;
-extern void func_001495A0(void *);
+extern void func_001495A0(cObj *self);
 extern int D_0041EAF0;
 extern void func_001BD580(void *);
 extern int D_00420D68;
@@ -59,11 +61,12 @@ int func_003BA800(int *a0) {
     return -1;
 }
 
+/* Construct the actor: run the cModel constructor and set this class's vtable. */
 __attribute__((section(".text.func_0014E598")))
-void *func_0014E598(void *a0){
-  func_001495A0(a0);
-  *(int**)((char*)a0+0x214) = &D_0041EAF0;
-  return a0;
+cObj *func_0014E598(cObj *self) {
+    func_001495A0(self);
+    self->vtable = (cVtEnt *)&D_0041EAF0;
+    return self;
 }
 
 __attribute__((section(".text.func_00171B10")))

@@ -1,13 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cModel.h"
 
+/* The mesh node whose name is name (up to 8 chars packed into a long, first
+ * char in the low byte), or 0 when the model has none. */
 __attribute__((section(".text.cModel_getMeshPtr_14B730")))
-void *cModel_getMeshPtr_14B730(char *obj, char *name)
+cModelNode *cModel_getMeshPtr_14B730(cModel *self, char *name)
 {
     long key;
     int i;
-    char *n;
-    char *p;
+    cModelNode *node;
 
     key = 0;
     i = 0;
@@ -21,15 +23,14 @@ void *cModel_getMeshPtr_14B730(char *obj, char *name)
             }
         } while (*name != 0);
     }
-    n = *(char **)(obj + 0x25C);
-    while (n != 0) {
-        p = *(char **)(n + 0x414);
-        if (*(long *)(p + 8) == key) {
+    node = self->meshHead;
+    while (node != 0) {
+        if (node->info->name == key) {
             break;
         }
-        n = *(char **)(n + 0x404);
+        node = node->next;
     }
-    return n;
+    return node;
 }
 
 /* Walks one pointer from the record to the flag word, the way retail forms

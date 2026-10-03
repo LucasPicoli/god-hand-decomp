@@ -1,11 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjBase.h"
 
-extern unsigned int func_0031ED08(float f12);
-extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
-extern int moveMotion(void *a0);
-extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
-extern void cObjBase_addNullSpeed(void *a0, float s);
+extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned int start,
+
+float rate, float blend, int flags);
+
+extern unsigned int func_0031ED08(float seconds);
+extern int moveMotion(cObjBase *self);
+extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
+extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_0028FB08(void *a0);
@@ -22,32 +26,31 @@ extern void func_001034E0(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002705D8(void *a0);
 
+/* Phase 4: start the stored motion, play it until it ends and keep moving and
+ * turning the model by its null-part speeds. */
 __attribute__((section(".text.func_0014ED60")))
-void func_0014ED60(void *a0)
+void func_0014ED60(cObjBase *self)
 {
-    char *s0 = (char *)a0;
     float one;
 
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (self->step) {
     case 0:
-        setMotionInfo(s0, *(int *)(s0 + 0x428), *(int *)(s0 + 0x42C),
-                      func_0031ED08(*(float *)(s0 + 0x438)),
-                      *(float *)(s0 + 0x440), *(float *)(s0 + 0x430),
-                      *(unsigned short *)(s0 + 0x434));
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        setMotionInfo(self, self->motion, self->motionEnd, func_0031ED08(self->motionStart),
+                      self->motionRate, self->motionBlend, self->motionFlags);
+        self->step = self->step + 1;
     case 1:
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        if (moveMotion(self) != 0) {
+            self->step = self->step + 1;
         }
         one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
+        cObjBase_addNullSpeed_Rotation(self, one);
+        cObjBase_addNullSpeed(self, one);
         break;
     case 2:
-        moveMotion(s0);
+        moveMotion(self);
         one = 1.0f;
-        cObjBase_addNullSpeed_Rotation(s0, one);
-        cObjBase_addNullSpeed(s0, one);
+        cObjBase_addNullSpeed_Rotation(self, one);
+        cObjBase_addNullSpeed(self, one);
         break;
     }
 }

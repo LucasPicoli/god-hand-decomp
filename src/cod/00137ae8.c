@@ -1,3 +1,5 @@
+#include "godhand/cModel.h"
+
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_00466448[];
@@ -25,31 +27,38 @@ void Forward149550_149580(void) {
     ForwardGlobalIfFlagSet_149550(1, 0xFFFF);
 }
 
+extern int func_001F8AD8(cBox *box, float *mtx);
+/* True when the model should be drawn: forced on by the render state or the
+ * model, never when it is hidden, else whether its box is in view. */
 __attribute__((section(".text.IsTargetVisible_14B470")))
-int IsTargetVisible_14B470(int a0) {
-    int v1;
+int IsTargetVisible_14B470(cModel *self) {
+    int flags;
     if (D_00747A80 & 0x800000) {
         return 1;
     }
-    v1 = *(int*)(a0 + 0x250);
-    if (v1 & 2) {
+    flags = self->objFlags;
+    if (flags & CMODEL_F_SHOWN) {
         return 1;
     }
-    if (v1 & 0x10000) {
+    if (flags & CMODEL_F_HIDDEN) {
         return 0;
     }
-    return func_001F8AD8((int*)(a0 + 0x260), (int*)(a0 + 0x80)) == 0;
+    return func_001F8AD8(&self->box, self->mtx) == 0;
 }
 
+extern int func_00148BD8(cModelNode *node, int prio, int arg, int mode);
+extern int func_00148D30(cModelNode *node, int prio);
+/* Hand the node to the special-pass material when its mesh asks for it and the
+ * pass is on; else to the plain one. */
 __attribute__((section(".text.ForwardAttackByMode_14B5D8")))
-int ForwardAttackByMode_14B5D8(int a0, int a1) {
-    if (*(int*)(*(int*)(a1 + 0x414) + 0x34) & 0x200000) {
-        int a2 = D_00747AA8;
-        if (a2) {
-            return func_00148BD8(a1, *(int*)(a0 + 0x2C4), a2, 0);
+int ForwardAttackByMode_14B5D8(cModel *self, cModelNode *node) {
+    if (node->info->flags & CMODEL_MESH_SPECIAL) {
+        int pass = D_00747AA8;
+        if (pass) {
+            return func_00148BD8(node, self->drawPrio, pass, 0);
         }
     }
-    return func_00148D30(a1, *(int*)(a0 + 0x2C4));
+    return func_00148D30(node, self->drawPrio);
 }
 
 __attribute__((section(".text.cAreaCamManager_SetData")))

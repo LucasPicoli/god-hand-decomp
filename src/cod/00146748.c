@@ -1,3 +1,5 @@
+#include "godhand/cModel.h"
+
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern char D_0041DCC8[];
@@ -18,21 +20,22 @@ void cCockTutorial_TutorialON(int a0, unsigned short a1) {
     }
 }
 
+/* Show or hide every mesh on one layer. */
 __attribute__((section(".text.cModel_setLayerDisplay")))
-void cModel_setLayerDisplay(int a0, int a1, int a2) {
-    int v1 = *(int *)((char*)a0 + 0x25C);
-    if (v1 == 0) return;
+void cModel_setLayerDisplay(cModel *self, int layer, int show) {
+    cModelNode *node = self->meshHead;
+    if (node == 0) return;
     do {
-        if (a1 == *(unsigned char *)((char*)v1 + 0x40C)) {
-            int v0 = *(int *)((char*)v1 + 0x380);
-            if (a2 != 0)
-                v0 &= 0xFFFFFFFE;
+        if (layer == node->layer) {
+            unsigned int flags = node->dispFlags;
+            if (show != 0)
+                flags &= 0xFFFFFFFE;
             else
-                v0 |= 1;
-            *(int *)((char*)v1 + 0x380) = v0;
+                flags |= CMODEL_NODE_HIDE;
+            node->dispFlags = flags;
         }
-        v1 = *(int *)((char*)v1 + 0x404);
-    } while (v1 != 0);
+        node = node->next;
+    } while (node != 0);
 }
 
 __attribute__((section(".text.InitPtrField80AndForward_146748")))

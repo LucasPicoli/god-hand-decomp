@@ -1,11 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjBase.h"
 
-extern unsigned int func_0031ED08(float f12);
-extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
-extern int moveMotion(void *a0);
-extern void func_0014E818(void *a0, float f12, void *a1);
-extern void cObjBase_addNullSpeed(void *a0, float s);
+extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned int start,
+
+float rate, float blend, int flags);
+
+extern unsigned int func_0031ED08(float seconds);
+extern int moveMotion(cObjBase *self);
+extern void func_0014E818(cObjBase *self, float maxTurn, cVec *target);
+extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_0028FB08(void *a0);
@@ -21,32 +25,31 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void Obj2810_ClearState_5(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
 
+/* Phase 2: start the stored motion and play it while turning the model toward
+ * its turn target, then keep moving it by its null-part speed. */
 __attribute__((section(".text.func_0014EB90")))
-void func_0014EB90(void *a0)
+void func_0014EB90(cObjBase *self)
 {
-    char *s0 = (char *)a0;
     float one;
 
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (self->step) {
     case 0:
-        setMotionInfo(s0, *(int *)(s0 + 0x428), *(int *)(s0 + 0x42C),
-                      func_0031ED08(*(float *)(s0 + 0x438)),
-                      *(float *)(s0 + 0x440), *(float *)(s0 + 0x430),
-                      *(unsigned short *)(s0 + 0x434));
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        setMotionInfo(self, self->motion, self->motionEnd, func_0031ED08(self->motionStart),
+                      self->motionRate, self->motionBlend, self->motionFlags);
+        self->step = self->step + 1;
     case 1:
-        if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        if (moveMotion(self) != 0) {
+            self->step = self->step + 1;
         }
-        func_0014E818(s0, *(float *)(s0 + 0x4B8), s0 + 0x4C0);
+        func_0014E818(self, self->turnRate, &self->turnTarget);
         one = 1.0f;
-        cObjBase_addNullSpeed(s0, one);
+        cObjBase_addNullSpeed(self, one);
         break;
     case 2:
-        moveMotion(s0);
-        func_0014E818(s0, *(float *)(s0 + 0x4B8), s0 + 0x4C0);
+        moveMotion(self);
+        func_0014E818(self, self->turnRate, &self->turnTarget);
         one = 1.0f;
-        cObjBase_addNullSpeed(s0, one);
+        cObjBase_addNullSpeed(self, one);
         break;
     }
 }

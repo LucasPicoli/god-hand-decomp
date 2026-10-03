@@ -1,7 +1,9 @@
+#include "godhand/cModel.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern void cModel_calcParts(void *a0);
-extern int cModel_getMeshPtr(void *a0, int a1);
+extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern char *Getplayer(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
 extern int cEmManage_CkPlCatched(void *p);
@@ -116,21 +118,23 @@ int func_0012CA60(char *a0)
     return 0;
 }
 
+/* Force the model's draw layer: 0x16 when the first mesh's data count is 2 or
+ * more, 0x18 when it is not. */
 __attribute__((section(".text.func_0014D7D0")))
-void func_0014D7D0(char *a0)
+void func_0014D7D0(cModel *self)
 {
     char frame[0x10];
-    char *m;
-    char *p;
-    int ok;
+    cModelNode *node;
+    cMeshData *data;
+    int multi;
 
-    m = (char *)cModel_getMeshPtr(a0, 0);
-    *(int *)frame = (int)(p = *(char **)(m + 0x388));
-    ok = *(unsigned short *)(p + 8) >= 2;
-    if (ok) {
-        *(unsigned char *)(a0 + 0x2BE) = 0x16;
+    node = cModel_getMeshPtr(self, 0);
+    *(int *)frame = (int)(data = node->data);
+    multi = data->num >= 2;
+    if (multi) {
+        self->layerForce = 0x16;
     } else {
-        *(unsigned char *)(a0 + 0x2BE) = 0x18;
+        self->layerForce = 0x18;
     }
 }
 

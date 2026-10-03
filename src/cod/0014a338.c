@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cModel.h"
 
 extern void func_00143A90(void *);
 extern char *D_003BD6E8;
@@ -51,12 +52,15 @@ void cSndSeVoice_Stop(cSndSeVoice *v) {
 
 /* cModel_setMeshDisplay — sn-2.95.3-136 */
 
+extern cModelNode *cModel_getMeshPtr_14B730(cModel *self, char *name);
+/* Show or hide the mesh called name. Returns 0 when the model has no such
+ * mesh. */
 __attribute__((section(".text.cModel_setMeshDisplay")))
-int cModel_setMeshDisplay(void *a0, int a1, int flag) {
-    char *m = cModel_getMeshPtr_14B730(a0, a1);
-    if (m == 0) return 0;
-    if (flag != 0) *(int *)(m + 0x380) &= 0xFFFFFFFE;
-    else *(int *)(m + 0x380) |= 1;
+int cModel_setMeshDisplay(cModel *self, char *name, int show) {
+    cModelNode *node = cModel_getMeshPtr_14B730(self, name);
+    if (node == 0) return 0;
+    if (show != 0) node->dispFlags &= 0xFFFFFFFE;
+    else node->dispFlags |= CMODEL_NODE_HIDE;
     return 1;
 }
 

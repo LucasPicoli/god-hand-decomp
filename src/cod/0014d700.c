@@ -1,23 +1,30 @@
+#include "godhand/cModel.h"
+
 extern unsigned char D_004292F0[];
 extern unsigned char D_00574380[];
 
+extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
+extern void func_00155D98(cModelNode *node, int a1, int a2);
+/* Call func_00155D98 on every mesh node of the model. */
 __attribute__((section(".text.ForwardToAllNodes_14D700")))
-void ForwardToAllNodes_14D700(char *a0, int a1, int a2) {
-    char *node;
-    node = cModel_getMeshPtr(a0, 0);
+void ForwardToAllNodes_14D700(cModel *self, int a1, int a2) {
+    cModelNode *node;
+    node = cModel_getMeshPtr(self, 0);
     while (node != 0) {
         func_00155D98(node, a1, a2);
-        node = *(char **)(node + 0x404);
+        node = node->next;
     }
 }
 
+extern void func_00155D60(cModelNode *node, int a1, int a2);
+/* Call func_00155D60 on every mesh node of the model. */
 __attribute__((section(".text.ForwardNodeUpdate_14D768")))
-void ForwardNodeUpdate_14D768(char *a0, int a1, int a2) {
-    char *node;
-    node = cModel_getMeshPtr(a0, 0);
+void ForwardNodeUpdate_14D768(cModel *self, int a1, int a2) {
+    cModelNode *node;
+    node = cModel_getMeshPtr(self, 0);
     while (node != 0) {
         func_00155D60(node, a1, a2);
-        node = *(char **)(node + 0x404);
+        node = node->next;
     }
 }
 

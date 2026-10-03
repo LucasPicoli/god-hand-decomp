@@ -1,8 +1,12 @@
+#define COBJBASE_NO_TYPEDEF
+#include "godhand/cObjBase.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern char D_0041EBE8[];
 extern char D_0041EB80[];
-extern void func_003A52F0(void *a0, int a1, int a2);
+extern void *func_0014E598(void *self);
+extern void func_003A52F0(void *dst, int val, int n);
 extern int D_007854F8;
 extern int D_0041EC58;
 extern int D_007856E8;
@@ -62,30 +66,34 @@ void func_002D5080(long long *a0, int *a1, int *a2) {
 
 
 
+/* Construct the actor: run the cObj constructor, set this class's vtable and
+ * zero its 16-byte vectors: unk310, unk320, nullSpeed, nullRotSpeed, the three
+ * after it, kageHit, unk480, posA and turnTarget. The store offsets stay
+ * literal because retail forms them off self with no address register. */
 __attribute__((section(".text.cObjBase")))
-void *cObjBase(void *a0) {
-    func_0014E598(a0);
-    *(int*)((char*)a0 + 0x214) = (int)D_0041EBE8;
-    VU0_SQC2_VF0(a0, 0x310);
-    VU0_SQC2_VF0(a0, 0x320);
-    VU0_SQC2_VF0(a0, 0x330);
-    VU0_SQC2_VF0(a0, 0x360);
-    VU0_SQC2_VF0(a0, 0x370);
-    VU0_SQC2_VF0(a0, 0x380);
-    VU0_SQC2_VF0(a0, 0x390);
-    VU0_SQC2_VF0(a0, 0x460);
-    VU0_SQC2_VF0(a0, 0x480);
-    VU0_SQC2_VF0(a0, 0x490);
-    VU0_SQC2_VF0(a0, 0x4C0);
-    *(int*)((char*)a0 + 0x4AC) = (int)D_0041EB80;
-    func_003A52F0((char*)a0 + 0x4A8, 0, 4);
-    *(int*)((char*)a0 + 0x4A0) = -1;
-    *(int*)((char*)a0 + 0x4B4) = 0;
-    *(int*)((char*)a0 + 0x4B0) = 0;
-    *(int*)((char*)a0 + 0x4A4) = 0;
-    *(int*)((char*)a0 + 0x44C) = 0;
-    *(char*)((char*)a0 + 0x420) = 0;
-    return a0;
+struct cObjBase *cObjBase(struct cObjBase *self) {
+    func_0014E598(self);
+    self->vtable = (cVtEnt *)D_0041EBE8;
+    VU0_SQC2_VF0(self, 0x310);
+    VU0_SQC2_VF0(self, 0x320);
+    VU0_SQC2_VF0(self, 0x330);
+    VU0_SQC2_VF0(self, 0x360);
+    VU0_SQC2_VF0(self, 0x370);
+    VU0_SQC2_VF0(self, 0x380);
+    VU0_SQC2_VF0(self, 0x390);
+    VU0_SQC2_VF0(self, 0x460);
+    VU0_SQC2_VF0(self, 0x480);
+    VU0_SQC2_VF0(self, 0x490);
+    VU0_SQC2_VF0(self, 0x4C0);
+    self->unk4AC = D_0041EB80;
+    func_003A52F0(&self->kageFlags, 0, 4);
+    self->unk4A0 = -1;
+    self->unk4B4 = 0;
+    self->unk4B0 = 0;
+    self->unk4A4 = 0;
+    self->shadowData = 0;
+    self->unk420[0] = 0;
+    return self;
 }
 
 __attribute__((section(".text.func_0014FD20")))

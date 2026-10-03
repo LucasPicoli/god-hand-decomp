@@ -1,3 +1,5 @@
+#include "godhand/cObjBase.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_0041EBE8;
@@ -18,14 +20,17 @@ extern int D_00754230[];
 extern void cIDManager_getLocalFileName(int a0, void *a1, int a2, int a3);
 extern int cDvd_ReadAlloc(void *a0, void *a1, void *a2, void *a3, int t0, int t1, int t2, int t3);
 extern int cDvd_CheckWait(void *a0, int a1);
-extern void func_0015EAC8(int a0);
+extern void func_0015EAC8(char *work);
 extern void func_002D5890(int a0, int a1);
 extern void func_002D5440(int a0, int a1);
 
+extern int func_0014E5D0(struct cObjBase *self);
+/* The cObjBase part of the destructor: put this class's vtable back, then run
+ * the cObj destructor. */
 __attribute__((section(".text.func_0014EA28")))
-int func_0014EA28(int a0) {
-    *(int*)((char*)a0+0x214) = (int)&D_0041EBE8;
-    return func_0014E5D0(a0);
+int func_0014EA28(struct cObjBase *self) {
+    self->vtable = (cVtEnt *)&D_0041EBE8;
+    return func_0014E5D0(self);
 }
 
 __attribute__((section(".text.func_002A73C8")))
@@ -97,18 +102,20 @@ int func_00161500(int a0, int a1)
     return *(int*)((char*)a0+0x50);
 }
 
+/* Remember the shadow data and its two work areas, and initialise each work
+ * area. */
 __attribute__((section(".text.cObjBase_KageInit")))
-void cObjBase_KageInit(int a0, int a1, int a2)
+void cObjBase_KageInit(cObjBase *self, char *work, void *shadowData)
 {
-    int s2 = 0;
-    int s1 = 1;
-    *(int*)((char*)a0+0x44C) = a2;
-    *(int*)((char*)a0+0x450) = a1;
+    int offset = 0;
+    int left = 1;
+    self->shadowData = shadowData;
+    self->kageWork = work;
     do {
-        s1 = s1 - 1;
-        func_0015EAC8(*(int*)((char*)a0+0x450) + s2);
-        s2 += 0x750;
-    } while (s1 >= 0);
+        left = left - 1;
+        func_0015EAC8(self->kageWork + offset);
+        offset += 0x750;
+    } while (left >= 0);
 }
 
 __attribute__((section(".text.cTaskManager_execute")))

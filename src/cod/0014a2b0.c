@@ -1,7 +1,9 @@
+#include "godhand/cModel.h"
+
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern void cSndBgmNode_FadeOut(void *a0, float f12);
-extern void MtxInitCoord(void *a0, int a1, void *a2, void *a3, int t0);
+extern void MtxInitCoord(float *mtx, cVec *pos, cVec *rot, cVec *scale, int order);
 extern void CustomIDWork_SetDisp(void *a0, int a1);
 extern void InitFields_1B6E90(void *a0);
 extern int D_00429C80;
@@ -20,25 +22,26 @@ void cSnd_DieDemoStart(void *a0)
     *(unsigned int *)(p + 0xAC) = *(unsigned int *)(p + 0xAC) | 0x100000;
 }
 
+/* Rebuild the model's matrix from its position, rotation and scale, and keep
+ * a copy of the scale the matrix was built with. Skipped when the owner builds
+ * the matrix itself. */
 __attribute__((section(".text.cModel_calcNullPart")))
-void cModel_calcNullPart(void *a0)
+void cModel_calcNullPart(cModel *self)
 {
-    char *s0 = (char *)a0;
-    char *s1;
+    cVec *scale;
     float *dst;
 
-    if ((*(int *)(s0 + 0x250) & 0x800) != 0)
+    if ((self->objFlags & CMODEL_F_NO_CALC) != 0)
         return;
 
-    s1 = s0 + 0x110;
-    MtxInitCoord(s0 + 0x80, *(int *)(s0 + 0xF0), s0 + 0x100, s1,
-                  *(unsigned char *)(s0 + 0x140));
+    scale = &self->scale;
+    MtxInitCoord(self->mtx, self->pos, &self->rot, scale, self->rotOrder);
 
-    dst = (float *)(s0 + 0x120);
-    if ((char *)dst != s1) {
-        dst[0] = *(float *)(s1 + 0x0);
-        dst[1] = *(float *)(s1 + 0x4);
-        dst[2] = *(float *)(s1 + 0x8);
+    dst = &self->scaleCalc.x;
+    if (dst != &scale->x) {
+        dst[0] = scale->x;
+        dst[1] = scale->y;
+        dst[2] = scale->z;
     }
 }
 

@@ -1,3 +1,5 @@
+#include "godhand/cModel.h"
+
 /* sn-2.95.3-136 matched TU. */
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
@@ -18,10 +20,10 @@ extern void cEmSetParam_setEm(void *a0, int a1);
 extern void cEmWrap_StartAction(void *a0);
 extern char D_00586AB0[];
 extern int D_007476B0;
-extern unsigned char D_00754C80[];
-extern void *cModel_getMeshPtr(void *this, int idx);
-extern void func_0031A600(void *a0, int a1, int a2, int a3);
-extern void func_0031A650(void *a0, int a1, int a2, int a3, int t0);
+extern char D_00754C80[];
+extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
+extern void func_0031A600(void *queue, int kind, int id, void *start);
+extern void func_0031A650(void *queue, int kind, int id, void *start, void *end);
 
 /* sn-2.95.3-136 */
 
@@ -229,45 +231,39 @@ void func_001F2428(void *a0) {
 
 
 
+/* Queue the model's own packet for this frame's parity. The first mesh's
+ * flags pick the kind for a per-node model. */
 __attribute__((section(".text.func_0014C5A0")))
-void func_0014C5A0(void *a0, short a1)
+void func_0014C5A0(cModel *self, short id)
 {
-    char *this = (char *)a0;
-    char *mesh;
-    int bit;
-    int flags;
-    char *arr;
-    int p;
-    int q;
+    int parity;
+    unsigned int flags;
+    char *start;
+    char *end;
 
-    bit = D_007476B0 & 1;
-    mesh = (char *)cModel_getMeshPtr(this, 0);
-    flags = *(int *)(mesh + 0x380);
-    arr = this + 0x220;
-    arr += bit * 4;
-    p = *(int *)arr;
-    q = p + 0x70;
-    if (*(int *)(this + 0x2C0) == 0xA) {
-        if ((flags & 0x4080) != 0) {
-            if (q == 0) {
-                func_0031A600(D_00754C80, 2, a1, p);
+    parity = D_007476B0 & 1;
+    flags = cModel_getMeshPtr(self, 0)->dispFlags;
+    start = self->packet[parity];
+    end = start + 0x70;
+    if (self->drawKind == CMODEL_KIND_PER_NODE) {
+        if ((flags & CMODEL_NODE_SORTED) != 0) {
+            if (end == 0) {
+                func_0031A600(D_00754C80, 2, id, start);
             } else {
-                func_0031A650(D_00754C80, 2, a1, p, q);
+                func_0031A650(D_00754C80, 2, id, start, end);
             }
         } else {
-            if (q == 0) {
-                func_0031A600(D_00754C80, 1, 0xD, p);
+            if (end == 0) {
+                func_0031A600(D_00754C80, 1, 0xD, start);
             } else {
-                func_0031A650(D_00754C80, 1, 0xD, p, q);
+                func_0031A650(D_00754C80, 1, 0xD, start, end);
             }
         }
     } else {
-        if (q == 0) {
-            func_0031A600(D_00754C80, *(int *)(this + 0x2C0),
-                          *(short *)(this + 0x2AC), p);
+        if (end == 0) {
+            func_0031A600(D_00754C80, self->drawKind, self->id, start);
         } else {
-            func_0031A650(D_00754C80, *(int *)(this + 0x2C0),
-                          *(short *)(this + 0x2AC), p, q);
+            func_0031A650(D_00754C80, self->drawKind, self->id, start, end);
         }
     }
 }

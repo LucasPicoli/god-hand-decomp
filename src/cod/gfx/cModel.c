@@ -1,19 +1,23 @@
+#include "godhand/cModel.h"
+
 /* TU: cModel [gfx] - recovered C++ class. */
 
+/* Mesh node number n of the model's list; the first node when the list is
+ * shorter than n. */
 __attribute__((section(".text.cModel_getMeshPtr")))
-int cModel_getMeshPtr(char *a0, int a1) {
-    int v1 = a1 - 1;
-    int v0 = *(int *)(a0 + 0x25C);
-    if (a1 != 0) {
+cModelNode *cModel_getMeshPtr(cModel *self, int n) {
+    int i = n - 1;
+    cModelNode *node = self->meshHead;
+    if (n != 0) {
         do {
-            v0 = *(int *)(v0 + 0x404);
-            if (v0 == 0) {
-                return *(int *)(a0 + 0x25C);
+            node = node->next;
+            if (node == 0) {
+                return self->meshHead;
             }
-            v1 = v1 - 1;
-        } while (v1 != -1);
+            i--;
+        } while (i != -1);
     }
-    return v0;
+    return node;
 }
 #include "include_asm.h"
 
