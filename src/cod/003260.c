@@ -32,7 +32,6 @@ extern char D_003CF9F0[];   /* managed memory region (size 0xAC0)            */
 
 /* ── Call-chain functions (11 = deferred) ───────────── */
 INCLUDE_ASM("nonmatching", func_00326020);
-INCLUDE_ASM("nonmatching", func_00326050);
 extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
 extern int D_003CF9E0;
