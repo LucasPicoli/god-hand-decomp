@@ -18,9 +18,9 @@ void sfxzmv_SetTagGrp(SfxZmvTagState *state)
 
     if (data == 0) {
         header->ck.len = 0;
-        header->set = SFXZMV_TAG_SET;
+        header->set = SJ_TAG_SET;
         header->ck.data = 0;
-        frame->set = SFXZMV_TAG_SET;
+        frame->set = SJ_TAG_SET;
         frame->ck.data = 0;
         frame->ck.len = 0;
         return;
@@ -30,9 +30,9 @@ void sfxzmv_SetTagGrp(SfxZmvTagState *state)
     SJ_SearchTag(&input, D_0045A060, D_0045A068, &found);
     header->ck.data = found.data;
     header->ck.len = found.len;
-    header->set = SFXZMV_TAG_SET;
+    header->set = SJ_TAG_SET;
     SJ_SearchTag(&input, D_0045A070, D_0045A068, &found);
-    frame->set = SFXZMV_TAG_SET;
+    frame->set = SJ_TAG_SET;
     frame->ck.data = found.data;
     frame->ck.len = found.len;
 }

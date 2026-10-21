@@ -22,7 +22,7 @@ extern void func_00338710(void);
 extern void func_00338788(void);
 extern void func_003387C8(int, int, int);
 extern void func_00338818(int, int);
-extern void PS2RNA_SetBitPerSmpl(void);
+extern int PS2RNA_SetBitPerSmpl(long handle, long bitsPerSample);
 extern void func_003388B0(void);
 extern void func_003A52F0(void *a0, int a1, int a2);
 
@@ -281,7 +281,7 @@ void Obj3260_Tramp_00338818_D410(int a0, int a1) {
 
 /* Obj3260_Tramp_00338848_D428 → j PS2RNA_SetBitPerSmpl */
 __attribute__((section(".text.Obj3260_Tramp_00338848_D428")))
-void Obj3260_Tramp_00338848_D428(void) { PS2RNA_SetBitPerSmpl(); }
+void Obj3260_Tramp_00338848_D428(long handle, long bitsPerSample) { PS2RNA_SetBitPerSmpl(handle, bitsPerSample); }
 
 /* Obj3260_Tramp_003388B0_D468 → j func_003388B0 */
 __attribute__((section(".text.Obj3260_Tramp_003388B0_D468")))

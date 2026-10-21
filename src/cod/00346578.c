@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
-extern int D_003EE084; /* Scratchpad transfer mode: zero uses DMA, nonzero uses CPU copying. */
-extern int MWSPR_RestoreSprMem(void *source, int byteCount, void *scratchpadOffset);
+extern int D_003EE084; /* Scratchpad copy mode: zero uses DMA, nonzero uses the CPU. */
+extern int MWSPR_RestoreSprMem(void *src, int size, void *sprAddr);
 extern int func_003465B8(void *source, int byteCount, int scratchpadOffset);
 
 /* Restore a saved memory buffer to scratchpad using the selected transfer mode. */

@@ -2,19 +2,20 @@
 
 typedef struct D {
     char pad0[0x80];
-    void *f80;
+    void *sadr;                 /* 0x80 scratchpad address */
 } D;
 
 
 extern void func_00397450(D *d, void *p, int n);
 
+/* Copy size bytes from src into scratchpad over DMA channel 9 (toSPR). */
 __attribute__((section(".text.MWSPR_RestoreSprMem")))
-int MWSPR_RestoreSprMem(void *dst, int size, void *src)
+int MWSPR_RestoreSprMem(void *src, int size, void *sprAddr)
 {
     D *d;
 
     d = func_00397100(9);
-    d->f80 = src;
-    func_00397450(d, dst, size / 16);
+    d->sadr = sprAddr;
+    func_00397450(d, src, size / 16);
     return 0;
 }

@@ -1,18 +1,15 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sfxlib.h"
 
-typedef struct Tag { int f0; int f4; int f8; } Tag;
-typedef struct H { char pad0[8]; Tag tag; } H;
-
-extern int sfxzmv_SetTagGrp(H *h);
-
+/* Record the input chunk, then find its header and frame tags. */
 __attribute__((section(".text.SFXZ_SetTagInf")))
-int SFXZ_SetTagInf(H *h, int a, int b)
+void SFXZ_SetTagInf(SfxZmvTagState *state, Sint8 *data, Sint32 len)
 {
-    Tag *t;
+    SjTagRec *input;
 
-    t = &h->tag;
-    t->f0 = 1;
-    t->f4 = a;
-    t->f8 = b;
-    return sfxzmv_SetTagGrp(h);
+    input = &state->input;
+    input->set = SJ_TAG_SET;
+    input->ck.data = data;
+    input->ck.len = len;
+    sfxzmv_SetTagGrp(state);
 }

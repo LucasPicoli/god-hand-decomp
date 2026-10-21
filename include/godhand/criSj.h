@@ -56,6 +56,8 @@ typedef struct SjTagRec {
     SjChunk ck;                 /* 0x04 */
 } SjTagRec;
 
+#define SJ_TAG_SET  1           /* SjTagRec.set once ck holds the chunk */
+
 /* The ring-buffer stream joint (CRI's SJRBF), one of a pool of 0x40-byte objects. */
 typedef struct SjRbf {
     void *vtbl;                 /* 0x00 */

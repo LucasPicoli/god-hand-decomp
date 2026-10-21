@@ -109,13 +109,16 @@ typedef struct StmPly {
 extern int D_003E0708;          /* pool entry count */
 extern int D_003E070C;          /* heap size */
 extern int D_003E0710;          /* config flag */
-
-#define CRISTM_POOL_CONFIGURED  1       /* D_003E0710 once the pool is set up */
-#define PS2RNA_BITS_PER_SAMPLE  16      /* the only sample width PS2RNA plays */
 extern void *D_003E0714;        /* IOP heap block */
 extern char *D_003E0718;        /* aligned heap base */
 extern char D_003E071C;         /* heap owned */
 extern StmEnt D_003E0768[];
+
+/* D_003E0710 once the caller set the pool size; with no entries PS2RNA calls do nothing. */
+#define CRISTM_POOL_CONFIGURED  1
+#define PS2RNA_BITS_PER_SAMPLE  16      /* the only sample width PS2RNA plays */
+
+extern int PS2RNA_SetBitPerSmpl(long handle, long bitsPerSample);
 
 /* printf-style logger. */
 extern void func_003260C8(const char *fmt, ...);
@@ -148,6 +151,8 @@ typedef struct AsyncCall {
 #define AINF_PAN_DEFAULT    (-128)  /* no pan offset set */
 
 extern AsyncCall D_003E9D60[16];
+
+extern void AsyncCall_clearAinf(AsyncCall *self);
 
 /* A stream handle as the volume calls see it. */
 typedef struct StmVolHn {

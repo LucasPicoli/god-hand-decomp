@@ -1,5 +1,6 @@
 /* Struct: CGObj33C8_t — mixed byte/short/word fields +0xD..+0xCC; short array at +0xE2. */
 #include "include_asm.h"
+#include "godhand/criStm.h"
 
 /* ── CALL CHAIN (4) — deferred ─────────────────────────── */
 INCLUDE_ASM("nonmatching", func_0033C918);
@@ -66,19 +67,22 @@ int Obj33C8_GetField_34(char *a0) {
     return *(int *)(a0 + 0x34);
 }
 
+/* Size of the ADX AINF chunk, 0 without one. */
 __attribute__((section(".text.Obj33C8_GetField_CC")))
-int Obj33C8_GetField_CC(char *a0) {
-    return *(int *)(a0 + 0xCC);
+int Obj33C8_GetField_CC(AsyncCall *self) {
+    return self->ainfSize;
 }
 
+/* AINF volume offset. */
 __attribute__((section(".text.Obj33C8_GetShort_E0")))
-int Obj33C8_GetShort_E0(char *a0) {
-    return *(short *)(a0 + 0xE0);
+short Obj33C8_GetShort_E0(AsyncCall *self) {
+    return self->volumeOffset;
 }
 
+/* AINF pan offset of one channel. Byte arithmetic, not panOffset[ch]: sn-2.95.3 emits other bytes for the index form. */
 __attribute__((section(".text.Obj33C8_GetShortArrayE2_idx")))
-int Obj33C8_GetShortArrayE2_idx(char *a0, int a1) {
-    return *(short *)(a0 + 0xE2 + a1 * 2);
+short Obj33C8_GetShortArrayE2_idx(AsyncCall *self, int ch) {
+    return *(short *)((char *)self->panOffset + ch * 2);
 }
 
 /* ── CALL CHAIN (continued) ─────────────────────────────────────────────── */

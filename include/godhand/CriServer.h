@@ -17,4 +17,7 @@ typedef struct CriServer {
     int callsPerBlock;                  /* 0x18 */
 } CriServer;
 
+extern void CriServer_getCallback(CriServer *self, void **callback, void **context);
+extern void CriServer_setCallback(CriServer *self, void *callback, void *context);
+
 #endif

@@ -1,16 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/CriServer.h"
 
-extern void func_003BA878(int a0, int a1, int *out);
-extern void CriServer_setCallback(int a0, int a1, int a2);
-
-/* MATCH via cygnus-2.96. */
-
-
-
+/* Replace the server callback and keep the context it already has. */
 __attribute__((section(".text.func_003B9CE8")))
-void func_003B9CE8(int a0, int a1)
+void func_003B9CE8(CriServer *self, void *callback)
 {
-    int v;
-    func_003BA878(a0, 0, &v);
-    CriServer_setCallback(a0, a1, v);
+    void *context;
+    CriServer_getCallback(self, 0, &context);
+    CriServer_setCallback(self, callback, context);
 }

@@ -74,6 +74,7 @@ typedef struct SfxZmvTagState {
     SjTagRec frame;             /* 0x28 */
 } SfxZmvTagState;
 
-#define SFXZMV_TAG_SET  1       /* SjTagRec.set once the search ran */
+extern void SFXZ_SetTagInf(SfxZmvTagState *state, Sint8 *data, Sint32 len);
+extern void sfxzmv_SetTagGrp(SfxZmvTagState *state);
 
 #endif
