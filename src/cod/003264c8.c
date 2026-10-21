@@ -17,8 +17,8 @@ extern void Obj35C0_SetIndexed_1F34_C350(char *a0, int a1, int a2);
 extern int Obj35D0_ReturnOne_D428(char *a0);
 extern void Obj34D8_SetFields_0_4(char *a0, int a1, int a2);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(char *a0);
-struct AsyncCall;
-extern void AsyncCall_clearAinf(struct AsyncCall *self);
+struct ADX_BASIC;
+extern void adxb_ResetAinf(struct ADX_BASIC *self);
 extern int ADXB_CheckAu(int);
 extern int sfhds_CallS(int, int, void *);
 extern int SFH_IsEffFtrInf(int, int, int *);
@@ -125,10 +125,11 @@ int func_0034DE20(char *a0, int a1, int a2)
     return 0;
 }
 
-__attribute__((section(".text.func_0033CCF0")))
-int func_0033CCF0(int a0, int a1, int a2) {
+/* Reset the AINF data, then decode the header as ADX (magic 0x8000) or as the next format whose check passes; -1 when none does. */
+__attribute__((section(".text.ADXB_DecodeHeader")))
+int ADXB_DecodeHeader(int a0, int a1, int a2) {
     unsigned short v;
-    AsyncCall_clearAinf((struct AsyncCall *)a0);
+    adxb_ResetAinf((struct ADX_BASIC *)a0);
     v = *(unsigned short *)a1;
     if ((((v >> 8) | (v << 8)) & 0xFFFF) == 0x8000)
         return func_0033C960(a0, a1, a2);

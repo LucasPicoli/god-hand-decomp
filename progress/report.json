@@ -475865,32 +475865,32 @@
           "metadata": {}
         },
         {
-          "name": ".text.func_003264C8",
+          "name": ".text.ADXB_DecodeHeader",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
+          "name": "ADXB_DecodeHeader",
+          "size": "372",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "0"
+        },
+        {
           "name": "func_003264C8",
           "size": "84",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "0"
+          "address": "376"
         },
         {
           "name": "func_00326520",
           "size": "72",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "88"
-        },
-        {
-          "name": "func_0033CCF0",
-          "size": "372",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "160"
+          "address": "464"
         },
         {
           "name": "func_0034DD70",
@@ -492232,14 +492232,14 @@
           "metadata": {}
         },
         {
-          "name": ".text.AsyncCall_clearAinf",
+          "name": ".text.adxb_ResetAinf",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "AsyncCall_clearAinf",
+          "name": "adxb_ResetAinf",
           "size": "56",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
@@ -492289,14 +492289,14 @@
           "metadata": {}
         },
         {
-          "name": ".text.func_0033C7F8",
+          "name": ".text.ADXB_Create",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "func_0033C7F8",
+          "name": "ADXB_Create",
           "size": "284",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
@@ -492343,98 +492343,98 @@
           "metadata": {}
         },
         {
-          "name": ".text.Obj33C8_GetByte_D",
+          "name": ".text.ADXB_GetAinfLen",
           "fuzzy_match_percent": 100.0,
           "metadata": {}
         }
       ],
       "functions": [
         {
-          "name": "Obj33C8_GetByte_D",
+          "name": "ADXB_GetAinfLen",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "0"
         },
         {
-          "name": "Obj33C8_GetField_10",
+          "name": "ADXB_GetDefOutVol",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "8"
         },
         {
-          "name": "Obj33C8_GetField_14",
-          "size": "8",
+          "name": "ADXB_GetDefPan",
+          "size": "16",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "16"
         },
         {
-          "name": "Obj33C8_GetField_18",
-          "size": "8",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "24"
-        },
-        {
-          "name": "Obj33C8_GetField_28",
+          "name": "Obj33C8_GetByte_D",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "32"
         },
         {
-          "name": "Obj33C8_GetField_2C_OrZeroIfNull",
-          "size": "20",
+          "name": "Obj33C8_GetField_10",
+          "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "40"
         },
         {
-          "name": "Obj33C8_GetField_30",
+          "name": "Obj33C8_GetField_14",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "48"
+        },
+        {
+          "name": "Obj33C8_GetField_18",
+          "size": "8",
+          "fuzzy_match_percent": 100.0,
+          "metadata": {},
+          "address": "56"
+        },
+        {
+          "name": "Obj33C8_GetField_28",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "64"
         },
         {
-          "name": "Obj33C8_GetField_34",
-          "size": "8",
+          "name": "Obj33C8_GetField_2C_OrZeroIfNull",
+          "size": "20",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "72"
         },
         {
-          "name": "Obj33C8_GetField_CC",
+          "name": "Obj33C8_GetField_30",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
-          "address": "80"
+          "address": "96"
         },
         {
-          "name": "Obj33C8_GetShortArrayE2_idx",
-          "size": "16",
-          "fuzzy_match_percent": 100.0,
-          "metadata": {},
-          "address": "88"
-        },
-        {
-          "name": "Obj33C8_GetShort_24",
+          "name": "Obj33C8_GetField_34",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "104"
         },
         {
-          "name": "Obj33C8_GetShort_98",
+          "name": "Obj33C8_GetShort_24",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},
           "address": "112"
         },
         {
-          "name": "Obj33C8_GetShort_E0",
+          "name": "Obj33C8_GetShort_98",
           "size": "8",
           "fuzzy_match_percent": 100.0,
           "metadata": {},

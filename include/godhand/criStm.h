@@ -125,34 +125,34 @@ extern void func_003260C8(const char *fmt, ...);
 /* memset; callers depend on the void * return. */
 extern void *func_003A52F0(void *dst, int c, int n);
 
-/* A queued asynchronous call (0x104 bytes; 16 of them at D_003E9D60). */
-typedef struct AsyncCall {
+/* An ADX basic decoder, ADXB (0x104 bytes; the pool of 16 is D_003E9D60). */
+typedef struct ADX_BASIC {
     short used;
     char pad2[6];
-    void *pd;
+    void *xpd;                  /* 0x08 ADXPD the ADPCM decoder */
     char padC[0x38 - 0xC];
-    int a0;
-    int a1;
-    int a2;
-    int a3;
+    int maxnch;                 /* 0x38 */
+    int pcmbuf;                 /* 0x3C */
+    int pcmbsize;               /* 0x40 */
+    int pcmbdist;               /* 0x44 */
     char pad48[0x78 - 0x48];
-    void *cb;
-    struct AsyncCall *cbarg;
-    void (*fn)(void);
-    struct AsyncCall *fnarg;
+    void *getwrfunc;            /* 0x78 */
+    struct ADX_BASIC *getwrobj;
+    void (*addwrfunc)(void);    /* 0x80 */
+    struct ADX_BASIC *addwrobj;
     char pad88[0xCC - 0x88];
-    int ainfSize;               /* 0xCC size of the ADX AINF chunk, 0 without one */
-    char ainfData[16];          /* 0xD0 AINF data id */
-    short volumeOffset;         /* 0xE0 */
-    short panOffset[2];         /* 0xE2 one per channel */
+    int ainfLen;                /* 0xCC size of the ADX AINF chunk, 0 without one */
+    char ainf[16];              /* 0xD0 AINF data id */
+    short defOutVol;            /* 0xE0 */
+    short defPan[2];            /* 0xE2 one per channel */
     char padE6[0x104 - 0xE6];
-} AsyncCall;
+} ADX_BASIC;
 
 #define AINF_PAN_DEFAULT    (-128)  /* no pan offset set */
 
-extern AsyncCall D_003E9D60[16];
+extern ADX_BASIC D_003E9D60[16];
 
-extern void AsyncCall_clearAinf(AsyncCall *self);
+extern void adxb_ResetAinf(ADX_BASIC *self);
 
 /* A stream handle as the volume calls see it. */
 typedef struct StmVolHn {

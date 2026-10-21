@@ -68,21 +68,21 @@ int Obj33C8_GetField_34(char *a0) {
 }
 
 /* Size of the ADX AINF chunk, 0 without one. */
-__attribute__((section(".text.Obj33C8_GetField_CC")))
-int Obj33C8_GetField_CC(AsyncCall *self) {
-    return self->ainfSize;
+__attribute__((section(".text.ADXB_GetAinfLen")))
+int ADXB_GetAinfLen(ADX_BASIC *self) {
+    return self->ainfLen;
 }
 
 /* AINF volume offset. */
-__attribute__((section(".text.Obj33C8_GetShort_E0")))
-short Obj33C8_GetShort_E0(AsyncCall *self) {
-    return self->volumeOffset;
+__attribute__((section(".text.ADXB_GetDefOutVol")))
+short ADXB_GetDefOutVol(ADX_BASIC *self) {
+    return self->defOutVol;
 }
 
-/* AINF pan offset of one channel. Byte arithmetic, not panOffset[ch]: sn-2.95.3 emits other bytes for the index form. */
-__attribute__((section(".text.Obj33C8_GetShortArrayE2_idx")))
-short Obj33C8_GetShortArrayE2_idx(AsyncCall *self, int ch) {
-    return *(short *)((char *)self->panOffset + ch * 2);
+/* AINF pan offset of one channel. Byte arithmetic, not defPan[ch]: sn-2.95.3 emits other bytes for the index form. */
+__attribute__((section(".text.ADXB_GetDefPan")))
+short ADXB_GetDefPan(ADX_BASIC *self, int ch) {
+    return *(short *)((char *)self->defPan + ch * 2);
 }
 
 /* ── CALL CHAIN (continued) ─────────────────────────────────────────────── */

@@ -260,9 +260,9 @@ def test_0033c8_dual_compiler_spot_check():
         ".text.Obj33C8_GetField_2C_OrZeroIfNull",
         ".text.Obj33C8_GetField_30",
         ".text.Obj33C8_GetField_34",
-        ".text.Obj33C8_GetField_CC",
-        ".text.Obj33C8_GetShort_E0",
-        ".text.Obj33C8_GetShortArrayE2_idx",
+        ".text.ADXB_GetAinfLen",
+        ".text.ADXB_GetDefOutVol",
+        ".text.ADXB_GetDefPan",
     ]
     for name in ACCESSORS:
         # Two `OK` columns on the same line = cygnus AND sn match.
