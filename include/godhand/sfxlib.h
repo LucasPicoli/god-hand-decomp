@@ -6,6 +6,8 @@
 #ifndef GODHAND_SFXLIB_H
 #define GODHAND_SFXLIB_H
 
+#include "godhand/criSj.h"
+
 /* Stream context. */
 typedef struct {
     char pad0[0x24];
@@ -61,5 +63,17 @@ typedef struct SfxTbl {
 extern void SFXLIB_Error(void *a, void *b, void *s);
 extern int func_0035EBB0(void *a, void *b, int mode);
 extern void func_0035EDE0(unsigned char *t);
+
+/* ZMV tag search state: the input chunk and the header and frame chunks found in it. */
+typedef struct SfxZmvTagState {
+    char unk00[0x08];
+    SjTagRec input;             /* 0x08 */
+    char unk14[0x04];
+    SjTagRec header;            /* 0x18 */
+    char unk24[0x04];
+    SjTagRec frame;             /* 0x28 */
+} SfxZmvTagState;
+
+#define SFXZMV_TAG_SET  1       /* SjTagRec.set once the search ran */
 
 #endif

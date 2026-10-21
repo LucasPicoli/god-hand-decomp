@@ -5,7 +5,7 @@ extern void func_0033C7A0(int *a0, int a1, int a2);
 extern void *func_003A52F0(void *dst, int val, int len);
 extern void *func_0033F8B8(void);
 extern void func_0033C918(AsyncCall *e);
-extern void func_0033C7C0(AsyncCall *e);
+extern void AsyncCall_clearAinf(AsyncCall *e);
 
 __attribute__((section(".text.func_0033C7F8")))
 AsyncCall *func_0033C7F8(int a0, int a1, int a2, int a3)
@@ -40,6 +40,6 @@ AsyncCall *func_0033C7F8(int a0, int a1, int a2, int a3)
     e->fn = func_0033C7A0;
     e->cbarg = e;
     e->fnarg = e;
-    func_0033C7C0(e);
+    AsyncCall_clearAinf(e);
     return e;
 }

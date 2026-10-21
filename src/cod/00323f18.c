@@ -7,8 +7,8 @@ extern int D_003E0748[];
 extern int DTX_CallUrpc(int a0, int a1, int a2, void *a3, int t0);
 extern int GetD003EE078_3463F8(void);
 extern void mwrsc_WaitSprDmaEnd(void);
-extern void func_00346498(int a0, int a1, void *a2);
-extern void func_00346578(void *a0, int a1, int a2);
+extern void SprMem_save(int a0, int a1, void *a2);
+extern void SprMem_restore(void *a0, int a1, int a2);
 extern void MWDMA_WaitEnd(int ch);
 extern int D_003EE080;
 extern int D_00758C80;
@@ -63,9 +63,9 @@ void LatchDmaModeAndQueueTransfers(void)
         s1 = &D_003EE080;
         if (*s1 != s0) {
             mwrsc_WaitSprDmaEnd();
-            func_00346498(0, 0x4000, &D_00758C80);
+            SprMem_save(0, 0x4000, &D_00758C80);
             MWDMA_WaitEnd(8);
-            func_00346578(&D_0075CC80, 0x4000, 0);
+            SprMem_restore(&D_0075CC80, 0x4000, 0);
             MWDMA_WaitEnd(9);
             *s1 = s0;
         }

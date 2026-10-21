@@ -17,7 +17,7 @@ extern void Obj35C0_SetIndexed_1F34_C350(char *a0, int a1, int a2);
 extern int Obj35D0_ReturnOne_D428(char *a0);
 extern void Obj34D8_SetFields_0_4(char *a0, int a1, int a2);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(char *a0);
-extern void func_0033C7C0(int);
+extern void AsyncCall_clearAinf(int);
 extern int ADXB_CheckAu(int);
 extern int sfhds_CallS(int, int, void *);
 extern int SFH_IsEffFtrInf(int, int, int *);
@@ -127,7 +127,7 @@ int func_0034DE20(char *a0, int a1, int a2)
 __attribute__((section(".text.func_0033CCF0")))
 int func_0033CCF0(int a0, int a1, int a2) {
     unsigned short v;
-    func_0033C7C0(a0);
+    AsyncCall_clearAinf(a0);
     v = *(unsigned short *)a1;
     if ((((v >> 8) | (v << 8)) & 0xFFFF) == 0x8000)
         return func_0033C960(a0, a1, a2);

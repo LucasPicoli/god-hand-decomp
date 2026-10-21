@@ -109,6 +109,9 @@ typedef struct StmPly {
 extern int D_003E0708;          /* pool entry count */
 extern int D_003E070C;          /* heap size */
 extern int D_003E0710;          /* config flag */
+
+#define CRISTM_POOL_CONFIGURED  1       /* D_003E0710 once the pool is set up */
+#define PS2RNA_BITS_PER_SAMPLE  16      /* the only sample width PS2RNA plays */
 extern void *D_003E0714;        /* IOP heap block */
 extern char *D_003E0718;        /* aligned heap base */
 extern char D_003E071C;         /* heap owned */
@@ -134,8 +137,15 @@ typedef struct AsyncCall {
     struct AsyncCall *cbarg;
     void (*fn)(void);
     struct AsyncCall *fnarg;
-    char pad88[0x104 - 0x88];
+    char pad88[0xCC - 0x88];
+    int ainfSize;               /* 0xCC size of the ADX AINF chunk, 0 without one */
+    char ainfData[16];          /* 0xD0 AINF data id */
+    short volumeOffset;         /* 0xE0 */
+    short panOffset[2];         /* 0xE2 one per channel */
+    char padE6[0x104 - 0xE6];
 } AsyncCall;
+
+#define AINF_PAN_DEFAULT    (-128)  /* no pan offset set */
 
 extern AsyncCall D_003E9D60[16];
 

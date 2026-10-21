@@ -25,9 +25,9 @@ extern void func_00335848(void *);
 extern int D_00454CD8;
 extern int GetD003EE078_3463F8();
 extern void mwrsc_WaitSprDmaEnd();
-extern void func_00346498(int a0, int a1, int *a2);
+extern void SprMem_save(int a0, int a1, int *a2);
 extern void MWDMA_WaitEnd(int a0);
-extern void func_00346578(int *a0, int a1, int a2);
+extern void SprMem_restore(int *a0, int a1, int a2);
 extern int D_003EE080;
 extern int D_0075CC80;
 extern int D_00758C80;
@@ -252,9 +252,9 @@ void func_00346368(void)
         s0 = (int *)((char *)&D_003EE080);
         if (*s0 != 0) {
             mwrsc_WaitSprDmaEnd();
-            func_00346498(0, 0x4000, &D_0075CC80);
+            SprMem_save(0, 0x4000, &D_0075CC80);
             MWDMA_WaitEnd(8);
-            func_00346578((int *)&D_00758C80, 0x4000, 0);
+            SprMem_restore((int *)&D_00758C80, 0x4000, 0);
             MWDMA_WaitEnd(9);
             *s0 = 0;
         }
