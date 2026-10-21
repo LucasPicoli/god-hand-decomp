@@ -1,13 +1,13 @@
 {
  "_schema": "function_categories/1",
- "description": "Maps game .text function addresses to a presentation category for the objdiff/decomp.dev progress tracker (engine is the default for any address not listed here). Categories: cri-middleware, sce-runtime, crt. Derived by relocation-masked instruction-signature identification of known standard-library / middleware / CRT code, confirmed byte-identical modulo relocation. Identification only and orthogonal to the permanent/include_asm gating axis; no third-party source is committed. code_bytes/pct are the game's own .text sizes (insns*4).",
+ "description": "Maps game .text function addresses to a presentation category for the objdiff/decomp.dev progress tracker (engine is the default for any address not listed here). Categories: cri-middleware, sce-runtime, crt. Derived by relocation-masked instruction-signature identification of known standard-library / middleware / CRT code, confirmed byte-identical modulo relocation. A few cri-middleware entries are confirmed by hand instead, from the function's own error string or from the CRI module it sits in. Identification only and orthogonal to the permanent/include_asm gating axis; no third-party source is committed. code_bytes/pct are the game's own .text sizes (insns*4).",
  "confidence": ">=16 instructions OR uniquely-localised",
  "total_code_bytes": 2844416,
  "summary": {
   "cri-middleware": {
-   "count": 363,
-   "code_bytes": 56416,
-   "pct_of_text": 1.983
+   "count": 368,
+   "code_bytes": 56736,
+   "pct_of_text": 1.995
   },
   "crt": {
    "count": 250,
@@ -20,9 +20,9 @@
    "pct_of_text": 1.702
   },
   "library_total": {
-   "count": 837,
-   "code_bytes": 139984,
-   "pct_of_text": 4.921
+   "count": 842,
+   "code_bytes": 140304,
+   "pct_of_text": 4.933
   }
  },
  "categories": {
@@ -130,6 +130,7 @@
    "0X00336A08",
    "0X00336A40",
    "0X00336AC0",
+   "0X00338848",
    "0X00338A90",
    "0X00338B10",
    "0X00338F30",
@@ -154,6 +155,7 @@
    "0X0033C038",
    "0X0033C088",
    "0X0033C7A0",
+   "0X0033C7C0",
    "0X0033D278",
    "0X0033D320",
    "0X0033D4D8",
@@ -213,7 +215,9 @@
    "0X003455B8",
    "0X003455D8",
    "0X00346478",
+   "0X00346498",
    "0X00346510",
+   "0X00346578",
    "0X003465E8",
    "0X00346660",
    "0X00346BB8",
@@ -389,7 +393,8 @@
    "0X0036D7F8",
    "0X0036D868",
    "0X0036D8E8",
-   "0X0036D970"
+   "0X0036D970",
+   "0X003BA8C0"
   ],
   "crt": [
    "0X001F8A60",
