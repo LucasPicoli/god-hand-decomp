@@ -88,12 +88,13 @@ int func_00348AC8(int arg0, int arg1, int arg2)
 }
 
 __attribute__((section(".text.func_003481D8")))
-void func_003481D8(void)
+int func_003481D8(void)
 {
     int a;
     int b;
     int c;
-    func_00348210(&a, &b, &c);
+
+    return func_00348210(&a, &b, &c);
 }
 
 __attribute__((section(".text.func_0034B618")))

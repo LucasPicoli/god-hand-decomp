@@ -160,9 +160,25 @@ typedef struct SfdChIds {
     int other;                  /* 0x1C */
 } SfdChIds;
 
+/* The picture frame buffer setup in SfdWork. */
+typedef struct SfdFrmCfg {
+    int unk00;
+    int unk04;
+    int maxW;                   /* 0x08 largest picture the buffers fit */
+    int maxH;                   /* 0x0C */
+    int unk10;
+    int bufW;                   /* 0x14 */
+    int bufH;                   /* 0x18 */
+    int nbuf;                   /* 0x1C */
+    char *buf;                  /* 0x20 frame buffer area, or 0 */
+} SfdFrmCfg;
+
 typedef struct SfdWork {
     void *dec;                  /* 0x000 */
-    char unk004[0x7C - 0x4];
+    SfdFrmCfg cfg;              /* 0x004 */
+    char unk028[0x30 - 0x28];
+    char *frmBuf[16];           /* 0x030 each frame's buffer */
+    char unk070[0x7C - 0x70];
     int f7C;                    /* 0x07C */
     char unk080[0x84 - 0x80];
     int f84;                    /* 0x084 */
