@@ -68,6 +68,7 @@ from scripts.carver import (
     _INSN_LINE_RE,
     _NONMATCHING_RE,
 )
+from scripts.mark_complete import is_complete_tu
 DEFAULT_CONFIG = ROOT / "compile_config.json"
 # Compile workers.  Scales with the host instead of a fixed 8 — the sweep is
 # subprocess-bound (cpp0/cc1/ee-as), so it tracks core count.  Thread count
@@ -2162,15 +2163,20 @@ def _objdiff_units(cfg: Config, carve: Optional[CarveState] = None) -> list[dict
     for obj in _ld_script_objects(cfg, carve):
         rel = obj.relative_to(ROOT / build_root)
         name = str(rel.with_suffix("")).replace(os.sep, "/")
+        metadata = {
+            "auto_generated": True,
+            "progress_categories": _unit_categories(name, lib_categories),
+        }
+        # Every rewrite keeps the fully-linked flag, so a build after
+        # scripts/progress.sh cannot strip what mark_complete.py set.
+        if is_complete_tu(name, ROOT):
+            metadata["complete"] = True
         units.append(
             {
                 "name": name,
                 "target_path": (target_root / rel).as_posix(),
                 "base_path": (base_root / rel).as_posix(),
-                "metadata": {
-                    "auto_generated": True,
-                    "progress_categories": _unit_categories(name, lib_categories),
-                },
+                "metadata": metadata,
             }
         )
     # Per-REL units: one per asm part. The REL .o lives under
