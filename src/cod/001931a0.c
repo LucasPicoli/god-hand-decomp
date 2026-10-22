@@ -1,7 +1,7 @@
 extern int D_00785C58;
 extern char D_00424690[];
 extern char D_00785798[];
-extern void Obj0000_Set_Byte_54(void *a0, int a1);
+#include "godhand/objField.h"
 extern int D_004246A8;
 extern int D_00785C68;
 extern int D_00424778[];

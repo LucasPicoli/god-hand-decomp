@@ -1,13 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
-/* One prototype per helper: see include/godhand/objField.h. */
 #include "godhand/objField.h"
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
 
 extern float fRand1_1(void);
 extern float fRand0_1(void);
-extern void Obj0000_Set_Byte_54(void *a0, int a1);
-extern void ForwardVec3At30_147C60(void *a0, float *a1);
 extern void func_00147C88(void *a0, void *a1, int a2);
 extern void *cSnd_GetSeData(void *a0, int a1);
 extern int D_0044CE48[];
@@ -75,7 +72,7 @@ void func_001BCB38(char *a0, int a1, float *a2, float *a3)
     elem = (char *)a1; elem = (char *)((int)elem * 0x60); elem = elem + *(int *)(a0 + 0x628);
     neg = -0.02f;
     Obj0000_Set_Byte_54(elem, 1);
-    Obj0000_Set_Field_50_173998((int *)elem, (int)src);
+    Obj0000_Set_Field_50_173998(elem, src);
     ForwardVec3At30_147C60(elem, (float *)src);
     func_00147C88(elem + 0x10, src, 0);
     CopyVec3ToField20_173908(elem, (float *)(frame + 0x10));

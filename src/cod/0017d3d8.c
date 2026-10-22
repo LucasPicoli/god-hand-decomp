@@ -5,7 +5,7 @@
  * form for retail bne-to-(-1). sn-2.95.3-136. */
 
 extern void func_001BBEB8(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00421E38;
 __attribute__((section(".text.func_0017D3D8")))
 void *func_0017D3D8(void *a0){

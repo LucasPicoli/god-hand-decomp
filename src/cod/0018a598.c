@@ -5,7 +5,7 @@
  * uses the while(i != -1) form to match retail bne-to-(-1). sn-2.95.3-136. */
 
 extern void InitFields_1B6E90(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00423700;
 __attribute__((section(".text.func_0018A598")))
 void *func_0018A598(void *a0){

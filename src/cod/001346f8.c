@@ -10,7 +10,7 @@ extern void *cModel_getMeshPtr(void *m, int i);
 extern void *D_00754C38;
 extern void *D_00754C58;
 extern void *InitFields_1B6E90(void *this);
-extern void Obj0000_Set_Byte_54(void *obj, int v);
+#include "godhand/objField.h"
 extern unsigned char D_00424B68[];
 
 /* sn-2.95.3-136 candidate. */

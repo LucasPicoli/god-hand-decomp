@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void ForwardVec3At30_147C60(void *dst, void *src);
+#include "godhand/objField.h"
 extern void sceVu0ApplyMatrix(void *v1, void *m0, void *v0);
 extern float Tramp_001F7DF8_00101E28(void *a0);
 extern float LengthPositionToGivenLine(void *a0, void *a1, void *a2, int *a3);
@@ -28,7 +28,7 @@ int func_002BCD58(void *arg, void *node, float k, float h)
     c = (float *)(buf + 0x20);
     b = (float *)(buf + 0x10);
     VU0_SQC2_VF0(buf, 0x20);
-    ForwardVec3At30_147C60(buf, s0);
+    ForwardVec3At30_147C60(buf, (float *)s0);
     d = (float *)(buf + 0x40);
     *(float *)(buf + 0x14) = h;
     VU0_LQC2(4, b, 0x0);

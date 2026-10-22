@@ -1,4 +1,4 @@
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_004204F8;
 extern unsigned char D_00574380[];
 extern unsigned char D_005FEE00[];

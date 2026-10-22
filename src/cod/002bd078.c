@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_0032A6D0(void *x, int mode, short v);
-extern void ForwardVec3At30_147C60(void *d, void *s);
+#include "godhand/objField.h"
 extern void sceVu0ApplyMatrix(void *v1, void *m0, void *v0);
 extern void func_002BC950(void *a, void *b, float f12, float f13, void *c);
 

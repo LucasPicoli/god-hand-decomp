@@ -7,7 +7,7 @@ extern void GetOrInitGlobal785798_1C3BE8(void);
 extern void SetField_0_4_8_31EEA8(void *, unsigned char *, unsigned char *);
 extern int D_00426438;
 extern void InitVtable214_429C80_1C27E8(void *);
-extern void Obj0000_Set_Byte_54(char *, int);
+#include "godhand/objField.h"
 extern char D_00574380[];
 extern void ClearAndResetFields_1FE278(void *, int);
 extern void ResetField214FreeField180_1C2820(void *, int);

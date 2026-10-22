@@ -17,7 +17,7 @@ extern int D_00568288;
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
 extern void SetFlagOnEntries7C_1D51B8(void *self, int entry, int on);
-extern void ForwardVec3At30_147C60(void *dst, void *src);
+#include "godhand/objField.h"
 extern void sceVu0ApplyMatrix(void *out, void *mtx, void *vec);
 extern float LengthPositionToGivenLine(void *line, void *pos, void *dir, int *flag);
 

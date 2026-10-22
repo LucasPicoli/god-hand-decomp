@@ -2,7 +2,6 @@
 #include "godhand/cObjSimple.h"
 #include "include_asm.h"
 #include "godhand/cEma2.h"
-/* One prototype per helper: see include/godhand/objField.h. */
 #include "godhand/objField.h"
 
 /* ------------------------------------------------------------------ */
@@ -247,8 +246,8 @@ unsigned char GetField_54_173900(unsigned char *a0) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Field_50_173998")))
-void Obj0000_Set_Field_50_173998(int *a0, int a1) {
-    *(int *)((char *)a0 + 0x50) = a1;
+void Obj0000_Set_Field_50_173998(void *rec, void *value) {
+    *(void **)((char *)rec + 0x50) = value;
 }
 
 __attribute__((section(".text.NoOp_178978")))
@@ -1040,8 +1039,8 @@ void func_003951D0(void) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Byte_54")))
-void Obj0000_Set_Byte_54(char *arg0, int arg1) {
-    arg0[0x54] = arg1;
+void Obj0000_Set_Byte_54(void *rec, int value) {
+    ((char *)rec)[0x54] = value;
 }
 
 extern unsigned char D_0061B670;

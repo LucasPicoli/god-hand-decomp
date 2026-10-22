@@ -11,7 +11,7 @@ extern void func_001C0018(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern int D_00425FB0;
 extern void InitVtable214_429C80_1C27E8(void *a0);
-extern void Obj0000_Set_Byte_54(void *a0, int a1);
+#include "godhand/objField.h"
 extern void ResetField214FreeField180_1C2820(void *a, void *b);
 extern int D_00785E28;
 extern int D_00426080;

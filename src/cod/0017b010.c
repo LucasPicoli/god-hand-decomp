@@ -7,7 +7,7 @@
 
 extern void SetCustomIDDispOneOrAll_1F4778(void *self, int no, int show);
 extern void *InitFields_1B6E90(void *self);
-extern void Obj0000_Set_Byte_54(void *rec, int v);
+#include "godhand/objField.h"
 extern void sceVu0InversMatrix(float *dst, float *src);
 extern void func_001A6FB0(void *self);
 extern char *Getplayer(void);

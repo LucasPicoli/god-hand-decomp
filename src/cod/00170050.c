@@ -4,7 +4,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cOmHitVolume.h"
 
-extern void ForwardVec3At30_147C60(void *dst, void *src);
+#include "godhand/objField.h"
 extern void sceVu0ApplyMatrix(void *out, void *mtx, void *vec);
 extern float LengthPositionToGivenLine(void *line, void *pos, void *dir, int *flag);
 extern int D_00427CF0;

@@ -4,7 +4,7 @@
 #include "godhand/vu0.h"
 
 extern void InitFields_1B6E90(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00422EB8;
 __attribute__((section(".text.func_00183848")))
 void *func_00183848(void *a0){

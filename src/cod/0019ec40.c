@@ -11,7 +11,7 @@ extern void GetOrInitGlobal785798_1C3BE8(void);
 extern void SetField_0_4_8_31EEA8(void *p, void *vtbl, void *name);
 extern void *D_004266F0;
 extern void InitVtable214_429C80_1C27E8(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00785EA8;
 extern int D_004267C0;
 extern int D_004267F8;

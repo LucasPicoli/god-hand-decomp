@@ -2,7 +2,7 @@
 
 extern int D_00426180;
 extern void InitVtable214_429C80_1C27E8(void *a);
-extern void Obj0000_Set_Byte_54(void *a, int b);
+#include "godhand/objField.h"
 extern int D_00574380;
 extern void ClearAndResetFields_1FE278(void *a, void *b);
 extern void ResetField214FreeField180_1C2820(void *a, int b);

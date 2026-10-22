@@ -5,7 +5,7 @@
  * while(i != -1) loop form for retail bne-to-(-1). sn-2.95.3-136. */
 
 extern void InitFields_1B6E90(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00420EF0;
 __attribute__((section(".text.func_00171C90")))
 void *func_00171C90(void *a0){

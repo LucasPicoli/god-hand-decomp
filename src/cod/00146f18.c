@@ -8,7 +8,7 @@ extern unsigned int cEvent_getCutNo();
 extern float cEvent_getCutFrame();
 extern void func_001C0450(cGameObj *self);
 extern int D_00423E48;
-extern void Obj0000_Set_Byte_54(void *obj, int v);
+#include "godhand/objField.h"
 extern unsigned short D_00747A50;
 extern void ClearBytesAt74And79To7C_13C618(void *self);
 

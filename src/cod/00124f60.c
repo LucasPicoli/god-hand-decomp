@@ -1,5 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
+#include "godhand/objField.h"
 extern int D_00463050;
 extern void cPlCamera_setCamUpdate(void *a0);
 extern void cCamManager_setPlCamera(void *a0, int a1);

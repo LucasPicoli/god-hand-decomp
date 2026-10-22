@@ -13,7 +13,7 @@ extern void cObjBase(void *a0);
 extern void func_002D58E8(void *work, void *entry, int arg);
 extern void func_002D5440(cTaskManager *self, int index);
 extern void InitFields_1B6E90(void *);
-extern void Obj0000_Set_Byte_54(void *, int);
+#include "godhand/objField.h"
 extern int D_00428778;
 extern char D_003BC7B0[];
 extern char D_003BC7B8[];

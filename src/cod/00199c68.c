@@ -1,5 +1,5 @@
 extern int D_00426E78;
-extern void Obj0000_Set_Byte_54(void *a, int b);
+#include "godhand/objField.h"
 extern int D_005CAE50;
 
 #include "godhand/vu0.h"

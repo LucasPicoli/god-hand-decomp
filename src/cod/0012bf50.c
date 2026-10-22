@@ -6,7 +6,7 @@
 #include "godhand/cEvent.h"
 
 extern cGameObj *InitFields_1B6E90(cGameObj *self);
-extern void Obj0000_Set_Byte_54(void *p, int v);
+#include "godhand/objField.h"
 extern int D_00427400;
 extern int D_005864F0;
 extern int cEmManage_CkPlCatched(void *p);
