@@ -4,12 +4,7 @@
 #include "godhand/cOmHitVolumeSetup.h"
 
 extern void espSys_effDataRegist(void *sys, int id, void *data);
-extern int D_007419A0;
-
-typedef struct DataHdr {
-    char pad0[0xC];
-    int off;                            /* 0xC */
-} DataHdr;
+extern char D_007419A0[];
 
 __attribute__((section(".text.func_0016F4A8")))
 int func_0016F4A8(cOmHitVolume *self)
@@ -43,13 +38,13 @@ int func_0016F4A8(cOmHitVolume *self)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         nv->w = 1.0f;
-        func_001FD9D8(slot, (char *)self + 0x80, m, nv, t);
+        func_001FD9D8(slot, self->base.mtx, m, nv, t);
     }
     cOmHitVolume_initWork(self, 1, self->tableData, 6, 1, 600);
     func_001C28A0(self);
     {
         int h = self->base.texKey;
-        espSys_effDataRegist(&D_007419A0, 600, (void *)(*(int *)(h + 0xC) + h));
+        espSys_effDataRegist(D_007419A0, 600, (void *)(*(int *)(h + 0xC) + h));
     }
     return 1;
 }

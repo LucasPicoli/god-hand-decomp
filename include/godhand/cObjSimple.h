@@ -48,7 +48,9 @@ struct cObjSimple {
     cObjSimpleVec3 *parentPos;      /* 0x0F0 position the object copies each frame */
     char unk0F4[0x100 - 0xF4];
     cObjSimpleVec3 rot;             /* 0x100 angles (x, y, z) */
-    char unk10C[0x154 - 0x10C];
+    char unk10C[0x110 - 0x10C];
+    cObjSimpleVec3 scale;           /* 0x110 local scale, synced from the owner */
+    char unk11C[0x154 - 0x11C];
     unsigned int flags154;          /* 0x154 */
     char unk158[0x214 - 0x158];
     cObjSimpleVtEnt *vtbl;          /* 0x214 secondary vtable */

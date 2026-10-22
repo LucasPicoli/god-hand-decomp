@@ -15,6 +15,7 @@
 #define GODHAND_COBJBASE_H
 
 #include "godhand/cObj.h"
+#include "godhand/vu0.h"
 
 /* One effect the actor starts or stops each time its sequence step runs. */
 typedef struct cSeqEffect {
@@ -58,6 +59,30 @@ typedef struct cEffectParam {
 } cEffectParam;                         /* 0x80 */
 
 #define EFFECT_PARAM_LOOP 0x80          /* cEffectParam.flags: the effect repeats */
+
+/* Zero all four components; the same store as cVec_zero in sceVu0.h, which this header
+ * cannot include (0013e908.c declares sceVu0ApplyMatrix with other types). */
+static __inline__ void cEffectParam_zero(cVec *v) {
+    VU0_SQC2_VF0_MEM(v, 0);
+}
+
+/* The default effect parameters: white, unit scale and size, nothing set. */
+static __inline__ void cEffectParam_init(cEffectParam *p)
+{
+    cVec_set4(&p->color, 1.0f, 1.0f, 1.0f, 1.0f);
+    cEffectParam_zero(&p->unk10);
+    cEffectParam_zero(&p->unk20);
+    cVec_set4(&p->scale, 1.0f, 1.0f, 1.0f, 1.0f);
+    p->size = 1.0f;
+    p->unk4C = -1;
+    p->unk4F = 0xFF;
+    p->unk44 = 0;
+    p->flags = 0;
+    p->unk4D = 0;
+    p->unk4E = 0;
+    p->unk50 = 0;
+    cEffectParam_zero(&p->unk60);
+}
 
 #define COBJBASE_FIELDS \
     COBJ_FIELDS \

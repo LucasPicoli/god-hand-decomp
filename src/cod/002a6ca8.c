@@ -17,7 +17,6 @@ struct cDvdState;
 extern char D_00583F20[];               /* cDvd state */
 extern float D_003C1184;                /* quad right edge */
 extern float D_003C1190;                /* quad bottom edge */
-extern cTaskWork *D_00752C04;           /* the main task */
 extern unsigned char cDvd_stepState(struct cDvdState *self);
 extern void *Gp_draw_poly4(cVec *v, int color, int count, PolyCtx *ctx, int a5, int a6);
 
@@ -40,6 +39,6 @@ void func_002A6CA8(void *arg)
         vt[0].z = vt[1].z = vt[2].z = vt[3].z = 65535.0f;
         vt[0].w = vt[1].w = vt[2].w = vt[3].w = 1.0f;
         Gp_draw_poly4(vt, 0x80000000, 1, &ctx, 6, 5);
-        cTaskWork_sleep(D_00752C04, 1);
+        cTaskWork_sleep(D_00752C00.task, 1);
     }
 }

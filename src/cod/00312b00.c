@@ -100,6 +100,7 @@ char *func_00312B00(int id, int dataId)
         }
     }
     if (obj) {
+        /* i steps twice per pass, so only the even meshes get the flag. Retail does the same. */
         for (i = 0; i < GetField_2B1_14B638(obj); i++)
             *(int *)((char *)cModel_getMeshPtr((cModel *)obj, i++) + 0x380) |= 0x2000;
         *(int *)(obj + 0x250) |= 0x10000;

@@ -12,35 +12,13 @@ extern EmPhaseTable D_003BDB18;
 __attribute__((section(".text.func_00181118")))
 void func_00181118(char *self)
 {
-    char *e;
-    int ofs;
-    int adjust;
-    int type;
-    int arg;
-    void (*fp)(int);
-    cVtEnt8 entry;
     cDamageTake *hit;
     int n;
     int m;
     int c;
     unsigned long t;
 
-    ofs = *(unsigned char *)(self + 0x2F5) * 8;
-    e = (char *)&D_003BDB18 + ofs;
-    type = *(short *)(e + 2);
-    if (type >= 0) {
-        cVtEnt8 *vt = *(cVtEnt8 **)(self + *(short *)(e + 4));
-        entry = vt[type - 1];
-        fp = (void (*)(int))entry.pfn;
-    } else {
-        fp = *(void (**)(int))((char *)&D_003BDB18 + ofs + 4);
-    }
-    adjust = D_003BDB18.e[*(unsigned char *)(self + 0x2F5)].adjust;
-    if (type >= 0)
-        arg = entry.delta + adjust;
-    else
-        arg = adjust;
-    fp((int)(self + arg));
+    EM_PHASE_RUN(&D_003BDB18, self, *(unsigned char *)(self + 0x2F5));
 
     c = --*(signed char *)(self + 0x60A);
     if (c <= 0) {

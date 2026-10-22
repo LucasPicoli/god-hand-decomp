@@ -121,7 +121,11 @@ typedef struct cOmBase {
     char unk550[0x10];
     int dropItem;                           /* 0x560 item id this object drops, 0xFFFF for the default drop, 0x9C3 for none */
     int actionId;                           /* 0x564 on a fighter: the current action */
-    char unk568[0x38];
+    char unk568[0x18];
+    int unk580;                             /* 0x580 cleared by the enemy setup at 0x1B90D0 */
+    int unk584;                             /* 0x584 */
+    int unk588;                             /* 0x588 */
+    char unk58C[0x14];
     int flags5A0;                           /* 0x5A0 bit 0x10 set by the effect-registering setups */
     char unk5A4[0xC];
     int flags0;                             /* 0x5B0 */

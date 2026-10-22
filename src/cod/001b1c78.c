@@ -32,33 +32,11 @@ __attribute__((section(".text.func_001B1C78")))
 void func_001B1C78(cOmGimmick *self)
 {
     cVec hit __attribute__((aligned(16)));
-    EmPhaseEnt *e;
-    void (*fn)(char *);
-    cVtEnt8 entry;
-    int index;
-    int adjust;
-    int delta;
-    int slot;
 
     if (ClearField5B4IfFlagUnset_1B76B0(&self->base) == 0) {
         return;
     }
-    slot = self->base.mode * sizeof(EmPhaseEnt);
-    e = (EmPhaseEnt *)((char *)&D_003BDCE0 + slot);
-    index = e->index;
-    if (index >= 0) {
-        entry = (*(cVtEnt8 **)((char *)self + e->tableOff))[index - 1];
-        fn = (void (*)(char *))entry.pfn;
-    } else {
-        fn = *(void (**)(char *))((char *)&D_003BDCE0 + slot + 4);
-    }
-    adjust = D_003BDCE0.e[self->base.mode].adjust;
-    if (index >= 0) {
-        delta = entry.delta + adjust;
-    } else {
-        delta = adjust;
-    }
-    fn((char *)self + delta);
+    EM_PHASE_RUN(&D_003BDCE0, self, self->base.mode);
     {
         long solids = self->checks;
 

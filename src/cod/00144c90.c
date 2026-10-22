@@ -44,6 +44,9 @@ typedef struct {
     short f420;
 } IdTblScreen;
 
+/* ids[j].f1C, spelled as raw bytes: the typed self->ids[j].f1C changes the address arithmetic. */
+#define IDWORK_F1C(self, j) (*((unsigned char *)(self) + (j) * 0x50 + 0x11C))
+
 extern cObjSimpleVec3 D_003BD880;
 extern float D_0041E880[];
 extern void cIDBase_initIDWork(void *w, int id);
@@ -74,7 +77,7 @@ void func_00144C90(IdTblScreen *self)
         for (j = 0; j < 5; j++) {
             cIDBase_initIDWork(&self->ids[j], i);
             cIDBase_restartAnim(&self->ids[j]);
-            *((unsigned char *)self + j * 0x50 + 0x11C) = 0;
+            IDWORK_F1C(self, j) = 0;
             self->tbl[j][i] = cIDBase_getIDWork(&self->ids[j], i);
         }
     }
@@ -95,7 +98,7 @@ void func_00144C90(IdTblScreen *self)
         self->ys[i] = self->tbl[i][0]->y;
         self->xs[i] = self->tbl[i][0]->x;
     }
-    self->tbl[4][1]->f24 = self->cols[i];
+    self->tbl[4][1]->f24 = self->cols[i];  /* i is 4 here; cols[4] does not match */
     self->tbl[4][0]->f40 = 0;
     self->tbl[4][0]->f44 = 0;
     self->tbl[4][1]->f40 = 0;

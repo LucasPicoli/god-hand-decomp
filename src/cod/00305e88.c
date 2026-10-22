@@ -13,8 +13,6 @@ typedef struct cFxOnce {
     unsigned int started;               /* 0x414 one bit per effect number */
 } cFxOnce;
 
-
-/* Set all four components of a vector. */
 /* Start effect `no` unless it has already been started. */
 __attribute__((section(".text.func_00305E88")))
 void func_00305E88(cFxOnce *self, int no)
@@ -25,22 +23,7 @@ void func_00305E88(cFxOnce *self, int no)
         return;
     }
     self->started |= 1 << no;
-    param.color.x = 1.0f;
-    param.color.y = 1.0f;
-    param.color.z = 1.0f;
-    param.color.w = 1.0f;
-    cVec_zero(&param.unk10);
-    cVec_zero(&param.unk20);
-    cVec_set4(&param.scale, 1.0f, 1.0f, 1.0f, 1.0f);
-    param.size = 1.0f;
-    param.unk4C = -1;
-    param.unk4F = 0xFF;
-    param.unk44 = 0;
-    param.flags = 0;
-    param.unk4D = 0;
-    param.unk4E = 0;
-    param.unk50 = 0;
-    cVec_zero(&param.unk60);
+    cEffectParam_init(&param);
     param.flags |= FXONCE_PARAM;
     param.unk70 = 0;
     param.unk72 = 0;
