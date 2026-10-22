@@ -10,7 +10,6 @@
 
 extern void func_00137F38(void *state, cCamManager *mgr);
 extern void cCamera_move(void *cam);
-extern void *D_005CAFF0;
 extern void cEmSetParam_updateSetDataFlag(cEmSetParam *self, int id, unsigned int flags);
 extern void cTaskWork_sleep(cTaskWork *work, int frames);
 extern SlotUiHost **D_003C2384;

@@ -28,7 +28,7 @@ typedef struct SubInit {
 
 /* Initialise a sub-object: byte header, scale from the unsigned count, two positions, two sizes (each stored twice), then run the two setup calls and clear the reverse flag. */
 __attribute__((section(".text.SubInit_init")))
-void SubInit_init(SubInit *self, unsigned int count, Vec3 *a, Vec3 *b, float w, float h, unsigned char arg)
+void SubInit_init(SubInit *self, unsigned int count, Vec3 *a, Vec3 *b, float w, float h, int arg)
 {
     Vec3 *dst;
 

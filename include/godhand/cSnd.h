@@ -185,4 +185,7 @@ typedef char cSndBgmNode_size_check[sizeof(cSndBgmNode) == 0xDC ? 1 : -1];
 typedef char cSndKindEnt_size_check[sizeof(cSndKindEnt) == 0x18 ? 1 : -1];
 typedef char cSndMemHeap_size_check[sizeof(cSndMemHeap) == 0x390 ? 1 : -1];
 
+cSndKindEnt *func_002D0B88(unsigned short id);
+int cSnd_BgmReqFromEnemies(void *self);
+
 #endif /* GODHAND_CSND_H */

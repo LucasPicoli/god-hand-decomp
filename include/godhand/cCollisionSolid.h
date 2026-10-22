@@ -38,4 +38,7 @@ typedef struct cCollisionSolidObj {
 
 typedef char cCollisionSolid_radius_check[((int)&((cCollisionSolidObj *)0)->radius == 0x70) ? 1 : -1];
 
+/* Nonzero when obj hits a solid of the manager. */
+extern int cCollisionSolidManage_ChkHit(void *mgr, void *obj);
+
 #endif

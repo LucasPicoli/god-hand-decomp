@@ -131,6 +131,27 @@
  */
 #define VU0_SQC2_VF0_AT(var)                                           \
     __asm__ __volatile__ ("sqc2  $vf0, %0" : : "m"(var) : "memory")
+/* VU0_SQC2_VF0_MEM(v, off): zero-init the quadword at v+off, addressed as a
+ * memory operand, so a stack local is stored at its sp offset without an
+ * address register. It has no "memory" clobber: values already in registers
+ * stay live across it. vu0_q128_t is declared further down. */
+#define VU0_SQC2_VF0_MEM(v, off)                                       \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "sqc2  $vf0, %0\n"                                             \
+        ".set pop\n"                                                   \
+        : "=m"(*(vu0_q128_t *)((char *)(v) + (off))))
+
+/* VU0_SQC2_MEM(reg, v, off): store $vf<reg> to the quadword at v+off,
+ * addressed as a memory operand (a stack local is stored at its sp offset). */
+#define VU0_SQC2_MEM(reg, v, off)                                      \
+    __asm__ __volatile__ (                                             \
+        ".set push\n"                                                  \
+        ".set noreorder\n"                                             \
+        "sqc2  $vf" #reg ", %0\n"                                      \
+        ".set pop\n"                                                   \
+        : "=m"(*(vu0_q128_t *)((char *)(v) + (off))) : : "memory")
 
 /* VU0_SQC2(reg, base, off): store $vf<reg> quadword.
  *

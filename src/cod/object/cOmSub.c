@@ -5,8 +5,8 @@
 struct cOmSub_move_entry { short off; short pad; int (*fn)(); };
 extern struct cOmSub_move_entry D_00429D80[3];
 
-extern void func_001C6968(void *a0, int a1, int a2);
-extern void func_001C6A60(void *a0, int a1, int a2, int a3);
+extern void func_001C6968(void *a, int n, void *v, float w, float h);
+extern void func_001C6A60(void *a, int n, void *v, float w, float h, int fl);
 
 __attribute__((section(".text.cOmSub_move")))
 int cOmSub_move(char *a0) {
@@ -19,7 +19,7 @@ int cOmSub_move(char *a0) {
 }
 
 __attribute__((section(".text.cOmSub_initMove1_pos")))
-void cOmSub_initMove1_pos(char *dst, char *obj, int idx, int a3, int a4)
+void cOmSub_initMove1_pos(char *dst, char *obj, int idx, int a3, void *a4, float w, float h)
 {
     char hold[16];
     char *e;
@@ -67,11 +67,11 @@ void cOmSub_initMove1_pos(char *dst, char *obj, int idx, int a3, int a4)
             }
         }
     }
-    func_001C6968(dst, a3, a4);
+    func_001C6968(dst, a3, a4, w, h);
 }
 
 __attribute__((section(".text.cOmSub_initMove1_ang")))
-void cOmSub_initMove1_ang(char *dst, char *obj, int idx, int a3, int a4, int a5)
+void cOmSub_initMove1_ang(char *dst, char *obj, int idx, int a3, void *a4, float w, float h, int a5)
 {
     char hold[16];
     char *e;
@@ -120,7 +120,7 @@ void cOmSub_initMove1_ang(char *dst, char *obj, int idx, int a3, int a4, int a5)
             }
         }
     }
-    func_001C6A60(dst, a3, a4, a5);
+    func_001C6A60(dst, a3, a4, w, h, a5);
 }
 
 INCLUDE_ASM("nonmatching", cOmSub_setEndPos);

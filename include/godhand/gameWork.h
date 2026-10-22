@@ -14,7 +14,10 @@
 
 /* Header of the effect data file the room loads; the offsets are from the header. */
 typedef struct EffDataHdr {
-    char unk00[0x14];
+    char unk00[4];
+    int block1;                 /* 0x04 offset of the first system block */
+    int block2;                 /* 0x08 offset of the second system block */
+    char unk0C[8];
     int unk14;                  /* 0x14 offset of the first effect table */
     char unk18[4];
     int unk1C;                  /* 0x1C offset of the second effect table */
@@ -34,17 +37,21 @@ typedef struct GameWork {
     void *langData;             /* 0x558 language data file */
     char pad55C[0x564 - 0x55C];
     int padPort;                /* 0x564 controller port the vibration goes to */
-    char pad568[0x56C - 0x568];
-    unsigned int language;      /* 0x56C */
+    char pad568;
+    unsigned char unk569;       /* 0x569 */
+    char pad56A[2];
+    int language;               /* 0x56C */
     char pad570[0x574 - 0x570];
     float timeScale;            /* 0x574 speed multiplier, 1.0 at boot */
-    int mode;                   /* 0x578 */
-    char pad57C[0x584 - 0x57C];
+    int mode;                   /* 0x578 1 = PAL */
+    int unk57C;                 /* 0x57C */
+    int unk580;                 /* 0x580 */
     int flags;                  /* 0x584 GAMEWORK_* */
     char pad588[0x594 - 0x588];
     int debugFlags;             /* 0x594 */
     int flags598;               /* 0x598 */
-    char pad59C[0x5AC - 0x59C];
+    int flags59C;               /* 0x59C */
+    char pad5A0[0x5AC - 0x5A0];
     void *pack;                 /* 0x5AC room data pack */
     unsigned short room;        /* 0x5B0 current room id */
     char pad5B2[0x5B4 - 0x5B2];
@@ -60,7 +67,8 @@ typedef struct GameWork {
     void *playerObj;            /* 0x5F4 */
     char pad5F8[0x600 - 0x5F8];
     unsigned char pairNum;      /* 0x600 entries used in D_007558A8 */
-} GameWork;
+    char pad601[0x620 - 0x601];
+} GameWork;                     /* 0x620 */
 
 extern GameWork D_007474A0;
 
@@ -91,7 +99,7 @@ typedef struct DmaPktSet {
 
 typedef struct cTaskWorkRef {
     int unk0;
-    int task;                   /* 0x4 */
+    struct cTaskWork *task;     /* 0x4 */
 } cTaskWorkRef;
 
 extern cTaskWorkRef D_00752C00;
@@ -101,6 +109,6 @@ extern void SetPackedFields10And18_14FF60(int pkt, int *next);
 extern int func_003950F8(int mode, int timeout);   /* GS path sync */
 extern void FlushCache(int op);
 extern void iFlushCache(int op);
-extern void cTaskWork_sleep(int task, int frames);
+extern void cTaskWork_sleep(struct cTaskWork *task, int frames);
 
 #endif

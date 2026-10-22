@@ -34,14 +34,16 @@ typedef struct cOmWeapon {
     float fallSpeed;                        /* 0x630 */
     char unk634[0xC];
     cVec vel;                               /* 0x640 launch velocity */
-    char unk650[0x14];
+    char unk650[0x10];
+    float life;                             /* 0x660 frames left before a dropped weapon breaks */
     unsigned char unk664;                   /* 0x664 */
     unsigned char unk665;                   /* 0x665 */
     char unk666[0x2];
     int timer;                              /* 0x668 frame countdown, see cOmWeapon_SetDamage */
     float unk66C;                           /* 0x66C */
     int throwArg;                           /* 0x670 second argument of setThrow */
-    char unk674[0x1C];
+    float fallVel;                          /* 0x674 vertical speed while dropping */
+    char unk678[0x18];
     int target;                             /* 0x690 object the weapon was thrown at */
     float spin;                             /* 0x694 */
     char unk698[0x8];

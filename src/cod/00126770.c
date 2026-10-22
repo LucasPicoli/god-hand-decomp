@@ -22,7 +22,7 @@ extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
 extern int D_007854D8;
 extern int D_0044AEC8;
-extern void *cIDBase_getIDWork(void *a0);
+extern void *cIDBase_getIDWork(void *self, int idx);
 extern void cIDBase_initEntry(void *a0, int a1, void *a2);
 extern void func_002B64C0(int a0);
 extern char D_0045C470[];
@@ -153,9 +153,9 @@ void *func_002A9300(void)
 }
 
 __attribute__((section(".text.cIDBase_initIDWork")))
-void cIDBase_initIDWork(void *a0)
+void cIDBase_initIDWork(void *a0, int idx)
 {
-    void *v0 = cIDBase_getIDWork(a0);
+    void *v0 = cIDBase_getIDWork(a0, idx);
     if (v0 != 0) {
         cIDBase_initEntry(a0, *(int*)((char*)v0 + 0x1C), v0);
     }

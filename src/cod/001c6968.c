@@ -2,10 +2,10 @@
 #include "godhand/cOmWeapon.h"
 #include "godhand/cObjSimple.h"
 
-extern void SubRec_initCenter(void *a0, void *a1);
+extern void SubRec_initCenter(void *self, void *center, float highY, float lowY, float extra);
 extern float fRand1_1(void);
 extern void cModel_calcParts(void *a0);
-extern void SubInit_init(void *a0, int a1, void *a2, void *a3, int t0);
+extern void SubInit_init(void *self, unsigned int count, void *a, void *b, float w, float h, int arg);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -64,7 +64,7 @@ void cObjSimple_SetParentInfo(cObjSimple *self, cObjSimple *parent, int idx,
 
 
 __attribute__((section(".text.cOmSub_initMove3_y")))
-void cOmSub_initMove3_y(char *a, unsigned char *obj, int idx, void *v)
+void cOmSub_initMove3_y(char *a, unsigned char *obj, int idx, void *v, float highY, float lowY, float extra)
 {
     char hold[16];
     char *e;
@@ -112,7 +112,7 @@ void cOmSub_initMove3_y(char *a, unsigned char *obj, int idx, void *v)
             }
         }
     }
-    SubRec_initCenter(a, v);
+    SubRec_initCenter(a, v, highY, lowY, extra);
 }
 
 /* sn-2.95.3-136 matched TU. */
@@ -346,9 +346,9 @@ void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
 
 
 __attribute__((section(".text.func_001C6968")))
-void func_001C6968(char *a, int n, void *v)
+void func_001C6968(char *a, int n, void *v, float w, float h)
 {
-    SubInit_init(a, n, v, a + 0x80, 1);
+    SubInit_init(a, n, v, a + 0x80, w, h, 1);
 }
 
 /* sn-2.95.3-136 matched TU. */
@@ -356,7 +356,7 @@ void func_001C6968(char *a, int n, void *v)
 
 
 __attribute__((section(".text.func_001C6A60")))
-void func_001C6A60(char *a, int n, void *v, int fl)
+void func_001C6A60(char *a, int n, void *v, float w, float h, int fl)
 {
-    SubInit_init(a, n, a + 0x70, v, fl | 2);
+    SubInit_init(a, n, a + 0x70, v, w, h, fl | 2);
 }

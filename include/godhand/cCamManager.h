@@ -26,4 +26,7 @@ typedef struct cCamManager {
     int prevMode;                       /* 0x102C */
 } cCamManager;
 
+struct cCamera;
+extern struct cCamera *D_005CAFF0;     /* the current camera */
+
 #endif

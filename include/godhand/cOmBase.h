@@ -29,6 +29,14 @@ static __inline__ void cVec_copy3(cVec *d, cVec *s) {
     }
 }
 
+/* Set all four components. */
+static __inline__ void cVec_set4(cVec *v, float x, float y, float z, float w) {
+    v->x = x;
+    v->y = y;
+    v->z = z;
+    v->w = w;
+}
+
 /* One node of the model's mesh list. A model owns a singly linked list of
  * nodes; each node carries the layer it belongs to. */
 typedef struct cMeshNode {
@@ -113,7 +121,9 @@ typedef struct cOmBase {
     char unk550[0x10];
     int dropItem;                           /* 0x560 item id this object drops, 0xFFFF for the default drop, 0x9C3 for none */
     int actionId;                           /* 0x564 on a fighter: the current action */
-    char unk568[0x48];
+    char unk568[0x38];
+    int flags5A0;                           /* 0x5A0 bit 0x10 set by the effect-registering setups */
+    char unk5A4[0xC];
     int flags0;                             /* 0x5B0 */
     int hitFlags;                           /* 0x5B4 bits COMBASE_HIT_* */
     int flags2;                             /* 0x5B8 */

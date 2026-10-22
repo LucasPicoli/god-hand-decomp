@@ -35,7 +35,10 @@
 /* The method table every game object points at (0x214). Each entry is a g++
  * 2.x delta (short) and function pointer; only the pair at 0x80 is used here. */
 typedef struct cGameObjVt {
-    char unk00[0x68];
+    char unk00[0x60];
+    short resetDelta;                   /* 0x60 */
+    short pad62;
+    void (*reset)(void *self, int arg); /* 0x64 */
     short getPosDelta;                  /* 0x68 */
     short pad6A;
     cVec *(*getPos)(void *self);        /* 0x6C the object's current position */
@@ -117,7 +120,7 @@ typedef struct cGameObj {
     short hpMax;                        /* 0x548 */
     short hp;                           /* 0x54A */
     float hitFlash;                     /* 0x54C counts down after a hit */
-    char unk550[0x560 - 0x550];
+    cVec vel;                           /* 0x550 velocity, zeroed when the object is stopped */
     int dropItem;                       /* 0x560 item id it drops, as in cOmBase */
     int emNo;                           /* 0x564 enemy number of an enemy */
     char unk568[0x570 - 0x568];
