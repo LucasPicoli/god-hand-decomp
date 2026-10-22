@@ -40,7 +40,7 @@ int cMovie_isIdle(cMovie *self) {
 
 /* Hand the active track, if there is one, to cMovieTrack_stop. */
 __attribute__((section(".text.cMovie_haltActive")))
-void cMovie_haltActive(void) {
+void cMovie_haltActive(void *mgr, int handle) {  /* callers pass the movie manager and handle; neither is read */
     cMovieTrack *track = func_002B4F98();
     if (track)
         cMovieTrack_stop(track);

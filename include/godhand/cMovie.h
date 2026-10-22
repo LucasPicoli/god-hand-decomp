@@ -54,6 +54,13 @@ typedef struct cMovieTrack {
 
 extern void ResHolder_release(cMovieTrack *track);
 
+/* The movie calls the scenario's movie object makes: cMovie_Start returns a handle, and the
+ * other three take the movie manager (D_005E79D0) and that handle, which they don't read. */
+extern int cMovie_Start(void *mgr, int id, int arg);
+extern void cMovie_haltActive(void *mgr, int handle);
+extern int cMovie_GetStatus(void *mgr, int handle);
+extern void cMovie_Stop(void *mgr, int handle);
+
 typedef struct cMovie {
     cMovieTrack *track;                 /* 0x00 MOVIE_TRACK_NUM entries */
     int player[MOVIE_TRACK_NUM];        /* 0x04 */

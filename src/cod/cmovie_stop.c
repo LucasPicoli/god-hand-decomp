@@ -10,7 +10,7 @@ extern int D_00747A84;
 
 /* Stop the active track, then clear the "movie playing" bit. */
 __attribute__((section(".text.cMovie_Stop")))
-void cMovie_Stop(void) {
+void cMovie_Stop(void *mgr, int handle) {  /* callers pass the movie manager and handle; neither is read */
     cMovieTrack *track = func_002B4F98();
     if (track)
         func_002D42E0(track);

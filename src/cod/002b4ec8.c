@@ -1,7 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cMovie.h"
 
 __attribute__((section(".text.cMovie_GetStatus")))
-int cMovie_GetStatus(void) {
+int cMovie_GetStatus(void *mgr, int handle) {  /* callers pass the movie manager and handle; neither is read */
     int h;
 
     h = func_002B4F98();

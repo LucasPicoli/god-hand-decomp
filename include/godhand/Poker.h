@@ -33,13 +33,20 @@ typedef struct Poker {
     int betMax;                         /* 0x3030 top bet for this level */
     int bet;                            /* 0x3034 */
     int payout;                         /* 0x3038 */
-    char unk303C[0xC];
+    int unk303C;                        /* 0x303C */
+    int choice;                         /* 0x3040 0 or 1 on the two-choice panel */
+    unsigned char cursorOn;             /* 0x3044 1 while the choice is 0 */
+    unsigned char unk3045;              /* 0x3045 cleared when the panels slide in */
+    char unk3046[2];
     int unk3048;                        /* 0x3048 */
     int unk304C;                        /* 0x304C */
     char unk3050;                       /* 0x3050 */
     char unk3051;
     short cardId[POKER_HAND_NUM];       /* 0x3052 card ids, POKER_CARD_NONE = empty slot */
 } Poker;                                /* 0x305C */
+
+/* The table's UI record (a PanelObj) sits at 0x25B0 and is not typed in Poker yet. */
+#define POKER_UI(self)  ((char *)(self) + 0x25B0)
 
 /* Sorted rank patterns of the nine non-royal straights (A-5 .. 9-K). */
 typedef struct PokerStraightTbl {
@@ -54,5 +61,23 @@ typedef struct PokerStraightTbl10 {
 } PokerStraightTbl10;                   /* 0xC8 */
 
 extern PokerStraightTbl10 D_0042B4D0;
+
+/* The hand as the hand-ranking helpers (0x1DC980..) see it, with the slot flags as an int. */
+#define POKER_HAND_F_MARK   0x4         /* PokerHandSlot.flags: card belongs to the scored group */
+
+typedef struct PokerHandCard {
+    char unk000[0x604];
+    int rank;                           /* 0x604 as BlackJackCardObj.rank */
+} PokerHandCard;
+
+typedef struct PokerHandSlot {
+    PokerHandCard *card;                /* 0x00 */
+    int flags;                          /* 0x04 */
+} PokerHandSlot;
+
+typedef struct PokerHandView {
+    char unk0000[0x3004];
+    PokerHandSlot *slot[POKER_HAND_NUM]; /* 0x3004 Poker.hand */
+} PokerHandView;
 
 #endif

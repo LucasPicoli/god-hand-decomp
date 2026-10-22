@@ -5,7 +5,7 @@ extern int setMotionInfo(int a0, int a1, int a2, int a3, float f12, float f13, i
 extern void func_002B6400(int a0);
 extern void *func_001346C8(int a0, int a1, int a2, int a3, float f);
 extern void func_00134520(void *p, int a2, int a3, float f);
-extern void CustomIDWork_SetNumber(void *p);
+extern void CustomIDWork_SetNumber(void *self, int number);
 extern int D_00429DD8;
 extern int SetField214PtrThenInit_1B6F38(void *obj);
 extern char *InitFields_1B6E90(char *a0);
@@ -47,8 +47,8 @@ void cCollisionSolidManage_CreateSphere(int a0, int a1, int a2, int a3, float f)
 }
 
 __attribute__((section(".text.CustomIDWork_SetNumber_1D5760")))
-void CustomIDWork_SetNumber_1D5760(char *a0) {
-    CustomIDWork_SetNumber(a0 + 0x158);
+void CustomIDWork_SetNumber_1D5760(char *a0, int number) {
+    CustomIDWork_SetNumber(a0 + 0x158, number);
 }
 
 __attribute__((section(".text.func_002998D8")))
