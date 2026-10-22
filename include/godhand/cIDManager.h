@@ -43,6 +43,6 @@ typedef struct cIDManager {
 
 extern char D_0044AF70[];               /* name table SearchData looks in */
 extern void *SearchData(void *name, void *table, int which);
-extern void func_003A52F0(void *dst, int val, int len);   /* memset */
+extern void *func_003A52F0(void *dst, int val, int len);  /* memset */
 
 #endif

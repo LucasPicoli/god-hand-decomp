@@ -147,6 +147,14 @@ typedef struct SfdSeek {
     int hdrOfs;                 /* 0x20 negative until found */
 } SfdSeek;
 
+/* The ADX side record SfdHn.adxt points at. */
+typedef struct SfdAdxt {
+    void *adxt;                 /* 0x00 the ADXT handle */
+    char unk04[0x38 - 0x04];
+    int lead;                   /* 0x38 audio samples played ahead of the video */
+    void (*step)(void *a0, int a1, int a2, int *a3);  /* 0x3C next step, func_0034A038 once in sync */
+} SfdAdxt;
+
 typedef struct SfdHn {
     char unk0000[8];
     int fill;                   /* 0x0008 */
@@ -157,9 +165,12 @@ typedef struct SfdHn {
     char unk0064[0x990 - 0x64];
     long total0;                /* 0x0990 */
     long total1;                /* 0x0998 */
-    char unk09A0[0xA0C - 0x9A0];
+    char unk09A0[0x9C8 - 0x9A0];
+    long discarded;             /* 0x09C8 ADX bytes dropped to catch up with the video */
+    char unk09D0[0xA0C - 0x9D0];
     SfdBufCfg cfg;              /* 0x0A0C */
-    char unk0A68[0xD98 - 0xA68];
+    char unk0A68[0xD30 - 0xA68];
+    char tim[0xD98 - 0xD30];    /* 0x0D30 the timing work, SftimHn.tim */
     SfdTimPrm init;             /* 0x0D98 */
     SfdTimPrm cur;              /* 0x0DC4 */
     char unk0DF0[0x1F74 - 0xDF0];

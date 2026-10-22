@@ -14,14 +14,14 @@ extern void func_0034A038(void *a0, int a1, int a2, int *a3);
 __attribute__((section(".text.func_0034A0F0")))
 void func_0034A0F0(SfdHn *sf, void *data, int len, int *out)
 {
-    char *buf = (char *)sf + 0xD30;
-    char *work = (char *)sf->adxt;
+    char *buf = sf->tim;
+    SfdAdxt *ax = (SfdAdxt *)sf->adxt;
     int nch, ntr, flag, end, tmp;
     int pos0, pos1, d, n, rem, done;
 
     *out = 0;
     if (func_0034A6F8((int)sf, &nch, &ntr) != 0) {
-        *(void **)(work + 0x3C) = func_0034A038;
+        ax->step = func_0034A038;
         return;
     }
     pos0 = func_0035A968(buf, ntr);
@@ -29,7 +29,7 @@ void func_0034A0F0(SfdHn *sf, void *data, int len, int *out)
         return;
     if (GetArrayElemA0C_35A1C8(sf, 5) == 0) {
         func_0035AA40(buf, pos0, ntr);
-        *(void **)(work + 0x3C) = func_0034A038;
+        ax->step = func_0034A038;
         return;
     }
     pos1 = func_0035A9C8((int)buf, ntr, &flag);
@@ -37,7 +37,7 @@ void func_0034A0F0(SfdHn *sf, void *data, int len, int *out)
         return;
     func_0035AA40(buf, pos1, ntr);
     done = 0;
-    d = pos1 - pos0 - *(int *)(work + 0x38);
+    d = pos1 - pos0 - ax->lead;
     if (d >= 0) {
         n = (d >> 5) * nch * 18;
         end = 0;
@@ -46,10 +46,10 @@ void func_0034A0F0(SfdHn *sf, void *data, int len, int *out)
             c = (c < n) ? c : n;
             done = sfadxt_AdjDiscard(data, c, &end);
             rem = n - c;
-            *(int *)(work + 0x38) += done / (nch * 18) * 32;
+            ax->lead += done / (nch * 18) * 32;
         }
         if ((n <= 0 || rem <= 0) && flag) {
-            *(void **)(work + 0x3C) = func_0034A038;
+            ax->step = func_0034A038;
             end = ADXT_IsEndcode(data, len, &tmp);
         }
         if (end) {
@@ -61,15 +61,14 @@ void func_0034A0F0(SfdHn *sf, void *data, int len, int *out)
             int m = nd / 32 * 32;
             if (m > 0) {
                 int r = func_0034A3E0(sf, nch, m);
-                *(int *)(work + 0x38) -= r;
+                ax->lead -= r;
                 if (m - r > 0)
                     goto out;
             }
-            *(void **)(work + 0x3C) = func_0034A038;
+            ax->step = func_0034A038;
         }
     }
 out: /* the clean forms (if/else, early return, a flag) were tried and don't match */
     *out = done;
-    *(long long *)((char *)sf + 0x9C8) += done;
+    sf->discarded += done;
 }
-

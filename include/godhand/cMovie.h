@@ -18,10 +18,41 @@
 #define MOVIE_TRACK_NUM    3
 #define MOVIE_SYS_PLAYING  0x2000       /* bit of D_00747A84 */
 
+/* cMovieTrack.flags bits read by the player setup (func_002D3D88). The sign
+ * bit asks for the effect buffer at 0xA8; it is tested as flags < 0. */
+#define MOVIE_TRACK_STREAM  0x01        /* allocate the two stream buffers */
+#define MOVIE_TRACK_IMAGE   0x08        /* allocate a plain output image */
+#define MOVIE_TRACK_LUMI    0x10        /* luminance effect argument */
+#define MOVIE_TRACK_TEXIMG  0x40        /* output image with a texture header */
+
+/* One movie track: the stream player handle, the heap buffers it owns, the
+ * player setup and the effect buffer. ResHolder_release frees and resets it. */
 typedef struct cMovieTrack {
     int handle;                         /* 0x00 stream player, 0 while the track is free */
-    char unk04[0xA8];
+    void *buf04;                        /* 0x04 heap buffer */
+    void *work;                         /* 0x08 decoder work */
+    void *stm[2];                       /* 0x0C stream buffers */
+    void *img;                          /* 0x14 output image */
+    int cell18;                         /* 0x18 */
+    short w;                            /* 0x1C picture size */
+    short h;                            /* 0x1E */
+    char unk20[8];
+    int f28;                            /* 0x28 0x31 enables the luminance effect */
+    int f2C;                            /* 0x2C */
+    int f30;                            /* 0x30 1 also needs an output image */
+    int f34;                            /* 0x34 */
+    int f38;                            /* 0x38 */
+    int flags;                          /* 0x3C MOVIE_TRACK_* bits */
+    short lumi0;                        /* 0x40 luminance parameters, 31 and 100 after a release */
+    short lumi1;                        /* 0x42 */
+    char unk44[0x14];
+    int id58;                           /* 0x58 */
+    int id5C;                           /* 0x5C */
+    char unk60[0x48];
+    void *fxbuf;                        /* 0xA8 effect buffer, only when flags < 0 */
 } cMovieTrack;                          /* 0xAC */
+
+extern void ResHolder_release(cMovieTrack *track);
 
 typedef struct cMovie {
     cMovieTrack *track;                 /* 0x00 MOVIE_TRACK_NUM entries */

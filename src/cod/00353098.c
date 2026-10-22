@@ -35,6 +35,7 @@ int func_00353098(SftimHn *hn, FrmSize *sz)
     if (cfg->maxW * cfg->maxH < sz->w * sz->h)
         return func_0034DD70(hn, 0xFF000F17);
     size = frmBufSize(mode, sz->w, sz->h);
+    /* frmBufSize() here instead changes the register allocation */
     mbw = cfg->bufW / 16;
     mbh = cfg->bufH / 16;
     if ((mode == 2 ? mbw * mbh * 1024 : mbw * mbh * 384) + 64 < size)
@@ -45,9 +46,10 @@ int func_00353098(SftimHn *hn, FrmSize *sz)
             w->frmBuf[i] = buf + i * size;
     } else {
         for (i = 0; i < n; i++)
-            ;
+            ; /* retail keeps this empty loop: dropping it changes the code */
     }
     w->nfrm = n;
+    /* StmSlot is the stream view of the same 0xF0-byte SfdFrm; its id at 0x08 is SfdFrm.buf */
     func_00354A70((StmSlot *)w->frm, (int *)w->frmBuf, n);
     return 0;
 }

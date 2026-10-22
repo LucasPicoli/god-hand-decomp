@@ -3,6 +3,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
 #include "godhand/ColiseumBattle.h"
+#include "godhand/cMovie.h"
 
 extern void func_001B6FB8(void *self);
 extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
@@ -131,53 +132,37 @@ void Slot2_selectMark(Slot2Marks *self, unsigned int sel, int showAll, int armFl
 #define RES_SIZE        0xAC            /* bytes cleared at the end */
 #define RES_NONE        (-1)
 
-/* The resource holder: a handle at 0x00, five heap buffers at 0x04..0x14, a sixth cell at 0x18 and a sixth buffer at 0xA8 that is only freed when the state at 0x3C is negative. */
-typedef struct ResHolder {
-    int handle;                         /* 0x00 released by Forward3443E0_3443C8 */
-    void *buf[5];                       /* 0x04 heap buffers */
-    int cell18;                         /* 0x18 */
-    char unk1C[0x20];
-    int state;                          /* 0x3C negative: the 0xA8 buffer is released too */
-    short w40;                          /* 0x40 */
-    short w42;                          /* 0x42 */
-    char unk44[0x14];
-    int id58;                           /* 0x58 */
-    int id5C;                           /* 0x5C */
-    char unk60[0x48];
-    void *bufA8;                        /* 0xA8 */
-} ResHolder;
-
-/* Release everything the holder owns and reset it: the 0xA8 buffer when the state is negative, the handle at 0x00, the five heap buffers; clear the whole record and set the two ids to -1 and the two shorts to 31 and 100. */
+/* Release everything the track owns and reset it: the effect buffer when flags is negative, the player handle, the five heap buffers; clear the whole record and set the two ids to -1 and the luminance pair to 31 and 100. */
 __attribute__((section(".text.ResHolder_release")))
-void ResHolder_release(ResHolder *self)
+void ResHolder_release(cMovieTrack *self)
 {
-    if (self->state < 0) {
+    if (self->flags < 0) {
         if (self->handle != 0) {
             Forward342910_342888(self->handle);
         }
-        FREE_BUF(self->bufA8);
-        self->bufA8 = 0;
+        FREE_BUF(self->fxbuf);
+        self->fxbuf = 0;
         Obj3260_Tramp_00337C88_D208();
     }
     if (self->handle != 0) {
         Forward3443E0_3443C8(self->handle);
     }
-    FREE_BUF(self->buf[0]);
-    FREE_BUF(self->buf[1]);
-    FREE_BUF(self->buf[2]);
-    FREE_BUF(self->buf[3]);
-    FREE_BUF(self->buf[4]);
+    FREE_BUF(self->buf04);
+    FREE_BUF(self->work);
+    FREE_BUF(self->stm[0]);
+    FREE_BUF(self->stm[1]);
+    FREE_BUF(self->img);
     self->handle = 0;
-    self->buf[0] = 0;
-    self->buf[1] = 0;
-    self->buf[2] = 0;
-    self->buf[3] = 0;
-    self->buf[4] = 0;
+    self->buf04 = 0;
+    self->work = 0;
+    self->stm[0] = 0;
+    self->stm[1] = 0;
+    self->img = 0;
     self->cell18 = 0;
     func_003A52F0(self, 0, RES_SIZE);
     self->id58 = RES_NONE;
-    self->w40 = 0x1F;
-    self->w42 = 0x64;
+    self->lumi0 = 0x1F;
+    self->lumi1 = 0x64;
     self->id5C = RES_NONE;
 }
 
