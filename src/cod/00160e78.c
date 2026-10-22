@@ -1,16 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
+/* One prototype per helper: see include/godhand/objField.h. */
+#include "godhand/objField.h"
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
 
 extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void Obj0000_Set_Byte_54(void *a0, int a1);
-extern void Obj0000_Set_Field_50_173998(int *a0, int a1);
 extern void ForwardVec3At30_147C60(void *a0, float *a1);
 extern void func_00147C88(void *a0, void *a1, int a2);
-extern void CopyVec3ToField20_173908(char *a0, float *a1);
-extern void CopyVec3ToField30_173938(char *a0, float *a1);
-extern void CopyVec3ToField40_173968(char *a0, float *a1);
 extern void *cSnd_GetSeData(void *a0, int a1);
 extern int D_0044CE48[];
 extern int cSaveLoad_openSave(void *p, int a1);
