@@ -1,5 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
+/* One prototype per helper: see include/godhand/objField.h. */
+#include "godhand/objField.h"
 extern void cNode_updateWorldMatrix(void *a0);
 extern void ForwardVec3At30_147C60(void *a0, void *a1);
 
