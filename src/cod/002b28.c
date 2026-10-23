@@ -4,6 +4,7 @@
 /* ── call-chain (3) — save $ra, call sub-function, return 0 ─────────── */
 
 extern void func_002B2A88(char *p);
+extern void func_002B45E0(void *self, int id);
 
 __attribute__((section(".text.func_002B2A30")))
 int func_002B2A30(char *p)
@@ -119,7 +120,12 @@ int Obj2B28_ReturnZero_F78(char *a0) { return 0; }
 
 /* ── call-chain (cont.) ──────────────────────────────────────────────── */
 
-INCLUDE_ASM("nonmatching", func_002B2F80);
+/* Passes the id at *(p_8C)+2 to func_002B45E0; returns 0. */
+__attribute__((section(".text.func_002B2F80")))
+int func_002B2F80(char *a0) {
+    func_002B45E0(a0, *(unsigned short *)(*(int *)(a0 + 0x8C) + 2));
+    return 0;
+}
 
 /* ── accessor leaves (cont.) ─────────────────────────────────────────── */
 

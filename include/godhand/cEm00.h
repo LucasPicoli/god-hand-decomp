@@ -87,7 +87,8 @@ typedef struct cEm00 {
     char unk218[0x34];
     float animRate;                         /* 0x24C 1.0 normal */
     int objFlags;                           /* 0x250 EMACTOR_FLAG_DEAD once the actor is gone */
-    char unk254[0x24];
+    int texFlags;                           /* 0x254 bit 28 is set while a texture exchange is active, as in cOmBase */
+    char unk258[0x20];
     struct cEm00 **children;                /* 0x278 child object list */
     char unk27C[0x38];
     unsigned char childNum;                 /* 0x2B4 number of children */
@@ -167,15 +168,18 @@ typedef struct cEm00 {
     char unk6E4[0x8];
     int unk6EC;                             /* 0x6EC handle released by ReleaseField6ECByTag564_26B1E8 */
     int fx0;                                /* 0x6F0 effect handle */
-    char unk6F4[0x4];
+    int fx1;                                /* 0x6F4 effect handle */
     int fx2;                                /* 0x6F8 effect handle */
     int fx3;                                /* 0x6FC effect handle */
     int fx4;                                /* 0x700 effect handle */
     int fx5;                                /* 0x704 effect handle */
     int fx6;                                /* 0x708 effect handle */
-    char unk70C[0x24];
+    int unk70C;                             /* 0x70C attached object, updated with func_001C2378 */
+    char unk710[0x20];
     int unk730;                             /* 0x730 effect handle, released when moveFlags bit 0 is set */
-    char unk734[0xC];
+    int unk734;                             /* 0x734 effect handle */
+    void *gotoEffect;                       /* 0x738 effect a goto drops (func_001D0408) */
+    char unk73C[0x4];
     int subA;                               /* 0x740 child object started with a variant number */
     int unk744;                             /* 0x744 */
     int sub0;                               /* 0x748 child object, its own state bytes follow the enemy's */
@@ -187,7 +191,8 @@ typedef struct cEm00 {
     float unk768;                           /* 0x768 angle tested against pi/4 before the attack */
     char unk76C[0x194];
     int unk900;                             /* 0x900 countdown of the derived enemy, ticks down once per frame */
-    char unk904[0xC5C];
+    char unk904[0xC58];
+    int unk155C;                            /* 0x155C bit 0 picks the alternate texture of enemy 0x2A7 */
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
     float turnRate;                         /* 0x1564 */
     int turnArg;                            /* 0x1568 */
@@ -203,6 +208,7 @@ typedef struct cEm00 {
     union {
         int count;                          /* attacks left, or stalled walk frames */
         float time;                         /* a timer, counted down by frames */
+        float angle;                        /* a wobble phase in radians */
     } stepVar;                              /* 0x15B4 the current step's counter: an int in some steps, a float in others */
     char unk15B8[0x4];
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
@@ -210,7 +216,8 @@ typedef struct cEm00 {
     int unk15C4;                            /* 0x15C4 handle of the item this enemy dropped, 0 while none */
     char unk15C8[0x8];
     float hitWait;                          /* 0x15D0 frames before the next hit check, 90 after one */
-    char unk15D4[0xC];
+    float partYaw;                          /* 0x15D4 yaw of child part 0, turned toward the player */
+    char unk15D8[0x8];
     cVec hitPos;                            /* 0x15E0 where the last hit check found a unit */
     char unk15F0[0x4];
     int unk15F4;                            /* 0x15F4 flag word of the derived enemy, 0x10000 is set while the counter runs */
