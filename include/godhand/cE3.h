@@ -26,7 +26,9 @@
 #define CE3_W_BLOCKED  0x2000000        /* flags5E4: no ending now */
 
 typedef struct cE3World {
-    char unk00[0x98];
+    char unk00[0x90];
+    unsigned char menuReady;            /* 0x90 the E3 menu runs only while this is non-zero */
+    char unk91[0x98 - 0x91];
     unsigned int edge;                  /* 0x98 buttons that went down this frame */
     char unk9C[0x58C - 0x9C];
     int unk58C;                         /* 0x58C negative while no stage runs */
@@ -49,7 +51,7 @@ typedef struct cE3Sys {
 typedef struct cE3 {
     unsigned char state;                /* 0x00 CE3_STATE_* */
     unsigned char phase;                /* 0x01 step of the demo run: 0 start the fade, 1 wait for it, 2 done */
-    unsigned char cursor;               /* 0x02 menu cursor, read as signed for the range tests */
+    signed char cursor;                 /* 0x02 menu cursor: the E3 time limit in minutes, 0 = unlimited */
     unsigned char ending;               /* 0x03 which ending setEnding was given */
 } cE3;
 

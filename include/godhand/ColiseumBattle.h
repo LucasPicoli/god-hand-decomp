@@ -88,7 +88,7 @@ typedef struct ColiseumBattle {
     int phaseTimer;             /* 0xBA0 */
     int prizeLeft;              /* 0xBA4 bonus gold still to pay out */
     int prizeSteps;             /* 0xBA8 thousands of gold left to count up */
-    int unkBAC;                 /* 0xBAC */
+    unsigned int deadMask;      /* 0xBAC bit N: wave enemy N already counted as defeated */
     char unkBB0[0x20];
     unsigned char vec[9][16];   /* 0xBD0 cleared by the constructor */
     int unkC60;

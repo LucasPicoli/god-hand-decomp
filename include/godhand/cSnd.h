@@ -14,6 +14,11 @@
 #ifndef GODHAND_CSND_H
 #define GODHAND_CSND_H
 
+#include "godhand/cOmBase.h"
+
+/* A cVec on a quadword boundary: a struct assignment copies it with lq/sq. */
+typedef struct cVec cVecQuad __attribute__((aligned(16)));
+
 #define CSND_SE_ENTRY_SHIFT   6      /* slot stride is 1 << 6 = 0x40 */
 #define CSND_SE_STOP_NUM      8      /* handles kept by SeStop */
 #define CSND_SE_RECENT_NUM    16     /* recent-call ring */
@@ -146,7 +151,7 @@ typedef struct cSnd {
     unsigned int flagsAC;       /* 0xAC */
     unsigned int flagsB0;       /* 0xB0 */
     char unkB4[0xC];
-    float listenPos[4];         /* 0xC0 listener position */
+    cVecQuad listenPos;         /* 0xC0 listener position */
     float listenMtx[16];        /* 0xD0 world to listener matrix */
     int f110;                   /* 0x110 */
     char unk114[4];

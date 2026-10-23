@@ -75,7 +75,7 @@ __attribute__((section(".text.cEm00_stepCountedAttack"))) void cEm00_stepCounted
             }
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x41, self, 0, 0, 0, 0);
             func_002A8578(self, s2v, s0v, 2.0f, 3, 0, 0);
-            *(int *)&self->unk15B4 = 8;
+            self->stepVar.count = 8;
             self->gotoFlags = 0;
             self->step += 1;
         case 1:
@@ -93,8 +93,8 @@ __attribute__((section(".text.cEm00_stepCountedAttack"))) void cEm00_stepCounted
             cObjBase_addNullSpeed_Rotation(self, one);
             cObjBase_addNullSpeed(self, one);
             self->unk5E2 = 0;
-            if (*(int *)&self->unk15B4 != 0) {
-                *(int *)&self->unk15B4 -= 1;
+            if (self->stepVar.count != 0) {
+                self->stepVar.count -= 1;
                 self->unk15F4 |= 0x10000;
                 self->unk1603 = 2;
                 if (self->gotoFlags == 0) {
@@ -105,7 +105,7 @@ __attribute__((section(".text.cEm00_stepCountedAttack"))) void cEm00_stepCounted
                         self->gotoFlags = 1;
                     }
                 }
-                if (*(int *)&self->unk15B4 == 0) {
+                if (self->stepVar.count == 0) {
                     if (self->gotoFlags == 1) {
                         self->gotoFlags = 2;
                         pl00_addComboHit(self);

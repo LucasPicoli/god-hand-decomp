@@ -71,7 +71,9 @@ typedef struct cEm00Vt {
 #define CEM00_REGALLOC_NUDGE(self) (self)->phase++; (self)->phase--
 
 typedef struct cEm00 {
-    char unk000[0xD0];
+    char unk000[0x80];
+    float mtx[16];                          /* 0x080 orientation matrix */
+    char unk0C0[0x10];
     cVec *anchor;                           /* 0x0D0 the vector the body is pinned to */
     char unk0D4[0x1C];
     cVec *pos;                              /* 0x0F0 the enemy's live position */
@@ -106,9 +108,12 @@ typedef struct cEm00 {
     unsigned short moveFlags;               /* 0x3AC bits the move code sets: bit 0 and 1 end of a motion, 0x10 */
     char unk3AE[0x86];
     unsigned short unk434;                  /* 0x434 flag word, bit 3 is set before each move */
-    char unk436[0x5A];
+    char unk436[0x12];
+    char ik[0x48];                          /* 0x448 inverse kinematics work */
     cVec posA;                              /* 0x490 position copy */
-    char unk4A0[0xA8];
+    char unk4A0[0x91];
+    signed char link;                       /* 0x531 -1 for none */
+    char unk532[0x16];
     short vitalMax;                         /* 0x548 */
     short vital;                            /* 0x54A hit points */
     float hitFlash;                         /* 0x54C 3.0 right after a hit */
@@ -130,7 +135,7 @@ typedef struct cEm00 {
     cVec home;                              /* 0x5C0 the point the position is eased toward */
     cVec posB;                              /* 0x5D0 the point the turn aims at (cOmBase posB) */
     short unk5E0;                           /* 0x5E0 cleared with unk5E2 when a motion starts */
-    short unk5E2;                           /* 0x5E2 cleared every frame while the counter at 0x15B4 runs */
+    short unk5E2;                           /* 0x5E2 cleared every frame while stepVar.count runs */
     char unk5E4[0xC];
     int timerA;                             /* 0x5F0 countdown of the turn toward the target, one per frame */
     int timerB;                             /* 0x5F4 second counter */
@@ -140,10 +145,13 @@ typedef struct cEm00 {
     float timer2;                           /* 0x604 second countdown */
     float timer3;                           /* 0x608 third countdown, counted down by speedRate */
     float unk60C;                           /* 0x60C zeroed when a hit step starts */
-    char unk610[0x7];
+    char unk610[0x6];
+    unsigned char active;                   /* 0x616 */
     unsigned char unk617;                   /* 0x617 set to 1 when the step starts */
     float playerDist;                       /* 0x618 distance to the player */
-    char unk61C[0x24];
+    char unk61C[0x3];
+    unsigned char unk61F;                   /* 0x61F while set, the hit countdown at 0x568 also sets unk15F4 bit 0x8000 */
+    char unk620[0x20];
     unsigned short entryNo;                 /* 0x640 the room table's number for it */
     char unk642[0x6];
     unsigned char unk648;                   /* 0x648 set to 0x14 while the 0x640 link is held */
@@ -181,19 +189,30 @@ typedef struct cEm00 {
     int unk900;                             /* 0x900 countdown of the derived enemy, ticks down once per frame */
     char unk904[0xC5C];
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
-    char unk1564[0xC];
+    float turnRate;                         /* 0x1564 */
+    int turnArg;                            /* 0x1568 */
+    char unk156C[0x4];
     cVec unk1570;                           /* 0x1570 */
     struct cEm00 *target;                   /* 0x1580 the enemy this one watches */
-    char unk1584[0xC];
+    int watchArg;                           /* 0x1584 */
+    float unk1588;                          /* 0x1588 the walk to unk580 counts as stalled within half of it */
+    char unk158C[0x4];
     cVec unk1590;                           /* 0x1590 */
     cVec gotoPos;                           /* 0x15A0 goal of a goto, see cEma2_gotoSwitch */
     int gotoFlags;                          /* 0x15B0 bit 0x80 is set by cEma2_gotoSwitch */
-    float unk15B4;                          /* 0x15B4 */
+    union {
+        int count;                          /* attacks left, or stalled walk frames */
+        float time;                         /* a timer, counted down by frames */
+    } stepVar;                              /* 0x15B4 the current step's counter: an int in some steps, a float in others */
     char unk15B8[0x4];
     float unk15BC;                          /* 0x15BC countdown, restarts at a random 90 to 180 frames */
-    char unk15C0[0x4];
+    float stepScale;                        /* 0x15C0 scale on stepVec x and z while a knockdown motion runs */
     int unk15C4;                            /* 0x15C4 handle of the item this enemy dropped, 0 while none */
-    char unk15C8[0x2C];
+    char unk15C8[0x8];
+    float hitWait;                          /* 0x15D0 frames before the next hit check, 90 after one */
+    char unk15D4[0xC];
+    cVec hitPos;                            /* 0x15E0 where the last hit check found a unit */
+    char unk15F0[0x4];
     int unk15F4;                            /* 0x15F4 flag word of the derived enemy, 0x10000 is set while the counter runs */
     char unk15F8[0xB];
     unsigned char unk1603;                  /* 0x1603  */
@@ -205,7 +224,8 @@ typedef struct cEm00 {
     int flags1644;                          /* 0x1644 flag word, bit 0x800000 keeps the body down */
     char unk1648[0x8];
     unsigned char unk1650;                  /* 0x1650 set to 4 when a knockdown ends in a stand-up */
-    char unk1651[0x3F];
+    char unk1651[0x2F];
+    cVec aimPos;                            /* 0x1680 the point the player aims at on this enemy */
     cVec wallPoint;                         /* 0x1690 the wall point the dodge checks against */
     cVec unk16A0;                           /* 0x16A0 */
     cVec unk16B0;                           /* 0x16B0 the point the turn aims at when hitKind is 12 */
@@ -223,7 +243,8 @@ typedef struct cEm00 {
     char unk16F0[0x4];
     float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
     int unk16F8;                            /* 0x16F8 */
-    char unk16FC[0x10];
+    char unk16FC[0xC];
+    float pitch;                            /* 0x1708 body pitch toward the ground slope */
     float unk170C;                          /* 0x170C scaled by 10.0 into unk1710 on a hard hit */
     int unk1710;                            /* 0x1710 cleared at the start of a step */
     char unk1714[0xC];

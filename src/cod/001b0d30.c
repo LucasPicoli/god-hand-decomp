@@ -30,16 +30,8 @@ typedef struct ArenaEm {
     int timer;                          /* 0xBA0 frames left in the step */
 } ArenaEm;
 
-/* The handle of the boss enemy: its entry number is the first byte. */
-typedef struct EmHandle {
-    unsigned char entryNo;
-    char unk01[0xF];
-} EmHandle;
 
 extern void ColiseumBattle_DefeatAllEnemies(ArenaEm *self);
-extern int cEmWrap_GetVitalMax(EmHandle *h);
-extern int cEmWrap_GetVital(EmHandle *h);
-extern void cEmWrap_setSuspend(EmHandle *h, int flag);
 
 
 
@@ -49,7 +41,7 @@ extern int D_003C2F84;                  /* scenario */
 __attribute__((section(".text.ArenaEm_stepBossIntro")))
 void ArenaEm_stepBossIntro(ArenaEm *self)
 {
-    EmHandle h;
+    cEmWrap h;
     int vitalMax;
     int vital;
     h.entryNo = 0;

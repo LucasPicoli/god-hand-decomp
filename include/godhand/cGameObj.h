@@ -198,4 +198,6 @@ static __inline__ unsigned char cGameObjSortEnt_less(const cGameObjSortEnt *a, c
 }
 
 
+extern void func_002831C8(cGameObj *self, unsigned int kind, unsigned char arg);
+
 #endif /* GODHAND_CGAMEOBJ_H */

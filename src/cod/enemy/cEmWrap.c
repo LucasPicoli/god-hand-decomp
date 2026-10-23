@@ -132,18 +132,18 @@ void cEmWrap_StartAction(cEmWrap *self)
 
 /* Current vital of the actor, 0 if the handle is dead. */
 __attribute__((section(".text.cEmWrap_GetVital")))
-int cEmWrap_GetVital(cEmWrap *self, int a1) {
+int cEmWrap_GetVital(cEmWrap *self) {
     cEmActor *actor;
-    if (FindResolveActor_295978(self, a1) == 0) return 0;
+    if (FindResolveActor_295978(self) == 0) return 0;
     actor = self->actor;
     return actor->vital;
 }
 
 /* Maximum vital of the actor, 0 if the handle is dead. */
 __attribute__((section(".text.cEmWrap_GetVitalMax")))
-int cEmWrap_GetVitalMax(cEmWrap *self, int a1) {
+int cEmWrap_GetVitalMax(cEmWrap *self) {
     cEmActor *actor;
-    if (FindResolveActor_295978(self, a1) == 0) return 0;
+    if (FindResolveActor_295978(self) == 0) return 0;
     actor = self->actor;
     return actor->vitalMax;
 }
