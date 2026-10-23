@@ -1,5 +1,5 @@
-/* sn-2.95.3-136: func_001DCC30, when exactly one slot shows kind 2, mark the first pair of cards
- * with one rank and report it. */
+/* sn-2.95.3-136: func_001DCC30, when exactly one slot shows kind 2, mark a pair of cards with one
+ * rank and report it. The outer loop doesn't stop at a match, so the last pair found wins. */
 #include "godhand/Poker.h"
 
 extern void func_001DBFB8(PokerHandView *self, unsigned short *x0, unsigned short *y0, unsigned short *x1, unsigned short *y1,

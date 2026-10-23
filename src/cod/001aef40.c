@@ -1,18 +1,11 @@
-/* sn-2.95.3-136: count the shake timer down; while it runs, set the position from the model
- * position with the rest z jittered by fRand1_1 (2 degrees), and on the last tick without it. */
+/* sn-2.95.3-136: count the shake timer down; while it runs, set the rotation (vtable slots 15/17)
+ * from the model rotation with the rest z jittered by fRand1_1 (2 degrees), and on the last tick without it. */
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
+#include "godhand/vecInline.h"
 extern float fRand1_1(void);
 
-static inline void setVec4(float *v, float x, float y, float z)
-{
-    v[0] = x;
-    v[1] = y;
-    v[2] = z;
-    v[3] = 1.0f;
-}
-
-/* A model whose z is shaken for a while, then put back. */
+/* A model whose z rotation is shaken for a while, then put back. */
 typedef struct cOmShakeZ {
     cOmBase base;                       /* 0x000 */
     char unk5E0[0x986 - 0x5E0];
@@ -36,7 +29,7 @@ void func_001AEF40(cOmShakeZ *self)
 
         get = &self->base.vtable[17];
         b = ((float *(*)(char *))get->pfn)((char *)self + get->delta);
-        setVec4(v, a[0], b[1], self->restZ + fRand1_1() * 0.034906585f);
+        vec4_set_point(v, a[0], b[1], self->restZ + fRand1_1() * 0.034906585f);
         ((void (*)(char *, float *))set->pfn)(obj, v);
     } else {
         cVtEnt *set = &self->base.vtable[15];
@@ -47,7 +40,7 @@ void func_001AEF40(cOmShakeZ *self)
 
         get = &self->base.vtable[17];
         b = ((float *(*)(char *))get->pfn)((char *)self + get->delta);
-        setVec4(v, a[0], b[1], self->restZ);
+        vec4_set_point(v, a[0], b[1], self->restZ);
         ((void (*)(char *, float *))set->pfn)(obj, v);
     }
 }

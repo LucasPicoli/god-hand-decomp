@@ -1,16 +1,8 @@
 /* sn-2.95.3-136: func_001B67D0, enemy setup with a three-sphere (radius 0.25) damage-give volume along z, the give attributes 0x41/0x14/0xF0 and a forward direction. */
 #include "godhand/cOmHitVolumeSetup.h"
 #include "godhand/cDamageGive.h"
+#include "godhand/vecInline.h"
 extern char D_00574380[];
-
-static inline void copyVec3(float *d, float *s)
-{
-    if (d != s) {
-        d[0] = s[0];
-        d[1] = s[1];
-        d[2] = s[2];
-    }
-}
 
 /* An enemy whose attack is a damage-give volume of three spheres along z. */
 typedef struct cOmGiveSpheres {
@@ -64,7 +56,7 @@ int func_001B67D0(cOmGiveSpheres *self)
         u = self->give;
         u->unk44 = 0xF0;
         u->unk40 = 0;
-        copyVec3(&self->give->hitVec.x, &f[12]);
+        vec3_copy(&self->give->hitVec.x, &f[12]);
     }
     self->base.flags2 &= ~1;
     return 1;

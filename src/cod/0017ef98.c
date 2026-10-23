@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: func_0017EF98, timed tip-over state machine on the phase byte: wait 7 frames, then rotate the
- * tilt angle down with growing speed (ticking SE 0xE6 every 1000 frames) until it reaches -pi/2, where it lands
+ * tilt angle down with growing speed (SE 0xE6 once, 25 frames in) until it reaches -pi/2, where it lands
  * (effect, SE 0xE7) and holds 15 frames before going idle again. */
 #include "godhand/cOmBase.h"
 #include "godhand/cEmManage.h"

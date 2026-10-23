@@ -1,5 +1,5 @@
 /* sn-2.95.3-136 */
-#include "godhand/cIDBase.h"
+#include "godhand/cIDMenuPanel.h"
 #include "godhand/gameWork.h"
 #include "godhand/cSnd.h"
 
@@ -16,18 +16,6 @@
 
 extern cSnd D_005FEE00;
 extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
-
-/* A menu panel built on cIDBase: it fades in, lets the pad pick an answer (-1, 0 or 1)
- * and fades out. */
-typedef struct cIDMenuPanel {
-    cIDBaseObj base;                    /* 0x00 */
-    char unk48[0x5A - 0x48];
-    signed char state;                  /* 0x5A 0 fade in, 1 shown, 2 fade out */
-    char unk5B[0x60 - 0x5B];
-    int result;                         /* 0x60 7 once an answer is decided, -1 when the panel has faded out */
-    char unk64[0x91 - 0x64];
-    signed char choice;                 /* 0x91 -1, 0 or 1 */
-} cIDMenuPanel;
 
 /* Moves the menu's three-way selection (-1, 0, 1) with the pad and handles decide and cancel while the panel is shown. */
 __attribute__((section(".text.func_001682C8")))

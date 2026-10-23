@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_001A3E10, enemy setup with a 1.6 x 2.2 damage-take cylinder, a radius 1.5 damage-give sphere,
  * 50 hit points and flags2 bits 7 and 8. */
 #include "godhand/cOmHitVolumeSetup.h"
+#include "godhand/cDamageGive.h"
 
 extern int cDamageUnit_AddDamageCollCylinder(void *unit, void *mtx, float *ofs, float *rot, float r, float h);
 
@@ -48,8 +49,8 @@ int func_001A3E10(cOmHitVolume *em)
         v[3].z = 0.0f;
         ov->w = 1.0f;
         cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 1.5f);
-        *(short *)(((char *)em->damageGive) + 0x46) = 0x52;
-        *(int *)(((char *)em->damageGive) + 0x4C) = 0x14;
+        ((cDamageGive *)em->damageGive)->unk46 = 0x52;
+        ((cDamageGive *)em->damageGive)->activeTime = 0x14;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);
     }
     em->base.hp = em->base.hpMax = 50;

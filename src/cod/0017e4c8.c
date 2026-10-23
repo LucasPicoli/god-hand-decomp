@@ -1,20 +1,5 @@
 /* sn-2.95.3-136: func_0017E4C8, quarter-turn gimmick step: start a 90-frame rotate with vibration, wait out the start timer, run the move and hold for 15 frames before going idle. */
-#include "godhand/cOmBase.h"
-
-extern void cOmSub_initMove1_ang(char *dst, char *obj, int idx, int a3, void *a4, float f12, float f13, int a5);
-extern void cOmSub_setVibration(void *a0, int a1, int a2, float f12, float f13, float f14);
-extern int cOmSub_move(char *a0);
-
-/* A gimmick that turns a quarter turn once when triggered. */
-typedef struct cOmQuarterTurn {
-    cOmBase base;                       /* 0x000 */
-    char unk5E0[0x600 - 0x5E0];
-    unsigned char triggered;            /* 0x600 set by the trigger, cleared when the turn ends */
-    unsigned char turned;               /* 0x601 1 once the turn has run */
-    short timer;                        /* 0x602 frames to wait before and after the turn */
-    char unk604[0x610 - 0x604];
-    char move[0x140];                   /* 0x610 cOmSub move work */
-} cOmQuarterTurn;
+#include "godhand/cOmSubGimmick.h"
 
 __attribute__((section(".text.func_0017E4C8")))
 void func_0017E4C8(cOmQuarterTurn *self)

@@ -22,7 +22,7 @@ typedef struct cDamageGive {
     char unk20[0x20];
     int unk40;                          /* 0x40 cleared by the enemy setups */
     short unk44;                        /* 0x44 */
-    short unk46;                        /* 0x46 cleared when the volume is parked; the hit setups store 0x2E or 0x30 */
+    short unk46;                        /* 0x46 cleared when the volume is parked; the setups store 0x2E..0x52 (cDamageTake.kind) */
     char unk48[0x4];
     int activeTime;                     /* 0x4C frames the volume stays active, 0 while parked */
 } cDamageGive;

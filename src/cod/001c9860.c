@@ -12,6 +12,7 @@ extern void cOmBase_dieCommon(void *a0);
 #include "godhand/emPhaseTable.h"
 #include "godhand/cDamageGive.h"
 #include "godhand/cOmHitVolumeSetup.h"
+#include "godhand/vecInline.h"
 
 extern EmPhaseTable D_003BDE88;
 
@@ -36,8 +37,6 @@ __attribute__((section(".text.func_001C9860")))
 void func_001C9860(cOmFallGimmick *self)
 {
     float rate;
-    cVec *src;
-    cVec *dst;
 
     if (ClearField5B4IfFlagUnset_1B76B0(self) == 0)
         return;
@@ -62,20 +61,8 @@ void func_001C9860(cOmFallGimmick *self)
     func_001CF3A8((char *)self);
     cModel_calcParts(self);
 
-    src = self->base.pos;
-    dst = &self->base.posA;
-    if (dst != src) {
-        dst->x = src->x;
-        dst->y = src->y;
-        dst->z = src->z;
-    }
-    dst = &self->base.posB;
-    src = &self->base.posPrev;
-    if (dst != src) {
-        dst->x = src->x;
-        dst->y = src->y;
-        dst->z = src->z;
-    }
+    vec3_copy(&self->base.posA.x, &self->base.pos->x);
+    vec3_copy(&self->base.posB.x, &self->base.posPrev.x);
     if (self->unk600 == 0 && self->base.pos->y < -1000.0f)
         cOmBase_dieCommon(self);
     if (self->base.actorId == 0x390)

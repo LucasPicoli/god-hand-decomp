@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_001B22D0, enemy setup with a 2.8 x 1.4 damage-take box, a radius 3 damage-give sphere and
  * the enemy work defaults. */
 #include "godhand/cOmHitVolumeSetup.h"
+#include "godhand/cDamageGive.h"
 
 __attribute__((section(".text.func_001B22D0")))
 int func_001B22D0(cOmHitVolume *em)
@@ -47,10 +48,10 @@ int func_001B22D0(cOmHitVolume *em)
         v[3].z = 0.0f;
         ov->w = 1.0f;
         cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 3.0f);
-        *(short *)(((char *)em->damageGive) + 0x46) = 0x32;
-        *(int *)(((char *)em->damageGive) + 0x4C) = 0;
+        ((cDamageGive *)em->damageGive)->unk46 = 0x32;
+        ((cDamageGive *)em->damageGive)->activeTime = 0;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);
-        *(int *)em->damageGive |= 1;
+        ((cDamageGive *)em->damageGive)->flags |= 1;
     }
     em->base.hpMax = 1;
     em->base.hp = 1;

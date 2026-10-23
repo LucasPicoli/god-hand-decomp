@@ -16,8 +16,8 @@
  * as their own symbols (D_00747A24 and the rest) the code changes. */
 #define SYS_MODE()         (*(int *)((char *)&D_00747A84 - 0x60))             /* D_00747A24 */
 #define SYS_STAGE()        (*(unsigned short *)((char *)&D_00747A84 - 0x34))  /* D_00747A50 */
-#define SYS_LOCK()         (*(int *)((char *)&D_00747A84 - 0xC))              /* D_00747A78 */
-#define SYS_LOCK2()        (*(int *)((char *)&D_00747A84 - 0x4))              /* D_00747A80 */
+#define SYS_FLAGS()        (*(int *)((char *)&D_00747A84 - 0xC))              /* D_00747A78, the system flags */
+#define SYS_LOCKFLAGS()    (*(int *)((char *)&D_00747A84 - 0x4))              /* D_00747A80, the lock flags */
 
 typedef struct cMessage cMessage;
 
@@ -53,11 +53,11 @@ void cDoor_setDoorJump(cDoor *self)
     self->phase = 0;
     D_00747A84 |= SYS_FLAG_DOOR_STEP;
     KeyStop();
-    SYS_LOCK() |= 0x800000;
-    SYS_LOCK() |= 0x4000000;
-    SYS_LOCK() |= 0x400000;
-    SYS_LOCK() |= 0x100000;
-    SYS_LOCK2() |= 0x100000;
+    SYS_FLAGS() |= 0x800000;
+    SYS_FLAGS() |= 0x4000000;
+    SYS_FLAGS() |= 0x400000;
+    SYS_FLAGS() |= 0x100000;
+    SYS_LOCKFLAGS() |= 0x100000;
     D_003C2F84->task.flags |= 1;
     if (SYS_STAGE() != STAGE_NOPLAYER) {
         cGameObj *pl = Getplayer();
