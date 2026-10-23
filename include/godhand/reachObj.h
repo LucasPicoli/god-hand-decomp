@@ -31,4 +31,10 @@ typedef struct ReachObj {
 
 extern int ReachObj_isWithinReach(ReachObj *o);
 
+/* A camera vibration word written through D_005CAFF0's address: as a vib[] field store gcc
+ * loads the camera pointer once, where retail loads it again before each store. */
+#define CAM_VIB(i, f) \
+    (*(float *)((char *)D_005CAFF0 + (int)&((struct cCamera *)0)->vib[i].f))
+
+
 #endif /* GODHAND_REACHOBJ_H */
