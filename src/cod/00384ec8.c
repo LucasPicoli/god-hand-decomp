@@ -28,6 +28,6 @@ int func_00384EC8(MenuCtl *ctl, MenuList *list)
     func_0032A6D0(work->handle, 1, list->unk0A);
     list->unk00 = 0;
     func_0032B300(work->handle, 0);
-    func_0032BDC0(work->handle, list->f84, ctl->cursor);
+    func_0032BDC0(work->handle, (int)list->dir, ctl->cursor);
     return 0;
 }

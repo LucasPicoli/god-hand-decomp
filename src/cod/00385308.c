@@ -19,7 +19,7 @@ void func_00385308(unsigned char *p, MenuPad *pad, unsigned char which)
         v = (short *)(p + 0x478);
         idx = 0;
     }
-    if (pad->trg & 0x8000) {
+    if (pad->rep & 0x8000) {
         if (*v == VOICE_OFS_OFF)
             *v = 15;
         else if (*v >= -14)
@@ -29,7 +29,7 @@ void func_00385308(unsigned char *p, MenuPad *pad, unsigned char which)
         if (snd->voice != 0)
             func_0032A6D0(snd->voice, idx, *v);
     }
-    if (pad->trg & 0x2000) {
+    if (pad->rep & 0x2000) {
         if (*v == VOICE_OFS_OFF)
             *v = -15;
         else if (*v < 15)

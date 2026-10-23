@@ -32,7 +32,7 @@ void func_003812B0(VolSel *sel, MenuPad *pad, unsigned char right)
         v = &e->vol[0];
         ch = 0;
     }
-    if (pad->trg & 0x8000) {
+    if (pad->rep & 0x8000) {
         if (*v == -0x80)
             *v = 0xF;
         else if (*v >= -0xE)
@@ -42,7 +42,7 @@ void func_003812B0(VolSel *sel, MenuPad *pad, unsigned char right)
         if (info->handle != 0)
             func_0032A6D0(info->handle, ch, *v);
     }
-    if (pad->trg & 0x2000) {
+    if (pad->rep & 0x2000) {
         if (*v == -0x80)
             *v = -0xF;
         else if (*v < 0xF)
