@@ -14,7 +14,7 @@
 #define MESSDRAWFONT_COUNT_NONE  0x0FFFFFFF  /* "draw it all" limit */
 
 typedef struct cMessDrawFont {
-    unsigned int flags;             /* 0x00 bit 0 = ruby text is drawn */
+    int flags;                      /* 0x00 bit 0 = ruby text is drawn, bit 2 = fixed pitch */
     void *body;                     /* 0x04 message text, as handed in */
     void *ruby;                     /* 0x08 ruby text, as handed in */
     void *bodyStart;                /* 0x0C first character of the message */
@@ -36,7 +36,7 @@ typedef struct cMessDrawFont {
     int unk58;                      /* 0x58 */
     int unk5C;                      /* 0x5C */
     float unk60;                    /* 0x60 */
-    char *cursor;                   /* 0x64 read cursor in the body */
+    unsigned short *cursor;         /* 0x64 read cursor in the body */
     char *rubyCursor;               /* 0x68 read cursor in the ruby */
     int charNum;                    /* 0x6C characters consumed */
     float sizeW;                    /* 0x70 laid out width */
@@ -48,5 +48,13 @@ typedef struct cMessDrawFont {
     float unk88;                    /* 0x88 */
     float unk8C;                    /* 0x8C */
 } cMessDrawFont;                    /* at least 0x90 */
+
+/* Draw settings of the code being laid out, set up by func_002B0480 and
+ * changed by the message commands. */
+typedef struct cMessDrawFrame {
+    float scale;                    /* 0x0 */
+    int colour;                     /* 0x4 packed RGBA */
+    int unk8;                       /* 0x8 */
+} cMessDrawFrame;
 
 #endif

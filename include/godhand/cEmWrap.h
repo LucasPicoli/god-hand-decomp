@@ -38,7 +38,9 @@ typedef struct cEmActorVt {
 } cEmActorVt;
 
 typedef struct cEmActor {
-    char unk000[0x100];
+    char unk000[0xF0];
+    struct cVec *pos;           /* 0x0F0 live position */
+    char unk0F4[0x100 - 0xF4];
     float rot[3];               /* 0x100 */
     char unk10C[0x214 - 0x10C];
     cEmActorVt *vt;             /* 0x214 */

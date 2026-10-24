@@ -46,7 +46,7 @@ typedef struct cWorldLightRec {
 } __attribute__((aligned(16))) cWorldLightRec; /* 0x70 */
 
 /* Byte blobs that the game copies as plain structs (unaligned word moves). */
-typedef struct { char b[4]; } cWorldLightBlob4;
+typedef struct { unsigned char b[4]; } cWorldLightBlob4;
 
 /* First 16 bytes of the object: sky colour, then settings copied as words. */
 typedef union cWorldLightHead {
@@ -89,7 +89,8 @@ typedef struct cWorldLightSlot {
 } cWorldLightSlot;
 
 typedef struct cWorldLightExtra {
-    int w[5];
+    int w[4];
+    unsigned char b[4];                 /* 0x10 */
 } cWorldLightExtra;                     /* 0x14 */
 
 /* One stage light preset (table D_0061A400, 0x80 bytes each). It holds the
@@ -135,7 +136,9 @@ typedef struct cWorldLight {
     int extraNum;                       /* 0x7440 */
     char unk7444[0xE8A0 - 0x7444];
     char backup[0x7444];                /* 0xE8A0 copy of 0x00..0x7443 */
-    char unk15CE4[0x15D00 - 0x15CE4];
+    char unk15CE4[0x15CF0 - 0x15CE4];
+    cWorldLightBlob4 lightDataHdr;      /* 0x15CF0 stage light data header; LightData_Load fills it and the presets */
+    char unk15CF4[0x15D00 - 0x15CF4];
     cWorldLightPreset preset[WORLDLIGHT_PRESET_NUM]; /* 0x15D00 table D_0061A400 */
     cWorldLightSlot *slot[8];           /* 0x16100 one per preset */
     cWorldLightTbl *areaTbl;            /* 0x16120 area check table */
@@ -158,7 +161,12 @@ typedef struct cWorldLight {
     char unk16169[3];
     float fadeT;                        /* 0x1616C 1.0 once the fade is done */
     signed char gaibuFrames;            /* 0x16170 outside-light countdown */
-    char unk16171[0x161A0 - 0x16171];
+    unsigned char presetOrder[WORLDLIGHT_PRESET_NUM]; /* 0x16171 set to 0..7 when the stage data loads */
+    char unk16179[0x16194 - 0x16179];
+    int unk16194;                       /* 0x16194 */
+    char unk16198[4];
+    unsigned char unk1619C;             /* 0x1619C */
+    char unk1619D[3];
     float lightDir[3][4];               /* 0x161A0 three light directions */
     float lightCol[3][4];               /* 0x161D0 their colours */
     char unk16200[0x16280 - 0x16200];
@@ -171,6 +179,7 @@ typedef struct cWorldLight {
 /* Offset of a field from the start of cWorldLight. Fields past 0x10000 are
  * written as a 0x10000 base plus the rest where retail forms the base once. */
 #define WORLDLIGHT_OFFSET(field) ((int)&((cWorldLight *)0)->field)
+typedef char cWorldLight_lightDir_check[WORLDLIGHT_OFFSET(lightDir) == 0x161A0 ? 1 : -1];
 #define WORLDLIGHT_FAR_BASE      0x10000
 
 /* Access a field as a bare `T` at its offset. Retail's scheduler treats
@@ -180,5 +189,7 @@ typedef struct cWorldLight {
     (*(T *)((char *)(far) + (WORLDLIGHT_OFFSET(field) - WORLDLIGHT_FAR_BASE)))
 #define WORLDLIGHT_RAW(self, T, field) \
     (*(T *)((char *)(self) + WORLDLIGHT_OFFSET(field)))
+
+void cWorldLight_savePreset(cWorldLight *self, cWorldLightPreset *dst, cWorldLight *src);
 
 #endif

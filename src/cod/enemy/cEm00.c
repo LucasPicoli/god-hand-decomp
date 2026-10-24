@@ -1,5 +1,4 @@
 /* TU: cEm00 [enemy] - recovered C++ class. */
-#include "include_asm.h"
 
 __attribute__((section(".text.cEm00_setAlphaMode")))
 void cEm00_setAlphaMode(void *a0, char a1) {
@@ -35,4 +34,3 @@ void cEm00_setNeckMoveOn(void *a0) {
     *(int *)((char *)a0 + 0x16D4) &= 0x7FFFFFFF;
 }
 
-INCLUDE_ASM("nonmatching", cEm00_setGoto);
