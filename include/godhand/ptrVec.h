@@ -18,7 +18,6 @@ typedef struct PtrVecRef {
 } PtrVecRef;
 
 extern PtrVecRef D_00754C30;            /* every registered object */
-extern PtrVecRef D_00754C38;            /* objects with actor id 0 */
 extern PtrVecRef D_00754C58;            /* every other object */
 
 extern void func_003129D0(PtrVecRef *list, void *obj);

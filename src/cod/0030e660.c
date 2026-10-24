@@ -23,7 +23,7 @@ typedef struct GsStoreImageWords {
 } GsStoreImageWords;
 
 extern void func_003B1F28(char *fmt, ...);
-extern u_long Tramp_GsGetIMR_3964A0(void);
+extern unsigned long Tramp_GsGetIMR_3964A0(void);
 extern u_long func_00396008(u_long newMask);
 extern char D_00450808[];
 extern char D_00450840[];

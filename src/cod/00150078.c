@@ -20,7 +20,7 @@ extern void func_003B0450(int);
 extern void func_003B0388(int);
 extern void func_003A6420(int);
 extern void patch(int, int, int);
-extern void GsGetIMR(void);
+extern unsigned long GsGetIMR(void);
 extern int D_00466470;
 extern void func_001F6E18(int a0, int a1);
 extern void func_001F7A30(int a0, int a1);
@@ -219,8 +219,8 @@ void patch_394328(int a0, int a1) {
 }
 
 __attribute__((section(".text.Tramp_GsGetIMR_3964A0")))
-void Tramp_GsGetIMR_3964A0(void) {
-    GsGetIMR();
+unsigned long Tramp_GsGetIMR_3964A0(void) {
+    return GsGetIMR();
 }
 
 int sceCdLayerSearchFile(int a0, int a1, int a2);

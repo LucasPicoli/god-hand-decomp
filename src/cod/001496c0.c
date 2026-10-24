@@ -6,6 +6,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cScenario.h"
 #include "godhand/cTaskWork.h"
+#include "godhand/espSys.h"
 
 extern char D_0041EA90[];
 extern void cHeap_free(int, void *);
@@ -139,12 +140,7 @@ void cOmBase_startCutTask(cOmBase *self) {
     D_003C2F84->task.flags = D_003C2F84->task.flags | SCENARIO_F_SOFT_EVENT;
 }
 
-/* An effect that steps through indexed frames; same record as the one EspAnim_step steps, with the frame counter at 0x240. */
-typedef struct EspData {
-    int unk00;
-    unsigned int flags;                 /* 0x04 */
-} EspData;
-
+/* An effect that steps through indexed frames; a different record from EspAnim (espSys.h), with the frame counter at 0x240. */
 typedef struct EspAnim2 {
     char unk000[0x110];
     EspData *data;                      /* 0x110 */
@@ -161,8 +157,6 @@ typedef struct EspAnim2 {
 #define ESP_F_RUN        0x04000000     /* flags: the effect is running */
 #define ESP_F_CLOCK      0x100          /* flags: advance through the clock function */
 #define ESP_F_REPEAT     0x02000000     /* flags: wrap the loop number */
-#define ESP_DATA_PAUSE   0x2000
-#define SYSFLAG_SLOWMO   0x20000
 
 
 

@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: func_0030FCC0, register an object in the main list and in the list for its actor id (0 or any other) if both have spare capacity. Returns 1 when added, 0 when either list is full. */
-#include "godhand/ptrVec.h"
+#include "godhand/sideCounter.h"
 #include "godhand/cOmBase.h"
 
 static inline unsigned int vecSize(PtrVecRef *l)
@@ -29,10 +29,10 @@ int func_0030FCC0(cOmBase *p)
     if (p->actorId == 0) {
         if (!vecHasRoom(&D_00754C30))
             return 0;
-        if (!vecHasRoom(&D_00754C38))
+        if (!vecHasRoom(&D_00754C38.list))
             return 0;
         func_003129D0(&D_00754C30, p);
-        func_003129D0(&D_00754C38, p);
+        func_003129D0(&D_00754C38.list, p);
         return 1;
     }
     if (!vecHasRoom(&D_00754C30))

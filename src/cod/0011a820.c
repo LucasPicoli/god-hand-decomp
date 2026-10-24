@@ -4,6 +4,7 @@
 #include "godhand/cMovie.h"
 #include "godhand/cGameObj.h"
 #include "godhand/cOmBase.h"
+#include "godhand/espSys.h"
 
 extern void CustomIDWork_SetScaleAnimSin(CustomIDWork *work, unsigned short frames, float from, float to);
 extern void CustomIDWork_ResetScaleAnim(CustomIDWork *work);
@@ -79,28 +80,7 @@ void ChargeObj_updateAuraEffect(ChargeObj *self) {
     }
 }
 
-/* An effect that steps through indexed frames: frame counter at 0x250, frame index byte at 0x24D, frame count at 0x24C. */
-typedef struct EspData {
-    int unk00;
-    unsigned int flags;                 /* 0x04 */
-} EspData;
-
-typedef struct EspAnim {
-    char unk000[0x110];
-    EspData *data;                      /* 0x110 */
-    char unk114[0x11D - 0x114];
-    unsigned char lockFlags;            /* 0x11D bit 0: advance by the clock function */
-    char unk11E[0x24C - 0x11E];
-    unsigned char frameNum;             /* 0x24C */
-    unsigned char frameNo;              /* 0x24D */
-    char unk24E[2];
-    float frame;                        /* 0x250 */
-} EspAnim;
-
-#define ESP_DATA_PAUSE   0x2000         /* EspData.flags: advance through the clock function */
-#define SYSFLAG_SLOWMO   0x20000        /* bit of D_00747A84 */
-
-
+/* EspAnim, EspData and their flags come from espSys.h. */
 
 extern void UpdateObjByIndexedOp_2FBE50(EspAnim *self);
 

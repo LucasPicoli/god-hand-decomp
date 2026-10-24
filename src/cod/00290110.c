@@ -1,16 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/sideCounter.h"
 
 extern unsigned int irand(void);
-/* Three fields of D_00754C38 that reset clears; what they hold is not known. */
-typedef struct D_00754C38_t {
-    int unk0;
-    unsigned char unk4;
-    char unk5[3];
-    int unk8;
-    int unkC;
-} D_00754C38_t;
-extern D_00754C38_t D_00754C38;
 
 /* Empties every slot and clears the room state: the list, the waits, the
  * kept actors and the flags. The speed rate goes back to 1.0 and unk53F
@@ -20,7 +12,7 @@ void cEmManage_reset(cEmManage *self) {
     cEmSlot *end = &self->slot[EM_SLOT_NUM];
     cEmSlot *slot = self->slot;
     cEmActor **special;
-    D_00754C38_t *d;
+    SideCounter *d;
     unsigned int i;
 
     do {
@@ -56,8 +48,8 @@ void cEmManage_reset(cEmManage *self) {
     }
     self->darkWorld = 0;
     d = &D_00754C38;
-    d->unk4 = 0;
-    d->unk8 = 0;
+    d->on = 0;
+    d->cnt = 0;
     d->unkC = 0;
     self->unk5B5 = 0;
 }

@@ -92,7 +92,7 @@ void func_003033A8(cFxDrift *self)
     self->pos[1] = p.y;
     self->pos[2] = p.z;
     self->vel[1] = v.y;
-    self->vel[0] = v.z;
+    self->vel[0] = v.z;                 /* z into vel[0], as retail does at 0x303484 */
 }
 
 /* Count the release delay down; when it runs out, move the node into the anchor's frame and detach it. */

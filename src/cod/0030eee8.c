@@ -23,7 +23,7 @@ extern char D_00604700[];
 extern char D_00574380[];
 extern char D_00462FC0[];
 extern char D_00583EC0[];
-extern char D_00754C50[];
+extern int *D_00754C50[];
 extern char D_00747B20[];
 extern char D_005FEE00[];
 

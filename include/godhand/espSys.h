@@ -10,6 +10,8 @@
 #define GODHAND_ESPSYS_H
 
 #include "godhand/cModel.h"           /* cVtEnt */
+#include "godhand/cNode.h"
+#include "godhand/cGameObj.h"
 
 typedef struct espMemNode {
     struct espMemNode *prev;    /* 0x00 */
@@ -23,7 +25,7 @@ typedef struct espMemNode {
 
 extern int func_00305858(int *entry, int force);
 extern int *func_003058D8(void *sys, int kind);
-extern int FindAndForwardEntry_3059A8(void *sys, int kind, int force);
+extern int FindAndForwardEntry_3059A8(void *sys, int kind, void *arg);
 extern void *func_00305FB0(void *sys, int idx);
 extern void func_00306FC0(char *self, espMemNode *node);
 
@@ -62,6 +64,48 @@ typedef struct EspAnim {
     char unk24E[2];
     float frame;                        /* 0x250 */
 } EspAnim;
+
+/* An emitter: one of the 0x100 slots MoveEmitter moves, spawning particles of kind rec->espNo. */
+typedef struct espEmitRec {
+    unsigned char flags0;               /* 0x00 bit 7: the emitter follows nothing */
+    char unk01[3];
+    unsigned int flags;                 /* 0x04 */
+    char unk08[0x133 - 0x8];
+    unsigned char espNo;                /* 0x133 the particle kind it emits */
+} espEmitRec;
+
+/* The node an emitter rides on. */
+typedef struct espAnchor {
+    char unk00[0x80];
+    float mtx[4][4];                    /* 0x80 world matrix, translation in row 3 */
+} espAnchor;
+
+typedef struct espEmitter {
+    cNode base;                         /* 0x000 */
+    char unk0F4[0x100 - 0xF4];
+    espEmitRec *rec;                    /* 0x100 */
+    espAnchor *parent;                  /* 0x104 */
+    cGameObj *owner;                    /* 0x108 */
+    char unk10C[0x114 - 0x10C];
+    unsigned int flags;                 /* 0x114 */
+    unsigned int flags2;                /* 0x118 */
+    char unk11C[0x180 - 0x11C];
+    float time;                         /* 0x180 */
+    char unk184[2];
+    short delay;                        /* 0x186 frames before it starts */
+    char unk188[2];
+    short unk18A;
+    char unk18C[0x1A0 - 0x18C];
+    cVec emitPos;                       /* 0x1A0 */
+    cVec rot;                           /* 0x1B0 */
+    cVec trans;                         /* 0x1C0 */
+    char unk1D0[0x224 - 0x1D0];
+    unsigned short life;                /* 0x224 0: no limit */
+    char unk226[2];
+    float age;                          /* 0x228 */
+    char unk22C[0x260 - 0x22C];
+} espEmitter;                           /* 0x260, the slots at D_0071B940 */
+typedef char espEmitter_size_check[sizeof(espEmitter) == 0x260 ? 1 : -1];
 
 void func_002FA350(float *frame);
 int EspAnim_step(EspAnim *self);

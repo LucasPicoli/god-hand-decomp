@@ -28,7 +28,7 @@ extern int D_0071B7C0[];                /* bit set: slot in use */
 extern int D_0071B840[];                /* bit set: destroy the slot next frame */
 extern int D_0071B8C0[];                /* bit set: destroy the slot this frame */
 extern char D_0061B7C0[];               /* the 0x400 effect slots */
-extern int D_00747A84;
+extern int D_00747A84;                 /* GameWork.flags5E4; D_007474A0.flags5E4 changes the code */
 extern int D_003C3BB8;
 extern char D_007419A0;
 extern char D_00743250[];

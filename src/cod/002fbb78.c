@@ -12,14 +12,14 @@ typedef struct EspSlotView {
 } EspSlotView;                          /* 0x400 */
 
 extern int D_0071B7C0[];                /* bit set: slot in use */
-extern int D_0071B840[];                /* bit set: slot paused */
-extern int D_0071B8C0[];                /* bit set: slot hidden */
+extern int D_0071B840[];                /* bit set: destroy the slot next frame */
+extern int D_0071B8C0[];                /* bit set: destroy the slot this frame */
 extern EspSlotView D_0061B7C0[];        /* the 0x400 effect slots */
 
 #define ESP_SLOT_NUM    0x400
 #define ESP_VT_NOTIFY   6               /* vtable entry called with arg */
 
-/* Call vtable entry 6 with arg on every live effect slot (in use, neither paused nor hidden) that is in group/sub
+/* Call vtable entry 6 with arg on every live effect slot (in use and not marked for destroy) that is in group/sub
  * (match 0) or not in it (match 1). */
 __attribute__((section(".text.func_002FBB78")))
 void func_002FBB78(int group, int sub, unsigned char arg, int match)

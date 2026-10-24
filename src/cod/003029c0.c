@@ -3,45 +3,8 @@
 #include "godhand/cNode.h"
 #include "godhand/objField.h"
 #include "godhand/vu0.h"
-
-typedef struct espEmitRec {
-    unsigned char flags0;               /* 0x00 bit 7: the emitter follows nothing */
-    char unk01[3];
-    unsigned int flags;                 /* 0x04 */
-    char unk08[0x133 - 0x8];
-    unsigned char espNo;                /* 0x133 the particle kind it emits */
-} espEmitRec;
-
-/* The node an emitter rides on. */
-typedef struct espAnchor {
-    char unk00[0x80];
-    float mtx[4][4];                    /* 0x80 world matrix, translation in row 3 */
-} espAnchor;
-
-typedef struct espEmitter {
-    cNode base;                         /* 0x000 */
-    char unk0F4[0x100 - 0xF4];
-    espEmitRec *rec;                    /* 0x100 */
-    espAnchor *parent;                  /* 0x104 */
-    cGameObj *owner;                    /* 0x108 */
-    char unk10C[0x114 - 0x10C];
-    unsigned int flags;                 /* 0x114 */
-    unsigned int flags2;                /* 0x118 */
-    char unk11C[0x180 - 0x11C];
-    float time;                         /* 0x180 */
-    char unk184[2];
-    short delay;                        /* 0x186 frames before it starts */
-    char unk188[2];
-    short unk18A;
-    char unk18C[0x1A0 - 0x18C];
-    cVec emitPos;                       /* 0x1A0 */
-    cVec rot;                           /* 0x1B0 */
-    cVec trans;                         /* 0x1C0 */
-    char unk1D0[0x224 - 0x1D0];
-    unsigned short life;                /* 0x224 0: no limit */
-    char unk226[2];
-    float age;                          /* 0x228 */
-} espEmitter;
+#include "godhand/espSys.h"
+#include "godhand/gameWork.h"
 
 typedef struct espEmitVt {
     char unk00[0x18];
@@ -83,7 +46,6 @@ extern void func_002B5CF0(void *a0, void *a1);
 extern int func_002B5E50(void *a0);
 extern void func_003005D8(char *p);
 extern int func_003035D0(espEmitter *self);
-extern unsigned int D_00747A84;
 
 static __inline__ int espEmitter_recFlag(espEmitter *self, unsigned int bit)
 {
@@ -157,11 +119,11 @@ void func_003029C0(espEmitter *self)
         }
         return;
     }
-    if (((self->rec->flags & 0x2000) == 0 && (self->flags & 0x1000000)) || (D_00747A84 & 0x20000))
+    if (((self->rec->flags & 0x2000) == 0 && (self->flags & 0x1000000)) || (D_007474A0.flags5E4 & SYSFLAG_SLOWMO))
         func_002FA350(&self->time);
     else
         self->time += 1.0f;
-    if (((self->rec->flags & 0x2000) == 0 && (self->flags & 0x1000000)) || (D_00747A84 & 0x20000))
+    if (((self->rec->flags & 0x2000) == 0 && (self->flags & 0x1000000)) || (D_007474A0.flags5E4 & SYSFLAG_SLOWMO))
         func_002FA350(&self->age);
     else
         self->age += 1.0f;
