@@ -24,13 +24,6 @@ typedef struct cOmEmSpawner {
     float baseY;                            /* 0x61C height the enemies stand at */
 } cOmEmSpawner;
 
-/* A cEmWrap handle seen through its first byte, the entry number it resolves. */
-typedef struct cEmHandle {
-    unsigned char entryNo;
-    char unk01[3];
-    cEmActor *actor;
-} cEmHandle;
-
 extern cSnd D_005FEE00;
 extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 extern cEmActor *cEmSetParam_setEm(cEmSetParam *self, unsigned char no);
@@ -45,7 +38,7 @@ extern void cEmSetParam_updateSetDataAppPattern(cEmSetParam *self, unsigned int 
 __attribute__((section(".text.func_001A7F58")))
 int func_001A7F58(cOmEmSpawner *self)
 {
-    cEmHandle em;
+    cEmWrap em;
     cVec pos;
     unsigned int start;
     unsigned int i;
@@ -66,7 +59,7 @@ int func_001A7F58(cOmEmSpawner *self)
             em.entryNo = self->queue[i];
             cEmSetParam_setEm(&D_00586AB0, em.entryNo);
             cEmWrap_setPos_2959B0((int *)&em, (int)self->base.pos);
-            cEmWrap_StartAction((cEmWrap *)&em);
+            cEmWrap_StartAction(&em);
             VU0_LQC2(4, self->base.pos, 0);
             VU0_SQC2_MEM(4, &pos, 0);
             pos.y = self->baseY;

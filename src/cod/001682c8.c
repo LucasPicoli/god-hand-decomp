@@ -21,7 +21,7 @@ extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short
 __attribute__((section(".text.func_001682C8")))
 void func_001682C8(cIDMenuPanel *self)
 {
-    if (self->state != 1) {
+    if (self->head.state != 1) {
         return;
     }
     if ((D_007474A0.trg & MENU_TRG_TO_1) && self->choice != -1) {
@@ -40,15 +40,15 @@ void func_001682C8(cIDMenuPanel *self)
         cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_MENU_DECIDE, -1, -1, 0, 0);
         switch (self->choice) {
         case -1:
-            self->state = 2;
+            self->head.state = 2;
             break;
         case 0:
         case 1:
-            self->result = 7;
+            self->head.result = 7;
             break;
         }
     } else if (D_007474A0.trg & MENU_TRG_CANCEL) {
         cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_MENU_CANCEL, -1, -1, 0, 0);
-        self->state = 2;
+        self->head.state = 2;
     }
 }

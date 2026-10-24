@@ -24,7 +24,7 @@ extern void cIDBase_move(cIDBaseObj *self);
 __attribute__((section(".text.func_0013EE58")))
 void func_0013EE58(UvScrollObj *self)
 {
-    cIDBaseEnt *w[3];
+    cIDBaseEnt *w[3];                   /* works 0, 1 and 3: a separate pointer for work 3 moves the frame */
     cIDBaseEnt *w2;
     unsigned short i;
     float f;

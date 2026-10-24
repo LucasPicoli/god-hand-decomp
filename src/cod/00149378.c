@@ -5,6 +5,7 @@
 #include "godhand/cBgmData.h"
 #include "godhand/vu0.h"
 #include "godhand/heapArena.h"
+#include "godhand/heapList.h"
 
 extern int cDamageUnit_SetDamageCollActive(void *unit, int on);
 extern cMeshNode *cModel_getMeshPtr(void *model, int idx);
@@ -15,12 +16,8 @@ extern void cBgmData_UpdateLoad(cBgmData *bgm);
 extern void SetEffectPos(int kind, int effNo, int a2, void *pos, int a4, float scale);
 extern void func_002FBED0(void *self);
 extern void BufHolder_deletingDtor(int entry, int mode);
-extern void func_002A9790(void *pool);
 extern void cHeap_free(int heap, int *node);
-extern int func_002A9860(int list, int cur);
-extern int func_002A96C0(int size, int num, int align);
 extern void *EnsureInitThenForward_2A9538_30EE08(int a0, int a1, int a2);
-extern void func_002A96D8(int *p, int a, int b, int c, int d);
 extern void func_001DBF18(void *self, unsigned short *a, unsigned short *b, unsigned short *c, unsigned short *d);
 
 #define MESH_DISP_HIDE      0x0001      /* node is not drawn */
@@ -47,11 +44,6 @@ void DamageObj_disableDamage(DamageObj *self)
 }
 
 #define CSND_BGM_DATA_NUM  2     /* BGM data slots, not named in cSnd.h */
-
-
-
-
-
 
 /* Per-frame load update of every sound-effect slot and every BGM data slot. */
 __attribute__((section(".text.cSnd_updateLoads")))
@@ -120,18 +112,9 @@ void ScrollObj_advanceScroll(ScrollObj *self)
 #define ENTLIST_ENTRY_SIZE  0x480
 #define ENTLIST_ALIGN       0x80
 
-typedef struct EntList {
-    int *block;                         /* 0x00 heap block that holds the entries */
-    char unk04[0x14];
-    int unk18;                          /* 0x18 entry count */
-    int unk1C;                          /* 0x1C entry count */
-    int size;                           /* 0x20 bytes in block */
-    int capacity;                       /* 0x24 entries block holds */
-} EntList;
-
 /* Release every entry of the list in order, then reset the list and free its heap block. */
 __attribute__((section(".text.EntList_destroy")))
-void EntList_destroy(EntList *self)
+void EntList_destroy(HeapList *self)
 {
     int cur = func_002A9860((int)self, 0);
     int *block;
@@ -150,7 +133,7 @@ void EntList_destroy(EntList *self)
 
 /* Empty the list, then give it a fresh heap block for `num` entries. */
 __attribute__((section(".text.func_00149400")))
-void func_00149400(EntList *self, int num)
+void func_00149400(HeapList *self, int num)
 {
     int size;
 

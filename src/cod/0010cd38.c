@@ -20,12 +20,13 @@ extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern cSnd D_005FEE00;
 
-/* The object held in the link at 0x640, read as a pointer as 0010f4b8.c and 00124e68.c do.
- * cEm00.h names the same word's low half entryNo, so the pointer stays a raw read. */
-#define EM00_LINK(self)  (*(cGameObj **)((char *)(self) + 0x640))
+/* The object held at 0x640, read as a pointer as 0010f4b8.c and 00124e68.c do. cEm00.h
+ * names the same word's low half entryNo, so the pointer stays a raw read. It is not
+ * cEm00.link at 0x531. */
+#define EM00_HELD(self)  (*(cGameObj **)((char *)(self) + 0x640))
 
-/* Thrown-down step of the enemy: on entry award the level points for a 0x200 actor in the
- * held link, stop the sound and start the knockdown motion and effect picked by stepArg;
+/* Thrown-down step of the enemy: on entry award the level points for a 0x200 actor held at
+ * 0x640, stop the sound and start the knockdown motion and effect picked by stepArg;
  * then run the motion at the stepScale speed until it ends. */
 __attribute__((section(".text.func_0010CD38")))
 void func_0010CD38(cEm00 *self)
@@ -35,8 +36,8 @@ void func_0010CD38(cEm00 *self)
 
     switch (self->step) {
     case 0:
-        if (self->stepArg != 0 && EM00_LINK(self) != 0) {
-            if (cGameObj_idInRange(EM00_LINK(self), 0x200, 0x300) & 0xFF) {
+        if (self->stepArg != 0 && EM00_HELD(self) != 0) {
+            if (cGameObj_idInRange(EM00_HELD(self), 0x200, 0x300) & 0xFF) {
                 cCoreSave_addGameLevelPoint(&D_00569B70, 8);
             }
         }
@@ -86,7 +87,7 @@ void func_0010CD38(cEm00 *self)
         func_002A8578((int)self, p1, p2, 3, 0, 0, 0.0f);
         self->step += 1;
     case 1:
-        if (EM00_LINK(self) != 0) {
+        if (EM00_HELD(self) != 0) {
             self->unk648 = 0x14;
         }
         if (self->stepArg == 0) {
@@ -98,7 +99,7 @@ void func_0010CD38(cEm00 *self)
             break;
         case 2:
         case 3:
-            if (EM00_LINK(self) == 0) {
+            if (EM00_HELD(self) == 0) {
                 func_00124540(self, 5);
             }
             break;

@@ -2,12 +2,8 @@
 #include "godhand/gameWork.h"
 #include "godhand/cSnd.h"
 #include "godhand/cSubScr.h"
+#include "godhand/menuKey.h"
 
-#define PAD_UP          0x1000001000000L
-#define PAD_DOWN        0x2000002000000L
-#define PAD_DECIDE      0x10000000
-#define SE_CURSOR       0x15F
-#define SE_DECIDE       0x15E
 #define GAMEWORK_FLAG_BIT6  6
 #define ROOM_TITLE      0x21
 
@@ -23,12 +19,12 @@ void func_001643F8(MenuScreen *self)
 {
     unsigned long f;
 
-    if (D_007474A0.rep & PAD_UP) {
-        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_CURSOR, -1, -1, 0, 0);
+    if (D_007474A0.rep & MENU_KEY_UP) {
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
         self->cursor--;
     }
-    if (D_007474A0.rep & PAD_DOWN) {
-        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_CURSOR, -1, -1, 0, 0);
+    if (D_007474A0.rep & MENU_KEY_DOWN) {
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
         self->cursor++;
     }
     f = D_007474A0.flags;
@@ -37,8 +33,8 @@ void func_001643F8(MenuScreen *self)
     } else {
         self->cursor = self->cursor < 0 ? 3 : self->cursor < 4 ? self->cursor : 0;
     }
-    if (D_007474A0.trg & PAD_DECIDE) {
-        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_DECIDE, -1, -1, 0, 0);
+    if (D_007474A0.trg & MENU_KEY_OK) {
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_OK, -1, -1, 0, 0);
         self->next = -1;
         switch (self->cursor) {
         case 0:

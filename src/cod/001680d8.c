@@ -11,11 +11,11 @@ extern void cIDBase_move(void *p);
 __attribute__((section(".text.func_001680D8")))
 void func_001680D8(cIDMenuPanel *self)
 {
-    switch (self->state) {
+    switch (self->head.state) {
     case 0:
         self->alpha += 0x10;
         if (self->alpha > 0x80) {
-            self->state = 1;
+            self->head.state = 1;
             self->alpha = 0x80;
         }
         break;
@@ -27,14 +27,14 @@ void func_001680D8(cIDMenuPanel *self)
 
         if (self->reopen == 1) {
             self->alpha = 0x80;
-            self->result = 0xA;
-            self->state = 0;
+            self->head.result = 0xA;
+            self->head.state = 0;
         }
         v = self->alpha - 0x10;
         if (v < 0) {
             self->alpha = 0;
-            self->result = -1;
-            self->state = 0;
+            self->head.result = -1;
+            self->head.state = 0;
         } else {
             self->alpha = v;
         }
