@@ -151,7 +151,7 @@ int BgmObj_startEventAndArmTimer(BgmObj *self) {
 
 __attribute__((section(".text.cMessDrawFont_execCommand")))
 void cMessDrawFont_execCommand(cMessDrawFont *self, void *cmd) {
-    unsigned short *code = (unsigned short *)self->cursor;
+    unsigned short *code = self->cursor;
     switch (*code & 0xFF00) {
     case MESS_CMD_A8:
         func_002B00A0(self, cmd);

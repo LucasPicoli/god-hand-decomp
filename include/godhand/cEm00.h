@@ -192,7 +192,7 @@ typedef struct cEm00 {
     char unk76C[0x194];
     int unk900;                             /* 0x900 countdown of the derived enemy, ticks down once per frame */
     char unk904[0xC58];
-    int unk155C;                            /* 0x155C bit 0 picks the alternate texture of enemy 0x2A7 */
+    int unk155C;                            /* 0x155C bits 0 and 1 pick the alternate textures of enemies 0x2A7, 0x2A9 and 0x2AB */
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
     float turnRate;                         /* 0x1564 */
     int turnArg;                            /* 0x1568 */

@@ -9,7 +9,8 @@ extern int cDataManager_loadWait(cDataManager *mgr, int id, void *buf, int wait)
 extern void cDataManager_loadSeWait(cDataManager *mgr, int id, int se, int wait);
 extern int Rnd(void);
 
-static inline unsigned char *game(void)
+/* Retail keeps the D_007474A0 base in a register; naming D_007474A0.room directly rebuilds it with lui on each read. */
+static inline GameWork *game(void)
 {
     return &D_007474A0;
 }
@@ -23,7 +24,7 @@ static inline void load_se(int id)
 __attribute__((section(".text.func_00294F70")))
 void func_00294F70(char *p)
 {
-    if (*(unsigned short *)(game() + 0x5B0) == 0x506)
+    if (game()->room == 0x506)
         return;
     switch (*(int *)(p + 4)) {
     case 0x209:
@@ -36,7 +37,7 @@ void func_00294F70(char *p)
         load_se(0x223);
         return;
     }
-    switch (*(unsigned short *)(game() + 0x5B0)) {
+    switch (game()->room) {
     case 0x801:
         load_se(0x220);
         break;
@@ -50,7 +51,7 @@ void func_00294F70(char *p)
         load_se(0x223);
         break;
     default:
-        if (*(game() + 0x5B1) >= 5 && (Rnd() & 3) == 0 && cCoreSave_getGameLevel(&D_00569B70) >= 3)
+        if (((unsigned char *)&game()->room)[1] >= 5 && (Rnd() & 3) == 0 && cCoreSave_getGameLevel(&D_00569B70) >= 3)
             load_se(0x223);
         else
             load_se(0x220);
