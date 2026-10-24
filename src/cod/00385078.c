@@ -16,9 +16,9 @@ void func_00385078(MenuCtl *ctl, MenuPad *pad)
     MenuInfo *info = &ctl->list.info;
     int r;
 
-    if (pad->rep & 0x8000) {
+    if (pad->trg & 0x8000) {
         ctl->cursor = (ctl->cursor == 0 ? list->count : ctl->cursor) - 1;
-    } else if (pad->rep & 0x2000) {
+    } else if (pad->trg & 0x2000) {
         if (ctl->cursor < list->count - 1) {
             ctl->cursor++;
         } else {

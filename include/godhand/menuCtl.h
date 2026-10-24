@@ -5,18 +5,18 @@
 #ifndef GODHAND_MENUCTL_H
 #define GODHAND_MENUCTL_H
 
-#define MENUPAD_DPAD     0xF0       /* trg: any d-pad direction */
-#define MENUPAD_NEXT     0x80       /* trg: next page */
-#define MENUPAD_CANCEL   0x40       /* trg */
-#define MENUPAD_DECIDE   0x20       /* trg */
-#define MENUPAD_PREV     0x10       /* trg: previous page */
+#define MENUPAD_DPAD     0xF0       /* press: any d-pad direction */
+#define MENUPAD_NEXT     0x80       /* press: next page */
+#define MENUPAD_CANCEL   0x40       /* press */
+#define MENUPAD_DECIDE   0x20       /* press */
+#define MENUPAD_PREV     0x10       /* press: previous page */
 
 typedef struct MenuPad {
     char unk00[0x2C];
     int hold;                   /* 0x2C held buttons */
     char unk30[4];
-    int trg;                    /* 0x34 buttons pressed this frame, MENUPAD_* */
-    unsigned int rep;           /* 0x38 repeat bits: the cursor and value keys (0x1000/0x4000 up/down, 0x2000/0x8000 left/right) */
+    int press;                  /* 0x34 buttons pressed this frame, MENUPAD_* */
+    unsigned int trg;           /* 0x38 */
 } MenuPad;
 
 typedef struct MenuInfo {
@@ -24,9 +24,9 @@ typedef struct MenuInfo {
     int f04;                    /* 0x04 */
     int f08;                    /* 0x08 */
     int f0C;                    /* 0x0C */
-    int loopStart;              /* 0x10 written by func_0032A160 */
-    int loopEnd;                /* 0x14 */
-    float rate;                 /* 0x18 */
+    int time;                   /* 0x10 play time, written by func_0032A160 */
+    int unk14;                  /* 0x14 */
+    float unk18;                /* 0x18 */
     int unk1C;                  /* 0x1C */
     int unk20;                  /* 0x20 */
     int unk24;                  /* 0x24 */
@@ -61,7 +61,7 @@ typedef struct MenuPage {
     char unk1C[0x30 - 0x1C];
     int status;                 /* 0x30 cleared when the page is left */
     char unk34[0xFC - 0x34];
-    int count;                  /* 0xFC 0 when there is no data */
+    struct FileList *list;      /* 0xFC 0 when there is no data */
 } MenuPage;                     /* 0x100 */
 
 /* The loaded file table a menu list shows. */

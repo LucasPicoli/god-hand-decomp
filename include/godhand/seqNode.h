@@ -90,6 +90,7 @@ typedef struct SeqCmd {
 extern SeqCmd D_0076B9C0[SEQCMD_NUM];
 extern int func_0037C330(SeqCmd *c);
 extern void func_0037BE98(void);
+extern int func_0037BF10(SeqCmd *h);
 
 /* A sound voice node: its work and the method table it dispatches through. */
 typedef struct SndVoiceNode {

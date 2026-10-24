@@ -16,7 +16,7 @@ extern void func_00380638(char *object);
 __attribute__((section(".text.func_0037E368")))
 int func_0037E368(MenuCtl *self, MenuPad *pad)
 {
-    if ((pad->trg & MENUPAD_CANCEL) && self->state == 1) {
+    if ((pad->press & MENUPAD_CANCEL) && self->state == 1) {
         self->next = 0;
         self->state = 0;
         return 1;

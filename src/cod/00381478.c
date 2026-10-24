@@ -91,9 +91,9 @@ void func_00381478(MenuCtl *self)
     func_002E0DE8(0x14, 7, 0xE, D_003F2840[item->kind]);
     func_00380720(self, info->f04, info->f00, &hh, &mm, &ss, &cc);
     func_002E0DE8(3, 9, 8, D_0045C568, hh, mm, ss, cc);
-    func_00380720(self, info->f04, info->loopStart, &hh, &mm, &ss, &cc);
+    func_00380720(self, info->f04, info->time, &hh, &mm, &ss, &cc);
     func_002E0DE8(3, 0xA, 8, D_0045C588, hh, mm, ss, cc);
-    func_00380720(self, info->f04, info->loopEnd, &hh, &mm, &ss, &cc);
+    func_00380720(self, info->f04, info->unk14, &hh, &mm, &ss, &cc);
     func_002E0DE8(3, 0xB, 8, D_0045C5A8, hh, mm, ss, cc);
     func_002E0DE8(3, 0xD, 0xD, D_0045C5C8);
     func_002E0DE8(3, 0xF, 8, D_0045C5E8, self->slotNo, 0xA);
@@ -104,7 +104,7 @@ void func_00381478(MenuCtl *self)
     func_002E0DE8(0x20, 7, 8, D_0045C650, info->f04);
     func_002E0DE8(0x20, 8, 8, D_0045C660, info->f08);
     func_002E0DE8(0x20, 9, 8, D_0045C670, info->f0C);
-    func_003A6C58(buf, D_0045C680, info->rate);
+    func_003A6C58(buf, D_0045C680, info->unk18);
     func_002E0DE8(0x20, 0xA, 8, D_0045C558, buf);
     func_002E0DE8(0x20, 0xB, 8, D_0045C698, info->unk1C);
     if (self->detail) {

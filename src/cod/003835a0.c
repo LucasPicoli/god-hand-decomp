@@ -65,9 +65,9 @@ void func_00383708(FileSel *sel, MenuPad *pad)
     FileList *list = w->list;
     void *buf;
 
-    if (pad->rep & 0x8000) {
+    if (pad->trg & 0x8000) {
         sel->cursor = (sel->cursor == 0 ? list->count : sel->cursor) - 1;
-    } else if (pad->rep & 0x2000) {
+    } else if (pad->trg & 0x2000) {
         if (sel->cursor < list->count - 1) {
             sel->cursor++;
         } else {

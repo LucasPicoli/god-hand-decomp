@@ -1,8 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/seqNode.h"
 
-extern int func_0037BF10(char *h);
-
 /* Runs every queued sound request (a stop or a start) and frees its slot. */
 __attribute__((section(".text.func_0037BE98")))
 void func_0037BE98(void)
@@ -16,7 +14,7 @@ void func_0037BE98(void)
             if (c->flags & SEQCMD_F_STOP) {
                 func_0037C330(c);
             } else {
-                func_0037BF10((char *)c);
+                func_0037BF10(c);
             }
             c->used = 0;
         }

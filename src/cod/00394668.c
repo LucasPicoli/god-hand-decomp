@@ -3,40 +3,23 @@
 #include "godhand/regTbl.h"
 extern int func_003A5678(int a0, int a1);
 extern int func_003943D0(RegEnt *elem);
-extern int func_00394348(void *tbl, int count, int idx);
+extern int func_00394348(int tbl, int count, int idx);
 
-struct SymElem {
-    int name;
-    int value;
-    unsigned short id;          /* 0x8 */
-    unsigned char kind;         /* 0xA */
-    unsigned char bind;         /* 0xB */
-};
-
-struct SymTable {
-    char pad0[4];
-    void *tbl;                  /* 0x04 */
-    int tblCount;               /* 0x08 */
-    struct SymElem *elem;    /* 0x0C */
-    int count;                  /* 0x10 */
-    char pad14[0x30 - 0x14];
-    struct SymTable *next;    /* 0x30 */
-};
 
 __attribute__((section(".text.func_00394668")))
 int func_00394668(int name, unsigned short id)
 {
-    struct SymTable *node;
-    struct SymElem *elem;
-    struct SymElem *weak;
+    RegTbl *node;
+    RegEnt *elem;
+    RegEnt *weak;
     int cnt;
 
     weak = 0;
-    node = (struct SymTable *)D_003F852C;
+    node = D_003F852C;
     if (node != 0) {
         do {
             cnt = node->count;
-            elem = node->elem;
+            elem = node->ents;
             if (cnt != 0) {
                 do {
                     if (elem->id == id && func_003A5678(elem->name, name) == 0) {
@@ -58,16 +41,16 @@ int func_00394668(int name, unsigned short id)
     }
     if (weak != 0)
         return func_003943D0(weak);
-    node = (struct SymTable *)D_003F852C;
+    node = D_003F852C;
     if (node != 0) {
         do {
             cnt = node->count;
-            elem = node->elem;
+            elem = node->ents;
             if (cnt != 0) {
                 do {
                     if (elem->id == id && func_003A5678(elem->name, name) == 0
                         && (elem->kind == 1 || elem->kind == 3)) {
-                        if (func_00394348(node->tbl, node->tblCount, elem - node->elem) == 0)
+                        if (func_00394348(node->handleA, node->handleB, elem - node->ents) == 0)
                             return 0;
                         break;
                     }

@@ -5,19 +5,19 @@
 extern SeqLink D_0076CEC0[3];
 extern int D_00773250[];
 extern char *func_0037CF00(void *a0);
-extern char *func_0037CEE0(char *a0);
+extern char *func_0037CEE0(void *a0);
 extern char *func_0037D298(int a0);
-extern void func_0037C160(char *a0, char *a1);
-extern void func_0037C1B8(char *a0, char *a1);
-extern void func_0037C228(char *a0, char *a1);
-extern void func_0037C2A8(unsigned char *a0, unsigned char *a1);
-extern void func_0037C2E0(char *a0, char *a1);
-extern int func_0037C630(char *a0);
+extern void func_0037C160(SeqLink *a0, SeqCmd *a1);
+extern void func_0037C1B8(SeqNode *a0, SeqCmd *a1);
+extern void func_0037C228(SeqNode *a0, SeqCmd *a1);
+extern void func_0037C2A8(SeqNode *a0, SeqCmd *a1);
+extern void func_0037C2E0(SeqNode *a0, SeqCmd *a1);
+extern int func_0037C630(SeqCmd *a0);
 extern int func_00373118(void *a0, int a1, int a2, int a3);
 extern int UpdateSequenceEntry_373298(void *a0, int a1);
 extern void func_003738A0(void *a0, int a1, float f12);
 extern void UpdateSequenceNodeWeighted_373560(void *a0, int a1, float f12);
-extern void func_003735E0(char *a0, int a1, float f12, float f13);
+extern void func_003735E0(void *a0, int a1, float f12, float f13);
 
 __attribute__((section(".text.func_0037BF10")))
 int func_0037BF10(SeqCmd *h)
