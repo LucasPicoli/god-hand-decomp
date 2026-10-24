@@ -25,13 +25,21 @@ typedef struct EffDataHdr {
 
 /* Room and pad fields use the names main gives them in cDoor.h and cE3.h. */
 typedef struct GameWork {
-    char pad000[0x1A0];
+    char pad000[0x08];
+    int padBtn;                 /* 0x08 face-button bits, 0x10-0x80 */
+    char pad00C[0x1A0 - 0x0C];
     long trg;                   /* 0x1A0 pad trigger bits */
     long unk1A8;                /* 0x1A8 */
     long rep;                   /* 0x1B0 pad repeat bits */
     char pad1B8[0x210 - 0x1B8];
     int frame;                  /* 0x210 bit 0 picks the packet buffer */
-    char pad214[0x550 - 0x214];
+    char pad214[0x270 - 0x214];
+    unsigned long long bgA : 15;     /* 0x270 background mode, 0x10 or 0x16 (Set_bg_mode) */
+    unsigned long long : 49;
+    char pad278[0x3E0 - 0x278];
+    unsigned long long bgB : 15;     /* 0x3E0 the same mode in the second packet buffer */
+    unsigned long long : 49;
+    char pad3E8[0x550 - 0x3E8];
     EffDataHdr *effData;        /* 0x550 effect data file */
     void *sysData;              /* 0x554 system data file */
     void *langData;             /* 0x558 language data file */
@@ -61,13 +69,18 @@ typedef struct GameWork {
     float startPos[3];          /* 0x5C0 player start point */
     char pad5CC[4];
     float startAngle;           /* 0x5D0 */
-    char pad5D4[0x5E4 - 0x5D4];
+    char pad5D4[0x5D8 - 0x5D4];
+    unsigned int flags5D8;      /* 0x5D8 */
+    char pad5DC[0x5E0 - 0x5DC];
+    unsigned int flags5E0;      /* 0x5E0 */
     int flags5E4;               /* 0x5E4 */
     char pad5E8[0x5F4 - 0x5E8];
     void *playerObj;            /* 0x5F4 */
     char pad5F8[0x600 - 0x5F8];
     unsigned char pairNum;      /* 0x600 entries used in D_007558A8 */
-    char pad601[0x620 - 0x601];
+    char pad601[0x60C - 0x601];
+    int bgColor;                /* 0x60C background fill colour, r | g << 8 | b << 16 */
+    char pad610[0x620 - 0x610];
 } GameWork;                     /* 0x620 */
 
 extern GameWork D_007474A0;

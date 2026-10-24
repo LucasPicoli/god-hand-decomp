@@ -38,7 +38,10 @@ typedef struct SeqNode {
     SeqTimer timer;             /* 0x30 */
     char unk38[0x3E - 0x38];
     unsigned short weight;      /* 0x3E high byte is the update weight */
-    char unk40[0x4A - 0x40];
+    short unk40;                /* 0x40 */
+    short angle;                /* 0x42 degrees */
+    short pan;                  /* 0x44 0..0x7F, 0x40 is centre */
+    char unk46[0x4A - 0x46];
     unsigned short unk4A;       /* 0x4A */
     unsigned short unk4C;       /* 0x4C */
     unsigned short unk4E;       /* 0x4E */
@@ -51,21 +54,33 @@ typedef struct SeqLink {
     unsigned char kind;         /* 0x05 */
     char unk06[2];
     SeqNode *node;              /* 0x08 */
-    char unk0C[4];
+    unsigned int age;           /* 0x0C frames alive, saturates at 0xFFFFFFFF */
     int owner;                  /* 0x10 */
     char unk14[0x1E - 0x14];
     char unk1E;                 /* 0x1E */
     char unk1F;
 } SeqLink;
 
+/* A queued sound request (0x50 bytes, 48 of them at D_0076B9C0). */
 typedef struct SeqCmd {
-    char unk00[4];
+    unsigned short used;        /* 0x00 nonzero while queued */
+    short id;                   /* 0x02 pool index */
     int owner;                  /* 0x04 */
-    char unk08[5];
+    char unk08[4];
+    unsigned char flags;        /* 0x0C SEQCMD_F_* */
     unsigned char mask;         /* 0x0D */
-    short all;                  /* 0x0E */
+    short all;                  /* 0x0E -1 when cleared */
     short arg;                  /* 0x10 */
+    short link;                 /* 0x12 -1 when cleared */
+    char unk14[0x50 - 0x14];
 } SeqCmd;
+
+#define SEQCMD_F_STOP   0x10    /* a stop request rather than a start */
+#define SEQCMD_NUM      48
+
+extern SeqCmd D_0076B9C0[SEQCMD_NUM];
+extern int func_0037C330(SeqCmd *c);
+extern void func_0037BE98(void);
 
 /* A sound voice node: its work and the method table it dispatches through. */
 typedef struct SndVoiceNode {
@@ -96,6 +111,24 @@ typedef struct SndCh {
 
 extern SndCh D_0076E910[];
 
+/* Per-SPU2-core state (two cores, 0x20 bytes each). */
+typedef struct SndCore {
+    unsigned short used;        /* 0x00 */
+    char unk02[2];
+    unsigned short volL;        /* 0x04 */
+    unsigned short volR;        /* 0x06 */
+    unsigned short unk08;       /* 0x08 */
+    unsigned short unk0A;       /* 0x0A */
+    int effEnd;                 /* 0x0C end of the core's effect area in SPU2 RAM */
+    int handle;                 /* 0x10 */
+    short core;                 /* 0x14 */
+    char unk16[0x20 - 0x16];
+} SndCore;
+
+extern SndCore D_0076A7D4[2];
+extern int func_00374AE0(int id);
+extern void func_00377CB8(void);
+
 /* One voice in the output block posted to the sound driver (0x20 bytes, 64 of them). */
 typedef struct SndVoiceOut {
     unsigned short flags;       /* 0x00 */
@@ -118,5 +151,9 @@ extern void func_0037D3B0(SeqNode *n);
 extern void func_0037D820(SeqNode *n);
 extern void func_0037D8B8(SeqNode *n, short arg);
 extern void func_00378020(SeqTimer *t);
+extern void func_0037D558(SeqNode *self);
+extern void func_0037C720(SeqNode *self);
+extern void func_003780F8(unsigned short angle, float *l, float *r);
+extern int Obj0000_Get_D_0076A7A4_3756F0(void);   /* sound output mode: 0 mono, 1 stereo, 2 surround */
 
 #endif /* GODHAND_SEQNODE_H */

@@ -1,7 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/heapArena.h"
 
 extern void func_002A9790(void *list);
 extern void cHeap_free(int heap, int *node);
+extern int func_002A9860(int list, int cur);
+extern int func_002A96C0(int size, int num, int align);
+extern void *EnsureInitThenForward_2A9538_30EE08(int a0, int a1, int a2);
+extern void func_002A96D8(int *p, int a, int b, int c, int d);
 extern void func_002B2080(void *node);
 extern void func_002B22E8(void *node, void *prev, void *next, int key, unsigned short serial);
 
@@ -17,8 +22,16 @@ typedef struct Child150418 {
     VtEntA *vt;                         /* 0x214 */
 } Child150418;
 
+#define LIST_CHILD_SIZE  0x220
+#define LIST_ALIGN       0x10
+
 typedef struct List150418 {
     int *node;                          /* 0x00 heap node of the list body, 0 when none */
+    char unk04[0x14];
+    int unk18;                          /* 0x18 child count */
+    int unk1C;                          /* 0x1C child count */
+    int size;                           /* 0x20 bytes in node */
+    int capacity;                       /* 0x24 children node holds */
 } List150418;
 
 #define DELETE_FLAG  2                  /* second argument of the deleting destructor */
@@ -27,10 +40,10 @@ typedef struct List150418 {
 __attribute__((section(".text.List_destroyChildren")))
 void List_destroyChildren(List150418 *self)
 {
-    Child150418 *child = (Child150418 *)func_002A9860(self, 0);
+    Child150418 *child = (Child150418 *)func_002A9860((int)self, 0);
     int *node;
     while (child != 0) {
-        Child150418 *next = (Child150418 *)func_002A9860(self, (int)child);
+        Child150418 *next = (Child150418 *)func_002A9860((int)self, (int)child);
         VtEntA *ent = &child->vt[1];
         ent->pfn((char *)child + ent->delta, DELETE_FLAG);
         child = next;
@@ -40,6 +53,22 @@ void List_destroyChildren(List150418 *self)
     if (node != 0) {
         cHeap_free(node[-8], node);
     }
+}
+
+/* Empty the list, then give it a fresh heap node for `num` children. */
+__attribute__((section(".text.func_001504B0")))
+void func_001504B0(List150418 *self, int num)
+{
+    int size;
+
+    List_destroyChildren(self);
+    size = func_002A96C0(LIST_CHILD_SIZE, num, LIST_ALIGN);
+    func_002A96D8((int *)self, (int)EnsureInitThenForward_2A9538_30EE08(size, LIST_ALIGN, (int)D_003C3CF0),
+                  LIST_CHILD_SIZE, num, LIST_ALIGN);
+    self->unk18 = num;
+    self->unk1C = num;
+    self->capacity = num;
+    self->size = size;
 }
 
 /* A queue entry; the list is kept sorted by key, highest first. */

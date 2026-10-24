@@ -78,7 +78,7 @@ void *ColiseumBattle__ctor(ColiseumBattle *self) {
     func_003A52F0(self, 0, 0x54);
     self->flags = 0;
     func_001F2708(self->ui);
-    self->unkBAC = 0;
+    self->deadMask = 0;
     p = self->vec[0];
     for (i = 8; i != -1; i--) {
         VU0_SQC2_VF0(p, 0x0);

@@ -63,9 +63,16 @@ typedef struct cEmActor {
 } cEmActor;
 
 typedef struct cEmWrap {
-    int unk00;
+    unsigned char entryNo;      /* 0x00 room table entry number, cEmManage_GetEm's key */
+    char unk01[3];
     cEmActor *actor;            /* 0x04 */
+    char unk08[8];
 } cEmWrap;
+
+int cEmWrap_isDead(cEmWrap *self);
+int cEmWrap_GetVital(cEmWrap *self);
+int cEmWrap_GetVitalMax(cEmWrap *self);
+void cEmWrap_setSuspend(cEmWrap *self, int flag);
 
 #define EMACTOR_OFFSET(field) ((int)&((cEmActor *)0)->field)
 typedef char cEmActor_chk_flags[EMACTOR_OFFSET(objFlags) == 0x250 ? 1 : -1];

@@ -19,6 +19,3 @@ cModelNode *cModel_getMeshPtr(cModel *self, int n) {
     }
     return node;
 }
-#include "include_asm.h"
-
-INCLUDE_ASM("nonmatching", cModel_calcParts);

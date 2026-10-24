@@ -1,4 +1,5 @@
 #include "include_asm.h"
+#include "godhand/drawPrim.h"
 
 /* ── PERMANENT (1 via this TU) — bc1tl+fp-heavy, 0 VU0 — ee-as safe ──── */
 
@@ -7,10 +8,10 @@
  * trigger VU0 pipeline nop insertion. */
 INCLUDE_ASM("permanent", Draw_Line_sc);
 
-/* ── CALL-CHAIN (1) — jal, hardcoded args — nonmatching ───────────────── */
-
-/* Draw_Poly_sc: addiu $sp,-0x10; addiu $a2,1; sd $ra; daddu $a3,0;
- *               addiu $t0,8; jal Gp_draw_poly4; addiu $t1,2; ld $ra; jr; addiu $sp,0x10
- *               0x28 B — hardcoded-arg call chain, INCLUDE_ASM pending match */
-INCLUDE_ASM("nonmatching", Draw_Poly_sc);
+/* Draw one flat quad from four screen-space vertices. */
+__attribute__((section(".text.Draw_Poly_sc")))
+void Draw_Poly_sc(void *v, int color)
+{
+    Gp_draw_poly4(v, color, 1, 0, 8, 2);
+}
 

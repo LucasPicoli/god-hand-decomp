@@ -217,7 +217,8 @@ struct cParts;
     float mtx[16];                      /* 0x080 world matrix */ \
     cVec invPos;                        /* 0x0C0 */ \
     cVec *anchor;                       /* 0x0D0 normally &mtxLocal[12] */ \
-    char unk0D4[0x1C]; \
+    char unk0D4[0xC]; \
+    cVec trans;                         /* 0x0E0 local position, from the part table */ \
     cVec *pos;                          /* 0x0F0 normally &mtx[12] */ \
     char unk0F4[0xC]; \
     cVec rot;                           /* 0x100 euler angles */ \

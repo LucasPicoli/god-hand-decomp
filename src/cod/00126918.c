@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/comboObj.h"
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -155,17 +156,6 @@ void BlendSetup_load(BlendSetup *self, void *tblA, void *tblB, void *tblC, short
 extern int D_003BC7D0[];                /* combo table, 0x14 bytes per combo, first word used */
 
 #define COMBO_ENTRY_WORDS  5            /* 0x14 bytes */
-
-typedef struct ComboObj {
-    char unk000[0x5E0];
-    unsigned short slot;                /* 0x5E0 combo slot being run */
-    unsigned short set;                 /* 0x5E2 combo set */
-    unsigned short ticks;               /* 0x5E4 */
-    unsigned short stage;               /* 0x5E6 */
-    char unk5E8[0x1080];
-    int moveA;                          /* 0x1668 */
-    int moveB;                          /* 0x166C */
-} ComboObj;
 
 /* Start the next combo of the current set: wrap to slot 0 of set 0 once the slot passes the set's size, look up the combo, load its first word as the move, start it and advance the slot. Returns the combo id. */
 __attribute__((section(".text.ComboObj_startNext")))

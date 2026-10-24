@@ -116,7 +116,7 @@ struct cIDBaseEnt {
     signed char parentRef;      /* 0x29 >= 0: follows its parent */
     signed char id;             /* 0x2A id looked up by getIDWork */
     signed char layer;          /* 0x2B draw layer, -4..4 */
-    unsigned int flags;         /* 0x2C IDENT_FLAG_* */
+    int flags;                  /* 0x2C IDENT_FLAG_* */
     float offX;                 /* 0x30 */
     float offY;                 /* 0x34 */
     float posX;                 /* 0x38 */
