@@ -10,10 +10,16 @@ typedef struct SndTiming {
     char name[14];              /* 0x00 */
     char unk0E[2];
     int frame;                  /* 0x10 */
-    char unk14[8];
+    int unk14;                  /* 0x14 */
+    char unk18[4];
     int unk1C;                  /* 0x1C */
     short unk20;                /* 0x20 */
-    char unk22[0x84 - 0x22];
+    char unk22[2];
+    unsigned char nKind1;       /* 0x24 live voices of kind 1 */
+    unsigned char nKind2;       /* 0x25 kind 2 */
+    unsigned char nKind4;       /* 0x26 kind 4 */
+    unsigned char nTotal;       /* 0x27 */
+    char unk28[0x84 - 0x28];
     int unk84;                  /* 0x84 */
     char unk88[4];
     unsigned int time;          /* 0x8C */
