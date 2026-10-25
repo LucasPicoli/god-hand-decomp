@@ -72,8 +72,17 @@ typedef struct SeqCmd {
     short all;                  /* 0x0E -1 when cleared */
     short arg;                  /* 0x10 */
     short link;                 /* 0x12 -1 when cleared */
-    char unk14[0x50 - 0x14];
+    char unk14[0x20 - 0x14];
+    short req;                  /* 0x20 sound id; the channel allocators take the record from here */
+    char unk22[4];
+    signed char voice;          /* 0x26 voice kind func_0037D298 allocates */
+    char unk27[0x48 - 0x27];
+    unsigned short seqArg;      /* 0x48 */
+    char unk4A[0x50 - 0x4A];
 } SeqCmd;
+
+#define SEQCMD_M_ALT      0x01  /* mask: take the channel from func_0037CF00 */
+#define SEQCMD_M_SEQUENCE 0x08  /* mask: the request plays a sequence */
 
 #define SEQCMD_F_STOP   0x10    /* a stop request rather than a start */
 #define SEQCMD_NUM      48
@@ -81,6 +90,7 @@ typedef struct SeqCmd {
 extern SeqCmd D_0076B9C0[SEQCMD_NUM];
 extern int func_0037C330(SeqCmd *c);
 extern void func_0037BE98(void);
+extern int func_0037BF10(SeqCmd *h);
 
 /* A sound voice node: its work and the method table it dispatches through. */
 typedef struct SndVoiceNode {

@@ -13,6 +13,20 @@ typedef struct __eh_info {
     short version;
 } __eh_info;
 
+#ifndef __cplusplus
+/* C view of exception.cc's cp_eh_info (defined there for C++); bool is a word on this target. */
+typedef struct cp_eh_info {
+    __eh_info eh_info;
+    void *value;
+    void *type;
+    void (*cleanup)(void *, int);
+    int caught;                         /* 0x14 */
+    struct cp_eh_info *next;
+    long handlers;
+    void *original_value;
+} cp_eh_info;
+#endif
+
 extern eh_handler D_003C4908;           /* __terminate_func */
 extern eh_handler D_003C4F00;           /* __unexpected_func */
 
