@@ -2,7 +2,7 @@
 #
 # Carve names (compile_config.json::carved_funcs[].name) whose `vaddr` is
 # legitimately ABSENT from config/symbol_addrs.txt when the check was introduced.
-# Consumed by scripts/check_naming_sync.py (D-010 naming-propagation ratchet).
+# Consumed by scripts/check_naming_sync.py (the naming-propagation ratchet).
 #
 # This allowlist ONLY excuses symbol_addrs *absence*.  It NEVER excuses a name
 # *mismatch* at a shared address, nor a carve whose C TU disagrees with its
@@ -21,7 +21,7 @@
 #      (a handful of `func_XXXX` carves not yet split into their own `.s`).
 #
 # A NEW carve whose name never reached symbol_addrs is NOT in this list and
-# FAILS the check — that is the D-022 regression guard.  Regenerate with
+# FAILS the check — that is the guard against a missing line.  Regenerate with
 # `python3 scripts/check_naming_sync.py --update` ONLY after an intentional
 # in-place / library carve add or removal, and review the diff.
 #

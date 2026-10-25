@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""check_naming_sync.py — D-010 naming-propagation consistency ratchet.
+"""check_naming_sync.py — naming-propagation consistency ratchet.
 
-D-010 requires a function's canonical name to land in THREE places in the
+CONTRIBUTING rule 3 requires a function's canonical name to land in THREE places in the
 same commit:
 
   1. ``compile_config.json::carved_funcs[].name`` (the carve registry),
@@ -16,7 +16,7 @@ surface and silently diverge from the others.  This
 script is the mechanical detector.  **It renames nothing** — it only asserts
 agreement and fails (exit 1) on divergence.
 
-It generalises D-022 (carve name must EXIST in symbol_addrs) to *agreement*:
+It checks agreement, not only that the carve name EXISTS in symbol_addrs:
 where a carve's address is present in symbol_addrs, the names must MATCH; and
 where a carve owns a real-C / INCLUDE_ASM TU, the carve name must appear in
 that TU.
@@ -38,7 +38,7 @@ For every ``carved_funcs[]`` entry that has a ``name`` and a ``vaddr``:
     ``glabel`` inside ``asm/cod/000000.s``.  These are recorded in the
     committed allowlist ``config/naming_sync_allowlist.txt`` and tolerated.
     Any NEW absence (a fresh carve whose name never reached symbol_addrs) is
-    NOT allowlisted and FAILS — the D-022 regression guard.
+    NOT allowlisted and FAILS — the guard against a missing line.
 
   * **TU agreement (hard fail).**  If the carve owns a ``.c`` TU, the carve
     name must appear in that TU as ``INCLUDE_ASM(..., <NAME>)``,
@@ -52,7 +52,7 @@ OUT OF BAND / OUT OF SCOPE
     and never talks to a Ghidra process.  symbol_addrs.txt's ghidra-seed block IS read
     (it is committed text), but the live Ghidra database is not.
   * Renaming anything (this is a detector, not a fixer).
-  * Local-variable naming (D-010-deferred).
+  * Local-variable naming (deferred).
   * eu/jp sibling symbol files (us only; a follow-up if this proves useful).
   * ``.s`` TUs (e.g. ``src/cod/eesyscalls.s`` syscall stubs): not C, so the
     TU-scan is skipped; the symbol_addrs axis still applies.
@@ -212,7 +212,7 @@ ALLOWLIST_HEADER = """\
 #
 # Carve names (compile_config.json::carved_funcs[].name) whose `vaddr` is
 # legitimately ABSENT from config/symbol_addrs.txt when the check was introduced.
-# Consumed by scripts/check_naming_sync.py (D-010 naming-propagation ratchet).
+# Consumed by scripts/check_naming_sync.py (the naming-propagation ratchet).
 #
 # This allowlist ONLY excuses symbol_addrs *absence*.  It NEVER excuses a name
 # *mismatch* at a shared address, nor a carve whose C TU disagrees with its
@@ -231,7 +231,7 @@ ALLOWLIST_HEADER = """\
 #      (a handful of `func_XXXX` carves not yet split into their own `.s`).
 #
 # A NEW carve whose name never reached symbol_addrs is NOT in this list and
-# FAILS the check — that is the D-022 regression guard.  Regenerate with
+# FAILS the check — that is the guard against a missing line.  Regenerate with
 # `python3 scripts/check_naming_sync.py --update` ONLY after an intentional
 # in-place / library carve add or removal, and review the diff.
 #
@@ -300,12 +300,12 @@ def main(argv: list[str]) -> int:
                   f"{', '.join(res['stale_allow'][:8])}"
                   + (" …" if len(res['stale_allow']) > 8 else ""))
         if not fail and "--list" not in argv:
-            print("naming-propagation consistent (D-010). ")
+            print("naming-propagation consistent.")
             return 0
         if not fail:
             return 0
 
-    print("NAMING-PROPAGATION DIVERGENCE (D-010)", file=sys.stderr)
+    print("NAMING-PROPAGATION DIVERGENCE", file=sys.stderr)
     print("", file=sys.stderr)
     if res["mismatch"]:
         print("Carve name disagrees with symbol_addrs AT a shared address:",
@@ -318,12 +318,11 @@ def main(argv: list[str]) -> int:
         for name, tu in res["tu_disagree"]:
             print(f"    {name}  not found in {tu}", file=sys.stderr)
     if res["new_absence"]:
-        print("Carve name absent from symbol_addrs and NOT allowlisted "
-              "(D-022 regression):", file=sys.stderr)
+        print("Carve name absent from symbol_addrs and NOT allowlisted:", file=sys.stderr)
         for name, vaddr in res["new_absence"]:
             print(f"    {name}  @ {vaddr}", file=sys.stderr)
     print("", file=sys.stderr)
-    print("D-010 requires a name to agree across carved_funcs, "
+    print("CONTRIBUTING rule 3 requires a name to agree across carved_funcs, "
           "config/symbol_addrs.txt, and the C TU in the SAME commit.",
           file=sys.stderr)
     print("This is a DETECTOR — fix the names by hand (do not silence the "
