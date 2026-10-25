@@ -205,7 +205,7 @@ int Forward348870_342910(int a0, int a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward324950_342928")))
 int Forward324950_342928(int a0, int a1, int a2, int a3) {
-    return func_00324950(a0, a1, a2, a3);
+    return StmMgr_start(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.Forward324AC8_342940")))

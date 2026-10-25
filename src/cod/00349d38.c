@@ -2,7 +2,7 @@
 
 extern void Obj0000_PreDec_D_003FC50C_3B9D80(void);
 extern void func_00324AC8(void);
-extern void func_00324950(void);
+extern void StmMgr_start(void);
 extern void Obj0000_PostInc_D_003FC50C_3B9D68(void);
 extern void func_00366C50(void *dst, int val, int n);
 extern int D_00760D90[];
@@ -21,7 +21,7 @@ int SFADXT_Finish(void)
 __attribute__((section(".text.SFADXT_Init")))
 int SFADXT_Init(void)
 {
-    func_00324950();
+    StmMgr_start();
     Obj0000_PostInc_D_003FC50C_3B9D68();
     func_00366C50(D_00760D90, 0, 7);
     return 0;

@@ -45,7 +45,7 @@ int func_003283E8(int a0, int a1, int a2) {
 __attribute__((section(".text.func_003298C0")))
 void func_003298C0(int a0) {
     NoOp_33E6A8();
-    func_003298F0(a0);
+    adxPly_destroy(a0);
     NoOp_33E6B0();
 }
 

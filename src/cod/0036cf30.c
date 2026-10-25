@@ -26,7 +26,7 @@ extern M2vIfFn D_003F2044;
 
 extern void Obj0000_Get_D_0045A478_36D0E8(void);
 extern void func_0036D0F8(unsigned char *buf, int len);
-extern void func_0036D1A8(int a0, int a1, int a2);
+extern void cri_InitEntryPool(int a0, int a1, int a2);
 extern void func_0036D3D0(void);
 extern void func_0036D3D8(void);
 extern void M2V_Destroy(void *a0);
@@ -51,7 +51,7 @@ void func_0036CF30(void)
 {
     D_003F1FF4 = (M2vIfFn)Obj0000_Get_D_0045A478_36D0E8;
     D_003F1FF8 = (M2vIfFn)func_0036D0F8;
-    D_003F1FFC = (M2vIfFn)func_0036D1A8;
+    D_003F1FFC = (M2vIfFn)cri_InitEntryPool;
     D_003F2000 = (M2vIfFn)func_0036D3D0;
     D_003F2004 = (M2vIfFn)func_0036D3D8;
     D_003F2008 = (M2vIfFn)M2V_Destroy;

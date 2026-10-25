@@ -1,7 +1,7 @@
 /* sn-2.95.3-136: dispatch the pending update flags at +6, then clear them. */
 #include "godhand/seqNode.h"
 
-extern void func_0037D3C8(SeqNode *self);
+extern void SndMix_calcVoiceLevel(SeqNode *self);
 extern void func_0037D680(SeqNode *self);
 extern void func_0037D728(SeqNode *self);
 extern void func_0037D558(SeqNode *self);
@@ -14,7 +14,7 @@ void func_0037CCE0(SeqNode *self)
 {
     if (self->kind & 8) {
         if (self->sub & 1) {
-            func_0037D3C8(self);
+            SndMix_calcVoiceLevel(self);
             func_003738A0(&D_0076A600[self->id], -1,
                           (short)self->weight >> 8);
             UpdateSequenceNodeWeighted_373560(&D_0076A600[self->id], -1,
@@ -26,7 +26,7 @@ void func_0037CCE0(SeqNode *self)
         }
     } else {
         if (self->sub & 1) {
-            func_0037D3C8(self);
+            SndMix_calcVoiceLevel(self);
         }
         if (self->sub & 2) {
             func_0037D680(self);

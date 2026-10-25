@@ -7,7 +7,7 @@ extern int D_003E0708;
 extern int D_003EAEC8;
 extern void func_00323AA0(int a0);
 extern int D_003C7420;
-extern void func_003298F0(int a0);
+extern void adxPly_destroy(int a0);
 extern int D_003D1488;
 extern void func_0032E720(int a0);
 extern int D_003DA5F8;
@@ -150,7 +150,7 @@ void func_00329AF0(void) {
     s2 = 1;
     do {
         if (*(char *)s0 == s2) {
-            func_003298F0(s0);
+            adxPly_destroy(s0);
         }
         s1--;
         s0 += 0xC8;

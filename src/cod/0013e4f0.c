@@ -8,7 +8,7 @@ extern void func_003290B8(void *p);
 extern int ADXPS2_LoadFcacheDvd(void *p);
 extern void func_00325638(void *p);
 extern void Obj3260_Tramp_00336E88_D148(int a0, int a1);
-extern void func_00324950(void);
+extern void StmMgr_start(void);
 extern void ModuleStart_refCounted(void);
 extern void Obj3290_SetGlobal_D003D1400(int a0);
 extern void func_0032BAF0(const char *s);
@@ -69,7 +69,7 @@ void func_002CA220(void)
     d.f14 = 0x60;
     func_00325638(&d);
     Obj3260_Tramp_00336E88_D148(0xA, 0);
-    func_00324950();
+    StmMgr_start();
     ModuleStart_refCounted();
     Obj3290_SetGlobal_D003D1400(1);
     func_0032BAF0(D_0044CE20);

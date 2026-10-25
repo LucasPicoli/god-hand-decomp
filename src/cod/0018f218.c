@@ -13,8 +13,8 @@ extern void cOmBase_setMeshDispFromLayer(cOmDamageBox *self, int a, int b);
 extern char D_00574380[];                        /* the damage manager */
 
 /* Set up a 0.872 x 1.34 damage-take cylinder and a radius 2.5 damage-give sphere sized by the player's power, 50 hit points, and flag every piece. */
-__attribute__((section(".text.func_0018F218")))
-int func_0018F218(cOmDamageBox *em)
+__attribute__((section(".text.cOmDamageBox_setupGuard")))
+int cOmDamageBox_setupGuard(cOmDamageBox *em)
 {
     cVec v[4];             /* size twice, offset, rotation */
     cVec *ofs;

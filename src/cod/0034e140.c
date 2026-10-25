@@ -49,7 +49,7 @@ int func_0034E140(void)
         for (;;)
             ;
     }
-    r = func_00368CE8(8, &D_00762058);
+    r = sfd_InitPool(8, &D_00762058);
     if (r != 0)
         return func_0034DD70(0, 0xFF000D01);
     D_003EE2E8 = 0;

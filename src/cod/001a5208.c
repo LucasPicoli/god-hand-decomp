@@ -45,8 +45,8 @@ typedef struct ListPad {
 extern void func_00383A20(ListCtl *ctl, ListSub *sub);
 
 /* Steps the edited slot of the list control by one or ten and refreshes it. */
-__attribute__((section(".text.func_00383878")))
-void func_00383878(ListCtl *ctl, ListPad *pad)
+__attribute__((section(".text.ListCtl_stepSlot")))
+void ListCtl_stepSlot(ListCtl *ctl, ListPad *pad)
 {
     ListSub *sub = &ctl->sub;
     short step = 1;
@@ -152,8 +152,8 @@ typedef struct SndRow {
 
 
 /* Queues a node for voice `voice` of the source; the node copies the source's per-voice tables. */
-__attribute__((section(".text.func_00377150")))
-int func_00377150(SndSrc *src, SndRow *row, unsigned int voice)
+__attribute__((section(".text.SndMsg_buildVoiceNode")))
+int SndMsg_buildVoiceNode(SndSrc *src, SndRow *row, unsigned int voice)
 {
     SndNode *n;
     int code;
@@ -239,8 +239,8 @@ typedef struct SndMixVoice {
 extern SndMixCfg D_0076A790;
 
 /* Computes a voice's output level from the mixer settings, its gain and its pan. */
-__attribute__((section(".text.func_0037D3C8")))
-void func_0037D3C8(SndMixVoice *v)
+__attribute__((section(".text.SndMix_calcVoiceLevel")))
+void SndMix_calcVoiceLevel(SndMixVoice *v)
 {
     SndMixCfg *cfg = &D_0076A790;
     int r = 0;
@@ -306,8 +306,8 @@ void func_0037D3C8(SndMixVoice *v)
 #define GIVE_DAMAGE      100
 #define HIT_SIZE         0x14
 
-__attribute__((section(".text.func_001A5208")))
-int func_001A5208(char *p)
+__attribute__((section(".text.cOmGiveTake_initSphere")))
+int cOmGiveTake_initSphere(char *p)
 {
     float buf[8] __attribute__((aligned(16)));
     float *sph;

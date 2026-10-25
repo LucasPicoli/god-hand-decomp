@@ -43,7 +43,7 @@ void SFBUF_DestroySj(void *sj)
 __attribute__((section(".text.func_00201A50")))
 int func_00201A50(void)
 {
-    return func_00399508(1) == 2;
+    return sceCdDiskReady(1) == 2;
 }
 
 __attribute__((section(".text.func_003571D0")))

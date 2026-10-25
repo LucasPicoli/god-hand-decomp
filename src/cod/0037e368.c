@@ -3,7 +3,7 @@
 #include "godhand/menuCtl.h"
 
 extern void func_0037E488(unsigned char *self);
-extern void func_0037E4C0(unsigned char *self, char *pad);
+extern void MenuBrowse_update(unsigned char *self, char *pad);
 extern void MenuCtl_readSlotStreamInfo(unsigned char *self);
 extern void func_0037FB70(char *p);
 extern void func_0037FCC8(char *self);
@@ -26,7 +26,7 @@ int func_0037E368(MenuCtl *self, MenuPad *pad)
         func_0037E488((unsigned char *)self);
         break;
     case 1:
-        func_0037E4C0((unsigned char *)self, (char *)pad);
+        MenuBrowse_update((unsigned char *)self, (char *)pad);
         break;
     case 2:
         MenuCtl_readSlotStreamInfo((unsigned char *)self);

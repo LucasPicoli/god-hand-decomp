@@ -23,7 +23,7 @@ typedef struct FdeAccumulator {
 extern void *func_003A7C70(unsigned int n);
 extern unsigned int func_00321D38(Fde *f);
 extern void func_00321D80(Fde *f, FdeAccumulator *accu, void **beg_ptr, void **end_ptr);
-extern Fde **func_00321AD0(FdeAccumulator *accu, unsigned int count);
+extern Fde **end_fde_sort(FdeAccumulator *accu, unsigned int count);
 
 static inline void start_fde_sort(FdeAccumulator *accu, unsigned int count)
 {
@@ -60,7 +60,7 @@ void func_00321E08(FrameObject *ob)
     } else
         func_00321D80(ob->fde_begin, &accu, &pc_begin, &pc_end);
 
-    ob->fde_array = func_00321AD0(&accu, count);
+    ob->fde_array = end_fde_sort(&accu, count);
     ob->pc_begin = pc_begin;
     ob->pc_end = pc_end;
 }

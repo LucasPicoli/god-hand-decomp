@@ -652,7 +652,7 @@ int func_003579F0(char *a0) {
     int s2 = 0;
     Thunk_func_0033B658(local);
     if (s1[0x20/4] == 0) {
-        if (func_00357AA0(s0) != 0) {
+        if (sfply_CanStart(s0) != 0) {
             s1[0x20/4] = 1;
             s1[0x24/4] = s1[0x24/4] + 1;
             s2 = func_00356FD8(s0, 1);

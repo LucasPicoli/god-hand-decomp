@@ -14,7 +14,7 @@ extern int D_00766C18;
 extern int D_00766C1C;
 extern int D_00766C20;
 
-extern int func_003547B0(SfdDecView *sf, int *dec);
+extern int SfdDec_init(SfdDecView *sf, int *dec);
 extern void func_003563B8(SfdDecView *sf);
 extern int func_0036C248(void);
 extern int func_00369E98(int mpv, int (*cb)(int a0, int a1), SfdDecView *sf);
@@ -35,7 +35,7 @@ int func_00354650(SfdDecView *sf)
     if (r == 0)
         return r;
     sf->dec = dec;
-    r = func_003547B0(sf, dec);
+    r = SfdDec_init(sf, dec);
     if (r != 0)
         return r;
     func_003563B8(sf);

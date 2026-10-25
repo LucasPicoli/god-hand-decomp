@@ -2197,9 +2197,9 @@ extern int func_0033B568(int);
 __attribute__((section(".text.Forward33B568_33B658")))
 int Forward33B568_33B658(void) { return func_0033B568(1); }
 
-extern int func_0033B5C8(int);
+extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B670")))
-int Forward33B5C8_33B670(void) { return func_0033B5C8(1); }
+int Forward33B5C8_33B670(void) { return svm_unlock(1); }
 
 extern int func_0033B568(int);
 __attribute__((section(".text.Forward33B568_33B688")))
@@ -2209,13 +2209,13 @@ extern int func_0033B568(int);
 __attribute__((section(".text.Forward33B568_33B6A0")))
 int Forward33B568_33B6A0(void) { return func_0033B568(4); }
 
-extern int func_0033B5C8(int);
+extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B6B8")))
-int Forward33B5C8_33B6B8(void) { return func_0033B5C8(2); }
+int Forward33B5C8_33B6B8(void) { return svm_unlock(2); }
 
-extern int func_0033B5C8(int);
+extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B6D0")))
-int Forward33B5C8_33B6D0(void) { return func_0033B5C8(4); }
+int Forward33B5C8_33B6D0(void) { return svm_unlock(4); }
 
 extern int func_0033BC48(int);
 __attribute__((section(".text.Forward33BC48_33BD18")))

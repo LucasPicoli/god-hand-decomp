@@ -20,8 +20,8 @@ extern volatile int D_003E994C;     /* lock owner type */
 extern char D_00455E78[];           /* "...(type org=%d, type now=%d)" */
 
 /* Leave one nesting level; at the outermost, report an owner mismatch (org, now), clear the owner, then call the unlock hook. */
-__attribute__((section(".text.func_0033B5C8")))
-void func_0033B5C8(int owner)
+__attribute__((section(".text.svm_unlock")))
+void svm_unlock(int owner)
 {
     void (*fn)(int);
 
@@ -46,8 +46,8 @@ extern unsigned char *volatile D_0076A588;      /* entry table pointer, volatile
 
 
 /* Set up the entry pool of the decoder: hang the table pointer, run both init steps, size the pool, then mark the entries. */
-__attribute__((section(".text.func_0036D1A8")))
-void func_0036D1A8(int n, int work, unsigned int size)
+__attribute__((section(".text.cri_InitEntryPool")))
+void cri_InitEntryPool(int n, int work, unsigned int size)
 {
     /* barrier: keeps the tag load after the prologue saves, as retail has it */
     do { } while (0);
@@ -72,8 +72,8 @@ extern int func_00368D60(int a, int b);         /* pool setup: entry count, work
 
 /* Select the mode table, then run the pool setup; spin on a bad jump if the build tag is not 4.
    The two arguments only pass through to the setup, which is why retail keeps $a0/$a1 untouched. */
-__attribute__((section(".text.func_00368CE8")))
-int func_00368CE8(int a, int b)
+__attribute__((section(".text.sfd_InitPool")))
+int sfd_InitPool(int a, int b)
 {
     int r;
 

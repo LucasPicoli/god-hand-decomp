@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_00324950(void);
+extern void StmMgr_start(void);
 extern void func_0032F230(void);
 extern void func_003A52F0(void *dst, int val, int len);
 extern void func_0032D170(void);
@@ -26,7 +26,7 @@ void ModuleStart_refCounted(void)
 {
     (void)D_003D1470;
     if (D_003D1474 == 0) {
-        func_00324950();
+        StmMgr_start();
         func_0032F230();
         func_003A52F0(D_003D1488, 0, 0x9E0);
         func_0033BA10(2, 0, (void *)func_0032D170, 0, D_00452980);

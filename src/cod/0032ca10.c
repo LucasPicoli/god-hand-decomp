@@ -20,7 +20,7 @@ extern void func_00333390(char *name, char *dir);
 extern void PushGlobalD8478History_331C78(int id);
 extern void func_003260C8(char *fmt, int a);
 
-/* cygnus-2.96: func_0035F418, builds the frame info block and the output frame record for a picture
+/* cygnus-2.96: Sfx_buildFrameRecord, builds the frame info block and the output frame record for a picture
  * source, then calls the stream's frame callback. */
 
 
@@ -80,8 +80,8 @@ extern void func_0035F288(Sfx *sfx, void *src, SfdFrmInf *inf);
 
 
 /* Pointer locals for the plane cursors are required: they make gcc form one address pseudo each. */
-__attribute__((section(".text.func_0035F418")))
-void func_0035F418(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
+__attribute__((section(".text.Sfx_buildFrameRecord")))
+void Sfx_buildFrameRecord(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
 {
     SfdFrmInf inf;
     FrmRec frm;
@@ -132,7 +132,7 @@ void func_0035F418(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
         sfx->cbfn(&inf, &frm, &tim);
 }
 
-/* cygnus-2.96: func_0032CA10, per-frame step of an ADX decoder slot: while the RNA output has room
+/* cygnus-2.96: AdxSjd_stepFill, per-frame step of an ADX decoder slot: while the RNA output has room
  * and the decoder is in state 3, restarts a stopped slot (state 3, input ready), then silences the
  * next block of every output stream joint. */
 
@@ -149,8 +149,8 @@ void func_0035F418(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
 
 extern volatile int D_003C7418;   /* volatile keeps retail's separate lui+addiu address (plain int folds %lo into the lw) */
 
-__attribute__((section(".text.func_0032CA10")))
-void func_0032CA10(AdxSjdRun *run)
+__attribute__((section(".text.AdxSjd_stepFill")))
+void AdxSjd_stepFill(AdxSjdRun *run)
 {
     SjChunk ck;
     SjObj *sj;
@@ -190,7 +190,7 @@ next:
     }
 }
 
-/* cygnus-2.96: func_00333880, resolves every file named in a file-list table on the disc. Each hit
+/* cygnus-2.96: FileList_resolveAll, resolves every file named in a file-list table on the disc. Each hit
  * overwrites the entry's (lsn, size) pair; the history ring gets a progress code per step. Returns
  * the number resolved and reports the failures through the log. */
 
@@ -215,8 +215,8 @@ extern FlLayout D_003D9DC0;
 
 
 
-__attribute__((section(".text.func_00333880")))
-int func_00333880(char *tbl, int num)
+__attribute__((section(".text.FileList_resolveAll")))
+int FileList_resolveAll(char *tbl, int num)
 {
     CriFileStat info;
     int fail = 0;

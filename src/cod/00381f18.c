@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* sn-2.95.3-136: func_00381F18, applies one pad step to the selected channel of a mixer record:
+/* sn-2.95.3-136: MixChan_stepPad, applies one pad step to the selected channel of a mixer record:
  * a negative flag word and bit 30 move the volume entry down and up by the step, bits 15 and 13
  * move the table index instead and reload the volume from the table. */
 typedef struct MixChan {
@@ -24,8 +24,8 @@ extern short D_003F2060[];
 
 extern void func_003820C0(void *mix, MixChan *chan);
 
-__attribute__((section(".text.func_00381F18")))
-void func_00381F18(char *mix, MixPad *pad)
+__attribute__((section(".text.MixChan_stepPad")))
+void MixChan_stepPad(char *mix, MixPad *pad)
 {
     MixChan *c = (MixChan *)(mix + MIX_CHAN_OFFSET);
     short step = 1;

@@ -45,8 +45,8 @@ extern char D_00455B48[];
 extern void func_0036EE90(void *hn, char *start, int skipped);
 
 /* Reference-counted start of the stream manager: the first caller sets up the module and registers the handlers. */
-__attribute__((section(".text.func_00324950")))
-void func_00324950(void)
+__attribute__((section(".text.StmMgr_start")))
+void StmMgr_start(void)
 {
     int *count = &D_003C7400;
     int h;
@@ -85,8 +85,8 @@ void func_00324950(void)
 
 /* SJ ring buffer UngetChunk: take back the last chunk handed out from lane 0 (free) or lane 1 (data)
  * when it ends where that lane's position stands; a mismatch or any other lane reports -3. */
-__attribute__((section(".text.func_00339CB8")))
-void func_00339CB8(SjRbf *sj, int id, SjChunk *ck)
+__attribute__((section(".text.SjRbf_ungetChunk")))
+void SjRbf_ungetChunk(SjRbf *sj, int id, SjChunk *ck)
 {
     int size;
     int len;
@@ -142,8 +142,8 @@ void func_00339CB8(SjRbf *sj, int id, SjChunk *ck)
 
 /* SJ ring buffer PutChunk: give back a chunk that lies inside the ring buffer to lane 1 (data) or
  * lane 0 (free), mirroring bytes across the wrap area; other lanes clear the chunk and report -3. */
-__attribute__((section(".text.func_00339AE8")))
-void func_00339AE8(SjRbf *sj, int id, SjChunk *ck)
+__attribute__((section(".text.SjRbf_putChunk")))
+void SjRbf_putChunk(SjRbf *sj, int id, SjChunk *ck)
 {
     int off;
     int end;
@@ -227,8 +227,8 @@ typedef struct MpvBits {
 } MpvBits;
 
 /* Searches the stream from `start` for the next start code and returns a pointer just past its prefix. */
-__attribute__((section(".text.func_0036EC78")))
-char *func_0036EC78(char *hn, char *start)
+__attribute__((section(".text.MpvBits_searchStartCode")))
+char *MpvBits_searchStartCode(char *hn, char *start)
 {
     MpvBits *d = (MpvBits *)(hn + 0x160);
     char *p;

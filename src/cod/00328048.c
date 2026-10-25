@@ -5,7 +5,7 @@ extern void func_003475F0(void *a0);
 extern void func_00359848(void);
 extern void func_00359CB8(void *a0);
 extern void func_0035F1D0(void *a0, int a1, int a2, int a3);
-extern void func_0035F418(void *a0, int a1, int a2);
+extern void Sfx_buildFrameRecord(void *a0, int a1, int a2);
 extern void func_00328368(void *obj);
 extern void func_00327FA8(void *obj);
 extern void func_0033F590(void);
@@ -32,7 +32,7 @@ void func_00359800(void *obj) {
 __attribute__((section(".text.func_0035F3C8")))
 void func_0035F3C8(void *obj, int a1, int a2) {
     func_0035F1D0(obj, a1, a2, 0);
-    func_0035F418(obj, a1, a2);
+    Sfx_buildFrameRecord(obj, a1, a2);
 }
 
 __attribute__((section(".text.func_00328048")))

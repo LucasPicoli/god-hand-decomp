@@ -15,8 +15,8 @@ extern void CopyVec3ToField30_147C40(float *a0, float *a1);
 #define FXTRAIL_K0A8  2L
 
 /* Set the trail up: take the segment count from the parameters (16 when it is zero or too large), build the segment records with a fading width and end weights from the direction flags, and set the life. */
-__attribute__((section(".text.func_002EBF98")))
-int func_002EBF98(cFxTrail *self, void *arg)
+__attribute__((section(".text.cFxTrail_setup")))
+int cFxTrail_setup(cFxTrail *self, void *arg)
 {
     cVec start;
     float m[16];

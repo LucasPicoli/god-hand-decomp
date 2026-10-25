@@ -5,7 +5,7 @@ extern void M2VERR_SetCode(int, unsigned int);
 extern void *memcpy(void *, const void *, unsigned int);
 extern void func_003B9DE0(void *);
 extern void func_003B9DB0(void);
-extern void func_003BA148(void *);
+extern void SjFeedCtl_step(void *);
 extern void func_003B9DC8(void);
 extern int D_00460950;
 
@@ -27,6 +27,6 @@ void func_003BA0C8(int *o) {
     }
     func_003B9DB0();
     for (i = 0; i < o[6]; i++)
-        func_003BA148(o);
+        SjFeedCtl_step(o);
     func_003B9DC8();
 }

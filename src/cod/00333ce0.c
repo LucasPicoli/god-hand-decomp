@@ -22,7 +22,7 @@ extern void LogPrintf(char *fmt, ...);
 extern int func_003336F8(char *name, char *work);
 extern void func_00332808(void *dev, char *msg);
 extern int func_00333560(void *buf, char *work, int size, unsigned int num, int unit);
-extern int func_00333880(void *buf, int n);
+extern int FileList_resolveAll(void *buf, int n);
 
 __attribute__((section(".text.func_00333CE0")))
 unsigned int func_00333CE0(char *name, void *buf, unsigned int size, int unit)
@@ -52,5 +52,5 @@ unsigned int func_00333CE0(char *name, void *buf, unsigned int size, int unit)
     }
     per = unit + 9;
     return (size / per) * 8
-         + func_00333880(buf, func_00333560(buf, D_007563C0, WORK_SIZE, size / per, unit)) * (unit + 1);
+         + FileList_resolveAll(buf, func_00333560(buf, D_007563C0, WORK_SIZE, size / per, unit)) * (unit + 1);
 }

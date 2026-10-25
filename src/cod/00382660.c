@@ -15,8 +15,8 @@ extern void func_0032EC78(int ply, int ch, int vol);
  * is the master and sets all four channels), then send the player either the
  * mute volume or the channel's level. Spelled through self->sndInfo in the
  * copy loop because that is the form that keeps the loop counted up. */
-__attribute__((section(".text.func_00382660")))
-void func_00382660(MenuCtl *self, MenuPad *pad)
+__attribute__((section(".text.MenuCtl_toggleSndMute")))
+void MenuCtl_toggleSndMute(MenuCtl *self, MenuPad *pad)
 {
     MenuSnd *snd = &self->snd;
     MenuSndInfo *info = &self->sndInfo;

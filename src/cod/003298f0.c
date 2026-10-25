@@ -41,8 +41,8 @@ extern void func_00354B40(void *work);
 
 
 /* Say whether the player may start: every gate must pass, then the elapsed time must still be positive. */
-__attribute__((section(".text.func_00357AA0")))
-int func_00357AA0(SftimHn *hn)
+__attribute__((section(".text.sfply_CanStart")))
+int sfply_CanStart(SftimHn *hn)
 {
     int t[2];
     SfdErr *err = &hn->errInf;
@@ -89,8 +89,8 @@ int func_00357AA0(SftimHn *hn)
 }
 
 /* Release everything the player handle owns, in order, and clear the handle. */
-__attribute__((section(".text.func_003298F0")))
-void func_003298F0(AdxPly *ply)
+__attribute__((section(".text.adxPly_destroy")))
+void adxPly_destroy(AdxPly *ply)
 {
     int i;
     int stm;
@@ -165,8 +165,8 @@ void func_003298F0(AdxPly *ply)
 }
 
 /* Set up the decoder manager: check the configuration, copy it in, clear the counters and timing window, and give each of the 16 slots its id and entry. */
-__attribute__((section(".text.func_003547B0")))
-int func_003547B0(void *hn, SfdDecMgr *mgr)
+__attribute__((section(".text.SfdDec_init")))
+int SfdDec_init(void *hn, SfdDecMgr *mgr)
 {
     int i;
 

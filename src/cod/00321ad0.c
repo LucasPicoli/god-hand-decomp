@@ -9,8 +9,8 @@ extern void func_003219D0(fde_vector *v1, fde_vector *v2);            /* fde_mer
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *p);                 /* free */
 
 /* gcc frame.c end_fde_sort, with frame_heapsort inlined. */
-__attribute__((section(".text.func_00321AD0")))
-fde **func_00321AD0(fde_accumulator *accu, unsigned int count)
+__attribute__((section(".text.end_fde_sort")))
+fde **end_fde_sort(fde_accumulator *accu, unsigned int count)
 {
     if (accu->linear.count != count)
         func_003A7B48();

@@ -28,8 +28,8 @@ extern int  func_003B2F48(void *cd, unsigned int sid, int mode);   /* sceSifBind
 extern void func_003B2850(void *p, int size);   /* sceSifWriteBackDCache */
 
 
-__attribute__((section(".text.func_00399508")))
-int func_00399508(int mode)
+__attribute__((section(".text.sceCdDiskReady")))
+int sceCdDiskReady(int mode)
 {
     int i;
     int n;

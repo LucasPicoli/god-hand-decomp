@@ -14,8 +14,8 @@ extern int SjFeed_writeAll(SjFeedCtl *feed);
 
 /* Advance the feed one step: move to running, stop when the source has
  * ended and nothing is waiting, and at state 2 pass one block through. */
-__attribute__((section(".text.func_003BA148")))
-void func_003BA148(SjFeedCtl *feed)
+__attribute__((section(".text.SjFeedCtl_step")))
+void SjFeedCtl_step(SjFeedCtl *feed)
 {
     SjChunk ck;
     SjChunk tail;

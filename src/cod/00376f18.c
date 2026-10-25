@@ -121,6 +121,6 @@ int func_00376F18(Rq *r)
     for (i = 0; i < 8; i++)
         c->z[i] = 0;
     for (i = 0; i < c->n; i++)
-        func_00377150(c, &r->f10, i);
+        SndMsg_buildVoiceNode(c, &r->f10, i);
     return 0;
 }

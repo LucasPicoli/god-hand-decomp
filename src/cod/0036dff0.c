@@ -15,7 +15,7 @@ typedef struct SfdCounters {
 extern int MPV_GoNextDelimSj(SjObj *sj);
 extern char *func_0036E380(char *dec, char *p);
 extern char *func_0036EB58(char *dec, char *p);
-extern char *func_0036EC78(char *dec, char *p);
+extern char *MpvBits_searchStartCode(char *dec, char *p);
 extern char *func_0036F048(char *dec, char *p);
 extern char *func_00372028(char *dec, char *p);
 extern char *func_00372590(char *dec, char *p);
@@ -48,7 +48,7 @@ int func_0036DFF0(char *dec, SjObj *sj)
             end = func_0036EB58(dec, ck.data);
             break;
         case 0x20:
-            end = func_0036EC78(dec, ck.data);
+            end = MpvBits_searchStartCode(dec, ck.data);
             break;
         case 0x10:
             end = func_0036F048(dec, ck.data);

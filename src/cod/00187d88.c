@@ -12,8 +12,8 @@ extern cMeshNode *cModel_getMeshPtr(cOmBreakable *self, int idx);
 extern char D_00574380[];                        /* the damage manager */
 
 /* Set up a breakable with a 0.6 x 1.5 x 0.6 damage-take box and a radius 1 damage-give sphere, one hit point, and hide its first mesh while it is whole. */
-__attribute__((section(".text.func_00187D88")))
-int func_00187D88(cOmBreakable *em)
+__attribute__((section(".text.cOmBreakable_setupSmallBox")))
+int cOmBreakable_setupSmallBox(cOmBreakable *em)
 {
     cVec v[4];             /* size twice, offset, rotation */
     cVec *ofs;

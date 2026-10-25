@@ -5,8 +5,8 @@
 extern void func_0037E670(MenuBrowse *self);
 
 /* Step the browser by one pad frame: pick, move the cursor, turn pages, step the sub index and put the page top under the cursor. */
-__attribute__((section(".text.func_0037E4C0")))
-void func_0037E4C0(MenuBrowse *self, MenuPad *pad)
+__attribute__((section(".text.MenuBrowse_update")))
+void MenuBrowse_update(MenuBrowse *self, MenuPad *pad)
 {
     int bit;
     MenuBrowseList *list = self->list;

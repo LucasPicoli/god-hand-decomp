@@ -153,7 +153,7 @@ void Obj3260_TrampChain_D2D8(void *a0) {
     func_003382A0(a0, 0);
     func_003381B0(a0);
 }
-/* cygnus-2.96: func_003265A8, claims a free ADX stream-joint decoder slot, creates its ADXB decoder
+/* cygnus-2.96: AdxSjd_create, claims a free ADX stream-joint decoder slot, creates its ADXB decoder
  * from the first stream joint and copies the stream joint handles in. Returns the slot or 0. */
 
 extern int func_00339FF8(int sj);
@@ -164,8 +164,8 @@ extern void Obj33C8_SetFields_78_7C(void *adxb, void *fn, AdxSjd *slot);
 extern void func_00326568(char *p);
 extern int adxsjd_get_wr(void *, int *, int *, int *);
 
-__attribute__((section(".text.func_003265A8")))
-AdxSjd *func_003265A8(int owner, int nsj, int *sj)
+__attribute__((section(".text.AdxSjd_create")))
+AdxSjd *AdxSjd_create(int owner, int nsj, int *sj)
 {
     AdxSjd *slot;
     int i;
