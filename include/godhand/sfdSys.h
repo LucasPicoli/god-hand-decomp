@@ -36,10 +36,10 @@ extern char D_00459760[];
 extern char D_003EE280[];
 extern void func_00366C50(void *dst, int val, int n);
 extern void *func_00366960(void *dst, const void *src, int n);
-extern void Obj34D8_Thunk_DD58(void *p);
+extern void Obj34D8_Thunk_DD58(char *p);
 extern void func_0035A298(void *p, int a);
 extern void func_0034BA68(void *p);
-extern void Obj34D8_ClearTwoWords_1FC(void *p);
+extern void Obj34D8_ClearTwoWords_1FC(char *p);
 extern int SFTRN_Init(void *dst, void *src);
 
 #endif

@@ -1,5 +1,6 @@
 /* Struct: CGObj35C0_t — indexed 68-byte-stride table +0x138..+0x170 (CopyPair); fields +0x1F30..+0x1F3C with callbacks at +0x1F3C; view into a large entity object. */
 #include "include_asm.h"
+#include "godhand/sftrnHn.h"
 /* Struct: CGObj35C0_t — indexed 68-byte-stride table +0x138..+0x170 (CopyPair); fields +0x1F30..+0x1F3C with callbacks at +0x1F3C; view into a large entity object. */
 
 /* ── Forward declarations for within-TU calls ────────────────────────────── */
@@ -237,7 +238,47 @@ void Obj35C0_SetField10_IfPositive_C528(char *a0, int a1)
 {
     if (a1 > 0) *(int *)(a0 + 0x10) = a1;
 }
-INCLUDE_ASM("nonmatching", func_0035C3A0);
+/* Clear the transport handle and load its default timing. */
+__attribute__((section(".text.func_0035C3A0")))
+void func_0035C3A0(SftrnHn *hn)
+{
+    func_003A52F0(hn, 0, SFTRN_HN_SIZE);
+    hn->used = 1;
+    hn->unk04 = 0;
+    hn->unk08 = 0;
+    hn->one0C = 1;
+    hn->cnt10 = 10;
+    func_0035C480((char *)hn);
+    hn->pos108 = 0;
+    hn->unk110 = 1;
+    hn->unk118 = 0;
+    hn->unk120 = 1;
+    hn->unk128 = 0;
+    hn->unk130 = 1;
+    hn->id138 = 0x412B;
+    hn->usecA = SFTRN_USEC_SEC;
+    hn->usec148 = 200000;
+    hn->usecB = SFTRN_USEC_SEC;
+    hn->unk158 = 0;
+    hn->usecC = SFTRN_USEC_SEC;
+    hn->unk168 = 0;
+    hn->usec170 = SFTRN_USEC_SEC;
+    hn->unk178 = -1;
+    hn->unk180 = 0;
+    hn->unk188 = 0;
+    hn->unk190[0] = 0;
+    hn->unk190[1] = 0;
+    hn->unk190[2] = 0;
+    hn->unk190[3] = 0;
+    hn->unk190[4] = 0;
+    hn->unk190[5] = 0;
+    hn->unk190[6] = 0;
+    hn->unk190[7] = 0;
+    hn->unk190[8] = 0;
+    hn->unk190[9] = 0;
+    hn->unk1B8 = 0;
+    func_0035CB20();
+}
 extern void func_003A52F0(void *a0, int a1, int a2);
 
 __attribute__((section(".text.func_0035C480")))

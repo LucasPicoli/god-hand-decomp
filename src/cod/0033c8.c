@@ -1,9 +1,21 @@
 /* Struct: CGObj33C8_t — mixed byte/short/word fields +0xD..+0xCC; short array at +0xE2. */
 #include "include_asm.h"
 #include "godhand/criStm.h"
+#include "godhand/adxbLoop.h"
+#include "godhand/Obj33C8.h"
 
 /* ── CALL CHAIN (4) — deferred ─────────────────────────── */
-INCLUDE_ASM("nonmatching", func_0033C918);
+/* Release the record and clear the whole object. */
+__attribute__((section(".text.func_0033C918")))
+void func_0033C918(Obj33C8 *self) {
+    if (self) {
+        Obj33F8 *rec = self->rec;
+        self->rec = 0;
+        Obj33F8_InitIfNonNull_FA30(rec);
+        func_003A52F0(self, 0, OBJ33C8_SIZE);
+        self->state = 0;
+    }
+}
 
 /* ── MEDIUM (1) — large initializer ───────────────────────────────────────*/
 INCLUDE_ASM("nonmatching", func_0033CC50);
@@ -86,5 +98,19 @@ short ADXB_GetDefPan(ADX_BASIC *self, int ch) {
 }
 
 /* ── CALL CHAIN (continued) ─────────────────────────────────────────────── */
-INCLUDE_ASM("nonmatching", func_0033CFB8);
-INCLUDE_ASM("nonmatching", func_0033CFF8);
+/* Reload the cached u16 values of the record behind the object. */
+__attribute__((section(".text.func_0033CFB8")))
+void func_0033CFB8(Obj33C8 *self) {
+    Obj33F8_LoadPair_28_2C_F9D8(self->rec, self->pairA, self->pairB);
+    Obj33F8_LoadU16Trio_34_FA10(self->rec, &self->trio[0], &self->trio[1], &self->trio[2]);
+}
+extern void Obj33F8_StorePair_28_2C_F9B0(AdxbDec *dec, unsigned short *a, unsigned short *b);
+extern void Obj33F8_StoreS16Trio_34_FA00(AdxbDec *dec, short x, short y, short z);
+
+/* Copy both loop point pairs, then the three loop start shorts, into the decoder. */
+__attribute__((section(".text.func_0033CFF8")))
+void func_0033CFF8(AdxbLoop *self)
+{
+    Obj33F8_StorePair_28_2C_F9B0(self->dec, &self->loopA, &self->loopB);
+    Obj33F8_StoreS16Trio_34_FA00(self->dec, self->loopStartX, self->loopStartY, self->loopStartZ);
+}

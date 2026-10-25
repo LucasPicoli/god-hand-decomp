@@ -1,5 +1,6 @@
 /* Struct: CGObj33F8_t — lock/word at +0xC/+0x10; u16 pair +0x28..+0x2E; s16 trio +0x34..+0x38 (StorePair/LoadPair/StoreS16Trio). */
 #include "include_asm.h"
+#include "godhand/NameTable.h"
 
 /* ── Forward declarations ───────────────────────────────────────────────── */
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -144,7 +145,44 @@ void Obj33F8_Tramp_0033F130_FCB0(int a0) {
 }
 
 /* ── Call-chain functions deferred ───────────────────── */
-INCLUDE_ASM("nonmatching", func_0033FCD0);
+extern int func_003A5BD8(void *a, void *b, int len);
+
+/* Returns the table entry whose first 0xC bytes equal `name`, or 0 for an empty name or no match. */
+__attribute__((section(".text.func_0033FCD0")))
+NameEntry *func_0033FCD0(char *name)
+{
+    NameEntry *e;
+    int i;
+
+    if (name[0] == 0) {
+        return 0;
+    }
+    e = D_007588FC;
+    for (i = 0; i < D_00758900; i++) {
+        if (func_003A5BD8(e, name, NAMETABLE_NAME_LEN) == 0) {
+            return e;
+        }
+        e++;
+    }
+    return 0;
+}
 
 /* ── Call-chain: calls func_0033FCD0 + global access ────────────────────── */
-INCLUDE_ASM("nonmatching", func_0033FD70);
+extern NameEntry *func_0033FCD0(char *name);
+
+/* Looks up `name` in the entry table and stores its value in *out: 0 on success, -1 with no table, -3 when absent. */
+__attribute__((section(".text.func_0033FD70")))
+int func_0033FD70(char *name, int *out)
+{
+    NameEntry *e;
+
+    if (D_007588FC == 0) {
+        return -1;
+    }
+    e = func_0033FCD0(name);
+    if (e == 0) {
+        return -3;
+    }
+    *out = e->value;
+    return 0;
+}

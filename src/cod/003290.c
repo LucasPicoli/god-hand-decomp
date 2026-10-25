@@ -23,10 +23,6 @@ INCLUDE_ASM("nonmatching", func_003290B8);
 
 /* ADXPS2_LoadFcacheDvd: 0x5C B, branched call: lw args from *a0, jal func_00333CE0 */
 
-/* func_003292D8: 0x118 B, multi-jal init; calls func_00330E70, func_00330318 ×2,
- * func_00330580, func_00335218, func_00335248, Forward331C98_333F60, j Forward331CE0_333F80 */
-INCLUDE_ASM("nonmatching", func_003292D8);
-
 /* func_00329438: 0x58 B, wraps NoOp_33E6A8 + func_00329490 + NoOp_33E6B0 */
 extern int func_00329490(int a0, int a1, int a2);
 __attribute__((section(".text.func_00329438")))

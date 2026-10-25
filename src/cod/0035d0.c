@@ -1,5 +1,6 @@
 /* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 #include "include_asm.h"
+#include "godhand/SfdPlay.h"
 /* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 
 /* ── Forward declarations for within-TU functions called before definition ── */
@@ -487,4 +488,16 @@ int isEffectiveVer(char *o)
 ok:
     return 1;
 }
-INCLUDE_ASM("nonmatching", func_0035D4A8);
+/* With the player in state 3 or 4, forward the two arguments to its track; otherwise clear *out and return 0. */
+__attribute__((section(".text.func_0035D4A8")))
+int func_0035D4A8(SfdPlay *self, int *out, int arg)
+{
+    int ret;
+    if ((unsigned)(self->stat - SFDPLAY_STAT_SETUP_A) >= 2U) {
+        *out = 0;
+        ret = 0;
+    } else {
+        ret = SfdTrack_callIfIdle((SfdHandle *)self, self->trno, (int)out, arg);
+    }
+    return ret;
+}

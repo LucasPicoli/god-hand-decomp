@@ -27,6 +27,6 @@ typedef struct Obj33C8 {
 extern void Obj33F8_LoadPair_28_2C_F9D8(Obj33F8 *rec, unsigned short *a, unsigned short *b);
 extern void Obj33F8_LoadU16Trio_34_FA10(Obj33F8 *rec, unsigned short *a, unsigned short *b, unsigned short *c);
 extern void Obj33F8_InitIfNonNull_FA30(Obj33F8 *rec);
-extern void func_003A52F0(void *dst, int val, int n);
+extern void *func_003A52F0(void *dst, int c, int n); /* memset */
 
 #endif

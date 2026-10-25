@@ -1,5 +1,7 @@
 /* Struct: CGObj34D8_t — vec3 at +0x24 (CopyVec3); reaches +0x1F44 — likely an accessor view into a large entity object. */
 #include "include_asm.h"
+#include "godhand/sfdSys.h"
+#include "godhand/SfdLibWork.h"
 /* Struct: CGObj34D8_t — vec3 at +0x24 (CopyVec3); reaches +0x1F44 — likely an accessor view into a large entity object. */
 
 /* ── Forward declarations for external called functions ──────────────────── */
@@ -111,8 +113,6 @@ void Obj34D8_ClearTwoWords_1FC(char *a0) {
     *(int *)(a0 + 0) = 0;
     *(int *)(a0 + 4) = 0;
 }
-
-/* ── func_0034DC98: PERMANENT (bgezl loop) ───────────────────────────────── */
 
 /* ── Obj34D8_Thunk_DD58: j-thunk → func_0034DD58 (5-insn trampoline) ─────────── */
 __attribute__((section(".text.Obj34D8_Thunk_DD58")))
@@ -227,6 +227,58 @@ int ReturnZero_DFF0(void) { return 0; }
 __attribute__((section(".text.ReturnZero_DFF8")))
 int ReturnZero_DFF8(void) { return 0; }
 INCLUDE_ASM("nonmatching", func_0034DB60);
-INCLUDE_ASM("nonmatching", func_0034DBC8);
+/* Initialise the Sofdec system block from the caller's init record. Returns long: with an int return gcc sibcalls SFTRN_Init and drops retail's jal. */
+__attribute__((section(".text.func_0034DBC8")))
+long func_0034DBC8(SfdSysInit *init)
+{
+    SfdSys *sys = &D_003EE0C0;
+    int i;
+
+    func_00366C50(sys, 0, 0x89);
+    func_00366960(sys, D_00459760, SFDSYS_DEF_LEN);
+    sys->pair = *(SfdSysPair *)init;
+    sys->unk198 = 0;
+    Obj34D8_Thunk_DD58(sys->sub19C);
+    func_0035A298(sys->sub1B0, init->arg);
+    func_0034BA68(sys->sub1BC);
+    Obj34D8_ClearTwoWords_1FC((char *)sys);
+    for (i = SFDSYS_CLR_WORDS - 1; i >= 0; i--)
+        sys->words[i] = 0;
+    return SFTRN_Init(D_003EE280, init->tbl);
+}
 INCLUDE_ASM("nonmatching", func_0034DDE0);
-INCLUDE_ASM("permanent", func_0034DC98);
+extern int func_003587E8(void *hn);
+extern void func_0035A2A8(void *work);
+extern void func_0034BA80(void *rec);
+extern int sftrn_CallTrEntry1_35BC38(void *rec);
+extern void NoOp_DF60(void);
+extern void Thunk_func_0034D068(void);
+extern void Thunk_func_00339520(void);
+
+/* Bring the library up: run the per-handle setup, then the three sub-record inits. Returns the
+ * transfer init's code, or the last handle's code when that is 0. */
+__attribute__((section(".text.func_0034DC98")))
+int func_0034DC98(void)
+{
+    void **p = D_003EE270.hn;
+    int i;
+    int hnCode = 0;
+    int code;
+
+    for (i = 7; i >= 0; i--) {
+        if (*p != 0) {
+            hnCode = func_003587E8(*p);
+        }
+        p++;
+    }
+    func_0035A2A8(&D_003EE270);
+    func_0034BA80((char *)&D_003EE270 + 0xC);
+    code = sftrn_CallTrEntry1_35BC38((char *)&D_003EE270 + 0x10);
+    NoOp_DF60();
+    Thunk_func_0034D068();
+    Thunk_func_00339520();
+    if (code != 0) {
+        return code;
+    }
+    return hnCode;
+}

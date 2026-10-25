@@ -41,7 +41,7 @@ typedef struct SftrnHn {
 } SftrnHn;                              /* 0x1C0 */
 
 extern void func_003A52F0(void *dst, int val, int n);
-extern void func_0035C480(SftrnHn *hn);
+extern void func_0035C480(char *hn);
 extern void func_0035CB20(void);
 
 #endif
