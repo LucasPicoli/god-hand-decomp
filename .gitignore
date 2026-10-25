@@ -66,6 +66,7 @@
 !config/SLUS_215.03.yaml
 !config/forced_regs_allowlist.txt
 !config/jtbl_extern_words.txt
+!config/naming_sync_allowlist.txt
 !config/linker_script_extra.ld
 !config/r207.lcf
 !config/r207.undefined_funcs_auto.txt
@@ -112,6 +113,7 @@
 !scripts/auto_carve_func.py
 !scripts/carver.py
 !scripts/check_forced_regs.py
+!scripts/check_naming_sync.py
 !scripts/check_tu_complete.py
 !scripts/checks/build.sh
 !scripts/checks/ci_no_game_data.sh
@@ -123,6 +125,7 @@
 !scripts/checks/expected.sh
 !scripts/checks/forced_regs.sh
 !scripts/checks/metadata.sh
+!scripts/checks/naming_sync.sh
 !scripts/checks/rel-splat.sh
 !scripts/checks/rel.sh
 !scripts/checks/report_lint.py

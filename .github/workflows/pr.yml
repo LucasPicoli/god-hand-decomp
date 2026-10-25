@@ -107,6 +107,11 @@ jobs:
           DIFF_BASE: ${{ steps.diff_base.outputs.sha }}
         run: bash scripts/checks/ci_no_game_data.sh
 
+      # D-010: a carve's name must agree across carved_funcs,
+      # config/symbol_addrs.txt and its TU.  Reads committed text only.
+      - name: Check naming propagation (D-010)
+        run: python3 scripts/check_naming_sync.py
+
       - name: Lint progress report consistency
         run: |
           set -uo pipefail

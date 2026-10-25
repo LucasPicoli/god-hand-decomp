@@ -201,7 +201,10 @@ guard.
    ratchet but they *are* most of the deliverable (and what makes the
    decompilation legible). If you figure out what a function, global, or struct is, propagate
    the name into `config/symbol_addrs.txt`, the C source, `carved_funcs`, and
-   Ghidra — together, in the commit that matched it.
+   Ghidra — together, in the commit that matched it. A new carve needs its
+   `config/symbol_addrs.txt` line even while it keeps its `func_` name:
+   `scripts/check_naming_sync.py` fails when the three disagree, and the PR
+   checks run it.
 
 4. **One focused change per commit.** Prefix the commit subject with a short
    context tag in brackets, e.g. `[func-match] func_002772A8: …`. Don't sneak
