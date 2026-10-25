@@ -1,5 +1,6 @@
 /* Struct: CGObj3260_t — dispatch/trampoline object; byte flag +0x1, indirect target +0xC (mostly tail-call trampolines). */
 #include "include_asm.h"
+#include "godhand/adxsjd.h"
 
 /* ── Forward declarations for called external functions ─────────────────── */
 extern void func_00336E88(void);
@@ -28,7 +29,6 @@ extern void func_003A52F0(void *a0, int a1, int a2);
 
 /* ── Extern globals ─────────────────────────────────────────────────────── */
 extern int D_003CF9E8;      /* reference counter for D_003CF9F0 region      */
-extern char D_003CF9F0[];   /* managed memory region (size 0xAC0)            */
 
 /* ── Call-chain functions (11 = deferred) ───────────── */
 INCLUDE_ASM("nonmatching", func_00326020);
@@ -153,7 +153,53 @@ void Obj3260_TrampChain_D2D8(void *a0) {
     func_003382A0(a0, 0);
     func_003381B0(a0);
 }
-INCLUDE_ASM("nonmatching", func_003265A8);
+/* cygnus-2.96: func_003265A8, claims a free ADX stream-joint decoder slot, creates its ADXB decoder
+ * from the first stream joint and copies the stream joint handles in. Returns the slot or 0. */
+
+extern int func_00339FF8(int sj);
+extern int func_0033A000(int sj);
+extern int func_0033A008(int sj);
+extern void *ADXB_Create(int nsj, int a, int b, int c);
+extern void Obj33C8_SetFields_78_7C(void *adxb, void *fn, AdxSjd *slot);
+extern void func_00326568(char *p);
+extern int adxsjd_get_wr(void *, int *, int *, int *);
+
+__attribute__((section(".text.func_003265A8")))
+AdxSjd *func_003265A8(int owner, int nsj, int *sj)
+{
+    AdxSjd *slot;
+    int i;
+    int j;
+    int first = sj[0];
+    int a, b, c;
+
+    for (i = 0; i < ADXSJD_SLOTS; i++) {
+        if (D_003CF9F0[i].used == 0)
+            break;
+    }
+    if (i == ADXSJD_SLOTS)
+        return 0;
+    slot = &D_003CF9F0[i];
+    a = func_00339FF8(first);
+    b = func_0033A000(first) / 2;
+    c = func_0033A008(first) / 2;
+    slot->adxb = ADXB_Create(nsj, a, b, b + c);
+    if (slot->adxb == 0)
+        return 0;
+    Obj33C8_SetFields_78_7C(slot->adxb, adxsjd_get_wr, slot);
+    slot->owner = owner;
+    slot->nsj = nsj;
+    for (j = 0; j < nsj; j++)
+        slot->sj[j] = sj[j];
+    slot->unk01 = 0;
+    func_00326568((char *)slot);
+    slot->unk48 = 0;
+    slot->unk4C = 0;
+    slot->unk50 = 0;
+    slot->unk54 = 0;
+    slot->used = 1;
+    return slot;
+}
 extern void func_0033C918(int);
 extern void Forward33B658_33E678(void);
 extern void func_003A52F0(void *a0, int a1, int a2);
