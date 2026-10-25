@@ -33,4 +33,10 @@ typedef struct SfdDelim {
     char b[SFDRING_DELIM_LEN];
 } SfdDelim;
 
+/* The Sofdec handle seen from the ring code: it owns the stream joint at 0x1FC8. */
+typedef struct SfdRingView {
+    char unk0000[0x1FC8];
+    int sj;                             /* 0x1FC8 */
+} SfdRingView;
+
 #endif
