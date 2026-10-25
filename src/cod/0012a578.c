@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_0012A578, the point s times as far from the player's unk630 point as the player is. */
+/* sn-2.95.3-136: func_0012A578, pos + s * (pos - unk630): the point (1 + s) times as far from the player's unk630 point as the player is. */
 #include "godhand/cVec.h"
 #include "godhand/pl00.h"
 
