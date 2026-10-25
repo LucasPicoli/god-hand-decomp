@@ -34,4 +34,16 @@
 #define MESS_END_E5   0xE500
 #define MESS_END_E7   0xE700
 
+/* A script command: bit 15 of the first half marks it as a command, the high byte picks the kind. */
+typedef struct ScriptCmd {
+    unsigned short code;        /* 0x00 */
+    unsigned short arg;         /* 0x02 */
+} ScriptCmd;
+
+/* Length in script ticks of one command (definition in 0012cae0.c). */
+int cScriptCmd_getTicks(ScriptCmd *cmd);
+
+int func_002AF348(int value);           /* definition in 001e6780.c */
+int func_002AF380(unsigned short id);   /* definition in 002af380.c */
+
 #endif

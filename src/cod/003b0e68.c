@@ -31,8 +31,9 @@ typedef struct pkt {
 
 
 __attribute__((section(".text._request_end")))
-void _request_end(Pkt *pkt)
+void _request_end(void *packet, void *data)
 {
+    Pkt *pkt = packet;
     Client *c;
 
     switch (pkt->cmd) {
@@ -62,9 +63,6 @@ void _request_end(Pkt *pkt)
 }
 
 /* ee-2.9-991111 */
-
-typedef unsigned long long unsigned long long;
-typedef long long long long;
 
 __attribute__((section(".text.func_003B0E68")))
 int func_003B0E68(unsigned long long d)

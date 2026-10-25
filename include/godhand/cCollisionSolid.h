@@ -41,4 +41,8 @@ typedef char cCollisionSolid_radius_check[((int)&((cCollisionSolidObj *)0)->radi
 /* Nonzero when obj hits a solid of the manager. */
 extern int cCollisionSolidManage_ChkHit(void *mgr, void *obj);
 
+/* The line test between two points (assembly); the parameters as its callers pass them. */
+int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
+            int a7, int a8, int a9, int a10, int a11, int a12);
+
 #endif

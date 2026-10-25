@@ -72,6 +72,12 @@ static __inline__ void cScrVtx_set(cScrVtx *v, float x, float y, int z) {
     v->w = 1.0f;
 }
 
+extern float D_003C1184;                /* screen width (512.0) */
+extern int D_003C11B0;                  /* draw mode word passed to the packet builders */
+
+/* Float to unsigned int (definition in 001c8f30.c). */
+unsigned int func_0031ED08(float f12);
+
 /* One colour channel of the packed colour, scaled and clamped back to a byte
  * (func_0031ED08 does the clamp). */
 #define SCR_CHAN(color, shift, scale) \

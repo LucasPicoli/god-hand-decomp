@@ -3,11 +3,12 @@
  * a0->0x14 + (mod << 6). The return value is computed before the store-back so
  * the shift is emitted before the increment, matching retail's scheduling. */
 
+#include "godhand/sif.h"
+
 __attribute__((section(".text.func_003B2B90")))
-int func_003B2B90(void *a0) {
-    int *p = (int *)a0;
-    int mod = p[9] % p[6];
-    int r = p[5] + (mod << 6);
-    p[9] = mod + 1;
+void *func_003B2B90(sceSifRpcState *s) {
+    int mod = s->rdataTableIdx % s->rdataTableLen;
+    char *r = (char *)s->rdataTable + (mod << 6);
+    s->rdataTableIdx = mod + 1;
     return r;
 }

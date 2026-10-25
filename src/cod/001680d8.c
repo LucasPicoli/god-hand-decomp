@@ -1,7 +1,6 @@
 /* sn-2.95.3-136: func_001680D8, menu panel fade in/out plus the left/right arrow highlight. */
 #include "godhand/cIDMenuPanel.h"
 extern char *D_003BD930;
-extern void cIDBase_move(void *p);
 
 /* The marks' flags and x are written through their addresses: as cIDBaseEnt fields (an
  * unsigned word and a float) gcc orders the stores around the D_003BD930 load differently. */
@@ -61,5 +60,5 @@ void func_001680D8(cIDMenuPanel *self)
         D_003BD930[0xEDD] = 1;
         break;
     }
-    cIDBase_move(self);
+    cIDBase_move(&self->head.base);
 }

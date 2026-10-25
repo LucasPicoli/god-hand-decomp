@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/heapArena.h"
 
 __attribute__((section(".text.func_00297FB8")))
 void func_00297FB8(int a0, int a1, int a2) {
@@ -13,9 +14,9 @@ void func_002A7308(int a0) {
 }
 
 __attribute__((section(".text.func_002A9528")))
-void func_002A9528(int a0) {
-    *(int*)(a0 + 0x0) = 0;
-    *(int*)(a0 + 0x4) = 0;
+void func_002A9528(HeapArena *self) {
+    self->unk[0] = 0;
+    self->unk[1] = 0;
 }
 
 __attribute__((section(".text.func_00332378")))

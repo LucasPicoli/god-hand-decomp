@@ -1,5 +1,4 @@
 #include "godhand/heapArena.h"
-extern void func_002A9528(void *);
 
 __attribute__((section(".text.func_0030EE68")))
 void func_0030EE68(int init, int priority)

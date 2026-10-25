@@ -79,4 +79,6 @@ typedef char cEmSetEntry_chk_vital[(int)&((cEmSetEntry *)0)->vital == 0x16 ? 1 :
 extern cEmSetTable D_005E8658;
 extern cEmSetParam D_00586AB0;
 
+void cEmSetParam_updateSetDataVital(cEmSetParam *self, int id, int vital);   /* definition in 00294b60.c */
+
 #endif /* GODHAND_CEMSETPARAM_H */

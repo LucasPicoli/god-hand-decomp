@@ -6,7 +6,8 @@ extern void func_003B0A40(int a);
 
 
 __attribute__((section(".text._request_call")))
-void _request_call(char *p) {
+void _request_call(void *packet, void *data) {
+    char *p = packet;
     char *r;
     char *q;
     int t0;

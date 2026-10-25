@@ -1,7 +1,6 @@
 #include "godhand/sideCounter.h"
 #include "godhand/heapArena.h"
 extern void func_003128B0(void *);
-extern void func_002A9528(void *);
 extern int D_00754C50;
 
 __attribute__((section(".text.func_0030F5F0")))
