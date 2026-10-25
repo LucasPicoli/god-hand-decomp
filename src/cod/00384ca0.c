@@ -5,7 +5,7 @@
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
 extern void func_00380DC0(MenuCtl *a0);
 extern void func_00380D68(void *a0, void *a1);
-extern int func_00380F80(void *a0, void *a1, void *a2);
+extern int MenuCtl_pollStreamAndRefresh(void *a0, void *a1, void *a2);
 extern void func_00380F10(void *a0, void *a1, void *a2);
 extern void func_00380E88(void *a0, void *a1, void *a2);
 extern void func_00381010(MenuCtl *a0, MenuPad *a1, unsigned char a2);
@@ -58,7 +58,7 @@ int func_00384CA0(MenuCtl *self, MenuPad *arg)
                     return 1;
                 }
             }
-            v = func_00380F80(self, s2, s1);
+            v = MenuCtl_pollStreamAndRefresh(self, s2, s1);
             if (v != 0)
                 s1->result = v;
             if ((arg->press & MENUPAD_NEXT) != 0)

@@ -1,7 +1,7 @@
 #include "godhand/sftim.h"
 
 int func_003526D0(SftimHn *hn, SftimInfo *info);
-void func_00352790(SftimHn *hn, SftimInfo *info, int time, int update);
+void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
 
 __attribute__((section(".text.func_00352888")))
 void func_00352888(int time, int rate, int drop, int ofs, SftimTc *tc)

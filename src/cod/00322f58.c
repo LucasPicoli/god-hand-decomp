@@ -38,7 +38,7 @@ extern void func_00328FA0(int);
 extern void Tramp_Obj3270_Tramp_0033D040_7728_32BB20(int);
 extern void ResetBufferOnFirstEnterC(void);
 extern void func_00338CD0(int);
-extern void func_0032AFB0(void);
+extern void StmMgr_runStartupPass(void);
 extern void func_0033A4F8(int);
 extern void func_003397C8(int);
 extern void Obj0000_PreDec_D_003EC450_340520(int);
@@ -219,7 +219,7 @@ void func_00338CA0(int a0) {
 __attribute__((section(".text.func_0032AF88")))
 void func_0032AF88(void) {
     NoOp_33E6A8();
-    func_0032AFB0();
+    StmMgr_runStartupPass();
     NoOp_33E6B0();
 }
 

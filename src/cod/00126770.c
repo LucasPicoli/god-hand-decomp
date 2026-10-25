@@ -253,7 +253,7 @@ void func_0028EB88(int a0, int a1) {
 __attribute__((section(".text.func_002B4768")))
 void func_002B4768(int a0, int a1, int a2) {
     int v0;
-    v0 = func_002AF218(*(int *)a2);
+    v0 = cScriptCmd_getTicks(*(int *)a2);
     *(int *)a1 = *(int *)a1 + v0;
     v0 = cMessCommon_getCodeSize(*(unsigned short *)(*(int *)a2));
     *(int *)a2 = *(int *)a2 + (v0 << 1);

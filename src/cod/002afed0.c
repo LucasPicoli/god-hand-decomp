@@ -4,7 +4,7 @@ extern unsigned short *cMessage_getRubyAddr(int mess, unsigned short id);
 extern unsigned short *func_002AFC48(cMessDrawFont *self, float x, float y, unsigned short *msg,
                                      unsigned short *cur, unsigned short *ruby, float *scale, int left);
 extern float cMessDrawFont_measureCode(cMessDrawFont *self, unsigned short *text, float *scale);
-extern int func_002AF218(unsigned short *text);
+extern int cScriptCmd_getTicks(unsigned short *text);
 
 __attribute__((section(".text.func_002AFED0")))
 void func_002AFED0(cMessDrawFont *self, unsigned short id, float x, float y, float *scale, int n)
@@ -30,7 +30,7 @@ void func_002AFED0(cMessDrawFont *self, unsigned short id, float x, float y, flo
         if (w != 0.0f) {
             x += w + self->unk2C[0] * self->zoomX;
         }
-        count += func_002AF218(p);
+        count += cScriptCmd_getTicks(p);
         p += cMessCommon_getCodeSize(*p);
     }
 }

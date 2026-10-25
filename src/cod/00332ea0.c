@@ -27,7 +27,7 @@ extern int func_00331110(void *srd, int lsn, int nsct, void *buf, void *mode);
 extern void func_00331070(void *srd);
 extern int func_00398DA0(int mode);
 extern void func_00331BF0(void);
-extern void func_00331AD8(void);
+extern void CdSrd_finishRead(void);
 extern void func_00331458(void *srd);
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -73,7 +73,7 @@ int func_00332EA0(CdReadHn *hn, int nsct, void *buf)
     if (D_003D9DD4 == 1) {
         func_00398DA0(0);
         func_00331BF0();
-        func_00331AD8();
+        CdSrd_finishRead();
         func_00331458(hn->srd);
         func_00331070(hn->srd);
         hn->srd = 0;

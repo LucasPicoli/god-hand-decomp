@@ -150,10 +150,10 @@ int GetVia4_Obj33C8_GetByte_D_327950(char *a0) { return Obj33C8_GetByte_D(*(int*
 __attribute__((section(".text.Forward33CFB8_327970")))
 int Forward33CFB8_327970(int *a0) { return func_0033CFB8(a0[1]); }
 
-extern void func_0033CFF8(int a0);
+extern void AdxbLoop_storeLoopInfo(int a0);
 
 __attribute__((section(".text.Forward33CFF8_327988")))
-void Forward33CFF8_327988(int *a0) { func_0033CFF8(a0[1]); }
+void Forward33CFF8_327988(int *a0) { AdxbLoop_storeLoopInfo(a0[1]); }
 
 __attribute__((section(".text.Forward330C88_328C58")))
 int Forward330C88_328C58(void) { return func_00330C88(); }
@@ -168,7 +168,7 @@ __attribute__((section(".text.Forward32BC98_32BD90")))
 int Forward32BC98_32BD90(int a0, int a1) { return func_0032BC98(a0, a1, 0, 0xFFFFF); }
 
 __attribute__((section(".text.Forward32D868_32DA08")))
-int Forward32D868_32DA08(int a0, int a1, int a2) { return func_0032D868(a0, a1, a2, 0, 0xFFFFF); }
+int Forward32D868_32DA08(int a0, int a1, int a2) { return MwPly_openByName(a0, a1, a2, 0, 0xFFFFF); }
 
 __attribute__((section(".text.ForwardField3ByOffset_32ED48")))
 int ForwardField3ByOffset_32ED48(int *a0, int a1, int a2) { a0 += a1; return func_0032A9F0(a0[3], a2); }

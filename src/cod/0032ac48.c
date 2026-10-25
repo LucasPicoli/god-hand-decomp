@@ -8,8 +8,8 @@ extern void func_00328C80(void *voice, int a, int b);
 
 /* Scale the volume limit by `rate` over `frames` steps of `a1`: the limit follows the scaled value
  * down but never rises above the current volume. A null object reports an error. */
-__attribute__((section(".text.func_0032AC48")))
-void func_0032AC48(SndVol *self, int a1, int frames, float rate)
+__attribute__((section(".text.SndVol_applyRate")))
+void SndVol_applyRate(SndVol *self, int a1, int frames, float rate)
 {
     int step;
     int lim;

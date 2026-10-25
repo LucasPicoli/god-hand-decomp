@@ -9,8 +9,8 @@ typedef struct SlotTable {
 } SlotTable;
 
 /* Follows link slots (kind 2) to a value slot (kind 1) and returns base plus its value; otherwise falls to the fallback. */
-__attribute__((section(".text.func_00320948")))
-int func_00320948(int slot, SlotTable *t)
+__attribute__((section(".text.SlotTable_resolveValue")))
+int SlotTable_resolveValue(int slot, SlotTable *t)
 {
     while (t->kind[slot] == 2) {
         slot = (int)t->entry[slot];

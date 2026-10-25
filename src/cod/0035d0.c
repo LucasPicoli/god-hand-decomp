@@ -489,8 +489,8 @@ ok:
     return 1;
 }
 /* With the player in state 3 or 4, forward the two arguments to its track; otherwise clear *out and return 0. */
-__attribute__((section(".text.func_0035D4A8")))
-int func_0035D4A8(SfdPlay *self, int *out, int arg)
+__attribute__((section(".text.SfdPlay_callTrackInSetup")))
+int SfdPlay_callTrackInSetup(SfdPlay *self, int *out, int arg)
 {
     int ret;
     if ((unsigned)(self->stat - SFDPLAY_STAT_SETUP_A) >= 2U) {

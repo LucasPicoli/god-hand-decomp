@@ -3,7 +3,7 @@
 #include "godhand/sftim.h"
 
 int func_003526D0(SftimHn *hn, SftimInfo *info);
-void func_00352790(SftimHn *hn, SftimInfo *info, int time, int update);
+void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
 
 __attribute__((section(".text.func_003525F0")))
 void func_003525F0(SftimHn *hn, SftimInfo *info, int time, int update)
@@ -18,7 +18,7 @@ void func_003525F0(SftimHn *hn, SftimInfo *info, int time, int update)
         }
     }
     if (cond == 1) {
-        func_00352790(hn, info, time, update);
+        Sftim_setTimecode(hn, info, time, update);
     }
 }
 

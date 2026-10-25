@@ -11,7 +11,7 @@ extern char D_00454458[];
 extern char D_004544B8[];
 extern void func_00332808(CdStreamCtl *, char *);
 extern int func_00331570(void *);
-extern void func_00331AD8(void);
+extern void CdSrd_finishRead(void);
 extern void func_00332958(void);
 extern int func_00333130(CdStreamCtl *);
 extern void func_003260C8(char *);
@@ -33,7 +33,7 @@ void func_00333048(CdStreamCtl *o)
         func_00331570(o->unk1C);
     }
     for (;;) {
-        func_00331AD8();
+        CdSrd_finishRead();
         func_00332958();
         func_00333130(o);
         if (o->state != 2) {

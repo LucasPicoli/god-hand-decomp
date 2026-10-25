@@ -22,7 +22,7 @@ extern char D_00455190[];
 extern void func_00336330(MemFileReader *h, char *msg);
 extern void Forward33B658_3362E8(void);
 extern void Forward33B670_336300(void);
-extern char *func_003363F8(char *map, int *avail);
+extern char *MemFile_readMapHeader(char *map, int *avail);
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
 extern void *func_003A52F0(void *dst, int c, int n);
 
@@ -64,7 +64,7 @@ int func_003367F8(MemFileReader *h, int nsct, char *buf)
     h->off = off;
     h->size = size;
     h->stat = 2;
-    base = func_003363F8(h->map, &avail);
+    base = MemFile_readMapHeader(h->map, &avail);
     m = avail - h->off;
     cp = h->size;
     if (m < cp)

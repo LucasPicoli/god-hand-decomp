@@ -108,8 +108,8 @@ extern void Obj33F8_StorePair_28_2C_F9B0(AdxbDec *dec, unsigned short *a, unsign
 extern void Obj33F8_StoreS16Trio_34_FA00(AdxbDec *dec, short x, short y, short z);
 
 /* Copy both loop point pairs, then the three loop start shorts, into the decoder. */
-__attribute__((section(".text.func_0033CFF8")))
-void func_0033CFF8(AdxbLoop *self)
+__attribute__((section(".text.AdxbLoop_storeLoopInfo")))
+void AdxbLoop_storeLoopInfo(AdxbLoop *self)
 {
     Obj33F8_StorePair_28_2C_F9B0(self->dec, &self->loopA, &self->loopB);
     Obj33F8_StoreS16Trio_34_FA00(self->dec, self->loopStartX, self->loopStartY, self->loopStartZ);

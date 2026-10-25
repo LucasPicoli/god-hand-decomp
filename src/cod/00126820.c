@@ -239,7 +239,7 @@ __attribute__((section(".text.cMessageWin_takeCode")))
 int cMessageWin_takeCode(MessWin *self) {
     int pen;
     int size;
-    pen = self->pen + func_002AF218(self->cursor);
+    pen = self->pen + cScriptCmd_getTicks(self->cursor);
     size = cMessCommon_getCodeSize(*self->cursor);
     self->penA = pen;
     self->penB = pen;

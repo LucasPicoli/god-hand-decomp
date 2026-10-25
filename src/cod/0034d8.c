@@ -228,8 +228,8 @@ __attribute__((section(".text.ReturnZero_DFF8")))
 int ReturnZero_DFF8(void) { return 0; }
 INCLUDE_ASM("nonmatching", func_0034DB60);
 /* Initialise the Sofdec system block from the caller's init record. Returns long: with an int return gcc sibcalls SFTRN_Init and drops retail's jal. */
-__attribute__((section(".text.func_0034DBC8")))
-long func_0034DBC8(SfdSysInit *init)
+__attribute__((section(".text.SfdSys_init")))
+long SfdSys_init(SfdSysInit *init)
 {
     SfdSys *sys = &D_003EE0C0;
     int i;
@@ -257,8 +257,8 @@ extern void Thunk_func_00339520(void);
 
 /* Bring the library up: run the per-handle setup, then the three sub-record inits. Returns the
  * transfer init's code, or the last handle's code when that is 0. */
-__attribute__((section(".text.func_0034DC98")))
-int func_0034DC98(void)
+__attribute__((section(".text.SfdLib_init")))
+int SfdLib_init(void)
 {
     void **p = D_003EE270.hn;
     int i;

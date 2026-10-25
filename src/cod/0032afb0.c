@@ -38,8 +38,8 @@ extern char D_00452A48[];
 extern char D_00452A78[];
 
 /* Drop one nesting level; at zero, write the saved control word (bit 0xC00 toggled) to the register picked by D_003EEA7C unless the low bits say 0x82. Never leaves the count negative. */
-__attribute__((section(".text.func_00360AA8")))
-void func_00360AA8(void)
+__attribute__((section(".text.IntrNest_leave")))
+void IntrNest_leave(void)
 {
     D_003EEA78--;
     if (D_003EEA78 == 0 && D_003EEA7C != -1 && (D_003EEA80 & 0xC7) != 0x82)
@@ -49,8 +49,8 @@ void func_00360AA8(void)
 }
 
 /* Count the call; with the server active and its work item taken, run the shutdown hook and clear the item's word. */
-__attribute__((section(".text.func_00349328")))
-void func_00349328(void)
+__attribute__((section(".text.MwsfdSvr_leaveServer")))
+void MwsfdSvr_leaveServer(void)
 {
     int mode;
     int *work;
@@ -71,8 +71,8 @@ void func_00349328(void)
 }
 
 /* Initialise the M2V decoder: check the library magic, run the setup steps and clear the work area; returns 0, or the magic check's code when it is the benign one. */
-__attribute__((section(".text.func_0036BE00")))
-int func_0036BE00(int a0, int a1)
+__attribute__((section(".text.M2vDec_init")))
+int M2vDec_init(int a0, int a1)
 {
     int r;
     char *work;
@@ -102,8 +102,8 @@ int func_0036BE00(int a0, int a1)
 #define STREAM_ENT_NUM    16
 
 /* Run one pass of the stream manager's start-up unless one is already running: step its state 1, 2, 3, back to 0, refreshing each active entry. */
-__attribute__((section(".text.func_0032AFB0")))
-void func_0032AFB0(void)
+__attribute__((section(".text.StmMgr_runStartupPass")))
+void StmMgr_runStartupPass(void)
 {
     char *ent;
     int i;
@@ -135,8 +135,8 @@ void func_0032AFB0(void)
 }
 
 /* Open a player on a file name with two sizes; report and leave on a null handle or name or a bad size. */
-__attribute__((section(".text.func_0032D868")))
-void func_0032D868(MwPlyOpen *o, char *file, int a2, int sizeA, int sizeB)
+__attribute__((section(".text.MwPly_openByName")))
+void MwPly_openByName(MwPlyOpen *o, char *file, int a2, int sizeA, int sizeB)
 {
     (void)D_00451AC0;   /* dead volatile read, retail has the lw */
 

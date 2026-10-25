@@ -21,8 +21,8 @@ extern void Forward33B5C8_33B6D0(void);
 extern void func_00331400(void);
 
 /* Reference-counted start: the first caller resets the module state and registers two handlers, every caller bumps the count. */
-__attribute__((section(".text.func_0032D1A0")))
-void func_0032D1A0(void)
+__attribute__((section(".text.ModuleStart_refCounted")))
+void ModuleStart_refCounted(void)
 {
     (void)D_003D1470;
     if (D_003D1474 == 0) {
@@ -45,8 +45,8 @@ typedef struct TargetOwner {
 } TargetOwner;
 
 /* Converts a value `n` on a log scale to a whole part and a remainder in hundredths and passes both to the target; 1000 is the neutral point. */
-__attribute__((section(".text.func_00349C28")))
-void func_00349C28(TargetOwner *owner, int n)
+__attribute__((section(".text.TargetOwner_setLogScaleValue")))
+void TargetOwner_setLogScaleValue(TargetOwner *owner, int n)
 {
     void *target = owner->ref->target;
     int whole;
@@ -91,8 +91,8 @@ extern void func_00331900(SRD_OBJ *srd);
 
 
 /* Shuts the pending read down: runs the cleanup for the object's device type, taking the lock around it when the channel is active, then clears the busy word. */
-__attribute__((section(".text.func_00331AD8")))
-void func_00331AD8(void)
+__attribute__((section(".text.CdSrd_finishRead")))
+void CdSrd_finishRead(void)
 {
     SRD_OBJ *srd = &D_003D8410;
 

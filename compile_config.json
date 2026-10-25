@@ -104,7 +104,7 @@
     "for all 735 currently-matched TUs) or 'sn-2.95.3-136' (opt-in SN",
     "ee-gcc for the `sq`-prologue functions).  TUs not",
     "named here use the default compiler; the override is at TU",
-    "granularity (not per-function \u2014 that's a later task if needed).",
+    "granularity (not per-function — that's a later task if needed).",
     "Documentation entries (path starting with `_`) are ignored.",
     "",
     "Wired through `compile.py::discover` -> CompileUnit.compiler ->",
@@ -18993,7 +18993,7 @@
     "the TU's INCLUDE_ASM macro pulls the carved .s into its own .text,",
     "so the standalone build/asm/nonmatching/<name>.o is NOT built or",
     "linked when `tu` is set.  Without `tu` (baseline), the",
-    "standalone .o is linked directly \u2014 useful for asm-only carves",
+    "standalone .o is linked directly — useful for asm-only carves",
     "with no C wrapper yet.",
     "",
     "Mechanism: each carve splits the monolithic at the",
@@ -19234,7 +19234,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "_comment": "first-TU group \u2014 accessor family @ 0x002930A8 \u2013 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
+      "_comment": "first-TU group — accessor family @ 0x002930A8 – 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
     },
     {
       "name": "cEmManage_getNextNo",
@@ -19300,7 +19300,7 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 — PERMANENT; no carve needed."
     },
     {
       "name": "Obj293_OrByte_5A3",
@@ -19331,13 +19331,13 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic \u2014 carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
+      "_comment": "func_00293760 (jump-table, 96 B) stays in monolithic — carving would leak local .L00293794/.L00293A14/.L002941C0/.L00294308 labels referenced by rodata jump table at 0x44A7B0. PERMANENT under new jump-table class."
     },
     {
-      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_002937C0 (fp+bnel, 1152 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
-      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293C40 (fp+bnel, 2116 B) stays in monolithic — PERMANENT; no carve needed."
     },
     {
       "name": "EESyscall_0x00",
@@ -21195,7 +21195,7 @@
       "tu": "src/cod/0033c8.c"
     },
     {
-      "name": "func_0033CFF8",
+      "name": "AdxbLoop_storeLoopInfo",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033CFF8",
       "size": 64,
@@ -22021,7 +22021,7 @@
       "tu": "src/cod/0035d0.c"
     },
     {
-      "name": "func_0035D4A8",
+      "name": "SfdPlay_callTrackInSetup",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035D4A8",
       "size": 68,
@@ -22203,7 +22203,7 @@
       "tu": "src/cod/0034d8.c"
     },
     {
-      "name": "func_0034DBC8",
+      "name": "SfdSys_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034DBC8",
       "size": 192,
@@ -22392,7 +22392,7 @@
       "tu": "src/cod/0034d8.c"
     },
     {
-      "name": "func_0034DC98",
+      "name": "SfdLib_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034DC98",
       "size": 164,
@@ -22504,7 +22504,7 @@
       "tu": "src/cod/0035c0.c"
     },
     {
-      "name": "func_0035C3A0",
+      "name": "SftrnHn_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035C3A0",
       "size": 220,
@@ -22903,14 +22903,14 @@
       "tu": "src/cod/0033f8.c"
     },
     {
-      "name": "func_0033FCD0",
+      "name": "NameTable_find",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033FCD0",
       "size": 152,
       "tu": "src/cod/0033f8.c"
     },
     {
-      "name": "func_0033FD70",
+      "name": "NameTable_getValue",
       "unit": "asm/cod/000000",
       "vaddr": "0x0033FD70",
       "size": 80,
@@ -22994,7 +22994,7 @@
       "tu": "src/cod/003290.c"
     },
     {
-      "name": "func_003292D8",
+      "name": "ADX_InitHandlers",
       "unit": "asm/cod/000000",
       "vaddr": "0x003292D8",
       "size": 280,
@@ -85304,21 +85304,21 @@
       "tu": "src/cod/00385078.c"
     },
     {
-      "name": "func_002B2E80",
+      "name": "cSndSeTrack_switchSoundData",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B2E80",
       "size": 184,
       "tu": "src/cod/0012cae0.c"
     },
     {
-      "name": "func_0012CAE0",
+      "name": "cEm00_areaHitCheck",
       "unit": "asm/cod/000000",
       "vaddr": "0x0012CAE0",
       "size": 288,
       "tu": "src/cod/0012cae0.c"
     },
     {
-      "name": "func_002AF218",
+      "name": "cScriptCmd_getTicks",
       "unit": "asm/cod/000000",
       "vaddr": "0x002AF218",
       "size": 304,
@@ -85332,7 +85332,7 @@
       "tu": "src/cod/0012cae0.c"
     },
     {
-      "name": "func_00352C78",
+      "name": "SftimHn_recordLastFrame",
       "unit": "asm/cod/000000",
       "vaddr": "0x00352C78",
       "size": 324,
@@ -85346,147 +85346,147 @@
       "tu": "src/cod/003224f8.c"
     },
     {
-      "name": "func_0037FAC8",
+      "name": "MenuCtl_readSlotStreamInfo",
       "unit": "asm/cod/000000",
       "vaddr": "0x0037FAC8",
       "size": 164,
       "tu": "src/cod/0030d190.c"
     },
     {
-      "name": "func_003129D0",
+      "name": "cObjPtrArrayWrapper_pushBack",
       "unit": "asm/cod/000000",
       "vaddr": "0x003129D0",
       "size": 176,
       "tu": "src/cod/0030d190.c"
     },
     {
-      "name": "func_00376080",
+      "name": "SndSlot_startFromDesc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00376080",
       "size": 332,
       "tu": "src/cod/0030d190.c"
     },
     {
-      "name": "func_0030D190",
+      "name": "IntrCtl_enableVblankStart",
       "unit": "asm/cod/000000",
       "vaddr": "0x0030D190",
       "size": 100,
       "tu": "src/cod/0030d190.c"
     },
     {
-      "name": "func_00304830",
+      "name": "cGameObj_dampAndWrapRotation",
       "unit": "asm/cod/000000",
       "vaddr": "0x00304830",
       "size": 264,
       "tu": "src/cod/00304830.c"
     },
     {
-      "name": "func_00360AA8",
+      "name": "IntrNest_leave",
       "unit": "asm/cod/000000",
       "vaddr": "0x00360AA8",
       "size": 112,
       "tu": "src/cod/0032afb0.c"
     },
     {
-      "name": "func_00349328",
+      "name": "MwsfdSvr_leaveServer",
       "unit": "asm/cod/000000",
       "vaddr": "0x00349328",
       "size": 164,
       "tu": "src/cod/0032afb0.c"
     },
     {
-      "name": "func_0036BE00",
+      "name": "M2vDec_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x0036BE00",
       "size": 216,
       "tu": "src/cod/0032afb0.c"
     },
     {
-      "name": "func_0032AFB0",
+      "name": "StmMgr_runStartupPass",
       "unit": "asm/cod/000000",
       "vaddr": "0x0032AFB0",
       "size": 236,
       "tu": "src/cod/0032afb0.c"
     },
     {
-      "name": "func_0032D868",
+      "name": "MwPly_openByName",
       "unit": "asm/cod/000000",
       "vaddr": "0x0032D868",
       "size": 332,
       "tu": "src/cod/0032afb0.c"
     },
     {
-      "name": "func_0032D1A0",
+      "name": "ModuleStart_refCounted",
       "unit": "asm/cod/000000",
       "vaddr": "0x0032D1A0",
       "size": 176,
       "tu": "src/cod/0032d1a0.c"
     },
     {
-      "name": "func_00349C28",
+      "name": "TargetOwner_setLogScaleValue",
       "unit": "asm/cod/000000",
       "vaddr": "0x00349C28",
       "size": 184,
       "tu": "src/cod/0032d1a0.c"
     },
     {
-      "name": "func_00331AD8",
+      "name": "CdSrd_finishRead",
       "unit": "asm/cod/000000",
       "vaddr": "0x00331AD8",
       "size": 264,
       "tu": "src/cod/0032d1a0.c"
     },
     {
-      "name": "func_00320948",
+      "name": "SlotTable_resolveValue",
       "unit": "asm/cod/000000",
       "vaddr": "0x00320948",
       "size": 136,
       "tu": "src/cod/00320948.c"
     },
     {
-      "name": "func_00376EA0",
+      "name": "SndReq_runQueued",
       "unit": "asm/cod/000000",
       "vaddr": "0x00376EA0",
       "size": 120,
       "tu": "src/cod/00376ea0.c"
     },
     {
-      "name": "func_00384138",
+      "name": "MixChannel_isUniformC",
       "unit": "asm/cod/000000",
       "vaddr": "0x00384138",
       "size": 92,
       "tu": "src/cod/00376ea0.c"
     },
     {
-      "name": "func_0037A818",
+      "name": "StepNode_updateValue",
       "unit": "asm/cod/000000",
       "vaddr": "0x0037A818",
       "size": 220,
       "tu": "src/cod/00376ea0.c"
     },
     {
-      "name": "func_0037D1A8",
+      "name": "SeqCmd_findStartByMask",
       "unit": "asm/cod/000000",
       "vaddr": "0x0037D1A8",
       "size": 120,
       "tu": "src/cod/0037d1a8.c"
     },
     {
-      "name": "func_003363F8",
+      "name": "MemFile_readMapHeader",
       "unit": "asm/cod/000000",
       "vaddr": "0x003363F8",
       "size": 156,
       "tu": "src/cod/003363f8.c"
     },
     {
-      "name": "func_0035FAD8",
+      "name": "StageBuf_init",
       "unit": "asm/cod/000000",
       "vaddr": "0x0035FAD8",
       "size": 160,
       "tu": "src/cod/003363f8.c"
     },
     {
-      "name": "func_0032DD70",
+      "name": "SndSlide_start",
       "unit": "asm/cod/000000",
       "vaddr": "0x0032DD70",
       "size": 132,
@@ -85500,56 +85500,56 @@
       "tu": "src/cod/00328bb0.c"
     },
     {
-      "name": "func_00352790",
+      "name": "Sftim_setTimecode",
       "unit": "asm/cod/000000",
       "vaddr": "0x00352790",
       "size": 244,
       "tu": "src/cod/00328bb0.c"
     },
     {
-      "name": "func_003BA708",
+      "name": "SjFeed_writeAll",
       "unit": "asm/cod/000000",
       "vaddr": "0x003BA708",
       "size": 244,
       "tu": "src/cod/003ba708.c"
     },
     {
-      "name": "func_0032AC48",
+      "name": "SndVol_applyRate",
       "unit": "asm/cod/000000",
       "vaddr": "0x0032AC48",
       "size": 176,
       "tu": "src/cod/0032ac48.c"
     },
     {
-      "name": "func_00343C18",
+      "name": "SfdHn_setPlayConds",
       "unit": "asm/cod/000000",
       "vaddr": "0x00343C18",
       "size": 332,
       "tu": "src/cod/00343c18.c"
     },
     {
-      "name": "func_00380F80",
+      "name": "MenuCtl_pollStreamAndRefresh",
       "unit": "asm/cod/000000",
       "vaddr": "0x00380F80",
       "size": 140,
       "tu": "src/cod/00308f40.c"
     },
     {
-      "name": "func_00375318",
+      "name": "sndDrv_start",
       "unit": "asm/cod/000000",
       "vaddr": "0x00375318",
       "size": 100,
       "tu": "src/cod/00308f40.c"
     },
     {
-      "name": "func_00376370",
+      "name": "SndSlot_updateAll",
       "unit": "asm/cod/000000",
       "vaddr": "0x00376370",
       "size": 144,
       "tu": "src/cod/00308f40.c"
     },
     {
-      "name": "func_00384BC8",
+      "name": "MenuSndTest_printMuteRow",
       "unit": "asm/cod/000000",
       "vaddr": "0x00384BC8",
       "size": 152,
@@ -85572,14 +85572,14 @@
     "  1. Assembling every `asm` part to build/rel/<name>/<asm-rel>.o",
     "  2. Full-linking via `mipsel-linux-gnu-ld -EL -T <lcf>",
     "     --unresolved-symbols=ignore-all -o build/rel/<name>/<name>.elf`",
-    "     (full link, not -r \u2014 the SNR2 tail",
+    "     (full link, not -r — the SNR2 tail",
     "     blob already encodes the surviving external reloc table).",
     "  3. Extracting .text via",
     "     `objcopy -O binary --only-section=.text` to",
     "     build/rel/<name>/<name>.text.bin.",
-    "  4. Concatenating parts in order \u2014 each `bin` part is read",
+    "  4. Concatenating parts in order — each `bin` part is read",
     "     verbatim and each `asm` part is replaced by the linked .text",
-    "     bytes \u2014 to produce build/rel/<name>.rel.",
+    "     bytes — to produce build/rel/<name>.rel.",
     "  5. Asserting sha256(build/rel/<name>.rel) == sha256_expected.",
     "",
     "Schema per entry:",
@@ -85638,7 +85638,7 @@
     "deprecated in the schema; per-unit `target_path`/`base_path` is",
     "used instead).  They live here only as the on-disk roots compile.py",
     "uses when constructing those per-unit paths and when mirroring",
-    "build/ \u2192 expected/build/ for not-yet-decompiled units.",
+    "build/ → expected/build/ for not-yet-decompiled units.",
     "`watch_patterns` and `progress_categories` are written verbatim.",
     "`min_version` pins the schema; bumping it should be deliberate."
   ],

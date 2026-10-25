@@ -10,8 +10,8 @@
 
 
 /* Runs every queued sound-channel request (a command or a start) and frees its slot. */
-__attribute__((section(".text.func_00376EA0")))
-void func_00376EA0(void)
+__attribute__((section(".text.SndReq_runQueued")))
+void SndReq_runQueued(void)
 {
     SndReq *r;
     int i;
@@ -30,8 +30,8 @@ void func_00376EA0(void)
 }
 
 #define MIXCHANNEL_LEVELC_OFFSET 0xBC
-__attribute__((section(".text.func_00384138")))
-int func_00384138(void *owner, MixChannel *mix) {
+__attribute__((section(".text.MixChannel_isUniformC")))
+int MixChannel_isUniformC(void *owner, MixChannel *mix) {
     unsigned char *level;
     int i;
     int next;
@@ -65,8 +65,8 @@ extern void func_0037AAB0(StepCtx *ctx, StepNode *node);
 extern void func_0037AB00(StepCtx *ctx, StepNode *node);
 
 /* Rewrites the node's value cell through func_0037A8F8 (byte or halfword by width), then runs the update chosen by ctx->mode. */
-__attribute__((section(".text.func_0037A818")))
-void func_0037A818(StepCtx *ctx, StepNode *node)
+__attribute__((section(".text.StepNode_updateValue")))
+void StepNode_updateValue(StepCtx *ctx, StepNode *node)
 {
     if (node->width == 0) {
         *(signed char *)node->value = func_0037A8F8(ctx, node, *(signed char *)node->value);

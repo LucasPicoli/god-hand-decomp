@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/seqNode.h"
-__attribute__((section(".text.func_0037D1A8")))
-SeqCmd *func_0037D1A8(unsigned char mask, int owner)
+__attribute__((section(".text.SeqCmd_findStartByMask")))
+SeqCmd *SeqCmd_findStartByMask(unsigned char mask, int owner)
 {
     SeqCmd *c;
     int i;

@@ -10,7 +10,7 @@ typedef struct CdStream {
 
 extern void func_00334008(CdStream *s, char *msg);
 extern int func_00331570(void *req);
-extern void func_00331AD8(void);
+extern void CdSrd_finishRead(void);
 extern void func_003341B8(void);
 extern int func_00334A90(CdStream *s);
 extern void func_00333FD8(void);
@@ -32,7 +32,7 @@ void func_00334998(CdStream *s)
     if (s->req != 0)
         func_00331570(s->req);
     for (;;) {
-        func_00331AD8();
+        CdSrd_finishRead();
         func_003341B8();
         func_00334A90(s);
         if (s->state != 2)

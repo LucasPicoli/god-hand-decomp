@@ -7,7 +7,7 @@ typedef unsigned int u_int;
 #define INTC_TIM0 9
 
 extern int AddIntcHandler(int cause, int (*handler)(int), int next);
-extern int func_0030D190(int cause);
+extern int IntrCtl_enableVblankStart(int cause);
 extern int func_003B0740(int cause);
 
 __attribute__((section(".text.func_0030D1F8")))
@@ -16,6 +16,6 @@ void func_0030D1F8(void)
     T0_COUNT = 0;
     T0_COMP = 0x2589;
     T0_MODE |= 0x1C2;
-    AddIntcHandler(INTC_TIM0, func_0030D190, 0);
+    AddIntcHandler(INTC_TIM0, IntrCtl_enableVblankStart, 0);
     func_003B0740(INTC_TIM0);
 }

@@ -148,8 +148,8 @@ void Obj33F8_Tramp_0033F130_FCB0(int a0) {
 extern int func_003A5BD8(void *a, void *b, int len);
 
 /* Returns the table entry whose first 0xC bytes equal `name`, or 0 for an empty name or no match. */
-__attribute__((section(".text.func_0033FCD0")))
-NameEntry *func_0033FCD0(char *name)
+__attribute__((section(".text.NameTable_find")))
+NameEntry *NameTable_find(char *name)
 {
     NameEntry *e;
     int i;
@@ -167,19 +167,19 @@ NameEntry *func_0033FCD0(char *name)
     return 0;
 }
 
-/* ── Call-chain: calls func_0033FCD0 + global access ────────────────────── */
-extern NameEntry *func_0033FCD0(char *name);
+/* ── Call-chain: calls NameTable_find + global access ────────────────────── */
+extern NameEntry *NameTable_find(char *name);
 
 /* Looks up `name` in the entry table and stores its value in *out: 0 on success, -1 with no table, -3 when absent. */
-__attribute__((section(".text.func_0033FD70")))
-int func_0033FD70(char *name, int *out)
+__attribute__((section(".text.NameTable_getValue")))
+int NameTable_getValue(char *name, int *out)
 {
     NameEntry *e;
 
     if (D_007588FC == 0) {
         return -1;
     }
-    e = func_0033FCD0(name);
+    e = NameTable_find(name);
     if (e == 0) {
         return -3;
     }

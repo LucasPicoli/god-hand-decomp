@@ -40,8 +40,8 @@ typedef struct SeTrack2B2E80 {
 /* Switches the track to the sound data found for its owner: ends the old
  * voice, reserves a slot for the new data, then resets the track's key and
  * copies its two source words. */
-__attribute__((section(".text.func_002B2E80")))
-void func_002B2E80(SeTrack2B2E80 *self)
+__attribute__((section(".text.cSndSeTrack_switchSoundData")))
+void cSndSeTrack_switchSoundData(SeTrack2B2E80 *self)
 {
     void *data;
     if (self->owner == 0) {
@@ -85,8 +85,8 @@ void func_002B2E80(SeTrack2B2E80 *self)
  * starts the 90 frame countdown, spawns the hit effect in mode 5, takes 25
  * hit points (down to 1, or to 0 when it had 10 or less) and switches to
  * phase 7. Returns 1 when it hit. */
-__attribute__((section(".text.func_0012CAE0")))
-int func_0012CAE0(cEm00 *self)
+__attribute__((section(".text.cEm00_areaHitCheck")))
+int cEm00_areaHitCheck(cEm00 *self)
 {
     int hit;
     int ok; /* one register serves the mode store and the return value */
@@ -145,8 +145,8 @@ typedef struct ScriptCmd {
 
 /* Length in script ticks of one command: 0x1E for plain data, 0 for most kinds, and for the wait kinds a count taken
  * from the command, the script state or the last set length (0x8700 sets it and takes no time). */
-__attribute__((section(".text.func_002AF218")))
-int func_002AF218(ScriptCmd *cmd)
+__attribute__((section(".text.cScriptCmd_getTicks")))
+int cScriptCmd_getTicks(ScriptCmd *cmd)
 {
     int kind; /* signed: retail compares the kind with slt, not sltu */
 

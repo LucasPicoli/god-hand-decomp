@@ -93,7 +93,7 @@ int AddSoundEntry_374F30(int a0, void *a1) {
 
 __attribute__((section(".text.func_003750E0")))
 int func_003750E0(void *a0) {
-    if (func_0037D1A8(1, a0) != 0) return 1;
+    if (SeqCmd_findStartByMask(1, a0) != 0) return 1;
     if (func_0037D060(a0) != 0) return 2;
     return 0;
 }

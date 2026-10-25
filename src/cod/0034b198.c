@@ -29,7 +29,7 @@ extern int ReturnK_003EE2BC_00358A38_358A38(void);
 extern int func_0034B270(int);
 extern int func_0034B2C8(SfdIfObj *);
 extern int Obj0000_Set_D_003EE2C0_34B290(int);
-extern void func_00360AA8(void);
+extern void IntrNest_leave(void);
 
 __attribute__((section(".text.func_0034B198")))
 int func_0034B198(SfdIfObj *o)
@@ -49,6 +49,6 @@ int func_0034B198(SfdIfObj *o)
         h = Obj0000_Set_D_003EE2C0_34B290(h);
     }
     iface->vt->fC(iface);
-    func_00360AA8();
+    IntrNest_leave();
     return h;
 }

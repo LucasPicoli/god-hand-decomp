@@ -7,7 +7,7 @@ extern int D_003E0740;
 extern unsigned short D_003E0764;
 extern unsigned short D_003E0766;
 extern char D_00455668[];
-extern int func_0033FD70(void *name, int *out);
+extern int NameTable_getValue(void *name, int *out);
 extern int DTX_CallUrpc(int cmd, void *in, int nin, void *out, int nout);
 
 __attribute__((section(".text.func_00337A00")))
@@ -20,7 +20,7 @@ void func_00337A00(void)
     int *res;
 
     if (D_003E0710 != 1 || D_003E0708 > 0) {
-        if (func_0033FD70(D_00455668, &rate) == 0) {
+        if (NameTable_getValue(D_00455668, &rate) == 0) {
             in[0] = rate;
         } else {
             in[0] = 0xBB80;

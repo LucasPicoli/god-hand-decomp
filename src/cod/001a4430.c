@@ -17,7 +17,7 @@ extern void cHeap_free(void *heap, void *p);
 extern void Forward342910_342888(int handle);
 extern void Obj3260_Tramp_00337C88_D208(void);
 extern void Forward3443E0_3443C8(int handle);
-extern void func_00375318(void);
+extern void sndDrv_start(void);
 extern void func_003A11F8(void);
 extern char D_0044CD20[];
 extern char D_0044CD40[];
@@ -190,7 +190,7 @@ void System_sendBootRequests(void)
     }
     while (func_002BE240(D_005E8140, D_0044CD80, REQ_FILE_NUM, D_0044CDA0) < 0) {
     }
-    func_00375318();
+    sndDrv_start();
     func_003A11F8();
     while (func_002BE240(D_005E8140, D_0044CDA8, REQ_LAST_NUM, D_0044CDC8) < 0) {
     }

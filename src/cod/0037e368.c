@@ -4,7 +4,7 @@
 
 extern void func_0037E488(unsigned char *self);
 extern void func_0037E4C0(unsigned char *self, char *pad);
-extern void func_0037FAC8(unsigned char *self);
+extern void MenuCtl_readSlotStreamInfo(unsigned char *self);
 extern void func_0037FB70(char *p);
 extern void func_0037FCC8(char *self);
 extern void func_0037FE40(unsigned char *self);
@@ -29,7 +29,7 @@ int func_0037E368(MenuCtl *self, MenuPad *pad)
         func_0037E4C0((unsigned char *)self, (char *)pad);
         break;
     case 2:
-        func_0037FAC8((unsigned char *)self);
+        MenuCtl_readSlotStreamInfo((unsigned char *)self);
         break;
     case 3:
         func_0037FB70((char *)self);

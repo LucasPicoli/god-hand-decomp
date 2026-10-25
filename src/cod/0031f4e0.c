@@ -4,9 +4,9 @@ extern void func_00324C50(void);
 extern void func_0032AF88(void);
 extern void func_0033F590(void);
 extern long long Forward334310_334B20(void);
-extern void func_0034DC98(void);
+extern void SfdLib_init(void);
 extern void *GetD003EC7E0_3452B0();
-extern void func_00349328(void);
+extern void MwsfdSvr_leaveServer(void);
 extern void func_003298C0(void);
 extern void func_0034B3E0(int a, int b);
 extern void func_00368DF0(void);
@@ -72,13 +72,13 @@ long long func_00334B88(void) {
 __attribute__((section(".text.func_00336510")))
 int func_00336510(int a0) {
     int x;
-    func_003363F8(a0, &x);
+    MemFile_readMapHeader(a0, &x);
     return x;
 }
 
 __attribute__((section(".text.func_00345828")))
 int func_00345828(void) {
-    func_0034DC98();
+    SfdLib_init();
     return 0;
 }
 
@@ -90,7 +90,7 @@ int func_003492E8(int a0) {
 
 __attribute__((section(".text.func_00349308")))
 int func_00349308(void) {
-    func_00349328();
+    MwsfdSvr_leaveServer();
     return 0;
 }
 

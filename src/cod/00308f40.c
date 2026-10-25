@@ -23,8 +23,8 @@ extern char *D_003F2870[];
 extern void func_003A52F0(void *dst, int fill, int size);
 
 /* Poll the page's stream and refresh the list. Returns 3 or 4 (3 when the poll says -1), 0 when idle. */
-__attribute__((section(".text.func_00380F80")))
-int func_00380F80(MenuCtl *ctl, MenuInfo *info, MenuList *list)
+__attribute__((section(".text.MenuCtl_pollStreamAndRefresh")))
+int MenuCtl_pollStreamAndRefresh(MenuCtl *ctl, MenuInfo *info, MenuList *list)
 {
     int st;
 
@@ -43,8 +43,8 @@ none: /* goto: the || cascade and an early return both move the shared return-0 
 /* Start the sound driver: bring up RPC, point the command record at the two transfer buffers,
  * then post commands 0 and 1. Fields 0x4 and 0x8 of the record hold the two
  * transfer buffer addresses here. */
-__attribute__((section(".text.func_00375318")))
-void func_00375318(void)
+__attribute__((section(".text.sndDrv_start")))
+void sndDrv_start(void)
 {
     SndBankCmd *c = &D_0076A880;
 
@@ -58,8 +58,8 @@ void func_00375318(void)
 }
 
 /* Per-frame pass over the sound slot table: validate a flagged slot, then advance every live one. */
-__attribute__((section(".text.func_00376370")))
-void func_00376370(void)
+__attribute__((section(".text.SndSlot_updateAll")))
+void SndSlot_updateAll(void)
 {
     int i;
 
@@ -92,8 +92,8 @@ typedef struct SndTestCursor {
 
 
 /* Print the MUTE row of the sound test page for the picked slot. */
-__attribute__((section(".text.func_00384BC8")))
-void func_00384BC8(void *unused, SndTestCursor *cur, MenuSndInfo *info)
+__attribute__((section(".text.MenuSndTest_printMuteRow")))
+void MenuSndTest_printMuteRow(void *unused, SndTestCursor *cur, MenuSndInfo *info)
 {
     if (cur->slot != 0) {
         func_002E0DE8(3, 0x18, 8, D_0045CD50, cur->slot - 1, D_003F2870[info->mute[cur->slot]]);

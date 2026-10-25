@@ -7,8 +7,8 @@ extern void capVu0AddVectorXYZ(void *a0, void *a1, void *a2);
 extern void func_002B6230(void *a0, void *a1);
 
 /* Scale the object's rotation by its param record's damping factor, add the drift step per axis, wrap each angle, then store the rotation back. */
-__attribute__((section(".text.func_00304830")))
-void func_00304830(char *s)
+__attribute__((section(".text.cGameObj_dampAndWrapRotation")))
+void cGameObj_dampAndWrapRotation(char *s)
 {
     float v[4];
     float w[4];

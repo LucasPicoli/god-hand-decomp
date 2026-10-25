@@ -5,7 +5,7 @@ extern void func_00143A90(char *a0);
 extern void cIDBase_initialize(void *a0, int a1, int a2);
 extern int cIDBase_getIDWork(void *a0, int a1);
 extern void func_002B2580(char *self);
-extern void func_002B2E80(char *self);
+extern void cSndSeTrack_switchSoundData(char *self);
 extern int D_00747A34;
 extern char D_00754C10[];
 extern int D_0044B840;
@@ -66,7 +66,7 @@ int UpdatePlayStage(char *self) {
         *(unsigned char *)(self + 0xD) = *(unsigned char *)(self + 0xD) + 1;
     case 1:
         if (ScriptRun_runChannel(self)) {
-            func_002B2E80(self);
+            cSndSeTrack_switchSoundData(self);
             ret = 1;
             *(unsigned char *)(self + 0xF) = 0;
             *(unsigned char *)(self + 0xD) = 0;

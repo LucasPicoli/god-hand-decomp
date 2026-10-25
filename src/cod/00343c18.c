@@ -7,8 +7,8 @@ extern void func_003502D8(void *sfd, int a, int b);
 
 /* Set the Sofdec playback conditions for a picture of `w` x `h`: the rate (a count of the frame
  * pixels rounded to the nearest, 1000 per pixel) and the fixed defaults. */
-__attribute__((section(".text.func_00343C18")))
-void func_00343C18(SfdHn *hn, int unused, int w, int h)
+__attribute__((section(".text.SfdHn_setPlayConds")))
+void SfdHn_setPlayConds(SfdHn *hn, int unused, int w, int h)
 {
     void *sfd = hn->sfd;
     int count = 1;

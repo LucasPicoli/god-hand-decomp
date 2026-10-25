@@ -7,8 +7,8 @@ extern void func_00336330(void *h, char *msg);
 extern long long Forward3A9228_336360(char *s, char **end, int base);
 
 /* Read the mapped file header: return the first base-16 field, store the second one through avail. */
-__attribute__((section(".text.func_003363F8")))
-char *func_003363F8(char *map, int *avail)
+__attribute__((section(".text.MemFile_readMapHeader")))
+char *MemFile_readMapHeader(char *map, int *avail)
 {
     char *end;
     char *first;
@@ -25,8 +25,8 @@ char *func_003363F8(char *map, int *avail)
 }
 
 /* Clear the record and carve three windows out of the 32-byte aligned buffer. */
-__attribute__((section(".text.func_0035FAD8")))
-void func_0035FAD8(StageBuf *self, int buf, int size)
+__attribute__((section(".text.StageBuf_init")))
+void StageBuf_init(StageBuf *self, int buf, int size)
 {
     int base;
 

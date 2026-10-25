@@ -1,8 +1,8 @@
 #include "godhand/adxInit.h"
 
 /* Register the library's error handler and its two named callbacks, then apply the init record (zeros without one). */
-__attribute__((section(".text.func_003292D8")))
-void func_003292D8(AdxInitCfg *cfg)
+__attribute__((section(".text.ADX_InitHandlers")))
+void ADX_InitHandlers(AdxInitCfg *cfg)
 {
     func_00330E70(Forward33F130_3292C0, 0);
     func_00330318(D_00451F50, func_00336318, 0);

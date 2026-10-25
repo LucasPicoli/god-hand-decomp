@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
 extern void *__frame_state_for(void *pc_target, void *state_in);
-extern long long *func_00320948(int col, void *a1, int a2);
+extern long long *SlotTable_resolveValue(int col, void *a1, int a2);
 extern void _dispRefImage(void *, int, int);
 extern void _dispRefImageField(void *, int, int, int);
 extern int SignalSema(int);
@@ -44,7 +44,7 @@ frame_state *func_00320A50(void *a0, frame_state *a1, frame_state *a2)
     if (s1->saved[col]) {
         long long *p;
         long long val;
-        p = func_00320948(col, s1, 0);
+        p = SlotTable_resolveValue(col, s1, 0);
         val = *p;
         *(int *)s0 = (int)val;
     } else {

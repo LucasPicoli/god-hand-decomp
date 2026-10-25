@@ -43,7 +43,7 @@ void ClearPendingEntries_376008(void) {
             if (*(unsigned char *)(s0 + 8) & 0x10) {
                 BuildSlotEntry_376200(s0);
             } else {
-                func_00376080(s0);
+                SndSlot_startFromDesc(s0);
             }
             *(unsigned short *)s0 = 0;
         }

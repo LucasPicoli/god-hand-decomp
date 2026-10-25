@@ -2,7 +2,7 @@
 
 extern void NoOp_33E6A8(void);
 extern void NoOp_33E6B0(void);
-extern void func_0032AC48(void *o, float f, int a1, int a2);
+extern void SndVol_applyRate(void *o, float f, int a1, int a2);
 extern void func_00328448(void *a0, void *a1);
 extern void func_00329B60(void *a0, void *a1);
 extern void *D_003D1404;
@@ -16,7 +16,7 @@ extern void func_00347AA8(void *a0);
 __attribute__((section(".text.func_0032ABE8")))
 void func_0032ABE8(void *o, float f, int a1, int a2) {
     NoOp_33E6A8();
-    func_0032AC48(o, f, a1, a2);
+    SndVol_applyRate(o, f, a1, a2);
     NoOp_33E6B0();
 }
 

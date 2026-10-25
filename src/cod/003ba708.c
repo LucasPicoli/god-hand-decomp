@@ -20,8 +20,8 @@ extern char D_00460A70[];
 
 /* Copy the whole buffer into the stream joint, in up to two chunks. Returns 0, or -1 when the joint
  * could not take all of it. */
-__attribute__((section(".text.func_003BA708")))
-int func_003BA708(SjFeed *feed)
+__attribute__((section(".text.SjFeed_writeAll")))
+int SjFeed_writeAll(SjFeed *feed)
 {
     SjChunk ck;
     int left = SJ_FEED_SIZE;

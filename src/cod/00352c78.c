@@ -3,8 +3,8 @@
 #include "godhand/sftim.h"
 
 /* Record the current timecode as the last frame's time (relative to the start record) and keep it as the longest when it is not shorter. */
-__attribute__((section(".text.func_00352C78")))
-void func_00352C78(SftimHn *hn)
+__attribute__((section(".text.SftimHn_recordLastFrame")))
+void SftimHn_recordLastFrame(SftimHn *hn)
 {
     SftimTc tc = hn->tim.tc;
     int time;

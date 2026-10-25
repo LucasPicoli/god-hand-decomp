@@ -239,8 +239,8 @@ void Obj35C0_SetField10_IfPositive_C528(char *a0, int a1)
     if (a1 > 0) *(int *)(a0 + 0x10) = a1;
 }
 /* Clear the transport handle and load its default timing. */
-__attribute__((section(".text.func_0035C3A0")))
-void func_0035C3A0(SftrnHn *hn)
+__attribute__((section(".text.SftrnHn_init")))
+void SftrnHn_init(SftrnHn *hn)
 {
     func_003A52F0(hn, 0, SFTRN_HN_SIZE);
     hn->used = 1;

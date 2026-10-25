@@ -11,8 +11,8 @@ extern char D_005FEE00[];
 extern void func_002CA690(char *a0);
 
 /* Once the current slot's stream header is in, read its format into the slot info and rebuild the page. */
-__attribute__((section(".text.func_0037FAC8")))
-void func_0037FAC8(MenuCtl *ctl)
+__attribute__((section(".text.MenuCtl_readSlotStreamInfo")))
+void MenuCtl_readSlotStreamInfo(MenuCtl *ctl)
 {
     MenuSlot *slot = &ctl->slot[ctl->slotNo];
     MenuInfo *info = &slot->info;
@@ -29,8 +29,8 @@ void func_0037FAC8(MenuCtl *ctl)
 }
 
 /* Append value when the wrapper's length is still below its capacity; return the new element, or 0 when full. */
-__attribute__((section(".text.func_003129D0")))
-int *func_003129D0(cObjPtrArrayWrapperObj *self, int value)
+__attribute__((section(".text.cObjPtrArrayWrapper_pushBack")))
+int *cObjPtrArrayWrapper_pushBack(cObjPtrArrayWrapperObj *self, int value)
 {
     int local;
     unsigned int size;
@@ -63,8 +63,8 @@ int *func_003129D0(cObjPtrArrayWrapperObj *self, int value)
 }
 
 /* Start a sound slot from a descriptor: claim a slot, copy the descriptor, derive the two channel gains and load the script cursor from the bank; -1 when no slot is free. */
-__attribute__((section(".text.func_00376080")))
-int func_00376080(SndDesc *d)
+__attribute__((section(".text.SndSlot_startFromDesc")))
+int SndSlot_startFromDesc(SndDesc *d)
 {
     SndSlotHead *s;
     char *base;
@@ -117,8 +117,8 @@ int func_00376080(SndDesc *d)
 #define INTC_VBLANK_START_MASK  0x400   /* VBLANK start enable bit of the INTC mask */
 
 /* Count the call, flush the sound state when the mode word is 1, then unmask the INTC bit and enable interrupts; returns 0. */
-__attribute__((section(".text.func_0030D190")))
-int func_0030D190(void)
+__attribute__((section(".text.IntrCtl_enableVblankStart")))
+int IntrCtl_enableVblankStart(void)
 {
     D_00753D88++;
     if ((D_00747A18 ^ 1) == 0)

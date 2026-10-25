@@ -14,7 +14,7 @@ extern void *SRD_Create(void);
 extern void htci_zero_padding(void *hn);
 extern int SRD_ReqRdHst(void *srd, int a, int b, long long n, void *buf);
 extern void func_00331BF0(void);
-extern void func_00331AD8(void);
+extern void CdSrd_finishRead(void);
 extern void func_00331070(void *srd);
 extern int D_003DA390;
 extern const char D_00454960[], D_00454978[], D_00454998[];
@@ -138,7 +138,7 @@ int func_00334808(struct HTCI_RD *hn, int nsct, void *buf)
     mode = D_003DA390;
     if (mode == 1) {
         func_00331BF0();
-        func_00331AD8();
+        CdSrd_finishRead();
         hn->f1C = hn->f1C + hn->f24;
         func_00331070(hn->f2C);
         hn->f2C = 0;

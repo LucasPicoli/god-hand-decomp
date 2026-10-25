@@ -23,7 +23,7 @@ typedef struct {
 } StmReq;
 
 extern StmReqInfo D_00760D90;
-extern void func_0035C3A0(void *tm);
+extern void SftrnHn_init(void *tm);
 extern void Obj35C0_SetField_0_C4C0(void *tm, int v);
 extern void Obj35C0_CopyPair_138_C4C8(void *tm, long long *p);
 extern void Obj35C0_CopyPair_148_C4E0(void *tm, long long *p);
@@ -62,7 +62,7 @@ int func_0034ADB8(char *hn, StmReq *req)
     t[2][1] = 1000000;
     t[3][0] = GetArrayElemA0C_35A1C8(hn, 0x42);
     t[3][1] = 1000000;
-    func_0035C3A0(hn + 0x1020);
+    SftrnHn_init(hn + 0x1020);
     Obj35C0_SetField_0_C4C0(hn + 0x1020, GetArrayElemA0C_35A1C8(hn, 0x48));
     Obj35C0_CopyPair_138_C4C8(hn + 0x1020, t[0]);
     Obj35C0_CopyPair_148_C4E0(hn + 0x1020, t[1]);

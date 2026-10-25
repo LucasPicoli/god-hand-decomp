@@ -1,6 +1,6 @@
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
-extern void func_00331AD8(void);
+extern void CdSrd_finishRead(void);
 extern void func_00328C30(void);
 extern void func_00328B88(void);
 extern void func_003241D0(void);
@@ -18,7 +18,7 @@ void func_0033F5B8(void)
     D_003EB844 = 1;
     Forward33B670_33E690();
     D_003EB844 = 2;
-    func_00331AD8();
+    CdSrd_finishRead();
     D_003EB844 = 3;
     func_00328C30();
     D_003EB844 = 4;
@@ -30,7 +30,7 @@ void func_0033F5B8(void)
     D_003EB844 = 7;
     func_00328C30();
     D_003EB844 = 8;
-    func_00331AD8();
+    CdSrd_finishRead();
     D_003EB844 = 9;
     func_00328C70();
     D_003EB844 = 0;

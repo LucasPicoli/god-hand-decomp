@@ -12,7 +12,7 @@ typedef struct {
     int active;
 } SubTrack;
 
-extern void func_00384BC8(int ctx, char *self, TrackState *t);
+extern void MenuSndTest_printMuteRow(int ctx, char *self, TrackState *t);
 extern void func_00384B98(int ctx, int data);
 
 __attribute__((section(".text.func_00384B10")))
@@ -23,7 +23,7 @@ void func_00384B10(int ctx, char *self)
 
     if (self[3] & 1) {
         if (t->active != 0) {
-            func_00384BC8(ctx, self, t);
+            MenuSndTest_printMuteRow(ctx, self, t);
             return;
         }
     } else {
@@ -34,7 +34,7 @@ void func_00384B10(int ctx, char *self)
         }
     }
     if (self[3] & 2)
-        func_00384BC8(ctx, self, (TrackState *)(self + 0xCC));
+        MenuSndTest_printMuteRow(ctx, self, (TrackState *)(self + 0xCC));
     else
         func_00384B98(ctx, *(int *)(self + 0x8C));
 }

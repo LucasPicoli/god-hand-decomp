@@ -26,8 +26,8 @@ void func_00328BB0(void) {
 }
 
 /* Set the handle's current timecode: from a time value when given, else from the start record or a cleared one. */
-__attribute__((section(".text.func_00352790")))
-void func_00352790(SftimHn *hn, SftimInfo *info, int time, int update)
+__attribute__((section(".text.Sftim_setTimecode")))
+void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update)
 {
     SftimWork *tim = &hn->tim;
     int drop = info->drop;

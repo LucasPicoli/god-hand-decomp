@@ -31,15 +31,15 @@ int func_0030FCC0(cOmBase *p)
             return 0;
         if (!vecHasRoom(&D_00754C38.list))
             return 0;
-        func_003129D0(&D_00754C30, p);
-        func_003129D0(&D_00754C38.list, p);
+        cObjPtrArrayWrapper_pushBack(&D_00754C30, p);
+        cObjPtrArrayWrapper_pushBack(&D_00754C38.list, p);
         return 1;
     }
     if (!vecHasRoom(&D_00754C30))
         return 0;
     if (!vecHasRoom(&D_00754C58))
         return 0;
-    func_003129D0(&D_00754C30, p);
-    func_003129D0(&D_00754C58, p);
+    cObjPtrArrayWrapper_pushBack(&D_00754C30, p);
+    cObjPtrArrayWrapper_pushBack(&D_00754C58, p);
     return 1;
 }
