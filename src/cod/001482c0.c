@@ -3,6 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cModel.h"
 #include "godhand/vu0.h"
+#include "godhand/cVec.h"
 
 extern char D_0042CAC8[];
 extern void cModel_setTextureExchange(void *model, int set, int rec, int flag);
@@ -67,26 +68,11 @@ void Mtx4_setRotZ(float *m, float a)
 /* True when the distance between the points a and b is below the sum of the
  * two radii (compared as squares). */
 __attribute__((section(".text.Sphere_overlapTest")))
-int Sphere_overlapTest(float *a, float *b, float ra, float rb)
+int Sphere_overlapTest(cVec *a, cVec *b, float ra, float rb)
 {
-    float v[4] __attribute__((aligned(16)));
-    float d[4] __attribute__((aligned(16)));
-    float e[4] __attribute__((aligned(16)));
-    float *copyDst;
+    cVec d;
 
-    VU0_SQC2_VF0(v, 0);
-    copyDst = d;
-    VU0_SQC2_VF0(v, 0x20);
-    VU0_LQC2(4, b, 0);
-    VU0_LQC2(5, a, 0);
-    VU0_VSUB_XYZ(4, 4, 5);
-    VU0_SQC2(4, v, 0x20);
-    VU0_LQC2(4, e, 0);
-    VU0_SQC2(4, v, 0x10);
-    if (v != copyDst) {
-        v[0] = d[0];
-        v[1] = d[1];
-        v[2] = d[2];
-    }
-    return capVu0LengthSq(v) < (ra + rb) * (ra + rb);
+    CVEC_ZERO(d);
+    CVEC_SET_SUB(d, b, a);
+    return capVu0LengthSq(&d) < (ra + rb) * (ra + rb);
 }
