@@ -23,13 +23,13 @@
 #define SFDYUV_G_V       (-52.031998f)
 
 typedef struct SfdYuvEnt {
-    short w0, w2, w4, w6;               /* 0x00 */
+    short h0, h2, h4, h6;               /* 0x00 */
 } SfdYuvEnt;                            /* 8 */
 
 typedef struct SfdYuvTab {
-    SfdYuvEnt luma[SFDYUV_NUM];         /* 0x000 w0, w2, w4 = Y; w6 = ramp */
-    SfdYuvEnt blue[SFDYUV_NUM];         /* 0x800 w4 = B-U, w2 = G-U */
-    SfdYuvEnt red[SFDYUV_NUM];          /* 0x1000 w0 = R-V, w2 = G-V */
+    SfdYuvEnt luma[SFDYUV_NUM];         /* 0x000 h0, h2, h4 = Y; h6 = ramp */
+    SfdYuvEnt blue[SFDYUV_NUM];         /* 0x800 h4 = B-U, h2 = G-U */
+    SfdYuvEnt red[SFDYUV_NUM];          /* 0x1000 h0 = R-V, h2 = G-V */
 } SfdYuvTab;
 
 extern int func_00360D50(void);

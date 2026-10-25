@@ -41,7 +41,7 @@ typedef unsigned int Uint32;
 
 /* The 16-byte sound id of the AINF chunk. */
 typedef struct AdxAinfId {
-    Uint8 b[16];
+    Sint32 w[4];
 } AdxAinfId;
 
 extern Sint32 ADX_DecodeInfoExVer(Sint8 *ibuf, Sint32 hdlen, Uint8 *ver, Uint8 *rev);

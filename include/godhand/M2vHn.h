@@ -18,13 +18,13 @@
 
 /* The info record the caller reads back. */
 typedef struct M2vInfo {
-    int w00, w04, w08, w0C;             /* 0x00 */
-    int w10, w14, w18, w1C;             /* 0x10 */
-    int w20, w24, w28, w2C;             /* 0x20 */
-    int w30, w34, w38, w3C;             /* 0x30 */
-    int w40;                            /* 0x40 cleared */
-    int w44;                            /* 0x44 set to 1 */
-    int w48, w4C;                       /* 0x48 */
+    int f00, f04, f08, f0C;             /* 0x00 */
+    int f10, f14, f18, f1C;             /* 0x10 */
+    int f20, f24, f28, f2C;             /* 0x20 */
+    int f30, f34, f38, f3C;             /* 0x30 */
+    int f40;                            /* 0x40 cleared */
+    int f44;                            /* 0x44 set to 1 */
+    int f48, f4C;                       /* 0x48 */
     unsigned short h50, h52;            /* 0x50 */
     unsigned char b54;                  /* 0x54 table lookup result */
     unsigned char b55, b56, b57;        /* 0x55 */
@@ -33,7 +33,7 @@ typedef struct M2vInfo {
     unsigned char b60, b61, b62, b63;   /* 0x60 */
     unsigned char b64;                  /* 0x64 */
     char pad65[3];
-    int w68;                            /* 0x68 */
+    int f68;                            /* 0x68 */
     char pad6C[0x14];
 } M2vInfo;                              /* 0x80 */
 
@@ -45,14 +45,14 @@ typedef struct M2vSeq {
     char pad01[0xB];
     unsigned char b0C;                 /* 0x0C */
     char pad0D[0x3];
-    int w10;                           /* 0x10 */
+    int f10;                           /* 0x10 */
     char pad14[0xC];
     unsigned char b20;                 /* 0x20 */
     char pad21[0x23];
     unsigned char b44;                 /* 0x44 */
     char pad45[0x3];
-    int w48;                           /* 0x48 */
-    int w4C;                           /* 0x4C */
+    int f48;                           /* 0x48 */
+    int f4C;                           /* 0x4C */
     char pad50[0x10];
     unsigned char b60;                 /* 0x60 */
     char pad61[0x3];
@@ -74,36 +74,36 @@ typedef struct M2vSeq {
     char pad82[0x2];
     unsigned short h84;                /* 0x84 */
     char pad86[0x36];
-    int wBC;                           /* 0xBC */
-    int wC0;                           /* 0xC0 */
-    int wC4;                           /* 0xC4 */
-    int wC8;                           /* 0xC8 */
-    int wCC;                           /* 0xCC */
+    int fBC;                           /* 0xBC */
+    int fC0;                           /* 0xC0 */
+    int fC4;                           /* 0xC4 */
+    int fC8;                           /* 0xC8 */
+    int fCC;                           /* 0xCC */
     char padD0[0xC];
-    int wDC;                           /* 0xDC */
-    int wE0;                           /* 0xE0 */
+    int fDC;                           /* 0xDC */
+    int fE0;                           /* 0xE0 */
     char padE4[0x34];
-    int w118;                          /* 0x118 */
-    int w11C;                          /* 0x11C */
+    int f118;                          /* 0x118 */
+    int f11C;                          /* 0x11C */
     char pad120[0x14];
-    int w134;                          /* 0x134 */
+    int f134;                          /* 0x134 */
     char pad138[0x4];
     unsigned char b13C;                /* 0x13C */
     char pad13D[0x187];
-    int w2C4;                          /* 0x2C4 */
-    int w2C8;                          /* 0x2C8 */
-    int w2CC;                          /* 0x2CC */
-    int w2D0;                          /* 0x2D0 */
-    int w2D4;                          /* 0x2D4 */
-    int w2D8;                          /* 0x2D8 */
+    int f2C4;                          /* 0x2C4 */
+    int f2C8;                          /* 0x2C8 */
+    int f2CC;                          /* 0x2CC */
+    int f2D0;                          /* 0x2D0 */
+    int f2D4;                          /* 0x2D4 */
+    int f2D8;                          /* 0x2D8 */
     char pad2DC[0xE8];
     unsigned char b3C4;                /* 0x3C4 */
     char pad3C5[0x67];
-    int w42C;                          /* 0x42C */
+    int f42C;                          /* 0x42C */
     char pad430[0xC];
-    int w43C;                          /* 0x43C */
+    int f43C;                          /* 0x43C */
     char pad440[0x6C];
-    int w4AC;                          /* 0x4AC */
+    int f4AC;                          /* 0x4AC */
 } M2vSeq;
 
 typedef struct M2vHandle {
