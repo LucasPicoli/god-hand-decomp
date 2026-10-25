@@ -10,6 +10,8 @@
 #define MENUPAD_CANCEL   0x40       /* press */
 #define MENUPAD_DECIDE   0x20       /* press */
 #define MENUPAD_PREV     0x10       /* press: previous page */
+#define MENUPAD_TRG_UP   0x1000     /* trg: cursor up */
+#define MENUPAD_TRG_DOWN 0x4000     /* trg: cursor down */
 
 typedef struct MenuPad {
     char unk00[0x2C];
@@ -95,20 +97,20 @@ typedef struct MenuSnd {
     char unk03;
     short level[5];             /* 0x04 */
     short index[5];             /* 0x0E */
-    short pan[5];               /* 0x18 */
-    short pitch[5];             /* 0x22 */
+    short panL[5];              /* 0x18 PAN_L */
+    short panR[5];              /* 0x22 PAN_R */
     int status;                 /* 0x2C the stream's state */
 } MenuSnd;                      /* 0x30 */
 
 /* The stream position the sound test prints. */
 typedef struct MenuSndInfo {
-    int pos;                    /* 0x00 */
-    int total;                  /* 0x04 */
-    int unk08;                  /* 0x08 */
-    int unk0C;                  /* 0x0C */
-    int unk10;                  /* 0x10 */
-    int loopEnd;                /* 0x14 */
-    unsigned char mode[5];      /* 0x18 per slot */
+    int total;                  /* 0x00 TOTAL TIME, in samples */
+    int rate;                   /* 0x04 sample rate ("SMPL LATE") */
+    int track;                  /* 0x08 TRACK NUM */
+    int phrase;                 /* 0x0C PHRASE NUM */
+    int song;                   /* 0x10 SONG NUM */
+    int time;                   /* 0x14 TIME, in samples */
+    unsigned char mute[5];      /* 0x18 MUTE per slot */
     char unk1D[0x28 - 0x1D];
 } MenuSndInfo;                  /* 0x28 */
 

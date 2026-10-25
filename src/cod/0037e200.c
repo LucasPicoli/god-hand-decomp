@@ -2,9 +2,6 @@
 
 #include "godhand/menuCtl.h"
 
-#define MENUPAD_TRG_UP    0x1000    /* trg: cursor up */
-#define MENUPAD_TRG_DOWN  0x4000    /* trg: cursor down */
-
 extern char D_0045C1B8[];
 extern char D_0045C1C8[];
 extern char *D_003F2888[];

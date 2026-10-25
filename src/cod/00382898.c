@@ -85,24 +85,24 @@ void func_00382898(MenuCtl *self)
     else
         func_002E0DE8(0xC, 7, color, D_0045C8A0);
     func_002E0DE8(0x14, 7, 0xE, D_003F2840[snd->kind]);
-    func_00380720(self, info->total, info->pos, &hh, &mm, &ss, &cc);
+    func_00380720(self, info->rate, info->total, &hh, &mm, &ss, &cc);
     func_002E0DE8(3, 9, 8, D_0045C8A8, hh, mm, ss, cc);
-    func_00380720(self, info->total, info->loopEnd, &hh, &mm, &ss, &cc);
+    func_00380720(self, info->rate, info->time, &hh, &mm, &ss, &cc);
     func_002E0DE8(3, 0xA, 8, D_0045C8C8, hh, mm, ss, cc);
-    func_002E0DE8(0x20, 7, 8, D_0045C8E8, info->total);
-    func_002E0DE8(0x20, 8, 8, D_0045C8F8, info->unk08);
-    func_002E0DE8(0x20, 9, 8, D_0045C908, info->unk0C);
-    func_002E0DE8(0x20, 0xA, 8, D_0045C918, info->unk10);
+    func_002E0DE8(0x20, 7, 8, D_0045C8E8, info->rate);
+    func_002E0DE8(0x20, 8, 8, D_0045C8F8, info->track);
+    func_002E0DE8(0x20, 9, 8, D_0045C908, info->phrase);
+    func_002E0DE8(0x20, 0xA, 8, D_0045C918, info->song);
     func_002E0DE8(3, 0xD, 0xD, D_0045C928);
     if (snd->slot == 0) {
         func_002E0DE8(3, 0xF, 8, D_0045C948, snd->level[snd->slot], snd->index[snd->slot]);
-        func_002E0DE8(3, 0x10, 8, D_0045C960, snd->pan[snd->slot]);
-        func_002E0DE8(3, 0x11, 8, D_0045C970, snd->pitch[snd->slot]);
-        func_002E0DE8(3, 0x12, 8, D_0045C980, D_003F2870[info->mode[snd->slot]]);
+        func_002E0DE8(3, 0x10, 8, D_0045C960, snd->panL[snd->slot]);
+        func_002E0DE8(3, 0x11, 8, D_0045C970, snd->panR[snd->slot]);
+        func_002E0DE8(3, 0x12, 8, D_0045C980, D_003F2870[info->mute[snd->slot]]);
     } else {
         func_002E0DE8(3, 0xF, 8, D_0045C990, snd->slot - 1, snd->level[snd->slot], snd->index[snd->slot]);
-        func_002E0DE8(3, 0x10, 8, D_0045C9B0, snd->slot - 1, snd->pan[snd->slot]);
-        func_002E0DE8(3, 0x11, 8, D_0045C9C0, snd->slot - 1, snd->pitch[snd->slot]);
-        func_002E0DE8(3, 0x12, 8, D_0045C9D0, snd->slot - 1, D_003F2870[info->mode[snd->slot]]);
+        func_002E0DE8(3, 0x10, 8, D_0045C9B0, snd->slot - 1, snd->panL[snd->slot]);
+        func_002E0DE8(3, 0x11, 8, D_0045C9C0, snd->slot - 1, snd->panR[snd->slot]);
+        func_002E0DE8(3, 0x12, 8, D_0045C9D0, snd->slot - 1, D_003F2870[info->mute[snd->slot]]);
     }
 }
