@@ -18934,6 +18934,11 @@
     {
       "path": "src/cod/003363f8.c",
       "compiler": "cygnus-2.96"
+    },
+    {
+      "path": "src/cod/0032dd70.c",
+      "compiler": "cygnus-2.96",
+      "fp_hazard_rules": "cmpfull"
     }
   ],
   "_carved_funcs_doc": [
@@ -85439,6 +85444,13 @@
       "vaddr": "0x0035FAD8",
       "size": 160,
       "tu": "src/cod/003363f8.c"
+    },
+    {
+      "name": "func_0032DD70",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0032DD70",
+      "size": 132,
+      "tu": "src/cod/0032dd70.c"
     }
   ],
   "build_dir": "build",
