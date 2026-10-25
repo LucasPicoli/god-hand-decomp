@@ -55,7 +55,6 @@ extern void *func_002B62F8(void *a0, char *a1);
 extern float *CallThenReturnPlusB0_002B6420_2B61B0(void *node);
 extern void func_00147C88(void *a0, void *a1, int a2);
 extern void func_002B6230(char *a0, float *a1);
-extern void cNode_setTranslationFromParent(void *self, float *pos);
 extern void func_002B5D58(void *arg, void *parent);
 extern void MtxMultiply(void *dst, void *a, void *b);
 extern void func_002B6350(void *node, void *m);
@@ -130,7 +129,7 @@ void func_003034A8(cFxDrift *self)
     VU0_SQC2_VF0_MEM(&r, 0);
     func_00147C88(&r, CallThenReturnPlusB0_002B6420_2B61B0(self), 0);
     func_002B6230((char *)self, (float *)&t);
-    cNode_setTranslationFromParent(self, (float *)&r);
+    cNode_setTranslationFromParent(self, &r);
     func_002B5D58(self, 0);
     self->holder = 0;
 }

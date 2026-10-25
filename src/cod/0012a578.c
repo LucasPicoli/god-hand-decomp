@@ -6,6 +6,7 @@ __attribute__((section(".text.func_0012A578")))
 cVec *func_0012A578(cVec *out, pl00 *pl, float s)
 {
     cVec d;
+    CVEC_TEMPS;
 
     CVEC_ZERO(d);
     CVEC_SET_SUB(d, pl->base.pos, &pl->unk630);

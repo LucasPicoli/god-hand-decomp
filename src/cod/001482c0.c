@@ -71,6 +71,7 @@ __attribute__((section(".text.Sphere_overlapTest")))
 int Sphere_overlapTest(cVec *a, cVec *b, float ra, float rb)
 {
     cVec d;
+    CVEC_TEMPS;
 
     CVEC_ZERO(d);
     CVEC_SET_SUB(d, b, a);
