@@ -9,6 +9,7 @@
 #define GODHAND_CLOTH_H
 
 #include "godhand/cVec.h"
+#include "godhand/criStm.h"          /* memset (func_003A52F0) */
 
 typedef struct ClothSphere {
     char unk00[2];
@@ -28,9 +29,6 @@ extern ClothSphere D_00460E00[12];
 extern ClothSphere D_00461040[11];
 extern ClothSphere D_00461250[7];
 extern ClothSphere D_004613A0[12];
-
-/* memset (assembly). No libc header owns it yet. */
-extern void *func_003A52F0(void *dst, int c, int n);
 
 /* The record's constructor: cleared, then the two bones, the blend, the radius,
  * ofs and unk20. A macro for the same reason as CVEC_INIT_XYZ; s is evaluated
