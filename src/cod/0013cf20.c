@@ -3,6 +3,8 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cActionButton.h"
 #include "godhand/vu0.h"
+#include "godhand/cVec.h"
+#include "godhand/cNode.h"
 
 extern void cIDBase_trans(void *p);
 extern void displayScrollLayer(int id, int on);
@@ -135,33 +137,21 @@ void cActionButtonEnt_reset(cActionButtonEnt *self)
 
 /* Set the node's translation to `pos` relative to its parent's position (zero when it has no parent). */
 __attribute__((section(".text.cNode_setTranslationFromParent")))
-void cNode_setTranslationFromParent(void *self, float *pos)
+void cNode_setTranslationFromParent(void *self, cVec *pos)
 {
-    float parentPos[4] __attribute__((aligned(16)));
-    float tmp[4] __attribute__((aligned(16)));
-    float rel[4] __attribute__((aligned(16)));
+    cVec parentPos;
+    CVEC_TEMPS;
     void *parent;
 
-    /* retail stores rel and tmp with literal offsets from the object at sp+0, and reads rel back through its own address */
     cNode_clearActiveRecursive(self);
-    VU0_SQC2_VF0(parentPos, 0);
+    CVEC_ZERO(parentPos);
     parent = func_002B5E50(self);
     if (parent != 0) {
-        func_002B60D0(tmp, parent);
-        if (parentPos != tmp) {
-            parentPos[0] = tmp[0];
-            parentPos[1] = tmp[1];
-            parentPos[2] = tmp[2];
-        }
+        func_002B60D0(&ret_, parent);
+        CVEC_FROM_RET(parentPos);
     }
-    VU0_SQC2_VF0(parentPos, 0x20);
-    VU0_LQC2(4, pos, 0);
-    VU0_LQC2(5, parentPos, 0);
-    VU0_VSUB_XYZ(4, 4, 5);
-    VU0_SQC2(4, parentPos, 0x20);
-    VU0_LQC2(4, rel, 0);
-    VU0_SQC2(4, parentPos, 0x10);
-    func_002B6230(self, tmp);
+    CVEC_SUB(pos, &parentPos);
+    func_002B6230(self, &ret_);
 }
 
 typedef struct ObjList {

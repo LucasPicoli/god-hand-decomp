@@ -37,4 +37,7 @@ typedef struct cNode {
     void *vt;                           /* 0xF0 method table */
 } cNode;
 
+/* Sets the node's local translation to pos minus its parent's world position. */
+void cNode_setTranslationFromParent(void *self, cVec *pos);
+
 #endif
