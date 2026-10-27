@@ -31,11 +31,20 @@
 
 /* Bits of cGameObj.objFlags (0x250). */
 #define GAMEOBJ_OBJ_SUSPEND  0x8000     /* set by setSuspend(1) */
+#define GAMEOBJ_OBJ_SKIP     0x80000000 /* set by ReleaseObj; the move loops skip the object (MCOBJ_FLAG_SKIP) */
 
 /* The method table every game object points at (0x214). Each entry is a g++
- * 2.x delta (short) and function pointer; only the pair at 0x80 is used here. */
+ * 2.x delta (short) and function pointer. */
 typedef struct cGameObjVt {
-    char unk00[0x60];
+    char unk00[0x40];
+    short initialDelta;                 /* 0x40 */
+    short pad42;
+    int (*initial)(void *self);         /* 0x44 run right after CreateObj; 0 when it fails ("model initial failed") */
+    char unk48[0x50 - 0x48];
+    short moveDelta;                    /* 0x50 */
+    short pad52;
+    void (*move)(void *self);           /* 0x54 the per-frame update MoveObj calls */
+    char unk58[0x60 - 0x58];
     short resetDelta;                   /* 0x60 */
     short pad62;
     void (*reset)(void *self, int arg); /* 0x64 */
@@ -92,7 +101,8 @@ typedef struct cGameObj {
     cOmBase **children;                 /* 0x278 child bodies, as in cOmBase */
     char unk27C[0x2B4 - 0x27C];
     unsigned char childNum;             /* 0x2B4 */
-    char unk2B5[0x2F4 - 0x2B5];
+    char unk2B5[0x2F0 - 0x2B5];
+    unsigned int unk2F0;                /* 0x2F0 MoveObj clears the low two bits after each move */
     unsigned char mode;                 /* 0x2F4 the four state bytes the move code writes together */
     unsigned char phase;                /* 0x2F5 */
     unsigned char step;                 /* 0x2F6 the phase machines switch on it */

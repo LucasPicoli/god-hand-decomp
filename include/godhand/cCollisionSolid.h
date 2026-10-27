@@ -38,6 +38,15 @@ typedef struct cCollisionSolidObj {
 
 typedef char cCollisionSolid_radius_check[((int)&((cCollisionSolidObj *)0)->radius == 0x70) ? 1 : -1];
 
+/* A box collision body: the solid record, then the eight corners, bottom face first. */
+typedef struct cCollisionSolidBox {
+    cCollisionSolidObj base;
+    char unk74[0xF0 - 0x74];
+    cVec corner[8];                     /* 0xF0 0..3 bottom face, 4..7 top face, in order around */
+} cCollisionSolidBox;
+
+typedef char cCollisionSolidBox_corner_check[((int)&((cCollisionSolidBox *)0)->corner == 0xF0) ? 1 : -1];
+
 /* Nonzero when obj hits a solid of the manager. */
 extern int cCollisionSolidManage_ChkHit(void *mgr, void *obj);
 

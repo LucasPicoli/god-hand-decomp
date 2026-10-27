@@ -1,3 +1,4 @@
+#include "godhand/EspDataBank.h"
 #include "godhand/vu0.h"
 
 extern int func_003069E8(void *, int, void *, void *);

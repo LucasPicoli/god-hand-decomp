@@ -117,6 +117,9 @@ typedef struct cTaskWorkRef {
 
 extern cTaskWorkRef D_00752C00;
 
+/* The constructor D_00752C00 and D_005FEB00's part share: clears the head and sets the vtable D_0044D1C8. */
+extern void *func_002D50C0(void *self);
+
 extern void func_0014FE78(char *pkt);
 extern void SetPackedFields10And18_14FF60(int pkt, int *next);
 extern int func_003950F8(int mode, int timeout);   /* GS path sync */
