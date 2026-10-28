@@ -422,7 +422,7 @@ __attribute__((section(".text.func_002147D0"))) void func_002147D0(cEm00 *self)
                     break;
             }
             if (fl != 0) {
-                func_00262AA8(p);
+                func_00262AA8(self);
             }
         } break;
         case 0x214:
@@ -452,7 +452,7 @@ __attribute__((section(".text.func_002147D0"))) void func_002147D0(cEm00 *self)
             }
             if (0.0f < *(float *)(p + 0x600)) {
                 *(float *)(p + 0x600) = *(float *)(p + 0x600) - *(float *)(p + 0x5A8);
-            } else if (Obj0000_Get_Byte_2F4_EQ_1_10B5B8(g) != 0 || func_00262AA8(p) == 0) {
+            } else if (Obj0000_Get_Byte_2F4_EQ_1_10B5B8(g) != 0 || func_00262AA8(self) == 0) {
                 if (0.0f < *(float *)(p + 0x604)) {
                     *(float *)(p + 0x604) = *(float *)(p + 0x604) - *(float *)(p + 0x5A8);
                 } else {

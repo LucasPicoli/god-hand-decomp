@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern int irand(void);
-extern void func_00274238(void *a0, int a1);
 extern unsigned char D_005CB010;
 
 __attribute__((section(".text.func_0020D140")))
@@ -77,7 +77,7 @@ int func_0020D140(void *a0)
         *(short *)(s0 + 0x54A) = *(unsigned short *)(s0 + 0x548);
     else
         *(short *)(s0 + 0x54A) = q;
-    func_00274238(s0, 1);
+    func_00274238(a0, 1);
     *(short *)(s0 + 0x17C8) = 0;
     *(int *)(s0 + 0x17C4) = -1;
     *(unsigned char *)(s0 + 0x17BF) = (unsigned int)irand() % 3;

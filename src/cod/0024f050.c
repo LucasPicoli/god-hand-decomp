@@ -6,16 +6,12 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
-extern void func_0026F120(void *a0);
 extern unsigned int irand(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
-extern void func_00270C78(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void func_00274238(void *a0, int a1);
-extern void func_00262AA8(void *a0);
 extern char D_005FEE00[];
 extern unsigned char D_005CB010;
 
@@ -260,7 +256,7 @@ __attribute__((section(".text.func_0024F050"))) void func_0024F050(cEm00 *self)
             }
             func_002A8578(s2, s3, s1, 2, 0.0f, s4, 0);
             cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(s2), s2, 0, 0, 0, 0);
-            func_0026F120(s2);
+            func_0026F120(self);
             *(int *)(s2 + 0x5F0) = 0;
             {
                 int h = *(int *)(s2 + 0x698);
@@ -309,7 +305,7 @@ __attribute__((section(".text.func_0024F050"))) void func_0024F050(cEm00 *self)
             }
             if (moveMotion(s2)) {
                 if (func_0026F1D8(s2))
-                    func_00270C78(s2);
+                    func_00270C78(self);
                 else
                     func_002705D8(s2);
             }
@@ -324,9 +320,9 @@ __attribute__((section(".text.func_0024F050"))) void func_0024F050(cEm00 *self)
                 } else if (!func_0026F1D8(s2)) {
                     if (irand() % 12U == 0 && *(float *)(s2 + 0x618) < 9.0f && D_005CB010 == 0 &&
                         *(unsigned char *)(s2 + 0x17BB) != 0 && *(float *)(s2 + 0x1740) <= 0.0f)
-                        func_00274238(s2, 0);
+                        func_00274238(self, 0);
                     else
-                        func_00262AA8(s2);
+                        func_00262AA8(self);
                 }
             }
             break;

@@ -1,7 +1,7 @@
 #include "godhand/cModel.h"
+#include "godhand/cEm00.h"
 typedef void (*Pfn)(void *self);
 
-extern void EmThrower_throwHeld(void *a0, int a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void ClearField630_SetField2F6_1C2318(void *a0);
 extern void func_001D0108(void *a0);
@@ -19,8 +19,8 @@ void func_0025E600(char *self)
     Pfn fn;
     cVtEnt8 e;
 
-    EmThrower_throwHeld(self, 0, 0);
-    EmThrower_throwHeld(self, 1, 0);
+    EmThrower_throwHeld((cEm00 *)self, 0, 0);
+    EmThrower_throwHeld((cEm00 *)self, 1, 0);
     ReleaseField6ECByTag564_26B1E8(self);
     if (*(void **)(self + 0x70C) != 0) {
         ClearField630_SetField2F6_1C2318(*(void **)(self + 0x70C));

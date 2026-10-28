@@ -16,13 +16,11 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void Obj2810_ClearState_4(void *a0);
 extern void SetBytes2F4Mode4_283240(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern int moveMotion(void *a0);
 extern int irand(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_0026DB00(void *a0, int a1, int a2);
 extern char D_005FEE00[];
 

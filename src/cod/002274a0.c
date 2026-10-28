@@ -3,15 +3,12 @@
 #include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
-extern void func_00260B30(void *a0);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -44,7 +41,7 @@ __attribute__((section(".text.func_002274A0"))) void func_002274A0(cEm00 *self)
             int a1v, a2v;
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-            StoreMotionParamsBoth_2609A8(s1, 0x32, 0x21, 0x3E, -1, 0);
+            StoreMotionParamsBoth_2609A8(self, 0x32, 0x21, 0x3E, -1, 0);
             v0 = *(char **)(s1 + 0x304);
             a1v = EM_RES_REC((int)v0, 0x2E0C);
             a2v = EM_RES_REC((int)v0, 0x2E10);
@@ -85,14 +82,14 @@ __attribute__((section(".text.func_002274A0"))) void func_002274A0(cEm00 *self)
     if (*(unsigned short *)(s1 + 0x3AC) & 1) {
         if (*(int *)(s1 + 0x5F4) != 0) {
             *(int *)(s1 + 0x5F4) = 0;
-            func_0026BEF0(s1, 0x15, *(short *)(s1 + 0x568));
+            func_0026BEF0(self, 0x15, *(short *)(s1 + 0x568));
             *(unsigned short *)(s1 + 0x568) += 1;
         }
     } else {
         *(int *)(s1 + 0x5F4) = 1;
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 2) {
-        func_00260B30(s1);
+        func_00260B30(self);
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 3) {
         *(int *)(s1 + 0x5FC) = 1;

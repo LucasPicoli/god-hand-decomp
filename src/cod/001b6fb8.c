@@ -1,5 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cEm00.h"
+
 extern int SearchData(int a0, void *a1, int a2);
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int a4);
 extern void ReleaseObj(void *a0);
@@ -66,8 +68,8 @@ int func_001B6FB8(void *a0)
 }
 
 __attribute__((section(".text.func_00270C78")))
-void func_00270C78(void *a0) {
-    char *s0 = (char *)a0;
+void func_00270C78(cEm00 *self) {
+    char *s0 = (char *)self;
     int t;
     if (*(int *)(s0 + 0x564) == 0x265 && (*(int *)(s0 + 0x16D4) & 0x20000000)) {
         t = 0x9F;

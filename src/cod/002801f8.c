@@ -7,7 +7,6 @@ extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
-extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
 extern char D_005FEE00[];

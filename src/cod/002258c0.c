@@ -2,9 +2,7 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -12,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00262750(void *a0, int a1);
-extern void func_00260B30(void *a0);
 extern void cObj_setupAimStep2(void *a0, void *a1, int a2, void *a3, void *a4);
 extern void SetField_2F6_1C2308(void *a0);
 extern void func_002705D8(void *a0);

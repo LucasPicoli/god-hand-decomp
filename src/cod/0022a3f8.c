@@ -2,9 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
@@ -15,8 +13,6 @@ extern int cEmManage_CkPlCatched(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cObjBase_MoveByNullSpeed(void *a0, float f12, float f13);
-extern void func_00270C78(void *a0);
-extern void func_00260B30(void *a0);
 extern char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -50,7 +46,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10(s1);
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int gb;
@@ -60,7 +56,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
             v0 = *(char **)(s1 + 0x304);
             func_002A8578(s1, EM_RES_REC((int)v0, 0xE0C), EM_RES_REC((int)v0, 0xE10), 0.0f, 0xA, gb,
                           0);
-            StoreMotionParamsBoth_2609A8(s1, 5, 0x23, 0x3D, 0, 0xF0);
+            StoreMotionParamsBoth_2609A8(self, 5, 0x23, 0x3D, 0, 0xF0);
             *(int *)(s1 + 0x5FC) = 0;
             *(float *)(s1 + 0x600) = *(float *)(s1 + 0x104);
             *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -181,19 +177,19 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
             *(float *)(s1 + 0x5D4) = 99999.9f;
             *(float *)(s1 + 0x5D8) = 99999.9f;
             *(int *)(s1 + 0x5B4) = 99999;
-            func_0026F120(s1);
+            func_0026F120(self);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
             /* fallthrough */
         case 5:
             if (moveMotion(s1) != 0) {
-                func_00270C78(s1);
+                func_00270C78(self);
             }
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);
             cObjBase_addNullSpeed(s1, 1.0f);
             break;
     }
-    func_00260B30(s1);
+    func_00260B30(self);
     if (*(unsigned short *)(s1 + 0x3AC) & 3) {
         *(int *)(s1 + 0x5FC) = 1;
     }

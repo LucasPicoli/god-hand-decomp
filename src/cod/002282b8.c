@@ -2,9 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
@@ -12,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00260B30(void *a0);
 
 /* Phase machine on the step byte, 7 case labels. Calls CheckSlotsShort2FEAndSetByte1864_262A10,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, StoreMotionParamsBoth_2609A8, func_002A8578,
@@ -23,14 +20,14 @@ __attribute__((section(".text.func_002282B8"))) void func_002282B8(cEm00 *self)
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10();
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int gb;
             char *v0;
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-            StoreMotionParamsBoth_2609A8(s1, 0x14, 3, 0x46, -1, 0);
+            StoreMotionParamsBoth_2609A8(self, 0x14, 3, 0x46, -1, 0);
             v0 = *(char **)(s1 + 0x304);
             func_002A8578(s1, EM_RES_REC((int)v0, 0x15F0), EM_RES_REC((int)v0, 0x15F4), 0.0f, 0xA,
                           gb, 0);
@@ -69,7 +66,7 @@ __attribute__((section(".text.func_002282B8"))) void func_002282B8(cEm00 *self)
             break;
     }
     if (*(unsigned char *)(s1 + 0x1864) == 0) {
-        func_00260B30(s1);
+        func_00260B30(self);
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 3) {
         *(int *)(s1 + 0x5FC) = 1;

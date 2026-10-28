@@ -9,9 +9,7 @@ extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
-extern void func_00262AA8(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 

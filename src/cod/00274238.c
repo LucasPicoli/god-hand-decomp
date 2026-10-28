@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 /* sn-2.95.3-136 */
 
@@ -9,9 +10,9 @@ extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1
 extern char D_005FEE00[];
 
 __attribute__((section(".text.func_00274238")))
-void func_00274238(char *a0, unsigned char a1) {
-    char *s1 = a0;
-    unsigned char s2 = a1;
+void func_00274238(cEm00 *self, unsigned char kind) {
+    char *s1 = (char *)self;
+    unsigned char s2 = kind;
 
     if ((*(int *)(s1 + 0x16D0) & 0x2000) != 0) goto tail;
     switch (*(int *)(s1 + 0x564)) {
