@@ -46,7 +46,7 @@ void func_00299860(void) {
 /* The object's rotation array. */
 __attribute__((section(".text.cGameObj_getRot")))
 float *cGameObj_getRot(cGameObj *self) {
-    return self->rot;
+    return &self->rot.x;
 }
 
 __attribute__((section(".text.func_002AEF90")))

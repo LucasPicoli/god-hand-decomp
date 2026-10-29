@@ -69,7 +69,7 @@ void cSaveManager_getCheckPoint(cSaveSlot *src, int flag) {
     D_007474A0.pos[0] = Getplayer()->pos->x;
     D_007474A0.pos[1] = Getplayer()->pos->y;
     D_007474A0.pos[2] = Getplayer()->pos->z;
-    D_007474A0.angle = Getplayer()->rot[1];
+    D_007474A0.angle = Getplayer()->rot.y;
     cCoreSave_loadStageState(&D_00569B70, flag);
     if (flag) {
         Obj0000_Clear_Fields_00_08_0C_0E_10_12_1F6CF8(D_00568240);

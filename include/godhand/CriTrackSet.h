@@ -17,4 +17,7 @@ typedef struct CriTrackSet {
     int trackLevel[CRI_TRNO_MAX + 1];   /* 0x1EC */
 } CriTrackSet;
 
+/* CriTrackSet_setTrackLevel on the set ply, under the middleware lock. */
+extern void func_0032EC78(int ply, int trno, int level);
+
 #endif

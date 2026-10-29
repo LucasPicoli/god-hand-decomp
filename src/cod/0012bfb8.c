@@ -1,8 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/debugPrint.h"
 
-extern int func_002E0C80(int a, int b, int c, int d, int zero, int fmt, void *args);
+extern void func_002E0C80(int x, int y, int arg2, int arg3, int zero, const char *fmt, char *args);
 extern void SetActionJumpUp(cEm00 *self);
 extern void SetActionJumpDown(void);
 extern int moveMotion(cEm00 *self);
@@ -13,17 +14,17 @@ extern void SetField214PtrThenInit_1B6F38(void *a0, void *a1);
 extern void Slot2_hideBankLayerIds(void *a0);
 extern void displayScrollLayer(int id, int on);
 
-/* Variadic wrapper: forwards the first four arguments and the format word
+/* Variadic wrapper: forwards the first four arguments and the format
  * to func_002E0C80, plus a pointer to the register save area that holds the
  * unnamed arguments. */
 
 
 __attribute__((section(".text.printf_2E0DA8")))
-int printf_2E0DA8(int a, int b, int c, int d, int fmt, ...)
+void printf_2E0DA8(int x, int y, int arg2, int arg3, const char *fmt, ...)
 {
     char *args;
     args = (char *)__builtin_next_arg(fmt) - 24;
-    return func_002E0C80(a, b, c, d, 0, fmt, args);
+    func_002E0C80(x, y, arg2, arg3, 0, fmt, args);
 }
 
 /* cEm00_startJumpSetup: if the 0x6A0 link is empty, do the jump-up and jump-down

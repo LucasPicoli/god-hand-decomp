@@ -17,6 +17,15 @@
 #include "godhand/cObj.h"
 #include "godhand/vu0.h"
 
+/* The sequence data of a motion (the game's SEQ_DATA_HEADER_1): starts with
+ * "SEQ\0"; its effect block is an {ofs, num} pair at 0x14. */
+typedef struct SEQ_DATA_HEADER_1 {
+    char magic[4];                      /* 0x00 "SEQ\0" */
+    char unk04[0x10];
+    unsigned short entryOfs;            /* 0x14 byte offset of the effect entries */
+    unsigned short entryNum;            /* 0x16 */
+} SEQ_DATA_HEADER_1;
+
 /* One effect the actor starts or stops each time its sequence step runs. */
 typedef struct cSeqEffect {
     unsigned char kind;                 /* 0x00 */
@@ -95,33 +104,36 @@ static __inline__ void cEffectParam_init(cEffectParam *p)
     char unk370[0x10]; \
     char unk380[0x10]; \
     char unk390[0x10]; \
-    char unk3A0[0xE]; \
+    char unk3A0[0xC]; \
+    unsigned short seqFlags;            /* 0x3AC Motion_seq_ctr clears it each frame, then ORs in every flag key covering the frame */ \
     unsigned short seqEffectNum;        /* 0x3AE entries in use */ \
-    cSeqEffect seqEffect[9];            /* 0x3B0 (the table length is not measured) */ \
-    char unk41C[0x4]; \
+    cSeqEffect seqEffect[8];            /* 0x3B0 */ \
+    char unk410[0x10];                  /* 0x410 Motion_seq_ctr's own state */ \
     char unk420[0x8]; \
     char *motion;                       /* 0x428 the motion to play */ \
-    char *motionEnd;                    /* 0x42C */ \
-    float motionBlend;                  /* 0x430 */ \
+    struct SEQ_DATA_HEADER_1 *seqData;  /* 0x42C the motion's sequence data ("SEQ\0") */ \
+    float motionFrame;                  /* 0x430 current frame of the motion */ \
     unsigned short motionFlags;         /* 0x434 */ \
     unsigned char seqSkip;              /* 0x436 while set, SEQEFF_SKIP entries wait */ \
     char unk437[0x1]; \
-    float motionStart;                  /* 0x438 */ \
-    char unk43C[0x4]; \
+    float blendLeft;                    /* 0x438 counted down by the step; blend = blendLeft / blendLen */ \
+    float blendLen;                     /* 0x43C the blend-in length */ \
     float motionRate;                   /* 0x440 */ \
-    char unk444[0x8]; \
+    float motionStep;                   /* 0x444 frames per tick, negative for reverse play */ \
+    char ik[0x4];                       /* 0x448 IK::InverseKinematics reads one float here */ \
     void *shadowData;                   /* 0x44C what KageInit was given */ \
     char *kageWork;                     /* 0x450 two shadow work areas, 0x750 bytes each */ \
     char unk454[0xC]; \
     cVec kageHit;                       /* 0x460 where the shadow ray hit the ground; zero at construction */ \
     float kageHitY;                     /* 0x470 height of that hit */ \
-    char unk474[0xC]; \
+    int groundKind;                     /* 0x474 first halfword of the ground-ray hit; picks the footstep sound */ \
+    char unk478[0x8]; \
     cVec unk480;                        /* 0x480 zero at construction */ \
     cVec posA;                          /* 0x490 */ \
     int unk4A0;                         /* 0x4A0 -1 at construction */ \
     int unk4A4; \
     int kageFlags;                      /* 0x4A8 negative: no shadow; bit 0x20000000: skip the distance test */ \
-    void *unk4AC; \
+    const char *kindName;               /* 0x4AC class name, set by each constructor */ \
     int unk4B0; \
     int unk4B4; \
     float turnRate;                     /* 0x4B8 */ \

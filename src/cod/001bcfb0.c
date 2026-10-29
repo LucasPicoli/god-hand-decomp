@@ -19,17 +19,17 @@ void cOmDoor_setOpen(cOmDoor *self, long kind, int instant)
     if (self->base.mode >= 2) {
         return;
     }
-    self->closedHeading = self->base.rot[1];
+    self->closedHeading = self->base.rot.y;
     switch (kind) {
     case DOOR_OPEN_NEAR:
         switch (self->base.actorId) {
         case DOOR_ACTOR_A:
         case DOOR_ACTOR_B:
         case DOOR_ACTOR_C:
-            self->openHeading = Adjust_theta(self->base.rot[1] - DOOR_ANGLE_90);
+            self->openHeading = Adjust_theta(self->base.rot.y - DOOR_ANGLE_90);
             break;
         default:
-            self->openHeading = Adjust_theta(self->base.rot[1] - DOOR_ANGLE_100);
+            self->openHeading = Adjust_theta(self->base.rot.y - DOOR_ANGLE_100);
             break;
         }
         break;
@@ -38,10 +38,10 @@ void cOmDoor_setOpen(cOmDoor *self, long kind, int instant)
         case DOOR_ACTOR_A:
         case DOOR_ACTOR_B:
         case DOOR_ACTOR_C:
-            self->openHeading = Adjust_theta(self->base.rot[1] + DOOR_ANGLE_90);
+            self->openHeading = Adjust_theta(self->base.rot.y + DOOR_ANGLE_90);
             break;
         default:
-            self->openHeading = Adjust_theta(self->base.rot[1] + DOOR_ANGLE_100);
+            self->openHeading = Adjust_theta(self->base.rot.y + DOOR_ANGLE_100);
             break;
         }
         break;
@@ -53,6 +53,6 @@ void cOmDoor_setOpen(cOmDoor *self, long kind, int instant)
         self->base.step = 0;
         self->base.stepArg = 0;
     } else {
-        self->base.rot[1] = self->openHeading;
+        self->base.rot.y = self->openHeading;
     }
 }

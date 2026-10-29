@@ -22,7 +22,7 @@ extern void ClearBytesAt74And79To7C_13C618(void *self);
 __attribute__((section(".text.cGameObj_getRaisedLockOnPos")))
 cVec *cGameObj_getRaisedLockOnPos(cGameObj *self)
 {
-    cVec *src = ((cVec *(*)(void *))self->vt->lockOn)((char *)self + self->vt->lockOnDelta);
+    cVec *src = ((cVec *(*)(void *))cGameObj_vt(self)->lockOn)((char *)self + cGameObj_vt(self)->lockOnDelta);
     cVec *dst = GAMEOBJ_LOCKON_COPY(self);
     cVec_copy3(dst, src);
     GAMEOBJ_LOCKON_COPY_Y(self) = GAMEOBJ_LOCKON_COPY_Y(self) + 4.1f;

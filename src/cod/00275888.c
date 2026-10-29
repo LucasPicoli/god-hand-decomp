@@ -22,7 +22,7 @@ int func_00275888(cGameObj *self, float dist)
 
     cVec_zero(&eye);
     cVec_zero(&ahead);
-    MtxInitRotY(mtx, self->rot[1]);
+    MtxInitRotY(mtx, self->rot.y);
     CopyVec3ToField30_147C40(mtx, &self->pos->x);
     eye.x = 0.0f;
     eye.y = EYE_HEIGHT;

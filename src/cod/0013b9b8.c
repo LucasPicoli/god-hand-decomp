@@ -42,7 +42,7 @@ void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
         return;
     }
     VU0_SQC2_VF0(&f, 0x40);
-    MtxInitRotVec(f.mtx, self->pose.obj->rot, 0);
+    MtxInitRotVec(f.mtx, &self->pose.obj->rot.x, 0);
     f.mtx[12] = self->pose.obj->pos->x;
     f.mtx[13] = self->pose.obj->pos->y;
     f.mtx[14] = self->pose.obj->pos->z;
@@ -50,8 +50,8 @@ void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
     cVec_copy3(&self->base.target, &f.out);
     VU0_SQC2_VF0(&f, 0x50);
     VU0_SQC2_VF0(&f, 0x60);
-    plcam_vec(&f.rot, self->pose.obj->rot[0] + self->pose.rotOfs.x,
-              self->pose.obj->rot[1] + self->pose.rotOfs.y, self->pose.obj->rot[2], 1.0f);
+    plcam_vec(&f.rot, self->pose.obj->rot.x + self->pose.rotOfs.x,
+              self->pose.obj->rot.y + self->pose.rotOfs.y, self->pose.obj->rot.z, 1.0f);
     Adjust_theta_vec(&f.rot);
     MtxInitRotVec(f.mtx, (float *)&f.rot, 0);
     f.mtx[12] = f.out.x;

@@ -19,23 +19,34 @@
 #define GODHAND_CGAMEOBJ_H
 
 #include "godhand/cOmBase.h"
+#include "godhand/cObjBase.h"
 
 /* Bits of cGameObj.scrFlags (0x5A0). */
 #define GAMEOBJ_SCR_CLIP     0x01       /* cut off by the screen frustum */
 #define GAMEOBJ_SCR_BEHIND   0x02       /* behind the camera */
 #define GAMEOBJ_SCR_SUSPEND  0x08       /* set by setSuspend(1) */
 
-/* Bits of cGameObj.motionFlags (0x3AC), set by the model code. */
-#define GAMEOBJ_MOTION_END   0x01       /* the current motion has finished */
-#define GAMEOBJ_MOTION_LOOP  0x02       /* the current motion has looped */
+/* Bits of cGameObj.seqFlags (0x3AC). These names are still under review:
+ * nothing yet shows what bits 1 and 2 mean. */
+#define GAMEOBJ_MOTION_END   0x01
+#define GAMEOBJ_MOTION_LOOP  0x02
 
 /* Bits of cGameObj.objFlags (0x250). */
 #define GAMEOBJ_OBJ_SUSPEND  0x8000     /* set by setSuspend(1) */
+#define GAMEOBJ_OBJ_SKIP     0x80000000 /* set by ReleaseObj; the move loops skip the object (MCOBJ_FLAG_SKIP) */
 
 /* The method table every game object points at (0x214). Each entry is a g++
- * 2.x delta (short) and function pointer; only the pair at 0x80 is used here. */
+ * 2.x delta (short) and function pointer. */
 typedef struct cGameObjVt {
-    char unk00[0x60];
+    char unk00[0x40];
+    short initialDelta;                 /* 0x40 */
+    short pad42;
+    int (*initial)(void *self);         /* 0x44 run right after CreateObj; 0 when it fails ("model initial failed") */
+    char unk48[0x50 - 0x48];
+    short moveDelta;                    /* 0x50 */
+    short pad52;
+    void (*move)(void *self);           /* 0x54 the per-frame update MoveObj calls */
+    char unk58[0x60 - 0x58];
     short resetDelta;                   /* 0x60 */
     short pad62;
     void (*reset)(void *self, int arg); /* 0x64 */
@@ -55,8 +66,8 @@ typedef struct cGameObjVt {
     int (*ckTarget)(void *self);        /* 0xCC nonzero: skip the height test of GetTargetNear */
 } cGameObjVt;
 
-/* One effect the object has started (cGameObj.effList). The retail table
- * is a block with a header and an array of 0xC-byte entries. */
+/* One effect the object has started: the entries of its seqData effect
+ * block, 0xC bytes each. */
 #define GAMEOBJ_EFF_NONE      (-1)      /* cGameObjEffect.id of an unused entry */
 #define GAMEOBJ_EFF_FLAG_FADE 0x02      /* cGameObjEffect.flags: kill with the fade-out mode */
 
@@ -67,52 +78,15 @@ typedef struct cGameObjEffect {
     char unk0B;
 } cGameObjEffect;                       /* 0xC */
 
-typedef struct cGameObjEffectList {
-    char unk00[0x14];
-    unsigned short entryOfs;            /* 0x14 byte offset of the entries */
-    unsigned short entryNum;            /* 0x16 */
-} cGameObjEffectList;
-
-/* The fields the cGameObj methods and the move code share. */
-typedef struct cGameObj {
-    char unk000[0x80];
-    float mtx[16];                      /* 0x080 orientation matrix, as in cOmBase */
-    char unk0C0[0x30];
-    cVec *pos;                          /* 0x0F0 the object's live position */
-    char unk0F4[0xC];
-    float rot[3];                       /* 0x100 rotation, rot[1] is the heading */
-    char unk10C[4];
-    float scale[3];                     /* 0x110 model scale, 1.0 normal */
-    char unk11C[0x214 - 0x11C];
-    cGameObjVt *vt;                     /* 0x214 */
-    char unk218[0x24C - 0x218];
-    float animRate;                     /* 0x24C 1.0 normal */
-    int objFlags;                       /* 0x250 */
-    char unk254[0x278 - 0x254];
-    cOmBase **children;                 /* 0x278 child bodies, as in cOmBase */
-    char unk27C[0x2B4 - 0x27C];
-    unsigned char childNum;             /* 0x2B4 */
-    char unk2B5[0x2F4 - 0x2B5];
-    unsigned char mode;                 /* 0x2F4 the four state bytes the move code writes together */
-    unsigned char phase;                /* 0x2F5 */
-    unsigned char step;                 /* 0x2F6 the phase machines switch on it */
-    unsigned char stepArg;              /* 0x2F7 */
-    char unk2F8[0x6];
-    unsigned short actorId;             /* 0x2FE */
-    char unk300[0x4];
-    char *motionData;                   /* 0x304 the loaded model's data block */
-    char unk308[0x3AC - 0x308];
-    unsigned short motionFlags;         /* 0x3AC GAMEOBJ_MOTION_* */
-    char unk3AE[0x42C - 0x3AE];
-    cGameObjEffectList *effList;        /* 0x42C effects started by this object */
-    char unk430[4];
-    unsigned short unk434;              /* 0x434 bit 1 makes the effect start flagged (InitRenderStruct) */
-    char unk436[0x448 - 0x436];
-    char ik[0x48];                      /* 0x448 inverse kinematics work area */
-    cVec posA;                          /* 0x490 position copy used by setPos */
-    char unk4A0[0x4AC - 0x4A0];
-    const char *kindName;               /* 0x4AC class name of the object, set by its constructor */
-    char unk4B0[0x520 - 0x4B0];
+/* cGameObj is cObjBase (COBJBASE_FIELDS, 0x000..0x4D0) plus its own fields:
+ * the retail constructor (0x2A7338) calls cObjBase first, then writes only
+ * 0x214, 0x4AC and 0x4D0 onward. */
+#ifndef CGAMEOBJ_NO_TYPEDEF
+typedef struct cGameObj cGameObj;
+#endif
+struct cGameObj {
+    COBJBASE_FIELDS
+    char unk4D0[0x520 - 0x4D0];
     cVec stored;                        /* 0x520 position remembered with storedWait (w is 1.0) */
     unsigned char storedWait;           /* 0x530 */
     signed char unk531;                 /* 0x531 -1 after construction */
@@ -131,30 +105,39 @@ typedef struct cGameObj {
     int scrFlags;                       /* 0x5A0 GAMEOBJ_SCR_* */
     char unk5A4[4];
     float speedRate;                    /* 0x5A8 1.0 normal, copied from the manager every frame */
-} cGameObj;
+};
 
-#define GAMEOBJ_OFFSET(field) ((int)&((cGameObj *)0)->field)
+/* The typed method table behind cGameObj's g++ vtable (0x214). */
+static __inline__ cGameObjVt *cGameObj_vt(const struct cGameObj *self)
+{
+    return (cGameObjVt *)self->vtable;
+}
+
+#define GAMEOBJ_OFFSET(field) ((int)&((struct cGameObj *)0)->field)
 typedef char cGameObj_chk_mtx[GAMEOBJ_OFFSET(mtx) == 0x80 ? 1 : -1];
 typedef char cGameObj_chk_pos[GAMEOBJ_OFFSET(pos) == 0xF0 ? 1 : -1];
 typedef char cGameObj_chk_rot[GAMEOBJ_OFFSET(rot) == 0x100 ? 1 : -1];
-typedef char cGameObj_chk_anim[GAMEOBJ_OFFSET(animRate) == 0x24C ? 1 : -1];
-typedef char cGameObj_chk_vt[GAMEOBJ_OFFSET(vt) == 0x214 ? 1 : -1];
+typedef char cGameObj_chk_anim[GAMEOBJ_OFFSET(tint.w) == 0x24C ? 1 : -1];
+typedef char cGameObj_chk_vt[GAMEOBJ_OFFSET(vtable) == 0x214 ? 1 : -1];
 typedef char cGameObj_chk_step[GAMEOBJ_OFFSET(step) == 0x2F6 ? 1 : -1];
 typedef char cGameObj_chk_posA[GAMEOBJ_OFFSET(posA) == 0x490 ? 1 : -1];
 typedef char cGameObj_chk_stored[GAMEOBJ_OFFSET(stored) == 0x520 ? 1 : -1];
-typedef char cGameObj_chk_motion[GAMEOBJ_OFFSET(motionFlags) == 0x3AC ? 1 : -1];
+typedef char cGameObj_chk_motion[GAMEOBJ_OFFSET(seqFlags) == 0x3AC ? 1 : -1];
 typedef char cGameObj_chk_hp[GAMEOBJ_OFFSET(hp) == 0x54A ? 1 : -1];
 typedef char cGameObj_chk_kind[GAMEOBJ_OFFSET(kindName) == 0x4AC ? 1 : -1];
 typedef char cGameObj_chk_emno[GAMEOBJ_OFFSET(emNo) == 0x564 ? 1 : -1];
-typedef char cGameObj_chk_eff[GAMEOBJ_OFFSET(effList) == 0x42C ? 1 : -1];
+typedef char cGameObj_chk_eff[GAMEOBJ_OFFSET(seqData) == 0x42C ? 1 : -1];
 typedef char cGameObj_chk_effno[GAMEOBJ_OFFSET(effNo) == 0x570 ? 1 : -1];
 typedef char cGameObj_chk_scr[GAMEOBJ_OFFSET(scrFlags) == 0x5A0 ? 1 : -1];
 typedef char cGameObj_chk_scale[GAMEOBJ_OFFSET(scale) == 0x110 ? 1 : -1];
 typedef char cGameObj_chk_child[GAMEOBJ_OFFSET(children) == 0x278 ? 1 : -1];
-typedef char cGameObj_chk_childn[GAMEOBJ_OFFSET(childNum) == 0x2B4 ? 1 : -1];
+typedef char cGameObj_chk_childn[GAMEOBJ_OFFSET(partNum) == 0x2B4 ? 1 : -1];
 typedef char cGameObj_chk_ik[GAMEOBJ_OFFSET(ik) == 0x448 ? 1 : -1];
 typedef char cGameObj_chk_drop[GAMEOBJ_OFFSET(dropItem) == 0x560 ? 1 : -1];
 typedef char cGameObj_chk_rate[GAMEOBJ_OFFSET(speedRate) == 0x5A8 ? 1 : -1];
+typedef char cGameObj_chk_ground[GAMEOBJ_OFFSET(groundKind) == 0x474 ? 1 : -1];
+typedef char cGameObj_chk_frame[GAMEOBJ_OFFSET(motionFrame) == 0x430 ? 1 : -1];
+typedef char cGameObj_chk_size[sizeof(struct cGameObj) == 0x5AC ? 1 : -1];
 
 /* The sort uses insertion sort alone below this many entries. */
 #define GAMEOBJ_SORT_THRESHOLD 16
@@ -162,7 +145,7 @@ typedef char cGameObj_chk_rate[GAMEOBJ_OFFSET(speedRate) == 0x5A8 ? 1 : -1];
 /* Whether the actor id of obj lies in [lo, hi), as a long flag. The retail
  * range tests build the flag with a branch and a copy, then mask it with 0xFF
  * where it is tested: write `if (cGameObj_idInRange(obj, lo, hi) & 0xFF)`. */
-static __inline__ long cGameObj_idInRange(const cGameObj *obj, int lo, int hi)
+static __inline__ long cGameObj_idInRange(const struct cGameObj *obj, int lo, int hi)
 {
     int id = obj->actorId;
     long in = 0;
@@ -198,6 +181,6 @@ static __inline__ unsigned char cGameObjSortEnt_less(const cGameObjSortEnt *a, c
 }
 
 
-extern void func_002831C8(cGameObj *self, unsigned int kind, unsigned char arg);
+extern void func_002831C8(struct cGameObj *self, unsigned int kind, unsigned char arg);
 
 #endif /* GODHAND_CGAMEOBJ_H */

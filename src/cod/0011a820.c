@@ -182,10 +182,10 @@ void cGameObjTurn_stepTurn(cGameObjTurn *self) {
     default:
         return;
     }
-    rot = self->base.rot[1] + Turn_dest_dir(self->base.rot[1], self->goalRot, TURN_SPEED);
-    self->base.rot[1] = rot;
-    self->base.rot[1] = Adjust_theta(rot);
-    if (self->base.rot[1] == self->goalRot) {
+    rot = self->base.rot.y + Turn_dest_dir(self->base.rot.y, self->goalRot, TURN_SPEED);
+    self->base.rot.y = rot;
+    self->base.rot.y = Adjust_theta(rot);
+    if (self->base.rot.y == self->goalRot) {
         self->base.mode = 0;
         self->base.phase = 0;
         self->base.step = 0;

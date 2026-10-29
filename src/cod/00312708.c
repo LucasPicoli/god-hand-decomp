@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/player.h"
 
 extern int D_005FEE00;
 extern void cSnd_SeDetachObj(int *arg0, void *arg1);

@@ -30,7 +30,7 @@ int func_002E63C0(char *self)
         func_002D9F68(self, D_0044E3D8);
         return 0;
     }
-    vt = (char *)obj->vt;
+    vt = (char *)obj->vtable;
     if ((*(int (**)(void *))(vt + 0x44))((char *)obj + *(short *)(vt + 0x40)) == 0) {
         func_002D9F68(self, D_0044E3F8);
         ReleaseObj(*(void **)(self + 0x2B0));

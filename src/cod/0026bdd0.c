@@ -39,7 +39,7 @@ void func_0026BDD0(cGameObj *self, cOmWeapon *weapon)
     cVec_copy3(&f.hand, child->pos);
     cVec_copy3(weapon->base.pos, &f.hand);
     cVec_copy3(&weapon->base.posA, &f.hand);
-    MtxInitRotY(f.mtx, self->rot[1]);
+    MtxInitRotY(f.mtx, self->rot.y);
     f.vel.x = 0;
     f.vel.y = 0;
     f.vel.z = DROP_SPEED;

@@ -38,7 +38,7 @@ void func_00276DC8(cEmLinked *self)
         } f;
 
         VU0_SQC2_VF0(&f, 0x40);
-        MtxInitRotY(&f.mtx[0][0], link->rot[1]);
+        MtxInitRotY(&f.mtx[0][0], link->rot.y);
         f.v.x = 0.0f;
         f.v.y = 0.01f;
         f.v.z = -0.01f;

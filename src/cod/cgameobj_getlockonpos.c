@@ -10,7 +10,7 @@
 __attribute__((section(".text.cGameObj_getLockOnPos")))
 void cGameObj_getLockOnPos(cGameObj *self)
 {
-    cGameObjVt *vt = self->vt;
+    cGameObjVt *vt = cGameObj_vt(self);
     cGameObjVt *new_var3;
     cGameObjVt *new_var2;
     cGameObjVt *new_var;
