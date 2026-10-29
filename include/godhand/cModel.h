@@ -29,10 +29,18 @@ typedef struct cBox {
     float half[3];                      /* 0x0C */
 } cBox;                                 /* 0x18 */
 
-/* Bits of cParts.partFlags (0x154). */
-#define CPARTS_NO_LOCAL     0x08        /* skip the local matrix build */
-#define CPARTS_NO_PARENT    0x10        /* skip the multiply by the parent */
-#define CPARTS_NO_BLEND     0x100000    /* leave the part out of the blend */
+/* Bits of cParts.partFlags (0x154). The motion apply (func_00158328) tests
+ * 0x100 and 0x8000 through byte 0x155 (lbu); read them as
+ * ((unsigned char *)&part->partFlags)[1] there, not as a bitfield. */
+#define CPARTS_NO_MOTION        0x01     /* skip every motion channel of the part */
+#define CPARTS_NO_LOCAL         0x08     /* skip the local matrix build */
+#define CPARTS_NO_PARENT        0x10     /* skip the multiply by the parent */
+#define CPARTS_MOTION_SET       0x80     /* cleared per part, set when a motion channel writes it */
+#define CPARTS_NO_MOTION_ROT    0x100    /* skip the rotation channels (3..5) */
+#define CPARTS_NO_MOTION_POS    0x200    /* skip the translation channels (0..2) */
+#define CPARTS_NO_MOTION_SCALE  0x400    /* skip the scale channels (6..8) */
+#define CPARTS_ZERO_UNKEYED_ROT 0x8000   /* zero each rotation component no channel keys this frame */
+#define CPARTS_NO_BLEND         0x100000 /* leave the part out of the blend */
 
 /* Bits of cModel.objFlags (0x250). */
 #define CMODEL_F_SHOWN      0x02        /* skip the view test: always drawn */
