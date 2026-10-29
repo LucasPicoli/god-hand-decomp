@@ -6,7 +6,6 @@ extern SeqLink D_0076CEC0[3];
 extern int D_00773250[];
 extern char *func_0037CF00(void *a0);
 extern char *func_0037CEE0(void *a0);
-extern char *func_0037D298(int a0);
 extern void func_0037C160(SeqLink *a0, SeqCmd *a1);
 extern void func_0037C1B8(SeqNode *a0, SeqCmd *a1);
 extern void func_0037C228(SeqNode *a0, SeqCmd *a1);
@@ -37,7 +36,7 @@ int func_0037BF10(SeqCmd *h)
         a = (SeqLink *)func_0037CEE0(&h->req);
     if (a == 0)
         return -1;
-    b = (SeqNode *)func_0037D298(h->voice);
+    b = func_0037D298(h->voice);
     if (b == 0)
         return -1;
     func_0037C160(a, h);

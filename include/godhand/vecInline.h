@@ -23,6 +23,14 @@ static inline void vec3_copy(float *dst, float *src)
     }
 }
 
+/* x, y and z; w is left alone. */
+static inline void vec3_set(float *v, float x, float y, float z)
+{
+    v[0] = x;
+    v[1] = y;
+    v[2] = z;
+}
+
 /* A point: x, y, z and w = 1. */
 static inline void vec4_set_point(float *v, float x, float y, float z)
 {

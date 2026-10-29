@@ -1,10 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 #include "godhand/objField.h"
+#include "godhand/rand.h"
 extern int D_00463050;
 extern void cPlCamera_setCamUpdate(void *a0);
 extern void cCamManager_setPlCamera(void *a0, int a1);
-extern void func_0030F518(void);
 extern void func_00150710(float a, float b, float c);
 
 __attribute__((section(".text.pl00_clearMotionCam")))
@@ -25,8 +25,8 @@ void pl00_clearMotionCam(void *a0, int a1, int a2) {
 }
 
 __attribute__((section(".text.fRand0_1")))
-void fRand0_1(void) {
-    func_0030F518();
+float fRand0_1(void) {
+    return func_0030F518();
 }
 
 __attribute__((section(".text.ForwardVec3At30_147C60")))

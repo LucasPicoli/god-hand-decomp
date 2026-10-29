@@ -156,6 +156,8 @@ extern SndVoiceOut D_0076A9C0[64];
 extern SeqLink D_0076C8C0[SEQ_NUM];
 extern SeqNode D_0076CF20[SEQ_NUM];
 
+/* Take a free voice node of the given kind with the selected allocator; 0 when none is free. */
+extern SeqNode *func_0037D298(int kind);
 extern void func_0037D148(SeqNode *n);
 extern void func_0037D3B0(SeqNode *n);
 extern void func_0037D820(SeqNode *n);
