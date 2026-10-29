@@ -64,7 +64,7 @@ void cGameObj_setPosAndRefresh(cGameObj *self, cVec *pos)
 {
     cVec_copy3(&self->posA, pos);
     cVec_copy3(self->pos, &self->posA);
-    func_0017C028(self, (int)self->pos, self->rot);
+    func_0017C028(self, (int)self->pos, &self->rot);
 }
 
 /* cSnd_SeFadeOutHeldVoices: fade out (10 frames) every voice whose bit 3 is set. */

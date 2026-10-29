@@ -41,7 +41,7 @@ void cEma2_setDamage(cEma2 *self)
     else
         self->base.hp -= 1;
     if (self->base.hp <= 0) {
-        if ((self->flags & EMA2_F_SELF_HIT) || (self->base.motionFlags & GAMEOBJ_MOTION_LOOP)) {
+        if ((self->flags & EMA2_F_SELF_HIT) || (self->base.seqFlags & GAMEOBJ_MOTION_LOOP)) {
             self->base.mode = EMA2_STATE_DYING;
             self->base.phase = 1;
             self->base.step = 0;
@@ -53,7 +53,7 @@ void cEma2_setDamage(cEma2 *self)
             self->base.stepArg = 0;
         }
     } else {
-        if ((self->flags & EMA2_F_SELF_HIT) || (self->base.motionFlags & GAMEOBJ_MOTION_LOOP)) {
+        if ((self->flags & EMA2_F_SELF_HIT) || (self->base.seqFlags & GAMEOBJ_MOTION_LOOP)) {
             self->base.mode = EMA2_STATE_HIT;
             self->base.phase = 1;
             self->base.step = 0;
@@ -92,7 +92,7 @@ void func_00292F70(cEmManage *self, cVec *pos)
     if (EM_TURN_FAR_SQ < dist)
         return;
     playerPos = Getplayer()->pos;
-    turn = Turn_dest(playerPos, pos, Getplayer()->rot[1], 3.1415927f);
+    turn = Turn_dest(playerPos, pos, Getplayer()->rot.y, 3.1415927f);
     sideCopy = &side;   /* a second name for side keeps the two float copies in retail order */
     amount = turn;
     side = turn;

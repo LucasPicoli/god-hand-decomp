@@ -36,9 +36,9 @@ void func_0026B4E8(cEmCarrier *self)
     {
         cVec *from = self->base.pos;
         cVec *to = Getplayer()->pos;
-        float turn = Turn_dest(from, to, self->base.rot[1], THROW_TURN_LIMIT);
+        float turn = Turn_dest(from, to, self->base.rot.y, THROW_TURN_LIMIT);
 
-        MtxInitRotY(mtx, Adjust_theta(turn + self->base.rot[1]));
+        MtxInitRotY(mtx, Adjust_theta(turn + self->base.rot.y));
     }
     vel.x = 0;
     vel.y = 0;

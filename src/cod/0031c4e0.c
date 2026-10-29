@@ -20,7 +20,7 @@ void func_0031C4E0(void)
         }
         obj = CreateObj(0x100, 0xFFFF);
         D_007474A0.playerObj = obj;
-        vt = (cObjInitVt *)obj->vt;
+        vt = (cObjInitVt *)obj->vtable;
         vt->init((char *)obj + vt->initDelta);
         func_0031C5C0();
     } else {

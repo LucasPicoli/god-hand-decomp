@@ -2,9 +2,9 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 
-extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned int start,
+extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
 
-float rate, float blend, int flags);
+float rate, float start, int flags);
 
 extern unsigned int func_0031ED08(float seconds);
 extern int moveMotion(cObjBase *self);
@@ -34,8 +34,8 @@ void func_0014EB90(cObjBase *self)
 
     switch (self->step) {
     case 0:
-        setMotionInfo(self, self->motion, self->motionEnd, func_0031ED08(self->motionStart),
-                      self->motionRate, self->motionBlend, self->motionFlags);
+        setMotionInfo(self, self->motion, self->seqData, func_0031ED08(self->blendLeft),
+                      self->motionRate, self->motionFrame, self->motionFlags);
         self->step = self->step + 1;
     case 1:
         if (moveMotion(self) != 0) {

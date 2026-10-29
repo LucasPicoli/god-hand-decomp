@@ -22,7 +22,7 @@ __attribute__((section(".text.cGameObj_constructSubclassA")))
 cGameObj *cGameObj_constructSubclassA(cGameObj *self) {
     char *blk;
     InitFields_1B6E90(self);
-    self->vt = (cGameObjVt *)&D_00427400;
+    self->vtable = (cVtEnt *)&D_00427400;
     VU0_SQC2_VF0(self, 0x610);
     VU0_SQC2_VF0(self, 0x620);
     blk = (char *)self + 0x630;

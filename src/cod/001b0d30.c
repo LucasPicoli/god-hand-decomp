@@ -93,7 +93,7 @@ typedef struct cGiveOwner {
 /* Destructor: install the class method table, stop the sound, release both damage-give records, kill the effects and run the base destructor. */
 __attribute__((section(".text.cGiveOwner_destruct")))
 void cGiveOwner_destruct(cGiveOwner *self, int flag) {
-    self->base.vt = (cGameObjVt *)&D_004282F0;
+    self->base.vtable = (cVtEnt *)&D_004282F0;
     if (self->seHandle != 0) {
         cSnd_SeStop(D_005FEE00, self->seHandle);
         self->seHandle = 0;

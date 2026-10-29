@@ -27,7 +27,8 @@
 
 #define COBJ_FIELDS \
     CMODEL_FIELDS \
-    char unk2E4[0x10]; \
+    char unk2E4[0xC]; \
+    unsigned int unk2F0;                /* 0x2F0 MoveObj clears the low two bits after each move */ \
     unsigned char mode;                 /* 0x2F4 0x2F4..0x2F7 are the four state bytes the move code writes together */ \
     unsigned char phase;                /* 0x2F5 */ \
     unsigned char step;                 /* 0x2F6 */ \

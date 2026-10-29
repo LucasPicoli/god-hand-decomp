@@ -61,7 +61,7 @@ void ColiseumBattle_stepEnemyWaves(ColiseumBattle *self)
 /* Call setSuspend(on) on obj through its method table. */
 #define PL00_FORWARD_SUSPEND(obj, on) \
     do { \
-        pl00VtEnt *ent_ = &((pl00VtEnt *)(obj)->vt)[PL00_VT_SETSUSPEND]; \
+        pl00VtEnt *ent_ = &((pl00VtEnt *)(obj)->vtable)[PL00_VT_SETSUSPEND]; \
         ent_->pfn((char *)(obj) + ent_->delta, (on)); \
     } while (0)
 
@@ -80,7 +80,7 @@ void pl00_setSuspend(pl00 *self, int on)
         self->base.scrFlags &= ~GAMEOBJ_SCR_SUSPEND;
     if (GetJacket() != 0) {
         cGameObj *jacket = GetJacket();
-        pl00VtEnt *ent = &((pl00VtEnt *)jacket->vt)[PL00_VT_SETSUSPEND];
+        pl00VtEnt *ent = &((pl00VtEnt *)jacket->vtable)[PL00_VT_SETSUSPEND];
         int arg = on;   /* a copy of on: puts the argument move ahead of the delta load, as in retail */
 
         ent->pfn((char *)jacket + ent->delta, arg);
@@ -127,7 +127,7 @@ void cGameObj_checkWaterSplash(SplashObj *self)
     pos = self->base.pos;
     if (self->base.posA.y <= pos->y)
         return;
-    if ((self->base.motionFlags & 4) == 0 && !(self->fall < 0.0f))
+    if ((self->base.seqFlags & 4) == 0 && !(self->fall < 0.0f))
         return;
     {
         float *v = buf;

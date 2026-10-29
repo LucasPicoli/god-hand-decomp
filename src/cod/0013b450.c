@@ -31,7 +31,7 @@ void cPlCamera_followEnd(struct cPlCamera *self) {
     if (Getplayer() == 0) return;
     cVec_copy3(&self->goal, self->target->pos);
     VU0_SQC2_VF0(&f, 0x40);
-    MtxInitRotVec(f.mtx, self->target->rot, 0);
+    MtxInitRotVec(f.mtx, &self->target->rot.x, 0);
     f.mtx[12] = self->target->pos->x;
     f.mtx[13] = self->target->pos->y;
     f.mtx[14] = self->target->pos->z;
@@ -42,7 +42,7 @@ void cPlCamera_followEnd(struct cPlCamera *self) {
     self->base.eye.x = self->base.eye.x + dx * PLCAM_EASE;
     self->base.eye.y = self->base.eye.y + dy * PLCAM_EASE;
     self->base.eye.z = self->base.eye.z + dz * PLCAM_EASE;
-    MtxInitRotVec(f.mtx, self->target->rot, 0);
+    MtxInitRotVec(f.mtx, &self->target->rot.x, 0);
     ex = f.mtx[8];
     ey = f.mtx[9];
     ez = f.mtx[10];

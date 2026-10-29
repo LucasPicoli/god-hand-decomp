@@ -68,7 +68,7 @@ void func_00275DA8(cEm265 *self)
     q.z = 0.0f;
     q.w = 1.0f;
     self->sphere[0] = cDamageUnit_AddDamageCollSphere(self->take, child->mtx, (float *)&q,
-                                                      self->base.scale[2] * 0.7f);
+                                                      self->base.scale.z * 0.7f);
 
     child = cOmBase_childAt((cOmBase *)self, &q.frame, 0x13);
     q.frame = 0;
@@ -76,7 +76,7 @@ void func_00275DA8(cEm265 *self)
     q.z = 0.4f;
     q.w = 1.0f;
     self->sphere[1] = cDamageUnit_AddDamageCollSphere(self->take, child->mtx, (float *)&q,
-                                                      self->base.scale[2] * 0.8f);
+                                                      self->base.scale.z * 0.8f);
 
     child = cOmBase_childAt((cOmBase *)self, &q.frame, 0x20);
     q.frame = 0;
@@ -84,7 +84,7 @@ void func_00275DA8(cEm265 *self)
     q.z = 0.0f;
     q.w = 1.0f;
     self->sphere[2] = cDamageUnit_AddDamageCollSphere(self->take, child->mtx, (float *)&q,
-                                                      self->base.scale[2] * 0.7f);
+                                                      self->base.scale.z * 0.7f);
     self->sphere[3] = -1;
     self->sphere[4] = -1;
 }

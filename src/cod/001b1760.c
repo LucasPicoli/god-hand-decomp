@@ -20,9 +20,9 @@ void cOm60_setThrow(cOm60 *self, cVec *dir, float speed) {
     if (speed > 0.0f) {
         self->speed = speed;
     }
-    self->base.rot[1] = capVu0Atan2(dir->x, dir->z);
+    self->base.rot.y = capVu0Atan2(dir->x, dir->z);
     self->pitch = COM60_THROW_PITCH;
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags &= COM60_KEEP_NOT_HELD;
     self->hitFlag = 0;
     if (self->started == 0) {

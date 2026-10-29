@@ -92,7 +92,7 @@ void func_00305C20(cAreaFx *self)
         self->inside = 0;
         VU0_SQC2_VF0(&f.pos, 0);
         player = Getplayer();
-        vt = player->vt;
+        vt = cGameObj_vt(player);
         src = ((cVec *(*)(void *))vt->lockOn)((char *)player + vt->lockOnDelta);
         VU0_LQC2(4, src, 0);
         VU0_SQC2(4, &f, AREAFX_FRAME_OFFSET(lockOn));
