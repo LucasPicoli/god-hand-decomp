@@ -1264,7 +1264,7 @@ __attribute__((section(".text.Tramp_001F7DF8_00101E28"))) void Tramp_001F7DF8_00
  do { capVu0Length(); } while (0);
 }
 
-__attribute__((section(".text.Tramp_func_0014EA50_0010B760"))) void Tramp_func_0014EA50_0010B760(void)
+__attribute__((section(".text.Tramp_cObjBase_R0_scenario_10B760"))) void Tramp_cObjBase_R0_scenario_10B760(void)
 {
  do { cObjBase_R0_scenario(); } while (0);
 }

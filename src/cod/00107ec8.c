@@ -39,8 +39,9 @@ void InitActorWithVtable_107EC8(void *a0, void *a1) {
     InitObjectVtableAndRegister_1002C0(a0, a1);
 }
 
-__attribute__((section(".text.UpdateBossPhase_10B780")))
-void UpdateBossPhase_10B780(void *a0) {
+/* The player's mode-5 (sub-screen) handler, entry 5 of the mode table D_003BD0B8. */
+__attribute__((section(".text.StepPlayerSubscreenMode_10B780")))
+void StepPlayerSubscreenMode_10B780(void *a0) {
     int st;
     int base;
     *(float*)((char*)a0 + 0x54C) = 5.0f;

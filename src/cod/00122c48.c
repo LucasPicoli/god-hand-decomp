@@ -153,10 +153,10 @@ struct Entry_func_00122C48 { short f0; short f2; short f4; short f6; };
 struct Table_func_00122C48 { struct Entry_func_00122C48 e[1]; };
 extern struct Table_func_00122C48 D_003BD458;
 
-/* cEm00_stepByPhaseTable: per-frame tick. Clear the 0x640 and 0x698 links, update the base, force phase 0 when the
- * phase byte (0x2F5) is 2 or more, then call the method the phase table names for it. */
-__attribute__((section(".text.cEm00_stepByPhaseTable")))
-void cEm00_stepByPhaseTable(cEm00 *self)
+/* The player's mode-2 handler, entry 2 of the mode table D_003BD0B8. Clear the 0x640 and 0x698 links, update the base,
+ * force phase 0 when the phase byte (0x2F5) is 2 or more, then call the method the phase table names for it. */
+__attribute__((section(".text.StepPlayerMode2ByPhase_122C48")))
+void StepPlayerMode2ByPhase_122C48(cEm00 *self)
 {
     char *s0 = (char *)self;
     char *e;

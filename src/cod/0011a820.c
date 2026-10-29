@@ -218,9 +218,10 @@ extern PhaseTbl D_003BD328;
 extern void Obj0000_Clear_Fields_640_648_124E58(cOmPhased *self);
 extern void func_0012B928(cOmPhased *self);
 
-/* Reset the object, clamp the phase byte into the table, then run the handler for that phase. */
-__attribute__((section(".text.cOmPhased_resetAndRunPhase")))
-void cOmPhased_resetAndRunPhase(cOmPhased *self)
+/* The player's mode-1 handler, entry 1 of the mode table D_003BD0B8. Reset the object, clamp the phase byte into the
+ * table, then run the handler for that phase. */
+__attribute__((section(".text.StepPlayerMode1ByPhase_11A820")))
+void StepPlayerMode1ByPhase_11A820(cOmPhased *self)
 {
     char *s0 = (char *)self;
     char *e;
