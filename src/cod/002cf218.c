@@ -15,7 +15,7 @@ extern void cSndBgmNode_FadeOut(cSndBgmNode *, float);
 __attribute__((section(".text.cSnd_SeCheckParam")))
 int cSnd_SeCheckParam(void *self, short a, short b, int c)
 {
-    if (func_00374CB8(a, b, c) == -1)
+    if (SdeIssTblGet(a, b, c) == -1)
         return -1;
     return 0;
 }

@@ -175,8 +175,8 @@ int *GetOrInitSingleton_133900(void)
     return &D_00460D08;
 }
 
-__attribute__((section(".text.GetOrInit_D460D10_134270")))
-int *GetOrInit_D460D10_134270(void)
+__attribute__((section(".text.cCollisionSolid__tf")))
+int *cCollisionSolid__tf(void)
 {
     if (D_00460D10 == 0) {
         func_0031EEC8(&D_00460D10, &D_0041D830);
@@ -184,8 +184,8 @@ int *GetOrInit_D460D10_134270(void)
     return &D_00460D10;
 }
 
-__attribute__((section(".text.GetOrInitSingletonB_138B78")))
-int *GetOrInitSingletonB_138B78(void)
+__attribute__((section(".text.cCamera__tf")))
+int *cCamera__tf(void)
 {
     if (D_00460D20 == 0) {
         func_0031EEC8(&D_00460D20, &D_0041D8D8);

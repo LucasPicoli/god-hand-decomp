@@ -5,7 +5,7 @@ extern void cSnd_LoadStartupBanks(void *a0);
 extern int cDvd_ReadAlloc(void *a0, void *a1, void *a2, void *a3, int t0, int t1, int t2, int t3);
 extern void cDvd_CheckWaitFrame(void *a0, int a1);
 extern void FileNameFromObjId(char *buf, int id);
-extern int EnsureInitThenForward_2A9538_30EE08(void *, int, void *);
+extern int _MemoryAlloc(void *, int, void *);
 extern void func_0030D8E0(int a0);
 extern void cTaskWork_exit(int a0);
 extern int D_00747A24;
@@ -88,8 +88,8 @@ void func_0030D5C8(void) {
         }
     }
     if ((D_00747A24 & 0x10000) == 0) {
-        *(int *)D_00752C38 = EnsureInitThenForward_2A9538_30EE08((void *)0x1E6800, 0x40, D_00754200);
-        *(int *)(D_00752C38 + 4) = EnsureInitThenForward_2A9538_30EE08((void *)0x19800, 0x40, D_00754200);
+        *(int *)D_00752C38 = _MemoryAlloc((void *)0x1E6800, 0x40, D_00754200);
+        *(int *)(D_00752C38 + 4) = _MemoryAlloc((void *)0x19800, 0x40, D_00754200);
         switch (cCoreSave_getCostumeNo(&D_00569B70)) {
         case 0:
         default:

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* Sample a keyframe track at time t: the track's frames are 16-bit values scaled by a track scale and added to a track base; between two frames blend with the fraction of t, past the last frame return the last one. Contexts whose type nibble (bits 8 to 11) is 3, 4 or 5 blend with Ang_blendLate instead. */
+/* Sample a keyframe track at time t: the track's frames are 16-bit values scaled by a track scale and added to a track base; between two frames blend with the fraction of t, past the last frame return the last one. Contexts whose type nibble (bits 8 to 11) is 3, 4 or 5 blend with Ang_mult_late instead. */
 typedef struct KeyHead {
     char unk00[4];
     unsigned short num;                 /* 0x04 frames in a track */
@@ -23,7 +23,7 @@ typedef struct KeyTrack {
 #define KEY_TYPE_4      0x400
 #define KEY_TYPE_5      0x500
 
-extern float Ang_blendLate(float hi, float lo, float frac);
+extern float Ang_mult_late(float hi, float lo, float frac);
 
 __attribute__((section(".text.KeyTrack_sample")))
 float KeyTrack_sample(KeyHead *head, KeyCtx *ctx, float t)
@@ -44,6 +44,6 @@ float KeyTrack_sample(KeyHead *head, KeyCtx *ctx, float t)
     hi = (float)*(fr + idx + 1) * trk->scale + trk->base;
     type = ctx->flags & KEY_TYPE_MASK;
     if (type == KEY_TYPE_3 || type == KEY_TYPE_4 || type == KEY_TYPE_5)
-        return Ang_blendLate(hi, lo, frac);
+        return Ang_mult_late(hi, lo, frac);
     return lo * (1.0f - frac) + hi * frac;
 }

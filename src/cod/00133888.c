@@ -456,7 +456,7 @@ __attribute__((section(".text.func_00277238")))
 void *func_00277238(void)
 {
     if (D_007861E8 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_007861E8, &D_00447B70, &D_007854D8);
     }
     return &D_007861E8;
@@ -496,7 +496,7 @@ __attribute__((section(".text.func_0027AC00")))
 void *func_0027AC00(void)
 {
     if (D_00786228 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_00786228, &D_00448010, &D_007854D8);
     }
     return &D_00786228;
@@ -506,7 +506,7 @@ __attribute__((section(".text.func_0027B6F8")))
 void *func_0027B6F8(void)
 {
     if (D_00786238 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_00786238, &D_004480C8, &D_007854D8);
     }
     return &D_00786238;
@@ -536,7 +536,7 @@ __attribute__((section(".text.func_00283E58")))
 void *func_00283E58(void)
 {
     if (D_00786288 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_00786288, &D_00448930, &D_007854D8);
     }
     return &D_00786288;
@@ -546,7 +546,7 @@ __attribute__((section(".text.func_002849B8")))
 void *func_002849B8(void)
 {
     if (D_00786298 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_00786298, &D_004489E8, &D_007854D8);
     }
     return &D_00786298;
@@ -596,7 +596,7 @@ __attribute__((section(".text.cObjSimple_GetTypeInfo")))
 void *cObjSimple_GetTypeInfo(void)
 {
     if (D_007862E8 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_007862E8, &D_0044B598, &D_007854F8);
     }
     return &D_007862E8;
@@ -606,7 +606,7 @@ __attribute__((section(".text.func_002B8928")))
 void *func_002B8928(void)
 {
     if (D_007862F8 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_007862F8, &D_0044B8B0, &D_007854F8);
     }
     return &D_007862F8;
@@ -926,7 +926,7 @@ __attribute__((section(".text.func_00318358")))
 void *func_00318358(void)
 {
     if (D_007865F8 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_007865F8, &D_00450C08, &D_007854F8);
     }
     return &D_007865F8;
@@ -936,7 +936,7 @@ __attribute__((section(".text.func_003183C8")))
 void *func_003183C8(void)
 {
     if (D_00786608 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_00786608, &D_00450C18, &D_007854F8);
     }
     return &D_00786608;
@@ -946,7 +946,7 @@ __attribute__((section(".text.func_00319FC8")))
 void *func_00319FC8(void)
 {
     if (D_00786628 == 0) {
-        func_0014E8D8();
+        cObj__tf();
         SetField_0_4_8_31EEA8(&D_00786628, &D_00450D58, &D_007856E8);
     }
     return &D_00786628;

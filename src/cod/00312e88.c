@@ -19,8 +19,8 @@ typedef struct cObjVec2 {
 #define OBJ_ALIGN  0x10
 
 extern cVtEnt D_00450CE8[];
-extern void *EnsureInitThenForward_2A9538_30EE08(int a0, int a1, int a2);
-extern cObj *func_0014E598(cObj *self);
+extern void *_MemoryAlloc(int a0, int a1, int a2);
+extern cObj *cObj__ctor(cObj *self);
 
 /* Allocate one from the D_00754C20 arena and construct it; 0 when the arena
  * is full. */
@@ -29,12 +29,12 @@ cObjVec2 *func_00312E88(void)
 {
     cObjVec2 *self;
 
-    self = EnsureInitThenForward_2A9538_30EE08(sizeof(cObjVec2), OBJ_ALIGN, (int)&D_00754C20);
+    self = _MemoryAlloc(sizeof(cObjVec2), OBJ_ALIGN, (int)&D_00754C20);
     if (self == 0) {
         return 0;
     }
     func_003A52F0(self, 0, sizeof(cObjVec2));
-    func_0014E598(&self->base);
+    cObj__ctor(&self->base);
     self->base.vtable = D_00450CE8;
     VU0_SQC2_VF0_AT(self->unk310);
     self->unk32C = 0;

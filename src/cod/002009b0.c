@@ -31,7 +31,7 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_00375600")))
-void func_00375600(void *dst) {
+__attribute__((section(".text.SdeSystemVolGet")))
+void SdeSystemVolGet(void *dst) {
     *(T16 *)dst = *(T16 *)D_0076A7B8;
 }

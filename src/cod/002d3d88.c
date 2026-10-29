@@ -31,7 +31,7 @@ typedef struct {
 } MovieImgHdr;
 
 extern char D_0044D188[];
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *region);
+extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A5DA0(void *dst, void *src, int n);
 extern int mwPlyCalcWorkCprmSfd(void *cp);
 extern void func_003B0640(void *start, void *end);
@@ -62,7 +62,7 @@ int func_002D3D88(cMovieTrack *p)
     cp[9] = p->f30;
     cp[7] = mwPlyCalcWorkCprmSfd(cp);
     cp[6] = 0;
-    p->work = EnsureInitThenForward_2A9538_30EE08(0x90, 0x80, D_003C3CF0);
+    p->work = _MemoryAlloc(0x90, 0x80, D_003C3CF0);
     if (p->work == 0) {
         ResHolder_release(p);
         return 0;
@@ -73,7 +73,7 @@ int func_002D3D88(cMovieTrack *p)
         int size = ((p->w * 6 / 16 + 38) / 16) << 8;
 
         for (i = 0; i < 2; i++) {
-            p->stm[i] = EnsureInitThenForward_2A9538_30EE08(size, 0x80, D_003C3CF0);
+            p->stm[i] = _MemoryAlloc(size, 0x80, D_003C3CF0);
             if (p->stm[i] == 0) {
                 ResHolder_release(p);
                 return 0;
@@ -88,7 +88,7 @@ int func_002D3D88(cMovieTrack *p)
         MovieImg *im;
         int a, b, c;
 
-        q = EnsureInitThenForward_2A9538_30EE08(p->w * p->h * 4 + 0x40, 0x80, D_003C3CF0);
+        q = _MemoryAlloc(p->w * p->h * 4 + 0x40, 0x80, D_003C3CF0);
         p->img = q;
         func_003A5DA0(q, D_0044D188, 4);
         im = &q->img;
@@ -114,7 +114,7 @@ int func_002D3D88(cMovieTrack *p)
         im->tex0 = ((long)a << 14) | ((long)b << 26) | ((long)c << 30) | (1L << 34);
         im->f2C = 0;
     } else if ((p->flags & MOVIE_TRACK_IMAGE) || p->f30 == 1) {
-        p->img = EnsureInitThenForward_2A9538_30EE08(p->w * p->h * 4, 0x80, D_003C3CF0);
+        p->img = _MemoryAlloc(p->w * p->h * 4, 0x80, D_003C3CF0);
     } else {
         p->img = 0;
     }
@@ -129,7 +129,7 @@ int func_002D3D88(cMovieTrack *p)
     if (p->flags < 0) {
         Obj3260_Tramp_00337C00_D1F0();
         n = func_003481D8();
-        fx = EnsureInitThenForward_2A9538_30EE08(n, 0x80, D_003C3CF0);
+        fx = _MemoryAlloc(n, 0x80, D_003C3CF0);
         p->fxbuf = fx;
         if (fx == 0)
             return 1;

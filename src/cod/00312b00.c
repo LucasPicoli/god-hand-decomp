@@ -13,7 +13,7 @@ extern int cDataManager_useDataAddress(cDataManager *self, int kind);
 extern int cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep);
 extern void delObj(void *a0);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int n);
-extern int GetField_2B1_14B638(char *);
+extern int cModel_getMeshNum(char *);
 
 extern unsigned char D_003C3D18;
 
@@ -101,7 +101,7 @@ char *func_00312B00(int id, int dataId)
     }
     if (obj) {
         /* i steps twice per pass, so only the even meshes get the flag. Retail does the same. */
-        for (i = 0; i < GetField_2B1_14B638(obj); i++)
+        for (i = 0; i < cModel_getMeshNum(obj); i++)
             *(int *)((char *)cModel_getMeshPtr((cModel *)obj, i++) + 0x380) |= 0x2000;
         *(int *)(obj + 0x250) |= 0x10000;
     }

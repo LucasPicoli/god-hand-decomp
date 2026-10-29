@@ -4,7 +4,7 @@
 
 extern char D_00580D40[];
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
+extern void *_MemoryAlloc(int size, int align, int a2);
 
 /* cDvd_cancelAll: drop the running job, then give every queued job back. */
 
@@ -92,7 +92,7 @@ int cDvd_ReadAllocSized(cDvd *self, char *name, void **outBuf, int a3, int id, u
     job->arg6C = arg6C;
     job->arg70 = arg70;
     job->buf = 0;
-    buf = EnsureInitThenForward_2A9538_30EE08(job->blockNum << 11, 0x80, a3);
+    buf = _MemoryAlloc(job->blockNum << 11, 0x80, a3);
     job->buf = buf;
     if (buf == 0) {
         func_00201228(self, job);

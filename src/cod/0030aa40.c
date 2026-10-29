@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void sceVu0UnitMatrix(void *m);
-extern void func_0030A2E0(void *a, void *b, void *c);
+extern void sceVu0MulMatrix(void *a, void *b, void *c);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -34,5 +34,5 @@ void func_0030AA40(void *arg, float p1, float p2, float p3, float p4, float p5,
     M[12] = p4;
     M[13] = p5;
     M[14] = zo;
-    func_0030A2E0(s0, M, s0);
+    sceVu0MulMatrix(s0, M, s0);
 }

@@ -164,6 +164,6 @@ extern void func_00378020(SeqTimer *t);
 extern void func_0037D558(SeqNode *self);
 extern void func_0037C720(SeqNode *self);
 extern void func_003780F8(unsigned short angle, float *l, float *r);
-extern int Obj0000_Get_D_0076A7A4_3756F0(void);   /* sound output mode: 0 mono, 1 stereo, 2 surround */
+extern int SdeSystemOutModeGet(void);   /* sound output mode: 0 mono, 1 stereo, 2 surround */
 
 #endif /* GODHAND_SEQNODE_H */

@@ -5,7 +5,7 @@ extern char D_005FEE00[];
 __attribute__((section(".text.InitAllocBuffer_14FE08")))
 void InitAllocBuffer_14FE08(unsigned char *a0, int a1) {
     int n = a1 << 4;
-    void *p = EnsureInitThenForward_2A9538_30EE08(n, 0x80, &D_00754200);
+    void *p = _MemoryAlloc(n, 0x80, &D_00754200);
     *(void **)(a0 + 0x0) = p;
     func_003A52F0(p, 0, n);
     *(int *)(a0 + 0x20) = a1;

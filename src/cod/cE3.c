@@ -5,7 +5,7 @@ extern cE3World D_007474A0;
 extern cE3Sys D_00747A2C;
 extern char D_0042C7A0[];
 extern char D_0042C7B8[];
-extern void func_002E0D60(int a, int b, int c, int d, int e, int f, char *format, ...);
+extern void printf_2E0D60(int a, int b, int c, int d, int e, int f, char *format, ...);
 
 /* Shows the E3 time limit (cursor minutes, 0 = unlimited) and moves it with the pad, clamped to 0..CE3_MENU_LAST. */
 __attribute__((section(".text.cE3_menu")))
@@ -21,9 +21,9 @@ void cE3_menu(cE3 *self)
         return;
     }
     if (self->cursor > 0) {
-        func_002E0D60(10, 16, 50, 50, 0, 0, D_0042C7A0, self->cursor);
+        printf_2E0D60(10, 16, 50, 50, 0, 0, D_0042C7A0, self->cursor);
     } else {
-        func_002E0D60(10, 16, 50, 50, 0, 0, D_0042C7B8);
+        printf_2E0D60(10, 16, 50, 50, 0, 0, D_0042C7B8);
     }
     if (D_007474A0.edge & CE3_PAD_DOWN) {
         self->cursor++;

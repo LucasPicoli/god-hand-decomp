@@ -10,7 +10,7 @@ extern unsigned int D_00747A34;
 /* Aim one IK link: put the part on the model's matrix, pull its position onto `target`, then rebuild its local matrix from the parent's inverse. */
 
 
-extern void func_0030A2E0(float *dst, float *a, float *b);              /* dst = a * b */
+extern void sceVu0MulMatrix(float *dst, float *a, float *b);              /* dst = a * b */
 
 
 
@@ -22,7 +22,7 @@ void cModel_aimIkPart(cOmBase *model, cParts *part, cVec *target) {
     float *mtx = part->mtx;
     cVec *pos;
     cVec *copy;
-    func_0030A2E0(mtx, model->mtx, part->mtxLocal);
+    sceVu0MulMatrix(mtx, model->mtx, part->mtxLocal);
     capVu0ApplyMatrixXYZ(part->pos, mtx, child->anchor);
     pos = part->pos;
     copy = &frame[4];
@@ -35,7 +35,7 @@ void cModel_aimIkPart(cOmBase *model, cParts *part, cVec *target) {
         pos->z = frame[4].z;
     }
     sceVu0InversMatrix((float *)frame, part->parent->mtx);
-    func_0030A2E0(part->mtxLocal, (float *)frame, mtx);
+    sceVu0MulMatrix(part->mtxLocal, (float *)frame, mtx);
     func_001501D0(child, model->objFlags);
 }
 

@@ -12,7 +12,7 @@ extern unsigned short D_003BD70C;
 extern void cIDBase_resetAnim(void *id);
 extern unsigned int D_007474A8;
 extern cCollisionSolidObj *cCollisionSolid(cCollisionSolidObj *self);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int heap);
+extern void *_MemoryAlloc(int size, int align, int heap);
 extern int cMessCommon_getCodeSize(int code);
 
 /* Update every open message window unless the lock bit is set; a window of kind 7 is deleted. */
@@ -200,7 +200,7 @@ void FileLoader_readWholeFile(FileLoader *self) {
     mode.spindlctrl = 1;
     func_00398B90(&file, D_0044C0B8);
     sectors = (file.size + CD_SECTOR_MASK) >> CD_SECTOR_SHIFT;
-    self->buf = EnsureInitThenForward_2A9538_30EE08(sectors << CD_SECTOR_SHIFT, CD_BUF_ALIGN, D_003C3CF0);
+    self->buf = _MemoryAlloc(sectors << CD_SECTOR_SHIFT, CD_BUF_ALIGN, D_003C3CF0);
     sceCdRead(file.lsn, sectors, self->buf, &mode);
     func_00398DA0(0);
 }

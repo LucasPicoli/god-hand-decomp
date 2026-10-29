@@ -2,7 +2,7 @@
 
 /* ee-2.9-991111 matched TU. */
 
-extern int IsTargetVisible_14B470();
+extern int cModel_isClip();
 
 /* 1 when the object is cut off by the screen frustum or lies behind the camera,
  * else whether it is visible at all. */
@@ -18,5 +18,5 @@ int cGameObj_isClip(cGameObj *self) {
     if (t != 0) {
         return 1;
     }
-    return IsTargetVisible_14B470(self) != 0;
+    return cModel_isClip(self) != 0;
 }

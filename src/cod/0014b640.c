@@ -25,7 +25,7 @@ extern float capVu0Atan2(float y, float x);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern int irand(void);
 extern char D_00569B70[];
-extern int GetField_2B1_14B638(cModel *self);
+extern int cModel_getMeshNum(cModel *self);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern void Box_growToContain(cBox *dst, cBox *src);
 extern void cGameObjSortEnt_pushHeap(cGameObjSortEnt *first, int holeIndex, int topIndex, long val, void *tag);
@@ -279,7 +279,7 @@ charge:
  * node's own box; the first mesh sets the box. */
 __attribute__((section(".text.cModel_addMesh")))
 void cModel_addMesh(cModel *self, cModelNode *node, cBox *box) {
-    int num = GetField_2B1_14B638(self);
+    int num = cModel_getMeshNum(self);
     if (num == 0) {
         self->meshHead = node;
     } else {

@@ -80,8 +80,8 @@ static __inline__ int lookupWithFallback(unsigned char no, unsigned short kind, 
 /* Find an event object from a packed id (kind in the high half, number in
  * the low byte). Kinds 0x605 and 0x3D6 fall back to their alternate kind
  * when the first lookup finds nothing. Returns 0 for a zero kind. */
-__attribute__((section(".text.cEvent_getObjPtrByPackedId")))
-int cEvent_getObjPtrByPackedId(unsigned int id)
+__attribute__((section(".text.getEventObjPtr")))
+int getEventObjPtr(unsigned int id)
 {
     unsigned int kind = id >> 16;
 

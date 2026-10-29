@@ -23,5 +23,5 @@ void func_0031D2F8(char *model, int idx)
     func_00148420(state, a, b, 0x1001000, 1, &box, 0);
     func_001485A0(state, a, b, 0x1001000, 1, &box, *(int *)(model + 0x288));
     cModel_addMesh(model, state, &box);
-    func_001F8A60(&box, 2);
+    cBoundingBox__dtor(&box, 2);
 }

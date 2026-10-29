@@ -2,7 +2,7 @@
 
 extern int D_00747A80;
 extern int cGameObj_isClip();
-extern int IsTargetVisible_14B470();
+extern int cModel_isClip();
 
 __attribute__((section(".text.func_00279F00")))
 int func_00279F00(void *a0) {
@@ -23,7 +23,7 @@ int func_0027A2B8(int a0) {
     if (D_00747A80 & 0x40000000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 /* clone */
@@ -35,7 +35,7 @@ int func_0027ADA8(int a0) {
     if (D_00747A80 & 0x40000000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 __attribute__((section(".text.func_0027D0E8")))
@@ -87,7 +87,7 @@ int func_00283620(int a0) {
     if (D_00747A80 & 0x40000000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 /* clone */
@@ -99,7 +99,7 @@ int func_00284000(int a0) {
     if (D_00747A80 & 0x40000000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 __attribute__((section(".text.func_00288D40")))

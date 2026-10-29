@@ -1,10 +1,10 @@
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern void func_0031EEC8(void *a, void *b);
 
-/* GetOrInit_460D00_1337A0 — 2-arg variant (no pre-init call). */
+/* cCollisionScrollSolid__tf — 2-arg variant (no pre-init call). */
 extern int D_00460D00, D_0041D5D0;
-__attribute__((section(".text.GetOrInit_460D00_1337A0")))
-int *GetOrInit_460D00_1337A0(void) {
+__attribute__((section(".text.cCollisionScrollSolid__tf")))
+int *cCollisionScrollSolid__tf(void) {
     if (D_00460D00 == 0) {
         func_0031EEC8(&D_00460D00, &D_0041D5D0);
     }
@@ -23,10 +23,10 @@ int *GetSingleton785868_171AB8(void) {
     return &D_00785868;
 }
 
-/* GetSingleton786178_1D0C28 — same shape as GetSingleton785868_171AB8 (shared init + arg2). */
+/* cOmWeapon__tf — same shape as GetSingleton785868_171AB8 (shared init + arg2). */
 extern int D_00786178, D_0042AB48;
-__attribute__((section(".text.GetSingleton786178_1D0C28")))
-int *GetSingleton786178_1D0C28(void) {
+__attribute__((section(".text.cOmWeapon__tf")))
+int *cOmWeapon__tf(void) {
     if (D_00786178 == 0) {
         GetOrInitGlobal785878_1B8058();
         SetField_0_4_8_31EEA8(&D_00786178, &D_0042AB48, &D_00785878);

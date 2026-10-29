@@ -3,7 +3,7 @@
 extern int D_0041D220[];
 extern int D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
-extern void InitObjectVtableAndRegister_1002C0(void *a0, void *a1);
+extern void cPlBase__dtor(void *a0, void *a1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -36,7 +36,7 @@ __attribute__((section(".text.InitActorWithVtable_107EC8")))
 void InitActorWithVtable_107EC8(void *a0, void *a1) {
     *(int **)((char*)a0+0x214) = D_0041D220;
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
-    InitObjectVtableAndRegister_1002C0(a0, a1);
+    cPlBase__dtor(a0, a1);
 }
 
 /* The player's mode-5 (sub-screen) handler, entry 5 of the mode table D_003BD0B8. */

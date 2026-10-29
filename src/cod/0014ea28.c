@@ -24,19 +24,19 @@ extern void func_0015EAC8(char *work);
 extern void func_002D5890(int a0, int a1);
 extern void func_002D5440(int a0, int a1);
 
-extern int cObj_releaseActorData(struct cObjBase *self);
+extern int cObj__dtor(struct cObjBase *self);
 /* The cObjBase part of the destructor: put this class's vtable back, then run
  * the cObj destructor. */
-__attribute__((section(".text.func_0014EA28")))
-int func_0014EA28(struct cObjBase *self) {
+__attribute__((section(".text.cObjBase__dtor")))
+int cObjBase__dtor(struct cObjBase *self) {
     self->vtable = (cVtEnt *)&D_0041EBE8;
-    return cObj_releaseActorData(self);
+    return cObj__dtor(self);
 }
 
-__attribute__((section(".text.func_002A73C8")))
-int func_002A73C8(int a0) {
+__attribute__((section(".text.cGameObj__dtor")))
+int cGameObj__dtor(int a0) {
     *(int*)((char*)a0+0x214) = (int)D_0044AE28;
-    return func_0014EA28(a0);
+    return cObjBase__dtor(a0);
 }
 
 __attribute__((section(".text.func_00201228")))

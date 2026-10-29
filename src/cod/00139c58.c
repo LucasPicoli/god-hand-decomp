@@ -1,8 +1,8 @@
 extern int D_0041D8F8[];
 extern int D_0041DCC8[];
 
-__attribute__((section(".text.SetField35CAndForward_139C58")))
-void SetField35CAndForward_139C58(int *a0, int a1) {
+__attribute__((section(".text.cPlCamera__dtor")))
+void cPlCamera__dtor(int *a0, int a1) {
     *(int **)((char *)a0 + 0x35C) = D_0041D8F8;
     if (a1 & 1) {
         __builtin_delete();

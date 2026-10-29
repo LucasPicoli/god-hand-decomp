@@ -13,7 +13,7 @@ extern void ModuleStart_refCounted(void);
 extern void Obj3290_SetGlobal_D003D1400(int a0);
 extern void func_0032BAF0(const char *s);
 extern void Obj3290_Tramp_003313F0_9278(int a0);
-extern int Obj0000_Get_D_0076A7A4_3756F0(void);
+extern int SdeSystemOutModeGet(void);
 extern void func_0032BA30(int a0);
 extern char D_0044CDE0[];
 extern char D_0044CE00[];
@@ -74,7 +74,7 @@ void func_002CA220(void)
     Obj3290_SetGlobal_D003D1400(1);
     func_0032BAF0(D_0044CE20);
     Obj3290_Tramp_003313F0_9278(1);
-    if (Obj0000_Get_D_0076A7A4_3756F0() == 0)
+    if (SdeSystemOutModeGet() == 0)
         func_0032BA30(1);
 }
 

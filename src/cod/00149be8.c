@@ -9,7 +9,7 @@ extern char D_00754C80[];
 extern void func_0031A650(void *queue, int kind, int id, void *start, void *end);
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern void func_0031A600(void *queue, int kind, int id, void *start);
-extern int GetField_2B1_14B638(cModel *self);
+extern int cModel_getMeshNum(cModel *self);
 extern void func_00155D60(cModelNode *node, int value, int slot);
 
 /* Part number n of the model's part list, or 0 when the list is shorter. */
@@ -101,7 +101,7 @@ void cModel_queuePacket(cModel *self, short id) {
 /* Set value in both slots of every mesh node, by index. */
 __attribute__((section(".text.cObj_setMeshValue")))
 void cObj_setMeshValue(cModel *self, int value) {
-    int num = GetField_2B1_14B638(self);
+    int num = cModel_getMeshNum(self);
     int i = 0;
     if (num > 0) {
         do {

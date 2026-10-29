@@ -1,8 +1,8 @@
 extern int D_0076A7A4;
 extern void MtxMultiply(int a, int b, void *buf);
 
-__attribute__((section(".text.SetGlobalToggle_375700")))
-void SetGlobalToggle_375700(int a0) {
+__attribute__((section(".text.SdeSystemOutModeSet")))
+void SdeSystemOutModeSet(int a0) {
     if (a0 == 0) {
         func_0032BA30(1);
     } else {

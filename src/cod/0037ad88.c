@@ -21,9 +21,9 @@ typedef struct MenuSliderCtl {
 } MenuSliderCtl;
 
 extern MenuSlider D_003F2638[];
-extern void func_00375600(char *snd);
-extern void func_00375630(char *snd);
-extern void func_00375748(int se);
+extern void SdeSystemVolGet(char *snd);
+extern void SdeSystemVolSet(char *snd);
+extern void SdePlayVolReset(int se);
 
 __attribute__((section(".text.func_0037AD88")))
 int func_0037AD88(MenuSliderCtl *m)
@@ -32,7 +32,7 @@ int func_0037AD88(MenuSliderCtl *m)
     short v, old, step;
     int pad;
 
-    func_00375600(m->snd);
+    SdeSystemVolGet(m->snd);
     v = *s->val;
     old = v;
     if (m->flags & 8)
@@ -61,8 +61,8 @@ int func_0037AD88(MenuSliderCtl *m)
         v = s->min;
     if (v != old) {
         *s->val = v;
-        func_00375630(m->snd);
-        func_00375748(7);
+        SdeSystemVolSet(m->snd);
+        SdePlayVolReset(7);
         return 1;
     }
     return 0;

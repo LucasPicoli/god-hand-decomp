@@ -48,7 +48,7 @@ __attribute__((section(".text.AllocSlotEntry_1FFC60")))
 int AllocSlotEntry_1FFC60(int a0, int a1) {
     int s1 = func_00323618(a1, 0);
     int s0 = func_003243C8(s1);
-    int s2 = EnsureInitThenForward_2A9538_30EE08(s0 << 11, 0x40, &D_00754200);
+    int s2 = _MemoryAlloc(s0 << 11, 0x40, &D_00754200);
     func_00323E80(s1, s0, s2);
     while (func_003244C8(s1) != 3) {
         sceGsSyncV(0);

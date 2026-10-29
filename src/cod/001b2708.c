@@ -12,7 +12,7 @@ extern int cModel_setMeshDisplay(void *model, char *name, int on);
 extern char D_0044A9D0[];
 extern char D_0044A9D8[];
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
-extern int GetField_2B1_14B638(cModel *self);
+extern int cModel_getMeshNum(cModel *self);
 extern void func_00155D60(cModelNode *node, int value, int slot);
 extern void cEmSetParam_setEm(cEmSetParam *param, int entry);
 extern void cEmWrap_StartAction(void *wrap);
@@ -159,9 +159,9 @@ void CostumeObj_applyTailPartMeshes(CostumeObj *self, int unused, int costume)
 
 
 /* Set value in both slots of every mesh node, by index. */
-__attribute__((section(".text.cModel_setNodeValues")))
-void cModel_setNodeValues(cModel *self, int value) {
-    int num = GetField_2B1_14B638(self);
+__attribute__((section(".text.objScroll_Set_test")))
+void objScroll_Set_test(cModel *self, int value) {
+    int num = cModel_getMeshNum(self);
     int i = 0;
     if (num > 0) {
         do {

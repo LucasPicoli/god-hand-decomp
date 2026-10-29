@@ -2,7 +2,7 @@
  *
  * cE3 is a small state object: a state byte at 0x00 (0 = menu, 1 = demo
  * run), a menu cursor at 0x02 and the ending kind at 0x03. The menu draws
- * its two entries through func_002E0D60 and moves the cursor with the pad
+ * its two entries through printf_2E0D60 and moves the cursor with the pad
  * edges in D_007474A0 (0x2000 down, 0x8000 up). setEnding switches the
  * game into the ending and records which one.
  *

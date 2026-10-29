@@ -12,7 +12,7 @@ extern char D_0041EA90[];
 extern void cHeap_free(int, void *);
 extern void cModel_removeMesh(cModel *self);
 extern void func_00149E60(cModel *self);
-extern void func_001F8A60(cBox *box, int flags);
+extern void cBoundingBox__dtor(cBox *box, int flags);
 extern void func_00150048(cModel *self, int flags);
 extern void func_001B6FB8(cOmSized *self);
 extern void cOmDoor_setObjCollisionCenterOnly(cOmSized *self);
@@ -35,7 +35,7 @@ void cModel_destroy(cModel *self, int flags) {
     }
     cModel_removeMesh(self);
     func_00149E60(self);
-    func_001F8A60(&self->box, 2);
+    cBoundingBox__dtor(&self->box, 2);
     func_00150048(self, flags);
 }
 

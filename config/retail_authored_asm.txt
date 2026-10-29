@@ -165,9 +165,9 @@ falsifier:
 #   The rename LANDED 2026-09-01 and the ELF still equals retail:
 #   `Tramp_MMI_INVERSE_RT_MATRIX_30A3F8` -> `sceVu0InversMatrix` (SDK 0x148) and
 #   `Tramp_MMI_COPY3Q_VADD_30A508` -> `sceVu0TransMatrix` (SDK 0x280). Two
-#   unmatched neighbours also name themselves and are NOT yet renamed:
-#   `func_0030A538` is `sceVu0CopyVector` and `func_0030A548` is
-#   `sceVu0CopyMatrix`.
+#   unmatched neighbours also name themselves: 0x30A538 is `sceVu0CopyVector`
+#   (now named from the retail export table), and `func_0030A548` is
+#   `sceVu0CopyMatrix` (NOT yet renamed).
 #
 #   CONSEQUENCE FOR THE `mmi.h` RETIREMENT. There is no `.s` home for these
 #   three. Retiring `mmi.h` before a real-C match lands costs 232 B / 3 matched

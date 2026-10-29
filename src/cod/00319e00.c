@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int GetField_2B1_14B638(void *a0);
+extern int cModel_getMeshNum(void *a0);
 extern void *cModel_getMeshPtr(void *a0, int a1);
 
 /* sn-2.95.3-136 matched TU. */
@@ -16,7 +16,7 @@ void func_00319E00(void *a0) {
 
     unsigned long v;
 
-    n = GetField_2B1_14B638(a0);
+    n = cModel_getMeshNum(a0);
     v = *(unsigned int *)(*(int *)(s3 + 0x320) + 0x3C);
     switch ((unsigned char)v & 0xF) {
     case 2:

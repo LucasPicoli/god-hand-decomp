@@ -5,12 +5,12 @@
 
 extern char D_0041EBE8[];
 extern char D_0041EB80[];
-extern void *func_0014E598(void *self);
+extern void *cObj__ctor(void *self);
 extern void func_003A52F0(void *dst, int val, int n);
 extern int D_007854F8;
 extern int D_0041EC58;
 extern int D_007856E8;
-extern void func_0014E8D8(void);
+extern void cObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern int D_00754230;
 extern void func_002A94F0(void *a0);
@@ -36,7 +36,7 @@ extern int D_00574380;
 extern int D_00462FC0;
 extern void func_001FE370(int *a0, int a1);
 extern void cCollisionSolidManage_ReleaseUnit(int *a0, int a1);
-extern void func_002A73C8(int a0, int a1);
+extern void cGameObj__dtor(int a0, int a1);
 extern void *D_005CAFF0;
 extern void func_00138CA8(void *a0, void *a1, void *a2, int a3);
 
@@ -72,7 +72,7 @@ void func_002D5080(long long *a0, int *a1, int *a2) {
  * literal because retail forms them off self with no address register. */
 __attribute__((section(".text.cObjBase")))
 struct cObjBase *cObjBase(struct cObjBase *self) {
-    func_0014E598(self);
+    cObj__ctor(self);
     self->vtable = (cVtEnt *)D_0041EBE8;
     VU0_SQC2_VF0(self, 0x310);
     VU0_SQC2_VF0(self, 0x320);
@@ -96,11 +96,11 @@ struct cObjBase *cObjBase(struct cObjBase *self) {
     return self;
 }
 
-__attribute__((section(".text.func_0014FD20")))
-void *func_0014FD20(void)
+__attribute__((section(".text.cObjBase__tf")))
+void *cObjBase__tf(void)
 {
     if (D_007854F8 == 0) {
-        func_0014E8D8();
+        cObj__tf();
         SetField_0_4_8_31EEA8(&D_007854F8, &D_0041EC58, &D_007856E8);
     }
     return &D_007854F8;
@@ -142,11 +142,11 @@ void *func_001BD528(void)
     return &D_007859B8;
 }
 
-__attribute__((section(".text.func_002A9300")))
-void *func_002A9300(void)
+__attribute__((section(".text.cGameObj__tf")))
+void *cGameObj__tf(void)
 {
     if (D_007854D8 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_007854D8, &D_0044AEC8, &D_007854F8);
     }
     return &D_007854D8;
@@ -247,7 +247,7 @@ void func_0028EB88(int a0, int a1) {
     *(int **)((char *)a0 + 0x214) = &D_0044A660;
     func_001FE370(&D_00574380, a0);
     cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
-    func_002A73C8(a0, a1);
+    cGameObj__dtor(a0, a1);
 }
 
 __attribute__((section(".text.func_002B4768")))

@@ -62,8 +62,8 @@ int func_003BA800(int *a0) {
 }
 
 /* Construct the actor: run the cModel constructor and set this class's vtable. */
-__attribute__((section(".text.func_0014E598")))
-cObj *func_0014E598(cObj *self) {
+__attribute__((section(".text.cObj__ctor")))
+cObj *cObj__ctor(cObj *self) {
     func_001495A0(self);
     self->vtable = (cVtEnt *)&D_0041EAF0;
     return self;

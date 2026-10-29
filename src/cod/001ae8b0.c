@@ -14,7 +14,7 @@ extern char D_00428928[];
 extern char D_00428C20[];
 extern int D_00747A80;
 extern int cGameObj_isClip();
-extern int IsTargetVisible_14B470();
+extern int cModel_isClip();
 
 __attribute__((section(".text.func_001AE8B0")))
 void func_001AE8B0(void *a0, void *a1) {
@@ -129,7 +129,7 @@ int func_00276940(int a0) {
     if (D_00747A80 & 0x40000000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 __attribute__((section(".text.func_00277F18")))

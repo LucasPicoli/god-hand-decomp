@@ -35,7 +35,7 @@ extern void func_0031D3D0(SetData *set, int mesh, int idx, unsigned char hide);
 extern int func_0031D658(char *grp, unsigned char hide);
 extern char *GetActiveState_149310(void);
 extern BoundingBox *cBoundingBox(BoundingBox *box);   /* C++ ctor, returns this */
-extern void func_001F8A60(BoundingBox *box, int mode);
+extern void cBoundingBox__dtor(BoundingBox *box, int mode);
 extern int func_00148420(char *state, int a, int b, int flags, int n, BoundingBox *box, int arg);
 extern int func_001485A0(char *state, int a, int b, int flags, int n, BoundingBox *box, int arg);
 extern void cModel_addMesh(char *model, char *mesh, BoundingBox *box);

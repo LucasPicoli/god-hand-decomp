@@ -15,7 +15,7 @@ extern void func_0026B240(void *a0, int a1, int a2, int a3);
 extern unsigned char D_00747A50[];
 extern void MtxInitCoord(float *mtx, cVec *pos, cVec *rot, cVec *scale, int order);
 extern void MtxInverse(float *dst, float *src);
-extern void func_0030A2E0(float *dst, float *a, float *b);
+extern void sceVu0MulMatrix(float *dst, float *a, float *b);
 extern void func_00156D70(cParts *dst, cParts *src, float *m, float blend);
 extern void func_001501D0(cParts *part, int flags);
 extern void Adjust_theta_vec(cVec *v);
@@ -162,7 +162,7 @@ void cModel_calcWorldParts(cModel *self) {
                 if (((flags >> 4) & 1) == 0) {
                     if (self->blend > 0.0f && (flags & CPARTS_NO_BLEND) == 0) {
                         MtxInverse(m, part->parent->mtx);
-                        func_0030A2E0(m, m, part->mtx);
+                        sceVu0MulMatrix(m, m, part->mtx);
                         func_00156D70(part, part, part->mtxBind, self->blend);
                     }
                     func_001501D0(part, self->objFlags);

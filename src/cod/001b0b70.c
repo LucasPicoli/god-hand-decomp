@@ -81,7 +81,7 @@ void ResetAnimState_1F5EF8(unsigned char *this) {
 /* AllocZeroedBlock_313E50: 28 insns, 112 B — sq-prologue, no VU0, no jumptable. */
 extern int D_00747A34;
 extern int D_00754C10;
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *region);
+extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A52F0(void *p, int v, int size);
 extern int func_0018B290(void *p);
 
@@ -91,7 +91,7 @@ int AllocZeroedBlock_313E50(void) {
     if (D_00747A34 & 0x10000) {
         return 0;
     }
-    p = EnsureInitThenForward_2A9538_30EE08(0x9C0, 0x10, &D_00754C10);
+    p = _MemoryAlloc(0x9C0, 0x10, &D_00754C10);
     if (p == (void *)0) {
         return 0;
     }

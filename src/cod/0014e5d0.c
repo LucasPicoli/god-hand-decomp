@@ -63,10 +63,10 @@ void cTaskWork_step(cTaskWork *self)
     }
 }
 
-/* cObj_releaseActorData: the cObj part of the destructor. Put this class's vtable back, release the actor's data
+/* cObj__dtor: the cObj part of the destructor. Put this class's vtable back, release the actor's data
  * kind from whichever manager holds it, then run the cModel part. */
-__attribute__((section(".text.cObj_releaseActorData")))
-int cObj_releaseActorData(cObjBase *self, int flag)
+__attribute__((section(".text.cObj__dtor")))
+int cObj__dtor(cObjBase *self, int flag)
 {
     self->vtable = (cVtEnt *)D_0041EAF0;
     if (self->actorId != 0) {

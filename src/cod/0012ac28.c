@@ -7,7 +7,7 @@ extern void ReleaseObj(int);
 extern int D_00785878;
 extern int D_00428AD0;
 extern int D_007854D8;
-extern void func_002A9300(void);
+extern void cGameObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 
 #include "godhand/vu0.h"
@@ -66,7 +66,7 @@ void cOmBase_dieCommon(int a0) {
 __attribute__((section(".text.GetOrInitGlobal785878_1B8058")))
 void *GetOrInitGlobal785878_1B8058(void) {
     if (D_00785878 == 0) {
-        func_002A9300();
+        cGameObj__tf();
         SetField_0_4_8_31EEA8(&D_00785878, &D_00428AD0, &D_007854D8);
     }
     return &D_00785878;

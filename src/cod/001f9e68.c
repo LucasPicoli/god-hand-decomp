@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void SetGlobalToggle_375700(int);
+extern void SdeSystemOutModeSet(int);
 
 #include "godhand/cCoreSave.h"
 
@@ -11,7 +11,7 @@ __attribute__((section(".text.cCoreSave_loadWorldToggle")))
 void cCoreSave_loadWorldToggle(cCoreSave *self)
 {
     if (self->data != 0) {
-        SetGlobalToggle_375700(self->data->worldToggle);
+        SdeSystemOutModeSet(self->data->worldToggle);
     }
 }
 

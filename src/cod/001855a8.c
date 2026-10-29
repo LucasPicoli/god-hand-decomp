@@ -27,8 +27,8 @@ extern unsigned char D_0061B7C0[];      /* the 0x400 effect slots, 0x400 bytes e
 #define ESP_SLOT_SUBGRP  0x23C          /* offset of the slot's sub group number (unsigned short) */
 
 /* Run the kill handler of every effect slot that is in use, neither paused nor hidden, has flag 2 set and is not in group 0xD7. */
-__attribute__((section(".text.Esp_killFlaggedExceptEvent")))
-void Esp_killFlaggedExceptEvent(void) {
+__attribute__((section(".text.KillEventEsp")))
+void KillEventEsp(void) {
     unsigned char *p;
     int i;
     unsigned int bit;

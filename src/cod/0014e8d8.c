@@ -20,8 +20,8 @@ extern int D_0041FB60;
 extern int D_00785748;
 extern int D_0041FC28;
 
-__attribute__((section(".text.func_0014E8D8")))
-void *func_0014E8D8(void) {
+__attribute__((section(".text.cObj__tf")))
+void *cObj__tf(void) {
     if (D_007856E8 == 0) {
         func_0014E538();
         SetField_0_4_8_31EEA8(&D_007856E8, &D_0041EB60, &D_007856D8);

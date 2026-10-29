@@ -7,7 +7,7 @@
 extern int D_00747A34;
 extern char D_00754C10[];
 extern int D_00450B28;
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *region);
+extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A52F0(void *dst, int val, int len);
 extern void cObjBase(void *a0);
 extern void func_002D58E8(void *work, void *entry, int arg);
@@ -30,7 +30,7 @@ __attribute__((section(".text.CreateObjectWithVtableC")))
 void *CreateObjectWithVtableC(void) {
     char *s0;
     if (D_00747A34 & 0x10000) return 0;
-    s0 = EnsureInitThenForward_2A9538_30EE08(0x4D0, 0x10, D_00754C10);
+    s0 = _MemoryAlloc(0x4D0, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x4D0);
     cObjBase(s0);

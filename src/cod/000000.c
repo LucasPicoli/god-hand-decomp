@@ -55,8 +55,8 @@ void cObj_Release(void) {
 __attribute__((section(".text.cModel_Trans_Extra")))
 void cModel_Trans_Extra(void) {}
 
-__attribute__((section(".text.GetField_2B1_14B638")))
-unsigned char GetField_2B1_14B638(unsigned char *arg0) { return arg0[0x2B1]; }
+__attribute__((section(".text.cModel_getMeshNum")))
+unsigned char cModel_getMeshNum(unsigned char *arg0) { return arg0[0x2B1]; }
 
 __attribute__((section(".text.SetField_2F4_10BE10")))
 void SetField_2F4_10BE10(char *arg0) { arg0[0x2F4] = 0; }
@@ -590,8 +590,8 @@ unsigned char *Obj0000_Get_D_0045A478_36D0E8(void) {
 
 extern int D_0076A7A4;
 
-__attribute__((section(".text.Obj0000_Get_D_0076A7A4_3756F0")))
-int Obj0000_Get_D_0076A7A4_3756F0(void) {
+__attribute__((section(".text.SdeSystemOutModeGet")))
+int SdeSystemOutModeGet(void) {
     return D_0076A7A4;
 }
 

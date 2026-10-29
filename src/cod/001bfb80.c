@@ -19,7 +19,7 @@ extern char D_00754C10[];
 extern int D_003C3CF0;
 extern void *SearchData(void *a, void *b, int c);
 extern void func_003127B0(void *counter, int value);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int heap);
+extern void *_MemoryAlloc(int size, int align, int heap);
 extern void Arena_init(void *arena, void *mem, int size, int flags);
 extern void func_00150098(int step);
 extern void Forward149400_1492E8(int step);
@@ -185,9 +185,9 @@ void System_initPools(void) {
     func_003127B0(D_00754C50, SIZE_BUF);
     func_003127B0(D_00754C58, info->extra);
     n = info->count * ENTRY_SIZE + ENTRY_HEADER;
-    Arena_init(D_00754C20, EnsureInitThenForward_2A9538_30EE08(n, POOL_ALIGN, D_003C3CF0), n, 0);
-    Arena_init(D_00754240, EnsureInitThenForward_2A9538_30EE08(info->sizeA, POOL_ALIGN, D_003C3CF0), info->sizeA, 0);
-    Arena_init(D_00754C10, EnsureInitThenForward_2A9538_30EE08(info->sizeB, POOL_ALIGN, D_003C3CF0), info->sizeB, 0);
+    Arena_init(D_00754C20, _MemoryAlloc(n, POOL_ALIGN, D_003C3CF0), n, 0);
+    Arena_init(D_00754240, _MemoryAlloc(info->sizeA, POOL_ALIGN, D_003C3CF0), info->sizeA, 0);
+    Arena_init(D_00754C10, _MemoryAlloc(info->sizeB, POOL_ALIGN, D_003C3CF0), info->sizeB, 0);
     func_00150098(info->stepA);
     Forward149400_1492E8(info->stepB);
 }

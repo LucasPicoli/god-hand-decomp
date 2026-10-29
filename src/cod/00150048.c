@@ -91,8 +91,8 @@ int func_00150100(int a0) {
     return ObjList_queueObj(&D_00466470, a0);
 }
 
-__attribute__((section(".text.func_001F8A60")))
-void func_001F8A60(int a0, int a1) {
+__attribute__((section(".text.cBoundingBox__dtor")))
+void cBoundingBox__dtor(int a0, int a1) {
     if (a1 & 1) {
         __builtin_delete();
     }

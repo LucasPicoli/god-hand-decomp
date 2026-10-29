@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_0030A538(void);
+extern void sceVu0CopyVector(void);
 extern void cOmBase_tickModeTableSkip381(void);
 extern void cOmBase_dieCommon(void);
 extern void StateObj_runHandler(void);
 
 __attribute__((section(".text.func_001506F0")))
-void func_001506F0(void) { func_0030A538(); }
+void func_001506F0(void) { sceVu0CopyVector(); }
 
 __attribute__((section(".text.func_001933F8")))
 void func_001933F8(void) { cOmBase_tickModeTableSkip381(); }

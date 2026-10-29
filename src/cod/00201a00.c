@@ -72,8 +72,8 @@ void cScenarioCursor_reinit(char *self) {
  * the factor c and add it back onto b, wrapping each step. */
 
 
-__attribute__((section(".text.Ang_blendLate")))
-float Ang_blendLate(float a, float b, float c) {
+__attribute__((section(".text.Ang_mult_late")))
+float Ang_mult_late(float a, float b, float c) {
     float base = Adjust_theta(b);
     float diff = Adjust_theta(Adjust_theta(a) - base);
     return Adjust_theta(base + diff * c);

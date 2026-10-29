@@ -12,7 +12,7 @@ extern char D_00580D40[];
 extern char D_0044D0B0[];
 extern char D_0044D0C0[];
 extern char D_0044D0D8[];
-extern void *EnsureInitThenForward_2A9538_30EE08(int, int, void *);
+extern void *_MemoryAlloc(int, int, void *);
 extern int FindEntryValue_1FF9C0(char *, char *, int, int);
 extern void cBgmData_AddLoadBits(cBgmData *, int);
 extern int cBgmData_LoadNumbered(cBgmData *, int, int);
@@ -38,7 +38,7 @@ int cBgmData_PrepareDecode(cBgmData *d)
 
     if (cBgmData_IsReady(d) == 1)
         return 0;
-    d->f14 = EnsureInitThenForward_2A9538_30EE08(((((unsigned int)(*(int *)d->head) + 0x8E) >> 1) << 2), 0x10, d->pool);
+    d->f14 = _MemoryAlloc(((((unsigned int)(*(int *)d->head) + 0x8E) >> 1) << 2), 0x10, d->pool);
     switch (d->f18) {
     case 0x80:
         func_003A6C58(name, D_0044D0B0, d->f20);

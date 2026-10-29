@@ -5,7 +5,7 @@
 extern long D_00747650;
 extern char D_0042BAC0[];
 extern char D_0042BAE0[];
-extern void func_002E0D60(int a, int b, int c, int d, int e, int f, char *g, int h);
+extern void printf_2E0D60(int a, int b, int c, int d, int e, int f, char *g, int h);
 extern void func_001D5690(void *a0, int a1);
 extern void SetBlendField820_1D5B90(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
@@ -76,7 +76,7 @@ void func_001E6938(Slot2 *self)
         }
     }
     *(T32 *)tbl = *(T32 *)D_0042BAC0;
-    func_002E0D60(8, 0x10, 0x20, 0x20, 0, 0, D_0042BAE0,
+    printf_2E0D60(8, 0x10, 0x20, 0x20, 0, 0, D_0042BAE0,
                   tbl[(short)self->menuSel]);
 }
 

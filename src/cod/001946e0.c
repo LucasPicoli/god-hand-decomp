@@ -7,7 +7,7 @@ extern void Pos_followGround(void *self);
 extern void cOmBase_dropTestB(void *self);
 extern void func_002E2E00(void *self);
 extern void UpdateObjByIndexedOp_2FBE50(void *self);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *region);
+extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_002D5768(void *entry, int src, int id, void *owner);
 extern int CreateSema(void *param);
 extern char D_00754200[];
@@ -92,7 +92,7 @@ void EntTable_init(EntTable *self, int num, int src, int firstId)
 
     self->firstId = firstId;
     self->num = num;
-    self->entry = EnsureInitThenForward_2A9538_30EE08(num * ENTRY_SIZE, 0x10, D_00754200);
+    self->entry = _MemoryAlloc(num * ENTRY_SIZE, 0x10, D_00754200);
     func_003A52F0(self->entry, 0, num * ENTRY_SIZE);
     for (i = 0; i < self->num; i++) {
         func_002D5768(self->entry + i * ENTRY_SIZE, src, (unsigned short)(self->firstId + i), self);

@@ -13,7 +13,7 @@ extern char D_0076A790[];
 __attribute__((section(".text.func_00318418")))
 int func_00318418(void *a0) {
     *(char**)((char*)a0+0x214) = D_00450B28;
-    return func_0014EA28(a0);
+    return cObjBase__dtor(a0);
 }
 
 /* clone */
@@ -23,7 +23,7 @@ int func_00318418(void *a0) {
 __attribute__((section(".text.func_00318518")))
 int func_00318518(void *a0) {
     *(char**)((char*)a0+0x214) = D_00450C38;
-    return func_0014EA28(a0);
+    return cObjBase__dtor(a0);
 }
 
 /* clone */
@@ -33,7 +33,7 @@ int func_00318518(void *a0) {
 __attribute__((section(".text.func_0031A018")))
 int func_0031A018(void *a0) {
     *(char**)((char*)a0+0x214) = D_00450CE8;
-    return cObj_releaseActorData(a0);
+    return cObj__dtor(a0);
 }
 
 /* clone */

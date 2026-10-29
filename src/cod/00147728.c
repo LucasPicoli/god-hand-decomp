@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_0030A700(void *, void *, float);
-extern void func_0030A7B8(void *, void *, float);
+extern void sceVu0RotMatrixY(void *, void *, float);
 extern void func_0030A650(void *, void *, float);
 extern void sceVu0RotMatrix(void *, void *, void *);
 
@@ -25,28 +25,28 @@ void MtxInitRotVec(void *a0, float *a1, unsigned char order) {
     switch (order) {
     case 0:
         func_0030A700(a0, a0, a1[0]);
-        func_0030A7B8(a0, a0, a1[1]);
+        sceVu0RotMatrixY(a0, a0, a1[1]);
         func_0030A650(a0, a0, a1[2]);
         break;
     case 1:
         func_0030A700(a0, a0, a1[0]);
         func_0030A650(a0, a0, a1[2]);
-        func_0030A7B8(a0, a0, a1[1]);
+        sceVu0RotMatrixY(a0, a0, a1[1]);
         break;
     case 2:
-        func_0030A7B8(a0, a0, a1[1]);
+        sceVu0RotMatrixY(a0, a0, a1[1]);
         func_0030A700(a0, a0, a1[0]);
         func_0030A650(a0, a0, a1[2]);
         break;
     case 3:
-        func_0030A7B8(a0, a0, a1[1]);
+        sceVu0RotMatrixY(a0, a0, a1[1]);
         func_0030A650(a0, a0, a1[2]);
         func_0030A700(a0, a0, a1[0]);
         break;
     case 4:
         func_0030A650(a0, a0, a1[2]);
         func_0030A700(a0, a0, a1[0]);
-        func_0030A7B8(a0, a0, a1[1]);
+        sceVu0RotMatrixY(a0, a0, a1[1]);
         break;
     case 5:
         sceVu0RotMatrix(a0, a0, a1);

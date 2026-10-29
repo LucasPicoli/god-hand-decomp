@@ -8,7 +8,7 @@ void func_0037D558(SeqNode *self)
     float l, r;
 
     self->unk4E = self->unk4C = (short)self->weight >> 1;
-    switch (Obj0000_Get_D_0076A7A4_3756F0()) {
+    switch (SdeSystemOutModeGet()) {
     case 0:
         break;
     case 1:

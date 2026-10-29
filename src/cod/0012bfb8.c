@@ -18,8 +18,8 @@ extern void displayScrollLayer(int id, int on);
  * unnamed arguments. */
 
 
-__attribute__((section(".text.DebugPrintfWrapper")))
-int DebugPrintfWrapper(int a, int b, int c, int d, int fmt, ...)
+__attribute__((section(".text.printf_2E0DA8")))
+int printf_2E0DA8(int a, int b, int c, int d, int fmt, ...)
 {
     char *args;
     args = (char *)__builtin_next_arg(fmt) - 24;

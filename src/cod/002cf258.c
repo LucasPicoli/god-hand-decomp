@@ -4,14 +4,14 @@
 #define CSND_ATTR(s)     (*(int *)((char *)(s) + 0x50))
 #define CSND_DEF_ATTR(s) (*(int *)((char *)(s) + 0x58))
 
-extern int Obj0000_Get_D_0076A7A4_3756F0(int);
+extern int SdeSystemOutModeGet(int);
 extern int cDvd_Check();
 extern char D_00583F20[];
 
 __attribute__((section(".text.func_002CF258")))
 short func_002CF258(int a0, short *obj)
 {
-    if (Obj0000_Get_D_0076A7A4_3756F0(a0) == 2)
+    if (SdeSystemOutModeGet(a0) == 2)
         return obj[0x9];   /* 0x12 */
     return obj[0x8];       /* 0x10 */
 }
@@ -19,7 +19,7 @@ short func_002CF258(int a0, short *obj)
 __attribute__((section(".text.func_002CF298")))
 short func_002CF298(short *obj)
 {
-    if (Obj0000_Get_D_0076A7A4_3756F0((int)obj) == 2)
+    if (SdeSystemOutModeGet((int)obj) == 2)
         return obj[0x17];   /* 0x2E */
     return obj[0x16];       /* 0x2C */
 }

@@ -30,8 +30,8 @@ void func_00374980(short i, void *dst) {
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 
 
-__attribute__((section(".text.func_00375748")))
-void func_00375748(unsigned char f) {
+__attribute__((section(".text.SdePlayVolReset")))
+void SdePlayVolReset(unsigned char f) {
     char *p;
     p = D_0076A790;
     if (f & 1)

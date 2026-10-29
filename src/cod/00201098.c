@@ -5,7 +5,7 @@
 
 extern char D_00580D40[];
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
+extern void *_MemoryAlloc(int size, int align, int a2);
 extern void cDvd_step(cDvd *self);
 /* 2 if id is the running job, 1 if it is queued, 0 if unknown. */
 __attribute__((section(".text.cDvd_Check")))

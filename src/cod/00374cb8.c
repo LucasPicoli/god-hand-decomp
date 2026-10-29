@@ -9,8 +9,8 @@ typedef struct {
 extern void InitSoundBlock_374D98(short a0, short a1, short *a2);
 extern void InitSoundEntry_375B90(short a0, short a1, short *a2);
 
-__attribute__((section(".text.func_00374CB8")))
-int func_00374CB8(short a0, short a1, short *a2)
+__attribute__((section(".text.SdeIssTblGet")))
+int SdeIssTblGet(short a0, short a1, short *a2)
 {
     SndBank *b;
     char *src;

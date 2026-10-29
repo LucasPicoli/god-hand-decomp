@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int EnsureInitThenForward_2A9538_30EE08(void *ctx, int k, int v);
+extern int _MemoryAlloc(void *ctx, int k, int v);
 extern char D_0044B288[];
 extern void cIDBase_initialize(void *p, int a, int b);
 extern void cIDBase_restartAnim(void *p);
@@ -32,7 +32,7 @@ int func_002B5AF8(void *a0, int a1, void *ctx)
     if (res == 0) return 0;
 
     for (i = 0; i < 2; i++) {
-        v = EnsureInitThenForward_2A9538_30EE08(ctx, 0x80, buf.w[i]);
+        v = _MemoryAlloc(ctx, 0x80, buf.w[i]);
         if (v != 0) {
             *(int *)(res + 0x0) = v;
             *(int *)(res + 0x4) = buf.w[i];

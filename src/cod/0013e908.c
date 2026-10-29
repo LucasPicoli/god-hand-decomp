@@ -51,8 +51,8 @@ void cOmScripted_onHit(cOmScripted *self) {
 }
 
 /* Adds the null part's speed to the position after turning it by yaw (radians) around the object's own origin. */
-__attribute__((section(".text.cObjBase_addNullSpeedDir")))
-void cObjBase_addNullSpeedDir(cObjBase *self, float yaw) {
+__attribute__((section(".text.Add_nullspeedDir")))
+void Add_nullspeedDir(cObjBase *self, float yaw) {
     struct {
         float mtx[16];
         cVec rot;                       /* 0x40 */

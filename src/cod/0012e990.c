@@ -9,7 +9,7 @@ extern char D_0041ECD8[];
 extern char D_0041ED08[];
 extern char D_0041ED28[];
 extern char D_0041ED48[];
-extern void DebugPrintfWrapper(int x, int y, int a2, int a3, char *fmt, ...);
+extern void printf_2E0DA8(int x, int y, int a2, int a3, char *fmt, ...);
 extern void func_002D9458(void *dst, void *src);
 extern void func_003A52F0(void *d, int c, int n);
 extern void *sceSifAllocIopHeap(int size);
@@ -309,13 +309,13 @@ void func_00150AA8(char *self)
     char *p;
     unsigned int m;
 
-    DebugPrintfWrapper(0x50, 0x58, 0, 5, D_0041ECC0, *(unsigned short *)(self + 0x3F8A8), 0x1C2);
-    DebugPrintfWrapper(0x50, 0x60, 0, 5, D_0041ECD8, *(unsigned char *)(self + 0x3F8AA),
+    printf_2E0DA8(0x50, 0x58, 0, 5, D_0041ECC0, *(unsigned short *)(self + 0x3F8A8), 0x1C2);
+    printf_2E0DA8(0x50, 0x60, 0, 5, D_0041ECD8, *(unsigned char *)(self + 0x3F8AA),
                   *(unsigned char *)(self + 0x3F8AB),
                   *(unsigned char *)(self + 0x3F8AA) + *(unsigned char *)(self + 0x3F8AB), 0x140);
-    DebugPrintfWrapper(0x50, 0x70, 0, 5, D_0041ED08, *(int *)(self + 0x3DC60), *(int *)(self + 0x3DC64));
-    DebugPrintfWrapper(0x50, 0x78, 0, 5, D_0041ED28, *(int *)(self + 0x3DC78), *(int *)(self + 0x3DC7C));
-    DebugPrintfWrapper(0x50, 0x80, 0, 5, D_0041ED48, *(int *)(self + 0x3DC6C), *(int *)(self + 0x3DC70));
+    printf_2E0DA8(0x50, 0x70, 0, 5, D_0041ED08, *(int *)(self + 0x3DC60), *(int *)(self + 0x3DC64));
+    printf_2E0DA8(0x50, 0x78, 0, 5, D_0041ED28, *(int *)(self + 0x3DC78), *(int *)(self + 0x3DC7C));
+    printf_2E0DA8(0x50, 0x80, 0, 5, D_0041ED48, *(int *)(self + 0x3DC6C), *(int *)(self + 0x3DC70));
 
     *(int *)(self + 0x34) = 0x2800;
     *(int *)(self + 0x38) = 0x1C20;

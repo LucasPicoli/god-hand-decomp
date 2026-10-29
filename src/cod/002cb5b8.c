@@ -2,7 +2,7 @@
 
 #include "godhand/cSnd.h"
 
-extern void func_0030A538(float *pos, int mtx);
+extern void sceVu0CopyVector(float *pos, int mtx);
 extern void cSndSeVoice_Unlink(cSndSeVoice *v);
 extern int D_0044CE48[];
 extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int idx);
@@ -40,9 +40,9 @@ void cSndSeVoice_Detach(cSndSeVoice *v, char *obj)
         return;
     if (((unsigned char)v->flags ^ 1) & 1) {
         if (v->part == 0)
-            func_0030A538(v->pos, *(int *)(obj + OBJ_MTX_OFFSET));
+            sceVu0CopyVector(v->pos, *(int *)(obj + OBJ_MTX_OFFSET));
         else
-            func_0030A538(v->pos, *(int *)((char *)v->part + OBJ_MTX_OFFSET));
+            sceVu0CopyVector(v->pos, *(int *)((char *)v->part + OBJ_MTX_OFFSET));
     }
     v->obj = 0;
     v->part = 0;

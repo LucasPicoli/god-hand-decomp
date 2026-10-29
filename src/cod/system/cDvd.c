@@ -36,7 +36,7 @@ int cDvd_ReadAlloc(cDvd *self, char *name, int *outBuf, int a3, int id, int t1, 
         job->blockNum = (unsigned int)(t1 + 0x7FF) >> 11;
 
     {
-        void *r = EnsureInitThenForward_2A9538_30EE08(job->blockNum << 11, 0x80, a3);
+        void *r = _MemoryAlloc(job->blockNum << 11, 0x80, a3);
         job->buf = r;
         if (r == 0) {
             func_00201228(self, job);
@@ -50,7 +50,7 @@ int cDvd_ReadAlloc(cDvd *self, char *name, int *outBuf, int a3, int id, int t1, 
     return job->id;
 }
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, int a2);
+extern void *_MemoryAlloc(int size, int align, int a2);
 extern void cDvd_step(cDvd *self);
 /* Wait until the job with the given id is no longer pending. */
 __attribute__((section(".text.cDvd_CheckWait")))

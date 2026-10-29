@@ -529,7 +529,7 @@ int IsTargetVisibleOrForced_1004C8(int a0) {
     if (D_00747A80 & 0x200000) {
         return 1;
     }
-    return IsTargetVisible_14B470(a0) != 0;
+    return cModel_isClip(a0) != 0;
 }
 
 __attribute__((section(".text.SetField5CAndForward_12D178")))

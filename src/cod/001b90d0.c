@@ -34,7 +34,7 @@ typedef struct cEmTwoGive {
 } cEmTwoGive;
 
 extern cMeshNode *cModel_getMeshPtr(void *p, unsigned int i);
-extern unsigned int GetField_2B1_14B638(void *p);
+extern unsigned int cModel_getMeshNum(void *p);
 extern float fRand1_1(void);
 extern void cDamageGive_SetDmgGiveHitVec(void *slot, void *vec);
 extern char D_00574380[];
@@ -54,7 +54,7 @@ int func_001B90D0(cEmTwoGive *self)
     int n;
 
     func_001B6FB8((cOmHitVolume *)self);
-    for (i = 0; i < GetField_2B1_14B638(self); i++)
+    for (i = 0; i < cModel_getMeshNum(self); i++)
         cModel_getMeshPtr(self, i)->dispFlags |= 1;
     self->base.unk580 = 0;
     self->base.unk584 = 0;

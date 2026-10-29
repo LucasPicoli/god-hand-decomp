@@ -19,7 +19,7 @@ typedef struct OptionPanel {
 extern cSnd D_005FEE00;
 extern unsigned char D_005E8140[];
 extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
-extern void SetGlobalToggle_375700(int a0);
+extern void SdeSystemOutModeSet(int a0);
 extern void func_00167EB0(void *self);
 
 /* Input step of the options panel: moves through the six rows and changes
@@ -48,29 +48,29 @@ void func_00167908(OptionPanel *self)
         case 2:
             if (D_007474A0.rep & MENU_KEY_LEFT) {
                 cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
-                switch (Obj0000_Get_D_0076A7A4_3756F0()) {
+                switch (SdeSystemOutModeGet()) {
                 case 1:
-                    SetGlobalToggle_375700(0);
+                    SdeSystemOutModeSet(0);
                     break;
                 case 0:
-                    SetGlobalToggle_375700(2);
+                    SdeSystemOutModeSet(2);
                     break;
                 case 2:
-                    SetGlobalToggle_375700(1);
+                    SdeSystemOutModeSet(1);
                     break;
                 }
             }
             if (D_007474A0.rep & MENU_KEY_RIGHT) {
                 cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
-                switch (Obj0000_Get_D_0076A7A4_3756F0()) {
+                switch (SdeSystemOutModeGet()) {
                 case 1:
-                    SetGlobalToggle_375700(2);
+                    SdeSystemOutModeSet(2);
                     break;
                 case 0:
-                    SetGlobalToggle_375700(1);
+                    SdeSystemOutModeSet(1);
                     break;
                 case 2:
-                    SetGlobalToggle_375700(0);
+                    SdeSystemOutModeSet(0);
                     break;
                 }
             }

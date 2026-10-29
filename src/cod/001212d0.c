@@ -22,7 +22,7 @@ extern unsigned short D_003F2060[];
 extern void func_0032A9F0(int a0, int a1);
 extern void sceVu0ApplyMatrix(void *v1, void *m0, void *v0);
 extern void func_002BB868(void *a0, void *a1, float f);
-extern int EnsureInitThenForward_2A9538_30EE08(int a0, int a1, void *a2);
+extern int _MemoryAlloc(int a0, int a1, void *a2);
 extern char D_00754240[];
 
 /* func_001212D0 — 0x001212D0, 760 B — sn-2.95.3-136.
@@ -361,31 +361,31 @@ int func_002EBD10(void *a0, int a1, int n)
         char *d = D_00754240;
 
         sz = n * 0x60 + 0xF0;
-        p = EnsureInitThenForward_2A9538_30EE08(sz, 0x10, d);
+        p = _MemoryAlloc(sz, 0x10, d);
         *(int *)(s1 + 0x2CC) = p;
         if (p == 0) {
             return 0;
         }
-        p = EnsureInitThenForward_2A9538_30EE08(sz, 0x10, d);
+        p = _MemoryAlloc(sz, 0x10, d);
         *(int *)(s1 + 0x2D0) = p;
     } else {
         char *d = D_00754240;
 
         sz = n * 0x40 + 0xF0;
         sz2 = sz;
-        p = EnsureInitThenForward_2A9538_30EE08(sz2, 0x10, d);
+        p = _MemoryAlloc(sz2, 0x10, d);
         *(int *)(s1 + 0x2C4) = p;
         if (p == 0) {
             return 0;
         }
-        p = EnsureInitThenForward_2A9538_30EE08(sz, 0x10, d);
+        p = _MemoryAlloc(sz, 0x10, d);
         *(int *)(s1 + 0x2C8) = p;
     }
     if (p == 0) {
         return 0;
     }
     sz2 = n * 0x10;
-    p = EnsureInitThenForward_2A9538_30EE08(sz2, 0x10, D_00754240);
+    p = _MemoryAlloc(sz2, 0x10, D_00754240);
     *(int *)(s1 + 0x2BC) = p;
     if (p == 0) {
         return 0;
@@ -398,7 +398,7 @@ int func_002EBD10(void *a0, int a1, int n)
         *(float *)(q + 0xC) = 1.0f;
     }
     if (*(int *)(s1 + 0x2E0) & 4) {
-        p = EnsureInitThenForward_2A9538_30EE08(n * 0x10, 0x10, D_00754240);
+        p = _MemoryAlloc(n * 0x10, 0x10, D_00754240);
         *(int *)(s1 + 0x2C0) = p;
         if (p == 0) {
             return 0;

@@ -30,8 +30,8 @@ void Forward149550_149580(void) {
 extern int func_001F8AD8(cBox *box, float *mtx);
 /* True when the model should be drawn: forced on by the render state or the
  * model, never when it is hidden, else whether its box is in view. */
-__attribute__((section(".text.IsTargetVisible_14B470")))
-int IsTargetVisible_14B470(cModel *self) {
+__attribute__((section(".text.cModel_isClip")))
+int cModel_isClip(cModel *self) {
     int flags;
     if (D_00747A80 & 0x800000) {
         return 1;

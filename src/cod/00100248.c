@@ -17,8 +17,8 @@ extern void func_003224D0(void *a0, void *a1);
 extern void *D_003FC9B4;
 extern char D_007854B0[];
 
-__attribute__((section(".text.func_00100248")))
-void func_00100248(int a0) {
+__attribute__((section(".text._exit")))
+void _exit(int a0) {
     func_003B6820(a0);
 }
 

@@ -11,7 +11,7 @@ extern char D_00422EB8[];
 extern char D_00574380[];
 extern char D_007419A0[];
 extern int cSeData_IsAlive(void *p);
-extern int EnsureInitThenForward_2A9538_30EE08(int a, int b, int c);
+extern int _MemoryAlloc(int a, int b, int c);
 extern int FindEntryValue_1FF9C0(void *a, void *b, int c, int d);
 extern void cSeData_AddLoadBits(void *a, int b);
 extern char D_00580D40[];
@@ -103,7 +103,7 @@ int cSeData_PrepareDecode(char *p)
 
     if (cSeData_IsAlive(p) == 1) return 0;
 
-    *(int *)(p + 0x24) = EnsureInitThenForward_2A9538_30EE08(
+    *(int *)(p + 0x24) = _MemoryAlloc(
         ((**(unsigned int **)(p + 0x20) + 0x8E) >> 1) * 4,
         0x10,
         *(int *)(p + 0x8));

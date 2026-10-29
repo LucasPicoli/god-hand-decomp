@@ -38,7 +38,7 @@ extern int D_00786598;
 extern int D_007865A8;
 extern int D_00786618;
 
-extern void func_0014FD20(void);
+extern void cObjBase__tf(void);
 extern void GetOrInitGlobal785878_1B8058(void);
 extern void GetOrInitGlobal785798_1C3BE8(void);
 extern void func_0028FDD0(void);
@@ -187,7 +187,7 @@ int *GetClassDescB_2815E8(void) {
 __attribute__((section(".text.GetSingletonD00786618_318788")))
 int *GetSingletonD00786618_318788(void) {
     if (D_00786618 == 0) {
-        func_0014FD20();
+        cObjBase__tf();
         SetField_0_4_8_31EEA8(&D_00786618, &D_00450CA8, &D_007854F8);
     }
     return &D_00786618;

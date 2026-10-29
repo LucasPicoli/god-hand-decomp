@@ -7,13 +7,13 @@
 extern int D_00785518;
 extern int D_0041D2C0;
 extern int D_007854C8;
-extern void GetOrInitSingleton_100328(void);
+extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 
 __attribute__((section(".text.GetOrInit_785518_12CF08")))
 int *GetOrInit_785518_12CF08(void) {
     if (D_00785518 == 0) {
-        GetOrInitSingleton_100328();
+        cPlBase__tf();
         SetField_0_4_8_31EEA8(&D_00785518, &D_0041D2C0, &D_007854C8);
     }
     return &D_00785518;

@@ -2,7 +2,7 @@
 
 extern char D_005FEE00[];
 extern char D_003F2060[];
-extern int Obj0000_Get_D_0076A7A4_3756F0(void);
+extern int SdeSystemOutModeGet(void);
 extern void func_0032EC78(int a0, int a1, int a2);
 
 /* sn-2.95.3-136 matched TU. */
@@ -24,7 +24,7 @@ void func_003745C0(void *arg, int idx, int n, float val) {
     }
     t = val * *(float *)(D_005FEE00 + idx * 4) / 127.0f;
     t = t * *(float *)(D_005FEE00 + idx * 4 + 0xC) / 127.0f;
-    if (Obj0000_Get_D_0076A7A4_3756F0() == 2) {
+    if (SdeSystemOutModeGet() == 2) {
         t = t * *(float *)(p + 0x44);
     }
     t = t * *(float *)(p + 0x3C);

@@ -8,7 +8,7 @@ extern int cEmManage_CkPlCatched(void *p);
 extern void cCollisionSolidManage_SetActive(void *a, void *b, int c);
 extern void func_00129718(void *a, void *b, int c);
 extern void *D_003C3CF0;
-extern int EnsureInitThenForward_2A9538_30EE08(void *, int, void *);
+extern int _MemoryAlloc(void *, int, void *);
 extern int D_00747A34;
 extern char D_00754220[];
 extern void func_003A52F0(void *, int, int);
@@ -79,7 +79,7 @@ void func_002DD600(char *a0) {
 
 __attribute__((section(".text.__builtin_vec_new")))
 int __builtin_vec_new(void *a0) {
-    return EnsureInitThenForward_2A9538_30EE08(a0, 0x10, D_003C3CF0);
+    return _MemoryAlloc(a0, 0x10, D_003C3CF0);
 }
 
 /* clone */
@@ -95,7 +95,7 @@ void *func_00318138(void)
     void *p;
     if (!(D_00747A34 & 0x100000))
     {
-        p = EnsureInitThenForward_2A9538_30EE08(0x790, 0x10, D_00754220);
+        p = _MemoryAlloc(0x790, 0x10, D_00754220);
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x790);
@@ -111,5 +111,5 @@ void *func_00318138(void)
 
 __attribute__((section(".text.func_0031C890")))
 int func_0031C890(void *a0) {
-    return EnsureInitThenForward_2A9538_30EE08(a0, 0x10, D_003C3CF0);
+    return _MemoryAlloc(a0, 0x10, D_003C3CF0);
 }

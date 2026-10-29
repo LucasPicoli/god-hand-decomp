@@ -3,7 +3,7 @@
 #include "godhand/heapList.h"
 
 extern void cHeap_free(int heap, int *node);
-extern void *EnsureInitThenForward_2A9538_30EE08(int a0, int a1, int a2);
+extern void *_MemoryAlloc(int a0, int a1, int a2);
 extern void func_002B2080(void *node);
 extern void func_002B22E8(void *node, void *prev, void *next, int key, unsigned short serial);
 
@@ -51,7 +51,7 @@ void func_001504B0(HeapList *self, int num)
 
     List_destroyChildren(self);
     size = func_002A96C0(LIST_CHILD_SIZE, num, LIST_ALIGN);
-    func_002A96D8((int *)self, (int)EnsureInitThenForward_2A9538_30EE08(size, LIST_ALIGN, (int)D_003C3CF0),
+    func_002A96D8((int *)self, (int)_MemoryAlloc(size, LIST_ALIGN, (int)D_003C3CF0),
                   LIST_CHILD_SIZE, num, LIST_ALIGN);
     self->unk18 = num;
     self->unk1C = num;

@@ -5,7 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/sceVu0.h"
 
-extern void func_0030A538(cVec *dst, cVec *src);
+extern void sceVu0CopyVector(cVec *dst, cVec *src);
 extern void *Gp_draw_poly3(void *v, int color, int count, int a4, int a5);
 extern void *Gp_draw_poly4(void *v, int color, int count, void *ctx, int a5, int a6);
 
@@ -18,15 +18,15 @@ void func_001334A8(cVec *pts, int quad, int color)
     unsigned int i;
 
     if (quad == 0) {
-        func_0030A538(&v[0], &pts[0]);
-        func_0030A538(&v[1], &pts[1]);
-        func_0030A538(&v[2], &pts[2]);
+        sceVu0CopyVector(&v[0], &pts[0]);
+        sceVu0CopyVector(&v[1], &pts[1]);
+        sceVu0CopyVector(&v[2], &pts[2]);
         n = 3;
     } else {
-        func_0030A538(&v[0], &pts[0]);
-        func_0030A538(&v[1], &pts[1]);
-        func_0030A538(&v[2], &pts[2]);
-        func_0030A538(&v[3], &pts[3]);
+        sceVu0CopyVector(&v[0], &pts[0]);
+        sceVu0CopyVector(&v[1], &pts[1]);
+        sceVu0CopyVector(&v[2], &pts[2]);
+        sceVu0CopyVector(&v[3], &pts[3]);
         n = 4;
     }
     for (i = 0; i < n; i++) {

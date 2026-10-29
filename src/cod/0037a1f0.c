@@ -13,7 +13,7 @@ typedef struct {
     char obj1[0x12C - 0xCC]; /* 0xCC */
     char obj2[4]; /* 0x12C */
 } ModeSel;
-extern int func_00374CB8(int x, int y, void *obj);
+extern int SdeIssTblGet(int x, int y, void *obj);
 extern void func_00386DE0(int x, int y, void *obj);
 extern int func_00375AB0(int x, int y, void *obj);
 
@@ -26,7 +26,7 @@ void func_0037A1F0(ModeSel *m)
 
     switch (mode) {
     case 0:
-        func_00374CB8(x, y, m->obj0);
+        SdeIssTblGet(x, y, m->obj0);
         break;
     case 1:
         func_00386DE0(x, y, m->obj1);

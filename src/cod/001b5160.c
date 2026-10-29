@@ -11,7 +11,7 @@ extern void func_0028CE70(void);
 extern void func_00297660(void);
 extern void func_002B4560(void);
 extern void func_00345610(void);
-extern void func_0014EA28(void);
+extern void cObjBase__dtor(void);
 extern void func_002BB010(void);
 extern void func_002BF170(void *a0);
 extern void cMc_startLoadRunRelease(int a0);
@@ -108,12 +108,12 @@ void func_002B4A30(void)
 
 __attribute__((section(".text.cObjSimple_Dtor")))
 void cObjSimple_Dtor(void) {
-    func_0014EA28();
+    cObjBase__dtor();
 }
 
 __attribute__((section(".text.func_002B8908")))
 void func_002B8908(void) {
-    func_0014EA28();
+    cObjBase__dtor();
 }
 
 __attribute__((section(".text.func_002BA4B0")))
@@ -239,19 +239,19 @@ void func_00306A88(void) {
     func_00306AA8();
 }
 
-void func_0014EA28(void);
+void cObjBase__dtor(void);
 
 __attribute__((section(".text.func_00318338")))
 void func_00318338(void) {
-    func_0014EA28();
+    cObjBase__dtor();
 }
 
-int EnsureInitThenForward_2A9538_30EE08(void);
+int _MemoryAlloc(void);
 
 __attribute__((section(".text.func_0031C8E0")))
 int func_0031C8E0(void)
 {
-    return EnsureInitThenForward_2A9538_30EE08();
+    return _MemoryAlloc();
 }
 
 int func_0031EE10(void);
@@ -301,7 +301,7 @@ extern void func_001BC0A0(void);
 extern void func_001BD6B0(void);
 extern void StateObj_runHandler(void);
 extern void cOmBase_tickModeTableSkip381(void);
-extern void func_0030A2E0(void);
+extern void sceVu0MulMatrix(void);
 extern void func_0030A548(void);
 extern void sceVu0ApplyMatrix(void);
 
@@ -309,7 +309,7 @@ __attribute__((section(".text.MtxCopy")))
 void MtxCopy(void) { func_0030A548(); }
 
 __attribute__((section(".text.MtxMultiply")))
-void MtxMultiply(void) { func_0030A2E0(); }
+void MtxMultiply(void) { sceVu0MulMatrix(); }
 
 __attribute__((section(".text.Tramp_func_0030A2B0_001508D8")))
 void Tramp_func_0030A2B0_001508D8(void) { sceVu0ApplyMatrix(); }

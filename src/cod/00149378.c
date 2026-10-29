@@ -17,7 +17,7 @@ extern void SetEffectPos(int kind, int effNo, int a2, void *pos, int a4, float s
 extern void func_002FBED0(void *self);
 extern void BufHolder_deletingDtor(int entry, int mode);
 extern void cHeap_free(int heap, int *node);
-extern void *EnsureInitThenForward_2A9538_30EE08(int a0, int a1, int a2);
+extern void *_MemoryAlloc(int a0, int a1, int a2);
 extern void func_001DBF18(void *self, unsigned short *a, unsigned short *b, unsigned short *c, unsigned short *d);
 
 #define MESH_DISP_HIDE      0x0001      /* node is not drawn */
@@ -139,7 +139,7 @@ void func_00149400(HeapList *self, int num)
 
     EntList_destroy(self);
     size = func_002A96C0(ENTLIST_ENTRY_SIZE, num, ENTLIST_ALIGN);
-    func_002A96D8((int *)self, (int)EnsureInitThenForward_2A9538_30EE08(size, ENTLIST_ALIGN, (int)D_003C3CF0),
+    func_002A96D8((int *)self, (int)_MemoryAlloc(size, ENTLIST_ALIGN, (int)D_003C3CF0),
                   ENTLIST_ENTRY_SIZE, num, ENTLIST_ALIGN);
     self->unk18 = num;
     self->unk1C = num;

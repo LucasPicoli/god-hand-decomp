@@ -59,7 +59,7 @@ void *AllocAndInitSystem_312F00(void)
     void *p;
     if (!(D_00747A34 & 0x10000))
     {
-        p = EnsureInitThenForward_2A9538_30EE08(0x1690, 0x10, D_00754C10);
+        p = _MemoryAlloc(0x1690, 0x10, D_00754C10);
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x1690);
@@ -75,7 +75,7 @@ void *AllocZeroedAndInit_3130E0(void)
     void *p;
     if (!(D_00747A34 & 0x100000))
     {
-        p = EnsureInitThenForward_2A9538_30EE08(0x1980, 0x10, D_00754220);
+        p = _MemoryAlloc(0x1980, 0x10, D_00754220);
         if (p != 0)
         {
             func_003A52F0(p, 0, 0x1980);

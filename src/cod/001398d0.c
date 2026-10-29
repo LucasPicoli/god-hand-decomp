@@ -157,7 +157,7 @@ void FreeResourceNode_2D3710(int *a0)
 __attribute__((section(".text.EffectEventEndProc")))
 void EffectEventEndProc(void)
 {
-	Esp_killFlaggedExceptEvent();
+	KillEventEsp();
 	KillEventEmitter();
 	espSys_sstClearSetFlag(&D_007419A0);
 	func_00305C20(&D_007419A0);

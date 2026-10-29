@@ -8,7 +8,7 @@
 
 extern char D_0044ACF0[];
 extern void Moji_size_set(int w, int h);
-extern void DebugPrintfWrapper(int x, int y, int a2, int a3, char *fmt, ...);
+extern void printf_2E0DA8(int x, int y, int a2, int a3, char *fmt, ...);
 extern void cTaskWork_sleep(void *work, int frames);
 extern void cOl2b_setOpenFix(cOl2b *self);
 extern int D_003C2388;
@@ -32,7 +32,7 @@ void DebugView_printShown(DebugView *self)
 {
     func_002A4ED8(self);
     Moji_size_set(0, 0);
-    DebugPrintfWrapper(0x28, 0x12C, 0, 6, D_0044ACF0, self->shown);
+    printf_2E0DA8(0x28, 0x12C, 0, 6, D_0044ACF0, self->shown);
 }
 
 /* A scene step: its stage byte at +4. */

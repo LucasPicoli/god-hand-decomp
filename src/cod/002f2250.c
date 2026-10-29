@@ -11,7 +11,7 @@ extern void cNode_setLocalScale(int a0, int a1);
 extern void *StoreVecFromFieldB0_2B6160(void *a0, void *a1);
 extern void *func_002B60D0(void *a0, void *a1);
 extern int func_00307118(void *p);
-extern int GetField_2B1_14B638(cModel *self);
+extern int cModel_getMeshNum(cModel *self);
 extern float capVu0Sin(float f12);
 extern float capVu0Cos(float f12);
 extern void func_00148200(void *a0, float x, float y);
@@ -158,7 +158,7 @@ void func_002F2250(espModel *self)
             uvMtx[9] += mesh->uvScroll[1];
             func_001491D0(mesh, uvMtx);
         }
-        n = GetField_2B1_14B638(self->model);
+        n = cModel_getMeshNum(self->model);
         if (n >= 2) {
             for (i = 1; i < n; i++) {
                 node = cModel_getMeshPtr(self->model, i);

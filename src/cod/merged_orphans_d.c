@@ -51,7 +51,7 @@ cVec *cGameObj_getPos(cGameObj *self) { return self->pos; }
 extern int D_0041D7B8;
 extern int D_00424D18;
 extern int D_00586AF0;
-extern void InitVtableField30_1339C0(void *obj);
+extern void cCollisionSolid__dtor(void *obj);
 extern void SetField214PtrThenInit_1B6F38(void *obj);
 extern void func_00298088(void);
 extern void func_00297B40(void *a, void *b);
@@ -59,7 +59,7 @@ extern void func_00297B40(void *a, void *b);
 __attribute__((section(".text.InitObjVtableField30_133B58")))
 void InitObjVtableField30_133B58(void *obj) {
     *(int **)((char *)obj + 0x30) = &D_0041D7B8;
-    InitVtableField30_1339C0(obj);
+    cCollisionSolid__dtor(obj);
 }
 
 __attribute__((section(".text.InitObjVtableField214_195ED0")))

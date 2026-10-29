@@ -55,7 +55,7 @@ void func_002714B0(char *a0) {
 __attribute__((section(".text.func_00276980")))
 int func_00276980(void *a0) {
     *(char**)((char*)a0+0x214) = D_00447AD0;
-    return func_002A73C8(a0);
+    return cGameObj__dtor(a0);
 }
 
 /* clone */
@@ -77,7 +77,7 @@ void func_00279D40(int a0, int a1) {
 __attribute__((section(".text.func_0027A2F8")))
 int func_0027A2F8(void *a0) {
     *(char**)((char*)a0+0x214) = D_00447F70;
-    return func_002A73C8(a0);
+    return cGameObj__dtor(a0);
 }
 
 /* clone */
@@ -87,7 +87,7 @@ int func_0027A2F8(void *a0) {
 __attribute__((section(".text.func_0027ADE8")))
 int func_0027ADE8(void *a0) {
     *(char**)((char*)a0+0x214) = D_00448028;
-    return func_002A73C8(a0);
+    return cGameObj__dtor(a0);
 }
 
 /* clone */
@@ -109,7 +109,7 @@ void func_0027DE18(int a0, int a1) {
 __attribute__((section(".text.func_00283660")))
 int func_00283660(void *a0) {
     *(char**)((char*)a0+0x214) = D_00448890;
-    return func_002A73C8(a0);
+    return cGameObj__dtor(a0);
 }
 
 /* clone */
@@ -119,5 +119,5 @@ int func_00283660(void *a0) {
 __attribute__((section(".text.func_00284040")))
 int func_00284040(void *a0) {
     *(char**)((char*)a0+0x214) = D_00448948;
-    return func_002A73C8(a0);
+    return cGameObj__dtor(a0);
 }

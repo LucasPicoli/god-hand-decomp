@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_00785508;
-extern void GetOrInitSingleton_100328(void);
+extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_0041B7D0[];
 extern char D_007854C8[];
@@ -15,7 +15,7 @@ __attribute__((section(".text.GetOrInitSubSingleton_103880")))
 void *GetOrInitSubSingleton_103880(void) {
     void *p = (void *)&D_00785508;
     if (D_00785508 == 0) {
-        GetOrInitSingleton_100328();
+        cPlBase__tf();
         SetField_0_4_8_31EEA8(p, D_0041B7D0, D_007854C8);
     }
     return p;

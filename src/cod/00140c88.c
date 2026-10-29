@@ -9,7 +9,7 @@
 extern char D_0044E030[];
 extern char D_0044E040[];
 extern unsigned int D_00747A34;
-extern void *EnsureInitThenForward_2A9538_30EE08(int size, int align, void *heap);
+extern void *_MemoryAlloc(int size, int align, void *heap);
 extern int LoadEntryByValue_1FFD00(char *table, char *name, void *dest);
 extern void displayScrollLayer(int id, int on);
 extern void func_0013ECF0(void *p);
@@ -107,7 +107,7 @@ void FileBuf_init(void)
     fb->count = 0;
     fb->kindA = 8;
     fb->kindB = 8;
-    fb->buf = EnsureInitThenForward_2A9538_30EE08(0x1000, 0x40, &D_00754200);
+    fb->buf = _MemoryAlloc(0x1000, 0x40, &D_00754200);
     if ((D_00747A34 & FILEBUF_SYS_ALT) == 0) {
         LoadEntryByValue_1FFD00(D_00580D40, D_0044E030, fb->buf);
     } else {
