@@ -19,7 +19,6 @@ typedef struct IDPanelScreen {
 extern void cIDBase_initIDWork(void *self, int idx);
 extern cIDBaseEnt *cIDBase_getIDWork(void *self, int idx);
 extern void cIDBase_restartAnim(void *self);
-extern void cIDBase_move(void *self);
 extern void func_002AC9B8(void *self, cIDBaseEnt *w, int a2);
 extern void CustomIDWork_Initialize(CustomIDWork *cw, cIDBaseEnt *w);
 extern void CustomIDWork_SetDisp(CustomIDWork *cw, int on);
@@ -41,7 +40,7 @@ void func_0013D400(IDPanelScreen *obj)
     obj->on = 1;
     obj->ent[4]->f70[2] = 0.0f;
     obj->ent[4]->sclX = 0.0f;
-    cIDBase_move(obj);
+    cIDBase_move(&obj->base);
     cIDBase_restartAnim(&obj->base2);
     for (j = 0; j < 5; j++) {
         CustomIDWork_Initialize(&obj->cw[j], cIDBase_getIDWork(&obj->base2, j));

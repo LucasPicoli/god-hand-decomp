@@ -14,7 +14,6 @@ typedef struct IDSlotScreen {
 } IDSlotScreen;
 
 extern void cIDBase_trans(void *self);
-extern void cIDBase_move(void *self);
 extern cIDBaseEnt *cIDBase_getIDWork(void *self, int idx);
 
 __attribute__((section(".text.func_00143998")))

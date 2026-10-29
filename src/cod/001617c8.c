@@ -11,7 +11,6 @@ typedef struct PartSetObj {
 /* GameWork.flags (gameWork.h declares it as an int) read as an array: retail reaches the
  * system flags word after it (D_00747A28) from this symbol, and as its own symbol the code changes. */
 extern int D_00747A24[];
-extern void cIDBase_move(void *self);
 
 __attribute__((section(".text.func_001617C8")))
 void func_001617C8(PartSetObj *o)
@@ -41,5 +40,5 @@ void func_001617C8(PartSetObj *o)
         o->part[6]->flags |= IDENT_FLAG_NO_DRAW;
         o->part[7]->flags |= IDENT_FLAG_NO_DRAW;
     }
-    cIDBase_move(o);
+    cIDBase_move(&o->base);
 }

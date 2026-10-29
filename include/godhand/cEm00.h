@@ -289,4 +289,10 @@ typedef struct cEm00 {
 
 typedef char cEm00_size_check[(sizeof(cEm00) == 0x1870) ? 1 : -1];
 
+/* Nonzero holds back the enemies' catch moves. */
+extern unsigned char D_005CB010;
+
+int Obj0000_IsSet_Field_16D4_Bit_4_26F308(void *a0);    /* definition in 000000.c */
+int func_00273EE0(void *a0);                            /* definition in 00273ee0.c */
+
 #endif

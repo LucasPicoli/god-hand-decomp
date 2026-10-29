@@ -174,6 +174,9 @@ typedef struct cIDBase {
     unsigned char mode;         /* 0x46 starts at 6: draw with the entry's own colour number */
 } cIDBaseObj;
 
+/* Advance every entry of the display one frame. */
+void cIDBase_move(cIDBaseObj *self);
+
 typedef char cIDBaseEnt_size_check[sizeof(cIDBaseEnt) == IDBASE_ENT_SIZE ? 1 : -1];
 typedef char cIDBaseSrc_size_check[sizeof(cIDBaseSrc) == IDBASE_SRC_SIZE ? 1 : -1];
 typedef char cIDBaseDraw_size_check[sizeof(cIDBaseDraw) == 0x40 ? 1 : -1];

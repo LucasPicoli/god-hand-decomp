@@ -5,13 +5,13 @@
 #include "godhand/cDataManager.h"
 #include "godhand/cIDBase.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEvent.h"
 
 extern void func_0028FB08(void *em);
 extern int D_005FEE00;
 extern int cSnd_SeIsLoadOk(void *snd, int handle);
 extern char D_00462FC0[];
 extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int on);
-extern void cIDBase_move(void *self);
 extern unsigned int D_00747A84;
 extern char D_00586AF0[];
 extern unsigned int cEvent_getCutNo();
@@ -68,7 +68,7 @@ int cDataSlot_releaseLoadedSe(cDataSlot *slot) {
 /* cEm00.fadeTimer, see cEm00_fields.h in the lane directory (field not in cEm00.h yet). */
 #define EM_FADETIMER(self) (*(float *)((char *)(self) + 0x1704))
 
-#define EM_FADE_STEP       0.02f        /* timer decrease per call */
+#define EM_FADETIMER_STEP  0.02f        /* timer decrease per call */
 #define EM_FLAG_FADING     0x10         /* objFlags: the fade is still running */
 
 /* Advance the fade-in: deactivate the collision, count the timer down and ramp the animation rate up to 1.0. Returns 0 once the timer has run out. */
@@ -80,7 +80,7 @@ int cEm00_stepFadeIn(cEm00 *self) {
         return 0;
     }
     cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
-    t = EM_FADETIMER(self) - EM_FADE_STEP;
+    t = EM_FADETIMER(self) - EM_FADETIMER_STEP;
     rate = 1.0f - t;
     EM_FADETIMER(self) = t;
     self->animRate = rate;
@@ -133,7 +133,7 @@ void GoldPanel_update(GoldPanel *self) {
         func_00163F00(self);
         break;
     }
-    cIDBase_move(self);
+    cIDBase_move(&self->base);
 }
 
 #define SYSFLAG_EVENT_RUNNING  0x20000000       /* D_00747A84: a cutscene is running */

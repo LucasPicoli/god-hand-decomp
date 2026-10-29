@@ -21,4 +21,9 @@ extern unsigned short *cMessage_getMessageAddr(int mess, unsigned short id);
 extern int cMessCommon_getCodeSize(unsigned short code);
 extern int func_002A4B20(int font, unsigned short code);
 
+struct MessWin;
+/* 1 if text reaches a control code of kind before its end, another 0x80xx
+ * code or a wait code; self is not read. */
+int func_002B45F8(struct MessWin *self, unsigned short *text, unsigned short kind);
+
 #endif
