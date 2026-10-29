@@ -244,9 +244,9 @@ static __inline__ void cWorldLight_CopyRec(cWorldLightRec *d, cWorldLightRec *s)
     d->f40 = s->f40;
     d->f44 = s->f44;
     d->f48 = s->f48;
-    dp = &d->ownerIdx;
+    dp = d->owner;
     n = 1;
-    sp = &s->ownerIdx;
+    sp = s->owner;
     do {
         *dp = *sp;
         sp++;
@@ -410,11 +410,11 @@ void func_002D9778(cWorldLight *self)
     q[2] = 0.5f;
     q[3] = 1.0f;
     d.f40 = 0.01f;
-    d.ownerUse = 1;
+    d.owner[WORLDLIGHT_OWNER_USE] = 1;
     d.flags = 0x87000000;
     d.f44 = 0;
     d.f48 = 0;
-    d.ownerIdx = 0;
+    d.owner[WORLDLIGHT_OWNER_IDX] = 0;
     cWorldLight_Set_LightData(self, &d);
 }
 

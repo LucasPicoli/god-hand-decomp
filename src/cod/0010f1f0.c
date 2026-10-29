@@ -99,11 +99,11 @@ void cWorldLight_Init_SatanLight(cWorldLight *self, int key)
     q[2] = 0.08f;
     q[3] = 1.0f;
     d.f44 = 0.8f;
-    d.ownerUse = 1;
+    d.owner[WORLDLIGHT_OWNER_USE] = 1;
     d.flags = 0x05040000;
     d.f40 = 0;
     d.f48 = 0;
-    d.ownerIdx = 0;
+    d.owner[WORLDLIGHT_OWNER_IDX] = 0;
     cWorldLight_Set_LightData(self, &d);
 
     p[0] = -1.0001519918441772f;
@@ -120,7 +120,7 @@ void cWorldLight_Init_SatanLight(cWorldLight *self, int key)
     q[3] = 1.0f;
     d.f60 = 1;
     d.f44 = 0.1f;
-    d.ownerUse = 1;
+    d.owner[WORLDLIGHT_OWNER_USE] = 1;
     d.f5E = 30;
     d.f5C = 0x5100;
     d.f61 = 50;
@@ -128,7 +128,7 @@ void cWorldLight_Init_SatanLight(cWorldLight *self, int key)
     d.flags = 0x04140000;
     d.f40 = 0;
     d.f48 = 0;
-    d.ownerIdx = 0;
+    d.owner[WORLDLIGHT_OWNER_IDX] = 0;
     cWorldLight_Set_LightData(self, &d);
 
     d.key = key;
@@ -144,11 +144,11 @@ void cWorldLight_Init_SatanLight(cWorldLight *self, int key)
     d.v30[2] = 0.0f;
     q[3] = 1.0f;
     d.f44 = 0.1f;
-    d.ownerUse = 1;
+    d.owner[WORLDLIGHT_OWNER_USE] = 1;
     d.flags = c3;
     d.f40 = 0;
     d.f48 = 0;
-    d.ownerIdx = 0;
+    d.owner[WORLDLIGHT_OWNER_IDX] = 0;
     cWorldLight_Set_LightData(self, &d);
 }
 
