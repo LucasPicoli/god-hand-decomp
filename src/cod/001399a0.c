@@ -35,58 +35,58 @@ typedef struct CamView {
 typedef struct cFollowCamera {
     struct cCamera base;                /* 0x000 */
     CamView *view;                      /* 0x360 */
-    CamNode *tgtSrc;                    /* 0x364 */
-    CamNode *eyeSrc;                    /* 0x368 */
+    CamNode *eyeSrc;                    /* 0x364 */
+    CamNode *tgtSrc;                    /* 0x368 */
 } cFollowCamera;
 
-/* Place the camera: target and eye from the two objects through the view matrix, field of view from
- * the target object's angle, roll from the eye object's. */
+/* Place the camera: eye and target from the two objects through the view matrix, field of view from
+ * the eye object's angle, roll from the target object's. */
 __attribute__((section(".text.func_001399A0")))
 void func_001399A0(cFollowCamera *self)
 {
     struct {
-        cVec tgt;                       /* 0x00 */
-        cVec eye;                       /* 0x10 */
+        cVec eye;                       /* 0x00 */
+        cVec tgt;                       /* 0x10 */
         cVec out;                       /* 0x20 */
         cVec tmp;                       /* 0x30 */
     } f;
     CamNode *a;
     CamNode *b;
-    cVec *eye;
+    cVec *tgt;
     cVec *tmp;
     float (*m)[4];
 
     if (D_00747A78 & SYS_FLAG_CAM_LOCK) {
         return;
     }
-    a = self->tgtSrc;
+    a = self->eyeSrc;
     if (a == 0) {
         return;
     }
-    b = self->eyeSrc;
+    b = self->tgtSrc;
     if (b == 0) {
         return;
     }
-    eye = &f.eye;
+    tgt = &f.tgt;
     tmp = &f.tmp;
     m = self->view->mtx;
-    vecSet(&f.tgt, a->x, a->y, a->z);
-    vecSet(&f.eye, b->x, b->y, b->z);
+    vecSet(&f.eye, a->x, a->y, a->z);
+    vecSet(&f.tgt, b->x, b->y, b->z);
     VU0_LQC2(4, &f, 0x00);
     VU0_SQC2(4, &f, 0x30);
     sceVu0ApplyMatrix(tmp, m, tmp);
     VU0_LQC2(4, tmp, 0);
     VU0_SQC2(4, &f, 0x20);
-    cVec_copy3(&self->base.target, &f.out);
-    VU0_LQC2(4, eye, 0);
+    cVec_copy3(&self->base.eye, &f.out);
+    VU0_LQC2(4, tgt, 0);
     VU0_SQC2(4, &f, 0x30);
     sceVu0ApplyMatrix(tmp, m, tmp);
     VU0_LQC2(4, tmp, 0);
     VU0_SQC2(4, &f, 0x20);
-    cVec_copy3(&self->base.eye, &f.out);
-    self->base.fov = self->tgtSrc->angle * 57.295776f;
-    func_001F8080(&self->base.up, Adjust_theta(-self->eyeSrc->angle));
+    cVec_copy3(&self->base.target, &f.out);
+    self->base.fov = self->eyeSrc->angle * 57.295776f;
+    func_001F8080(&self->base.up, Adjust_theta(-self->tgtSrc->angle));
     sceVu0ApplyMatrix(&self->base.up, m, &self->base.up);
-    cCamera__calcRotation(&f.out, &self->base, &self->base.target, &self->base.eye);
+    cCamera__calcRotation(&f.out, &self->base, &self->base.eye, &self->base.target);
     cVec_copy3(&self->base.rot, &f.out);
 }

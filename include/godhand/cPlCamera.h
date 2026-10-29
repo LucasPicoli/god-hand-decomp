@@ -31,7 +31,7 @@ typedef struct cPlCamPose {
     char unk04[0xC];
     cVec ofs;                           /* 0x10 offset in the object's frame */
     cVec rotOfs;                        /* 0x20 x and y are added to the object's rotation */
-    float dist;                         /* 0x30 how far behind the eye the target sits */
+    float dist;                         /* 0x30 how far behind the target the eye sits */
     char unk34[0xC];
 } cPlCamPose;                           /* 0x40 */
 

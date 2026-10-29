@@ -1,6 +1,6 @@
 /* include/godhand/cCamera.h - cCamera, the base camera object.
  *
- * A cCamera holds seven 4x4 matrices at 0x000..0x1BF, the eye, target and
+ * A cCamera holds seven 4x4 matrices at 0x000..0x1BF, the target, eye and
  * rotation vectors at 0x200..0x230, two vibration channels at 0x254 and the
  * vtable at 0x35C. The constructor zeroes the vectors and calls reset;
  * reset aims the camera from its default eye at its default target and
@@ -44,9 +44,9 @@ struct cCamera {
     float mtx[CAMERA_MTX_NUM][16];      /* 0x000 */
     int unk1C0;                         /* 0x1C0 cleared by reset */
     char unk1C4[0x3C];
-    cVec eye;                           /* 0x200 */
-    cVec target;                        /* 0x210 */
-    cVec rot;                           /* 0x220 angles from eye to target */
+    cVec target;                        /* 0x200 the point the camera looks at */
+    cVec eye;                           /* 0x210 the camera's position */
+    cVec rot;                           /* 0x220 angles from target to eye */
     char unk230[0x10];
     cVec up;                            /* 0x240 */
     float fov;                          /* 0x250 */

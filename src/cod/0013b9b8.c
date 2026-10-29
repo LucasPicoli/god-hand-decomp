@@ -20,8 +20,8 @@ static __inline__ void plcam_vec(cVec *v, float x, float y, float z, float w) {
 
 /* Place the camera for the next update. With `snap` set the pose is copied
  * from the live camera; otherwise it is rebuilt from the anchor object: the
- * eye is the anchor's position plus the offset turned by its rotation, the
- * target lies `setDist` in front of the eye along the turned rotation, and
+ * target is the anchor's position plus the offset turned by its rotation, the
+ * eye sits `dist` behind the target along the turned rotation, and
  * the up vector is reset to (0, 1, 0). */
 __attribute__((section(".text.cPlCamera_setCamUpdate")))
 void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
@@ -36,8 +36,8 @@ void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
     if (D_005CAFF0 == 0) return;
     *(int *)((char *)self + PLCAM_UPDATE_OFS) = 0;
     if (snap != 0) {
-        cVec_copy3(&self->base.target, &((struct cCamera *)D_005CAFF0)->target);
         cVec_copy3(&self->base.eye, &((struct cCamera *)D_005CAFF0)->eye);
+        cVec_copy3(&self->base.target, &((struct cCamera *)D_005CAFF0)->target);
         self->base.fov = ((struct cCamera *)D_005CAFF0)->fov;
         return;
     }
@@ -47,7 +47,7 @@ void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
     f.mtx[13] = self->pose.obj->pos->y;
     f.mtx[14] = self->pose.obj->pos->z;
     sceVu0ApplyMatrix(&f.out, f.mtx, &self->pose.ofs);
-    cVec_copy3(&self->base.eye, &f.out);
+    cVec_copy3(&self->base.target, &f.out);
     VU0_SQC2_VF0(&f, 0x50);
     VU0_SQC2_VF0(&f, 0x60);
     plcam_vec(&f.rot, self->pose.obj->rot[0] + self->pose.rotOfs.x,
@@ -61,7 +61,7 @@ void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap) {
     f.back.y = 0;
     f.back.z = -self->pose.dist;
     sceVu0ApplyMatrix(&f.place, f.mtx, &f.back);
-    cVec_copy3(&self->base.target, &f.place);
+    cVec_copy3(&self->base.eye, &f.place);
     plcam_vec(&f.up, 0, 1.0f, 0, 1.0f);
     cVec_copy3(&self->up, &f.up);
     self->base.fov = PLCAM_FOV_SET;

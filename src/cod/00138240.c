@@ -157,7 +157,7 @@ void cCamera_stepVib(struct cCamera *self) {
     }
 }
 
-/* Put the camera back to its default view: eye at the origin, target at
+/* Put the camera back to its default view: target at the origin, eye at
  * (2.8, 2.1, 2.8), rotation recomputed from them, up straight up, field of
  * view 31, vibration cleared. */
 __attribute__((section(".text.cCamera_reset")))
@@ -167,10 +167,10 @@ void cCamera_reset(struct cCamera *self) {
         float mtx[16];                  /* 0x10 */
     } f;
     f.v.x = 0.0f; f.v.y = 0.0f; f.v.z = 0.0f; f.v.w = 1.0f;
-    cVec_copy3(&self->eye, &f.v);
-    f.v.x = 2.8f; f.v.y = 2.1f; f.v.z = 2.8f; f.v.w = 1.0f;
     cVec_copy3(&self->target, &f.v);
-    cCamera__calcRotation(&f.v, self, &self->target, &self->eye);
+    f.v.x = 2.8f; f.v.y = 2.1f; f.v.z = 2.8f; f.v.w = 1.0f;
+    cVec_copy3(&self->eye, &f.v);
+    cCamera__calcRotation(&f.v, self, &self->eye, &self->target);
     cVec_copy3(&self->rot, &f.v);
     MtxInitRotVec(f.mtx, &self->rot, 4);
     f.v.x = 0.0f; f.v.y = 1.0f; f.v.z = 0.0f; f.v.w = 1.0f;

@@ -19,32 +19,33 @@ extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int active);
 extern void KillEffect(void *obj, int effNo, int mode);
 extern char D_00462FC0[];
 
-/* Build the view matrix: take the target and the eye through the model
- * matrix, find the view direction (eye minus target) and call the camera
- * matrix builder with the camera's own up vector. */
+/* Build the view matrix: take the eye and the target through the model
+ * matrix, find the view direction (target minus the untransformed eye) and
+ * call the camera matrix builder with the eye as the position and the
+ * camera's own up vector. */
 __attribute__((section(".text.cCamera_calcViewMatrix")))
 void cCamera_calcViewMatrix(struct cCamera *self) {
     struct {
-        cVec p;                         /* 0x00 target in view space */
-        cVec e;                         /* 0x10 eye in view space */
+        cVec p;                         /* 0x00 eye in view space */
+        cVec e;                         /* 0x10 target in view space */
         cVec t;                         /* 0x20 view direction */
         cVec zd;                        /* 0x30 */
         cVec yd;                        /* 0x40 */
     } f;
     char *q;
-    cVec *tp;
-    f.p.x = self->target.x;
-    f.p.y = self->target.y;
-    f.p.z = self->target.z;
+    cVec *ep;
+    f.p.x = self->eye.x;
+    f.p.y = self->eye.y;
+    f.p.z = self->eye.z;
     f.p.w = 1.0f;
     sceVu0ApplyMatrix(&f.p, self->mtx[6], &f.p);
     VU0_SQC2_VF0(&f, 0x10);
-    sceVu0ApplyMatrix(&f.e, self->mtx[6], &self->eye);
+    sceVu0ApplyMatrix(&f.e, self->mtx[6], &self->target);
     q = (char *)&f + 0x30;
-    tp = &self->target;
+    ep = &self->eye;
     VU0_SQC2_VF0(&f, 0x30);
     VU0_LQC2(4, &f.e, 0);
-    VU0_LQC2(5, tp, 0);
+    VU0_LQC2(5, ep, 0);
     VU0_VSUB_XYZ(4, 4, 5);
     VU0_SQC2(4, &f, 0x30);
     VU0_LQC2(4, q, 0);
