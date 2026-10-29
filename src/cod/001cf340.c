@@ -73,9 +73,9 @@ void cOmWeapon_setFall(cOmWeapon *self) {
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
         body2->owner = &self->base;
-        body2->posPrev.x = 0.0f;
-        body2->posPrev.y = 0.0f;
-        body2->posPrev.z = 0.0f;
+        body2->rot.x = 0.0f;
+        body2->rot.y = 0.0f;
+        body2->rot.z = 0.0f;
         cModel_calcParts(self);
         self->base.mode = 0;
         self->base.phase = 0;
@@ -115,9 +115,9 @@ void cOmWeapon_dropToGround(cOmWeapon *self) {
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
         body2->owner = &self->base;
-        body2->posPrev.x = 0.0f;
-        body2->posPrev.y = 0.0f;
-        body2->posPrev.z = 0.0f;
+        body2->rot.x = 0.0f;
+        body2->rot.y = 0.0f;
+        body2->rot.z = 0.0f;
         cModel_calcParts(self);
         self->base.step = 4;
         self->base.mode = 0;
@@ -164,9 +164,9 @@ void cOmWeapon_kickOff(cOmWeapon *self) {
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
         body2->owner = &self->base;
-        body2->posPrev.x = 0.0f;
-        body2->posPrev.y = 0.0f;
-        body2->posPrev.z = 0.0f;
+        body2->rot.x = 0.0f;
+        body2->rot.y = 0.0f;
+        body2->rot.z = 0.0f;
         cModel_calcParts(self);
         self->base.phase = 0x13;
         self->base.mode = 0;

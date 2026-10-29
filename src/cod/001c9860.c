@@ -62,7 +62,7 @@ void func_001C9860(cOmFallGimmick *self)
     cModel_calcParts(self);
 
     vec3_copy(&self->base.posA.x, &self->base.pos->x);
-    vec3_copy(&self->base.posB.x, &self->base.posPrev.x);
+    vec3_copy(&self->base.posB.x, &self->base.rot.x);
     if (self->unk600 == 0 && self->base.pos->y < -1000.0f)
         cOmBase_dieCommon(self);
     if (self->base.actorId == 0x390)

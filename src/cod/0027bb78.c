@@ -73,7 +73,7 @@ void func_0027BB78(cEm00 *self)
         }
         self->partYaw += Turn_dest_dir(self->partYaw, ang, self->speedRate * TURN_SPEED);
         self->partYaw = Adjust_theta(self->partYaw);
-        part->posPrev.y = self->partYaw;    /* 0x104: the part's rot.y (cParts), posPrev in cOmBase */
+        part->rot.y = self->partYaw;    /* 0x104: the part's heading */
     }
     func_0027D300((char *)self);
     cModel_calcParts(self);

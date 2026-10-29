@@ -52,7 +52,7 @@ void func_001C0450(cOmEntry *self)
         state = self->state;
         bit = (state >> 1) & 1;
         if (bit == 1) {
-            if (vec4_ne(&self->base.posB.x, &self->base.posPrev.x))
+            if (vec4_ne(&self->base.posB.x, &self->base.rot.x))
                 regist(self);
         }
     }
