@@ -82,4 +82,18 @@
         VU0_SQC2(4, dst, 0);                                    \
     }
 
+
+/* Vec v(fx, fy, fz); (the three-float constructor in place, w = 1). As an
+ * inline function the arguments go through registers and 0.0 components are
+ * no longer stored from $zero. */
+#define CVEC_INIT_XYZ(v, fx, fy, fz)                            \
+    {                                                           \
+        cVec *v_ = &(v);                                        \
+                                                                \
+        v_->x = (fx);                                           \
+        v_->y = (fy);                                           \
+        v_->z = (fz);                                           \
+        v_->w = 1.0f;                                           \
+    }
+
 #endif /* GODHAND_CVEC_H */
