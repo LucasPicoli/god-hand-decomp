@@ -178,7 +178,7 @@ void cOmBase_updatePhaseAndCalcParts(cOmBase *self)
     fp((int)(s0 + arg));
     cModel_calcParts(self);
     cVec_copy3(&self->posA, self->pos);
-    cVec_copy3(&self->posB, &self->posPrev);
+    cVec_copy3(&self->posB, &self->rot);
 }
 
 #define POKER_OFFSET_UI     0x25B0    /* the table's UI record is not typed yet */

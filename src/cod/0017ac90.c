@@ -1,11 +1,11 @@
 /* sn-2.95.3-136: func_0017AC90, setup with a radius 1 damage-take sphere 2.28 above the first child, a 120-frame
- * timer pair, and the first child's posPrev.x kept at 0x608. */
+ * timer pair, and the first child's rot.x kept at 0x608. */
 #include "godhand/cOmBase.h"
 #include "godhand/cOmHitVolumeSetup.h"
 
 #define OBJ_FLAG_SPHERE_TAKE  0x10000   /* objFlags bit this setup sets */
 
-/* The object this sets up: two cleared state bytes, the child's posPrev.x and the damage-take unit. */
+/* The object this sets up: two cleared state bytes, the child's rot.x and the damage-take unit. */
 typedef struct cOmSphereTake {
     cOmBase base;                       /* 0x000 */
     char unk5E0[0x600 - 0x5E0];
@@ -13,7 +13,7 @@ typedef struct cOmSphereTake {
     char unk601;
     unsigned char unk602;               /* 0x602 cleared at setup */
     char unk603[5];
-    float childPrevX;                   /* 0x608 the first child's posPrev.x */
+    float childPrevX;                   /* 0x608 the first child's rot.x */
     void *take;                         /* 0x60C damage-take unit, 0 when none */
 } cOmSphereTake;
 
@@ -57,6 +57,6 @@ int func_0017AC90(cOmSphereTake *self)
     self->base.objFlags = bits;
     func_0017B5E0((unsigned char *)self);
     if (GetChild(self) != 0)
-        self->childPrevX = GetChild(self)->posPrev.x;
+        self->childPrevX = GetChild(self)->rot.x;
     return 1;
 }

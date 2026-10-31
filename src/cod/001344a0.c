@@ -83,7 +83,7 @@ void cOmBase_updateWithHitRecord(cOmHitHolder *self)
     fp((int)(s0 + arg));
     cModel_calcParts(self);
     cVec_copy3(&self->base.posA, self->base.pos);
-    cVec_copy3(&self->base.posB, &self->base.posPrev);
+    cVec_copy3(&self->base.posB, &self->base.rot);
 }
 
 /* Empty the node list: pop each node, run its virtual deleting destructor, count the node out. */

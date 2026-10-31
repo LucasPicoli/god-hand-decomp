@@ -34,8 +34,8 @@ extern void cOmSub_initMove3_y(void *dst, void *obj, int idx, int a3,
                                float f12, float f13, float f14);
 
 __attribute__((section(".text.cOmb2_SetMove")))
-void cOmb2_SetMove(cOmb2 *self, cVec *dir, int moveArg, float rate) {
-    cVec_copy3(&self->base.posPrev, dir);
+void cOmb2_SetMove(cOmb2 *self, cVec *rot, int moveArg, float rate) {
+    cVec_copy3(&self->base.rot, rot);
     cOmSub_initMove3_y(self->move, self, -1, moveArg, rate, COMB2_MOVE_DROP, 0.0f);
     self->base.mode = COMB2_MODE_MOVE;
 }

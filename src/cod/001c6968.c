@@ -208,9 +208,9 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
         cVec *s;
 
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         d = &self->vel;
         s = v;
@@ -232,7 +232,7 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
 
 
 
-/* Throw a weapon at the player with velocity v: like setThrow, but the collision body gets a random spin (stored in posPrev.z) and the state is 5. */
+/* Throw a weapon at the player with velocity v: like setThrow, but the collision body gets a random spin (stored in rot.z) and the state is 5. */
 __attribute__((section(".text.cOmWeapon_setThrowPL")))
 void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
 {
@@ -270,9 +270,9 @@ void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
         cVec *s;
 
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z =
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z =
             fRand1_1() * 0.5235987901687622f + 0.5235987901687622f;
         cModel_calcParts(self);
         d = &self->vel;
@@ -322,9 +322,9 @@ void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         body->anchor->x = 0.0f;
         body->anchor->y = 0.0f;
         body->anchor->z = 0.0f;
