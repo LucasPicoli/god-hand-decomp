@@ -9,7 +9,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int func_0026F1D8(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void func_00270C78(void *a0);
 extern void func_002705D8(void *a0);
 extern char D_005FEE00[];
 

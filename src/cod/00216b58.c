@@ -12,7 +12,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern unsigned int irand(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern void func_00262AA8(void *a0);
 extern void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2);
 extern void func_002705D8(void *a0);
 extern void func_0026B4E8(void *a0);
@@ -159,7 +158,7 @@ __attribute__((section(".text.func_00216B58"))) void func_00216B58(cEm00 *self)
                 capVu0MagnitudeSqXZ(*(void **)(p + 0xF0), *(void **)(s1 + 0xF0)) < 2.25f) {
                 *(unsigned char *)(s1 + 0x2F6) += 1;
             } else {
-                func_00262AA8(s1);
+                func_00262AA8(self);
             }
             break;
         }

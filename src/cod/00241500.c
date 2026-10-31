@@ -3,7 +3,6 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -175,7 +174,7 @@ __attribute__((section(".text.func_00241500"))) void func_00241500(cEm00 *self)
 
                 case 0x265: {
                     int b = *(int *)(p + 0x304);
-                    int h = *(int *)(p + 0x744);
+                    cEm00 *h = *(cEm00 **)(p + 0x744);
                     s1v = EM_RES_REC(b, 0x3724);
                     s0v = EM_RES_REC(b, 0x3728);
                     if (h != 0) {

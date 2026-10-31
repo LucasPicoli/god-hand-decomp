@@ -7,7 +7,6 @@
 
 extern int  Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int irand(void);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int  Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
@@ -15,8 +14,6 @@ extern int  moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void func_0026BEF0(void *a0, int a1, int a2);
-extern void func_00260B30(void *a0);
 
 /* Phase machine on the step byte, 8 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468, irand,
  * cCoreSave_getGameLevel, StoreMotionParamsBoth_2609A8, func_002A8578, Getplayer and 7 more. */

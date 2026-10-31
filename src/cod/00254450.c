@@ -24,14 +24,10 @@ extern void func_002717D0(void *a0);
 
 extern void func_00274FE8(void *a0);
 extern void func_002705D8(void *a0);
-extern void func_00270C78(void *a0);
-extern void func_00274238(void *a0, int a1);
 
 
 
 extern void func_0027DB50(int a0, int a1);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
-extern void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(int a0);
 extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
 extern unsigned char D_005CB010;
@@ -649,7 +645,7 @@ void cEm00_hitReaction(void *a0)
                 recA = EM_RES_REC(p, 0x3318);
                 recB = EM_RES_REC(p, 0x331C);
                 if (self->subA != 0) {
-                    Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(self->subA);
+                    Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08((cEm00 *)self->subA);
                 }
             }
             break;

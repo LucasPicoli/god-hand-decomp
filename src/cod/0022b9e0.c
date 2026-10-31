@@ -11,7 +11,6 @@ extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern char D_005FEE00[];
 
@@ -116,7 +115,7 @@ __attribute__((section(".text.func_0022B9E0"))) void func_0022B9E0(cEm00 *self)
     if (0.0f < d) {
         *(float *)(p + 0x600) = d - *(float *)(p + 0x5A8);
     } else if ((*(unsigned short *)(p + 0x3AC) & 1) != 0) {
-        func_0026BEF0(p, 6, 0);
+        func_0026BEF0(self, 6, 0);
         *(float *)(p + 0x600) = 3.0f;
         cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x22, p, 0, 0, 0, 0);
     }

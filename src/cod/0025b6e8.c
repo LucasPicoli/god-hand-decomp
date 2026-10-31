@@ -10,9 +10,7 @@ extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, in
 extern void Obj2810_SetState_E_a1(void *a0, int a1);
 extern void SetBytes2F4Mode11_283360(void *a0, int a1);
 extern void ClearBytes2F4To2F7_283170(void *a0);
-extern void func_0026F120(void *a0);
 
-extern void func_00270C78(void *a0);
 extern void func_002705D8(void *a0);
 /* Phase machine on the step byte, 8 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468, VU0_LQC2,
  * VU0_SQC2, capVu0Atan2, Turn_dest_dir, func_002A8578 and 8 more. */

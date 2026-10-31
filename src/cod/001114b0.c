@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
@@ -12,7 +11,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00260B30(void *a0);
 extern void func_00262750(void *a0, int a1);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -37,7 +35,7 @@ void func_002256C8(void *a0)
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10(s1);
+    CheckSlotsShort2FEAndSetByte1864_262A10(a0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int gb;
@@ -45,7 +43,7 @@ void func_002256C8(void *a0)
         int a1v, a2v;
         *(char *)(s1 + 0x1864) = 0;
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-        StoreMotionParamsBoth_2609A8(s1, 0x28, 0xB, 0x42, 0, 0xF5);
+        StoreMotionParamsBoth_2609A8(a0, 0x28, 0xB, 0x42, 0, 0xF5);
         v0 = *(char **)(s1 + 0x304);
         a1v = *(int *)(v0 + 0xCE4) + (int)v0;
         a2v = *(int *)(v0 + 0xCE8) + (int)v0;
@@ -82,7 +80,7 @@ void func_002256C8(void *a0)
         break;
     }
     }
-    func_00260B30(s1);
+    func_00260B30(a0);
     if (*(unsigned short *)(s1 + 0x3AC) & 1) {
         func_00262750(s1, 0);
     }

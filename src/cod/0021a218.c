@@ -3,7 +3,6 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
@@ -196,7 +195,7 @@ __attribute__((section(".text.func_0021A218"))) void func_0021A218(cEm00 *self)
 
                 case 0x265: {
                     int b = *(int *)(p + 0x304);
-                    int m = *(int *)(p + 0x744);
+                    cEm00 *m = *(cEm00 **)(p + 0x744);
 
                     s1v = EM_RES_REC(b, 0x3724);
                     s0v = EM_RES_REC(b, 0x3728);

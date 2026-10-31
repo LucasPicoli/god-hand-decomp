@@ -11,7 +11,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 extern char D_004365A8[];
 extern char D_004365B0[];
 
@@ -91,7 +90,7 @@ __attribute__((section(".text.func_002170B8"))) void func_002170B8(cEm00 *self)
     if (*(unsigned short *)(s1 + 0x3AC) & 1) {
         if ((*(int *)(s1 + 0x16D4) & 8) == 0) {
             char *r;
-            func_0026BEF0(s1, 8, 0);
+            func_0026BEF0(self, 8, 0);
             *(int *)(s1 + 0x16D4) |= 8;
             r = (char *)cModel_getMeshPtr_14B730(s1, D_004365A8);
             if (r != 0) {

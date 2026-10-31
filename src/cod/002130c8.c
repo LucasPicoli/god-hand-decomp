@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
@@ -7,7 +8,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern unsigned int irand(void);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
@@ -191,14 +191,14 @@ void func_002130C8(void *a0)
                 s2v = *(int *)(b + 0x3734) + b;
                 if (*(float *)(p + 0x618) > 64.0f && (irand() & 1) != 0) {
                     int b2 = *(int *)(p + 0x304);
-                    int t2 = *(int *)(p + 0x744);
+                    cEm00 *t2 = *(cEm00 **)(p + 0x744);
                     s0v = *(int *)(b2 + 0x373C) + b2;
                     if (t2 != 0) {
                         ForwardAnimParamPairByIndex_27EA50(t2, 5);
                     }
                 } else {
                     int b3 = *(int *)(p + 0x304);
-                    int t3 = *(int *)(p + 0x744);
+                    cEm00 *t3 = *(cEm00 **)(p + 0x744);
                     s0v = *(int *)(b3 + 0x3738) + b3;
                     if (t3 != 0) {
                         ForwardAnimParamPairByIndex_27EA50(t3, 4);
@@ -348,7 +348,7 @@ void func_002130C8(void *a0)
         || D_005864F0[0x5B5] != 0
         || cEmManage_CkPlCatched(D_005864F0) != 0) {
         func_002705D8(p);
-    } else if (flag == 0 || func_00262AA8(p) == 0) {
+    } else if (flag == 0 || func_00262AA8(a0) == 0) {
         if (*(int *)(p + 0x16EC) > 0) {
             if (*(float *)(p + 0x618) > 64.0f) {
                 if ((unsigned int)(*(int *)(p + 0x564) - 0x250) < 2) {

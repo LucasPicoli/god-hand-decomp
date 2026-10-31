@@ -1,3 +1,4 @@
+#include "godhand/cEm00.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -6,8 +7,6 @@ extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern void func_0026A638(void *a0, int a1);
-extern void EmThrower_throwHeld(void *a0, int a1, int a2);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -41,8 +40,9 @@ extern void EmThrower_throwHeld(void *a0, int a1, int a2);
     case 0x25A
 
 __attribute__((section(".text.func_0022B358")))
-void func_0022B358(char *s0)
+void func_0022B358(cEm00 *self)
 {
+    char *s0 = (char *)self;
     int t0;
     int a1, a2;
     char *s1;
@@ -78,9 +78,9 @@ void func_0022B358(char *s0)
         cObjBase_addNullSpeed(s0, 1.0f);
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
             if (*(unsigned char *)(s0 + 0x17C3) != 0)
-                func_0026A638(s0, 1);
+                func_0026A638(self, 1);
             else
-                func_0026A638(s0, 0);
+                func_0026A638(self, 0);
         }
         break;
     case 2:
@@ -154,8 +154,8 @@ void func_0022B358(char *s0)
     while (s2 < 2) {
         void *e = *(void **)s1;
         if (e != 0 && CountdownObj_tickIsSpent(e) != 0) {
-            EmThrower_throwHeld(s0, 0, 1);
-            EmThrower_throwHeld(s0, 1, 1);
+            EmThrower_throwHeld(self, 0, 1);
+            EmThrower_throwHeld(self, 1, 1);
             break;
         }
         s1 += 4;

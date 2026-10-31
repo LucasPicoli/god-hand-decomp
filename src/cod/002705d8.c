@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern void *Getplayer(void);
 extern void func_001D0408(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int irand(void);
 extern int getItemNumInRoom(void);
-extern int func_00273960(void *a0, float f12);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern unsigned char D_005CB010;
 extern char D_005864F0[];
@@ -153,7 +153,7 @@ void func_002705D8(void *a0)
         case 0x265:
             if (*(int *)(s0 + 0x16D4) & 0x20000000) {
                 if (func_0012C4F0(s1) != 0) {
-                    if (func_00262AA8(s0) != 0) {
+                    if (func_00262AA8(a0) != 0) {
                         return;
                     }
                 }
@@ -220,7 +220,7 @@ void func_002705D8(void *a0)
         case 111:
             if (*(float *)(s0 + 0x618) < 9.0f &&
                 ((irand() & 1) != 0 || func_0012C4F0(s1) != 0)) {
-                if (func_00273960(s0, 6.0f) != 0) {
+                if (func_00273960(a0, 6.0f) != 0) {
                     return;
                 }
             }

@@ -3,7 +3,6 @@
 #include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern void *Getplayer(void);
@@ -11,9 +10,7 @@ extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern int func_00273960(void *a0, float a1);
 extern void func_002705D8(void *a0);
-extern void func_00260B30(void *a0);
 
 /* Phase machine on the step byte, 7 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
  * StoreMotionParamsBoth_2609A8, func_002A8578, cCoreSave_getGameLevel, func_0026EE40, Getplayer and
@@ -31,7 +28,7 @@ __attribute__((section(".text.func_00229268"))) void func_00229268(cEm00 *self)
             int a1v, a2v;
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-            StoreMotionParamsBoth_2609A8(s1, 0, 0x10, 0x4C, -1, 0);
+            StoreMotionParamsBoth_2609A8(self, 0, 0x10, 0x4C, -1, 0);
             v0 = *(char **)(s1 + 0x304);
             a1v = EM_RES_REC((int)v0, 0x1E7C);
             a2v = EM_RES_REC((int)v0, 0x1E80);
@@ -67,7 +64,7 @@ __attribute__((section(".text.func_00229268"))) void func_00229268(cEm00 *self)
             if (moveMotion(s1) != 0) {
                 cObjBase_addNullSpeed_Rotation(s1, 1.0f);
                 cObjBase_addNullSpeed(s1, 1.0f);
-                if (*(unsigned char *)(s1 + 0x1864) == 0 || func_00273960(s1, 6.0f) == 0) {
+                if (*(unsigned char *)(s1 + 0x1864) == 0 || func_00273960(self, 6.0f) == 0) {
                     func_002705D8(s1);
                 }
                 return;
@@ -76,9 +73,9 @@ __attribute__((section(".text.func_00229268"))) void func_00229268(cEm00 *self)
             cObjBase_addNullSpeed(s1, 1.0f);
             break;
     }
-    func_00260B30(s1);
+    func_00260B30(self);
     if (*(unsigned short *)(s1 + 0x3AC) & 0x10) {
-        if (func_00262AA8(s1) != 0) {
+        if (func_00262AA8(self) != 0) {
             return;
         }
     }

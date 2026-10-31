@@ -165,7 +165,7 @@ typedef struct cEm00 {
     char unk6B8[0x18];
     cVec unk6D0;                            /* 0x6D0 */
     float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
-    char unk6E4[0x8];
+    struct cOm60 *held[2];                  /* 0x6E4 objects held in the hands, made by func_0026A638 */
     int unk6EC;                             /* 0x6EC handle released by ReleaseField6ECByTag564_26B1E8 */
     int fx0;                                /* 0x6F0 effect handle */
     int fx1;                                /* 0x6F4 effect handle */
@@ -181,7 +181,7 @@ typedef struct cEm00 {
     void *gotoEffect;                       /* 0x738 effect a goto drops (func_001D0408) */
     char unk73C[0x4];
     int subA;                               /* 0x740 child object started with a variant number */
-    int unk744;                             /* 0x744 */
+    struct cEm00 *unk744;                   /* 0x744 child enemy whose motion pairs follow this one's */
     int sub0;                               /* 0x748 child object, its own state bytes follow the enemy's */
     int sub1;                               /* 0x74C */
     int sub2;                               /* 0x750 */
@@ -286,6 +286,45 @@ typedef struct cEm00 {
     unsigned char unk186B;                  /* 0x186B a scalar byte */
     char unk186C[0x4];
 } cEm00;
+
+/* Starts the hit volume of the current attack; the kind word at 0x1870 picks the setup. */
+void func_00260B30(cEm00 *self);
+/* 1, and sets unk1864, when one of the linked hit records' attackers is the player. */
+int CheckSlotsShort2FEAndSetByte1864_262A10(cEm00 *self);
+/* Fills both attack parameter sets (0x1870 and 0x1884) with the same values. */
+void StoreMotionParamsBoth_2609A8(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10);
+/* The first and the second half of StoreMotionParamsBoth_2609A8. */
+void StoreMotionParams_2609E0(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10);
+void Set_Fields_1884_1894_2609F8(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10);
+/* Starts the motion pair index of the enemy resource. */
+void ForwardAnimParamPairByIndex_27EA50(cEm00 *self, int index);
+/* Restarts the enemy in phase 4 with mode, step and stepArg cleared. */
+void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(cEm00 *self);
+/* Restarts the enemy in phase 9 with stepArg as its step argument. */
+void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(cEm00 *self, char stepArg);
+/* 1 when self can see the player (kept in its flags; some kinds always see). */
+int func_0026F328(cEm00 *self);
+int func_00273960(cEm00 *self, float reach);
+/* Creates the object held in hand slot no. */
+void func_0026A638(cEm00 *self, int no);
+int func_0025FE30(cEm00 *self, int flags, int force);
+void func_0026B600(cEm00 *self);
+void func_0026BEF0(cEm00 *self, int kind, int arg);
+/* 1 when it switched the enemy to another action, else 0. */
+int func_00262AA8(cEm00 *self);
+/* Clears the 0x5B4 counter and sets unk17CC once it reaches 200; 0 before that. */
+int func_0026F120(cEm00 *self);
+/* Picks the next action once the enemy's motion ends. */
+void func_00270C78(cEm00 *self);
+/* Empty in retail; self is not read. */
+void func_00273630(cEm00 *self);
+/* Sets bit 1 of emFlags2 once and drops the enemy's item. */
+void func_00273D30(cEm00 *self);
+void func_00274238(cEm00 *self, unsigned char kind);
+/* Marks the enemy's room slot (0x640) dead in the room save. */
+void func_0028FB08(cEm00 *self);
+/* Throws held object no; fast picks the faster throw. */
+void EmThrower_throwHeld(cEm00 *self, int no, int fast);
 
 typedef char cEm00_size_check[(sizeof(cEm00) == 0x1870) ? 1 : -1];
 

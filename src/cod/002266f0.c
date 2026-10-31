@@ -3,9 +3,6 @@
 #include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void StoreMotionParams_2609E0(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Set_Fields_1884_1894_2609F8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern char *Getplayer(void);
@@ -14,7 +11,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void func_00260B30(void *a0);
 
 /* Phase machine on the step byte, 11 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
  * StoreMotionParamsBoth_2609A8, StoreMotionParams_2609E0, Set_Fields_1884_1894_2609F8,

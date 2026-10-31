@@ -4,7 +4,6 @@
 
 extern void *Getplayer(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void func_0025FE30(void *a0, int a1, int a2);
 extern void cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern void moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -64,7 +63,7 @@ __attribute__((section(".text.func_0025FA18"))) void func_0025FA18(cEm00 *self)
             func_002A8578(s1, EM_RES_REC(v0, 0x444), EM_RES_REC(v0, 0x448), 0.0f, 0, 0, 0);
             *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) & 0xFDFF;
             *(unsigned char *)(s1 + 0x617) = 1;
-            func_0025FE30(s1, 0x400000, 1);
+            func_0025FE30((cEm00 *)s1, 0x400000, 1);
             cDamageUnit_SetDamageCollActive(s2, 0);
             *(short *)(s1 + 0x568) = 0xDD;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -88,7 +87,7 @@ __attribute__((section(".text.func_0025FA18"))) void func_0025FA18(cEm00 *self)
             func_002A8578(s1, EM_RES_REC(v0, 0x153C), EM_RES_REC(v0, 0x1540), 0.0f, 0, 0, 0);
             *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) & 0xFDFF;
             *(unsigned char *)(s1 + 0x617) = 1;
-            func_0025FE30(s1, 0x400000, 1);
+            func_0025FE30((cEm00 *)s1, 0x400000, 1);
             cDamageUnit_SetDamageCollActive(s2, 0);
             *(short *)(s1 + 0x568) = 0x11D;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;

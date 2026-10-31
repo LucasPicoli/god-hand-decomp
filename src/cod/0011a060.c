@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern unsigned int Rnd(void);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
@@ -24,7 +25,6 @@ extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);
-extern void func_00270C78(void *a0);
 extern void func_002705D8(void *a0);
 
 __attribute__((section(".text.func_00278690")))
@@ -211,7 +211,7 @@ void func_00248FE0(void *a0)
                 break;
             }
             if (func_0026F1D8(s0) != 0) {
-                func_00270C78(s0);
+                func_00270C78(a0);
                 return;
             }
             func_002705D8(s0);
