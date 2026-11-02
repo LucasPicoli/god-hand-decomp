@@ -36,7 +36,7 @@
     char unk2F8[0x4]; \
     unsigned char unk2FC;               /* 0x2FC low 3 bits are compared with D_007476B0 */ \
     char unk2FD[0x1]; \
-    unsigned short actorId;             /* 0x2FE actor type id */ \
+    unsigned short actorId;             /* 0x2FE actor type id, 0x100..0x1FE is the player range */ \
     char unk300[0x4]; \
     char *pack;                         /* 0x304 the data pack: offset tables read as pack + pack[N] */ \
     char unk308[0x8];

@@ -31,7 +31,7 @@ void cEm00_attachToTarget(cEm00 *self, cEm00 *target) {
     if (child == 0) {
         return;
     }
-    child->owner = (cOmBase *)self;
+    child->parent = (struct cParts *)self;
     if (target != 0) {
         VU0_SQC2_VF0(f, 0x50);
         rot = (float *)(f + 0x10);

@@ -122,7 +122,7 @@ void TexObj_updateTexExchange(TexObj *self)
 {
     int half;
 
-    if ((self->base.actionId ^ ACTION_TEX_SWAP) != 0) {
+    if ((self->base.emNo ^ ACTION_TEX_SWAP) != 0) {
         return;
     }
     if (self->stateFlags & OBJ_STATE_HELD) {
@@ -134,7 +134,7 @@ void TexObj_updateTexExchange(TexObj *self)
         return;
     }
     cModel_setTextureExchange(self, self->base.texSet,
-        *(int *)(self->base.texKey + 0x60) + self->base.texKey, 0);
+        *(int *)((int)self->base.pack + 0x60) + (int)self->base.pack, 0);
     if (self->texMode != 0 && ((self->texMode & TEX_MODE_ODD) || self->texMode >= TEX_MODE_SMALL_MAX)) {
         self->base.texFlags |= TEX_EXCHANGE_ON;
     } else {

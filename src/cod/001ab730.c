@@ -37,7 +37,7 @@ void func_001AB730(cOmOpenClose *self)
         self->flags |= OPENCLOSE_OPENING;
         cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
         {
-            int v0 = self->base.texKey;
+            int v0 = (int)self->base.pack;
 
             func_002A8578(self, *(int *)(v0 + 0x34) + v0, 0, 0xA, 0.0f, 0, 0);
         }
@@ -46,7 +46,7 @@ void func_001AB730(cOmOpenClose *self)
         if (moveMotion(self) != 0) {
             self->flags &= ~OPENCLOSE_OPENING;
             {
-                int v0 = self->base.texKey;
+                int v0 = (int)self->base.pack;
 
                 mot = *(int *)(v0 + 0x38) + v0;
             }

@@ -13,7 +13,7 @@ extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 /* Reset a weapon to its resting state: release the hold bit, normal anim rate, state bytes cleared and phase 2. */
 __attribute__((section(".text.cOmWeapon_resetHold")))
 void cOmWeapon_resetHold(cOmWeapon *self) {
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->base.phase = 2;
     self->fallSpeed = 0.0f;
@@ -45,7 +45,7 @@ void cOmWeapon_setFall(cOmWeapon *self) {
 
     if (self->parent != 0) {
         VU0_SQC2_VF0(SP_BASE(f, 0x30), 0x30);
-        ok = ((*(int *)&f[4] = n = self->base.childNum), (n != 0));
+        ok = ((*(int *)&f[4] = n = self->base.partNum), (n != 0));
         if (ok) body = self->base.children[0]; else body = 0;
         d = &self->base.posA;
         cVec_copy3(d, self->parent->pos);
@@ -65,14 +65,14 @@ void cOmWeapon_setFall(cOmWeapon *self) {
         cVec_copy3(&self->base.posA, (cVec *)f);
         cVec_copy3(self->base.pos, (cVec *)f);
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->fallSpeed = 0.065f;
     self->parent = 0;
-    ok2 = ((*(int *)&f[0] = n2 = self->base.childNum), (n2 != 0));
+    ok2 = ((*(int *)&f[0] = n2 = self->base.partNum), (n2 != 0));
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
-        body2->owner = &self->base;
+        body2->parent = (struct cParts *)&self->base;
         body2->rot.x = 0.0f;
         body2->rot.y = 0.0f;
         body2->rot.z = 0.0f;
@@ -98,7 +98,7 @@ void cOmWeapon_dropToGround(cOmWeapon *self) {
 
     if (self->parent != 0) {
         VU0_SQC2_VF0(f, 0);
-        ok = ((*(int *)&f[4] = n = self->base.childNum), (n != 0));
+        ok = ((*(int *)&f[4] = n = self->base.partNum), (n != 0));
         if (ok) body = self->base.children[0]; else body = 0;
         d = &self->base.posA;
         cVec_copy3(d, self->parent->pos);
@@ -107,14 +107,14 @@ void cOmWeapon_dropToGround(cOmWeapon *self) {
         cVec_copy3(&self->base.posA, (cVec *)f);
         cVec_copy3(self->base.pos, (cVec *)f);
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->fallSpeed = 0.065f;
     self->parent = 0;
-    ok2 = ((*(int *)f = n2 = self->base.childNum), (n2 != 0));
+    ok2 = ((*(int *)f = n2 = self->base.partNum), (n2 != 0));
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
-        body2->owner = &self->base;
+        body2->parent = (struct cParts *)&self->base;
         body2->rot.x = 0.0f;
         body2->rot.y = 0.0f;
         body2->rot.z = 0.0f;
@@ -141,7 +141,7 @@ void cOmWeapon_kickOff(cOmWeapon *self) {
 
     if (self->parent != 0) {
         VU0_SQC2_VF0(f, 0);
-        ok = ((*(int *)&f[4] = n = self->base.childNum), (n != 0));
+        ok = ((*(int *)&f[4] = n = self->base.partNum), (n != 0));
         if (ok) body = self->base.children[0]; else body = 0;
         d = &self->base.posA;
         cVec_copy3(d, self->parent->pos);
@@ -150,7 +150,7 @@ void cOmWeapon_kickOff(cOmWeapon *self) {
         cVec_copy3(&self->base.posA, (cVec *)f);
         cVec_copy3(self->base.pos, (cVec *)f);
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->fallSpeed = 0.065f;
     self->parent = 0;
@@ -160,10 +160,10 @@ void cOmWeapon_kickOff(cOmWeapon *self) {
     self->vel.y = 0.05f;
     self->vel.z = -0.1f;
     sceVu0ApplyMatrix(&self->vel, mtx, &self->vel);
-    ok2 = ((*(int *)f = n2 = self->base.childNum), (n2 != 0));
+    ok2 = ((*(int *)f = n2 = self->base.partNum), (n2 != 0));
     if (ok2) body2 = self->base.children[0]; else body2 = 0;
     if (body2 != 0) {
-        body2->owner = &self->base;
+        body2->parent = (struct cParts *)&self->base;
         body2->rot.x = 0.0f;
         body2->rot.y = 0.0f;
         body2->rot.z = 0.0f;

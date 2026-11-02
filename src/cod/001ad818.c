@@ -36,13 +36,13 @@ void func_001D0140(cOmWeapon *self, cVec *pos, int arg)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;
@@ -78,13 +78,13 @@ void func_001D0240(cOmWeapon *self, cVec *pos, int arg)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;
@@ -120,13 +120,13 @@ void func_001D0340(cOmWeapon *self)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;
@@ -158,13 +158,13 @@ void func_001D0408(cOmWeapon *self)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;
@@ -265,13 +265,13 @@ void func_001CFD60(cOmWeapon *self, int target)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;

@@ -161,7 +161,7 @@ int cOmBase_initEffData241(cOmBase *self)
     cOmBase_setMeshDispFromLayer(self, 0, 1);
     cOmBase_setMeshDispFromLayer(self, 0x40, 0);
     self->flags2 |= COMBASE_F2_BIT3;
-    res = self->texKey;
+    res = (int)self->pack;
     espSys_effDataRegist(D_007419A0, 0x241, (void *)(*(int *)(res + 0x10) + res));
     return 1;
 }

@@ -28,17 +28,17 @@ void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, 
     cOmBase *body;
     cVec *anchor;
 
-    ok = ((*(int *)frame = b = par->childNum), (idx >= 0 && idx < b));
+    ok = ((*(int *)frame = b = par->partNum), (idx >= 0 && idx < b));
     if (ok) part = par->children[idx]; else part = 0;
     if (part == 0) return;
-    ok2 = ((*(int *)frame = b2 = self->base.childNum), (b2 != 0));
+    ok2 = ((*(int *)frame = b2 = self->base.partNum), (b2 != 0));
     if (ok2) body = self->base.children[0]; else body = 0;
     if (body == 0) return;
     anchor = body->anchor;
     body->rot.x = 0.0f;
     body->rot.y = 0.0f;
     body->rot.z = 0.0f;
-    body->owner = part;
+    body->parent = (struct cParts *)part;
     cVec_copy3(anchor, heldPos);
     cVec_copy3(&body->rot, heldRot);
     self->parentIdx = idx;
@@ -55,10 +55,10 @@ void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, 
     func_001331B8(D_005CAE50, self->base.modelHandle, 0);
     if (self->base.actorId != 0x369) return;
     if (par == 0) return;
-    if (par->actionId == 0x252) {
+    if (par->emNo == 0x252) {
         SetEffect(0xAA, 0xC, self, 0, 8, 0xFFFFFFFFu);
     }
-    if (par->actionId == 0x263) {
+    if (par->emNo == 0x263) {
         SetEffect(0xBC, 0x1D, self, 0, 8, 0xFFFFFFFFu);
     }
 }

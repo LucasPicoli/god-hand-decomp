@@ -24,7 +24,7 @@ __attribute__((section(".text.cOmBase_setTexChange")))
 void cOmBase_setTexChange(cOmBase *self, int arg) {
     self->texFlags |= 0x10000000;
     cModel_setTextureExchange(self, self->texSet,
-        SearchData(self->texKey, &D_00428A18, 0), arg);
+        SearchData((int)self->pack, &D_00428A18, 0), arg);
 }
 
 /* cSndMemHeap_OpenRoot — sn-2.95.3-136 */

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/cModel.h"
+#include "godhand/cOmBase.h"
 #include "godhand/vecInline.h"
 
 #define COMBASE_F2_KEEP_HIDE  9                 /* flags2 bit: stay hidden */

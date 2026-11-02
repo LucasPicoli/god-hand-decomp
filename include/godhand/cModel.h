@@ -18,7 +18,7 @@
 #ifndef GODHAND_CMODEL_H
 #define GODHAND_CMODEL_H
 
-#include "godhand/cOmBase.h"            /* cVec, cMeshNode */
+#include "godhand/cVecType.h"
 #include "godhand/vu0.h"                /* cMtxMulVu0 */
 
 /* A box as centre plus half extents: the game's cBoundingBox class. The C

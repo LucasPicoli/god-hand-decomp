@@ -20,7 +20,7 @@
 #ifndef GODHAND_CVEC_H
 #define GODHAND_CVEC_H
 
-#include "godhand/cOmBase.h"
+#include "godhand/cVecType.h"
 #include "godhand/vu0.h"
 
 /* The return slot and the temporary every operator in the function shares. */

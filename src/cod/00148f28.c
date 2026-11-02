@@ -518,7 +518,7 @@ void func_001D0108(cOmWeapon *self) {
     self->base.stepArg = 0;
     self->base.mode = 0;
     self->base.step = 0;
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
 }
 
 struct Node {

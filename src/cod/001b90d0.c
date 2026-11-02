@@ -56,9 +56,9 @@ int func_001B90D0(cEmTwoGive *self)
     func_001B6FB8((cOmHitVolume *)self);
     for (i = 0; i < cModel_getMeshNum(self); i++)
         cModel_getMeshPtr(self, i)->dispFlags |= 1;
-    self->base.unk580 = 0;
-    self->base.unk584 = 0;
-    self->base.unk588 = 0;
+    self->base.unk580.x = 0;
+    self->base.unk580.y = 0;
+    self->base.unk580.z = 0;
     self->facing = fRand1_1() * 3.1415927f;
     d = cDamageManage_CreateDamageGive(D_00574380, 1, self);
     self->box = d;
@@ -90,7 +90,7 @@ int func_001B90D0(cEmTwoGive *self)
     self->sphere = e;
     if (e != 0) {
         /* The child count lands in v[0].x first; the stores below overwrite it. */
-        *(int *)&v[0] = n = self->base.childNum;
+        *(int *)&v[0] = n = self->base.partNum;
         if (n != 0)
             part = self->base.children[0];
         else

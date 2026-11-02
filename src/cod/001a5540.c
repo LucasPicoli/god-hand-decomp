@@ -58,7 +58,7 @@ void func_001A5540(cOmStrike *self)
     case 0:
         VCall(self, 14, D_00747B00);
         VCall(self, 15, D_00747B00);
-        mot = (char *)self->base.texKey;
+        mot = self->base.pack;
         func_002A8578(self, *(int *)(mot + 0xC) + (int)mot, *(int *)(mot + 0x10) + (int)mot, 0, 0.0f, 0, 0);
         SetEffect(1, 2, self, 0, -1, 0xFFFFFFFF);
         if (self->give)

@@ -23,7 +23,7 @@ int cOmBase_initEffData27D(cOmBase *self)
     int res;
 
     func_001B6FB8(self);
-    res = self->texKey;
+    res = (int)self->pack;
     espSys_effDataRegist(D_007419A0, EFFDATA_ID, (void *)(*(int *)(res + 0xC) + res));
     SetEffect(EFFDATA_ID, 1, self, 0, -1, 0xFFFFFFFF);
     return 1;

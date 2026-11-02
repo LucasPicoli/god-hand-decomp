@@ -95,7 +95,7 @@ void cOmBase_attachWeaponGripB(cOmBase *self, void *weapon, int left)
         return;
     VU0_SQC2_VF0(&grip, 0x0);
     VU0_SQC2_VF0(&grip, 0x10);
-    if (self->actionId != EM_KIND_LEFTY_A && self->actionId != EM_KIND_LEFTY_B) {
+    if (self->emNo != EM_KIND_LEFTY_A && self->emNo != EM_KIND_LEFTY_B) {
         idx = GRIP_RIGHT;
         grip.ofs[0] = -0.28f;
         grip.ofs[1] = -0.035f;

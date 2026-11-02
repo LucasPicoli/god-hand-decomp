@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cModel.h"
+#include "godhand/cOmBase.h"
 
 extern void capVu0ApplyMatrixXYZ(cVec *dst, float *mtx, cVec *v);
 extern void sceVu0InversMatrix(float *dst, float *src);

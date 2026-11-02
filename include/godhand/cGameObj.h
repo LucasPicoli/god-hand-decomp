@@ -1,10 +1,10 @@
 /* include/godhand/cGameObj.h - cGameObj, the base of every moving game object.
  *
  * cGameObj derives from cObjBase and is the base class of the player, the
- * enemies and the NPCs. It adds a screen-clip flag word, a stored position
- * with a wait byte, a rotation, a pointer to the live position, and a method
- * table at 0x214 that its subclasses override. The field names for the
- * state bytes and flag words match cOmBase.h where the meaning is the same.
+ * enemies (through cEmBase), the cOm* map objects (through cOmBase) and the
+ * NPCs. It adds a screen-clip flag word, a stored position with a wait byte,
+ * the object's name, the damage state and the speed rate. Its subclasses
+ * spell it as CGAMEOBJ_FIELDS at the front of their own records.
  *
  * The span of cGameObj in the retail ELF also holds an instantiated STL
  * sort (heap and insertion sort) over 8-byte {id, key} entries, which
@@ -18,7 +18,6 @@
 #ifndef GODHAND_CGAMEOBJ_H
 #define GODHAND_CGAMEOBJ_H
 
-#include "godhand/cOmBase.h"
 #include "godhand/cObjBase.h"
 
 /* Bits of cGameObj.scrFlags (0x5A0). */
@@ -92,13 +91,13 @@ typedef struct cGameObj cGameObj;
     unsigned char storedWait;           /* 0x530 */ \
     signed char unk531;                 /* 0x531 -1 after construction */ \
     char unk532[0x538 - 0x532]; \
-    long name;                          /* 0x538 object name, up to 8 chars packed low byte first, as in cOmBase */ \
+    long name;                          /* 0x538 object name, up to 8 chars packed low byte first */ \
     long modelHandle;                   /* 0x540 */ \
     short hpMax;                        /* 0x548 */ \
     short hp;                           /* 0x54A */ \
     float hitFlash;                     /* 0x54C counts down after a hit */ \
     cVec vel;                           /* 0x550 velocity, zeroed when the object is stopped */ \
-    int dropItem;                       /* 0x560 item id it drops, as in cOmBase */ \
+    int dropItem;                       /* 0x560 item id it drops, 0xFFFF for the default drop, 0x9C3 for none */ \
     int emNo;                           /* 0x564 enemy number of an enemy */ \
     short unk568;                       /* 0x568 set when a hit lands; cEm00's end-of-motion code clears it and calls the hit method */ \
     short unk56A;                       /* 0x56A countdown beside unk568 */ \

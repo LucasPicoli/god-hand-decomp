@@ -27,7 +27,7 @@ int cOmBase_countGroupsInAction211(cOmBase *self)
     int n;
 
     /* the xor spelling is what gives retail's xori + bnel; a plain != gives li + bnel */
-    if ((self->actionId ^ ACTION_SPECIAL) != 0) {
+    if ((self->emNo ^ ACTION_SPECIAL) != 0) {
         return 0;
     }
     n = func_002919C0(D_005864F0, self->actorId, 0x200);

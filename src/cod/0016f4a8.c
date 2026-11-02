@@ -43,7 +43,7 @@ int func_0016F4A8(cOmHitVolume *self)
     cOmHitVolume_initWork(self, 1, self->tableData, 6, 1, 600);
     func_001C28A0(self);
     {
-        int h = self->base.texKey;
+        int h = (int)self->base.pack;
         espSys_effDataRegist(D_007419A0, 600, (void *)(*(int *)(h + 0xC) + h));
     }
     return 1;

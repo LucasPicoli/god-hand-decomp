@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cModel.h"
+#include "godhand/cOmBase.h"
 #include "godhand/CustomIDWork.h"
 
 extern void func_00294898(void *a, void *self);

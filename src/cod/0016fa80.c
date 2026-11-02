@@ -56,8 +56,8 @@ int func_0016FA80(cOmHitVolume *em)
     em->unk5F4 = -1;
     setState(em, 1);
     func_001C28A0(em);
-    res = (char *)em->base.texKey;
+    res = em->base.pack;
     espSys_effDataRegist(D_007419A0, 0x25A, (char *)(*(int *)(res + 0xC) + (int)res));
-    em->base.flags5A0 |= 0x10;
+    em->base.scrFlags |= 0x10;
     return 1;
 }

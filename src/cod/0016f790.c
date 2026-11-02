@@ -42,8 +42,8 @@ int func_0016F790(cOmHitVolume *em)
     }
     cOmHitVolume_initWork(em, 1, em->tableData, 9, 1, 0x259);
     func_001C28A0(em);
-    res = (char *)em->base.texKey;
+    res = em->base.pack;
     espSys_effDataRegist(D_007419A0, 0x259, (char *)(*(int *)(res + 0xC) + (int)res));
-    em->base.flags5A0 |= 0x10;
+    em->base.scrFlags |= 0x10;
     return 1;
 }

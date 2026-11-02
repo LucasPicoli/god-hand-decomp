@@ -69,7 +69,7 @@ void func_001AAB10(cOmBreakable *self)
     cVec_set4(&f.rot, 0.0f, 0.0f, 0.0f, 1.0f);
     VU0_VSCALE_XYZ_MEM(&f, 0, BREAK_PUSH_SCALE);
     f.push.y += BREAK_PUSH_LIFT;
-    for (i = BREAK_FIRST_PIECE; i < BREAK_PIECE_END && self->base.childNum != i; i++) {
+    for (i = BREAK_FIRST_PIECE; i < BREAK_PIECE_END && self->base.partNum != i; i++) {
         func_001AA8D8((char *)self, i, &f.push.x, &f.rot.x);
     }
     SetEffect(1, BREAK_EFFECT, self, 0, BREAK_EFFECT, (unsigned int)self);

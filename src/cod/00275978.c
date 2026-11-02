@@ -17,7 +17,7 @@ static __inline__ cOmBase *em_child(cOmBase *b, int *frame, int idx)
     int n;
     cOmBase *c;
 
-    *frame = n = b->childNum;
+    *frame = n = b->partNum;
     if (idx >= 0 && idx < n) {
         c = b->children[idx];
     } else {

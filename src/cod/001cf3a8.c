@@ -20,7 +20,7 @@ void func_001CF3A8(cOmWeapon *self)
     par = self->parent;
     ok = 0;
     if (par != 0) {
-        cnt = par->childNum;
+        cnt = par->partNum;
         idx = self->parentIdx;
         /* The store keeps `cnt` alive to the compare; the second statement in
            the `then` block is what stops gcc turning the branch into a movz. */
@@ -55,7 +55,7 @@ void func_001CF3A8(cOmWeapon *self)
                 }
             }
             par = self->parent;
-            self->base.animRate = par->animRate;
+            self->base.tint.w = par->tint.w;
             if (par->objFlags & COMBASE_OBJ_HELD) {
                 self->base.objFlags |= COMBASE_OBJ_HELD;
             } else {

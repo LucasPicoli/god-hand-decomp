@@ -192,11 +192,11 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
             d->z = s->z;
         }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
-    cnt = self->base.childNum;
+    cnt = self->base.partNum;
     *((int *) hold) = cnt;
     if (cnt != 0) {
         body = self->base.children[0];
@@ -207,7 +207,7 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
         cVec *d;
         cVec *s;
 
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;
@@ -254,11 +254,11 @@ void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
             d->z = s->z;
         }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
-    cnt = self->base.childNum;
+    cnt = self->base.partNum;
     *((int *) hold) = cnt;
     if (cnt != 0) {
         body = self->base.children[0];
@@ -269,7 +269,7 @@ void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
         cVec *d;
         cVec *s;
 
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z =
@@ -315,13 +315,13 @@ void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
         d = &self->base.posA;
         if (d != m) { d->x = m->x; d->y = m->y; d->z = m->z; }
     }
-    self->base.animRate = 1.0f;
+    self->base.tint.w = 1.0f;
     self->base.objFlags = self->base.objFlags & 0xFFFFFFEF;
     self->parent = 0;
     self->fallSpeed = 0.0f;
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
-        body->owner = &self->base;
+        body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
         body->rot.y = 0.0f;
         body->rot.z = 0.0f;

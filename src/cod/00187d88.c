@@ -70,20 +70,20 @@ int cOmBreakable_setupSmallBox(cOmBreakable *em)
     cModel_getMeshPtr(em, 0)->dispFlags |= COMBREAK_MESH_HIDE;
     cModel_getMeshPtr(em, 1)->dispFlags &= ~COMBREAK_MESH_HIDE;
     i = COMBREAK_PIECE_FIRST;
-    if (em->base.childNum != i) {
+    if (em->base.partNum != i) {
         lo = 0;
         idx = 1;
         while (1) {
             /* cOmBase_childAt written out twice: its count store into v[1] is a dead store retail keeps */
-            ok1 = ((*(int *)&v[1] = cnt1 = em->base.childNum), (idx >= lo && i < cnt1));
+            ok1 = ((*(int *)&v[1] = cnt1 = em->base.partNum), (idx >= lo && i < cnt1));
             if (ok1) pieceA = (cOmBreakPiece *)em->base.children[i]; else pieceA = 0;
             pieceA->partFlags |= COMBREAK_PART_NO_LOCAL;
-            ok2 = ((*(int *)&v[1] = cnt2 = em->base.childNum), (idx >= lo && i < cnt2));
+            ok2 = ((*(int *)&v[1] = cnt2 = em->base.partNum), (idx >= lo && i < cnt2));
             if (ok2) pieceB = (cOmBreakPiece *)em->base.children[i]; else pieceB = 0;
             pieceB->partFlags |= COMBREAK_PART_NO_PARENT;
             i++;
             idx++;
-            if (!(i < COMBREAK_PIECE_END && em->base.childNum != i)) break;
+            if (!(i < COMBREAK_PIECE_END && em->base.partNum != i)) break;
         }
     }
     return 1;
