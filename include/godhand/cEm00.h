@@ -278,6 +278,15 @@ void func_0028FB08(cEm00 *self);
 /* Throws held object no; fast picks the faster throw. */
 void EmThrower_throwHeld(cEm00 *self, int no, int fast);
 
+/* Throw speeds and spreads of a held object (EmThrower_throwHeld, func_0026A838). */
+#define THROW_SLOW         0.0f
+#define THROW_FAST         150.0f
+#define THROW_SIDE         0.02f        /* random scale, x and z */
+#define THROW_UP_RAND      0.01f        /* random scale, y */
+
+/* Lets go of held object no and throws it forward, faster the farther away the player is. */
+void func_0026A838(cEm00 *self, int no);
+
 typedef char cEm00_size_check[(sizeof(cEm00) == 0x1870) ? 1 : -1];
 
 /* Nonzero holds back the enemies' catch moves. */

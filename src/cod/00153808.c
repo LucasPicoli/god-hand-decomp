@@ -2,8 +2,8 @@
 
 #include "godhand/cModel.h"
 #include "godhand/cOmBase.h"
+#include "godhand/capVu0.h"
 
-extern void capVu0ApplyMatrixXYZ(cVec *dst, float *mtx, cVec *v);
 extern void sceVu0InversMatrix(float *dst, float *src);
 extern void func_001501D0(cParts *part, int objFlags);
 extern unsigned int D_00747A34;
