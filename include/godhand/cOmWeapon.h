@@ -30,7 +30,7 @@ typedef struct cOmWeapon {
     int parentIdx;                          /* 0x604 index of the held slot on the parent */
     char unk608[0x8];
     cVec heldPos;                           /* 0x610 */
-    cVec heldOfs;                           /* 0x620 */
+    cVec heldRot;                           /* 0x620 */
     float fallSpeed;                        /* 0x630 */
     char unk634[0xC];
     cVec vel;                               /* 0x640 launch velocity */

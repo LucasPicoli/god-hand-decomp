@@ -13,7 +13,7 @@ typedef struct cOmSphereTake {
     char unk601;
     unsigned char unk602;               /* 0x602 cleared at setup */
     char unk603[5];
-    float childPrevX;                   /* 0x608 the first child's rot.x */
+    float childRotX;                    /* 0x608 the first child's rot.x */
     void *take;                         /* 0x60C damage-take unit, 0 when none */
 } cOmSphereTake;
 
@@ -57,6 +57,6 @@ int func_0017AC90(cOmSphereTake *self)
     self->base.objFlags = bits;
     func_0017B5E0((unsigned char *)self);
     if (GetChild(self) != 0)
-        self->childPrevX = GetChild(self)->rot.x;
+        self->childRotX = GetChild(self)->rot.x;
     return 1;
 }

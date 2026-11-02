@@ -44,7 +44,7 @@ void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, 
     self->parentIdx = idx;
     self->parent = par;
     cVec_copy3(&self->heldPos, heldPos);
-    cVec_copy3(&self->heldOfs, heldRot);
+    cVec_copy3(&self->heldRot, heldRot);
     self->base.mode = 0;
     self->base.step = 0;
     self->base.stepArg = 0;
