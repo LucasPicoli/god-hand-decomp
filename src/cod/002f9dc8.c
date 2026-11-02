@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *a0);
 extern void cNode_setLocalTranslation(void *self, void *v);
@@ -111,7 +112,7 @@ void func_00318700(char *this, char *other) {
     a = *(char **)(this + 0x144);
     for (i = 0; i < *(unsigned char *)(this + 0x2B4); i++) {
         MtxCopy(a, b);
-        *(int *)(a + 0x154) |= 8;
+        *(int *)(a + 0x154) |= CPARTS_NO_LOCAL;
         a = *(char **)(a + 0x144);
         b = *(char **)(b + 0x144);
     }

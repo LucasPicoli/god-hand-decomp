@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cModel.h"
 #include "godhand/objField.h"
 extern float fRand1_1(void);
 extern float fRand0_1(void);
@@ -21,10 +22,10 @@ void func_0018ADA8(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -72,10 +73,10 @@ void func_0018BAC0(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -123,10 +124,10 @@ void func_0018C8C8(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -174,10 +175,10 @@ void func_0018D6B8(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -225,10 +226,10 @@ void func_0018E470(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -276,10 +277,10 @@ void func_0018FC10(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -327,10 +328,10 @@ void func_001953E8(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);
@@ -378,10 +379,10 @@ void func_001997E8(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);

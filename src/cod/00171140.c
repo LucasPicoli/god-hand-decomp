@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 
 extern void func_001B6FB8(void *a0);
 extern unsigned char D_004209E8[];
@@ -22,7 +23,7 @@ int func_00171140(char *p)
         for (k = 0; k <= 5; k++) {
             ok = ((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (i >= lo && i < b));
             if (ok) obj = *(int *)(*(int *)(p + 0x278) + i * 4); else obj = 0;
-            *(int *)(obj + 0x154) |= 0x18;
+            *(int *)(obj + 0x154) |= CPARTS_NO_LOCAL | CPARTS_NO_PARENT;
             i++;
         }
         j = jn;
@@ -47,7 +48,7 @@ int func_00182958(char *p)
         for (k = 0; k <= 0; k++) {
             ok = ((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (i >= lo && i < b));
             if (ok) obj = *(int *)(*(int *)(p + 0x278) + i * 4); else obj = 0;
-            *(int *)(obj + 0x154) |= 0x18;
+            *(int *)(obj + 0x154) |= CPARTS_NO_LOCAL | CPARTS_NO_PARENT;
             i++;
         }
         j = jn;

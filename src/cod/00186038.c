@@ -2,6 +2,7 @@
 
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cModel.h"
 #include "godhand/objField.h"
 #include "godhand/vu0.h"
 
@@ -55,11 +56,11 @@ void func_00186038(char *a0, int a1)
 
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (n >= 0 && n < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + n * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 8;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_LOCAL;
 
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (n >= 0 && n < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + n * 4); else obj3 = 0;
-    *(int *)(obj3 + 0x154) |= 0x10;
+    *(int *)(obj3 + 0x154) |= CPARTS_NO_PARENT;
 
     VU0_LQC2(4, D_00747B00, 0);
     VU0_SQC2(4, frame, 0x10);

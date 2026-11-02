@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* Switch an object to its second pose: close the damage volume, hide meshes 0 to 3, show mesh 0x40, set the flag on parts 2 to 8 and clear the pickup bits, then place each part from the scaled offset vector. */
+#include "godhand/cModel.h"
 #include "godhand/vu0.h"
 
 extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
@@ -44,8 +45,8 @@ void SwitchToSecondPose(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 2;
         do { } while (0);
     loop:

@@ -14,6 +14,7 @@ extern void func_00174208(char *a0, int a1, float *a2, float *a3);
 
 
 
+#include "godhand/cModel.h"
 #include "godhand/vu0.h"
 
 __attribute__((section(".text.func_00174448")))
@@ -43,8 +44,8 @@ void func_00174448(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:

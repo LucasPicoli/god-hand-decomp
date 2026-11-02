@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 
 /* sn-2.95.3-136 */
 
@@ -11,11 +12,9 @@ extern int D_00574380;
 #define SPHERE_RADIUS    0.5f
 #define CHILD_FIRST      1
 #define CHILD_END        6          /* children below this index get their flags set */
-#define CHILD_FLAG_A     0x8
-#define CHILD_FLAG_B     0x10
 
 /* Set the object up: one hit point, a damage-take unit with a 0.5 sphere half a unit up, mesh layers 0 (shown) and
- * 0x40 (hidden), and flags 8 and 0x10 set on its child objects 1 to 5. Returns 1. */
+ * 0x40 (hidden), and CPARTS_NO_LOCAL and CPARTS_NO_PARENT set on its child objects 1 to 5. Returns 1. */
 __attribute__((section(".text.cOmBase_setupSphereVolume")))
 int cOmBase_setupSphereVolume(char *p)
 {
@@ -48,10 +47,10 @@ int cOmBase_setupSphereVolume(char *p)
         while (1) {
         ok1 = ((*(int *)&f[0] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
-        *(int *)(obj1 + 0x154) |= CHILD_FLAG_A;
+        *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
         ok2 = ((*(int *)&f[0] = b2 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b2));
         if (ok2) obj2 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj2 = 0;
-        *(int *)(obj2 + 0x154) |= CHILD_FLAG_B;
+        *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
         i++;
         n++;
         if (!(i < CHILD_END && *(unsigned char *)(p + 0x2B4) != i)) break;

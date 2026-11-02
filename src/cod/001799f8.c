@@ -24,6 +24,7 @@ extern void func_001B6218(char *a0, int a1, float *a2, float *a3);
 
 
 
+#include "godhand/cModel.h"
 #include "godhand/vu0.h"
 
 __attribute__((section(".text.func_001799F8")))
@@ -53,8 +54,8 @@ void func_001799F8(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -131,8 +132,8 @@ void func_0017A778(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -209,8 +210,8 @@ void func_0017D078(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -287,8 +288,8 @@ void func_00182280(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -365,8 +366,8 @@ void func_001873F0(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -443,8 +444,8 @@ void func_0018D8F8(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -521,8 +522,8 @@ void func_0018E6B0(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -599,8 +600,8 @@ void func_0018FE60(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -677,8 +678,8 @@ void func_0019CFE0(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -755,8 +756,8 @@ void func_001A5D68(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:
@@ -833,8 +834,8 @@ void func_001B6458(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         lo = 0;
-        m1 = -9;
-        m2 = -17;
+        m1 = ~CPARTS_NO_LOCAL;
+        m2 = ~CPARTS_NO_PARENT;
         n = 1;
         do { } while (0);
     loop:

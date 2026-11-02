@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern unsigned char D_004452D8[];
@@ -22,10 +23,10 @@ int func_001BBF68(char *p)
             do {
                 ok1 = ((*(int *)frame = b), (k >= lo && i < b));
                 if (ok1) o1 = *(int *)(i * 4 + *(int *)(p + 0x278)); else o1 = 0;
-                *(int *)(o1 + 0x154) |= 8;
+                *(int *)(o1 + 0x154) |= CPARTS_NO_LOCAL;
                 ok2 = ((*(int *)frame = b2 = *(unsigned char *)(p + 0x2B4)), (k >= lo && i < b2));
                 if (ok2) o2 = *(int *)(i * 4 + *(int *)(p + 0x278)); else o2 = 0;
-                *(int *)(o2 + 0x154) |= 0x10;
+                *(int *)(o2 + 0x154) |= CPARTS_NO_PARENT;
                 i++;
                 k++;
                 if (!(i < *(signed char *)(p + 0x624))) break;

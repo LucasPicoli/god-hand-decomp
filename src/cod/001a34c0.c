@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cModel.h"
 #include "godhand/objField.h"
 extern void func_001501D0(int a0, int a1);
 extern float fRand1_1(void);
@@ -34,10 +35,10 @@ void func_001A34C0(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     ok3 = ((*(int *)frame = b3 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b3));
     if (ok3) obj3 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj3 = 0;
     func_001501D0(obj3, *(int *)(a0 + 0x250));

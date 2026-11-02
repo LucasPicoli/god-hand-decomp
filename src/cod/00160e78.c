@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 #include "godhand/objField.h"
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
@@ -50,10 +51,10 @@ void func_001BCB38(char *a0, int a1, float *a2, float *a3)
 
     ok1 = ((*(int *)frame = b1 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b1));
     if (ok1) obj1 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj1 = 0;
-    *(int *)(obj1 + 0x154) |= 8;
+    *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
     ok2 = ((*(int *)frame = b2 = *(unsigned char *)(a0 + 0x2B4)), (a1 >= 0 && a1 < b2));
     if (ok2) obj2 = *(int *)(*(int *)(a0 + 0x278) + a1 * 4); else obj2 = 0;
-    *(int *)(obj2 + 0x154) |= 0x10;
+    *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
     VU0_LQC2(4, a2, 0);
     VU0_SQC2(4, frame, 0x10);
     VU0_LQC2(4, a3, 0);

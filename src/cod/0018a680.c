@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cModel.h"
 
 extern void func_001B6FB8(void *a0);
 extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
@@ -71,10 +72,10 @@ int SpawnDamageVolumeAndFlagParts_A(char *p)
         while (1) {
         ok1 = ((*(int *)&f[4] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
-        *(int *)(obj1 + 0x154) |= 8;
+        *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
         ok2 = ((*(int *)&f[4] = b2 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b2));
         if (ok2) obj2 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj2 = 0;
-        *(int *)(obj2 + 0x154) |= 0x10;
+        *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
         i++;
         n++;
         if (!(i < 9 && *(unsigned char *)(p + 0x2B4) != i)) break;
@@ -147,10 +148,10 @@ int SpawnDamageVolumeAndFlagParts_B(char *p)
         while (1) {
         ok1 = ((*(int *)&f[4] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
-        *(int *)(obj1 + 0x154) |= 8;
+        *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
         ok2 = ((*(int *)&f[4] = b2 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b2));
         if (ok2) obj2 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj2 = 0;
-        *(int *)(obj2 + 0x154) |= 0x10;
+        *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
         i++;
         n++;
         if (!(i < 9 && *(unsigned char *)(p + 0x2B4) != i)) break;
@@ -221,10 +222,10 @@ int SpawnCylinderDamageAndFlagPartsB(char *p)
         while (1) {
         ok1 = ((*(int *)&f[4] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
-        *(int *)(obj1 + 0x154) |= 8;
+        *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
         ok2 = ((*(int *)&f[4] = b2 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b2));
         if (ok2) obj2 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj2 = 0;
-        *(int *)(obj2 + 0x154) |= 0x10;
+        *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
         i++;
         n++;
         if (!(i < 9 && *(unsigned char *)(p + 0x2B4) != i)) break;
@@ -295,10 +296,10 @@ int SpawnCylinderDamageAndFlagPartsA(char *p)
         while (1) {
         ok1 = ((*(int *)&f[4] = b1 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b1));
         if (ok1) obj1 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj1 = 0;
-        *(int *)(obj1 + 0x154) |= 8;
+        *(int *)(obj1 + 0x154) |= CPARTS_NO_LOCAL;
         ok2 = ((*(int *)&f[4] = b2 = *(unsigned char *)(p + 0x2B4)), (n >= lo && i < b2));
         if (ok2) obj2 = *(int *)(*(int *)(p + 0x278) + i * 4); else obj2 = 0;
-        *(int *)(obj2 + 0x154) |= 0x10;
+        *(int *)(obj2 + 0x154) |= CPARTS_NO_PARENT;
         i++;
         n++;
         if (!(i < 8 && *(unsigned char *)(p + 0x2B4) != i)) break;
