@@ -1,7 +1,7 @@
 /* ee-2.9-991111 */
-#include "godhand/criStm.h"
 #include "godhand/ehFrameObj.h"
 
+extern void *func_003A52F0(void *dst, int c, int n);     /* memset */
 extern void *memcpy(void *dst, const void *src, unsigned int n);
 
 #define get_cie(f) ((DwarfFde *)((char *)&(f)->CIE_delta - (f)->CIE_delta))

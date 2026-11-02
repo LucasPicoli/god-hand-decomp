@@ -1,6 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void *__frame_state_for(void *pc_target, void *state_in);
+#include "godhand/ehFrameObj.h"
+
 extern long long *SlotTable_resolveValue(int col, void *a1, int a2);
 extern void _dispRefImage(void *, int, int);
 extern void _dispRefImageField(void *, int, int, int);
@@ -15,25 +16,14 @@ extern int AddIntcHandler(int a, void *b, int c);
 extern void func_003B0740(int a);
 extern double func_0031DE78(void *);
 
-typedef struct {
-    int cfa;
-    int eh_ptr;
-    long long cfa_offset;
-    long long args_size;
-    long long reg_or_offset[80];
-    unsigned short cfa_reg;
-    unsigned short retaddr_column;
-    char saved[80];
-} frame_state;
-
 
 
 
 __attribute__((section(".text.func_00320A50")))
-frame_state *func_00320A50(void *a0, frame_state *a1, frame_state *a2)
+FrameState *func_00320A50(void *a0, FrameState *a1, FrameState *a2)
 {
-    frame_state *s0;
-    frame_state *s1;
+    FrameState *s0;
+    FrameState *s1;
     unsigned short col;
 
     s1 = a1;

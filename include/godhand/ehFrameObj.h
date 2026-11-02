@@ -10,7 +10,7 @@ typedef struct dwarf_fde {
     unsigned int length;                /* 0x00 bytes after this word */
     int CIE_delta;                      /* 0x04 back to its CIE, from this field */
     void *pc_begin;                     /* 0x08 */
-    void *pc_range;                     /* 0x0C */
+    unsigned int pc_range;              /* 0x0C */
 } DwarfFde;
 
 /* What extract_cie_info reads out of a CIE (frame.c `cie_info`). */
@@ -22,14 +22,21 @@ typedef struct cie_info {
     unsigned int ra_regno;              /* 0x10 */
 } CieInfo;
 
-/* The frame state __frame_state_for hands back (gcc/frame.h `frame_state`). */
+/* The frame state __frame_state_for hands back (gcc/frame.h `frame_state`,
+ * 80 registers on the EE). `long` is 64 bits under every EE compiler here;
+ * `long long` is 128 under SN. The 64-bit members give it 8-byte alignment. */
 typedef struct frame_state {
     void *cfa;                          /* 0x000 */
     void *eh_ptr;                       /* 0x004 */
-    char unk008[0x29A - 0x008];
+    long cfa_offset;                    /* 0x008 */
+    long args_size;                     /* 0x010 */
+    long reg_or_offset[80];             /* 0x018 */
+    unsigned short cfa_reg;             /* 0x298 */
     unsigned short retaddr_column;      /* 0x29A */
-    char unk29C[0x2F0 - 0x29C];
-} __attribute__((aligned(8))) FrameState;
+    char saved[80];                     /* 0x29C */
+} FrameState;
+
+typedef char FrameState_chk_size[sizeof(FrameState) == 0x2F0 ? 1 : -1];
 
 /* frame.c's working copy: the state and the one remember_state saves. */
 typedef struct frame_state_internal {
