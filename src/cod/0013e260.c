@@ -66,7 +66,7 @@ typedef struct cKidOwner {
 /* Destructor: release the handle, send both children to mode 1, run the base destructor. */
 __attribute__((section(".text.cKidOwner_destruct")))
 void cKidOwner_destruct(cKidOwner *self, int flag) {
-    self->base.vt = (cGameObjVt *)&D_00428840;
+    self->base.vtable = (cVtEnt *)&D_00428840;
     if (self->handle != 0) {
         ClearAndResetFields_1FE278(D_00574380, self->handle);
         self->handle = 0;

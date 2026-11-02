@@ -105,7 +105,7 @@ void StateObj_runStep(StateObj *self)
 /* Destructor of a game object subclass: set its method table, release effect data 0x241, run the base destructor. */
 __attribute__((section(".text.cGameObj_destructSubclassB")))
 void cGameObj_destructSubclassB(cGameObj *self, int flag) {
-    self->vt = (cGameObjVt *)&D_004294F0;
+    self->vtable = (cVtEnt *)&D_004294F0;
     espSys_effDataRelease(D_007419A0, 0x241);
     SetField214PtrThenInit_1B6F38(self, flag);
 }

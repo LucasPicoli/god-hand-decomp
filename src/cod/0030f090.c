@@ -37,7 +37,7 @@ void MoveObj(void)
                 continue;
             if (obj->objFlags & GAMEOBJ_OBJ_SKIP)
                 continue;
-            obj->vt->move((char *)obj + obj->vt->moveDelta);
+            cGameObj_vt(obj)->move((char *)obj + cGameObj_vt(obj)->moveDelta);
             /* retail reads the entry again after the move */
             ((cGameObj *)*cur)->unk2F0 &= ~3;
         }

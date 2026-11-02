@@ -39,23 +39,23 @@ void func_001299F0(cGameObj *self, cGameObj *held, cVec *offset, int how, float 
     switch (how) {
     default:
     case HOLD_FACE_TARGET:
-        self->rot[1] += Turn_dest(self->pos, held->pos, self->rot[1], 3.1415927f);
-        self->rot[1] = Adjust_theta(self->rot[1]);
-        held->rot[1] = self->rot[1] + 3.1415927f;
-        held->rot[1] = Adjust_theta(held->rot[1]);
-        self->rot[1] += turn;
-        self->rot[1] = Adjust_theta(self->rot[1]);
+        self->rot.y += Turn_dest(self->pos, held->pos, self->rot.y, 3.1415927f);
+        self->rot.y = Adjust_theta(self->rot.y);
+        held->rot.y = self->rot.y + 3.1415927f;
+        held->rot.y = Adjust_theta(held->rot.y);
+        self->rot.y += turn;
+        self->rot.y = Adjust_theta(self->rot.y);
         break;
     case HOLD_FACE_HOLDER:
-        held->rot[1] = self->rot[1] + 3.1415927f;
-        held->rot[1] = Adjust_theta(held->rot[1]);
+        held->rot.y = self->rot.y + 3.1415927f;
+        held->rot.y = Adjust_theta(held->rot.y);
         break;
     }
     VU0_SQC2_VF0_MEM(&at, 0);
-    MtxInitRotY(mtx, held->rot[1]);
-    at.x = offset->x * held->scale[0];
+    MtxInitRotY(mtx, held->rot.y);
+    at.x = offset->x * held->scale.x;
     at.y = 0.0f;
-    at.z = offset->z * held->scale[2];
+    at.z = offset->z * held->scale.z;
     cVec_transform(&out, &at, mtx);
     cVec_copy3(&at, &out);
     VU0_VADD_XYZ_IP(&at, 0, held->pos);

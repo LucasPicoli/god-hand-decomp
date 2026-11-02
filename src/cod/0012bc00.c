@@ -31,7 +31,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
     case 0x29:
     default:
         speed.z = 0.8f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = 0.0f;
         pos.y = 1.3f;
@@ -40,7 +40,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
         break;
     case 0x2A:
         speed.z = 0.8f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = 1.0f;
         pos.y = 1.3f;
@@ -49,7 +49,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
         break;
     case 0x2B:
         speed.z = 0.8f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = -1.0f;
         pos.y = 1.3f;
@@ -58,7 +58,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
         break;
     case 0x2F:
         speed.z = 1.5f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = -1.0f;
         pos.y = 1.3f;
@@ -71,7 +71,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
     case 0x2C:
         /* the same as 0x2E; retail keeps separate jump-table entries */
         speed.z = 1.5f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = 0.0f;
         pos.y = 1.3f;
@@ -92,7 +92,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
             break;
         }
         speed.z = 1.5f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = 0.0f;
         pos.y = 1.3f;
@@ -101,7 +101,7 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
         break;
     case 0x2E:
         speed.z = 1.5f;
-        MtxInitRotY(mtx, self->rot[1]);
+        MtxInitRotY(mtx, self->rot.y);
         cVec_applyMatrix(&speed, mtx);
         pos.x = 0.0f;
         pos.y = 1.3f;
@@ -109,9 +109,9 @@ void func_0012BC00(cGameObj *self, int type, unsigned int side)
         cVec_applyMatrix(&pos, self->mtx);
         break;
     }
-    obj->vt->initial((char *)obj + obj->vt->initialDelta);
+    cGameObj_vt(obj)->initial((char *)obj + cGameObj_vt(obj)->initialDelta);
     cVec_copy3(obj->pos, &pos);
     cVec_copy3(&obj->posA, obj->pos);
-    vec3_set(obj->rot, 0.0f, 0.0f, 0.0f);
+    vec3_set(&obj->rot.x, 0.0f, 0.0f, 0.0f);
     cOmbe_SetSpeed(obj, self, &speed, type);
 }

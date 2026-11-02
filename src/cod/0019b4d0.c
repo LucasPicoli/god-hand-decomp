@@ -145,7 +145,7 @@ void cOmTimed_tick(cOmTimed *self)
     return;
 init:
     VU0_SQC2_VF0(&pos, 0);
-    vt = self->base.vt;
+    vt = cGameObj_vt(&self->base);
     src = ((cVec *(*)(void *))vt->lockOn)((char *)self + vt->lockOnDelta);
     cVec_copy3(&pos, src);
     self->timer = OMTIMED_FRAMES;
@@ -187,8 +187,8 @@ void cGameObj_placeBeforeAnchor(cGameObj *self, float angle)
     OffsetFrame fr __attribute__((aligned(16)));
 
     VU0_SQC2_VF0(&fr, 0x40);
-    self->rot[1] = angle + OBJ_PI;
-    self->rot[1] = Adjust_theta(self->rot[1]);
+    self->rot.y = angle + OBJ_PI;
+    self->rot.y = Adjust_theta(self->rot.y);
     MtxInitRotY(fr.mtx, angle);
     fr.off.x = 0.0f;
     fr.off.y = 0.0f;

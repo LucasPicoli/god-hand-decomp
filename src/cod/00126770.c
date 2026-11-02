@@ -85,7 +85,7 @@ struct cObjBase *cObjBase(struct cObjBase *self) {
     VU0_SQC2_VF0(self, 0x480);
     VU0_SQC2_VF0(self, 0x490);
     VU0_SQC2_VF0(self, 0x4C0);
-    self->unk4AC = D_0041EB80;
+    self->kindName = D_0041EB80;
     func_003A52F0(&self->kageFlags, 0, 4);
     self->unk4A0 = -1;
     self->unk4B4 = 0;

@@ -80,7 +80,7 @@ void Slot2_hideBankLayerIds(Slot2 *self)
 /* Destructor of a game object subclass: set its method table, shut the sub-object, run the base destructor. */
 __attribute__((section(".text.cGameObj_destructWithSubE40")))
 void cGameObj_destructWithSubE40(cGameObj *self, int flags) {
-    self->vt = (cGameObjVt *)&D_00427A58;
+    self->vtable = (cVtEnt *)&D_00427A58;
     func_002AD288((char *)self + SUBOBJ_OFFSET, 2);
     SetField214PtrThenInit_1B6F38(self, flags);
 }
@@ -90,7 +90,7 @@ void cGameObj_destructWithSubE40(cGameObj *self, int flags) {
 /* Destructor of a game object subclass: set its method table, shut the sub-object, run the base destructor. */
 __attribute__((section(".text.cGameObj_destructWithSubD80")))
 void cGameObj_destructWithSubD80(cGameObj *self, int flags) {
-    self->vt = (cGameObjVt *)&D_00421BB8;
+    self->vtable = (cVtEnt *)&D_00421BB8;
     func_002AD288((char *)self + SUBOBJ_OFFSET, 2);
     SetField214PtrThenInit_1B6F38(self, flags);
 }

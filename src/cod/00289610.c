@@ -12,7 +12,7 @@ __attribute__((section(".text.cEma2_startPlayerMotion")))
 void cEma2_startPlayerMotion(cEma2 *self, float f12, float f13)
 {
     void *player = Getplayer();
-    char *data = self->base.motionData;
+    char *data = self->base.pack;
     int start = *(int *)(data + 0x160) + (int)data;
     int end = *(int *)(data + 0x164) + (int)data;
 

@@ -83,9 +83,9 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     {
         float one_one = 1.1f;
         self->unk616 = 1;
-        self->base.scale[2] = one_one;
-        self->base.scale[1] = one_one;
-        self->base.scale[0] = one_one;
+        self->base.scale.z = one_one;
+        self->base.scale.y = one_one;
+        self->base.scale.x = one_one;
         self->base.unk531 = 0;
         self->base.hpMax = 500;
         self->base.hp = 500;
@@ -96,11 +96,11 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     self->base.stepArg = 0;
     switch (self->base.emNo) {
     default:
-        motion = self->base.motionData;
+        motion = self->base.pack;
         func_002A8578(self, motionBlock_at(motion, 0x50), motionBlock_at(motion, 0x54), 0, 0.0f, 0, 0);
         break;
     case 0x2A7: case 0x2AB:
-        motion = self->base.motionData;
+        motion = self->base.pack;
         func_002A8578(self, motionBlock_at(motion, 0x78), motionBlock_at(motion, 0x7C), 0, 0.0f, 0, 0);
         break;
     }
@@ -115,7 +115,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     self->damageTake = cDamageManage_CreateDamageTake(D_00574380, self, 1);
 
     /* Four damage spheres, each centred on a joint of the model. */
-    n = self->base.childNum;
+    n = self->base.partNum;
     *(int *)&centre.x = n;
     {
         int one = 1;
@@ -131,7 +131,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     offset = &first;
     offset->w = 1.0f;
     self->hitSphere[0] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, offset, 0.25f);
-    n = self->base.childNum;
+    n = self->base.partNum;
     *(int *)&centre.x = n;
     {
         int three = 3;
@@ -146,7 +146,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.y = 0;
     centre.z = 0;
     self->hitSphere[1] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
-    n = self->base.childNum;
+    n = self->base.partNum;
     *(int *)&centre.x = n;
     {
         int joint19 = 0x13;
@@ -161,7 +161,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.y = 0;
     centre.z = 0;
     self->hitSphere[2] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
-    n = self->base.childNum;
+    n = self->base.partNum;
     *(int *)&centre.x = n;
     {
         int joint23 = 0x17;

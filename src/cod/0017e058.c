@@ -99,7 +99,7 @@ int cGameObj_isWithinRangeXZ(cGameObj *self, cVec *target, float range) {
 /* Destructor of a game object subclass: set its method table, release effect data 0x27D, run the base destructor. */
 __attribute__((section(".text.cGameObj_destructSubclass")))
 void cGameObj_destructSubclass(cGameObj *self, int flag) {
-    self->vt = (cGameObjVt *)&D_00422240;
+    self->vtable = (cVtEnt *)&D_00422240;
     espSys_effDataRelease(D_007419A0, 0x27D);
     SetField214PtrThenInit_1B6F38(self, flag);
 }

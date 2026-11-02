@@ -92,15 +92,15 @@ void InitRenderStruct_2A8608(cGameObj *a0, int a1, void *a2, int a3, int t0, voi
     a0->effNo = a3;
     if (t1 == 0) {
         if (a0 != 0) {
-            if (a0->unk434 & 2) {
+            if (a0->motionFlags & 2) {
                 s.i48 |= 0x80;
-                s.f40 = a0->scale[1];
+                s.f40 = a0->scale.y;
             }
         }
         SetEffect(a1, a2, a0, &s, a3, a0);
     } else {
         if (a0 != 0) {
-            s.f40 = a0->scale[1];
+            s.f40 = a0->scale.y;
         }
         SetEffect(a1, a2, t1, &s, a3, a0);
     }

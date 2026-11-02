@@ -25,9 +25,9 @@ void func_0028E858(cGameObj *self)
     int se;
     cVec v;
 
-    self->vt->reset((char *)self + self->vt->resetDelta, 0);
+    cGameObj_vt(self)->reset((char *)self + cGameObj_vt(self)->resetDelta, 0);
     pl = Getplayer();
-    pl->vt->reset((char *)pl + pl->vt->resetDelta, 0);
+    cGameObj_vt(pl)->reset((char *)pl + cGameObj_vt(pl)->resetDelta, 0);
     se = cSnd_SeCall_2CBA48(D_005FEE00, 1, 0, self, 0, 0, 0, 0);
     cScenario_execUpCut(D_003C2F84, 0x3004, 0, 0, 0, 1);
     cSnd_SeFadeOut(D_005FEE00, se, EVENT_FADE_TIME);

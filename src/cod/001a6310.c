@@ -53,7 +53,7 @@ void func_001A6310(cOmRockerLow *self)
         self->base.step = 0;
         self->base.stepArg = 0;
     case 1:
-        self->base.rot[0] = Adjust_theta(self->base.rot[0] + self->swingVel);
+        self->base.rot.x = Adjust_theta(self->base.rot.x + self->swingVel);
         self->swingVel *= 0.9f;
         if (--self->swingTimer <= 0) {
             if (self->swingCount < 2) {
@@ -64,8 +64,8 @@ void func_001A6310(cOmRockerLow *self)
                 self->base.step = 0;
                 self->base.stepArg = 0;
             } else {
-                self->base.rot[0] = 0.0f;
-                self->base.rot[2] = 0.0f;
+                self->base.rot.x = 0.0f;
+                self->base.rot.z = 0.0f;
                 self->base.mode = 0;
                 self->base.phase = 0;
                 self->base.step = 0;

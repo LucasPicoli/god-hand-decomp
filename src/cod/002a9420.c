@@ -8,7 +8,7 @@
  * object's own array. */
 __attribute__((section(".text.cGameObj_setRot")))
 void cGameObj_setRot(cGameObj *self, float *rot) {
-    float *dst = self->rot;
+    float *dst = &self->rot.x;
     if (dst != rot) {
         dst[0] = rot[0];
         dst[1] = rot[1];
