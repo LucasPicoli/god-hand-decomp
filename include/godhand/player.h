@@ -68,7 +68,7 @@ extern cGameObj *Getplayer(void);
 extern cGameObj *CreateObj(int kind, int id);
 extern void ReleaseObj(char *obj);
 /* Start the thrown object obj for move type `type`, moving along speed. owner
- * is the thrower; it is not read. */
+ * is the thrower, kept at obj+0x62C. */
 extern void cOmbe_SetSpeed(cGameObj *obj, cGameObj *owner, cVec *speed, int type);
 extern void cHeatSys_UpdateHeatMax(cHeatSys *self, float max);
 extern void cHeatSys_SetHeatGage(cHeatSys *self, float heat);

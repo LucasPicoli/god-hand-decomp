@@ -6,7 +6,7 @@
 #include "godhand/sideCounter.h"
 
 #define SYSFLAG_NO_OBJ_MOVE 0x20000      /* D_00747A78: objects don't move */
-#define SYSFLAG_PAUSE       0x8000000    /* D_00747A78: the game is paused */
+#define SYSFLAG_FREEZE      0x8000000    /* D_00747A78: set with the lock bits by SysFlags_saveAndFreeze, the sub screen, cutscenes and events */
 
 extern int D_00747A78;                  /* system flags */
 extern int D_00752CF8;                  /* timer-0 counts MoveObj took */
@@ -23,7 +23,7 @@ void MoveObj(void)
     void **end;
 
     D_00752CF8 = *(volatile int *)CGAME_TIMER_COUNT;
-    if (!(D_00747A78 & SYSFLAG_PAUSE))
+    if (!(D_00747A78 & SYSFLAG_FREEZE))
         D_00754C38.unk10 = 1.0f;
     if (!(D_00747A78 & SYSFLAG_NO_OBJ_MOVE)) {
         v = D_00754C30.v;
@@ -42,7 +42,7 @@ void MoveObj(void)
             ((cGameObj *)*cur)->unk2F0 &= ~3;
         }
     }
-    if (!(D_00747A78 & SYSFLAG_PAUSE))
+    if (!(D_00747A78 & SYSFLAG_FREEZE))
         cScrArray_move(&D_00754C38);
     D_00752CF8 -= *(volatile int *)CGAME_TIMER_COUNT;
     printf_2E0DA8(100, 0x7C, 0, 4, D_00450AF8, D_00754C30.v ? D_00754C30.v->end - D_00754C30.v->begin : 0);
