@@ -18,7 +18,7 @@ int sceMpegGetPictureRAW8(void *m, unsigned int addr, int mode) {
 __attribute__((section(".text.sceMpegInit")))
 int sceMpegInit(void) {
     int oldstat;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B000 = *(volatile unsigned int *)0x1000B000 & 0xFFFFFEFFU;
     *(volatile unsigned int *)0x1000B400 = *(volatile unsigned int *)0x1000B400 & 0xFFFFFEFFU;
@@ -33,7 +33,7 @@ int sceMpegInit(void) {
 __attribute__((section(".text._sceMpegStopIpuDma")))
 void _sceMpegStopIpuDma(void) {
     int oldstat;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B000 = 0;
     *(volatile unsigned int *)0x1000B400 = 0;

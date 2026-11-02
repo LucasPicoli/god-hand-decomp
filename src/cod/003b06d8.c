@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern int EIntr(void);
 extern int DisableIntc(int cause);
 extern int EnableIntc(int cause);
@@ -23,7 +23,7 @@ int func_003B06D8(int cause)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     r = DisableIntc(cause);
     GH_SYNC();
@@ -50,7 +50,7 @@ int func_003B0740(int cause)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     r = EnableIntc(cause);
     GH_SYNC();
@@ -77,7 +77,7 @@ int func_003B07A8(int cause)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     r = DisableDmac(cause);
     GH_SYNC();

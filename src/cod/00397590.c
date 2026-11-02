@@ -8,7 +8,7 @@ typedef struct {
 #define D_ENABLEW (*(volatile unsigned int *)0x1000F590)
 #define D_CTRL    (*(volatile unsigned int *)0x1000E000)
 
-extern int func_003B63A0(void);  /* DIntr */
+extern int DIntr(void);
 extern int EIntr(void);  /* EIntr */
 
 __attribute__((section(".text.sceDmaPause")))
@@ -18,7 +18,7 @@ unsigned int sceDmaPause(sceDmaChan *chan)
     unsigned int en;
     unsigned int chcr;
 
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     en = D_ENABLER;
     if (!(en & 0x10000)) {
         D_ENABLEW = en | 0x10000;

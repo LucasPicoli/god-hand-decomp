@@ -2,7 +2,7 @@
 
 /* cygnus-2.96 matched TU. */
 
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 
 #define D_ENABLER (*(volatile unsigned int *) 0x1000F520)
@@ -10,7 +10,7 @@ extern void EIntr(void);
 
 __attribute__((section(".text.setD3_CHCR")))
 void setD3_CHCR(unsigned int chcr) {
-    func_003B63A0();
+    DIntr();
     D_ENABLEW = D_ENABLER | 0x00010000;
     *(volatile unsigned int *) 0x1000B000 = chcr;
     D_ENABLEW = D_ENABLER & 0xFFFEFFFF;

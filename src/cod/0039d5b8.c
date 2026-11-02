@@ -17,7 +17,7 @@ extern void func_0039AB98(int h);
 extern void _sceMpegStopIpuDma(void);
 extern void _sceMpegErrorBdec(void *s);
 extern void _doMC(void *s, int f);
-extern void func_0039C390(void *s, char *msg);
+extern void _sceMpegError(void *s, char *msg);
 
 __attribute__((section(".text.func_0039D5B8")))
 int func_0039D5B8(char *s)
@@ -82,6 +82,6 @@ skip:
     if (r == 0)
         _doMC(s, *(int *)(s + 0x820) == 0);
     if ((unsigned int)(r - 1) < 2)
-        func_0039C390(s, D_0045E6E0);
+        _sceMpegError(s, D_0045E6E0);
     return (unsigned int)r < 1;
 }

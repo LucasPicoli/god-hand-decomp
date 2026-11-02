@@ -37,7 +37,7 @@ static __inline__ void MpegCsc_run(MpegCscDec *dec, unsigned int buf, int mbCoun
 
     while (IPU_CTRL < 0)
         ;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     D3_MADR = buf & 0x0FFFFFFF;
     D3_QWC = qwc;
     D3_CHCR = 0x100;
@@ -90,7 +90,7 @@ void func_0039BB20(MpegCscDec *dec, MpegCscPic *pic)
         hid = AddDmacHandler2(DMA_CH_IPU_TO, (int (*)(int, void *))func_0039C140, 0, &rest);
         D_STAT = 0x10;
         func_003B0810(DMA_CH_IPU_TO);
-        oldstat = func_003B63A0();
+        oldstat = DIntr();
         D4_MADR = rest.madr;
         D4_QWC = 0xFFFF;
         D4_CHCR = 0x101;
@@ -105,7 +105,7 @@ void func_0039BB20(MpegCscDec *dec, MpegCscPic *pic)
         func_003B07A8(DMA_CH_IPU_TO);
         RemoveDmacHandler(DMA_CH_IPU_TO, hid);
     } else {
-        oldstat = func_003B63A0();
+        oldstat = DIntr();
         D4_MADR = pic->data & 0x0FFFFFFF;
         D4_QWC = rest.qwc;
         D4_CHCR = 0x101;

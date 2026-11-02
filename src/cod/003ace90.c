@@ -10,8 +10,8 @@
 #define ERANGE 34
 
 /* _strtol_r: convert a string to a long in the given base, setting errno on overflow. */
-__attribute__((section(".text.func_003ACE90")))
-long func_003ACE90(struct _reent *rptr, const char *nptr, char **endptr, int base)
+__attribute__((section(".text._strtol_r")))
+long _strtol_r(struct _reent *rptr, const char *nptr, char **endptr, int base)
 {
     const char *s = nptr;
     unsigned long acc;

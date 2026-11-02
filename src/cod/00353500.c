@@ -3,7 +3,7 @@
 extern int D_003EE2F4;
 extern unsigned char D_00766C28[0x48];
 extern void sceMpegInit(void);
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 extern int WaitSema(int sid);
 extern int SignalSema(int sid);
@@ -79,7 +79,7 @@ void func_003538B0(char *p)
 
 __attribute__((section(".text.func_00355880")))
 void func_00355880(unsigned int chcr) {
-    func_003B63A0();
+    DIntr();
     D_ENABLEW = D_ENABLER | 0x00010000;
     *(volatile unsigned int *) 0x1000B400 = chcr;
     D_ENABLEW = D_ENABLER & 0xFFFEFFFF;

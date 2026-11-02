@@ -125,7 +125,7 @@ int func_003A9228(int a0, int a1, int a2) {
 
 __attribute__((section(".text.func_003AD0C0")))
 int func_003AD0C0(int a0, int a1, int a2) {
-    return func_003ACE90(D_003FA62C, a0, a1, a2);
+    return _strtol_r(D_003FA62C, a0, a1, a2);
 }
 
 __attribute__((section(".text.func_003B6E40")))

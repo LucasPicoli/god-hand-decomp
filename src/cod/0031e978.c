@@ -3,7 +3,7 @@
 extern void func_0031DFA8(long long *, void *);
 extern void _waitIpuIdle(void);
 extern long long _sceMpegWaitIpuIdle64(void *);
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 
 struct P { unsigned int cls; int sign; int exp; int pad; long long mant; };
@@ -57,7 +57,7 @@ int func_003B2AC8(int a0) {
     char *e;
 
     s1 = (int *)a0;
-    func_003B63A0();
+    DIntr();
     count = s1[2];
     e = (char *)s1[1];
     for (i = 0; i < count; i++) {

@@ -29,7 +29,7 @@ extern void *func_003A52F0(void *, int, int);   /* memset */
 extern void _InitAlarm(void);
 extern int AddIntcHandler2(int, void *, int, int);
 extern int cbTimerHandler();
-extern int func_003B63A0(void);   /* DIntr */
+extern int DIntr(void);
 extern int EIntr(void);
 extern void SetT2_B0001000_3B6A00(int);   /* SetT2_COUNT */
 extern void SetT2_B0001010_3B6A10(int);   /* SetT2_MODE */
@@ -63,7 +63,7 @@ int func_003B6A30(int mode)
         return 0x80009021;
     }
     D_003FBE90.hid = hid;
-    intr = func_003B63A0();
+    intr = DIntr();
     m = T2_MODE;
     m = (m & 0xFFFFFFFC) | mode;
     m |= 0x300;

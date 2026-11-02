@@ -2,7 +2,7 @@
 
 extern void func_003BACA0(int, int);
 extern unsigned char D_0045E400[];
-extern void func_0039C390(void *, void *);
+extern void _sceMpegError(void *, void *);
 extern void EIntr(void);
 
 __attribute__((section(".text._clearEach")))
@@ -10,7 +10,7 @@ void _clearEach(void *m) {
     int oldstat;
     *(int *)((char *)m + 0x828) = 1;
     *(int *)((char *)m + 0x1C0) = 0;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B000 = 0;
     *(volatile unsigned int *)0x1000B400 = 0;
@@ -51,7 +51,7 @@ void _clearOnce(void *m) {
         *(int *)((char *)m + 0x820) = 0;
         return;
     }
-    func_0039C390(m, D_0045E400);
+    _sceMpegError(m, D_0045E400);
 }
 
 __attribute__((section(".text._dualPrimeVector")))
@@ -81,7 +81,7 @@ void _dualPrimeVector(void *pic, int DMV[][2], int *dmvector, int mvx, int mvy) 
 __attribute__((section(".text.func_0039FDD8")))
 void func_0039FDD8(unsigned int addr, int size) {
     int oldstat;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     if ((addr >> 28) == 7) {
         addr &= 0x0FFFFFFFU;
         addr |= 0x80000000U;

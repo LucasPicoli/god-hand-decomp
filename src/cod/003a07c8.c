@@ -3,7 +3,7 @@
 /* MPEG-2 sequence_extension() -- Sony libmpeg ext.c::_sequenceExtension */
 
 extern int func_0039EAA8(void *v, int n);		/* getBits */
-extern void func_0039C390(void *v, char *msg);		/* _sceMpegError */
+extern void _sceMpegError(void *v, char *msg);
 
 extern char D_0045E810[];	/* "_chroma_format needs to be 1: 420" */
 extern char D_0045E838[];	/* "Unsupported profile/level" */
@@ -44,7 +44,7 @@ void func_003A07C8(Mpeg *v)
 	chroma_format = (n >> 17) & 3;
 	v->chroma_format = chroma_format;
 	if (chroma_format != 1)
-		func_0039C390(v, D_0045E810);
+		_sceMpegError(v, D_0045E810);
 	v->progressive_sequence = (n >> 19) & 1;
 	profile_and_level_indication = n >> 20;
 	m = func_0039EAA8(v, 16);
@@ -52,7 +52,7 @@ void func_003A07C8(Mpeg *v)
 	if (profile_and_level_indication != 0x48 &&
 	    profile_and_level_indication != 0x58 &&
 	    profile_and_level_indication != 0x44)
-		func_0039C390(v, D_0045E838);
+		_sceMpegError(v, D_0045E838);
 	v->horizontal_size = (horizontal_size_extension << 12) | (v->horizontal_size & 0xFFF);
 	v->vertical_size = (vertical_size_extension << 12) | (v->vertical_size & 0xFFF);
 	v->bit_rate += bit_rate_extension << 18;

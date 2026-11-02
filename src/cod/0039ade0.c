@@ -18,7 +18,7 @@ int func_0039ADE0(void *a0, S0039 *a1, unsigned int a2, unsigned int a3) {
     q = (a1->f8 + a3 - 1) / a3;
     sz = q * a3;
     if (a1->f0 + a1->f4 < sz + a2) {
-        func_0039C390(a0, D_0045E588);
+        _sceMpegError(a0, D_0045E588);
         return 0;
     }
     a1->f8 = sz + a2;

@@ -9,7 +9,7 @@ extern void _clearEach();
 __attribute__((section(".text.func_003B7380")))
 int func_003B7380(int a0) {
     int r1, r2;
-    r1 = func_003B63A0(a0);
+    r1 = DIntr(a0);
     r2 = iStartTimerCounter(a0);
     if (r1 != 0)
         EIntr();
@@ -41,7 +41,7 @@ void func_003B3E70(void) {
 
 __attribute__((section(".text.func_003BA9F0")))
 void func_003BA9F0(int a0) {
-    int r = func_003B63A0();
+    int r = DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B400 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;
@@ -52,7 +52,7 @@ void func_003BA9F0(int a0) {
 
 __attribute__((section(".text.func_003BAD08")))
 void func_003BAD08(int a0) {
-    int r = (int)func_003B63A0();
+    int r = (int)DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B400 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;

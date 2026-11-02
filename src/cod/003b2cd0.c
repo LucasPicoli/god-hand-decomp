@@ -91,7 +91,7 @@ void *func_003B7510(void *a, void *b, void *c, void *d)
     int state;
     void *r;
 
-    state = func_003B63A0();
+    state = DIntr();
     r = func_003B7400(a, b, c, d);
     if (state != 0) {
         EIntr();
@@ -113,7 +113,7 @@ int func_003B6B90(void)
     int state;
     int mode;
 
-    state = func_003B63A0();
+    state = DIntr();
     mode = *(volatile int *)0x10001010;
     if (mode & 0x80) {
         if (state != 0) {

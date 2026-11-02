@@ -50,7 +50,7 @@ void _cpr8(char *c, char *f)
             int p2;
             int q2;
 
-            st = func_003B63A0();
+            st = DIntr();
             D9_SADR = 0;
             D9_MADR = p;
             D9_QWC = qwc;
@@ -61,7 +61,7 @@ void _cpr8(char *c, char *f)
             q2 = q + step;
             while (D9_CHCR & 0x100)
                 ;
-            st = func_003B63A0();
+            st = DIntr();
             D8_SADR = 0;
             D8_MADR = q;
             D8_QWC = qwc;

@@ -16,7 +16,7 @@ extern char D_0045E348[];
 extern char D_0045E368[];
 
 extern void func_003B1F28();                    /* scePrintf */
-extern int  func_003B63A0(void);                /* DIntr */
+extern int  DIntr(void);
 extern void EIntr(void);                /* EIntr */
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
@@ -36,7 +36,7 @@ int sceCdDiskReady_old(int mode)
 
     if (*(int *)(D_003F8640 + 0x10) > 0)
         func_003B1F28(D_0045E330);
-    i = func_003B63A0();
+    i = DIntr();
     D_003F8680 = 1;
     if (i)
         EIntr();

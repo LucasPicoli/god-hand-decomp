@@ -15,8 +15,8 @@ int func_003B6240(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_0039C390")))
-int func_0039C390(int a0, int a1) {
+__attribute__((section(".text._sceMpegError")))
+int _sceMpegError(int a0, int a1) {
     int local[2];
     int v1 = *(int *)(a0 + 0x868);
     if (v1 != 0 && a0 != 0 && *(int *)(a0 + 0xC) != 0) {

@@ -11,7 +11,7 @@ void VSync(void)
 {
     int stat;
 
-    stat = func_003B63A0();
+    stat = DIntr();
     *(volatile u_int *)0x1000F000 = 4;
     GH_SYNC();
     if (stat) {
@@ -20,7 +20,7 @@ void VSync(void)
     while ((*(volatile u_int *)0x1000F000 & 4) == 0) {
         ;
     }
-    stat = func_003B63A0();
+    stat = DIntr();
     *(volatile u_int *)0x1000F000 = 4;
     GH_SYNC();
     if (stat) {

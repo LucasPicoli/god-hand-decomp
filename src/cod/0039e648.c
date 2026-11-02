@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
 extern char D_0045E720[];
-extern void func_0039C390(void *s, char *msg);
+extern void _sceMpegError(void *s, char *msg);
 extern char D_0045E770[];
 extern void _waitIpuIdle(void *s);
 extern long long _sceMpegWaitIpuIdle64(void *s);
@@ -14,7 +14,7 @@ extern void func_0039C3E8(void *s, char *msg, int a);
  * (LOCAL symbol in the donor object, so the retail definition is static).
  * Donor base: .o .text offset 0x28C8 + 0x0039C430 = 0x0039ECF8.
  *
- * func_0039C390 is _sceMpegError; D_0045E720 is its asciz message.
+ * _sceMpegError is _sceMpegError; D_0045E720 is its asciz message.
  * Store order: p3[1] then p3[0] in source emits 0($a3) then 4($a3)
  * (store-rotation-by-one).
  */
@@ -46,7 +46,7 @@ int func_0039ECF8(void *s, int *b, int *p2, int *p3, int *p4)
         p3[0] = flag;
     }
     if (*(int *)((char *)s + 0x160) == 1) {
-        func_0039C390(s, D_0045E720);
+        _sceMpegError(s, D_0045E720);
         ret = 0;
     }
     *p4 = *p4 & -2;

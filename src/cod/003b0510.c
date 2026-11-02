@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern int EIntr(void);
 extern int EnableDmac(int cause);
 extern void _sceSDC(unsigned int start, unsigned int end);
@@ -28,7 +28,7 @@ int func_003B0810(int cause)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     r = EnableDmac(cause);
     GH_SYNC();
@@ -54,7 +54,7 @@ void SyncDCache(void *start, void *end)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     _sceSDC((unsigned int)start & 0xFFFFFFC0, (unsigned int)end & 0xFFFFFFC0);
     if (stat) {
@@ -78,7 +78,7 @@ void func_003B0640(void *start, void *end)
     GH_MFC0_STATUS(stat);
     stat &= 0x10000;
     if (stat) {
-        func_003B63A0();
+        DIntr();
     }
     _sceIDC((unsigned int)start & 0xFFFFFFC0, (unsigned int)end & 0xFFFFFFC0);
     if (stat) {

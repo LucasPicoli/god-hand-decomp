@@ -10,7 +10,7 @@ typedef struct alarm {
 } Alarm;
 
 extern Alarm *volatile D_00784040;   /* g_pFreeAlarm */
-extern int func_003B63A0(void);      /* DIntr */
+extern int DIntr(void);
 extern int EIntr(void);
 extern int func_003B7270(void);      /* AllocTimerCounter */
 extern int func_003B7510(int id, int time, void *handler, void *arg);   /* SetTimerHandler */
@@ -48,7 +48,7 @@ int func_003B7768(int time, void *fn, void *common)
     if (fn == 0) {
         return 0x80000016;
     }
-    intr = func_003B63A0();
+    intr = DIntr();
     p = AllocAlarm();
     if (p == 0) {
         if (intr) EIntr();

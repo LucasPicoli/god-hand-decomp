@@ -38,7 +38,7 @@ int func_00397E18(int port, int slot, int state)
 
     if (D_0077C110[port][slot].open == 0)
         return 0;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     p = func_00397BC8(port, slot, 0);
     p[0x71] = state;
     SyncDCache(p, p + 0x7F);

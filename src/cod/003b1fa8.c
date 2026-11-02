@@ -9,7 +9,7 @@ void func_003B1FA8(char *fmt, ...) {
     int ctx;
     void *h;
     ctx = 0;
-    h = func_003B63A0();
+    h = DIntr();
     _sceSnprintf(func_003B1E68, &ctx, 0xFFFFFFFFU, fmt, (char *)__builtin_next_arg(fmt) - 0x38);
     if (h) {
         EIntr();

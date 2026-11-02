@@ -18,14 +18,14 @@ unsigned long long VSync2(void)
 
     flag = 0;
     SetVSyncFlag(&flag, &t);
-    di = func_003B63A0();
+    di = DIntr();
     *(volatile int *)0x1000F000 = 4;
     GH_SYNC();
     if (di)
         EIntr();
     while (((*(volatile int *)0x1000F000) & 4) == 0 && flag == 0)
         ;
-    di = func_003B63A0();
+    di = DIntr();
     *(volatile int *)0x1000F000 = 4;
     GH_SYNC();
     if (di)

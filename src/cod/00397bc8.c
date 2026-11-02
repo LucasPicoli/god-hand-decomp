@@ -31,7 +31,7 @@ PadData *func_00397BC8(int port, int slot, PadData *buf)
     PadData *pd;
     int n;
 
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     pd = D_0077C110[port][slot].buf;
     SyncDCache(pd, (char *)pd + 0xFF);
     n = pd[0].frame < pd[1].frame;

@@ -4,7 +4,7 @@
 
 extern int func_0039EAA8(void *v, int n);		/* getBits */
 extern void func_003A0DE8(void *v);			/* _waitIpuIdle */
-extern void func_0039C390(void *v, char *msg);		/* _sceMpegError */
+extern void _sceMpegError(void *v, char *msg);
 
 extern char D_0045E858[];	/* "load_chroma_intra_quantizer_matrix == 1" */
 extern char D_0045E880[];	/* "load_chroma_non_intra_quantizer_matrix == 1" */
@@ -40,7 +40,7 @@ void func_003A0908(Mpeg *v)
 		func_003A0DE8(v);
 	}
 	if (func_0039EAA8(v, 1))
-		func_0039C390(v, D_0045E858);
+		_sceMpegError(v, D_0045E858);
 	if (func_0039EAA8(v, 1))
-		func_0039C390(v, D_0045E880);
+		_sceMpegError(v, D_0045E880);
 }

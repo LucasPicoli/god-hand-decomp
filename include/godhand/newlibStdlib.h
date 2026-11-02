@@ -15,7 +15,7 @@ double func_003A80E8(struct _reent *ptr, const char *s, char **endptr);         
 int func_003A8FE0(int a0, int a1);                                                      /* strtod, as defined in 00150048.c */
 unsigned long func_003A9018(struct _reent *rptr, const char *nptr, char **endptr, int base);  /* _strtoul_r */
 int func_003A9228(int a0, int a1, int a2);                                              /* strtoul, as defined in 0014e598.c */
-long func_003ACE90(struct _reent *rptr, const char *nptr, char **endptr, int base);     /* _strtol_r */
+long _strtol_r(struct _reent *rptr, const char *nptr, char **endptr, int base);
 int func_003AD0C0(int a0, int a1, int a2);                                              /* strtol, as defined in 0014e598.c */
 
 #endif /* GODHAND_NEWLIBSTDLIB_H */

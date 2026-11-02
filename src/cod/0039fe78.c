@@ -25,7 +25,7 @@ extern void func_003A0F80(Ctx *s);
 
 
 extern void func_0039C3E8(Ctx *s, char *msg, int a);
-extern void func_0039C390(Ctx *s, char *msg);
+extern void _sceMpegError(Ctx *s, char *msg);
 
 __attribute__((section(".text.func_0039FE78")))
 int func_0039FE78(Ctx *s, int unused, int *p3, int *p4, Blk *b)
@@ -56,7 +56,7 @@ int func_0039FE78(Ctx *s, int unused, int *p3, int *p4, Blk *b)
     mb = func_0039E648(s);
     *p4 = mb;
     if (s->f12C != 0) {
-        func_0039C390(s, D_0045E7D0);
+        _sceMpegError(s, D_0045E7D0);
         return 1;
     }
     *p3 = ((code & 0xFF) - 1) * s->f13C + mb - 1;

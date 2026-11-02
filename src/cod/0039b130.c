@@ -4,7 +4,7 @@
 
 extern long long func_0031DE10(long long a, long long b);
 extern void func_003B1EE0(char *buf, int size, char *fmt, int a, int b);
-extern void func_0039C390(char *c, char *msg);
+extern void _sceMpegError(char *c, char *msg);
 extern void func_0039BB20(char *c, char *pic);
 extern void _cpr8(char *c, char *pic);
 extern char D_0045E5A8[];
@@ -71,7 +71,7 @@ void _dispRefImage(char *c, char *pic, int n)
     if (ok == 0) {
         func_003B1EE0(buf, 0x100, D_0045E5A8, *(int *)(pic + 0x4),
                       *(int *)(pic + 0x8));
-        func_0039C390(c, buf);
+        _sceMpegError(c, buf);
     }
     ok2 = ok;
     if (ok2 != 0) {

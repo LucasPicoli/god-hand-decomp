@@ -20,7 +20,7 @@ typedef struct Ctx {
 
 extern char D_0045E548[];
 extern char D_0045E568[];
-extern void func_0039C390(Ctx *c, char *msg);
+extern void _sceMpegError(Ctx *c, char *msg);
 
 
 __attribute__((section(".text.func_0039ACD8")))
@@ -30,7 +30,7 @@ int func_0039ACD8(Ctx *c)
     int r;
 
     if (c->f184 == 3 && c->f130 != 0) {
-        func_0039C390(c, D_0045E548);
+        _sceMpegError(c, D_0045E548);
         c->f130 = 0;
     }
     switch (c->f184) {
@@ -45,7 +45,7 @@ int func_0039ACD8(Ctx *c)
         break;
     default:
         p = c->f1D0;
-        func_0039C390(c, D_0045E568);
+        _sceMpegError(c, D_0045E568);
         break;
     }
     r = func_0039D5B8(c);

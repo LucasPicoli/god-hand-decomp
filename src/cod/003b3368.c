@@ -23,7 +23,7 @@ extern RpcData D_0077FF40;
 __attribute__((section(".text.func_003B3368")))
 void func_003B3368(RpcQ *q, void *thread)
 {
-    func_003B63A0();
+    DIntr();
     q->f0 = thread;
     q->f4 = 0;
     q->f8 = 0;

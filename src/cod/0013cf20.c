@@ -13,7 +13,7 @@ extern void func_001F7820(void *mgr, void *ent);
 extern void cNode_clearActiveRecursive(void *self);
 extern void func_002B60D0(void *dst, void *src);
 extern void func_002B6230(void *self, void *v);
-extern int func_001B8030(void *obj);
+extern long func_001B8030(void *obj);
 
 #define DRAW_FLAG_ENABLED  0x20000000   /* IdDrawObj.flags: the display is switched on */
 #define SYS_HIDE_BIT       3            /* sysState.flags: bit 3 hides every display */

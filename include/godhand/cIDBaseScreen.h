@@ -7,6 +7,7 @@
  * BlendSetup_load. Every frame func_00145238 runs the phase handler (opening,
  * open, pop-in, closing) and moves the rows.
  *
+ * The class name is the project's: retail's symbols name only cIDBase.
  * Offsets are exact; a field nobody names yet stays as unkNNN padding.
  */
 #ifndef GODHAND_CIDBASESCREEN_H

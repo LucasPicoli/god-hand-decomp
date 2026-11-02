@@ -26,8 +26,8 @@ extern int isceSifSendCmd(unsigned int fid, void *pkt, int size,
 
 
 
-__attribute__((section(".text.func_003B2E78")))
-void func_003B2E78(void *packet, void *q)
+__attribute__((section(".text._request_bind")))
+void _request_bind(void *packet, void *q)
 {
     sceSifRpcPkt *cd = packet;
     sceSifRpcPkt *p;

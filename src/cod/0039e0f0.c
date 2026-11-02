@@ -8,7 +8,7 @@ extern char D_0045E750[];
 extern void _waitIpuIdle(void *s);
 extern long long _sceMpegWaitIpuIdle64(void *s);
 
-extern void func_0039C390(void *s, char *msg);
+extern void _sceMpegError(void *s, char *msg);
 extern void func_0039ECF0(void *s, int n);
 extern void func_0039FDD8(int a, int b);
 extern void func_0039DF50(void *s, int *PMV, int *dmv, int *mvfs, int idx,
@@ -53,7 +53,7 @@ int _decMB0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
     mbtype = (short)v;
     *mbtypep = mbtype;
     if (mbtype == 0) {
-        func_0039C390(s, D_0045E750);
+        _sceMpegError(s, D_0045E750);
         *(int *)(s + 0x12C) = 1;
         return 0;
     }

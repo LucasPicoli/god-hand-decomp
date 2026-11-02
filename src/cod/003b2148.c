@@ -6,7 +6,7 @@ extern int SifSetDma(int, int);
 
 __attribute__((section(".text.func_003B2148")))
 int func_003B2148(int a, int b) {
-    int res = func_003B63A0(a, b);
+    int res = DIntr(a, b);
     if (D_003FAE50 != 0) {
         if (res != 0) {
             EIntr();

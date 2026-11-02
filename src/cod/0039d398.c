@@ -1,4 +1,5 @@
 /* ee-2.9-991111 */
+#include "godhand/sceMpeg.h"
 
 /* One motion-compensation set of the libmpeg decoder: up to four prediction
  * steps, each a pair of callbacks with their argument blocks, and the buffers
@@ -29,7 +30,6 @@ typedef struct MpegMcState {
 
 extern char D_0045E6C8[];               /* error message: intra and skipped both set */
 
-int func_0039C390(int a0, int a1);      /* _sceMpegError */
 void func_0039EEA8(void *dst, void *src);
 void func_0039EDB8(void *dst, void *pred, void *residual);
 
@@ -47,7 +47,7 @@ void _doMC(MpegMcState *s, int f)
         }
     }
     if (s->mc[f].intra && s->mc[f].skipped) {
-        func_0039C390((int)s, (int)D_0045E6C8);
+        _sceMpegError((int)s, (int)D_0045E6C8);
     }
     if (s->mc[f].intra) {
         func_0039EEA8(s->mc[f].dst, s->mc[f].residual);

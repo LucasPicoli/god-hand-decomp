@@ -36,7 +36,7 @@ typedef struct MpegCbData {
 } MpegCbData;
 
 /* _sceMpegError: report msg through the decoder's callback. */
-int func_0039C390(int m, int msg);
+int _sceMpegError(int m, int msg);
 /* _sceMpegDispatchMpegCallback: cb points at the callback data's type word. */
 int func_0039AB20(void *m, int *cb);
 /* Channel 4 handler: send the next 0xFFFF-quadword piece of rest. */

@@ -69,7 +69,7 @@ int func_003B2058(int reg);             /* sceSifGetSreg */
 void func_003B2488(unsigned int fid, void *func, void *data);   /* sceSifAddCmdHandler */
 /* RPC command handlers, as sceSifAddCmdHandler calls them: the packet, then the handler's data. */
 void _request_end(void *pkt, void *data);
-void func_003B2E78(void *pkt, void *data);  /* _request_bind */
+void _request_bind(void *pkt, void *data);
 void _request_call(void *pkt, void *data);
 void func_003B2D10(void *pkt, void *data);  /* _request_rdata */
 

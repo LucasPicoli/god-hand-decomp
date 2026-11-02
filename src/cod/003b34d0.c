@@ -41,7 +41,7 @@ typedef struct {
 } sceSifRpcCtl;
 
 extern sceSifRpcCtl D_0077FF40;
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 
 __attribute__((section(".text.func_003B34D0")))
@@ -49,7 +49,7 @@ sceSifServeData *func_003B34D0(sceSifServeData *sd, sceSifQueueData *qd)
 {
     sceSifServeData *s;
 
-    func_003B63A0();
+    DIntr();
     s = qd->link;
     if (s == sd) {
         qd->link = sd->link;

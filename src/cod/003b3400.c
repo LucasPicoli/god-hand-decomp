@@ -41,7 +41,7 @@ typedef struct {
 } sceSifRpcCtl;
 
 extern sceSifRpcCtl D_0077FF40;
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 
 __attribute__((section(".text.func_003B3400")))
@@ -52,7 +52,7 @@ void func_003B3400(sceSifServeData *sd, unsigned int command,
     sceSifServeData *p;
     sceSifServeData *s;
 
-    func_003B63A0();
+    DIntr();
     sd->command = command;
     sd->func = func;
     sd->buff = buff;

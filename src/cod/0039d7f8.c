@@ -20,7 +20,7 @@ extern void func_0039AB98(int h);
 extern void _sceMpegStopIpuDma(void);
 extern void _sceMpegErrorBdec(void *s);
 extern void _doMC(void *s, int f);
-extern void func_0039C390(void *s, char *msg);
+extern void _sceMpegError(void *s, char *msg);
 
 
 
@@ -109,7 +109,7 @@ int _slice0(char *s, int nmb)
             }
         }
         if (mba >= nmb) {
-            func_0039C390(s, D_0045E700);
+            _sceMpegError(s, D_0045E700);
             return 2;
         }
         if (ninc == 1) {

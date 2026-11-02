@@ -3,7 +3,7 @@
 #define GODHAND_EEKERNEL_H
 
 /* DIntr: disable interrupts; nonzero when they were enabled. */
-int func_003B63A0(void);
+int DIntr(void);
 /* Enable interrupts. */
 int EIntr(void);
 

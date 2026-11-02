@@ -66,7 +66,7 @@ extern int D_003F8664;       /* the interrupt-lock flag */
 extern int D_003F8688;       /* the power-off-callback-installed flag */
 
 
-extern int  func_003B63A0(void);                       /* DIntr */
+extern int  DIntr(void);
 extern int  EIntr(void);                       /* EIntr */
 extern int  func_003B2488(int fid, void (*fn)(void *, void *), void *data); /* sceSifAddCmdHandler */
 
@@ -76,7 +76,7 @@ int PowerOffCB(void)
     int oldstat;
 
     D_003F8664 = 1;
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     func_003B2488(0x80000012, _sceCd_Poff_Intr, 0);
     if (oldstat)
         EIntr();
@@ -96,7 +96,7 @@ extern int D_003F8670;       /* the third semaphore id */
 
 
 
-extern int func_003B63A0(void);          /* DIntr */
+extern int DIntr(void);
 extern int EIntr(void);          /* EIntr */
 extern int func_003B2500(int fid);       /* sceSifRemoveCmdHandler */
 
@@ -113,7 +113,7 @@ void cdvd_exit(void)
     DeleteSema(D_003F866C);
     DeleteSema(D_003F8670);
     DeleteSema(D_003F8660);
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     func_003B2500(0x80000012);
     if (oldstat)
         EIntr();

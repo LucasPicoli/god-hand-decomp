@@ -11,7 +11,7 @@ void sceSifInitRpc(int mode)
 {
     sceSifCmdHdr *cmd;
 
-    func_003B63A0();
+    DIntr();
     if (D_003FAE54 != 0) {
         EIntr();
         return;
@@ -19,7 +19,7 @@ void sceSifInitRpc(int mode)
     D_003FAE54 = 1;
     EIntr();
     func_003B21D0();
-    func_003B63A0();
+    DIntr();
     D_0077FF40.pktTable = UNCACHED(D_0077E740);
     D_0077FF40.pktTableLen = SIF_RPC_TABLE_LEN;
     D_0077FF40.unk0C = 0;
@@ -31,7 +31,7 @@ void sceSifInitRpc(int mode)
     D_0077FF40.rdataTableIdx = 0;
     D_0077FF40.pid = 1;
     func_003B2488(SIF_CMD_RPC_END, _request_end, &D_0077FF40);
-    func_003B2488(SIF_CMD_RPC_BIND, func_003B2E78, &D_0077FF40);
+    func_003B2488(SIF_CMD_RPC_BIND, _request_bind, &D_0077FF40);
     func_003B2488(SIF_CMD_RPC_CALL, _request_call, &D_0077FF40);
     func_003B2488(SIF_CMD_RPC_RDATA, func_003B2D10, &D_0077FF40);
     EIntr();

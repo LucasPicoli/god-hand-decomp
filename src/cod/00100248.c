@@ -5,7 +5,7 @@ extern void func_00320280(void);
 extern void func_003B1F28(char *fmt, ...);
 extern char D_0045E630[];
 extern void func_0039EC20(char *a0, unsigned int a1);
-extern void func_0039C390(int a0, int a1);
+extern void _sceMpegError(int a0, int a1);
 extern char s__sequenceScalableExtension___is_n_0045e8b0[];
 extern char s_Unknown_Extension_0045e8e0[];
 extern char s__pictureSpatialScalableExtension_0045e8f8[];
@@ -32,16 +32,16 @@ __attribute__((section(".text.func_0039ECF0")))
 void func_0039ECF0(char *a0, unsigned int a1) { func_0039EC20(a0, a1); }
 
 __attribute__((section(".text.func_003A09F0")))
-void func_003A09F0(int a0) { func_0039C390(a0, (int)s__sequenceScalableExtension___is_n_0045e8b0); }
+void func_003A09F0(int a0) { _sceMpegError(a0, (int)s__sequenceScalableExtension___is_n_0045e8b0); }
 
 __attribute__((section(".text.func_003A0A00")))
-void func_003A0A00(int a0) { func_0039C390(a0, (int)s_Unknown_Extension_0045e8e0); }
+void func_003A0A00(int a0) { _sceMpegError(a0, (int)s_Unknown_Extension_0045e8e0); }
 
 __attribute__((section(".text.func_003A0BF8")))
-void func_003A0BF8(int a0) { func_0039C390(a0, (int)s__pictureSpatialScalableExtension_0045e8f8); }
+void func_003A0BF8(int a0) { _sceMpegError(a0, (int)s__pictureSpatialScalableExtension_0045e8f8); }
 
 __attribute__((section(".text.func_003A0C08")))
-void func_003A0C08(int a0) { func_0039C390(a0, (int)s__pictureTemporalScalableExtensio_0045e930); }
+void func_003A0C08(int a0) { _sceMpegError(a0, (int)s__pictureTemporalScalableExtensio_0045e930); }
 
 __attribute__((section(".text.func_003A0E20")))
 void func_003A0E20(char *a0, unsigned int a1) { func_0039EC20(a0, a1); }

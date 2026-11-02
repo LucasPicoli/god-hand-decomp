@@ -6,7 +6,7 @@ extern void EIntr(void);
 /* MPEG-2 sequence_header() -- Sony libmpeg ext.c::_sequenceHeader */
 
 extern int func_0039EAA8(void *v, int n);	/* getBits */
-extern void func_0039C390(void *v, char *msg);	/* _sceMpegError */
+extern void _sceMpegError(void *v, char *msg);
 extern void func_003A0DE8(void *v);		/* _waitIpuIdle */
 extern void func_0039AB20(int h, void *req);	/* _sceMpegDispatchMpegCallback */
 extern void func_003A0C18(void *v);		/* _extensionAndUserData */
@@ -62,7 +62,7 @@ void func_003A0330(Mpeg *v)
 	v->horizontal_size = n >> 20;
 	v->vertical_size = vsize;
 	if (vsize > 2800)
-		func_0039C390(v, D_0045E7F8);
+		_sceMpegError(v, D_0045E7F8);
 
 	n = func_0039EAA8(v, 30);
 	v->bit_rate = n >> 12;
@@ -83,7 +83,7 @@ void func_003A0330(Mpeg *v)
 		func_003A0DE8(v);
 		IPU_CMD = 0;
 		func_003A0DE8(v);
-		r = func_003B63A0();
+		r = DIntr();
 		D4_MADR = p & 0x0FFFFFFF;
 		D4_QWC = 4;
 		D4_CHCR = 0x101;
@@ -112,7 +112,7 @@ void func_003A0330(Mpeg *v)
 		func_003A0DE8(v);
 		IPU_CMD = 0;
 		func_003A0DE8(v);
-		r = func_003B63A0();
+		r = DIntr();
 		D4_MADR = p & 0x0FFFFFFF;
 		D4_QWC = 4;
 		D4_CHCR = 0x101;

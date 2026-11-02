@@ -25,7 +25,7 @@ RpcQ *sceSifRemoveRpcQueue(RpcQ *q)
 {
     RpcQ *p;
 
-    func_003B63A0();
+    DIntr();
     {
         RpcData *rd = &D_0077FF40;
         p = rd->q;

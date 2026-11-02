@@ -2,7 +2,7 @@
 
 extern void _IO_free_backup_area(int *a0);
 extern void WaitDma(void *a0);
-extern void func_003B63A0(void);
+extern void DIntr(void);
 extern void EIntr(void);
 
 /* MATCH via ee-2.9-991111. */
@@ -43,7 +43,7 @@ __attribute__((section(".text.func_003B35F8")))
 int func_003B35F8(int *a0)
 {
     int p;
-    func_003B63A0();
+    DIntr();
     p = a0[3];
     if (p == 0) {
         a0[1] = 0;

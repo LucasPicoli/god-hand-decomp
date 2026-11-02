@@ -28,7 +28,7 @@ typedef struct Mpeg {
 } Mpeg;
 
 extern char D_0045E5D8[];
-extern void func_0039C390(Ctx *c, char *msg);
+extern void _sceMpegError(Ctx *c, char *msg);
 extern void _dispRefImage(Ctx *c, int a, int b);
 extern void _dispRefImageField(Ctx *c, int a, int b, int d);
 
@@ -41,7 +41,7 @@ int func_0039B810(Mpeg *m)
     if (c->f004 != 0 && c->f008 != 0) {
         int n = c->f128;
         if (c->f130 != 0) {
-            func_0039C390(c, D_0045E5D8);
+            _sceMpegError(c, D_0045E5D8);
         } else if (c->f184 == 3) {
             _dispRefImage(c, c->f1CC, n - 1);
         } else {

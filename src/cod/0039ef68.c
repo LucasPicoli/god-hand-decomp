@@ -51,7 +51,7 @@ void dmaRefImage(Ctx *c)
         tag[2] = DMATAG(d, id1, 0x30);
         tag += 4;
     }
-    oldstat = func_003B63A0();
+    oldstat = DIntr();
     GH_SYNC();
     mb2 = *(int *)((char *)c + 0x820);
     D9_SADR = c->rows[mb2].madr;
