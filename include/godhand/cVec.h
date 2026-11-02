@@ -94,4 +94,35 @@
         v_->w = 1.0f;                                           \
     }
 
+/* d = m * *a; (a matrix times a vector: a copy of *a transformed in place by
+ * sceVu0ApplyMatrix, returned through its return slot, then operator=, xyz
+ * only). The caller declares sceVu0ApplyMatrix (sceVu0.h). */
+#define CVEC_SET_APPLY(d, m, a)                                 \
+    {                                                           \
+        cVec *a_ = (a);                                         \
+        void *m_ = (m);                                         \
+        cVec *t_ = &tmp_;                                       \
+        cVec *r_ = &ret_;                                       \
+                                                                \
+        VU0_LQC2(4, a_, 0);                                     \
+        VU0_SQC2_MEM(4, &tmp_, 0);                              \
+        sceVu0ApplyMatrix(t_, m_, t_);                          \
+        VU0_LQC2(4, t_, 0);                                     \
+        VU0_SQC2_MEM(4, &ret_, 0);                              \
+        if (&(d) != r_) {                                       \
+            (d).x = ret_.x;                                     \
+            (d).y = ret_.y;                                     \
+            (d).z = ret_.z;                                     \
+        }                                                       \
+    }
+
+/* cVec d(*s); (the copy constructor into a local: the whole quadword) */
+#define CVEC_COPY(d, s)                                         \
+    {                                                           \
+        cVec *s_ = (s);                                         \
+                                                                \
+        VU0_LQC2(4, s_, 0);                                     \
+        VU0_SQC2_MEM(4, &(d), 0);                               \
+    }
+
 #endif /* GODHAND_CVEC_H */

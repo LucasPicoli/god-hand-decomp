@@ -9,6 +9,9 @@
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
 
+/* v0 = v1 / q. */
+extern void sceVu0DivVector(void *v0, void *v1, float q);
+
 /* v0 = m0 * v1 (v0 may be v1). */
 extern void sceVu0ApplyMatrix(void *v0, void *m0, void *v1);
 

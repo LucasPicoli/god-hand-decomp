@@ -4,6 +4,7 @@
 #include "godhand/sideCounter.h"
 #include "godhand/cSnd.h"
 #include "godhand/cOm1f.h"
+#include "godhand/cSceAtManager.h"
 
 extern int D_00747A0C;
 extern void TaskFnWork_runAndExit(void);
@@ -78,20 +79,21 @@ void cOmb3_SetNextPoint(char *p, unsigned short n)
     }
 }
 
-/* cygnus-2.96 */
+/* cygnus-2.96. Put unit's hit kind back to the one before its last change and clear its
+ * data. self is unused. */
 __attribute__((section(".text.cSceAtManager_AtDataReset")))
-void cSceAtManager_AtDataReset(int n, char *p)
+void cSceAtManager_AtDataReset(cSceAtManager *self, cSceAtUnit *unit)
 {
     unsigned char v;
 
-    if (p != 0) {
-        v = *(unsigned char *)(p + 0x4E);
+    if (unit != 0) {
+        v = unit->prevHitKind;
         if (v != 0) {
-            *(unsigned char *)(p + 0x3B) = v;
-            *(unsigned char *)(p + 0x4E) = 0;
+            unit->hitKind = v;
+            unit->prevHitKind = 0;
         }
-        *(unsigned char *)(p + 0x44) = 0;
-        *(int *)(p + 0x3C) = 0;
+        unit->data44 = 0;
+        unit->dataC = 0;
     }
 }
 

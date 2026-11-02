@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/sideCounter.h"
+#include "godhand/cSceAtManager.h"
 
 extern int D_003E0710;
 extern int D_003E0708;
@@ -16,13 +17,14 @@ int func_002B4F98(void *a0, int key) {
     return 0;
 }
 
+/* The unit after e in the tagged list, or 0 at the end. self is unused. */
 __attribute__((section(".text.cSceAtManager_getNextUnit")))
-unsigned int cSceAtManager_getNextUnit(void *a0, void *a1) {
-    unsigned int x = *(unsigned int *)a1;
-    while (x != 0xFFFFFFFF) {
-        unsigned int y = x & 0x7FFFFFFF;
-        if ((x & 0x80000000) != 0) return y;
-        x = *(unsigned int *)y;
+cSceAtUnit *cSceAtManager_getNextUnit(cSceAtManager *self, cSceAtUnit *e) {
+    unsigned int x = e->link;
+    while (x != SCEAT_LIST_END) {
+        cSceAtUnit *u = (cSceAtUnit *)(x & SCEAT_LINK_ADDR);
+        if ((x & SCEAT_LINK_UNIT) != 0) return u;
+        x = u->link;
     }
     return 0;
 }

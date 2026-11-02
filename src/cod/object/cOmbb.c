@@ -17,8 +17,8 @@ __attribute__((section(".text.cOmbb_setFire")))
 void cOmbb_setFire(cOmbb *self)
 {
     if (self->fireLit == 0) {
-        self->fuseMode = 0;
-        self->fuseState = COMBB_FUSE_LIT;
+        self->base.mode = 0;
+        self->base.step = COMBB_FUSE_LIT;
         KillEffect(self, 0, 2);
         SetEffect(1, 1, self, 0, 0, 0xFFFFFFFFU);
         self->hissSe = cSnd_SeCall_2CBA48(D_005FEE00, 2, COMBB_SE_HISS, self, 0, 0, 0, 0);

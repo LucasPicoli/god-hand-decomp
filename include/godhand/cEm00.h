@@ -110,7 +110,9 @@ typedef struct cEm00 {
     void *unk678;                           /* 0x678 link record of the enemy it works with, its 0x34 field is the target object */
     char unk67C[0x1C];
     void *unk698;                           /* 0x698 link record, its 0x34 field is the enemy being watched */
-    char unk69C[0x18];
+    char unk69C[4];
+    int unk6A0;                             /* 0x6A0 nonzero: func_0012A108 skips its burning-bomb check */
+    char unk6A4[0x10];
     struct cEm00 *foe;                      /* 0x6B4 the other enemy this one works with */
     char unk6B8[0x18];
     cVec unk6D0;                            /* 0x6D0 */

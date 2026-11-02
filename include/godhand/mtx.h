@@ -8,4 +8,7 @@
 /* mtx = a rotation by angle about y, no translation. */
 void MtxInitRotY(float *mtx, float angle);
 
+/* dst = the inverse of src. */
+void MtxInverse(float *dst, float *src);
+
 #endif /* GODHAND_MTX_H */

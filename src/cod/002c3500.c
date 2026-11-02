@@ -3,16 +3,16 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cScenario.h"
+#include "godhand/cSceAtManager.h"
 
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void cNode_setLocalTranslation(void *self, cVec *v);
 extern int ChkLine(cVec *from, cVec *to, cVec *hit, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
 extern int D_007474A0;
 extern int D_00747A2C;
-extern int D_005FEA60;
+extern cSceAtManager D_005FEA60;
 extern char D_00568288[];
 extern char *Getplayer(void);
-extern void func_002C1540(int *a0);
 extern void func_001F7360(void *p);
 
 #define DROP_UP        1.0f

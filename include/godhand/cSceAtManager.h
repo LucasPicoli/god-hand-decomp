@@ -12,6 +12,8 @@
 #ifndef GODHAND_CSCEATMANAGER_H
 #define GODHAND_CSCEATMANAGER_H
 
+#include "godhand/cArea.h"
+
 #define SCEAT_ID_NONE      0xFFFFF   /* "no unit" id in getUnit */
 #define SCEAT_ON_RESET     0xFF      /* argument the type handler gets */
 #define SCEAT_UNIT_TYPE_MARK  1          /* type of the placed units that carry a spawn record */
@@ -34,7 +36,8 @@ typedef struct cSceAtUnit {
     char data44;                        /* 0x44 */
     char unk45[9];
     unsigned char prevHitKind;          /* 0x4E hit kind before the last change */
-    char unk4F[5];
+    char unk4F;
+    unsigned int frameFlags;            /* 0x50 see SCEAT_FRAME_* */
     char dmgType;                       /* 0x54 */
     char unk55[7];
     float pos[3];                       /* 0x5C world position */
@@ -56,11 +59,44 @@ typedef struct cSceAtManager {
 
 #define SCEAT_FLAG_ENABLED  0x1         /* cSceAtUnit.flags */
 
+/* cSceAtUnit.frameFlags, set by func_002C1618 (still asm) as it checks the
+ * player against each unit's area. Once a frame func_002C1540 copies
+ * SCEAT_FRAME_NOW into SCEAT_FRAME_PREV and clears it and the three bits
+ * below. */
+#define SCEAT_FRAME_NOW       0x80000000  /* the player is inside the unit's area */
+#define SCEAT_FRAME_PREV      0x40000000  /* the player was inside it the frame before */
+#define SCEAT_FRAME_TRG       0x08000000  /* inside it when pad trigger bit 0 (trg) fired */
+#define SCEAT_FRAME_HANDLED   0x02000000  /* the unit's type handler ran */
+/* func_002C1618 adds 0x40 to the handler's event bits when this is set; nothing
+ * found sets it, so what it means isn't known yet. */
+#define SCEAT_FRAME_UNK26     0x04000000
+
 /* A unit-list word is a tagged link: SCEAT_LIST_END ends the list, the low
  * 31 bits give the address of the next unit, and SCEAT_LINK_UNIT is set on a
  * link that points at a unit. */
 #define SCEAT_LIST_END   0xFFFFFFFF
 #define SCEAT_LINK_UNIT  0x80000000
 #define SCEAT_LINK_ADDR  0x7FFFFFFF
+
+/* getUnitList returns the list head as a unit: the head word sits where a
+ * unit keeps its link, so getNextUnit can start from it. getNextUnit's
+ * self is unused. */
+cSceAtUnit *cSceAtManager_getUnitList(cSceAtManager *self);
+cSceAtUnit *cSceAtManager_getNextUnit(cSceAtManager *self, cSceAtUnit *e);
+
+/* The unit with id id, or 0. */
+cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id);
+
+/* Put unit's hit kind back to the one before its last change and clear its
+ * data (dataC, data44). self is unused. */
+void cSceAtManager_AtDataReset(cSceAtManager *self, cSceAtUnit *unit);
+
+/* Age every unit's frame flags (SCEAT_FRAME_*). */
+void func_002C1540(cSceAtManager *self);
+
+/* out = the area of unit e. */
+void func_002C1D68(cSceAtManager *self, cArea *out, cSceAtUnit *e);
+
+extern char D_0044C230[];               /* name of the room data's jump point table */
 
 #endif

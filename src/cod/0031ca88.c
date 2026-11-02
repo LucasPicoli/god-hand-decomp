@@ -1,6 +1,6 @@
 /* sn-2.95.3-136: line strip from short xy pairs into a VLA of float4, then Draw_Line_sc. */
 extern unsigned int func_0031CA58(unsigned int a0);
-extern void Draw_Line_sc(float (*v)[4], int n, unsigned int col, int a3);
+#include "godhand/drawPrim.h"
 
 __attribute__((section(".text.func_0031CA88")))
 void func_0031CA88(short *pts, short n, unsigned int col, unsigned int z)

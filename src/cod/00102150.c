@@ -472,17 +472,18 @@ void cEmManage_Main(cEmManage *self)
     EM_DROP_DEAD(unk588[3]);
     i = 0;
     {
-        cEmActor **p2 = self->unk5AC;
+        cOmbb **p2 = self->unk5AC;
         cEmActor **pp;
+        cOmbb **bp;
 
         for (; i < EM_SPECIAL_NUM; i++) {
             pp = &self->specialEm[i];
             if (*pp != 0 && ((*pp)->objFlags & EMACTOR_FLAG_DEAD))
                 *pp = 0;
         }
-        for (i = 0, pp = p2; i < 2; i++, pp++) {
-            if (*pp != 0 && ((*pp)->objFlags & EMACTOR_FLAG_DEAD))
-                *pp = 0;
+        for (i = 0, bp = p2; i < 2; i++, bp++) {
+            if (*bp != 0 && ((*bp)->base.objFlags & GAMEOBJ_OBJ_SKIP))
+                *bp = 0;
         }
     }
     if (self->unk5A3 == 3)

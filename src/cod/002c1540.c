@@ -1,24 +1,20 @@
-typedef struct {
-    char pad[0x50];
-    unsigned int flags;
-} SceUnit;
+#include "godhand/cSceAtManager.h"
 
-extern SceUnit *cSceAtManager_getUnitList(void *mgr);
-extern SceUnit *cSceAtManager_getNextUnit(void *mgr, SceUnit *u);
-
+/* Age every unit's frame flags: SCEAT_FRAME_NOW moves to SCEAT_FRAME_PREV, then it,
+ * SCEAT_FRAME_TRG, SCEAT_FRAME_UNK26 and SCEAT_FRAME_HANDLED clear. */
 __attribute__((section(".text.func_002C1540")))
-void func_002C1540(void *mgr)
+void func_002C1540(cSceAtManager *self)
 {
-    SceUnit *u = cSceAtManager_getUnitList(mgr);
+    cSceAtUnit *u = cSceAtManager_getUnitList(self);
 
-    while ((u = cSceAtManager_getNextUnit(mgr, u)) != 0) {
-        u->flags &= ~0x40000000;
-        if (u->flags & 0x80000000) {
-            u->flags |= 0x40000000;
+    while ((u = cSceAtManager_getNextUnit(self, u)) != 0) {
+        u->frameFlags &= ~SCEAT_FRAME_PREV;
+        if (u->frameFlags & SCEAT_FRAME_NOW) {
+            u->frameFlags |= SCEAT_FRAME_PREV;
         }
-        u->flags &= ~0x80000000;
-        u->flags &= ~0x08000000;
-        u->flags &= ~0x04000000;
-        u->flags &= ~0x02000000;
+        u->frameFlags &= ~SCEAT_FRAME_NOW;
+        u->frameFlags &= ~SCEAT_FRAME_TRG;
+        u->frameFlags &= ~SCEAT_FRAME_UNK26;
+        u->frameFlags &= ~SCEAT_FRAME_HANDLED;
     }
 }

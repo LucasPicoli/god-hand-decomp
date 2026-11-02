@@ -2,11 +2,10 @@
 
 #include "godhand/cModel.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cEmManage.h"
 #include "godhand/CustomIDWork.h"
 
-extern void func_00294898(void *a, void *self);
 extern cMeshNode *cModel_getMeshPtr_14B730(void *self, void *name);
-extern char D_005864F0[];
 extern char D_00428AF0[];
 extern void *SearchData(void *pack, void *name, int which);
 extern int D_007474A0;
@@ -15,32 +14,22 @@ extern char *D_003C23A4;
 extern void CustomIDWork_SetNumber(CustomIDWork *work, int number);
 extern void CustomIDWork_setDispAllButEight(void *self, int id, int on);
 
-/* An actor with two state bytes at 0x600 and a handle word at 0x608 past cOmBase. */
-typedef struct MeshHideObj {
-    cOmBase base;                       /* 0x000 */
-    char unk5E0[0x20];
-    char state0;                        /* 0x600 */
-    char state1;                        /* 0x601 */
-    char unk602[6];
-    int handle;                         /* 0x608 */
-} MeshHideObj;
-
-/* Hide the actor, clear its two state bytes, then hide the mesh D_00428AF0 (CMODEL_NODE_HIDE) and clear the handle. Returns 1. */
+/* Set the bomb up hidden and unlit, hand it to the enemy manager, hide the mesh D_00428AF0 (CMODEL_NODE_HIDE) and clear the hiss handle. Returns 1. */
 __attribute__((section(".text.cObj_hideAndFlagMesh")))
-int cObj_hideAndFlagMesh(MeshHideObj *self) {
+int cObj_hideAndFlagMesh(cOmbb *self) {
     cMeshNode *mesh;
     int flags;
     func_001B6FB8(self);
     flags = self->base.objFlags;
-    self->state0 = 0;
-    self->state1 = 0;
+    self->fireLit = 0;
+    self->bombKind = 0;
     self->base.objFlags = flags | CMODEL_F_HIDDEN;
-    func_00294898(D_005864F0, self);
+    func_00294898(&D_005864F0, self);
     mesh = cModel_getMeshPtr_14B730(self, D_00428AF0);
     if (mesh != 0) {
         mesh->dispFlags |= CMODEL_NODE_HIDE;
     }
-    self->handle = 0;
+    self->hissSe = 0;
     return 1;
 }
 

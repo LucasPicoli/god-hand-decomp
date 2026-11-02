@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/cSceAtManager.h"
 
 extern int func_00366918(int, int, int, int);
 
@@ -6,9 +7,10 @@ __attribute__((section(".text.func_002B45E8")))
 void func_002B45E8(void) {
 }
 
+/* The head of the unit list, to start cSceAtManager_getNextUnit from. */
 __attribute__((section(".text.cSceAtManager_getUnitList")))
-void *cSceAtManager_getUnitList(void *a0) {
-    return (char *)a0 + 0x5C;
+cSceAtUnit *cSceAtManager_getUnitList(cSceAtManager *self) {
+    return (cSceAtUnit *)&self->unitList;
 }
 
 __attribute__((section(".text.func_0032F570")))

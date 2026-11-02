@@ -3,10 +3,6 @@ extern void func_002D0658(float);
 __attribute__((section(".text.cSnd_SetBgmTblNo")))
 void cSnd_SetBgmTblNo(void) { func_002D0658(0.0f); }
 
-/* cSceAtManager_isHit: chain — alloc via cSceAtManager_getUnit(a0,a1); if non-null,
- * tail-process via func_002C0ED0(obj, a2); else return 0. */
-extern void *cSceAtManager_getUnit(void *a0, void *a1);
-extern void *func_002C0ED0(void *obj, void *a2);
 /* cRoomSave_getFree: pointer-arithmetic getter — DEFERRED.  The natural body
  * compiles to the right 10 insns but SN -O2 emits a branch-likely
  * (`beqzl`) with the shared `a1<<2` hoisted before the compare, whereas
