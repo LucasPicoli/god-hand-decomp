@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -52,7 +52,7 @@ void func_002256C8(void *a0)
             a2v = *(int *)(v0 + 0xCEC) + (int)v0;
             *(int *)(s1 + 0x5F0) = 8;
         }
-        func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+        func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
         *(int *)(s1 + 0x5FC) = 0;
         *(float *)(s1 + 0x600) = *(float *)(s1 + 0x104);
         *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -122,7 +122,7 @@ void func_001114B0(void *a0)
         t = *(int *)(s1 + 0x304);
         *(char *)(s1 + 0x1684) = 1;
         func_002A8578(s1, *(int *)(t + 0x614) + t, *(int *)(t + 0x618) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         func_00129578(s1);
         cEmManage_SetSpeedRate(D_005864F0, 0.2f);
         (*(unsigned char *)(s1 + 0x2F6))++;
@@ -193,7 +193,7 @@ void func_001125A0(void *a0)
         func_00129578(s1);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x2C0) + t, *(int *)(t + 0x2C4) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         (*(unsigned char *)(s1 + 0x2F6))++;
     }

@@ -2,8 +2,7 @@
 
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00126770(void *a0);
-extern unsigned short func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
-extern void moveMotion(void *a0);
+#include "godhand/motion.h"
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern void ClearLinkedNodeList_12ECF0(void *p);
@@ -23,7 +24,6 @@ extern void func_002AF720(void *a0, float x);
 extern void cEmManage_EntryEm(void *, void *, int, void *);
 extern int irand(void);
 extern unsigned char D_005864F0[];
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002705D8(void *a0);
@@ -321,7 +321,7 @@ void func_002464E0(void *a0)
         p2 = *(int *)(v0 + 0x2508) + v0;
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
         *(int *)(s2 + 0x16D0) = *(int *)(s2 + 0x16D0) & 0xDFFFFFFF;
-        func_002A8578(s2, p1, p2, 0.0f, 0xA, t0, 0);
+        func_002A8578(s2, p1, p2, 0xA, 0.0f, t0, 0);
         *(unsigned char *)(s2 + 0x2F6) = *(unsigned char *)(s2 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s2) != 0) {
@@ -335,7 +335,7 @@ void func_002464E0(void *a0)
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
         v1 = *(int *)(s2 + 0x304);
         func_002A8578(s2, *(int *)(v1 + 0x24EC) + v1, *(int *)(v1 + 0x24F0) + v1,
-                      0.0f, 0xA, t0, 0);
+                      0xA, 0.0f, t0, 0);
         *(unsigned char *)(s2 + 0x2F6) = *(unsigned char *)(s2 + 0x2F6) + 1;
     case 3:
         moveMotion(s2);
@@ -372,7 +372,7 @@ void func_00247050(void *a0)
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         v1 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v1 + 0x10A8) + v1, *(int *)(v1 + 0x10AC) + v1,
-                      0.0f, 0xA, t0, 0);
+                      0xA, 0.0f, t0, 0);
         *(float *)(s0 + 0x600) = fRand1_1() * 150.0f + 150.0f;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
@@ -391,7 +391,7 @@ void func_00247050(void *a0)
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         v1 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v1 + 0x11A8) + v1, *(int *)(v1 + 0x11B4) + v1,
-                      0.0f, 0xA, t0, 0);
+                      0xA, 0.0f, t0, 0);
         if (*(void **)(s0 + 0x6F0) != 0) {
             Obj1D00_SetState_6_E_a1(*(void **)(s0 + 0x6F0), 0);
         }

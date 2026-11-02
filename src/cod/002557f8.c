@@ -1,10 +1,10 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_0026ECD0(void *a0, int a1);
@@ -187,7 +187,7 @@ __attribute__((section(".text.func_002557F8"))) void func_002557F8(cEm00 *self)
                     p2 = EM_RES_REC(b, 0x12F4);
                 } break;
             }
-            func_002A8578(s1, p1, p2, 0.0f, 3, gb, 0);
+            func_002A8578(s1, p1, p2, 3, 0.0f, gb, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 4), s1, 0, 0, 0, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xF6, s1, 0, 0, 0, 0);
             *(float *)(s1 + 0x54C) = 10.0f;
@@ -372,7 +372,7 @@ __attribute__((section(".text.func_002557F8"))) void func_002557F8(cEm00 *self)
                 } break;
             }
             z = 0.0f;
-            func_002A8578(s1, p1, p2, z, 0, gb, 0);
+            func_002A8578(s1, p1, p2, 0, z, gb, 0);
             SetEffectParts(0x58, 2, s1, 0, z, z, z, 1.0f, -1);
             *(unsigned char *)(s1 + 0x2F6) += 1;
             *(int *)(s1 + 0x5F0) = 0xA;

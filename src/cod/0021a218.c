@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -14,8 +15,6 @@ extern void func_002705D8(void *a0);
 
 
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0,
-                          int t1);
 
 
 
@@ -255,7 +254,7 @@ __attribute__((section(".text.func_0021A218"))) void func_0021A218(cEm00 *self)
                 s1v = EM_RES_REC(b, 0x44C);
                 s0v = EM_RES_REC(b, 0x450);
             }
-            func_002A8578(p, s1v, s0v, 0.0f, 0xA, gb, 0);
+            func_002A8578(p, s1v, s0v, 0xA, 0.0f, gb, 0);
             *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
         }
         case 1: {

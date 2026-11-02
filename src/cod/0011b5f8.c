@@ -3,7 +3,7 @@
 extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern void func_0012C348(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -36,7 +36,7 @@ void func_0011B5F8(void *a0)
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD0, s1, 0, 0, 0, 0);
         }
         pl00_clearMotionCam(s1, 0, 0);
-        func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
+        func_002A8578(s1, p1, p2, 1, 0.0f, 0, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x8C, s1, 0, 0, 0, 0);
         func_0012C348(s1, 0);
         CallWithAndClearField698_12AC28(s1);
@@ -71,7 +71,7 @@ void func_0011B5F8(void *a0)
     }
     case 2: {
         char *v0 = *(char **)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(v0 + 0x49C) + (int)v0, *(int *)(v0 + 0x4A0) + (int)v0, 0.0f, 0xA, 0, 0);
+        func_002A8578(s1, *(int *)(v0 + 0x49C) + (int)v0, *(int *)(v0 + 0x4A0) + (int)v0, 0xA, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */

@@ -20,7 +20,7 @@ extern char D_00462FC0[];
 extern char D_005864F0[];
 extern char D_005FEE00[];
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
 extern void func_00274FE8(void *a0);
@@ -289,7 +289,7 @@ void func_0025C010(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x1074) + p, *(int *)(p + 0x1078) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 0x2A;
         *(short *)(s0 + 0x56E) = 0xF;
         (*(unsigned char *)(s0 + 0x2F6))++;

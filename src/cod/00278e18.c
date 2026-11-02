@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -33,7 +33,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
     switch (self->step) {
         case 0: {
             int v = self->resource;
-            func_002A8578(self, EM_RES_REC(v, 0x1C), EM_RES_REC(v, 0x20), 0.0f, 2, 0, 0);
+            func_002A8578(self, EM_RES_REC(v, 0x1C), EM_RES_REC(v, 0x20), 2, 0.0f, 0, 0);
             self->timer3 = 30.0f;
             self->step += 1;
         }
@@ -48,7 +48,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
         case 2: {
             int v = self->resource;
             z = 0.0f;
-            func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), z, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), 0, z, 0, 0);
             self->unk580.x = z;
             self->timer = 1.0f;
             self->unk580.y = z;
@@ -105,7 +105,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
             break;
         case 4: {
             int v = self->resource;
-            func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), 0, 0.0f, 0, 0);
             self->timer = 1.0f;
             self->step += 1;
         }

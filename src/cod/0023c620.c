@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -8,7 +9,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int Getplayer(void);
 extern int moveMotion(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DAF0(int a0);
 extern void Obj2810_SetState_1_a1(int a0, int a1);
@@ -661,7 +661,7 @@ __attribute__((section(".text.func_0023C620"))) void func_0023C620(cEm00 *self)
                 s1 = EM_RES_REC(p, 0x3E8);
             }
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
-            func_002A8578(s3, s2, s1, 0.0f, 0xA, nb, 0);
+            func_002A8578(s3, s2, s1, 0xA, 0.0f, nb, 0);
             *(int *)(s3 + 0x5F0) = 1;
             *(unsigned char *)(s3 + 0x2F6) += 1;
         }
@@ -686,7 +686,7 @@ __attribute__((section(".text.func_0023C620"))) void func_0023C620(cEm00 *self)
             *(char *)(s3 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
             p = *(int *)(s3 + 0x304);
-            func_002A8578(s3, EM_RES_REC(p, 0x2F24), EM_RES_REC(p, 0x2F28), 0.0f, 0xA, nb, 0);
+            func_002A8578(s3, EM_RES_REC(p, 0x2F24), EM_RES_REC(p, 0x2F28), 0xA, 0.0f, nb, 0);
             if (*(int *)(s3 + 0x708) != 0) {
                 Obj1D00_SetState_7_2(*(int *)(s3 + 0x708));
             }
@@ -701,7 +701,7 @@ __attribute__((section(".text.func_0023C620"))) void func_0023C620(cEm00 *self)
             *(char *)(s3 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
             p = *(int *)(s3 + 0x304);
-            func_002A8578(s3, EM_RES_REC(p, 0x2F9C), EM_RES_REC(p, 0x2FA0), 0.0f, 3, nb, 0);
+            func_002A8578(s3, EM_RES_REC(p, 0x2F9C), EM_RES_REC(p, 0x2FA0), 3, 0.0f, nb, 0);
             if (*(int *)(s3 + 0x708) != 0) {
                 Obj1D00_SetState_7_8(*(int *)(s3 + 0x708));
             }
@@ -729,7 +729,7 @@ __attribute__((section(".text.func_0023C620"))) void func_0023C620(cEm00 *self)
             *(char *)(s3 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s3) & 0xFFFF;
             p = *(int *)(s3 + 0x304);
-            func_002A8578(s3, EM_RES_REC(p, 0x2F2C), EM_RES_REC(p, 0x2F30), 0.0f, 3, nb, 0);
+            func_002A8578(s3, EM_RES_REC(p, 0x2F2C), EM_RES_REC(p, 0x2F30), 3, 0.0f, nb, 0);
             if (*(int *)(s3 + 0x708) != 0) {
                 Obj1D00_SetState_7_4(*(int *)(s3 + 0x708));
             }

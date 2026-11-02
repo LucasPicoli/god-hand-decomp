@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj1D00_ClearState_6(void *a0);
 extern void Obj1D00_ClearState_7(void *a0);
 extern void *Getplayer(void);
@@ -111,7 +111,7 @@ void func_00233248(void *arg0)
         case 3: case 4: *(int *)(s1 + 0x5F0) = (int)((float)*(int *)(s1 + 0x5F0) * 0.9f); break;
         case 5: break;
         }
-        func_002A8578(s1, a1v, a2v, fv, 5, gb, 0);
+        func_002A8578(s1, a1v, a2v, 5, fv, gb, 0);
         {
             void *p = *(void **)(s1 + 0x6F0);
             if (p != 0) {

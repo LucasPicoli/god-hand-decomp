@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/motion.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern float *cGameObj_findBurningPos(void *a0);
-extern int func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -47,7 +47,9 @@ void func_0010FF80(void *a0)
             *(float *)(s1 + 8) = src[2];
         }
         t = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(t + 0x20C) + t, *(int *)(t + 0x6DC) + t, 15.0f, 3, 0, 0);
+        /* Called as int-returning: the $v0 def steers obj and d into v1 and a0. */
+        ((int (*)(void *, int, int, int, float, int, int))func_002A8578)(
+            s0, *(int *)(t + 0x20C) + t, *(int *)(t + 0x6DC) + t, 3, 15.0f, 0, 0);
         obj = *(char **)(s0 + 0xF0);
         d = &b[4];
         VU0_SQC2_VF0(b, 0x20);

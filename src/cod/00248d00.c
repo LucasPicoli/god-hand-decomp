@@ -4,6 +4,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/player.h"
 #include "godhand/sceVu0.h"
+#include "godhand/motion.h"
 
 extern void MtxInitRotY(void *a0, float angle);
 extern void CopyVec3ToField30_147C40(float *a0, float *a1);
@@ -12,7 +13,6 @@ extern int ChkLine(void *a0, void *a1, void *a2, void *a3, int a4, int a5, void 
 extern int Rnd(void);
 extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12);
 extern void cGameObj_SetTgtTurn(char *self, void *target, float rate);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
@@ -60,7 +60,7 @@ void func_00248D00(cEm00 *self)
             p1 = EM_RES_REC(self->resource, 0x38C8);
             p2 = EM_RES_REC(self->resource, 0x38CC);
         }
-        func_002A8578((int)self, p1, p2, 10, motion, 0, 0.0f);
+        func_002A8578(self, p1, p2, 10, 0.0f, motion, 0);
         self->step++;
     case 1:
         self->emFlags |= 0x800000;

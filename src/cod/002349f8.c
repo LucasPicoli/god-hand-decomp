@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
@@ -36,7 +36,7 @@ __attribute__((section(".text.func_002349F8"))) void func_002349F8(cEm00 *self)
                 int b2 = self->resource;
                 p2 = EM_RES_REC(b2, 0x2038);
             }
-            func_002A8578(self, p1, p2, 0.0f, 0xA, r, 0);
+            func_002A8578(self, p1, p2, 0xA, 0.0f, r, 0);
             self->timerA = 0x1E;
             StoreMotionParamsBoth_2609A8(self, 0x28, 0x12, 0x3A, 0, 0x112);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {

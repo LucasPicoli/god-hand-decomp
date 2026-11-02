@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
 extern int moveMotion(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj2810_SetState_D_a1(void *a0, int a1);
 extern void SetBytes2F4Mode10_2833C0(void *a0, int a1);
 extern void func_002705D8(void *a0);
@@ -36,7 +36,7 @@ void func_0025B5A8(void *a0){ char *s0=(char*)a0;
   if(*(unsigned char*)(s0+0x2F7)){ int b=*(int*)(s0+0x304); s2=*(int*)(b+0x3DF4)+b; s1=*(int*)(b+0x3DF8)+b; }
   else { int b=*(int*)(s0+0x304); s2=*(int*)(b+0x3DEC)+b; s1=*(int*)(b+0x3DF0)+b; }
   *(int*)(s0+0x16D0)=*(int*)(s0+0x16D0)&0xFEFFFFFF;
-  func_002A8578(s0,s2,s1,0.0f,2,nb,0);
+  func_002A8578(s0,s2,s1,2,0.0f,nb,0);
   if(*(int*)(s0+0x748)) Obj2810_SetState_D_a1(*(void**)(s0+0x748),*(unsigned char*)(s0+0x2F7));
   if(*(int*)(s0+0x74C)) SetBytes2F4Mode10_2833C0(*(void**)(s0+0x74C),*(unsigned char*)(s0+0x2F7));
   if(*(int*)(s0+0x750)) SetBytes2F4Mode10_2833C0(*(void**)(s0+0x750),*(unsigned char*)(s0+0x2F7));
@@ -53,10 +53,10 @@ void func_0027C2B8(void *a0){ char *s0=(char*)a0; int v0; float f;
  case 0:
   *(unsigned char*)(s0+0x2F7)=irand()&1;
   if(*(unsigned char*)(s0+0x2F7)){ v0=*(int*)(s0+0x304);
-   func_002A8578(s0,*(int*)(v0+0x18)+v0,*(int*)(v0+0x1C)+v0,0.0f,5,0,0);
+   func_002A8578(s0,*(int*)(v0+0x18)+v0,*(int*)(v0+0x1C)+v0,5,0.0f,0,0);
    InitRenderStruct_2A8608(s0,0xBC,0x1E,0,2,*(int*)(s0+0x15B0)); }
   else { v0=*(int*)(s0+0x304);
-   func_002A8578(s0,*(int*)(v0+0x20)+v0,*(int*)(v0+0x24)+v0,0.0f,5,0,0);
+   func_002A8578(s0,*(int*)(v0+0x20)+v0,*(int*)(v0+0x24)+v0,5,0.0f,0,0);
    InitRenderStruct_2A8608(s0,0xBC,0x1F,0,2,*(int*)(s0+0x15B0)); }
   *(int*)(s0+0x5F0)=1;
   *(int*)(s0+0x600)=0;
@@ -114,7 +114,7 @@ void func_0010F4B8(void *a0)
             p1 = *(int *)(v + 0x1A4) + (int)v;
             p2 = *(int *)(v + 0x1A8) + (int)v;
         }
-        func_002A8578(s0, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
         *(float *)(s0 + 0x54C) = 15.0f;
         *(unsigned char *)(s0 + 0x2F6) += 1;
     }
@@ -155,7 +155,7 @@ void func_00287E50(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
         int v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x168) + v0, *(int *)(v0 + 0x16C) + v0, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x168) + v0, *(int *)(v0 + 0x16C) + v0, 3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     case 1:
@@ -163,7 +163,7 @@ void func_00287E50(void *a0)
         break;
     case 2: {
         int v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x170) + v0, *(int *)(v0 + 0x174) + v0, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x170) + v0, *(int *)(v0 + 0x174) + v0, 3, 0.0f, 0, 0);
         *(unsigned short *)(s0 + 0x54A) = *(unsigned short *)(s0 + 0x54A) - 0x32;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }

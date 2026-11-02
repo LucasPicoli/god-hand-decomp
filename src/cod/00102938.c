@@ -2,16 +2,15 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned int start,
 
 float rate, float blend, int flags);
 
 extern unsigned int func_0031ED08(float seconds);
-extern int moveMotion(cObjBase *self);
 extern void func_0014E818(cObjBase *self, float maxTurn, cVec *target);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
@@ -68,7 +67,7 @@ void func_00288A58(void *a0)
         func_0028FB08(a0);
         cCoreSave_addKillNpcNum(&D_00569B70);
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x90) + v0, *(int *)(v0 + 0x94) + v0, 0.0f, 5, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x90) + v0, *(int *)(v0 + 0x94) + v0, 5, 0.0f, 0, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5F, s0, 0, 0, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
@@ -104,7 +103,7 @@ void func_0011A530(void *a0)
         p2 = *(int *)(t0 + 0x2C) + (int)t0;
         if (*(void **)(s0 + 0x6A0) != 0) {
             func_002A8578(*(void **)(s0 + 0x6A0), *(int *)(t0 + 0x36C) + (int)t0,
-                          *(int *)(t0 + 0x388) + (int)t0, 0.0f, 10, 0, 0);
+                          *(int *)(t0 + 0x388) + (int)t0, 10, 0.0f, 0, 0);
             {
             char *v0 = *(char **)(s0 + 0x304);
             p1 = *(int *)(v0 + 0x344) + (int)v0;
@@ -120,7 +119,7 @@ void func_0011A530(void *a0)
             *(unsigned char *)(s0 + 0x2F7) = 3;
             }
         }
-        func_002A8578(s0, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         one = 1.0f;
@@ -174,7 +173,7 @@ void func_00102CB0(void *a0)
             }
             break;
         }
-        func_002A8578(s0, p1, p2, 0.0f, 5, t0, 0);
+        func_002A8578(s0, p1, p2, 5, 0.0f, t0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s0) != 0) {
@@ -203,7 +202,7 @@ void func_00102938(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         v0 = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 0.0f, 10, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 10, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (*(unsigned char *)(s1 + 0x61F) != 0) {
@@ -245,7 +244,7 @@ void func_0024AA68(void *a0)
         *(char *)(s0 + 0x1864) = 0;
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x3D94) + v0, *(int *)(v0 + 0x3D98) + v0, 0.0f, 10, t0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x3D94) + v0, *(int *)(v0 + 0x3D98) + v0, 10, 0.0f, t0, 0);
         if (*(void **)(s0 + 0x748) != 0) {
             Obj2810_ClearState_5(*(void **)(s0 + 0x748));
         }

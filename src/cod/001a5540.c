@@ -5,9 +5,9 @@
 #include "godhand/cModel.h"
 #include "godhand/cOmHitVolumeSetup.h"
 #include "godhand/cDamageGive.h"
+#include "godhand/motion.h"
 extern char D_00747B00[];
 extern void SetMotionStep(void *a0, float f12);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int moveMotion(void *a0);
 extern void VecRotVec(float *out, float *in, float *rot, int order);
@@ -59,7 +59,7 @@ void func_001A5540(cOmStrike *self)
         VCall(self, 14, D_00747B00);
         VCall(self, 15, D_00747B00);
         mot = (char *)self->base.texKey;
-        func_002A8578(self, *(int *)(mot + 0xC) + (int)mot, *(int *)(mot + 0x10) + (int)mot, 0.0f, 0, 0, 0);
+        func_002A8578(self, *(int *)(mot + 0xC) + (int)mot, *(int *)(mot + 0x10) + (int)mot, 0, 0.0f, 0, 0);
         SetEffect(1, 2, self, 0, -1, 0xFFFFFFFF);
         if (self->give)
             cDamageUnit_SetDamageCollActive(self->give, 1);

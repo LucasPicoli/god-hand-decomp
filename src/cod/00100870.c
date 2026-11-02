@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cloth.h"
 
 extern void func_001038E0(char *a0, char *a1, char *a2, float f12, float f13);
 extern char D_003BBF80[];
@@ -9,7 +10,6 @@ extern char D_003BBFF8[];
 extern char D_003BC020[];
 extern char D_003BC0C0[];
 extern char D_003BC160[];
-extern char D_00460E00[];
 extern char D_003BC200[];
 extern char D_003BC218[];
 extern char D_003BC230[];
@@ -17,7 +17,6 @@ extern char D_003BC248[];
 extern char D_003BC260[];
 extern char D_003BC2C0[];
 extern char D_003BC320[];
-extern char D_00461040[];
 extern char D_003BC380[];
 extern char D_003BC3A8[];
 extern char D_003BC3D0[];
@@ -26,7 +25,6 @@ extern char D_003BC420[];
 extern char D_003BC448[];
 extern char D_003BC4D0[];
 extern char D_003BC558[];
-extern char D_00461250[];
 extern char D_003BC5E0[];
 extern char D_003BC5F8[];
 extern char D_003BC610[];
@@ -34,7 +32,6 @@ extern char D_003BC628[];
 extern char D_003BC640[];
 extern char D_003BC690[];
 extern char D_003BC6E0[];
-extern char D_004613A0[];
 
 #define BODY(k, a2054, a2058, a205C, a2068, a206C, a2078, a207C, a2080, a2084, f2090, f209C) \
     *(int *)(p + 0x2050) = (k);                                             \
@@ -50,7 +47,7 @@ extern char D_004613A0[];
     *(char **)(p + 0x2078) = (a2078);                                       \
     *(char **)(p + 0x207C) = (a207C);                                       \
     *(char **)(p + 0x2080) = (a2080);                                       \
-    *(char **)(p + 0x2084) = (a2084);                                       \
+    *(ClothSphere **)(p + 0x2084) = (a2084);                                \
     *(int *)(p + 0x2088) = 0;                                               \
     *(int *)(p + 0x20A8) = 0;                                               \
     *(float *)(p + 0x208C) = 0.015f;                                        \

@@ -5,8 +5,8 @@
 #include "godhand/cModel.h"
 #include "godhand/cGameObj.h"
 #include "godhand/sceVu0.h"
+#include "godhand/motion.h"
 
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int func_00291010(void *a0, void *a1, void *a2, int a3, int t0, float f12, float f13, float f14);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -73,7 +73,7 @@ void cEm00_updateKnockDrift(cEm00 *self)
     case 0: {
         int b = self->resource;
         self->gotoFlags = self->gotoFlags & 0xFFFFFFFE;
-        func_002A8578(self, EM_RES_REC(b, 0x28), EM_RES_REC(b, 0x2C), 0.0f, 0xA, 0, 0);
+        func_002A8578(self, EM_RES_REC(b, 0x28), EM_RES_REC(b, 0x2C), 0xA, 0.0f, 0, 0);
         dst = &self->home;
         src = self->pos;
         if (dst != src) {
@@ -120,7 +120,7 @@ void cEm00_updateKnockDrift(cEm00 *self)
         break;
     case 2: {
         int b = self->resource;
-        func_002A8578(self, EM_RES_REC(b, 0x30), EM_RES_REC(b, 0x34), 0.0f, 0xA, 0, 0);
+        func_002A8578(self, EM_RES_REC(b, 0x30), EM_RES_REC(b, 0x34), 0xA, 0.0f, 0, 0);
         self->gotoFlags = self->gotoFlags & 0xFFFFFFFE;
         CEM00_LOBYTE(self->unk1560) = 0;
         self->step = self->step + 1;
@@ -191,7 +191,7 @@ void cEm00_stepWatchTargetAttack(cEm00 *self)
     switch (self->step) {
     case 0: {
         int res = self->resource;
-        func_002A8578(self, EM_RES_REC(res, 0x10), EM_RES_REC(res, 0x14), 0.0f, 5, 0, 0);
+        func_002A8578(self, EM_RES_REC(res, 0x10), EM_RES_REC(res, 0x14), 5, 0.0f, 0, 0);
         self->step = self->step + 1;
     }
     case 1:

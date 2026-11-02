@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -253,7 +253,7 @@ void func_002130C8(void *a0)
             s2v = *(int *)(b + 0x454) + b;
             s0v = *(int *)(b + 0x458) + b;
         }
-        func_002A8578(p, s2v, s0v, 0.0f, 10, gb, 0);
+        func_002A8578(p, s2v, s0v, 10, 0.0f, gb, 0);
         *(int *)(p + 0x5F4) = irand() % 60 + 0x78;
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     case 1:

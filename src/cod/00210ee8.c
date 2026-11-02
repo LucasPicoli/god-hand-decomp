@@ -1,10 +1,10 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -210,7 +210,7 @@ __attribute__((section(".text.func_00210EE8"))) void func_00210EE8(cEm00 *self)
                 s2v = EM_RES_REC(b, 0x44C);
                 s0v = EM_RES_REC(b, 0x450);
             }
-            func_002A8578(s1, s2v, s0v, 0.0f, 0, gb, 0);
+            func_002A8578(s1, s2v, s0v, 0, 0.0f, gb, 0);
             {
                 float *dst = (float *)(s1 + 0x5C0);
                 float *src = *(float **)(s1 + 0xF0);

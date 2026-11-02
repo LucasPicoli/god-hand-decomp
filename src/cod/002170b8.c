@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -43,7 +43,7 @@ __attribute__((section(".text.func_002170B8"))) void func_002170B8(cEm00 *self)
             char *v0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0x1C8), EM_RES_REC((int)v0, 0x1CC), 0.0f, 3, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0x1C8), EM_RES_REC((int)v0, 0x1CC), 3, 0.0f, gb,
                           0);
             *(int *)(s1 + 0x5F0) = 0x1E;
             switch (cCoreSave_getGameLevel(&D_00569B70)) {

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
@@ -218,7 +218,7 @@ __attribute__((section(".text.func_00213EA8"))) void func_00213EA8(cEm00 *self)
                 s2v = EM_RES_REC(b, 0x45C);
                 s0v = EM_RES_REC(b, 0x460);
             }
-            func_002A8578(p, s2v, s0v, 0.0f, 10, gb, 0);
+            func_002A8578(p, s2v, s0v, 10, 0.0f, gb, 0);
             *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
         }
         case 1:

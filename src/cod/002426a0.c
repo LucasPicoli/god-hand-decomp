@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
@@ -40,7 +40,7 @@ __attribute__((section(".text.func_002426A0"))) void func_002426A0(cEm00 *self)
             if (id == 0x215) {
                 f = 25.0f;
             }
-            func_002A8578(self, p1, p2, f, 10, t0, 0);
+            func_002A8578(self, p1, p2, 10, f, t0, 0);
             self->emFlags = self->emFlags & 0xDFFFFFFF;
             self->step++;
         }
@@ -60,7 +60,7 @@ __attribute__((section(".text.func_002426A0"))) void func_002426A0(cEm00 *self)
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             int res = self->resource;
 
-            func_002A8578(self, EM_RES_REC(res, 0x1B58), EM_RES_REC(res, 0x1B5C), 0.0f, 3, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x1B58), EM_RES_REC(res, 0x1B5C), 3, 0.0f, t0, 0);
             self->step++;
         }
         case 3:
@@ -92,7 +92,7 @@ __attribute__((section(".text.func_00249960"))) void func_00249960(cEm00 *self)
                 t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
                 v0 = *((int *)(((char *)self + 0x304)));
                 func_002A8578(self, (*((int *)(v0 + 0x3D34))) + v0, (*((int *)(v0 + 0x3D38))) + v0,
-                              0.0f, 10, t0, 0);
+                              10, 0.0f, t0, 0);
                 if ((*((void **)(((char *)self + 0x748)))) != 0) {
                     func_00281260(*((void **)(((char *)self + 0x748))));
                 }

@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -6,7 +7,6 @@ extern void *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern float capVu0Atan2(float x, float z);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00281368(void *a0, int a1);
 extern void func_002832A0(void *a0, int a1);
 extern void cGameObj_placeBeforeAnchor(void *a0, float a1);
@@ -56,7 +56,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             p = (char *)self->resource;
-            func_002A8578(self, EM_RES_REC((int)p, 0x3D3C), EM_RES_REC((int)p, 0x3D40), 0.0f, 0xA,
+            func_002A8578(self, EM_RES_REC((int)p, 0x3D3C), EM_RES_REC((int)p, 0x3D40), 0xA, 0.0f,
                           gb, 0);
             if (self->sub0 != 0) {
                 func_00281368((void *)self->sub0, 0);
@@ -105,8 +105,8 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             if (100.0f < dist) {
                 char *p = (char *)self->resource;
-                func_002A8578(self, EM_RES_REC((int)p, 0x3D44), EM_RES_REC((int)p, 0x3D48), 0.0f,
-                              0xA, gb, 0);
+                func_002A8578(self, EM_RES_REC((int)p, 0x3D44), EM_RES_REC((int)p, 0x3D48), 0xA,
+                              0.0f, gb, 0);
                 if (self->sub0 != 0) {
                     func_00281368((void *)self->sub0, 1);
                 }
@@ -119,8 +119,8 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
                 self->timer = 35.0f;
             } else {
                 char *p = (char *)self->resource;
-                func_002A8578(self, EM_RES_REC((int)p, 0x3D4C), EM_RES_REC((int)p, 0x3D50), 0.0f,
-                              0xA, gb, 0);
+                func_002A8578(self, EM_RES_REC((int)p, 0x3D4C), EM_RES_REC((int)p, 0x3D50), 0xA,
+                              0.0f, gb, 0);
                 if (self->sub0 != 0) {
                     func_00281368((void *)self->sub0, 2);
                 }

@@ -3,11 +3,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void Obj1D00_ClearState_6(int a0);

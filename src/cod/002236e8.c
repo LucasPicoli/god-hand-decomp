@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
@@ -153,7 +153,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                     }
                 } break;
             }
-            func_002A8578(s1, s2, motB, 0.0f, 10, gb, 0);
+            func_002A8578(s1, s2, motB, 10, 0.0f, gb, 0);
             *(int *)(s1 + 0x5FC) = 0;
             *(unsigned char *)(s1 + 0x2F6) += 1;
             /* fallthrough */
@@ -190,7 +190,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                     motB = EM_RES_REC((int)v, 0x1F6C);
                 } break;
             }
-            func_002A8578(s1, s2, motB, 0.0f, 2, gb, 0);
+            func_002A8578(s1, s2, motB, 2, 0.0f, gb, 0);
             *(int *)(s1 + 0x5F0) = 4;
             *(float *)(s1 + 0x5D0) = 99999.9f;
             *(float *)(s1 + 0x5D4) = 99999.9f;
@@ -261,7 +261,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             {
                 char *v = *(char **)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC((int)v, 0x9A0), EM_RES_REC((int)v, 0x9A4), 0.0f, 2, gb,
+                func_002A8578(s1, EM_RES_REC((int)v, 0x9A0), EM_RES_REC((int)v, 0x9A4), 2, 0.0f, gb,
                               0);
             }
             *(int *)(s1 + 0x5F0) = 5;
@@ -297,7 +297,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                     motB = EM_RES_REC((int)v, 0x9AC);
                 } break;
             }
-            func_002A8578(s1, s2, motB, 0.0f, 2, gb, 0);
+            func_002A8578(s1, s2, motB, 2, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
             *(int *)(s1 + 0x5F0) = 5;
             /* fallthrough */
@@ -325,7 +325,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
             cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 6), s1, 0, 0, 0, 0);
             {
                 char *v = *(char **)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC((int)v, 0x1A08), EM_RES_REC((int)v, 0x1A0C), 0.0f, 2,
+                func_002A8578(s1, EM_RES_REC((int)v, 0x1A08), EM_RES_REC((int)v, 0x1A0C), 2, 0.0f,
                               gb, 0);
             }
             *(int *)(s1 + 0x5F0) = 5;

@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int t0, int t1);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern int moveMotion(void *a0);

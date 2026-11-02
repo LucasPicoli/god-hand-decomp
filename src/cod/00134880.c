@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/motion.h"
 
-extern void func_002A84A8(int a0, int a1, int a2, int a3, float f12);
-extern int setMotionInfo(int a0, int a1, int a2, int a3, float f12, float f13, int t0);
+extern void func_002A84A8(void *a0, int a1, int a2, int a3, float f12);
+extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
 extern void func_002B6400(int a0);
 extern void *func_001346C8(int a0, int a1, int a2, int a3, float f);
 extern void func_00134520(void *p, int a2, int a3, float f);
@@ -17,7 +17,7 @@ extern void MtxInitRotVec(void *a0, int a1, int a2);
 extern void MtxMultiply(int a0, int a1, void *a2);
 
 __attribute__((section(".text.func_002A8578")))
-void func_002A8578(int obj, int motA, int motB, int mode, float start, int sel, int keep) {
+void func_002A8578(void *obj, int motA, int motB, int mode, float start, int sel, int keep) {
     int m = sel & 0xFFFF;
     if ((keep & 0xFFFF) == 0) {
         func_002A84A8(obj, motA, motB, mode, start);

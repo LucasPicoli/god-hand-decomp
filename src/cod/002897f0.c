@@ -2,6 +2,7 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cEma2.h"
+#include "godhand/motion.h"
 
 extern void func_0028EBF0(cEma2 *self, SET_EM_DATA *data, void *arg);
 extern int func_0028AC58(cEma2 *self);
@@ -25,8 +26,6 @@ static __inline__ void cMeshNode_show(cMeshNode *node) {
         node->dispFlags &= ~1;
 }
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void moveMotion(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
@@ -98,11 +97,11 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     switch (self->base.emNo) {
     default:
         motion = self->base.motionData;
-        func_002A8578(self, motionBlock_at(motion, 0x50), motionBlock_at(motion, 0x54), 0.0f, 0, 0, 0);
+        func_002A8578(self, motionBlock_at(motion, 0x50), motionBlock_at(motion, 0x54), 0, 0.0f, 0, 0);
         break;
     case 0x2A7: case 0x2AB:
         motion = self->base.motionData;
-        func_002A8578(self, motionBlock_at(motion, 0x78), motionBlock_at(motion, 0x7C), 0.0f, 0, 0, 0);
+        func_002A8578(self, motionBlock_at(motion, 0x78), motionBlock_at(motion, 0x7C), 0, 0.0f, 0, 0);
         break;
     }
     moveMotion(self);

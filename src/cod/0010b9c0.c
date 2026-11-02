@@ -2,7 +2,7 @@
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f12);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern float fRand1_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
@@ -44,7 +44,7 @@ void func_0010B9C0(void *a0)
         int p = *(int *)(s0 + 0x304);
 
         func_002A8578(s0, *(int *)(p + 0x28) + p, *(int *)(p + 0x2C) + p,
-                      0.0f, 5, 0, 0);
+                      5, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     /* fallthrough */
@@ -89,7 +89,7 @@ void func_0010B9C0(void *a0)
             }
             break;
         }
-        func_002A8578(s0, f1, f2, 0.0f, 3, 0, 0);
+        func_002A8578(s0, f1, f2, 3, 0.0f, 0, 0);
         *(short *)(s0 + 0x568) = 1;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
@@ -142,7 +142,7 @@ void func_0010B9C0(void *a0)
             }
             break;
         }
-        func_002A8578(s0, f1, f2, 0.0f, 1, 0, 0);
+        func_002A8578(s0, f1, f2, 1, 0.0f, 0, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCE, s0, 0, 0, 0, 0);
         func_0012C348(s0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;

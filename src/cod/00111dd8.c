@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -7,7 +8,6 @@ extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void func_00129630(void *a0);
@@ -68,7 +68,7 @@ void func_00111DD8(void *a0)
         cCoreSave_useGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x20) + t, *(int *)(t + 0x24) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         *(int *)(s1 + 0x15B0) = 1;
         (*(unsigned char *)(s1 + 0x2F6))++;

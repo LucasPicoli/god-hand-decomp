@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern int moveMotion(void *a0);
 
 /* Phase machine on the step byte, 4 case labels. Calls func_002A8578, moveMotion. */

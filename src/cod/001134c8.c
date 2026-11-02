@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -7,7 +8,6 @@ extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
@@ -48,7 +48,7 @@ void func_001134C8(void *a0)
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
         v0 = *(char **)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(v0 + 0x8A8) + (int)v0, *(int *)(v0 + 0x8AC) + (int)v0, 0.0f, 3, 0, 0);
+        func_002A8578(s1, *(int *)(v0 + 0x8A8) + (int)v0, *(int *)(v0 + 0x8AC) + (int)v0, 3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(&D_005864F0, 0.1f);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }

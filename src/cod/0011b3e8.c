@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
@@ -9,7 +10,6 @@ extern void func_0012C348(void *a0, int a1);
 extern float capVu0Atan2(float y, float x);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -38,7 +38,7 @@ __attribute__((section(".text.cEm00_stepFaceLinkTarget"))) void cEm00_stepFaceLi
             func_0012C348(self, 2);
             CallWithAndClearField698_12AC28(self);
             func_0012B928(self);
-            func_002A8578(self, s2v, s1v, 15.0f, 2, 0, 0);
+            func_002A8578(self, s2v, s1v, 2, 15.0f, 0, 0);
             p = self->unk678;
             if (p != 0) {
                 p = *(char **)(p + 0x34);

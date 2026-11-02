@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_002813F0(void *a0, int a1);
 extern void func_002832F8(void *a0, int a1);
 extern int moveMotion(void *a0);
@@ -45,7 +45,7 @@ __attribute__((section(".text.func_0024B660"))) void func_0024B660(cEm00 *self)
             *(char *)(s2 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
             v1 = *(char **)(s2 + 0x304);
-            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E14), EM_RES_REC((int)v1, 0x3E18), 0.0f, 0xA,
+            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E14), EM_RES_REC((int)v1, 0x3E18), 0xA, 0.0f,
                           nb, 0);
             if (*(void **)(s2 + 0x748) != 0)
                 func_002813F0(*(void **)(s2 + 0x748), 0);
@@ -82,7 +82,7 @@ __attribute__((section(".text.func_0024B660"))) void func_0024B660(cEm00 *self)
             *(char *)(s2 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
             v1 = *(char **)(s2 + 0x304);
-            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E1C), EM_RES_REC((int)v1, 0x3E20), 0.0f, 0xA,
+            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E1C), EM_RES_REC((int)v1, 0x3E20), 0xA, 0.0f,
                           nb, 0);
             if (*(void **)(s2 + 0x748) != 0)
                 func_002813F0(*(void **)(s2 + 0x748), 1);
@@ -139,7 +139,7 @@ __attribute__((section(".text.func_0024B660"))) void func_0024B660(cEm00 *self)
             *(char *)(s2 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
             v1 = *(char **)(s2 + 0x304);
-            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E24), EM_RES_REC((int)v1, 0x3E28), 0.0f, 0xA,
+            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E24), EM_RES_REC((int)v1, 0x3E28), 0xA, 0.0f,
                           nb, 0);
             if (*(void **)(s2 + 0x748) != 0)
                 func_002813F0(*(void **)(s2 + 0x748), 2);
@@ -166,7 +166,7 @@ __attribute__((section(".text.func_0024B660"))) void func_0024B660(cEm00 *self)
             *(char *)(s2 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
             v1 = *(char **)(s2 + 0x304);
-            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E2C), EM_RES_REC((int)v1, 0x3E30), 0.0f, 0xA,
+            func_002A8578(s2, EM_RES_REC((int)v1, 0x3E2C), EM_RES_REC((int)v1, 0x3E30), 0xA, 0.0f,
                           nb, 0);
             if (*(void **)(s2 + 0x748) != 0)
                 func_002813F0(*(void **)(s2 + 0x748), 3);

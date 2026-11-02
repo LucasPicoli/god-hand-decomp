@@ -1,6 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern void func_00123938(void *a0, int a1);
 extern float D_003BD48C;
@@ -15,7 +15,7 @@ void UpdateStatePhase2F6_10CC58(void *a0) {
         v0 = *(int *)(s0 + 0x304);
         *(short *)(s0 + 0x5E0) = 0;
         *(short *)(s0 + 0x5E2) = 0;
-        func_002A8578(s0, *(int *)(v0 + 0x220) + v0, *(int *)(v0 + 0x278) + v0, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x220) + v0, *(int *)(v0 + 0x278) + v0, 3, 0.0f, 0, 0);
         *(int *)(s0 + 0x15B0) = 0x10;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
         /* fallthrough */

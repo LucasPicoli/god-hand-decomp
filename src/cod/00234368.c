@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern void Obj1D00_SetState_7_2(int a0);
 extern void Obj1D00_SetState_7_A_a1(int a0, int a1);
 extern void Obj1D00_SetState_7_6(int a0);
@@ -40,7 +40,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x2F24), EM_RES_REC(w, 0x2F28), 0.0f, 0xA, t, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x2F24), EM_RES_REC(w, 0x2F28), 0xA, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
                 Obj1D00_SetState_7_2(p);
@@ -95,7 +95,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
                     break;
                 }
             }
-            func_002A8578(self, lo, hi, 0.0f, 3, t, 0);
+            func_002A8578(self, lo, hi, 3, 0.0f, t, 0);
             self->step++;
         }
         /* fallthrough */
@@ -136,7 +136,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x2F2C), EM_RES_REC(w, 0x2F30), 0.0f, 3, t, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x2F2C), EM_RES_REC(w, 0x2F30), 3, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
                 Obj1D00_SetState_7_4(p);
@@ -165,7 +165,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x2F9C), EM_RES_REC(w, 0x2FA0), 0.0f, 3, t, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x2F9C), EM_RES_REC(w, 0x2FA0), 3, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
                 Obj1D00_SetState_7_8(p);
@@ -191,7 +191,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x2F40), EM_RES_REC(w, 0x2F44), 0.0f, 0xA, t, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x2F40), EM_RES_REC(w, 0x2F44), 0xA, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
                 Obj1D00_SetState_7_18(p);

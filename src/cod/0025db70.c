@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void SetMotionStep(void *a0, float a1);
 extern int moveMotion(void *a0);
@@ -32,7 +32,7 @@ __attribute__((section(".text.func_0025DB70"))) void func_0025DB70(cEm00 *self)
             int p;
 
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x33EC), EM_RES_REC(p, 0x33F0), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x33EC), EM_RES_REC(p, 0x33F0), 0, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0)
                 func_0027DC50(*(void **)((char *)self + 0x740), 0);
             self->unk16EC = 0;
@@ -98,7 +98,7 @@ __attribute__((section(".text.func_0025DB70"))) void func_0025DB70(cEm00 *self)
             int p;
 
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x3390), EM_RES_REC(p, 0x3394), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x3390), EM_RES_REC(p, 0x3394), 3, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0)
                 func_0027DC50(*(void **)((char *)self + 0x740), 3);
             *(short *)((char *)self + 0x56E) = 0xF;

@@ -2,9 +2,9 @@
 
 /* cEm00_stepSetGrabPrompt parked, sn-2.95.3-136 --fp-hazard-rules mtc1: EXACT 137/143, insn delta -1, ONE missing nop: retail has 'mtc1 $at,$f1 ; L: nop ; c.lt.s $f0,$f1' (nop AFTER the branch-target label). cc1 emits no #nop hint across a label, so no source or listed rule reaches it. Tool ask: an mtc1 rule that pads a label-separated mtc1 -> c.<cond>.s. */
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -41,7 +41,7 @@ void cEm00_stepSetGrabPrompt(cEm00 *self)
         self->hitFlash = 3.0f;
         m = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         b = self->resource;
-        func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0.0f, 0, m, 0);
+        func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0, 0.0f, m, 0);
         moveMotion(self);
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(self, one);
@@ -63,7 +63,7 @@ void cEm00_stepSetGrabPrompt(cEm00 *self)
     case 2: {
         int m = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         int b = self->resource;
-        func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0.0f, 0, m, 0);
+        func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0, 0.0f, m, 0);
         self->step += 1;
     }
     case 3:

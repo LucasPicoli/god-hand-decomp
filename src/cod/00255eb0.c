@@ -3,12 +3,12 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 
 
@@ -167,7 +167,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         }
             break;
         }
-        func_002A8578(self, ma, mb, 0.0f, 3, gb, 0);
+        func_002A8578(self, ma, mb, 3, 0.0f, gb, 0);
         cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
         self->timerA = 0;
         {
@@ -355,7 +355,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         }
             break;
         }
-        func_002A8578(self, ma, mb, 0.0f, 0, gb, 0);
+        func_002A8578(self, ma, mb, 0, 0.0f, gb, 0);
         self->step += 1;
     }
         /* fallthrough */

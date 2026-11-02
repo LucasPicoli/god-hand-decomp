@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int irand(void);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
@@ -78,7 +78,7 @@ void func_00227FE8(void *a0)
             a2v = *(int *)(v1 + 0x2FF4) + (int)v1;
         }
         StoreMotionParamsBoth_2609A8(a0, 0x28, 0, 0x3E, -1, 0);
-        func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+        func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
         *(int *)(s1 + 0x5F0) = 0x1E;
         *(float *)(s1 + 0x600) = 20.0f;
         *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -120,7 +120,7 @@ void func_00227FE8(void *a0)
         *(char *)(s1 + 0x1864) = 0;
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
         v1 = *(char **)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(v1 + 0x2FF8) + (int)v1, *(int *)(v1 + 0x2FFC) + (int)v1, 0.0f, 3, gb, 0);
+        func_002A8578(s1, *(int *)(v1 + 0x2FF8) + (int)v1, *(int *)(v1 + 0x2FFC) + (int)v1, 3, 0.0f, gb, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */
@@ -256,7 +256,7 @@ void func_00111750(void *a0)
         t = *(int *)(s1 + 0x304);
         *(char *)(s1 + 0x1684) = 1;
         func_002A8578(s1, *(int *)(t + 0x1C0) + t, *(int *)(t + 0x1C4) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         func_00129578(s1);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         InvokeVirtualAtField214AndForward_124E68(s1, 3.14159274f);
@@ -335,7 +335,7 @@ void func_0025C5D8(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x3BFC) + p, *(int *)(p + 0x3C00) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 0x2A;
         *(int *)(s0 + 0x5F4) = 1;
         *(short *)(s0 + 0x56E) = 0x1E;

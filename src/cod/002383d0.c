@@ -4,6 +4,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern char D_00462FC0[];
 extern int D_007474A8;
@@ -11,7 +12,6 @@ extern int D_007474A8;
 extern int Getplayer();
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern float SetMotionStep(void *a0, float f);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
@@ -45,7 +45,7 @@ void func_002383D0(cEm00 *self)
             s2 = (char *)(*(int *)(pa2 + 0x2B40) + (int)pa2);
             s1 = (char *)(*(int *)(pa2 + 0x2B44) + (int)pa2);
         }
-        func_002A8578(s0, (int)s2, (int)s1, 0.0f, 0, t8, 0);
+        func_002A8578(s0, (int)s2, (int)s1, 0, 0.0f, t8, 0);
         StoreMotionParamsBoth_2609A8(self, 4, 0, 0x3D, -1, 0);
         *(short *)(s0 + 0x56A) = 0;
         *(short *)(s0 + 0x56C) = 0;
@@ -130,7 +130,7 @@ void func_002383D0(cEm00 *self)
             s1 = (char *)(*(int *)(pa4 + 0x2B4C) + (int)pa4);
         }
         t8 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        func_002A8578(s0, (int)s2, (int)s1, 0.0f, 0, t8, 0);
+        func_002A8578(s0, (int)s2, (int)s1, 0, 0.0f, t8, 0);
         StoreMotionParamsBoth_2609A8(self, 0x3C, 0, 0x41, -1, 0);
         *(int *)(s0 + 0x5F0) = 0xF;
         *(float *)(s0 + 0x54C) = 2.0f;

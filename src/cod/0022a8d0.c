@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern unsigned char D_005864F0[];
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern char *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
@@ -56,7 +56,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0x251C), EM_RES_REC(b, 0x2520), 0.0f, 3, gb, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x251C), EM_RES_REC(b, 0x2520), 3, 0.0f, gb, 0);
             InitRenderStruct_2A8608(s1, 0xAA, 7, 0, 2, 0);
             StoreMotionParams_2609E0(self, 0x28, 0x1C, 0x3E, -1, 0);
             Set_Fields_1884_1894_2609F8(self, 0x3C, 0x1B, 0x3E, -1, 0);
@@ -91,7 +91,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
 
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0x2524), EM_RES_REC(b, 0x2528), 0.0f, 0, gb, 1);
+            func_002A8578(s1, EM_RES_REC(b, 0x2524), EM_RES_REC(b, 0x2528), 0, 0.0f, gb, 1);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 default:
                 case 1:
@@ -150,7 +150,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
 
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0x252C), EM_RES_REC(b, 0x2530), 0.0f, 0, gb, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x252C), EM_RES_REC(b, 0x2530), 0, 0.0f, gb, 0);
             InitRenderStruct_2A8608(s1, 0xAA, 8, 0, 2, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0012C348(void *a0, int a1);
 extern void func_00126770(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -72,7 +72,7 @@ void func_0011B900(void *a0)
             }
             break;
         }
-        func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
+        func_002A8578(s1, p1, p2, 1, 0.0f, 0, 0);
         if (irand() & 1) {
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
         } else {
@@ -141,7 +141,7 @@ void func_001127F8(void *a0)
         func_00129578(s1);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x4A4) + t, *(int *)(t + 0x4A8) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         *(int *)(s1 + 0x15B0) = 1;
         (*(unsigned char *)(s1 + 0x2F6))++;
@@ -208,7 +208,7 @@ void func_00112A48(void *a0)
             p1 = *(int *)(v1 + 0x450) + (int)v1;
             p2 = *(int *)(v1 + 0x454) + (int)v1;
         }
-        func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         *(int *)(s1 + 0x15B0) = 1;
         (*(unsigned char *)(s1 + 0x2F6))++;
@@ -297,7 +297,7 @@ void func_00111A20(void *a0)
             p2 = *(int *)(v1 + 0x210) + (int)v1;
         }
         *(char *)(s1 + 0x1684) = 1;
-        func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         func_00129578(s1);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         (*(unsigned char *)(s1 + 0x2F6))++;

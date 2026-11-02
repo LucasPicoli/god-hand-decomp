@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern int irand(void);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void func_00280EB8(void *a0, int a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -67,15 +67,15 @@ void func_0027F970(void *a0)
         }
         if (ok && (irand() & 1)) {
             char *t = *(char **)(s0 + 0x304);
-            func_002A8578(s0, *(int *)(t + 0x98) + (int)t, *(int *)(t + 0x9C) + (int)t, 0.0f, 5, z, 0);
+            func_002A8578(s0, *(int *)(t + 0x98) + (int)t, *(int *)(t + 0x9C) + (int)t, 5, 0.0f, z, 0);
         } else {
             int lvl = cCoreSave_getGameLevel(&D_00569B70);
             if (lvl >= 3) {
                 char *t = *(char **)(s0 + 0x304);
-                func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x74) + (int)t, 0.0f, 5, z, 0);
+                func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x74) + (int)t, 5, 0.0f, z, 0);
             } else {
                 char *t = *(char **)(s0 + 0x304);
-                func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x70) + (int)t, 0.0f, 5, z, 0);
+                func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x70) + (int)t, 5, 0.0f, z, 0);
             }
         }
         *(int *)(s0 + 0x5F0) = 1;

@@ -3,8 +3,8 @@
 /* cEm00_stepGetUp: an enemy that goes down and gets up; steps 0 and 2 start a
  * get-up motion, step 1 and 3 wait for it to end. */
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -33,7 +33,7 @@ void cEm00_stepGetUp(cEm00 *self)
         p2 = EM_RES_REC(res, 0x3E38);
         self->emFlags = self->emFlags & 0xFEFFFFFF;
         *(int *)&self->unk16F4 = 0;
-        func_002A8578(self, p1, p2, self->unk16F4, 2, motion, 0);
+        func_002A8578(self, p1, p2, 2, self->unk16F4, motion, 0);
         if (self->sub0 != 0) {
             func_00281470(self->sub0, 0);
         }
@@ -76,7 +76,7 @@ void cEm00_stepGetUp(cEm00 *self)
         p1 = EM_RES_REC(res, 0x3E3C);
         p2 = EM_RES_REC(res, 0x3E40);
         *(int *)&self->unk16F4 = 0;
-        func_002A8578(self, p1, p2, self->unk16F4, 2, motion, 0);
+        func_002A8578(self, p1, p2, 2, self->unk16F4, motion, 0);
         if (self->sub0 != 0) {
             func_00281470(self->sub0, 1);
         }

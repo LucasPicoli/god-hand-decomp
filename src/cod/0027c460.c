@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
@@ -19,7 +19,7 @@ __attribute__((section(".text.func_0027C460"))) void func_0027C460(cEm00 *self)
     switch (self->step) {
         case 0:
             v0 = (char *)self->resource;
-            func_002A8578(self, EM_RES_REC((int)v0, 0xC0), EM_RES_REC((int)v0, 0xC4), 0.0f, 5, 0,
+            func_002A8578(self, EM_RES_REC((int)v0, 0xC0), EM_RES_REC((int)v0, 0xC4), 5, 0.0f, 0,
                           0);
             self->timer = 15.0f;
             self->step += 1;

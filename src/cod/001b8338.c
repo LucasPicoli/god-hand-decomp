@@ -1,10 +1,10 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern float cEmManage_GetSpeedRate(void *a0);
 extern float SetMotionStep(void *a0, float f);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int D_005864F0;
 
@@ -30,7 +30,7 @@ __attribute__((section(".text.func_001B8338"))) void func_001B8338(cEm00 *self)
     switch (self->step) {
         case 0:
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0, 0.0f, 0, 0);
             moveMotion(self);
             *(unsigned short *)((char *)self + 0x434) |= 8;
             self->step++;

@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -25,7 +25,7 @@ __attribute__((section(".text.func_0025A920"))) void func_0025A920(cEm00 *self)
         case 0: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x1084), EM_RES_REC(b, 0x1088), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x1084), EM_RES_REC(b, 0x1088), 3, 0.0f, 0, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(s1), s1, 0, 0, 0, 0);
             *(unsigned char *)(s1 + 0x1866) = *(unsigned char *)(s1 + 0x1866) + 1;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -40,7 +40,7 @@ __attribute__((section(".text.func_0025A920"))) void func_0025A920(cEm00 *self)
         case 2: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x107C), EM_RES_REC(b, 0x1080), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x107C), EM_RES_REC(b, 0x1080), 3, 0.0f, 0, 0);
             *(float *)(s1 + 0x600) = 150.0f;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
@@ -56,7 +56,7 @@ __attribute__((section(".text.func_0025A920"))) void func_0025A920(cEm00 *self)
         case 4: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x1094), EM_RES_REC(b, 0x1098), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x1094), EM_RES_REC(b, 0x1098), 3, 0.0f, 0, 0);
             *(float *)(s1 + 0x54C) = 5.0f;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }

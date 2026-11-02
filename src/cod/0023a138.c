@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
@@ -27,19 +27,19 @@ __attribute__((section(".text.func_0023A138"))) void func_0023A138(cEm00 *self)
         case 0:
             res = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(res, 0x2C8C), EM_RES_REC(res, 0x2C90), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x2C8C), EM_RES_REC(res, 0x2C90), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
             goto L_mm;
         case 2:
             res = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(res, 0x2C94), EM_RES_REC(res, 0x2C98), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x2C94), EM_RES_REC(res, 0x2C98), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
             goto L_mm;
         case 4:
             res = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(res, 0x2C9C), EM_RES_REC(res, 0x2CA0), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x2C9C), EM_RES_REC(res, 0x2CA0), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:
         case 3:
@@ -54,7 +54,7 @@ __attribute__((section(".text.func_0023A138"))) void func_0023A138(cEm00 *self)
         case 6:
             res = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(res, 0x2CA4), EM_RES_REC(res, 0x2CA8), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x2CA4), EM_RES_REC(res, 0x2CA8), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->step = self->step + 1;
         case 7:

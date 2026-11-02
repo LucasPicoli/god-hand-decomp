@@ -32,7 +32,7 @@ extern float fRand1_1(void);
 extern char D_00463050[];
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void Obj1D00_SetState_7_1C(int a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
 extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
@@ -252,7 +252,7 @@ blockA:
         r = Obj0000_Get_Byte_17C3_NZ_2_276468(p);
         q = *(char **)(p + 0x304);
         func_002A8578(p, *(int *)(q + 0x2FB4) + (int)q, *(int *)(q + 0x2FB8) + (int)q,
-                      0.0f, 0, r & 0xFFFF, 0);
+                      0, 0.0f, r & 0xFFFF, 0);
         Obj1D00_SetState_7_1C(*(int *)(p + 0x708));
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     }

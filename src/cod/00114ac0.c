@@ -3,8 +3,8 @@
 #include "godhand/cEm00.h"
 #include "godhand/vecInline.h"
 #include "godhand/cObjBase.h"
+#include "godhand/motion.h"
 
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);

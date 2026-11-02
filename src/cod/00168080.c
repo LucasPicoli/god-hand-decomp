@@ -3,6 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
 #include "godhand/cRoomSave.h"
+#include "godhand/motion.h"
 
 extern char D_00585240[];
 extern char D_00585450[];
@@ -11,7 +12,6 @@ extern int cIDBase_release(int a0);
 extern void func_00161590(int a0);
 extern char **D_003C2384;
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float f, int t0, int t1);
 extern float fRand1_1(void);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);

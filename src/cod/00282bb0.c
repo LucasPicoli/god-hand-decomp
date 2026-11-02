@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void *Getplayer(void);
 extern float SetMotionStep(void *a0, float f);
@@ -27,20 +27,20 @@ __attribute__((section(".text.func_00282BB0"))) void func_00282BB0(cEm00 *self)
         case 0:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x180), EM_RES_REC(v, 0x184), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x180), EM_RES_REC(v, 0x184), 2, 0.0f, t0, 0);
             } else {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x168), EM_RES_REC(v, 0x16C), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x168), EM_RES_REC(v, 0x16C), 2, 0.0f, t0, 0);
             }
             self->step++;
             goto L_mm;
         case 2:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x188), EM_RES_REC(v, 0x18C), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x188), EM_RES_REC(v, 0x18C), 2, 0.0f, t0, 0);
             } else {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x170), EM_RES_REC(v, 0x174), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x170), EM_RES_REC(v, 0x174), 2, 0.0f, t0, 0);
             }
             self->step++;
         case 1:
@@ -51,10 +51,10 @@ __attribute__((section(".text.func_00282BB0"))) void func_00282BB0(cEm00 *self)
         case 4:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x190), EM_RES_REC(v, 0x194), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x190), EM_RES_REC(v, 0x194), 2, 0.0f, t0, 0);
             } else {
                 int v = self->resource;
-                func_002A8578(self, EM_RES_REC(v, 0x178), EM_RES_REC(v, 0x17C), 0.0f, 2, t0, 0);
+                func_002A8578(self, EM_RES_REC(v, 0x178), EM_RES_REC(v, 0x17C), 2, 0.0f, t0, 0);
             }
             self->step++;
         case 5:

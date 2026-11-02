@@ -6,7 +6,7 @@ extern void *Getplayer(void);
 extern void SetMotionStep(void *a0, float f12);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
@@ -41,7 +41,7 @@ void func_0025C1D0(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0xC98) + p, *(int *)(p + 0xC9C) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x16EC) = 0;
         (*(unsigned char *)(s0 + 0x2F6))++;
     }
@@ -75,7 +75,7 @@ void func_0025C1D0(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0xCA0) + p, *(int *)(p + 0xCA4) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         (*(unsigned char *)(s0 + 0x2F6))++;
     }
         /* fallthrough */
@@ -116,7 +116,7 @@ void func_0025C1D0(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0xCA8) + p, *(int *)(p + 0xCAC) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 1;
         *(short *)(s0 + 0x56E) = 0xF;
         (*(unsigned char *)(s0 + 0x2F6))++;

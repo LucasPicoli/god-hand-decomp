@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 */
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int irand(void);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -31,7 +31,7 @@ void func_00257E90(cEm00 *self)
             p1 = EM_RES_REC(self->resource, 0x1CF0);
             p2 = EM_RES_REC(self->resource, 0x1CF4);
         }
-        func_002A8578(self, p1, p2, 0.0f, 3, motion, 0);
+        func_002A8578(self, p1, p2, 3, 0.0f, motion, 0);
         if (irand() & 1) {
             self->timerA = 5;
         } else {
@@ -57,7 +57,7 @@ void func_00257E90(cEm00 *self)
             p1 = EM_RES_REC(self->resource, 0x1D48);
             p2 = EM_RES_REC(self->resource, 0x1D4C);
         }
-        func_002A8578(self, p1, p2, 0.0f, 3, motion, 0);
+        func_002A8578(self, p1, p2, 3, 0.0f, motion, 0);
         self->step++;
     case 3:
         if (moveMotion(self) != 0) {

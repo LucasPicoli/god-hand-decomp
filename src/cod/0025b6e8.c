@@ -2,11 +2,11 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern float capVu0Atan2(float y, float x);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern int moveMotion(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj2810_SetState_E_a1(void *a0, int a1);
 extern void SetBytes2F4Mode11_283360(void *a0, int a1);
 extern void ClearBytes2F4To2F7_283170(void *a0);
@@ -107,7 +107,7 @@ __attribute__((section(".text.func_0025B6E8"))) void func_0025B6E8(cEm00 *self)
                     }
                 } break;
             }
-            func_002A8578(self, p1, p2, 0.0f, 2, s1, 0);
+            func_002A8578(self, p1, p2, 2, 0.0f, s1, 0);
             if (self->sub0)
                 Obj2810_SetState_E_a1((void *)self->sub0, self->stepArg);
             if (self->sub1)

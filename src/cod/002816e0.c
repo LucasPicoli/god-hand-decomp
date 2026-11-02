@@ -4,8 +4,7 @@
 
 
 extern void func_0028EBF0(char *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
-extern void moveMotion(void *a0);
+#include "godhand/motion.h"
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);

@@ -6,7 +6,7 @@ extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_0041B7D0[];
 extern char D_007854C8[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, void *a1, void *a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern char D_00462FC0[];
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -33,7 +33,7 @@ void ForwardAndSyncPosition_102EE0(void *a0) {
     case 0:
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0xC) + g),
-                      (void *)(*(int *)((char *)g + 0x10) + g), 0.0f, 0, 0, 0);
+                      (void *)(*(int *)((char *)g + 0x10) + g), 0, 0.0f, 0, 0);
         (*(unsigned char *)((char *)a0 + 0x2F6))++;
         /* fallthrough */
     case 1:
@@ -65,7 +65,7 @@ void UpdateAttackMovePhase_102FE8(void *a0) {
     case 0:
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0x54) + g),
-                      (void *)(*(int *)((char *)g + 0x58) + g), 0.0f, 0, 0, 0);
+                      (void *)(*(int *)((char *)g + 0x58) + g), 0, 0.0f, 0, 0);
         if (SetEffect(0, 0x51, a0, 0, -1, 0xFFFFFFFF)) { }
         (*(unsigned char *)((char *)a0 + 0x2F6))++;
         /* fallthrough */

@@ -1,4 +1,5 @@
 #include "godhand/cObjBase.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -7,9 +8,7 @@ extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned
 float rate, float blend, int flags);
 
 extern unsigned int func_0031ED08(float seconds);
-extern int moveMotion(cObjBase *self);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
 extern void Obj1D00_SetState_6_A(void *a0);
@@ -48,7 +47,7 @@ void func_00237E90(void *a0){ char *s0=(char*)a0; int v0; float one;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0: v0=*(int*)(s0+0x304);
   *(char*)(s0+0x1864)=0;
-  func_002A8578(s0,*(int*)(v0+0x1550)+v0,*(int*)(v0+0x1554)+v0,0.0f,0,0,0);
+  func_002A8578(s0,*(int*)(v0+0x1550)+v0,*(int*)(v0+0x1554)+v0,0,0.0f,0,0);
   if(*(int*)(s0+0x6F0)!=0) Obj1D00_SetState_6_A((void*)*(int*)(s0+0x6F0));
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:

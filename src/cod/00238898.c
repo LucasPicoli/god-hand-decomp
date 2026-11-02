@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -44,7 +44,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x3224), EM_RES_REC(p, 0x3228), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x3224), EM_RES_REC(p, 0x3228), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
                 default:
@@ -88,7 +88,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x322C), EM_RES_REC(p, 0x3230), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x322C), EM_RES_REC(p, 0x3230), 0, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */
@@ -122,7 +122,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
             int p;
 
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x3234), EM_RES_REC(p, 0x3238), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x3234), EM_RES_REC(p, 0x3238), 3, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */
@@ -138,7 +138,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
             int p;
 
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x323C), EM_RES_REC(p, 0x3240), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x323C), EM_RES_REC(p, 0x3240), 3, 0.0f, 0, 0);
             self->unk568 = 0x1E;
             self->step++;
         }

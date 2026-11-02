@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -10,7 +11,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002705D8(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int a4, int a5);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 
 extern int irand(void);
@@ -303,7 +303,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
                 s1v = (*((int *)(b + 0x44C))) + b;
                 s0v = (*((int *)(b + 0x450))) + b;
             }
-            func_002A8578(s2, s1v, s0v, 0.0f, 10, gb, 0);
+            func_002A8578(s2, s1v, s0v, 10, 0.0f, gb, 0);
             *((int *)(s2 + 0x5F0)) = 10;
             *((unsigned char *)(s2 + 0x2F6)) = (*((unsigned char *)(s2 + 0x2F6))) + 1;
 
@@ -862,7 +862,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
                 s1v = (*((int *)(b + 0x454))) + b;
                 s0v = (*((int *)(b + 0x458))) + b;
             }
-            func_002A8578(s2, s1v, s0v, 0.0f, 10, gb, 0);
+            func_002A8578(s2, s1v, s0v, 10, 0.0f, gb, 0);
             *((unsigned char *)(s2 + 0x2F6)) = (*((unsigned char *)(s2 + 0x2F6))) + 1;
 
         case 3:

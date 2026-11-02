@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int irand(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
@@ -38,7 +38,7 @@ __attribute__((section(".text.func_0022C1A8"))) void func_0022C1A8(cEm00 *self)
                 char *w = (char *)self->resource;
                 s1v = EM_RES_REC((int)w, 0x22E8);
             }
-            func_002A8578(self, s2v, s1v, 0.0f, 3, gb, 0);
+            func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
             self->timerA = 1;
             self->timer2 = 35.0f;
             self->step += 1;

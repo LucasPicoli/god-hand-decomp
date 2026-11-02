@@ -6,7 +6,7 @@ extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void Owner_spawnEffect(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void func_00124EC0(void *a0);
 
@@ -35,7 +35,7 @@ void func_00113CF8(void *a0)
         b = *(int *)(s1 + 0x304);
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
-        func_002A8578(s1, *(int *)(b + 0x220) + b, *(int *)(b + 0x224) + b, 21.0f, 3, 0, 0);
+        func_002A8578(s1, *(int *)(b + 0x220) + b, *(int *)(b + 0x224) + b, 3, 21.0f, 0, 0);
         *(int *)(s1 + 0x15B0) = 0xD;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
     case 1:
@@ -55,7 +55,7 @@ void func_00113CF8(void *a0)
         b = *(int *)(s1 + 0x304);
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
-        func_002A8578(s1, *(int *)(b + 0x380) + b, *(int *)(b + 0x384) + b, 0.0f, 0, 0, 0);
+        func_002A8578(s1, *(int *)(b + 0x380) + b, *(int *)(b + 0x384) + b, 0, 0.0f, 0, 0);
         *(unsigned short *)(s1 + 0x54A) = *(unsigned short *)(s1 + 0x54A) - 10;
         if (*(short *)(s1 + 0x54A) < 2) {
             *(short *)(s1 + 0x54A) = 1;

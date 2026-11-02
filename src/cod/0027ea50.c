@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 /* sn-2.95.3-136 matched TU. */
 
 /* ForwardAnimParamPairByIndex_27EA50 — 50-way move-data field selector.
  * The jump table stays in the split rodata blob (compile_units[].extern_jtbl
  * D_004482E0), so this TU emits no table of its own. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
 __attribute__((section(".text.ForwardAnimParamPairByIndex_27EA50")))
 void ForwardAnimParamPairByIndex_27EA50(void *self, int index) {
@@ -314,5 +314,5 @@ void ForwardAnimParamPairByIndex_27EA50(void *self, int index) {
         break;
     }
     }
-    func_002A8578(((char *)self), p, q, 0.0f, 0xA, 0, 0);
+    func_002A8578(((char *)self), p, q, 0xA, 0.0f, 0, 0);
 }

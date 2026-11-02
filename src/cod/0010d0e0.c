@@ -3,13 +3,13 @@
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
 #include "godhand/cMovie.h"
+#include "godhand/motion.h"
 
 extern void func_001268F0(void *a0);
 extern void func_00124540(void *a0, int a1);
 extern void cSnd_SeStop(void *a0, int a1);
 extern unsigned int irand(void);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -74,7 +74,7 @@ __attribute__((section(".text.cEm00_stepCountedAttack"))) void cEm00_stepCounted
                     break;
             }
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x41, self, 0, 0, 0, 0);
-            func_002A8578(self, s2v, s0v, 2.0f, 3, 0, 0);
+            func_002A8578(self, s2v, s0v, 3, 2.0f, 0, 0);
             self->stepVar.count = 8;
             self->gotoFlags = 0;
             self->step += 1;

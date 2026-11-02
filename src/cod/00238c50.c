@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DCE8(char *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
@@ -43,7 +43,7 @@ __attribute__((section(".text.func_00238C50"))) void func_00238C50(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x33CC), EM_RES_REC(p, 0x33D0), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x33CC), EM_RES_REC(p, 0x33D0), 0, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0) {
                 Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DCE8(*(char **)((char *)self + 0x740));
             }
@@ -76,7 +76,7 @@ __attribute__((section(".text.func_00238C50"))) void func_00238C50(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x33D4), EM_RES_REC(p, 0x33D8), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x33D4), EM_RES_REC(p, 0x33D8), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->hitFlash = 5.0f;
             switch (cCoreSave_getGameLevel(&D_00569B70)) {

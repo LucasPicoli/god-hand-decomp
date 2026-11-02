@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -40,7 +40,7 @@ void func_00239570(void *a0)
         *(char *)(s0 + 0x1864) = 0;
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x3B38) + p, *(int *)(p + 0x3B3C) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s0 + 0x56E) = 0xF;
         (*(unsigned char *)(s0 + 0x2F6))++;
     }
@@ -77,7 +77,7 @@ void func_0011AC80(void *a0)
         int p2 = *(int *)(v0 + 0x87C) + (int)v0;
         cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
         *(float *)(s1 + 0x54C) = 10.0f;
-        func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
+        func_002A8578(s1, p1, p2, 1, 0.0f, 0, 0);
         pl00_clearMotionCam(s1, 0, 0);
         func_0012C348(s1, 0);
         if (irand() & 1) {
@@ -144,7 +144,7 @@ void func_0023A950(void *a0)
             p2 = *(int *)(v + 0xC28) + (int)v;
             break; }
         }
-        func_002A8578(s0, p1, p2, 0.0f, 3, m, 0);
+        func_002A8578(s0, p1, p2, 3, 0.0f, m, 0);
         *(unsigned char *)(s0 + 0x2F6) += 1;
     }
     case 1:

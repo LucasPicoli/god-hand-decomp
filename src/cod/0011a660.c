@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern int moveMotion(void *a0);
@@ -33,7 +33,7 @@ void func_0011A660(void *a0)
         *(short *)(s0 + 0x5E0) = 0;
         *(short *)(s0 + 0x5E2) = 0;
         func_002A8578(s0, *(int *)(b + 0x6F0) + b, *(int *)(b + 0x6F4) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         CallWithAndClearField698_12AC28(s0);
         func_0012B928(s0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
@@ -58,7 +58,7 @@ void func_0011A660(void *a0)
         int b = *(int *)(s0 + 0x304);
 
         func_002A8578(s0, *(int *)(b + 0x28) + b, *(int *)(b + 0x2C) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     case 3:
@@ -80,7 +80,7 @@ void func_0011A660(void *a0)
         *(short *)(s0 + 0x5E0) = 0;
         *(short *)(s0 + 0x5E2) = 0;
         func_002A8578(s0, *(int *)(b + 0x6F8) + b, *(int *)(b + 0x6FC) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     case 5:

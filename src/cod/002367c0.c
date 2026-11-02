@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -6,7 +7,6 @@ extern unsigned char D_00462FC0[];
 extern char D_007474A0[];
 extern char *Getplayer(void);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
         case 0: {
             int w = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(w, 0x100C), EM_RES_REC(w, 0x1010), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x100C), EM_RES_REC(w, 0x1010), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70) - 1) {
                 default:
                 case 0:
@@ -84,7 +84,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
         case 2: {
             int w = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(w, 0xFF4), EM_RES_REC(w, 0xFF8), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(w, 0xFF4), EM_RES_REC(w, 0xFF8), 0, 0.0f, 0, 0);
             self->step++;
         }
         /* fallthrough */
@@ -128,7 +128,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
         case 4: {
             int w = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(w, 0x1004), EM_RES_REC(w, 0x1008), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x1004), EM_RES_REC(w, 0x1008), 3, 0.0f, 0, 0);
             self->step++;
         }
         /* fallthrough */
@@ -146,7 +146,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
         case 6: {
             int w = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(w, 0xFFC), EM_RES_REC(w, 0x1000), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(w, 0xFFC), EM_RES_REC(w, 0x1000), 3, 0.0f, 0, 0);
             self->step++;
         }
         /* fallthrough */

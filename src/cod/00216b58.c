@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -72,7 +72,7 @@ __attribute__((section(".text.func_00216B58"))) void func_00216B58(cEm00 *self)
                 }
             }
         a0_end:
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(int *)(s1 + 0x5F0) = 0xA;
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
@@ -143,7 +143,7 @@ __attribute__((section(".text.func_00216B58"))) void func_00216B58(cEm00 *self)
                 s0v = EM_RES_REC((int)v0, 0x10AC);
             }
         a2_end:
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
             /* fallthrough */
@@ -190,7 +190,7 @@ __attribute__((section(".text.func_00216B58"))) void func_00216B58(cEm00 *self)
             }
         a4_end:
             *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x80000000;
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
             /* fallthrough */

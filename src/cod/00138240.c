@@ -4,9 +4,9 @@
 #include "godhand/cPlCamera.h"
 #include "godhand/cCamera.h"
 #include "godhand/vu0.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj1D00_SetState_7_16(void *a0);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
@@ -48,7 +48,7 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
                     Obj1D00_SetState_7_16(o);
                 }
             }
-            func_002A8578(self, a1v, a2v, 0.0f, 5, gb, 0);
+            func_002A8578(self, a1v, a2v, 5, 0.0f, gb, 0);
             self->timerA = 0x16;
             self->unk5F8 = 0xF;
             self->step += 1;

@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -63,7 +63,7 @@ void func_0022B358(cEm00 *self)
         {
             int b = *(int *)(s0 + 0x304);
             func_002A8578(s0, *(int *)(b + 0xDDC) + b, *(int *)(b + 0xDE0) + b,
-                          0.0f, 3, t0, 0);
+                          3, 0.0f, t0, 0);
         }
         *(int *)(s0 + 0x5FC) = 0;
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
@@ -101,7 +101,7 @@ void func_0022B358(cEm00 *self)
             }
             break;
         }
-        func_002A8578(s0, a1, a2, 0.0f, 3, t0, 0);
+        func_002A8578(s0, a1, a2, 3, 0.0f, t0, 0);
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 3:
         *(int *)(s0 + 0x16DC) = 0x64;
@@ -133,7 +133,7 @@ void func_0022B358(cEm00 *self)
             }
             break;
         }
-        func_002A8578(s0, a1, a2, 0.0f, 3, t0, 0);
+        func_002A8578(s0, a1, a2, 3, 0.0f, t0, 0);
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 5:
         *(int *)(s0 + 0x16DC) = 0x64;

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern int Getplayer(void);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern unsigned int irand(void);
 extern int moveMotion(void *a0);
 extern void func_00274FE8(void *a0);
@@ -37,7 +37,7 @@ void func_002376D0(void *a0)
         int w = *(int *)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(w + 0x20FC) + w, *(int *)(w + 0x2100) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s0 + 0x568) = 0;
         *(short *)(s0 + 0x56E) = 0x3C;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
@@ -120,7 +120,7 @@ void func_002376D0(void *a0)
         int w = *(int *)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(w + 0x2104) + w, *(int *)(w + 0x2108) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s0 + 0x56E) = 0x3C;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }

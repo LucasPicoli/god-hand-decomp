@@ -3,8 +3,8 @@
 /* cEm00_stepGrowlWhileActive: an enemy that holds one pose and growls at random intervals
  * while any actor is active. */
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float f12, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cModel_calcNullPart(void *a0);

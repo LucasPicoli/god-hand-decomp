@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -7,7 +8,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -166,7 +166,7 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
                     *(char *)(s1 + 0x2F7) = 1;
                 } break;
             }
-            func_002A8578(s1, s3, s2, 0.0f, 3, s4, 0);
+            func_002A8578(s1, s3, s2, 3, 0.0f, s4, 0);
             if (*(unsigned char *)(s1 + 0x2F7) == 0) {
                 cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, s1, 0, 0, 0, 0);
                 cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s1, 0, 0, 0, 0);
@@ -206,7 +206,7 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
             ReleaseField6ECByTag564_26B1E8(s1);
             {
                 int b = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(b, 0xF84), EM_RES_REC(b, 0xF88), 0.0f, 0, s4, 0);
+                func_002A8578(s1, EM_RES_REC(b, 0xF84), EM_RES_REC(b, 0xF88), 0, 0.0f, s4, 0);
             }
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, s1, 0, 0, 0, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s1, 0, 0, 0, 0);
@@ -227,7 +227,7 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
         case 4: {
             int nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             int b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0xF8C), EM_RES_REC(b, 0xF90), 0.0f, 0, nb, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0xF8C), EM_RES_REC(b, 0xF90), 0, 0.0f, nb, 0);
             *(float *)(s1 + 0x600) = 150.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }

@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern float SetMotionStep(void *a0, float f12);
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_00278940"))) void func_00278940(cEm00 *self)
             int k;
             unsigned char m;
 
-            func_002A8578(self, EM_RES_REC(p, 0x24), EM_RES_REC(p, 0x28), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x24), EM_RES_REC(p, 0x28), 0, 0.0f, 0, 0);
             k = self->unk2FC & 7;
             self->unk580.x = 0.0f;
             self->timer = 1.0f;

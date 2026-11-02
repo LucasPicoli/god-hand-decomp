@@ -5,6 +5,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cSnd.h"
+#include "godhand/motion.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int t2, int t3);
@@ -14,7 +15,6 @@ extern void InvokeVirtualAtField214AndForward_124E68(char *a0, float f12);
 extern void Obj0000_Clear_Fields_640_648_124E58(char *a0);
 extern void func_001268F0(int *p);
 extern int func_00123938(void *a0, int a1);
-extern void func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
@@ -84,7 +84,7 @@ void func_0010CD38(cEm00 *self)
             self->stepScale = 1.2f;
             break;
         }
-        func_002A8578((int)self, p1, p2, 3, 0, 0, 0.0f);
+        func_002A8578(self, p1, p2, 3, 0.0f, 0, 0);
         self->step += 1;
     case 1:
         if (EM00_HELD(self) != 0) {

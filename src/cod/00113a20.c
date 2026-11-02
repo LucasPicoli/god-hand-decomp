@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -9,7 +10,6 @@ extern void func_00129578(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_00124EC0(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
@@ -54,7 +54,7 @@ void func_00113A20(void *a0)
             p1 = *(int *)(r + 0x294) + (int)r;
             p2 = *(int *)(r + 0x298) + (int)r;
         }
-        func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         if (*(unsigned char *)(s1 + 0x2F7)) {
             s2 = *(short *)(s1 + 0x548);
             cCoreSave_useGodItem(&D_00569B70);

@@ -2,10 +2,10 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cEm00_attachToTarget(void *a0, void *a1);
 
@@ -71,7 +71,7 @@ __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0x38B0), EM_RES_REC(b, 0x38B4), 0.0f, 0, nb, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x38B0), EM_RES_REC(b, 0x38B4), 0, 0.0f, nb, 0);
             if (*(void **)(s1 + 0x744) != 0) {
                 cEm00_attachToTarget(*(void **)(s1 + 0x744), s1);
             }
@@ -152,7 +152,7 @@ __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(b, 0x3778), EM_RES_REC(b, 0x377C), 0.0f, 3, nb, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x3778), EM_RES_REC(b, 0x377C), 3, 0.0f, nb, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 3:
             if (moveMotion(s1) != 0) {

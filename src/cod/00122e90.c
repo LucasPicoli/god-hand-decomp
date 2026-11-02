@@ -6,7 +6,7 @@ extern void cSnd_DieDemoStart(void *a0);
 extern unsigned int irand(void);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -149,7 +149,7 @@ void func_00122E90(void *a0)
                 *(float *)(s1 + 0x104) = Adjust_theta(th);
             }
         }
-        func_002A8578(s1, s2, s0, 0.0f, 2, 0, 0);
+        func_002A8578(s1, s2, s0, 2, 0.0f, 0, 0);
         *(int *)(s1 + 0x15B0) = 0x28;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
     case 1:

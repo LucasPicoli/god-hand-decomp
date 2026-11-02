@@ -2,7 +2,7 @@
 
 extern void *Getplayer();
 extern unsigned int func_0031ED08(float f12);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
@@ -650,5 +650,5 @@ void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13)
         }
         break;
     }
-    func_002A8578(s2, s1, t0, f13, func_0031ED08(f12), 0, 0);
+    func_002A8578(s2, s1, t0, func_0031ED08(f12), f13, 0, 0);
 }

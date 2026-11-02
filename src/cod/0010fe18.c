@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -55,7 +55,7 @@ void func_001160A0(void *a0)
         }
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x670);
         t = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(t + 0x954) + t, *(int *)(t + 0x958) + t, 0.0f, 0, 0, 0);
+        func_002A8578(s1, *(int *)(t + 0x954) + t, *(int *)(t + 0x958) + t, 0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
     case 1:
@@ -85,7 +85,7 @@ void func_0010FE18(void *a0){ char *s0=(char*)a0; int v0;
   Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0,0x14,0xB,0xA,0,0xA);
   v0=*(int*)(s0+0x304);
   *(char*)(s0+0x1684)=0;
-  func_002A8578(s0,*(int*)(v0+0x100)+v0,*(int*)(v0+0x108)+v0,0.0f,3,0,0);
+  func_002A8578(s0,*(int*)(v0+0x100)+v0,*(int*)(v0+0x108)+v0,3,0.0f,0,0);
   *(int*)(s0+0x15B0)=1;
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:

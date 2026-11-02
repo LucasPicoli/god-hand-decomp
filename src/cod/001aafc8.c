@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
@@ -22,7 +22,7 @@ void func_00279750(void *a0){ char *s0=(char*)a0; int v0;
  *(float*)(s0+0x54C)=3.0f;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0: v0=*(int*)(s0+0x304);
-  func_002A8578(s0,*(int*)(v0+0xC)+v0,*(int*)(v0+0x10)+v0,0.0f,0,0,0);
+  func_002A8578(s0,*(int*)(v0+0xC)+v0,*(int*)(v0+0x10)+v0,0,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=2; *(unsigned char*)(s0+0x2F5)=1;
@@ -38,7 +38,7 @@ void func_00247218(void *a0){ char *s0=(char*)a0;
  case 0: { int t0=Obj0000_Get_Byte_17C3_NZ_2_276468(s0)&0xFFFF; int a, bb;
   if(*(int*)(s0+0x564)==0x24F){ int b=*(int*)(s0+0x304); a=*(int*)(b+0x1F70)+b; bb=*(int*)(b+0x1F74)+b; }
   else { int b=*(int*)(s0+0x304); a=*(int*)(b+0x1F78)+b; bb=*(int*)(b+0x1F7C)+b; }
-  func_002A8578(s0,a,bb,0.0f,0xA,t0,0); }
+  func_002A8578(s0,a,bb,0xA,0.0f,t0,0); }
   *(short*)(s0+0x568)=0xA;
   *(unsigned char*)(s0+0x623)=1;
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
@@ -64,7 +64,7 @@ void func_0023D410(void *a0){ char *s0=(char*)a0;
   case 0x278 ... 0x279: ARM break;
   default: ARM break; }
   t0=Obj0000_Get_Byte_17C3_NZ_2_276468(s0)&0xFFFF;
-  func_002A8578(s0,a,bb,0.0f,0xA,t0,0); }
+  func_002A8578(s0,a,bb,0xA,0.0f,t0,0); }
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0x6E;
@@ -81,7 +81,7 @@ void func_001AAFC8(void *a0){ char *s0=(char*)a0; int v0;
  case 0:
   *(int*)(s0+0x9D0)=*(int*)(s0+0x9D0)&0xBFFFFFFF;
   { int b=*(int*)(s0+0x304);
-  func_002A8578(s0,*(int*)(b+0xC)+b,*(int*)(b+0x6C)+b,0.0f,0xA,0,0); }
+  func_002A8578(s0,*(int*)(b+0xC)+b,*(int*)(b+0x6C)+b,0xA,0.0f,0,0); }
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   if(moveMotion(s0)!=0){
@@ -106,7 +106,7 @@ void func_00277858(void *a0){ char *s0=(char*)a0; int v0;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0:
   v0=*(int*)(s0+0x304);
-  func_002A8578(s0,*(int*)(v0+0x64)+v0,*(int*)(v0+0x68)+v0,0.0f,3,0,0);
+  func_002A8578(s0,*(int*)(v0+0x64)+v0,*(int*)(v0+0x68)+v0,3,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   cGameObj_SetTgtTurn(s0,*(int*)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
@@ -116,7 +116,7 @@ void func_00277858(void *a0){ char *s0=(char*)a0; int v0;
   break;
  case 2:
   v0=*(int*)(s0+0x304);
-  func_002A8578(s0,*(int*)(v0+0xC)+v0,*(int*)(v0+0x10)+v0,0.0f,3,0,0);
+  func_002A8578(s0,*(int*)(v0+0xC)+v0,*(int*)(v0+0x10)+v0,3,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 3:
   cGameObj_SetTgtTurn(s0,*(int*)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
@@ -146,7 +146,7 @@ void func_0023D568(void *a0){ char *s0=(char*)a0;
   *(char*)(s0+0x1864)=0;
   IDSW(0xC2C,0xC30)
   t0=Obj0000_Get_Byte_17C3_NZ_2_276468(s0)&0xFFFF;
-  func_002A8578(s0,a,bb,0.0f,0xA,t0,0); }
+  func_002A8578(s0,a,bb,0xA,0.0f,t0,0); }
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F6)=2; }
@@ -157,7 +157,7 @@ void func_0023D568(void *a0){ char *s0=(char*)a0;
  case 2: { int t0; int a, bb;
   IDSW(0xC34,0xC38)
   t0=Obj0000_Get_Byte_17C3_NZ_2_276468(s0)&0xFFFF;
-  func_002A8578(s0,a,bb,0.0f,0xA,t0,0); }
+  func_002A8578(s0,a,bb,0xA,0.0f,t0,0); }
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 3:
   if(moveMotion(s0)!=0){ func_0026EE40(s0,0,0); func_002705D8(s0); break; }

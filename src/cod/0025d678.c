@@ -6,7 +6,7 @@ extern void *Getplayer(void);
 extern void SetMotionStep(void *a0, float f);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -56,7 +56,7 @@ void func_0025D678(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x31E4) + p, *(int *)(p + 0x31E8) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x16EC) = 0;
         *(short *)(s0 + 0x56A) = 0;
         (*(unsigned char *)(s0 + 0x2F6))++;
@@ -84,7 +84,7 @@ void func_0025D678(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x31EC) + p, *(int *)(p + 0x31F0) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 1;
         (*(unsigned char *)(s0 + 0x2F6))++;
     }
@@ -126,7 +126,7 @@ void func_0025D678(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x31F4) + p, *(int *)(p + 0x31F8) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 1;
         *(short *)(s0 + 0x56E) = 0xF;
         (*(unsigned char *)(s0 + 0x2F6))++;
@@ -175,7 +175,7 @@ void func_0025D678(void *a0)
         ReleaseField6ECByTag564_26B1E8(s0);
         p = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(p + 0x31FC) + p, *(int *)(p + 0x3200) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 1;
         *(short *)(s0 + 0x56E) = 0xF;
         (*(unsigned char *)(s0 + 0x2F6))++;

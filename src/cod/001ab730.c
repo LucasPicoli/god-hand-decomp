@@ -3,9 +3,9 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageGive.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 extern char D_00462FC0[];
 extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int on);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -39,7 +39,7 @@ void func_001AB730(cOmOpenClose *self)
         {
             int v0 = self->base.texKey;
 
-            func_002A8578(self, *(int *)(v0 + 0x34) + v0, 0, 0.0f, 0xA, 0, 0);
+            func_002A8578(self, *(int *)(v0 + 0x34) + v0, 0, 0xA, 0.0f, 0, 0);
         }
         self->base.step = self->base.step + 1;
     case 1:
@@ -55,7 +55,7 @@ void func_001AB730(cOmOpenClose *self)
                 give->activeTime = 0x3C;
                 cDamageUnit_SetDamageCollFlashActiveById((char *)self->give, self->giveId, 1, 0x3C);
             }
-            func_002A8578(self, mot, 0, 0.0f, 0xA, 0, 0);
+            func_002A8578(self, mot, 0, 0xA, 0.0f, 0, 0);
             self->base.step = self->base.step + 1;
         }
         cObjBase_addNullSpeed_Rotation(self, 1.0f);

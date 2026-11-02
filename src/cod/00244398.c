@@ -3,10 +3,10 @@
 #include "godhand/cObjBase.h"
 #include "godhand/cOmWeapon.h"
 #include "godhand/sceVu0.h"
+#include "godhand/motion.h"
 
 extern void cCollisionSolidManage_SetActive(int a0, int a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12);
 extern void KillEffect(int a0, int a1, int a2);
 extern void func_00262750(void *a0, int a1);
 extern int moveMotion(void *a0);
@@ -33,8 +33,8 @@ void func_00244398(cEm00 *self)
     switch (self->step) {
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        func_002A8578((int)self, EM_RES_REC(self->resource, 0x246C),
-                      EM_RES_REC(self->resource, 0x2470), 3, motion, 0, 0.0f);
+        func_002A8578(self, EM_RES_REC(self->resource, 0x246C),
+                      EM_RES_REC(self->resource, 0x2470), 3, 0.0f, motion, 0);
         self->unk1730 = 600.0f;
         KillEffect((int)self, 1, 2);
         self->emFlags2 &= 0xFFFFFFDF;

@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_0028EBF0(char *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void moveMotion(void *a0);
+#include "godhand/motion.h"
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
@@ -95,7 +94,7 @@ int func_0027B810(char *a0)
     *(unsigned char *)(s1 + 0x2F7) = 0;
     *(int *)(s1 + 0x1580) = 0;
     *(int *)(s1 + 0x1584) = 0;
-    func_002A8578(s1, *(int *)(v0 + 0x10) + v0, *(int *)(v0 + 0x14) + v0, 0.0f, 0, 0, 0);
+    func_002A8578(s1, *(int *)(v0 + 0x10) + v0, *(int *)(v0 + 0x14) + v0, 0, 0.0f, 0, 0);
     moveMotion(s1);
     cModel_calcParts(s1);
     IK_InverseKinematics(s1 + 0x448, s1);

@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -7,7 +8,6 @@ extern unsigned char D_00462FC0[];
 extern unsigned char D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
         case 0: {
             int gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             char *v1 = (char *)self->resource;
-            func_002A8578(self, EM_RES_REC((int)v1, 0x4FC), EM_RES_REC((int)v1, 0x500), 0.0f, 3, gb,
+            func_002A8578(self, EM_RES_REC((int)v1, 0x4FC), EM_RES_REC((int)v1, 0x500), 3, 0.0f, gb,
                           0);
         }
             cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x64, self, 0, 0, 0, 0);
@@ -90,7 +90,7 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
     switch (self->step) {
         case 0: {
             int res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0, 0.0f, 0, 0);
         }
             self->unk568 = 0;
             *(float *)((char *)self + 0x674) = 150.0f;
@@ -108,7 +108,7 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
             break;
         case 2: {
             int res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0x10), 0, 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x10), 0, 0, 0.0f, 0, 0);
         }
             *(float *)((char *)self + 0x674) = 90.0f;
             self->step++;

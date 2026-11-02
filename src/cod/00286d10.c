@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
@@ -34,7 +34,7 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(cEm00 *self)
                     default:
                         v0 = *((int *)(((char *)self + 0x304)));
                         func_002A8578(self, (*((int *)(v0 + 0xB8))) + v0,
-                                      (*((int *)(v0 + 0xBC))) + v0, 0.0f, 10, 0, 0);
+                                      (*((int *)(v0 + 0xBC))) + v0, 10, 0.0f, 0, 0);
                         break;
 
                     case 0x2A7:
@@ -42,7 +42,7 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(cEm00 *self)
                     case 0x2AB:
                         v0 = *((int *)(((char *)self + 0x304)));
                         func_002A8578(self, (*((int *)(v0 + 0x40))) + v0,
-                                      (*((int *)(v0 + 0x44))) + v0, 0.0f, 10, 0, 0);
+                                      (*((int *)(v0 + 0x44))) + v0, 10, 0.0f, 0, 0);
                         break;
                 }
 
@@ -52,11 +52,11 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(cEm00 *self)
                         if (irand() & 1) {
                             v0 = *((int *)(((char *)self + 0x304)));
                             func_002A8578(self, (*((int *)(v0 + 0x38))) + v0,
-                                          (*((int *)(v0 + 0x3C))) + v0, 0.0f, 10, 0, 0);
+                                          (*((int *)(v0 + 0x3C))) + v0, 10, 0.0f, 0, 0);
                         } else {
                             v0 = *((int *)(((char *)self + 0x304)));
                             func_002A8578(self, (*((int *)(v0 + 0x40))) + v0,
-                                          (*((int *)(v0 + 0x44))) + v0, 0.0f, 10, 0, 0);
+                                          (*((int *)(v0 + 0x44))) + v0, 10, 0.0f, 0, 0);
                         }
                         break;
 
@@ -65,7 +65,7 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(cEm00 *self)
                     case 0x2AB:
                         v0 = *((int *)(((char *)self + 0x304)));
                         func_002A8578(self, (*((int *)(v0 + 0x38))) + v0,
-                                      (*((int *)(v0 + 0x3C))) + v0, 0.0f, 10, 0, 0);
+                                      (*((int *)(v0 + 0x3C))) + v0, 10, 0.0f, 0, 0);
                         break;
                 }
             }
@@ -105,8 +105,8 @@ __attribute__((section(".text.func_00286D10"))) void func_00286D10(cEm00 *self)
 
         case 2:
             v0 = *((int *)(((char *)self + 0x304)));
-            func_002A8578(self, (*((int *)(v0 + 0x178))) + v0, (*((int *)(v0 + 0x17C))) + v0, 0.0f,
-                          10, 0, 0);
+            func_002A8578(self, (*((int *)(v0 + 0x178))) + v0, (*((int *)(v0 + 0x17C))) + v0, 10,
+                          0.0f, 0, 0);
             cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5C, self, 0, 0, 0, 0);
             *((unsigned char *)(((char *)self + 0x2F6))) =
                 (*((unsigned char *)(((char *)self + 0x2F6)))) + 1;

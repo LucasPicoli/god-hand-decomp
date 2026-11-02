@@ -28,20 +28,20 @@ void func_0027CB58(cEm00 *self)
     target = self->target;
     switch (self->step) {
     case 0:
-        func_002A8578((int)self, RES(0xC8), RES(0xCC), 0, 0.0f, 0, 0);
+        func_002A8578(self, RES(0xC8), RES(0xCC), 0, 0.0f, 0, 0);
         self->partYaw = 0.0f;
         self->step++;
     case 1:
         moveMotion(self);
         break;
     case 2:
-        func_002A8578((int)self, RES(0xD0), RES(0xD4), 5, 0.0f, 0, 0);
+        func_002A8578(self, RES(0xD0), RES(0xD4), 5, 0.0f, 0, 0);
         self->step++;
     case 3:
         moveMotion(self);
         break;
     case 4:
-        func_002A8578((int)self, RES(0xD8), RES(0xDC), 5, 0.0f, 0, 0);
+        func_002A8578(self, RES(0xD8), RES(0xDC), 5, 0.0f, 0, 0);
         self->step++;
     case 5:
         if (moveMotion(self) != 0 && target != 0 && target->vital > 0) {
@@ -52,7 +52,7 @@ void func_0027CB58(cEm00 *self)
         }
         break;
     case 6:
-        func_002A8578((int)self, RES(0xA8), RES(0xAC), 5, 0.0f, 0, 0);
+        func_002A8578(self, RES(0xA8), RES(0xAC), 5, 0.0f, 0, 0);
         self->step++;
     case 7:
         if (moveMotion(self) != 0) {

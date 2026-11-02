@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -45,7 +45,7 @@ __attribute__((section(".text.func_00236190"))) void func_00236190(cEm00 *self)
 
             *(char *)(s1 + 0x1864) = 0;
             p = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(p, 0x518), EM_RES_REC(p, 0x51C), 0.0f, 0, 0, 0);
+            func_002A8578(s1, EM_RES_REC(p, 0x518), EM_RES_REC(p, 0x51C), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
                 default:

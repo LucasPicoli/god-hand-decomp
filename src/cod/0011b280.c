@@ -2,7 +2,7 @@
 
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 
 extern void func_0010A438(void *a0);
@@ -23,7 +23,7 @@ void func_0011B280(void *a0){ char *s0=(char*)a0; int s2,s1;
   } else {
    { char *v1=*(char**)(s0+0x304);
    s2=*(int*)(v1+0x174)+(int)v1; s1=*(int*)(v1+0x178)+(int)v1; } }
-  func_002A8578(s0,s2,s1,0.0f,10,0,0);
+  func_002A8578(s0,s2,s1,10,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
   if(moveMotion(s0)!=0){ *(unsigned char*)(s0+0x2F4)=0; *(unsigned char*)(s0+0x2F5)=0;

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void func_0012B928(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern int moveMotion(void *a0);
@@ -37,7 +37,7 @@ void func_00114120(void *a0)
         Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 5, 0x17, 0x2A, 0, 0xA);
         Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 5, 0x17, 0x2A, 0, 0xA);
         *(char *)(s1 + 0x1684) = 1;
-        func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         func_0012B928(s1);
         CallWithAndClearField698_12AC28(s1);
         *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -96,7 +96,7 @@ void func_00111010(void *a0)
             Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, 0x32, 0x25, 0x1D, 0, 0x123);
         }
         *(char *)(s0 + 0x1684) = 0;
-        func_002A8578(s0, p1, p2, 0.0f, 0, 0, 0);
+        func_002A8578(s0, p1, p2, 0, 0.0f, 0, 0);
         cCoreSave_addGameLevelPoint(&D_00569B70, 100);
         *(float *)(s0 + 0x54C) = 15.0f;
         *(unsigned char *)(s0 + 0x2F6) += 1;

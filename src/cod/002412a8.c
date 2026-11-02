@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned char D_005864F0[];
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -28,7 +28,7 @@ __attribute__((section(".text.func_002412A8"))) void func_002412A8(cEm00 *self)
     switch (self->step) {
         case 0: {
             int b = (int)*(char **)((char *)self + 0x304);
-            func_002A8578(self, EM_RES_REC(b, 0x1A50), EM_RES_REC(b, 0x1A54), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0x1A50), EM_RES_REC(b, 0x1A54), 3, 0.0f, 0, 0);
             self->unk568 = 0xA;
             self->step++;
         }
@@ -47,7 +47,7 @@ __attribute__((section(".text.func_002412A8"))) void func_002412A8(cEm00 *self)
         }
         case 2: {
             int b = (int)*(char **)((char *)self + 0x304);
-            func_002A8578(self, EM_RES_REC(b, 0x18F0), EM_RES_REC(b, 0x18F4), 10.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0x18F0), EM_RES_REC(b, 0x18F4), 0, 10.0f, 0, 0);
             self->unk568 = 0xA;
             self->step++;
         }

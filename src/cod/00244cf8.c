@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void *Getplayer(void);
 extern void func_002A74E0(void *a0, int a1, int a2);
@@ -29,7 +29,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
             *(int *)((char *)self + 0x4A8) = *(int *)((char *)self + 0x4A8) | 0x80000000;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             b = self->resource;
-            func_002A8578(self, EM_RES_REC(b, 0xD78), 0, 0.0f, 0, t0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0xD78), 0, 0, 0.0f, t0, 0);
         }
             moveMotion(self);
             self->step++;
@@ -69,7 +69,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
             int t0, b;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             b = self->resource;
-            func_002A8578(self, EM_RES_REC(b, 0xD78), EM_RES_REC(b, 0xD7C), 0.0f, 0, t0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0xD78), EM_RES_REC(b, 0xD7C), 0, 0.0f, t0, 0);
         }
             *(float *)((char *)self + 0x1744) = 300.0f;
             *(char *)((char *)self + 0x531) = 3;

@@ -23,7 +23,7 @@ extern void SetField5B0Bit2ClearBit8_1B7908(int a0);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern char *CreateObj(int a0, int a1);
 extern void func_0012A8D8(void *a0);
@@ -257,7 +257,7 @@ void func_00114E28(void *a0)
         p1 = *(int *)(t + 0x3D8) + t;
         p2 = *(int *)(t + 0x3DC) + t;
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x29, s1, 0, 0, 0, 0);
-        func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+        func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         /* fallthrough */
     case 1:

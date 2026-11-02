@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int moveMotion(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0027DBF8(int a0, int a1);
@@ -165,7 +165,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
             }
             ReleaseField6ECByTag564_26B1E8(self);
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->timerA = 1;
             self->unk16EC = 0;
             self->step += 1;
@@ -234,7 +234,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
             }
             ReleaseField6ECByTag564_26B1E8(self);
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->timerA = 1;
             self->emFlags2 |= 0x10000000;
             self->step += 1;
@@ -304,7 +304,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
                 } break;
             }
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->step += 1;
         }
             /* fallthrough */
@@ -366,7 +366,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
                 } break;
             }
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->timer = 30.0f;
             self->step += 1;
         }
@@ -561,7 +561,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
                 s2 = EM_RES_REC(b, 0x44C);
                 s1 = EM_RES_REC(b, 0x450);
             }
-            func_002A8578(self, s2, s1, 0.0f, 0xA, s3, 0);
+            func_002A8578(self, s2, s1, 0xA, 0.0f, s3, 0);
             self->timer = 15.0f;
             self->step += 1;
             /* fallthrough */
@@ -585,7 +585,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
             s2 = EM_RES_REC(b, 0x3978);
             s1 = EM_RES_REC(b, 0x397C);
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->emFlags2 &= ~0x20000000;
             KillEffect(self, 1, 2);
             self->step += 1;
@@ -606,7 +606,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
             s2 = EM_RES_REC(b, 0x3980);
             s1 = EM_RES_REC(b, 0x3984);
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            func_002A8578(self, s2, s1, 0.0f, 3, nb, 0);
+            func_002A8578(self, s2, s1, 3, 0.0f, nb, 0);
             self->step += 1;
         }
             /* fallthrough */

@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void Spawner_spawnChild(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
@@ -107,7 +107,7 @@ __attribute__((section(".text.func_00242880"))) void func_00242880(cEm00 *self)
     switch (self->step) {
         case 0: {
             int w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x245C), EM_RES_REC(w, 0x2460), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(w, 0x245C), EM_RES_REC(w, 0x2460), 3, 0.0f, 0, 0);
             self->timer = 45.0f;
             self->timer2 = 0.053333335f;
             switch (cCoreSave_getGameLevel(&D_00569B70)) {

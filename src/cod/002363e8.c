@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -32,7 +32,7 @@ __attribute__((section(".text.func_002363E8"))) void func_002363E8(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x7E8), EM_RES_REC(p, 0x7EC), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x7E8), EM_RES_REC(p, 0x7EC), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
                 default:
@@ -87,7 +87,7 @@ __attribute__((section(".text.func_002363E8"))) void func_002363E8(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x7D8), EM_RES_REC(p, 0x7DC), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x7D8), EM_RES_REC(p, 0x7DC), 0, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */
@@ -136,7 +136,7 @@ __attribute__((section(".text.func_002363E8"))) void func_002363E8(cEm00 *self)
                 x = EM_RES_REC(p, 0x7E0);
                 y = EM_RES_REC(p, 0x7E4);
             }
-            func_002A8578(self, x, y, 0.0f, 3, 0, 0);
+            func_002A8578(self, x, y, 3, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */
@@ -156,7 +156,7 @@ __attribute__((section(".text.func_002363E8"))) void func_002363E8(cEm00 *self)
 
             self->unk1864 = 0;
             p = self->resource;
-            func_002A8578(self, EM_RES_REC(p, 0x7E0), EM_RES_REC(p, 0x7E4), 0.0f, 3, 0, 0);
+            func_002A8578(self, EM_RES_REC(p, 0x7E0), EM_RES_REC(p, 0x7E4), 3, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */

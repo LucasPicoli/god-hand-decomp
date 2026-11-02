@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern char D_00462FC0[];
@@ -24,7 +24,7 @@ __attribute__((section(".text.func_00239698"))) void func_00239698(cEm00 *self)
         case 0:
             self->unk1864 = 0;
             b = self->resource;
-            func_002A8578(self, EM_RES_REC(b, 0x1484), EM_RES_REC(b, 0x1488), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0x1484), EM_RES_REC(b, 0x1488), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->step++;
         case 1:
@@ -62,7 +62,7 @@ __attribute__((section(".text.func_00236C60"))) void func_00236C60(cEm00 *self)
         case 0:
             self->unk1864 = 0;
             b = self->resource;
-            func_002A8578(self, EM_RES_REC(b, 0x1D98), EM_RES_REC(b, 0x1D9C), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(b, 0x1D98), EM_RES_REC(b, 0x1D9C), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->step++;
         case 1:

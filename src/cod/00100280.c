@@ -15,7 +15,7 @@ extern int D_0041B710;
 extern int D_007854F8;
 extern void cObjBase__tf(void);
 extern float D_003BC7C0;
-extern void func_002A8578(void *, void *, void *, int, int, int, float);
+#include "godhand/motion.h"
 extern void cObjBase_addNullSpeed_Rotation(void *, float);
 extern void cObjBase_addNullSpeed(void *, float);
 
@@ -72,7 +72,7 @@ void UpdateAttackMoveState_102BD8(void *a0) {
     case 0: {
         void *p = *(void **)((char *)a0 + 0x304);
         void *q = (void *)(*(int *)((char *)p + 0x24) + (int)p);
-        func_002A8578(a0, q, q, 5, 0, 0, 0.0f);
+        func_002A8578(a0, q, q, 5, 0.0f, 0, 0);
         *(unsigned char *)((char *)a0 + 0x2F6) = *(unsigned char *)((char *)a0 + 0x2F6) + 1;
     }
     case 1:

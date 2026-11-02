@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -6,7 +7,6 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -53,7 +53,7 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                 y = EM_RES_REC(pb, 0x1A68);
             }
         lm0:
-            func_002A8578(self, x, y, 0.0f, 0, 0, 0);
+            func_002A8578(self, x, y, 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
                 default:
@@ -138,7 +138,7 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                 y = EM_RES_REC(pb, 0x1A70);
             }
         lm2:
-            func_002A8578(self, x, y, 0.0f, 3, 0, 0);
+            func_002A8578(self, x, y, 3, 0.0f, 0, 0);
             self->step++;
         }
             /* fallthrough */
@@ -178,7 +178,7 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                 y = EM_RES_REC(pb, 0x1A78);
             }
         lm4:
-            func_002A8578(self, x, y, 0.0f, 3, 0, 0);
+            func_002A8578(self, x, y, 3, 0.0f, 0, 0);
             self->unk568 = 0x1E;
             self->step++;
         }

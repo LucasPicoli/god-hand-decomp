@@ -35,6 +35,6 @@ int moveMotion(void *obj);
 /* Start motion motA..motB (addresses in obj's resource blob) on obj at frame
  * start; sel and keep are read as 16-bit values, and func_002A84A8 runs first
  * when keep is 0. */
-void func_002A8578(int obj, int motA, int motB, int mode, float start, int sel, int keep);
+void func_002A8578(void *obj, int motA, int motB, int mode, float start, int sel, int keep);
 
 #endif

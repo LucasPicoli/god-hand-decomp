@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int irand(void);
 extern int moveMotion(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
@@ -286,7 +286,7 @@ void func_00213710(void *a0)
                 cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x64, p, 0, 0, 0, 0);
             }
         }
-        func_002A8578(p, s2v, s0v, 0.0f, 10, gb, 0);
+        func_002A8578(p, s2v, s0v, 10, 0.0f, gb, 0);
         *(int *)(p + 0x5F0) = 0x5A;
         *(int *)(p + 0x5F4) = (int)((unsigned int)irand() % 60) + 0x78;
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;

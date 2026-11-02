@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int irand(void);
 extern int GetSeqSEBase(void *a0);
@@ -54,8 +55,6 @@ extern char D_00462FC0[];
 
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f,
                               int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5,
-                          int a6);
 
 /* Phase machine on the step byte, 14 case labels. Calls func_002A8578, cSnd_SeCall_2CBA48,
  * GetSeqSEBase, cGameObj_SetTgtTurn, moveMotion, cObjBase_addNullSpeed_Rotation and 16 more. */
@@ -94,7 +93,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             char *b = *(char **)(s1 + 0x304);
 
             *(char *)(s1 + 0x1864) = 0;
-            func_002A8578(s1, EM_RES_REC((int)b, 0x10C0), EM_RES_REC((int)b, 0x10C8), 0.0f, 0xA, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x10C0), EM_RES_REC((int)b, 0x10C8), 0xA, 0.0f, 0,
                           0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0xA), s1, 0, 0, 0, 0);
             *(float *)(s1 + 0x600) = 150.0f;
@@ -123,7 +122,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
         case 2: {
             char *b = *(char **)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC((int)b, 0x1A98), EM_RES_REC((int)b, 0x1A9C), 0.0f, 0xA, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1A98), EM_RES_REC((int)b, 0x1A9C), 0xA, 0.0f, 0,
                           0);
             {
                 char *g = (char *)&D_005864F0;
@@ -199,7 +198,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
                 Obj293_OrByte_5A4(g, 2);
             }
             b = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)b, 0x1AA0), EM_RES_REC((int)b, 0x1AA4), 0.0f, 3, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AA0), EM_RES_REC((int)b, 0x1AA4), 3, 0.0f, 0,
                           0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
@@ -221,7 +220,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
         case 8: {
             char *b = *(char **)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC((int)b, 0x1AB0), EM_RES_REC((int)b, 0x1AB4), 0.0f, 0, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AB0), EM_RES_REC((int)b, 0x1AB4), 0, 0.0f, 0,
                           0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
@@ -236,7 +235,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
         case 10: {
             char *b = *(char **)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC((int)b, 0x1AC0), EM_RES_REC((int)b, 0x1AC4), 0.0f, 0, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AC0), EM_RES_REC((int)b, 0x1AC4), 0, 0.0f, 0,
                           0);
             *(float *)(s1 + 0x604) = 1.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -296,7 +295,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             *(float *)(s1 + 0x104) = *(float *)(g + 0x59C) + 3.14159274f;
             *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
             b = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)b, 0x1AD0), EM_RES_REC((int)b, 0x1AD4), 0.0f, 0, 0,
+            func_002A8578(s1, EM_RES_REC((int)b, 0x1AD0), EM_RES_REC((int)b, 0x1AD4), 0, 0.0f, 0,
                           0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }

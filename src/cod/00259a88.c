@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern float fRand0_1(void);
 extern int irand(void);
@@ -30,8 +31,6 @@ extern unsigned char D_005FEE00[];
 
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f,
                                int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5,
-                          int a6);
 
 
 
@@ -295,7 +294,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             if (*(unsigned char *)(s1 + 0x17C1) != 0) {
                 *(float *)(s1 + 0x600) = 1.5f;
             }
-            func_002A8578(s1, p1, p2, 0.0f, 3, nb, 0);
+            func_002A8578(s1, p1, p2, 3, 0.0f, nb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
             /* fallthrough */
@@ -312,7 +311,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
         case 2: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x1400), EM_RES_REC(b, 0x1404), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x1400), EM_RES_REC(b, 0x1404), 3, 0.0f, 0, 0);
             *(float *)(s1 + 0x54C) = 10.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
@@ -328,7 +327,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
         case 4: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x1408), EM_RES_REC(b, 0x140C), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x1408), EM_RES_REC(b, 0x140C), 3, 0.0f, 0, 0);
             *(short *)(s1 + 0x568) = 5;
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
@@ -356,7 +355,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
         case 6: {
             int b = *(int *)(s1 + 0x304);
 
-            func_002A8578(s1, EM_RES_REC(b, 0x1410), EM_RES_REC(b, 0x1414), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x1410), EM_RES_REC(b, 0x1414), 3, 0.0f, 0, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }
             /* fallthrough */
@@ -387,7 +386,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
                     Obj1D00_SetState_7_E_a1(o, 0);
                 }
             }
-            func_002A8578(s1, p1, p2, 0.0f, 3, 0, 0);
+            func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
             *(float *)(s1 + 0x54C) = 10.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
             /* fallthrough */
@@ -402,7 +401,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             int b = *(int *)(s1 + 0x304);
             char *o;
 
-            func_002A8578(s1, EM_RES_REC(b, 0x2F94), EM_RES_REC(b, 0x2F98), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x2F94), EM_RES_REC(b, 0x2F98), 3, 0.0f, 0, 0);
             o = *(char **)(s1 + 0x708);
             if (o != 0) {
                 Obj1D00_SetState_7_14(o);
@@ -422,7 +421,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             int b = *(int *)(s1 + 0x304);
             char *o;
 
-            func_002A8578(s1, EM_RES_REC(b, 0x2F84), EM_RES_REC(b, 0x2F88), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x2F84), EM_RES_REC(b, 0x2F88), 3, 0.0f, 0, 0);
             *(short *)(s1 + 0x568) = 5;
             o = *(char **)(s1 + 0x708);
             if (o != 0) {
@@ -473,7 +472,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             int b = *(int *)(s1 + 0x304);
             char *o;
 
-            func_002A8578(s1, EM_RES_REC(b, 0x2F8C), EM_RES_REC(b, 0x2F90), 0.0f, 3, 0, 0);
+            func_002A8578(s1, EM_RES_REC(b, 0x2F8C), EM_RES_REC(b, 0x2F90), 3, 0.0f, 0, 0);
             o = *(char **)(s1 + 0x708);
             if (o != 0) {
                 Obj1D00_SetState_7_12(o);

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -39,7 +39,7 @@ void func_001156D8(void *a0)
         Obj0000_Clear_Fields_640_648_124E58(s1);
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x670);
         t = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(t + 0x4C4) + t, *(int *)(t + 0x4C8) + t, 0.0f, 0, 0, 0);
+        func_002A8578(s1, *(int *)(t + 0x4C4) + t, *(int *)(t + 0x4C8) + t, 0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */
@@ -71,7 +71,7 @@ void func_001156D8(void *a0)
         }
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x670);
         t = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(t + 0x4D4) + t, *(int *)(t + 0x4D8) + t, 0.0f, 0, 0, 0);
+        func_002A8578(s1, *(int *)(t + 0x4D4) + t, *(int *)(t + 0x4D8) + t, 0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */
@@ -160,7 +160,7 @@ void func_001120A8(void *a0)
         cCoreSave_useGodItem(&D_00569B70);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x870) + t, *(int *)(t + 0x874) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         *(int *)(s1 + 0x15B0) = 1;
         (*(unsigned char *)(s1 + 0x2F6))++;

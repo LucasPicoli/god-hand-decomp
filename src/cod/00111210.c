@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
@@ -46,7 +46,7 @@ void func_001142E0(void *a0)
         *(short *)(s0 + 0x5E2) = 0;
         Obj0000_Clear_Fields_640_648_124E58(s0);
         v0 = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x18) + (int)v0, *(int *)(v0 + 0x1C) + (int)v0, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x18) + (int)v0, *(int *)(v0 + 0x1C) + (int)v0, 3, 0.0f, 0, 0);
         Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, 5, 0x17, 0x2A, 0, 0xA);
         Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, 5, 0x17, 0x2A, 0, 0xA);
         *(char *)(s0 + 0x1684) = 1;
@@ -116,7 +116,7 @@ void func_0011AAA0(void *a0)
             }
             break;
         }
-        func_002A8578(s1, p1, p2, 0.0f, 1, 0, 0);
+        func_002A8578(s1, p1, p2, 1, 0.0f, 0, 0);
         if (irand() & 1) {
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
         } else {
@@ -270,7 +270,7 @@ void func_00111210(void *a0)
         t = *(int *)(s1 + 0x304);
         *(char *)(s1 + 0x1684) = 1;
         func_002A8578(s1, *(int *)(t + 0x19C) + t, *(int *)(t + 0x1A0) + t,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         func_00129578(s1);
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
         (*(unsigned char *)(s1 + 0x2F6))++;

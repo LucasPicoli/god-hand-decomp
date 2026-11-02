@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
@@ -54,7 +54,7 @@ __attribute__((section(".text.func_002284C8"))) void func_002284C8(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0x1E84), EM_RES_REC((int)v0, 0x1E88), 0.0f, 3, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0x1E84), EM_RES_REC((int)v0, 0x1E88), 3, 0.0f, gb,
                           0);
             *(int *)(s1 + 0x5FC) = 0;
             *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -85,7 +85,7 @@ __attribute__((section(".text.func_002284C8"))) void func_002284C8(cEm00 *self)
                 char *v1 = *(char **)(s1 + 0x304);
                 a2v = EM_RES_REC((int)v1, 0x1E94);
             }
-            func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
             *(int *)(s1 + 0x5F0) = 0xF;
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
@@ -172,7 +172,7 @@ __attribute__((section(".text.func_002284C8"))) void func_002284C8(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0x1E98), EM_RES_REC((int)v0, 0x1E9C), 0.0f, 3, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0x1E98), EM_RES_REC((int)v0, 0x1E9C), 3, 0.0f, gb,
                           0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }

@@ -2,9 +2,9 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void ReleaseObj(void *a0);
 extern void func_00275DA8(void *a0);
@@ -61,7 +61,7 @@ __attribute__((section(".text.func_00247E60"))) void func_00247E60(cEm00 *self)
             p2 = EM_RES_REC(b, 0x38C4);
             self->emFlags2 = self->emFlags2 | 0x20000000;
             *(char *)((char *)self + 0x186C) = 2;
-            func_002A8578(self, p1, p2, 0.0f, 10, t0, 0);
+            func_002A8578(self, p1, p2, 10, 0.0f, t0, 0);
             self->unk1768 = 600.0f;
             if ((void *)self->unk744 != 0) {
                 ReleaseObj((void *)self->unk744);

@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern int func_002DDAB0(void *a0, int a1, float f);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cOmBase_dieCommon(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -34,7 +34,7 @@ void func_00277C48(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x5C) + v0, *(int *)(v0 + 0x60) + v0, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x5C) + v0, *(int *)(v0 + 0x60) + v0, 3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s0) != 0) {
@@ -67,7 +67,7 @@ void func_00246F40(void *a0)
     case 0:
         t = Obj0000_Get_Byte_17C3_NZ_2_276468(s0);
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0xC34) + v0, *(int *)(v0 + 0xC38) + v0, 80.0f, 10, t & 0xFFFF, 0);
+        func_002A8578(s0, *(int *)(v0 + 0xC34) + v0, *(int *)(v0 + 0xC38) + v0, 10, 80.0f, t & 0xFFFF, 0);
         *(int *)(s0 + 0x5B4) = 0x1869F;
         func_0026F120(a0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
@@ -95,7 +95,7 @@ void func_00102A80(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x1C) + v0, *(int *)(v0 + 0x20) + v0, 0.0f, 10, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x1C) + v0, *(int *)(v0 + 0x20) + v0, 10, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (*(unsigned char *)(s1 + 0x61F) != 0) {
@@ -164,7 +164,7 @@ void func_00258C40(void *a0)
         }
         break;
         }
-        func_002A8578(s0, a, c, 0.0f, 10, Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF, 0);
+        func_002A8578(s0, a, c, 10, 0.0f, Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s0) != 0) {
@@ -206,7 +206,7 @@ void func_00246088(void *a0)
         v = *(char **)(p + 0x304);
         s0v = *(int *)(v + 0xBCC) + (int)v;
         s1v = *(int *)(v + 0xBD4) + (int)v;
-        func_002A8578(p, s0v, s1v, 0.0f, 10, Obj0000_Get_Byte_17C3_NZ_2_276468(p) & 0xFFFF, 0);
+        func_002A8578(p, s0v, s1v, 10, 0.0f, Obj0000_Get_Byte_17C3_NZ_2_276468(p) & 0xFFFF, 0);
         *(short *)(p + 0x568) = 3;
         *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
     case 1:
@@ -239,10 +239,10 @@ void func_00110E98(void *a0)
         func_00124540(s0, 4);
         if (*(int *)(s0 + 0x6A0) != 0) {
             v = *(char **)(s0 + 0x304);
-            func_002A8578(*(void **)(s0 + 0x6A0), *(int *)(v + 0x37C) + (int)v, *(int *)(v + 0x398) + (int)v, 0.0f, 3, 0, 0);
+            func_002A8578(*(void **)(s0 + 0x6A0), *(int *)(v + 0x37C) + (int)v, *(int *)(v + 0x398) + (int)v, 3, 0.0f, 0, 0);
         }
         v = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v + 0x364) + (int)v, *(int *)(v + 0x368) + (int)v, 0.0f, 3, 0, 0);
+        func_002A8578(s0, *(int *)(v + 0x364) + (int)v, *(int *)(v + 0x368) + (int)v, 3, 0.0f, 0, 0);
         *(int *)(s0 + 0x15B0) = 1;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:

@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -50,7 +50,7 @@ void func_001158E8(void *a0)
         }
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x670);
         t = *(int *)(s1 + 0x304);
-        func_002A8578(s1, *(int *)(t + 0x4CC) + t, *(int *)(t + 0x4D0) + t, 0.0f, 0, 0, 0);
+        func_002A8578(s1, *(int *)(t + 0x4CC) + t, *(int *)(t + 0x4D0) + t, 0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */
@@ -93,7 +93,7 @@ void func_001158E8(void *a0)
         int p1 = *(int *)(t + 0x4D4) + t;
         int p2 = *(int *)(t + 0x4D8) + t;
         SetEffectParts(0, 0x2D, s1, 0, 0.0f, 0.0f, 0.0f, 1.0f, -1);
-        func_002A8578(s1, p1, p2, 0.0f, 0, 0, 0);
+        func_002A8578(s1, p1, p2, 0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */

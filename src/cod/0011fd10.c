@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/motion.h"
 
 extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
@@ -14,7 +15,6 @@ extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern unsigned int irand(void);
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern void func_002DB7A8(void);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
@@ -83,7 +83,7 @@ void func_0011FD10(void *a0)
             break;
         }
         }
-        func_002A8578(s0, f1, f2, 0.0f, 0, 0, 0);
+        func_002A8578(s0, f1, f2, 0, 0.0f, 0, 0);
         *(short *)(s0 + 0x56A) = 5;
         *(short *)(s0 + 0x56E) = 0xF;
         *(short *)(s0 + 0x56C) = 0;
@@ -126,7 +126,7 @@ void func_0011FD10(void *a0)
                     break;
                 }
                 }
-                func_002A8578(s0, f1, f2, 0.0f, 0, 0, 0);
+                func_002A8578(s0, f1, f2, 0, 0.0f, 0, 0);
                 moveMotion(s0);
                 cObjBase_addNullSpeed_Rotation(s0, 1.0f);
                 cObjBase_addNullSpeed(s0, 1.0f);
@@ -276,7 +276,7 @@ void func_0011FD10(void *a0)
             g1 = *(int *)(pb + 0x810) + pb;
             g2 = *(int *)(pb + 0x814) + pb;
         }
-        func_002A8578(s0, g1, g2, 0.0f, 3, 0, 0); }
+        func_002A8578(s0, g1, g2, 3, 0.0f, 0, 0); }
         *(short *)(s0 + 0x56E) = 0xF;
         *(float *)(s0 + 0x54C) = 2.0f;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;

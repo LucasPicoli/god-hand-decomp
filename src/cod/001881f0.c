@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned int Rnd(void);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -39,7 +39,7 @@ void func_00278C30(void *a0)
         }
         v0 = *(char **)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x2F7) = 1;
-        func_002A8578(s0, *(int *)(v0 + 0xC) + (int)v0, *(int *)(v0 + 0x10) + (int)v0, f, 5, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0xC) + (int)v0, *(int *)(v0 + 0x10) + (int)v0, 5, f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) += 1;
     }
         /* fallthrough */
@@ -55,7 +55,7 @@ void func_00278C30(void *a0)
         break;
     case 2: {
         char *v0 = *(char **)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 0.0f, 5, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 5, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) += 1;
     }
         /* fallthrough */

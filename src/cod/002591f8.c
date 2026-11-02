@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -6,7 +7,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -172,7 +172,7 @@ __attribute__((section(".text.func_002591F8"))) void func_002591F8(cEm00 *self)
                     s1 = EM_RES_REC(b, 0x13D4);
                 } break;
             }
-            func_002A8578(s3, s2, s1, 0.0f, 5, nb, 0);
+            func_002A8578(s3, s2, s1, 5, 0.0f, nb, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(s3), s3, 0, 0, 0, 0);
             *(int *)(s3 + 0x5F0) = 0;
             {

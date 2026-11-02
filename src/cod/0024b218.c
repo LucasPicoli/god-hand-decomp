@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_0025FCF8"))) void func_0025FCF8(cEm00 *self)
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
             o = EM_RES_REC(b, 0x108C);
-            func_002A8578(s1, o, o, 0.0f, 3, nb, 0);
+            func_002A8578(s1, o, o, 3, 0.0f, nb, 0);
             cDamageUnit_SetDamageCollActive(self, 0);
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 8), s1, 0, 0, 0, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -92,7 +92,7 @@ __attribute__((section(".text.func_0024B218"))) void func_0024B218(cEm00 *self)
                 if (self->sub2 != 0)
                     ClearBytes2F4To2F7_283170((char *)self->sub2);
             }
-            func_002A8578(self, a1v, a2v, 0.0f, 0xA, t0, 0);
+            func_002A8578(self, a1v, a2v, 0xA, 0.0f, t0, 0);
         }
             self->step++;
         case 1:

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -24,7 +24,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
             *(int *)((char *)self + 0x17D0) = irand() % 5;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x1934), EM_RES_REC(w, 0x1938), 0.0f, 0xA, r & 0xFFFF,
+            func_002A8578(self, EM_RES_REC(w, 0x1934), EM_RES_REC(w, 0x1938), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->step++;
         }
@@ -40,7 +40,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
             int w;
             int r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x193C), EM_RES_REC(w, 0x1940), 0.0f, 0xA, r & 0xFFFF,
+            func_002A8578(self, EM_RES_REC(w, 0x193C), EM_RES_REC(w, 0x1940), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->stepArg = irand() & 1;
             self->step++;
@@ -71,7 +71,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
             int w;
             int r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
             w = self->resource;
-            func_002A8578(self, EM_RES_REC(w, 0x1944), EM_RES_REC(w, 0x1948), 0.0f, 0xA, r & 0xFFFF,
+            func_002A8578(self, EM_RES_REC(w, 0x1944), EM_RES_REC(w, 0x1948), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->step++;
         }

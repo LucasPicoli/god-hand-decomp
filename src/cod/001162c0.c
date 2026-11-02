@@ -5,7 +5,7 @@ extern void cEmManage_SetPlCatched(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
@@ -69,7 +69,7 @@ void func_001162C0(void *a0) {
         func_0012B928(s1);
         b = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(b + 0x8E0) + b, *(int *)(b + 0x8E4) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         moveMotion(s1);
         cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xF5, s1, 0, 0, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -95,7 +95,7 @@ void func_001162C0(void *a0) {
         int b = *(int *)(s1 + 0x304);
 
         func_002A8578(s1, *(int *)(b + 0x8E8) + b, *(int *)(b + 0x8EC) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s1 + 0x568) = 10;
         *(float *)(s1 + 0x15C0) = 30.0f;
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -204,7 +204,7 @@ void func_001162C0(void *a0) {
         int b = *(int *)(s1 + 0x304);
 
         func_002A8578(s1, *(int *)(b + 0x8F8) + b, *(int *)(b + 0x8FC) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         cSnd_DieDemoStart(D_005FEE00);
         func_0012C348(s1, 2);
         cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xF7, s1, 0, 0, 0, 0);
@@ -224,7 +224,7 @@ void func_001162C0(void *a0) {
         int b = *(int *)(s1 + 0x304);
 
         func_002A8578(s1, *(int *)(b + 0x8F0) + b, *(int *)(b + 0x8F4) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
     }
         /* fallthrough */

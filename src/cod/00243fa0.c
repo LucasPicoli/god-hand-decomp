@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f);
 extern int moveMotion(void *a0);
@@ -37,7 +37,7 @@ void func_00243FA0(char *s0)
     case 0:
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x24B4) + b, *(int *)(b + 0x24B8) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         o = Getplayer();
@@ -51,7 +51,7 @@ void func_00243FA0(char *s0)
     case 2:
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x24C4) + b, *(int *)(b + 0x24C8) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(float *)(s0 + 0x600) = 0.05f;
         *(float *)(s0 + 0x604) = 150.0f;
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
@@ -85,7 +85,7 @@ void func_00243FA0(char *s0)
     case 4:
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x24CC) + b, *(int *)(b + 0x24D0) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 5:
         if (moveMotion(s0) != 0) {
@@ -105,7 +105,7 @@ void func_00243FA0(char *s0)
     case 6:
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x24BC) + b, *(int *)(b + 0x24C0) + b,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 7:
         o = Getplayer();

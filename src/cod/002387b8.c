@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* func_002387B8 — runs the 0x1346C8 handler and sets +0x54C=3.0f, then a +0x2F6
  * phase machine (record fields 0x36D0/0x36D4, mode 0); phase 0 also clears +0x1864.
  * moveMotion-done reset re-arms 0x2F5=0x6C; 1.0f vector tail.  sn-2.95.3-136. */
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
@@ -20,7 +20,7 @@ __attribute__((section(".text.func_002387B8"))) void func_002387B8(cEm00 *self)
         case 0:
             res = self->resource;
             self->unk1864 = 0;
-            func_002A8578(self, EM_RES_REC(res, 0x36D0), EM_RES_REC(res, 0x36D4), 0.0f, 0, 0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x36D0), EM_RES_REC(res, 0x36D4), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:
             if (moveMotion(self) != 0) {

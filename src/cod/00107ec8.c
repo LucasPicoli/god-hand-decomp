@@ -6,7 +6,7 @@ extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void cPlBase__dtor(void *a0, void *a1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 
 __attribute__((section(".text.cCockMess_SetMessNo")))
 void cCockMess_SetMessNo(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
@@ -53,7 +53,7 @@ void StepPlayerSubscreenMode_10B780(void *a0) {
     switch (st) {
     case 0:
         base = *(int*)((char*)a0 + 0x304);
-        func_002A8578(a0, *(int*)((char*)base + 0x28) + base, *(int*)((char*)base + 0x2C) + base, 0.0f, 0xA, 0, 0);
+        func_002A8578(a0, *(int*)((char*)base + 0x28) + base, *(int*)((char*)base + 0x2C) + base, 0xA, 0.0f, 0, 0);
         *(unsigned char*)((char*)a0 + 0x2F6) = *(unsigned char*)((char*)a0 + 0x2F6) + 1;
         /* fallthrough */
     case 1:

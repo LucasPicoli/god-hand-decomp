@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
@@ -36,7 +36,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
             {
                 int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
                 res = self->resource;
-                func_002A8578(self, EM_RES_REC(res, 0xBE8), EM_RES_REC(res, 0xBEC), 0.0f, 0xA, t0,
+                func_002A8578(self, EM_RES_REC(res, 0xBE8), EM_RES_REC(res, 0xBEC), 0xA, 0.0f, t0,
                               0);
             }
             {
@@ -59,7 +59,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
         case 2: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 0.0f, 3, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 3, 0.0f, t0, 0);
         }
             self->step = self->step + 1;
         case 3:
@@ -70,7 +70,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
         case 4: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 64.0f, 0, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 0, 64.0f, t0, 0);
         }
             self->step = self->step + 1;
         case 5:

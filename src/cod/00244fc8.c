@@ -1,11 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_00462FC0;
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern float Adjust_theta(float f12);
@@ -96,7 +96,7 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
                     break;
             }
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1);
-            func_002A8578(s1, s2v, s0v, 0.0f, 5, gb & 0xFFFF, 0);
+            func_002A8578(s1, s2v, s0v, 5, 0.0f, gb & 0xFFFF, 0);
             moveMotion(s1);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
@@ -150,7 +150,7 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
                     s0v = EM_RES_REC(b, 0x18B0);
                 } break;
             }
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             if ((irand() & 1) != 0) {
                 *(float *)(s1 + 0x600) = 0.0099999998f;
             } else {
@@ -217,7 +217,7 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
                     s0v = EM_RES_REC(b, 0x18C0);
                 } break;
             }
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
         case 5:
@@ -273,7 +273,7 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
                     s0v = EM_RES_REC(b, 0x18B8);
                 } break;
             }
-            func_002A8578(s1, s2v, s0v, 0.0f, 3, gb, 0);
+            func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
         case 7:

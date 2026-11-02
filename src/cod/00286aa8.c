@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned char D_005864F0[];
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
@@ -71,7 +71,7 @@ __attribute__((section(".text.func_00286AA8"))) void func_00286AA8(cEm00 *self)
                     bb = EM_RES_REC(b, 0x14C);
                 } break;
             }
-            func_002A8578(self, a, bb, 0.0f, 0xA, 0, 0);
+            func_002A8578(self, a, bb, 0xA, 0.0f, 0, 0);
             {
                 float *dst = (float *)(&self->home);
                 float *src = (float *)self->pos;

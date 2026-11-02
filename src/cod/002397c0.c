@@ -2,7 +2,7 @@
 
 extern int Getplayer(void);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void func_002DB770(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -39,7 +39,7 @@ void func_002397C0(void *a0)
         int w = *(int *)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(w + 0x3C44) + w, *(int *)(w + 0x3C48) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
@@ -79,7 +79,7 @@ void func_002397C0(void *a0)
         int w = *(int *)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(w + 0x3C4C) + w, *(int *)(w + 0x3C50) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     /* fallthrough */
@@ -118,7 +118,7 @@ void func_002397C0(void *a0)
         int w = *(int *)(s0 + 0x304);
         *(unsigned char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(w + 0x3C54) + w, *(int *)(w + 0x3C58) + w,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     /* fallthrough */
@@ -136,7 +136,7 @@ void func_002397C0(void *a0)
     case 6: {
         int w = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(w + 0x3C5C) + w, *(int *)(w + 0x3C60) + w,
-                      0.0f, 3, 0, 0);
+                      3, 0.0f, 0, 0);
         *(int *)(s0 + 0x5F0) = 1;
         *(float *)(s0 + 0x54C) = 5.0f;
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;

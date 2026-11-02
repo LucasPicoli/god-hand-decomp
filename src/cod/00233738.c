@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern int irand(void);
 extern void *Getplayer(void);
@@ -62,7 +62,7 @@ __attribute__((section(".text.func_00233738"))) void func_00233738(cEm00 *self)
                         char *v1 = *(char **)(s1 + 0x304);
                         a2v = EM_RES_REC((int)v1, 0x4A0);
                     }
-                    func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+                    func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
                     *(int *)(s1 + 0x5F0) = 0x14;
                     StoreMotionParamsBoth_2609A8(self, 0x3C, 0x13, 0x3B, 0, 0x111);
                     if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
@@ -78,7 +78,7 @@ __attribute__((section(".text.func_00233738"))) void func_00233738(cEm00 *self)
                         char *v1 = *(char **)(s1 + 0x304);
                         a2v = EM_RES_REC((int)v1, 0x4A8);
                     }
-                    func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+                    func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
                     *(int *)(s1 + 0x5F0) = 0x14;
                     if (*(unsigned char *)(s1 + 0x2F7) != 0) {
                         *(int *)(s1 + 0x5F0) = 0xA;
@@ -135,7 +135,7 @@ __attribute__((section(".text.func_00233738"))) void func_00233738(cEm00 *self)
                         char *v1 = *(char **)(s1 + 0x304);
                         a2v = EM_RES_REC((int)v1, 0x478);
                     }
-                    func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
+                    func_002A8578(s1, a1v, a2v, 3, 0.0f, gb, 0);
                     *(int *)(s1 + 0x5F0) = 0x14;
                     m = *(unsigned short *)(*(char **)(s1 + 0x6EC) + 0x2FE);
                     if (m == 0x368)

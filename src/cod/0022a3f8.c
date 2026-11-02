@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -54,7 +54,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0xE0C), EM_RES_REC((int)v0, 0xE10), 0.0f, 0xA, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0xE0C), EM_RES_REC((int)v0, 0xE10), 0xA, 0.0f, gb,
                           0);
             StoreMotionParamsBoth_2609A8(self, 5, 0x23, 0x3D, 0, 0xF0);
             *(int *)(s1 + 0x5FC) = 0;
@@ -86,7 +86,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
             char *v0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0xE14), EM_RES_REC((int)v0, 0xE18), 0.0f, 0, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0xE14), EM_RES_REC((int)v0, 0xE18), 0, 0.0f, gb,
                           0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
@@ -170,7 +170,7 @@ __attribute__((section(".text.func_0022A3F8"))) void func_0022A3F8(cEm00 *self)
             char *v0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             v0 = *(char **)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC((int)v0, 0xE1C), EM_RES_REC((int)v0, 0xE20), 0.0f, 0, gb,
+            func_002A8578(s1, EM_RES_REC((int)v0, 0xE1C), EM_RES_REC((int)v0, 0xE20), 0, 0.0f, gb,
                           0);
             *(int *)(s1 + 0x5F4) = 0;
             *(float *)(s1 + 0x5D0) = 99999.9f;

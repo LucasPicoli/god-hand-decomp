@@ -4,7 +4,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -32,7 +32,7 @@ void func_002373B0(void *a0)
         *(char *)(s0 + 0x1864) = 0;
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x20D8) + b, *(int *)(b + 0x20DC) + b,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s0 + 0x56E) = 0x3C;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
         case 1: default: *(short *)(s0 + 0x568) = 0xF; break;

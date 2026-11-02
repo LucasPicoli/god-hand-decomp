@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern int irand(void);
@@ -1068,7 +1068,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                     s0v = EM_RES_REC(b, 0x450);
                 }
             }
-            func_002A8578(s1, s2v, s0v, fv, 0, gb, 0);
+            func_002A8578(s1, s2v, s0v, 0, fv, gb, 0);
             if ((p1 ^ 0x4E2) != 0) {
                 InitRenderStruct_2A8608(s1, p1, p2, 0, 2, 0);
             }
@@ -1625,7 +1625,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                     }
                     break;
             }
-            func_002A8578(s1, s2v, s0v, 0.0f, 10, gb, 0);
+            func_002A8578(s1, s2v, s0v, 10, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 3:
             if (*(unsigned char *)(s1 + 0x1650) == 5) {

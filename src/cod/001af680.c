@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cOmSub_initMove1_pos(void *a0, void *a1, int a2, int a3, void *t0, float f12, float f13);
 extern void cOmSub_setVibration(void *a0, int a1, int a2, float f12, float f13, float f14);
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_001AF680"))) void func_001AF680(cEm00 *self)
             v0 = *(int *)(s1 + 0x304);
             *(unsigned char *)(s1 + 0x2F6) = 1;
             *(unsigned char *)(s1 + 0x2F7) = 0;
-            func_002A8578(s1, EM_RES_REC(v0, 0x10), 0, z, 0, 0, 0);
+            func_002A8578(s1, EM_RES_REC(v0, 0x10), 0, 0, z, 0, 0);
             SetEffect(0, 0x50, s1, 0, -1, 0xFFFFFFFFU);
             *(int *)(s1 + 0xAF4) = cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x107, s1, 0, 0, 0, 0);
             break;
@@ -42,7 +42,7 @@ __attribute__((section(".text.func_001AF680"))) void func_001AF680(cEm00 *self)
             int v0;
             if (moveMotion(s1) != 0) {
                 v0 = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(v0, 0x10), 0, 0.0f, 0, 0, 0);
+                func_002A8578(s1, EM_RES_REC(v0, 0x10), 0, 0, 0.0f, 0, 0);
             }
             if (cOmSub_move(s1 + 0x990) != 0)
                 break;

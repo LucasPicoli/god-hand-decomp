@@ -2,10 +2,10 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
@@ -98,17 +98,17 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
                 case 0x222:
                 default: {
                     int v0 = *(int *)(s1 + 0x304);
-                    func_002A8578(s1, EM_RES_REC(v0, 0x1D08), EM_RES_REC(v0, 0x1D0C), 0.0f, 3, nb,
+                    func_002A8578(s1, EM_RES_REC(v0, 0x1D08), EM_RES_REC(v0, 0x1D0C), 3, 0.0f, nb,
                                   0);
                 } break;
                 case 0x223: {
                     int v0 = *(int *)(s1 + 0x304);
-                    func_002A8578(s1, EM_RES_REC(v0, 0x2E4C), EM_RES_REC(v0, 0x2E50), 0.0f, 3, nb,
+                    func_002A8578(s1, EM_RES_REC(v0, 0x2E4C), EM_RES_REC(v0, 0x2E50), 3, 0.0f, nb,
                                   0);
                 } break;
                 case 0x209: {
                     int v0 = *(int *)(s1 + 0x304);
-                    func_002A8578(s1, EM_RES_REC(v0, 0x34F4), EM_RES_REC(v0, 0x34F8), 0.0f, 3, nb,
+                    func_002A8578(s1, EM_RES_REC(v0, 0x34F4), EM_RES_REC(v0, 0x34F8), 3, 0.0f, nb,
                                   0);
                 } break;
             }
@@ -124,7 +124,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             {
                 int v0 = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(v0, 0x1D78), EM_RES_REC(v0, 0x1D7C), 0.0f, 0, nb, 0);
+                func_002A8578(s1, EM_RES_REC(v0, 0x1D78), EM_RES_REC(v0, 0x1D7C), 0, 0.0f, nb, 0);
             }
             *(unsigned char *)(s1 + 0x616) = 1;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -162,7 +162,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             {
                 int v0 = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(v0, 0x2EE4), EM_RES_REC(v0, 0x2EE8), 0.0f, 0, nb, 0);
+                func_002A8578(s1, EM_RES_REC(v0, 0x2EE4), EM_RES_REC(v0, 0x2EE8), 0, 0.0f, nb, 0);
             }
             SetEffect(0x7B, 0xB9, s1, 0, -1, 0xFFFFFFFFu);
             *(unsigned char *)(s1 + 0x616) = 1;
@@ -184,7 +184,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             {
                 int v0 = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(v0, 0x3418), EM_RES_REC(v0, 0x341C), 0.0f, 3, nb, 0);
+                func_002A8578(s1, EM_RES_REC(v0, 0x3418), EM_RES_REC(v0, 0x341C), 3, 0.0f, nb, 0);
             }
             *(unsigned char *)(s1 + 0x616) = 1;
             *(float *)(s1 + 0x600) = 30.0f;
@@ -203,7 +203,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             {
                 int v0 = *(int *)(s1 + 0x304);
-                func_002A8578(s1, EM_RES_REC(v0, 0x3420), EM_RES_REC(v0, 0x3424), 0.0f, 3, nb, 0);
+                func_002A8578(s1, EM_RES_REC(v0, 0x3420), EM_RES_REC(v0, 0x3424), 3, 0.0f, nb, 0);
             }
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 9:

@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_00747A78;
-extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
@@ -76,111 +76,111 @@ __attribute__((section(".text.func_0028BEC8"))) void func_0028BEC8(cEm00 *self)
                 default:
                 case 0: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x80), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x80), 0, 0, f, 0, 0);
                 } break;
                 case 1: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x84), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x84), 0, 0, f, 0, 0);
                 } break;
                 case 2: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x88), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x88), 0, 0, f, 0, 0);
                 } break;
                 case 3: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x8C), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x8C), 0, 0, f, 0, 0);
                 } break;
                 case 4: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x90), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x90), 0, 0, f, 0, 0);
                 } break;
                 case 5: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x94), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x94), 0, 0, f, 0, 0);
                 } break;
                 case 6: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x98), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x98), 0, 0, f, 0, 0);
                 } break;
                 case 7: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0x9C), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0x9C), 0, 0, f, 0, 0);
                 } break;
                 case 8: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xA0), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xA0), 0, 0, f, 0, 0);
                 } break;
                 case 9: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xA4), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xA4), 0, 0, f, 0, 0);
                 } break;
                 case 10: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xA8), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xA8), 0, 0, f, 0, 0);
                 } break;
                 case 11: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xAC), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xAC), 0, 0, f, 0, 0);
                 } break;
                 case 12: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xB0), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xB0), 0, 0, f, 0, 0);
                 } break;
                 case 13: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xB4), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xB4), 0, 0, f, 0, 0);
                 } break;
                 case 14: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xB8), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xB8), 0, 0, f, 0, 0);
                 } break;
                 case 15: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xBC), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xBC), 0, 0, f, 0, 0);
                 } break;
                 case 16: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xC0), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xC0), 0, 0, f, 0, 0);
                 } break;
                 case 17: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xC4), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xC4), 0, 0, f, 0, 0);
                 } break;
                 case 18: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xC8), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xC8), 0, 0, f, 0, 0);
                 } break;
                 case 19: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xCC), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xCC), 0, 0, f, 0, 0);
                 } break;
                 case 20: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xD0), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xD0), 0, 0, f, 0, 0);
                 } break;
                 case 21: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xD4), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xD4), 0, 0, f, 0, 0);
                 } break;
                 case 22: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xD8), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xD8), 0, 0, f, 0, 0);
                 } break;
                 case 23: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xDC), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xDC), 0, 0, f, 0, 0);
                 } break;
                 case 24: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xE0), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xE0), 0, 0, f, 0, 0);
                 } break;
                 case 25: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xE4), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xE4), 0, 0, f, 0, 0);
                 } break;
                 case 26: {
                     int w = self->resource;
-                    func_002A8578(self, EM_RES_REC(w, 0xE8), 0, f, 0, 0, 0);
+                    func_002A8578(self, EM_RES_REC(w, 0xE8), 0, 0, f, 0, 0);
                 } break;
             }
             self->step++;

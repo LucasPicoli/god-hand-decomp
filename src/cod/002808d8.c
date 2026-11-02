@@ -1,8 +1,8 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void *Getplayer(void);
 extern float SetMotionStep(void *a0, float f);
@@ -27,12 +27,12 @@ __attribute__((section(".text.func_002808D8"))) void func_002808D8(cEm00 *self)
     switch (self->step) {
         case 0:
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0x168), EM_RES_REC(res, 0x16C), 0.0f, 2, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x168), EM_RES_REC(res, 0x16C), 2, 0.0f, t0, 0);
             self->step++;
             goto L_mm;
         case 2:
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0x170), EM_RES_REC(res, 0x174), 0.0f, 2, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x170), EM_RES_REC(res, 0x174), 2, 0.0f, t0, 0);
             self->step++;
         case 1:
         case 3:
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_002808D8"))) void func_002808D8(cEm00 *self)
             break;
         case 4:
             res = self->resource;
-            func_002A8578(self, EM_RES_REC(res, 0x178), EM_RES_REC(res, 0x17C), 0.0f, 2, t0, 0);
+            func_002A8578(self, EM_RES_REC(res, 0x178), EM_RES_REC(res, 0x17C), 2, 0.0f, t0, 0);
             self->step++;
         case 5:
             if (moveMotion(self) != 0) {

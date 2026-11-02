@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern float fRand1_1(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -227,7 +227,7 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
                     break;
             }
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(p);
-            func_002A8578(p, s2v, s1v, fv, 10, gb & 0xFFFF, 0);
+            func_002A8578(p, s2v, s1v, 10, fv, gb & 0xFFFF, 0);
             *(int *)(p + 0x5F0) = 1;
             *(float *)(p + 0x600) = fRand1_1() * 300.0f + 150.0f;
             *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
@@ -275,7 +275,7 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
                 } break;
             }
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(p);
-            func_002A8578(p, s2v, s1v, 0.0f, 10, gb & 0xFFFF, 0);
+            func_002A8578(p, s2v, s1v, 10, 0.0f, gb & 0xFFFF, 0);
             *(int *)(p + 0x5F0) = 1;
             *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
         }

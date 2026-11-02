@@ -3,7 +3,7 @@
 extern int Getplayer(void);
 extern void SetMotionStep(void *a0, float f12);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void func_00281560(int a0, int a1);
 extern void func_00283438(int a0, int a1);
 extern int moveMotion(void *a0);
@@ -56,7 +56,7 @@ void func_0025E248(void *a0)
     case 0: {
         int w = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(w + 0x3E4C) + w, *(int *)(w + 0x3E50) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         if (*(int *)(s0 + 0x748) != 0)
             func_00281560(*(int *)(s0 + 0x748), 0);
         if (*(int *)(s0 + 0x74C) != 0)
@@ -70,7 +70,7 @@ void func_0025E248(void *a0)
     case 2: {
         int w = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(w + 0x3E54) + w, *(int *)(w + 0x3E58) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         if (*(int *)(s0 + 0x748) != 0)
             func_00281560(*(int *)(s0 + 0x748), 1);
         if (*(int *)(s0 + 0x74C) != 0)
@@ -91,7 +91,7 @@ void func_0025E248(void *a0)
     case 4: {
         int w = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(w + 0x3E5C) + w, *(int *)(w + 0x3E60) + w,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         if (*(int *)(s0 + 0x748) != 0)
             func_00281560(*(int *)(s0 + 0x748), 2);
         if (*(int *)(s0 + 0x74C) != 0)

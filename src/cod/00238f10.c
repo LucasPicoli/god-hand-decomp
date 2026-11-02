@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/motion.h"
 
 extern char *Getplayer(void);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -27,7 +27,7 @@ void func_00238F10(void *a0)
 
         *(char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(p + 0x39DC) + p, *(int *)(p + 0x39E0) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(short *)(s0 + 0x56E) = 0xF;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
@@ -83,7 +83,7 @@ void func_00238F10(void *a0)
 
         *(char *)(s0 + 0x1864) = 0;
         func_002A8578(s0, *(int *)(p + 0x39E4) + p, *(int *)(p + 0x39E8) + p,
-                      0.0f, 0, 0, 0);
+                      0, 0.0f, 0, 0);
         *(unsigned int *)(s0 + 0x16D4) &= 0xDFFFFFFFU;
         KillEffect(s0, 1, 2);
         *(short *)(s0 + 0x568) = one;

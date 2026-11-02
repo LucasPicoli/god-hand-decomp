@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -6,7 +7,6 @@ extern unsigned char D_00462FC0[];
 extern unsigned char D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -47,7 +47,7 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
 
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             v1 = (char *)self->resource;
-            func_002A8578(self, EM_RES_REC((int)v1, 0xD70), EM_RES_REC((int)v1, 0xD74), 0.0f, 3, gb,
+            func_002A8578(self, EM_RES_REC((int)v1, 0xD70), EM_RES_REC((int)v1, 0xD74), 3, 0.0f, gb,
                           0);
             self->step += 1;
         }
@@ -123,7 +123,7 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
                 s2v = EM_RES_REC((int)w, 0xD78);
                 s1v = EM_RES_REC((int)w, 0xD7C);
             }
-            func_002A8578(self, s2v, s1v, 0.0f, 3, gb, 0);
+            func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
             *(float *)((char *)self + 0x1744) = 300.0f;
             *(char *)((char *)self + 0x531) = 3;
             *(int *)((char *)self + 0x4A8) = *(int *)((char *)self + 0x4A8) & 0x7FFFFFFF;

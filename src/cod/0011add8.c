@@ -10,7 +10,7 @@ extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
+#include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -141,7 +141,7 @@ void func_0011ADD8(void *a0)
         }
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
-        func_002A8578(s1, s3v, s2v, 0.0f, 2, 0, 0);
+        func_002A8578(s1, s3v, s2v, 2, 0.0f, 0, 0);
         *(int *)(s1 + 0x15B0) = 0;
         *(int *)(s1 + 0x15B4) = 0;
         *(unsigned char *)(s1 + 0x2F6) += 1;
@@ -207,7 +207,7 @@ void func_0011ADD8(void *a0)
             s3v = *(int *)(v0 + 0x174) + (int)v0;
             s2v = *(int *)(v0 + 0x178) + (int)v0;
         }
-        func_002A8578(s1, s3v, s2v, 0.0f, 0xA, 0, 0);
+        func_002A8578(s1, s3v, s2v, 0xA, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) += 1;
     }
         /* fallthrough */

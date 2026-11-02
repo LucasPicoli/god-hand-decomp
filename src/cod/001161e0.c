@@ -2,9 +2,8 @@
 
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
+#include "godhand/motion.h"
 extern void func_00124EC0(void *a0);
-extern void moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -22,7 +21,7 @@ void UpdateAttackState2F6_1161E0(void *a0) {
         func_001268F0(s0);
         Obj0000_Clear_Fields_640_648_124E58(s0);
         v0 = *(int *)(s0 + 0x304);
-        func_002A8578(s0, *(int *)(v0 + 0x8D8) + v0, *(int *)(v0 + 0x8DC) + v0, 0.0f, 0, 0, 0);
+        func_002A8578(s0, *(int *)(v0 + 0x8D8) + v0, *(int *)(v0 + 0x8DC) + v0, 0, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
         /* fallthrough */
     case 1:

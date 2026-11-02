@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern int Obj2B28_SetField34_To1_ReturnZero(void *);
 extern int Obj2B28_SetField34_To2_ReturnZero(void *);
@@ -13,7 +14,6 @@ extern int Obj2B28_CopyU16_8C2_To38_ReturnZero(void *);
 extern int Obj2B28_ReturnZero_FF0(void *);
 extern int Obj2B28_ReturnZero_FF8(void *);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern void Obj2810_ClearState_4(void *a0);
 extern void SetBytes2F4Mode4_283240(void *a0);
 extern int moveMotion(void *a0);

@@ -1,11 +1,10 @@
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cDamageUnit_SetDamageCollActive(void *a0, int a1);
-extern void moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
@@ -60,7 +59,7 @@ __attribute__((section(".text.func_0025FA18"))) void func_0025FA18(cEm00 *self)
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0:
             v0 = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(v0, 0x444), EM_RES_REC(v0, 0x448), 0.0f, 0, 0, 0);
+            func_002A8578(s1, EM_RES_REC(v0, 0x444), EM_RES_REC(v0, 0x448), 0, 0.0f, 0, 0);
             *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) & 0xFDFF;
             *(unsigned char *)(s1 + 0x617) = 1;
             func_0025FE30((cEm00 *)s1, 0x400000, 1);
@@ -84,7 +83,7 @@ __attribute__((section(".text.func_0025FA18"))) void func_0025FA18(cEm00 *self)
             break;
         case 2:
             v0 = *(int *)(s1 + 0x304);
-            func_002A8578(s1, EM_RES_REC(v0, 0x153C), EM_RES_REC(v0, 0x1540), 0.0f, 0, 0, 0);
+            func_002A8578(s1, EM_RES_REC(v0, 0x153C), EM_RES_REC(v0, 0x1540), 0, 0.0f, 0, 0);
             *(unsigned short *)(s1 + 0x3AC) = *(unsigned short *)(s1 + 0x3AC) & 0xFDFF;
             *(unsigned char *)(s1 + 0x617) = 1;
             func_0025FE30((cEm00 *)s1, 0x400000, 1);

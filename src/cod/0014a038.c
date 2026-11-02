@@ -4,9 +4,9 @@
 #include "godhand/cModel.h"
 #include "godhand/cEmSetParam.h"
 #include "godhand/cEma2.h"
+#include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
@@ -56,7 +56,7 @@ void cEm00_stepCircleTargetTurn(cEm00 *self)
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         res = self->resource;
-        func_002A8578(self, EM_RES_REC(res, 0x1560), EM_RES_REC(res, 0x1564), 0.0f, 0, motion, 0);
+        func_002A8578(self, EM_RES_REC(res, 0x1560), EM_RES_REC(res, 0x1564), 0, 0.0f, motion, 0);
         self->timer = 150.0f;
         self->step = self->step + 1;
     case 1:
@@ -91,7 +91,7 @@ void cEm00_stepCircleTargetTurn(cEm00 *self)
     case 2:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         res = self->resource;
-        func_002A8578(self, EM_RES_REC(res, 0x1678), EM_RES_REC(res, 0x167C), 0.0f, 0,
+        func_002A8578(self, EM_RES_REC(res, 0x1678), EM_RES_REC(res, 0x167C), 0, 0.0f,
                       (self->unk5F8 = 1, self->timerC = 1, motion), 0);
         self->step = self->step + 1;
     case 3:

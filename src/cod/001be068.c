@@ -4,8 +4,8 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSaveManager.h"
 #include "godhand/cGameObj.h"
+#include "godhand/motion.h"
 
-extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, int a6);
 extern int moveMotion(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int D_005FEE00[];
