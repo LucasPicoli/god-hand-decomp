@@ -8,7 +8,7 @@
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 
 __attribute__((section(".text.ForwardAnimParamPairByIndex_27EA50")))
-void ForwardAnimParamPairByIndex_27EA50(cEm00 *self, int index) {
+void ForwardAnimParamPairByIndex_27EA50(void *self, int index) {
     int p, q;
 
     switch (index) {

@@ -2053,7 +2053,9 @@ void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DAF0(char *a0) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08")))
-void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(cEm00 *self) {
+void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(void *obj) {
+    cOmBase *self = obj;
+
     self->mode = 0;
     self->phase = 4;
     self->step = 0;
@@ -2061,7 +2063,9 @@ void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(cEm00 *self) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8")))
-void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(cEm00 *self, char stepArg) {
+void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(void *obj, char stepArg) {
+    cOmBase *self = obj;
+
     self->stepArg = stepArg;
     self->phase = 9;
     self->step = 0;

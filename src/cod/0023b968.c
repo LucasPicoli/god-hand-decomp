@@ -472,7 +472,7 @@ __attribute__((section(".text.func_0023B968"))) void func_0023B968(cEm00 *self)
                         s2 = EM_RES_REC(b, 0x372C);
                         s1 = EM_RES_REC(b, 0x3730);
                         if (*(int *)(s3 + 0x744) != 0) {
-                            ForwardAnimParamPairByIndex_27EA50(*(cEm00 **)(s3 + 0x744), 2);
+                            ForwardAnimParamPairByIndex_27EA50(*(void **)(s3 + 0x744), 2);
                         }
                     }
                     break;

@@ -221,19 +221,19 @@ void func_00252070(void *a0)
             default:
                 MOTION_PAIR(0x3368, 0x336C)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 0);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(void *, self, EM_SUBA_OFFSET), 0);
                 }
                 break;
             case 1:
                 MOTION_PAIR(0x3370, 0x3374)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 1);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(void *, self, EM_SUBA_OFFSET), 1);
                 }
                 break;
             case 2:
                 MOTION_PAIR(0x3378, 0x337C)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 2);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(void *, self, EM_SUBA_OFFSET), 2);
                 }
                 break;
             }

@@ -1,8 +1,9 @@
 /* include/godhand/cEm00.h - the enemy object record.
  *
- * cEm00 is the base class of the enemies: every enemy object starts with this
- * record and a derived enemy appends its own state after it. The record is
- * at least 0x1870 bytes. Most of an enemy's behaviour is a phase machine: an
+ * cEm00 is one enemy class. Retail's type info gives it the base cEmBase,
+ * whose base is cGameObj, and cEm63, cEm66 and the other enemies derive from
+ * cEmBase as well. So they share the start of this record, but they are not
+ * cEm00s (a cEm63 is only 0x15E0 bytes). The record is at least 0x1870 bytes. Most of an enemy's behaviour is a phase machine: an
  * AI function reads the speed rate, calls the motion code and switches on
  * the step byte (0x2F6), moving to the next step when a motion ends.
  *
@@ -181,7 +182,7 @@ typedef struct cEm00 {
     void *gotoEffect;                       /* 0x738 effect a goto drops (func_001D0408) */
     char unk73C[0x4];
     int subA;                               /* 0x740 child object started with a variant number */
-    struct cEm00 *unk744;                   /* 0x744 child enemy whose motion pairs follow this one's */
+    void *unk744;                           /* 0x744 child enemy whose motion pairs follow this one's (a cEm66 for kind 0x264) */
     int sub0;                               /* 0x748 child object, its own state bytes follow the enemy's */
     int sub1;                               /* 0x74C */
     int sub2;                               /* 0x750 */
@@ -296,12 +297,14 @@ void StoreMotionParamsBoth_2609A8(cEm00 *self, int time, int kind, int dmgKind, 
 /* The first and the second half of StoreMotionParamsBoth_2609A8. */
 void StoreMotionParams_2609E0(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10);
 void Set_Fields_1884_1894_2609F8(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10);
+/* The next three take any enemy: callers pass cEm00s and their 0x740 and
+ * 0x744 children, which for kind 0x264 are a cEm63 and a cEm66. */
 /* Starts the motion pair index of the enemy resource. */
-void ForwardAnimParamPairByIndex_27EA50(cEm00 *self, int index);
+void ForwardAnimParamPairByIndex_27EA50(void *self, int index);
 /* Restarts the enemy in phase 4 with mode, step and stepArg cleared. */
-void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(cEm00 *self);
+void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(void *self);
 /* Restarts the enemy in phase 9 with stepArg as its step argument. */
-void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(cEm00 *self, char stepArg);
+void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(void *self, char stepArg);
 /* 1 when self can see the player (kept in its flags; some kinds always see). */
 int func_0026F328(cEm00 *self);
 int func_00273960(cEm00 *self, float reach);

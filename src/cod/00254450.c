@@ -645,7 +645,7 @@ void cEm00_hitReaction(void *a0)
                 recA = EM_RES_REC(p, 0x3318);
                 recB = EM_RES_REC(p, 0x331C);
                 if (self->subA != 0) {
-                    Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08((cEm00 *)self->subA);
+                    Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08((void *)self->subA);
                 }
             }
             break;
