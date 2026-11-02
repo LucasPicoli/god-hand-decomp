@@ -3,6 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cSceAtManager.h"
 #include "godhand/cFontTex.h"
+#include "godhand/cMessCommon.h"
 
 extern void *SearchData(void *name, void *table, int which);
 extern void cSndSeVoice_CheckEnd(void *snd, int handle);
@@ -136,12 +137,6 @@ typedef struct ScriptState {
 
 extern ScriptState *D_003C23A4;
 extern unsigned short D_003C23A8;       /* the wait length the last 0x8700 command set */
-
-/* A script command: bit 15 of the first half marks it as a command, the high byte picks the kind. */
-typedef struct ScriptCmd {
-    unsigned short code;        /* 0x00 */
-    unsigned short arg;         /* 0x02 */
-} ScriptCmd;
 
 /* Length in script ticks of one command: 0x1E for plain data, 0 for most kinds, and for the wait kinds a count taken
  * from the command, the script state or the last set length (0x8700 sets it and takes no time). */

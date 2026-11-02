@@ -15,6 +15,8 @@ extern HeapArena D_00754240;
 extern HeapArena D_00754C10;
 extern HeapArena D_00754C20;
 
+void func_002A9528(HeapArena *self);    /* constructor: clears the first two words */
+
 extern void Arena_init(HeapArena *a, int base, int size, int a3);
 
 #endif /* GODHAND_HEAPARENA_H */

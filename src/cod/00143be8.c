@@ -2,7 +2,6 @@
 
 extern void *Getplayer(void);
 extern void cIDBase_restartAnim(void *self);
-extern void cIDBase_move(void *self);
 extern cIDBaseEnt *cIDBase_getIDWork(void *self, int idx);
 
 /* cIDScreen3 setup: restart every display, keep the first entries of each part, reset the colour. */
@@ -21,10 +20,10 @@ void func_00143BE8(cIDScreen3 *obj)
     obj->base.playing = 1;
     cIDBase_restartAnim(a);
     a->base.playing = 1;
-    cIDBase_move(a);
+    cIDBase_move(&a->base);
     cIDBase_restartAnim(b);
     b->base.playing = 1;
-    cIDBase_move(b);
+    cIDBase_move(&b->base);
     cIDBase_restartAnim(c);
     c->base.playing = 1;
     for (; i < IDSCREEN3_ENT_NUM; i++)

@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjSimple.h"
+#include "godhand/sideCounter.h"
 #include "godhand/cSnd.h"
 #include "godhand/cOm1f.h"
 
@@ -160,13 +161,13 @@ void func_002B4598(char *p)
 
 /* cygnus-2.96 */
 __attribute__((section(".text.func_002C53A8")))
-char *func_002C53A8(char *p)
+SideCounter *func_002C53A8(SideCounter *self)
 {
-    *(int *)(p + 0x0) = 0;
-    *(float *)(p + 0x10) = 1.0f;
-    *(unsigned char *)(p + 0x4) = 0;
-    *(unsigned char *)(p + 0x5) = 0;
-    return p;
+    self->list.v = 0;
+    self->unk10 = 1.0f;
+    self->on = 0;
+    self->side = 0;
+    return self;
 }
 
 /* cygnus-2.96 */

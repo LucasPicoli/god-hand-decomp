@@ -123,4 +123,7 @@ typedef struct cEventWork {
 } cEventWork;
 extern cEventWork cEvent_work;
 
+/* An empty stub in retail: it takes the event and a cut number and calls nothing real. */
+int func_00297BA8(void *ev, int cut);
+
 #endif

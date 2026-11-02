@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceMpeg.h"
 
 #include <godhand/sync.h>
 
@@ -9,13 +10,8 @@
 #define D4_MADR  (*(volatile unsigned int *)0x1000B410)
 #define D4_QWC   (*(volatile unsigned int *)0x1000B420)
 
-typedef struct Ch4 {
-    unsigned int qwc;
-    unsigned int madr;
-} Ch4;
-
 __attribute__((section(".text.func_0039C140")))
-int func_0039C140(int chan, Ch4 *p)
+int func_0039C140(int chan, MpegDmaRest *p)
 {
     D_STAT = 0x10;
     if (p->qwc == 0) {
@@ -49,21 +45,13 @@ int func_0039C140(int chan, Ch4 *p)
 #define D3_QWC   (*(volatile unsigned int *)0x1000B020)
 #define IPU_CMD  (*(volatile unsigned int *)0x10002000)
 
-typedef struct Ch3 {
-    volatile int n;
-    int          done;
-    unsigned int rem;
-    unsigned int madr;
-    int          total;
-} Ch3;
-
 __attribute__((section(".text._ch3dmaCSC")))
-int _ch3dmaCSC(int chan, Ch3 *p)
+int _ch3dmaCSC(int chan, MpegCscWork *p)
 {
     D_STAT = 0x8;
     p->n = p->n + 1;
     if (D3_QWC != 0 || (D3_CHCR & 0x100) != 0) {
-        p->done = 1;
+        p->err = 1;
         GH_SYNC();
         GH_EI();
         return 0;

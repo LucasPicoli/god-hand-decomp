@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sif.h"
 
 /* ee-2.9-991111 matched TU. */
 
@@ -22,8 +23,9 @@ extern void  func_003B7898(int usec, void *handler, void *arg);
 extern unsigned int func_003B2CD0(int id, int t, int c, void *rd);
 
 __attribute__((section(".text.func_003B2D10")))
-void func_003B2D10(sceSifRpcPkt *rq, void *q)
+void func_003B2D10(void *packet, void *q)
 {
+    sceSifRpcPkt *rq = packet;
     sceSifRpcPkt *p;
     unsigned int mode;
     void *rbuff;

@@ -2,6 +2,8 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/Slot2.h"
+#include "godhand/cEvent.h"
+#include "godhand/seqNode.h"
 
 extern int func_0();
 extern char *InitFields_1B6E90(void *);
@@ -118,7 +120,7 @@ int func_00297B60(void) {
 }
 
 __attribute__((section(".text.func_00297BA8")))
-int func_00297BA8(void) {
+int func_00297BA8(void *ev, int cut) {
     return func_0(func_0);
 }
 

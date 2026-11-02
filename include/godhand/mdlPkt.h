@@ -13,6 +13,10 @@ typedef union PktQw {
         unsigned int w8;
         unsigned int wC;
     } s;
+    struct {
+        unsigned long data;
+        unsigned long addr;     /* GS register the A+D data goes to */
+    } ad;
 } PktQw;
 
 #define MDL_PKT_VTX_PER_BLOCK  24     /* vertices that share one packet block */
@@ -30,6 +34,7 @@ typedef struct MdlRec {
     int ofsUv;                  /* 0x0C */
     int unk10;
     unsigned short nVtx;        /* 0x14 */
+    unsigned char texNo;        /* 0x16 texture of the record, within the object's bank */
 } MdlRec;
 
 typedef struct PackRef {
@@ -38,9 +43,11 @@ typedef struct PackRef {
 } PackRef;
 
 typedef struct MdlObj {
-    char pad000[0x380];
+    char pad000[0x300];
+    PktQw *pkt[2][16];          /* 0x300 packet start per buffer and record */
     int flags;                  /* 0x380 */
-    char pad384[4];
+    unsigned char texBank;      /* 0x384 first texture of the object */
+    char pad385[3];
     MdlPack *pack;              /* 0x388 */
 } MdlObj;
 
@@ -54,9 +61,13 @@ typedef struct MdlPktBuf {
 } MdlPktBuf;
 
 extern GifTagEnt D_004A5D80[];
+extern MdlPktBuf D_00747BB8[];  /* texture set-up packets, one per texture */
 
 /* A 64-bit packet tag built from a two-word table entry: w0 is the upper word (low 28 bits),
  * w1 the lower word with 0x30000000 set. */
 #define TAG64(e) ((unsigned int)((e).w1 | 0x30000000) | ((unsigned long)((e).w0 & 0x0FFFFFFF) << 32))
+
+/* Record idx's vertex packet body at q; returns the qword after it. buf is not read. */
+PktQw *func_00155800(MdlObj *self, PktQw *q, int idx, int buf);
 
 #endif

@@ -19,7 +19,6 @@ typedef struct UvScrollObj {
 } UvScrollObj;
 
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern void cIDBase_move(cIDBaseObj *self);
 
 __attribute__((section(".text.func_0013EE58")))
 void func_0013EE58(UvScrollObj *self)

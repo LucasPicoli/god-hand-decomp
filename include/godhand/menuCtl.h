@@ -228,4 +228,18 @@ typedef struct SndVoiceRef {
     void *voice;                        /* 0x30 voice handle */
 } SndVoiceRef;
 
+/* A stream's mixer page: the track picked and a left and a right volume per
+ * track, [0] being the whole stream. */
+typedef struct SndMixer {
+    char unk00[2];
+    unsigned char cur;                  /* 0x02 track picked, 0 for the whole stream */
+    char unk03[0x18 - 0x03];
+    short lvol[5];                      /* 0x18 */
+    short rvol[5];                      /* 0x22 */
+    char unk2C[0x30 - 0x2C];
+    SndTrkSet trk;                      /* 0x30 */
+} SndMixer;
+
+int func_00382520(void *ctx, SndMixer *mix, unsigned char right);
+
 #endif /* GODHAND_MENUCTL_H */
