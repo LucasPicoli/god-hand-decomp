@@ -420,6 +420,22 @@ _FP_DEST_RE = re.compile(
 #           Retail holds 62 divide-class sites at pad depth 1, and 10 unmatched
 #           functions (8,536 B) carry that depth at EVERY one of their sites.
 #           A two-nop rule wins on any site it also claims.
+#   fdivdep Two nops before a `div.s` UNLESS the previous real instruction in
+#           the same block is FP arithmetic (`mov`/`cvt` included) that writes
+#           one of the divide's operands; then none.  A label starts a new
+#           block, so a divide right after a label is always padded.  It
+#           never emits one nop: the 62 retail sites at pad depth 1 are
+#           outside it (use `div1` for a TU whose divides all carry one).
+#           This is a FIT, NOT THE MECHANISM.  Of retail's 966 `div.s` sites
+#           it matches 743 (76.9%) when labels are ignored.  With the label
+#           rule this count gives 754 (78.1%) and LucasPicoli's (issue #23)
+#           gives 780 (80.7%); the difference is not yet explained.  `fdiv`
+#           matches 627 (64.9%).  The bare/padded split by previous
+#           instruction is 170/54 for FP arithmetic writing a divide operand
+#           and 59/100 for FP arithmetic writing something else.  Of the
+#           functions that mix padded and bare divides, it fits every site in
+#           18 of 51 by this count and 19 of 48 by his.  Opt-in per TU,
+#           byte-verified on every TU that selects it.
 #   sqrt    The mirror of `div`: the same pad on `sqrt.s`/`rsqrt.s` ALONE, for
 #           a TU whose square roots are padded and whose divides are bare.
 #   libm    The retail libm objects' policy, and ONLY theirs.  Two changes to
@@ -468,6 +484,7 @@ _FP_RULE_FDIV = "fdiv"
 _FP_RULE_DIV = "div"
 _FP_RULE_DIV1 = "div1"
 _FP_RULE_SQRT = "sqrt"
+_FP_RULE_FDIVDEP = "fdivdep"
 _FP_RULE_CVTDIV = "cvtdiv"
 _FP_RULE_LIBM = "libm"
 _FP_RULE_LIBM_MTC1 = "libm-mtc1"
@@ -480,7 +497,13 @@ _FP_RULES_LIBM_ANY = frozenset((_FP_RULE_LIBM, _FP_RULE_LIBM_MTC1))
 _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
                    _FP_RULE_DIV1, _FP_RULE_SQRT, _FP_RULE_CVTDIV,
                    _FP_RULE_LIBM, _FP_RULE_LIBM_MTC1,
-                   _FP_RULE_CMPFULL, _FP_RULE_CMPPAD, _FP_RULE_FPFENCE)
+                   _FP_RULE_CMPFULL, _FP_RULE_CMPPAD, _FP_RULE_FPFENCE,
+                   _FP_RULE_FDIVDEP)
+# `fdivdep`'s exemption: FP arithmetic (moves and converts included) whose
+# destination is a source of the `div.s` right after it.
+_FDIVDEP_PRODUCER_RE = re.compile(
+    r"^\s*(?:abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor|add|sub|mul|div"
+    r"|madd|msub|nmadd|nmsub|max|min)\.[a-z0-9.]+\s+(\$f\d+)")
 # What the bare `--fp-hazard-nops` flag has always meant.  Do not change it.
 _FP_RULES_DEFAULT = frozenset((_FP_RULE_MTC1, _FP_RULE_CVTDIV))
 
@@ -675,6 +698,7 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     want_div1 = _FP_RULE_DIV1 in rules
     want_div = _FP_RULE_DIV in rules
     want_sqrt = _FP_RULE_SQRT in rules
+    want_fdivdep = _FP_RULE_FDIVDEP in rules
     want_cvtdiv = _FP_RULE_CVTDIV in rules
     want_cmppad = _FP_RULE_CMPPAD in rules
     want_fpfence = _FP_RULE_FPFENCE in rules
@@ -685,16 +709,19 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
     reorder = True
     set_stack: list[bool] = []
     prev_mtc1_dest: str | None = None
+    prev_real: str | None = None  # last real instruction of the current block (fdivdep)
     for i, line in enumerate(lines):
         s = line.strip()
         toks = _set_directive_tokens(s)
         if toks is not None:
             reorder = _apply_set_directive(toks, reorder, set_stack)
             prev_mtc1_dest = None
+            prev_real = None
             continue
         if not _is_asm_instr(s):
             if s.endswith(":"):  # label = basic-block boundary, breaks adjacency
                 prev_mtc1_dest = None
+                prev_real = None
             continue
         if reorder:
             pad = 0
@@ -708,6 +735,13 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
             # inert unless the TU names `div1`.
             one_nop_site = (want_div1
                             and bool(_FDIV_CLASS_RE.match(line)))
+            if (not two_nop_site and want_fdivdep
+                    and _DIV_ONLY_CLASS_RE.match(line)):
+                dm = _DIV_SRC_RE.match(line)
+                pm = (_FDIVDEP_PRODUCER_RE.match(prev_real)
+                      if prev_real is not None else None)
+                two_nop_site = not (dm and pm and pm.group(1) in
+                                    (dm.group(1), dm.group(2)))
             is_fdiv_site = two_nop_site or one_nop_site
             if two_nop_site:
                 pad = 2
@@ -747,6 +781,8 @@ def _insert_ee_fp_hazard_nops(text: str, rules=None) -> str:
                 fence_site[i] = True
         m = _MTC1_DEST_RE.match(line)
         prev_mtc1_dest = m.group(1) if (m and reorder) else None
+        if s != "nop":
+            prev_real = line if reorder else None
 
     out: list[str] = []
     for i, line in enumerate(lines):
