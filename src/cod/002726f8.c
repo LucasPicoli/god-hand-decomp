@@ -32,6 +32,7 @@ extern char D_00446670[];
 extern char D_00446678[];
 extern char D_00446680[];
 
+#include "godhand/cModel.h"
 #include "godhand/vu0.h"
 
 __attribute__((section(".text.func_002726F8")))
@@ -86,7 +87,7 @@ void func_002726F8(void *a0)
     if (s2 == 0) {
         return;
     }
-    *(int *)(s2 + 0x154) |= 0x218;
+    *(int *)(s2 + 0x154) |= CPARTS_NO_MOTION_POS | CPARTS_NO_PARENT | CPARTS_NO_LOCAL;
     VU0_SQC2_VF0(frame, 0x50);
     m = frame + 0x10;
     MtxInitRotY(m, *(float *)(s3 + 0x104));
