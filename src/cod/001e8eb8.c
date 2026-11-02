@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern float func_001E9078(void *self);
-extern unsigned int func_0031ED08(float seconds);
+extern unsigned int func_0031ED08(float f);
 
 #define FULL_TURN  360.0f
 

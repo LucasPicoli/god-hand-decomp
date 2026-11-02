@@ -2,13 +2,13 @@
 
 #include "godhand/cObjBase.h"
 
-extern unsigned int func_0031ED08(float seconds);
+extern unsigned int func_0031ED08(float f);
 extern int moveMotion(cObjBase *self);
 extern void Quaternion_GetEulerXYZ(float *quat, cVec *euler);
 extern void func_001506F0(cVec *pos, cVec *v);
 
 extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
-                         float rate, float start, int flags);
+                         float step, float start, int flags);
 
 
 /* Phase 1: start the stored motion, then play it until it ends. */
@@ -31,7 +31,7 @@ void cObjBase_runPhase1(cObjBase *self) {
 }
 
 extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
-                         float rate, float start, int flags);
+                         float step, float start, int flags);
 
 
 

@@ -6,9 +6,9 @@
 
 extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
 
-float rate, float start, int flags);
+float step, float start, int flags);
 
-extern unsigned int func_0031ED08(float seconds);
+extern unsigned int func_0031ED08(float f);
 extern void func_0014E818(cObjBase *self, float maxTurn, cVec *target);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
