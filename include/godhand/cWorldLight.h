@@ -22,6 +22,10 @@
 #define WORLDLIGHT_FLAG_FADING   0x10    /* a fade is running */
 #define WORLDLIGHT_FLAG_FADED    0x20    /* last fade finished */
 
+/* cWorldLightRec.owner indices */
+#define WORLDLIGHT_OWNER_IDX     0       /* index into the owner's list */
+#define WORLDLIGHT_OWNER_USE     1       /* nonzero: key comes from the owner */
+
 typedef struct cWorldLightRec {
     unsigned short state;               /* 0x00 0xFF = free */
     unsigned short id;                  /* 0x02 */
@@ -33,8 +37,7 @@ typedef struct cWorldLightRec {
     float f40;
     float f44;
     float f48;
-    int ownerIdx;                       /* 0x4C index into the owner's list */
-    int ownerUse;                       /* 0x50 nonzero: key comes from the owner */
+    int owner[2];                       /* 0x4C WORLDLIGHT_OWNER_*; copied as one array member */
     int key;                            /* 0x54 owner key */
     unsigned int flags;                 /* 0x58 */
     unsigned short f5C;

@@ -117,10 +117,10 @@ void *func_002D9458(cWorldLight *dst, cWorldLight *src) {
         di->f44 = si->f44;
         di->f48 = si->f48;
         {
-            int *dw = &di->ownerIdx;
+            int *dw = di->owner;
             int *sw;
             j = 1;
-            sw = &si->ownerIdx;
+            sw = si->owner;
             do {
                 *dw = *sw;
                 sw++;
