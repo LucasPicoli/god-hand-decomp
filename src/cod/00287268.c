@@ -25,7 +25,7 @@ void cEm00_stepGrowlWhileActive(cEm00 *self)
     switch (self->step) {
     case 0:
         self->gotoFlags = self->gotoFlags | 0x10;
-        res = self->resource;
+        res = EM_RES(self);
         func_002A8578(self, EM_RES_REC(res, 0x120), EM_RES_REC(res, 0x124), 0xA, 0.0f, 0, 0);
         self->timer = 10.0f;
         self->step = self->step + 1;

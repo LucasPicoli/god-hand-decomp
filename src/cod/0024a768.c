@@ -123,7 +123,7 @@ __attribute__((section(".text.func_0024A768"))) void func_0024A768(cEm00 *self)
 
             self->unk1864 = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x3D8C), EM_RES_REC((int)v1, 0x3D90), 0xA, 0.0f,
                           nb, 0);
             if ((void *)self->sub0 != 0)
@@ -161,7 +161,7 @@ __attribute__((section(".text.func_0024A768"))) void func_0024A768(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
     }
-    if ((self->moveFlags & 1) != 0) {
+    if ((self->seqFlags & 1) != 0) {
         float t = self->timer - self->speedRate;
 
         self->timer = t;
@@ -186,7 +186,7 @@ __attribute__((section(".text.func_0024A768"))) void func_0024A768(cEm00 *self)
                 self->unk568 = 0;
             }
         }
-        if ((self->moveFlags & 1) != 0) {
+        if ((self->seqFlags & 1) != 0) {
             func_0026DB00(self, 5, 0);
         }
     }

@@ -126,7 +126,7 @@ int ReqQueue_push(ReqQueue *self, int kind, int a2, int a3, int a4)
 
 typedef struct cOmTimed {
     cGameObj base;
-    char unk5AC[0xA90 - 0x5AC];
+    char unk5B0[0xA90 - 0x5B0];
     unsigned short timer;                      /* 0xA90 frames left in phase 1 */
 } cOmTimed;
 

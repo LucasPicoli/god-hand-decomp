@@ -23,12 +23,12 @@ __attribute__((section(".text.func_00281D98"))) void func_00281D98(cEm00 *self)
             switch (self->stepArg) {
                 case 0:
                 default:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x2C), EM_RES_REC(res, 0x30), 5, 0.0f, t0,
                                   0);
                     break;
                 case 1:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x34), EM_RES_REC(res, 0x38), 5, 0.0f, t0,
                                   0);
                     break;
@@ -47,10 +47,10 @@ __attribute__((section(".text.func_0027F6B0"))) void func_0027F6B0(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x3C), EM_RES_REC(res, 0x44), 5, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x3C), EM_RES_REC(res, 0x40), 5, 0.0f, 0, 0);
             }
             self->step = self->step + 1;
@@ -76,10 +76,10 @@ __attribute__((section(".text.func_00281E60"))) void func_00281E60(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x54), EM_RES_REC(res, 0x5C), 5, 0.0f, t0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x54), EM_RES_REC(res, 0x58), 5, 0.0f, t0, 0);
             }
             self->step = self->step + 1;
@@ -101,10 +101,10 @@ __attribute__((section(".text.func_0027FD00"))) void func_0027FD00(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x80), EM_RES_REC(res, 0x88), 5, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x80), EM_RES_REC(res, 0x84), 5, 0.0f, 0, 0);
             }
             self->timerA = 1;
@@ -126,14 +126,14 @@ __attribute__((section(".text.func_00280688"))) void func_00280688(cEm00 *self)
     int res;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x158), EM_RES_REC(res, 0x15C), 2, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:
             moveMotion(self);
             break;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x160), EM_RES_REC(res, 0x164), 2, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 3:
@@ -151,10 +151,10 @@ __attribute__((section(".text.func_0027C790"))) void func_0027C790(cEm00 *self)
         case 0:
             cSnd_SeCall_2CBA48(D_005FEE00, 1, 12, self, 0, 0, 0, 0);
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x40), EM_RES_REC(res, 0x44), 0, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x38), EM_RES_REC(res, 0x3C), 0, 0.0f, 0, 0);
             }
             self->step = self->step + 1;

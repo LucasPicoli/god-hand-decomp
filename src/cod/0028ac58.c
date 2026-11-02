@@ -14,7 +14,7 @@ extern int cModel_setupModel(void *model, void *mdl, void *tex, int a3, int a4);
 
 #define TEX_EXCHANGE(self, tex, off, slot) \
     ((self)->texFlags |= TEXFLAG_EXCHANGE, \
-     cModel_setTextureExchange((self), (tex), (void *)EM_RES_REC((self)->resource, (off)), (slot)))
+     cModel_setTextureExchange((self), (tex), (void *)EM_RES_REC(EM_RES(self), (off)), (slot)))
 
 __attribute__((section(".text.func_0028AC58")))
 int func_0028AC58(cEm00 *self)
@@ -25,8 +25,8 @@ int func_0028AC58(cEm00 *self)
 
     idx = GetEm00CharIndex(self->actorId, self->emNo);
     Obj0000_Set_Field_424_1595E8((int *)self, 0);
-    mdl = SearchData((void *)self->resource, D_00448E10, idx);
-    tex = SearchData((void *)self->resource, D_00448E18, idx);
+    mdl = SearchData((void *)EM_RES(self), D_00448E10, idx);
+    tex = SearchData((void *)EM_RES(self), D_00448E18, idx);
     switch (self->emNo) {
     case 0x2A7:
         if (self->unk155C & 1)

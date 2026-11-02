@@ -142,7 +142,7 @@ void CustomIDOwner_setSlideStateB(void *self, unsigned char sel)
 /* A game object that turns toward a goal heading at 0x640. */
 typedef struct cGameObjTurnB {
     cGameObj base;
-    char unk5AC[0x640 - sizeof(cGameObj)];
+    char unk5B0[0x640 - sizeof(cGameObj)];
     float goalRot;                      /* 0x640 */
 } cGameObjTurnB;
 

@@ -85,28 +85,37 @@ typedef struct cGameObjEffect {
 #ifndef CGAMEOBJ_NO_TYPEDEF
 typedef struct cGameObj cGameObj;
 #endif
-struct cGameObj {
-    COBJBASE_FIELDS
-    char unk4D0[0x520 - 0x4D0];
-    cVec stored;                        /* 0x520 position remembered with storedWait (w is 1.0) */
-    unsigned char storedWait;           /* 0x530 */
-    signed char unk531;                 /* 0x531 -1 after construction */
-    char unk532[0x548 - 0x532];
-    short hpMax;                        /* 0x548 */
-    short hp;                           /* 0x54A */
-    float hitFlash;                     /* 0x54C counts down after a hit */
-    cVec vel;                           /* 0x550 velocity, zeroed when the object is stopped */
-    int dropItem;                       /* 0x560 item id it drops, as in cOmBase */
-    int emNo;                           /* 0x564 enemy number of an enemy */
-    char unk568[0x570 - 0x568];
-    short effNo;                        /* 0x570 one more effect to kill with the object, -1 if none */
-    short pad572;
-    int effArg;                         /* 0x574 the mode to kill it with */
-    char unk578[0x5A0 - 0x578];
-    int scrFlags;                       /* 0x5A0 GAMEOBJ_SCR_* */
-    char unk5A4[4];
+#define CGAMEOBJ_FIELDS \
+    COBJBASE_FIELDS \
+    char unk4D0[0x520 - 0x4D0]; \
+    cVec stored;                        /* 0x520 position remembered with storedWait (w is 1.0) */ \
+    unsigned char storedWait;           /* 0x530 */ \
+    signed char unk531;                 /* 0x531 -1 after construction */ \
+    char unk532[0x538 - 0x532]; \
+    long name;                          /* 0x538 object name, up to 8 chars packed low byte first, as in cOmBase */ \
+    long modelHandle;                   /* 0x540 */ \
+    short hpMax;                        /* 0x548 */ \
+    short hp;                           /* 0x54A */ \
+    float hitFlash;                     /* 0x54C counts down after a hit */ \
+    cVec vel;                           /* 0x550 velocity, zeroed when the object is stopped */ \
+    int dropItem;                       /* 0x560 item id it drops, as in cOmBase */ \
+    int emNo;                           /* 0x564 enemy number of an enemy */ \
+    short unk568;                       /* 0x568 set when a hit lands; cEm00's end-of-motion code clears it and calls the hit method */ \
+    short unk56A;                       /* 0x56A countdown beside unk568 */ \
+    char unk56C[0x570 - 0x56C]; \
+    short effNo;                        /* 0x570 one more effect to kill with the object, -1 if none */ \
+    short pad572; \
+    int effArg;                         /* 0x574 the mode to kill it with */ \
+    char unk578[0x580 - 0x578]; \
+    cVec unk580;                        /* 0x580 */ \
+    cVec unk590;                        /* 0x590 */ \
+    int scrFlags;                       /* 0x5A0 GAMEOBJ_SCR_* */ \
+    char unk5A4[4]; \
     float speedRate;                    /* 0x5A8 1.0 normal, copied from the manager every frame */
-};
+
+struct cGameObj {
+    CGAMEOBJ_FIELDS
+};                                      /* 0x5B0: the longs at 0x538 make it 8-aligned */
 
 /* The typed method table behind cGameObj's g++ vtable (0x214). */
 static __inline__ cGameObjVt *cGameObj_vt(const struct cGameObj *self)
@@ -138,7 +147,8 @@ typedef char cGameObj_chk_drop[GAMEOBJ_OFFSET(dropItem) == 0x560 ? 1 : -1];
 typedef char cGameObj_chk_rate[GAMEOBJ_OFFSET(speedRate) == 0x5A8 ? 1 : -1];
 typedef char cGameObj_chk_ground[GAMEOBJ_OFFSET(groundKind) == 0x474 ? 1 : -1];
 typedef char cGameObj_chk_frame[GAMEOBJ_OFFSET(motionFrame) == 0x430 ? 1 : -1];
-typedef char cGameObj_chk_size[sizeof(struct cGameObj) == 0x5AC ? 1 : -1];
+typedef char cGameObj_chk_name[GAMEOBJ_OFFSET(name) == 0x538 ? 1 : -1];
+typedef char cGameObj_chk_size[sizeof(struct cGameObj) == 0x5B0 ? 1 : -1];
 
 /* The sort uses insertion sort alone below this many entries. */
 #define GAMEOBJ_SORT_THRESHOLD 16

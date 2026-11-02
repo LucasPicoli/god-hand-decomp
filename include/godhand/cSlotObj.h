@@ -20,7 +20,6 @@ typedef struct cSlotObjSlot {
 
 typedef struct cSlotObj {
     cGameObj base;              /* 0x000 */
-    char unk5AC[0x5B0 - 0x5AC];
     cSlotObjSlot slot[SLOTOBJ_SLOT_NUM]; /* 0x5B0 */
     char unk2090[0x2190 - (0x5B0 + SLOTOBJ_SLOT_NUM * SLOTOBJ_SLOT_SIZE)];
     char block[0x10];           /* 0x2190 */

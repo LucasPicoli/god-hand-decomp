@@ -18,7 +18,7 @@ __attribute__((section(".text.func_0027C6D0"))) void func_0027C6D0(cEm00 *self)
     switch (self->step) {
         case 0:
             cSnd_SeCall_2CBA48(D_005FEE00, 1, 0, self, 0, 0, 0, 0);
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x30), EM_RES_REC(res, 0x34), 5, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:

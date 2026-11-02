@@ -24,12 +24,12 @@ void func_00257E90(cEm00 *self)
     switch (self->step) {
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        if (self->moveFlags & 0x200) {
-            p1 = EM_RES_REC(self->resource, 0x1CE8);
-            p2 = EM_RES_REC(self->resource, 0x1CEC);
+        if (self->seqFlags & 0x200) {
+            p1 = EM_RES_REC(EM_RES(self), 0x1CE8);
+            p2 = EM_RES_REC(EM_RES(self), 0x1CEC);
         } else {
-            p1 = EM_RES_REC(self->resource, 0x1CF0);
-            p2 = EM_RES_REC(self->resource, 0x1CF4);
+            p1 = EM_RES_REC(EM_RES(self), 0x1CF0);
+            p2 = EM_RES_REC(EM_RES(self), 0x1CF4);
         }
         func_002A8578(self, p1, p2, 3, 0.0f, motion, 0);
         if (irand() & 1) {
@@ -50,12 +50,12 @@ void func_00257E90(cEm00 *self)
         break;
     case 2:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        if (self->moveFlags & 0x200) {
-            p1 = EM_RES_REC(self->resource, 0x1D40);
-            p2 = EM_RES_REC(self->resource, 0x1D44);
+        if (self->seqFlags & 0x200) {
+            p1 = EM_RES_REC(EM_RES(self), 0x1D40);
+            p2 = EM_RES_REC(EM_RES(self), 0x1D44);
         } else {
-            p1 = EM_RES_REC(self->resource, 0x1D48);
-            p2 = EM_RES_REC(self->resource, 0x1D4C);
+            p1 = EM_RES_REC(EM_RES(self), 0x1D48);
+            p2 = EM_RES_REC(EM_RES(self), 0x1D4C);
         }
         func_002A8578(self, p1, p2, 3, 0.0f, motion, 0);
         self->step++;

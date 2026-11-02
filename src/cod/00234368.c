@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             int p;
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2F24), EM_RES_REC(w, 0x2F28), 0xA, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
@@ -69,7 +69,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             switch ((unsigned char)r) {
                 default:
                 case 0: {
-                    int w = self->resource;
+                    int w = EM_RES(self);
                     int p = *(int *)((char *)self + 0x708);
                     lo = EM_RES_REC(w, 0x2F4C);
                     hi = EM_RES_REC(w, 0x2F50);
@@ -78,12 +78,12 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
                     break;
                 }
                 case 1: {
-                    int w = self->resource;
+                    int w = EM_RES(self);
                     lo = EM_RES_REC(w, 0x2F54);
                     hi = EM_RES_REC(w, 0x2F58);
                     if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
                         int p = *(int *)((char *)self + 0x708);
-                        int w2 = self->resource;
+                        int w2 = EM_RES(self);
                         hi = EM_RES_REC(w2, 0x2F5C);
                         if (p != 0)
                             Obj1D00_SetState_7_A_a1(p, 1);
@@ -112,7 +112,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            fl = self->moveFlags;
+            fl = self->seqFlags;
             if ((fl & 3) == 0)
                 goto set5F4;
             if (self->timerB != 0) {
@@ -135,7 +135,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             int p;
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2F2C), EM_RES_REC(w, 0x2F30), 3, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
@@ -164,7 +164,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             int p;
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2F9C), EM_RES_REC(w, 0x2FA0), 3, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
@@ -179,7 +179,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
                 self->step = 4;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if ((self->moveFlags & 3) && self->timerA != 0) {
+            if ((self->seqFlags & 3) && self->timerA != 0) {
                 self->timerA = 0;
                 func_002744E0(self);
             }
@@ -190,7 +190,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             int p;
             self->unk1864 = 0;
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2F40), EM_RES_REC(w, 0x2F44), 0xA, 0.0f, t, 0);
             p = *(int *)((char *)self + 0x708);
             if (p != 0)
@@ -209,12 +209,12 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if ((self->moveFlags & 3) == 0)
+            if ((self->seqFlags & 3) == 0)
                 goto set5F4;
             if (self->timerB != 0) {
                 self->timerB = 0;
                 cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x25, self, 0, 0, 0, 0);
-                if (self->moveFlags & 2) {
+                if (self->seqFlags & 2) {
                 call13:
                     func_0026BEF0(self, 0x13, 0);
                     func_0026BEF0(self, 0x13, 1);

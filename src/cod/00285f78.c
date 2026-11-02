@@ -49,7 +49,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     }
     switch (self->step) {
     case 0: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0x48), EM_RES_REC(b, 0x4C), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;
@@ -62,14 +62,14 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         Add_nullspeed(self);
         break;
     case 2: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0x28), EM_RES_REC(b, 0x2C), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;
     }
     case 3:
         self->gotoFlags = self->gotoFlags | 1;
-        if (0.0f < self->animRate) {
+        if (0.0f < self->tint.w) {
             moveMotion(self);
             cModel_calcNullPart(self);
             Add_nullspeed(self);
@@ -94,13 +94,13 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         }
         break;
     case 4: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0x30), EM_RES_REC(b, 0x34), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;
     }
     case 5:
-        if ((self->moveFlags & 2) == 0) {
+        if ((self->seqFlags & 2) == 0) {
             player = Getplayer();
             cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
         }
@@ -118,31 +118,31 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         int rec;
 
         if (self->emNo == 0x2A7 || self->emNo == 0x2AB) {
-            int b = self->resource;
+            int b = EM_RES(self);
 
             rec = *(int *)(b + 0xE0) + b;
         } else {
             switch ((unsigned int)irand() % 3) {
             case 1: {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 rec = *(int *)(b + 0xE8) + b;
                 break;
             }
             case 0: {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 rec = *(int *)(b + 0xE0) + b;
                 break;
             }
             case 2: {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 rec = *(int *)(b + 0xF0) + b;
                 break;
             }
             default: {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 rec = *(int *)(b + 0xE0) + b;
                 break;
@@ -165,7 +165,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         Add_nullspeed(self);
         break;
     case 8: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0xF8), EM_RES_REC(b, 0xFC), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;
@@ -178,7 +178,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         }
         cModel_calcNullPart(self);
         Add_nullspeed(self);
-        if ((self->moveFlags & 1) == 0) {
+        if ((self->seqFlags & 1) == 0) {
             return;
         }
         if (self->unk15C4 != 0) {
@@ -201,7 +201,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         func_0028FB08(self);
         return;
     case 10: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0x100), EM_RES_REC(b, 0x104), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;
@@ -218,7 +218,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
         self->step = self->step + 1;
         break;
     case 12: {
-        int b = self->resource;
+        int b = EM_RES(self);
 
         func_002A8578(self, EM_RES_REC(b, 0x108), EM_RES_REC(b, 0x10C), 0xA, 0.0f, 0, 0);
         self->step = self->step + 1;

@@ -32,7 +32,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
     }
     switch (self->step) {
         case 0: {
-            int v = self->resource;
+            int v = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v, 0x1C), EM_RES_REC(v, 0x20), 2, 0.0f, 0, 0);
             self->timer3 = 30.0f;
             self->step += 1;
@@ -46,7 +46,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
             cObjBase_addNullSpeed(self, one);
             break;
         case 2: {
-            int v = self->resource;
+            int v = EM_RES(self);
             z = 0.0f;
             func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), 0, z, 0, 0);
             self->unk580.x = z;
@@ -81,7 +81,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
                 VU0_SQC2(4, buf, 0x10);
                 VU0_LQC2(4, q, 0x0);
                 VU0_SQC2(4, buf, 0x0);
-                d = (float *)(&self->stepVec);
+                d = (float *)(&self->nullSpeed);
                 if (d != (float *)buf) {
                     float t0 = ((float *)buf)[0];
                     float t1 = ((float *)buf)[1];
@@ -104,7 +104,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
             }
             break;
         case 4: {
-            int v = self->resource;
+            int v = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v, 0x24), EM_RES_REC(v, 0x28), 0, 0.0f, 0, 0);
             self->timer = 1.0f;
             self->step += 1;
@@ -134,7 +134,7 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
                 VU0_SQC2(4, buf, 0x10);
                 VU0_LQC2(4, q, 0x0);
                 VU0_SQC2(4, buf, 0x0);
-                d = (float *)(&self->stepVec);
+                d = (float *)(&self->nullSpeed);
                 if (d != (float *)buf) {
                     float t0 = ((float *)buf)[0];
                     float t1 = ((float *)buf)[1];

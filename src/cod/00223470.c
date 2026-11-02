@@ -29,12 +29,12 @@ __attribute__((section(".text.func_00223470"))) void func_00223470(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             {
-                char *b = (char *)self->resource;
+                char *b = (char *)EM_RES(self);
                 a1v = EM_RES_REC((int)b, 0x6E8);
                 a2v = EM_RES_REC((int)b, 0x6EC);
             }
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                v0 = (char *)self->resource;
+                v0 = (char *)EM_RES(self);
                 a2v = EM_RES_REC((int)v0, 0x6F0);
             }
             func_002A8578(self, a1v, a2v, 3, 0.0f, gb, 0);
@@ -59,7 +59,7 @@ __attribute__((section(".text.func_00223470"))) void func_00223470(cEm00 *self)
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
             if (self->timerB == 0) {
-                if (self->moveFlags & 2) {
+                if (self->seqFlags & 2) {
                     SetEffect(0x58, 0x29, self, 0, -1, 0xFFFFFFFF);
                     self->timerB = 1;
                 }
@@ -67,14 +67,14 @@ __attribute__((section(".text.func_00223470"))) void func_00223470(cEm00 *self)
             break;
     }
     StoreMotionParamsBoth_2609A8(self, 0, 0xF, 0x4A, -1, 0);
-    if (self->moveFlags & 1)
+    if (self->seqFlags & 1)
         func_00260B30(self);
     if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
-        if (func_0026F1D8(self) == 0 && (self->moveFlags & 0x10) != 0)
+        if (func_0026F1D8(self) == 0 && (self->seqFlags & 0x10) != 0)
             if (func_00262AA8(self) != 0)
                 return;
     }
-    if (self->moveFlags & 3)
+    if (self->seqFlags & 3)
         self->timerC = 1;
     if (self->timerC != 0)
         self->emFlags2 &= 0xFFFFFBFF;

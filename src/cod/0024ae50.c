@@ -55,7 +55,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             char *p;
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            p = (char *)self->resource;
+            p = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)p, 0x3D3C), EM_RES_REC((int)p, 0x3D40), 0xA, 0.0f,
                           gb, 0);
             if (self->sub0 != 0) {
@@ -104,7 +104,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             if (100.0f < dist) {
-                char *p = (char *)self->resource;
+                char *p = (char *)EM_RES(self);
                 func_002A8578(self, EM_RES_REC((int)p, 0x3D44), EM_RES_REC((int)p, 0x3D48), 0xA,
                               0.0f, gb, 0);
                 if (self->sub0 != 0) {
@@ -118,7 +118,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
                 }
                 self->timer = 35.0f;
             } else {
-                char *p = (char *)self->resource;
+                char *p = (char *)EM_RES(self);
                 func_002A8578(self, EM_RES_REC((int)p, 0x3D4C), EM_RES_REC((int)p, 0x3D50), 0xA,
                               0.0f, gb, 0);
                 if (self->sub0 != 0) {
@@ -150,7 +150,7 @@ __attribute__((section(".text.func_0024AE50"))) void func_0024AE50(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
     }
-    if (self->moveFlags & 1) {
+    if (self->seqFlags & 1) {
         func_0026DB00(self, 6, 0);
     }
 }

@@ -27,7 +27,7 @@ __attribute__((section(".text.cEm00_stepCountedPause"))) void cEm00_stepCountedP
     switch (self->phase) {
         case 0:
             cSnd_SeCall_2CBA48(D_005FEE00, 2, 8, self, 0, 0, 0, 0);
-            v0 = self->resource;
+            v0 = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v0, 0xC), 0, 0, 0.0f, 0, 0);
             self->phase = 1;
             self->step = 0;

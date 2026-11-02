@@ -180,7 +180,7 @@ __attribute__((section(".text.cEm00_stepHopAway"))) void cEm00_stepHopAway(cEm00
         case 0:
             zero = 0.0f;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v = self->resource;
+            v = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v, 0x1D80), EM_RES_REC(v, 0x1D84), 0, 0.0f, gb, 0);
             self->unk580.x = (fRand1_1() * 5.0f) + zero;
             self->unk580.y = 2.724f;
@@ -255,7 +255,7 @@ __attribute__((section(".text.cEm00_stepHopAway"))) void cEm00_stepHopAway(cEm00
 
         case 2:
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v = self->resource;
+            v = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v, 0x1D88), EM_RES_REC(v, 0x1D8C), 3, 0.0f, gb, 0);
             switch (self->emNo) {
                 case 0x220:

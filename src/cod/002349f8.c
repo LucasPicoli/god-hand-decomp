@@ -29,11 +29,11 @@ __attribute__((section(".text.func_002349F8"))) void func_002349F8(cEm00 *self)
             int p2;
             self->unk1864 = 0;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            base = self->resource;
+            base = EM_RES(self);
             p1 = EM_RES_REC(base, 0x2030);
             p2 = EM_RES_REC(base, 0x2034);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                int b2 = self->resource;
+                int b2 = EM_RES(self);
                 p2 = EM_RES_REC(b2, 0x2038);
             }
             func_002A8578(self, p1, p2, 0xA, 0.0f, r, 0);
@@ -79,7 +79,7 @@ __attribute__((section(".text.func_002349F8"))) void func_002349F8(cEm00 *self)
             break;
     }
 
-    if (self->moveFlags & 2) {
+    if (self->seqFlags & 2) {
         if (self->timerB != 0) {
             self->timerB = 0;
             if (*(int *)((char *)self + 0x6EC) != 0) {
@@ -93,12 +93,12 @@ __attribute__((section(".text.func_002349F8"))) void func_002349F8(cEm00 *self)
     } else {
         self->timerB = 1;
     }
-    self->moveFlags = self->moveFlags & 0xFFFD;
+    self->seqFlags = self->seqFlags & 0xFFFD;
     func_00260B30(self);
     if (cCoreSave_getGameLevel(&D_00569B70) >= 3 && func_0026F1D8(self) == 0 &&
-        (self->moveFlags & 0x10) && self->unk1864 == 0 && func_00262AA8(self) != 0)
+        (self->seqFlags & 0x10) && self->unk1864 == 0 && func_00262AA8(self) != 0)
         return;
-    if (self->moveFlags & 3)
+    if (self->seqFlags & 3)
         self->timerC = 1;
     if (self->timerC != 0)
         self->emFlags2 &= 0xFFFFFBFFU;

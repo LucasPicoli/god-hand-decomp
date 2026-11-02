@@ -43,11 +43,11 @@ __attribute__((section(".text.func_0022B790"))) void func_0022B790(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             StoreMotionParamsBoth_2609A8(self, 0x14, 0, 0x37, -1, 0);
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             a1v = EM_RES_REC((int)v1, 0x21F4);
             a2v = EM_RES_REC((int)v1, 0x21F8);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 a2v = EM_RES_REC((int)w, 0x21FC);
             }
             func_002A8578(self, a1v, a2v, 5, 0.0f, gb, 0);
@@ -86,7 +86,7 @@ __attribute__((section(".text.func_0022B790"))) void func_0022B790(cEm00 *self)
             break;
     }
     func_00260B30(self);
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         self->timerC = 1;
     }
     if (self->timerC != 0) {

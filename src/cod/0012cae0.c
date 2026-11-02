@@ -107,12 +107,12 @@ int cEm00_areaHitCheck(cEm00 *self)
         EM_HITCD(self) = HIT_COOLDOWN;
         if (((unsigned char *)&D_00747A2C)[0x25] == 5)
             SetEffect(0, HIT_EFFECT_ID, self, 0, -1, 0xFFFFFFFFu);
-        if (self->vital >= VITAL_LOW) {
-            self->vital = self->vital - HIT_DAMAGE;
-            if (self->vital <= 0)
-                self->vital = hit;
+        if (self->hp >= VITAL_LOW) {
+            self->hp = self->hp - HIT_DAMAGE;
+            if (self->hp <= 0)
+                self->hp = hit;
         } else {
-            self->vital = 0;
+            self->hp = 0;
         }
         self->phase = PHASE_HIT;
         self->stepArg = 0;

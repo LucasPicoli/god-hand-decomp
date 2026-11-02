@@ -156,7 +156,7 @@ int cMovieTrack_start(cMovieTrack *track, const char **clip) {
 /* A game object that turns toward a goal heading at 0x638. */
 typedef struct cGameObjTurn {
     cGameObj base;
-    char unk5AC[0x638 - sizeof(cGameObj)];
+    char unk5B0[0x638 - sizeof(cGameObj)];
     float goalRot;                      /* 0x638 */
 } cGameObjTurn;
 

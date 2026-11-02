@@ -3,15 +3,15 @@
  * cEm00 is one enemy class. Retail's type info gives it the base cEmBase,
  * whose base is cGameObj, and cEm63, cEm66 and the other enemies derive from
  * cEmBase as well. So they share the start of this record, but they are not
- * cEm00s (a cEm63 is only 0x15E0 bytes). The record is at least 0x1870 bytes. Most of an enemy's behaviour is a phase machine: an
- * AI function reads the speed rate, calls the motion code and switches on
- * the step byte (0x2F6), moving to the next step when a motion ends.
+ * cEm00s (a cEm63 is only 0x15E0 bytes). The record is at least 0x1870
+ * bytes. Most of an enemy's behaviour is a phase machine: an AI function
+ * reads the speed rate, calls the motion code and switches on the step byte
+ * (0x2F6), moving to the next step when a motion ends.
  *
- * The first words follow cOmBase: the four state bytes at 0x2F4, the flag
- * word at 0x250, the hit points at 0x54A, the enemy number at 0x564 and the
- * speed rate at 0x5A8 have the same names in cEmWrap.h. The method table at
- * 0x214 belongs to a second base class; its entries are g++ 2.x delta and
- * pfn pairs, and CEM00_VCALL makes the call.
+ * The record starts with cGameObj's fields (CGAMEOBJ_FIELDS, 0x000..0x5AC);
+ * no cEmBase field before 0x5AC is known. The method table at 0x214 is
+ * cGameObj's vtable; its entries are g++ 2.x delta and pfn pairs, CEM00_VT
+ * types it and CEM00_VCALL makes the call.
  *
  * Method names are the game's own, from the symbol table in the retail ELF.
  * Field names are ours, taken from the methods that read and write them.
@@ -22,11 +22,14 @@
 #define GODHAND_CEM00_H
 
 #include "godhand/cOmBase.h"
+#include "godhand/cGameObj.h"
 
 /* The address of a record in the resource blob. The blob starts with a
  * table of offsets from its own start; res is the blob's address as an int
  * and off the table slot. */
 #define EM_RES_REC(res, off) (*(int *)((res) + (off)) + (res))
+/* The blob's address as an int: the data pack at 0x304. */
+#define EM_RES(obj) ((int)(obj)->pack)
 
 /* The method table at 0x214. Each method is a short delta, added to this
  * before the call, a short index and a pfn. */
@@ -54,11 +57,14 @@ typedef struct cEm00Vt {
     int (*hit)(void *self, int power, void *attacker, int a, int b); /* 0xAC */
 } cEm00Vt;
 
+/* The method table at 0x214, typed. */
+#define CEM00_VT(self) ((cEm00Vt *)(self)->vtable)
+
 /* Call method m of the object's table: the delta of entry m goes to this. */
 #define CEM00_VCALL0(self, m) \
-    ((self)->vt->m((char *)(self) + (self)->vt->m##Delta))
+    (CEM00_VT(self)->m((char *)(self) + CEM00_VT(self)->m##Delta))
 #define CEM00_VCALL(self, m, args...) \
-    ((self)->vt->m((char *)(self) + (self)->vt->m##Delta, args))
+    (CEM00_VT(self)->m((char *)(self) + CEM00_VT(self)->m##Delta, args))
 
 /* The low byte of a word field (the record is little endian). */
 #define CEM00_LOBYTE(field) (*(unsigned char *)&(field))
@@ -72,64 +78,7 @@ typedef struct cEm00Vt {
 #define CEM00_REGALLOC_NUDGE(self) (self)->phase++; (self)->phase--
 
 typedef struct cEm00 {
-    char unk000[0x80];
-    float mtx[16];                          /* 0x080 orientation matrix */
-    char unk0C0[0x10];
-    cVec *anchor;                           /* 0x0D0 the vector the body is pinned to */
-    char unk0D4[0x1C];
-    cVec *pos;                              /* 0x0F0 the enemy's live position */
-    char unk0F4[0xC];
-    cVec rot;                               /* 0x100 rotation, rot.y is the facing angle */
-    float unk110;                           /* 0x110 x of a second vector, scaled by 0.0902 in step 6 */
-    float unk114;                           /* 0x114 */
-    float unk118;                           /* 0x118 z of that vector, scaled by 1.8281 in step 6 */
-    char unk11C[0xF8];
-    cEm00Vt *vt;                            /* 0x214 method table of the second base; entries are delta/pfn pairs */
-    char unk218[0x34];
-    float animRate;                         /* 0x24C 1.0 normal */
-    int objFlags;                           /* 0x250 EMACTOR_FLAG_DEAD once the actor is gone */
-    int texFlags;                           /* 0x254 bit 28 is set while a texture exchange is active, as in cOmBase */
-    char unk258[0x20];
-    struct cEm00 **children;                /* 0x278 child object list */
-    char unk27C[0x38];
-    unsigned char childNum;                 /* 0x2B4 number of children */
-    char unk2B5[0x3F];
-    unsigned char mode;                     /* 0x2F4 0x2F4..0x2F7 are the four state bytes, as in cOmBase */
-    unsigned char phase;                    /* 0x2F5 */
-    unsigned char step;                     /* 0x2F6 the phase machines switch on this byte */
-    unsigned char stepArg;                  /* 0x2F7 */
-    char unk2F8[0x4];
-    unsigned char unk2FC;                   /* 0x2FC low 3 bits are compared with D_007476B0 */
-    char unk2FD[0x1];
-    unsigned short actorId;                 /* 0x2FE */
-    char unk300[0x4];
-    int resource;                           /* 0x304 address of the enemy's resource blob; motion records are offsets from it */
-    char unk308[0x28];
-    cVec stepVec;                           /* 0x330 this frame's step: the 0x580 vector scaled by speedRate */
-    char unk340[0x6C];
-    unsigned short moveFlags;               /* 0x3AC bits the move code sets: bit 0 and 1 end of a motion, 0x10 */
-    char unk3AE[0x86];
-    unsigned short unk434;                  /* 0x434 flag word, bit 3 is set before each move */
-    char unk436[0x12];
-    char ik[0x48];                          /* 0x448 inverse kinematics work */
-    cVec posA;                              /* 0x490 position copy */
-    char unk4A0[0x91];
-    signed char link;                       /* 0x531 -1 for none */
-    char unk532[0x16];
-    short vitalMax;                         /* 0x548 */
-    short vital;                            /* 0x54A hit points */
-    float hitFlash;                         /* 0x54C 3.0 right after a hit */
-    char unk550[0x10];
-    int dropItem;                           /* 0x560 */
-    int emNo;                               /* 0x564 enemy number */
-    short unk568;                           /* 0x568 set when a hit lands; the end-of-motion code clears it and calls the hit method */
-    short unk56A;                           /* 0x56A countdown beside unk568 */
-    char unk56C[0x14];
-    cVec unk580;                            /* 0x580 */
-    cVec unk590;                            /* 0x590 */
-    int scrFlags;                           /* 0x5A0 */
-    char unk5A4[0x4];
-    float speedRate;                        /* 0x5A8 copied from cEmManage every frame; timers count down by it */
+    CGAMEOBJ_FIELDS                         /* 0x000..0x5AC, through cEmBase */
     char unk5AC[0x4];
     int unk5B0;                             /* 0x5B0 flag word of the derived enemy, bit 0 is set when the step ends */
     int unk5B4;                             /* 0x5B4 */
@@ -195,7 +144,7 @@ typedef struct cEm00 {
     char unk904[0xC58];
     int unk155C;                            /* 0x155C bits 0 and 1 pick the alternate textures of enemies 0x2A7, 0x2A9 and 0x2AB */
     int unk1560;                            /* 0x1560 the low byte is also read and cleared as a byte, see CEM00_LOBYTE */
-    float turnRate;                         /* 0x1564 */
+    float turnSpeed;                        /* 0x1564 */
     int turnArg;                            /* 0x1568 */
     char unk156C[0x4];
     cVec unk1570;                           /* 0x1570 */

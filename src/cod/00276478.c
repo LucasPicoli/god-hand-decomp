@@ -60,13 +60,13 @@ void func_00276478(cEm00 *self)
                     }
                 }
                 if (near) {
-                    self->animRate = GHOST_RATE;
+                    self->tint.w = GHOST_RATE;
                     self->objFlags |= OBJFLAG_SEE_THROUGH;
                     return;
                 }
             }
         }
     }
-    self->animRate = 1.0f;
+    self->tint.w = 1.0f;
     self->objFlags &= ~OBJFLAG_SEE_THROUGH;
 }

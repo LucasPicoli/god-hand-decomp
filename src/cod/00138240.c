@@ -36,11 +36,11 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             if ((self->emNo != 0x213) && (self->emNo != 0x217)) {
-                int v0 = self->resource;
+                int v0 = EM_RES(self);
                 a1v = *(int *)(v0 + 0x1B8) + ((int)v0);
                 a2v = *(int *)(v0 + 0x1BC) + ((int)v0);
             } else {
-                int v1 = self->resource;
+                int v1 = EM_RES(self);
                 void *o = (void *)self->fx6;
                 a1v = *(int *)(v1 + 0x2F6C) + ((int)v1);
                 a2v = *(int *)(v1 + 0x2F70) + ((int)v1);
@@ -79,19 +79,19 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
             break;
     }
 
-    if (((self->moveFlags & 2) != 0) && (self->timerB == 0)) {
+    if (((self->seqFlags & 2) != 0) && (self->timerB == 0)) {
         self->timerB = 1;
         func_0026EC60(self);
         self->unk17A0 = 0;
     }
-    if ((self->moveFlags & 0x20) != 0) {
+    if ((self->seqFlags & 0x20) != 0) {
         cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
     }
-    if ((self->moveFlags & 1) != 0) {
+    if ((self->seqFlags & 1) != 0) {
         StoreMotionParamsBoth_2609A8(self, 0x1E, 2, 0x3E, -1, 0);
         func_00260B30(self);
     }
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         self->timerC = 1;
     }
     if (self->timerC != 0) {

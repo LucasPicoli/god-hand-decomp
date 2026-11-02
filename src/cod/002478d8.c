@@ -40,13 +40,13 @@ void cEm00_stepSetGrabPrompt(cEm00 *self)
         self->unk617 = 1;
         self->hitFlash = 3.0f;
         m = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        b = self->resource;
+        b = EM_RES(self);
         func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0, 0.0f, m, 0);
         moveMotion(self);
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(self, one);
         cObjBase_addNullSpeed(self, one);
-        self->moveFlags |= 0x400;
+        self->seqFlags |= 0x400;
         if (self->unk768 < 0.7853982f) {
             float lim = 4.0f;
             if (self->stepArg != 0) {
@@ -62,7 +62,7 @@ void cEm00_stepSetGrabPrompt(cEm00 *self)
         break; }
     case 2: {
         int m = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        int b = self->resource;
+        int b = EM_RES(self);
         func_002A8578(self, EM_RES_REC(b, 0x2BC), EM_RES_REC(b, 0x2C0), 0, 0.0f, m, 0);
         self->step += 1;
     }

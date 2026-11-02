@@ -17,7 +17,7 @@ __attribute__((section(".text.func_001CB828"))) void func_001CB828(cEm00 *self)
     SetMotionStep(self, r);
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:

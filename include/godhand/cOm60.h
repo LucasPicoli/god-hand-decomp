@@ -21,7 +21,7 @@
 
 typedef struct cOm60 {
     cGameObj base;                      /* 0x000 */
-    char unk5AC[0x600 - 0x5AC];
+    char unk5B0[0x600 - 0x5B0];
     int parent;                         /* 0x600 nonzero while held; setThrow clears it */
     char unk604[0x2C];
     float speed;                        /* 0x630 */
@@ -34,6 +34,8 @@ typedef struct cOm60 {
     int seHandle;                       /* 0x668 */
 } cOm60;
 
-typedef char cOm60_size_check[(sizeof(cOm60) == 0x66C) ? 1 : -1];
+/* 0x66C of fields, padded to 8 by the longs in cGameObj. */
+typedef char cOm60_size_check[(sizeof(cOm60) == 0x670) ? 1 : -1];
+typedef char cOm60_end_check[((int)&((cOm60 *)0)->seHandle == 0x668) ? 1 : -1];
 
 #endif

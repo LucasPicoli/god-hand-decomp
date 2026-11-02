@@ -26,12 +26,12 @@ __attribute__((section(".text.func_002808D8"))) void func_002808D8(cEm00 *self)
     SetMotionStep(self, r);
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x168), EM_RES_REC(res, 0x16C), 2, 0.0f, t0, 0);
             self->step++;
             goto L_mm;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x170), EM_RES_REC(res, 0x174), 2, 0.0f, t0, 0);
             self->step++;
         case 1:
@@ -40,7 +40,7 @@ __attribute__((section(".text.func_002808D8"))) void func_002808D8(cEm00 *self)
             moveMotion(self);
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x178), EM_RES_REC(res, 0x17C), 2, 0.0f, t0, 0);
             self->step++;
         case 5:

@@ -279,10 +279,10 @@ void cEm00_stepFadeOutAndReleaseNoStart(cEm00 *self) {
         /* the empty loop wrapper moves the step byte's register: retail keeps the compare constant in $v0 */
         do { self->step = one; } while (0);
     case 1:
-        self->animRate = self->animRate - EM_FADE_STEP;
+        self->tint.w = self->tint.w - EM_FADE_STEP;
         em = self;
-        if (em->animRate <= 0.0f) {
-            em->animRate = 0.0f;
+        if (em->tint.w <= 0.0f) {
+            em->tint.w = 0.0f;
             cEmManage_ReleaseEm(&D_005864F0, (cEmActor *)self);
             self->step = self->step + 1;
         }

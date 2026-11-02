@@ -54,11 +54,11 @@ void func_00248D00(cEm00 *self)
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
         if (self->stepArg != 0) {
-            p1 = EM_RES_REC(self->resource, 0x38E0);
-            p2 = EM_RES_REC(self->resource, 0x38E4);
+            p1 = EM_RES_REC(EM_RES(self), 0x38E0);
+            p2 = EM_RES_REC(EM_RES(self), 0x38E4);
         } else {
-            p1 = EM_RES_REC(self->resource, 0x38C8);
-            p2 = EM_RES_REC(self->resource, 0x38CC);
+            p1 = EM_RES_REC(EM_RES(self), 0x38C8);
+            p2 = EM_RES_REC(EM_RES(self), 0x38CC);
         }
         func_002A8578(self, p1, p2, 10, 0.0f, motion, 0);
         self->step++;
@@ -88,11 +88,11 @@ void func_00248D00(cEm00 *self)
         }
         cObjBase_addNullSpeed_Rotation((cObjBase *)self, 1.0f);
         cObjBase_addNullSpeed((cObjBase *)self, 1.0f);
-        if (self->moveFlags & 1) {
+        if (self->seqFlags & 1) {
             self->unk617 = 1;
             self->hitFlash = 3.0f;
         }
-        if (self->moveFlags & 0x10) {
+        if (self->seqFlags & 0x10) {
             if (cCoreSave_getGameLevel(&D_00569B70) >= 3)
                 func_00262AA8(self);
         }

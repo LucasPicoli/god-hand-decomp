@@ -30,7 +30,7 @@ __attribute__((section(".text.func_002380D0"))) void func_002380D0(cEm00 *self)
     cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
     switch (self->step) {
         case 0:
-            b = self->resource;
+            b = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(b, 0x14A0), EM_RES_REC(b, 0x14A4), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
@@ -87,7 +87,7 @@ __attribute__((section(".text.func_002380D0"))) void func_002380D0(cEm00 *self)
                 if (*(int *)(g + 8) & 0xF00000)
                     self->unk568 -= 4;
             }
-            if (self->moveFlags & 0x10) {
+            if (self->seqFlags & 0x10) {
                 if (self->unk568 <= 0) {
                     *(unsigned char *)(s1 + 0x2F6) = 2;
                     self->step = 2;
@@ -96,7 +96,7 @@ __attribute__((section(".text.func_002380D0"))) void func_002380D0(cEm00 *self)
             }
             break;
         case 2: {
-            int p = self->resource;
+            int p = EM_RES(self);
 
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(p, 0x14A8), EM_RES_REC(p, 0x14AC), 0, 0.0f, 0, 0);

@@ -15,12 +15,12 @@ __attribute__((section(".text.func_0027F5F0"))) void func_0027F5F0(cEm00 *self)
             switch (self->stepArg) {
                 default:
                 case 0:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x2C), EM_RES_REC(res, 0x30), 5, 0.0f, 0,
                                   0);
                     break;
                 case 1:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x34), EM_RES_REC(res, 0x38), 5, 0.0f, 0,
                                   0);
                     break;
@@ -42,17 +42,17 @@ __attribute__((section(".text.func_0027CE70"))) void func_0027CE70(cEm00 *self)
             switch (self->stepArg) {
                 default:
                 case 1:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x78), EM_RES_REC(res, 0x7C), 0, 0.0f, 0,
                                   0);
                     break;
                 case 0:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x78), EM_RES_REC(res, 0x7C), 0, 0.0f, 0,
                                   0);
                     break;
                 case 2:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0x78), EM_RES_REC(res, 0x7C), 0, 0.0f, 0,
                                   0);
                     break;
@@ -73,10 +73,10 @@ __attribute__((section(".text.func_00282120"))) void func_00282120(cEm00 *self)
     switch (self->step) {
         case 0:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x8C), EM_RES_REC(res, 0x90), 5, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x84), EM_RES_REC(res, 0x88), 5, 0.0f, 0, 0);
             }
             self->step++;
@@ -99,10 +99,10 @@ __attribute__((section(".text.func_0027FDD8"))) void func_0027FDD8(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x8C), EM_RES_REC(res, 0x94), 5, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x8C), EM_RES_REC(res, 0x90), 5, 0.0f, 0, 0);
             }
             self->timerA = 1;
@@ -130,10 +130,10 @@ __attribute__((section(".text.func_00282388"))) void func_00282388(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x94), EM_RES_REC(res, 0x9C), 5, 0.0f, t0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x94), EM_RES_REC(res, 0x98), 5, 0.0f, t0, 0);
             }
             self->step++;
@@ -159,14 +159,14 @@ __attribute__((section(".text.func_00282928"))) void func_00282928(cEm00 *self)
         t0 = two;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x158), EM_RES_REC(res, 0x15C), 2, 0.0f, t0, 0);
             self->step++;
         case 1:
             moveMotion(self);
             break;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x160), EM_RES_REC(res, 0x164), 2, 0.0f, t0, 0);
             self->step++;
         case 3:

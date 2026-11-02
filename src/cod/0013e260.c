@@ -50,7 +50,7 @@ void UiRecord_setDispSubs6to10(void *ui, int on) {
 /* A game object that owns one resource handle and two child objects. */
 typedef struct cKidOwner {
     cGameObj base;
-    char unk5AC[0x600 - sizeof(cGameObj)];
+    char unk5B0[0x600 - sizeof(cGameObj)];
     void *handle;                       /* 0x600 resource released with the object */
     cGameObj *kidA;                     /* 0x604 child object, told to end (mode 1) */
     cGameObj *kidB;                     /* 0x608 second child object */

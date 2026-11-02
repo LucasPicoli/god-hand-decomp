@@ -23,7 +23,7 @@ void func_00114AC0(cEm00 *self)
     case 0:
         self->unk5E0 = 0;
         self->unk5E2 = 0;
-        func_002A8578(self, EM_RES_REC(self->resource, 0x48), EM_RES_REC(self->resource, 0x4C), 3, 0.0f, 0, 0);
+        func_002A8578(self, EM_RES_REC(EM_RES(self), 0x48), EM_RES_REC(EM_RES(self), 0x4C), 3, 0.0f, 0, 0);
         cGameObj_SetTgtTurn(self, &self->unk580, 3.1415927f);
         self->stepVar.count = 0;
         self->unk1590.x = 99999.9f;
@@ -31,7 +31,7 @@ void func_00114AC0(cEm00 *self)
         self->unk1590.z = 99999.9f;
         self->step += 1;
     case 1:
-        self->unk434 |= 8;
+        self->motionFlags |= 8;
         moveMotion(self);
         d = capVu0MagnitudeSqXZ(&self->unk1590, &self->posA);
         r = self->unk1588 * 0.5f;
@@ -53,11 +53,11 @@ void func_00114AC0(cEm00 *self)
             self->step = 0;
             self->stepArg = 0;
         }
-        self->stepVec.x = 0.0f;
-        self->stepVec.y = 0.0f;
+        self->nullSpeed.x = 0.0f;
+        self->nullSpeed.y = 0.0f;
         /* retail stores the distance-based speed, then overwrites it with 2.0 */
-        self->stepVec.z = d > 6.25f ? 2.0f : 1.0f;
-        self->stepVec.z = 2.0f;
+        self->nullSpeed.z = d > 6.25f ? 2.0f : 1.0f;
+        self->nullSpeed.z = 2.0f;
         cObjBase_addNullSpeed_Rotation((cObjBase *)self, 1.0f);
         cObjBase_addNullSpeed((cObjBase *)self, 1.0f);
         break;

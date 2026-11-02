@@ -26,7 +26,7 @@ typedef struct pl00VtEnt {
 
 typedef struct pl00 {
     cGameObj base;
-    char unk5AC[0x630 - 0x5AC];
+    char unk5B0[0x630 - 0x5B0];
     cVec unk630;                        /* 0x630 func_0012A578 scales the player's offset from this point */
     char unk640[0x698 - 0x640];
     cGameObj *sub698;                   /* 0x698 */

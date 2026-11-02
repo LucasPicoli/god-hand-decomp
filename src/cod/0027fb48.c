@@ -11,7 +11,7 @@ __attribute__((section(".text.func_0027FB48"))) void func_0027FB48(cEm00 *self)
     int res;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x78), EM_RES_REC(res, 0x7C), 5, 0.0f, 0, 0);
             self->timerA = 1;
             self->step = self->step + 1;

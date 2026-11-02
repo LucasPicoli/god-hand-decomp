@@ -37,7 +37,7 @@ __attribute__((section(".text.func_0023AAD0"))) void func_0023AAD0(cEm00 *self)
             self->unk1864 = 0;
             {
                 int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 func_002A8578(self, EM_RES_REC(b, 0xC08), EM_RES_REC(b, 0xC0C), 0xA, 0.0f, t0, 0);
             }
@@ -55,15 +55,15 @@ __attribute__((section(".text.func_0023AAD0"))) void func_0023AAD0(cEm00 *self)
             break;
         case 2: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int b = self->resource;
+            int b = EM_RES(self);
 
             func_002A8578(self, EM_RES_REC(b, 0xC08), EM_RES_REC(b, 0xC0C), 0xA, 0.0f, t0, 0);
         }
             self->timerA = 1;
             self->step++;
         case 3: {
-            int x = self->vital;
-            int lim = self->vitalMax;
+            int x = self->hp;
+            int lim = self->hpMax;
 
             self->emFlags = self->emFlags | 0x400000;
             x = x + 1;
@@ -71,9 +71,9 @@ __attribute__((section(".text.func_0023AAD0"))) void func_0023AAD0(cEm00 *self)
                 x = lim;
             }
             if (lim <= x) {
-                self->vital = self->vitalMax;
+                self->hp = self->hpMax;
             } else {
-                self->vital = x;
+                self->hp = x;
             }
         }
             if ((D_007476B0 & 7) == (*(int *)((char *)self + 0x17D0) & 7)) {
@@ -101,7 +101,7 @@ __attribute__((section(".text.func_0023AAD0"))) void func_0023AAD0(cEm00 *self)
             break;
         case 4: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int b = self->resource;
+            int b = EM_RES(self);
 
             func_002A8578(self, EM_RES_REC(b, 0xC10), EM_RES_REC(b, 0xC14), 0xA, 0.0f, t0, 0);
         }

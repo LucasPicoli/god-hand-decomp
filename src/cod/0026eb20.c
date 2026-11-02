@@ -21,7 +21,7 @@ void func_0026EB20(cEm00 *self)
     float p;
     float a;
 
-    if (self->moveFlags & EM_MOVE_GROUNDED) {
+    if (self->seqFlags & EM_MOVE_GROUNDED) {
         cVec front;
         cVec back;
         float dy;

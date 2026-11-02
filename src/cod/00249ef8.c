@@ -25,11 +25,11 @@ __attribute__((section(".text.func_00249EF8"))) void func_00249EF8(cEm00 *self)
             int t0, b, b2, a1v, a2v;
             self->unk1864 = 0;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             a1v = EM_RES_REC(b, 0x3D64);
             a2v = EM_RES_REC(b, 0x3D68);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                b2 = self->resource;
+                b2 = EM_RES(self);
                 a2v = EM_RES_REC(b2, 0x3D6C);
                 if (self->sub0 != 0)
                     Obj2810_SetState_2_a1((char *)self->sub0, 1);
@@ -60,7 +60,7 @@ __attribute__((section(".text.func_00249EF8"))) void func_00249EF8(cEm00 *self)
             cObjBase_addNullSpeed(self, one);
             break;
     }
-    if (self->moveFlags & 1) {
+    if (self->seqFlags & 1) {
         func_0026DB00(self, 2, 0);
     }
 }

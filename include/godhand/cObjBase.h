@@ -2,7 +2,8 @@
  *
  * cObjBase derives from cObj. It adds the playing motion, the rotation and
  * speed that the model's null part contributes each frame, and the turn
- * target some actors steer toward. cOmBase derives from cObjBase. This header
+ * target some actors steer toward. cGameObj derives from cObjBase, and cOmBase
+ * from cGameObj (its constructor at 0x1B6E90 calls cGameObj first). This header
  * names the cObjBase fields and repeats the cObj record in front of them
  * (see cObj.h and cModel.h).
  *

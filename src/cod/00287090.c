@@ -21,7 +21,7 @@ __attribute__((section(".text.func_00287090"))) void func_00287090(cEm00 *self)
     switch (self->step) {
         case 0:
             self->gotoFlags = self->gotoFlags | 1;
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x110), EM_RES_REC(res, 0x114), 0, 0.0f, 0, 0);
             self->timer = 10.0f;
             self->step = self->step + 1;
@@ -37,8 +37,8 @@ __attribute__((section(".text.func_00287090"))) void func_00287090(cEm00 *self)
             }
             break;
         case 2: {
-            int b = self->resource;
-            self->vital = 0;
+            int b = EM_RES(self);
+            self->hp = 0;
             func_002A8578(self, EM_RES_REC(b, 0x118), EM_RES_REC(b, 0x11C), 0, 0.0f, 0, 0);
         }
             func_0028FB08(self);

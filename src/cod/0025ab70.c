@@ -32,7 +32,7 @@ void cEm00_stepMotionThenTimedEnd(cEm00 *self)
         case 0x22e: case 0x22f: case 0x248: case 0x249: case 0x24c:
         case 0x24d: case 0x24e: case 0x252: case 0x25a:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x1124);
                 s1v = EM_RES_REC(b, 0x1128);
             }
@@ -41,14 +41,14 @@ void cEm00_stepMotionThenTimedEnd(cEm00 *self)
         case 0x218: case 0x245: case 0x246: case 0x247: case 0x24f:
         case 0x250: case 0x251: case 0x278: case 0x279:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x894);
                 s1v = EM_RES_REC(b, 0x898);
             }
             break;
         case 0x260:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x894);
                 s1v = EM_RES_REC(b, 0x898);
             }
@@ -56,35 +56,35 @@ void cEm00_stepMotionThenTimedEnd(cEm00 *self)
         case 0x205: case 0x206: case 0x207: case 0x208: case 0x224:
         case 0x241:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x15cc);
                 s1v = EM_RES_REC(b, 0x15d0);
             }
             break;
         case 0x209: case 0x21f:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x15cc);
                 s1v = EM_RES_REC(b, 0x15d0);
             }
             break;
         case 0x220: case 0x221: case 0x222:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x1bc0);
                 s1v = EM_RES_REC(b, 0x1bc4);
             }
             break;
         case 0x223:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x2e34);
                 s1v = EM_RES_REC(b, 0x2e38);
             }
             break;
         case 0x200: case 0x27e: default:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2v = EM_RES_REC(b, 0x11c);
                 s1v = EM_RES_REC(b, 0x120);
             }

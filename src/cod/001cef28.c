@@ -38,7 +38,7 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
     switch (self->step) {
         case 0: {
             int gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            char *v1 = (char *)self->resource;
+            char *v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x4FC), EM_RES_REC((int)v1, 0x500), 3, 0.0f, gb,
                           0);
         }
@@ -68,7 +68,7 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
     }
-    if (self->moveFlags & 1) {
+    if (self->seqFlags & 1) {
         if (s1 != 0) {
             if (cOmbb_ckFire(s1) == 0)
                 cOmbb_setFire(s1);
@@ -89,7 +89,7 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
     SetMotionStep(self, sp);
     switch (self->step) {
         case 0: {
-            int res = self->resource;
+            int res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0, 0.0f, 0, 0);
         }
             self->unk568 = 0;
@@ -107,7 +107,7 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
             }
             break;
         case 2: {
-            int res = self->resource;
+            int res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x10), 0, 0, 0.0f, 0, 0);
         }
             *(float *)((char *)self + 0x674) = 90.0f;
@@ -120,11 +120,11 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
             t = *(float *)((char *)self + 0x674) - sp;
             *(float *)((char *)self + 0x674) = t;
             if (t <= 0.0f) {
-                float u = self->animRate - sp * 0.1f;
+                float u = self->tint.w - sp * 0.1f;
                 self->objFlags = self->objFlags | 0x10;
-                self->animRate = u;
+                self->tint.w = u;
                 if (u < 0.0f) {
-                    self->animRate = 0.0f;
+                    self->tint.w = 0.0f;
                     self->mode = 1;
                     self->phase = 0;
                     self->step = 0;

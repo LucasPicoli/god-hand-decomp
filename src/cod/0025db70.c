@@ -31,7 +31,7 @@ __attribute__((section(".text.func_0025DB70"))) void func_0025DB70(cEm00 *self)
         case 0: {
             int p;
 
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x33EC), EM_RES_REC(p, 0x33F0), 0, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0)
                 func_0027DC50(*(void **)((char *)self + 0x740), 0);
@@ -79,12 +79,12 @@ __attribute__((section(".text.func_0025DB70"))) void func_0025DB70(cEm00 *self)
             }
             moveMotion(self);
             if (self->step != *(unsigned char *)(s1 + 0x2F6)) {
-                if (self->vital > 0) {
+                if (self->hp > 0) {
                     self->step = 6;
                 } else {
                     int k = 2;
 
-                    self->vital = 0;
+                    self->hp = 0;
                     self->mode = k;
                     self->phase = k;
                     self->step = 0;
@@ -97,7 +97,7 @@ __attribute__((section(".text.func_0025DB70"))) void func_0025DB70(cEm00 *self)
         case 6: {
             int p;
 
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x3390), EM_RES_REC(p, 0x3394), 3, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0)
                 func_0027DC50(*(void **)((char *)self + 0x740), 3);

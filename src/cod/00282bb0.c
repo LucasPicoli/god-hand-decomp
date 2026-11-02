@@ -26,20 +26,20 @@ __attribute__((section(".text.func_00282BB0"))) void func_00282BB0(cEm00 *self)
     switch (self->step) {
         case 0:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x180), EM_RES_REC(v, 0x184), 2, 0.0f, t0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x168), EM_RES_REC(v, 0x16C), 2, 0.0f, t0, 0);
             }
             self->step++;
             goto L_mm;
         case 2:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x188), EM_RES_REC(v, 0x18C), 2, 0.0f, t0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x170), EM_RES_REC(v, 0x174), 2, 0.0f, t0, 0);
             }
             self->step++;
@@ -50,10 +50,10 @@ __attribute__((section(".text.func_00282BB0"))) void func_00282BB0(cEm00 *self)
             break;
         case 4:
             if (*(unsigned char *)((char *)self + 0x15B0)) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x190), EM_RES_REC(v, 0x194), 2, 0.0f, t0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x178), EM_RES_REC(v, 0x17C), 2, 0.0f, t0, 0);
             }
             self->step++;

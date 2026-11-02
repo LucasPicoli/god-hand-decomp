@@ -8,7 +8,7 @@
 /* An object that rocks about its x axis when hit. */
 typedef struct cOmRocker {
     cGameObj base;                      /* 0x000 */
-    char unk5AC[0x5C0 - 0x5AC];
+    char unk5B0[0x5C0 - 0x5B0];
     cVec knock;                         /* 0x5C0 direction of the last hit */
     char unk5D0[0x650 - 0x5D0];
     short swingTimer;                   /* 0x650 frames left in this swing */

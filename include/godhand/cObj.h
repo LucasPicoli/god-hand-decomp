@@ -33,7 +33,9 @@
     unsigned char phase;                /* 0x2F5 */ \
     unsigned char step;                 /* 0x2F6 */ \
     unsigned char stepArg;              /* 0x2F7 */ \
-    char unk2F8[0x6]; \
+    char unk2F8[0x4]; \
+    unsigned char unk2FC;               /* 0x2FC low 3 bits are compared with D_007476B0 */ \
+    char unk2FD[0x1]; \
     unsigned short actorId;             /* 0x2FE actor type id */ \
     char unk300[0x4]; \
     char *pack;                         /* 0x304 the data pack: offset tables read as pack + pack[N] */ \

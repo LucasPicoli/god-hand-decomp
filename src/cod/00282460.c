@@ -12,21 +12,21 @@ __attribute__((section(".text.func_00282460"))) void func_00282460(cEm00 *self)
         case 0:
             if (self->stepArg) {
                 if (*(unsigned char *)((char *)self + 0x15B0)) {
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xAC), EM_RES_REC(res, 0xB4), 5, 0.0f, 0,
                                   0);
                 } else {
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xA0), EM_RES_REC(res, 0xA8), 5, 0.0f, 0,
                                   0);
                 }
             } else {
                 if (*(unsigned char *)((char *)self + 0x15B0)) {
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xAC), EM_RES_REC(res, 0xB0), 5, 0.0f, 0,
                                   0);
                 } else {
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xA0), EM_RES_REC(res, 0xA4), 5, 0.0f, 0,
                                   0);
                 }

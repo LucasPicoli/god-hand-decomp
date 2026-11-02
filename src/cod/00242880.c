@@ -95,7 +95,7 @@ __attribute__((section(".text.func_00242880"))) void func_00242880(cEm00 *self)
     e->b4F = 0xFF;
     fr.i50 = 0;
     VU0_SQC2_VF0(&fr, 0x60);
-    e->f40 = self->unk114;
+    e->f40 = self->scale.y;
     self->hitFlash = 3.0f;
     fr.h70 = 0;
     fr.h72 = 0;
@@ -106,7 +106,7 @@ __attribute__((section(".text.func_00242880"))) void func_00242880(cEm00 *self)
     self->emFlags |= 0x10000;
     switch (self->step) {
         case 0: {
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x245C), EM_RES_REC(w, 0x2460), 3, 0.0f, 0, 0);
             self->timer = 45.0f;
             self->timer2 = 0.053333335f;

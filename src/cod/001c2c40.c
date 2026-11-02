@@ -61,7 +61,7 @@ void cEm00_stepTextureHide(cEm00 *self)
         } else {
             EM_FLAGS254(self) |= EM_FLAG254_TEXHIDE;
         }
-        cModel_setTextureExchange(self, EM_TEXSET(self), EM_RES_REC(self->resource, 0x8C), 0);
+        cModel_setTextureExchange(self, EM_TEXSET(self), EM_RES_REC(EM_RES(self), 0x8C), 0);
     }
 }
 
@@ -103,7 +103,7 @@ void CustomIDOwner_setScoreNumber(void *self, int number)
  * that cEm00Vt does not name yet. */
 #define EM_COUNT60E(self)   (*(unsigned short *)((char *)(self) + 0x60E))
 #define EM_VT_CALL(self, ofs) \
-    ((*(void (**)(void *))((char *)(self)->vt + (ofs) + 4))((char *)(self) + *(short *)((char *)(self)->vt + (ofs))))
+    ((*(void (**)(void *))((char *)(self)->vtable + (ofs) + 4))((char *)(self) + *(short *)((char *)(self)->vtable + (ofs))))
 
 /* cEm00_stepHitStun: phase machine. Phase 0 calls two methods, loads the counter with 3 and falls into
  * phase 1, which counts it down and clears the state bytes when it runs out. */

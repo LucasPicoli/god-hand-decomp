@@ -29,7 +29,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
     switch (self->step) {
         case 0: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2474), EM_RES_REC(w, 0x2478), 3, 0.0f, t, 0);
             self->timerA = 1;
             *(float *)((char *)self + 0x60C) = 0.0f;
@@ -42,14 +42,14 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
                 self->step++;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if ((self->moveFlags & 1) && self->timerA != 0) {
+            if ((self->seqFlags & 1) && self->timerA != 0) {
                 self->timerA = 0;
                 func_0026B600(self);
             }
             break;
         case 2: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x247C), EM_RES_REC(w, 0x2480), 3, 0.0f, t, 0);
             self->timer = 90.0f;
             self->step++;
@@ -69,7 +69,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
         }
         case 4: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x249C), EM_RES_REC(w, 0x24A0), 3, 0.0f, t, 0);
             self->timer = 0.0f;
             self->unk568 = 0;
@@ -82,7 +82,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
                 self->step++;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 3) {
+            if (self->seqFlags & 3) {
                 if (self->unk568 > 0)
                     goto chk;
                 self->unk568 = 8;
@@ -101,7 +101,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
             break;
         case 6: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x247C), EM_RES_REC(w, 0x2480), 3, 0.0f, t, 0);
             self->step++;
         }
@@ -125,7 +125,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
             break;
         case 8: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x24A4), EM_RES_REC(w, 0x24A8), 3, 0.0f, t, 0);
             self->step++;
         }
@@ -139,7 +139,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
             break;
         case 10: {
             int t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int w = self->resource;
+            int w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x2464), EM_RES_REC(w, 0x2468), 3, 0.0f, t, 0);
             self->timer = 90.0f;
             self->step++;

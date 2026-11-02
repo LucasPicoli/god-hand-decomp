@@ -26,7 +26,7 @@ __attribute__((section(".text.func_0022A258"))) void func_0022A258(cEm00 *self)
     switch (self->step) {
         case 0:
             t = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v = (char *)self->resource;
+            v = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v, 0x3914), EM_RES_REC((int)v, 0x3918), 3, 0.0f, t,
                           0);
             self->timerA = 1;
@@ -42,7 +42,7 @@ __attribute__((section(".text.func_0022A258"))) void func_0022A258(cEm00 *self)
             one = 1.0f;
             cObjBase_addNullSpeed_Rotation(self, one);
             cObjBase_addNullSpeed(self, one);
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->timerA != 0) {
                     self->timerA = 0;
                     r = func_0026AA30(self, 0x37E);
@@ -53,7 +53,7 @@ __attribute__((section(".text.func_0022A258"))) void func_0022A258(cEm00 *self)
             } else {
                 self->timerA = 1;
             }
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->timerB != 0) {
                     self->timerB = 0;
                     r = func_0026AA30(self, 0x37E);
@@ -82,7 +82,7 @@ __attribute__((section(".text.func_00277D38"))) void func_00277D38(cEm00 *self)
             *(float *)((char *)self->pos + 0) = -80.327904f;
             *(float *)((char *)self->pos + 4) = -26.400499f;
             *(float *)((char *)self->pos + 8) = -22.3136f;
-            v = (char *)self->resource;
+            v = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v, 0xC), EM_RES_REC((int)v, 0x10), 0, 0.0f, 0, 0);
             self->unk568 = 0x3C;
             self->step++;
@@ -96,8 +96,8 @@ __attribute__((section(".text.func_00277D38"))) void func_00277D38(cEm00 *self)
             }
             break;
         case 2:
-            func_002A8578(self, *(int *)((char *)self->resource + 0x6C) + self->resource,
-                          *(int *)((char *)self->resource + 0x70) + self->resource, 3, 0.0f, 0, 0);
+            func_002A8578(self, *(int *)((char *)EM_RES(self) + 0x6C) + EM_RES(self),
+                          *(int *)((char *)EM_RES(self) + 0x70) + EM_RES(self), 3, 0.0f, 0, 0);
             self->step++;
         case 3:
             if (moveMotion(self) != 0) {

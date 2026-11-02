@@ -32,7 +32,7 @@ __attribute__((section(".text.func_002426A0"))) void func_002426A0(cEm00 *self)
         case 0: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             int id = self->emNo;
-            int b = self->resource;
+            int b = EM_RES(self);
             int p1 = EM_RES_REC(b, 0x3F4);
             int p2 = EM_RES_REC(b, 0x3F8);
             float f = 0.0f;
@@ -58,7 +58,7 @@ __attribute__((section(".text.func_002426A0"))) void func_002426A0(cEm00 *self)
             break;
         case 2: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            int res = self->resource;
+            int res = EM_RES(self);
 
             func_002A8578(self, EM_RES_REC(res, 0x1B58), EM_RES_REC(res, 0x1B5C), 3, 0.0f, t0, 0);
             self->step++;

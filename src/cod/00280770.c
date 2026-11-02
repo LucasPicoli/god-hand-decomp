@@ -24,13 +24,13 @@ __attribute__((section(".text.func_00280770"))) void func_00280770(cEm00 *self)
     unsigned long t0 = 0;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x120), EM_RES_REC(res, 0x124), 2, 0.0f, t0, 0);
             cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
             self->step++;
             goto L_mm;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x128), EM_RES_REC(res, 0x12C), 2, 0.0f, t0, 0);
             self->step++;
         case 1:
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00280770"))) void func_00280770(cEm00 *self)
             moveMotion(self);
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x130), EM_RES_REC(res, 0x134), 2, 0.0f, t0, 0);
             self->step++;
         case 5:

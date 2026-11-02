@@ -46,7 +46,7 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
             char *v1;
 
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0xD70), EM_RES_REC((int)v1, 0xD74), 3, 0.0f, gb,
                           0);
             self->step += 1;
@@ -81,7 +81,7 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
             if (self->playerDist > 1.0f) {
                 *(int *)((char *)self + 0x330) = 0;
                 *(int *)((char *)self + 0x334) = 0;
-                self->stepVec.z = self->speedRate * 0.1f;
+                self->nullSpeed.z = self->speedRate * 0.1f;
             } else {
                 *(int *)((char *)self + 0x330) = 0;
                 *(int *)((char *)self + 0x334) = 0;
@@ -114,12 +114,12 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
 
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             if ((self->emNo ^ 0x20F) != 0) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s2v = EM_RES_REC((int)w, 0xDA8);
                 s1v = EM_RES_REC((int)w, 0xDAC);
                 StoreMotionParamsBoth_2609A8(self, 0x14, 0x23, 0x37, -1, 0);
             } else {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s2v = EM_RES_REC((int)w, 0xD78);
                 s1v = EM_RES_REC((int)w, 0xD7C);
             }

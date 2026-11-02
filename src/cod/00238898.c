@@ -43,7 +43,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x3224), EM_RES_REC(p, 0x3228), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                 case 1:
@@ -87,7 +87,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x322C), EM_RES_REC(p, 0x3230), 0, 0.0f, 0, 0);
             self->step++;
         }
@@ -121,7 +121,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         case 4: {
             int p;
 
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x3234), EM_RES_REC(p, 0x3238), 3, 0.0f, 0, 0);
             self->step++;
         }
@@ -137,7 +137,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         case 6: {
             int p;
 
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x323C), EM_RES_REC(p, 0x3240), 3, 0.0f, 0, 0);
             self->unk568 = 0x1E;
             self->step++;

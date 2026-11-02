@@ -14,21 +14,21 @@ __attribute__((section(".text.func_0027CA50"))) void func_0027CA50(cEm00 *self)
     int res;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x90), EM_RES_REC(res, 0x94), 5, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:
             moveMotion(self);
             break;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x98), EM_RES_REC(res, 0x9C), 5, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 3:
             moveMotion(self);
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xA0), EM_RES_REC(res, 0xA4), 5, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 5:

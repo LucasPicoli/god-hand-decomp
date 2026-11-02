@@ -189,7 +189,7 @@ void cEm00_stepDropToFloor(cEm00 *self)
     {
         int p;
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        p = self->resource;
+        p = EM_RES(self);
         func_002A8578(self, EM_RES_REC(p, 0x434),
                       EM_RES_REC(p, 0x438), 3, 0.0f, gb, 0);
     }
@@ -205,7 +205,7 @@ void cEm00_stepDropToFloor(cEm00 *self)
         }
         cObjBase_addNullSpeed_Rotation(self, 1.0f);
         cObjBase_addNullSpeed(self, 1.0f);
-        if (self->moveFlags & 0x10) {
+        if (self->seqFlags & 0x10) {
             float *dv = va;
             float *d;
             float *q;
@@ -238,7 +238,7 @@ void cEm00_stepDropToFloor(cEm00 *self)
         int a1v, a2v;
         int p;
         gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        p = self->resource;
+        p = EM_RES(self);
         a1v = EM_RES_REC(p, 0x10C);
         a2v = EM_RES_REC(p, 0x110);
         func_0026E7A8(self, (int)self->pos);

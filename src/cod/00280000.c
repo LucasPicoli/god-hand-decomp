@@ -23,10 +23,10 @@ __attribute__((section(".text.func_002803F0"))) void func_002803F0(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x100), EM_RES_REC(res, 0x104), 2, 0.0f, t0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x100), EM_RES_REC(res, 0x104), 2, 0.0f, t0, 0);
             }
             cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
@@ -52,10 +52,10 @@ __attribute__((section(".text.func_002887D0"))) void func_002887D0(cEm00 *self)
     switch (self->step) {
         case 0:
             if (irand() & 1) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0xA8), EM_RES_REC(res, 0xAC), 10, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0xB0), EM_RES_REC(res, 0xB4), 10, 0.0f, 0, 0);
             }
             if (self->stepArg == 0)
@@ -89,11 +89,11 @@ __attribute__((section(".text.func_00288660"))) void func_00288660(cEm00 *self)
         case 0: {
             int s2, s1;
             if (irand() & 1) {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2 = EM_RES_REC(b, 0x50);
                 s1 = EM_RES_REC(b, 0x54);
             } else {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s2 = EM_RES_REC(b, 0x58);
                 s1 = EM_RES_REC(b, 0x5C);
             }
@@ -143,12 +143,12 @@ __attribute__((section(".text.func_00280000"))) void func_00280000(cEm00 *self)
                 switch (irand() & 1) {
                     case 0:
                     default:
-                        res = self->resource;
+                        res = EM_RES(self);
                         func_002A8578(self, EM_RES_REC(res, 0x110), EM_RES_REC(res, 0x114), 2, 0.0f,
                                       0, 0);
                         break;
                     case 1:
-                        res = self->resource;
+                        res = EM_RES(self);
                         func_002A8578(self, EM_RES_REC(res, 0x110), EM_RES_REC(res, 0x114), 2, 0.0f,
                                       0, 0);
                         break;
@@ -157,17 +157,17 @@ __attribute__((section(".text.func_00280000"))) void func_00280000(cEm00 *self)
                 switch ((unsigned)irand() % 3) {
                     case 0:
                     default:
-                        res = self->resource;
+                        res = EM_RES(self);
                         func_002A8578(self, EM_RES_REC(res, 0xD0), EM_RES_REC(res, 0xD4), 2, 0.0f,
                                       0, 0);
                         break;
                     case 1:
-                        res = self->resource;
+                        res = EM_RES(self);
                         func_002A8578(self, EM_RES_REC(res, 0xD8), EM_RES_REC(res, 0xDC), 2, 0.0f,
                                       0, 0);
                         break;
                     case 2:
-                        res = self->resource;
+                        res = EM_RES(self);
                         func_002A8578(self, EM_RES_REC(res, 0xE0), EM_RES_REC(res, 0xE4), 2, 0.0f,
                                       0, 0);
                         break;

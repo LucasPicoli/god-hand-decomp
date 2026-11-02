@@ -12,10 +12,10 @@ __attribute__((section(".text.func_0027CF40"))) void func_0027CF40(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0xB0), EM_RES_REC(res, 0xB4), 3, 0.0f, 0, 0);
             } else {
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0xB8), EM_RES_REC(res, 0xBC), 3, 0.0f, 0, 0);
             }
             self->step = self->step + 1;

@@ -71,7 +71,7 @@ void cEm00_updateKnockDrift(cEm00 *self)
     cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
     switch (self->step) {
     case 0: {
-        int b = self->resource;
+        int b = EM_RES(self);
         self->gotoFlags = self->gotoFlags & 0xFFFFFFFE;
         func_002A8578(self, EM_RES_REC(b, 0x28), EM_RES_REC(b, 0x2C), 0xA, 0.0f, 0, 0);
         dst = &self->home;
@@ -119,7 +119,7 @@ void cEm00_updateKnockDrift(cEm00 *self)
         }
         break;
     case 2: {
-        int b = self->resource;
+        int b = EM_RES(self);
         func_002A8578(self, EM_RES_REC(b, 0x30), EM_RES_REC(b, 0x34), 0xA, 0.0f, 0, 0);
         self->gotoFlags = self->gotoFlags & 0xFFFFFFFE;
         CEM00_LOBYTE(self->unk1560) = 0;
@@ -190,7 +190,7 @@ void cEm00_stepWatchTargetAttack(cEm00 *self)
     self->unk1560 = self->unk1560 | 2;
     switch (self->step) {
     case 0: {
-        int res = self->resource;
+        int res = EM_RES(self);
         func_002A8578(self, EM_RES_REC(res, 0x10), EM_RES_REC(res, 0x14), 5, 0.0f, 0, 0);
         self->step = self->step + 1;
     }
@@ -198,7 +198,7 @@ void cEm00_stepWatchTargetAttack(cEm00 *self)
         if (moveMotion(self) == 0) {
             return;
         }
-        if (player->vital <= 0) {
+        if (player->hp <= 0) {
             return;
         }
         if (0.0f < self->stepVar.time) {
@@ -207,7 +207,7 @@ void cEm00_stepWatchTargetAttack(cEm00 *self)
         if (target == 0) {
             return;
         }
-        if (target->vital <= 0) {
+        if (target->hp <= 0) {
             return;
         }
         go = 0;
@@ -218,7 +218,7 @@ void cEm00_stepWatchTargetAttack(cEm00 *self)
             go = 1;
         }
         if (cCoreSave_getGameLevel(D_00569B70) >= 3) {
-            if (target->vital <= target->vitalMax / 2) {
+            if (target->hp <= target->hpMax / 2) {
                 go = 1;
             }
         }

@@ -15,7 +15,7 @@ __attribute__((section(".text.func_00278878"))) void func_00278878(cEm00 *self)
     self->hitFlash = 3.0f;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x1C), EM_RES_REC(res, 0x20), 2, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:

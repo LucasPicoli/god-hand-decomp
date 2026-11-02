@@ -25,7 +25,7 @@ __attribute__((section(".text.func_0023A010"))) void func_0023A010(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x1054), EM_RES_REC(p, 0x1058), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->step++;
@@ -70,7 +70,7 @@ __attribute__((section(".text.func_00236D98"))) void func_00236D98(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x2EF8), EM_RES_REC(p, 0x2EFC), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->step++;

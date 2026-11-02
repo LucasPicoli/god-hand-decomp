@@ -41,14 +41,14 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                     goto lo0;
             }
             {
-                int pa = self->resource;
+                int pa = EM_RES(self);
                 x = EM_RES_REC(pa, 0xC68);
                 y = EM_RES_REC(pa, 0xC6C);
             }
             goto lm0;
         lo0:
             {
-                int pb = self->resource;
+                int pb = EM_RES(self);
                 x = EM_RES_REC(pb, 0x1A64);
                 y = EM_RES_REC(pb, 0x1A68);
             }
@@ -126,14 +126,14 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                     goto lo2;
             }
             {
-                int pa = self->resource;
+                int pa = EM_RES(self);
                 x = EM_RES_REC(pa, 0xC70);
                 y = EM_RES_REC(pa, 0xC74);
             }
             goto lm2;
         lo2:
             {
-                int pb = self->resource;
+                int pb = EM_RES(self);
                 x = EM_RES_REC(pb, 0x1A6C);
                 y = EM_RES_REC(pb, 0x1A70);
             }
@@ -166,14 +166,14 @@ __attribute__((section(".text.func_00235DB8"))) void func_00235DB8(cEm00 *self)
                     goto lo4;
             }
             {
-                int pa = self->resource;
+                int pa = EM_RES(self);
                 x = EM_RES_REC(pa, 0xC78);
                 y = EM_RES_REC(pa, 0xC7C);
             }
             goto lm4;
         lo4:
             {
-                int pb = self->resource;
+                int pb = EM_RES(self);
                 x = EM_RES_REC(pb, 0x1A74);
                 y = EM_RES_REC(pb, 0x1A78);
             }

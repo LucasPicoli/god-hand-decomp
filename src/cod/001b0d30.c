@@ -76,7 +76,7 @@ void ArenaEm_stepBossIntro(ArenaEm *self)
 /* A game object with a sound handle and two damage-give records. */
 typedef struct cGiveOwner {
     cGameObj base;
-    char unk5AC[0x668 - sizeof(cGameObj)];
+    char unk5B0[0x668 - sizeof(cGameObj)];
     int seHandle;                       /* 0x668 sound voice, 0 when none */
     void *give[2];                      /* 0x66C damage-give records, 0 when none */
     int giveId[2];                      /* 0x674 -1 when none */

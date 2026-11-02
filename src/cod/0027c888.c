@@ -23,20 +23,20 @@ __attribute__((section(".text.func_0027C888"))) void func_0027C888(cEm00 *self)
         case 0:
             cSnd_SeCall_2CBA48(D_005FEE00, 1, 0xC, self, 0, 0, 0, 0);
             if (self->stepArg) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x60), EM_RES_REC(v, 0x64), 0, 0.0f, 0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x48), EM_RES_REC(v, 0x4C), 0, 0.0f, 0, 0);
             }
             self->step++;
             goto L_mm;
         case 2:
             if (self->stepArg) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x68), EM_RES_REC(v, 0x6C), 3, 0.0f, 0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x50), EM_RES_REC(v, 0x54), 3, 0.0f, 0, 0);
             }
             self->step++;
@@ -47,10 +47,10 @@ __attribute__((section(".text.func_0027C888"))) void func_0027C888(cEm00 *self)
             break;
         case 4:
             if (self->stepArg) {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x70), EM_RES_REC(v, 0x74), 3, 0.0f, 0, 0);
             } else {
-                int v = self->resource;
+                int v = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v, 0x58), EM_RES_REC(v, 0x5C), 3, 0.0f, 0, 0);
             }
             self->step++;

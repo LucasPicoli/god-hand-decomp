@@ -32,7 +32,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
         case 0:
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x1034), EM_RES_REC(p, 0x1038), 5, 0.0f, gb, 0);
             self->step += 1;
             /* fallthrough */
@@ -51,7 +51,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
             char *sv;
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x103C), EM_RES_REC(p, 0x1040), 3, z, gb, 0);
             self->timer = 5.0f;
             va[2] = -0.6f;
@@ -141,7 +141,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
         case 4:
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x1044), EM_RES_REC(p, 0x1048), 3, 0.0f, gb, 0);
             self->step += 1;
             /* fallthrough */
@@ -157,7 +157,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
         case 6:
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x104C), EM_RES_REC(p, 0x1050), 3, 0.0f, gb, 0);
             self->step += 1;
             /* fallthrough */

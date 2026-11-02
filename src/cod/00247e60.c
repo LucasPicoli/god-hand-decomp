@@ -56,7 +56,7 @@ __attribute__((section(".text.func_00247E60"))) void func_00247E60(cEm00 *self)
         case 0:
             self->unk1864 = 0;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             p1 = EM_RES_REC(b, 0x38C0);
             p2 = EM_RES_REC(b, 0x38C4);
             self->emFlags2 = self->emFlags2 | 0x20000000;
@@ -91,7 +91,7 @@ __attribute__((section(".text.func_00247E60"))) void func_00247E60(cEm00 *self)
             s.i50 = 0;
             VU0_SQC2_VF0(&s, 0x60);
             s.h70 = 0;
-            s.f40 = self->unk114;
+            s.f40 = self->scale.y;
             s.h72 = 0;
             s.b74 = 0;
             s.i78 = 0;

@@ -16,7 +16,7 @@ void *cEm00_construct_ad(cEm00 *self)
 
     func_0028EB00(self);
     flags = (unsigned char *)self + 0x1510;
-    self->vt = (cEm00Vt *)&D_0044A528;
+    self->vtable = (cVtEnt *)&D_0044A528;
     VU0_SQC2_VF0(self, 0x1520);
     flags[0x31] = 0xFF;
     CEM00_TYPENAME(self) = (void *)&D_0044A510;

@@ -6,7 +6,6 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern void func_002812A8(void *a0, int a1, int a2);
-extern void func_002831C8(void *a0, int a1, int a2);
 extern void func_002495E0(void *a0, float f);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -33,7 +32,7 @@ __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
         case 0:
             self->unk1864 = 0;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D7C), EM_RES_REC(b, 0x3D80), 10, 0.0f, t0, 0);
             if ((void *)self->sub0 != 0) {
                 func_002812A8((void *)self->sub0, 1, 0);
@@ -54,7 +53,7 @@ __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
         case 2:
             self->unk1864 = 0;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D84), EM_RES_REC(b, 0x3D88), 10, 0.0f, t0, 0);
             if ((void *)self->sub0 != 0) {
                 func_002812A8((void *)self->sub0, 2, 0);

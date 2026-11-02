@@ -36,20 +36,20 @@ __attribute__((section(".text.func_0022ACE0"))) void func_0022ACE0(cEm00 *self)
             if (self->playerDist < 16.0f)
                 c = 1;
             if (c != 0) {
-                int w = self->resource;
+                int w = EM_RES(self);
                 p1 = EM_RES_REC(w, 0xDD0);
                 p2 = EM_RES_REC(w, 0xDD4);
                 if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                    int w2 = self->resource;
+                    int w2 = EM_RES(self);
                     p2 = EM_RES_REC(w2, 0xDD4);
                 }
                 self->stepArg = 1;
             } else {
-                int w = self->resource;
+                int w = EM_RES(self);
                 p1 = EM_RES_REC(w, 0xDC4);
                 p2 = EM_RES_REC(w, 0xDC8);
                 if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                    int w2 = self->resource;
+                    int w2 = EM_RES(self);
                     p2 = EM_RES_REC(w2, 0xDCC);
                 }
                 self->stepArg = 0;
@@ -73,14 +73,14 @@ __attribute__((section(".text.func_0022ACE0"))) void func_0022ACE0(cEm00 *self)
                 func_002705D8(self);
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->unk17C3 != 0) {
                     func_0026A638(self, 1);
                 } else {
                     func_0026A638(self, 0);
                 }
             }
-            if (self->moveFlags & 2) {
+            if (self->seqFlags & 2) {
                 if (self->stepArg != 0) {
                     EmThrower_throwHeld(self, 0, 0);
                     EmThrower_throwHeld(self, 1, 0);
@@ -93,7 +93,7 @@ __attribute__((section(".text.func_0022ACE0"))) void func_0022ACE0(cEm00 *self)
         default:
             break;
     }
-    if (self->moveFlags & 3)
+    if (self->seqFlags & 3)
         self->timerC = 1;
     if (self->timerC != 0)
         self->emFlags2 &= 0xFFFFFBFFU;

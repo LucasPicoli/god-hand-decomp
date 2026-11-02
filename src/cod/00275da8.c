@@ -8,7 +8,7 @@
 /* The enemy this rebuilds: its damage-take unit and the sphere ids the unit returned. */
 typedef struct cEm265 {
     cGameObj base;                      /* 0x000 */
-    char unk5AC[0x698 - 0x5AC];
+    char unk5B0[0x698 - 0x5B0];
     void *take;                         /* 0x698 damage-take unit, 0 when none */
     int sphere[5];                      /* 0x69C sphere ids, -1 when unused */
 } cEm265;

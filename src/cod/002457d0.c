@@ -23,7 +23,7 @@ __attribute__((section(".text.func_002457D0"))) void func_002457D0(cEm00 *self)
     self->objFlags |= 0x10000;
     switch (self->step) {
         case 0: {
-            char *v0 = (char *)self->resource;
+            char *v0 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v0, 0x23D8), EM_RES_REC((int)v0, 0x23DC), 3, 0.0f,
                           0, 0);
             self->step += 1;
@@ -38,7 +38,7 @@ __attribute__((section(".text.func_002457D0"))) void func_002457D0(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
         case 2: {
-            char *v0 = (char *)self->resource;
+            char *v0 = (char *)EM_RES(self);
             int flags;
             func_002A8578(self, EM_RES_REC((int)v0, 0x23E0), EM_RES_REC((int)v0, 0x23E4), 0, 0.0f,
                           0, 0);
@@ -78,7 +78,7 @@ __attribute__((section(".text.func_002457D0"))) void func_002457D0(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
         case 4: {
-            char *v0 = (char *)self->resource;
+            char *v0 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v0, 0x2388), EM_RES_REC((int)v0, 0x238C), 0, 0.0f,
                           0, 0);
             self->step += 1;

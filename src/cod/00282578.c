@@ -20,12 +20,12 @@ __attribute__((section(".text.func_00282578"))) void func_00282578(cEm00 *self)
         t0 = two;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x138), EM_RES_REC(res, 0x13C), 5, 0.0f, t0, 0);
             self->step++;
             goto L_mm;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x140), EM_RES_REC(res, 0x144), 5, 0.0f, t0, 0);
             self->step++;
             /* fallthrough */
@@ -35,7 +35,7 @@ __attribute__((section(".text.func_00282578"))) void func_00282578(cEm00 *self)
             moveMotion(self);
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x148), EM_RES_REC(res, 0x14C), 5, 0.0f, t0, 0);
             self->step++;
             /* fallthrough */
@@ -48,7 +48,7 @@ __attribute__((section(".text.func_00282578"))) void func_00282578(cEm00 *self)
             }
             break;
         case 6:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x150), EM_RES_REC(res, 0x154), 5, 0.0f, t0, 0);
             self->step++;
             /* fallthrough */

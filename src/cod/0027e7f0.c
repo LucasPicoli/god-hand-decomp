@@ -24,7 +24,7 @@ void cEm00_attachToTarget(cEm00 *self, cEm00 *target) {
     cOmBase *child;
     int count;
 
-    self->animRate = 1.0f;
+    self->tint.w = 1.0f;
     self->objFlags = self->objFlags & EM_F250_NOT_HELD;
     self->target = 0;
     child = cOmBase_childAt((cOmBase *)self, (int *)f, 0);

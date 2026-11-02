@@ -44,7 +44,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             char *v1;
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x1F10), EM_RES_REC((int)v1, 0x1F14), 0xA, 0.0f,
                           gb, 0);
             self->step += 1;
@@ -66,7 +66,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             int gb;
             char *v1;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x1F18), EM_RES_REC((int)v1, 0x1F1C), 3, 0.0f,
                           gb, 0);
             self->timerA = 1;
@@ -83,7 +83,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->timerA != 0) {
                     self->timerA = 0;
                     func_0026BEF0(self, 9, 0);
@@ -95,7 +95,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             int gb;
             char *v1;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x1F2C), EM_RES_REC((int)v1, 0x1F30), 0xA, 0.0f,
                           gb, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70) - 1) {
@@ -139,7 +139,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             int gb;
             char *v1;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x1F24), EM_RES_REC((int)v1, 0x1F28), 0xA, 0.0f,
                           gb, 0);
             self->step += 1;
@@ -163,7 +163,7 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             int gb;
             char *v1;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x1F34), EM_RES_REC((int)v1, 0x1F38), 3, 0.0f,
                           gb, 0);
             self->timerA = 1;
@@ -180,13 +180,13 @@ __attribute__((section(".text.func_002276B0"))) void func_002276B0(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->timerA != 0) {
                     self->timerA = 0;
                     func_0026BEF0(self, 9, 0);
                 }
             }
-            if (self->moveFlags & 0x10) {
+            if (self->seqFlags & 0x10) {
                 func_00262AA8(self);
             }
             break;

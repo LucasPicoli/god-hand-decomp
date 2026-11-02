@@ -30,12 +30,12 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
             self->unk1864 = 0;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             StoreMotionParamsBoth_2609A8(self, 0x14, 0, 0x37, -1, 0);
-            w = self->resource;
+            w = EM_RES(self);
             sv = &D_00569B70;
             p1 = EM_RES_REC(w, 0x15F8);
             p2 = EM_RES_REC(w, 0x15FC);
             if (cCoreSave_getGameLevel(sv) == 5) {
-                int w2 = self->resource;
+                int w2 = EM_RES(self);
                 p2 = EM_RES_REC(w2, 0x1600);
             }
             func_002A8578(self, p1, p2, 3, 0.0f, r, 0);
@@ -70,7 +70,7 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
                 func_002705D8(self);
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if ((self->moveFlags & 0x10) && self->unk1864 == 0 &&
+            if ((self->seqFlags & 0x10) && self->unk1864 == 0 &&
                 cCoreSave_getGameLevel(&D_00569B70) >= 2 && (irand() & 1))
                 self->step++;
             break;
@@ -85,12 +85,12 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
             five = 5;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             StoreMotionParamsBoth_2609A8(self, 0x14, 3, 0x37, -1, 0);
-            w = self->resource;
+            w = EM_RES(self);
             sv = &D_00569B70;
             p1 = EM_RES_REC(w, 0x1604);
             p2 = EM_RES_REC(w, 0x1608);
             if (cCoreSave_getGameLevel(sv) == five) {
-                int w2 = self->resource;
+                int w2 = EM_RES(self);
                 p2 = EM_RES_REC(w2, 0x160C);
             }
             func_002A8578(self, p1, p2, 1, 0.0f, r, 0);
@@ -130,7 +130,7 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
     }
     if (self->unk1864 == 0)
         func_00260B30(self);
-    if (self->moveFlags & 3)
+    if (self->seqFlags & 3)
         self->timerC = 1;
     if (self->timerC != 0)
         self->emFlags2 &= 0xFFFFFBFFU;

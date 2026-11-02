@@ -31,7 +31,7 @@ int func_00294488(cEmManage *self)
     ready = 0;
     for (i = 0; i < EM_SPECIAL_NUM; i++) {
         em = (cEm00 *)self->specialEm[i];
-        if (em == 0 || em->vital <= 0) {
+        if (em == 0 || em->hp <= 0) {
             continue;
         }
         if (Obj0000_IsSet_Field_16D4_Bit_4_26F308(em)) {
@@ -40,7 +40,7 @@ int func_00294488(cEmManage *self)
         if (em->mode != 0) {
             return 0;
         }
-        if (em->moveFlags & 0x90C) {
+        if (em->seqFlags & 0x90C) {
             return 0;
         }
         if (em->hitFlash > 0.0f) {
@@ -98,7 +98,7 @@ int func_00294488(cEmManage *self)
 
     for (i = 0; i < EM_SPECIAL_NUM; i++) {
         em = (cEm00 *)self->specialEm[i];
-        if (em == 0 || em->vital <= 0) {
+        if (em == 0 || em->hp <= 0) {
             continue;
         }
         switch (em->emNo) {

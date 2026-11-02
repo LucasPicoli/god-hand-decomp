@@ -20,8 +20,8 @@ void cEm00_setGoto(cEm00 *self, cVec *pos, int kind, int reset, float time)
     }
     if (kind == 0xF) {
         cEm00_setAlphaMode(self, 0);
-        self->vitalMax = 1;
-        self->vital = 1;
+        self->hpMax = 1;
+        self->hp = 1;
     }
     if (self->gotoEffect != 0) {
         func_001D0408(self->gotoEffect);

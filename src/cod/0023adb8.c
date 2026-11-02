@@ -35,7 +35,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
             self->unk1864 = 0;
             {
                 int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-                res = self->resource;
+                res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0xBE8), EM_RES_REC(res, 0xBEC), 0xA, 0.0f, t0,
                               0);
             }
@@ -46,7 +46,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
                 self->emFlags = t;
             }
             self->step = self->step + 1;
-            self->vital = 0;
+            self->hp = 0;
         case 1:
             self->emFlags = self->emFlags | 0x400000;
             moveMotion(self);
@@ -58,7 +58,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
             break;
         case 2: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 3, 0.0f, t0, 0);
         }
             self->step = self->step + 1;
@@ -69,7 +69,7 @@ __attribute__((section(".text.func_0023ADB8"))) void func_0023ADB8(cEm00 *self)
             break;
         case 4: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xBF0), EM_RES_REC(res, 0xBF4), 0, 64.0f, t0, 0);
         }
             self->step = self->step + 1;

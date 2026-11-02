@@ -25,19 +25,19 @@ __attribute__((section(".text.func_0023A138"))) void func_0023A138(cEm00 *self)
     self->hitFlash = 3.0f;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(res, 0x2C8C), EM_RES_REC(res, 0x2C90), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
             goto L_mm;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(res, 0x2C94), EM_RES_REC(res, 0x2C98), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
             goto L_mm;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(res, 0x2C9C), EM_RES_REC(res, 0x2CA0), 0, 0.0f, 0, 0);
             self->step = self->step + 1;
@@ -52,7 +52,7 @@ __attribute__((section(".text.func_0023A138"))) void func_0023A138(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
         case 6:
-            res = self->resource;
+            res = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(res, 0x2CA4), EM_RES_REC(res, 0x2CA8), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;

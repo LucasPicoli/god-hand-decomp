@@ -39,7 +39,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
     cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
     switch (self->step) {
         case 0: {
-            int w = self->resource;
+            int w = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(w, 0x100C), EM_RES_REC(w, 0x1010), 0, 0.0f, 0, 0);
             switch (cCoreSave_getGameLevel(&D_00569B70) - 1) {
@@ -82,7 +82,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
             break;
         }
         case 2: {
-            int w = self->resource;
+            int w = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(w, 0xFF4), EM_RES_REC(w, 0xFF8), 0, 0.0f, 0, 0);
             self->step++;
@@ -126,7 +126,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
             break;
         }
         case 4: {
-            int w = self->resource;
+            int w = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(w, 0x1004), EM_RES_REC(w, 0x1008), 3, 0.0f, 0, 0);
             self->step++;
@@ -144,7 +144,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
             cObjBase_addNullSpeed(self, 1.0f);
             break;
         case 6: {
-            int w = self->resource;
+            int w = EM_RES(self);
             self->unk1864 = 0;
             func_002A8578(self, EM_RES_REC(w, 0xFFC), EM_RES_REC(w, 0x1000), 3, 0.0f, 0, 0);
             self->step++;
@@ -153,7 +153,7 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
         case 7:
             self->hitFlash = 3.0f;
             if (moveMotion(self)) {
-                int hp = self->vital;
+                int hp = self->hp;
                 int d = 0x14;
                 switch (cCoreSave_getGameLevel(&D_00569B70)) {
                     default:
@@ -169,10 +169,10 @@ __attribute__((section(".text.func_002367C0"))) void func_002367C0(cEm00 *self)
                 hp = hp - d;
                 if (hp <= 0)
                     hp = 0;
-                if (hp >= self->vitalMax)
-                    self->vital = self->vitalMax;
+                if (hp >= self->hpMax)
+                    self->hp = self->hpMax;
                 else
-                    self->vital = hp;
+                    self->hp = hp;
                 if (hp <= 0) {
                     self->mode = 2;
                     self->phase = 1;

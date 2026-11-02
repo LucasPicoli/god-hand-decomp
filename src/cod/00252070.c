@@ -42,7 +42,7 @@ extern unsigned char D_005FEE00[];
 
 /* The first and second motion records of an action are two offsets in the
  * resource blob, 4 bytes apart; the motion start takes both addresses. */
-#define MOTION_PAIR(a, b) { int p = self->resource; recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
+#define MOTION_PAIR(a, b) { int p = EM_RES(self); recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
 
 /* The blown-away step of an enemy: step 0 picks the motion for the enemy number, starts it and
  * plays the launch sounds; step 1 flies the body and ends in a ground check; steps 2 and 3 slide
@@ -424,7 +424,7 @@ void func_00252070(void *a0)
         }
         InitRenderStruct_2A8608(self, 0x58, 8, 0, 2, 0);
         cVec_copy3(EM_VEC(self, EM_TURNTO_OFFSET), (cVec *)self->pos);
-        if (self->vital <= 0 && !(self->emFlags2 & 0x1000)
+        if (self->hp <= 0 && !(self->emFlags2 & 0x1000)
             && (func_00273D30(self), (self->emNo != 0x21F || !(self->emFlags2 & 0x100000)))) {
             func_00273630(self);
             if (cEmBase_checkDeadFlag(self) == 0 && self->entryNo != 0xFF) {
@@ -446,7 +446,7 @@ void func_00252070(void *a0)
         VU0_SQC2(4, FRAME, 0x40);
         VU0_LQC2(4, pB, 0);
         VU0_SQC2(4, FRAME, 0x30);
-        cVec_copy3(&self->stepVec, &vecA);
+        cVec_copy3(&self->nullSpeed, &vecA);
         cObjBase_addNullSpeed_Rotation(self, 1.0f);
         cObjBase_addNullSpeed(self, 1.0f);
         if (--self->timerA <= 0) {
@@ -454,11 +454,11 @@ void func_00252070(void *a0)
             cVec_copy3(&vecA, self->pos);
             vecA.y += 1.0f;
             SetEffectPos(0x58, 9, 0, &vecA, 1.0f, -1);
-            self->animRate = 0.0f;
+            self->tint.w = 0.0f;
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x2C, self, 0, 0, 0, 0);
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x35, self, 0, 0, 0, 0);
             cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xDA, self, 0, 0, 0, 0);
-            if ((EM_AT(int, self, EM_FLAGS1644_OFFSET) & 0x800000) || self->vital > 0
+            if ((EM_AT(int, self, EM_FLAGS1644_OFFSET) & 0x800000) || self->hp > 0
                 || (self->emFlags2 & 0x1000)) {
                 self->step++;
                 break;
@@ -507,7 +507,7 @@ void func_00252070(void *a0)
         }
         self->timer -= 1.0f;
         if (self->timer <= 0.0f) {
-            if (self->vital <= 0) {
+            if (self->hp <= 0) {
                 switch (self->emNo) {
                 case 0x260:
                 case 0x264:

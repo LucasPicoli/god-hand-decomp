@@ -19,16 +19,16 @@ __attribute__((section(".text.func_0027F780"))) void func_0027F780(cEm00 *self)
     switch (self->step) {
         case 0:
             if (self->stepArg) {
-                int v1 = self->resource;
+                int v1 = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v1, 0x48), EM_RES_REC(v1, 0x50), 5, 0.0f, t0, 0);
             } else {
-                int v2 = self->resource;
+                int v2 = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(v2, 0x48), EM_RES_REC(v2, 0x4C), 5, 0.0f, t0, 0);
             }
             self->step++;
             goto L_mm;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x48), EM_RES_REC(res, 0x58), 5, 0.0f, t0, 0);
             self->step++;
         case 1:
@@ -37,7 +37,7 @@ __attribute__((section(".text.func_0027F780"))) void func_0027F780(cEm00 *self)
             moveMotion(self);
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x48), EM_RES_REC(res, 0x60), 5, 0.0f, t0, 0);
             self->step++;
         case 5:

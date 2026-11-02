@@ -180,11 +180,11 @@ __attribute__((section(".text.func_002258C0"))) void func_002258C0(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 2) {
+            if (self->seqFlags & 2) {
                 if (*(int *)((char *)self + 0x70C) != 0) {
                     int nv = *(unsigned short *)((char *)self + 0x54A) + 0x12C;
                     *(unsigned short *)((char *)self + 0x54A) = (unsigned short)nv;
-                    if (self->vitalMax < (short)nv) {
+                    if (self->hpMax < (short)nv) {
                         *(unsigned short *)((char *)self + 0x54A) =
                             *(unsigned short *)((char *)self + 0x548);
                     }
@@ -214,7 +214,7 @@ __attribute__((section(".text.func_002258C0"))) void func_002258C0(cEm00 *self)
     }
     self->emFlags |= 0x1000;
     self->unk16F8 = 0xA;
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         self->timerC = 1;
     }
     if (self->timerC != 0) {

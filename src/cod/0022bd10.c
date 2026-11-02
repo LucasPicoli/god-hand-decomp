@@ -56,12 +56,12 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             self->stepArg = irand() & 1;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             s4 = &D_00569B70;
             s2v = EM_RES_REC((int)v1, 0x2330);
             s1v = EM_RES_REC((int)v1, 0x2334);
             if (cCoreSave_getGameLevel(s4) == 5) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s1v = EM_RES_REC((int)w, 0x2338);
             }
             func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
@@ -122,11 +122,11 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             self->stepArg = irand() & 1;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             s2v = EM_RES_REC((int)v1, 0x233C);
             s1v = EM_RES_REC((int)v1, 0x2340);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s1v = EM_RES_REC((int)w, 0x2344);
             }
             func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
@@ -167,11 +167,11 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             self->stepArg = irand() & 1;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             s2v = EM_RES_REC((int)v1, 0x2348);
             s1v = EM_RES_REC((int)v1, 0x234C);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s1v = EM_RES_REC((int)w, 0x2350);
             }
             func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
@@ -191,7 +191,7 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             break;
         }
     }
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         self->timerC = 1;
     }
     if (self->timerC != 0) {

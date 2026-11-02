@@ -107,7 +107,7 @@ typedef struct HitRec {
 /* A game object that can splash: past the base part it keeps a vertical speed and a once-only flag. */
 typedef struct SplashObj {
     cGameObj base;
-    char unk5AC[0x1710 - 0x5AC];
+    char unk5B0[0x1710 - 0x5B0];
     float fall;                         /* 0x1710 negative while falling */
     char unk1714[0x17C2 - 0x1714];
     unsigned char splashed;             /* 0x17C2 */

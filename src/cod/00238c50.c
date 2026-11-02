@@ -42,7 +42,7 @@ __attribute__((section(".text.func_00238C50"))) void func_00238C50(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x33CC), EM_RES_REC(p, 0x33D0), 0, 0.0f, 0, 0);
             if (*(void **)((char *)self + 0x740) != 0) {
                 Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DCE8(*(char **)((char *)self + 0x740));
@@ -75,7 +75,7 @@ __attribute__((section(".text.func_00238C50"))) void func_00238C50(cEm00 *self)
             int p;
 
             self->unk1864 = 0;
-            p = self->resource;
+            p = EM_RES(self);
             func_002A8578(self, EM_RES_REC(p, 0x33D4), EM_RES_REC(p, 0x33D8), 0, 0.0f, 0, 0);
             *(short *)((char *)self + 0x56E) = 0xF;
             self->hitFlash = 5.0f;

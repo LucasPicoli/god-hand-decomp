@@ -34,7 +34,7 @@ __attribute__((section(".text.func_00249AB0"))) void func_00249AB0(cEm00 *self)
 
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D34), EM_RES_REC(b, 0x3D38), 0xA, 0.0f, gb, 0);
             self->timer = 30.0f;
             q = (void *)self->sub0;
@@ -82,7 +82,7 @@ __attribute__((section(".text.func_00249AB0"))) void func_00249AB0(cEm00 *self)
 
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D34), EM_RES_REC(b, 0x3D38), 0xA, z, gb, 0);
             self->timer = 60.0f;
             q = (void *)self->sub0;

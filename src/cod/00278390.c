@@ -41,7 +41,7 @@ void func_00278390(cEm00 *self)
     self->unk1560 &= ~2u;
     EM_PHASE_RUN(&D_003BFB00, self, self->mode);
 
-    if (self->moveFlags & MOVE_F_PART_B) {
+    if (self->seqFlags & MOVE_F_PART_B) {
         if (EM_PART_A(self) != 0)
             PART_FLAGS(EM_PART_A(self)) &= ~PART_F_HIDE;
         if (EM_PART_B(self) != 0)

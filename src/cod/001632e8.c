@@ -28,9 +28,9 @@ void cEm00_stepFadeOutAndRelease(cEm00 *self) {
         func_0028FB08(self);
         self->step = self->step + 1;
     case 1:
-        self->animRate = self->animRate - EM_FADE_STEP;
-        if (self->animRate <= 0.0f) {
-            self->animRate = 0.0f;
+        self->tint.w = self->tint.w - EM_FADE_STEP;
+        if (self->tint.w <= 0.0f) {
+            self->tint.w = 0.0f;
             cEmManage_ReleaseEm(&D_005864F0, (cEmActor *)self);
             self->step = self->step + 1;
         }
@@ -82,9 +82,9 @@ int cEm00_stepFadeIn(cEm00 *self) {
     t = EM_FADETIMER(self) - EM_FADETIMER_STEP;
     rate = 1.0f - t;
     EM_FADETIMER(self) = t;
-    self->animRate = rate;
+    self->tint.w = rate;
     if (rate >= 1.0f) {
-        self->animRate = 1.0f;
+        self->tint.w = 1.0f;
         self->objFlags &= 0xFFFFFFEF;     /* ~EM_FLAG_FADING; the unsigned constant is what retail builds with lui+ori */
     } else {
         self->objFlags |= EM_FLAG_FADING;

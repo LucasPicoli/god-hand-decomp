@@ -25,7 +25,7 @@ __attribute__((section(".text.func_00246D18"))) void func_00246D18(cEm00 *self)
         case 0:
             self->unk1864 = 0;
             n = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x98), EM_RES_REC(res, 0x9C), 0xA, 0.0f, n & 0xFFFF,
                           0);
             self->emFlags = self->emFlags & 0xDFFFFFFF;
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00246D18"))) void func_00246D18(cEm00 *self)
         case 2:
             self->unk1864 = 0;
             n = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x3CC), EM_RES_REC(res, 0x3D0), 0x6, 0.0f,
                           n & 0xFFFF, 0);
             self->step++;
@@ -51,7 +51,7 @@ __attribute__((section(".text.func_00246D18"))) void func_00246D18(cEm00 *self)
         case 4:
             self->unk1864 = 0;
             n = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x98), EM_RES_REC(res, 0x9C), 0xA, 0.0f, n & 0xFFFF,
                           0);
             self->emFlags = self->emFlags & 0xDFFFFFFF;
@@ -65,7 +65,7 @@ __attribute__((section(".text.func_00246D18"))) void func_00246D18(cEm00 *self)
         case 6:
             self->unk1864 = 0;
             n = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x3E4), EM_RES_REC(res, 0x3E8), 0x6, 0.0f,
                           n & 0xFFFF, 0);
             self->step++;
@@ -76,7 +76,7 @@ __attribute__((section(".text.func_00246D18"))) void func_00246D18(cEm00 *self)
             break;
     }
 
-    if ((self->moveFlags & 3) != 0) {
+    if ((self->seqFlags & 3) != 0) {
         if (self->timerA != 0) {
             self->timerA = 0;
             func_002744E0(self);

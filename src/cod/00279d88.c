@@ -47,11 +47,11 @@ int func_00279D88(cEm00 *self)
         IK_InverseKinematics(self->ik, self);
         cModel_calcWorldParts(self);
         self->active = 1;
-        self->link = -1;
+        self->unk531 = -1;
         cCollisionSolidManage_SetActive((int)D_00462FC0, (int)self, 0);
         cParts_setRotationOrder((char *)self, 4);
-        self->vital = self->vitalMax = 1;
-        self->turnRate = EMSETUP_TURN_RATE;
+        self->hp = self->hpMax = 1;
+        self->turnSpeed = EMSETUP_TURN_RATE;
         self->turnArg = 0;
         self->unk617 = 0;
         return 1;

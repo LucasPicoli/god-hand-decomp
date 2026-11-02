@@ -22,7 +22,7 @@ extern float frand(float lo, float hi);
 /* The enemy record with the stagger fields at 0xDA0, past what cEm00.h names. */
 typedef struct EmStagger {
     char unk000[0x214];
-    cEm00Vt *vt;                        /* 0x214 */
+    cEm00Vt *vtable;                    /* 0x214 */
     char unk218[0xB88];
     short staggerTime;                  /* 0xDA0 frames left */
     char unkDA2[2];

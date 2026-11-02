@@ -76,7 +76,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         switch (self->emNo) {
         default:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x628);
             mb = EM_RES_REC(b, 0x62C);
         }
@@ -84,7 +84,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x20F: case 0x210: case 0x211: case 0x226: case 0x270:
         case 0x271: case 0x272: case 0x273: case 0x274:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xF74);
             mb = EM_RES_REC(b, 0xF78);
         }
@@ -93,14 +93,14 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x218: case 0x245: case 0x246: case 0x247: case 0x24F:
         case 0x278: case 0x279:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB4C);
             mb = EM_RES_REC(b, 0xB50);
         }
             break;
         case 0x250: case 0x251:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB4C);
             mb = EM_RES_REC(b, 0xB50);
             cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), self, 0, 0, 0, 0);
@@ -108,21 +108,21 @@ void cEm00_stepLeapAndLand(cEm00 *self)
             break;
         case 0x260:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB4C);
             mb = EM_RES_REC(b, 0xB50);
         }
             break;
         case 0x264:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x326C);
             mb = EM_RES_REC(b, 0x3270);
         }
             break;
         case 0x265:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x3818);
             mb = EM_RES_REC(b, 0x381C);
         }
@@ -130,28 +130,28 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x205: case 0x206: case 0x207: case 0x208: case 0x224:
         case 0x241:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x17C0);
             mb = EM_RES_REC(b, 0x17C4);
         }
             break;
         case 0x209: case 0x21F:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x17C0);
             mb = EM_RES_REC(b, 0x17C4);
         }
             break;
         case 0x220: case 0x221: case 0x222:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x628);
             mb = EM_RES_REC(b, 0x62C);
         }
             break;
         case 0x223:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x2E34);
             mb = EM_RES_REC(b, 0x2E38);
         }
@@ -161,7 +161,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x248: case 0x249: case 0x24C: case 0x24D: case 0x24E:
         case 0x252: case 0x25A:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x13A0);
             mb = EM_RES_REC(b, 0x13A4);
         }
@@ -216,7 +216,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
                 self->timerB |= 2;
             }
         }
-        self->unk434 |= 8;
+        self->motionFlags |= 8;
         if (moveMotion(self) != 0) {
             self->timerB |= 1;
         }
@@ -273,7 +273,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         switch (self->emNo) {
         default:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x630);
             mb = EM_RES_REC(b, 0x634);
         }
@@ -281,7 +281,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x20F: case 0x210: case 0x211: case 0x226: case 0x270:
         case 0x271: case 0x272: case 0x273: case 0x274:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xF7C);
             mb = EM_RES_REC(b, 0xF80);
         }
@@ -290,28 +290,28 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x218: case 0x245: case 0x246: case 0x247: case 0x24F:
         case 0x250: case 0x251: case 0x278: case 0x279:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB54);
             mb = EM_RES_REC(b, 0xB58);
         }
             break;
         case 0x260:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB54);
             mb = EM_RES_REC(b, 0xB58);
         }
             break;
         case 0x264:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x326C);
             mb = EM_RES_REC(b, 0x3270);
         }
             break;
         case 0x265:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x3818);
             mb = EM_RES_REC(b, 0x381C);
         }
@@ -319,28 +319,28 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x205: case 0x206: case 0x207: case 0x208: case 0x224:
         case 0x241:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x17C8);
             mb = EM_RES_REC(b, 0x17CC);
         }
             break;
         case 0x209: case 0x21F:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x17C8);
             mb = EM_RES_REC(b, 0x17CC);
         }
             break;
         case 0x220: case 0x221: case 0x222:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x630);
             mb = EM_RES_REC(b, 0x634);
         }
             break;
         case 0x223:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x2EA4);
             mb = EM_RES_REC(b, 0x2EA8);
         }
@@ -349,7 +349,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
         case 0x225: case 0x22C: case 0x22D: case 0x22E: case 0x248:
         case 0x249: case 0x24C: case 0x24D: case 0x24E: case 0x252:
         {
-            int b = self->resource;
+            int b = EM_RES(self);
             ma = EM_RES_REC(b, 0x13A8);
             mb = EM_RES_REC(b, 0x13AC);
         }
@@ -367,7 +367,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
             self->timerA = c - 1;
             cGameObj_SetTgtTurn(self, &self->posB, self->speedRate * 0.3926991f);
         }
-        if (self->moveFlags & 4) {
+        if (self->seqFlags & 4) {
             cVec *q;
             float vy;
 
@@ -405,7 +405,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
                                 }
                                 /* fallthrough */
                             case 5:
-                                if (self->vital > 0) {
+                                if (self->hp > 0) {
                                     if (func_0026F1D8(self) == 0) {
                                         self->mode = 1;
                                         self->phase = 8;
@@ -441,7 +441,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
                 }
             }
         }
-        self->unk434 |= 8;
+        self->motionFlags |= 8;
         moveMotion(self);
         cObjBase_addNullSpeed_Rotation(self, 1.0f);
         cObjBase_addNullSpeed(self, 1.0f);

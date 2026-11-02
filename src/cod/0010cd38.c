@@ -52,8 +52,8 @@ void func_0010CD38(cEm00 *self)
         case 0:
         default:
             Obj0000_Clear_Fields_640_648_124E58((char *)self);
-            p1 = EM_RES_REC(self->resource, 0x48);
-            p2 = EM_RES_REC(self->resource, 0x4C);
+            p1 = EM_RES_REC(EM_RES(self), 0x48);
+            p2 = EM_RES_REC(EM_RES(self), 0x4C);
             SetEffect(0, 0x17, self, 0, -1, 0xFFFFFFFF);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, self, 0, 0, 0, 0);
             self->unk568 = 0xC;
@@ -61,15 +61,15 @@ void func_0010CD38(cEm00 *self)
         case 1:
             self->hitFlash = 12.0f;
             Obj0000_Clear_Fields_640_648_124E58((char *)self);
-            p1 = EM_RES_REC(self->resource, 0x50);
-            p2 = EM_RES_REC(self->resource, 0x54);
+            p1 = EM_RES_REC(EM_RES(self), 0x50);
+            p2 = EM_RES_REC(EM_RES(self), 0x54);
             SetEffect(0, 0x18, self, 0, -1, 0xFFFFFFFF);
             break;
         case 2:
             self->hitFlash = 5.0f;
             func_00124540(self, 5);
-            p1 = EM_RES_REC(self->resource, 0x40);
-            p2 = EM_RES_REC(self->resource, 0x44);
+            p1 = EM_RES_REC(EM_RES(self), 0x40);
+            p2 = EM_RES_REC(EM_RES(self), 0x44);
             SetEffect(0, 0x16, self, 0, -1, 0xFFFFFFFF);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, self, 0, 0, 0, 0);
             self->stepScale = 1.2f;
@@ -77,8 +77,8 @@ void func_0010CD38(cEm00 *self)
         case 3:
             self->hitFlash = 5.0f;
             func_00124540(self, 5);
-            p1 = EM_RES_REC(self->resource, 0x38);
-            p2 = EM_RES_REC(self->resource, 0x3C);
+            p1 = EM_RES_REC(EM_RES(self), 0x38);
+            p2 = EM_RES_REC(EM_RES(self), 0x3C);
             SetEffect(0, 0x15, self, 0, -1, 0xFFFFFFFF);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, self, 0, 0, 0, 0);
             self->stepScale = 1.2f;
@@ -117,8 +117,8 @@ void func_0010CD38(cEm00 *self)
             self->step = 0;
             self->stepArg = 0;
         }
-        self->stepVec.x *= self->stepScale;
-        self->stepVec.z *= self->stepScale;
+        self->nullSpeed.x *= self->stepScale;
+        self->nullSpeed.z *= self->stepScale;
         cObjBase_addNullSpeed_Rotation((cObjBase *)self, 1.0f);
         cObjBase_addNullSpeed((cObjBase *)self, 1.0f);
         break;

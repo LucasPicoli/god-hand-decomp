@@ -28,7 +28,7 @@ void cEm00_stepGetUp(cEm00 *self)
         int p2;
 
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        res = self->resource;
+        res = EM_RES(self);
         p1 = EM_RES_REC(res, 0x3E34);
         p2 = EM_RES_REC(res, 0x3E38);
         self->emFlags = self->emFlags & 0xFEFFFFFF;
@@ -58,11 +58,11 @@ void cEm00_stepGetUp(cEm00 *self)
             self->phase = 0xF;
             self->step = 4;
             self->stepArg = 0;
-            if (self->vital < 2) {
-                self->vital = 0;
+            if (self->hp < 2) {
+                self->hp = 0;
             }
         }
-        if ((self->moveFlags & 0x10) != 0 && self->vital >= 2 && func_0026F1D8(self) == 0) {
+        if ((self->seqFlags & 0x10) != 0 && self->hp >= 2 && func_0026F1D8(self) == 0) {
             self->step = self->step + 1;
         }
         break;
@@ -72,7 +72,7 @@ void cEm00_stepGetUp(cEm00 *self)
         int p2;
 
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        res = self->resource;
+        res = EM_RES(self);
         p1 = EM_RES_REC(res, 0x3E3C);
         p2 = EM_RES_REC(res, 0x3E40);
         *(int *)&self->unk16F4 = 0;
@@ -97,11 +97,11 @@ void cEm00_stepGetUp(cEm00 *self)
         }
         break;
     }
-    if ((self->moveFlags & 1) != 0 && self->unk568 != 0) {
+    if ((self->seqFlags & 1) != 0 && self->unk568 != 0) {
         self->unk568 = 0;
         CEM00_VCALL(self, hit, 0xC8, player, 0, 0);
-        if (self->vital <= 0) {
-            self->vital = 1;
+        if (self->hp <= 0) {
+            self->hp = 1;
         }
     }
 }

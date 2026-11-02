@@ -29,7 +29,7 @@ __attribute__((section(".text.func_00278940"))) void func_00278940(cEm00 *self)
     self->hitFlash = 3.0f;
     switch (self->step) {
         case 0: {
-            int p = self->resource;
+            int p = EM_RES(self);
             int k;
             unsigned char m;
 

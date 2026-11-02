@@ -26,7 +26,7 @@
 
 typedef struct cEma2 {
     cGameObj base;                      /* 0x0000 */
-    char unk5AC[0x616 - 0x5AC];
+    char unk5B0[0x616 - 0x5B0];
     unsigned char unk616;               /* 0x616 set to 1 by the constructor */
     char unk617[0x670 - 0x617];
     int damageTake;                     /* 0x670 handle from cDamageManage_CreateDamageTake */

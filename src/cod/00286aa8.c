@@ -46,27 +46,27 @@ __attribute__((section(".text.func_00286AA8"))) void func_00286AA8(cEm00 *self)
             switch (self->stepArg) {
                 case 0:
                 default: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     a = EM_RES_REC(b, 0xC0);
                     bb = EM_RES_REC(b, 0xC4);
                 } break;
                 case 1: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     a = EM_RES_REC(b, 0xC8);
                     bb = EM_RES_REC(b, 0xCC);
                 } break;
                 case 2: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     a = EM_RES_REC(b, 0xD0);
                     bb = EM_RES_REC(b, 0xD4);
                 } break;
                 case 3: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     a = EM_RES_REC(b, 0xD8);
                     bb = EM_RES_REC(b, 0xDC);
                 } break;
                 case 4: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     a = EM_RES_REC(b, 0x148);
                     bb = EM_RES_REC(b, 0x14C);
                 } break;
@@ -92,7 +92,7 @@ __attribute__((section(".text.func_00286AA8"))) void func_00286AA8(cEm00 *self)
 
                 p2[2] = p2[2] * 0.99f + self->home.z * 0.01f;
             }
-            if (0.0f < self->animRate) {
+            if (0.0f < self->tint.w) {
                 moveMotion(self);
                 cModel_calcNullPart(self);
                 Add_nullspeed(self);

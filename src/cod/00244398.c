@@ -33,8 +33,8 @@ void func_00244398(cEm00 *self)
     switch (self->step) {
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        func_002A8578(self, EM_RES_REC(self->resource, 0x246C),
-                      EM_RES_REC(self->resource, 0x2470), 3, 0.0f, motion, 0);
+        func_002A8578(self, EM_RES_REC(EM_RES(self), 0x246C),
+                      EM_RES_REC(EM_RES(self), 0x2470), 3, 0.0f, motion, 0);
         self->unk1730 = 600.0f;
         KillEffect((int)self, 1, 2);
         self->emFlags2 &= 0xFFFFFFDF;
@@ -44,7 +44,7 @@ void func_00244398(cEm00 *self)
         func_00262750(self, 2);
         self->emFlags |= 0x10000;
         if (moveMotion(self) != 0) {
-            self->vital = 0;
+            self->hp = 0;
             self->mode = 2;
             self->phase = 2;
             self->step = 0;
@@ -67,7 +67,7 @@ void func_00244398(cEm00 *self)
             self->step = 2;
             self->stepArg = 0;
         }
-        if (self->moveFlags & 1) {
+        if (self->seqFlags & 1) {
             if (self->unk730 != 0) {
                 func_001D0108((cOmWeapon *)self->unk730);
                 self->unk730 = 0;

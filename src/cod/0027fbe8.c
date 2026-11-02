@@ -18,7 +18,7 @@ __attribute__((section(".text.func_0027FBE8"))) void func_0027FBE8(cEm00 *self)
     unsigned long t0 = 0;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x14), EM_RES_REC(res, 0x18), 5, 0.0f, t0, 0);
             self->timerA = 1;
             self->step++;
@@ -27,7 +27,7 @@ __attribute__((section(".text.func_0027FBE8"))) void func_0027FBE8(cEm00 *self)
             moveMotion(self);
             break;
         case 2:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x1C), EM_RES_REC(res, 0x20), 5, 0.0f, t0, 0);
             self->timerA = 1;
             self->step++;
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_0027FBE8"))) void func_0027FBE8(cEm00 *self)
             }
             break;
         case 4:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x24), EM_RES_REC(res, 0x28), 5, 0.0f, t0, 0);
             self->timerA = 1;
             self->step++;

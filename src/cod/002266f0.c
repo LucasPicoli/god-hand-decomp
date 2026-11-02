@@ -33,7 +33,7 @@ __attribute__((section(".text.func_002266F0"))) void func_002266F0(cEm00 *self)
                     int b;
 
                     StoreMotionParamsBoth_2609A8(self, 0x50, 0x1E, 0x3E, -1, 0);
-                    b = self->resource;
+                    b = EM_RES(self);
                     s2v = EM_RES_REC(b, 0x19AC);
                     s0v = EM_RES_REC(b, 0x19B0);
                     self->timerA = 0x64;
@@ -43,7 +43,7 @@ __attribute__((section(".text.func_002266F0"))) void func_002266F0(cEm00 *self)
 
                     StoreMotionParams_2609E0(self, 0x46, 0x1F, 0x3E, -1, 0);
                     Set_Fields_1884_1894_2609F8(self, 0x46, 0x20, 0x3E, -1, 0);
-                    b = self->resource;
+                    b = EM_RES(self);
                     s2v = EM_RES_REC(b, 0x30BC);
                     s0v = EM_RES_REC(b, 0x30C0);
                     self->timerA = 0x64;
@@ -52,7 +52,7 @@ __attribute__((section(".text.func_002266F0"))) void func_002266F0(cEm00 *self)
                     int b;
 
                     StoreMotionParamsBoth_2609A8(self, 0x32, 0x21, 0x3E, -1, 0);
-                    b = self->resource;
+                    b = EM_RES(self);
                     s2v = EM_RES_REC(b, 0x2E0C);
                     s0v = EM_RES_REC(b, 0x2E10);
                     self->timerA = 0;
@@ -92,7 +92,7 @@ __attribute__((section(".text.func_002266F0"))) void func_002266F0(cEm00 *self)
                 o = Getplayer();
                 cGameObj_SetTgtTurn(self, *(int *)(o + 0xF0), self->speedRate * 0.19634954f);
             }
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 if (self->timerB >= 0xB)
                     self->timerB = 0xA;
             }
@@ -111,11 +111,11 @@ __attribute__((section(".text.func_002266F0"))) void func_002266F0(cEm00 *self)
             break;
     }
     func_00260B30(self);
-    if (self->moveFlags & 0x10) {
+    if (self->seqFlags & 0x10) {
         if (func_00262AA8(self) != 0)
             return;
     }
-    if (self->moveFlags & 3)
+    if (self->seqFlags & 3)
         self->timerC = 1;
     if (self->timerC != 0)
         self->emFlags2 &= 0xFFFFFBFFU;

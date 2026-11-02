@@ -19,7 +19,7 @@ __attribute__((section(".text.func_002880C8"))) void func_002880C8(cEm00 *self)
     cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x168), EM_RES_REC(res, 0x16C), 3, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:

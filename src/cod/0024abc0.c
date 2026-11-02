@@ -40,7 +40,7 @@ __attribute__((section(".text.func_0024ABC0"))) void func_0024ABC0(cEm00 *self)
             char *v1;
             self->unk1864 = 0;
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v1, 0x3D9C), EM_RES_REC((int)v1, 0x3DA0), 0xA, 0.0f,
                           nb, 0);
             if ((void *)self->sub0 != 0)
@@ -92,7 +92,7 @@ __attribute__((section(".text.func_0024ABC0"))) void func_0024ABC0(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if ((self->moveFlags & 0x10) != 0) {
+            if ((self->seqFlags & 0x10) != 0) {
                 if (self->timer > 0.0f) {
                     self->timer = self->timer - self->speedRate;
                 } else {
@@ -101,10 +101,10 @@ __attribute__((section(".text.func_0024ABC0"))) void func_0024ABC0(cEm00 *self)
             }
             break;
     }
-    if ((self->moveFlags & 1) != 0) {
+    if ((self->seqFlags & 1) != 0) {
         func_0026DB00(self, 1, 0);
     }
-    if ((self->moveFlags & 2) != 0) {
+    if ((self->seqFlags & 2) != 0) {
         func_0026DB00(self, 1, 1);
     }
 }

@@ -38,7 +38,7 @@ void FileHolder_reload(FileHolder *self, const char *name) {
 /* A game object that keeps a "camera on" byte at 0x763. */
 typedef struct cGameObjCam {
     cGameObj base;
-    char unk5AC[0x763 - sizeof(cGameObj)];
+    char unk5B0[0x763 - sizeof(cGameObj)];
     unsigned char camOn;                /* 0x763 */
 } cGameObjCam;
 

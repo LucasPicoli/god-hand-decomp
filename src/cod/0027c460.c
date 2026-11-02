@@ -18,7 +18,7 @@ __attribute__((section(".text.func_0027C460"))) void func_0027C460(cEm00 *self)
     self->unk1560 |= 3;
     switch (self->step) {
         case 0:
-            v0 = (char *)self->resource;
+            v0 = (char *)EM_RES(self);
             func_002A8578(self, EM_RES_REC((int)v0, 0xC0), EM_RES_REC((int)v0, 0xC4), 5, 0.0f, 0,
                           0);
             self->timer = 15.0f;

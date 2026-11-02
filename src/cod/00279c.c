@@ -13,7 +13,7 @@ __attribute__((section(".text.Init_Vtable214_TypeName4AC_279CE8")))
 void *Init_Vtable214_TypeName4AC_279CE8(cEm00 *self)
 {
     func_0028EB00(self);
-    self->vt = (cEm00Vt *)&D_00447E68;
+    self->vtable = (cVtEnt *)&D_00447E68;
     VU0_SQC2_VF0(self, 0x1530);
     VU0_SQC2_VF0(self, 0x1540);
     VU0_SQC2_VF0(self, 0x1550);

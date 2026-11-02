@@ -38,7 +38,7 @@ int cEm00_tryReact(cEm00 *self)
         return 0;
     if (self->emFlags & EMFLAGS_NO_REACT)
         return 0;
-    if (self->vital <= 0)
+    if (self->hp <= 0)
         return 0;
     if (self->emNo == EM_NO_A && D_00747A50 == ROOM_NO_A)
         return 0;

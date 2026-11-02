@@ -54,11 +54,11 @@ int func_00288DA8(cEm00 *self)
     }
     idx = GetEm00CharIndex(self->actorId, self->emNo);
     Obj0000_Set_Field_424_1595E8(self, n);
-    mdl = SearchData((void *)self->resource, D_00448C90, idx);
-    tex = SearchData((void *)self->resource, D_00448C98, idx);
+    mdl = SearchData((void *)EM_RES(self), D_00448C90, idx);
+    tex = SearchData((void *)EM_RES(self), D_00448C98, idx);
     if (self->emNo == 0x2A7 && (self->unk155C & 1)) {
         self->texFlags |= TEXFLAG_EXCHANGE;
-        pack = (char *)self->resource;
+        pack = (char *)EM_RES(self);
         cModel_setTextureExchange(self, tex, (void *)EM_RES_REC((int)pack, 0x1C), 0);
     }
     if (tex != 0)

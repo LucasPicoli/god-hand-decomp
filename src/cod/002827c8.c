@@ -23,32 +23,32 @@ __attribute__((section(".text.func_002827C8"))) void func_002827C8(cEm00 *self)
             switch (self->stepArg) {
                 default:
                 case 0:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xC0), EM_RES_REC(res, 0xC4), 2, 0.0f, t0,
                                   0);
                     break;
                 case 1:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xB8), EM_RES_REC(res, 0xBC), 2, 0.0f, t0,
                                   0);
                     break;
                 case 2:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xC8), EM_RES_REC(res, 0xCC), 2, 0.0f, t0,
                                   0);
                     break;
                 case 3:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xD0), EM_RES_REC(res, 0xD4), 2, 0.0f, t0,
                                   0);
                     break;
                 case 4:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xD8), EM_RES_REC(res, 0xDC), 2, 0.0f, t0,
                                   0);
                     break;
                 case 5:
-                    res = self->resource;
+                    res = EM_RES(self);
                     func_002A8578(self, EM_RES_REC(res, 0xD0), EM_RES_REC(res, 0xD4), 2, 0.0f, t0,
                                   0);
                     break;

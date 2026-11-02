@@ -13,7 +13,7 @@ __attribute__((section(".text.InitObjVtable_27B768")))
 void *InitObjVtable_27B768(cEm00 *self)
 {
     func_0028EB00(self);
-    self->vt = (cEm00Vt *)&D_004481A8;
+    self->vtable = (cVtEnt *)&D_004481A8;
     VU0_SQC2_VF0(self, 0x1530);
     VU0_SQC2_VF0(self, 0x1540);
     VU0_SQC2_VF0(self, 0x1550);

@@ -26,7 +26,7 @@ __attribute__((section(".text.func_00244610"))) void func_00244610(cEm00 *self)
     switch (self->step) {
         case 0: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x2494), EM_RES_REC(res, 0x2498), 3, 0.0f, t0, 0);
             func_002606E8(self, 0x200);
             func_002606E8(self, 0x203);

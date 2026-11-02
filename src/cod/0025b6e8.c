@@ -53,17 +53,17 @@ __attribute__((section(".text.func_0025B6E8"))) void func_0025B6E8(cEm00 *self)
             switch (self->stepArg) {
                 default:
                 case 0: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     p1 = EM_RES_REC(b, 0x3DC4);
                     p2 = EM_RES_REC(b, 0x3DC8);
                 } break;
                 case 1: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     p1 = EM_RES_REC(b, 0x3DBC);
                     p2 = EM_RES_REC(b, 0x3DC0);
                 } break;
                 case 2: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     int q1 = *(int *)(b + 0x3DCC);
                     int q2 = *(int *)(b + 0x3DD0);
                     {
@@ -74,7 +74,7 @@ __attribute__((section(".text.func_0025B6E8"))) void func_0025B6E8(cEm00 *self)
                     }
                 } break;
                 case 3: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     int q1 = *(int *)(b + 0x3DD4);
                     int q2 = *(int *)(b + 0x3DD8);
                     {
@@ -85,7 +85,7 @@ __attribute__((section(".text.func_0025B6E8"))) void func_0025B6E8(cEm00 *self)
                     }
                 } break;
                 case 4: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     int q1 = *(int *)(b + 0x3DDC);
                     int q2 = *(int *)(b + 0x3DE0);
                     {
@@ -96,7 +96,7 @@ __attribute__((section(".text.func_0025B6E8"))) void func_0025B6E8(cEm00 *self)
                     }
                 } break;
                 case 5: {
-                    int b = self->resource;
+                    int b = EM_RES(self);
                     int q1 = *(int *)(b + 0x3DE4);
                     int q2 = *(int *)(b + 0x3DE8);
                     {

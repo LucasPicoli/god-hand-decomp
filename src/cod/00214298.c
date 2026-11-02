@@ -59,7 +59,7 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x26D: case 0x26E: case 0x26F: case 0x277: case 0x27A:
         case 0x27B: case 0x27C: case 0x27D:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xE4);
                 s0v = EM_RES_REC(b, 0xE8);
             }
@@ -67,21 +67,21 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x202: case 0x203: case 0x213: case 0x216: case 0x217:
         case 0x229: case 0x22A: case 0x24B:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x684);
                 s0v = EM_RES_REC(b, 0x688);
             }
             break;
         case 0x256: case 0x27E:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x25A4);
                 s0v = EM_RES_REC(b, 0x25A8);
             }
             break;
         case 0x242: case 0x243: case 0x244:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xE4);
                 s0v = EM_RES_REC(b, 0xE8);
             }
@@ -91,14 +91,14 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x22F: case 0x248: case 0x249: case 0x24C: case 0x24E:
         case 0x252: case 0x25A:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x10D4);
                 s0v = EM_RES_REC(b, 0x10D8);
             }
             break;
         case 0x225: case 0x24D:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3CC0);
                 s0v = EM_RES_REC(b, 0x3CC4);
             }
@@ -106,47 +106,47 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x20A: case 0x20B: case 0x20C: case 0x20D: case 0x20E:
         case 0x218: case 0x245: case 0x246: case 0x247: case 0x24F:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x864);
                 s0v = EM_RES_REC(b, 0x868);
             }
             break;
         case 0x278: case 0x279:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x1FEC);
                 s0v = EM_RES_REC(b, 0x1FF0);
             }
             break;
         case 0x205: case 0x206: case 0x207: case 0x208: case 0x224:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x159C);
                 s0v = EM_RES_REC(b, 0x15A0);
             }
             break;
         case 0x241:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3A38);
                 s0v = EM_RES_REC(b, 0x3A3C);
             }
             break;
         case 0x209: case 0x21F:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x344C);
                 s0v = EM_RES_REC(b, 0x3450);
             }
             break;
         case 0x20F:
             if (self->stepArg != 0) {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0xD48);
                 s0v = EM_RES_REC(b, 0xD4C);
             } else {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0xD30);
                 s0v = EM_RES_REC(b, 0xD34);
@@ -155,40 +155,40 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x210: case 0x211: case 0x226: case 0x270: case 0x271:
         case 0x272: case 0x273: case 0x274:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xD48);
                 s0v = EM_RES_REC(b, 0xD4C);
             }
             break;
         case 0x250: case 0x251:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x192C);
                 s0v = EM_RES_REC(b, 0x1930);
             }
             break;
         case 0x260:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3070);
                 s0v = EM_RES_REC(b, 0x3074);
             }
             break;
         case 0x264:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3284);
                 s0v = EM_RES_REC(b, 0x3288);
             }
             break;
         case 0x265:
             if ((self->emFlags2 & 0x20000000) != 0) {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0x38D8);
                 s0v = EM_RES_REC(b, 0x38DC);
             } else {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0x3750);
                 s0v = EM_RES_REC(b, 0x3754);
@@ -200,14 +200,14 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
             break;
         case 0x275: case 0x276:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x22AC);
                 s0v = EM_RES_REC(b, 0x22B0);
             }
             break;
         case 0x223:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x2D64);
                 s0v = EM_RES_REC(b, 0x2D68);
             }
@@ -229,7 +229,7 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x26D: case 0x26E: case 0x26F: case 0x277: case 0x27A:
         case 0x27B: case 0x27C: case 0x27D:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xDC);
                 s0v = EM_RES_REC(b, 0xE0);
             }
@@ -237,21 +237,21 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x202: case 0x203: case 0x213: case 0x216: case 0x217:
         case 0x229: case 0x22A: case 0x24B:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x67C);
                 s0v = EM_RES_REC(b, 0x680);
             }
             break;
         case 0x256: case 0x27E:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x259C);
                 s0v = EM_RES_REC(b, 0x25A0);
             }
             break;
         case 0x242: case 0x243: case 0x244:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xDC);
                 s0v = EM_RES_REC(b, 0xE0);
             }
@@ -261,14 +261,14 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x22F: case 0x248: case 0x249: case 0x24C: case 0x24E:
         case 0x252: case 0x25A:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x10CC);
                 s0v = EM_RES_REC(b, 0x10D0);
             }
             break;
         case 0x225: case 0x24D:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3CB8);
                 s0v = EM_RES_REC(b, 0x3CBC);
             }
@@ -276,47 +276,47 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x20A: case 0x20B: case 0x20C: case 0x20D: case 0x20E:
         case 0x218: case 0x245: case 0x246: case 0x247: case 0x24F:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x85C);
                 s0v = EM_RES_REC(b, 0x860);
             }
             break;
         case 0x278: case 0x279:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x1FE4);
                 s0v = EM_RES_REC(b, 0x1FE8);
             }
             break;
         case 0x205: case 0x206: case 0x207: case 0x208: case 0x224:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x1594);
                 s0v = EM_RES_REC(b, 0x1598);
             }
             break;
         case 0x241:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3A30);
                 s0v = EM_RES_REC(b, 0x3A34);
             }
             break;
         case 0x209: case 0x21F:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3454);
                 s0v = EM_RES_REC(b, 0x3458);
             }
             break;
         case 0x20F:
             if (self->stepArg != 0) {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0xD40);
                 s0v = EM_RES_REC(b, 0xD44);
             } else {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0xD28);
                 s0v = EM_RES_REC(b, 0xD2C);
@@ -325,40 +325,40 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
         case 0x210: case 0x211: case 0x226: case 0x270: case 0x271:
         case 0x272: case 0x273: case 0x274:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0xD40);
                 s0v = EM_RES_REC(b, 0xD44);
             }
             break;
         case 0x250: case 0x251:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x1924);
                 s0v = EM_RES_REC(b, 0x1928);
             }
             break;
         case 0x260:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x3068);
                 s0v = EM_RES_REC(b, 0x306C);
             }
             break;
         case 0x264:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x327C);
                 s0v = EM_RES_REC(b, 0x3280);
             }
             break;
         case 0x265:
             if ((self->emFlags2 & 0x20000000) != 0) {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0x38D0);
                 s0v = EM_RES_REC(b, 0x38D4);
             } else {
-                int b = self->resource;
+                int b = EM_RES(self);
 
                 s1v = EM_RES_REC(b, 0x3748);
                 s0v = EM_RES_REC(b, 0x374C);
@@ -370,14 +370,14 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
             break;
         case 0x275: case 0x276:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x22A4);
                 s0v = EM_RES_REC(b, 0x22A8);
             }
             break;
         case 0x223:
             {
-                int b = self->resource;
+                int b = EM_RES(self);
                 s1v = EM_RES_REC(b, 0x2D5C);
                 s0v = EM_RES_REC(b, 0x2D60);
             }

@@ -34,20 +34,20 @@ __attribute__((section(".text.func_00247320"))) void func_00247320(cEm00 *self)
                     if (id != 0x21C) {
                     dflt:
                         {
-                            int b = self->resource;
+                            int b = EM_RES(self);
                             a = EM_RES_REC(b, 0x36F0);
                             bb = EM_RES_REC(b, 0x36F4);
                         }
                     } else {
                         {
-                            int b = self->resource;
+                            int b = EM_RES(self);
                             a = EM_RES_REC(b, 0x3708);
                             bb = EM_RES_REC(b, 0x370C);
                         }
                     }
                 } else {
                     {
-                        int b = self->resource;
+                        int b = EM_RES(self);
                         a = EM_RES_REC(b, 0x3710);
                         bb = EM_RES_REC(b, 0x3714);
                     }
@@ -70,7 +70,7 @@ __attribute__((section(".text.func_00247320"))) void func_00247320(cEm00 *self)
         case 2: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
 
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x36F8), EM_RES_REC(res, 0x36FC), 3, 0.0f, t0, 0);
         }
             self->step++;
@@ -88,7 +88,7 @@ __attribute__((section(".text.func_00247320"))) void func_00247320(cEm00 *self)
         case 4: {
             int t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
 
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x3700), EM_RES_REC(res, 0x3704), 3, 0.0f, t0, 0);
         }
             self->step++;

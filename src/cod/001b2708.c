@@ -34,9 +34,9 @@ void cEm00_stepFadeOutAndReleaseB(cEm00 *self) {
         func_0028FB08(self);
         self->step = self->step + 1;
     case 1:
-        self->animRate = self->animRate - EM_FADE_STEP;
-        if (self->animRate <= 0.0f) {
-            self->animRate = 0.0f;
+        self->tint.w = self->tint.w - EM_FADE_STEP;
+        if (self->tint.w <= 0.0f) {
+            self->tint.w = 0.0f;
             cEmManage_ReleaseEm(&D_005864F0, (cEmActor *)self);
             self->step = self->step + 1;
         }

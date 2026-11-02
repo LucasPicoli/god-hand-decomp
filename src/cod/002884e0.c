@@ -14,7 +14,7 @@ __attribute__((section(".text.func_002884E0"))) void func_002884E0(cEm00 *self)
     int res;
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xD8), EM_RES_REC(res, 0xDC), 0xA, 0.0f, 0, 0);
             self->step = self->step + 1;
         case 1:

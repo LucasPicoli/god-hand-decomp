@@ -40,33 +40,33 @@ __attribute__((section(".text.func_00227CA8"))) void func_00227CA8(cEm00 *self)
             switch (self->stepArg) {
                 default:
                 case 0: {
-                    int w = self->resource;
+                    int w = EM_RES(self);
                     p1 = EM_RES_REC(w, 0x300C);
                     p2 = EM_RES_REC(w, 0x3010);
                     if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                        int w2 = self->resource;
+                        int w2 = EM_RES(self);
                         p2 = EM_RES_REC(w2, 0x3014);
                     }
                     self->timer = 35.0f;
                     break;
                 }
                 case 1: {
-                    int w = self->resource;
+                    int w = EM_RES(self);
                     p1 = EM_RES_REC(w, 0x3018);
                     p2 = EM_RES_REC(w, 0x301C);
                     if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                        int w2 = self->resource;
+                        int w2 = EM_RES(self);
                         p2 = EM_RES_REC(w2, 0x3020);
                     }
                     self->timer = 25.0f;
                     break;
                 }
                 case 2: {
-                    int w = self->resource;
+                    int w = EM_RES(self);
                     p1 = EM_RES_REC(w, 0x3024);
                     p2 = EM_RES_REC(w, 0x3028);
                     if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                        int w2 = self->resource;
+                        int w2 = EM_RES(self);
                         p2 = EM_RES_REC(w2, 0x302C);
                     }
                     self->timer = 90.0f;
@@ -100,7 +100,7 @@ __attribute__((section(".text.func_00227CA8"))) void func_00227CA8(cEm00 *self)
             }
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            if (self->moveFlags & 2) {
+            if (self->seqFlags & 2) {
                 if (self->timerB != 0) {
                     self->timerB = 0;
                     switch (self->stepArg) {
@@ -119,7 +119,7 @@ __attribute__((section(".text.func_00227CA8"))) void func_00227CA8(cEm00 *self)
             } else {
                 self->timerB = 1;
             }
-            if (self->moveFlags & 1)
+            if (self->seqFlags & 1)
                 func_00260B30(self);
             break;
         }

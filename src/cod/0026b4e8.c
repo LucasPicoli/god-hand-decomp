@@ -13,7 +13,7 @@
 /* An enemy that carries a weapon. */
 typedef struct cEmCarrier {
     cGameObj base;
-    char unk5AC[0x700 - 0x5AC];
+    char unk5B0[0x700 - 0x5B0];
     cOmWeapon *held;            /* 0x700 the weapon it carries, or 0 */
 } cEmCarrier;
 

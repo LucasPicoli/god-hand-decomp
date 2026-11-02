@@ -10,7 +10,7 @@
 
 extern void SetEffectPos(int kind, int id, void *owner, cVec *pos, int handle, float size);
 
-#define RES(off) EM_RES_REC(self->resource, off)
+#define RES(off) EM_RES_REC(EM_RES(self), off)
 
 /* Four motions, each started by an even step and played by the odd step after
  * it: step 5 ends the phase when its motion ends with the watched enemy alive,
@@ -44,7 +44,7 @@ void func_0027CB58(cEm00 *self)
         func_002A8578(self, RES(0xD8), RES(0xDC), 5, 0.0f, 0, 0);
         self->step++;
     case 5:
-        if (moveMotion(self) != 0 && target != 0 && target->vital > 0) {
+        if (moveMotion(self) != 0 && target != 0 && target->hp > 0) {
             self->mode = 0;
             self->phase = 0;
             self->step = 0;
@@ -63,7 +63,7 @@ void func_0027CB58(cEm00 *self)
         }
         break;
     }
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         if (self->unk56A != 0) {
             part = cOmBase_childAt((cOmBase *)self, frame, 6);
             if (part != 0) {
@@ -79,11 +79,11 @@ void func_0027CB58(cEm00 *self)
         }
         if (target != 0) {
             player = Getplayer();
-            if (self->moveFlags & 1) {
+            if (self->seqFlags & 1) {
                 CEM00_VCALL(target, hit, 10, player, 0, 0);
                 cHeatSys_AddHeatGage(&D_005CB000, 0, 0.5f);
             }
-            if (self->moveFlags & 2) {
+            if (self->seqFlags & 2) {
                 CEM00_VCALL(target, hit, 30, player, 0, 0);
                 cHeatSys_AddHeatGage(&D_005CB000, 0, 0.5f);
             }

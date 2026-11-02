@@ -49,7 +49,7 @@ extern unsigned char D_005FEE00[];
 
 /* The first and second motion records of an action are two offsets in the
  * resource blob, 4 bytes apart; the motion start takes both addresses. */
-#define MOTION_PAIR(a, b) { int p = self->resource; recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
+#define MOTION_PAIR(a, b) { int p = EM_RES(self); recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
 
 /* Set the next action: the four state bytes in the order the move code writes them. */
 #define SETACT(ph, arg) { self->mode = 0; self->phase = (ph); self->step = 0; self->stepArg = (arg); }
@@ -216,7 +216,7 @@ void cEm00_idleChooseNext(void *a0)
                 cGameObj_SetTgtTurn(self, (char *)self + EM_TURNTO_OFFSET, self->speedRate * 0.3926991f);
             }
         }
-        if (moveMotion(self) != 0 || (self->moveFlags & 0x10) != 0) {
+        if (moveMotion(self) != 0 || (self->seqFlags & 0x10) != 0) {
             EM_AT(unsigned short, self, EM_UNK17CA_OFFSET) = 0x1E;
             func_0026EE40(self, 0, 0);
             if ((irand() & 3) != 0 || func_00268068(self, 1) == 0) {

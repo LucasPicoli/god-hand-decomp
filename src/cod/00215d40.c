@@ -23,7 +23,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
             int r;
             *(int *)((char *)self + 0x17D0) = irand() % 5;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x1934), EM_RES_REC(w, 0x1938), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->step++;
@@ -39,7 +39,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
         case 2: {
             int w;
             int r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x193C), EM_RES_REC(w, 0x1940), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->stepArg = irand() & 1;
@@ -51,9 +51,9 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
             cGameObj_SetTgtTurn(self, (int)(&self->unk16A0), self->speedRate * 0.19634954f);
             moveMotion(self);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5)
-                self->stepVec.z = self->speedRate * 0.6f;
+                self->nullSpeed.z = self->speedRate * 0.6f;
             else
-                self->stepVec.z = self->speedRate * 0.3f;
+                self->nullSpeed.z = self->speedRate * 0.3f;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
             d = Turn_dest((void *)self->pos, ((char *)self + 0x1690), self->rot.y, 3.14159274f);
@@ -70,7 +70,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
         case 4: {
             int w;
             int r = Obj0000_Get_Byte_17C3_NZ_2_276468(self);
-            w = self->resource;
+            w = EM_RES(self);
             func_002A8578(self, EM_RES_REC(w, 0x1944), EM_RES_REC(w, 0x1948), 0xA, 0.0f, r & 0xFFFF,
                           0);
             self->step++;

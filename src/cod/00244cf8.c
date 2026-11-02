@@ -28,7 +28,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
             int t0, b;
             *(int *)((char *)self + 0x4A8) = *(int *)((char *)self + 0x4A8) | 0x80000000;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0xD78), 0, 0, 0.0f, t0, 0);
         }
             moveMotion(self);
@@ -68,7 +68,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
         case 2: {
             int t0, b;
             t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-            b = self->resource;
+            b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0xD78), EM_RES_REC(b, 0xD7C), 0, 0.0f, t0, 0);
         }
             *(float *)((char *)self + 0x1744) = 300.0f;

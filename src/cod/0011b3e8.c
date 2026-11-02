@@ -26,7 +26,7 @@ __attribute__((section(".text.cEm00_stepFaceLinkTarget"))) void cEm00_stepFaceLi
 
     switch (self->step) {
         case 0: {
-            int v0 = self->resource;
+            int v0 = EM_RES(self);
             char *p;
             g = (char *)&D_005FEE00;
             s2v = EM_RES_REC(v0, 0x270);

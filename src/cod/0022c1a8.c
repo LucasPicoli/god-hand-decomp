@@ -31,11 +31,11 @@ __attribute__((section(".text.func_0022C1A8"))) void func_0022C1A8(cEm00 *self)
             self->unk1864 = 0;
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
             self->stepArg = irand() & 1;
-            v1 = (char *)self->resource;
+            v1 = (char *)EM_RES(self);
             s2v = EM_RES_REC((int)v1, 0x22E0);
             s1v = EM_RES_REC((int)v1, 0x22E4);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5) {
-                char *w = (char *)self->resource;
+                char *w = (char *)EM_RES(self);
                 s1v = EM_RES_REC((int)w, 0x22E8);
             }
             func_002A8578(self, s2v, s1v, 3, 0.0f, gb, 0);
@@ -61,7 +61,7 @@ __attribute__((section(".text.func_0022C1A8"))) void func_0022C1A8(cEm00 *self)
             break;
         }
     }
-    if (self->moveFlags & 1) {
+    if (self->seqFlags & 1) {
         if (self->timerA != 0) {
             self->timerA = 0;
             if (self->emNo == 0x276) {
@@ -77,7 +77,7 @@ __attribute__((section(".text.func_0022C1A8"))) void func_0022C1A8(cEm00 *self)
     } else {
         self->timerA = 1;
     }
-    if (self->moveFlags & 3) {
+    if (self->seqFlags & 3) {
         self->timerC = 1;
     }
     if (self->timerC != 0) {

@@ -48,7 +48,7 @@ extern unsigned char D_00747A2C[];
 
 /* The first and second motion records of an action are two offsets in the
  * resource blob, 4 bytes apart; the motion start takes both addresses. */
-#define MOTION_PAIR(a, b) { int p = self->resource; recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
+#define MOTION_PAIR(a, b) { int p = EM_RES(self); recA = EM_RES_REC(p, a); recB = EM_RES_REC(p, b); }
 
 /* The hit reaction of an enemy. The step byte runs through it: step 0 sets the rise speed from
  * stepArg and the enemy number, then picks and starts the knock-back motion; step 1 lifts the body
@@ -209,7 +209,7 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x250: case 0x251:
             {
-                int p = self->resource;
+                int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0xA68);
                 recB = EM_RES_REC(p, 0xA6C);
                 cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), self, 0, 0, 0, 0);
@@ -307,7 +307,7 @@ void cEm00_hitReaction(void *a0)
                     case 0x269: case 0x26A: case 0x26B: case 0x26C: case 0x26D: case 0x26E:
                     case 0x26F: case 0x275: case 0x276: case 0x277: case 0x278: case 0x279:
                     case 0x27A: case 0x27B: case 0x27C: case 0x27D: case 0x27E:
-                        if (self->vital > 0 && func_0026F1D8(self) == 0) {
+                        if (self->hp > 0 && func_0026F1D8(self) == 0) {
                             switch (cCoreSave_getGameLevel(&D_00569B70)) {
                             case 2:
                                 if ((irand() & 7) == 0) {
@@ -350,7 +350,7 @@ void cEm00_hitReaction(void *a0)
             }
         }
         if (self->timerB == 0) {
-            self->unk434 |= 8;
+            self->motionFlags |= 8;
         }
         moveMotion(self);
         cObjBase_addNullSpeed_Rotation(self, 1.0f);
@@ -397,7 +397,7 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x264:
             {
-                int p = self->resource;
+                int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0x3348);
                 recB = EM_RES_REC(p, 0x334C);
                 if (self->subA != 0) {
@@ -407,7 +407,7 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x265:
             {
-                int p = self->resource;
+                int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0x3860);
                 recB = EM_RES_REC(p, 0x3864);
                 if (self->unk744 != 0) {
@@ -436,7 +436,7 @@ void cEm00_hitReaction(void *a0)
         /* fallthrough */
     case 3:
         if (moveMotion(self) != 0) {
-            if (self->vital <= 0) {
+            if (self->hp <= 0) {
                 if (self->emFlags2 & 0x100000) {
                     self->mode = 2;
                     self->step = 0;
@@ -464,7 +464,7 @@ void cEm00_hitReaction(void *a0)
         } else {
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, self->timer);
-            if ((self->moveFlags & 0x10) && self->vital <= 0) {
+            if ((self->seqFlags & 0x10) && self->hp <= 0) {
                 if (self->emFlags2 & 0x100000) {
                     self->mode = 2;
                     self->step = 0;
@@ -513,12 +513,12 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x20F: case 0x210: case 0x211: case 0x226: case 0x270: case 0x271: case 0x272:
         case 0x273: case 0x274:
-            recA = self->resource;
+            recA = EM_RES(self);
             /* fall through */
         case 0x20A: case 0x20B: case 0x20C: case 0x20D: case 0x20E: case 0x218: case 0x245:
         case 0x246: case 0x247: case 0x24F: case 0x278: case 0x279:
-            recA = EM_RES_REC(self->resource, 0xA78);
-            recB = EM_RES_REC(self->resource, 0xA7C);
+            recA = EM_RES_REC(EM_RES(self), 0xA78);
+            recB = EM_RES_REC(EM_RES(self), 0xA7C);
             break;
         case 0x250: case 0x251:
             MOTION_PAIR(0xA78, 0xA80)
@@ -641,7 +641,7 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x264:
             {
-                int p = self->resource;
+                int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0x3318);
                 recB = EM_RES_REC(p, 0x331C);
                 if (self->subA != 0) {
@@ -651,7 +651,7 @@ void cEm00_hitReaction(void *a0)
             break;
         case 0x265:
             {
-                int p = self->resource;
+                int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0x3818);
                 recB = EM_RES_REC(p, 0x381C);
                 if (self->unk744 != 0) {
@@ -676,7 +676,7 @@ void cEm00_hitReaction(void *a0)
             break;
         }
         if (self->unk6EC != 0) {
-            int p = self->resource;
+            int p = EM_RES(self);
             recA = EM_RES_REC(p, 0x784);
             recB = EM_RES_REC(p, 0x788);
         }

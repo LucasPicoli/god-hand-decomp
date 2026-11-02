@@ -19,7 +19,7 @@ __attribute__((section(".text.func_001CB8C0"))) void func_001CB8C0(cEm00 *self)
     SetMotionStep(self, r);
     switch (self->step) {
         case 0:
-            res = self->resource;
+            res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0xC), 0, 0, 0.0f, 0, 0);
             SetEffect(0x7B, 0xB8, self, 0, -1, 0xFFFFFFFFU);
             self->step = self->step + 1;
