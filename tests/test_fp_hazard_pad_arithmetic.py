@@ -115,3 +115,32 @@ def test_sqrt_is_in_the_vocabulary_and_a_typo_still_dies(wrap):
     assert mod._parse_fp_hazard_rules("sqrt") == frozenset({"sqrt"})
     with pytest.raises(ValueError):
         mod._parse_fp_hazard_rules("sqrtt")
+
+
+# --- the `fdivdep` rule: two nops unless the producer writes an operand -------
+
+@pytest.mark.parametrize("wrap", WRAPS)
+@pytest.mark.parametrize("before,want", [
+    (["\tmul.s\t$f1,$f1,$f5"], 0),            # producer writes an operand
+    (["\tcvt.s.w\t$f1,$f1"], 0),              # converts count as producers
+    (["\tmul.s\t$f3,$f1,$f5"], 2),            # writes something else
+    (["\tmtc1\t$at,$f1"], 2),                 # a move from a GPR is no producer
+    (["\tmul.s\t$f1,$f1,$f5", "\tnop"], 1),   # nops are skipped: none added
+    (["\tmul.s\t$f1,$f1,$f5", ".L1:"], 2),    # a label starts a new block
+])
+def test_fdivdep_exempts_only_an_operand_producer(wrap, before, want):
+    mod = _load(wrap)
+    text = "\n".join(before + ["\tdiv.s\t$f2,$f2,$f1"])
+    out = mod._insert_ee_fp_hazard_nops(text, mod._parse_fp_hazard_rules("fdivdep"))
+    assert _nops_before(out, "div.s") == want
+    assert mod._insert_ee_fp_hazard_nops(
+        out, mod._parse_fp_hazard_rules("fdivdep")) == out   # idempotent
+
+
+@pytest.mark.parametrize("wrap", WRAPS)
+def test_fdivdep_leaves_sqrt_and_noreorder_alone(wrap):
+    mod = _load(wrap)
+    rules = mod._parse_fp_hazard_rules("fdivdep")
+    assert _nops_before(mod._insert_ee_fp_hazard_nops(_MIXED_ASM, rules), "sqrt.s") == 0
+    text = "\t.set noreorder\n\tmtc1\t$at,$f1\n\tdiv.s\t$f2,$f2,$f1"
+    assert mod._insert_ee_fp_hazard_nops(text, rules) == text

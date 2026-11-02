@@ -427,15 +427,18 @@ _FP_DEST_RE = re.compile(
 #           never emits one nop: the 62 retail sites at pad depth 1 are
 #           outside it (use `div1` for a TU whose divides all carry one).
 #           This is a FIT, NOT THE MECHANISM.  Of retail's 966 `div.s` sites
-#           it matches 743 (76.9%) when labels are ignored.  With the label
-#           rule this count gives 754 (78.1%) and LucasPicoli's (issue #23)
-#           gives 780 (80.7%); the difference is not yet explained.  `fdiv`
+#           it matches 743 (76.9%) when labels are ignored and 754 (78.1%)
+#           with the label rule.  The 780 given in issue #23 does not
+#           reproduce.  `fdiv`
 #           matches 627 (64.9%).  The bare/padded split by previous
 #           instruction is 170/54 for FP arithmetic writing a divide operand
 #           and 59/100 for FP arithmetic writing something else.  Of the
 #           functions that mix padded and bare divides, it fits every site in
-#           18 of 51 by this count and 19 of 48 by his.  Opt-in per TU,
-#           byte-verified on every TU that selects it.
+#           18 of 51 (18 of 48 when only two-nop sites count as padded).
+#           With `cvtdiv` it pads an exempt divide whose operand a `cvt`
+#           produced; with `div1` an exempt divide gets one nop.  Like
+#           every named rule it replaces the default `mtc1`+`cvtdiv` set.
+#           Opt-in per TU, byte-verified on every TU that selects it.
 #   sqrt    The mirror of `div`: the same pad on `sqrt.s`/`rsqrt.s` ALONE, for
 #           a TU whose square roots are padded and whose divides are bare.
 #   libm    The retail libm objects' policy, and ONLY theirs.  Two changes to
@@ -500,7 +503,8 @@ _FP_RULES_KNOWN = (_FP_RULE_MTC1, _FP_RULE_FDIV, _FP_RULE_DIV,
                    _FP_RULE_CMPFULL, _FP_RULE_CMPPAD, _FP_RULE_FPFENCE,
                    _FP_RULE_FDIVDEP)
 # `fdivdep`'s exemption: FP arithmetic (moves and converts included) whose
-# destination is a source of the `div.s` right after it.
+# destination is a source of the `div.s` right after it.  `c.<cond>` writes
+# no FPR and the `mula.s`-style forms write ACC, so neither is a producer.
 _FDIVDEP_PRODUCER_RE = re.compile(
     r"^\s*(?:abs|neg|sqrt|rsqrt|mov|cvt|trunc|round|ceil|floor|add|sub|mul|div"
     r"|madd|msub|nmadd|nmsub|max|min)\.[a-z0-9.]+\s+(\$f\d+)")
