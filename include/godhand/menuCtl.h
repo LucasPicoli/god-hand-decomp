@@ -111,7 +111,9 @@ typedef struct MenuSndInfo {
     int song;                   /* 0x10 SONG NUM */
     int time;                   /* 0x14 TIME, in samples */
     unsigned char mute[5];      /* 0x18 MUTE per slot */
-    char unk1D[0x28 - 0x1D];
+    char unk1D[0x20 - 0x1D];
+    void *ply;                  /* 0x20 player handle, as in SndTrkSet */
+    char unk24[0x28 - 0x24];
 } MenuSndInfo;                  /* 0x28 */
 
 typedef struct MenuCtl {

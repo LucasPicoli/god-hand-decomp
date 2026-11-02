@@ -30,4 +30,7 @@ typedef struct cHeatSys {
 
 typedef char cHeatSys_size_check[sizeof(cHeatSys) == 0x18 ? 1 : -1];
 
+/* Add heat to the gauge; while heat mode is on a gain is dropped unless force is set. */
+void cHeatSys_AddHeatGage(cHeatSys *self, int force, float heat);
+
 #endif

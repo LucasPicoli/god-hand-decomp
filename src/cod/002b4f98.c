@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/sideCounter.h"
 
 extern int D_003E0710;
 extern int D_003E0708;
@@ -59,21 +60,20 @@ void func_00337B30(void *a0, int v) {
 }
 
 __attribute__((section(".text.cScrArray_move")))
-void cScrArray_move(void *a0) {
-    char *p = (char *)a0;
-    int n = *(int *)(p + 0x8);
+void cScrArray_move(SideCounter *self) {
+    int n = self->cnt;
     int i;
     if (n <= 0) return;
-    if (*(unsigned char *)(p + 0x4) != 0) {
-        i = *(int *)(p + 0xC) + 1;
-        *(int *)(p + 0xC) = i;
+    if (self->on != 0) {
+        i = self->unkC + 1;
+        self->unkC = i;
         if (i < n) return;
-        *(int *)(p + 0xC) = 0;
+        self->unkC = 0;
     } else {
-        i = *(int *)(p + 0xC) - 1;
-        *(int *)(p + 0xC) = i;
+        i = self->unkC - 1;
+        self->unkC = i;
         if (i >= 0) return;
-        *(int *)(p + 0xC) = 0;
+        self->unkC = 0;
     }
-    *(int *)(p + 0x8) = 0;
+    self->cnt = 0;
 }

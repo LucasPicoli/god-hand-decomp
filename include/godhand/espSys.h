@@ -27,6 +27,12 @@ extern int func_00305858(int *entry, int force);
 extern int *func_003058D8(void *sys, int kind);
 extern int FindAndForwardEntry_3059A8(void *sys, int kind, void *arg);
 extern void *func_00305FB0(void *sys, int idx);
+extern void *espSys_getEffT32Addr(void *sys, int kind, int idx);
+extern char D_007419A0[];               /* the effect system */
+
+/* Print an effect error: the message at msg with the effect's kind and number
+ * (the extra arguments are not read). */
+extern void func_002D9F68(void *self, int msg, ...);
 extern void func_00306FC0(char *self, espMemNode *node);
 
 /* A frame-driven effect steps its frame timer each tick, by one or through

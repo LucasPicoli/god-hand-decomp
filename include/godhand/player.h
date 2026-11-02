@@ -66,6 +66,10 @@ extern int func_0012BAF0(PlSub *pl);
 
 extern cGameObj *Getplayer(void);
 extern cGameObj *CreateObj(int kind, int id);
+extern void ReleaseObj(char *obj);
+/* Start the thrown object obj for move type `type`, moving along speed. owner
+ * is the thrower; it is not read. */
+extern void cOmbe_SetSpeed(cGameObj *obj, cGameObj *owner, cVec *speed, int type);
 extern void cHeatSys_UpdateHeatMax(cHeatSys *self, float max);
 extern void cHeatSys_SetHeatGage(cHeatSys *self, float heat);
 

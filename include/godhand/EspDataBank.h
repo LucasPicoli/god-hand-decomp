@@ -25,4 +25,9 @@ typedef struct EspDataBank {
 
 typedef char EspDataBank_chk[(int)&((EspDataBank *)0)->block == 0x100 ? 1 : -1];
 
+extern EspDataBank D_00741DC8;
+
+/* Look up entry index of the resource table; 0 when it is missing. */
+int func_00306C78(void **table, unsigned int index, void *out1, void *out2);
+
 #endif /* GODHAND_ESPDATABANK_H */

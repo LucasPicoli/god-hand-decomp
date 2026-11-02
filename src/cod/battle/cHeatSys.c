@@ -9,9 +9,9 @@ extern void *D_003BD6E8;
 extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
 /* Add `heat` to the gauge (boosted by 1.25 for some players and in heat mode), clamp at max,
  * move the floor up by the gain, and refresh lv. Does nothing while heat mode is on and heat > 0,
- * unless a1 is set. */
+ * unless force is set. */
 __attribute__((section(".text.cHeatSys_AddHeatGage")))
-void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
+void cHeatSys_AddHeatGage(cHeatSys *self, int force, float heat)
 {
     cCoreSaveData *save;
     float oldCur;
@@ -21,7 +21,7 @@ void cHeatSys_AddHeatGage(cHeatSys *self, int a1, float heat)
 
     oldCur = self->cur;
 
-    if (a1 == 0 && self->mode != 0 && 0.0f < heat)
+    if (force == 0 && self->mode != 0 && 0.0f < heat)
         return;
 
     save = D_00569B70.data;

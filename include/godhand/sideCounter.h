@@ -5,6 +5,12 @@
 
 #include "godhand/ptrVec.h"
 
+struct SideCounter;
+
+/* Step unkC one way (up while on is set, else down); once it leaves 0..cnt-1,
+ * clear it and cnt. Nothing happens while cnt is 0. */
+void cScrArray_move(struct SideCounter *self);
+
 typedef struct SideCounter {
     PtrVecRef list;             /* 0x00 objects with actor id 0 (func_0030FCC0) */
     unsigned char on;           /* 0x04 */

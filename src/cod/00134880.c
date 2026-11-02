@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/motion.h"
 
 extern void func_002A84A8(int a0, int a1, int a2, int a3, float f12);
 extern int setMotionInfo(int a0, int a1, int a2, int a3, float f12, float f13, int t0);
@@ -16,13 +17,13 @@ extern void MtxInitRotVec(void *a0, int a1, int a2);
 extern void MtxMultiply(int a0, int a1, void *a2);
 
 __attribute__((section(".text.func_002A8578")))
-int func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12) {
-    int m = t0 & 0xFFFF;
-    if ((t1 & 0xFFFF) == 0) {
-        func_002A84A8(a0, a1, a2, a3, f12);
+void func_002A8578(int obj, int motA, int motB, int mode, float start, int sel, int keep) {
+    int m = sel & 0xFFFF;
+    if ((keep & 0xFFFF) == 0) {
+        func_002A84A8(obj, motA, motB, mode, start);
     }
-    return setMotionInfo(a0, a1, a2, a3,
-                         *(float*)((char*)a0 + 0x5A8), f12, m);
+    setMotionInfo(obj, motA, motB, mode,
+                  *(float*)((char*)obj + 0x5A8), start, m);
 }
 
 __attribute__((section(".text.cNode_setLocalTranslation")))
