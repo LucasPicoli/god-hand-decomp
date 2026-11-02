@@ -52,7 +52,7 @@
 #define INCLUDE_ASM_USE_MACRO_INC 1
 #include "include_asm.h"
 #include "godhand/cCoreSave.h"
-#include "godhand/cEm00.h"
+/* No cEm00.h: the guarded body passes 4 of the motion setters' 6 arguments. */
 
 typedef signed char        s8;
 typedef unsigned char      u8;
