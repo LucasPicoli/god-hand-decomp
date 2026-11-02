@@ -7,8 +7,8 @@ extern char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 
-/* A gimmick that tips over once, falling faster as it goes. The tilt is the word at 0x100, which
- * cOmBase calls posPrev and cParts calls rot (the euler angles): here it is the x angle. */
+/* A gimmick that tips over once, falling faster as it goes. The tilt is rot.x (0x100, the
+ * euler angles, as in cParts). */
 typedef struct cOmTipOver {
     cOmBase base;                       /* 0x000 */
     char unk5E0[0x600 - 0x5E0];
@@ -48,17 +48,17 @@ void func_0017EF98(cOmTipOver *self)
     case 2:
         s = self->speed;
         self->timer = self->timer - rate;
-        self->base.posPrev.x = self->base.posPrev.x - s * rate * 0.017453292f;
+        self->base.rot.x = self->base.rot.x - s * rate * 0.017453292f;
         self->speed = s + s * 0.16f * rate;
         if (self->timer <= 0.0f) {
             cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xE6, self, 0, 0, 0, 0);
             self->timer = 1000.0f;
         }
-        t = self->base.posPrev.x;
+        t = self->base.rot.x;
         if (t <= (-1.5707964f)) {
             SetEffect(1, 1, 0, 0, -1, 0xFFFFFFFFU);
             cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xE7, self, 0, 0, 0, 0);
-            self->base.posPrev.x = (-1.5707964f);
+            self->base.rot.x = (-1.5707964f);
             self->fallen = 1;
             self->timer = 15.0f;
             self->base.phase = 3;

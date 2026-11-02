@@ -43,9 +43,9 @@ void func_001D0140(cOmWeapon *self, cVec *pos, int arg)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         self->throwArg = arg;
         {
@@ -85,9 +85,9 @@ void func_001D0240(cOmWeapon *self, cVec *pos, int arg)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         self->throwArg = arg;
         {
@@ -127,9 +127,9 @@ void func_001D0340(cOmWeapon *self)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         self->throwArg = 0;
         self->base.mode = 0;
@@ -165,9 +165,9 @@ void func_001D0408(cOmWeapon *self)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         self->throwArg = 0;
         self->base.mode = 0;
@@ -272,9 +272,9 @@ void func_001CFD60(cOmWeapon *self, int target)
     body = cOmBase_childAt(&self->base, (int *)frame, 0);
     if (body != 0) {
         body->owner = &self->base;
-        body->posPrev.x = 0.0f;
-        body->posPrev.y = 0.0f;
-        body->posPrev.z = 0.0f;
+        body->rot.x = 0.0f;
+        body->rot.y = 0.0f;
+        body->rot.z = 0.0f;
         cModel_calcParts(self);
         self->target = target;
         self->unk6A0 = 0;

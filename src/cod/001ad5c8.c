@@ -73,9 +73,9 @@ void func_001AD5C8(cOmGimmickMove *self)
         }
         self->base.flags2 |= GIMMICK_MOVING;
         if (getPart(self, 1))
-            getPart(self, 1)->posPrev.y = 0.0f;
+            getPart(self, 1)->rot.y = 0.0f;
         if (getPart(self, 2))
-            getPart(self, 2)->posPrev.y = 0.0f;
+            getPart(self, 2)->rot.y = 0.0f;
         self->base.step = 0;
         self->base.stepArg = 0;
         self->base.phase = 1;

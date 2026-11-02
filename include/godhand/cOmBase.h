@@ -88,7 +88,7 @@ typedef struct cOmBase {
     char unk0D4[0x1C];
     cVec *pos;                              /* 0x0F0 the object's live position */
     char unk0F4[0xC];
-    cVec posPrev;                           /* 0x100 position last frame */
+    cVec rot;                               /* 0x100 rotation: x pitch, y heading, z roll (as cParts.rot) */
     char unk110[0x38];
     struct cOmBase *owner;                  /* 0x148 set on a child body to its weapon */
     char unk14C[0x214 - 0x14C];

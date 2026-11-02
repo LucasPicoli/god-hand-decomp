@@ -97,7 +97,7 @@ int cEm_copyPosAndRefresh(cOmBase *self, cVec *vec) {
         dst->y = src->y;
         dst->z = src->z;
     }
-    return func_001717C0(self, self->pos, &self->posPrev);
+    return func_001717C0(self, self->pos, &self->rot);
 }
 
 /* An actor with VU0 quadwords at 0x610, 0x640 and 0x650, a second table pointer at 0x4AC and a small state block at 0x662..0x680. */

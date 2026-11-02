@@ -19,7 +19,7 @@ static inline void cpy3(float *d, float *s)
 
 /* Attach the weapon to slot idx of a fighter: pin its collision body to the fighter's body part, copy the hold offsets and start the held state. */
 __attribute__((section(".text.cOmWeapon_setParent")))
-void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, cVec *heldOfs)
+void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, cVec *heldRot)
 {
     unsigned char frame[0x10] __attribute__((aligned(16)));
     int b, b2;
@@ -35,16 +35,16 @@ void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, 
     if (ok2) body = self->base.children[0]; else body = 0;
     if (body == 0) return;
     anchor = body->anchor;
-    body->posPrev.x = 0.0f;
-    body->posPrev.y = 0.0f;
-    body->posPrev.z = 0.0f;
+    body->rot.x = 0.0f;
+    body->rot.y = 0.0f;
+    body->rot.z = 0.0f;
     body->owner = part;
     cVec_copy3(anchor, heldPos);
-    cVec_copy3(&body->posPrev, heldOfs);
+    cVec_copy3(&body->rot, heldRot);
     self->parentIdx = idx;
     self->parent = par;
     cVec_copy3(&self->heldPos, heldPos);
-    cVec_copy3(&self->heldOfs, heldOfs);
+    cVec_copy3(&self->heldOfs, heldRot);
     self->base.mode = 0;
     self->base.step = 0;
     self->base.stepArg = 0;

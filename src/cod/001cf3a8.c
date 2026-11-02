@@ -45,8 +45,8 @@ void func_001CF3A8(cOmWeapon *self)
             sceVu0ApplyMatrix(self->base.pos, part->mtx, self->base.pos);
             o2 = self->parent;
             {
-                cVec *d2 = &self->base.posPrev;
-                cVec *s2 = &o2->posPrev;
+                cVec *d2 = &self->base.rot;
+                cVec *s2 = &o2->rot;
 
                 if (d2 != s2) {
                     d2->x = s2->x;

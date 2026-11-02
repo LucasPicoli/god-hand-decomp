@@ -37,12 +37,12 @@ void func_001B76D8(cOmBase *self)
     }
     cModel_ScrollTexture((cModel *)self, 1.0f);
     if (cOmBase_flag2Bit(self, COMBASE_F2_RECALC_BIT) == 1 || cOmBase_flag2Bit(self, COMBASE_F2_MOVED) == 1
-        || vec4_ne(&self->posA.x, &self->pos->x) || vec4_ne(&self->posB.x, &self->posPrev.x)) {
+        || vec4_ne(&self->posA.x, &self->pos->x) || vec4_ne(&self->posB.x, &self->rot.x)) {
         cModel_calcParts((cModel *)self);
         self->flags2 &= ~COMBASE_F2_RECALC;
     }
     vec3_copy(&self->posA.x, &self->pos->x);
-    vec3_copy(&self->posB.x, &self->posPrev.x);
+    vec3_copy(&self->posB.x, &self->rot.x);
     if (self->pos->y < FALL_OUT_Y) {
         cOmBase_dieCommon((int)self);
     }
