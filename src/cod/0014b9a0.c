@@ -229,7 +229,7 @@ void func_001595F8(char *this)
                 flag = (*(int *)(o2 + 0x154) & mask) == 0;
         }
         if (flag) o2 = *(char **)(obj + 0x14C);
-        if ((*(int *)(o2 + 0x154) & 1) != 0) {
+        if ((*(int *)(o2 + 0x154) & CPARTS_NO_MOTION) != 0) {
             if (*p == i) {
                 do { p += 0xC; } while (*p == i);
             }

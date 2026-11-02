@@ -31,7 +31,9 @@ typedef struct cBox {
 
 /* Bits of cParts.partFlags (0x154). The motion apply (func_00158328) tests
  * 0x100 and 0x8000 through byte 0x155 (lbu); read them as
- * ((unsigned char *)&part->partFlags)[1] there, not as a bitfield. */
+ * ((unsigned char *)&part->partFlags)[1] there, not as a bitfield. On that
+ * byte they are & 1 and >> 7, not the masks below. It also reads 0x8000 as
+ * a word (0x1586C0), and a set 0x8000 sets 0x200000 there. */
 #define CPARTS_NO_MOTION        0x01     /* skip every motion channel of the part */
 #define CPARTS_NO_LOCAL         0x08     /* skip the local matrix build */
 #define CPARTS_NO_PARENT        0x10     /* skip the multiply by the parent */
