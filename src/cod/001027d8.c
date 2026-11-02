@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cEm00.h"
 
 extern int setMotionInfo(cObjBase *self, char *motion, char *motionEnd, unsigned int start,
 
@@ -12,7 +13,6 @@ extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
 extern char D_005FEE00[];
@@ -66,7 +66,7 @@ void func_00288B78(void *a0)
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
-        func_0028FB08(s0);
+        func_0028FB08(a0);
         cCoreSave_addKillNpcNum(&D_00569B70);
         v0 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x130) + v0, *(int *)(v0 + 0x134) + v0, 0.0f, 5, 0, 0);

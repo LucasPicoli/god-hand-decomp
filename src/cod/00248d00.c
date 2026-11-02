@@ -15,7 +15,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(int a0, int a1, int a2, int a3, int t0, int t1, float f12);
 extern void cGameObj_SetTgtTurn(char *self, void *target, float rate);
 extern int moveMotion(void *a0);
-extern int func_00262AA8(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);

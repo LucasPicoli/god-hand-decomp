@@ -16,7 +16,6 @@ extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern float Adjust_theta(float f12);
 extern int cEmManage_CkPlCatched(void *a0);
-extern void func_0026A638(void *a0, int a1);
 extern void func_0026A838(void *a0, int a1);
 extern char D_005864F0[];
 
@@ -91,7 +90,7 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
 {
     char *s1 = (char *)self;
     char *v0;
-    char *self;
+    char *pos;
     char *s2;
     int gb, b;
     float one;
@@ -108,10 +107,10 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
             *(int *)(s1 + 0x5FC) = 0;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 1:
-            self = *(char **)(s1 + 0xF0);
+            pos = *(char **)(s1 + 0xF0);
             v0 = (char *)Getplayer();
             one = 1.0f;
-            th = Turn_dest(self, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x1670), 0.5235988f);
+            th = Turn_dest(pos, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x1670), 0.5235988f);
             d = Turn_dest_dir(*(float *)(s1 + 0x104), Adjust_theta(th + *(float *)(s1 + 0x1670)),
                               *(float *)(s1 + 0x5A8) * 0.19634955f);
             *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + d;
@@ -168,9 +167,9 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
             cObjBase_addNullSpeed(s1, one);
             if (*(unsigned short *)(s1 + 0x3AC) & 1) {
                 if (*(unsigned char *)(s1 + 0x17C3) != 0) {
-                    func_0026A638(s1, 1);
+                    func_0026A638(self, 1);
                 } else {
-                    func_0026A638(s1, 0);
+                    func_0026A638(self, 0);
                 }
             }
             if (*(unsigned short *)(s1 + 0x3AC) & 2) {

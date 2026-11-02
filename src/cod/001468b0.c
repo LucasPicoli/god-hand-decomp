@@ -6,7 +6,6 @@
 #include "godhand/CustomIDWork.h"
 
 extern unsigned short D_00747A50;
-extern int func_0026F328(cEm00 *self);
 extern void func_0026ECD0(cEm00 *self, int flag);
 extern float ESLib_ESHermite(float t, float p0, float p1, float m0, float m1);
 extern char D_0044E960[];

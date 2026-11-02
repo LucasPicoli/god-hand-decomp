@@ -5,7 +5,6 @@
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -135,7 +134,7 @@ __attribute__((section(".text.func_00210EE8"))) void func_00210EE8(cEm00 *self)
                 } break;
                 case 0x265: {
                     int b = *(int *)(s1 + 0x304);
-                    int t = *(int *)(s1 + 0x744);
+                    cEm00 *t = *(cEm00 **)(s1 + 0x744);
                     s2v = EM_RES_REC(b, 0x3724);
                     s0v = EM_RES_REC(b, 0x3728);
                     if (t != 0) {

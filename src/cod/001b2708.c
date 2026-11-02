@@ -5,7 +5,6 @@
 #include "godhand/cModel.h"
 #include "godhand/cEmSetParam.h"
 
-extern void func_0028FB08(void *em);
 extern char D_003BDD08[];
 extern char D_003BDE98[];
 extern int cModel_setMeshDisplay(void *model, char *name, int on);

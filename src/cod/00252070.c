@@ -16,13 +16,8 @@ extern void func_002A8578(void *a0, int a1, int a2, int a3, float a4, int a5, in
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int GetSeqSEBase(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(int a0, int a1);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
-extern void func_00273D30(void *a0);
-extern void func_00273630(void *a0);
 extern int cEmBase_checkDeadFlag(void *a0);
-extern void func_0028FB08(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, float f12, int t0);
@@ -226,19 +221,19 @@ void func_00252070(void *a0)
             default:
                 MOTION_PAIR(0x3368, 0x336C)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(int, self, EM_SUBA_OFFSET), 0);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 0);
                 }
                 break;
             case 1:
                 MOTION_PAIR(0x3370, 0x3374)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(int, self, EM_SUBA_OFFSET), 1);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 1);
                 }
                 break;
             case 2:
                 MOTION_PAIR(0x3378, 0x337C)
                 if (EM_AT(int, self, EM_SUBA_OFFSET) != 0) {
-                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(int, self, EM_SUBA_OFFSET), 2);
+                    Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(EM_AT(cEm00 *, self, EM_SUBA_OFFSET), 2);
                 }
                 break;
             }

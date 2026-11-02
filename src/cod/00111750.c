@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern int irand(void);
 extern void *Getplayer(void);
@@ -12,7 +12,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00260B30(void *a0);
 extern int SetCustomIDDispOneOrAll_1EE1C0();
 extern int CustomIDWork_SetColorAnimSin();
 extern void cEmManage_SetSlotWait(void *a0, int a1);
@@ -78,7 +77,7 @@ void func_00227FE8(void *a0)
             char *v1 = *(char **)(s1 + 0x304);
             a2v = *(int *)(v1 + 0x2FF4) + (int)v1;
         }
-        StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3E, -1, 0);
+        StoreMotionParamsBoth_2609A8(a0, 0x28, 0, 0x3E, -1, 0);
         func_002A8578(s1, a1v, a2v, 0.0f, 3, gb, 0);
         *(int *)(s1 + 0x5F0) = 0x1E;
         *(float *)(s1 + 0x600) = 20.0f;
@@ -133,7 +132,7 @@ void func_00227FE8(void *a0)
         cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
-    func_00260B30(s1);
+    func_00260B30(a0);
 }
 
 /* sn-2.95.3-136 matched TU. */
@@ -381,7 +380,7 @@ void func_0025C5D8(void *a0)
                     *(char *)(s0 + 0x2F7) = 0;
                     return;
                 } else {
-                    func_0025FE30(s0, 0x1000000, 0);
+                    func_0025FE30(a0, 0x1000000, 0);
                     *(char *)(s0 + 0x2F4) = 2;
                     *(char *)(s0 + 0x2F5) = 2;
                     *(char *)(s0 + 0x2F6) = 0;

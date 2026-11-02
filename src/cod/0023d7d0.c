@@ -17,7 +17,6 @@ extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void func_001D0B30(int a0, float a1);
@@ -26,7 +25,6 @@ extern void cEm00_armAttackVolume(void *a0);
 
 
 extern void func_002705D8(void *a0);
-extern void func_00260B30(void *a0);
 extern unsigned char D_005FEE00[];
 
 /* Fields cEm00.h does not name yet. Offsets are from the record start. */

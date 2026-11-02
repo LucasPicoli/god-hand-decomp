@@ -8,7 +8,6 @@ extern int moveMotion(void *a0);
 extern float fRand1_1(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern int irand(void);
 extern void func_002744E0(void *a0);
 extern char *CreateObj(int a0, int a1);
@@ -117,7 +116,7 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
                 } break;
                 case 96: {
                     int b = *(int *)(p + 0x304);
-                    int t = *(int *)(p + 0x744);
+                    cEm00 *t = *(cEm00 **)(p + 0x744);
                     s2v = EM_RES_REC(b, 0x3724);
                     s1v = EM_RES_REC(b, 0x3728);
                     if (t != 0) {

@@ -1,3 +1,4 @@
+#include "godhand/cEm00.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern int func_002DDAB0(void *a0, int a1, float f);
@@ -9,7 +10,6 @@ extern void cObjBase_addNullSpeed(void *a0, float s);
 extern char D_00462FC0;
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_00270C78(void *a0);
 extern void *Getplayer(void);
 extern float Adjust_theta(float f12);
 extern void func_001034E0(void *a0);
@@ -69,12 +69,12 @@ void func_00246F40(void *a0)
         v0 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0xC34) + v0, *(int *)(v0 + 0xC38) + v0, 80.0f, 10, t & 0xFFFF, 0);
         *(int *)(s0 + 0x5B4) = 0x1869F;
-        func_0026F120(s0);
+        func_0026F120(a0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         *(int *)(s0 + 0x16D0) |= 0x20000;
         if (moveMotion(s0) != 0) {
-            func_00270C78(s0);
+            func_00270C78(a0);
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s0, one);

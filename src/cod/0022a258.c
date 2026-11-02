@@ -11,7 +11,6 @@ extern void func_002705D8(void *a0);
 extern void func_0026B240(void *a0, int a1, int a2, int a3);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern void func_0028FB08(void *a0);
 extern void cEmManage_ReleaseEm(void *a0, void *a1);
 extern char D_005864F0[];
 

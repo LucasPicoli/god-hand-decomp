@@ -1,5 +1,6 @@
 /* TU: cEmWrap [enemy] - recovered C++ class. */
 #include "godhand/cEmWrap.h"
+#include "godhand/cEm00.h"
 struct vec4 { int a; float b; int c; float d; };
 extern int D_00747B00[];
 extern unsigned char D_005864F0[];
@@ -96,13 +97,12 @@ void cEmWrap_setLockOff(cEmWrap *self, int flag)
     }
 }
 
-extern void func_0028FB08(void *actor);
 /* Kill the actor. */
 __attribute__((section(".text.cEmWrap_setDead")))
 void cEmWrap_setDead(cEmWrap *self)
 {
     if (FindResolveActor_295978(self)) {
-        func_0028FB08(self->actor);
+        func_0028FB08((cEm00 *)self->actor);
     }
 }
 

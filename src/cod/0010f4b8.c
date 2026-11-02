@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
@@ -7,8 +8,6 @@ extern int moveMotion(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj2810_SetState_D_a1(void *a0, int a1);
 extern void SetBytes2F4Mode10_2833C0(void *a0, int a1);
-extern void func_0026F120(void *a0);
-extern void func_00270C78(void *a0);
 extern void func_002705D8(void *a0);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void func_0027D670(void *a0, int a1, int a2);
@@ -43,8 +42,8 @@ void func_0025B5A8(void *a0){ char *s0=(char*)a0;
   if(*(int*)(s0+0x750)) SetBytes2F4Mode10_2833C0(*(void**)(s0+0x750),*(unsigned char*)(s0+0x2F7));
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1; }
  case 1:
-  if(moveMotion(s0)!=0){ func_0026F120(s0);
-   if(func_0026F1D8(s0)!=0) func_00270C78(s0); else func_002705D8(s0); }
+  if(moveMotion(s0)!=0){ func_0026F120(a0);
+   if(func_0026F1D8(s0)!=0) func_00270C78(a0); else func_002705D8(s0); }
   break; } }
 
 __attribute__((section(".text.func_0027C2B8")))

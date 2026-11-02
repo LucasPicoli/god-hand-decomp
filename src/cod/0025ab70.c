@@ -11,7 +11,6 @@ extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, in
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00274238(void *a0, int a1);
 extern void func_002705D8(void *a0);
 extern int D_00462FC0;
 

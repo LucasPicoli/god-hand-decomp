@@ -5,9 +5,7 @@
 #include "godhand/cCamera.h"
 #include "godhand/vu0.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj1D00_SetState_7_16(void *a0);
 extern char *Getplayer(void);
@@ -16,7 +14,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00260B30(void *a0);
 extern void func_0026EC60(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern unsigned char D_00462FC0[];
@@ -30,7 +27,7 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
 {
     self->unk186A = 2;
     self->emFlags2 |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10();
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (self->step) {
         case 0: {
             int gb;

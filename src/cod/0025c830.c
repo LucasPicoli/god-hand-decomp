@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/cEm00.h"
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005CB000[];
@@ -109,7 +110,7 @@ void func_0025C830(void *a0)
         }
         if (moveMotion(s0)) {
             if (*(short *)(s0 + 0x54A) <= 0) {
-                func_0025FE30(s0, 0x1000000, 0);
+                func_0025FE30(a0, 0x1000000, 0);
                 *(unsigned char *)(s0 + 0x2F4) = 2;
                 *(unsigned char *)(s0 + 0x2F5) = 2;
                 *(unsigned char *)(s0 + 0x2F6) = 0;
@@ -162,7 +163,7 @@ void func_0025C830(void *a0)
             if (*(short *)(s0 + 0x54A) > 0) {
                 func_002705D8(s0);
             } else {
-                func_0025FE30(s0, 0x1000000, 0);
+                func_0025FE30(a0, 0x1000000, 0);
                 *(unsigned char *)(s0 + 0x2F4) = 2;
                 *(unsigned char *)(s0 + 0x2F5) = 2;
                 *(unsigned char *)(s0 + 0x2F6) = 0;

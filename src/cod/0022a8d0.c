@@ -3,12 +3,9 @@
 #include "godhand/cEm00.h"
 
 extern unsigned char D_005864F0[];
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
-extern void StoreMotionParams_2609E0(char *a0, int a1, int a2, int a3, int t0, short t1);
-extern void Set_Fields_1884_1894_2609F8(char *a0, int a1, int a2, int a3, int t0, short t1);
 extern char *Getplayer(void);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
@@ -16,7 +13,6 @@ extern int moveMotion(void *a0);
 extern int cEmManage_CkPlSorry(void *a0);
 extern int cEmManage_CkPlCatched(void *a0);
 extern void func_002705D8(void *a0);
-extern void func_00260B30(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -51,7 +47,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) = *(int *)(s1 + 0x16D4) | 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10(s1);
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int gb;
@@ -62,8 +58,8 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
             b = *(int *)(s1 + 0x304);
             func_002A8578(s1, EM_RES_REC(b, 0x251C), EM_RES_REC(b, 0x2520), 0.0f, 3, gb, 0);
             InitRenderStruct_2A8608(s1, 0xAA, 7, 0, 2, 0);
-            StoreMotionParams_2609E0(s1, 0x28, 0x1C, 0x3E, -1, 0);
-            Set_Fields_1884_1894_2609F8(s1, 0x3C, 0x1B, 0x3E, -1, 0);
+            StoreMotionParams_2609E0(self, 0x28, 0x1C, 0x3E, -1, 0);
+            Set_Fields_1884_1894_2609F8(self, 0x3C, 0x1B, 0x3E, -1, 0);
             *(int *)(s1 + 0x5FC) = 0;
             *(float *)(s1 + 0x600) = *(float *)(s1 + 0x104);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
@@ -167,7 +163,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
             cObjBase_addNullSpeed(s1, 1.0f);
             break;
     }
-    func_00260B30(s1);
+    func_00260B30(self);
     if ((*(unsigned short *)(s1 + 0x3AC) & 3) != 0) {
         *(int *)(s1 + 0x5FC) = 1;
     }

@@ -1,4 +1,5 @@
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 extern char D_003C532F;
 
 __attribute__((section(".text.ClearWordPair_201AD0")))
@@ -23,21 +24,21 @@ void InitStateBytes_2478B8(unsigned char *a0) {
 }
 
 __attribute__((section(".text.StoreMotionParams_2609E0")))
-void StoreMotionParams_2609E0(char *a0, int a1, int a2, int a3, int t0, short t1) {
-    *(int*)((char*)a0+0x1874) = a1;
-    *(int*)((char*)a0+0x1870) = a2;
-    *(int*)((char*)a0+0x1878) = a3;
-    *(int*)((char*)a0+0x187C) = t0;
-    *(short*)((char*)a0+0x1880) = t1;
+void StoreMotionParams_2609E0(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10) {
+    *(int*)((char *)self+0x1874) = time;
+    *(int*)((char *)self+0x1870) = kind;
+    *(int*)((char *)self+0x1878) = dmgKind;
+    *(int*)((char *)self+0x187C) = unk0C;
+    *(short*)((char *)self+0x1880) = unk10;
 }
 
 __attribute__((section(".text.Set_Fields_1884_1894_2609F8")))
-void Set_Fields_1884_1894_2609F8(char *a0, int a1, int a2, int a3, int t0, short t1) {
-    *(int*)((char*)a0+0x1888) = a1;
-    *(int*)((char*)a0+0x1884) = a2;
-    *(int*)((char*)a0+0x188C) = a3;
-    *(int*)((char*)a0+0x1890) = t0;
-    *(short*)((char*)a0+0x1894) = t1;
+void Set_Fields_1884_1894_2609F8(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10) {
+    *(int*)((char *)self+0x1888) = time;
+    *(int*)((char *)self+0x1884) = kind;
+    *(int*)((char *)self+0x188C) = dmgKind;
+    *(int*)((char *)self+0x1890) = unk0C;
+    *(short*)((char *)self+0x1894) = unk10;
 }
 
 __attribute__((section(".text.ClearFields_1614D0")))
@@ -203,15 +204,15 @@ int Forward33B790_340AE8(int a0, int a1, int a2, int a3) {
 
 /* writes both the StoreMotionParams_2609E0 and Set_Fields_1884_1894_2609F8 field blocks. */
 __attribute__((section(".text.StoreMotionParamsBoth_2609A8")))
-void StoreMotionParamsBoth_2609A8(char *a0, int a1, int a2, int a3, int t0, short t1) {
-    *(int*)((char*)a0+0x1874) = a1;
-    *(int*)((char*)a0+0x1870) = a2;
-    *(int*)((char*)a0+0x1878) = a3;
-    *(int*)((char*)a0+0x187C) = t0;
-    *(short*)((char*)a0+0x1880) = t1;
-    *(int*)((char*)a0+0x1888) = a1;
-    *(int*)((char*)a0+0x1884) = a2;
-    *(int*)((char*)a0+0x188C) = a3;
-    *(int*)((char*)a0+0x1890) = t0;
-    *(short*)((char*)a0+0x1894) = t1;
+void StoreMotionParamsBoth_2609A8(cEm00 *self, int time, int kind, int dmgKind, int unk0C, short unk10) {
+    *(int*)((char *)self+0x1874) = time;
+    *(int*)((char *)self+0x1870) = kind;
+    *(int*)((char *)self+0x1878) = dmgKind;
+    *(int*)((char *)self+0x187C) = unk0C;
+    *(short*)((char *)self+0x1880) = unk10;
+    *(int*)((char *)self+0x1888) = time;
+    *(int*)((char *)self+0x1884) = kind;
+    *(int*)((char *)self+0x188C) = dmgKind;
+    *(int*)((char *)self+0x1890) = unk0C;
+    *(short*)((char *)self+0x1894) = unk10;
 }

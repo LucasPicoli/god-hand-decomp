@@ -14,8 +14,6 @@ extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern float Adjust_theta(float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern float SetMotionStep(void *a0, float f12);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void func_00260B30(void *a0);
 extern void Obj293_OrByte_5A3(void *a0, int a1);
 extern void Obj293_OrByte_5A4(void *a0, int a1);
 extern void Obj293_OrByte_5A5_1(void *a0);
@@ -279,8 +277,8 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             }
         LA64:
             if (*(unsigned short *)(s1 + 0x3AC) & 1) {
-                StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
-                func_00260B30(s1);
+                StoreMotionParamsBoth_2609A8(self, 0x28, 0, 0x3F, -1, 0);
+                func_00260B30(self);
             }
             if (flag != 0) {
                 break;
@@ -310,8 +308,8 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);
             cObjBase_addNullSpeed(s1, 1.0f);
             if (*(unsigned short *)(s1 + 0x3AC) & 1) {
-                StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3F, -1, 0);
-                func_00260B30(s1);
+                StoreMotionParamsBoth_2609A8(self, 0x28, 0, 0x3F, -1, 0);
+                func_00260B30(self);
             }
             break;
     }

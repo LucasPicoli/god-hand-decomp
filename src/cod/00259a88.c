@@ -18,7 +18,6 @@ extern void Obj1D00_SetState_7_E_a1(void *a0, int a1);
 extern void Obj1D00_SetState_7_10(void *a0);
 extern void Obj1D00_SetState_7_12(void *a0);
 extern void Obj1D00_SetState_7_14(void *a0);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -461,7 +460,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             cObjBase_addNullSpeed(s1, 1.0f);
             *(float *)(s1 + 0x600) = *(float *)(s1 + 0x600) - *(float *)(s1 + 0x5A8);
             if (*(float *)(s1 + 0x600) <= 0.0f) {
-                func_0026BEF0(s1, 0x12, 0);
+                func_0026BEF0(self, 0x12, 0);
                 *(float *)(s1 + 0x600) = 20.0f;
             }
             *(float *)(s1 + 0x604) = *(float *)(s1 + 0x604) - *(float *)(s1 + 0x5A8);

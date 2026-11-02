@@ -1,3 +1,4 @@
+#include "godhand/cEm00.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern unsigned int irand(void);
@@ -14,9 +15,9 @@ extern unsigned char D_005864F0[];
 
 
 __attribute__((section(".text.func_00273D30")))
-void func_00273D30(void *a0)
+void func_00273D30(cEm00 *self)
 {
-    char *s0 = (char *)a0;
+    char *s0 = (char *)self;
     int f = *(int *)(s0 + 0x16D4);
 
     if ((f & 2) != 0) {

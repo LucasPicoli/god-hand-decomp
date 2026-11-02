@@ -7,7 +7,6 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEvent.h"
 
-extern void func_0028FB08(void *em);
 extern int D_005FEE00;
 extern int cSnd_SeIsLoadOk(void *snd, int handle);
 extern char D_00462FC0[];

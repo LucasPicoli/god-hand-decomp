@@ -10,7 +10,6 @@ extern void func_002A8578(void *a0, int a1, int a2, float f12, int a3, int t0, i
 extern int moveMotion(void *a0);
 extern int func_00291010(void *a0, void *a1, void *a2, int a3, int t0, float f12, float f13, float f14);
 extern int IsEntryActive_1C2490(int a0);
-extern void func_0028FB08(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern void *Getplayer(void);

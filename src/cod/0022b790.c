@@ -2,9 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
@@ -12,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00260B30(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -37,7 +34,7 @@ __attribute__((section(".text.func_0022B790"))) void func_0022B790(cEm00 *self)
 {
     self->unk186A = 2;
     self->emFlags2 |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10();
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (self->step) {
         case 0: {
             int gb;

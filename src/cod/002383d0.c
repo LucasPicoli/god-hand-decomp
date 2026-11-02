@@ -3,6 +3,7 @@
 /* func_002383D0, 996 B, sn-2.95.3-136. Wave 2026-08-31 V2 h2 + a block-local base pointer per if/else arm (pa1..pa4) so local-alloc takes the base first. */
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern char D_00462FC0[];
 extern int D_007474A8;
@@ -11,16 +12,15 @@ extern int Getplayer();
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern float SetMotionStep(void *a0, float f);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
 extern void cObjBase_addNullSpeed(void *a0, float f12);
-extern void func_00260B30(void *a0);
 
 __attribute__((section(".text.func_002383D0")))
-void func_002383D0(char *s0)
+void func_002383D0(cEm00 *self)
 {
+    char *s0 = (char *)self;
     char *s3;
     char *s1;
     char *s2;
@@ -46,7 +46,7 @@ void func_002383D0(char *s0)
             s1 = (char *)(*(int *)(pa2 + 0x2B44) + (int)pa2);
         }
         func_002A8578(s0, (int)s2, (int)s1, 0.0f, 0, t8, 0);
-        StoreMotionParamsBoth_2609A8(s0, 4, 0, 0x3D, -1, 0);
+        StoreMotionParamsBoth_2609A8(self, 4, 0, 0x3D, -1, 0);
         *(short *)(s0 + 0x56A) = 0;
         *(short *)(s0 + 0x56C) = 0;
         *(short *)(s0 + 0x568) = 0x3C;
@@ -131,7 +131,7 @@ void func_002383D0(char *s0)
         }
         t8 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         func_002A8578(s0, (int)s2, (int)s1, 0.0f, 0, t8, 0);
-        StoreMotionParamsBoth_2609A8(s0, 0x3C, 0, 0x41, -1, 0);
+        StoreMotionParamsBoth_2609A8(self, 0x3C, 0, 0x41, -1, 0);
         *(int *)(s0 + 0x5F0) = 0xF;
         *(float *)(s0 + 0x54C) = 2.0f;
         (*(unsigned char *)(s0 + 0x2F6))++;
@@ -162,5 +162,5 @@ void func_002383D0(char *s0)
     default:
         break;
     }
-    func_00260B30(s0);
+    func_00260B30(self);
 }

@@ -17,7 +17,6 @@ extern void func_00262750(void *a0, int a1);
 extern void func_002705D8(void *a0);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
-extern void func_00262AA8(void *a0);
 extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -400,7 +399,7 @@ __attribute__((section(".text.func_002557F8"))) void func_002557F8(cEm00 *self)
                 if (cEm00_startHitUnitAim(s1) != 0) {
                     return;
                 }
-                func_00262AA8(s1);
+                func_00262AA8(self);
             }
             break;
         }

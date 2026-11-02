@@ -55,6 +55,7 @@ extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4,
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 __attribute__((section(".text.func_00121E88")))
 void func_00121E88(void *a0)
@@ -347,7 +348,7 @@ void func_0025BCC0(void *a0)
                     *(char *)(s0 + 0x2F7) = 0;
                     return;
                 } else {
-                    func_0025FE30(s0, 0x1000000, 0);
+                    func_0025FE30(a0, 0x1000000, 0);
                     *(char *)(s0 + 0x2F4) = 2;
                     *(char *)(s0 + 0x2F5) = 2;
                     *(char *)(s0 + 0x2F6) = 0;

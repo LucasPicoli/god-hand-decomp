@@ -11,7 +11,6 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0027DBF8(int a0, int a1);
 extern void func_00281500(int a0, int a1);
 extern void func_002833D8(int a0, int a1);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern void func_002705D8(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);

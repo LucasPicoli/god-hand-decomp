@@ -10,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DAF0(int a0);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void Obj2810_SetState_1_a1(int a0, int a1);
 extern void SetBytes2F4Mode1_283188(int a0, int a1);
 extern void Obj1D00_SetState_7_2(int a0);
@@ -473,7 +472,7 @@ __attribute__((section(".text.func_0023B968"))) void func_0023B968(cEm00 *self)
                         s2 = EM_RES_REC(b, 0x372C);
                         s1 = EM_RES_REC(b, 0x3730);
                         if (*(int *)(s3 + 0x744) != 0) {
-                            ForwardAnimParamPairByIndex_27EA50(*(int *)(s3 + 0x744), 2);
+                            ForwardAnimParamPairByIndex_27EA50(*(cEm00 **)(s3 + 0x744), 2);
                         }
                     }
                     break;

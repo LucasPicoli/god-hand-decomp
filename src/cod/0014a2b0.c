@@ -1,4 +1,5 @@
 #include "godhand/cModel.h"
+#include "godhand/cEm00.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
@@ -46,28 +47,28 @@ void cModel_calcNullPart(cModel *self)
 }
 
 __attribute__((section(".text.CheckSlotsShort2FEAndSetByte1864_262A10")))
-int CheckSlotsShort2FEAndSetByte1864_262A10(char *a0)
+int CheckSlotsShort2FEAndSetByte1864_262A10(cEm00 *self)
 {
     char *t;
 
-    t = *(char **)(*(char **)(a0 + 0x670) + 0x34);
+    t = *(char **)(*(char **)((char *)self + 0x670) + 0x34);
     if (t != 0 && *(unsigned short *)(t + 0x2FE) == 0x100) {
-        *(char *)(a0 + 0x1864) = 1;
+        *(char *)((char *)self + 0x1864) = 1;
         return 1;
     }
-    t = *(char **)(*(char **)(a0 + 0x678) + 0x34);
+    t = *(char **)(*(char **)((char *)self + 0x678) + 0x34);
     if (t != 0 && *(unsigned short *)(t + 0x2FE) == 0x100) {
-        *(char *)(a0 + 0x1864) = 1;
+        *(char *)((char *)self + 0x1864) = 1;
         return 1;
     }
-    t = *(char **)(*(char **)(a0 + 0x680) + 0x34);
+    t = *(char **)(*(char **)((char *)self + 0x680) + 0x34);
     if (t != 0 && *(unsigned short *)(t + 0x2FE) == 0x100) {
-        *(char *)(a0 + 0x1864) = 1;
+        *(char *)((char *)self + 0x1864) = 1;
         return 1;
     }
-    t = *(char **)(*(char **)(a0 + 0x688) + 0x34);
+    t = *(char **)(*(char **)((char *)self + 0x688) + 0x34);
     if (t != 0 && *(unsigned short *)(t + 0x2FE) == 0x100) {
-        *(char *)(a0 + 0x1864) = 1;
+        *(char *)((char *)self + 0x1864) = 1;
         return 1;
     }
     return 0;

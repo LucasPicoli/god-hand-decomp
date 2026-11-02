@@ -3,6 +3,7 @@
 #include "include_asm.h"
 #include "godhand/cEma2.h"
 #include "godhand/objField.h"
+#include "godhand/cEm00.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -1983,7 +1984,7 @@ void Obj0000_Or_Field_16D0_Bit_20000000_272570(void *a0) {
 }
 
 __attribute__((section(".text.func_00273630")))
-void func_00273630(void) {
+void func_00273630(cEm00 *self) {
     char buf[24];
     (void)buf;
 }
@@ -2052,19 +2053,19 @@ void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DAF0(char *a0) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08")))
-void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(char *a0) {
-    *(char *)(a0 + 0x2F4) = 0;
-    *(char *)(a0 + 0x2F5) = 4;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
+void Obj0000_Set_Bytes_2F4_2F5_2F6_2F7_27DB08(cEm00 *self) {
+    self->mode = 0;
+    self->phase = 4;
+    self->step = 0;
+    self->stepArg = 0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8")))
-void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(char *a0, char a1) {
-    *(char *)(a0 + 0x2F7) = a1;
-    *(char *)(a0 + 0x2F5) = 9;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F4) = 0;
+void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCB8(cEm00 *self, char stepArg) {
+    self->stepArg = stepArg;
+    self->phase = 9;
+    self->step = 0;
+    self->mode = 0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0")))

@@ -17,6 +17,7 @@ extern char D_00462FC0[];
 extern char D_005CB000[];
 
 #include "godhand/vu0.h"
+#include "godhand/cEm00.h"
 
 __attribute__((section(".text.func_0025C1D0")))
 void func_0025C1D0(void *a0)
@@ -157,7 +158,7 @@ void func_0025C1D0(void *a0)
         }
         if (moveMotion(s0) != 0) {
             if (*(short *)(s0 + 0x54A) <= 0) {
-                func_0025FE30(s0, 0x1000000, 0);
+                func_0025FE30(a0, 0x1000000, 0);
                 *(char *)(s0 + 0x2F4) = 2;
                 *(char *)(s0 + 0x2F5) = 2;
                 *(char *)(s0 + 0x2F6) = 0;

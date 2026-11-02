@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void Obj1D00_ClearState_6(void *a0);
 extern void Obj1D00_ClearState_7(void *a0);
@@ -15,7 +14,6 @@ extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0);
-extern void func_00260B30(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -47,7 +45,7 @@ void func_00233248(void *arg0)
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10();
+    CheckSlotsShort2FEAndSetByte1864_262A10(arg0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int gb;
@@ -60,7 +58,7 @@ void func_00233248(void *arg0)
         *(int *)(s1 + 0x5FC) = 0;
         *(int *)(s1 + 0x5F0) = 0xF;
         *(float *)(s1 + 0x608) = 1.0f;
-        StoreMotionParamsBoth_2609A8(s1, 0x14, 0, 0x37, -1, 0);
+        StoreMotionParamsBoth_2609A8(arg0, 0x14, 0, 0x37, -1, 0);
         st = *(int *)(s1 + 0x564);
         *(float *)(s1 + 0x604) = fv;
         *(float *)(s1 + 0x60C) = fv;
@@ -70,7 +68,7 @@ void func_00233248(void *arg0)
         }
         {
             char *pa;
-            StoreMotionParamsBoth_2609A8(s1, 0x14, 3, 0x37, -1, 0);
+            StoreMotionParamsBoth_2609A8(arg0, 0x14, 3, 0x37, -1, 0);
             pa = *(char **)(s1 + 0x304);
             a1v = *(int *)(pa + 0x390) + (int)pa;
             a2v = *(int *)(pa + 0x394) + (int)pa;
@@ -84,7 +82,7 @@ void func_00233248(void *arg0)
     lb:
         {
             char *pb;
-            StoreMotionParamsBoth_2609A8(s1, 0x1E, 0x1B, 0x45, -1, 0);
+            StoreMotionParamsBoth_2609A8(arg0, 0x1E, 0x1B, 0x45, -1, 0);
             pb = *(char **)(s1 + 0x304);
             a1v = *(int *)(pb + 0x19E8) + (int)pb;
             a2v = *(int *)(pb + 0x19EC) + (int)pb;
@@ -99,7 +97,7 @@ void func_00233248(void *arg0)
     lc:
         {
             char *pc;
-            StoreMotionParamsBoth_2609A8(s1, 0x46, 0x1B, 0x45, -1, 0);
+            StoreMotionParamsBoth_2609A8(arg0, 0x46, 0x1B, 0x45, -1, 0);
             pc = *(char **)(s1 + 0x304);
             a1v = *(int *)(pc + 0x30D8) + (int)pc;
             a2v = *(int *)(pc + 0x30DC) + (int)pc;
@@ -173,10 +171,10 @@ void func_00233248(void *arg0)
             *(int *)(s1 + 0x16D0) |= 0x80000000;
         }
     }
-    func_00260B30(s1);
+    func_00260B30(arg0);
     if (cCoreSave_getGameLevel(&D_00569B70) >= 3 && func_0026F1D8(s1) == 0 &&
         (*(unsigned short *)(s1 + 0x3AC) & 0x10) != 0 &&
-        *(unsigned char *)(s1 + 0x1864) == 0 && func_00262AA8(s1) != 0) {
+        *(unsigned char *)(s1 + 0x1864) == 0 && func_00262AA8(arg0) != 0) {
         return;
     }
     if (*(int *)(s1 + 0x5FC) != 0) {

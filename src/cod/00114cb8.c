@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
-extern void func_0028FB08(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -27,7 +27,7 @@ void func_0028A9E8(void *a0)
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
         int b;
-        func_0028FB08(s0);
+        func_0028FB08(a0);
         cCoreSave_addKillNpcNum(&D_00569B70);
         if (*(int *)(s0 + 0x564) != 0x2A7 && *(int *)(s0 + 0x564) != 0x2AB) {
             b = *(int *)(s0 + 0x304);

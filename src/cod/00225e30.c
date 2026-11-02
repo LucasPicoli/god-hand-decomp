@@ -2,9 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern unsigned int irand(void);
 extern void func_002A8578(void *a0, int a1, int a2, float f, int a3, int t0, int t1);
 extern int Getplayer(void);
@@ -13,8 +11,6 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void func_00260B30(void *a0);
-extern void func_0026BEF0(void *a0, int a1, int a2);
 
 /* Phase machine on the step byte, 12 case labels. Calls CheckSlotsShort2FEAndSetByte1864_262A10,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, StoreMotionParamsBoth_2609A8, cCoreSave_getGameLevel, irand,
@@ -25,7 +21,7 @@ __attribute__((section(".text.func_00225E30"))) void func_00225E30(cEm00 *self)
 
     *(unsigned char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10(s1);
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int r;
@@ -33,7 +29,7 @@ __attribute__((section(".text.func_00225E30"))) void func_00225E30(cEm00 *self)
             int p2;
             *(unsigned char *)(s1 + 0x1864) = 0;
             r = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-            StoreMotionParamsBoth_2609A8(s1, 0x28, 0, 0x3E, 0, 0x111);
+            StoreMotionParamsBoth_2609A8(self, 0x28, 0, 0x3E, 0, 0x111);
             if (cCoreSave_getGameLevel(&D_00569B70) >= 2 && (irand() & 1)) {
                 int w = *(int *)(s1 + 0x304);
                 p1 = EM_RES_REC(w, 0x1DF0);
@@ -92,11 +88,11 @@ __attribute__((section(".text.func_00225E30"))) void func_00225E30(cEm00 *self)
     }
 
     if (*(unsigned short *)(s1 + 0x3AC) & 1)
-        func_00260B30(s1);
+        func_00260B30(self);
     if (*(unsigned short *)(s1 + 0x3AC) & 2) {
         if (*(int *)(s1 + 0x5F8) == 0) {
             *(int *)(s1 + 0x5F8) = 1;
-            func_0026BEF0(s1, 4, 0);
+            func_0026BEF0(self, 4, 0);
         }
         *(int *)(s1 + 0x5F0) = 0x1E;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {

@@ -2,9 +2,7 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void CheckSlotsShort2FEAndSetByte1864_262A10(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void StoreMotionParamsBoth_2609A8(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_002A8578(void *a0, int a1, int a2, float a3, int a4, int a5, int a6);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
@@ -17,7 +15,6 @@ extern int func_00275888(void *a0, float f);
 extern void func_00262750(void *a0, int a1);
 extern void func_00274FE8(void *a0);
 extern void func_002705D8(void *a0);
-extern void func_00260B30(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern unsigned char D_005864F0[];
@@ -41,12 +38,12 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
     float va[8];
     char *s1 = (char *)self;
     int gb;
-    int s2, self;
+    int s2, motB;
     float one;
 
     *(char *)(s1 + 0x186A) = 2;
     *(int *)(s1 + 0x16D4) |= 0x400;
-    CheckSlotsShort2FEAndSetByte1864_262A10();
+    CheckSlotsShort2FEAndSetByte1864_262A10(self);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0:
             *(char *)(s1 + 0x1864) = 0;
@@ -55,12 +52,12 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                 default: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x98C);
-                    self = EM_RES_REC((int)v, 0x990);
+                    motB = EM_RES_REC((int)v, 0x990);
                     if (cCoreSave_getGameLevel(&D_00569B70) >= 2) {
                         char *w = *(char **)(s1 + 0x304);
-                        self = EM_RES_REC((int)w, 0x994);
+                        motB = EM_RES_REC((int)w, 0x994);
                     }
-                    StoreMotionParamsBoth_2609A8(s1, 0x28, 0xA, 0x41, 0, 0xF5);
+                    StoreMotionParamsBoth_2609A8(self, 0x28, 0xA, 0x41, 0, 0xF5);
                     *(int *)(s1 + 0x5C0) = 0;
                     *(int *)(s1 + 0x5C4) = 0;
                     *(float *)(s1 + 0x5C8) = 0.5f;
@@ -106,14 +103,14 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                 case 0x251: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x19F4);
-                    self = EM_RES_REC((int)v, 0x19F8);
+                    motB = EM_RES_REC((int)v, 0x19F8);
                     *(float *)(s1 + 0x5C8) = 0.400000006f;
                     if (cCoreSave_getGameLevel(&D_00569B70) >= 5) {
                         char *w = *(char **)(s1 + 0x304);
-                        self = EM_RES_REC((int)w, 0x19FC);
+                        motB = EM_RES_REC((int)w, 0x19FC);
                         *(float *)(s1 + 0x5C8) = 0.75f;
                     }
-                    StoreMotionParamsBoth_2609A8(s1, 0x3C, 0xA, 0x44, 0, 0xF5);
+                    StoreMotionParamsBoth_2609A8(self, 0x3C, 0xA, 0x44, 0, 0xF5);
                     *(int *)(s1 + 0x5C0) = 0;
                     *(int *)(s1 + 0x5C4) = 0;
                     *(float *)(s1 + 0x5C8) = 0.5f;
@@ -156,7 +153,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                     }
                 } break;
             }
-            func_002A8578(s1, s2, self, 0.0f, 10, gb, 0);
+            func_002A8578(s1, s2, motB, 0.0f, 10, gb, 0);
             *(int *)(s1 + 0x5FC) = 0;
             *(unsigned char *)(s1 + 0x2F6) += 1;
             /* fallthrough */
@@ -178,22 +175,22 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                 default: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x998);
-                    self = EM_RES_REC((int)v, 0x99C);
+                    motB = EM_RES_REC((int)v, 0x99C);
                 } break;
                 case 0x250:
                 case 0x251: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x1A00);
-                    self = EM_RES_REC((int)v, 0x1A04);
+                    motB = EM_RES_REC((int)v, 0x1A04);
                 } break;
                 case 0x24F:
                 case 0x20C: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x1F68);
-                    self = EM_RES_REC((int)v, 0x1F6C);
+                    motB = EM_RES_REC((int)v, 0x1F6C);
                 } break;
             }
-            func_002A8578(s1, s2, self, 0.0f, 2, gb, 0);
+            func_002A8578(s1, s2, motB, 0.0f, 2, gb, 0);
             *(int *)(s1 + 0x5F0) = 4;
             *(float *)(s1 + 0x5D0) = 99999.9f;
             *(float *)(s1 + 0x5D4) = 99999.9f;
@@ -292,15 +289,15 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
                 case 0x251: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0xCF0);
-                    self = EM_RES_REC((int)v, 0xCF4);
+                    motB = EM_RES_REC((int)v, 0xCF4);
                 } break;
                 default: {
                     char *v = *(char **)(s1 + 0x304);
                     s2 = EM_RES_REC((int)v, 0x9A8);
-                    self = EM_RES_REC((int)v, 0x9AC);
+                    motB = EM_RES_REC((int)v, 0x9AC);
                 } break;
             }
-            func_002A8578(s1, s2, self, 0.0f, 2, gb, 0);
+            func_002A8578(s1, s2, motB, 0.0f, 2, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
             *(int *)(s1 + 0x5F0) = 5;
             /* fallthrough */
@@ -346,7 +343,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
             cObjBase_addNullSpeed(s1, one);
             break;
     }
-    func_00260B30(s1);
+    func_00260B30(self);
     if (*(unsigned short *)(s1 + 0x3AC) & 3) {
         *(int *)(s1 + 0x16F8) = 10;
         *(int *)(s1 + 0x5FC) = 1;

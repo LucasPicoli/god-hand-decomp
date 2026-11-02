@@ -11,8 +11,6 @@ extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern void func_0026F328(void *a0);
-extern void ForwardAnimParamPairByIndex_27EA50(int a0, int a1);
 extern void *Getplayer(void);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 extern int cEmManage_ckEnemyActiveNear(void *a0, void *a1, float f12);
@@ -182,7 +180,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -381,7 +379,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -545,7 +543,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -723,7 +721,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -863,7 +861,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -1001,7 +999,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -1108,7 +1106,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                 char *g = D_007474A0;
                 if ((*(int *)(g + 0x210) & 7) == (*(int *)(s1 + 0x17D0) & 7)) {
                     if (*(float *)(s1 + 0x618) < 64.0f) {
-                        func_0026F328(s1);
+                        func_0026F328(self);
                     }
                 }
             }
@@ -1299,7 +1297,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -1433,7 +1431,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {
@@ -1571,7 +1569,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
                         } break;
                         case 0x265: {
                             int b = *(int *)(s1 + 0x304);
-                            int h = *(int *)(s1 + 0x744);
+                            cEm00 *h = *(cEm00 **)(s1 + 0x744);
                             s2v = EM_RES_REC(b, 0x3724);
                             s0v = EM_RES_REC(b, 0x3728);
                             if (h != 0) {

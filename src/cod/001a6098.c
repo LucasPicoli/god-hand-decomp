@@ -3,6 +3,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cOm60.h"
 #include "godhand/vu0.h"
+#include "godhand/cEm00.h"
 
 extern void func_001B6FB8(void *self);
 extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
@@ -90,16 +91,8 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
 
 
 
-/* The enemy record with the held object slots. */
-typedef struct EmThrower {
-    char unk000[0x80];
-    float mtx[16];                      /* 0x080 */
-    char unk0C0[0x624];
-    cOm60 *held[3];                     /* 0x6E4 */
-} EmThrower;
-
 __attribute__((section(".text.EmThrower_throwHeld")))
-void EmThrower_throwHeld(EmThrower *self, int no, int fast) {
+void EmThrower_throwHeld(cEm00 *self, int no, int fast) {
     cVec dir;
     cOm60 *obj;
     float side;
