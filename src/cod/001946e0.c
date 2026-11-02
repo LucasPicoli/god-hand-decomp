@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmBase.h"
+#include "godhand/gameWork.h"
 
 extern void func_002FBED0(void *self);
 extern void Pos_followGround(void *self);
@@ -188,7 +189,6 @@ void cOmBase_tickPhaseTable194558(cOmBase *self)
 extern char D_00586AF0[];               /* cEvent */
 extern unsigned int D_00747A84;         /* system flags */
 
-#define SYSFLAG_EVENT_RUNNING  0x20000000       /* D_00747A84: a cutscene is running */
 #define CUT_CURRENT            0xFF             /* cut number meaning "the cut that is playing" */
 
 /* A cut number of a command record, as the game stores it: a halfword that the player also reads as a byte. */

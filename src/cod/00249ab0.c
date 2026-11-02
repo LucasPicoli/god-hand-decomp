@@ -5,7 +5,6 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned char D_005850B0[];
 extern unsigned char D_005CB010;
 extern char *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -13,7 +12,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_00281260(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
 extern void func_002495E0(void *a0, float f12);
-extern void func_00249770(void *a0, float f12);
 extern float fRand0_1(void);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);

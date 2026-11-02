@@ -15,7 +15,6 @@ extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_00281260(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
 extern void func_002495E0(void *a0, float f);
-extern int D_005850B0;
 extern char D_005CB000[];
 
 /* Phase machine on the step byte, 4 case labels. Calls cCollisionSolidManage_SetActive,

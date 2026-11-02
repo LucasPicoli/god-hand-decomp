@@ -6,6 +6,7 @@
 #include "godhand/cIDBase.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEvent.h"
+#include "godhand/gameWork.h"
 
 extern int D_005FEE00;
 extern int cSnd_SeIsLoadOk(void *snd, int handle);
@@ -135,7 +136,6 @@ void GoldPanel_update(GoldPanel *self) {
     cIDBase_move(&self->base);
 }
 
-#define SYSFLAG_EVENT_RUNNING  0x20000000       /* D_00747A84: a cutscene is running */
 #define CUT_CURRENT            0xFF             /* cut number meaning "the cut that is playing" */
 
 /* A cut number of a command record, as the game stores it: a halfword that the player also reads as a byte. */
