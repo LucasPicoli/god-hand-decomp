@@ -80,7 +80,8 @@ typedef struct cGameObjEffect {
 
 /* cGameObj is cObjBase (COBJBASE_FIELDS, 0x000..0x4D0) plus its own fields:
  * the retail constructor (0x2A7338) calls cObjBase first, then writes only
- * 0x214, 0x4AC and 0x4D0 onward. */
+ * 0x214, 0x4AC and 0x4D0 onward. That constructor is the function cGameObj,
+ * so its TU defines CGAMEOBJ_NO_TYPEDEF before this include. */
 #ifndef CGAMEOBJ_NO_TYPEDEF
 typedef struct cGameObj cGameObj;
 #endif
