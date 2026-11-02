@@ -83,9 +83,7 @@
     }
 
 
-/* Vec v(fx, fy, fz); (the three-float constructor in place, w = 1). As an
- * inline function the arguments go through registers and 0.0 components are
- * no longer stored from $zero. */
+/* Vec v(fx, fy, fz); (the three-float constructor in place, w = 1). */
 #define CVEC_INIT_XYZ(v, fx, fy, fz)                            \
     {                                                           \
         cVec *v_ = &(v);                                        \
