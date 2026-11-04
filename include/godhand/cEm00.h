@@ -99,7 +99,7 @@ typedef struct cEm00 {
     char unk610[0x6];
     unsigned char active;                   /* 0x616 */
     unsigned char unk617;                   /* 0x617 set to 1 when the step starts */
-    float playerDist;                       /* 0x618 distance to the player */
+    float playerDist;                       /* 0x618 squared distance to the player, ground plane */
     char unk61C[0x3];
     unsigned char unk61F;                   /* 0x61F while set, the hit countdown at 0x568 also sets unk15F4 bit 0x8000 */
     char unk620[0x20];
@@ -277,14 +277,14 @@ void func_00273D30(cEm00 *self);
 void func_00274238(cEm00 *self, unsigned char kind);
 /* Marks the enemy's room slot (0x640) dead in the room save. */
 void func_0028FB08(cEm00 *self);
-/* Moves the enemy around the arena centre by angle on a fixed radius and turns it to face away from it. */
+/* Moves the enemy around the anchor point by angle on a fixed radius and turns it a step toward facing the anchor. */
 void func_00249770(cEm00 *self, float angle);
-/* Throws held object no; fast picks the faster throw. */
-void EmThrower_throwHeld(cEm00 *self, int no, int fast);
+/* Throws held object no; keepTime leaves its flight timer as it is. */
+void EmThrower_throwHeld(cEm00 *self, int no, int keepTime);
 
-/* Throw speeds and spreads of a held object (EmThrower_throwHeld, func_0026A838). */
-#define THROW_SLOW         0.0f
-#define THROW_FAST         150.0f
+/* Flight timer and spreads of a held object (EmThrower_throwHeld, func_0026A838). */
+#define THROW_KEEP_TIME    0.0f         /* setThrow leaves the timer alone */
+#define THROW_TIME         150.0f
 #define THROW_SIDE         0.02f        /* random scale, x and z */
 #define THROW_UP_RAND      0.01f        /* random scale, y */
 

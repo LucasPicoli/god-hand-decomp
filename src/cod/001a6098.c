@@ -75,7 +75,7 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
     return 1;
 }
 
-/* Throw the held object in slot `no` with a random small tilt; `fast` selects speed 0 or 150. The slot is emptied. */
+/* Throw the held object in slot `no` with a random small tilt; `keepTime` leaves its flight timer, otherwise it is set to 150. The slot is emptied. */
 
 
 
@@ -87,7 +87,7 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
 
 
 __attribute__((section(".text.EmThrower_throwHeld")))
-void EmThrower_throwHeld(cEm00 *self, int no, int fast) {
+void EmThrower_throwHeld(cEm00 *self, int no, int keepTime) {
     cVec dir;
     cOm60 *obj;
     float side;
@@ -106,10 +106,10 @@ void EmThrower_throwHeld(cEm00 *self, int no, int fast) {
     dir.y = up;
     dir.z = depth;
     capVu0ApplyMatrixXYZ(&dir, self->mtx, &dir);
-    if (fast != 0) {
-        cOm60_setThrow(obj, &dir, THROW_SLOW);
+    if (keepTime != 0) {
+        cOm60_setThrow(obj, &dir, THROW_KEEP_TIME);
     } else {
-        cOm60_setThrow(obj, &dir, THROW_FAST);
+        cOm60_setThrow(obj, &dir, THROW_TIME);
     }
 }
 

@@ -15,7 +15,7 @@
 /* Bits of flags5E4 (D_00747A84, the system flags). */
 #define SYSFLAG_SOFT_EVENT4     0x00080000  /* a type-4 soft event is running (cScenario_startSoftEvent) */
 #define SYSFLAG_EVENT_RUNNING   0x20000000  /* a cutscene is running (cEvent sets it) */
-#define SYSFLAG_ENDING_BIT      6           /* the ending is playing (cE3_setEnding sets it with 0x40000000) */
+#define SYSFLAG_SOFT_EVENT_BIT  6           /* a soft event (any type but 5) or the ending holds the game; both set it with 0x40000000 */
 
 /* Header of the effect data file the room loads; the offsets are from the header. */
 typedef struct EffDataHdr {

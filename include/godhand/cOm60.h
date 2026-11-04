@@ -2,7 +2,7 @@
  *
  * cOm60 builds on the cGameObj record (0x5AC bytes). A thrown object keeps
  * its parent in `parent` (0 once it flies free), the throw direction in
- * `throwDir`, and a speed. setThrow detaches it, turns it to face the
+ * `throwDir`, and a flight timer. setThrow detaches it, turns it to face the
  * direction and starts the throw effect and sound once.
  *
  * Method names are the game's own, from the symbol table in the retail ELF.
@@ -24,7 +24,7 @@ typedef struct cOm60 {
     char unk5B0[0x600 - 0x5B0];
     int parent;                         /* 0x600 nonzero while held; setThrow clears it */
     char unk604[0x2C];
-    float speed;                        /* 0x630 */
+    float flightTime;                   /* 0x630 counted down while it flies */
     char unk634[0xC];
     cVec throwDir;                      /* 0x640 */
     float pitch;                        /* 0x650 */
@@ -38,7 +38,7 @@ typedef struct cOm60 {
 typedef char cOm60_size_check[(sizeof(cOm60) == 0x670) ? 1 : -1];
 typedef char cOm60_end_check[((int)&((cOm60 *)0)->seHandle == 0x668) ? 1 : -1];
 
-/* Let go of the object and throw it along dir at speed. */
-void cOm60_setThrow(cOm60 *self, cVec *dir, float speed);
+/* Let go of the object with velocity dir; time above 0 sets the flight timer. */
+void cOm60_setThrow(cOm60 *self, cVec *dir, float time);
 
 #endif

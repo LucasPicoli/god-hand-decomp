@@ -35,7 +35,7 @@ void cSnd_CalcListenerPanDist(void *self, cVec *pos, short *dist, short *pan)
         ang *= 57.295776f;
         *pan = (int)(ang + 0.5f);
         *pan = *pan % 360;
-        if (sndSys()->f110 == 0) {
+        if (sndSys()->listenMode == 0) {
             behind = (*pan + 270) % 360;
             if (behind > 50 && behind < 310) {
                 if (behind <= 180) {

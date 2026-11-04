@@ -57,16 +57,16 @@ void cSnd_UpdateListener(cSnd *self)
     cVec up;
 
     if (flags & SYSFLAG_EVENT_RUNNING) {
-        self->f110 = LISTEN_AT_CAMERA;
+        self->listenMode = LISTEN_AT_CAMERA;
     } else if (flags & SYSFLAG_SOFT_EVENT4) {
-        self->f110 = LISTEN_AT_CAMERA;
-    } else if (((flags >> SYSFLAG_ENDING_BIT) & 1) == 1) {
-        self->f110 = LISTEN_AT_CAMERA;
+        self->listenMode = LISTEN_AT_CAMERA;
+    } else if (((flags >> SYSFLAG_SOFT_EVENT_BIT) & 1) == 1) {
+        self->listenMode = LISTEN_AT_CAMERA;
     } else {
-        self->f110 = LISTEN_AT_PLAYER;
+        self->listenMode = LISTEN_AT_PLAYER;
     }
     pl = Getplayer();
-    mode = self->f110;
+    mode = self->listenMode;
     if (pl == 0) {
         mode = LISTEN_AT_CAMERA;
     }

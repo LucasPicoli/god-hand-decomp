@@ -11,14 +11,14 @@ extern char D_005FEE00[];
  * where ~0x10 would give a one-instruction addiu. */
 #define COM60_KEEP_NOT_HELD 0xFFFFFFEF
 
-/* Launch the object: drop the parent, take the direction (and the speed
- * when positive), face along it, then run the throw effect and sound once. */
+/* Launch the object: drop the parent, take the velocity (and the flight
+ * timer when positive), face along it, then run the throw effect and sound once. */
 __attribute__((section(".text.cOm60_setThrow")))
-void cOm60_setThrow(cOm60 *self, cVec *dir, float speed) {
+void cOm60_setThrow(cOm60 *self, cVec *dir, float time) {
     self->parent = 0;
     cVec_copy3(&self->throwDir, dir);
-    if (speed > 0.0f) {
-        self->speed = speed;
+    if (time > 0.0f) {
+        self->flightTime = time;
     }
     self->base.rot.y = capVu0Atan2(dir->x, dir->z);
     self->pitch = COM60_THROW_PITCH;

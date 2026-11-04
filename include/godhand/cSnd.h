@@ -153,7 +153,7 @@ typedef struct cSnd {
     char unkB4[0xC];
     cVecQuad listenPos;         /* 0xC0 listener position */
     float listenMtx[16];        /* 0xD0 world to listener matrix */
-    int f110;                   /* 0x110 */
+    int listenMode;             /* 0x110 LISTEN_* */
     char unk114[4];
     int curBank;                /* 0x118 bank of the BGM now playing, unbiased */
     int curReq;                 /* 0x11C its request number */

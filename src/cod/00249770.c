@@ -8,9 +8,9 @@
 
 #define ORBIT_RADIUS     26.0f
 #define ORBIT_TURN_STEP  0.012271847f
-#define ORBIT_HALF_TURN  3.1415927f     /* pi: face away from the centre */
+#define ORBIT_HALF_TURN  3.1415927f     /* pi: from the orbit angle to the heading that faces the anchor */
 
-/* The frame: the rotation, the orbit point, the offset from the centre and its work copy. */
+/* The frame: the rotation, the orbit point, the offset from the anchor and its work copy. */
 typedef struct OrbitFrame {
     float mtx[16];
     cVec at;
@@ -20,8 +20,8 @@ typedef struct OrbitFrame {
 
 #define ORBITFRAME_OFFSET(field) ((int)&((OrbitFrame *)0)->field)
 
-/* Moves the object around the arena centre by angle on a fixed radius and turns it
- * to face away from the centre. */
+/* Moves the object around the anchor point by angle on a fixed radius and turns it
+ * a step toward facing the anchor. */
 __attribute__((section(".text.func_00249770")))
 void func_00249770(cEm00 *self, float angle)
 {

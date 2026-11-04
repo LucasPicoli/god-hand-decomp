@@ -13,6 +13,7 @@
 #define GODHAND_CSCEATMANAGER_H
 
 #include "godhand/cArea.h"
+#include "godhand/cVecType.h"
 
 #define SCEAT_ID_NONE      0xFFFFF   /* "no unit" id in getUnit */
 #define SCEAT_ON_RESET     0xFF      /* argument the type handler gets */
@@ -96,6 +97,9 @@ void func_002C1540(cSceAtManager *self);
 
 /* out = the area of unit e. */
 void func_002C1D68(cSceAtManager *self, cArea *out, cSceAtUnit *e);
+
+/* The landing point and heading of the jump point unit whose area holds pos; 1 if found. */
+int cSceAtManager_findJumpPoint(cSceAtManager *self, cVec *pos, cVec *point, float *heading);
 
 extern char D_0044C230[];               /* name of the room data's jump point table */
 

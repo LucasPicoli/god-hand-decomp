@@ -6,7 +6,7 @@
 #include "godhand/fpu.h"
 #include "godhand/rand.h"
 
-#define THROW_NEAR_DIST    3.0f         /* the forward push starts past this distance */
+#define THROW_NEAR_DIST    3.0f         /* the push is measured from here; THROW_FWD_MIN holds until 5.5 */
 #define THROW_DIST_SCALE   0.02f        /* forward push per unit of distance past it */
 #define THROW_FWD_MIN      0.05f
 #define THROW_UP_AIM       0.3f
@@ -37,6 +37,6 @@ void func_0026A838(cEm00 *self, int no)
         dir.y = up;
         dir.z = fwd;
         capVu0ApplyMatrixXYZ(&dir, self->mtx, &dir);
-        cOm60_setThrow(obj, &dir, THROW_FAST);
+        cOm60_setThrow(obj, &dir, THROW_TIME);
     }
 }
