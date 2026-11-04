@@ -38,4 +38,7 @@ typedef struct cOm60 {
 typedef char cOm60_size_check[(sizeof(cOm60) == 0x670) ? 1 : -1];
 typedef char cOm60_end_check[((int)&((cOm60 *)0)->seHandle == 0x668) ? 1 : -1];
 
+/* Let go of the object and throw it along dir at speed. */
+void cOm60_setThrow(cOm60 *self, cVec *dir, float speed);
+
 #endif

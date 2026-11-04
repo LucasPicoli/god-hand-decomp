@@ -17,6 +17,8 @@ float capVu0LengthSq(void *v);
 float capVu0Atan2(float y, float x);
 /* Sine of x, in radians. */
 float capVu0Sin(float x);
+/* dst = mtx applied to v (x, y and z); dst may be v. */
+void capVu0ApplyMatrixXYZ(cVec *dst, float *mtx, cVec *v);
 /* Cosine of x, in radians. */
 float capVu0Cos(float x);
 /* Arc cosine of x, in radians. */

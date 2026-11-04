@@ -15,7 +15,6 @@ extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Turn_dest_dir(float f12, float f13, float f14);
 extern float Adjust_theta(float f12);
 extern int cEmManage_CkPlCatched(void *a0);
-extern void func_0026A838(void *a0, int a1);
 extern char D_005864F0[];
 
 /* Phase machine on the step byte, 4 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
@@ -172,8 +171,8 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
                 }
             }
             if (*(unsigned short *)(s1 + 0x3AC) & 2) {
-                func_0026A838(s1, 0);
-                func_0026A838(s1, 1);
+                func_0026A838(self, 0);
+                func_0026A838(self, 1);
             }
             break;
     }

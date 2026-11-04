@@ -4,14 +4,13 @@
 #include "godhand/cOm60.h"
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/capVu0.h"
 
 extern void func_001B6FB8(void *self);
 extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
 extern void cDamageUnit_AddDamageCollCylinder(void *unit, void *mtx, float *pos, float *dir, float radius, float half);
 extern int D_00574380;
 extern float fRand1_1(void);
-extern void capVu0ApplyMatrixXYZ(cVec *dst, float *mtx, cVec *v);
-extern void cOm60_setThrow(cOm60 *self, cVec *dir, float speed);
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
 extern void func_001DEE60(void *self, int element, int show);
@@ -81,10 +80,6 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
 
 
 #define THROW_SLOT_OFFSET  0x6E4        /* object handles the enemy holds */
-#define THROW_SLOW         0.0f
-#define THROW_FAST         150.0f
-#define THROW_SIDE         0.02f        /* random scale, x and z */
-#define THROW_UP_RAND      0.01f        /* random scale, y */
 #define THROW_UP_BASE      0.2f
 
 
