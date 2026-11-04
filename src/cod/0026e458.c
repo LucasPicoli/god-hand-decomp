@@ -5,7 +5,6 @@
 #include "godhand/cEmManage.h"
 
 extern unsigned short D_00747A50;
-extern unsigned char cOmbb_ckFire(void *actor);
 extern int cOmbb_ckCountdown(void *actor);
 extern void cOmbb_initCountdown(void *actor);
 
@@ -24,28 +23,28 @@ extern void cEm00_setGoto(cEm00 *self, cVec *pos, int a2, int a3, float f);
 __attribute__((section(".text.cEm00_startGotoToFire")))
 int cEm00_startGotoToFire(cEm00 *self) {
     cVec pos __attribute__((aligned(16)));
-    cEmActor *actor;
+    cOmbb *bomb;
     unsigned int i;
 
     if (D_00747A50 != ROOM_FIRE_FIGHT) {
         return 0;
     }
     for (i = 0; i < 2; i++) {
-        actor = func_002948C8(&D_005864F0, i);
-        if (actor != 0) {
+        bomb = func_002948C8(&D_005864F0, i);
+        if (bomb != 0) {
             if (EM_HELD_OBJ(self) != 0) {
                 if ((EM_HELD_OBJ(self)->actorId ^ EM_ACTOR_FIRE_PROP) == 0) {
-                    if (cOmbb_ckFire(actor) == 0) {
-                        if (cOmbb_ckCountdown(actor) == 0) {
+                    if (cOmbb_ckFire(bomb) == 0) {
+                        if (cOmbb_ckCountdown(bomb) == 0) {
                             VU0_SQC2_VF0(&pos, 0);
-                            cVec_copy3(&pos, func_001B8720(actor));
+                            cVec_copy3(&pos, func_001B8720(bomb));
                             cEm00_setGoto(self, &pos, GOTO_FIRE_MODE, 0, GOTO_FIRE_SPEED);
                             self->unk17B1 = i;
                             self->phase = PHASE_GOTO_FIRE;
                             self->step = 0;
                             self->stepArg = 0;
                             self->mode = 0;
-                            cOmbb_initCountdown(actor);
+                            cOmbb_initCountdown(bomb);
                             return 1;
                         }
                     }

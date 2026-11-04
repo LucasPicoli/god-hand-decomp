@@ -1,6 +1,6 @@
 /* sn-2.95.3-136: one-segment line; the game passes (x0, y0) for both ends. */
 extern unsigned int func_0031CA58(unsigned int a0);
-extern void Draw_Line_sc(float (*v)[4], int n, unsigned int col, int a3);
+#include "godhand/drawPrim.h"
 
 __attribute__((section(".text.func_0031C950")))
 void func_0031C950(short x0, short y0, short x1, short y1, unsigned int col, unsigned int z)

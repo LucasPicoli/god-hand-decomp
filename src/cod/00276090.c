@@ -24,15 +24,15 @@ int cEmManage_findFreeSlot(cEmManage *self) {
     return -1;
 }
 
-/* Puts an actor into the first empty unk5AC entry; does nothing when both
+/* Puts a bomb into the first empty unk5AC entry; does nothing when both
  * are taken. */
 __attribute__((section(".text.func_00294898")))
-void func_00294898(cEmManage *self, cEmActor *actor) {
-    cEmActor **p = self->unk5AC;
+void func_00294898(cEmManage *self, cOmbb *bomb) {
+    cOmbb **p = self->unk5AC;
     unsigned int i;
     for (i = 0; i < 2; i++) {
         if (*p == 0) {
-            *p = actor;
+            *p = bomb;
             return;
         }
         p++;

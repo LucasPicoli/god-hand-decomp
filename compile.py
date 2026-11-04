@@ -1235,8 +1235,32 @@ SUPPORTED_COMPILERS = frozenset(
 # to `jal __mulvsi3`, a libgcc helper this build does not link. cygnus-2.96
 # keeps `mult` and adds no call. Read the emitted `.s` for a `__mulv` or
 # `__addv` call before you land an ee-3.2 TU that carries the key.
+#
+# `-f=-fmove-all-movables` lets gcc 2.9x's loop pass hoist every loop
+# invariant it can into a saved register, not only the ones it judges worth
+# the register. Some retail loops keep more invariants than the default
+# flags give: `func_0012A108` loads six float bounds into `$f20`..`$f25`
+# before its loop (0x12A154..0x12A198), where the default flags hoist three.
+# With the flag it matches, and so do `cSceAtManager_findJumpPoint`,
+# `func_0029FDE0` and `Draw_Line_sc`, each in a unit of its own (#39).
+#
+# REACH. The four builds that have C units (sn-2.95.3-136, cygnus-2.96,
+# ee-2.9-991111 and ee-2.9-990721) take it: compiled over all 3,884 C units,
+# none rejects it. The other builds in SUPPORTED_COMPILERS have no C units
+# and weren't tested.
+#
+# BLAST RADIUS. Over those units, 28 change their `.text` with the flag and
+# 3,856 do not (0.7%): 21 of 2,292 SN units, 3 of 1,111 cygnus-2.96 units
+# and 4 of 481 ee-2.9 units. Four of the 21 SN units are the ones that carry
+# it; the other 24 are already matched, so the flag must never become global
+# and no already-matched TU may take it. Outside the census, two unmatched
+# neighbours get worse with it: `func_00129CC8` goes from 125 to 127 words
+# against 122, and `func_003090F8` from 29 off to 50.
+# Census: compile each C unit as built and again with the flag, and compare
+# the bytes of its `.text` sections.
 SUPPORTED_C_FLAG_ADDS = frozenset(
-    {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv"})
+    {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv",
+     "-f=-fmove-all-movables"})
 
 # Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
 #

@@ -4,6 +4,7 @@
 #include "godhand/cEma2.h"
 #include "godhand/objField.h"
 #include "godhand/cEm00.h"
+#include "godhand/cOmbb.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -293,9 +294,10 @@ __attribute__((section(".text.NoOp_1B80A8")))
 void NoOp_1B80A8(void) {
 }
 
+/* Whether the bomb's fuse is lit. */
 __attribute__((section(".text.cOmbb_ckFire")))
-unsigned char cOmbb_ckFire(unsigned char *a0) {
-    return a0[0x600];
+unsigned char cOmbb_ckFire(cOmbb *self) {
+    return self->fireLit;
 }
 
 __attribute__((section(".text.SetField_775_1BD778")))

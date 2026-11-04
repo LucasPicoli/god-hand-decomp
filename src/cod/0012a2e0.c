@@ -7,7 +7,6 @@
 
 extern int D_0044B310;
 extern void func_002B5D58(cNode *self, cNode *parent);
-extern unsigned char cOmbb_ckFire(void *actor);
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 
 /* Construct a node: set its name and method table, clear its links, scale it to 1, give both matrices the identity and attach it to parent. */
@@ -65,17 +64,17 @@ cNode *cNode_construct(cNode *self, int name, cNode *parent) {
 __attribute__((section(".text.cGameObj_findBurningPos")))
 cVec *cGameObj_findBurningPos(cGameObj *self) {
     cVec pos __attribute__((aligned(16)));
-    cEmActor *actor;
+    cOmbb *bomb;
     unsigned int i;
 
     VU0_SQC2_VF0(&pos, 0);
     for (i = 0; i < FIRE_ACTOR_NUM; i++) {
-        actor = func_002948C8(&D_005864F0, i);
-        if (actor != 0) {
-            if (cOmbb_ckFire(actor) != 0) {
-                cVec_copy3(&pos, func_001B8720(actor));
+        bomb = func_002948C8(&D_005864F0, i);
+        if (bomb != 0) {
+            if (cOmbb_ckFire(bomb) != 0) {
+                cVec_copy3(&pos, func_001B8720(bomb));
                 if (!(FIRE_RANGE_SQ < capVu0MagnitudeSqXZ(&pos, self->pos))) {
-                    return func_001B8720(actor);
+                    return func_001B8720(bomb);
                 }
             }
         }

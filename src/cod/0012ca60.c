@@ -1,4 +1,5 @@
 #include "godhand/cModel.h"
+#include "godhand/cOmbb.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -35,17 +36,18 @@ static inline int GetLayerObj(char *a0, int *frame, int idx)
     return 0;
 }
 
+/* The bomb's position: its first child's, or its own when it has none. */
 __attribute__((section(".text.func_001B8720")))
-int func_001B8720(char *a0)
+cVec *func_001B8720(cOmbb *self)
 {
-    unsigned char frame[0x10];
-    int e;
+    int frame[4];
+    cOmBase *e;
 
-    e = GetLayerObj(a0, (int *)frame, 0);
+    e = cOmBase_childAt(&self->base, frame, 0);
     if (e == 0) {
-        return *(int *)(a0 + 0xF0);
+        return self->base.pos;
     }
-    return *(int *)(e + 0xF0);
+    return e->pos;
 }
 
 /* sn-2.95.3-136 matched TU. */

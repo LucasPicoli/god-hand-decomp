@@ -122,7 +122,7 @@ class TestValidation:
         with pytest.raises(cm.BuildError, match="both"):
             cfg.compile_units
 
-    def test_the_vocabulary_holds_exactly_four_flags_today(self):
+    def test_the_vocabulary_holds_exactly_five_flags_today(self):
         """Widening this set needs a measured case. If this test fails, the
         change owes the record an argument for the new member.
 
@@ -149,9 +149,20 @@ class TestValidation:
         census is per-build: SN and ee-2.9 REJECT the flag (exit 33) on all
         1,375 of their units, and over the 667 cygnus-2.96 units 146 change
         and 521 do not (21.9%). That is the highest rate in this vocabulary,
-        so the flag stays per-TU and no already-matched TU may take it."""
+        so the flag stays per-TU and no already-matched TU may take it.
+
+        `-f=-fmove-all-movables` joined on 2026-11-03 (#39): it lets the loop
+        pass hoist every invariant into a saved register, as retail does in
+        `func_0012A108` (six float bounds in `$f20`..`$f25`, where the default
+        flags hoist three). Four units carry it, each holding only the
+        function that needs it. The four builds that have C units
+        (sn-2.95.3-136, cygnus-2.96, ee-2.9-991111, ee-2.9-990721) take the
+        flag; the other builds have no C units and weren't tested. Over all
+        3,884 C units 28 change their `.text` with it (0.7%), and the 24
+        that don't carry it are already matched, so it stays per-TU."""
         assert cm.SUPPORTED_C_FLAG_ADDS == frozenset(
-            {GCSE, "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv"})
+            {GCSE, "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv",
+             "-f=-fmove-all-movables"})
 
 
 # --------------------------------------------------------------------------- #

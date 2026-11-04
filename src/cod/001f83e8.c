@@ -58,9 +58,9 @@ int cCoreSave_getComboMax(cCoreSave *self, unsigned int set) {
     return data->combo[set].max;
 }
 
-/* Entry no of unk5AC, or 0 when no is out of range. */
+/* Bomb no of unk5AC, or 0 when no is out of range. */
 __attribute__((section(".text.func_002948C8")))
-cEmActor *func_002948C8(cEmManage *self, unsigned int no) {
+cOmbb *func_002948C8(cEmManage *self, unsigned int no) {
     if (no >= 2) {
         return 0;
     }

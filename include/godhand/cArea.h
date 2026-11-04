@@ -38,4 +38,7 @@ typedef struct cAreaVec4 {
     float x, y, z, w;
 } cAreaVec4;
 
+/* 1 if the area holds the point pt (x, y, z). */
+int cArea_HitCheck_1F83E8(cArea *self, float *pt);
+
 #endif

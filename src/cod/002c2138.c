@@ -33,24 +33,19 @@ void ForwardEntityAndExit_2C2368(char *a0) {
     cTaskWork_exit(D_003C2F84->task.cur);
 }
 
-extern cSceAtUnit *cSceAtManager_getUnitList(cSceAtManager *self);
-extern cSceAtUnit *cSceAtManager_getNextUnit(cSceAtManager *self, cSceAtUnit *e);
-extern void func_002C1D68(cSceAtManager *self, int *out, cSceAtUnit *e);
-extern int cArea_HitCheck_1F83E8(int *hit, void *shape);
 extern void cSceAtUnit_getCenterPos(cSceAtUnit *unit, void *out);
-extern cSceAtUnit *cSceAtManager_getUnit(cSceAtManager *self, int id);
 extern int cSceAtManager_SetDisable(cSceAtManager *self, cSceAtUnit *unit);
 /* First enabled unit of type 0xB that the shape hits. Copies its position to out. */
 __attribute__((section(".text.FindNodeByHit_2C2490")))
 int FindNodeByHit_2C2490(cSceAtManager *self, void *shape, float *out) {
     cSceAtUnit *e;
-    int hit[12];
+    cArea area;
     e = cSceAtManager_getUnitList(self);
     while ((e = cSceAtManager_getNextUnit(self, e)) != 0) {
         /* flags (0x34) and type (0x35) are read as one word to test both */
         if ((*(int *)&e->flags & 0xFF01) == ((SCEAT_TYPE_HIT << 8) | SCEAT_FLAG_ENABLED)) {
-            func_002C1D68(self, hit, e);
-            if (cArea_HitCheck_1F83E8(hit, shape) == 1) {
+            func_002C1D68(self, &area, e);
+            if (cArea_HitCheck_1F83E8(&area, shape) == 1) {
                 if (out != 0) {
                     out[0] = e->pos[0];
                     out[1] = e->pos[1];
@@ -67,12 +62,12 @@ int FindNodeByHit_2C2490(cSceAtManager *self, void *shape, float *out) {
 __attribute__((section(".text.FindNodeByType_2C2568")))
 int FindNodeByType_2C2568(cSceAtManager *self, void *shape, float *out) {
     cSceAtUnit *e;
-    int hit[12];
+    cArea area;
     e = cSceAtManager_getUnitList(self);
     while ((e = cSceAtManager_getNextUnit(self, e)) != 0) {
         if (e->type == 0xD) {
-            func_002C1D68(self, hit, e);
-            if (cArea_HitCheck_1F83E8(hit, shape) == 1) {
+            func_002C1D68(self, &area, e);
+            if (cArea_HitCheck_1F83E8(&area, shape) == 1) {
                 if (out != 0) {
                     out[0] = e->pos[0];
                     out[1] = e->pos[1];
@@ -89,13 +84,13 @@ int FindNodeByType_2C2568(cSceAtManager *self, void *shape, float *out) {
 __attribute__((section(".text.FindEntityAtPosition_2C2638")))
 int FindEntityAtPosition_2C2638(cSceAtManager *self, void *shape, void *centerOut, float *extentOut) {
     cSceAtUnit *e;
-    int hit[12];
+    cArea area;
     e = cSceAtManager_getUnitList(self);
     while ((e = cSceAtManager_getNextUnit(self, e)) != 0) {
         if (((e->flags ^ SCEAT_FLAG_ENABLED) & SCEAT_FLAG_ENABLED) != 0) continue;
         if (e->type != 0xC) continue;
-        func_002C1D68(self, hit, e);
-        if (cArea_HitCheck_1F83E8(hit, shape) != 1) continue;
+        func_002C1D68(self, &area, e);
+        if (cArea_HitCheck_1F83E8(&area, shape) != 1) continue;
         if (centerOut != 0) cSceAtUnit_getCenterPos(e, centerOut);
         if (extentOut != 0) *extentOut = e->extent;
         return 1;

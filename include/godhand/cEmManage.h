@@ -17,6 +17,7 @@
 #define GODHAND_CEMMANAGE_H
 
 #include "godhand/cOmBase.h"
+#include "godhand/cOmbb.h"
 #include "godhand/cEmWrap.h"
 
 #define EM_SLOT_NUM   64      /* slots in the manager */
@@ -106,7 +107,7 @@ typedef struct cEmManage {
     unsigned char unk5A4;           /* 0x5A4 bits */
     unsigned char unk5A5;           /* 0x5A5 bits */
     char unk5A6[6];
-    cEmActor *unk5AC[2];            /* 0x5AC */
+    cOmbb *unk5AC[2];               /* 0x5AC the room's bombs, filled by func_00294898 */
     char unk5B4;
     unsigned char unk5B5;           /* 0x5B5 */
 } cEmManage;
@@ -190,8 +191,8 @@ void Obj293_ClearBytes_5A0_5A3(cEmManage *self);
 void Obj293_OrByte_5A4(cEmManage *self, unsigned int bits);
 void Obj293_OrByte_5A5_1(cEmManage *self);
 void func_00293760(cEmManage *self, cEmActor *em);
-void func_00294898(cEmManage *self, cEmActor *actor);
-cEmActor *func_002948C8(cEmManage *self, unsigned int no);
+void func_00294898(cEmManage *self, cOmbb *bomb);
+cOmbb *func_002948C8(cEmManage *self, unsigned int no);
 void func_00294968(cEmManage *self, float wait);
 int func_00294970(cEmManage *self);
 void func_002949C8(cEmManage *self);

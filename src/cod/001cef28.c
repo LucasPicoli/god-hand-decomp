@@ -1,9 +1,9 @@
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cEmManage.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned char D_005864F0[];
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -15,10 +15,7 @@ extern int moveMotion(void *a0);
 extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern int cOmbb_ckFire(int a0);
-extern void cOmbb_setFire(int a0);
 extern float SetMotionStep(void *a0, float f12);
-extern float cEmManage_GetSpeedRate(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 
 #include "godhand/vu0.h"
@@ -29,9 +26,9 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
 {
     float buf[4];
 
-    int s1;
+    cOmbb *bomb;
 
-    s1 = func_002948C8(D_005864F0, *(unsigned char *)((char *)self + 0x17B1));
+    bomb = func_002948C8(&D_005864F0, self->unk17B1);
     VU0_SQC2_VF0(buf, 0);
     cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
     self->emFlags = self->emFlags | 0x10000;
@@ -51,8 +48,8 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
                 buf[1] = p[1];
                 buf[2] = p[2];
             }
-            if (s1 != 0) {
-                float *q = (float *)func_001B8720(s1);
+            if (bomb != 0) {
+                float *q = &func_001B8720(bomb)->x;
                 if (buf != q) {
                     buf[0] = q[0];
                     buf[1] = q[1];
@@ -69,9 +66,9 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
             break;
     }
     if (self->seqFlags & 1) {
-        if (s1 != 0) {
-            if (cOmbb_ckFire(s1) == 0)
-                cOmbb_setFire(s1);
+        if (bomb != 0) {
+            if (cOmbb_ckFire(bomb) == 0)
+                cOmbb_setFire(bomb);
         }
     }
 }
@@ -84,7 +81,7 @@ __attribute__((section(".text.func_001CEF28"))) void func_001CEF28(cEm00 *self)
     float one;
     float t;
 
-    sp = cEmManage_GetSpeedRate(D_005864F0);
+    sp = cEmManage_GetSpeedRate(&D_005864F0);
     self->speedRate = sp;
     SetMotionStep(self, sp);
     switch (self->step) {

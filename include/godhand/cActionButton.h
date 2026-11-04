@@ -72,4 +72,7 @@ extern int GetNextAnimIndex_1451E0(void *anim);
 extern void BlendSetup_load(void *anim, int *cmdTbl, unsigned short *idTbl,
                           unsigned char *argTbl, int cmdNum, int start);
 
+/* Set action button 0xB (handler func_002DBB90) while the player is up, free and not caught. */
+void func_002DBB08(void);
+
 #endif
