@@ -275,6 +275,8 @@ void func_00273D30(cEm00 *self);
 void func_00274238(cEm00 *self, unsigned char kind);
 /* Marks the enemy's room slot (0x640) dead in the room save. */
 void func_0028FB08(cEm00 *self);
+/* Moves the enemy around the arena centre by angle on a fixed radius and turns it to face away from it. */
+void func_00249770(cEm00 *self, float angle);
 /* Throws held object no; fast picks the faster throw. */
 void EmThrower_throwHeld(cEm00 *self, int no, int fast);
 

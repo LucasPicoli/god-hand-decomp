@@ -176,7 +176,6 @@ typedef struct OffsetFrame {
     cVec off;                           /* 0x40 */
 } OffsetFrame;
 
-extern char D_005850B0[];               /* anchor vector */
 
 
 
@@ -194,7 +193,7 @@ void cGameObj_placeBeforeAnchor(cGameObj *self, float angle)
     fr.off.y = 0.0f;
     fr.off.z = OBJ_ANCHOR_DIST;
     sceVu0ApplyMatrix(&fr.off, fr.mtx, &fr.off);
-    VU0_VADD_XYZ_IP(&fr, 0x40, D_005850B0);
+    VU0_VADD_XYZ_IP(&fr, 0x40, &D_005850B0);
     self->pos->x = fr.off.x;
     self->pos->z = fr.off.z;
 }

@@ -12,6 +12,15 @@
 /* v0 = m0 * v1 (v0 may be v1). */
 extern void sceVu0ApplyMatrix(void *v0, void *m0, void *v1);
 
+/* out = a + b (all four components). */
+void sceVu0AddVector(void *out, void *a, void *b);
+/* out = in * s in x, y and z; w copied. */
+void sceVu0ScaleVectorXYZ(void *out, void *in, float s);
+/* out = the view matrix of a camera at p looking along zd with up yd. */
+void sceVu0CameraMatrix(void *out, void *p, void *zd, void *yd);
+/* dst = the matrix src (sceVu0CopyMatrix). */
+void func_0030A548(void *dst, void *src);
+
 /* v = m * v, in place. */
 static __inline__ void cVec_applyMatrix(cVec *v, void *m) {
     sceVu0ApplyMatrix(v, m, v);

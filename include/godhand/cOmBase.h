@@ -88,4 +88,7 @@ static __inline__ cOmBase *cOmBase_childAt(cOmBase *b, int *frame, int idx)
     return 0;
 }
 
+/* The anchor point objects are placed and turned around (func_00249770, cGameObj_placeBeforeAnchor). */
+extern cVec D_005850B0;
+
 #endif

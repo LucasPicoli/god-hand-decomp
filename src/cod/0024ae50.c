@@ -15,7 +15,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026DB00(void *a0, int a1, int a2);
-extern int D_005850B0;
 
 #include "godhand/vu0.h"
 

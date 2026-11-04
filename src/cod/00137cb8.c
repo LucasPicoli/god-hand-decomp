@@ -15,7 +15,6 @@ extern void func_001F6AF8(void *self);
 extern char D_005FEE00[];
 extern char D_007474A0[];
 extern char D_00585040[];
-extern char D_005850B0[];
 extern void displayScrollLayer(int id, int on);
 extern float sceVu0Normalize(void *dst, void *src);
 extern float sceVu0InnerProduct(void *a, void *b);
@@ -178,13 +177,13 @@ __attribute__((section(".text.WayPoints_initTable")))
 void WayPoints_initTable(void *a0, int a1)
 {
     Vec4 *pa;
-    Vec4 *org;
+    cVec *org;
 
     if (a1 != 0xFFFF) return;
     if (a0 == 0) return;
 
     pa = (Vec4 *)D_00585040;
-    org = (Vec4 *)D_005850B0;
+    org = &D_005850B0;
 
     pa->x = -1.157f;
     pa->y = 0.0f;

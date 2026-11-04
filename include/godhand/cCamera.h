@@ -58,5 +58,7 @@ struct cCamera {
 /* The type is only ever written `struct cCamera`: the constructor function has the same name. */
 
 extern float Adjust_theta(float angle);
+/* now turned toward dest by at most spd, the shorter way round. */
+float Turn_dest_dir(float now, float dest, float spd);
 
 #endif

@@ -44,7 +44,6 @@ static __inline__ void vecSet(cVec *d, float x, float y, float z)
     d->w = 1.0f;
 }
 
-extern void sceVu0ScaleVectorXYZ(void *a0, void *a1, float s);
 extern void sceVu0Normalize(void *a0, void *a1);
 extern void capVu0AddVectorXYZ(void *a0, void *a1, void *a2);
 extern void *func_002B6310(void *dst, void *node);
