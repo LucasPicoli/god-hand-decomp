@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
-extern void EIntr(void);
 extern int func_003B1E40();
 extern void _sceSnprintf();
 

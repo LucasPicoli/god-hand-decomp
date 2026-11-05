@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 typedef struct _sif_serve_data sceSifServeData;
 typedef struct _sif_queue_data sceSifQueueData;
@@ -41,8 +42,6 @@ typedef struct {
 } sceSifRpcCtl;
 
 extern sceSifRpcCtl D_0077FF40;
-extern void DIntr(void);
-extern void EIntr(void);
 
 __attribute__((section(".text.func_003B34D0")))
 sceSifServeData *func_003B34D0(sceSifServeData *sd, sceSifQueueData *qd)

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 typedef struct {
     volatile unsigned int chcr;
@@ -7,9 +8,6 @@ typedef struct {
 #define D_ENABLER (*(volatile unsigned int *)0x1000F520)
 #define D_ENABLEW (*(volatile unsigned int *)0x1000F590)
 #define D_CTRL    (*(volatile unsigned int *)0x1000E000)
-
-extern int DIntr(void);
-extern int EIntr(void);  /* EIntr */
 
 __attribute__((section(".text.sceDmaPause")))
 unsigned int sceDmaPause(sceDmaChan *chan)

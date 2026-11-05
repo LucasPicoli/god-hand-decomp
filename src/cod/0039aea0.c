@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, output.o :: _cpr8 */
 
@@ -12,7 +13,6 @@
 #define D9_SADR (*(volatile unsigned int *)0x1000D480)
 
 
-extern void EIntr(void);
 
 __attribute__((section(".text._cpr8")))
 void _cpr8(char *c, char *f)

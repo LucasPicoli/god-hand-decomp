@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern void _sceMpegStopIpuDma(void);
 

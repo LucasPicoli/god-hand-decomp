@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 typedef unsigned int u_int;
 
@@ -10,8 +11,6 @@ typedef struct alarm {
 } Alarm;
 
 extern Alarm *volatile D_00784040;   /* g_pFreeAlarm */
-extern int DIntr(void);
-extern int EIntr(void);
 extern int func_003B7270(void);      /* AllocTimerCounter */
 extern int func_003B7510(int id, int time, void *handler, void *arg);   /* SetTimerHandler */
 extern int func_003B7380(int id);    /* StartTimerCounter */

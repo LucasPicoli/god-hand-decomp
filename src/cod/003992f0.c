@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: sceCdDiskReady_old */
 
@@ -16,8 +17,6 @@ extern char D_0045E348[];
 extern char D_0045E368[];
 
 extern void func_003B1F28();                    /* scePrintf */
-extern int  DIntr(void);
-extern void EIntr(void);                /* EIntr */
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
 extern int  SignalSema(int sema);

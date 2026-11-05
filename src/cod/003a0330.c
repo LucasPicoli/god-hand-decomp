@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern void _initSeq(int h);
-extern void EIntr(void);
 
 /* MPEG-2 sequence_header() -- Sony libmpeg ext.c::_sequenceHeader */
 
