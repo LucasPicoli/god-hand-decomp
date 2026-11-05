@@ -1,21 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/libio.h"
 
 extern char D_0061B7C0[];
 extern char D_0071B840[];
 
-struct _IO_FILE {
-    int _flags;
-    char *_IO_read_ptr;
-    char *_IO_read_end;
-    char *_IO_read_base;
-};
-
-struct _IO_marker {
-    struct _IO_marker *_next;
-    struct _IO_FILE *_sbuf;
-    int _pos;
-};
-
+/* The marker's position relative to its stream's read position; -1 when it has no stream. */
 __attribute__((section(".text._IO_marker_delta")))
 int _IO_marker_delta(struct _IO_marker *mark) {
     int cur_pos;
@@ -23,7 +12,7 @@ int _IO_marker_delta(struct _IO_marker *mark) {
     if (mark->_sbuf == 0) {
         return -1;
     }
-    if (mark->_sbuf->_flags & 0x100) {
+    if (mark->_sbuf->_flags & _IO_IN_BACKUP) {
         cur_pos = mark->_sbuf->_IO_read_ptr - mark->_sbuf->_IO_read_end;
     } else {
         cur_pos = mark->_sbuf->_IO_read_ptr - mark->_sbuf->_IO_read_base;

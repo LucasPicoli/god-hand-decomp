@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cArea.h"
 #include "godhand/cEmManage.h"
+#include "godhand/libio.h"
 
 extern void func_00380EB0(void);
 extern void func_00381D60(void);
@@ -34,16 +35,16 @@ int cArea_HitCheck_1F83E8(cArea *self, float *pt) {
     return 0;
 }
 
+/* Put c in the put area, or hand it to __overflow when the area is full. */
 __attribute__((section(".text._IO_putc")))
-int _IO_putc(int a0, int a1) {
-    char *p = *(char **)(a1 + 0x14);
-    char *end = *(char **)(a1 + 0x18);
-    if ((unsigned int)p < (unsigned int)end) {
-        *p = (char)a0;
-        *(char **)(a1 + 0x14) = p + 1;
-        return a0 & 0xFF;
+int _IO_putc(int c, struct _IO_FILE *fp) {
+    char *p = fp->_IO_write_ptr;
+    if (p < fp->_IO_write_end) {
+        *p = c;
+        fp->_IO_write_ptr = p + 1;
+        return (unsigned char)c;
     }
-    return func_0038C3F0(a1, a0 & 0xFF);
+    return func_0038C3F0(fp, (unsigned char)c);
 }
 
 __attribute__((section(".text.cCoreSave_getComboMax")))

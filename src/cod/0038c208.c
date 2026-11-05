@@ -1,14 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern struct _IO_FILE *D_003F50F8;
-
-struct _IO_FILE {
-    int _flags;
-    char pad[0x30];
-    struct _IO_FILE *_chain;
-};
-
-
+#include "godhand/libio.h"
 
 __attribute__((section(".text._IO_link_in")))
 void _IO_link_in(struct _IO_FILE *fp) {
