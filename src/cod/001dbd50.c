@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cArea.h"
 #include "godhand/cCoreSave.h"
 
 extern int __builtin_delete();
@@ -74,13 +75,16 @@ void Poker_SetPokerCamera(int a0, float *a1, float *a2) {
 
 
 
+extern int func_001F85D0(cArea *self, float *pt, float scale);
+extern int func_001F8810(cArea *self, float *pt, float scale);
+
 __attribute__((section(".text.cArea_HitCheck")))
-int cArea_HitCheck(unsigned char *a0) {
-    switch (a0[1]) {
-    case 1:
-        return func_001F85D0();
-    case 2:
-        return func_001F8810();
+int cArea_HitCheck(cArea *self, float *pt, float scale) {
+    switch (self->type) {
+    case CAREA_TYPE_QUAD:
+        return func_001F85D0(self, pt, scale);
+    case CAREA_TYPE_CIRCLE:
+        return func_001F8810(self, pt, scale);
     }
     return 0;
 }

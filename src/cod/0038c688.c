@@ -22,7 +22,7 @@ int func_0038C688(struct _IO_FILE *fp) {
             return -1;
     if (fp->_IO_read_ptr < fp->_IO_read_end)
         return *(unsigned char *) fp->_IO_read_ptr++;
-    if (fp->_flags & 0x100) {
+    if (fp->_flags & _IO_IN_BACKUP) {
         _IO_switch_to_main_get_area(fp);
         if (fp->_IO_read_ptr < fp->_IO_read_end)
             return *(unsigned char *) fp->_IO_read_ptr++;

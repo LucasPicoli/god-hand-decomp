@@ -19,7 +19,7 @@ void _IO_init_marker(struct _IO_marker *marker, struct _IO_FILE *fp) {
     marker->_sbuf = fp;
     if (fp->_flags & 0x800)
         _IO_switch_to_get_mode(fp);
-    if (fp->_flags & 0x100)
+    if (fp->_flags & _IO_IN_BACKUP)
         marker->_pos = fp->_IO_read_ptr - fp->_IO_read_end;
     else
         marker->_pos = fp->_IO_read_ptr - fp->_IO_read_base;

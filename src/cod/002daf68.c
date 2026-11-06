@@ -3,8 +3,8 @@
 #include "godhand/fpu.h"
 
 /* Whether spheres of radius ra at a and rb at b overlap. On a hit the centre distance goes to
- * *dist and a to *pos, when given. The root is FPU_SQRT_S: with __builtin_sqrtf cc1 schedules
- * the radius add ahead of it, where retail takes the root first. */
+ * *dist and a to *pos, when given. The root is FPU_SQRT_S: with __builtin_sqrtf and -ffast-math
+ * cc1 schedules the radius add ahead of it, where retail takes the root first. */
 __attribute__((section(".text.func_002DAF68")))
 int func_002DAF68(cVec *a, cVec *b, float *dist, cVec *pos, float ra, float rb)
 {

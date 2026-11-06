@@ -5,7 +5,7 @@ void *iAllocTimerCounter(void);
 
 __attribute__((section(".text.func_003B7270")))
 void *func_003B7270(void) {
-    int a = (int)DIntr();
+    int a = DIntr();
     void *b = iAllocTimerCounter();
     if (a != 0) {
         EIntr();

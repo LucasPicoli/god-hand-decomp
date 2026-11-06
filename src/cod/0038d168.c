@@ -18,7 +18,7 @@ extern void *func_003A51F4(void *d, const void *s, unsigned int n); /* memmove *
 __attribute__((section(".text.func_0038D168")))
 int func_0038D168(struct _IO_FILE *fp, int c) {
     if (fp->_IO_read_ptr <= fp->_IO_read_base) {
-        if (fp->_IO_save_base != 0 && !(fp->_flags & 0x100))
+        if (fp->_IO_save_base != 0 && !(fp->_flags & _IO_IN_BACKUP))
             _IO_switch_to_backup_area(fp);
 
         if (!(fp->_IO_save_base != 0)) {

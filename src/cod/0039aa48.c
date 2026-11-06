@@ -54,7 +54,7 @@ void func_003BA9F0(int a0) {
 
 __attribute__((section(".text.func_003BAD08")))
 void func_003BAD08(int a0) {
-    int r = (int)DIntr();
+    int r = DIntr();
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 | 0x10000;
     *(volatile unsigned int *)0x1000B400 = a0;
     *(volatile unsigned int *)0x1000F590 = *(volatile unsigned int *)0x1000F520 & 0xFFFEFFFF;

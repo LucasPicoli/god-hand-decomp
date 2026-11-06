@@ -1,8 +1,8 @@
 /* include/godhand/libio.h - the libio records the ee-2.9 stdio units share.
  *
- * _IO_FILE is the 0x54-byte stream: the get, put and reserve areas, the
- * backup area, the marker list, the list link, the file number, the 64-bit
- * offset and the jump table at 0x50. EE `long` is 64 bit, so _IO_ssize_t
+ * _IO_FILE is the stream, 0x58 bytes with its tail padding: the get, put and
+ * reserve areas, the backup area, the marker list, the list link, the file
+ * number, the 64-bit offset and the jump table at 0x50. EE `long` is 64 bit, so _IO_ssize_t
  * and _IO_pos_t are too. An _IO_marker records a position in a stream.
  */
 #ifndef GODHAND_LIBIO_H

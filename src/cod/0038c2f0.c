@@ -7,7 +7,7 @@ int _IO_switch_to_get_mode(struct _IO_FILE *fp) {
     if (fp->_IO_write_ptr > fp->_IO_write_base)
         if ((*fp->vtable->__overflow.pfn)(fp, -1) == -1)
             return -1;
-    if (fp->_flags & 0x100)
+    if (fp->_flags & _IO_IN_BACKUP)
         fp->_IO_read_base = fp->_IO_backup_base;
     else {
         fp->_IO_read_base = fp->_IO_buf_base;

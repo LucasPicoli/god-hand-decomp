@@ -20,11 +20,11 @@ int func_0038D0B8(struct _IO_FILE *fp, struct _IO_marker *mark, int delta) {
     if (mark->_sbuf != fp)
         return -1;
     if (mark->_pos >= 0) {
-        if (fp->_flags & 0x100)
+        if (fp->_flags & _IO_IN_BACKUP)
             _IO_switch_to_main_get_area(fp);
         fp->_IO_read_ptr = fp->_IO_read_base + mark->_pos;
     } else {
-        if (!(fp->_flags & 0x100))
+        if (!(fp->_flags & _IO_IN_BACKUP))
             _IO_switch_to_backup_area(fp);
         fp->_IO_read_ptr = fp->_IO_read_end + mark->_pos;
     }

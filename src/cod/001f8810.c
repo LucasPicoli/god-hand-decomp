@@ -3,8 +3,8 @@
 #include "godhand/fpu.h"
 
 /* 1 when pt, its height scaled by scale, lies inside the circle area: inside the height band, then
- * within radius of the scaled centre in XZ. The root is FPU_SQRT_S: with __builtin_sqrtf cc1 loads
- * the radius before it, where retail loads it after. */
+ * within radius of the scaled centre in XZ. The root is FPU_SQRT_S: with __builtin_sqrtf and
+ * -ffast-math cc1 loads the radius before it, where retail loads it after. */
 __attribute__((section(".text.func_001F8810")))
 int func_001F8810(cArea *self, float *pt, float scale)
 {

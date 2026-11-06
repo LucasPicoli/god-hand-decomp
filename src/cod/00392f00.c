@@ -63,7 +63,7 @@ _IO_pos_t func_00392F00(struct _IO_FILE *fp, _IO_ssize_t offset, int dir, int mo
     }
 
     if (fp->_offset != -1 && fp->_IO_read_base != 0
-        && !(fp->_flags & 0x100)) {
+        && !(fp->_flags & _IO_IN_BACKUP)) {
         _IO_pos_t rel_offset = (offset - fp->_offset
                                 + (fp->_IO_read_end - fp->_IO_read_base));
         if (rel_offset >= 0) {
