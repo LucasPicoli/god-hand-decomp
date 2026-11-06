@@ -1,10 +1,9 @@
 /* Struct: CGObj38B8_t */
 #include "include_asm.h"
+#include "godhand/libio.h"
 
 /* -- Forward declarations for called functions -------------------------------- */
-extern int doallocbuf__9streambuf(char *a0);
 extern int _IO_getc(char *a0);
-extern int _IO_putc(char *a0, char *a1);
 extern unsigned int _IO_sgetn(void *fp, void *buf, unsigned int n);
 extern int _IO_padn(char *a0, int a1);
 extern void _IO_seekpos(char *a0);
@@ -53,8 +52,8 @@ void stossc__9streambuf(int *p) {
     }
 }
 __attribute__((section(".text.sputc__9streambufi")))
-int sputc__9streambufi(char *sb, int c) {
-    return _IO_putc((char *)c, sb);
+int sputc__9streambufi(struct _IO_FILE *sb, int c) {
+    return _IO_putc(c, sb);
 }
 /* streambuf::sgetn out-of-lined from gcc-2.95.2 streambuf.h. */
 __attribute__((section(".text.sgetn__9streambufPcl")))

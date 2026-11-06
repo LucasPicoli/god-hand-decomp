@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/libio.h"
 
 extern char D_0076F050[];
 extern char D_0076E590[];
@@ -78,30 +79,7 @@ void func_003970C8(char *p, int n) {
     }
 }
 
-struct _IO_marker;
-
-struct _IO_FILE {
-    int _flags;
-    char *p04;
-    char *p08;
-    char *p0c;
-    char *p10;
-    char *p14;
-    char *p18;
-    char *p1c;
-    char *p20;
-    char *p24;
-    char *p28;
-    char *p2c;
-    struct _IO_marker *_markers;
-};
-
-struct _IO_marker {
-    struct _IO_marker *_next;
-    struct _IO_FILE *_sbuf;
-    int _pos;
-};
-
+/* Unlink marker from its stream's marker list. */
 __attribute__((section(".text._IO_remove_marker")))
 void _IO_remove_marker(struct _IO_marker *marker) {
     struct _IO_marker **ptr = &marker->_sbuf->_markers;

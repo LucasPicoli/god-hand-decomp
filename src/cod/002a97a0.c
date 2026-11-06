@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/libio.h"
 
 extern unsigned int D_00747A34;
-extern char *D_003F50F8;
 
 __attribute__((section(".text.func_002A9800")))
 void func_002A9800(char *o, int idx) {
@@ -54,14 +54,15 @@ int func_002A97A0(char *o) {
     return (int)n - *(int *)(o + 4);
 }
 
+/* Take the stream out of _IO_list_all when it is linked, and clear its linked flag. */
 __attribute__((section(".text._IO_un_link")))
-void _IO_un_link(char *fp) {
-    char **f;
-    int flags = *(int *)fp;
-    if (flags & 0x80) {
-        for (f = &D_003F50F8; *f != 0; f = (char **)(*f + 0x34)) {
-            if (*f == fp) { *f = *(char **)(fp + 0x34); break; }
+void _IO_un_link(struct _IO_FILE *fp) {
+    struct _IO_FILE **f;
+    int flags = fp->_flags;
+    if (flags & _IO_LINKED) {
+        for (f = &D_003F50F8; *f != 0; f = &(*f)->_chain) {
+            if (*f == fp) { *f = fp->_chain; break; }
         }
-        *(int *)fp = flags & ~0x80;
+        fp->_flags = flags & ~_IO_LINKED;
     }
 }

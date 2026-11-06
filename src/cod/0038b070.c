@@ -1,6 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 
-extern int _IO_switch_to_get_mode(void);
+struct _IO_FILE;
+extern int _IO_switch_to_get_mode(struct _IO_FILE *fp);
 extern int _IO_default_uflow(void);
 extern int _IO_default_doallocate(void *a0);
 extern int _IO_sungetc(void *a0);
@@ -10,9 +11,9 @@ extern int _IO_file_doallocate(void);
 extern int _IO_file_sync(void);
 
 __attribute__((section(".text.func_0038B070")))
-int func_0038B070(void)
+int func_0038B070(struct _IO_FILE *fp)
 {
-    return _IO_switch_to_get_mode();
+    return _IO_switch_to_get_mode(fp);
 }
 
 __attribute__((section(".text.func_0038B090")))
