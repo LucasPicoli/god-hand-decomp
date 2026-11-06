@@ -1,9 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
 /* cygnus-2.96 matched TU. */
-
-extern void DIntr(void);
-extern void EIntr(void);
+#include "godhand/eeKernel.h"
 
 #define D_ENABLER (*(volatile unsigned int *) 0x1000F520)
 #define D_ENABLEW (*(volatile unsigned int *) 0x1000F590)
