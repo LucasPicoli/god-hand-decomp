@@ -2354,8 +2354,6 @@ INCLUDE_ASM("nonmatching", cObj_setId);
 
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
-INCLUDE_ASM("nonmatching", capVu0Acos);
-
 /* Starts the poison state machine: mode 0, phase 5, step 0. */
 __attribute__((section(".text.cEma2_SetPoison")))
 void cEma2_SetPoison(cEma2 *self) {
