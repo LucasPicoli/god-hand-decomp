@@ -1,9 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern void _IO_free_backup_area(int *a0);
 extern void WaitDma(void *a0);
-extern void DIntr(void);
-extern void EIntr(void);
 
 /* MATCH via ee-2.9-991111. */
 

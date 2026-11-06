@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern int iStartTimerCounter(int);
 extern int D_003FAEE4;
@@ -6,10 +7,11 @@ extern int D_00460108;
 extern int CreateSema();
 extern void _clearEach();
 
+/* iStartTimerCounter(a0) with interrupts disabled; its result. */
 __attribute__((section(".text.func_003B7380")))
 int func_003B7380(int a0) {
     int r1, r2;
-    r1 = DIntr(a0);
+    r1 = DIntr();
     r2 = iStartTimerCounter(a0);
     if (r1 != 0)
         EIntr();

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, error.o :: _sceMpegErrorBdec */
 
@@ -8,8 +9,6 @@ extern char D_0045E610[];                     /* the error message */
 extern void _sceMpegError(void *m, const char *msg);
 struct cbp { int reason; int pad[7]; };
 extern int  func_0039AB20(void *p, struct cbp *q);       /* _sceMpegDispatchMpegCallback */
-extern int  DIntr(void);
-extern int  EIntr(void);                       /* EIntr */
 
 __attribute__((section(".text._sceMpegErrorBdec")))
 void _sceMpegErrorBdec(void *m)

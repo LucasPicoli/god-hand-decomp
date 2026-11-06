@@ -1,7 +1,5 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void DIntr(void);
-extern int EIntr(void);
 extern int DisableIntc(int cause);
 extern int EnableIntc(int cause);
 extern int DisableDmac(int cause);
@@ -9,6 +7,7 @@ extern int DisableDmac(int cause);
 /* ee-2.9-991111; libkernl intr.o wrapper around the DisableIntc syscall stub. */
 
 #include "godhand/sync.h"
+#include "godhand/eeKernel.h"
 
 
 

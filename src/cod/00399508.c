@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111: sceCdDiskReady. Binds the scmd RPC client when it is not bound (retrying with a delay loop),
  * then sends the mode word and returns the reply, or 6 / -1 on failure. */
@@ -17,8 +18,6 @@ extern char D_0045E368[];
 extern char D_0045E380[];
 
 extern void func_003B1F28();                    /* scePrintf */
-extern int  DIntr(void);
-extern void EIntr(void);                /* EIntr */
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
 extern int  SignalSema(int sema);

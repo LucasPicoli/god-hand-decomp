@@ -1,10 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern void func_0031DFA8(long long *, void *);
 extern void _waitIpuIdle(void);
 extern long long _sceMpegWaitIpuIdle64(void *);
-extern void DIntr(void);
-extern void EIntr(void);
 
 struct P { unsigned int cls; int sign; int exp; int pad; long long mant; };
 __attribute__((section(".text.func_0031E978")))

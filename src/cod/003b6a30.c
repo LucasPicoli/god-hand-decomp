@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 typedef unsigned int u_int;
 
@@ -29,8 +30,6 @@ extern void *func_003A52F0(void *, int, int);   /* memset */
 extern void _InitAlarm(void);
 extern int AddIntcHandler2(int, void *, int, int);
 extern int cbTimerHandler();
-extern int DIntr(void);
-extern int EIntr(void);
 extern void SetT2_B0001000_3B6A00(int);   /* SetT2_COUNT */
 extern void SetT2_B0001010_3B6A10(int);   /* SetT2_MODE */
 extern void SetT2_B0001020_3B6A20(int);   /* SetT2_COMP */

@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern void  func_003B3650(void *sd);
 extern void  SleepThread(void);
-extern void  EIntr(void);
 extern void SetT2_B0001010_3B6A10(int mode);
 extern unsigned long iGetTimerSystemTime(void);
 extern void SetNextComp(unsigned long t);

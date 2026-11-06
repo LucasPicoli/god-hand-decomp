@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
 
 #include "godhand/sync.h"
+#include "godhand/eeKernel.h"
 typedef unsigned int u_int;
 
 
-extern void EIntr(void);
 
 __attribute__((section(".text.VSync")))
 void VSync(void)

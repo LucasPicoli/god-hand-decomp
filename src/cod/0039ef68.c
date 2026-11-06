@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: dmaRefImage */
 #include <godhand/sync.h>
 
 
-extern void EIntr(void);
 extern unsigned long long D_0077C680[];   /* _sprtagdata, 0x240 B */
 
 #define D9_CHCR (*(volatile unsigned int *)0x1000D400)

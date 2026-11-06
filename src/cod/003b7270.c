@@ -1,8 +1,7 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/eeKernel.h"
 
-void *DIntr(void);
 void *iAllocTimerCounter(void);
-void EIntr(void);
 
 __attribute__((section(".text.func_003B7270")))
 void *func_003B7270(void) {

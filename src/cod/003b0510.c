@@ -1,7 +1,5 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void DIntr(void);
-extern int EIntr(void);
 extern int EnableDmac(int cause);
 extern void _sceSDC(unsigned int start, unsigned int end);
 extern void _sceIDC(unsigned int start, unsigned int end);
@@ -14,6 +12,7 @@ extern char *D_003FAEFC;
 /* ee-2.9-991111; libkernl intr.o wrapper around the EnableDmac syscall stub. */
 
 #include "godhand/sync.h"
+#include "godhand/eeKernel.h"
 
 
 
