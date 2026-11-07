@@ -8,7 +8,6 @@ extern int irand(void);
 extern int moveMotion(void *a0);
 extern void Obj2810_SetState_D_a1(void *a0, int a1);
 extern void SetBytes2F4Mode10_2833C0(void *a0, int a1);
-extern void func_002705D8(void *a0);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void func_0027D670(void *a0, int a1, int a2);
 extern void func_00124540(void *a0, int a1);

@@ -23,7 +23,6 @@ extern void func_002717D0(void *a0);
 
 
 extern void func_00274FE8(void *a0);
-extern void func_002705D8(void *a0);
 
 
 

@@ -11,7 +11,6 @@ extern int moveMotion(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int cCoreSave_getGameLevel(void *a0);

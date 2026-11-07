@@ -11,7 +11,6 @@ extern void SetMotionStep(void *a0, float a1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_002705D8(void *a0);
 extern void func_0027DC50(void *a0, int a1);
 extern char D_00462FC0[];
 

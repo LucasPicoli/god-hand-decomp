@@ -13,7 +13,6 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern unsigned int irand(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2);
-extern void func_002705D8(void *a0);
 extern void func_0026B4E8(void *a0);
 
 /* sn-2.95.3-136 matched TU. */

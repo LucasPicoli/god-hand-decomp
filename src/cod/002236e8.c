@@ -14,7 +14,6 @@ extern int cEmManage_CkPlCatched(void *a0);
 extern int func_00275888(void *a0, float f);
 extern void func_00262750(void *a0, int a1);
 extern void func_00274FE8(void *a0);
-extern void func_002705D8(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern unsigned char D_005864F0[];

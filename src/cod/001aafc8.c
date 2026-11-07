@@ -7,7 +7,6 @@ extern int D_00462FC0;
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002705D8(void *a0);
 extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void *Getplayer(void);

@@ -6,7 +6,6 @@ extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_002705D8(void *a0);
 extern void func_002DB770(void);
 extern char D_00462FC0[];
 extern char D_007474A0[];

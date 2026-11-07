@@ -12,7 +12,6 @@ extern float Adjust_theta(float f12);
 extern float SetMotionStep(void *a0, float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int irand(void);
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 

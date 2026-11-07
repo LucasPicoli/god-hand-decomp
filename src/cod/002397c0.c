@@ -7,7 +7,6 @@ extern int moveMotion(void *a0);
 extern void func_002DB770(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void func_002705D8(void *a0);
 extern char D_00462FC0[];
 extern char D_007474A0[];
 

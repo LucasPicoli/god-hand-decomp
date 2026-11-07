@@ -10,7 +10,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
-extern void func_002705D8(void *a0);
 extern void func_0026B240(void *a0, int a1, int a2, int a3);
 extern unsigned char D_00747A50[];
 extern void MtxInitCoord(float *mtx, cVec *pos, cVec *rot, cVec *scale, int order);

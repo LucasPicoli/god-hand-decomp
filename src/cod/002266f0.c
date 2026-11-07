@@ -8,7 +8,6 @@ extern void func_0026EE40(void *a0, int a1, int a2);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 

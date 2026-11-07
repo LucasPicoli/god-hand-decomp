@@ -13,7 +13,6 @@ extern int GetSeqSEBase(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern char *Getplayer(void);
 extern int cEmManage_CkPlCatched(void *a0);
-extern void func_002705D8(void *a0);
 extern unsigned char D_005864F0[];
 extern char D_005FEE00[];
 
