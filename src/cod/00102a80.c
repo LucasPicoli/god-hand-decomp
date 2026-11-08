@@ -15,7 +15,6 @@ extern float Adjust_theta(float f12);
 extern void func_001034E0(void *a0);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void func_00260438(void *a0);
-extern void func_002705D8(void *a0);
 extern unsigned short D_00747A50;
 extern void func_00124540(void *a0, int a1);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);

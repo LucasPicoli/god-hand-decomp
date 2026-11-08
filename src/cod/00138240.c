@@ -11,7 +11,6 @@ extern void Obj1D00_SetState_7_16(void *a0);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EC60(void *a0);

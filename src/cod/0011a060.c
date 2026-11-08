@@ -25,7 +25,6 @@ extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);
-extern void func_002705D8(void *a0);
 
 __attribute__((section(".text.func_00278690")))
 void func_00278690(void *a0)

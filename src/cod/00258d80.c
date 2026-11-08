@@ -10,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void func_0026ECD0(void *a0, int a1);
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern unsigned char D_005FEE00[];

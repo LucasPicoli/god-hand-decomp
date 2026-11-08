@@ -13,7 +13,6 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_00271148(void *a0);
 
-extern void func_002705D8(void *a0);
 extern void func_00129718(void *a0, void *a1, int a2);
 extern unsigned char D_00462FC0[];
 #include "godhand/vu0.h"

@@ -16,7 +16,6 @@ extern float fRand1_1(void);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
-extern void func_002705D8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern char D_00462FC0[];

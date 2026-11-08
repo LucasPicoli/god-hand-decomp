@@ -12,7 +12,6 @@ extern void func_00281470(int a0, unsigned char a1);
 extern void func_00283378(int a0, unsigned char a1);
 
 
-extern void func_002705D8(void *a0);
 
 __attribute__((section(".text.cEm00_stepGetUp")))
 void cEm00_stepGetUp(cEm00 *self)

@@ -23,7 +23,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026E7A8(void *a0, int a1);
 extern float fRand0_1(void);
-extern void func_002705D8(void *a0);
 extern void Adjust_theta_vec(cVec *v);
 extern void MtxInitTransVec(cParts *part, cVec *trans);
 extern void MtxMulRotVec(cParts *dst, cParts *src, cVec *rot, int order);

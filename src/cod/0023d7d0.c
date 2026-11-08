@@ -24,7 +24,6 @@ extern void cEm00_armAttackVolume(void *a0);
 
 
 
-extern void func_002705D8(void *a0);
 extern unsigned char D_005FEE00[];
 
 /* Fields cEm00.h does not name yet. Offsets are from the record start. */

@@ -23,7 +23,6 @@ extern void *Getplayer(void);
 extern float Adjust_theta(float f12);
 extern void func_001034E0(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void func_002705D8(void *a0);
 
 /* Phase 4: start the stored motion, play it until it ends and keep moving and
  * turning the model by its null-part speeds. */

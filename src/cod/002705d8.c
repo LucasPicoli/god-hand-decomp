@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/motion.h"
 
 extern void *Getplayer(void);
 extern void func_001D0408(void *a0);

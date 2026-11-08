@@ -14,7 +14,6 @@ extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 extern void func_001D0340(void *a0);
 extern void func_001D0408(void *a0);
-extern void func_002705D8(void *a0);
 extern int cEmManage_findEma2Near(void *a0, void *a1, float f);
 extern char D_005864F0[];
 
