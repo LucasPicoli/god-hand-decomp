@@ -6,7 +6,7 @@ extern void Set_bg_mode(int, int, int, int);
 extern void ScenarioCursor_runStep(char *);
 extern void StepRec_runKindHandler(char *);
 extern void func_002BF540(char *);
-extern void func_002BF568(char *);
+extern void ScenarioStep_runJumpKind(char *);
 
 __attribute__((section(".text.func_002BF2D0")))
 void func_002BF2D0(char *obj)
@@ -25,7 +25,7 @@ void func_002BF2D0(char *obj)
             func_002BF540(obj);
             break;
         case 5:
-            func_002BF568(obj);
+            ScenarioStep_runJumpKind(obj);
             break;
         case 0:
         default:

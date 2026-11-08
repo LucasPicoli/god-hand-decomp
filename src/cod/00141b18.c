@@ -10,8 +10,8 @@ extern void cIDBase_restartAnim(void *p);
 
 /* Set up the screen: build the four displays, collect the entry pointers of the first three,
  * restart the animation of the main one and of the last, mark four entries and store the game level. */
-__attribute__((section(".text.func_00141B18")))
-void func_00141B18(cIDScreen4 *self)
+__attribute__((section(".text.cIDScreen4_initialize")))
+void cIDScreen4_initialize(cIDScreen4 *self)
 {
     unsigned short i;
     cIDBaseObj *pc;

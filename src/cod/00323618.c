@@ -47,7 +47,7 @@ int func_00323918(int a0, int a1) {
 }
 
 int Obj3290_Tramp_0033E6A8_9070();
-int func_00327D48();
+int AdxAlloc_Forward();
 int Obj3290_Tramp_0033E6B0_9088();
 
 __attribute__((section(".text.func_00327D00")))
@@ -56,7 +56,7 @@ int func_00327D00(int a0, int a1) {
     s0 = a0;
     s1 = a1;
     Obj3290_Tramp_0033E6A8_9070();
-    r = func_00327D48(s0, s1);
+    r = AdxAlloc_Forward(s0, s1);
     Obj3290_Tramp_0033E6B0_9088();
     return r;
 }

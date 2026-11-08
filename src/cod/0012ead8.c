@@ -25,14 +25,14 @@ Node *func_0012EAD8(char *self, void *obj, int a2, int a3, int a4, int a5,
             while (q->next != 0) {
                 q = q->next;
             }
-            p = func_0012D970(func_0030F550(0x190), obj, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
             q->next = p;
             if (p != 0) {
                 *(int *)(self + 0x194) = *(int *)(self + 0x194) + 1;
                 return q->next;
             }
         } else {
-            p = func_0012D970(func_0030F550(0x190), obj, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
             *(Node **)(self + 0x190) = p;
             if (p != 0) {
                 *(int *)(self + 0x194) = *(int *)(self + 0x194) + 1;

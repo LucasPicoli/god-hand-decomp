@@ -4,7 +4,7 @@ extern int scePadSetMainMode(int port, int slot, int offs, int lock);
 extern int scePadSetActAlign(int port, int slot, const unsigned char *align);
 extern int scePadEnterPressMode(int port, int slot);
 extern void func_0031B560(void *a, void *b, int c);
-extern void func_0031AFE0(void *a, void *b, void *c);
+extern void PadRec_update(void *a, void *b, void *c);
 extern void func_0031BB80(void *a);
 extern unsigned char D_007474A0[];
 extern unsigned int D_00747A78;
@@ -152,7 +152,7 @@ tail0:
         *(unsigned int *)(p + 0x104) = ~w;
     }
     func_0031B560(p, ctx, 1);
-    func_0031AFE0(p, ctx + 0x178, ctx);
+    PadRec_update(p, ctx + 0x178, ctx);
 
     r = func_00397D98(1, 0);
     *(int *)(p + 0x144) = r;

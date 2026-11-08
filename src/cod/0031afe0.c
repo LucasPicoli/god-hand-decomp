@@ -59,8 +59,8 @@ extern int D_003F2610[];
 #define PAD_A_IN(i)   (*((unsigned char *)in + PADSAMPLE_OFFSET(analog) + (i)))
 #define PAD_A_OUT(i)  (*((unsigned char *)out + PADREC_OFFSET(analog) + (i)))
 
-__attribute__((section(".text.func_0031AFE0")))
-void func_0031AFE0(void *ctx, char *out, char *in)
+__attribute__((section(".text.PadRec_update")))
+void PadRec_update(void *ctx, char *out, char *in)
 {
     unsigned int *tbl;
     unsigned int i;
@@ -190,8 +190,8 @@ void func_0031AFE0(void *ctx, char *out, char *in)
 
 #define DBG_GROUP   0x1B
 
-__attribute__((section(".text.func_00379190")))
-void func_00379190(char *self)
+__attribute__((section(".text.DebugPage_printRecordRows")))
+void DebugPage_printRecordRows(char *self)
 {
     char *p = self + 0xCC;
     int x = DBG_GROUP;

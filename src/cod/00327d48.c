@@ -3,7 +3,7 @@
 extern void func_0034F658(void *hn, int *out);
 extern int (*D_00459680[])(void *hn, int a1, void *dst, int n, long long first);
 
-/* func_0034E9B0 cygnus-2.96 drop-freorder: 90/94 length-exact, only prologue save/copy order differs (s3,s4,s2 first in retail). permuter 400s: no gain */
+/* StreamReadBlock cygnus-2.96 drop-freorder: 90/94 length-exact, only prologue save/copy order differs (s3,s4,s2 first in retail). permuter 400s: no gain */
 
 
 
@@ -21,8 +21,8 @@ typedef struct StreamInfo {
 } StreamInfo;
 
 /* Reads one block of the stream into dst; *outLen gets the length read, *outStatus the reader's status. */
-__attribute__((section(".text.func_0034E9B0")))
-int func_0034E9B0(char *hn, void *dst, int max, int *outLen, int *outStatus)
+__attribute__((section(".text.StreamReadBlock")))
+int StreamReadBlock(char *hn, void *dst, int max, int *outLen, int *outStatus)
 {
     StreamInfo info;
     int *tbl;
@@ -75,8 +75,8 @@ int func_0034E9B0(char *hn, void *dst, int max, int *outLen, int *outStatus)
 
 
 
-__attribute__((section(".text.func_00327D48")))
-long func_00327D48(int x, int n)
+__attribute__((section(".text.AdxAlloc_Forward")))
+long AdxAlloc_Forward(int x, int n)
 {
     if (n < 0x100)
         func_00327B58(0, 0, 0, x);

@@ -9,8 +9,8 @@ extern int D_0041D558;
 typedef struct { char b[0x10]; } Blob16;
 
 /* Hit record with six 16-byte blobs: place the owner, two positions, two extents and the blobs, tag each blob with the no-link value 0xFFFF and mark the record ready. */
-__attribute__((section(".text.func_0012D970")))
-void *func_0012D970(char *self, char *obj, int flags, float *v1, float *v2, float *ext,
+__attribute__((section(".text.cHitRec_constructSixBlob")))
+void *cHitRec_constructSixBlob(char *self, char *obj, int flags, float *v1, float *v2, float *ext,
                     char *b1, char *b2, char *b3, char *b4, char *b5, char *b6)
 {
     char *p;

@@ -15,8 +15,8 @@ extern void func_002B5D58(void *arg, void *parent);
 
 /* When the countdown has run out, moves the node's position and velocity
  * through the parent's world matrix, then detaches it from the parent. */
-__attribute__((section(".text.func_002FCB88")))
-void func_002FCB88(cFxBurst *self)
+__attribute__((section(".text.cFxBurst_releaseFromParent")))
+void cFxBurst_releaseFromParent(cFxBurst *self)
 {
     cVec p;
     cVec v;

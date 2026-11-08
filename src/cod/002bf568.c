@@ -18,8 +18,8 @@ extern int func_001FFF30(void *door, unsigned short room, float *pos, unsigned c
 
 #define SYS_STEP_HOLD 0x40000000
 
-__attribute__((section(".text.func_002BF568")))
-void func_002BF568(ScenarioStep *step)
+__attribute__((section(".text.ScenarioStep_runJumpKind")))
+void ScenarioStep_runJumpKind(ScenarioStep *step)
 {
     char *h;
     char *g;
