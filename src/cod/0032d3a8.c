@@ -28,7 +28,7 @@ extern void func_00368E80(void *a);
 extern void func_00369118(void *a);
 extern void func_00369130(void *a);
 extern void func_00369158(void *a);
-extern void func_00366EC0(void);
+extern void sfhdr_ScanChunks(void);
 extern void SfdTrack_getObj(char *a0, int a1, int *a2);
 extern void func_0034CAF8(int a0, int *a1, int *a2);
 extern long long func_0034CCB0(long long a0, int a1);
@@ -355,7 +355,7 @@ void *func_00369078(void *a0) {
     func_00369130((char *)s0 + 0x88);
     func_00369158((char *)s0 + 0xA8);
     *(int *)((char *)s0 + 0xD0) = 0;
-    *(int *)((char *)s0 + 0xD4) = (int)func_00366EC0;
+    *(int *)((char *)s0 + 0xD4) = (int)sfhdr_ScanChunks;
     *(int *)((char *)s0 + 0xD8) = 0;
     *(int *)((char *)s0 + 0xDC) = 0;
     *(int *)((char *)s0 + 0xE0) = 0;

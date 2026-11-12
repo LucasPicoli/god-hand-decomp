@@ -7,7 +7,7 @@ extern void func_0033C728(void);
 extern long long func_0031DE10(long long, long long);
 extern long long func_003B7FE0(long long, long long);
 extern int D_003EE25C;
-extern void func_0034DDE0(int);
+extern void SfErrSlot_report(int);
 extern int Obj35C0_GetIndexed_1F30_C338(int, int);
 extern int Obj35D0_ReturnOne_D0D0(int);
 extern void Obj35C0_SetIndexed_1F30_C320(int, int, int);
@@ -69,9 +69,9 @@ int func_0034DD70(int a0, int a1) {
     int t;
     if (a1 != 0) {
         if (a0 == 0) {
-            func_0034DDE0((int)&D_003EE25C);
+            SfErrSlot_report((int)&D_003EE25C);
         } else {
-            func_0034DDE0(a0 + 0x9F8);
+            SfErrSlot_report(a0 + 0x9F8);
             t = *(int*)(a0 + 0x48);
             if (t > 0)
                 *(int*)(a0 + 0x48) = -t;

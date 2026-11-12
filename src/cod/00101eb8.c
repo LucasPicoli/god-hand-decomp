@@ -7,7 +7,7 @@ extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern unsigned int D_00747A78;
 extern char D_005FEE00[];
-extern void func_0028E580(void);
+extern void cEmBase_setTalkButton(void);
 extern int Getplayer(void);
 extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern void cObjBase_SetSeqEffect(void *a0);
@@ -143,7 +143,7 @@ void func_0028E420(void *a0)
 
     if ((D_00747A78 & 0x40000000) != 0)
         return;
-    func_0028E580();
+    cEmBase_setTalkButton();
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
         v0 = *(int *)(s0 + 0x304);

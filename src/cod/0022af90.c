@@ -5,7 +5,7 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
-extern void func_002812A8(void *a0, int a1, int a2);
+extern void cGameObj_startPhase3(void *a0, int a1, int a2);
 extern void func_002495E0(void *a0, float f);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -17,7 +17,7 @@ extern int cEmManage_CkPlCatched(void *a0);
 extern char D_005864F0[];
 
 /* Phase machine on the step byte, 4 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
- * func_002A8578, func_002812A8, func_002831C8, moveMotion, cObjBase_addNullSpeed_Rotation and 3
+ * func_002A8578, cGameObj_startPhase3, func_002831C8, moveMotion, cObjBase_addNullSpeed_Rotation and 3
  * more. */
 __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
 {
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
             b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D7C), EM_RES_REC(b, 0x3D80), 10, 0.0f, t0, 0);
             if ((void *)self->sub0 != 0) {
-                func_002812A8((void *)self->sub0, 1, 0);
+                cGameObj_startPhase3((void *)self->sub0, 1, 0);
             }
             if ((void *)self->sub1 != 0) {
                 func_002831C8((void *)self->sub1, 1, 0);
@@ -54,7 +54,7 @@ __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
             b = EM_RES(self);
             func_002A8578(self, EM_RES_REC(b, 0x3D84), EM_RES_REC(b, 0x3D88), 10, 0.0f, t0, 0);
             if ((void *)self->sub0 != 0) {
-                func_002812A8((void *)self->sub0, 2, 0);
+                cGameObj_startPhase3((void *)self->sub0, 2, 0);
             }
             if ((void *)self->sub1 != 0) {
                 func_002831C8((void *)self->sub1, 2, 0);

@@ -5,7 +5,7 @@ extern int MWSFSVM_Error();
 extern char D_00459110[];
 extern void func_003461B0(void *a0, int a1);
 extern void func_00335950(int a0);
-extern void func_00347C80(void *a0, int a1, int a2, int a3);
+extern void MwsfdHn_forwardStmRequest(void *a0, int a1, int a2, int a3);
 extern void func_00347908(void *a0, int a1);
 extern void func_00347868(void *a0);
 extern char D_00458F78[];
@@ -23,7 +23,7 @@ void func_00347D08(char *a0, int a1, int a2, int a3) {
     }
     func_003461B0(a0, a1);
     func_00335950(*(int *)(a0 + 0x48));
-    func_00347C80(a0, a1, a2, a3);
+    MwsfdHn_forwardStmRequest(a0, a1, a2, a3);
     func_00347908(a0, 1);
     func_00347868(a0);
     *(int *)(a0 + 0x2E4) = 3;

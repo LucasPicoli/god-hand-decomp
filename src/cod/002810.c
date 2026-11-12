@@ -34,7 +34,7 @@ void Obj2810_SetState_2_a1(char *a0, int a1) {
     a0[0x2F4] = 0;
 }
 
-/* ── Branched_leaf: func_002812A8 (0x74 B) — INCLUDE_ASM nonmatching ── */
+/* ── Branched_leaf: cGameObj_startPhase3 (0x74 B) — INCLUDE_ASM nonmatching ── */
 
 /* ee-2.9-991111 (the owner TU src/cod/002810.c key; sn-2.95.3-136 also matches): the same body as its twin func_002831C8 in src/cod/002831c8.c. */
 
@@ -47,8 +47,8 @@ static inline void cGameObj_setState(cGameObj *self, unsigned char phase, unsign
 }
 
 /* Starts phase 3 at the step for `kind`: 0, 2, 4 or 6 for kinds 0 to 3. */
-__attribute__((section(".text.func_002812A8")))
-void func_002812A8(cGameObj *self, unsigned int kind, unsigned char arg)
+__attribute__((section(".text.cGameObj_startPhase3")))
+void cGameObj_startPhase3(cGameObj *self, unsigned int kind, unsigned char arg)
 {
     switch (kind) {
     default:

@@ -55,8 +55,8 @@ extern void *func_003A51F4(void *dst, const void *src, unsigned int n); /* memmo
 /* Allocates an empty vector for list and reserves room for count pointers.
  * The allocator byte is rebuilt from an uninitialised temporary, as the
  * inlined g++ allocator copy does in retail. */
-__attribute__((section(".text.func_003127B0")))
-void func_003127B0(PtrVecRef *list, unsigned int count)
+__attribute__((section(".text.PtrVec_create")))
+void PtrVec_create(PtrVecRef *list, unsigned int count)
 {
     PtrVec *v;
     void **old;
@@ -120,8 +120,8 @@ extern char D_00568288;   /* the action button */
 /* Sets the talk button (which starts this enemy's soft task) when no scenario
  * step is running, the enemy is alive, the player is within 3 m and 2 m of
  * height, faces it within 110 degrees, and nothing blocks the line. */
-__attribute__((section(".text.func_0028E580")))
-void func_0028E580(void *self)
+__attribute__((section(".text.cEmBase_setTalkButton")))
+void cEmBase_setTalkButton(void *self)
 {
     CVEC_TEMPS;
     int one = 1;

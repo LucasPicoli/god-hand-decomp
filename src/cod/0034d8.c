@@ -246,7 +246,7 @@ long SfdSys_init(SfdSysInit *init)
         sys->words[i] = 0;
     return SFTRN_Init(D_003EE280, init->tbl);
 }
-INCLUDE_ASM("nonmatching", func_0034DDE0);
+INCLUDE_ASM("nonmatching", SfErrSlot_report);
 extern int func_003587E8(void *hn);
 extern void func_0035A2A8(void *work);
 extern void func_0034BA80(void *rec);

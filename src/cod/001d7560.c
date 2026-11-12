@@ -34,8 +34,8 @@ extern unsigned char D_005FEE00[];
 
 /* One frame of the bet step: the help toggle, quit and back keys, and the bet up and down
  * keys, then the payout of each hand for the current bet. */
-__attribute__((section(".text.func_001D7560")))
-void func_001D7560(Poker *self) {
+__attribute__((section(".text.Poker_updateBet")))
+void Poker_updateBet(Poker *self) {
     char *o = (char *)self;
     char *g;
     long fl;

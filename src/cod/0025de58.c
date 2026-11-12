@@ -27,8 +27,8 @@ extern char D_005CB000[];
  * delta at 0x550; the last phase spawns effect 0x4F on a part, fires the
  * vtable hit at 0xA8 with damage 20 * the charge at 0x600, adds heat and
  * hands control back with phase 1/4/2. */
-__attribute__((section(".text.func_0025DE58")))
-void func_0025DE58(void *a0)
+__attribute__((section(".text.cEm_heldByPlayerPhase")))
+void cEm_heldByPlayerPhase(void *a0)
 {
     char *s0 = (char *)a0;
     char *s2;

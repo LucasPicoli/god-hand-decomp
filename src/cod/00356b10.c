@@ -23,8 +23,8 @@ typedef struct SfInfoSrc {
 
 /* Parses chunks until fewer than 4 bytes remain or a chunk ends the header,
  * then copies the 32 B info block at +0x28 into the first free info slot. */
-__attribute__((section(".text.func_00366EC0")))
-int func_00366EC0(char *hdr, char *buf, int len, int *nread, unsigned int *flags)
+__attribute__((section(".text.sfhdr_ScanChunks")))
+int sfhdr_ScanChunks(char *hdr, char *buf, int len, int *nread, unsigned int *flags)
 {
     int used;
     unsigned int fl;
@@ -91,8 +91,8 @@ typedef struct SfdOutBuf {
 
 
 /* Decodes the next picture into out->addr, sized from the frame setup in macroblocks. */
-__attribute__((section(".text.func_00356B10")))
-int func_00356B10(void *obj, void *a1, SfdOutBuf *out, SftimHn *hn)
+__attribute__((section(".text.sfdmpv_DecodePicture")))
+int sfdmpv_DecodePicture(void *obj, void *a1, SfdOutBuf *out, SftimHn *hn)
 {
     SfdWork *w;
     SfdVidCtl *ctl;

@@ -12,8 +12,8 @@ static __inline__ void Quat_mul(cVec *o, cVec *a, cVec *b)
 }
 
 /* Rotate the point v by the unit quaternion q: dst = q * (v, 0) * conj(q), dst->w = 1. Returns dst. */
-__attribute__((section(".text.func_0015ADA0")))
-cVec *func_0015ADA0(cVec *dst, cVec *q, cVec *v)
+__attribute__((section(".text.Quat_rotatePoint")))
+cVec *Quat_rotatePoint(cVec *dst, cVec *q, cVec *v)
 {
     cVec rot, half, pure, conj, rq;
 

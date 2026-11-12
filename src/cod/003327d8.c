@@ -18,8 +18,8 @@ extern void *D_003D90E8[];               /* DVCI function table */
 extern void func_00333E88(char *dirname); /* DVCI: set the root directory */
 
 /* Touches the build banner, resets the DVCI root directory, and returns the DVCI function table. */
-__attribute__((section(".text.func_003327D8")))
-void **func_003327D8(void)
+__attribute__((section(".text.DVCI_GetInterface")))
+void **DVCI_GetInterface(void)
 {
     (void)D_003D90D0;
     func_00333E88(0);

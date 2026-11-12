@@ -27,8 +27,8 @@ extern char D_005864F0[];
 
 struct VtEnt { short delta; short index; void *pfn; };
 
-__attribute__((section(".text.func_00195068")))
-void func_00195068(void *a0)
+__attribute__((section(".text.cOmBreakable_stepBreak")))
+void cOmBreakable_stepBreak(void *a0)
 {
     char buf[0x80] __attribute__((aligned(16)));
     char *s1 = (char *)a0;

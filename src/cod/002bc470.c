@@ -13,8 +13,8 @@ extern void func_002BC0F8(void *a0, void *a1, float r0, float len0, void *b0, vo
  * mtx2's origin along its y axis for len1. f holds a0 (0x00), a1 (0x10),
  * b0 (0x20), b1 (0x30), the axis (0x40), a scratch vector (0x50) and the unit
  * direction (0x60). */
-__attribute__((section(".text.func_002BC470")))
-void func_002BC470(void *mtx, void *mtx2, float r0, float len0, float r1, float len1)
+__attribute__((section(".text.HitCheck_capsulePairFromMtx")))
+void HitCheck_capsulePairFromMtx(void *mtx, void *mtx2, float r0, float len0, float r1, float len1)
 {
     unsigned char f[0x70];
     float *a1;

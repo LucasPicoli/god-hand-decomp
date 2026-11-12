@@ -15,8 +15,8 @@ extern float Turn_dest(cVec *from, float rot, float limit, cVec *to);
 
 /* Nonzero when the player faces self: closer than NEAR_SQ (squared distance),
  * or within FAR_SQ and turned less than 30 degrees away from self. */
-__attribute__((section(".text.func_001C26B8")))
-int func_001C26B8(cGameObj *self)
+__attribute__((section(".text.cGameObj_isFacedByPlayer")))
+int cGameObj_isFacedByPlayer(cGameObj *self)
 {
     cGameObj *player = Getplayer();
     float dist = capVu0MagnitudeSqXZ(player->pos, self->pos);

@@ -35,8 +35,8 @@ extern float D_003BC744;            /* bob phase step per frame */
 
 /* While following the player with the hover bit set, place the hover offset
  * along the player's heading, scaled by a sine bob, then run the move. */
-__attribute__((section(".text.func_00100CE0")))
-void func_00100CE0(cPartner *self)
+__attribute__((section(".text.cPartner_moveHover")))
+void cPartner_moveHover(cPartner *self)
 {
     float mtx[16] __attribute__((aligned(16)));
     cVec v;
