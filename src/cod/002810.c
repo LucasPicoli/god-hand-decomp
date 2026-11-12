@@ -1,5 +1,5 @@
 /* Struct: CGUnk_0010B5C8_t — own word at +0x1560; embeds shared CGStateBlock4 at +0x2F4 (shares the +0x2F4..+0x2F7 block with CGObj1D00_t — likely a common CG base class). */
-#include "include_asm.h"
+#include "godhand/cGameObj.h"
 
 /* ── All-zero (5-insn): sb 0,2F7; sb 0,2F4; sb 0,2F5; jr; delay:sb 0,2F6 ── */
 /* Optimizer reorders 4 independent zero-stores non-trivially; use ASM.    */
@@ -36,7 +36,36 @@ void Obj2810_SetState_2_a1(char *a0, int a1) {
 
 /* ── Branched_leaf: func_002812A8 (0x74 B) — INCLUDE_ASM nonmatching ── */
 
-INCLUDE_ASM("nonmatching", func_002812A8);
+/* ee-2.9-991111 (the owner TU src/cod/002810.c key; sn-2.95.3-136 also matches): the same body as its twin func_002831C8 in src/cod/002831c8.c. */
+
+static inline void cGameObj_setState(cGameObj *self, unsigned char phase, unsigned char step, unsigned char arg)
+{
+    self->stepArg = arg;
+    self->phase = phase;
+    self->step = step;
+    self->mode = 0;
+}
+
+/* Starts phase 3 at the step for `kind`: 0, 2, 4 or 6 for kinds 0 to 3. */
+__attribute__((section(".text.func_002812A8")))
+void func_002812A8(cGameObj *self, unsigned int kind, unsigned char arg)
+{
+    switch (kind) {
+    default:
+    case 0:
+        cGameObj_setState(self, 3, 0, arg);
+        break;
+    case 1:
+        cGameObj_setState(self, 3, 2, arg);
+        break;
+    case 2:
+        cGameObj_setState(self, 3, 4, arg);
+        break;
+    case 3:
+        cGameObj_setState(self, 3, 6, arg);
+        break;
+    }
+}
 
 /* ── Group A (6-insn, 2F6=2F7=0): li; sb 0,2F7; sb v0,2F5; sb 0,2F4; jr; delay:2F6 ── */
 

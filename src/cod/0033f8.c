@@ -1,5 +1,4 @@
 /* Struct: CGObj33F8_t — lock/word at +0xC/+0x10; u16 pair +0x28..+0x2E; s16 trio +0x34..+0x38 (StorePair/LoadPair/StoreS16Trio). */
-#include "include_asm.h"
 #include "godhand/NameTable.h"
 
 /* ── Forward declarations ───────────────────────────────────────────────── */
@@ -14,7 +13,17 @@ extern char D_003EB858[];   /* struct array, size >= 0x3C0, Obj33F8_Init_D003EB8
 extern int  D_003EB850;     /* boolean flag, Obj33F8_SetFlag_D003EB850_FB68 sets = 1          */
 
 /* ── Branched functions — T0 attempt failed (wrong code size) ────────────── */
-INCLUDE_ASM("nonmatching", func_0033F850);
+extern int Obj0000_Get_D_003C80A4_NE_0_325620(void);
+
+/* func_0033F850: resolve a mode of -1 to 2 when D_003C80A4 is set, else 1. */
+__attribute__((section(".text.func_0033F850")))
+int func_0033F850(int mode) {
+    if (mode == -1) {
+        if (Obj0000_Get_D_003C80A4_NE_0_325620() == 1) mode = 2;
+        else mode = 1;
+    }
+    return mode;
+}
 
 /* ── Obj33F8_Init_D003EB858_F888 — memset D_003EB858 (size 0x3C0) ─────────────────────── */
 __attribute__((section(".text.Obj33F8_Init_D003EB858_F888")))

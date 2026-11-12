@@ -31,7 +31,17 @@ extern void func_003A52F0(void *a0, int a1, int a2);
 extern int D_003CF9E8;      /* reference counter for D_003CF9F0 region      */
 
 /* ── Call-chain functions (11 = deferred) ───────────── */
-INCLUDE_ASM("nonmatching", func_00326020);
+extern void Obj0000_Set_D_003DA394_335348(int a0);
+extern void Obj0000_Set_D_003D9DD8_3331C0(int a0);
+extern int D_003CF9E0;
+
+/* func_00326020: store the value in D_003CF9E0, then hand it to the two setters. */
+__attribute__((section(".text.func_00326020")))
+void func_00326020(int v) {
+    D_003CF9E0 = v;
+    Obj0000_Set_D_003DA394_335348(v);
+    Obj0000_Set_D_003D9DD8_3331C0(v);
+}
 extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
 extern int D_003CF9E0;
