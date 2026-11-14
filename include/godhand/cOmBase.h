@@ -18,20 +18,6 @@
 
 #include "godhand/cGameObj.h"
 
-/* One node of the model's mesh list. A model owns a singly linked list of
- * nodes; each node carries the layer it belongs to. */
-typedef struct cMeshNode {
-    char unk000[0x380];
-    unsigned int dispFlags;             /* 0x380 bit 0 hides, bit 13 is set per tag */
-    char unk384[0x1C];
-    float color[3];                     /* 0x3A0 r, g, b */
-    float alpha;                        /* 0x3AC */
-    char unk3B0[0x54];
-    struct cMeshNode *next;             /* 0x404 */
-    char unk408[4];
-    unsigned char layer;                /* 0x40C */
-} cMeshNode;
-
 /* The hit record that cOmBase_checkDamage receives. */
 typedef struct cDamageTake {
     char unk00[0x10];

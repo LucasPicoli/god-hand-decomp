@@ -96,8 +96,7 @@ typedef struct cMeshData {
 } cMeshData;
 
 /* One mesh of the model's mesh list. A node holds two draw packets, one per
- * frame parity, then its state. cOmBase.h's cMeshNode is the same record with
- * fewer fields named. */
+ * frame parity, then its state. */
 typedef struct cModelNode {
     char packet[2][0xB0];               /* 0x000 draw packet, index = frame parity */
     char unk160[0x220];

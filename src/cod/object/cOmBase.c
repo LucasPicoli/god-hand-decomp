@@ -7,7 +7,7 @@ extern void func_001331B8(char *a0, long a1, int a2);
 /* Show or hide every mesh node on one layer. */
 __attribute__((section(".text.cOmBase_setMeshDispFromLayer")))
 void cOmBase_setMeshDispFromLayer(void *model, int layer, int show) {
-    cMeshNode *node = (cMeshNode *)cModel_getMeshPtr(model, 0);
+    cModelNode *node = (cModelNode *)cModel_getMeshPtr(model, 0);
     if (node != 0) {
         do {
             if (node->layer == layer) {
@@ -26,7 +26,7 @@ void cOmBase_setMeshDispFromLayer(void *model, int layer, int show) {
 /* Set the colour of every mesh node on one layer. */
 __attribute__((section(".text.cOmBase_setMeshColorFromLayer")))
 void cOmBase_setMeshColorFromLayer(void *model, int layer, float r, float g, float b) {
-    cMeshNode *node = (cMeshNode *)cModel_getMeshPtr(model, 0);
+    cModelNode *node = (cModelNode *)cModel_getMeshPtr(model, 0);
     if (node != 0) {
         do {
             if (node->layer == layer) {

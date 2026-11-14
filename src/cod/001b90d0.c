@@ -33,7 +33,7 @@ typedef struct cEmTwoGive {
     int unk62C;                         /* 0x62C 0 at setup */
 } cEmTwoGive;
 
-extern cMeshNode *cModel_getMeshPtr(void *p, unsigned int i);
+extern cModelNode *cModel_getMeshPtr(void *p, unsigned int i);
 extern unsigned int cModel_getMeshNum(void *p);
 extern float fRand1_1(void);
 extern void cDamageGive_SetDmgGiveHitVec(void *slot, void *vec);
