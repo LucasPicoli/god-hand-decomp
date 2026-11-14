@@ -1,27 +1,13 @@
 /* ee-2.9-991111 matched TU. */
 
+#include "godhand/libpad.h"
+
 /* ee-2.9-991111 */
-
-typedef struct {
-    int           cmd;
-    int           port;
-    int           slot;
-    unsigned char align[6];
-    unsigned char pad12[2];
-    int           result;
-    int           rest[26];
-} PadSif;
-
-extern PadSif D_0077C300;
-extern char   D_0077C0C0[];
-
-
-
 
 __attribute__((section(".text.scePadSetActAlign")))
 int scePadSetActAlign(int port, int slot, const unsigned char *align)
 {
-    PadSif *p = &D_0077C300;
+    PadSifAlign *p = (PadSifAlign *)&D_0077C300;
     int i;
     int r;
 
@@ -34,7 +20,7 @@ int scePadSetActAlign(int port, int slot, const unsigned char *align)
         return 0;
     r = p->result;
     if (r == 1) {
-        func_00397E18(port, slot, 2);
+        scePadSetReqState(port, slot, 2);
         r = p->result;
     }
     return r;

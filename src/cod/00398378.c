@@ -1,31 +1,24 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/libpad.h"
 
 /* ee-2.9-991111. Donor libpad.o scePadInfoPressMode. */
-typedef struct {
-    unsigned char pad0[0x10];
-    int           open;
-    unsigned char pad14[0x8];
-} PadInfoT;
 
-extern PadInfoT D_0077C110[2][4];
-
-
-__attribute__((section(".text.func_00398378")))
-int func_00398378(int port, int slot)
+__attribute__((section(".text.scePadInfoPressMode")))
+int scePadInfoPressMode(int port, int slot)
 {
-    unsigned char buf[0x80];
+    PadData buf;
 
     if (D_0077C110[port][slot].open == 0)
         goto ng;
-    func_00397BC8(port, slot, buf);
-    if (buf[0x72] == 1)
+    func_00397BC8(port, slot, &buf);
+    if (buf.ok == 1)
         goto ok;
-ng:
+ng: /* these gotos are main's: the forms without them don't match (6 and 12 or more words off) */
     return 0;
 ok:
-    if (buf[0x64] < 2)
+    if (buf.modeConfig < 2)
         goto ng;
-    if (buf[0x66] & 2)
+    if (buf.model & 2)
         return 1;
     goto ng;
 }

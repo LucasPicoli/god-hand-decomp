@@ -1,8 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/libpad.h"
 
-extern int scePadSetMainMode(int port, int slot, int offs, int lock);
-extern int scePadSetActAlign(int port, int slot, const unsigned char *align);
-extern int scePadEnterPressMode(int port, int slot);
 extern void func_0031B560(void *a, void *b, int c);
 extern void PadRec_update(void *a, void *b, void *c);
 extern void func_0031BB80(void *a);
@@ -33,11 +31,11 @@ void func_0031A808(char *p) {
     }
     ctx = D_007474A0;
 
-    r = func_00397D98(0, 0);
+    r = scePadGetState(0, 0);
     *(int *)(p + 0x140) = r;
     if (r == 6 || r == 2) {
         if (*(int *)(p + 0x154) & 1) {
-            if (*(unsigned short *)(p + 0x14A) != func_00397F38(0, 0, 1, 0)) {
+            if (*(unsigned short *)(p + 0x14A) != scePadInfoMode(0, 0, 1, 0)) {
                 *(int *)(p + 0x154) = 0;
                 *(unsigned short *)(p + 0x148) = 0;
             }
@@ -46,7 +44,7 @@ void func_0031A808(char *p) {
         }
         switch (*(unsigned short *)(p + 0x148)) {
         case 0:
-            r2 = func_00397F38(0, 0, 1, 0);
+            r2 = scePadInfoMode(0, 0, 1, 0);
             if (r2 == 4 || r2 == 7) {
                 st = *(int *)(p + 0x154);
                 *(unsigned short *)(p + 0x148) = 1;
@@ -57,7 +55,7 @@ void func_0031A808(char *p) {
             }
             break;
         case 1:
-            if (func_00397F38(0, 0, 2, 0) == 2) {
+            if (scePadInfoMode(0, 0, 2, 0) == 2) {
                 *(int *)(p + 0x154) |= 8;
             }
             *(unsigned short *)(p + 0x148) = 2;
@@ -69,7 +67,7 @@ void func_0031A808(char *p) {
             break;
         case 3:
             {
-                int r2 = func_00397ED0(0, 0);
+                int r2 = scePadGetReqState(0, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x148) = 2;
@@ -87,7 +85,7 @@ void func_0031A808(char *p) {
             break;
         case 5:
             {
-                int r2 = func_00397ED0(0, 0);
+                int r2 = scePadGetReqState(0, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x148) = 4;
@@ -99,13 +97,13 @@ void func_0031A808(char *p) {
             }
             break;
         case 6:
-            if (func_00397F38(0, 0, 1, 0) == 7) {
+            if (scePadInfoMode(0, 0, 1, 0) == 7) {
                 *(int *)(p + 0x154) |= 4;
             }
             *(unsigned short *)(p + 0x148) = 7;
             break;
         case 7:
-            if (func_00398378(0, 0) != 0) {
+            if (scePadInfoPressMode(0, 0) != 0) {
                 if (scePadEnterPressMode(0, 0) != 0) {
                     *(unsigned short *)(p + 0x148) = 8;
                     *(int *)(p + 0x154) |= 0x40;
@@ -116,7 +114,7 @@ void func_0031A808(char *p) {
             break;
         case 8:
             {
-                int r2 = func_00397ED0(0, 0);
+                int r2 = scePadGetReqState(0, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x148) = 7;
@@ -128,7 +126,7 @@ void func_0031A808(char *p) {
             break;
         case 9:
             *(int *)(p + 0x154) |= 1;
-            *(unsigned short *)(p + 0x14A) = func_00397F38(0, 0, 1, 0);
+            *(unsigned short *)(p + 0x14A) = scePadInfoMode(0, 0, 1, 0);
             *(unsigned short *)(p + 0x148) = 0;
             break;
         }
@@ -154,11 +152,11 @@ tail0:
     func_0031B560(p, ctx, 1);
     PadRec_update(p, ctx + 0x178, ctx);
 
-    r = func_00397D98(1, 0);
+    r = scePadGetState(1, 0);
     *(int *)(p + 0x144) = r;
     if (r == 6 || r == 2) {
         if (*(int *)(p + 0x4AC) & 1) {
-            if (*(unsigned short *)(p + 0x4A2) != func_00397F38(1, 0, 1, 0)) {
+            if (*(unsigned short *)(p + 0x4A2) != scePadInfoMode(1, 0, 1, 0)) {
                 *(int *)(p + 0x4AC) = 0;
                 *(unsigned short *)(p + 0x4A0) = 0;
             }
@@ -167,7 +165,7 @@ tail0:
         }
         switch (*(unsigned short *)(p + 0x4A0)) {
         case 0:
-            r2 = func_00397F38(1, 0, 1, 0);
+            r2 = scePadInfoMode(1, 0, 1, 0);
             if (r2 == 4 || r2 == 7) {
                 st = *(int *)(p + 0x4AC);
                 *(unsigned short *)(p + 0x4A0) = 1;
@@ -178,7 +176,7 @@ tail0:
             }
             break;
         case 1:
-            if (func_00397F38(1, 0, 2, 0) == 2) {
+            if (scePadInfoMode(1, 0, 2, 0) == 2) {
                 *(int *)(p + 0x4AC) |= 8;
             }
             *(unsigned short *)(p + 0x4A0) = 2;
@@ -190,7 +188,7 @@ tail0:
             break;
         case 3:
             {
-                int r2 = func_00397ED0(1, 0);
+                int r2 = scePadGetReqState(1, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x4A0) = 2;
@@ -208,7 +206,7 @@ tail0:
             break;
         case 5:
             {
-                int r2 = func_00397ED0(1, 0);
+                int r2 = scePadGetReqState(1, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x4A0) = 4;
@@ -220,13 +218,13 @@ tail0:
             }
             break;
         case 6:
-            if (func_00397F38(1, 0, 1, 0) == 7) {
+            if (scePadInfoMode(1, 0, 1, 0) == 7) {
                 *(int *)(p + 0x4AC) |= 4;
             }
             *(unsigned short *)(p + 0x4A0) = 7;
             break;
         case 7:
-            if (func_00398378(1, 0) != 0) {
+            if (scePadInfoPressMode(1, 0) != 0) {
                 if (scePadEnterPressMode(1, 0) != 0) {
                     *(unsigned short *)(p + 0x4A0) = 8;
                     *(int *)(p + 0x4AC) |= 0x40;
@@ -237,7 +235,7 @@ tail0:
             break;
         case 8:
             {
-                int r2 = func_00397ED0(1, 0);
+                int r2 = scePadGetReqState(1, 0);
                 if (r2 != 0) {
                     if (r2 == 1) {
                         *(unsigned short *)(p + 0x4A0) = 7;
@@ -249,7 +247,7 @@ tail0:
             break;
         case 9:
             *(int *)(p + 0x4AC) |= 1;
-            *(unsigned short *)(p + 0x4A2) = func_00397F38(1, 0, 1, 0);
+            *(unsigned short *)(p + 0x4A2) = scePadInfoMode(1, 0, 1, 0);
             *(unsigned short *)(p + 0x4A0) = 0;
             break;
         }
