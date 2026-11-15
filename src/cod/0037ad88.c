@@ -1,3 +1,5 @@
+#include "godhand/sndTiming.h"
+
 typedef struct MenuSlider {
     short *val;
     char pad4[6];
@@ -17,13 +19,11 @@ typedef struct MenuSliderCtl {
     int trg;
     int rep;
     char pad3C[0x120];
-    char snd[4];
+    SndSystemVol snd;
 } MenuSliderCtl;
 
 extern MenuSlider D_003F2638[];
-extern void SdeSystemVolGet(char *snd);
-extern void SdeSystemVolSet(char *snd);
-extern void SdePlayVolReset(int se);
+extern void SdePlayVolReset(unsigned char se);
 
 __attribute__((section(".text.func_0037AD88")))
 int func_0037AD88(MenuSliderCtl *m)
@@ -32,7 +32,7 @@ int func_0037AD88(MenuSliderCtl *m)
     short v, old, step;
     int pad;
 
-    SdeSystemVolGet(m->snd);
+    SdeSystemVolGet(&m->snd);
     v = *s->val;
     old = v;
     if (m->flags & 8)
@@ -61,7 +61,7 @@ int func_0037AD88(MenuSliderCtl *m)
         v = s->min;
     if (v != old) {
         *s->val = v;
-        SdeSystemVolSet(m->snd);
+        SdeSystemVolSet(&m->snd);
         SdePlayVolReset(7);
         return 1;
     }
