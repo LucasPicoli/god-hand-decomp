@@ -1,7 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sndTiming.h"
 
 extern char D_00747A78[];
-extern char D_0076A7B8[];
+extern SndSystemVol D_0076A7B8;         /* D_0076A790.vol */
 
 typedef struct {
     char b[24];
@@ -25,13 +26,7 @@ void func_002BF800(char *p)
     *(T8 *)D_00747A78 = *(T8 *)(p + 0x74);
 }
 
-typedef struct {
-    char b[16];
-} T16;
-
-
-
 __attribute__((section(".text.SdeSystemVolGet")))
-void SdeSystemVolGet(void *dst) {
-    *(T16 *)dst = *(T16 *)D_0076A7B8;
+void SdeSystemVolGet(SndSystemVol *dst) {
+    *dst = D_0076A7B8;
 }
