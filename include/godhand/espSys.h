@@ -115,5 +115,8 @@ typedef char espEmitter_size_check[sizeof(espEmitter) == 0x260 ? 1 : -1];
 
 void func_002FA350(float *frame);
 int EspAnim_step(EspAnim *self);
+/* Set the end frame to len frames after the current one: always for mode 1,
+ * for mode 0 only when that lengthens the run. */
+void EspAnim_setFramesLeft(EspAnim *self, unsigned short len, int mode);
 
 #endif
