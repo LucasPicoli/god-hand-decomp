@@ -248,7 +248,6 @@ int cOmHitVolume_setupBox13x19x08(cOmHitVolume *self)
 
 #define SLOT_SE_NUM         10
 #define SLOT_SE_NONE        (-1)
-#define SLOT_STATE_IDLE     8
 
 /* cDataSlot with the fields this reset uses spelled out (the header keeps 0x0C, 0x18, 0x1C and 0x24 as padding;
  * the names are in cDataSlot_fields.h for the orchestrator to merge). Same 0x5C bytes, same offsets. */

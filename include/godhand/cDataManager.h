@@ -15,9 +15,11 @@
 #define CDATA_SLOT_SIZE     0x5C
 #define CDATA_USE_PINNED    (-100)      /* useCount value that pins a slot */
 #define CDATA_FLAG_BUSY     0x4         /* bit 2 of flags: slot is reserved */
+#define SLOT_STATE_IDLE     8           /* state of an empty slot */
 
 typedef struct cDataSlot {
-    int state;                          /* 0x00 3 = in use, 4 = free for reuse */
+    int state;                          /* 0x00 1 loading, 2 loaded, 3 a use counted, 4 last use released,
+                                         *      5 released, 8 idle (SLOT_STATE_IDLE); func_001FF110 steps it */
     int useCount;                       /* 0x04 */
     int flags;                          /* 0x08 */
     char unk0C[4];
@@ -43,6 +45,7 @@ extern void cScenario_sleepFrames(int frames);                   /* wait */
 extern int func_001FEE00(cDataManager *self, int kind);  /* slot index of kind, or -1 */
 extern int func_001FEEA0(cDataManager *self);            /* index of a free slot, or -1 */
 extern int cDataManager_isLoaded(cDataManager *self, int kind);
+extern int cDataManager_isUnload(cDataManager *self, int kind); /* 1 unless a slot of kind is in a state other than SLOT_STATE_IDLE */
 extern void cDataManager_resetKind(cDataManager *self, int kind, int arg);
 
 extern cDataManager D_005864E0;
