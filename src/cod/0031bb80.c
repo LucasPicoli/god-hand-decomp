@@ -1,4 +1,5 @@
 #include "godhand/gameWork.h"
+#include "godhand/libpad.h"
 typedef struct PadVibSlot {
     unsigned char flags;
     char pad1[3];
@@ -18,7 +19,6 @@ typedef struct PadVibWork {
 extern void classPAD_WORK_Pad_act_all_stop(PadVibWork *w);
 extern void func_0031BC98(PadVibWork *w, int i);
 extern void func_0031BD78(PadVibWork *w, int i);
-extern int func_00398128(int a, int b, unsigned char *act);
 
 __attribute__((section(".text.func_0031BB80")))
 void func_0031BB80(PadVibWork *w)
@@ -48,5 +48,5 @@ void func_0031BB80(PadVibWork *w)
         } while (i < 0x20);
     }
     if (!(D_00747A24 & 0x20000000))
-        func_00398128(0, 0, w->act);
+        scePadSetActDirect(0, 0, w->act);
 }

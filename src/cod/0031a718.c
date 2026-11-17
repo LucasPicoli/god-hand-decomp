@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/libpad.h"
 
 extern char D_00450D80[];
 extern char D_00450D90[];
 extern char D_00450DA8[];
 extern void func_003A6A20(const char *s);
-extern int scePadPortOpen(int port, int slot, void *data);
 extern int sceSifCheckStatRpc(void *cd);
 extern unsigned char D_0076A880[];
 
@@ -13,7 +13,7 @@ void func_0031A718(char *buf) {
     unsigned char *p;
     int i;
 
-    while (func_00397630(0) == 0) {
+    while (scePadInit(0) == 0) {
         func_003A6A20(D_00450D80);
     }
 
