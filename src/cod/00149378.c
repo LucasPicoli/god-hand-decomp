@@ -8,7 +8,7 @@
 #include "godhand/heapList.h"
 
 extern int cDamageUnit_SetDamageCollActive(void *unit, int on);
-extern cMeshNode *cModel_getMeshPtr(void *model, int idx);
+extern cModelNode *cModel_getMeshPtr(void *model, int idx);
 extern void *cSnd_GetSeData(cSnd *self, int i);
 extern cBgmData *cSnd_GetBgmData(cSnd *self, int i);
 extern void cSeData_Update(void *se);

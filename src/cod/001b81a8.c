@@ -5,7 +5,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/CustomIDWork.h"
 
-extern cMeshNode *cModel_getMeshPtr_14B730(void *self, void *name);
+extern cModelNode *cModel_getMeshPtr_14B730(void *self, void *name);
 extern char D_00428AF0[];
 extern void *SearchData(void *pack, void *name, int which);
 extern int D_007474A0;
@@ -17,7 +17,7 @@ extern void CustomIDWork_setDispAllButEight(void *self, int id, int on);
 /* Set the bomb up hidden and unlit, hand it to the enemy manager, hide the mesh D_00428AF0 (CMODEL_NODE_HIDE) and clear the hiss handle. Returns 1. */
 __attribute__((section(".text.cObj_hideAndFlagMesh")))
 int cObj_hideAndFlagMesh(cOmbb *self) {
-    cMeshNode *mesh;
+    cModelNode *mesh;
     int flags;
     func_001B6FB8(self);
     flags = self->base.objFlags;
