@@ -89,7 +89,8 @@ extern void cScrSpriteDraw_drawTex(cScrSpriteDraw *self, unsigned int tex, unsig
                                    float x, float y, float w, float h,
                                    float u0, float v0, float u1, float v1);
 
-/* One cell of a sprite sheet: its texture (-1 = the sheet's default) and its UV rectangle. */
+/* cScrSheet and its two functions are project names: the ELF names no such class.
+ * One cell of a sprite sheet: its texture (-1 = the sheet's default) and its UV rectangle. */
 typedef struct cScrSheetCell {
     int tex;                            /* 0x00 index into the system data file's offset table */
     float u0;                           /* 0x04 */

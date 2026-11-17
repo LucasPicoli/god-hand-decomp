@@ -40,7 +40,7 @@ typedef struct cEma2 {
     cVec goal;                          /* 0x15A0 where gotoSwitch sends it; the constructor also stores a flag
                                          * (|= 0x40) in its first word, 0.02 in y and a random wait in w */
     unsigned int flags;                 /* 0x15B0 EMA2_F_* */
-    cModelNode *mesh[EMA2_MESH_NUM];     /* 0x15B4 mesh nodes it hides and shows */
+    cModelNode *mesh[EMA2_MESH_NUM];    /* 0x15B4 mesh nodes it hides and shows */
     char unk15D4[0x15F0 - 0x15D4];
     cVec aim;                           /* 0x15F0 where the head turns to; byte 0x15F4 is also stored alone by func_002897F0 */
     float pitchRate;                    /* 0x1600 head pitch rate, damped every frame */

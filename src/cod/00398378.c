@@ -13,7 +13,7 @@ int scePadInfoPressMode(int port, int slot)
     func_00397BC8(port, slot, &buf);
     if (buf.ok == 1)
         goto ok;
-ng: /* these gotos are main's: the forms without them don't match (6 and 12 or more words off) */
+ng: /* retail's block order needs these gotos: the forms without them do not match */
     return 0;
 ok:
     if (buf.modeConfig < 2)

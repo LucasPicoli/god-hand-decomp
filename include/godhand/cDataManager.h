@@ -18,8 +18,9 @@
 #define SLOT_STATE_IDLE     8           /* state of an empty slot */
 
 typedef struct cDataSlot {
-    int state;                          /* 0x00 1 loading, 2 loaded, 3 a use counted, 4 last use released,
-                                         *      5 released, 8 idle (SLOT_STATE_IDLE); func_001FF110 steps it */
+    int state;                          /* 0x00 0 after cDataHolder_systemInit, 1 loading, 2 loaded,
+                                         *      3 a use counted, 4 last use released, 5 released,
+                                         *      8 idle (SLOT_STATE_IDLE); func_001FF110 sets 6 and 7 */
     int useCount;                       /* 0x04 */
     int flags;                          /* 0x08 */
     char unk0C[4];
