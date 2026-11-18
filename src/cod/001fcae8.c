@@ -2,6 +2,7 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cDamageGive.h"
 #include "godhand/cDamageUnit.h"
 
 extern char D_00574380[];
@@ -12,7 +13,6 @@ extern void cEmManage_reset(void *m);
 extern void func_001FDEA8(void *p);
 extern void cHeatSys_Initialize(void *h);
 extern void Obj0000_Clear_Fields_00_08_0C_0E_10_12_1F6CF8(void *p);
-extern int cDamageUnit_SetDamageCollActive(cDamageUnit *unit, int on);
 extern int KeySlotTable_set(void *tbl, int key, int value);
 extern void func_002A87E8(void *self, int arg);
 
@@ -76,47 +76,38 @@ void GameInitObj_start(GameInitObj *self)
     self->rate = 0.5f;
 }
 
-/* The unit past its node list: the two hit values. */
-typedef struct DamageUnitHit {
-    cDamageUnit base;                   /* 0x00 */
-    char unk40[6];
-    short hitA;                         /* 0x46 */
-    char unk48[4];
-    int hitB;                           /* 0x4C */
-} DamageUnitHit;
-
 typedef struct DamageFiveObj {
     char unk000[0x670];
-    DamageUnitHit *unit0;               /* 0x670 */
+    cDamageGive *unit0;                 /* 0x670 */
     char unk674[4];
-    DamageUnitHit *unit1;               /* 0x678 */
+    cDamageGive *unit1;                 /* 0x678 */
     char unk67C[4];
-    DamageUnitHit *unit2;               /* 0x680 */
+    cDamageGive *unit2;                 /* 0x680 */
     char unk684[4];
-    DamageUnitHit *unit3;               /* 0x688 */
+    cDamageGive *unit3;                 /* 0x688 */
     char unk68C[4];
-    DamageUnitHit *unit4;               /* 0x690 */
+    cDamageGive *unit4;                 /* 0x690 */
 } DamageFiveObj;
 
-/* Switch all five damage units off: clear their hit values and deactivate every node. */
+/* Park all five damage gives: clear their attack kind and power and deactivate every node. */
 __attribute__((section(".text.DamageFiveObj_clearHits")))
 void DamageFiveObj_clearHits(DamageFiveObj *self)
 {
-    self->unit0->hitA = 0;
-    self->unit0->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unit0->base, 0);
-    self->unit1->hitA = 0;
-    self->unit1->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unit1->base, 0);
-    self->unit2->hitA = 0;
-    self->unit2->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unit2->base, 0);
-    self->unit3->hitA = 0;
-    self->unit3->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unit3->base, 0);
-    self->unit4->hitA = 0;
-    self->unit4->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unit4->base, 0);
+    self->unit0->kind = 0;
+    self->unit0->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit0, 0);
+    self->unit1->kind = 0;
+    self->unit1->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit1, 0);
+    self->unit2->kind = 0;
+    self->unit2->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit2, 0);
+    self->unit3->kind = 0;
+    self->unit3->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit3, 0);
+    self->unit4->kind = 0;
+    self->unit4->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit4, 0);
 }
 
 typedef struct Vec3 {

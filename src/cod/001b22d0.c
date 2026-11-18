@@ -48,8 +48,8 @@ int func_001B22D0(cOmHitVolume *em)
         v[3].z = 0.0f;
         ov->w = 1.0f;
         cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 3.0f);
-        ((cDamageGive *)em->damageGive)->unk46 = 0x32;
-        ((cDamageGive *)em->damageGive)->activeTime = 0;
+        ((cDamageGive *)em->damageGive)->kind = 0x32;
+        ((cDamageGive *)em->damageGive)->power = 0;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);
         ((cDamageGive *)em->damageGive)->flags |= 1;
     }

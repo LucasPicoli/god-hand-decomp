@@ -5,9 +5,9 @@
 #include "godhand/cEmSetParam.h"
 #include "godhand/cTaskManager.h"
 #include "godhand/cTaskWork.h"
+#include "godhand/cDamageUnit.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *self);
-extern void cDamageUnit_SetDamageCollActive(void *unit, int active);
 extern void cModel_calcParts(void *self);
 extern void func_001B6FB8(cOmBase *self);
 extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int hide);
@@ -62,7 +62,7 @@ void cOmBase_updateWithHitRecord(cOmHitHolder *self)
     if (self->take != 0) {
         self->take->kind = 0;
         self->take->power = 0;
-        cDamageUnit_SetDamageCollActive(self->take, 0);
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->take, 0);
     }
     *(PhaseTbl *)tbl = D_00429DD0;
     i8 = OM_MODE(s0) * 8;

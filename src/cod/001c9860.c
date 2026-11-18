@@ -41,14 +41,14 @@ void func_001C9860(cOmFallGimmick *self)
     if (ClearField5B4IfFlagUnset_1B76B0(self) == 0)
         return;
     if (self->give0 != 0) {
-        self->give0->unk46 = 0;
-        self->give0->activeTime = 0;
-        cDamageUnit_SetDamageCollActive(self->give0, 0);
+        self->give0->kind = 0;
+        self->give0->power = 0;
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give0, 0);
     }
     if (self->give1 != 0) {
-        self->give1->unk46 = 0;
-        self->give1->activeTime = 0;
-        cDamageUnit_SetDamageCollActive(self->give1, 0);
+        self->give1->kind = 0;
+        self->give1->power = 0;
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give1, 0);
     }
     rate = cEmManage_GetSpeedRate(&D_005864F0);
     self->base.speedRate = rate;

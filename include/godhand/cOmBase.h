@@ -18,20 +18,6 @@
 
 #include "godhand/cGameObj.h"
 
-/* The hit record that cOmBase_checkDamage receives. */
-typedef struct cDamageTake {
-    char unk00[0x10];
-    cVec dir;                           /* 0x10 hit direction */
-    char unk20[0x14];
-    char *attacker;                     /* 0x34 the object that dealt the hit */
-    char unk38[0xE];
-    short kind;                         /* 0x46 attack kind */
-    char unk48[4];
-    int power;                          /* 0x4C */
-    char unk50[0x10];
-    unsigned int flags;                 /* 0x60 bit 0 must be set for the hit to count */
-} cDamageTake;
-
 /* Bits of cOmBase.hitFlags (0x5B4), set by the hit classifier. */
 #define COMBASE_HIT_STRONG    1
 #define COMBASE_HIT_PLAYER    2

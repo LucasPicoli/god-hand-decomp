@@ -2,29 +2,20 @@
  * the body at 0x600, a sphere on part 0 at 0x608), both inactive, with their hit kinds and hit vector. */
 #include "godhand/cOmBase.h"
 #include "godhand/cOmHitVolumeSetup.h"
+#include "godhand/cDamageGive.h"
 
 #define GIVE_BOX_KIND     0x41
 #define GIVE_SPHERE_KIND  0x2E
 #define GIVE_POWER        0x14
-
-/* The fields of a damage-give unit this setup writes. */
-typedef struct DmgGiveView {
-    char unk00[0x40];
-    int unk40;                          /* 0x40 -1 at setup */
-    short unk44;                        /* 0x44 0 at setup */
-    short kind;                         /* 0x46 attack kind */
-    char unk48[4];
-    int power;                          /* 0x4C */
-} DmgGiveView;
 
 /* The enemy this sets up: two damage-give units, the volume ids they returned, a facing
  * and a timer. */
 typedef struct cEmTwoGive {
     cOmBase base;                       /* 0x000 */
     char unk5E0[0x600 - 0x5E0];
-    DmgGiveView *box;                   /* 0x600 damage-give unit on the body */
+    cDamageGive *box;                   /* 0x600 damage-give unit on the body */
     int boxId;                          /* 0x604 */
-    DmgGiveView *sphere;                /* 0x608 damage-give unit on part 0 */
+    cDamageGive *sphere;                /* 0x608 damage-give unit on part 0 */
     int sphereId;                       /* 0x60C */
     char unk610[0x620 - 0x610];
     float facing;                       /* 0x620 random, -pi..pi */
@@ -47,9 +38,9 @@ int func_001B90D0(cEmTwoGive *self)
     cVec *g;
     cVec *h;
     unsigned int i;
-    DmgGiveView *d;
-    DmgGiveView *e;
-    DmgGiveView *q;
+    cDamageGive *d;
+    cDamageGive *e;
+    cDamageGive *q;
     cOmBase *part;
     int n;
 
@@ -78,7 +69,7 @@ int func_001B90D0(cEmTwoGive *self)
         h->y = 1.0f;
         h->w = 1.0f;
         self->boxId = func_001FD9D8(d, self->base.mtx, v, g, h);
-        cDamageUnit_SetDamageCollActive(self->box, 0);
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->box, 0);
         self->box->kind = GIVE_BOX_KIND;
         self->box->power = GIVE_POWER;
         cDamageGive_SetDmgGiveHitVec(self->box, D_00747B00);
@@ -100,7 +91,7 @@ int func_001B90D0(cEmTwoGive *self)
         v[0].y = 0.0f;
         v[0].z = 0.0f;
         self->sphereId = cDamageUnit_AddDamageCollSphere(self->sphere, part->mtx, &v[0].x, 0.4f);
-        cDamageUnit_SetDamageCollActive(self->sphere, 0);
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->sphere, 0);
         self->sphere->kind = GIVE_SPHERE_KIND;
         self->sphere->power = GIVE_POWER;
         cDamageGive_SetDmgGiveHitVec(self->sphere, D_00747B00);

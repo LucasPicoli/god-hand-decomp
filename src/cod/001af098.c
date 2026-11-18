@@ -1,5 +1,6 @@
 /* sn-2.95.3-136: func_001AF098, enemy damage-phase update: sync motion speed, run the current phase handler, and on a confirmed hit either kill (guard at zero) or stagger with two hit sounds. */
 #include "godhand/cEmManage.h"
+#include "godhand/cDamageUnit.h"
 extern void SetMotionStep(void *a0, float f12);
 extern int cOmBase_checkDamage(cOmBase *self, cDamageTake *hit);
 extern void func_001B7EE0(void *a0, float fp12);

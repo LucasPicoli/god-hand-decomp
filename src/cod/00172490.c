@@ -4,6 +4,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cMessDrawFont.h"
 #include "godhand/cMessCommon.h"
+#include "godhand/cDamageUnit.h"
 
 extern void displayScrollLayer(int id, int on);
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);

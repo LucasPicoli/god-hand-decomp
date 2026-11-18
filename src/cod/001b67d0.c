@@ -49,10 +49,10 @@ int func_001B67D0(cOmGiveSpheres *self)
         cDamageUnit_AddDamageCollSphere(give, self->base.mtx, f, 0.25f);
         cDamageUnit_AddDamageCollSphere(self->give, self->base.mtx, a, 0.25f);
         cDamageUnit_AddDamageCollSphere(self->give, self->base.mtx, b, 0.25f);
-        cDamageUnit_SetDamageCollActive(self->give, 0);
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 0);
         self->give->flags |= 1;
-        self->give->unk46 = 0x41;
-        self->give->activeTime = 0x14;
+        self->give->kind = 0x41;
+        self->give->power = 0x14;
         u = self->give;
         u->unk44 = 0xF0;
         u->unk40 = 0;

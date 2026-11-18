@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cDamageGive.h"
 #include "godhand/cDamageUnit.h"
 #include "godhand/cDvd.h"
 
 extern void CustomIDWork_SetMessNo(void *work, int messNo);
-extern void cDamageUnit_SetDamageCollActive(cDamageUnit *self, int active);
 extern void cOmWeapon_SetBreak(int weapon);
 
 /* cCollisionShape: copy the position vector in, then call the shape's virtual update (vt[10]). */
@@ -54,34 +54,25 @@ void UiPanel_setMessAndShow(UiPanel *self, int messNo, int on) {
     func_001E7538(self, 1, on);
 }
 
-/* Switch both damage units off: clear their hit values and deactivate every node. */
+/* Park both damage gives: clear their attack kind and power and deactivate every node. */
 
-
-/* The unit past its node list: the two hit values the init sets to 0x30/0x48 and 0x32. */
-typedef struct DamageUnitHit {
-    cDamageUnit base;                   /* 0x00 */
-    char unk40[6];
-    short hitA;                         /* 0x46 */
-    char unk48[4];
-    int hitB;                           /* 0x4C */
-} DamageUnitHit;
 
 typedef struct DamagePairObj {
     char unk000[0x66C];
-    DamageUnitHit *unitA;               /* 0x66C */
-    DamageUnitHit *unitB;               /* 0x670 */
+    cDamageGive *unitA;                 /* 0x66C */
+    cDamageGive *unitB;                 /* 0x670 */
 } DamagePairObj;
 
 
 
 __attribute__((section(".text.DamagePairObj_clearHits")))
 void DamagePairObj_clearHits(DamagePairObj *self) {
-    self->unitA->hitA = 0;
-    self->unitA->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unitA->base, 0);
-    self->unitB->hitA = 0;
-    self->unitB->hitB = 0;
-    cDamageUnit_SetDamageCollActive(&self->unitB->base, 0);
+    self->unitA->kind = 0;
+    self->unitA->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unitA, 0);
+    self->unitB->kind = 0;
+    self->unitB->power = 0;
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unitB, 0);
 }
 
 /* cDvd: give all 32 jobs back, then reset the running job, the id counter and the queue length. */
