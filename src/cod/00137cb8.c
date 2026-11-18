@@ -2,6 +2,7 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/Slot2.h"
+#include "godhand/pathRec.h"
 #include "godhand/vu0.h"
 
 extern void func_001B6FB8(void *self);
@@ -26,12 +27,6 @@ extern float capVu0Acos(float x);
 
 #define OBJ_LIFE      1
 #define OBJ_SOLID_ID  7                 /* value of the solid-collision byte */
-
-
-
-
-
-
 
 
 /* The object past cOmBase: damage unit, collision box, solid byte and hit record. */
@@ -111,10 +106,6 @@ typedef struct MenuInput {
 } MenuInput;
 
 
-
-
-
-
 #define PAD_OFFSET_HOLD   0x1A0
 #define PAD_OFFSET_PRESS  0x1B0
 #define PAD_BACK          0x30000000
@@ -163,7 +154,6 @@ void MenuInput_stepPad(void *a0)
 }
 
 /* Fill the seven-entry vector table D_00585040 with (x, 0, z, 1) points and reset the vector D_005850B0 to (0, 0, 0, 1). Runs only for the init code 0xFFFF and a non-null owner. */
-
 
 
 typedef struct Vec4 {
@@ -311,7 +301,6 @@ typedef struct HitHost {
 } HitHost;
 
 
-
 __attribute__((section(".text.cSndSeVoice_ckHitSet")))
 int cSndSeVoice_ckHitSet(HitHost *self, float *pos)
 {
@@ -351,41 +340,18 @@ int cSndSeVoice_ckHitSet(HitHost *self, float *pos)
     return dflt;
 }
 
-/* Turn angle toward a target on a path piece: when the piece (record at +0x30, kind byte 0x3F) is kind 1, take its direction vector (0x50), subtract the reference point, flatten it, and measure the angle between it and the flattened target direction. Writes the signed angle times the path blend to *turn and the interpolated height to *height. */
+/* Turn angle toward a target on a path piece: when the piece (record at +0x30, kind byte 0x3F) is kind 1, take its direction vector (0x50), subtract the reference point, flatten it, and measure the angle between it and the flattened target direction. Writes the signed angle times the path blend to *turn and the interpolated camera distance to *dist. */
 
-
-
-typedef struct PathRec {
-    char unk00[0x38];
-    float endY;                         /* 0x38 */
-    char unk3C[3];
-    unsigned char kind;                 /* 0x3F */
-    char unk40[0x10];
-    char dir[0x10];                     /* 0x50 direction vector, copied as a blob */
-} PathRec;
-
-typedef struct PathHost {
-    char unk00[0x10];
-    float startY;                       /* 0x10 */
-    char unk14[0x1C];
-    PathRec *rec;                       /* 0x30 */
-} PathHost;
 
 typedef struct Blob16 {
     char b[0x10];
 } Blob16;
 
-#define PATH_KIND_CURVE  1
-
-
-
-
-extern float func_00137E70(PathHost *self, void *a, void *b);
 
 #define FR(off) ((cVec *)(fr + (off)))
 
 __attribute__((section(".text.PathHost_calcTurn")))
-void PathHost_calcTurn(PathHost *self, float *turn, float *height, cVec *ref, cVec *target)
+void PathHost_calcTurn(PathHost *self, float *turn, float *dist, cVec *ref, cVec *target)
 {
     char fr[0x40] __attribute__((aligned(16)));
     PathRec *rec = self->rec;
@@ -430,5 +396,5 @@ void PathHost_calcTurn(PathHost *self, float *turn, float *height, cVec *ref, cV
         *turn = -ang * blend;
     else
         *turn = ang * blend;
-    *height = (rec->endY - self->startY) * blend + self->startY;
+    *dist = (rec->endDist - self->startDist) * blend + self->startDist;
 }

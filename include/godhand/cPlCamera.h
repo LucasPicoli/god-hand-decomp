@@ -59,8 +59,9 @@ struct cPlCamera {
     int unk524;                         /* 0x524 */
     int flags528;                       /* 0x528 */
     int wait;                           /* 0x52C frames to wait before the follow ends */
-    char unk530[0x600 - 0x530];
-};
+};                                      /* 0x530: the camera manager's motion camera starts at 0x530 */
+
+typedef char cPlCamera_size_check[(sizeof(struct cPlCamera) == 0x530) ? 1 : -1];
 
 /* The type is only ever written `struct cPlCamera`: the constructor function has the same name. */
 
