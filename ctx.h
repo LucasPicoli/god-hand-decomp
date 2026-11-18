@@ -145,11 +145,10 @@ typedef struct CGUnk_00134648 { u8 unk[0x10]; } CGUnk_00134648_t;
  *   +0x5A5  b_5A5   u8       (func_00293750 |= 1)
  *
  * Highest observed offset is 0x584 + 4 = 0x588, round up to 0x590.
- * NOTE: the three large fp+bnel-PERMANENT functions in the same TU
- * (func_00293138 / func_002937C0 / func_00293C40) almost certainly
- * touch higher offsets — but their bodies stay in monolithic asm so
- * the C-side typedef doesn't have to cover them; size will bump if a
- * later decomp surfaces a higher offset, per the sizing rule.
+ * NOTE: func_00293138 stays in monolithic asm and almost certainly
+ * touches higher offsets; size will bump if a later decomp surfaces a
+ * higher offset, per the sizing rule. func_002937C0 and func_00293C40
+ * are C (src/cod/002937c0.c, 00293c40.c) and read cEmManage.
  * Field names are seed-conservative (`b_<off>` / `w_<off>`)
  * pending Ghidra-side naming; rename here in the same commit once the
  * field is understood.

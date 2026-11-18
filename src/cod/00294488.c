@@ -5,9 +5,6 @@
 #include "godhand/player.h"
 #include "godhand/sceVu0.h"
 
-#define EM_LINEUP_PHASE  0x41
-#define EM_LINEUP_TIME   300.0f
-
 /* Send the five special enemies to points on a line in the player's frame
  * (x -2, z 12 to 20; 0x274 nearest, then 0x270..0x273) when at least two
  * of them are free to act and the line out to z 23 is clear. Returns 1
@@ -120,7 +117,7 @@ int func_00294488(cEmManage *self)
             break;
         }
         em->phase = EM_LINEUP_PHASE;
-        em->unk1720 = EM_LINEUP_TIME;
+        em->unk1720 = EM_JOINT_TIME;
         em->mode = 0;
         em->step = 0;
         em->stepArg = 0;
