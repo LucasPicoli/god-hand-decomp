@@ -41,6 +41,19 @@
         }                                                       \
     }
 
+/* d = *s; (operator= with the argument pointer bound first, compared against
+ * &d, then read through it; xyz only, skipped when d is *s) */
+#define CVEC_ASSIGN(d, s)                                       \
+    {                                                           \
+        cVec *s_ = (s);                                         \
+                                                                \
+        if (&(d) != s_) {                                       \
+            (d).x = s_->x;                                      \
+            (d).y = s_->y;                                      \
+            (d).z = s_->z;                                      \
+        }                                                       \
+    }
+
 /* a - b; (operator- into the return slot, for a caller that passes &ret_ on) */
 #define CVEC_SUB(a, b)                                          \
     {                                                           \
