@@ -18889,6 +18889,10 @@
       "compiler": "ee-2.9-991111"
     },
     {
+      "path": "src/cod/003214d0.c",
+      "compiler": "ee-2.9-991111"
+    },
+    {
       "path": "src/cod/00372cb0.c",
       "compiler": "sn-2.95.3-136",
       "as": "sn"
@@ -34216,7 +34220,7 @@
       "tu": "src/cod/003201f0.c"
     },
     {
-      "name": "func_00321268",
+      "name": "__cp_eh_info",
       "unit": "asm/cod/000000",
       "vaddr": "0x00321268",
       "size": 32,
@@ -40610,7 +40614,7 @@
       "tu": "src/cod/001dd218.c"
     },
     {
-      "name": "func_00320360",
+      "name": "__get_eh_info",
       "unit": "asm/cod/000000",
       "vaddr": "0x00320360",
       "size": 40,
@@ -42185,7 +42189,7 @@
       "tu": "src/cod/00330cf0.c"
     },
     {
-      "name": "func_003203B0",
+      "name": "eh_context_static",
       "unit": "asm/cod/000000",
       "vaddr": "0x003203B0",
       "size": 104,
@@ -46980,7 +46984,7 @@
       "tu": "src/cod/003202a8.c"
     },
     {
-      "name": "func_00320338",
+      "name": "__get_eh_context",
       "unit": "asm/cod/000000",
       "vaddr": "0x00320338",
       "size": 36,
@@ -46994,7 +46998,7 @@
       "tu": "src/cod/0031eda0.c"
     },
     {
-      "name": "func_00320418",
+      "name": "__get_dynamic_handler_chain",
       "unit": "asm/cod/000000",
       "vaddr": "0x00320418",
       "size": 40,
@@ -49052,7 +49056,7 @@
       "tu": "src/cod/0014e598.c"
     },
     {
-      "name": "func_00320388",
+      "name": "eh_context_initialize",
       "unit": "asm/cod/000000",
       "vaddr": "0x00320388",
       "size": 40,
@@ -77729,6 +77733,13 @@
       "vaddr": "0x00321408",
       "size": 196,
       "tu": "src/cod/00321240.cc"
+    },
+    {
+      "name": "__uncatch_exception",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x003214D0",
+      "size": 48,
+      "tu": "src/cod/003214d0.c"
     },
     {
       "name": "func_00324EB0",

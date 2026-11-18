@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void terminate(void) __attribute__((__noreturn__));
+#include "godhand/eh.h"
 
 __attribute__((section(".text.func_003202A8")))
 void *func_003202A8(void *catch_type, void *throw_type, void *obj)

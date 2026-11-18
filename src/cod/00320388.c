@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-extern int func_003203B0(void);
-extern void *D_003C490C;
+#include "godhand/eh.h"
+
 extern int D_007588C0[2];
 extern int D_003DECFC;
 extern int D_003DED00;
@@ -48,12 +48,11 @@ extern void Obj3290_Tramp_0033E678_9028();
 extern void func_00328190(void *a0);
 extern void Obj3290_Tramp_0033E690_9040(void);
 
-__attribute__((section(".text.func_00320388")))
-void func_00320388(void)
+__attribute__((section(".text.eh_context_initialize")))
+struct eh_context *eh_context_initialize(void)
 {
-    int (*f)(void) = func_003203B0;
-    D_003C490C = (void *)f;
-    f();
+    get_eh_context = eh_context_static;
+    return (*get_eh_context)();
 }
 
 __attribute__((section(".text.func_0033BFB8")))

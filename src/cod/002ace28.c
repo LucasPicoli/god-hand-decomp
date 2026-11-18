@@ -1,12 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/eh.h"
 
-extern int (*D_003C490C)(void *);
 extern void *D_003C3CF0;
 extern int _MemoryAlloc(void *, int, void *);
 
-__attribute__((section(".text.func_00320360")))
-int func_00320360(void *a0) {
-    return D_003C490C(a0) + 8;
+/* __get_eh_info: the address of the current thread's exception info. */
+__attribute__((section(".text.__get_eh_info")))
+cp_eh_info **__get_eh_info(void) {
+    return &(*get_eh_context)()->info;
 }
 
 __attribute__((section(".text.cIDManager_getTexAddr_2ACE28")))

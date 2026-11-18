@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *(*D_003C490C)(void);
+#include "godhand/eh.h"
 
-__attribute__((section(".text.func_00320418")))
-void ***func_00320418(void)
+__attribute__((section(".text.__get_dynamic_handler_chain")))
+void ***__get_dynamic_handler_chain(void)
 {
-  char *eh = (char *)(*D_003C490C)();
-  return (void ***)(eh + 4);
+  return &(*get_eh_context)()->dynamic_handler_chain;
 }
