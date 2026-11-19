@@ -41,7 +41,7 @@ void func_002FBE88(Obj002FBE88 *self)
 __attribute__((section(".text.cCamManager_update")))
 void cCamManager_update(cCamManager *self)
 {
-    PathHost_easeCamera(&self->path, &self->player);
+    cAreaCamManager_easeCamera(&self->areaCam, &self->player);
     if (!(self->mode & CAMMGR_MODE_NO_MOVE)) {
         cCamera_move(D_005CAFF0);
     }

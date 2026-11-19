@@ -34,12 +34,14 @@ typedef struct cCollFace {
 
 typedef char cCollFace_size_check[(sizeof(cCollFace) == 0x10) ? 1 : -1];
 
-/* A collision body in the grid's list. Retail allocates a quad body with
- * 0x100 bytes (func_0030F550(0x100) at 0x12EA1C and 0x12EA64, for
- * func_0012CF70) and a box with 0x190 (at 0x12EB64 and 0x12EBC8, for
- * cHitRec_constructSixBlob): the ends of u.quad and u.box. */
-typedef struct cCollBody {
-    struct cCollBody *next;             /* 0x00 */
+/* A collision body in the grid's list. The ELF's type names call the base
+ * cCollisionScrollSolid, with cCollisionScrollBoard and cCollisionScrollBox
+ * derived from it. Retail allocates a board with 0x100 bytes
+ * (func_0030F550(0x100) at 0x12EA1C and 0x12EA64, for func_0012CF70) and a
+ * box with 0x190 (at 0x12EB64 and 0x12EBC8, for cHitRec_constructSixBlob):
+ * the ends of u.board and u.box. */
+typedef struct cCollisionScrollSolid {
+    struct cCollisionScrollSolid *next; /* 0x00 */
     int type;                           /* 0x04 */
     unsigned int flags;                 /* 0x08 */
     char unk0C[4];
@@ -49,7 +51,7 @@ typedef struct cCollBody {
     char unk34[0x20];                   /* 0x34 cleared */
     int unk54;                          /* 0x54 cleared */
     float *mtx;                         /* 0x58 the owner's matrix */
-    const void *vt;                     /* 0x5C method table of the body type */
+    const void *vt;                     /* 0x5C vtable; D_0041D5A8 for the base */
     cVec pos;                           /* 0x60 */
     cVec unk70;                         /* 0x70 */
     cVec rot;                           /* 0x80 */
@@ -60,23 +62,23 @@ typedef struct cCollBody {
             cCollFace face;             /* 0xA8 */
             char unkB8[8];
             cVec corner[4];             /* 0xC0 */
-        } quad;                         /* a body with one four-cornered face */
+        } board;                        /* cCollisionScrollBoard (vt D_0041D580) */
         struct {
             cVec extent;                /* 0xA0 the size argument, each axis made positive */
             cCollFace face[6];          /* 0xB0 */
             cVec corner[8];             /* 0x110 */
-        } box;                          /* a box: six faces over eight corners */
+        } box;                          /* cCollisionScrollBox (vt D_0041D558) */
     } u;                                /* 0xA0 */
-} cCollBody;
+} cCollisionScrollSolid;
 
-typedef char cCollBody_size_check[(sizeof(cCollBody) == 0x190) ? 1 : -1];
-typedef char cCollBody_quad_size_check[(sizeof(((cCollBody *)0)->u.quad) == 0x100 - 0xA0) ? 1 : -1];
+typedef char cCollisionScrollSolid_size_check[(sizeof(cCollisionScrollSolid) == 0x190) ? 1 : -1];
+typedef char cCollisionScrollSolid_board_size_check[(sizeof(((cCollisionScrollSolid *)0)->u.board) == 0x100 - 0xA0) ? 1 : -1];
 
-/* 1 << n for n = 0..31; the quad debug draw copies it to the stack. */
+/* 1 << n for n = 0..31; the board debug draw copies it to the stack. */
 extern const int D_0041D2E0[32];
 
-/* Debug draw of a quad body's outline, and with fill set its face filled. */
-void func_0012D3C8(cCollBody *self, int mode, int fill);
+/* Debug draw of a board's outline, and with fill set its face filled. */
+void func_0012D3C8(cCollisionScrollSolid *self, int mode, int fill);
 
 /* Debug draw of pts[0..2], or pts[0..3] when quad is set, filled in one colour. */
 void func_001334A8(cVec *pts, int quad, int color);

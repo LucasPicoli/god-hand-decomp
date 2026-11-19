@@ -350,11 +350,11 @@ typedef struct Blob16 {
 
 #define FR(off) ((cVec *)(fr + (off)))
 
-__attribute__((section(".text.PathHost_calcTurn")))
-void PathHost_calcTurn(PathHost *self, float *turn, float *dist, cVec *ref, cVec *target)
+__attribute__((section(".text.cAreaCamManager_calcTurn")))
+void cAreaCamManager_calcTurn(cAreaCamManager *self, float *turn, float *dist, cVec *ref, cVec *target)
 {
     char fr[0x40] __attribute__((aligned(16)));
-    PathRec *rec = self->rec;
+    AreaCamRec *rec = self->rec;
     unsigned char kind = rec->kind;
     cVec *dirB;
     cVec *tmp;
@@ -363,7 +363,7 @@ void PathHost_calcTurn(PathHost *self, float *turn, float *dist, cVec *ref, cVec
     float ang;
     float blend;
 
-    if (kind != PATH_KIND_CURVE)
+    if (kind != AREACAM_KIND_CURVE)
         return;
     VU0_SQC2_VF0(fr, 0x0);
     VU0_SQC2_VF0(fr, 0x10);

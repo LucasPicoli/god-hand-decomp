@@ -25,7 +25,7 @@ typedef struct cCamManager {
     struct cPlCamera player;            /* 0x000 */
     char unk530[0xFF0 - 0x530];
     void *prevCamera;                   /* 0xFF0 camera that was current before the switch */
-    PathHost path;                      /* 0xFF4 the camera path PathHost_easeCamera follows */
+    cAreaCamManager areaCam;            /* 0xFF4 the area camera; SetData__15cAreaCamManagerUi writes it */
     int mode;                           /* 0x1028 CAMMGR_MODE_* */
     int prevMode;                       /* 0x102C */
 } cCamManager;

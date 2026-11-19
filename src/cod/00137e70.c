@@ -18,11 +18,11 @@ static __inline__ void RotMatrixOf(float m[4][4], float *ang)
 
 /* How far dir lies inside the path's cone around the turned z axis: 1 on the axis, 0 at the cone edge or outside. */
 __attribute__((section(".text.func_00137E70")))
-float func_00137E70(PathHost *self, cVec *dir, cVec *rot)
+float func_00137E70(cAreaCamManager *self, cVec *dir, cVec *rot)
 {
     cVec axis;
     float mtx[4][4];
-    PathRec *rec = self->rec;
+    AreaCamRec *rec = self->rec;
     float ang;
 
     VU0_SQC2_VF0_MEM(&axis, 0);
