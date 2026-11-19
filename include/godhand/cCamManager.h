@@ -12,6 +12,9 @@
 #ifndef GODHAND_CCAMMANAGER_H
 #define GODHAND_CCAMMANAGER_H
 
+#include "godhand/cPlCamera.h"
+#include "godhand/pathRec.h"
+
 /* Values of cCamManager.mode. */
 #define CAMMGR_MODE_PLAYER   0x01       /* player camera */
 #define CAMMGR_MODE_MOTION   0x04       /* motion camera, at 0x530 */
@@ -19,9 +22,10 @@
 #define CAMMGR_MODE_SUBSCR   0x80       /* sub-screen camera */
 
 typedef struct cCamManager {
-    char unk000[0xFF0];
+    struct cPlCamera player;            /* 0x000 */
+    char unk530[0xFF0 - 0x530];
     void *prevCamera;                   /* 0xFF0 camera that was current before the switch */
-    char unkFF4[0x1028 - 0xFF4];        /* 0xFF4 state that func_00137F38 updates */
+    PathHost path;                      /* 0xFF4 the camera path PathHost_easeCamera follows */
     int mode;                           /* 0x1028 CAMMGR_MODE_* */
     int prevMode;                       /* 0x102C */
 } cCamManager;

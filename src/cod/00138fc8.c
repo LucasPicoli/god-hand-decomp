@@ -8,7 +8,6 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/SlotUi.h"
 
-extern void func_00137F38(void *state, cCamManager *mgr);
 extern void cCamera_move(void *cam);
 extern void cEmSetParam_updateSetDataFlag(cEmSetParam *self, int id, unsigned int flags);
 extern void cTaskWork_sleep(cTaskWork *work, int frames);
@@ -42,7 +41,7 @@ void func_002FBE88(Obj002FBE88 *self)
 __attribute__((section(".text.cCamManager_update")))
 void cCamManager_update(cCamManager *self)
 {
-    func_00137F38(self->unkFF4, self);
+    PathHost_easeCamera(&self->path, &self->player);
     if (!(self->mode & CAMMGR_MODE_NO_MOVE)) {
         cCamera_move(D_005CAFF0);
     }
