@@ -10,12 +10,13 @@
  * They are macros, not inline functions, for the reason EM_PHASE_RUN is: an
  * inline function moves registers.
  *
- * Shapes the bytes depend on: an operator binds its arguments first, then
- * its return-slot pointer, then copies through that pointer by name. The
- * pointer (r_) exists only for the self-check, and the order of a_, b_, r_
- * decides which registers they get. The copy can't be a helper call
- * (vec3_copy, cVec_copy3): those compare and read through their own
- * parameters and don't match.
+ * Shapes the bytes depend on: most operators bind their arguments first,
+ * then their return-slot pointer, then copy through that pointer by name.
+ * CVEC_PUT and CVEC_ASSIGN_VEC bind this first; each macro's comment says
+ * which pointer it binds first. The return-slot pointer (r_) exists only
+ * for the self-check, and the order of a_, b_, r_ decides which registers
+ * they get. The copy can't be a helper call (vec3_copy, cVec_copy3): those
+ * compare and read through their own parameters and don't match.
  */
 #ifndef GODHAND_CVEC_H
 #define GODHAND_CVEC_H
@@ -54,6 +55,45 @@
         }                                                       \
     }
 
+/* *dp = v; (operator= with this bound, compared against &v, v copied by name, xyz only) */
+#define CVEC_PUT(dp, v)                                         \
+    {                                                           \
+        cVec *d_ = (dp);                                        \
+                                                                \
+        if (d_ != &(v)) {                                       \
+            d_->x = (v).x;                                      \
+            d_->y = (v).y;                                      \
+            d_->z = (v).z;                                      \
+        }                                                       \
+    }
+
+/* d = v; (operator= with the argument bound before this: &v is only used for the
+ * self-check, the copy reads v by name, xyz only) */
+#define CVEC_ASSIGN_ARG(d, v)                                   \
+    {                                                           \
+        cVec *s_ = &(v);                                        \
+        cVec *d_ = &(d);                                        \
+                                                                \
+        if (d_ != s_) {                                         \
+            d_->x = (v).x;                                      \
+            d_->y = (v).y;                                      \
+            d_->z = (v).z;                                      \
+        }                                                       \
+    }
+
+/* d = s; (operator= on d with a named vector s: this is &d, compared against &s before
+ * the copy, xyz only) */
+#define CVEC_ASSIGN_VEC(d, s)                                   \
+    {                                                           \
+        cVec *d_ = &(d);                                        \
+                                                                \
+        if (d_ != &(s)) {                                       \
+            d_->x = (s).x;                                      \
+            d_->y = (s).y;                                      \
+            d_->z = (s).z;                                      \
+        }                                                       \
+    }
+
 /* a - b; (operator- into the return slot, for a caller that passes &ret_ on) */
 #define CVEC_SUB(a, b)                                          \
     {                                                           \
@@ -61,6 +101,19 @@
         cVec *b_ = (b);                                         \
                                                                 \
         VU0_ZERO_VSUB_XYZ_MEM(&tmp_, 0, a_, b_);                \
+        VU0_LQC2(4, &tmp_, 0);                                  \
+        VU0_SQC2_MEM(4, &ret_, 0);                              \
+    }
+
+/* a + b; (operator+ into the return slot, for a caller that reads ret_) */
+#define CVEC_ADD(a, b)                                          \
+    {                                                           \
+        cVec *a_ = (a);                                         \
+        cVec *b_ = (b);                                         \
+                                                                \
+        VU0_LQC2(4, a_, 0);                                     \
+        VU0_SQC2_MEM(4, &tmp_, 0);                              \
+        VU0_VADD_XYZ_IP(&tmp_, 0, b_);                          \
         VU0_LQC2(4, &tmp_, 0);                                  \
         VU0_SQC2_MEM(4, &ret_, 0);                              \
     }

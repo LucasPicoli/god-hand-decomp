@@ -68,7 +68,3 @@ void Obj293_OrByte_5A4(cEmManage *self, unsigned int bits) {
 /* Sets bit 0 of unk5A5; Main sets unk5A2 while it is non-zero. */
 __attribute__((section(".text.Obj293_OrByte_5A5_1")))
 void Obj293_OrByte_5A5_1(cEmManage *self) { self->unk5A5 |= 1; }
-
-/* func_002937C0 (fp+bnel, 288 insn) stays in monolithic — PERMANENT. */
-
-/* func_00293C40 (fp+bnel, 530 insn) stays in monolithic — PERMANENT. */

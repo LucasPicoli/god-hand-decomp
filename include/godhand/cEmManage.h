@@ -37,6 +37,15 @@
 #define EM_SPECIAL_NO_FIRST   0x270
 #define EM_SPECIAL_NUM        5
 
+/* The phases the manager puts the special enemies in for a joint attack, and
+ * the time (cEm00.unk1720) each one starts with. */
+#define EM_PAIR_LEAD_PHASE    0x3D  /* func_002937C0: the enemy beside the player */
+#define EM_PAIR_MATE_PHASE    0x3E  /* func_002937C0: its partner, 3 past it */
+#define EM_SURROUND_PHASE     0x3F  /* func_00293C40, formation 0 */
+#define EM_FORMATION_PHASE    0x40  /* func_00293C40, formation 1 */
+#define EM_LINEUP_PHASE       0x41  /* func_00294488 */
+#define EM_JOINT_TIME         300.0f
+
 /* What a room's enemy table hands to EntryEm (the game's SET_EM_DATA). */
 typedef struct SET_EM_DATA {
     int objId;                      /* 0x00 actor to create and whose data to load */
