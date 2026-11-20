@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -10,8 +11,6 @@ extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_00126770(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int t0, int t1);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern void func_0010A438(void *a0);
 extern void func_00129EB0(void *a0);
 extern void func_00123938(void *a0, int a1);
@@ -81,8 +80,8 @@ void func_0010FE18(void *a0){ char *s0=(char*)a0; int v0;
   Obj0000_Clear_Fields_640_648_124E58(s0);
   func_00126770(s0);
   pl00_clearMotionCam(s0,0,0);
-  Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0,0x14,0xB,0xA,0,0xA);
-  Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0,0x14,0xB,0xA,0,0xA);
+  Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x14,0xB,0xA,0,0xA);
+  Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x14,0xB,0xA,0,0xA);
   v0=*(int*)(s0+0x304);
   *(char*)(s0+0x1684)=0;
   func_002A8578(s0,*(int*)(v0+0x100)+v0,*(int*)(v0+0x108)+v0,3,0.0f,0,0);

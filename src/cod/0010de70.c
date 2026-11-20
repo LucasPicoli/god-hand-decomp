@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -37,8 +36,8 @@ void func_0010DE70(void *a0)
         switch (*(unsigned char *)(s1 + 0x2F7)) {
         default:
         case 0:
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 15.0f), 4, 0x1A, 0, 0x77);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 15.0f), 4, 0x1A, 0, 0x77);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s1 + 0x600) * 15.0f), 4, 0x1A, 0, 0x77);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s1 + 0x600) * 15.0f), 4, 0x1A, 0, 0x77);
             {
                 int t = *(int *)(s1 + 0x304);
                 f = 2.0f;
@@ -47,8 +46,8 @@ void func_0010DE70(void *a0)
             }
             break;
         case 1:
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 4, 0x1A, 0, 0x77);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 4, 0x1A, 0, 0x77);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 4, 0x1A, 0, 0x77);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 4, 0x1A, 0, 0x77);
             {
                 int t = *(int *)(s1 + 0x304);
                 f = 5.0f;
@@ -57,8 +56,8 @@ void func_0010DE70(void *a0)
             }
             break;
         case 2:
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 3, 0x1B, 0, 0x77);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 3, 0x1B, 0, 0x77);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 3, 0x1B, 0, 0x77);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 3, 0x1B, 0, 0x77);
             {
                 int t = *(int *)(s1 + 0x304);
                 f = 2.0f;

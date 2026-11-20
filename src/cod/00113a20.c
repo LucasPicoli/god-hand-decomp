@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 extern void func_00124EC0(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -40,8 +39,8 @@ void func_00113A20(void *a0)
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
         func_00129578(s1);
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 5, 0x17, 0x2A, 0, 0xA);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 5, 0x17, 0x2A, 0, 0xA);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 5, 0x17, 0x2A, 0, 0xA);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 5, 0x17, 0x2A, 0, 0xA);
         *(char *)(s1 + 0x1684) = 1;
         *(unsigned short *)(s1 + 0x3AC) |= 1;
         func_0010A438(s1);

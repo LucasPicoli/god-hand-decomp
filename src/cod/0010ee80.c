@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 /* func_0010EE80 — 0x0010EE80, 880 B — sn-2.95.3-136.
  * +0x2F6 phase machine; template src/cod/00111750.c. */
@@ -10,8 +11,6 @@ extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 
 extern void func_00129578(void *a0);
 
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00124EC0(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
@@ -53,11 +52,11 @@ void func_0010EE80(void *a0)
         func_00124540(s1, 1);
         if (*(unsigned char *)(s1 + 0x2F7) != 0) {
             if (D_00747A0C != 0) {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0xE6, 0xD, 0x1D, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0xE6, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xE6, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0xE6, 0xD, 0x1D, 0, 0x123);
             } else {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0xC8, 0xD, 0x1D, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0xC8, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xC8, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0xC8, 0xD, 0x1D, 0, 0x123);
             }
             {
                 int t = *(int *)(s1 + 0x304);
@@ -66,11 +65,11 @@ void func_0010EE80(void *a0)
             }
         } else {
             if (D_00747A0C != 0) {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x64, 0xD, 0x1D, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x64, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x64, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x64, 0xD, 0x1D, 0, 0x123);
             } else {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x50, 0xD, 0x1D, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x50, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x50, 0xD, 0x1D, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x50, 0xD, 0x1D, 0, 0x123);
             }
             {
                 int t = *(int *)(s1 + 0x304);

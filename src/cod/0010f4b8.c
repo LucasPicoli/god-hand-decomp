@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
@@ -12,8 +13,6 @@ extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, in
 extern void func_0027D670(void *a0, int a1, int a2);
 extern void func_00124540(void *a0, int a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 extern void func_00124EC0(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -98,16 +97,16 @@ void func_0010F4B8(void *a0)
         }
         if (*(unsigned char *)(s0 + 0x2F7) != 0) {
             char *v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
             *(char *)(s0 + 0x1684) = 0;
             v = *(char **)(s0 + 0x304);
             p1 = *(int *)(v + 0x1C8) + (int)v;
             p2 = *(int *)(v + 0x1CC) + (int)v;
         } else {
             char *v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
             *(char *)(s0 + 0x1684) = 0;
             v = *(char **)(s0 + 0x304);
             p1 = *(int *)(v + 0x1A4) + (int)v;

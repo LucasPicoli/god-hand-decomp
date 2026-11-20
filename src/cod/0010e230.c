@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 /* L1 w34 parked: 216/225 EXACT, insn delta -1, needs --assembler sn (ps2eeas supplies the mtc1 nop at .L0010E2EC). Residue: flag copy daddu $a0,$v0 (R allocated $v0 here), beqzl for beqz at 0x0010E334 (follows the flag register), mov.s $f12 placement before the func_002A8578 call. Edits this wave: int one = 1 hoisted, extern int func_00124540, stores 15C4/15B0 first. */
 /* func_0010E230 — 0x0010E230, 900 B — sn-2.95.3-136. */
@@ -8,8 +9,6 @@
 extern float capVu0MagnitudeXZ(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int func_00124540(void *a0, int a1);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -78,10 +77,8 @@ void func_0010E230(void *a0)
         *(short *)(s1 + 0x5E2) = 0;
         if (*(char *)(s1 + 0x648) > 0)
             *(char *)(s1 + 0x648) = 0x2D;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1,
-            (int)(*(float *)(s1 + 0x600) * 8.0f), 2, 0x18, 0, 0xA);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1,
-            (int)(*(float *)(s1 + 0x600) * 8.0f), 2, 0x18, 0, 0xA);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s1 + 0x600) * 8.0f), 2, 0x18, 0, 0xA);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s1 + 0x600) * 8.0f), 2, 0x18, 0, 0xA);
         w = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(w + 0x1AC) + w, *(int *)(w + 0x1B4) + w,
                       3, 0.0f, 0, 0);
