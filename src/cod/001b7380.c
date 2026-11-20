@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageUnit.h"
 
 extern float Tramp_001F7DF8_00101E28(void *a0);
 extern void func_001B7568(void *a0, void *a1);
@@ -32,7 +33,7 @@ int cOmBase_checkDamage(cOmBase *self, cDamageTake *hit) {
         return 0;
     }
     {
-        long hf = hit->flags;
+        long hf = hit->hitFlags;
         long live = hf & 1;
 
         if (live == 0) {
@@ -66,7 +67,7 @@ int cOmBase_checkDamage(cOmBase *self, cDamageTake *hit) {
         self->hp = hp;
     }
     self->hitFlash = 3.0f;
-    VU0_LQC2(4, &hit->dir, 0x0);
+    VU0_LQC2(4, &hit->hitVec, 0x0);
     VU0_SQC2(4, v, 0x0);
     s = &v[1];
     VU0_SQC2_VF0(v, 0x20);

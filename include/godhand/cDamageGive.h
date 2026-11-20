@@ -14,17 +14,13 @@
 #define GODHAND_CDAMAGEGIVE_H
 
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageUnit.h"
 
 typedef struct cDamageGive {
-    unsigned int flags;                 /* 0x00 bit 0 is set by the enemy setups */
-    char unk04[0xC];
-    cVec hitVec;                        /* 0x10 push direction of the hit */
-    char unk20[0x20];
-    int unk40;                          /* 0x40 cleared by the enemy setups */
-    short unk44;                        /* 0x44 */
-    short unk46;                        /* 0x46 cleared when the volume is parked; the setups store 0x2E..0x52 (cDamageTake.kind) */
-    char unk48[0x4];
-    int activeTime;                     /* 0x4C frames the volume stays active, 0 while parked */
-} cDamageGive;
+    CDAMAGE_UNIT_FIELDS;                /* 0x00..0x4F, as cDamageUnit */
+    char unk50[0x60 - 0x50];
+} cDamageGive;                          /* 0x60: the manager's give array has a 0x60 stride */
+
+typedef char cDamageGive_size_check[(sizeof(cDamageGive) == 0x60) ? 1 : -1];
 
 #endif

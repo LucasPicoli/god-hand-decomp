@@ -14,7 +14,6 @@ extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int on);
 extern int SetEffect(int effNo, int kind, void *obj, int a3, int a4, unsigned int a5);
 extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *obj, int a4, int a5, int a6, int a7);
 extern char D_005FEE00[];
-extern void cDamageUnit_SetDamageCollActive(cDamageUnit *unit, int active);
 extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int active);
 extern void KillEffect(void *obj, int effNo, int mode);
 extern char D_00462FC0[];

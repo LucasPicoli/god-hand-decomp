@@ -62,7 +62,7 @@ void func_001A5540(cOmStrike *self)
         func_002A8578(self, *(int *)(mot + 0xC) + (int)mot, *(int *)(mot + 0x10) + (int)mot, 0, 0.0f, 0, 0);
         SetEffect(1, 2, self, 0, -1, 0xFFFFFFFF);
         if (self->give)
-            cDamageUnit_SetDamageCollActive(self->give, 1);
+            cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 1);
         self->base.phase = 1;
         self->timer = 12;
         self->base.step = 0;
@@ -72,7 +72,7 @@ void func_001A5540(cOmStrike *self)
         moveMotion(self);
         if (--self->timer < 0) {
             if (self->give)
-                cDamageUnit_SetDamageCollActive(self->give, 0);
+                cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 0);
             self->timer = 0x3A;
             self->base.phase = 2;
             self->base.step = 0;
@@ -83,7 +83,7 @@ void func_001A5540(cOmStrike *self)
         moveMotion(self);
         if (--self->timer < 0) {
             if (self->give)
-                cDamageUnit_SetDamageCollActive(self->give, 1);
+                cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 1);
             self->base.step = 0;
             self->base.phase = 3;
             self->base.stepArg = 0;

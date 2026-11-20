@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_00194558, breakable object update: break when the player touches its trigger or its life runs out, play the hit sound and flash the mesh for 8 frames after a hit. */
 #include "godhand/cOmBase.h"
 #include "godhand/player.h"
+#include "godhand/cDamageUnit.h"
 
 #define BREAK_FLASH_FRAMES  8
 #define BREAK_MESH_LAYER    2

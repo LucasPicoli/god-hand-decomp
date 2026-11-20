@@ -49,8 +49,8 @@ int func_001A3E10(cOmHitVolume *em)
         v[3].z = 0.0f;
         ov->w = 1.0f;
         cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 1.5f);
-        ((cDamageGive *)em->damageGive)->unk46 = 0x52;
-        ((cDamageGive *)em->damageGive)->activeTime = 0x14;
+        ((cDamageGive *)em->damageGive)->kind = 0x52;
+        ((cDamageGive *)em->damageGive)->power = 0x14;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);
     }
     em->base.hp = em->base.hpMax = 50;

@@ -5,6 +5,7 @@
 #define GODHAND_COMHITVOLUMESETUP_H
 
 #include "godhand/cOmHitVolume.h"
+#include "godhand/cDamageUnit.h"
 
 /* The setup steps the family shares. */
 extern int func_001B6FB8(cOmHitVolume *self);    /* cOmBase constructor step */
@@ -12,7 +13,6 @@ extern int func_001C28A0(cOmHitVolume *self);    /* enemy work defaults */
 extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
 extern void *cDamageManage_CreateDamageGive(void *mgr, int kind, void *owner);
 extern int cDamageUnit_AddDamageCollSphere(void *unit, void *mtx, float *ofs, float r);
-extern void cDamageUnit_SetDamageCollActive(void *unit, int on);
 extern int func_001FD9D8(void *unit, void *mtx, cVec *ofs, cVec *rot, cVec *size);
 extern char D_00574380[];                               /* the damage manager */
 
