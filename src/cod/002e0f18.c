@@ -24,8 +24,8 @@ void func_002E0F18(char *str, int x, int y, unsigned int color, int depth)
     unsigned int t;
     char ch;
 
-    w = D_0061B280.kindA;
-    h = D_0061B280.kindB;
+    w = D_0061B280.charW;
+    h = D_0061B280.charH;
     if (color < 0x10) {
         if (color & 8)
             noAlphaTest = 0;
@@ -69,7 +69,7 @@ void func_002E0F18(char *str, int x, int y, unsigned int color, int depth)
                 func_0015DB30(v, color, 0, &cfg, 8, 1);
                 D_0061B280.drawn++;
             }
-            x += D_0061B280.kindA;
+            x += D_0061B280.charW;
         }
         str++;
     }

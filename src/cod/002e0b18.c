@@ -9,7 +9,7 @@ int func_002E0B18(int a0, int a1) {
     int v0;
     if (a0 >= D_003C1180) goto ret1;
     a0 = D_003C1180 - a0;
-    v1 = D_0061B280.kindA;
+    v1 = D_0061B280.charW;
     v0 = a1 * v1;
     if (a0 >= v0) goto ret0;
     a0 = a0 / v1;

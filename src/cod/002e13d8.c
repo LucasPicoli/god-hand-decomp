@@ -9,11 +9,11 @@ void Moji_size_set(int w, int h) {
     if (w != 0) {
         h &= 0xFF;
         if (h != 0) {
-            D_0061B280.kindA = w;
-            D_0061B280.kindB = h;
+            D_0061B280.charW = w;
+            D_0061B280.charH = h;
             return;
         }
     }
-    D_0061B280.kindA = 8;
-    D_0061B280.kindB = 8;
+    D_0061B280.charW = 8;
+    D_0061B280.charH = 8;
 }
