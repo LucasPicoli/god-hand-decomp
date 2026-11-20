@@ -98,7 +98,7 @@ int GetOrInit_D_007857F8_170778(void) {
 }
 
 __attribute__((section(".text.InitObjSetVtable4206B0_1707C8")))
-int InitObjSetVtable4206B0_1707C8(int a0) {
+void *InitObjSetVtable4206B0_1707C8(void *a0) {
     func_001BFAC8(a0);
     *(int*)((char*)a0 + 0x214) = (int)&D_004206B0;
     return a0;

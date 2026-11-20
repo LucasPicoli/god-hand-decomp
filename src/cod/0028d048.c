@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *CreateObj(int a0, int a1);
+#include "godhand/player.h"
 
 __attribute__((section(".text.func_0028D048")))
 char *func_0028D048(char *a0, int a1) {
@@ -12,7 +12,7 @@ char *func_0028D048(char *a0, int a1) {
     case 0x375: case 0x377: case 0x378: case 0x379: case 0x37A: case 0x37D:
     case 0x37E: case 0x37F: case 0x380: case 0x3B7:
     {
-        char *s0 = CreateObj(a1, 0xFFFF);
+        char *s0 = (char *)CreateObj(a1, 0xFFFF);
         if (s0 == 0) {
             return 0;
         }

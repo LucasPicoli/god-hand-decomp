@@ -3,6 +3,7 @@
 #include "godhand/cTaskWork.h"
 #include "godhand/cTaskManager.h"
 #include "godhand/vu0.h"
+#include "godhand/objFactory.h"
 
 extern int D_00747A34;
 extern char D_00754C10[];

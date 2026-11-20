@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *CreateObj(int actorId, int arg);
+#include "godhand/player.h"
 extern void func_001D0090(void *obj, void *owner);
 
 #define ACTION_SPAWN   0x211            /* action id that spawns the child */
@@ -21,7 +21,7 @@ void Spawner_spawnChild(char *self)
     if ((*(int *)(self + 0x564) ^ ACTION_SPAWN) != 0) {
         return;
     }
-    obj = CreateObj(ACTOR_CHILD, 0xFFFF);
+    obj = (char *)CreateObj(ACTOR_CHILD, 0xFFFF);
     if (obj == 0) {
         return;
     }

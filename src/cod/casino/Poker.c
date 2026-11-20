@@ -1,5 +1,6 @@
 /* TU: Poker [casino] - recovered C++ class. */
 #include "godhand/Poker.h"
+#include "godhand/player.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -22,7 +23,6 @@ typedef struct PokerInitFrame {
 
 extern int D_0042B270[POKER_SUIT_NUM];
 extern float D_00568150[4];
-extern BlackJackCardObj *CreateObj(int id, int a1);
 extern void cOmTrump_Initialize(BlackJackCardObj *obj, int rank);
 extern void IdScreen_loadIdData(Poker *self);
 
@@ -67,7 +67,7 @@ void Poker_Initialize(Poker *self, int level)
     deck = self->deck;
     for (suit = 0; suit < POKER_SUIT_NUM; suit++) {
         for (rank = 0; rank < POKER_RANK_NUM; rank++) {
-            BlackJackCardObj *obj = CreateObj(f.suitId[suit], 0xFFFF);
+            BlackJackCardObj *obj = (BlackJackCardObj *)CreateObj(f.suitId[suit], 0xFFFF);
             float *src = D_00568150;
 
             if (obj != 0) {

@@ -24,7 +24,7 @@ static inline int vecHasRoom(PtrVecRef *l)
 }
 
 __attribute__((section(".text.func_0030FCC0")))
-int func_0030FCC0(cOmBase *p)
+int func_0030FCC0(cObj *p)
 {
     if (p->actorId == 0) {
         if (!vecHasRoom(&D_00754C30))

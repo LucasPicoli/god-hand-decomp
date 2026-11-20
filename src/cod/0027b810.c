@@ -2,6 +2,7 @@
 
 extern void func_0028EBF0(char *a0, void *a1, int a2);
 #include "godhand/motion.h"
+#include "godhand/player.h"
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
@@ -12,7 +13,6 @@ extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern int cDataManager_addPinnedData(void *a0, int a1, int a2);
-extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 extern void Obj1D00_ClearState_8(char *a0);
 extern int D_00462FC0;
@@ -135,8 +135,8 @@ int func_0027B810(char *a0)
     v0 = *(int *)(s1 + 0x304);
     cDataManager_addPinnedData(&D_005864E0, 0x369, *(int *)(v0 + 0xC) + v0);
     {
-        char *obj = CreateObj(0x369, 0xFFFF);
-        *(char **)(s1 + 0x15B0) = obj;
+        cGameObj *obj = CreateObj(0x369, 0xFFFF);
+        *(cGameObj **)(s1 + 0x15B0) = obj;
         if (obj != 0) {
             char *p2;
             char *p3;
@@ -149,10 +149,8 @@ int func_0027B810(char *a0)
             VU0_SQC2_VF0(buf, 0x40);
             VU0_SQC2_VF0(buf, 0x60);
             {
-                char *v1 = *(char **)(obj + 0x214);
-                short off = *(short *)(v1 + 0x40);
-                int (*fn)(char *) = *(int (**)(char *))(v1 + 0x44);
-                fn(obj + off);
+                cGameObjVt *vt = cGameObj_vt(obj);
+                vt->initial((char *)obj + vt->initialDelta);
             }
             src1 = *(float **)(s1 + 0xF0);
             dst = *(float **)(*(char **)(s1 + 0x15B0) + 0xF0);

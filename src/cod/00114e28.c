@@ -24,8 +24,8 @@ extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00126770(void *a0);
 #include "godhand/motion.h"
+#include "godhand/player.h"
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
-extern char *CreateObj(int a0, int a1);
 extern void func_0012A8D8(void *a0);
 extern void cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
@@ -273,8 +273,8 @@ void func_00114E28(void *a0)
         break;
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0 && *(int *)(s1 + 0x698) == 0) {
-        char *obj = CreateObj(0x3AF, 0xFFFF);
-        *(char **)(s1 + 0x698) = obj;
+        cGameObj *obj = CreateObj(0x3AF, 0xFFFF);
+        *(cGameObj **)(s1 + 0x698) = obj;
         if (obj != 0) {
             char *p2c;
             char *p3;
@@ -285,10 +285,8 @@ void func_00114E28(void *a0)
             int *p100;
 
             {
-                char *v1 = *(char **)(obj + 0x214);
-                short off = *(short *)(v1 + 0x40);
-                int (*fn)(char *) = *(int (**)(char *))(v1 + 0x44);
-                fn(obj + off);
+                cGameObjVt *vt = cGameObj_vt(obj);
+                vt->initial((char *)obj + vt->initialDelta);
             }
             src1 = *(float **)(s1 + 0xF0);
             dst = *(float **)(*(char **)(s1 + 0x698) + 0xF0);

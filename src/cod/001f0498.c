@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *CreateObj(int a0, int a1);
+#include "godhand/player.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -10,7 +10,7 @@ __attribute__((section(".text.func_001F0498")))
 char *func_001F0498(char *a0, int a1, float *a2, float a3) {
     float f20 = a3;
     float *s1 = a2;
-    char *s0 = CreateObj(a1, 0xFFFF);
+    char *s0 = (char *)CreateObj(a1, 0xFFFF);
 
     if (s0 != 0) {
         {

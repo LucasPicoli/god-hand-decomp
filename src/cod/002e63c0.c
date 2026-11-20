@@ -1,11 +1,10 @@
 /* sn-2.95.3-136: create and set up the model object for a slot (0x2E63C0). */
 #include "godhand/cGameObj.h"
+#include "godhand/player.h"
 
 extern int func_00306C78(void **table, unsigned int index, void *out1, void *out2);
 extern void func_002D9F68(void *self, const char *fmt, ...);
-extern cGameObj *CreateObj(int kind, int id);
 extern int cModel_setupModel(void *obj, int data, int size, int a3, int a4);
-extern void ReleaseObj(void *obj);
 extern char D_00741DC8[];
 extern char D_0044E3B0[];
 extern char D_0044E3D8[];

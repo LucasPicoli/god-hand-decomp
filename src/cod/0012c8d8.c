@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 
 /* sn-2.95.3-136 matched TU. */
@@ -13,33 +12,30 @@ extern int cOmWeapon_setParent();
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/player.h"
 
 __attribute__((section(".text.pl00_setPaper")))
 void pl00_setPaper(void *a0) {
     char *s0 = (char *)a0;
     float buf[8];
     cCoreSave *w;
-    char *obj;
+    cGameObj *obj;
 
     if (*(int *)(s0 + 0x6A8) == 0) {
         w = &D_00569B70;
         cCoreSave_setPaper(w);
         obj = CreateObj(0x376, 0xFFFF);
-        *(char **)(s0 + 0x6A8) = obj;
+        *(cGameObj **)(s0 + 0x6A8) = obj;
         if (obj != 0) {
-            char *cls;
-            int (*fn)(char *);
-            short off;
+            cGameObjVt *vt;
             float *src;
             float *src2;
             float *dst;
             float *d490;
             int *p100;
 
-            cls = *(char **)(obj + 0x214);
-            fn = *(int (**)(char *))(cls + 0x44);
-            off = *(short *)(cls + 0x40);
-            fn(obj + off);
+            vt = cGameObj_vt(obj);
+            vt->initial((char *)obj + vt->initialDelta);
 
             dst = *(float **)(*(char **)(s0 + 0x6A8) + 0xF0);
             src = *(float **)(s0 + 0xF0);

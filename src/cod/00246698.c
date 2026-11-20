@@ -1,5 +1,6 @@
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/player.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -10,7 +11,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int irand(void);
 extern void func_002744E0(void *a0);
-extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 extern void func_001D0340(void *a0);
 extern void func_001D0408(void *a0);
@@ -286,12 +286,10 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
             cObjBase_addNullSpeed_Rotation(p, 1.0f);
             cObjBase_addNullSpeed(p, 1.0f);
             if ((*(unsigned short *)(p + 0x3AC) & 1) != 0 && *(int *)(p + 0x738) == 0) {
-                char *obj = CreateObj(0x3B1, 0xFFFF);
-                *(char **)(p + 0x738) = obj;
+                cGameObj *obj = CreateObj(0x3B1, 0xFFFF);
+                *(cGameObj **)(p + 0x738) = obj;
                 if (obj != 0) {
-                    char *cls;
-                    int (*fn)(char *);
-                    short off;
+                    cGameObjVt *vt;
                     float *src;
                     float *src2;
                     float *dst;
@@ -300,10 +298,8 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
 
                     VU0_SQC2_VF0(buf, 0x0);
                     VU0_SQC2_VF0(buf, 0x10);
-                    cls = *(char **)(obj + 0x214);
-                    fn = *(int (**)(char *))(cls + 0x44);
-                    off = *(short *)(cls + 0x40);
-                    fn(obj + off);
+                    vt = cGameObj_vt(obj);
+                    vt->initial((char *)obj + vt->initialDelta);
 
                     dst = *(float **)(*(char **)(p + 0x738) + 0xF0);
                     src = *(float **)(p + 0xF0);

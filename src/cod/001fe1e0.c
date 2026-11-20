@@ -1,5 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/FileLoadRec.h"
 
 extern char D_00569B80[];
 extern char D_0056C380[];

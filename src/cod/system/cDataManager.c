@@ -7,7 +7,7 @@ extern void InitRec_start(cDataSlot *slot, int kind, void *buf);
 extern int cDataManager_freeKind(cDataManager *self, int kind);
 /* Load address of the slot holding kind, or 0. */
 __attribute__((section(".text.cDataManager_seeDataAddress")))
-int cDataManager_seeDataAddress(cDataManager *self, int kind) {
+void *cDataManager_seeDataAddress(cDataManager *self, int kind) {
     int i = cDataManager_findKind(self, kind);
     if (i >= 0)
         return self->slot[i].data;
@@ -28,9 +28,9 @@ void cDataManager_clear(cDataManager *self) {
 /* cDataManager_loadWait: return the load address of a kind, loading it into a free slot if needed. */
 
 __attribute__((section(".text.cDataManager_loadWait")))
-int cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep) {
+void *cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep) {
     int i = cDataManager_findKind(self, kind);
-    int data;
+    void *data;
     if (i >= 0) {
         func_001FF090(&self->slot[i]);
         return self->slot[i].data;

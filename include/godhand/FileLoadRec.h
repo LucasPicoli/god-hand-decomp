@@ -26,4 +26,6 @@ typedef struct FileLoadRec {
     int objId;                          /* 0x20 */
 } FileLoadRec;
 
+extern int func_003078E0(unsigned int a);   /* the converted object id, -1 when there is none */
+
 #endif

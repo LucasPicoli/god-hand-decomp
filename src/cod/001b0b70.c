@@ -1,5 +1,7 @@
 #include "include_asm.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/objFactory.h"
+#include "godhand/objCtor.h"
 
 /* ──────────────────────────── small picks ─────────────────────────────── */
 
@@ -83,10 +85,9 @@ extern int D_00747A34;
 extern int D_00754C10;
 extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A52F0(void *p, int v, int size);
-extern int func_0018B290(void *p);
 
 __attribute__((section(".text.AllocZeroedBlock_313E50")))
-int AllocZeroedBlock_313E50(void) {
+void *AllocZeroedBlock_313E50(void) {
     void *p;
     if (D_00747A34 & 0x10000) {
         return 0;

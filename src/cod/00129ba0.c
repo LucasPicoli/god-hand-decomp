@@ -2,11 +2,11 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/player.h"
 
 extern void cHeap_free(void *heap, void *p);
 extern void __builtin_delete(void *p);
 extern char D_0044E538[];
-extern void ReleaseObj(void *obj);
 extern void func_002FBE28(void *self, int flags);
 extern char D_0044A528[];
 extern char D_007419A0[];
@@ -121,26 +121,11 @@ void EffObj_teardown(EffObj *self, int flag) {
 
 /* Spawn the effect object 0x3BF at the owner: pin the data block (the record
  * at the owner's data pointer 0x304 plus its length at 0x310), create the
- * object, call its virtual setup (entry 8), put it 3 units above and 0.3
+ * object, call its initial method, put it 3 units above and 0.3
  * behind the owner in the owner's frame (0x80), copy the owner's angles
  * (0x100) and set the spin to -5 degrees. */
 
 
-
-typedef struct VtEnt {
-    short delta;                        /* added to the object before the call */
-    short index;
-    int (*pfn)(void *self);
-} VtEnt;
-
-typedef struct FxObj {
-    char unk000[0xF0];
-    cVec *pos;                          /* 0xF0 */
-    char unkF4[0xC];
-    cVec rot;                           /* 0x100 */
-    char unk110[0x104];
-    VtEnt *vt;                          /* 0x214 */
-} FxObj;
 
 typedef struct DataRef {
     char unk000[0x310];
@@ -157,14 +142,10 @@ typedef struct Owner {
 } Owner;
 
 #define FX_ID          0x3BF
-#define FX_VT_SETUP    8
 #define FX_OFFSET_Y    3.0f
 #define FX_OFFSET_Z    (-0.3f)
 #define FX_SPIN        (-0.17453292f)
 
-
-
-extern FxObj *CreateObj(int id, int flags);
 
 
 #define FRAME ((char *)&off - 0x0)
@@ -175,7 +156,7 @@ void Owner_spawnEffect(Owner *self)
     cVec off;                           /* sp+0x00 */
     cVec w;                             /* sp+0x10 */
     cVec u;                             /* sp+0x20 */
-    FxObj *fx;
+    cGameObj *fx;
     float spin;
     cVec *up;
     float *mtx;
@@ -187,8 +168,8 @@ void Owner_spawnEffect(Owner *self)
         off.y = FX_OFFSET_Y;
         off.z = FX_OFFSET_Z;
         {
-            VtEnt *ent = &fx->vt[FX_VT_SETUP];
-            ent->pfn((char *)fx + ent->delta);
+            cGameObjVt *vt = cGameObj_vt(fx);
+            vt->initial((char *)fx + vt->initialDelta);
         }
         mtx = self->mtx;
         up = &u;

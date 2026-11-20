@@ -2349,8 +2349,6 @@ INCLUDE_ASM("nonmatching", displayOmLayer);
 
 INCLUDE_ASM("nonmatching", pl00_CkSubScreen);
 
-INCLUDE_ASM("nonmatching", cObj_setId);
-
 
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
