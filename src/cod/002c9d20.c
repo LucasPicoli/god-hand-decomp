@@ -1,5 +1,5 @@
+#include "godhand/cSnd.h"
 extern void System_sendBootRequests(void *);
-extern void func_002C9E78(void *);
 extern void func_002C9F58(void *);
 
 __attribute__((section(".text.func_002C9D20")))

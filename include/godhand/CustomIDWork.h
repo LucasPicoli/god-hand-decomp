@@ -75,4 +75,7 @@ typedef struct CustomIDWork {
     unsigned char unk78;        /* 0x78 */
 } CustomIDWork;
 
+/* Set the element's local X and stop its position animation. */
+void CustomIDWork_SetLocalPosX(CustomIDWork *self, int v);
+
 #endif

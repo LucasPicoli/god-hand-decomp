@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void SdeSystemOutModeSet(int);
-
 #include "godhand/cCoreSave.h"
+#include "godhand/sndTiming.h"
 
 
 

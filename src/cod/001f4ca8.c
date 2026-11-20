@@ -5,7 +5,6 @@
 extern int D_00747A0C;
 extern void func_002D65F8(char *w, float a, float b, float c, float d);
 extern void func_002D6578(char *w, int v);
-extern void CustomIDWork_SetLocalPosX(void *a0, int x);
 extern void SetCustomIDDispOneOrAll_1F4778(char *self, int id, int on);
 
 /* The custom ID screen, as far as the item boxes go. */
@@ -20,7 +19,7 @@ static inline void setItem(cIDItemScreen *self, int idx, float a, float b, float
 
     func_002D65F8(w, a, b, c, d);
     func_002D6578(w, v);
-    CustomIDWork_SetLocalPosX(w, x);
+    CustomIDWork_SetLocalPosX(&self->item[idx], x);
 }
 
 __attribute__((section(".text.func_001F4CA8")))

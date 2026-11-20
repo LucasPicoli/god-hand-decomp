@@ -1,6 +1,5 @@
 #include "godhand/seqNode.h"
 #include "godhand/sndTiming.h"
-extern void func_00375500(void);
 extern int func_00377FA0(void);
 extern void func_003777C0(void);
 extern void func_0037C930(void);

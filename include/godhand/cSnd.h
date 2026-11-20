@@ -129,7 +129,8 @@ struct cSndMemHeap {
 };                              /* 0x390 */
 
 typedef struct cSnd {
-    char unk00[0x18];
+    float unk00[3];             /* 0x00 master volumes, set by func_002C9E78 */
+    float unk0C[3];             /* 0x0C sub volumes, set by func_002C9E78 */
     cSndBgmNode *bgmHead;       /* 0x18 first BGM node */
     cSndSeVoice *voiceHead;     /* 0x1C first playing voice */
     char unk20[4];
@@ -192,5 +193,7 @@ typedef char cSndMemHeap_size_check[sizeof(cSndMemHeap) == 0x390 ? 1 : -1];
 
 cSndKindEnt *func_002D0B88(unsigned short id);
 int cSnd_BgmReqFromEnemies(void *self);
+/* Set the default system volumes and copy master and sub channels into the two triples. */
+void func_002C9E78(cSnd *self);
 
 #endif /* GODHAND_CSND_H */

@@ -1,14 +1,15 @@
+#include "godhand/sndTiming.h"
 extern int D_0076A7A4;
 extern void MtxMultiply(int a, int b, void *buf);
 
 __attribute__((section(".text.SdeSystemOutModeSet")))
-void SdeSystemOutModeSet(int a0) {
-    if (a0 == 0) {
+void SdeSystemOutModeSet(int mode) {
+    if (mode == 0) {
         func_0032BA30(1);
     } else {
         func_0032BA30(0);
     }
-    D_0076A7A4 = a0;
+    D_0076A7A4 = mode;
 }
 
 __attribute__((section(".text.InitObjectFull_3806D8")))
