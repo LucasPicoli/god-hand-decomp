@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
@@ -18,8 +19,6 @@ extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern void func_00124EC0(void *a0);
@@ -250,8 +249,8 @@ void func_00111750(void *a0)
         Obj0000_Clear_Fields_640_648_124E58(s1);
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x82, 0x11, 0x1F, 0, 0x123);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x82, 0x11, 0x1F, 0, 0x123);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x82, 0x11, 0x1F, 0, 0x123);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x82, 0x11, 0x1F, 0, 0x123);
         t = *(int *)(s1 + 0x304);
         *(char *)(s1 + 0x1684) = 1;
         func_002A8578(s1, *(int *)(t + 0x1C0) + t, *(int *)(t + 0x1C4) + t,

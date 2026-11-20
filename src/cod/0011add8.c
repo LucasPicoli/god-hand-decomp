@@ -14,8 +14,6 @@ extern void func_0012B928(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0010A438(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
@@ -41,6 +39,7 @@ extern void func_0010A438(void *a0);
 
 
 #include "godhand/vu0.h"
+#include "godhand/pl00.h"
 
 __attribute__((section(".text.func_0011ADD8")))
 void func_0011ADD8(void *a0)
@@ -199,8 +198,8 @@ void func_0011ADD8(void *a0)
             char *v0 = *(char **)(s1 + 0x304);
             s3v = *(int *)(v0 + 0x51C) + (int)v0;
             s2v = *(int *)(v0 + 0x520) + (int)v0;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0xA, 0x17, 0x2A, 0, 0xA);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0xA, 0x17, 0x2A, 0, 0xA);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xA, 0x17, 0x2A, 0, 0xA);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0xA, 0x17, 0x2A, 0, 0xA);
             *(char *)(s1 + 0x1684) = 0;
         } else {
             char *v0 = *(char **)(s1 + 0x304);

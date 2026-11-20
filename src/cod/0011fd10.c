@@ -2,6 +2,7 @@
 
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
@@ -24,8 +25,6 @@ extern void SetEffectPos(int a0, int a1, int a2, void *a3, int t0, float f12);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern void func_0012C0F8(void *a0, int a1);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern float SetMotionStep(void *a0, float f12);
 extern void func_00124EC0(void *a0);
@@ -183,8 +182,8 @@ void func_0011FD10(void *a0)
         *(int *)(s0 + 0x15B0) = 0;
         *(int *)(s0 + 0x15B8) = 0;
         *(int *)(s0 + 0x15B4) = 4;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, 0xA, 0, 0x2C, 0, 0xA);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, 0x64, 0, 0x1D, 0, 0xA);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xA, 0, 0x2C, 0, 0xA);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x64, 0, 0x1D, 0, 0xA);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     case 3:

@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_0012B928(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern int moveMotion(void *a0);
@@ -34,8 +33,8 @@ void func_00114120(void *a0)
         v0 = *(char **)(s1 + 0x304);
         p1 = *(int *)(v0 + 0x10) + (int)v0;
         p2 = *(int *)(v0 + 0x14) + (int)v0;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 5, 0x17, 0x2A, 0, 0xA);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 5, 0x17, 0x2A, 0, 0xA);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 5, 0x17, 0x2A, 0, 0xA);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 5, 0x17, 0x2A, 0, 0xA);
         *(char *)(s1 + 0x1684) = 1;
         func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         func_0012B928(s1);
@@ -86,14 +85,14 @@ void func_00111010(void *a0)
             char *v = *(char **)(s0 + 0x304);
             p1 = *(int *)(v + 0x4BC) + (int)v;
             p2 = *(int *)(v + 0x4C0) + (int)v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, 0x32, 0x26, 0x1D, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, 0x32, 0x26, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x32, 0x26, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x32, 0x26, 0x1D, 0, 0x123);
         } else {
             char *v = *(char **)(s0 + 0x304);
             p1 = *(int *)(v + 0x494) + (int)v;
             p2 = *(int *)(v + 0x498) + (int)v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s0, 0x32, 0x25, 0x1D, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s0, 0x32, 0x25, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x32, 0x25, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x32, 0x25, 0x1D, 0, 0x123);
         }
         *(char *)(s0 + 0x1684) = 0;
         func_002A8578(s0, p1, p2, 0, 0.0f, 0, 0);

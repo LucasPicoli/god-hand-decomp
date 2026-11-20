@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern unsigned int irand(void);
 extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
@@ -18,8 +19,6 @@ extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
 extern void func_00124EC0(void *a0);
 extern void func_00129630(void *a0);
@@ -134,8 +133,8 @@ void func_001127F8(void *a0)
         Obj0000_Clear_Fields_640_648_124E58(s1);
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x8C, 0x1E, 0x25, 0, 0x123);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x8C, 0x1E, 0x25, 0, 0x123);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x8C, 0x1E, 0x25, 0, 0x123);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x8C, 0x1E, 0x25, 0, 0x123);
         *(char *)(s1 + 0x1684) = 1;
         cCoreSave_useGodItem(&D_00569B70);
         func_00129578(s1);
@@ -279,19 +278,19 @@ void func_00111A20(void *a0)
         if (*(unsigned char *)(s1 + 0x2F7) != 0) {
             char *v0;
             if (D_00747A0C != 0) {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x64, 0x15, 0x21, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x32, 0x15, 0x21, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x64, 0x15, 0x21, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x32, 0x15, 0x21, 0, 0x123);
             } else {
-                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x3C, 0x15, 0x21, 0, 0x123);
-                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x3C, 0x15, 0x21, 0, 0x123);
+                Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x3C, 0x15, 0x21, 0, 0x123);
+                Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x3C, 0x15, 0x21, 0, 0x123);
             }
             v0 = *(char **)(s1 + 0x304);
             p1 = *(int *)(v0 + 0x20C) + (int)v0;
             p2 = *(int *)(v0 + 0x214) + (int)v0;
         } else {
             char *v1;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0x23, 0x15, 0x21, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0x23, 0x15, 0x21, 0, 0x123);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0x23, 0x15, 0x21, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0x23, 0x15, 0x21, 0, 0x123);
             v1 = *(char **)(s1 + 0x304);
             p1 = *(int *)(v1 + 0x20C) + (int)v1;
             p2 = *(int *)(v1 + 0x210) + (int)v1;

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-#include "godhand/comboObj.h"
+#include "godhand/pl00.h"
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -30,7 +30,6 @@ extern void func_001451A0(void *self, void *src, short num);
 extern void SetFlagAfterCopy_145160(void *self, void *src);
 extern char D_003BD6F8[];
 extern unsigned short D_003BD70C;
-extern void func_001269E0(void *self, int combo, int arg);
 extern void cSnd_BgmEventFade(void *snd, int reqNo, float time, float level, float weight);
 extern void displayScrollLayer(int id, int on);
 extern void func_00143A90(char *p);
@@ -159,24 +158,24 @@ extern int D_003BC7D0[];                /* combo table, 0x14 bytes per combo, fi
 
 /* Start the next combo of the current set: wrap to slot 0 of set 0 once the slot passes the set's size, look up the combo, load its first word as the move, start it and advance the slot. Returns the combo id. */
 __attribute__((section(".text.ComboObj_startNext")))
-int ComboObj_startNext(ComboObj *self)
+int ComboObj_startNext(pl00 *self)
 {
     int combo;
     int move;
 
-    if (!(self->slot < cCoreSave_getComboMax(&D_00569B70, self->set))) {
-        self->set = 0;
-        self->slot = 0;
+    if (!(self->comboSlot < cCoreSave_getComboMax(&D_00569B70, self->comboSet))) {
+        self->comboSet = 0;
+        self->comboSlot = 0;
     }
-    combo = cCoreSave_getCombo(&D_00569B70, self->set, self->slot);
-    cCoreSave_getComboLv(&D_00569B70, self->set, self->slot);
-    self->ticks = 0;
-    self->stage = 0;
+    combo = cCoreSave_getCombo(&D_00569B70, self->comboSet, self->comboSlot);
+    cCoreSave_getComboLv(&D_00569B70, self->comboSet, self->comboSlot);
+    self->comboTicks = 0;
+    self->comboStage = 0;
     move = D_003BC7D0[combo * COMBO_ENTRY_WORDS];
     self->moveB = move;
     self->moveA = move;
     func_001269E0(self, combo, 0);
-    self->slot++;
+    self->comboSlot++;
     return combo;
 }
 

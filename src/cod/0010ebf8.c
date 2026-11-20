@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -64,8 +63,8 @@ void func_0010EBF8(void *a0)
             if (inrange(*(unsigned short *)(e + 0x2FE), 0x200, 0x300) & 0xFF)
                 cCoreSave_addGameLevelPoint(&D_00569B70, 0x14);
         }
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s1 + 0x600) * 10.0f), 0xB, 0xA, 0, 0xA);
         t = *(int *)(s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x100) + t, *(int *)(t + 0x108) + t, 5, 0.0f, 0, 0);
         *(float *)(s1 + 0x15C4) = 0.0f;

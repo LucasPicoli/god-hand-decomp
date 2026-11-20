@@ -5,6 +5,7 @@
 #include "godhand/objField.h"
 #include "godhand/cEm00.h"
 #include "godhand/cOmbb.h"
+#include "godhand/pl00.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -1615,21 +1616,21 @@ __attribute__((section(".text.NoOp_1F1B18")))
 void NoOp_1F1B18(void) {}
 
 __attribute__((section(".text.Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408")))
-void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(char *a0, int a1, int a2, int a3, int a4, short a5) {
-    *(int*)(a0 + 0x1668) = a1;
-    *(int*)(a0 + 0x1660) = a2;
-    *(int*)(a0 + 0x1670) = a3;
-    *(int*)(a0 + 0x1678) = a4;
-    *(short*)(a0 + 0x1680) = a5;
+void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(pl00 *self, int move, int a2, int a3, int a4, short a5) {
+    self->moveA = move;
+    self->unk1660[0] = a2;
+    self->unk1670[0] = a3;
+    self->unk1678[0] = a4;
+    self->unk1680[0] = a5;
 }
 
 __attribute__((section(".text.Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420")))
-void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(char *a0, int a1, int a2, int a3, int a4, short a5) {
-    *(int*)(a0 + 0x166C) = a1;
-    *(int*)(a0 + 0x1664) = a2;
-    *(int*)(a0 + 0x1674) = a3;
-    *(int*)(a0 + 0x167C) = a4;
-    *(short*)(a0 + 0x1682) = a5;
+void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(pl00 *self, int move, int a2, int a3, int a4, short a5) {
+    self->moveB = move;
+    self->unk1660[1] = a2;
+    self->unk1670[1] = a3;
+    self->unk1678[1] = a4;
+    self->unk1680[1] = a5;
 }
 
 __attribute__((section(".text.Obj0000_Get_Byte_2F4_EQ_1_10B5B8")))

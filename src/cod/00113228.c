@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/pl00.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
 
-extern void Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(void *a0, int a1, int a2, int a3, int a4, int a5);
-extern void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void func_00129578(void *a0);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern void func_00124EC0(void *a0);
@@ -40,8 +39,8 @@ void func_00113228(void *a0)
     case 0: {
         *(short *)(s1 + 0x5E0) = 0;
         *(short *)(s1 + 0x5E2) = 0;
-        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(s1, 0xC8, 0x14, 0x26, 0, 0x123);
-        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(s1, 0xC8, 0x14, 0x26, 0, 0x123);
+        Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xC8, 0x14, 0x26, 0, 0x123);
+        Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0xC8, 0x14, 0x26, 0, 0x123);
         *(char *)(s1 + 0x1684) = 1;
         func_00129578(s1);
         {
