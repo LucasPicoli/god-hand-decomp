@@ -1,9 +1,9 @@
-extern char D_0061B298[];
+#include "godhand/fileBuf.h"
+
 extern int func_002E0AD8(int);
 extern int func_002E0AE0(int);
 extern int func_003A7AE8(char *buf, const char *fmt, char *args);
 extern int func_002E0B18(int, int);
-extern void func_002E0F18(char *buf, int, int, int, int);
 
 __attribute__((section(".text.func_002E0C80")))
 void func_002E0C80(int a0, int a1, int a2, int a3, int a4, const char *fmt, char *args)

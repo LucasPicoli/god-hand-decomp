@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
+#include "godhand/fileBuf.h"
 
 extern char D_0044E030[];
 extern char D_0044E040[];
@@ -82,16 +83,6 @@ void FlashDriver_resetFlash(FlashDriver *self)
 /* Set up the file-list buffer record: two 8s, an empty counter, a 0x1000 byte buffer, then load the entry table into that buffer (a second table when system flag 0x4000 is set). */
 #define FILEBUF_SYS_ALT  0x4000         /* D_00747A34 bit 14 */
 
-typedef struct FileBuf {
-    char unk00[8];
-    unsigned char kindA;                /* 0x08 */
-    unsigned char kindB;                /* 0x09 */
-    short count;                        /* 0x0A */
-    char unk0C[8];
-    void *buf;                          /* 0x14 */
-} FileBuf;
-
-extern FileBuf D_0061B280;
 extern int D_00754200;                  /* heap */
 extern char D_00580D40[];               /* entry table */
 

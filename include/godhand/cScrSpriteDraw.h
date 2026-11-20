@@ -47,16 +47,24 @@ typedef struct cScrSprite {
     float h;                            /* 0x18 */
 } cScrSprite;                           /* 0x1C */
 
+/* Bits of cScrTexCfg.mode (func_0015DB30 tests them). */
+#define SCR_TEX_RECT  0x01              /* use the texel window u0..v1 */
+#define SCR_TEX_TEST  0x20              /* use test as the packet's GS TEST value */
+
 /* The texture draw config the packet builders take: a mode word, then the
  * texel window. The callers keep the whole 0x50 bytes on the stack. */
 typedef struct cScrTexCfg {
-    int mode;
-    float u0;
-    float v0;
-    float u1;
-    float v1;
-    char unk14[0x50 - 0x14];
+    int mode;                           /* 0x00 SCR_TEX_* */
+    float u0;                           /* 0x04 */
+    float v0;                           /* 0x08 */
+    float u1;                           /* 0x0C */
+    float v1;                           /* 0x10 */
+    char unk14[0x30 - 0x14];
+    unsigned long test;                 /* 0x30 GS TEST register value */
+    char unk38[0x50 - 0x38];
 } cScrTexCfg;
+
+typedef char cScrTexCfg_size_check[sizeof(cScrTexCfg) == 0x50 ? 1 : -1];
 
 typedef struct cScrVtx {
     float x;

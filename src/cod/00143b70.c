@@ -5,9 +5,9 @@
 #include "godhand/cOl2b.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cRecordIndex.h"
+#include "godhand/fileBuf.h"
 
 extern char D_0044ACF0[];
-extern void Moji_size_set(int w, int h);
 extern void printf_2E0DA8(int x, int y, int a2, int a3, char *fmt, ...);
 extern void cTaskWork_sleep(void *work, int frames);
 extern void cOl2b_setOpenFix(cOl2b *self);
