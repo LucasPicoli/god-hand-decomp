@@ -5226,6 +5226,13 @@
       ]
     },
     {
+      "path": "src/cod/00365ec0.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
       "path": "src/cod/0036c8d0.c",
       "compiler": "cygnus-2.96"
     },
@@ -13403,6 +13410,13 @@
       "compiler": "cygnus-2.96"
     },
     {
+      "path": "src/cod/0035f970.c",
+      "compiler": "cygnus-2.96",
+      "c_flags_drop": [
+        "-f=-freorder-blocks"
+      ]
+    },
+    {
       "path": "src/cod/0036c248.c",
       "compiler": "cygnus-2.96"
     },
@@ -17994,6 +18008,10 @@
       "c_flags_drop": [
         "-f=-freorder-blocks"
       ]
+    },
+    {
+      "path": "src/cod/0033d598.c",
+      "compiler": "cygnus-2.96"
     },
     {
       "path": "src/cod/003ba8c0.c",
@@ -24395,6 +24413,13 @@
       "tu": "src/cod/000000.c"
     },
     {
+      "name": "func_00365EC0",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x00365EC0",
+      "size": 592,
+      "tu": "src/cod/00365ec0.c"
+    },
+    {
       "name": "Obj0000_Get_D_003F1FF0_36CCA8",
       "unit": "asm/cod/000000",
       "vaddr": "0x0036CCA8",
@@ -24596,6 +24621,13 @@
       "vaddr": "0x0035F958",
       "size": 20,
       "tu": "src/cod/000000.c"
+    },
+    {
+      "name": "func_0035F970",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0035F970",
+      "size": 276,
+      "tu": "src/cod/0035f970.c"
     },
     {
       "name": "Obj0000_Set_Field_80_372C68",
@@ -28156,6 +28188,13 @@
       "vaddr": "0x0033D578",
       "size": 32,
       "tu": "src/cod/00138528.c"
+    },
+    {
+      "name": "func_0033D598",
+      "unit": "asm/cod/000000",
+      "vaddr": "0x0033D598",
+      "size": 392,
+      "tu": "src/cod/0033d598.c"
     },
     {
       "name": "Forward33B658_33E678",

@@ -34,4 +34,7 @@ typedef struct SfdYuvTab {
 
 extern int func_00360D50(void);
 
+/* Fill the tables; mode 1 makes the luma ramp fall across lo..hi, any other mode makes it rise. */
+void func_00365EC0(int mode, int lo, int hi, SfdYuvTab *tab);
+
 #endif
