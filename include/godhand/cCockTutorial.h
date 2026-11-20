@@ -31,4 +31,7 @@ typedef struct cCockTutorial {
     unsigned char unkB8;                /* 0xB8 */
 } cCockTutorial;
 
+/* Show tutorial message msg. */
+void cCockTutorial_TutorialON(cCockTutorial *self, unsigned short msg);
+
 #endif

@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/DispMgr.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void func_001E6ED8(void *a0, int a1, int a2);
 extern void func_001E6D48(void *a0, int a1, int a2);
 extern void UiPanel_setMessAndShow(void *a0, int a1, int a2);
-extern char D_003BD6E8[];
 extern char D_005FEE00[];
 extern char D_007474A0[];
 
@@ -76,7 +76,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
             }
         }
         cCoreSave_addCasinoTicket(&D_00569B70, 1);
-        *(int *)(*(char **)D_003BD6E8 + 0x1A10) =
+        D_003BD6E8->item.ticketSeed =
             (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
         func_001E6ED8(self, 0, 0);
         func_001E6D48(self, 0, 0);

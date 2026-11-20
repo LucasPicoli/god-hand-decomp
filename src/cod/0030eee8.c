@@ -4,6 +4,7 @@
 #include "godhand/cSubScr.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cDataManager.h"
+#include "godhand/DispMgr.h"
 
 #define T0_COUNT (*(volatile int *)0x10000800)
 
@@ -13,7 +14,6 @@ extern int D_00752D44;
 extern int D_00747A78;
 extern void *D_003C2648;
 extern void *D_003C23A4;
-extern void *D_003BD6E8;
 extern char D_005E8040[];
 extern char D_005CAE50[];
 extern char D_0061A990[];
@@ -45,7 +45,6 @@ extern void cCamManager_update(void *p);
 extern void ForwardListEntries_2C5470(int **p);
 extern void func_00307B28(void *p);
 extern void cMessage_updateAll(void *p);
-extern void func_00140E58(void *p);
 extern void func_001FE748(void *p);
 extern void InitSubsystemGroup_2CA518(void *p);
 

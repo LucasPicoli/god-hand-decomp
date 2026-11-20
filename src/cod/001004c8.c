@@ -1,5 +1,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cOmBase.h"
+#include "godhand/DispMgr.h"
+#include "godhand/cSubScrOption.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -146,16 +148,16 @@ int PostInc_D_00566E10_0015B0F0_15B0F0(int a0) {
 }
 
 __attribute__((section(".text.SetFlagOnChildren_167EE8")))
-void SetFlagOnChildren_167EE8(int a0)
+void SetFlagOnChildren_167EE8(cSubScrOptionT *self)
 {
-    int **p = (int **)((char *)a0 + 0x80);
+    cIDBaseEnt **p = self->ent;
     unsigned int i = 0;
     do {
-        int *q = *p;
+        cIDBaseEnt *q = *p;
         i++;
         p++;
-        *(int *)((char *)q + 0x2C) |= 0x08000000;
-    } while (i < 16);
+        q->flags |= IDENT_FLAG_NO_DRAW;
+    } while (i < SUBSCR_OPTIONT_ENT_NUM);
 }
 
 __attribute__((section(".text.GetTypeDefaultValue_16EDE0")))
@@ -243,7 +245,6 @@ void SetLinkedObjField2B_1D6D68(char *a0, int a1) {
     }
 }
 
-extern int *D_003BD6E8;
 extern int D_0042C320;
 extern int D_0061A990[];
 extern unsigned short D_007474A0[];
@@ -262,8 +263,7 @@ void cActionButtonUnit_setOk(unsigned char *a0)
         return;
     }
     {
-        char *p = (char *)D_003BD6E8;
-        *(int *)(p + 0xF30) |= 0x10000000;
+        D_003BD6E8->screen.flags |= 0x10000000;
     }
 }
 

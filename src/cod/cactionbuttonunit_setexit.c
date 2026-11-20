@@ -1,16 +1,15 @@
 /* cActionButtonUnit_setExit — if the button state (a0+0x35) is 1, set a global
- * exit flag (0x20000000) in the manager at D_003BD6E8+0xF30; then always
+ * exit flag (0x20000000) in the game object's prompt screen flags; then always
  * notify cActionButtonEnt_reset.  Call shape (notify outside the guard) recovered via
  * decomp-permuter.  sn-2.95.3-136. */
+#include "godhand/DispMgr.h"
 
-extern void *D_003BD6E8;
 extern void cActionButtonEnt_reset(void *);
 
 __attribute__((section(".text.cActionButtonUnit_setExit")))
 void cActionButtonUnit_setExit(void *a0) {
     if (*(unsigned char *)((char *)a0 + 0x35) == 1) {
-        void *p = D_003BD6E8;
-        *(int *)((char *)p + 0xF30) |= 0x20000000;
+        D_003BD6E8->screen.flags |= 0x20000000;
     }
     cActionButtonEnt_reset(a0);
 }

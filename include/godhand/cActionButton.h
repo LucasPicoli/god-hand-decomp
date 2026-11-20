@@ -58,17 +58,7 @@ typedef struct cActionButton {
     cActionButtonEnt ent[8];            /* 0x104 */
 } cActionButton;
 
-/* The game object (D_003BD6E8) as the prompts see it. */
-typedef struct ActBtnGame {
-    char unk0000[0xEA0];
-    char anim[0x90];                    /* 0xEA0 */
-    unsigned int flags;                 /* 0xF30 */
-    char unkF34[0x12C2 - 0xF34];
-    unsigned short frame;               /* 0x12C2 */
-} ActBtnGame;
-
 extern int ReturnOne_1F6FA0(cActionButtonEnt *ent);
-extern int GetNextAnimIndex_1451E0(void *anim);
 extern void BlendSetup_load(void *anim, int *cmdTbl, unsigned short *idTbl,
                           unsigned char *argTbl, int cmdNum, int start);
 

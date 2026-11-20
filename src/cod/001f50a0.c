@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/CustomIDWork.h"
+#include "godhand/DispMgr.h"
 
 extern void SetCustomIDDispOneOrAll_1F4778(void *self, int entry, int on);
 extern void CustomIDWork_SetNumber(CustomIDWork *work, int n);
 extern void CustomIDWork_SetMessNo(CustomIDWork *work, int messNo);
 extern int ReturnOne_1F6FA0(void *self);
-extern int GetNextAnimIndex_1451E0(void *table);
 extern void BlendSetup_load(void *table, int a, int b, int c, int d, int e);
-extern char *D_003BD6E8;
 
 #define TIME_ROW_NUM       7          /* rows in the table */
 #define TIME_DISP_FIRST    0x2D       /* three display entries per row, from here */
@@ -51,9 +50,6 @@ void CustomIDOwner_setTimeRow(void *self, unsigned short idx, int val, int show)
     }
 }
 
-#define GAME_ANIM_TABLE   0xEA0       /* animation table inside the game object */
-#define GAME_FLAGS_OFFSET 0xF30
-#define GAME_COUNTER_OFFSET 0x12C2
 #define GAME_F_ANIM_DONE  0x20000000
 #define ANIM_NONE         (-2)        /* GetNextAnimIndex answer: nothing queued */
 #define STEP_BLEND_FRAMES 0x2D
@@ -74,7 +70,7 @@ typedef struct AnimNode {
     int blendC;                         /* 0x40 */
 } AnimNode;
 
-#define GAME_FLAGS()    (*(unsigned int *)(D_003BD6E8 + GAME_FLAGS_OFFSET))
+#define GAME_FLAGS()    (D_003BD6E8->screen.flags)
 
 /* Per-frame step of an animation node. */
 __attribute__((section(".text.AnimNode_stepPlayback")))
@@ -95,7 +91,7 @@ int AnimNode_stepPlayback(AnimNode *self)
     } else {
         self->frames = self->frames - 1;
     }
-    idx = GetNextAnimIndex_1451E0(D_003BD6E8 + GAME_ANIM_TABLE);
+    idx = GetNextAnimIndex_1451E0(&D_003BD6E8->screen);
     if (idx >= 0) {
         if (self->step == 1)
             GAME_FLAGS() |= GAME_F_ANIM_DONE;
@@ -108,12 +104,12 @@ int AnimNode_stepPlayback(AnimNode *self)
     case 0:
         if (idx != ANIM_NONE)
             return 1;
-        BlendSetup_load(D_003BD6E8 + GAME_ANIM_TABLE, self->blendA, self->blendB, self->blendC, self->mode, self->counter);
+        BlendSetup_load(&D_003BD6E8->screen, self->blendA, self->blendB, self->blendC, self->mode, self->counter);
         self->step = self->step + 1;
         self->frames = STEP_BLEND_FRAMES;
         /* fall through */
     case 1:
-        self->counter = *(unsigned short *)(D_003BD6E8 + GAME_COUNTER_OFFSET) + 1;
+        self->counter = D_003BD6E8->screen.cur + 1;
         break;
     }
     return 1;
