@@ -3,11 +3,9 @@
 #include "godhand/gameWork.h"
 #include "godhand/cScenario.h"
 #include "godhand/criStm.h"
+#include "godhand/DispMgr.h"
 extern void cTaskWork_exit(cTaskWork *self);
-extern char *D_003BD6E8;
 extern unsigned int D_00747A78;         /* system flags */
-
-extern void cCockTutorial_TutorialON(void *tut, unsigned short id);
 
 /* A gimmick that shows a tutorial page. */
 typedef struct cOmTutorial {
@@ -21,20 +19,22 @@ typedef struct cOmTutorial {
 __attribute__((section(".text.func_001BF8C8")))
 void func_001BF8C8(cOmTutorial *self)
 {
-    char *tut;
+    cCockTutorial *tut;
     cScenario *sc;
     int idx;
+    signed char state;
 
-    cCockTutorial_TutorialON(D_003BD6E8 + 0x1A20, self->page + 0x2000);
+    cCockTutorial_TutorialON(&D_003BD6E8->tutorial, self->page + 0x2000);
     cTaskWork_sleep(D_003C2F84->task.cur, 10);
     while ((D_007474A0.trg & 0x30000000) == 0)
         cTaskWork_sleep(D_003C2F84->task.cur, 1);
-    tut = D_003BD6E8 + 0x1A20;
-    if (*(unsigned char *)(tut + 0xB8) == 2 || *(unsigned char *)(tut + 0xB8) == 3)
-        *(unsigned char *)(tut + 0xB8) = 4;
+    tut = &D_003BD6E8->tutorial;
+    if (tut->unkB8 == 2 || tut->unkB8 == 3)
+        tut->unkB8 = 4;
     do {
         cTaskWork_sleep(D_003C2F84->task.cur, 1);
-    } while (*(signed char *)(D_003BD6E8 + 0x1AD8) != 0);
+        state = D_003BD6E8->tutorial.unkB8;
+    } while (state != 0);
     func_003A52F0(&D_00747A78, 0, 8);
     func_003A52F0((char *)&D_00747A78 + 8, 0, 4);
     sc = D_003C2F84;

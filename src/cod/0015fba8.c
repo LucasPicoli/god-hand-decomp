@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cScenario.h"
+#include "godhand/DispMgr.h"
 
 extern int D_003C2FB0;
 extern int D_003C23A4;
-extern int D_003BD6E8;
 extern int D_003BD930;
 extern void Trans_Clipmatrix_set(void);
 extern void cScrSpriteDraw_drawInit(int);
@@ -11,7 +11,6 @@ extern void ObjTrans(void);
 extern void func_002C3818(int);
 extern void func_002AF028(int);
 extern void TransEsp(void);
-extern void func_001410A8(int);
 extern void func_00160B90(int);
 extern unsigned char D_005E8658[];
 extern void func_002BECB0(void *, long);

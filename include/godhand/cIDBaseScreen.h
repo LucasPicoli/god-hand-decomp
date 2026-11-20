@@ -82,6 +82,10 @@ extern const float D_0041E840[4][4];
 /* Start value of cIDBaseScreen.timer. */
 extern short D_003BD70C;
 
+/* In phase 3 step 0, the item of the entry after the first row's (wrapping to entry 0);
+ * -1 in another phase, -2 in phase 0. */
+short GetNextAnimIndex_1451E0(cIDBaseScreen *self);
+
 
 
 

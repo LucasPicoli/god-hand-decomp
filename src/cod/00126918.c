@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/Slot2.h"
+#include "godhand/DispMgr.h"
 
 extern void func_002CAF28(cSnd *self);
 extern void cSnd_BgmControl(cSnd *self);
@@ -29,12 +30,9 @@ extern void BlendWork_copyTable(void *self, void *src, short num);
 extern void func_001451A0(void *self, void *src, short num);
 extern void SetFlagAfterCopy_145160(void *self, void *src);
 extern char D_003BD6F8[];
-extern unsigned short D_003BD70C;
 extern void func_001269E0(void *self, int combo, int arg);
 extern void cSnd_BgmEventFade(void *snd, int reqNo, float time, float level, float weight);
 extern void displayScrollLayer(int id, int on);
-extern void func_00143A90(char *p);
-extern char *D_003BD6E8;
 
 #define SE_STOP_FADE  5
 
@@ -195,7 +193,7 @@ void Slot2_endGameFade(Slot2 *self)
         cSnd_BgmEventFade(D_005FEE00, BGM_REQ_A, 15.0f, 0.0f, -1.0f);
         cSnd_BgmEventFade(D_005FEE00, BGM_REQ_B, 15.0f, 0.0f, -1.0f);
         displayScrollLayer(1, 0);
-        func_00143A90(D_003BD6E8 + 0x1AE0);
+        func_00143A90(&D_003BD6E8->gold);
         self->endFlag |= 1;
         self->step++;
         break;

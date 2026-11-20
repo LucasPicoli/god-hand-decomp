@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/objFactory.h"
+#include "godhand/DispMgr.h"
 
-extern char *D_003BD6E8;
-extern void func_00143A90(char *a0);
 extern void cIDBase_initialize(void *a0, int a1, int a2);
 extern int cIDBase_getIDWork(void *a0, int a1);
 extern void func_002B2580(char *self);
@@ -26,7 +25,7 @@ __attribute__((section(".text.Slot1_endGameStep")))
 void Slot1_endGameStep(char *self) {
     switch (SLOT_STEP(self)) {
     case 0:
-        func_00143A90(D_003BD6E8 + 0x1AE0);
+        func_00143A90(&D_003BD6E8->gold);
         SLOT_STEP(self)++;
         /* fallthrough */
     case 1:

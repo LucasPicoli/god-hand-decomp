@@ -4,13 +4,13 @@
 #include "godhand/cObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cOmBase.h"
+#include "godhand/DispMgr.h"
 
 extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int sel, int on);
 extern int D_0044CE48[];
 extern void cSndSeVoice_CheckEnd(cSnd *self, int slot);
 extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int slot);
 extern void cSeData_Release(cSndSeEntry *e);
-extern char D_003BD6E8[];
 extern void KeyStop(void);
 extern float capVu0Cos(float rad);
 extern char D_0044A518[];
@@ -56,7 +56,6 @@ void cSnd_releaseEmSeAll(cSnd *self) {
 }
 
 #define CASINO_ACTIVE   0x01            /* bit of the flag word at 0x600: the ticket screen runs */
-#define GAMEWORK_TICKETS(g) (*(int *)((g) + 0x1A10))
 
 /* An actor with a flag word at 0x600 past cObj. */
 typedef struct TicketObj {
@@ -70,7 +69,7 @@ __attribute__((section(".text.cOm_takeCasinoTicket")))
 void cOm_takeCasinoTicket(TicketObj *self) {
     KeyStop();
     cCoreSave_addCasinoTicket(&D_00569B70, -1);
-    GAMEWORK_TICKETS(*(char **)D_003BD6E8) = (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
+    D_003BD6E8->item.ticketSeed = (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
     self->mode = 1;
     self->phase = 0;
     self->flags = self->flags | CASINO_ACTIVE;

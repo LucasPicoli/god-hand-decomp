@@ -5,9 +5,9 @@
 #include "godhand/seqNode.h"
 #include "godhand/cIDMenuPanel.h"
 #include "godhand/menuKey.h"
+#include "godhand/padWork.h"
 
 #define OPTION_ROWS      6
-#define PAD_WORK_VIBRATION 0x4B8               /* D_005E8140 byte: pad vibration on */
 
 /* The options panel. head.state: 0 = pick a row, 2 = leaving. */
 typedef struct OptionPanel {
@@ -17,7 +17,6 @@ typedef struct OptionPanel {
 } OptionPanel;
 
 extern cSnd D_005FEE00;
-extern unsigned char D_005E8140[];
 extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 extern void SdeSystemOutModeSet(int a0);
 extern void func_00167EB0(void *self);

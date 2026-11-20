@@ -3,14 +3,13 @@
 #include "godhand/Slot2.h"
 #include "godhand/cMessDrawFont.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/DispMgr.h"
 
 extern int cSceAtManager_SetDisableById(int a0, int a1);
 extern void cScenario_taskExec(void *a0, void *a1, void *a2, int a3);
 extern char D_005FEA60[];
 extern char *D_003C2F84;
 extern void Slot2_Execute(void);
-extern char *D_003BD6E8;
-extern void func_00143A90(char *a0);
 extern void *cMessage_getMessageAddr(void *mgr, int id);
 extern void *cMessage_getRubyAddr(void *mgr, int id);
 extern void cMessDrawFont_setBodyData(cMessDrawFont *a0, void *a1, void *a2, void *a3);
@@ -57,7 +56,7 @@ __attribute__((section(".text.Slot2_endGameStep")))
 void Slot2_endGameStep(Slot2 *self) {
     switch (self->step) {
     case 0:
-        func_00143A90(D_003BD6E8 + 0x1AE0);
+        func_00143A90(&D_003BD6E8->gold);
         self->step++;
         /* fallthrough */
     case 1:

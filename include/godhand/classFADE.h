@@ -37,7 +37,7 @@ extern classFADE D_00747470;
 /* state is the initial state byte (start sets bit 0); type picks the GS
  * primitive (0, 1 or 2); time is in frames. */
 extern void classFADE_start(classFADE *self, int kind, int state, unsigned int type,
-                            int col, int col2, int time);
+                            unsigned int col, unsigned int col2, int time);
 extern void classFADE_kill(classFADE *self);
 extern int classFADE_status(classFADE *self);
 extern void classFADE_setOt(classFADE *self, int ot, int pri);

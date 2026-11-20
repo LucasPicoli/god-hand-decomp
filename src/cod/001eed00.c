@@ -2,16 +2,15 @@
 
 /* sn-2.95.3-136, extern_jtbl D_0042BE40 */
 #include "godhand/ColiseumBattle.h"
+#include "godhand/DispMgr.h"
 
 extern unsigned char D_00747470[];
 extern int D_00747A84;
 extern unsigned char D_00586AA5;
 extern char D_005CAE50[];
-extern int *D_003BD6E8;
 extern ColiseumVtEnt D_003BE570[];
 extern ColiseumVtEnt D_003BE710[];
 extern int Getplayer(void);
-extern void cCockPlBar_initData(void *bar);
 extern void cCollisionScroll_SetLayerCollEnable(void *scroll, int layer, int on);
 extern void displayScrollLayer(int layer, int on);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, unsigned int f, int g);
@@ -44,7 +43,7 @@ void ColiseumBattle_Update(ColiseumBattle *self)
 
     switch (self->state) {
     case 0:
-        cCockPlBar_initData(D_003BD6E8 + 0x118);
+        cCockPlBar_initData(&D_003BD6E8->plBar);
         self->unkB90 = 0;
         layers = D_005CAE50;
         cCollisionScroll_SetLayerCollEnable(layers, 1, 0);

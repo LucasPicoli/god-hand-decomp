@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmBase.h"
+#include "godhand/DispMgr.h"
 
 extern void Obj0000_Set_D_007474A0_Fields_5D8_5E0(void *self);
-extern void func_00143A90(void *p);
-extern void cCockPlBar_initData(void *p);
 extern void AddToActiveList_138F40(void *list, int arg);
 extern void pl00_SubscreenMode(void *player, int mode);
 extern void Forward2D9458_2D98A0(void *p);
@@ -12,11 +11,7 @@ extern int cIDBase_release(void *idBase);
 extern void func_00161590(void *self);
 extern char D_00463050[];
 extern char D_00604700[];
-extern char *D_003BD6E8;                /* the casino game object */
 extern char **D_003C2384;
-
-#define CASINO_BAR_OFS    0x460
-#define CASINO_UNK_OFS    0x1AE0
 
 typedef struct PlayerRef {
     char unk000[0x100];
@@ -41,8 +36,8 @@ void Screen_closeCasino(Screen1689E8 *self)
 {
     char *host;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(self);
-    func_00143A90(D_003BD6E8 + CASINO_UNK_OFS);
-    cCockPlBar_initData(D_003BD6E8 + CASINO_BAR_OFS);
+    func_00143A90(&D_003BD6E8->gold);
+    cCockPlBar_initData(&D_003BD6E8->plBar);
     AddToActiveList_138F40(D_00463050, 0);
     cVec_copy3(&self->player->turnTo, &self->target);
     pl00_SubscreenMode(self->player, 0);

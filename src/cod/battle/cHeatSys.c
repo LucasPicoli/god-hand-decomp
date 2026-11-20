@@ -2,9 +2,9 @@
 #include "godhand/cHeatSys.h"
 #include "include_asm.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/DispMgr.h"
 
 extern unsigned int D_00747A50;       /* lhu -> u16 */
-extern void *D_003BD6E8;
 
 extern void cHeatSys_UpdateHeatLv(cHeatSys *self);
 /* Add `heat` to the gauge (boosted by 1.25 for some players and in heat mode), clamp at max,
@@ -31,8 +31,7 @@ void cHeatSys_AddHeatGage(cHeatSys *self, int force, float heat)
     }
 
     if (120.0f <= heat) {
-        void *p = D_003BD6E8;
-        *(int *)((char *)p + 0x4F0) = *(int *)((char *)p + 0x4F0) | 0x01000000;
+        D_003BD6E8->plBar.flags = D_003BD6E8->plBar.flags | 0x01000000;
     }
 
     mode = (unsigned short)D_00747A50;
