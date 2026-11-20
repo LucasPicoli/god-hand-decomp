@@ -36,7 +36,7 @@ void KillEffect(int a0, int a1, int a2) {
 }
 
 __attribute__((section(".text.CreateObj")))
-cGameObj *CreateObj(int kind, int id)
+cGameObj *CreateObj(int kind, int dataId)
 {
-    return func_0030FB20(kind, func_0030FAC8(kind, id));
+    return func_0030FB20(kind, func_0030FAC8(kind, dataId));
 }

@@ -65,7 +65,7 @@ extern int pl00_CkSubScreen(PlSub *pl);
 extern int func_0012BAF0(PlSub *pl);
 
 extern cGameObj *Getplayer(void);
-extern cGameObj *CreateObj(int kind, int id);
+extern cGameObj *CreateObj(int kind, int dataId);
 extern void ReleaseObj(char *obj);
 /* Start the thrown object obj for move type `type`, moving along speed. owner
  * is the thrower, kept at obj+0x62C. */
