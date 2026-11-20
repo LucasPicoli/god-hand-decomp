@@ -1,6 +1,6 @@
-/* include/godhand/TrackSet.h - TrackSet, the five tracked objects of the game object.
+/* include/godhand/TrackSet.h - TrackSet, the five tracked objects of the cockpit (DispMgr).
  *
- * The game object (DispMgr) keeps one at 0x1E90. func_0013F558 adds an object
+ * The DispMgr keeps one at 0x1E90. func_0013F558 adds an object
  * to it unless tracking is off or the object opts out.
  *
  * Field names are ours, taken from the functions that read and write them.

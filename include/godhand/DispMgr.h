@@ -67,7 +67,8 @@ typedef struct DispMgrKind7 {
 } DispMgrKind7;                         /* 0xF0 */
 
 typedef struct DispMgr {
-    char unk0000[0x460];
+    char unk0000[0x3A0];
+    char nowLoading[0x460 - 0x3A0];     /* 0x03A0 the loading screen record (cNowLoading_setup) */
     cCockPlBar plBar;                   /* 0x0460 registered as kind 3 */
     char unk06E0[0xEA0 - 0x6E0];
     cIDBaseScreen screen;               /* 0x0EA0 registered as kind 6; the action-button prompts */
@@ -91,6 +92,7 @@ typedef struct DispMgr {
 typedef char cCockPlBar_size_check[(sizeof(cCockPlBar) == 0x280) ? 1 : -1];
 typedef char DispMgrGold_size_check[(sizeof(DispMgrGold) == 0x1D0) ? 1 : -1];
 typedef char DispMgrKind7_size_check[(sizeof(DispMgrKind7) == 0xF0) ? 1 : -1];
+typedef char DispMgr_nowLoading_check[((int)&((DispMgr *)0)->nowLoading == 0x3A0) ? 1 : -1];
 typedef char DispMgr_plBar_check[((int)&((DispMgr *)0)->plBar == 0x460) ? 1 : -1];
 typedef char DispMgr_screen_check[((int)&((DispMgr *)0)->screen == 0xEA0) ? 1 : -1];
 typedef char DispMgr_kind7_check[((int)&((DispMgr *)0)->kind7 == 0x1380) ? 1 : -1];
@@ -114,7 +116,7 @@ void cCockPlBar_initData(cCockPlBar *self);
 /* Show the current gold in the gold display, then reset the gold being added. */
 void func_00143A90(DispMgrGold *self);
 
-/* The game object: the DispMgr at 0x464080, which every reader reaches through this word. */
+/* Retail's Cockpit (the name the script table gives this word): a pointer to the DispMgr at 0x464080, which every reader reaches through this word. */
 extern DispMgr *D_003BD6E8;
 
 #endif

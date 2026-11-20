@@ -1,5 +1,5 @@
 /* cActionButtonUnit_setExit — if the button state (a0+0x35) is 1, set a global
- * exit flag (0x20000000) in the game object's prompt screen flags; then always
+ * exit flag (0x20000000) in the DispMgr's prompt screen flags; then always
  * notify cActionButtonEnt_reset.  Call shape (notify outside the guard) recovered via
  * decomp-permuter.  sn-2.95.3-136. */
 #include "godhand/DispMgr.h"

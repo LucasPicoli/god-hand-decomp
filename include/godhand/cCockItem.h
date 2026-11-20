@@ -2,7 +2,7 @@
  *
  * cCockItem is a cIDBase display of the key card and key counts (entries 0
  * and 1, cached in `ent`), with a second display at 0xB0 for a ticket whose
- * message pack LoadTicket reads from the disc into `ticket`. The game object
+ * message pack LoadTicket reads from the disc into `ticket`. The DispMgr
  * holds one at 0x1910.
  *
  * Method names are the game's own where the symbol table has them. Field
