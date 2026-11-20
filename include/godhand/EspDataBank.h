@@ -16,6 +16,7 @@ typedef struct EspDataBlock {
     int magic;                  /* 0x00 */
     unsigned int count;         /* 0x04 resources in the block */
     char unk08[8];
+    int ofs[ESP_BANK_RES_NUM];  /* 0x10 each resource's offset from the block, 0 when missing; count are used */
 } EspDataBlock;
 
 typedef struct EspDataBank {
@@ -29,5 +30,11 @@ extern EspDataBank D_00741DC8;
 
 /* Look up entry index of the resource table; 0 when it is missing. */
 int func_00306C78(void **table, unsigned int index, void *out1, void *out2);
+
+/* Address of resource index of a block in *out; 0 (and *out 0) when it is missing. */
+int func_00306A48(EspDataBlock *blk, unsigned int index, void **out);
+
+/* Unregister block id; 1 if its slot held a block. */
+int func_00306BB0(EspDataBank *bank, int id);
 
 #endif /* GODHAND_ESPDATABANK_H */

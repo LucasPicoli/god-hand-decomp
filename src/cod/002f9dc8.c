@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/EspDataBank.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *a0);
 extern void cNode_setLocalTranslation(void *self, void *v);
@@ -86,8 +87,22 @@ int func_003069E8(char *p, int n, char **a, char **b)
     return 1;
 }
 
+/* Address of resource index of block blk in *out: 1, or 0 (and *out 0) when
+ * index is past the block's count or the resource is missing. */
 __attribute__((section(".text.func_00306A48")))
-int func_00306A48(int a0,unsigned int a1,int *a2){*a2=0;if(a1>=*(unsigned int*)(a0+4))return 0;{int o=*(int*)(a0+(a1<<2)+0x10);if(o==0)return 0;*a2=a0+o;return 1;}}
+int func_00306A48(EspDataBlock *blk, unsigned int index, void **out)
+{
+    int ofs;
+
+    *out = 0;
+    if (index >= blk->count)
+        return 0;
+    ofs = blk->ofs[index];
+    if (ofs == 0)
+        return 0;
+    *out = (char *)blk + ofs;
+    return 1;
+}
 
 __attribute__((section(".text.func_00306AA8")))
 void func_00306AA8(int a0){unsigned int i;int *p=(int*)(a0+0x100);for(i=0;i<0x4E2;i++){*p=0;p++;}{int *q=(int*)a0;unsigned int j;for(j=0;j<0x40;j++){*q=0;q++;}}}

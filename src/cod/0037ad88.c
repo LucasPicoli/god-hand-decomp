@@ -23,7 +23,6 @@ typedef struct MenuSliderCtl {
 } MenuSliderCtl;
 
 extern MenuSlider D_003F2638[];
-extern void SdePlayVolReset(unsigned char se);
 
 __attribute__((section(".text.func_0037AD88")))
 int func_0037AD88(MenuSliderCtl *m)

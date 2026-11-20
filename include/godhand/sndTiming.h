@@ -50,5 +50,13 @@ extern SndTiming D_0076A790;
 void SdeSystemVolGet(SndSystemVol *dst);
 /* Set the system volumes and each sub-volume's level, scaled by its master. */
 void SdeSystemVolSet(SndSystemVol *vol);
+/* Set the sound output mode. */
+void SdeSystemOutModeSet(int mode);
+/* Set reset flags from bits 0, 1 and 2 of f. */
+void SdePlayVolReset(unsigned char f);
+/* Per-frame sound update. */
+void func_00375380(void);
+/* Flush the transfer buffers and keep the timing peaks. */
+void func_00375500(void);
 
 #endif /* GODHAND_SNDTIMING_H */

@@ -2,6 +2,7 @@
 
 #include "godhand/comboObj.h"
 #include "godhand/cSnd.h"
+#include "godhand/sndTiming.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/Slot2.h"
@@ -10,8 +11,6 @@ extern void func_002CAF28(cSnd *self);
 extern void cSnd_BgmControl(cSnd *self);
 extern void Forward33F690_325DD8(void);
 extern void cSnd_flushPendingSe(cSnd *self);
-extern void func_00375380(void);
-extern void func_00375500(void);
 extern void cSnd_updateLoads(cSnd *self);
 extern void Ring_stepToAccepted(void *p);
 extern int cSnd_SeFadeOut(cSnd *self, int handle, short fade);

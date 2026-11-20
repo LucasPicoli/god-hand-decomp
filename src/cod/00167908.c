@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/gameWork.h"
+#include "godhand/sndTiming.h"
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/seqNode.h"
@@ -19,7 +20,6 @@ typedef struct OptionPanel {
 extern cSnd D_005FEE00;
 extern unsigned char D_005E8140[];
 extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
-extern void SdeSystemOutModeSet(int a0);
 extern void func_00167EB0(void *self);
 
 /* Input step of the options panel: moves through the six rows and changes
