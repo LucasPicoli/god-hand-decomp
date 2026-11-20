@@ -39,8 +39,13 @@ typedef struct cDamageNode {
 } cDamageNode;
 
 /* The fields a give (cDamageGive, 0x60 bytes) and a take (cDamageTake, 0x70
- * bytes) share, 0x00..0x4F: the cDamageUnit head both derive from (the type
- * info registers 11cDamageUnit before 11cDamageGive and 11cDamageTake). The manager runs the same code on both kinds:
+ * bytes) share, 0x00..0x53: the cDamageUnit head both derive from (the type
+ * info registers 11cDamageUnit before 11cDamageGive and 11cDamageTake). The
+ * manager runs the same code on both kinds:
+ * - The constructors store the vtable at 0x50: D_0042C4D8 for cDamageUnit
+ *   (0x1FCE38, 0x1FD3D0), then D_0042C4B8 for a give (0x1FCE58) or
+ *   D_0042C498 for a take (0x1FD3F8). g++ 2.x places the vptr after the
+ *   members of the first class with virtuals.
  * - ActorRec_reset clears flags, both vectors, owner, unk38, nodes, unk44,
  *   kind, live and power, sets unk40 to -1 and sets unitKind (func_001FD988).
  * - SetObjTargetAndActivate_1FD2C0 and SetTarget_1FD530 read type, then store
@@ -66,20 +71,21 @@ typedef struct cDamageNode {
     signed char type;           /* 0x49 1 or 2, by the record's setup */        \
     unsigned char live;         /* 0x4A in use */                               \
     char unk4B;                                                                 \
-    int power                   /* 0x4C hit strength, 0 when parked */
+    int power;                  /* 0x4C hit strength, 0 when parked */          \
+    const void *vt              /* 0x50 vtable */
 
 /* The head a give and a take share. */
 typedef struct cDamageUnit {
     CDAMAGE_UNIT_FIELDS;
-} cDamageUnit;                  /* 0x50 */
+} cDamageUnit;                  /* 0x54 */
 
-typedef char cDamageUnit_size_check[(sizeof(cDamageUnit) == 0x50) ? 1 : -1];
+typedef char cDamageUnit_size_check[(sizeof(cDamageUnit) == 0x54) ? 1 : -1];
 
 /* A take record: what cDamageManage_CreateDamageTake returns and
  * cOmBase_checkDamage (checkDamage__7cOmBaseP11cDamageTake) tests. */
 typedef struct cDamageTake {
     CDAMAGE_UNIT_FIELDS;
-    char unk50[0x60 - 0x50];
+    char unk54[0x60 - 0x54];
     unsigned int hitFlags;      /* 0x60 bit 0 must be set for the hit to count */
     char unk64[0x70 - 0x64];
 } cDamageTake;                  /* 0x70: the manager's take array has a 0x70 stride */

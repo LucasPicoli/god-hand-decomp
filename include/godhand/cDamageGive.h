@@ -17,8 +17,8 @@
 #include "godhand/cDamageUnit.h"
 
 typedef struct cDamageGive {
-    CDAMAGE_UNIT_FIELDS;                /* 0x00..0x4F, as cDamageUnit */
-    char unk50[0x60 - 0x50];
+    CDAMAGE_UNIT_FIELDS;                /* 0x00..0x53, as cDamageUnit */
+    char unk54[0x60 - 0x54];
 } cDamageGive;                          /* 0x60: the manager's give array has a 0x60 stride */
 
 typedef char cDamageGive_size_check[(sizeof(cDamageGive) == 0x60) ? 1 : -1];
