@@ -21,9 +21,9 @@ struct cp_eh_info
     void *original_value;
 };
 
-extern "C" cp_eh_info **func_00320360 ();	/* __get_eh_info */
+extern "C" cp_eh_info **__get_eh_info ();
 
-#define CP_EH_INFO ((cp_eh_info *) *func_00320360 ())
+#define CP_EH_INFO (*__get_eh_info ())
 
 namespace std {
     bool uncaught_exception ();

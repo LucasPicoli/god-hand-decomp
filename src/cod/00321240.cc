@@ -32,7 +32,7 @@ typedef void (*cleanup_fn)(void *, int);
 #define EH_LANG_C_PLUS_PLUS 4
 #define CATCH_ALL_TYPE ((void *) -1)
 
-extern "C" cp_eh_info **func_00320360 ();	/* __get_eh_info */
+extern "C" cp_eh_info **__get_eh_info ();
 extern "C" void *func_003212C0 (unsigned int);	/* __eh_alloc */
 extern "C" void Tramp_UpdateGlobalPtrWithParam_3A7CC0_3212E8 (void *);	/* __eh_free */
 extern "C" void *func_0031F508 (void *, void *, void *);	/* __throw_type_match_rtti */
@@ -45,7 +45,7 @@ extern "C" void *__cp_exception_info (void)
 extern "C" void *
 __cp_exception_info (void)
 {
-  return &((*func_00320360 ())->value);
+  return &((*__get_eh_info ())->value);
 }
 
 extern "C" void *__cplus_type_matcher (__eh_info *, void *, exception_lang_info *)
@@ -92,7 +92,7 @@ __cp_push_exception (void *value, void *type, void (*cleanup) (void *, int))
   p->eh_info.language = EH_LANG_C_PLUS_PLUS;
   p->eh_info.version = 1;
 
-  cp_eh_info **q = func_00320360 ();
+  cp_eh_info **q = __get_eh_info ();
 
   p->next = *q;
   *q = p;
@@ -101,7 +101,7 @@ __cp_push_exception (void *value, void *type, void (*cleanup) (void *, int))
 extern "C" void
 __cp_pop_exception (cp_eh_info *p)
 {
-  cp_eh_info **stack = func_00320360 ();
+  cp_eh_info **stack = __get_eh_info ();
   cp_eh_info **q = stack;
 
   --p->handlers;

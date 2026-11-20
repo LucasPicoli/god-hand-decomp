@@ -1,13 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *(*D_003C490C)(void);
+#include "godhand/eh.h"
+
 extern int type_info___eq(void *self, void *arg);
 extern float func_0031EB38(void *);
 
-__attribute__((section(".text.func_00320338")))
-void *func_00320338(void)
+__attribute__((section(".text.__get_eh_context")))
+struct eh_context *__get_eh_context(void)
 {
-  return (*D_003C490C)();
+  return (*get_eh_context)();
 }
 
 __attribute__((section(".text.func_0031F460")))
