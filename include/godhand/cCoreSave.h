@@ -108,7 +108,7 @@ typedef struct cCoreSaveData {
     unsigned char reelItemNum;          /* 0x156 usable godItem[] slots */
     unsigned char paper;                /* 0x157 */
     cCoreSaveSpawn spawn;               /* 0x158 last respawn point */
-    int worldToggle;                    /* 0x170 */
+    int soundOutMode;                   /* 0x170 SdeSystemOutModeGet() at save */
     int worldActive;                    /* 0x174 */
     int savedToggle;                    /* 0x178 */
     int unk17C;
@@ -235,16 +235,16 @@ void cCoreSave_initItem(cCoreSave *self);
 void cCoreSave_initReelSlots(cCoreSave *self);
 int cCoreSave_isGoldFull(cCoreSave *self);
 void cCoreSave_loadGlobalToggle(cCoreSave *self);
+void cCoreSave_loadSoundOutMode(cCoreSave *self);
 void cCoreSave_loadSpawn(cCoreSave *self);
 void cCoreSave_loadWorldActive(cCoreSave *self);
-void cCoreSave_loadWorldToggle(cCoreSave *self);
 void cCoreSave_resetCostumeNo(cCoreSave *self, unsigned char no);
 void cCoreSave_saveGlobalToggle(cCoreSave *self);
+void cCoreSave_saveSoundOutMode(cCoreSave *self);
 void cCoreSave_saveSpawn(cCoreSave *self);
 void cCoreSave_saveStageIds(cCoreSave *self);
 void cCoreSave_saveWorldActive(cCoreSave *self);
 void cCoreSave_saveWorldTime(cCoreSave *self);
-void cCoreSave_saveWorldToggle(cCoreSave *self);
 void cCoreSave_setBonus(cCoreSave *self, int v);
 void cCoreSave_setCasinoTicketNum(cCoreSave *self, int num);
 void cCoreSave_setClearNum(cCoreSave *self, unsigned short num);

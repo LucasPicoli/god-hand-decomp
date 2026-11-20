@@ -6,12 +6,12 @@ extern void SdeSystemOutModeSet(int);
 
 
 
-/* Restore the world toggle saved in the record. */
-__attribute__((section(".text.cCoreSave_loadWorldToggle")))
-void cCoreSave_loadWorldToggle(cCoreSave *self)
+/* Restore the sound output mode saved in the record. */
+__attribute__((section(".text.cCoreSave_loadSoundOutMode")))
+void cCoreSave_loadSoundOutMode(cCoreSave *self)
 {
     if (self->data != 0) {
-        SdeSystemOutModeSet(self->data->worldToggle);
+        SdeSystemOutModeSet(self->data->soundOutMode);
     }
 }
 

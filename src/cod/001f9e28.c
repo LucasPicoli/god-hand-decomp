@@ -4,11 +4,11 @@
 
 extern int SdeSystemOutModeGet(void);
 
-/* Remember the current world toggle in the record. */
-__attribute__((section(".text.cCoreSave_saveWorldToggle")))
-void cCoreSave_saveWorldToggle(cCoreSave *self)
+/* Remember the current sound output mode in the record. */
+__attribute__((section(".text.cCoreSave_saveSoundOutMode")))
+void cCoreSave_saveSoundOutMode(cCoreSave *self)
 {
     if (self->data != 0) {
-        self->data->worldToggle = SdeSystemOutModeGet();
+        self->data->soundOutMode = SdeSystemOutModeGet();
     }
 }

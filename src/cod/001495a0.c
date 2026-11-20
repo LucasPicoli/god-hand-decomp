@@ -50,7 +50,7 @@ cModel *func_001495A0(cModel *self)
     self->alphaC = 0xFF;
     self->alphaB = 0xFF;
     self->fadeLen = 200;
-    self->endTime = 180;
+    self->lodDist = 180;
     self->layerForce = 0xFE;
     self->unk2BD = 0;
     return self;

@@ -33,6 +33,6 @@ void cCoreSave_loadStageState(cCoreSave *self, int flag)
     else
         setHpClamped(Getplayer(), 1);
     cCoreSave_loadWorldActive(self);
-    cCoreSave_loadWorldToggle(self);
+    cCoreSave_loadSoundOutMode(self);
     cCoreSave_loadGlobalToggle(self);
 }

@@ -49,7 +49,7 @@ typedef struct GameWork {
     void *sysData;              /* 0x554 system data file */
     void *langData;             /* 0x558 language data file */
     char pad55C[0x564 - 0x55C];
-    int padPort;                /* 0x564 controller port the vibration goes to */
+    int frameShift;             /* 0x564 0 at 30 FPS, 1 at 60: frame counts shift left by it */
     char pad568;
     unsigned char unk569;       /* 0x569 */
     char pad56A[2];

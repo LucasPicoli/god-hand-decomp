@@ -33,7 +33,7 @@ extern void cModel_queuePacket(cModel *self, int id);
 
 
 /* Tag every mesh of the model for this frame and queue it. A mesh draws when
- * the model forces all meshes (flag 0x400) or when its back-layer flag equals
+ * the model forces all meshes (flag 0x400) or when its far-LOD flag equals
  * arg2. Each draw layer change closes the previous run of nodes. Runs with
  * --call-loop-pad: the first mesh walk is a two-argument call loop whose
  * closing branch carries the node in its delay slot. */
@@ -66,7 +66,7 @@ void cModel_Tag_set_scr(cModel *self, int arg1, int arg2) {
             if ((node->dispFlags & CMODEL_NODE_HIDE) == 0) {
                 int flags = self->objFlags;
                 if ((flags & 0x400) != 0 ||
-                    arg2 == ((*(volatile int *)&node->info->flags & CMODEL_MESH_BACK) > 0)) {
+                    arg2 == ((*(volatile int *)&node->info->flags & CMODEL_MESH_FAR) > 0)) {
                     int flags2;
                     if ((flags & 0x80) == 0) {
                         cModel_setNodeMaterial(self, node);

@@ -66,7 +66,7 @@ typedef struct cBox {
 #define CMODEL_MESH_HIDDEN  0x00000010  /* the node starts hidden */
 #define CMODEL_MESH_TO_SPECIAL 0x00002000 /* gives the node CMODEL_NODE_SPECIAL */
 #define CMODEL_MESH_TO_BIT23 0x00100000 /* sets bit 23 of the node's flags */
-#define CMODEL_MESH_BACK    0x01000000  /* the mesh draws in the back layer */
+#define CMODEL_MESH_FAR    0x01000000  /* the mesh draws in the back layer */
 #define CMODEL_MESH_SPECIAL 0x00200000  /* mesh draws in the special pass */
 
 /* cModel.drawKind: the draw-queue kind a model is sorted into. 0xA picks the
@@ -273,7 +273,7 @@ typedef struct cParts {
     short life;                         /* 0x2AE */ \
     unsigned char fadeLen;              /* 0x2B0 */ \
     unsigned char meshNum;              /* 0x2B1 */ \
-    unsigned short endTime;             /* 0x2B2 */ \
+    unsigned short lodDist;             /* 0x2B2 LOD distance, against the view depth */ \
     unsigned char partNum;              /* 0x2B4 */ \
     signed char depthBias;              /* 0x2B5 */ \
     unsigned char alphaA;               /* 0x2B6 */ \

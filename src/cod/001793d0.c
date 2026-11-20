@@ -141,7 +141,7 @@ void cCoreSave_snapshot(cCoreSave *p, int full)
         cCoreSave_saveWorldTime(p);
         cCoreSave_addCounter08(p);
         cCoreSave_saveWorldActive(p);
-        cCoreSave_saveWorldToggle(p);
+        cCoreSave_saveSoundOutMode(p);
         cCoreSave_saveGlobalToggle(p);
     }
     cCoreSave_updateVitalMax(p);
