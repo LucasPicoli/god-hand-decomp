@@ -34,8 +34,8 @@ void InitField214WithPtr429420_1BD650(int a0, int a1) {
 }
 
 __attribute__((section(".text.InitFieldsWithMode5_1C8F80")))
-int InitFieldsWithMode5_1C8F80(int a0) {
-    int v0 = a0;
+void *InitFieldsWithMode5_1C8F80(void *a0) {
+    void *v0 = a0;
     InitFields_1B6E90(a0);
     *(int *)((char *)a0 + 0x214) = (int)D_00429EC8;
     *(int *)((char *)a0 + 0x600) = 5;

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/DogRace.h"
+#include "godhand/player.h"
 
-extern void *CreateObj(int a0, int a1);
 extern void cOmBase_setTexChange(void *a0, int a1);
 extern float frand(float a0, float a1);
 extern int irand(void);

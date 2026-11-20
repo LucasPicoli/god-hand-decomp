@@ -35,7 +35,7 @@ int cDataManager_findFreeSlot(cDataManager *self) {
 
 
 __attribute__((section(".text.cDataManager_useDataAddress")))
-int cDataManager_useDataAddress(cDataManager *self, int kind) {
+void *cDataManager_useDataAddress(cDataManager *self, int kind) {
     int i = cDataManager_findKind(self, kind);
     if (i >= 0) {
         func_001FF090(&self->slot[i]);

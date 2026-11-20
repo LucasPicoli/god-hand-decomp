@@ -1,12 +1,11 @@
 #include "godhand/vu0.h"
 
-extern int func_0030FB70(void *, void *);
-extern int func_00312B00(void *, void *);
+#include "godhand/objFactory.h"
 
 __attribute__((section(".text.func_00312AB0")))
-int func_00312AB0(void *object, void *key)
+void *func_00312AB0(int id, int dataId)
 {
-    if (func_0030FB70(object, key) == 0)
+    if (func_0030FB70(id, dataId) == 0)
         return 0;
-    return func_00312B00(object, key);
+    return func_00312B00(id, dataId);
 }

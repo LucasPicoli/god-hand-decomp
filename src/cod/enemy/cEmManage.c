@@ -1,5 +1,8 @@
 /* TU: cEmManage [enemy] - recovered C++ class. */
 #include "godhand/cEmManage.h"
+#include "godhand/cDataManager.h"
+#include "godhand/heapArena.h"
+#include "godhand/player.h"
 
 extern float D_00747A14;
 
@@ -8,12 +11,7 @@ __attribute__((section(".text.cEmManage_GetSpeedRate")))
 float cEmManage_GetSpeedRate(cEmManage *self) {
     return self->speedRate * D_00747A14;
 }
-extern int cDataManager_isLoaded(void *a0, int a1);
-extern void cDataManager_loadWait(void *a0, int a1, void *a2, int a3);
 extern void cDataManager_loadSeWait(void *a0, int a1, int a2, int a3);
-extern char *CreateObj(int a0, int a1);
-extern char D_005864E0[];
-extern char D_00754220[];
 
 /* Creates the actor a room's SET_EM_DATA names, links it into a free slot at
  * the end of the list and runs its entry setup. Returns the actor, or 0 when
@@ -34,9 +32,9 @@ cEmActor *cEmManage_EntryEm(cEmManage *self, SET_EM_DATA *data, int kind, void *
     no = cEmManage_findFreeSlot(self);
     if (no == -1)
         goto ng;
-    if (cDataManager_isLoaded(D_005864E0, data->objId) == 0)
-        cDataManager_loadWait(D_005864E0, data->objId, D_00754220, 1);
-    cDataManager_loadSeWait(D_005864E0, data->objId, data->seBank, data->seNo);
+    if (cDataManager_isLoaded(&D_005864E0, data->objId) == 0)
+        cDataManager_loadWait(&D_005864E0, data->objId, &D_00754220, 1);
+    cDataManager_loadSeWait(&D_005864E0, data->objId, data->seBank, data->seNo);
     em = (cEmActor *)CreateObj(data->objId, 0xFFFF);
     if (em == 0)
         return 0;

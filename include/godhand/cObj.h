@@ -24,6 +24,7 @@
 
 /* Bits of cModel.objFlags (0x250) that cObj itself sets. */
 #define COBJ_F_SUSPEND      0x8000      /* the actor is suspended */
+#define COBJ_F_PACK_LOADED  0x2000000   /* the factory loaded the pack itself instead of finding it cached */
 
 #define COBJ_FIELDS \
     CMODEL_FIELDS \
@@ -37,7 +38,8 @@
     unsigned char unk2FC;               /* 0x2FC low 3 bits are compared with D_007476B0 */ \
     char unk2FD[0x1]; \
     unsigned short actorId;             /* 0x2FE actor type id, 0x100..0x1FE is the player range */ \
-    char unk300[0x4]; \
+    unsigned short createId;            /* 0x300 the id the factory built the actor for */ \
+    char unk302[0x2]; \
     char *pack;                         /* 0x304 the data pack: offset tables read as pack + pack[N] */ \
     char unk308[0x8];
 
@@ -54,5 +56,22 @@ typedef struct cObj cObj;
 typedef char cObj_size_check[(sizeof(struct cObj) == 0x310) ? 1 : -1];
 
 extern void cObj_setId(struct cObj *self, int id);
+extern void delObj(void *a0);
+
+/* Whether the actor id of obj lies in [lo, hi), as a long flag. The retail
+ * range tests build the flag with a branch and a copy, then mask it with 0xFF
+ * where it is tested: write `if (cObj_idInRange(obj, lo, hi) & 0xFF)`. */
+static __inline__ long cObj_idInRange(const struct cObj *obj, int lo, int hi)
+{
+    int id = obj->actorId;
+    long in = 0;
+
+    if (id >= lo) {
+        int below = id < hi;
+
+        in = below;
+    }
+    return in;
+}
 
 #endif

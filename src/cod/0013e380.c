@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/objFactory.h"
 
 extern char *D_003BD6E8;
 extern void func_00143A90(char *a0);

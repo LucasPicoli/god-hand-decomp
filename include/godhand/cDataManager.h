@@ -24,7 +24,7 @@ typedef struct cDataSlot {
     int useCount;                       /* 0x04 */
     int flags;                          /* 0x08 */
     char unk0C[4];
-    int data;                           /* 0x10 load address of the data */
+    void *data;                         /* 0x10 load address of the data */
     char unk14[0xC];
     int kind;                           /* 0x20 numeric id of the data */
     char unk24[0x38];
@@ -38,7 +38,7 @@ typedef struct cDataManager {
 
 extern int func_001FF0D8(cDataSlot *slot);               /* 1 when the slot holds data */
 extern void func_001FF090(cDataSlot *slot);              /* count one more use */
-extern int FileLoadRec_start(cDataSlot *slot, int kind, void *buf);  /* start the load */
+extern void *FileLoadRec_start(cDataSlot *slot, int kind, void *buf);  /* start the load */
 extern int UpdateStateReady_1FF238(cDataSlot *slot);     /* 0 while loading */
 extern int ResetSlotState_1FF2E0(cDataSlot *slot, int arg);
 extern void cScenario_sleepFrames(int frames);                   /* wait */
@@ -48,6 +48,8 @@ extern int func_001FEEA0(cDataManager *self);            /* index of a free slot
 extern int cDataManager_isLoaded(cDataManager *self, int kind);
 extern int cDataManager_isUnload(cDataManager *self, int kind); /* 1 unless a slot of kind is in a state other than SLOT_STATE_IDLE */
 extern void cDataManager_resetKind(cDataManager *self, int kind, int arg);
+extern void *cDataManager_useDataAddress(cDataManager *self, int kind); /* load address of kind, one more use counted */
+extern void *cDataManager_loadWait(cDataManager *self, int kind, void *buf, int keep); /* load address of kind, loaded first if needed */
 
 extern cDataManager D_005864E0;
 extern cDataManager D_00580D20;

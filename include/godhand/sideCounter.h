@@ -6,6 +6,11 @@
 #include "godhand/ptrVec.h"
 
 struct SideCounter;
+struct cObj;
+
+/* Add p to the list of every registered object and to the list for its
+ * actor id (0 or not); 0 when either list is full. */
+int func_0030FCC0(struct cObj *p);
 
 /* Step unkC one way (up while on is set, else down); once it leaves 0..cnt-1,
  * clear it and cnt. Nothing happens while cnt is 0. */

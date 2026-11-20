@@ -7,7 +7,6 @@ extern void cDamageGive_SetDmgGiveHitVec(char *a0, float *a1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int espSys_effDataRegist(void *a0, int a1, void *a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern char *CreateObj(int a0, int a1);
 extern int cOmWeapon_setParent();
 extern int D_00574380;
 extern int D_00747B00;
@@ -16,6 +15,7 @@ extern int D_007419A0;
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/player.h"
 
 
 
@@ -237,12 +237,10 @@ int func_001C9268(char *p)
     *(char *)(p + 0x688) = 0;
     *(int *)(p + 0x68C) = 0;
     if (*(unsigned short *)(p + 0x2FE) == 0x37B || *(unsigned short *)(p + 0x2FE) == 0x390) {
-        char *obj = CreateObj(0x37C, 0xFFFF);
-        *(char **)(p + 0x68C) = obj;
+        cGameObj *obj = CreateObj(0x37C, 0xFFFF);
+        *(cGameObj **)(p + 0x68C) = obj;
         if (obj != 0) {
-            char *cls;
-            int (*fn)(char *);
-            short off;
+            cGameObjVt *vt;
             float *src;
             float *src2;
             float *dst;
@@ -251,10 +249,8 @@ int func_001C9268(char *p)
 
             VU0_SQC2_VF0(buf, 0x0);
             VU0_SQC2_VF0(buf, 0x20);
-            cls = *(char **)(obj + 0x214);
-            fn = *(int (**)(char *))(cls + 0x44);
-            off = *(short *)(cls + 0x40);
-            fn(obj + off);
+            vt = cGameObj_vt(obj);
+            vt->initial((char *)obj + vt->initialDelta);
 
             dst = *(float **)(*(char **)(p + 0x68C) + 0xF0);
             src = *(float **)(p + 0xF0);

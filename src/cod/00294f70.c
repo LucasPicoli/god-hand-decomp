@@ -5,7 +5,6 @@
 #include "godhand/heapArena.h"
 #include "godhand/cDataManager.h"
 #include "godhand/gameWork.h"
-extern int cDataManager_loadWait(cDataManager *mgr, int id, void *buf, int wait);
 extern void cDataManager_loadSeWait(cDataManager *mgr, int id, int se, int wait);
 extern int Rnd(void);
 
