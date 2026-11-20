@@ -39,6 +39,7 @@
      ((unsigned long)(zte) << 16) | ((unsigned long)(ztst) << 17))
 
 #define GS_ZTST_ALWAYS  1               /* TEST's ZTST: every pixel passes */
+#define GS_ZTST_GEQUAL  2               /* TEST's ZTST: pixels with Z >= the buffer's pass */
 
 /* The GS window coordinate of the screen's horizontal centre. */
 #define GS_WINDOW_CENTER  0x800
