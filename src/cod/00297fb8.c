@@ -93,8 +93,9 @@ void func_0035AA40(void *a0, int a1, int a2) {
 }
 
 __attribute__((section(".text.func_0035FB78")))
-int func_0035FB78(int a0) {
-    return a0 >= 0x181F;
+int func_0035FB78(int size, int a1, int a2) {
+    /* a1 and a2 are passed in but not read */
+    return size >= 0x181F;
 }
 
 __attribute__((section(".text.func_0035FC60")))

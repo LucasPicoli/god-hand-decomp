@@ -42,4 +42,11 @@ typedef struct AdxbSte {
 } AdxbSte;
 typedef char AdxbSte_size_check[sizeof(AdxbSte) == 0x104 ? 1 : -1];
 
+/* The samples the decode pass produced (the word at 0x10 of its object). */
+int Obj33F8_GetWord_10_FB60(char *a0);
+/* Copy the ring's overhang back to its start, both channels. */
+void ADXB_CopyExtraBufSte(short *obuf, int obsize, int obdist, int nxsmpl);
+/* The same for one channel. */
+void Forward33D4D8_33D578(short *a0, int a1, int a2, int a3);
+
 #endif

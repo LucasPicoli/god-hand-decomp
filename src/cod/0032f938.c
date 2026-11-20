@@ -143,21 +143,21 @@ int func_0034A6F8(int a0, int *a1, int *a2) {
 }
 
 __attribute__((section(".text.func_0035FEF0")))
-int func_0035FEF0(void) {
+void *func_0035FEF0(void) {
     int *s0 = (int *)func_0035FF48();
     if (s0 == 0) return 0;
     func_0035FF98((int)s0);
     D_003EE800 += 1;
     *s0 = 1;
-    return (int)s0;
+    return s0;
 }
 
 __attribute__((section(".text.func_0036CAB0")))
-int func_0036CAB0(void) {
+void *func_0036CAB0(void) {
     int *s0 = (int *)func_0036CB08();
     if (s0 == 0) return 0;
     func_0036CB58((int)s0);
     D_003F1EC8 += 1;
     *s0 = 1;
-    return (int)s0;
+    return s0;
 }

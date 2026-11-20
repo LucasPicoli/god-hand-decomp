@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/SfdYuv.h"
 
 extern int Obj34D8_SetGlobalEE0B8_IfField48(int *a0);
 extern int SFBUF_SetSupplySj(int *a0, int a1);
@@ -12,7 +13,6 @@ extern void Obj35E8_SetIndirect_30_1C(int *a0, void *a1);
 extern void Obj35E8_SetField_70(int *a0, void *a1);
 extern void func_00365D18(void);
 extern void func_00366730(void);
-extern void func_00365EC0(void);
 extern void func_00366368(void);
 extern void func_00366110(void);
 extern void func_003665C0(void);
