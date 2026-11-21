@@ -9,7 +9,7 @@ typedef struct cVec {
 } cVec;
 
 /* Copy x, y and z and leave w alone. Skips the copy when both point at one vector. */
-static __inline__ void cVec_copy3(cVec *d, cVec *s) {
+static __inline__ void cVec_copy3(cVec *d, const cVec *s) {
     if (d != s) {
         d->x = s->x;
         d->y = s->y;

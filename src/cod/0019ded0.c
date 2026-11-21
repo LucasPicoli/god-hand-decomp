@@ -3,8 +3,7 @@
 extern int D_00426180;
 extern void InitVtable214_429C80_1C27E8(void *a);
 #include "godhand/objField.h"
-extern int D_00574380;
-extern void ClearAndResetFields_1FE278(void *a, void *b);
+#include "godhand/cDamageManage.h"
 extern void ResetField214FreeField180_1C2820(void *a, int b);
 extern int D_00785E48;
 extern int D_00426250;

@@ -21,11 +21,11 @@ int func_0019AA80(cOmHitVolume *em)
     cVec_setW(&size, 1.0f);
     ofs.x = 0.0f; ofs.y = 0.0f; ofs.z = 0.0f;
     cVec_setW(&ofs, 1.0f);
-    em->damageTake = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    em->damageTake = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     if (em->damageTake != 0) {
         rot.x = 0.0f; rot.y = 0.0f; rot.z = 0.0f;
         cVec_setW(&rot, 1.0f);
-        func_001FD9D8(em->damageTake, em->base.mtx, &ofs, &rot, &size);
+        func_001FD9D8(em->damageTake, (const struct cMatrix *)em->base.mtx, &ofs, &rot, &size);
     }
     cOmHitVolume_initWork(em, 1, em->tableData, 7, 7, 0);
     func_001C28A0(em);

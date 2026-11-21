@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern char D_00428650[];
 extern int SetField214PtrThenInit_1B6F38();
@@ -9,8 +10,6 @@ extern char D_00429620[];
 extern char D_004296F0[];
 extern char D_004297D8[];
 extern char D_00429B88[];
-extern char D_00574380[];
-extern int cDamageManage_ReleaseDamageGive();
 extern int cOmBase_checkDamage();
 extern char D_00429EC8[];
 

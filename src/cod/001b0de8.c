@@ -3,6 +3,7 @@
 /* Set up an object with two damage-give volumes: clear its counters and 150 radius field, create a volume per slot (kinds 0 and 1), add a 3.0 sphere on its first child body to each and switch them off. Actor 0x360 is scaled 2.0. Returns 1. */
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
+#include "godhand/cDamageManage.h"
 
 #define OMGIVE_RADIUS      150.0f
 #define OMGIVE_SPHERE      3.0f
@@ -27,17 +28,13 @@ typedef struct cOmTwoVol {
     char unk65C[0xB];
     unsigned char field667;             /* 0x667 */
     int field668;                       /* 0x668 */
-    int giveA;                          /* 0x66C damage-give volume 0 */
-    int giveB;                          /* 0x670 damage-give volume 1 */
+    cDamageGive *giveA;                 /* 0x66C damage-give volume 0 */
+    cDamageGive *giveB;                 /* 0x670 damage-give volume 1 */
     int sphereA;                        /* 0x674 */
     int sphereB;                        /* 0x678 */
 } cOmTwoVol;
 
 extern void func_001B6FB8(void *self);
-extern int cDamageManage_CreateDamageGive(void *mgr, int kind, void *obj);
-extern int cDamageUnit_AddDamageCollSphere(int unit, void *mtx, void *ofs, float radius);
-extern void cDamageUnit_SetDamageCollActive(int unit, int active);
-extern char D_00574380[];
 
 __attribute__((section(".text.cOmTwoVol_init")))
 int cOmTwoVol_init(cOmTwoVol *self)
@@ -52,23 +49,23 @@ int cOmTwoVol_init(cOmTwoVol *self)
     self->field600 = 0;
     self->field604 = 0;
     self->radius = OMGIVE_RADIUS;
-    self->giveA = cDamageManage_CreateDamageGive(D_00574380, 0, self);
+    self->giveA = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)self);
     child = cOmBase_childAt(&self->base, (int *)vb, 0);
     va[0] = 0.0f;
     pa = va;
     va[1] = 0.0f;
     va[2] = 0.0f;
     pa[3] = 1.0f;
-    self->sphereA = cDamageUnit_AddDamageCollSphere(self->giveA, (char *)child + 0x80, pa, OMGIVE_SPHERE);
-    cDamageUnit_SetDamageCollActive(self->giveA, 0);
-    self->giveB = cDamageManage_CreateDamageGive(D_00574380, 1, self);
+    self->sphereA = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->giveA, (const struct cMatrix *)((char *)child + 0x80), (const cVec *)pa, OMGIVE_SPHERE);
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->giveA, 0);
+    self->giveB = cDamageManage_CreateDamageGive(&D_00574380, 1, (cGameObj *)self);
     child2 = cOmBase_childAt(&self->base, (int *)vb, 0);
     vb[0] = 0.0f;
     vb[1] = 0.0f;
     vb[2] = 0.0f;
     vb[3] = 1.0f;
-    self->sphereB = cDamageUnit_AddDamageCollSphere(self->giveB, (char *)child2 + 0x80, vb, OMGIVE_SPHERE);
-    cDamageUnit_SetDamageCollActive(self->giveB, 0);
+    self->sphereB = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->giveB, (const struct cMatrix *)((char *)child2 + 0x80), (const cVec *)vb, OMGIVE_SPHERE);
+    cDamageUnit_SetDamageCollActive((cDamageUnit *)self->giveB, 0);
     self->field650 = 0;
     self->field654 = 0;
     self->field658 = 0;

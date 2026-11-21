@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cDamageManage.h"
 
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern char D_005FEE00[];
 extern void func_003057D0(void *a, int b, int c);
-extern void ClearAndResetFields_1FE278(void *a, void *b);
 extern void espSys_effDataRelease(void *a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
 extern char D_00422EB8[];
-extern char D_00574380[];
 extern char D_007419A0[];
 extern int cSeData_IsAlive(void *p);
 extern int _MemoryAlloc(int a, int b, int c);
@@ -86,7 +85,7 @@ void func_001838D8(char *p, void *arg)
     q = (void **)(p + 0x600);
     for (i = 0; (unsigned int)i < 7; i++) {
         if (q[i] != 0) {
-            ClearAndResetFields_1FE278((void *)D_00574380, q[i]);
+            ClearAndResetFields_1FE278(&D_00574380, q[i]);
             q[i] = 0;
         }
     }

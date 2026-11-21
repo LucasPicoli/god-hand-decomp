@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cOmBase.h"
 #include "godhand/cSnd.h"
+#include "godhand/cDamageManage.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
@@ -10,9 +11,7 @@ extern void cSndMemHeap_ResetFirstBlk(void *);
 extern void MessWin_closeIfNoEndCode(void *);
 extern void func_002B45E8(void *);
 extern char *D_003C23A4;
-extern int cDamageManage_ReleaseDamageGive(void *a, void *b);
 extern void cOmBase_dieCommon(void *a0);
-extern int D_00574380;
 extern void func_003870E0(int);
 
 /* cOmBase_setTexChange — sn-2.95.3-136 */

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern char D_00421E38[];
 extern int ResetActorState_1BBF00();
@@ -11,9 +12,7 @@ extern char D_00422308[];
 extern char D_004223D0[];
 extern char D_00422498[];
 extern char D_00422560[];
-extern int ClearAndResetFields_1FE278();
 extern char D_004226A8[];
-extern char D_00574380[];
 extern char D_00422770[];
 
 /* clone */

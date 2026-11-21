@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern void *Getplayer(void);
 extern char D_00426F88[];
-extern char D_00574380[];
-extern void ClearAndResetFields_1FE278(void *pool, void *obj);
 extern void SetField214PtrThenInit_1B6F38(void *self, void *a1);
 
 /* Follow the hit position of a linked collision record: when the object has a
@@ -118,7 +117,7 @@ void OwnerObj_destroyOwnedPair(OwnerObj *self, void *a1) {
     self->vt = D_00426F88;
     for (i = 1; i >= 0; i--, p++) {
         if (*p != 0) {
-            ClearAndResetFields_1FE278(D_00574380, *p);
+            ClearAndResetFields_1FE278(&D_00574380, *p);
             *p = 0;
         }
     }

@@ -1,19 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
-
-extern int cDamageManage_CreateDamageGive(int a0, int a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
-extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
+#include "godhand/cDamageManage.h"
 extern void cOmItem_setGetRangeLong(void *a0, int a1);
 extern void cOmItem_setScrCheck(void *a0, int a1);
-extern int D_00574380;
 
 __attribute__((section(".text.func_001C0128")))
 int func_001C0128(void *a0)
 {
     float buf[4];
     char *s3 = (char *)a0;
-    int d;
+    cDamageGive *d;
     long bits;
     int h;
     int r1;
@@ -52,14 +48,14 @@ int func_001C0128(void *a0)
         *(int *)(s3 + 0x5B8) |= 8;
         break;
     case 0x3ED:
-        d = cDamageManage_CreateDamageGive((int)&D_00574380, 3, (int)s3);
-        *(int *)(s3 + 0x680) = d;
+        d = cDamageManage_CreateDamageGive(&D_00574380, 3, (cGameObj *)s3);
+        *(cDamageGive **)(s3 + 0x680) = d;
         if (d != 0) {
             *(int *)&buf[0] = 0;
             *(int *)&buf[1] = 0;
             *(int *)&buf[2] = 0;
             buf[3] = 1.0f;
-            cDamageUnit_AddDamageCollSphere(d, (int)(s3 + 0x80), (int)buf, 2.5f);
+            cDamageUnit_AddDamageCollSphere((cDamageUnit *)d, (const struct cMatrix *)(s3 + 0x80), (const cVec *)buf, 2.5f);
             *(short *)(*(int *)(s3 + 0x680) + 0x46) = 0x52;
             *(int *)(*(int *)(s3 + 0x680) + 0x4C) = 0x50;
             cDamageUnit_SetDamageCollActive(*(void **)(s3 + 0x680), 0);

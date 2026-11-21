@@ -1,6 +1,6 @@
 #include "godhand/objField.h"
+#include "godhand/cDamageManage.h"
 extern int D_004204F8;
-extern unsigned char D_00574380[];
 extern unsigned char D_005FEE00[];
 extern int D_007857E8;
 extern unsigned char D_004205C8[];
@@ -106,9 +106,9 @@ void *InitObjSetVtable4206B0_1707C8(void *a0) {
 
 __attribute__((section(".text.FreeObjResourceAndDestroyE_170800")))
 void FreeObjResourceAndDestroyE_170800(int a0, int a1) {
-    int v1;
+    cDamageTake *v1;
     *(int*)((char*)a0 + 0x214) = (int)&D_004206B0;
-    v1 = *(int*)((char*)a0 + 0x600);
+    v1 = *(cDamageTake **)((char*)a0 + 0x600);
     if (v1 != 0) {
         ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0 + 0x600) = 0;

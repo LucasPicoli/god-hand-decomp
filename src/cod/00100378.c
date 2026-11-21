@@ -5,15 +5,10 @@ extern void CopyVec3ToField30_147C40(float *a0, float *a1);
 extern void MtxInverse(void *a0, void *a1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern void func_001B6FB8(void *);
-extern int cDamageManage_CreateDamageTake(int a0, int a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a, void *b, int c, float d);
 extern void cCollisionSolidManage_CreateSphere(void *a, void *b, void *c, void *d, float e);
-extern int D_00574380;
 extern int D_00462FC0;
 extern void func_001331B8(char *a0, long a1, int a2);
-extern int cDamageManage_CreateDamageGive(int a0, int a1, int a2);
-extern void cDamageUnit_SetDamageCollActive(int a0, int a1);
 extern char D_005CAE50[];
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int t0);
 extern void cModel_calcParts(void *a0);
@@ -22,6 +17,7 @@ extern char *D_00747A98;
 extern float D_003BD880[];
 
 #include "godhand/vu0.h"
+#include "godhand/cDamageManage.h"
 
 
 
@@ -72,7 +68,7 @@ __attribute__((section(".text.func_001B0340")))
 int func_001B0340(char *p)
 {
     float buf[12];
-    int n;
+    char *n;
     int flag;
 
     func_001B6FB8(p);
@@ -80,12 +76,12 @@ int func_001B0340(char *p)
     buf[1] = 0.0f;
     buf[2] = 0.0f;
     buf[3] = 1.0f;
-    *(int *)(p + 0x600) = cDamageManage_CreateDamageTake((int)&D_00574380, (int)p, 1);
+    *(cDamageTake **)(p + 0x600) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 1);
     if (*(int *)(p + 0x600) != 0) {
         flag = *(unsigned char *)(p + 0x2B4);
         *(int *)(buf + 4) = flag;
-        if (flag) n = **(int **)(p + 0x278); else n = 0;
-        cDamageUnit_AddDamageCollSphere(*(int *)(p + 0x600), n + 0x80, (int)buf, 1.5f);
+        if (flag) n = **(char ***)(p + 0x278); else n = 0;
+        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x600), (const struct cMatrix *)(n + 0x80), (const cVec *)buf, 1.5f);
         *(int *)(*(int *)(p + 0x600)) |= 1;
     }
     *(short *)(p + 0x548) = 0x3E8;
@@ -110,7 +106,7 @@ void cOmThrow_SetParent(char *p, char *parent)
 {
     float buf[8];
     float *sph;
-    int n;
+    char *n;
     int flag;
     int obj;
 
@@ -121,18 +117,18 @@ void cOmThrow_SetParent(char *p, char *parent)
         fp(p + off);
     }
     func_001331B8(D_005CAE50, *(long *)(p + 0x540), 0);
-    *(int *)(p + 0x600) = cDamageManage_CreateDamageGive((int)&D_00574380, 0, (int)p);
+    *(cDamageGive **)(p + 0x600) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
     flag = *(unsigned char *)(p + 0x2B4);
     *(int *)buf = flag;
-    if (flag) n = **(int **)(p + 0x278); else n = 0;
+    if (flag) n = **(char ***)(p + 0x278); else n = 0;
     buf[4] = 0.0f;
     buf[5] = 0.0f;
     buf[6] = 0.0f;
     sph = buf + 4;
     sph[3] = 1.0f;
-    *(int *)(p + 0x604) = cDamageUnit_AddDamageCollSphere(*(int *)(p + 0x600), n + 0x80,
-                                                          (int)sph, 0.5f);
-    cDamageUnit_SetDamageCollActive(*(int *)(p + 0x600), 0);
+    *(int *)(p + 0x604) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x600), (const struct cMatrix *)(n + 0x80),
+                                                          (const cVec *)sph, 0.5f);
+    cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + 0x600), 0);
     *(int *)(p + 0x644) = (int)parent;
     *(char *)(p + 0x2F4) = 0;
     *(char *)(p + 0x2F5) = 0;

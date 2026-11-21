@@ -1,11 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmHitVolume.h"
+#include "godhand/cDamageManage.h"
 
-extern int D_00574380;
 extern void func_001B6FB8(cOmHitVolume *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, cOmHitVolume *owner, int kind);
-extern void func_001FD9D8(void *take, void *pos, float *a, float *b, float *c);
 
 /* Set the object up: a damage-take unit with a 1.0 x 2.0 x 1.0 volume at its position, one hit point, a five entry table at 0x620 and the state words set; returns 1. */
 __attribute__((section(".text.cOmHitVolume_setupBox10x20x10")))
@@ -38,7 +36,7 @@ int cOmHitVolume_setupBox10x20x10(cOmHitVolume *self)
     originVec[1] = 0.0f;
     originVec[2] = 0.0f;
     origin[3] = one;
-    take = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    take = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damageTake = take;
     if (take != 0) {
         origin2 = &origin2Vec[0];
@@ -46,7 +44,7 @@ int cOmHitVolume_setupBox10x20x10(cOmHitVolume *self)
         origin2Vec[1] = 0.0f;
         origin2Vec[2] = 0.0f;
         origin2[3] = one;
-        func_001FD9D8(take, self->base.mtx, origin, origin2, size);
+        func_001FD9D8(take, (const struct cMatrix *)self->base.mtx, (const cVec *)origin, (const cVec *)origin2, (const cVec *)size);
     }
     self->base.hpMax = 1;
     self->base.hp = 1;
@@ -94,7 +92,7 @@ int cOmHitVolume_setupBox12x15x12(cOmHitVolume *self)
     originVec[1] = 0.0f;
     originVec[2] = 0.0f;
     origin[3] = one;
-    take = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    take = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damageTake = take;
     if (take != 0) {
         origin2 = &origin2Vec[0];
@@ -102,7 +100,7 @@ int cOmHitVolume_setupBox12x15x12(cOmHitVolume *self)
         origin2Vec[1] = 0.0f;
         origin2Vec[2] = 0.0f;
         origin2[3] = one;
-        func_001FD9D8(take, self->base.mtx, origin, origin2, size);
+        func_001FD9D8(take, (const struct cMatrix *)self->base.mtx, (const cVec *)origin, (const cVec *)origin2, (const cVec *)size);
     }
     self->base.hpMax = 1;
     self->base.hp = 1;
@@ -151,7 +149,7 @@ int cOmHitVolume_setupBox24x12x02(cOmHitVolume *self)
     originVec[1] = 0.0f;
     originVec[2] = 0.0f;
     origin[3] = one;
-    take = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    take = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damageTake = take;
     if (take != 0) {
         origin2 = &origin2Vec[0];
@@ -159,7 +157,7 @@ int cOmHitVolume_setupBox24x12x02(cOmHitVolume *self)
         origin2Vec[1] = 0.0f;
         origin2Vec[2] = 0.0f;
         origin2[3] = one;
-        func_001FD9D8(take, self->base.mtx, origin, origin2, size);
+        func_001FD9D8(take, (const struct cMatrix *)self->base.mtx, (const cVec *)origin, (const cVec *)origin2, (const cVec *)size);
     }
     self->base.hpMax = 1;
     self->base.hp = 1;

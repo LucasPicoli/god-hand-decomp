@@ -1,12 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *a0);
-extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern int cModel_getMeshPtr(void *a0, int a1);
-extern int D_00574380;
-extern void cDamageUnit_AddDamageCollCylinder(void *a0, void *a1, float *a2, float *a3, float f0, float f1);
 
 /* Spawn the damage-take volume of a multi-part object, show the second mesh and hide the first, then flag every other part with 0x8 and 0x10. */
 
@@ -49,7 +46,7 @@ int SpawnDamageVolumeAndFlagParts_A(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -57,7 +54,7 @@ int SpawnDamageVolumeAndFlagParts_A(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -125,7 +122,7 @@ int SpawnDamageVolumeAndFlagParts_B(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -133,7 +130,7 @@ int SpawnDamageVolumeAndFlagParts_B(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -199,7 +196,7 @@ int SpawnCylinderDamageAndFlagPartsB(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -207,7 +204,7 @@ int SpawnCylinderDamageAndFlagPartsB(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        cDamageUnit_AddDamageCollCylinder(slot, p + 0x80, m, nv, f[5], f[4] * 0.5f);
+        cDamageUnit_AddDamageCollCylinder(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, f[5], f[4] * 0.5f);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -273,7 +270,7 @@ int SpawnCylinderDamageAndFlagPartsA(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -281,7 +278,7 @@ int SpawnCylinderDamageAndFlagPartsA(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        cDamageUnit_AddDamageCollCylinder(slot, p + 0x80, m, nv, f[5], f[4] * 0.5f);
+        cDamageUnit_AddDamageCollCylinder(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, f[5], f[4] * 0.5f);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;

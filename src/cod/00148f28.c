@@ -7,6 +7,7 @@
 #include "godhand/cOl21.h"
 #include "godhand/cEma2.h"
 #include "godhand/cGame.h"
+#include "godhand/cDamageManage.h"
 
 extern int D_00747A3C;
 extern char D_003BD718[];
@@ -15,10 +16,7 @@ extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern unsigned char D_005FEE00[];
-extern int cDamageManage_CreateDamageTake(int a0, int a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
 extern void cModel_setLayerDisplay(int a0, int a1, int a2);
-extern int D_00574380;
 extern int D_003BD880;
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
@@ -376,26 +374,26 @@ int func_001B2548(char *p)
 {
     unsigned char frame[0x20] __attribute__((aligned(16)));
     int flag;
-    int n;
-    int dg;
-    int sph;
+    char *n;
+    cDamageTake *dg;
+    unsigned char *sph;
 
     func_001B6FB8(p);
-    dg = cDamageManage_CreateDamageTake((int)&D_00574380, (int)p, 1);
-    *(int *)(p + 0x600) = dg;
+    dg = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 1);
+    *(cDamageTake **)(p + 0x600) = dg;
     if (dg != 0) {
         flag = *(unsigned char *)(p + 0x2B4);
         *(int *)frame = flag;
         if (flag) {
-            n = **(int **)(p + 0x278);
+            n = **(char ***)(p + 0x278);
         } else {
             n = 0;
         }
         n = n + 0x80;
-        sph = (int)(frame + 0x10);
+        sph = frame + 0x10;
         VU0_LQC2(4, &D_003BD880, 0);
         VU0_SQC2(4, frame, 0x10);
-        cDamageUnit_AddDamageCollSphere(*(int *)(p + 0x600), n, sph, 2.25f);
+        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x600), (const struct cMatrix *)n, (const cVec *)sph, 2.25f);
         *(int *)(*(int *)(p + 0x600)) |= 1;
     }
     *(short *)(p + 0x548) = 0x3E8;

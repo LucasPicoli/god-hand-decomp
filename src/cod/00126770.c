@@ -1,6 +1,7 @@
 #define COBJBASE_NO_TYPEDEF
 #include "godhand/cObjBase.h"
 #include "godhand/DispMgr.h"
+#include "godhand/cDamageManage.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -33,9 +34,8 @@ extern void SetCustomIDDispOneOrAll_1DD258(int a0, int a1, int a2);
 extern void cScenario_sleepFrames(int a0);
 extern int cDvd_Check(int a0, int a1);
 extern int D_0044A660;
-extern int D_00574380;
 extern int D_00462FC0;
-extern void func_001FE370(int *a0, int a1);
+extern void func_001FE370(cDamageManage *a0, int a1);
 extern void cCollisionSolidManage_ReleaseUnit(int *a0, int a1);
 extern void cGameObj__dtor(int a0, int a1);
 extern void *D_005CAFF0;

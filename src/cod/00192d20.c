@@ -45,7 +45,7 @@ int func_00192D20(cOmHitVolume *em)
     v[5].y = 0.0f;
     v[5].z = 0.0f;
     ofsB->w = 1.0f;
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->damageTake = slot;
     if (slot != 0) {
         rot = &v[6];
@@ -54,12 +54,12 @@ int func_00192D20(cOmHitVolume *em)
         v[6].y = 0.0f;
         v[6].z = 0.0f;
         rot->w = 1.0f;
-        func_001FD9D8(slot, mtx, ofsA, rot, sizeA);
+        func_001FD9D8(slot, (const struct cMatrix *)mtx, ofsA, rot, sizeA);
         v[6].x = 0.0f;
         v[6].y = 0.0f;
         v[6].z = 0.0f;
         rot->w = 1.0f;
-        func_001FD9D8(em->damageTake, mtx, ofsB, rot, sizeB);
+        func_001FD9D8(em->damageTake, (const struct cMatrix *)mtx, ofsB, rot, sizeB);
     }
     em->base.hpMax = 1;
     em->base.hp = 1;

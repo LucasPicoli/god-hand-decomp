@@ -3,10 +3,10 @@
 #include "godhand/vu0.h"
 #include "godhand/cEma2.h"
 #include "godhand/motion.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_0028EBF0(cEma2 *self, SET_EM_DATA *data, void *arg);
 extern int func_0028AC58(cEma2 *self);
-extern int cDamageUnit_AddDamageCollSphere(int unit, void *joint, cVec *offset, float radius);
 extern cModelNode *cModel_getMeshPtr_14B730(void *model, char *name);
 
 /* The int stored at byte ofs of the motion block, plus the block address. */
@@ -32,14 +32,12 @@ extern void cModel_calcWorldParts(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cObjBase_KageInit(void *a, void *b, void *c);
-extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern float fRand0_1(void);
 
 extern int Rnd(void);
 extern int D_00462FC0;
-extern char D_00574380[];
 extern char D_003C3F68[];
 extern char D_00448DB8[];
 extern char D_00448DC0[];
@@ -112,7 +110,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     cVec_copy3(&self->escPos, self->base.pos);
     cParts_setRotationOrder(self, 4);
     cObjBase_KageInit(self, self->shadow, D_003C3F68);
-    self->damageTake = cDamageManage_CreateDamageTake(D_00574380, self, 1);
+    self->damageTake = cDamageManage_CreateDamageTake(&D_00574380, &self->base, 1);
 
     /* Four damage spheres, each centred on a joint of the model. */
     n = self->base.partNum;
@@ -130,7 +128,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     first.z = 0;
     offset = &first;
     offset->w = 1.0f;
-    self->hitSphere[0] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, offset, 0.25f);
+    self->hitSphere[0] = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->damageTake, (const struct cMatrix *)child->mtx, offset, 0.25f);
     n = self->base.partNum;
     *(int *)&centre.x = n;
     {
@@ -145,7 +143,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.x = 0;
     centre.y = 0;
     centre.z = 0;
-    self->hitSphere[1] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+    self->hitSphere[1] = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->damageTake, (const struct cMatrix *)child->mtx, &centre, 0.25f);
     n = self->base.partNum;
     *(int *)&centre.x = n;
     {
@@ -160,7 +158,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.x = 0;
     centre.y = 0;
     centre.z = 0;
-    self->hitSphere[2] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+    self->hitSphere[2] = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->damageTake, (const struct cMatrix *)child->mtx, &centre, 0.25f);
     n = self->base.partNum;
     *(int *)&centre.x = n;
     {
@@ -175,7 +173,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.y = 0;
     centre.z = 0;
     centre.w = 1.0f;
-    self->hitSphere[3] = cDamageUnit_AddDamageCollSphere(self->damageTake, child->mtx, &centre, 0.25f);
+    self->hitSphere[3] = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->damageTake, (const struct cMatrix *)child->mtx, &centre, 0.25f);
 
     cCollisionSolidManage_CreateUnit(&D_00462FC0, self, 5, 0.2f);
     centre.w = 1.0f;

@@ -1,15 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *slot);
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
-extern int cDamageManage_CkHitStop(void *mgr);
 extern void DamagePairObj_clearHits(void *a0);
 extern void func_001B1938(void *a0);
 extern void func_001B1630(void *a0);
 extern void func_001B76D8(void *a0);
 extern float cEmManage_GetSpeedRate(void *a0);
 extern char D_005864F0[];
-extern char D_00574380[];
 
 extern int D_0071B7C0[];                /* bit set: slot in use */
 extern int D_0071B840[];                /* bit set: slot paused */
@@ -59,7 +58,7 @@ void ModeDispatch_tickWithHitStop(void *a0)
     float rate;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    if (cDamageManage_CkHitStop(D_00574380) != 0) return;
+    if (cDamageManage_CkHitStop(&D_00574380) != 0) return;
     DamagePairObj_clearHits(s0);
     rate = cEmManage_GetSpeedRate(D_005864F0);
     *(float *)(s0 + 0x5A8) = rate;

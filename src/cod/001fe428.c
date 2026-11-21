@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern void func_001FC7C8(void *a0);
 extern void func_001FDE00(void *a0);
 extern char D_00569B80[];
 extern char D_0056C380[];
-extern char D_00574380[];
 
 __attribute__((section(".text.func_001FE428")))
 void func_001FE428(void *a0, int a1) {
@@ -27,6 +27,6 @@ void func_001FE428(void *a0, int a1) {
             r += 0x40;
         }
 
-        func_001FDE00(D_00574380);
+        func_001FDE00(&D_00574380);
     }
 }

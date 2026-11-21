@@ -1,7 +1,7 @@
 #include "godhand/cModel.h"
+#include "godhand/cDamageManage.h"
 
 extern unsigned char D_004292F0[];
-extern unsigned char D_00574380[];
 
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern void func_00155D98(cModelNode *node, int a1, int a2);
@@ -31,11 +31,11 @@ void ForwardNodeUpdate_14D768(cModel *self, int a1, int a2) {
 __attribute__((section(".text.ResetActorState_1BBF00")))
 void ResetActorState_1BBF00(int a0, int a1)
 {
-    int v1;
+    cDamageTake *v1;
     *(int *)(a0 + 0x214) = (int)D_004292F0;
-    v1 = *(int *)(a0 + 0x600);
+    v1 = *(cDamageTake **)(a0 + 0x600);
     if (v1 != 0) {
-        ClearAndResetFields_1FE278(D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)(a0 + 0x600) = 0;
     }
     cOmDoor_releaseObjCollision(a0);

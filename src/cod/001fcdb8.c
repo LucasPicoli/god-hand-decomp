@@ -1,9 +1,9 @@
-extern void ActorRec_reset(void *);
+#include "godhand/cDamageGive.h"
 
 __attribute__((section(".text.func_001FCDB8")))
-void func_001FCDB8(char *self)
+void func_001FCDB8(cDamageGive *self)
 {
-    ActorRec_reset(self);
-    *(int *)(self + 0x34) = 0;
-    self[0x49] = 1;
+    ActorRec_reset((cDamageUnit *)self);
+    self->attacker = 0;
+    self->type = 1;
 }

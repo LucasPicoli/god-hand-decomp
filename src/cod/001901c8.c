@@ -1,10 +1,10 @@
 #include "godhand/objField.h"
+#include "godhand/cDamageManage.h"
 extern char D_00423F58[];
 extern int D_00785BE8;
 extern int D_00424008;
 extern int D_00785878;
 extern int D_00424040;
-extern int D_00574380;
 extern int D_00785BF8;
 extern int D_00424110;
 extern int D_00785798;
@@ -80,9 +80,9 @@ void *InitObjSlots_191AB0(void *a0) {
 
 __attribute__((section(".text.ResetField214FreeField600_191B38")))
 void ResetField214FreeField600_191B38(void *a0, int a1) {
-    int v1;
+    cDamageTake *v1;
     *(int*)((char*)a0+0x214) = (int)&D_00424040;
-    v1 = *(int*)((char*)a0+0x600);
+    v1 = *(cDamageTake **)((char*)a0+0x600);
     if (v1 != 0) {
         ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0+0x600) = 0;

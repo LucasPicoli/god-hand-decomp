@@ -1,25 +1,26 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/FileLoadRec.h"
+#include "godhand/cDamageManage.h"
 
 extern char D_00569B80[];
 extern char D_0056C380[];
 
 __attribute__((section(".text.func_001FE1E0")))
-char *func_001FE1E0(char *base) {
-    char *p = base;
-    char *end = base + 0x3C00;
+cDamageGive *func_001FE1E0(cDamageManage *self) {
+    cDamageGive *p = self->give;
+    cDamageGive *end = self->give + CDAMAGE_GIVE_MAX;
 
     for (;;) {
-        if (*(unsigned char *)(p + 0x4A) == 0) {
+        if (p->live == 0) {
             return p;
         }
-        p += 0x60;
+        p++;
         if (!(p < end)) {
             break;
         }
     }
-    return base + 0xAC00;
+    return &self->giveSpare;
 }
 
 __attribute__((section(".text.func_001FE5A8")))

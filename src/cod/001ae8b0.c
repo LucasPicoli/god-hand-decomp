@@ -1,9 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern char D_00428090[];
-extern char D_00574380[];
-extern void ClearAndResetFields_1FE278(void *a, void *b);
-extern void cDamageManage_ReleaseDamageGive(void *a, void *b);
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
 extern char D_00428160[];
 extern int D_004283D8;

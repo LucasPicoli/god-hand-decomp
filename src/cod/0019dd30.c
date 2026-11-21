@@ -1,12 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmHitVolume.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void func_001FD9D8(void *unit, void *pos, float *a, float *b, float *size);
-
-extern int D_00574380;
 
 
 /* Set the object up: a damage-take unit with a 0.8 x 4.6 x 0.8 volume whose origin sits at half the box depth, one hit point, a six entry table at 0x620 and the state words set; returns 1. */
@@ -41,7 +38,7 @@ int cOmHitVolume_setupBox08x46x08(cOmHitVolume *self) {
     originVec[1] = 0.0f;
     originVec[2] = box[2] * 0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damageTake = slot;
     if (slot != 0) {
         nv = &origin2Vec[0];
@@ -49,7 +46,7 @@ int cOmHitVolume_setupBox08x46x08(cOmHitVolume *self) {
         origin2Vec[1] = 0.0f;
         origin2Vec[2] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, self->base.mtx, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)self->base.mtx, (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     self->base.hpMax = 1;
     self->base.hp = 1;

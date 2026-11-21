@@ -8,15 +8,12 @@ extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
-extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern int cDataManager_addPinnedData(void *a0, int a1, int a2);
 extern int cOmWeapon_setParent();
 extern void Obj1D00_ClearState_8(char *a0);
 extern int D_00462FC0;
-extern char D_00574380[];
 extern char D_005864E0[];
 
 /* func_0027B810 - object/enemy Init.  MATCH (exact) under sn-2.95.3-136.
@@ -42,6 +39,7 @@ extern char D_005864E0[];
  *   - the vtable temporaries must be declared vt, off, fn in that order.
  */
 #include "godhand/vu0.h"
+#include "godhand/cDamageManage.h"
 
 
 
@@ -73,7 +71,7 @@ int func_0027B810(char *a0)
     char *s1 = a0;
     int v0;
     int n;
-    int base;
+    char *base;
     struct sph *q;
 
     VU0_SQC2_VF0(buf, 0x10);
@@ -106,13 +104,13 @@ int func_0027B810(char *a0)
     *(int *)(s1 + 0x670) = 0;
     if (*(int *)(s1 + 0x564) != 0x263) {
         struct sph *r;
-        *(int *)(s1 + 0x670) = cDamageManage_CreateDamageTake(&D_00574380, s1, 1);
+        *(cDamageTake **)(s1 + 0x670) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)s1, 1);
         n = *(unsigned char *)(s1 + 0x2B4);
         *(int *)(buf + 0x40) = n;
         {
             int one = 1;
             if (one < n) {
-                base = *(int *)(*(int *)(s1 + 0x278) + 4);
+                base = *(char **)(*(char **)(s1 + 0x278) + 4);
             } else {
                 base = 0;
             }
@@ -123,7 +121,7 @@ int func_0027B810(char *a0)
         *(int *)(buf + 0x58) = 0;
         r->d = 1.0f;
         *(int *)(s1 + 0x674) = cDamageUnit_AddDamageCollSphere(
-            *(int *)(s1 + 0x670), base + 0x80, r, 0.25f);
+            *(cDamageUnit **)(s1 + 0x670), (const struct cMatrix *)(base + 0x80), (const cVec *)r, 0.25f);
     }
     cCollisionSolidManage_CreateUnit(&D_00462FC0, s1, 5, 0.2f);
     q = (struct sph *)(buf + 0x40);

@@ -1,15 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmBreakable.h"
+#include "godhand/cDamageManage.h"
 
 extern int func_001B6FB8(cOmBreakable *self);    /* cOmBase constructor step */
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void *cDamageManage_CreateDamageGive(void *mgr, int kind, void *owner);
-extern int cDamageUnit_AddDamageCollSphere(void *unit, void *mtx, float *ofs, float r);
-extern void cDamageUnit_SetDamageCollActive(void *unit, int on);
 
 extern cModelNode *cModel_getMeshPtr(cOmBreakable *self, int idx);
-extern char D_00574380[];                        /* the damage manager */
 
 /* Set up a breakable with a 0.6 x 1.5 x 0.6 damage-take box and a radius 1 damage-give sphere, one hit point, and hide its first mesh while it is whole. */
 __attribute__((section(".text.cOmBreakable_setupSmallBox")))
@@ -42,7 +38,7 @@ int cOmBreakable_setupSmallBox(cOmBreakable *em)
     v[2].y = 0.0f;
     v[2].z = 0.0f;
     ofs->w = 1.0f;
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->dmgTake = slot;
     if (slot != 0) {
         rot = &v[3];
@@ -50,9 +46,9 @@ int cOmBreakable_setupSmallBox(cOmBreakable *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         rot->w = 1.0f;
-        func_001FD9D8(slot, em->base.mtx, ofs, rot, size);
+        func_001FD9D8(slot, (const struct cMatrix *)em->base.mtx, ofs, rot, size);
     }
-    give = cDamageManage_CreateDamageGive(D_00574380, 0, (char *)em);
+    give = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)em);
     em->dmgGive = give;
     if (give != 0) {
         ov = &v[3].x;
@@ -60,7 +56,7 @@ int cOmBreakable_setupSmallBox(cOmBreakable *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         ov[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 1.0f);
+        cDamageUnit_AddDamageCollSphere(give, (const struct cMatrix *)em->base.mtx, (const cVec *)ov, 1.0f);
         *(short *)(((char *)em->dmgGive) + 0x46) = 0x2E;
         *(int *)(((char *)em->dmgGive) + 0x4C) = 0;
         cDamageUnit_SetDamageCollActive(em->dmgGive, 0);

@@ -2,8 +2,6 @@
  * the enemy work defaults. */
 #include "godhand/cOmHitVolumeSetup.h"
 
-extern int cDamageUnit_AddDamageCollCylinder(void *unit, void *mtx, float *ofs, float *rot, float r, float h);
-
 __attribute__((section(".text.func_00178618")))
 int func_00178618(cOmHitVolume *em)
 {
@@ -28,7 +26,7 @@ int func_00178618(cOmHitVolume *em)
     v[2].y = 0.0f;
     v[2].z = 0.0f;
     m->w = 1.0f;
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->damageTake = slot;
     if (slot != 0) {
         nv = &v[3];
@@ -36,9 +34,9 @@ int func_00178618(cOmHitVolume *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         nv->w = 1.0f;
-        cDamageUnit_AddDamageCollCylinder(slot, em->base.mtx, m, nv, v[1].y, v[1].x * 0.5f);
+        cDamageUnit_AddDamageCollCylinder(slot, (const struct cMatrix *)em->base.mtx, m, nv, v[1].y, v[1].x * 0.5f);
     }
-    give = cDamageManage_CreateDamageGive(D_00574380, 0, (char *)em);
+    give = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)em);
     em->damageGive = give;
     if (give != 0) {
         ov = &v[3];
@@ -46,7 +44,7 @@ int func_00178618(cOmHitVolume *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         ov->w = 1.0f;
-        cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 3.0f);
+        cDamageUnit_AddDamageCollSphere(give, (const struct cMatrix *)em->base.mtx, ov, 3.0f);
         *(short *)(((char *)em->damageGive) + 0x46) = 0x2E;
         *(int *)(((char *)em->damageGive) + 0x4C) = 0;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);

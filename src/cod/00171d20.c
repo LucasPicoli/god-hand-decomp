@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_002A87E8(void *a0, int a1);
@@ -12,11 +13,8 @@ extern float cEmManage_GetSpeedRate(void *a0);
 extern char D_005864F0[];
 extern void cModel_ScrollTexture(void *a0, float f);
 extern char D_003C0480[];
-extern int D_00574380;
 extern int D_005CAE50;
 extern int D_00420EF0;
-extern void ClearAndResetFields_1FE278(void *a, void *b);
-extern void cDamageManage_ReleaseDamageGive(void *a, int b);
 extern void func_0012EC58(void *a, int b);
 extern void *SetField214PtrThenInit_1B6F38(void *a, void *b);
 
@@ -247,7 +245,7 @@ void *ReleaseObjSlotsAndEffect(void *a0, void *a1) {
         i--;
     } while (i >= 0);
     if (*(int *)((char *)a0 + 0x604) != 0) {
-        cDamageManage_ReleaseDamageGive(&D_00574380, *(int *)((char *)a0 + 0x604));
+        cDamageManage_ReleaseDamageGive(&D_00574380, *(cDamageGive **)((char *)a0 + 0x604));
         *(int *)((char *)a0 + 0x604) = 0;
     }
     if (*(int *)((char *)a0 + 0xDA8) != 0) {

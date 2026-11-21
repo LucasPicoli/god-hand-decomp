@@ -5,13 +5,12 @@ extern int D_00785DE8;
 extern char D_00425D30[];
 extern char D_007858B8[];
 #include "godhand/objField.h"
+#include "godhand/cDamageManage.h"
 extern int D_00425D48;
 extern int D_00785DF8;
 extern char D_00425DF8[];
 extern char D_007859B8[];
 extern char D_00425E10[];
-extern unsigned char D_00574380[];
-extern void ClearAndResetFields_1FE278(void *a, int b);
 extern void func_001BFB00(void *a0, void *a1);
 extern int D_00785E08;
 extern int D_00425EC8;
@@ -24,9 +23,9 @@ extern void func_001BFAC8(void *a0);
 __attribute__((section(".text.ResetObjState_19D1E8")))
 void ResetObjState_19D1E8(void *a0) {
     int tmp;
-    int sub;
+    cDamageUnit *sub;
     tmp = (*(int *)((char *)a0 + 0x5B0) & -9) | 4;
-    sub = *(int *)((char *)a0 + 0x650);
+    sub = *(cDamageUnit **)((char *)a0 + 0x650);
     *(int *)((char *)a0 + 0x5B0) = tmp;
     if (sub != 0) {
         cDamageUnit_SetDamageCollActive(sub, 0);
@@ -87,9 +86,9 @@ void *InitObjVtable_19D5A8(void *a0) {
 
 __attribute__((section(".text.FreeObjResource_19D5E0")))
 void FreeObjResource_19D5E0(void *a0, void *a1) {
-    int v1;
+    cDamageTake *v1;
     *(unsigned int *)((char *)a0 + 0x214) = (unsigned int)&D_00425E10;
-    v1 = *(int *)((char *)a0 + 0x600);
+    v1 = *(cDamageTake **)((char *)a0 + 0x600);
     if (v1 != 0) {
         ClearAndResetFields_1FE278(&D_00574380, v1);
         *(unsigned int *)((char *)a0 + 0x600) = 0;

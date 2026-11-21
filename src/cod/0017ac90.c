@@ -18,7 +18,6 @@ typedef struct cOmSphereTake {
 } cOmSphereTake;
 
 extern void func_0017B5E0(unsigned char *p);
-extern char D_00574380[];
 
 static inline cOmBase *GetChild(cOmSphereTake *self)
 {
@@ -41,10 +40,10 @@ int func_0017AC90(cOmSphereTake *self)
         ofs[3] = 1.0f;
         ofs[0] = 0.0f;
         ofs[1] = 0.0f;
-        slot = cDamageManage_CreateDamageTake(D_00574380, self, 2);
+        slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
         self->take = slot;
         if (slot != 0 && GetChild(self) != 0) {
-            cDamageUnit_AddDamageCollSphere(self->take, GetChild(self)->mtx, ofs, 1.0f);
+            cDamageUnit_AddDamageCollSphere(self->take, (const struct cMatrix *)(GetChild(self)->mtx), (const cVec *)ofs, 1.0f);
             *(int *)self->take |= 1;
         }
     }
