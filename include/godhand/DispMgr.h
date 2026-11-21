@@ -1,7 +1,7 @@
 /* include/godhand/DispMgr.h - DispMgr, the registry of display sub-records.
  *
  * The game's one DispMgr is at 0x464080; every reader reaches it through the
- * pointer D_003BD6E8. A DispMgr holds eleven sub-records at fixed offsets, then a table of
+ * pointer Cockpit. A DispMgr holds eleven sub-records at fixed offsets, then a table of
  * registered objects at 0x22F0 (12 bytes per slot). func_00140BF0 registers
  * a sub-record in the first free slot and DispMgr_reset (src/cod/00140c88.c)
  * walks the table to call every object's reset method.
@@ -116,7 +116,7 @@ void cCockPlBar_initData(cCockPlBar *self);
 /* Show the current gold in the gold display, then reset the gold being added. */
 void func_00143A90(DispMgrGold *self);
 
-/* Retail's Cockpit (the name the script table gives this word): a pointer to the DispMgr at 0x464080, which every reader reaches through this word. */
-extern DispMgr *D_003BD6E8;
+/* Retail's name for this word, from the script table at 0x4137A0: a pointer to the DispMgr at 0x464080, which every reader reaches through this word. */
+extern DispMgr *Cockpit;
 
 #endif

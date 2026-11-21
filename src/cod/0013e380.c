@@ -25,7 +25,7 @@ __attribute__((section(".text.Slot1_endGameStep")))
 void Slot1_endGameStep(char *self) {
     switch (SLOT_STEP(self)) {
     case 0:
-        func_00143A90(&D_003BD6E8->gold);
+        func_00143A90(&Cockpit->gold);
         SLOT_STEP(self)++;
         /* fallthrough */
     case 1:

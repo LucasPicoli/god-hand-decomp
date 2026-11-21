@@ -995,7 +995,7 @@ void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(unsigned char *a0) {
 
 __attribute__((section(".text.Obj0000_Clear_Byte_D_003BD6E8_1380_94_Bit0_1F75B0")))
 void Obj0000_Clear_Byte_D_003BD6E8_1380_94_Bit0_1F75B0(void) {
-    DispMgrKind7 *rec = &D_003BD6E8->kind7;
+    DispMgrKind7 *rec = &Cockpit->kind7;
 
     rec->flags = rec->flags & 0xFE;
 }

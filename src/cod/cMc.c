@@ -22,7 +22,7 @@ void cMc_Move(cMc *self) {
     cCamera_move(D_005CAFF0);
     MoveEffect();
     cMessage_updateAll(D_003C23A4);
-    func_00140E58(D_003BD6E8);
+    func_00140E58(Cockpit);
     for (p = D_00754C58->begin; p != D_00754C58->end; p++) {
         obj = *p;
         if ((obj->objFlags & MCOBJ_FLAG_SUSPEND) == 0) {

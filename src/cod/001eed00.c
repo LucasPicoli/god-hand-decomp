@@ -43,7 +43,7 @@ void ColiseumBattle_Update(ColiseumBattle *self)
 
     switch (self->state) {
     case 0:
-        cCockPlBar_initData(&D_003BD6E8->plBar);
+        cCockPlBar_initData(&Cockpit->plBar);
         self->unkB90 = 0;
         layers = D_005CAE50;
         cCollisionScroll_SetLayerCollEnable(layers, 1, 0);

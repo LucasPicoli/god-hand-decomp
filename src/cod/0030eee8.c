@@ -75,7 +75,7 @@ void Move(void)
         ForwardListEntries_2C5470(D_00754C50);
     func_00307B28(D_00747B20);
     cMessage_updateAll(D_003C23A4);
-    func_00140E58(D_003BD6E8);
+    func_00140E58(Cockpit);
     func_001FE748(&D_00580D20);
     func_001FE748(&D_005864E0);
     InitSubsystemGroup_2CA518(D_005FEE00);

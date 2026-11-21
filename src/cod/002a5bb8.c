@@ -50,7 +50,7 @@ void func_002A5BB8(unsigned char *step)
     cMenu_loadDataTables(D_003C23A4);
     func_0015FD98((char *)D_003BD930);
     ResetObjectState_2962B0(D_00586AF0);
-    DispMgr_reset(D_003BD6E8);
+    DispMgr_reset(Cockpit);
     NoOp_1FFE00(D_00583EC0);
     func_002BF130(D_003C2648);
     ResetSlotArray_1FE6C8(D_00580D20, 0);

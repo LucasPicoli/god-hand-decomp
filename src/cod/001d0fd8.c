@@ -32,7 +32,7 @@ __attribute__((section(".text.BlackJack_StartSetup")))
 void BlackJack_StartSetup(BlackJack *self)
 {
     if (self->phase == 0) {
-        func_00143A90(&D_003BD6E8->gold);
+        func_00143A90(&Cockpit->gold);
         self->flags |= BLACKJACK_FLAG_SETUP;
         self->phase += 1;
     }

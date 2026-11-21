@@ -62,7 +62,7 @@ int func_001B6FB8(void *a0)
     *(float *)((char *)s0 + 0x3A8) = 1.0f;
     t8 = *(unsigned short *)((char *)s0 + 0x2FE);
     if (t8 == 0x359) {
-        func_0013F558(&D_003BD6E8->track, s0);
+        func_0013F558(&Cockpit->track, s0);
     }
     return 1;
 }

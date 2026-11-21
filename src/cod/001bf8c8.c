@@ -24,16 +24,16 @@ void func_001BF8C8(cOmTutorial *self)
     int idx;
     signed char state;
 
-    cCockTutorial_TutorialON(&D_003BD6E8->tutorial, self->page + 0x2000);
+    cCockTutorial_TutorialON(&Cockpit->tutorial, self->page + 0x2000);
     cTaskWork_sleep(D_003C2F84->task.cur, 10);
     while ((D_007474A0.trg & 0x30000000) == 0)
         cTaskWork_sleep(D_003C2F84->task.cur, 1);
-    tut = &D_003BD6E8->tutorial;
+    tut = &Cockpit->tutorial;
     if (tut->unkB8 == 2 || tut->unkB8 == 3)
         tut->unkB8 = 4;
     do {
         cTaskWork_sleep(D_003C2F84->task.cur, 1);
-        state = D_003BD6E8->tutorial.unkB8;
+        state = Cockpit->tutorial.unkB8;
     } while (state != 0);
     func_003A52F0(&D_00747A78, 0, 8);
     func_003A52F0((char *)&D_00747A78 + 8, 0, 4);

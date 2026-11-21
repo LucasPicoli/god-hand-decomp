@@ -180,10 +180,10 @@ extern unsigned char D_003C2555;        /* the loading is finished */
 __attribute__((section(".text.cNowLoading_taskBody")))
 void cNowLoading_taskBody(void)
 {
-    cNowLoading_setup(D_003BD6E8->nowLoading);
+    cNowLoading_setup(Cockpit->nowLoading);
     for (;;) {
-        func_0013EE58(D_003BD6E8->nowLoading);
-        Forward2AAC28_13F070(D_003BD6E8->nowLoading);
+        func_0013EE58(Cockpit->nowLoading);
+        Forward2AAC28_13F070(Cockpit->nowLoading);
         if (D_003C2555 != 0 && D_003C2554 != 0) {
             D_003C2554 = 0;
             D_003C2555 = 0;

@@ -45,7 +45,7 @@ void Trans(void) {
     func_002C3818(D_003C2F84);
     func_002AF028(D_003C23A4);
     TransEsp();
-    func_001410A8(D_003BD6E8);
+    func_001410A8(Cockpit);
     func_00160B90(D_003BD930);
 }
 

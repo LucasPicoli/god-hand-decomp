@@ -18,5 +18,5 @@ void func_001C2408(cGameObj *self, int gold)
     }
     cCoreSave_addGold(&D_00569B70, gold, 0);
     VU0_LQC2_SQC2_MEM(4, &pos, self->pos);
-    cCockGetPoint_setData(&D_003BD6E8->getPoint, &pos, gold, self->id);
+    cCockGetPoint_setData(&Cockpit->getPoint, &pos, gold, self->id);
 }

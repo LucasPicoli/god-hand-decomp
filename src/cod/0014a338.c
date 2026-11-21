@@ -16,7 +16,7 @@ extern void func_002B22E0(void *, int);
 __attribute__((section(".text.func_001DBCF8")))
 void func_001DBCF8(char *a0) {
     if (*(unsigned char *)(a0 + 0x3025) != 0) return;
-    func_00143A90(&D_003BD6E8->gold);
+    func_00143A90(&Cockpit->gold);
     *(int *)(a0 + 0x3020) |= 1;
     *(unsigned char *)(a0 + 0x3025) = *(unsigned char *)(a0 + 0x3025) + 1;
 }

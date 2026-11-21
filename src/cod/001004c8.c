@@ -263,7 +263,7 @@ void cActionButtonUnit_setOk(unsigned char *a0)
         return;
     }
     {
-        D_003BD6E8->screen.flags |= 0x10000000;
+        Cockpit->screen.flags |= 0x10000000;
     }
 }
 

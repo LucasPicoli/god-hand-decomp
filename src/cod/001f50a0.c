@@ -70,7 +70,7 @@ typedef struct AnimNode {
     int blendC;                         /* 0x40 */
 } AnimNode;
 
-#define GAME_FLAGS()    (D_003BD6E8->screen.flags)
+#define GAME_FLAGS()    (Cockpit->screen.flags)
 
 /* Per-frame step of an animation node. */
 __attribute__((section(".text.AnimNode_stepPlayback")))
@@ -91,7 +91,7 @@ int AnimNode_stepPlayback(AnimNode *self)
     } else {
         self->frames = self->frames - 1;
     }
-    idx = GetNextAnimIndex_1451E0(&D_003BD6E8->screen);
+    idx = GetNextAnimIndex_1451E0(&Cockpit->screen);
     if (idx >= 0) {
         if (self->step == 1)
             GAME_FLAGS() |= GAME_F_ANIM_DONE;
@@ -104,12 +104,12 @@ int AnimNode_stepPlayback(AnimNode *self)
     case 0:
         if (idx != ANIM_NONE)
             return 1;
-        BlendSetup_load(&D_003BD6E8->screen, self->blendA, self->blendB, self->blendC, self->mode, self->counter);
+        BlendSetup_load(&Cockpit->screen, self->blendA, self->blendB, self->blendC, self->mode, self->counter);
         self->step = self->step + 1;
         self->frames = STEP_BLEND_FRAMES;
         /* fall through */
     case 1:
-        self->counter = D_003BD6E8->screen.cur + 1;
+        self->counter = Cockpit->screen.cur + 1;
         break;
     }
     return 1;

@@ -36,8 +36,8 @@ void Screen_closeCasino(Screen1689E8 *self)
 {
     char *host;
     Obj0000_Set_D_007474A0_Fields_5D8_5E0(self);
-    func_00143A90(&D_003BD6E8->gold);
-    cCockPlBar_initData(&D_003BD6E8->plBar);
+    func_00143A90(&Cockpit->gold);
+    cCockPlBar_initData(&Cockpit->plBar);
     AddToActiveList_138F40(D_00463050, 0);
     cVec_copy3(&self->player->turnTo, &self->target);
     pl00_SubscreenMode(self->player, 0);
