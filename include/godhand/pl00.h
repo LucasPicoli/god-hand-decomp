@@ -33,21 +33,36 @@ typedef struct pl00 {
     unsigned short comboStage;          /* 0x5E6 cleared when a combo starts */
     char unk5E8[0x5F2 - 0x5E8];
     unsigned short unk5F2;              /* 0x5F2 style: func_001269E0 picks each motion's records by it */
-    char unk5F4[0x630 - 0x5F4];
+    char unk5F4[0x61F - 0x5F4];
+    unsigned char unk61F;               /* 0x61F while set, the hit countdown at 0x568 also sets unk15F4 bit 0x8000 */
+    char unk620[0x630 - 0x620];
     cVec unk630;                        /* 0x630 func_0012A578 scales the player's offset from this point */
-    char unk640[0x698 - 0x640];
+    cGameObj *held;                     /* 0x640 the object the player holds, 0 while none */
+    char unk644[4];
+    unsigned char unk648;               /* 0x648 set to 0x14 while an object is held */
+    char unk649[0x698 - 0x649];
     cGameObj *sub698;                   /* 0x698 */
     char unk69C[4];
     cGameObj *sub6A0;                   /* 0x6A0 */
     char unk6A4[4];
     cGameObj *sub6A8;                   /* 0x6A8 */
-    char unk6AC[0x1603 - 0x6AC];
+    char unk6AC[0x15B0 - 0x6AC];
+    int unk15B0;                        /* 0x15B0 pl00_stepCountedAttack: 1 once a unit is near, 2 once the hit is counted */
+    int stepCount;                      /* 0x15B4 frames left of the current step's count */
+    char unk15B8[0x15C0 - 0x15B8];
+    float stepScale;                    /* 0x15C0 scale on nullSpeed x and z while a knockdown motion runs */
+    char unk15C4[0x15F4 - 0x15C4];
+    int unk15F4;                        /* 0x15F4 flag word */
+    char unk15F8[0x1603 - 0x15F8];
     char unk1603;                       /* 0x1603 */
-    char unk1604[0x1615 - 0x1604];
+    char unk1604[0x1614 - 0x1604];
+    unsigned char unk1614;              /* 0x1614 which of three counter motions runs next, 0 to 2 */
     signed char comboCount;             /* 0x1615 hits in the current combo */
     short comboTimer;                   /* 0x1616 frames left before the combo ends */
     short unk1618;                      /* 0x1618 */
-    char unk161A[0x1660 - 0x161A];
+    char unk161A[0x1620 - 0x161A];
+    int unk1620;                        /* 0x1620 sound handle, stopped with cSnd_SeStop */
+    char unk1624[0x1660 - 0x1624];
     int unk1660[2];                     /* 0x1660 [0] blend record 0, [1] blend record 1 */
     int moveA;                          /* 0x1668 the move being run (blend record 0) */
     int moveB;                          /* 0x166C blend record 1 */
@@ -63,6 +78,9 @@ typedef char pl00_chk_sub6A8[((int)&((pl00 *)0)->sub6A8 == 0x6A8) ? 1 : -1];
 typedef char pl00_chk_combo[((int)&((pl00 *)0)->comboCount == 0x1615) ? 1 : -1];
 typedef char pl00_chk_timer[((int)&((pl00 *)0)->comboTimer == 0x1616) ? 1 : -1];
 typedef char pl00_chk_comboSlot[((int)&((pl00 *)0)->comboSlot == 0x5E0) ? 1 : -1];
+typedef char pl00_chk_held[((int)&((pl00 *)0)->held == 0x640) ? 1 : -1];
+typedef char pl00_chk_stepScale[((int)&((pl00 *)0)->stepScale == 0x15C0) ? 1 : -1];
+typedef char pl00_chk_1620[((int)&((pl00 *)0)->unk1620 == 0x1620) ? 1 : -1];
 typedef char pl00_chk_1684[((int)&((pl00 *)0)->unk1684 == 0x1684) ? 1 : -1];
 
 /* Set blend record 0: moveA and the [0] words of 0x1660, 0x1670, 0x1678, 0x1680. */
