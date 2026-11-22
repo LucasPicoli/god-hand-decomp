@@ -1,5 +1,6 @@
 /* cygnus-2.96 */
 #include "godhand/globals.h"
+#include "godhand/criCbTbl.h"
 
 extern void func_0033BDD8(void);
 

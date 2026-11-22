@@ -2,6 +2,7 @@
 
 #include "godhand/criSj.h"
 #include "godhand/globals.h"
+#include "godhand/criCbTbl.h"
 
 extern volatile int D_003C7418;
 extern char D_003C7420[];
@@ -15,7 +16,6 @@ extern void func_0033F0B8(void);
 extern void func_0033F3F0(void);
 extern void Obj3260_Tramp_00337728_D288(void);
 extern void LSC_Init(void);
-extern void func_0033BE80(void);
 extern void Obj3260_NoOp_D2B8(void *fn, int arg);
 extern void func_00335D18(void *fn, int arg);
 extern void func_003A52F0(void *dst, int val, int len);

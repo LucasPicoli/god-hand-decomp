@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
+#include "godhand/adxm.h"
 
 extern void func_00326020(int a0);
 extern void func_003A6A20(const char *s);
 extern void ADX_InitHandlers(void *p);
 extern void func_003290B8(void *p);
 extern int ADXPS2_LoadFcacheDvd(void *p);
-extern void func_00325638(void *p);
 extern void Obj3260_Tramp_00336E88_D148(int a0, int a1);
 extern void StmMgr_start(void);
 extern void ModuleStart_refCounted(void);
@@ -27,7 +27,6 @@ extern unsigned char D_0061B7C0[];
 struct SA { void *f0; int f4; int f8; int fC; };
 struct SB { int f0; int f4; int f8; int fC; int f10; };
 struct SC { void *f0; int f4; void *f8; int fC; };
-struct SD { int f0; int f4; int f8; int fC; int f10; int f14; };
 
 __attribute__((section(".text.func_002CA220")))
 void func_002CA220(void)
@@ -35,7 +34,7 @@ void func_002CA220(void)
     struct SA a;
     struct SB b;
     struct SC c;
-    struct SD d;
+    AdxmInitArg d;
 
     func_00326020(2);
     func_003A6A20(D_0044CDE0);
@@ -57,12 +56,12 @@ void func_002CA220(void)
     c.fC = 0x668;
     ADXPS2_LoadFcacheDvd(&c);
     func_003A52F0(&d, 0, sizeof(d));
-    d.f0 = 1;
-    d.f4 = 8;
-    d.f8 = 0x10;
-    d.fC = 0x12;
-    d.f10 = 0x18;
-    d.f14 = 0x60;
+    d.a = 1;
+    d.b = 8;
+    d.d = 0x10;
+    d.e = 0x12;
+    d.prio = 0x18;
+    d.g = 0x60;
     func_00325638(&d);
     Obj3260_Tramp_00336E88_D148(0xA, 0);
     StmMgr_start();

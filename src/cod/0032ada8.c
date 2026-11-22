@@ -1,26 +1,24 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/adxPly.h"
 
 extern void DTX_Finish(void);
 extern void DTX_Init(void);
 
-typedef struct SJ SJ;
-struct SJVT { char pad[0x24]; int (*f24)(SJ *, int); };
-struct SJ { struct SJVT *vt; };
 
 
 
 
 __attribute__((section(".text.ADXT_GetNumSmplObuf")))
-int ADXT_GetNumSmplObuf(int adxt, int ch)
+int ADXT_GetNumSmplObuf(AdxPly *adxt, int ch)
 {
-    SJ *sj;
+    SjObj *sj;
     if (adxt == 0 || ch < 0) {
         func_0033F130(D_00452408);
         return -1;
     }
-    sj = *(SJ **)(ch * 4 + adxt + 0x18);
-    if (sj != 0) return sj->vt->f24(sj, 1) / 2;
+    sj = adxt->sjiA[ch];
+    if (sj != 0) return sj->vt->getNumData(sj, 1) / 2;
     return 0;
 }
 

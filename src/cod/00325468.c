@@ -1,13 +1,13 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/adxm.h"
+#include "godhand/eeKernel.h"
 
 extern void Thunk_func_0033B658(void *p);
 extern void Thunk_func_0033B670(void *p);
 extern void func_0032B300(int x, int a1);
 extern int CreateThread(void *);
 extern void StartThread_3B0BA8(int, int);
-extern void ChangeThreadPriority(int, int);
 extern int D_003CF9D8;
-extern int D_003C80C0;
 extern unsigned char D_003CA9D0[];
 extern int D_00468CF0;
 extern void adxm_fs_proc(void);
@@ -19,7 +19,6 @@ extern void (*D_003DA4D0)(int, void *);
 extern int D_003DA4D4;
 extern void adxm_vsync_proc(void);
 extern char D_003C99D0[];
-extern int D_003C80BC;
 extern volatile int D_003C8140;
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *);
 
@@ -56,32 +55,10 @@ void func_0032EF68(void *a0, int a1) {
     }
 }
 
-typedef struct {
-    int status;
-    void *entry;
-    void *stack;
-    int stackSize;
-    void *gpReg;
-    int initPriority;
-    int currentPriority;
-    int attr;
-    int option;
-} ThreadParamB;
-
-
-
-
-
-
-
-
-
-
-
 __attribute__((section(".text.func_003254F0")))
 void func_003254F0(void) {
-    ThreadParamB tp;
-    tp.entry = (void *)adxm_fs_proc;
+    struct ThreadParam tp;
+    tp.entry = adxm_fs_proc;
     tp.stack = D_003CA9D0;
     tp.stackSize = 0x1000;
     tp.initPriority = D_003CF9D8;
@@ -89,7 +66,7 @@ void func_003254F0(void) {
     D_003C8144 = CreateThread(&tp);
     (void)D_003C8144;
     StartThread_3B0BA8(D_003C8144, 0);
-    ChangeThreadPriority(D_003C8144, D_003C80C0);
+    ChangeThreadPriority(D_003C8144, D_003C80B0.e);
 }
 
 __attribute__((section(".text.SFH_AnlyFtrGopN")))
@@ -139,32 +116,10 @@ int SFMPV_SaveCond(char *obj, int *arr, unsigned int nbytes) {
     return n;
 }
 
-typedef struct {
-    int status;
-    void *func;
-    void *stack;
-    int stackSize;
-    void *gpReg;
-    int initPriority;
-    int currentPriority;
-    int attr;
-    int option;
-} ThreadParam;
-
-
-
-
-
-
-
-
-
-
-
 __attribute__((section(".text.func_00325468")))
 void func_00325468(void) {
-    ThreadParam param;
-    param.func = adxm_vsync_proc;
+    struct ThreadParam param;
+    param.entry = adxm_vsync_proc;
     param.stack = D_003C99D0;
     param.stackSize = 0x1000;
     param.initPriority = D_003CF9D8;
@@ -172,7 +127,7 @@ void func_00325468(void) {
     D_003C8140 = CreateThread(&param);
     D_003C8140;
     StartThread_3B0BA8(D_003C8140, 0);
-    ChangeThreadPriority(D_003C8140, D_003C80BC);
+    ChangeThreadPriority(D_003C8140, D_003C80B0.d);
 }
 
 __attribute__((section(".text.SFD_SetTotTime")))

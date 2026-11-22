@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/adxsjd.h"
 
 extern void ADXT_SetLnkSw(void *a0, int a1);
 extern void SJ_SplitChunk(void *a0, int a1, void *a2, void *a3);
@@ -8,7 +9,6 @@ extern void ADXSJD_Start(void *a0);
 extern void ADXSJD_ExecHndl(void *a0);
 extern int Obj3260_GetByte_1_D778(void *a0);
 extern void StoreArgAndUpdateChildB(void *a0, int a1);
-extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
 extern void Obj3270_SetField_3C(void *a0, int a1);
 extern void Obj3270_SetField_44(void *a0, int a1);
 extern void Obj3270_SetField_40(void *a0, int a1);

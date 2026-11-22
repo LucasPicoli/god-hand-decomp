@@ -205,7 +205,6 @@ extern int D_003C7410;
 extern int D_003C7414;
 extern int D_003C80A4;
 extern int D_003C80A8;
-extern int D_003C80C8;
 extern long long D_003C8100;
 extern volatile int D_003C8144;
 extern volatile int D_003C81CC;

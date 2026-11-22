@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern int sfset_IsCondValid();
 extern int isEffectiveVer();
@@ -22,7 +23,6 @@ extern void func_00352AA0(int *a0, int *a1);
 extern void SFTIM_Tc2Time(int *a0, int *a1, int *a2);
 extern int D_003EE278;
 extern int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *a0);
-extern int ReferThreadStatus(int threadId, int *status);
 extern int SuspendThread(int threadId);
 extern int Obj34D8_SetGlobalEE0B8_IfField48();
 extern void (*D_003E9D28)(int);
@@ -305,15 +305,15 @@ void sftst_ModifyHist(int *a0, int a1)
 
 __attribute__((section(".text.adxm_SuspendThread")))
 int adxm_SuspendThread(int a0) {
-    int status[12];
+    struct ThreadParam info;
     int s0;
     int s1;
     int v1;
     s0 = a0;
     s1 = 0;
     if (s0 != 0) {
-        ReferThreadStatus(s0, status);
-        v1 = status[0];
+        ReferThreadStatus(s0, &info);
+        v1 = info.status;
         if (v1 != 8) {
             if (v1 != 12) {
                 s1 = SuspendThread(s0);

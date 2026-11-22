@@ -8,6 +8,7 @@
 #include "godhand/cOmbb.h"
 #include "godhand/pl00.h"
 #include "godhand/globals.h"
+#include "godhand/criCbTbl.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -732,23 +733,16 @@ void Obj0000_Set_D_003DECFC_D_003DED00_3364F8(int a0, int a1) {
     D_003DED00 = a1;
 }
 
-extern int D_007588A0[2];
-
 __attribute__((section(".text.Obj0000_Set_D_007588A0_Pair_33BC18")))
-void Obj0000_Set_D_007588A0_Pair_33BC18(int a0, int a1) {
-    D_007588A0[0] = a0;
-    D_007588A0[1] = a1;
+void Obj0000_Set_D_007588A0_Pair_33BC18(void (*fn)(int), int arg) {
+    D_007588A0.fn = fn;
+    D_007588A0.arg = arg;
 }
 
-struct {
-    int x;
-    int y;
-} D_007588A8;
-
 __attribute__((section(".text.Obj0000_Set_D_007588A8_XY_33BC30")))
-void Obj0000_Set_D_007588A8_XY_33BC30(int a0, int a1) {
-    D_007588A8.x = a0;
-    D_007588A8.y = a1;
+void Obj0000_Set_D_007588A8_XY_33BC30(void (*fn)(int), int arg) {
+    D_007588A8.fn = fn;
+    D_007588A8.arg = arg;
 }
 
 extern int D_007588C0[2];

@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/adxPly.h"
 
 extern void NoOp_33E6A8(void);
-extern void func_0032A1B0(void *a0, int a1, int a2);
 extern void NoOp_33E6B0(void);
 extern void func_0032BB98(void *a0, int a1, int a2);
 extern void adxt_StartMemIdx(void *a0, int a1, int a2);
@@ -14,9 +14,9 @@ extern void func_00338E38(void *a0, int a1, int a2);
 extern void Forward33B670_338A10(void);
 
 __attribute__((section(".text.func_0032A160")))
-void func_0032A160(void *a0, int a1, int a2) {
+void func_0032A160(void *a0, int *a1, int *a2) {
     NoOp_33E6A8();
-    func_0032A1B0(a0, a1, a2);
+    adxt_GetTime(a0, a1, a2);
     NoOp_33E6B0();
 }
 

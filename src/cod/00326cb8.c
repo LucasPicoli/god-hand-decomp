@@ -1,6 +1,7 @@
 /* cygnus-2.96: ADX SJ header step: skip the 0x8001 header and its zero padding, otherwise hand the
  * chunk to the decoder. */
 #include "godhand/criSj.h"
+#include "godhand/adxsjd.h"
 typedef struct {
     char f0;
     char st;
@@ -24,7 +25,6 @@ typedef struct {
 } AdxSjHdrHn;
 
 extern int Obj33C8_GetShort_98(void *sj);
-extern int Obj3270_GetVia4_Obj33C8_18_77E8(AdxSjHdrHn *hn);
 extern int Obj3270_GetVia4_Obj33C8_10_77D0(AdxSjHdrHn *hn);
 extern int func_003279A0(AdxSjHdrHn *hn);
 extern int ADX_DecodeFooter(char *p, int len, short *out);

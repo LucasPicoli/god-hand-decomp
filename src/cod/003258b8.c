@@ -2,8 +2,8 @@
  * until the thread acknowledges, then clear the flags and the thread id. One copy per server. */
 #include "godhand/adxm.h"
 #include "godhand/adxmThread.h"
+#include "godhand/eeKernel.h"
 
-extern int ChangeThreadPriority(int thid, int prio);
 extern int WakeupThread(int thid);
 
 #define ADX_STOP_THREAD(name, ack, req, thread)                 \

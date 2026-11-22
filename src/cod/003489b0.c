@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
-extern void func_0033BE80(void);
+#include "godhand/criCbTbl.h"
 
 /* Initialize the server manager and reset the Sofdec callback registration IDs. */
 __attribute__((section(".text.MWSFSVM_Init")))

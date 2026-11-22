@@ -28,27 +28,9 @@ typedef struct AdxSjd {
 
 extern AdxSjd D_003CF9F0[ADXSJD_SLOTS];
 
-/* The same slot as the running decoder sees it: the first create argument
- * word is the RNA output handle, two words follow, then the stream joints. */
-typedef struct AdxSjdRun {
-    signed char used;           /* 0x00 */
-    unsigned char stat;         /* 0x01 state */
-    char unk02[2];
-    void *sjd;                  /* 0x04 */
-    char unk08[4];
-    void *rna;                  /* 0x0C RNA output handle */
-    char unk10[8];
-    SjObj *sj[2];               /* 0x18 output stream joints */
-    char unk20[0x28];
-    unsigned int flush;         /* 0x48 */
-    char unk4C[0x24];
-    char busy;                  /* 0x70 */
-    char unk71;                 /* 0x71 */
-    char stopReq;               /* 0x72 */
-    char unk73[0x9C - 0x73];
-    int unk9C;                  /* 0x9C */
-    int unkA0;                  /* 0xA0 */
-    char unkA4[0xAC - 0xA4];
-} AdxSjdRun;
+/* The getters of a slot (AdxPly.sjd). */
+extern int Obj3270_GetVia4_Obj33C8_14_7788(void *a0);
+extern int Obj3270_GetVia4_0033CEF0_77B8(void *a0);
+extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
 
 #endif

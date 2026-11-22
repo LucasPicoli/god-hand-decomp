@@ -2,17 +2,16 @@
 
 #include "godhand/adxm.h"
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
-extern int GetThreadId(void);
-extern int ChangeThreadPriority(int thid, int prio);
-
+/* The SVM lock callback; arg is unused. */
 __attribute__((section(".text.func_00324C90")))
-void func_00324C90(void)
+void func_00324C90(int arg)
 {
     if (D_003C80E0 == 0) {
         int thid = GetThreadId();
 
-        D_003CF9D0 = ChangeThreadPriority(thid, D_003C80B0);
+        D_003CF9D0 = ChangeThreadPriority(thid, D_003C80B0.a);
         D_003CF9D4 = thid;
         adxm_ResumeThread(D_003C8138);
         D_003C8138;
@@ -20,8 +19,9 @@ void func_00324C90(void)
     D_003C80E0++;
 }
 
+/* The SVM unlock callback; arg is unused. */
 __attribute__((section(".text.adxm_unlock")))
-void adxm_unlock(void)
+void adxm_unlock(int arg)
 {
     if (--D_003C80E0 == 0) {
         adxm_SuspendThread(D_003C8138);
@@ -42,7 +42,7 @@ void adxm_goto_svr_border(int thid, int prio)
         return;
     }
     D_003C80E4 = 1;
-    ChangeThreadPriority(thid, D_003C80B0);
+    ChangeThreadPriority(thid, D_003C80B0.a);
     for (i = 0; ; i++) {
         func_00325290(thid);
         adxm_ResumeThread(thid);

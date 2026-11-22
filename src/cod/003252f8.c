@@ -1,13 +1,11 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
 extern const char D_00454458[];
-extern int ReferThreadStatus(int thid, struct THST *info);
 extern int ResumeThread(int thid);
 
 struct LSC { char f0; signed char f1; char pad[0x1A]; int f1C; int f20; int f24; };
-
-
 
 __attribute__((section(".text.LSC_ResetEntry")))
 void LSC_ResetEntry(struct LSC *p)
@@ -32,14 +30,10 @@ int func_00332E68(int *hn)
     return hn[3];
 }
 
-struct THST { int status; char pad[0x2C]; };
-
-
-
 __attribute__((section(".text.adxm_ResumeThread")))
 int adxm_ResumeThread(int thid)
 {
-    struct THST info;
+    struct ThreadParam info;
     int ret = 0;
     if (thid != 0) {
         ReferThreadStatus(thid, &info);

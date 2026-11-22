@@ -3,8 +3,10 @@
  * The manager keeps one configuration record at D_003C80B0. The init call
  * either copies a caller's record into it or fills in the defaults. Words 0
  * to 2 of the caller's record go to fields a, b and d; the block holds a
- * word c that the init never writes. The ADX server thread runs at
- * `prio`.
+ * word c that the init never writes. `a` is the lock priority; the init
+ * sets the thread that called it to `prio`; the four server threads run at
+ * `b` (func_003253C0), `d` (func_00325468), `e` (func_003254F0) and `g`
+ * (func_00325578, and the SVM server step).
  *
  * Field names are ours; offsets are exact.
  */
@@ -35,7 +37,7 @@ typedef struct AdxmCfg {
     int unk08;                          /* 0x08 never written by the init */
     int d;                              /* 0x0C */
     int e;                              /* 0x10 */
-    int prio;                           /* 0x14 thread priority of the server */
+    int prio;                           /* 0x14 priority of the thread that ran the init */
     int g;                              /* 0x18 */
 } AdxmCfg;
 

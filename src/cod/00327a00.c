@@ -1,11 +1,9 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/adxsjd.h"
 
 extern char D_003D04D0[];
-extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
-extern int Obj3270_GetVia4_Obj33C8_14_7788(void *a0);
 extern int Obj3270_GetVia4_0033CE98_77A0(void *a0);
-extern void func_0033F130(void *a);
 extern int GetVia4_Obj33C8_GetByte_D_327950(char *a0);
 extern void func_00332808(char *a, char *b);
 extern char D_00454458[];

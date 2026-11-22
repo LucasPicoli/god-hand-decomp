@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/criCbTbl.h"
 
 extern void func_00335D40();
 extern void func_00335950();
 extern void sfadxt_WtPause(void *, void *, int);
-extern struct FnEntry D_007588A0;
 
 __attribute__((section(".text.func_003358E8")))
 void func_003358E8(void *a0) {
@@ -67,15 +67,6 @@ void sfadxt_WaitStart(void *a0, int a1) {
     }
     sfadxt_WtPause(a0call, a0new, v0);
 }
-
-struct FnEntry {
-    void (*fn)(int);
-    int arg;
-};
-
-
-
-
 
 __attribute__((section(".text.svm_lock")))
 void svm_lock(int a0) {
