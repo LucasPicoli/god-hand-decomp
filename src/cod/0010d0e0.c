@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cMovie.h"
 #include "godhand/motion.h"
+#include "godhand/cDamageUnit.h"
 
 extern void func_001268F0(void *a0);
 extern void func_00124540(void *a0, int a1);
@@ -15,10 +16,8 @@ extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern int cCollisionManager_checkNearCollision(void *a0, int a1, void *a2, float f);
 extern void pl00_addComboHit(void *a0);
 extern char D_005FEE00[];
-extern char D_005E8040[];
 extern void func_002D42E0(cMovieTrack *track);
 extern int D_00747A84;
 
@@ -27,7 +26,7 @@ extern int D_00747A84;
  * state to 2 and calls pl00_addComboHit. */
 __attribute__((section(".text.pl00_stepCountedAttack"))) void pl00_stepCountedAttack(pl00 *self)
 {
-    float v[4] __attribute__((aligned(16)));
+    cVec v __attribute__((aligned(16)));
     float one;
     int s2v, s0v, n;
 
@@ -101,9 +100,9 @@ __attribute__((section(".text.pl00_stepCountedAttack"))) void pl00_stepCountedAt
                 self->unk1603 = 2;
                 if (self->unk15B0 == 0) {
                     VU0_LQC2(4, (char *)self->base.pos, 0);
-                    VU0_SQC2(4, v, 0);
-                    v[1] = v[1] + one;
-                    if (cCollisionManager_checkNearCollision(D_005E8040, 2, v, 1.5f) != 0) {
+                    VU0_SQC2(4, &v, 0);
+                    v.y = v.y + one;
+                    if (cCollisionManager_checkNearCollision(&D_005E8040, 2, &v, 1.5f) != 0) {
                         self->unk15B0 = 1;
                     }
                 }

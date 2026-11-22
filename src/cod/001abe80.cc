@@ -111,6 +111,7 @@ int func_001ABE80(cOm5a *self)
     func_001ADA70(self, 3.1f);
     cOm5a_setFaceOpen(self);
     if (self->unk5E0 != 0) {
+        /* case 0 and default stay two arms: retail tests 0 on its own (0x1AC2F8), and GCSE needs the second arm. */
         switch (self->unk5E0->type) {
         case 0:
             cOm5a_setOpenType(self, 0);

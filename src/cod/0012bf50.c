@@ -4,6 +4,7 @@
 #include "godhand/cGameObj.h"
 #include "godhand/cMc.h"
 #include "godhand/cEvent.h"
+#include "godhand/cDamageUnit.h"
 
 extern cGameObj *InitFields_1B6E90(cGameObj *self);
 #include "godhand/objField.h"
@@ -104,11 +105,6 @@ void cMc_loadRunRelease(void) {
     cTaskWork_exit(D_00752C00.task);
 }
 
-/* A four-slot table of {key, value} pairs. */
-typedef struct KeySlot {
-    int key;                            /* 0x0 key, 0 when the slot is free */
-    int value;                          /* 0x4 */
-} KeySlot;
 
 
 

@@ -2,6 +2,7 @@
 
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageUnit.h"
 
 extern void CustomIDWork_SetLocalPosY(char *work, int y);
 extern void SetCustomIDDispOneOrAll_1F4778(char *self, int id, int on);
@@ -216,57 +217,32 @@ void HitPhaseObj_tickPhase(HitPhaseObj *self)
     func_001B7EE0(self, 2.5f);
 }
 
-#define COLL_NODE_FLAGS_MASK  0x203
-#define COLL_NODE_FLAGS_LIVE  0x3
-
-typedef struct CollOwner {
-    char unk00[0xC0];
-    float *pos;                         /* 0xC0 */
-} CollOwner;
-
-typedef struct CollNode {
-    unsigned int flags;                 /* 0x00 */
-    struct CollNode *next;              /* 0x04 */
-    char unk08[4];
-    unsigned char kind;                 /* 0x0C */
-    char unk0D[3];
-    int bit;                            /* 0x10 layer bit number */
-    char unk14[0x20];
-    CollOwner *owner;                   /* 0x34 */
-} CollNode;
-
-typedef struct cCollisionManager {
-    char unk00[0x10];
-    CollNode *head;                     /* 0x10 */
-    char unk14[8];
-    unsigned int mask[16];              /* 0x1C per layer bit set of nodes that count */
-} cCollisionManager;
-
-/* First live node of the layer's kind-opposite group whose owner lies within `radius` of pos, or 0. */
+/* First live unit of the layer's kind-opposite group whose shape lies within `radius` of pos, or 0. */
 __attribute__((section(".text.cCollisionManager_checkNearCollision")))
-CollNode *cCollisionManager_checkNearCollision(cCollisionManager *self, int layer, float *pos, float radius)
+cCollisionUnit *cCollisionManager_checkNearCollision(cCollisionManager *self, int layer, const cVec *pos,
+                                                     float radius)
 {
     float v[4] __attribute__((aligned(16)));
     float d[4] __attribute__((aligned(16)));
     float e[4] __attribute__((aligned(16)));
     float r2;
     int want;
-    CollNode *node;
+    cCollisionUnit *node;
     int ok;
-    float *ownerPos;
+    cVec *shapePos;
     float *copyDst;
 
     r2 = radius * radius;
     want = func_002B8A30(self, layer);
     VU0_SQC2_VF0(v, 0);
     for (node = self->head; node != 0; node = node->next) {
-        ok = ((node->flags & COLL_NODE_FLAGS_MASK) == COLL_NODE_FLAGS_LIVE);
+        ok = ((node->flags & COLL_UNIT_FLAGS_MASK) == COLL_UNIT_FLAGS_LIVE);
         if (ok != 1) continue;
         if (node->kind == want) continue;
-        if ((self->mask[layer] & (1 << node->bit)) == 0) continue;
-        ownerPos = node->owner->pos;
+        if ((self->mask[layer] & (1 << node->group)) == 0) continue;
+        shapePos = node->shape->pos;
         VU0_SQC2_VF0(v, 0x20);
-        VU0_LQC2(4, ownerPos, 0);
+        VU0_LQC2(4, shapePos, 0);
         copyDst = d;
         VU0_LQC2(5, pos, 0);
         VU0_VSUB_XYZ(4, 4, 5);
