@@ -1,5 +1,6 @@
 #include "godhand/cModel.h"
 #include "godhand/cCockTutorial.h"
+#include "godhand/cCockScroll.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
@@ -45,15 +46,15 @@ void InitPtrField80AndForward_146748(void *a0, int a1) {
     }
 }
 
+/* cCockScroll's draw: while the banner runs, draw the part on show. */
 __attribute__((section(".text.ForwardTransBySubState_146E20")))
-void ForwardTransBySubState_146E20(char *a0) {
-    char v1 = a0[0x79];
-    if (v1 == 0) return;
-    if (v1 == 6) return;
-    if (*(unsigned short *)(a0 + 0xF8) == 0) {
-        cIDBase_trans(a0);
+void ForwardTransBySubState_146E20(cCockScroll *self) {
+    if (self->state[0] == COCKSCROLL_STEP_WAIT) return;
+    if (self->state[0] == COCKSCROLL_STEP_POP) return;
+    if (self->kindQueue[0] == 0) {
+        cIDBase_trans(&self->base);
     } else {
-        cIDBase_trans(a0 + 0xA0);
+        cIDBase_trans(&self->part2);
     }
 }
 
