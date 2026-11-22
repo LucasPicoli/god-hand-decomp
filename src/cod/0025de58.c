@@ -4,7 +4,6 @@
 
 extern void *Getplayer(void);
 extern void SetMotionStep(void *a0, float f12);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void ForwardAnimParamPairByIndex_27EA50(void *a0, int a1);
 extern int moveMotion(void *a0);
@@ -14,9 +13,9 @@ extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
-extern char D_00462FC0[];
 extern char D_005CB000[];
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
@@ -45,7 +44,7 @@ void cEm_heldByPlayerPhase(void *a0)
         SetMotionStep(s0, v);
     }
     *(float *)(s0 + 0x54C) = 3.0f;
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {

@@ -1,10 +1,9 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int D_00462FC0;
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
@@ -39,7 +38,7 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
     char *s1 = (char *)self;
     int s2v, s0v;
 
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int gb;

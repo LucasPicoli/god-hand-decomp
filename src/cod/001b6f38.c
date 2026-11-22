@@ -1,13 +1,12 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cActionButton.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 
 extern char D_005CAE50[];
-extern char D_00462FC0[];
 extern void func_001331B8(char *a0, long a1, int a2);
-extern void cCollisionSolidManage_ReleaseUnit(char *a0, char *a1);
 extern void ReleaseObj(char *a0);
 extern void func_001FE370(cDamageManage *a0, char *a1);
 extern void cGameObj__dtor(char *a0, char *a1);
@@ -20,7 +19,7 @@ __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
 void SetField214PtrThenInit_1B6F38(char *a0, char *a1) {
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
     func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, (cGameObj *)a0);
     ReleaseObj(a0);
     func_001FE370(&D_00574380, a0);
     cGameObj__dtor(a0, a1);

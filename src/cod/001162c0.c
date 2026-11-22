@@ -2,9 +2,9 @@
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
@@ -20,7 +20,6 @@ extern void cSnd_DieDemoStart(void *a0);
 extern void func_0012C348(void *a0, int a1);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern char D_005864F0[];
-extern char D_00462FC0[];
 extern int D_007474A8;
 extern int D_00747A24;
 
@@ -59,7 +58,7 @@ void func_001162C0(void *a0) {
     cEmManage_SetSlotWait(D_005864F0, 2);
     cEmManage_SetPlCatched(D_005864F0);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x200;
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
         int b;

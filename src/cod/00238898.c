@@ -1,15 +1,14 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002DB770(void);
-extern char D_00462FC0[];
 extern char D_007474A0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -65,7 +64,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         }
             /* fallthrough */
         case 1:
-            cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
             if (*(short *)((char *)self + 0x56E) != 0) {
                 char *q;
                 int p0;
@@ -92,7 +91,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         }
             /* fallthrough */
         case 3:
-            cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
             self->hitFlash = 3.0f;
             if (moveMotion(self) != 0) {
                 *(unsigned char *)(s1 + 0x2F6) = 4;
@@ -126,7 +125,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         }
             /* fallthrough */
         case 5:
-            cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
             *(short *)((char *)self + 0x434) |= 8;
             self->hitFlash = 3.0f;
             moveMotion(self);
@@ -145,7 +144,7 @@ __attribute__((section(".text.func_00238898"))) void func_00238898(cEm00 *self)
         case 7:
             if (self->unk568 != 0) {
                 self->unk568--;
-                cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+                cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
                 self->hitFlash = 3.0f;
             }
             if (moveMotion(self) != 0) {

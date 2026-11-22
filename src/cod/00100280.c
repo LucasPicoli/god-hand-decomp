@@ -1,8 +1,8 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#define CGAMEOBJ_NO_TYPEDEF             /* this TU calls the constructor cGameObj */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/globals.h"
 
-extern int D_00462FC0;
-extern void cCollisionSolidManage_ReleaseUnit(void *, void *);
 extern void cGameObj__dtor(void *, void *);
 extern int D_007854C8;
 extern void cGameObj__tf(void);

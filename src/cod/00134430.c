@@ -1,16 +1,21 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 
-/* func_00134430 — constructor-style init: zero-fills two quadwords (0x20, 0x30)
- * via sqc2 $vf0, sets a few fields, returns the object. */
+#define CSOLID_UNIT_MIN_OFFSET  0x20    /* cCollisionSolidManageUnit.min, for the VU0 store */
+#define CSOLID_UNIT_MAX_OFFSET  0x30    /* cCollisionSolidManageUnit.max */
+
+/* Unit constructor: set both bounds to (0, 0, 0, 1), then store the owner, the priority and
+ * the share, with no solids and no next unit. */
 
 __attribute__((section(".text.func_00134430")))
-void *func_00134430(void *a0, int a1, int a2, float f) {
-    VU0_SQC2_VF0(a0, 0x20);
-    VU0_SQC2_VF0(a0, 0x30);
-    *(int *)((char *)a0 + 0x0) = a1;
-    *(int *)((char *)a0 + 0x8) = a2;
-    *(float *)((char *)a0 + 0xC) = f;
-    *(int *)((char *)a0 + 0x4) = 0;
-    *(int *)((char *)a0 + 0x10) = 0;
-    return a0;
+cCollisionSolidManageUnit *func_00134430(cCollisionSolidManageUnit *self, struct cGameObj *owner,
+                                         int priority, float share) {
+    VU0_SQC2_VF0(self, CSOLID_UNIT_MIN_OFFSET);
+    VU0_SQC2_VF0(self, CSOLID_UNIT_MAX_OFFSET);
+    self->owner = owner;
+    self->priority = priority;
+    self->share = share;
+    self->first = 0;
+    self->next = 0;
+    return self;
 }

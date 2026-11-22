@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cModel.h"
 #include "godhand/cOmbb.h"
 #include "godhand/cSceAtManager.h"
@@ -12,8 +13,6 @@ extern int cEmManage_CkPlCatched(void *p);
 extern int D_005864F0;
 extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float Adjust_theta(float f12);
-extern int D_00462FC0;
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_00129718(void *a, void *b, int c);
 extern cSceAtManager D_005FEA60;
 extern int D_00568288;
@@ -195,7 +194,7 @@ void func_002DD6C0(void *arg)
                     s0[0x2F7] = 0;
                     s0[0x2F4] = 1;
                     s0[0x2F5] = 0x22;
-                    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
+                    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
                     func_00129718(r, s0, 0x22);
                 }
             }

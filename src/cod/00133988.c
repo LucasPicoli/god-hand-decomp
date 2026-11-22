@@ -1,19 +1,20 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 
-/* cCollisionSolid — constructor-style init: zero-fills two quadwords (0x10, 0x20),
- * sets a vtable/data pointer at 0x30, zeroes a few fields, sets flag bit 0 at
- * 0x8, returns the object. */
+#define CSOLID_MIN_OFFSET  0x10         /* cCollisionSolidObj.min, for the VU0 store */
+#define CSOLID_MAX_OFFSET  0x20         /* cCollisionSolidObj.max */
 
-extern int D_0041D808;
+/* cCollisionSolid — base constructor: both bounds set to (0, 0, 0, 1), the
+ * base method table, no next solid, state 0, CSOLID_FLAG_ACTIVE set. */
 
 __attribute__((section(".text.cCollisionSolid")))
-void *cCollisionSolid(void *a0) {
-    *(int *)((char *)a0 + 0x8) = 0;
-    *(void **)((char *)a0 + 0x30) = &D_0041D808;
-    VU0_SQC2_VF0(a0, 0x10);
-    VU0_SQC2_VF0(a0, 0x20);
-    *(int *)((char *)a0 + 0x4) = 0;
-    *(int *)((char *)a0 + 0x0) = 0;
-    *(int *)((char *)a0 + 0x8) |= 1;
-    return a0;
+cCollisionSolidObj *cCollisionSolid(cCollisionSolidObj *self) {
+    self->flags = 0;
+    self->vt = &D_0041D808;
+    VU0_SQC2_VF0(self, CSOLID_MIN_OFFSET);
+    VU0_SQC2_VF0(self, CSOLID_MAX_OFFSET);
+    self->state = 0;
+    self->next = 0;
+    self->flags |= CSOLID_FLAG_ACTIVE;
+    return self;
 }

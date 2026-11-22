@@ -2,12 +2,12 @@
 
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00124EC0(void *a0);
@@ -15,11 +15,8 @@ extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
-                   int a7, int a8, int a9, int a10, int a11, int a12);
 extern int SetEffectParts(int a0, int a1, void *a2, int a3, float f12,
                            float f13, float f14, float f15, int a4);
-extern char D_00462FC0[];
 extern int D_00747A24;
 extern void cSnd_DieDemoStart(void *a0);
 extern void func_0012C348(void *a0, int a1);
@@ -54,7 +51,7 @@ void func_00115C00(void *a0)
     case 1: {
         func_00124EC0(s1);
         *(int *)(s1 + 0x15F4) |= 0x2080;
-        cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+        cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
         *(unsigned short *)(s1 + 0x434) |= 8;
         if (moveMotion(s1) != 0) {
             D_00747A24 |= 8;
@@ -86,7 +83,7 @@ void func_00115C00(void *a0)
                 (*(float **)(s1 + 0xF0))[1] = vc[1];
                 *(unsigned char *)(s1 + 0x2F6) = 2;
                 *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) & m1 & m2;
-                cCollisionSolidManage_SetActive(D_00462FC0, s1, 1);
+                cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 1);
                 *(unsigned short *)(s1 + 0x3AC) &= 0xFFFB;
             }
         }

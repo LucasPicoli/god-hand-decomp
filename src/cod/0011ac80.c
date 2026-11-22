@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern char D_00462FC0[];
 extern unsigned int irand(void);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
@@ -30,7 +29,7 @@ void func_00239570(void *a0)
     char *s0 = (char *)a0;
     char *s1 = (char *)Getplayer();
     float one;
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {

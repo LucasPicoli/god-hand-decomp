@@ -1,12 +1,11 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/globals.h"
 
 extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_007854C8[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 #include "godhand/motion.h"
-extern char D_00462FC0[];
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -25,7 +24,7 @@ void ForwardAndSyncPosition_102EE0(void *a0) {
     int s1 = Getplayer();
     int g;
     int p0, p1;
-    cCollisionSolidManage_SetActive(D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
     *(int *)((char *)a0 + 0x250) |= 2;
     *(float *)((char *)a0 + 0x54C) = 2.0f;
     switch (*(unsigned char *)((char *)a0 + 0x2F6)) {

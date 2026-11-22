@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
 #include "godhand/globals.h"
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -18,14 +18,12 @@ extern void cSnd_DieDemoStart(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern char D_00462FC0[];
 extern int D_00747A24;
 extern char *Getplayer(void);
 extern void func_0012C540(void *a0, int a1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int GetSeqSEBase(void *a0);
 extern void func_00102418(void *a0);
-extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
 extern int ChkCollScrWall(void *a0, void *a1, int a2, void *a3, int t0, int t1, float f12);
 extern int func_001329C0(void *a0, void *a1, int a2, void *a3, float f12);
 extern void cObjBase_SetSeqEffect(void *a0);
@@ -53,7 +51,7 @@ void func_00121798(void *a0)
     *(float *)(s0 + 0x54C) = 5.0f;
     *(int *)(s0 + 0x250) = *(int *)(s0 + 0x250) | 0x10000;
     s1 = *(char **)(s0 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     cEmManage_SetPlCatched(&D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
@@ -260,7 +258,7 @@ void func_00102150(void *a0)
     if (*(int *)(s1 + 0x14B4) != 0)
         *(int *)(s1 + 0x14B4) = *(int *)(s1 + 0x14B4) - 1;
     func_00102418(s1);
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 1);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 1);
     *(int *)(s1 + 0x250) &= 0xFFFEFFFF;
     {
         char *e;
@@ -285,7 +283,7 @@ void func_00102150(void *a0)
             arg = f0;
         fp((int)(s1 + arg));
     }
-    cCollisionSolidManage_ChkHit(D_00462FC0, s1);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s1);
     if ((*(volatile int *)(s1 + 0x14B0) & 1) != 0) {
         VU0_SQC2_VF0(buf, 0);
         if (ChkCollScrWall(s1, buf, 0, &w, 0, 0, 0.400000006f) != 0) {

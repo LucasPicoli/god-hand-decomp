@@ -1,16 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* func_002383D0, 996 B, sn-2.95.3-136. Wave 2026-08-31 V2 h2 + a block-local base pointer per if/else arm (pa1..pa4) so local-alloc takes the base first. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
-extern char D_00462FC0[];
 extern int D_007474A8;
 
 extern int Getplayer();
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern float SetMotionStep(void *a0, float f);
 extern int moveMotion(void *a0);
@@ -26,7 +25,7 @@ void func_002383D0(cEm00 *self)
     char *s2;
 
     s3 = (char *)Getplayer();
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
     {

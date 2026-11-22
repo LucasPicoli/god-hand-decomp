@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 
-extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
 extern int D_00747A24;
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -54,7 +53,7 @@ void func_001205D8(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     s0 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(&D_005864F0);
 
     switch (*(unsigned char *)(s1 + 0x2F6)) {

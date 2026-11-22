@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* func_002380D0, 764 B, sn-2.95.3-136. Wave 2026-09-15 L5 near body + nested Duff do{}while(0) opened before the case 0 tail stores (a real insn between LOOP_BEG and the case 1 label keeps reorg from predicting the dispatch beq taken). */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
@@ -9,12 +10,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern char *Getplayer(void);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_002DB770(void);
-extern char D_00462FC0[];
 extern char D_007474A0[];
 
 /* Phase machine on the step byte, 9 case labels. Calls Getplayer, cCollisionSolidManage_SetActive,
@@ -26,7 +25,7 @@ __attribute__((section(".text.func_002380D0"))) void func_002380D0(cEm00 *self)
     char *q;
     int b;
 
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0:
             b = EM_RES(self);

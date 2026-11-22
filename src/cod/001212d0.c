@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -15,7 +14,6 @@ extern void func_0012C0F8(void *a0, int a1);
 extern void func_0012C348(void *a0, int a1);
 extern void cSnd_DieDemoStart(void *a0);
 extern int  D_00747A24;
-extern char D_00462FC0[];
 extern char D_005864F0[];
 extern unsigned short D_003F2060[];
 extern void ADXT_SetOutVol(int a0, int a1);
@@ -26,6 +24,7 @@ extern char D_00754240[];
 
 /* func_001212D0 — 0x001212D0, 760 B — sn-2.95.3-136.
  * +0x2F6 phase machine, 0x694 object family; template src/cod/0011c348.c. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -62,7 +61,7 @@ void func_001212D0(void *a0)
     *(float *)(s0 + 0x54C) = 5.0f;
     *(int *)(s0 + 0x250) |= 0x10000;
     s1 = *(char **)(s0 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:

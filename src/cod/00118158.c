@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* func_00118158, 1336 B, sn-2.95.3-136. Wave 2026-08-31 V2 b3 + nested Duff do{}while(0) opened inside case 3 before the state++ (label 0x00118508, 0 mod 8), case 3/1 tails as goto tail3, plain barrier at case 7 (next label 0x00118620, 0 mod 8), cross-block short f15. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
-extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
 extern int D_007474A8;
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -36,7 +35,7 @@ void func_00118158(char *s1)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) |= 0x10000;
     s2 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     s0 = (char *)&D_005864F0;
     cEmManage_SetPlCatched(s0);
     cEmManage_SetSlotWait(s0, 2);

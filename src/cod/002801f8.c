@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
-extern int D_00462FC0;
 extern unsigned int irand(void);
 extern int GetSeqSEBase(void *a0);
 
@@ -21,7 +20,7 @@ __attribute__((section(".text.func_00288178"))) void func_00288178(cEm00 *self)
 
     self->gotoFlags = self->gotoFlags | 0x10020;
     self->hitFlash = 3.0f;
-    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0:
             res = EM_RES(self);

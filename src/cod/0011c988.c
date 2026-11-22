@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -14,7 +13,6 @@ extern void func_0012C348(void *a0, int a1);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern char D_00462FC0[];
 extern char D_005864F0[];
 extern char D_005CB000[];
 
@@ -41,6 +39,7 @@ extern char D_005CB000[];
 
 
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -54,7 +53,7 @@ void func_0011C988(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) |= 0x10000;
     s2 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {

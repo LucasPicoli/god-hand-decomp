@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -19,9 +20,7 @@ extern void Obj293_OrByte_5A3(void *a0, int a1);
 extern void Obj293_OrByte_5A4(void *a0, int a1);
 extern void Obj293_OrByte_5A5_1(void *a0);
 extern void Obj293_ClearBytes_5A0_5A3(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_005864F0;
-extern char D_00462FC0[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -310,6 +309,6 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             break;
     }
     if (*(unsigned short *)(s1 + 0x3AC) & 0x20) {
-        cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+        cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     }
 }

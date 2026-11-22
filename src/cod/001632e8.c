@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cDataManager.h"
@@ -10,8 +11,6 @@
 #include "godhand/gameWork.h"
 
 extern int cSnd_SeIsLoadOk(void *snd, int handle);
-extern char D_00462FC0[];
-extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int on);
 extern unsigned int D_00747A84;
 extern char D_00586AF0[];
 extern unsigned int cEvent_getCutNo();
@@ -79,7 +78,7 @@ int cEm00_stepFadeIn(cEm00 *self) {
     if (EM_FADETIMER(self) <= 0.0f) {
         return 0;
     }
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     t = EM_FADETIMER(self) - EM_FADETIMER_STEP;
     rate = 1.0f - t;
     EM_FADETIMER(self) = t;

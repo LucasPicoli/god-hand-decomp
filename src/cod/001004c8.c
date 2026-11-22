@@ -4,6 +4,7 @@
 #include "godhand/cSubScrOption.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
+#include "godhand/cCollisionSolid.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -87,22 +88,22 @@ void SetFirstFreeSlot_Field_1644_1268B0(int a0, int a1) {
     } while (i < 5);
 }
 
-__attribute__((section(".text.SetNodeListFlag_134608")))
-void SetNodeListFlag_134608(int a0, int a1) {
-    int *node = *(int **)((char *)a0 + 4);
-    if (node == 0) {
+__attribute__((section(".text.cCollisionSolidManageUnit_setActive")))
+void cCollisionSolidManageUnit_setActive(cCollisionSolidManageUnit *self, int active) {
+    cCollisionSolidObj *solid = self->first;
+    if (solid == 0) {
         return;
     }
     do {
-        int v = *(int *)((char *)node + 8);
-        if (a1 == 1) {
-            v = v | 1;
+        int flags = solid->flags;
+        if (active == 1) {
+            flags = flags | CSOLID_FLAG_ACTIVE;
         } else {
-            v = v & -2;
+            flags = flags & ~CSOLID_FLAG_ACTIVE;
         }
-        *(int *)((char *)node + 8) = v;
-        node = *(int **)node;
-    } while (node != 0);
+        solid->flags = flags;
+        solid = solid->next;
+    } while (solid != 0);
 }
 
 __attribute__((section(".text.AddToActiveList_138F40")))

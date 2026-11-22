@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cObjBase.h"
 #include "godhand/globals.h"
 
@@ -6,7 +7,6 @@
 extern unsigned int D_00747A84;
 extern void VecRotVec(float *out, float *in, cVec *rot, int order);
 extern void Adjust_theta_vec(cVec *v);
-extern void SetNodeListFlag_134608(void *a0, int a1);
 extern float Turn_dest(int a0, float f12, float f13);
 extern float Adjust_theta(float f12);
 
@@ -45,10 +45,10 @@ void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale) {
 }
 
 __attribute__((section(".text.cCollisionSolidManage_SetActive")))
-void cCollisionSolidManage_SetActive(int a0, int a1, int a2) {
-    void *v0 = func_001346C8(a0, a1);
-    if (v0 != 0) {
-        SetNodeListFlag_134608(v0, a2);
+void cCollisionSolidManage_SetActive(cCollisionSolidManage *self, struct cGameObj *owner, int active) {
+    cCollisionSolidManageUnit *unit = func_001346C8(self, owner);
+    if (unit != 0) {
+        cCollisionSolidManageUnit_setActive(unit, active);
     }
 }
 

@@ -4,13 +4,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002DB770(void);
-extern char D_00462FC0[];
 extern char D_007474A0[];
 
 #include "godhand/vu0.h"
@@ -25,7 +24,7 @@ void func_002373B0(void *a0)
     char *q;
     int b;
 
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:

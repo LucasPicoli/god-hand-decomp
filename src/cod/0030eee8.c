@@ -1,5 +1,6 @@
 /* sn-2.95.3-136: Move, the per-frame game update: runs every subsystem's move in order and records the elapsed
  * timer-0 counts of the first step and of the whole frame. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cScenario.h"
 #include "godhand/cSnd.h"
 #include "godhand/cSubScr.h"
@@ -20,7 +21,6 @@ extern char D_0061A990[];
 extern char D_00586AF0[];
 extern char D_00463050[];
 extern char D_00604700[];
-extern char D_00462FC0[];
 extern char D_00583EC0[];
 extern int *D_00754C50[];
 
@@ -60,7 +60,7 @@ void Move(void)
     cWorldLight_Move(D_00604700);
     func_001FDFD8(&D_00574380);
     MoveObj();
-    NoOp_1352F0(D_00462FC0);
+    NoOp_1352F0(&D_00462FC0);
     func_002BF2D0(D_003C2648);
     func_001601D8(D_003BD930);
     MoveEffect();

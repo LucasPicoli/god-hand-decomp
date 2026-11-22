@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/globals.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *a0);
-extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
 extern void SetMotionStep(void *a0, float f12);
-extern char D_00462FC0[];
 extern void cOmBase_blinkTick(void *a0);
 extern void func_001AADE0(void *a0);
 extern void cObjBase_SetSeqEffect(void *a0);
@@ -53,7 +52,7 @@ void func_001AA188(void *a0)
     if (ClearField5B4IfFlagUnset_1B76B0(s2) == 0) {
         return;
     }
-    cCollisionSolidManage_ChkHit(D_00462FC0, s2);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s2);
     pr = cEmManage_GetSpeedRate(D_005864F0) * D_00747A14;
     *(float *)(s2 + 0x5A8) = pr;
     SetMotionStep(s2, pr);

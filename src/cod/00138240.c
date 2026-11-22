@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cPlCamera.h"
 #include "godhand/cCamera.h"
@@ -15,8 +16,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EC60(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern unsigned char D_00462FC0[];
 extern void cCamera_resetVib(struct cCamera *self);
 extern void cCamera__calcRotation(cVec *out, struct cCamera *self, cVec *a, cVec *b);
 extern void MtxInitRotVec(void *mtx, cVec *dir, int roll);
@@ -85,7 +84,7 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
         self->unk17A0 = 0;
     }
     if ((self->seqFlags & 0x20) != 0) {
-        cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+        cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     }
     if ((self->seqFlags & 1) != 0) {
         StoreMotionParamsBoth_2609A8(self, 0x1E, 2, 0x3E, -1, 0);

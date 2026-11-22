@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f12);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
 #include "godhand/motion.h"
@@ -10,7 +10,6 @@ extern float fRand1_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern unsigned int irand(void);
 extern void func_0012C348(void *a0, int a1);
-extern char D_00462FC0[];
 
 #include "godhand/vu0.h"
 
@@ -34,7 +33,7 @@ void func_0010B9C0(void *a0)
     char *s0 = (char *)a0;
 
     *(float *)(s0 + 0x54C) = 5.0f;
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(int *)(s0 + 0x15F4) |= 0x2000;
     *(float *)(s0 + 0x5A8) = 1.0f;
     SetMotionStep(s0, 1.0f);

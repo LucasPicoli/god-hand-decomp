@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cGameObj.h"
 #include "godhand/globals.h"
 
@@ -8,8 +9,6 @@ extern void func_00297B20(void *a, void *b);
 extern void func_00297B40(void *a, void *b);
 extern void ScrollLayer_hideAtEnd(void);
 extern void func_00298460(void);
-extern char D_00462FC0[];
-extern void cCollisionSolidManage_ReleaseUnit(void *manager, void *unit);
 extern void cOmBase_dieCommon(void *obj);
 extern char D_007419A0[];
 extern void espSys_effDataRelease(void *sys, int effNo);
@@ -31,14 +30,15 @@ void RegisterCostumeHookPair(void)
 
 /* Destroy hook: release the collision unit, then the owned child object. */
 typedef struct ChildOwner {
-    char unk000[0x15EC];
+    cGameObj base;                      /* 0x000 */
+    char unk5B0[0x15EC - 0x5B0];
     void *child;                        /* 0x15EC owned object, dies with its owner */
 } ChildOwner;
 
 __attribute__((section(".text.ChildOwner_releaseChild")))
 void ChildOwner_releaseChild(ChildOwner *self)
 {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, self);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, &self->base);
     if (self->child != 0) {
         cOmBase_dieCommon(self->child);
         self->child = 0;

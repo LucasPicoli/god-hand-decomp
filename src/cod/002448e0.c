@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
@@ -5,8 +6,6 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned char D_00462FC0[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -37,7 +36,7 @@ extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
  * cObjBase_addNullSpeed and 7 more. */
 __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
 {
-    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0: {
             int gb;

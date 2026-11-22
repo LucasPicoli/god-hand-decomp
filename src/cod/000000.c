@@ -8,6 +8,7 @@
 #include "godhand/cOmbb.h"
 #include "godhand/pl00.h"
 #include "godhand/globals.h"
+#include "godhand/cCollisionSolid.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -64,8 +65,8 @@ unsigned char cModel_getMeshNum(unsigned char *arg0) { return arg0[0x2B1]; }
 __attribute__((section(".text.SetField_2F4_10BE10")))
 void SetField_2F4_10BE10(char *arg0) { arg0[0x2F4] = 0; }
 
-__attribute__((section(".text.Obj0000_Set_Field_8_134648")))
-void Obj0000_Set_Field_8_134648(int *arg0, int arg1) { *((int *)((char *)arg0 + 0x8)) = arg1; }
+__attribute__((section(".text.cCollisionSolidManageUnit_setPriority")))
+void cCollisionSolidManageUnit_setPriority(cCollisionSolidManageUnit *self, int priority) { self->priority = priority; }
 
 __attribute__((section(".text.SetField_104_13E3F8")))
 void SetField_104_13E3F8(char *arg0) { arg0[0x104] = 0; }

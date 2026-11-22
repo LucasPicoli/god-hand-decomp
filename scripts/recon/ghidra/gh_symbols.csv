@@ -291,13 +291,13 @@
 00133968,Forward133670_133968
 001339C0,cCollisionSolid__dtor
 001339F0,func_001339F0
-00133A80,InitVtableField30Alt_133A80
+00133A80,cCollisionSolidSphere__dtor
 00133AA8,func_00133AA8
 00133B28,Forward15F2A8_133B28
-00133B58,InitObjVtableField30_133B58
+00133B58,cCollisionSolidCapsule__dtor
 00133B80,SetField_8_133B80
 00133B98,NoOp_133B98
-00133BA0,InitVtableField30Ptr_133BA0
+00133BA0,cCollisionSolidBox__dtor
 00133BC8,func_00133BC8
 00133DA0,func_00133DA0
 00134270,cCollisionSolid__tf
@@ -306,8 +306,8 @@
 00134458,func_00134458
 001344A0,func_001344A0
 00134520,func_00134520
-00134608,SetNodeListFlag_134608
-00134648,Obj0000_Set_Field_8_134648
+00134608,cCollisionSolidManageUnit_setActive
+00134648,cCollisionSolidManageUnit_setPriority
 001346F8,cCollisionSolidManage_CreateUnit
 001347E8,cCollisionSolidManage_ReleaseUnit
 00134880,cCollisionSolidManage_CreateSphere

@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
-extern unsigned char D_00462FC0[];
 extern unsigned char D_005CB000[];
 extern char *Getplayer(void);
 extern void SetMotionStep(void *a0, float f12);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int moveMotion(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float f12);
@@ -27,7 +26,7 @@ void func_0025C830(void *a0)
     t = *(float *)(s1 + 0x5A8);
     *(float *)(s0 + 0x5A8) = t;
     SetMotionStep(s0, t);
-    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {
         int w;

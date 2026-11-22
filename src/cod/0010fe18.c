@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -15,9 +16,7 @@ extern void func_00126770(void *a0);
 extern void func_0010A438(void *a0);
 extern void func_00129EB0(void *a0);
 extern void func_00123938(void *a0, int a1);
-extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEma2_startPlayerMotion(void *a0, int a1, float f12, float f13);
@@ -108,7 +107,7 @@ void func_001228D8(void *a0)
 
     *(float *)(s1 + 0x54C) = 5.0f;
     s2 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(&D_005864F0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
@@ -200,7 +199,7 @@ void func_0011F0D0(void *a0)
     *(float *)(s1 + 0x54C) = 5.0f;
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     s0 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(&D_005864F0);
 
     switch (*(unsigned char *)(s1 + 0x2F6)) {

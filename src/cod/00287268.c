@@ -2,17 +2,16 @@
 
 /* cEm00_stepGrowlWhileActive: an enemy that holds one pose and growls at random intervals
  * while any actor is active. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int moveMotion(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern int IsAnyActorActive_289418(void *a0);
 extern float fRand0_1(void);
-extern char D_00462FC0[];
 
 __attribute__((section(".text.cEm00_stepGrowlWhileActive")))
 void cEm00_stepGrowlWhileActive(cEm00 *self)
@@ -20,7 +19,7 @@ void cEm00_stepGrowlWhileActive(cEm00 *self)
     int res;
     float t;
 
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
     case 0:
         self->gotoFlags = self->gotoFlags | 0x10;

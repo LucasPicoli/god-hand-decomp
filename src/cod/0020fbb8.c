@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -9,13 +10,11 @@ extern int moveMotion(void *a0);
 extern int irand(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void *Getplayer(void);
 extern void func_002A74E0(void *a0, void *a1, int a2);
 extern int cEmManage_ckEnemyActiveNear(void *a0, void *a1, float f12);
 extern int cEmManage_ckEmNear(void *a0, void *a1, void *a2, float f12);
 extern void cEm00_clearSetFlags(int a0);
-extern char D_00462FC0[];
 extern unsigned short D_00747A50;
 extern char D_007474A0[];
 extern char D_005864F0[];
@@ -1111,7 +1110,7 @@ __attribute__((section(".text.func_0020FBB8"))) void func_0020FBB8(cEm00 *self)
             }
             if (*(int *)(s1 + 0x1644) & 0x10008000) {
                 if (*(int *)(s1 + 0x1644) & 0x10000000) {
-                    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+                    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
                     *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x1000;
                 }
                 if (*(int *)(s1 + 0x16EC) != 0) {

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cEm00.h"
@@ -12,8 +13,6 @@ float step, float start, int flags);
 extern unsigned int func_0031ED08(float f);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int D_00462FC0;
 extern char *func_002DDAB0(void *a0, int a1, float f);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -59,7 +58,7 @@ void func_00288B78(void *a0)
     int v0;
     float one;
 
-    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:
