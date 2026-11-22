@@ -2280,13 +2280,13 @@ void cEma2_SetPoisonDie(cEma2 *self) {
 
 INCLUDE_ASM("nonmatching", cIDBase_getIDWork);
 
-/* Reset the object to state 1 with its state arguments cleared. */
+/* Reset the object to mode 1 with phase, step and stepArg cleared. */
 __attribute__((section(".text.cObjSimple_R0_Init")))
 void cObjSimple_R0_Init(cObjSimple *self) {
-    self->state = 1;
-    self->stateArg[0] = 0;
-    self->stateArg[1] = 0;
-    self->stateArg[2] = 0;
+    self->mode = 1;
+    self->phase = 0;
+    self->step = 0;
+    self->stepArg = 0;
 }
 
 INCLUDE_ASM("nonmatching", SearchData);

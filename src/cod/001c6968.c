@@ -13,21 +13,21 @@ extern void SubInit_init(void *self, unsigned int count, void *a, void *b, float
  * Does nothing when the parent or the child is missing. Turns the parent follow on. */
 __attribute__((section(".text.cObjSimple_SetParentInfo")))
 void cObjSimple_SetParentInfo(cObjSimple *self, cObjSimple *parent, int idx,
-                              cObjSimpleVec3 *ofsA, cObjSimpleVec3 *ofsB)
+                              cVec *ofsA, cVec *ofsB)
 {
     char hold[16];
-    cObjSimpleVec3 *d;
+    cVec *d;
 
     if (parent == 0) {
         return;
     }
     if (idx != -1) {
-        cObjSimpleChild *e;
+        cOmBase *e;
         int ok;
         int cnt;
 
         ok = 0;
-        cnt = parent->childNum;
+        cnt = parent->partNum;
         *((int *) hold) = cnt;
         if (idx >= 0) {
             ok = idx < cnt;
@@ -42,7 +42,7 @@ void cObjSimple_SetParentInfo(cObjSimple *self, cObjSimple *parent, int idx,
             return;
         }
     }
-    self->parent = parent;
+    self->parentObj = parent;
     self->parentIdx = idx;
     d = &self->parentOfsA;
     if (d != ofsA) {

@@ -3,14 +3,18 @@
  * cObjSimple is a game object that owns a model (cModel parts) and, for
  * some props, a cloth pendulum and breast/ring physics. Each frame its
  * Update (func_002B6930) steps the model, the pendulum and the physics.
- * The class is a very large record: only the fields the methods touch are
- * named, the rest is unkNNN padding. Names are ours (the symbol table
- * only gives method names). Offsets are exact.
+ * Its type info (cObjSimple_GetTypeInfo) builds on cObjBase__tf, so the
+ * record starts with cObjBase's fields (COBJBASE_FIELDS, 0x000..0x4D0) and
+ * its own fields follow. The class is a very large record: only the fields
+ * the methods touch are named, the rest is unkNNN padding. Names are ours
+ * (the symbol table only gives method names). Offsets are exact.
  */
 #ifndef GODHAND_COBJSIMPLE_H
 #define GODHAND_COBJSIMPLE_H
 
-#define COBJSIMPLE_STATE_ACTIVE  4   /* state at which the object's virtual hook runs */
+#include "godhand/cObjBase.h"
+
+#define COBJSIMPLE_STATE_ACTIVE  4   /* mode at which the object's virtual hook runs */
 
 typedef struct cObjSimple cObjSimple;
 
@@ -23,57 +27,8 @@ typedef struct cObjSimpleVec {
     float x, y, z, w;
 } cObjSimpleVec __attribute__((aligned(16)));
 
-/* A child of the prop is a base-class object: it shares the first fields of cObjSimple. */
-typedef struct cObjSimple cObjSimpleChild;
-
-/* g++ 2.x vtable entry: this-adjust and function pointer. */
-typedef struct cObjSimpleVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self);
-} cObjSimpleVtEnt;
-
 struct cObjSimple {
-    char unk000[0x30];
-    cObjSimpleVec3 localPos;        /* 0x030 */
-    char unk03C[0x80 - 0x3C];
-    float mtx[12];                  /* 0x080 world matrix, rows 0 to 2 */
-    cObjSimpleVec3 worldPos;        /* 0x0B0 matrix row 3: world position */
-    float mtxW;                     /* 0x0BC */
-    char unk0C0[0xD0 - 0xC0];
-    struct cObjSimpleVec *outPos;   /* 0x0D0 where a prop writes this object's shifted position */
-    char unk0D4[0xE0 - 0xD4];
-    cObjSimpleVec3 vecE0;           /* 0x0E0 */
-    char unk0EC[0xF0 - 0xEC];
-    cObjSimpleVec3 *parentPos;      /* 0x0F0 position the object copies each frame */
-    char unk0F4[0x100 - 0xF4];
-    cObjSimpleVec3 rot;             /* 0x100 angles (x, y, z) */
-    char unk10C[0x110 - 0x10C];
-    cObjSimpleVec3 scale;           /* 0x110 local scale, synced from the owner */
-    char unk11C[0x154 - 0x11C];
-    unsigned int flags154;          /* 0x154 */
-    char unk158[0x214 - 0x158];
-    cObjSimpleVtEnt *vtbl;          /* 0x214 secondary vtable */
-    char unk218[0x240 - 0x218];
-    cObjSimpleVec3 vec240;          /* 0x240 copied from the parent */
-    float f24C;                     /* 0x24C copied from the parent */
-    unsigned int flags250;          /* 0x250 bit 4 copied from the parent */
-    unsigned int drawFlags;         /* 0x254 bit 28: a texture swap is active */
-    char unk258[0x278 - 0x258];
-    cObjSimpleChild **children;     /* 0x278 child object table */
-    char unk27C[0x2B4 - 0x27C];
-    unsigned char childNum;         /* 0x2B4 entries in children[] */
-    char unk2B5[0x2F0 - 0x2B5];
-    unsigned int flags;             /* 0x2F0 bit 0: reset the swing each frame */
-    unsigned char state;            /* 0x2F4 */
-    unsigned char stateArg[3];      /* 0x2F5 cleared with state by R0_Init */
-    char unk2F8[0x2FE - 0x2F8];
-    unsigned short objId;           /* 0x2FE */
-    char unk300[4];
-    void *model;                    /* 0x304 model data / pack */
-    char unk308[0x490 - 0x308];
-    cObjSimpleVec3 pos;             /* 0x490 */
-    char unk49C[0x4D0 - 0x49C];
+    COBJBASE_FIELDS                 /* 0x000..0x4D0 */
     unsigned char texChangeOn;      /* 0x4D0 */
     char unk4D1[3];
     int texChangeIdx;               /* 0x4D4 */
@@ -103,31 +58,31 @@ struct cObjSimple {
     float swingAccum;               /* 0x30A0 time-scaled input shared by all limbs */
     int followSel;                  /* 0x30A4 which set of children func_002B6FE8 resets (0 to 5) */
     char unk30A8[0x30B0 - 0x30A8];
-    struct cObjSimple *parent;      /* 0x30B0 object (and child of it) this prop is attached to */
-    int parentIdx;                  /* 0x30B4 index into parent->children[], or -1 for the parent itself */
+    struct cObjSimple *parentObj;   /* 0x30B0 object (and child of it) this prop is attached to (cParts.parent is the part parent) */
+    int parentIdx;                  /* 0x30B4 index into parentObj->children[], or -1 for the parent itself */
     char unk30B8[0x30C0 - 0x30B8];
-    cObjSimpleVec3 parentOfsA;      /* 0x30C0 */
-    char unk30CC[4];
-    cObjSimpleVec3 parentOfsB;      /* 0x30D0 */
+    cVec parentOfsA;                /* 0x30C0 x, y, z */
+    cVec parentOfsB;                /* 0x30D0 x, y, z */
 };
 
 /* Offset checks: a wrong pad makes one of these array sizes negative. */
 #define COBJSIMPLE_OFS(f) ((int)&((cObjSimple *)0)->f)
-typedef char cObjSimple_chk_parentPos[COBJSIMPLE_OFS(parentPos) == 0xF0 ? 1 : -1];
-typedef char cObjSimple_chk_vtbl[COBJSIMPLE_OFS(vtbl) == 0x214 ? 1 : -1];
+typedef char cObjSimple_chk_pos[COBJSIMPLE_OFS(pos) == 0xF0 ? 1 : -1];
+typedef char cObjSimple_chk_vtable[COBJSIMPLE_OFS(vtable) == 0x214 ? 1 : -1];
 typedef char cObjSimple_chk_children[COBJSIMPLE_OFS(children) == 0x278 ? 1 : -1];
-typedef char cObjSimple_chk_childNum[COBJSIMPLE_OFS(childNum) == 0x2B4 ? 1 : -1];
-typedef char cObjSimple_chk_state[COBJSIMPLE_OFS(state) == 0x2F4 ? 1 : -1];
-typedef char cObjSimple_chk_model[COBJSIMPLE_OFS(model) == 0x304 ? 1 : -1];
-typedef char cObjSimple_chk_pos[COBJSIMPLE_OFS(pos) == 0x490 ? 1 : -1];
+typedef char cObjSimple_chk_partNum[COBJSIMPLE_OFS(partNum) == 0x2B4 ? 1 : -1];
+typedef char cObjSimple_chk_mode[COBJSIMPLE_OFS(mode) == 0x2F4 ? 1 : -1];
+typedef char cObjSimple_chk_pack[COBJSIMPLE_OFS(pack) == 0x304 ? 1 : -1];
+typedef char cObjSimple_chk_posA[COBJSIMPLE_OFS(posA) == 0x490 ? 1 : -1];
+typedef char cObjSimple_chk_texOn[COBJSIMPLE_OFS(texChangeOn) == 0x4D0 ? 1 : -1];
 typedef char cObjSimple_chk_pendulum[COBJSIMPLE_OFS(pendulumData) == 0x13A0 ? 1 : -1];
 typedef char cObjSimple_chk_bust[COBJSIMPLE_OFS(bustVel) == 0x2FB0 ? 1 : -1];
 typedef char cObjSimple_chk_swing[COBJSIMPLE_OFS(swing) == 0x3080 ? 1 : -1];
 typedef char cObjSimple_chk_followSel[COBJSIMPLE_OFS(followSel) == 0x30A4 ? 1 : -1];
 typedef char cObjSimple_chk_parent[COBJSIMPLE_OFS(parentOfsB) == 0x30D0 ? 1 : -1];
 typedef char cObjSimple_chk_rot[COBJSIMPLE_OFS(rot) == 0x100 ? 1 : -1];
-typedef char cObjSimple_chk_vec240[COBJSIMPLE_OFS(vec240) == 0x240 ? 1 : -1];
-typedef char cObjSimple_chk_draw[COBJSIMPLE_OFS(drawFlags) == 0x254 ? 1 : -1];
+typedef char cObjSimple_chk_tint[COBJSIMPLE_OFS(tint) == 0x240 ? 1 : -1];
+typedef char cObjSimple_chk_tex[COBJSIMPLE_OFS(texFlags) == 0x254 ? 1 : -1];
 typedef char cObjSimple_chk_ring[COBJSIMPLE_OFS(ringFlag) == 0x2FF0 ? 1 : -1];
 typedef char cObjSimple_chk_ringPos[COBJSIMPLE_OFS(ringPos) == 0x3000 ? 1 : -1];
 typedef char cObjSimple_chk_texIdx[COBJSIMPLE_OFS(texChangeIdx) == 0x4D4 ? 1 : -1];

@@ -62,23 +62,13 @@ int cArea_HitCheckQuad(cArea *self, float *pt)
     return func_001573C8(pt, &q[0], &q[1], &q[2], &q[3]) != 0;
 }
 
-static __inline__ void cObjSimpleVec3_Copy(cObjSimpleVec3 *d, cObjSimpleVec3 *s)
-{
-    if (d != s) {
-        d->x = s->x;
-        d->y = s->y;
-        d->z = s->z;
-    }
-}
-
 /* Per-frame update: scroll the texture, step the model, then the pendulum, bust and ring physics. */
 __attribute__((section(".text.cObjSimple_Update")))
 void cObjSimple_Update(cObjSimple *self)
 {
-    int state = self->state;
-    if (state >= 0) { if (state >= 4) { if (state == COBJSIMPLE_STATE_ACTIVE) {
-        cObjSimpleVtEnt *vt = self->vtbl;
-        vt[11].pfn((char *)self + vt[11].delta);
+    int mode = self->mode;
+    if (mode >= 0) { if (mode >= 4) { if (mode == COBJSIMPLE_STATE_ACTIVE) {
+        CVCALL_FN(self, 11, void (*)(void *))(CVCALL_THIS(self, 11));
     }}}
     cModel_ScrollTexture(self, 1.0f);
     if (self->parentOn)
@@ -94,5 +84,5 @@ void cObjSimple_Update(cObjSimple *self)
         cObjSimple_MoveRing(self);
     if (self->oneBodyFlag)
         cObjSimple_UpdateHandMesh(self);
-    cObjSimpleVec3_Copy(&self->pos, self->parentPos);
+    cVec_copy3(&self->posA, self->pos);
 }

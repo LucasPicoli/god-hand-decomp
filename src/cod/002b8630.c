@@ -12,9 +12,9 @@ extern void cModel_setTextureExchange(void *self, void *tex, int tbl, int n);
 
 
 
-/* Address of the texture table at `off` in the model data: the entry holds its offset from the model. */
+/* Address of the texture table at `off` in the data pack: the entry holds its offset from the pack. */
 #define COBJSIMPLE_MODEL_TBL(self, off) \
-    (*(int *)((char *)(self)->model + (off)) + (int)(self)->model)
+    (*(int *)((self)->pack + (off)) + (int)(self)->pack)
 
 /* Find a texture-change mesh in the model (the second name if the first is missing) and,
  * for the object ids that have a table, start the texture exchange with `n`. */
@@ -24,17 +24,17 @@ void cObjSimple__SetTexChange(cObjSimple *self, int n) {
     int val;
 
     if (self->texChangeOn == 0) {
-        m = SearchData(self->model, &D_0044B4A8, 0);
+        m = SearchData(self->pack, &D_0044B4A8, 0);
         if (m == 0) {
-            m = SearchData(self->model, &D_0044B4B0, 0);
+            m = SearchData(self->pack, &D_0044B4B0, 0);
         }
     } else {
-        m = SearchData(self->model, &D_0044B4A8, self->texChangeIdx);
+        m = SearchData(self->pack, &D_0044B4A8, self->texChangeIdx);
         if (m == 0) {
-            m = SearchData(self->model, &D_0044B4B0, self->texChangeIdx);
+            m = SearchData(self->pack, &D_0044B4B0, self->texChangeIdx);
         }
     }
-    switch (self->objId) {
+    switch (self->actorId) {
     case 0x227:
         val = COBJSIMPLE_MODEL_TBL(self, 0x44);
         break;
@@ -88,7 +88,7 @@ void cObjSimple__SetTexChange(cObjSimple *self, int n) {
     }
     if (m != 0) {
         if (val != 0) {
-            self->drawFlags = self->drawFlags | 0x10000000;
+            self->texFlags = self->texFlags | CMODEL_TEX_EXCHANGE;
             cModel_setTextureExchange(self, m, val, n);
         }
     }
