@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 
-__attribute__((section(".text.func_003BA550")))
-void func_003BA550(void *a0) {
+__attribute__((section(".text.ac3cnv_create_iec_header")))
+void ac3cnv_create_iec_header(void *a0) {
     char *p = *(char **)((char *)a0 + 0x8);
     unsigned int t;
     p[0] = 0x72;

@@ -2,8 +2,8 @@ extern unsigned int strlen(const char *s);
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
 extern char D_00756080[];
 
-__attribute__((section(".text.func_00330A68")))
-void func_00330A68(char *dst)
+__attribute__((section(".text.getDefDev")))
+void getDefDev(char *dst)
 {
     int len = strlen(D_00756080);
 

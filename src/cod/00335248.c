@@ -4,8 +4,8 @@
 
 extern void *memcpy(void *dst, const void *src, unsigned int n);
 
-__attribute__((section(".text.func_00335248")))
-void func_00335248(const char *path)
+__attribute__((section(".text.htCiSetRootDir")))
+void htCiSetRootDir(const char *path)
 {
     if (path == 0) {
         D_003DA398[0] = 0;

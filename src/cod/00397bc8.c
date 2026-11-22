@@ -6,8 +6,8 @@
 
 extern void SyncDCache(void *start, void *end);
 
-__attribute__((section(".text.func_00397BC8")))
-PadData *func_00397BC8(int port, int slot, PadData *buf)
+__attribute__((section(".text.scePadGetDmaStr")))
+PadData *scePadGetDmaStr(int port, int slot, PadData *buf)
 {
     int oldstat;
     PadData *pd;

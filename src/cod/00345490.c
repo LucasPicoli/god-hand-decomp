@@ -1,17 +1,17 @@
 #include "godhand/globals.h"
 extern int Forward349308_349238(void);
-extern void func_00348A08(int, void *, int, void *);
-extern int func_00349250(int a0);
-extern int func_00348AC8(void *, int, void *);
+extern void MWSFSVM_EntryIdVfunc(int, void *, int, void *);
+extern int MWSFSVR_MainThrdProc(int a0);
+extern int MWSFSVM_EntryMainFunc(void *, int, void *);
 extern int func_003492A0(int a0);
-extern int func_00348A70(void *, int, void *);
+extern int MWSFSVM_EntryIdleFunc(void *, int, void *);
 extern void func_00348B20(void);
 
-__attribute__((section(".text.func_00345490")))
-void func_00345490(void)
+__attribute__((section(".text.mwsflib_SetSvrFunc")))
+void mwsflib_SetSvrFunc(void)
 {
-    func_00348A08(2, Forward349308_349238, 0, &D_00457B90);
-    func_00348AC8(func_00349250, 0, &D_00457BA8);
-    func_00348A70(func_003492A0, 0, &D_00457BC0);
+    MWSFSVM_EntryIdVfunc(2, Forward349308_349238, 0, &D_00457B90);
+    MWSFSVM_EntryMainFunc(MWSFSVR_MainThrdProc, 0, &D_00457BA8);
+    MWSFSVM_EntryIdleFunc(func_003492A0, 0, &D_00457BC0);
     func_00348B20();
 }

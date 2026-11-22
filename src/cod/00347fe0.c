@@ -1,10 +1,10 @@
 #include "godhand/mwsfHn.h"
 
-void func_00347FE0(MwsfHn *mw);
+void RestartSingleLoop(MwsfHn *mw);
 int func_00348098(MwsfHn *mw);
 
-__attribute__((section(".text.func_00347FE0")))
-void func_00347FE0(MwsfHn *mw)
+__attribute__((section(".text.RestartSingleLoop")))
+void RestartSingleLoop(MwsfHn *mw)
 {
     int time, tunit;
     unsigned int mode;
@@ -14,13 +14,13 @@ void func_00347FE0(MwsfHn *mw)
     mw->busy = 1;
     switch (mode) {
     case 1:
-        func_00347968(mw, mw->f1A4);
+        mwPlyStartFnameLp(mw, mw->f1A4);
         break;
     case 2:
-        func_00347BC0(mw, mw->f2EC, mw->f2F0);
+        mwPlyStartAfsLp(mw, mw->f2EC, mw->f2F0);
         break;
     case 3:
-        func_00347D08(mw, mw->f1A4, mw->f2F4, mw->f2F8);
+        mwPlyStartFnameRangeLp(mw, mw->f1A4, mw->f2F4, mw->f2F8);
         break;
     }
     mw->busy = 0;

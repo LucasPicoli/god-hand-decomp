@@ -3,8 +3,8 @@
  * the low 32 bits sign-extended. The 64-bit shift is kept (not folded to sll)
  * because the value feeds the unsigned 64-bit compare/min. */
 
-__attribute__((section(".text.func_00334B58")))
-int func_00334B58(void *a0) {
+__attribute__((section(".text.htci_getnumtr_lower")))
+int htci_getnumtr_lower(void *a0) {
     unsigned long long t = (unsigned long long)((long long)*(int *)((char *)a0 + 0x28) << 11);
     unsigned long long u = *(unsigned long long *)((char *)a0 + 0x8);
     if (u < t) t = u;

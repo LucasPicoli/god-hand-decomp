@@ -188,7 +188,7 @@ void NoOp_1FFE00(void)
 
 __attribute__((section(".text.Forward3428A0_342870")))
 int Forward3428A0_342870(int a0, int a1, int a2) {
-    return func_003428A0(a0, a1, a2, 1);
+    return mwPlyAttachAdx(a0, a1, a2, 1);
 }
 
 __attribute__((section(".text.Forward342910_342888")))
@@ -198,7 +198,7 @@ int Forward342910_342888(int a0, int a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward348870_342910")))
 int Forward348870_342910(int a0, int a1, int a2, int a3) {
-    return func_00348870(a0 + 0x284, a1, a2, a3);
+    return MWSST_Destroy(a0 + 0x284, a1, a2, a3);
 }
 
 __attribute__((section(".text.Forward324950_342928")))
@@ -208,41 +208,41 @@ int Forward324950_342928(int a0, int a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward324AC8_342940")))
 int Forward324AC8_342940(int a0, int a1, int a2, int a3) {
-    return func_00324AC8(a0, a1, a2, a3);
+    return ADXT_Finish(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.Forward329EA8_342A70")))
 int Forward329EA8_342A70(int a0, int a1, int a2, int a3) {
-    return func_00329EA8(a0, a1, a2, a3);
+    return ADXT_Stop(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.Forward35F900_346BF8")))
-int Forward35F900_346BF8(void){ return func_0035F900(); }
+int Forward35F900_346BF8(void){ return SFX_Finish(); }
 
 __attribute__((section(".text.Forward35F970_346C18")))
 int Forward35F970_346C18(void){ return func_0035F970(); }
 
-extern void func_0035FB88(int a0);
+extern void SFX_Destroy(int a0);
 
 __attribute__((section(".text.Forward35FB88_346C30")))
 void Forward35FB88_346C30(int a0) {
-    func_0035FB88(a0);
+    SFX_Destroy(a0);
 }
 
 __attribute__((section(".text.Forward347218_3471F0")))
-int Forward347218_3471F0(int a0, int a1, int a2){ return func_00347218(a0, a1, a2, 0); }
+int Forward347218_3471F0(int a0, int a1, int a2){ return MWSFSFX_SetOutBufSize(a0, a1, a2, 0); }
 
 __attribute__((section(".text.Forward33BEC0_3489F0")))
-int Forward33BEC0_3489F0(void){ return func_0033BEC0(); }
+int Forward33BEC0_3489F0(void){ return SVM_Finish(); }
 
 __attribute__((section(".text.Forward33B938_348A50")))
-int Forward33B938_348A50(void){ return func_0033B938(2, D_00760D84); }
+int Forward33B938_348A50(void){ return SVM_DelCbSvr(2, D_00760D84); }
 
 __attribute__((section(".text.Forward33B938_348AA8")))
-int Forward33B938_348AA8(void){ return func_0033B938(6, D_00760D88); }
+int Forward33B938_348AA8(void){ return SVM_DelCbSvr(6, D_00760D88); }
 
 __attribute__((section(".text.MWSFSVM_DeleteIdleFunc")))
-int MWSFSVM_DeleteIdleFunc(int a0, int a1, int a2, int a3) { return func_0033B938(5, D_00760D8C, a2, a3); }
+int MWSFSVM_DeleteIdleFunc(int a0, int a1, int a2, int a3) { return SVM_DelCbSvr(5, D_00760D8C, a2, a3); }
 
 __attribute__((section(".text.Forward3466C0_348B78")))
 int Forward3466C0_348B78(int a0, int a1, int a2, int a3) { return Forward3462D8_3466C0(a0, a1, a2, a3); }
@@ -251,13 +251,13 @@ __attribute__((section(".text.Forward3466D8_348B90")))
 int Forward3466D8_348B90(int a0, int a1, int a2, int a3) { return Forward346368_3466D8(a0, a1, a2, a3); }
 
 __attribute__((section(".text.Forward33BF18_348BC8")))
-int Forward33BF18_348BC8(int a0, int a1, int a2, int a3) { return func_0033BF18(a0, a1, a2, a3); }
+int Forward33BF18_348BC8(int a0, int a1, int a2, int a3) { return SVM_TestAndSet(a0, a1, a2, a3); }
 
 __attribute__((section(".text.Forward33BBD8_348C78")))
-int Forward33BBD8_348C78(int a0, int a1, int a2, int a3) { return func_0033BBD8(6, a1, a2, a3); }
+int Forward33BBD8_348C78(int a0, int a1, int a2, int a3) { return SVM_GotoSvrBorder(6, a1, a2, a3); }
 
 __attribute__((section(".text.Forward33B790_348C98")))
-int Forward33B790_348C98(int a0, int a1, int a2, int a3) { return func_0033B790(a0, a1, a2, a3); }
+int Forward33B790_348C98(int a0, int a1, int a2, int a3) { return SVM_CallErr1(a0, a1, a2, a3); }
 
 __attribute__((section(".text.Forward349308_349238")))
 int Forward349308_349238(int a0, int a1, int a2, int a3) { return func_00349308(a0, a1, a2, a3); }
@@ -284,7 +284,7 @@ int Forward327D00_349AA0(int a0, int a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward327D90_349AB8")))
 int Forward327D90_349AB8(int a0, int a1, int a2, int a3) {
-    return func_00327D90(a0, a1, a2, a3);
+    return ADXSTM_Destroy(a0, a1, a2, a3);
 }
 
 __attribute__((section(".text.Forward3281C8_349B48")))

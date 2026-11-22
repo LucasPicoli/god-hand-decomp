@@ -45,17 +45,17 @@ typedef struct frame_state_internal {
 } FrameStateInternal;
 
 /* The FDE that covers pc, or 0 (frame.c find_fde; assembly). */
-DwarfFde *func_00321F48(void *pc);
+DwarfFde *find_fde(void *pc);
 /* Read f's CIE into c; returns its first call-frame instruction, or 0 for an
  * unknown augmentation (frame.c extract_cie_info). */
-void *func_00322030(DwarfFde *f, CieInfo *c);
+void *extract_cie_info(DwarfFde *f, CieInfo *c);
 /* Run the call-frame instruction at insn on state; with pc, advance *pc by the
  * location ops (frame.c execute_cfa_insn; assembly). */
-void *func_00322138(void *insn, FrameStateInternal *state, CieInfo *info, void **pc);
+void *execute_cfa_insn(void *insn, FrameStateInternal *state, CieInfo *info, void **pc);
 /* The frame state for the code at pc_target, into state_in; 0 when no FDE covers it. */
 FrameState *__frame_state_for(void *pc_target, FrameState *state_in);
 /* Read an unsigned LEB128 value into *val; returns the byte after it (frame.c decode_uleb128). */
-unsigned char *func_00321938(unsigned char *p, int *val);
+unsigned char *decode_uleb128(unsigned char *p, int *val);
 
 struct object {
     void *pc_begin;                     /* 0x00 nonzero once the sorted array was built */

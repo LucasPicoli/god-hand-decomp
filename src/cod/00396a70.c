@@ -54,8 +54,8 @@ extern int sceGszbufaddr(short psm, short w, short h);
     ((u_long)(date) << 14) | ((u_long)(datm) << 15) | \
     ((u_long)(zte) << 16)  | ((u_long)(ztst) << 17))
 
-__attribute__((section(".text.func_00396A70")))
-int func_00396A70(sceGsDrawEnv1 *draw, short psm, short w, short h,
+__attribute__((section(".text.sceGsSetDefDrawEnv")))
+int sceGsSetDefDrawEnv(sceGsDrawEnv1 *draw, short psm, short w, short h,
                   short ztest, short zpsm)
 {
     long cx;

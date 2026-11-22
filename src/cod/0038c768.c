@@ -4,9 +4,9 @@ extern void WaitDma(void *);
 extern void _IO_free_backup_area(int *);
 extern void UpdateGlobalPtrWithParam_3A7CC0(int);
 
-__attribute__((section(".text.func_003974D0")))
-void func_003974D0(int *o, int a1, int a2) {
-    int s1 = func_003970A0(a1);
+__attribute__((section(".text.sceDmaRecvN")))
+void sceDmaRecvN(int *o, int a1, int a2) {
+    int s1 = CheckAddress(a1);
     int f;
     WaitDma(o);
     if ((unsigned int)o[4] != 0xFFFFFFFFU)

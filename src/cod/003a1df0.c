@@ -18,8 +18,8 @@ struct exc_3A1DF0 {
 };
 
 extern float func_003A2BB0(float x);			/* __ieee754_logf */
-extern int func_003A4E00(float x);			/* isnanf */
-extern int func_003A4AC8(void *e);		/* matherr */
+extern int isnanf(float x);			/* isnanf */
+extern int matherr(void *e);		/* matherr */
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 extern const double D_0045EA00;				/* HUGE_VAL */
 
@@ -30,7 +30,7 @@ float func_003A1DF0(float x)
 	float z;
 
 	z = func_003A2BB0(x);
-	if (D_0045F024 == -1 || func_003A4E00(x) || x > (float)0.0)
+	if (D_0045F024 == -1 || isnanf(x) || x > (float)0.0)
 		return z;
 	exc.name = D_0045EA88;
 	exc.err = 0;
@@ -43,13 +43,13 @@ float func_003A1DF0(float x)
 		exc.type = 2;
 		if (D_0045F024 == 2)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 34;
-		else if (func_003A4AC8(&exc) == 0)
+		else if (matherr(&exc) == 0)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 	} else {
 		exc.type = 1;
 		if (D_0045F024 == 2)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
-		else if (func_003A4AC8(&exc) == 0)
+		else if (matherr(&exc) == 0)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 	}
 	if (exc.err != 0)

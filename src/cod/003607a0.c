@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
 
-__attribute__((section(".text.func_0036CC80")))
-void func_0036CC80(int *p, int a, int b, int c) {
+__attribute__((section(".text.SFXA_SetLumiPrm")))
+void SFXA_SetLumiPrm(int *p, int a, int b, int c) {
     int *q = p + 2;
     int one = 1;
     q[0] = c;
@@ -18,8 +18,8 @@ unsigned long setf__3iosUlUl(unsigned long *p, unsigned long f, unsigned long m)
     return old;
 }
 
-__attribute__((section(".text.func_003607A0")))
-void func_003607A0(void) {
+__attribute__((section(".text.SUD_Finish")))
+void SUD_Finish(void) {
     if (D_003EEA6C > 0) {
         D_003EEA6C = D_003EEA6C - 1;
     }

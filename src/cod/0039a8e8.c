@@ -27,7 +27,7 @@ int sceMpegInit(void) {
     if (oldstat != 0) EIntr();
     *(volatile unsigned int *)0x1000B020 = 0;
     *(volatile unsigned int *)0x1000B420 = 0;
-    func_003BAD80();
+    sceIpuInit();
     return 1;
 }
 

@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00331310, polls an IOP request until it completes, with an error state and a spin timeout. */
+/* cygnus-2.96: srd_wait_hst, polls an IOP request until it completes, with an error state and a spin timeout. */
 #include "godhand/iopReq.h"
 #include "godhand/globals.h"
 extern void PushGlobalD8478History_331C78(int tag);
@@ -6,8 +6,8 @@ extern int func_00331E70(int handle, int mode, int *busy);
 extern void func_003312B8(void);
 extern void func_003B1F28(char *msg);
 
-__attribute__((section(".text.func_00331310")))
-void func_00331310(IopReq *req)
+__attribute__((section(".text.srd_wait_hst")))
+void srd_wait_hst(IopReq *req)
 {
     int busy = 1;
     int n = 0;

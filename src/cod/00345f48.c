@@ -6,9 +6,9 @@ extern void MWSFSVM_Error(const char *msg, ...);
 extern int MWSFD_GetPauseBdr(void);
 extern int SFD_GetCond(void *sfd, int id, int *out);
 extern int mwlSfdSleepDecSvr(MwsfdHn *mw);
-extern int func_00356F48(void *sfd, int sw);
-extern int func_00345750(int err);
-extern void func_00348550(MwsfdSlot *slot, int sw);
+extern int SFD_Pause(void *sfd, int sw);
+extern int MWSFLIB_SetErrCode(int err);
+extern void MWSST_Pause(MwsfdSlot *slot, int sw);
 
 __attribute__((section(".text.func_00345F48")))
 void func_00345F48(MwsfdHn *mw, int sw)
@@ -38,11 +38,11 @@ void func_00345F48(MwsfdHn *mw, int sw)
             }
         }
     }
-    if (func_00356F48(sfd, sw) != 0) {
-        func_00345750(-0x136);
+    if (SFD_Pause(sfd, sw) != 0) {
+        MWSFLIB_SetErrCode(-0x136);
         MWSFSVM_Error(D_004580D8, sw == 1 ? D_00458100 : D_00458108);
     }
-    func_00348550(&mw->slot[0], sw);
-    func_00348550(&mw->slot[1], sw);
+    MWSST_Pause(&mw->slot[0], sw);
+    MWSST_Pause(&mw->slot[1], sw);
     mw->pause = sw;
 }

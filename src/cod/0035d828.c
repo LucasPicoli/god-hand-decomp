@@ -31,7 +31,7 @@ int SFH_IsSfdHeader(Hdr *h, int *out)
         return 0;
     }
     h->f0 = 2;
-    if (func_0035DB38(h, &n, &m) == 0) return 0;
+    if (SFH_AnlyHdrToolVer(h, &n, &m) == 0) return 0;
     h->fC = n * 100 + m;
     *out = 1;
     return 1;

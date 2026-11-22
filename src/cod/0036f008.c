@@ -1,7 +1,7 @@
 extern int func_003A5148(int, int, int);
 
-__attribute__((section(".text.func_0036F008")))
-void func_0036F008(char *object, void *source, int count)
+__attribute__((section(".text.appendUd")))
+void appendUd(char *object, void *source, int count)
 {
     char *header = object + 0x14C;
     int offset = *(int *)(header + 8);

@@ -1,8 +1,8 @@
-/* sn-2.95.3-136: func_003A92E0, newlib strncasecmp (func_003AD0F8 is tolower). */
+/* sn-2.95.3-136: strncasecmp, newlib strncasecmp (func_003AD0F8 is tolower). */
 extern int func_003AD0F8(int c);
 
-__attribute__((section(".text.func_003A92E0")))
-int func_003A92E0(const char *s1, const char *s2, unsigned int n)
+__attribute__((section(".text.strncasecmp")))
+int strncasecmp(const char *s1, const char *s2, unsigned int n)
 {
     if (n == 0)
         return 0;

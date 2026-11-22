@@ -70,7 +70,7 @@ struct Sfx {
     void (*cbfn)(SfdFrmInf *inf, FrmRec *frm, FrmTim *tim); /* 0x6C */
 };
 
-extern void func_0035F288(Sfx *sfx, void *src, SfdFrmInf *inf);
+extern void sfxcnv_MakeCftSrcBuf(Sfx *sfx, void *src, SfdFrmInf *inf);
 
 
 
@@ -87,7 +87,7 @@ void Sfx_buildFrameRecord(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
     char **fp;
     int half;
 
-    func_0035F288(sfx, src, &inf);
+    sfxcnv_MakeCftSrcBuf(sfx, src, &inf);
     yp = &inf.y_ptr;
     up = &inf.u_ptr;
     vp = &inf.v_ptr;
@@ -229,7 +229,7 @@ int FileList_resolveAll(char *tbl, int num)
             ;
         PushGlobalD8478History_331C78(0x9401);
         PushGlobalD8478History_331C78(0x9500);
-        if (func_00332838(&info, D_003D9EE8) == 1) {
+        if (dvCiCdSearchFile(&info, D_003D9EE8) == 1) {
             PushGlobalD8478History_331C78(0x9501);
             ok++;
             ((int *)tbl)[i * 2] = info.unk00;

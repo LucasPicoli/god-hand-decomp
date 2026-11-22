@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_003B9EB0, takes a free 0x3C-byte work record for a buffer of at least 0x1800 bytes and
+/* cygnus-2.96: AC3CNV_Create, takes a free 0x3C-byte work record for a buffer of at least 0x1800 bytes and
  * marks it in use. */
 #include "godhand/globals.h"
 typedef struct {
@@ -10,12 +10,12 @@ typedef struct {
     int state; /* 0x18 */
 } WorkRec;
 extern void func_003B9DE0(char *msg);
-extern WorkRec *func_003B9F60(void);
+extern WorkRec *ac3cnv_alloc_hndl(void);
 extern void *func_003A52F0(void *d, int c, unsigned int n);
-extern void func_003B9FB8(WorkRec *w);
+extern void ac3cnv_reset(WorkRec *w);
 
-__attribute__((section(".text.func_003B9EB0")))
-WorkRec *func_003B9EB0(void *buf, int size)
+__attribute__((section(".text.AC3CNV_Create")))
+WorkRec *AC3CNV_Create(void *buf, int size)
 {
     WorkRec *w;
 
@@ -27,10 +27,10 @@ WorkRec *func_003B9EB0(void *buf, int size)
         func_003B9DE0(D_004608B0);
         return 0;
     }
-    w = func_003B9F60();
+    w = ac3cnv_alloc_hndl();
     if (w != 0) {
         func_003A52F0(w, 0, 0x3C);
-        func_003B9FB8(w);
+        ac3cnv_reset(w);
         w->buf = buf;
         w->size = size;
         w->state = 2;

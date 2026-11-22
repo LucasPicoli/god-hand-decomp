@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0039AC58")))
-int func_0039AC58(int **a0){
+__attribute__((section(".text.sceMpegClearRefBuff")))
+int sceMpegClearRefBuff(int **a0){
   int **p = (int **)a0[0x10];
   if (p[0x72]) ((int *)p[0x72])[0xA] = 0;
   if (p[0x76]) ((int *)p[0x76])[0xA] = 0;

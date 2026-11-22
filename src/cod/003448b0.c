@@ -2,8 +2,8 @@
 #include "godhand/mwsfd.h"
 #include "godhand/globals.h"
 
-__attribute__((section(".text.func_003448B0")))
-void func_003448B0(MwsfdHn *m, int stat)
+__attribute__((section(".text.mwsffrm_SetFrmApi")))
+void mwsffrm_SetFrmApi(MwsfdHn *m, int stat)
 {
     if (m->latch == 0)
         m->latch = stat;

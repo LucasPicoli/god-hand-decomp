@@ -43,8 +43,8 @@ typedef struct {
 
 extern sceSifRpcCtl D_0077FF40;
 
-__attribute__((section(".text.func_003B34D0")))
-sceSifServeData *func_003B34D0(sceSifServeData *sd, sceSifQueueData *qd)
+__attribute__((section(".text.sceSifRemoveRpc")))
+sceSifServeData *sceSifRemoveRpc(sceSifServeData *sd, sceSifQueueData *qd)
 {
     sceSifServeData *s;
 

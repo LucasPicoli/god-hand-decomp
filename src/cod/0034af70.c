@@ -7,7 +7,7 @@ typedef struct {
 extern int ReturnK_003EE2BC_00358A38_358A38(void);
 
 extern void *Obj0000_ReturnD_003EE2C0_34AFE0(void);
-extern void func_0032AF40(void *hn, int flag);
+extern void ADXT_SetAutoRcvr(void *hn, int flag);
 
 __attribute__((section(".text.sfadxt_CreateEx")))
 void *sfadxt_CreateEx(SfdAdxtCfg *cfg)
@@ -20,6 +20,6 @@ void *sfadxt_CreateEx(SfdAdxtCfg *cfg)
         hn = Obj0000_ReturnD_003EE2C0_34AFE0();
     }
     if (hn == 0) return 0;
-    func_0032AF40(hn, 0);
+    ADXT_SetAutoRcvr(hn, 0);
     return hn;
 }

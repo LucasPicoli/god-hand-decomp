@@ -6,15 +6,15 @@
 #include "godhand/cIDParam.h"
 #include "godhand/globals.h"
 
-extern void func_0032B118(int handle);
+extern void ADXT_ClearErrCode_32B118(int handle);
 extern int sceSifInitRpc(int mode);
 extern void func_00377BC8(void);
-extern void func_00375860(void);
+extern void SdeRpcClientInit(void);
 extern char D_0076A9C0[];
 extern char D_0076B1C0[];
 extern void ClearInvalidEntry_376400(SndSlot *slot);
-extern void func_00376438(SndSlot *slot);
-extern void func_00376720(SndSlot *slot);
+extern void ssqCtlPodMain(SndSlot *slot);
+extern void ssqCtlTrkControl(SndSlot *slot);
 extern void UpdateSlotState_3767B0(SndSlot *slot);
 extern void UpdatePendingFlags_376820(SndSlot *slot);
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
@@ -31,7 +31,7 @@ int MenuCtl_pollStreamAndRefresh(MenuCtl *ctl, MenuInfo *info, MenuList *list)
     st = func_0032B0B0(info->handle);
     if (st == 0)
         goto none;
-    func_0032B118(info->handle);
+    ADXT_ClearErrCode_32B118(info->handle);
     func_00380EB0(ctl, info, list);
     return st != -1 ? 4 : 3;
 none: /* goto: the || cascade and an early return both move the shared return-0 block (measured), so it stays one label */
@@ -48,7 +48,7 @@ void sndDrv_start(void)
 
     sceSifInitRpc(0);
     func_00377BC8();
-    func_00375860();
+    SdeRpcClientInit();
     c->bank = (int)D_0076A9C0;
     c->id = (int)D_0076B1C0;
     func_003758E8(0);
@@ -67,10 +67,10 @@ void SndSlot_updateAll(void)
             if (slot->state & SND_SLOT_CHECK) {
                 ClearInvalidEntry_376400(slot);
             } else {
-                func_00376438(slot);
+                ssqCtlPodMain(slot);
             }
             if (slot->state != 0) {
-                func_00376720(slot);
+                ssqCtlTrkControl(slot);
                 UpdateSlotState_3767B0(slot);
                 UpdatePendingFlags_376820(slot);
             }

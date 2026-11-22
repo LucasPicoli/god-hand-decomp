@@ -13,8 +13,8 @@ typedef struct {
     Sint16 f156;
 } ADXB;
 
-__attribute__((section(".text.func_0033CEF0")))
-Sint32 func_0033CEF0(ADXB *b)
+__attribute__((section(".text.ADXB_GetOutBps")))
+Sint32 ADXB_GetOutBps(ADXB *b)
 {
     Sint32 mode;
     Sint32 x;
@@ -50,8 +50,8 @@ typedef signed short  Sint16;
 typedef unsigned short Uint16;
 typedef signed int    Sint32;
 
-__attribute__((section(".text.func_0033E818")))
-Sint32 func_0033E818(Sint8 *buf, Sint32 size, Sint16 *out)
+__attribute__((section(".text.ADX_ScanInfoCode")))
+Sint32 ADX_ScanInfoCode(Sint8 *buf, Sint32 size, Sint16 *out)
 {
     Sint32 i;
     Sint32 pos;

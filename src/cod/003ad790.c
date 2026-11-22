@@ -26,8 +26,8 @@ typedef union { double value; unsigned int i[2]; } U;
 #define Lg7     1.479819860511658591e-01        /* 3FC2F112 DF3E5244 */
 #define zero    0.0
 
-__attribute__((section(".text.func_003AD790")))
-double func_003AD790(double x)
+__attribute__((section(".text.sn_log")))
+double sn_log(double x)
 {
     double hfsq, f, s, z, R, w, t1, t2, dk;
     int k, hx, i, j;
@@ -90,10 +90,10 @@ double func_003AD790(double x)
  * SET_HIGH_WORD are register shifts through a union, not memory accesses.
  * `long` is the 64-bit type here; `long long` is 128-bit and cc1 rejects it. */
 
-extern double func_0031E348(double a, double b);	/* dpmul */
-extern double func_0031E288(double a, double b);	/* dpadd */
-extern double func_0031E8C0(int i);			/* litodp */
-extern double func_003AD790(double x);			/* __ieee754_log */
+extern double dpmul(double a, double b);	/* dpmul */
+extern double dpadd(double a, double b);	/* dpadd */
+extern double litodp(int i);			/* litodp */
+extern double sn_log(double x);			/* __ieee754_log */
 
 typedef union {
 	double	value;
@@ -128,8 +128,8 @@ typedef union {
 #define log10_2hi 3.01029995663611771306e-01	/* 0x3FD34413, 0x509F6000 */
 #define log10_2lo 3.69423907715893089906e-13	/* 0x3D59FEF3, 0x11F12B36 */
 
-__attribute__((section(".text.func_003ADDA8")))
-double func_003ADDA8(double x)
+__attribute__((section(".text.sn_log10")))
+double sn_log10(double x)
 {
 	double y, z;
 	int i, k, hx;
@@ -156,6 +156,6 @@ double func_003ADDA8(double x)
 	hx = (hx & 0x000fffff) | ((0x3ff - i) << 20);
 	y = (double) (k + i);
 	SET_HIGH_WORD (x, hx);
-	z = y * log10_2lo + ivln10 * func_003AD790 (x);
+	z = y * log10_2lo + ivln10 * sn_log (x);
 	return z + y * log10_2hi;
 }

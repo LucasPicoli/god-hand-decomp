@@ -37,7 +37,7 @@ typedef struct Tim2PicHdr {
     GsTex0 tex0;                /* 0x18 */
 } Tim2PicHdr;
 
-extern int func_00309C30(unsigned int psm, int w);
+extern int Tim2CalcBufWidth(unsigned int psm, int w);
 extern void func_0015E510(void *work, int psm, int tbp, int tbw, int w, int h, char *data);
 extern void func_0015E708(void *work, int psm, int tbp, int tbw, int w, int h, char *data);
 extern void func_0015E8B8(void *work, int psm, int tbp, int tbw, int w, int h, char *data);
@@ -66,7 +66,7 @@ void func_0015E0A0(void *work, Tim2FileHdr *tim, int tbp, int cbp, GsTex0 *out)
     w = pic->width;
     image = (char *)pic + pic->headerSize;
     h = pic->height;
-    tbw = func_00309C30(psm, w);
+    tbw = Tim2CalcBufWidth(psm, w);
     out->TBP0 = tbp;
     out->TBW = tbw;
     out->TCC = 1;
@@ -104,7 +104,7 @@ void func_0015E2E0(void *work, Tim2FileHdr *tim, int tbp, int cbp, GsTex0 *out)
     w = pic->width;
     image = (char *)pic + pic->headerSize;
     h = pic->height;
-    tbw = func_00309C30(psm, w);
+    tbw = Tim2CalcBufWidth(psm, w);
     out->TBP0 = tbp;
     out->TBW = tbw;
     out->TCC = 1;

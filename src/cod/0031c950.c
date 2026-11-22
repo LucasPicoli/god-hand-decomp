@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: one-segment line; the game passes (x0, y0) for both ends. */
-extern unsigned int func_0031CA58(unsigned int a0);
+extern unsigned int convColor(unsigned int a0);
 #include "godhand/drawPrim.h"
 
 __attribute__((section(".text.func_0031C950")))
@@ -15,5 +15,5 @@ void func_0031C950(short x0, short y0, short x1, short y1, unsigned int col, uns
     v[1][1] = y0;
     v[1][2] = z;
     v[1][3] = 1.0f;
-    Draw_Line_sc(v, 1, func_0031CA58(col), 1);
+    Draw_Line_sc(v, 1, convColor(col), 1);
 }

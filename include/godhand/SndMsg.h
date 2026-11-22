@@ -3,7 +3,7 @@
  * The sound driver queues work as 0x44-byte message nodes taken from a pool
  * (func_0037D170). A builder fills one node from a playing sound (the
  * source), a request record and a row of the bank's sound table, then hands
- * it to func_00376CF8.
+ * it to SdeSsqVexeComParaSet.
  *
  * Field names are ours, taken from the builders that fill the nodes.
  * Offsets are exact. A field nobody has named yet stays as unkNN padding.
@@ -87,6 +87,6 @@ typedef struct SndMsgNode {
 } SndMsgNode;                           /* 0x44 */
 
 extern SndMsgNode *func_0037D170(void);
-extern void func_00376CF8(SndMsgSrc *src, SndMsgNode *node);
+extern void SdeSsqVexeComParaSet(SndMsgSrc *src, SndMsgNode *node);
 
 #endif

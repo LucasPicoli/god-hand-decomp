@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
 /* compiler: cygnus-2.96 ; extra keys: none */
-__attribute__((section(".text.func_0035B188")))
-void func_0035B188(int a0, char *a1, int *a2, int *a3) {
+__attribute__((section(".text.sftim_Tc2TimeN")))
+void sftim_Tc2TimeN(int a0, char *a1, int *a2, int *a3) {
     int h;
     int m;
     int s;

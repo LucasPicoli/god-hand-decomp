@@ -28,6 +28,6 @@ void func_00373FF0(char *p, int idx, float x)
     if (t >= 127.0f) {
         t = 127.0f;
     }
-    func_0032A9F0(*(int *)p, D_003F2060[(int)t]);
+    ADXT_SetOutVol(*(int *)p, D_003F2060[(int)t]);
     *(float *)(p + 0x14) = x;
 }

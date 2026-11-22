@@ -6,10 +6,10 @@ extern int isEnableVidFtr();
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(void *);
 extern int M2VERR_SetCode(int, unsigned int);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *);
-extern void func_003589C0(void *);
+extern void SFPLY_Stop(void *);
 
-__attribute__((section(".text.func_00350418")))
-void func_00350418(char *obj, int *arr, int count) {
+__attribute__((section(".text.SFMPV_RestoreCond")))
+void SFMPV_RestoreCond(char *obj, int *arr, int count) {
     int *base;
     int s2;
     int i;
@@ -17,12 +17,12 @@ void func_00350418(char *obj, int *arr, int count) {
     s2 = *base;
     if (s2 == 0) return;
     for (i = 0; i < count; i++) {
-        func_0036C450(s2, i, arr[i]);
+        MPV_SetCond(s2, i, arr[i]);
     }
 }
 
-__attribute__((section(".text.func_0035E670")))
-int func_0035E670(void *a0, int a1, int *out)
+__attribute__((section(".text.SFH_AnlyFtrShcFixFlg")))
+int SFH_AnlyFtrShcFixFlg(void *a0, int a1, int *out)
 {
     void *p;
     unsigned char k;
@@ -55,8 +55,8 @@ int func_0034E140(void)
     return r;
 }
 
-__attribute__((section(".text.func_0036DA30")))
-void func_0036DA30(void *a0)
+__attribute__((section(".text.m2v_RequestStop")))
+void m2v_RequestStop(void *a0)
 {
     if (Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(a0)) {
         M2VERR_SetCode(0, 0xFF030210);
@@ -65,8 +65,8 @@ void func_0036DA30(void *a0)
     *(int *)((char *)a0 + 0x118) = 1;
 }
 
-__attribute__((section(".text.func_00359518")))
-int func_00359518(char *p0, int index, unsigned int p2, long long *p3) {
+__attribute__((section(".text.SFPTS_ReadPtsQue")))
+int SFPTS_ReadPtsQue(char *p0, int index, unsigned int p2, long long *p3) {
     char *base;
     char *e;
     int *cb;
@@ -88,15 +88,15 @@ int func_00359518(char *p0, int index, unsigned int p2, long long *p3) {
     if (p2 < (unsigned int)(off18 + off1c)) {
         len = p2;
     }
-    func_00359590(cb, len, p3, off18);
+    sfpts_ReadPtsQueSub(cb, len, p3, off18);
     return 0;
 }
 
-__attribute__((section(".text.func_00358968")))
-int func_00358968(void *thisp) {
+__attribute__((section(".text.SFD_Stop")))
+int SFD_Stop(void *thisp) {
     if (Obj34D8_SetGlobalEE0B8_IfField48(thisp)) {
         return func_0034DD70(0, 0xFF000133);
     }
-    func_003589C0(thisp);
+    SFPLY_Stop(thisp);
     *(int *)((char *)thisp + 0x44) = 1;
 }

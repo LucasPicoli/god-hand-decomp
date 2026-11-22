@@ -3,8 +3,8 @@
 extern int Obj35C0_GetIndexed_1F34_C368(void *hn, int id);
 extern int GetArrayElemA0C_35A1C8(void *hn, int id);
 
-__attribute__((section(".text.func_00357FC8")))
-int func_00357FC8(void *hn)
+__attribute__((section(".text.sfply_IsEtrg")))
+int sfply_IsEtrg(void *hn)
 {
     int *p;
     int a6;

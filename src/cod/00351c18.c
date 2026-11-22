@@ -1,11 +1,11 @@
-/* cygnus-2.96: func_00351C18, maps a decoder status to an error report: 0 is fine, -2/-3 are only
+/* cygnus-2.96: sfmpv_ChkMpvErr, maps a decoder status to an error report: 0 is fine, -2/-3 are only
  * errors when nothing was decoded, anything else reports code. */
 #include "godhand/sftim.h"
 
 extern int func_0034DD70(SftimHn *hn, int code);
 
-__attribute__((section(".text.func_00351C18")))
-int func_00351C18(SftimHn *hn, int st, int n, int code)
+__attribute__((section(".text.sfmpv_ChkMpvErr")))
+int sfmpv_ChkMpvErr(SftimHn *hn, int st, int n, int code)
 {
     switch (st) {
     case 0:

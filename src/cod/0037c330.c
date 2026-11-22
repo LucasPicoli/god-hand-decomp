@@ -7,8 +7,8 @@ extern void func_0037C4C0(SeqCmd *c);
 void func_0037C388(SeqCmd *c);
 void func_0037C420(SeqCmd *c);
 
-__attribute__((section(".text.func_0037C330")))
-int func_0037C330(SeqCmd *c)
+__attribute__((section(".text.vexeCmdExec")))
+int vexeCmdExec(SeqCmd *c)
 {
     if (c->all == 0) {
         if (c->arg == 0) {

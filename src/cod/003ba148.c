@@ -4,12 +4,12 @@
 #include "godhand/sjFeedCtl.h"
 
 
-extern void func_0033ACA0(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
+extern void SJ_SplitChunk(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
 
 
-extern void func_003BA550(SjFeedCtl *feed);
+extern void ac3cnv_create_iec_header(SjFeedCtl *feed);
 
-extern void func_003BA6C0(void *src, int len);
+extern void ac3cnv_switch_endian(void *src, int len);
 extern int SjFeed_writeAll(SjFeedCtl *feed);
 
 /* Advance the feed one step: move to running, stop when the source has
@@ -31,7 +31,7 @@ void SjFeedCtl_step(SjFeedCtl *feed)
     if (feed->out->vt->getNumData(feed->out, SJ_LANE_FREE) < SJFEED_BLOCK)
         return;
     feed->in->vt->getChunk(feed->in, SJ_LANE_FULL, SJFEED_BIG, &ck);
-    func_0033ACA0(&ck, func_003BA370(ck.data, ck.len), &ck, &tail);
+    SJ_SplitChunk(&ck, ac3cnv_search_header(ck.data, ck.len), &ck, &tail);
     feed->in->vt->putChunk(feed->in, SJ_LANE_FREE, &ck);
     feed->in->vt->ungetChunk(feed->in, SJ_LANE_FULL, &tail);
     feed->in->vt->getChunk(feed->in, SJ_LANE_FULL, SJFEED_HDR_LEN, &ck);
@@ -46,13 +46,13 @@ void SjFeedCtl_step(SjFeedCtl *feed)
     feed->in->vt->ungetChunk(feed->in, SJ_LANE_FULL, &ck);
     if (feed->in->vt->getNumData(feed->in, SJ_LANE_FULL) < feed->step)
         return;
-    func_003BA550(feed);
+    ac3cnv_create_iec_header(feed);
     if (func_003BA5A0(feed) < 0) {
         feed->state = SJFEED_ERROR;
         return;
     }
     if (feed->copyMode == 1)
-        func_003BA6C0(feed->src, SJFEED_BLOCK);
+        ac3cnv_switch_endian(feed->src, SJFEED_BLOCK);
     if (SjFeed_writeAll(feed) < 0) {
         feed->state = SJFEED_ERROR;
         return;

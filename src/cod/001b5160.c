@@ -10,7 +10,7 @@ extern void KeyStop(void);
 extern void func_0028CE70(void);
 extern void func_00297660(void);
 extern void func_002B4560(void);
-extern void func_00345610(void);
+extern void mwPlyFinishSfdFx(void);
 extern void cObjBase__dtor(void);
 extern void func_002BB010(void);
 extern void func_002BF170(void *a0);
@@ -103,7 +103,7 @@ void func_002B4390(void)
 __attribute__((section(".text.func_002B4A30")))
 void func_002B4A30(void)
 {
-	func_00345610();
+	mwPlyFinishSfdFx();
 }
 
 __attribute__((section(".text.cObjSimple_Dtor")))
@@ -128,7 +128,7 @@ int func_002BE6C8(int *a0) {
 
 __attribute__((section(".text.func_002BE6E8")))
 int func_002BE6E8(void) {
-    return func_00394D58(0);
+    return snInitDllSystem(0);
 }
 
 __attribute__((section(".text.func_002BE818")))

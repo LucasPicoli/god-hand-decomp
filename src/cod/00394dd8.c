@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_00394DD8, module load/start: resolves the module, links it, reports the result and runs its start callback. */
+/* sn-2.95.3-136: snDllLoaded, module load/start: resolves the module, links it, reports the result and runs its start callback. */
 #include "godhand/regTbl.h"
 #include "godhand/globals.h"
 #include "godhand/iopModStop.h"
@@ -19,8 +19,8 @@ extern int func_00394C18(int arg, IopModule *m);
 extern void func_003951B0(void);
 extern int func_003A6A20(const char *fmt, ...);
 
-__attribute__((section(".text.func_00394DD8")))
-int func_00394DD8(IopModule *m, int *res)
+__attribute__((section(".text.snDllLoaded")))
+int snDllLoaded(IopModule *m, int *res)
 {
     int r;
     int id;

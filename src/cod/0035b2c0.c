@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0035B3F8")))
-void func_0035B3F8(int a0, char *a1, int *a2, int *a3) {
+__attribute__((section(".text.sftim_Tc2Time59D")))
+void sftim_Tc2Time59D(int a0, char *a1, int *a2, int *a3) {
     int f8  = *(int *)(a1 + 0x8);
     int fC  = *(int *)(a1 + 0xC);
     int f10 = *(int *)(a1 + 0x10);
@@ -16,8 +16,8 @@ void func_0035B3F8(int a0, char *a1, int *a2, int *a3) {
     *a3 = a0;
 }
 
-__attribute__((section(".text.func_0035B360")))
-void func_0035B360(int a0, char *s, int *out2, int *out3) {
+__attribute__((section(".text.sftim_Tc2Time29D")))
+void sftim_Tc2Time29D(int a0, char *s, int *out2, int *out3) {
     int d = *(int *)(s + 0xC);
     int t5 = *(int *)(s + 8) * 0x1A574 + d * 0x706;
     int t4 = *(int *)(s + 0x14) + *(int *)(s + 0x18);
@@ -26,8 +26,8 @@ void func_0035B360(int a0, char *s, int *out2, int *out3) {
     *out3 = a0;
 }
 
-__attribute__((section(".text.func_0035B2C0")))
-void func_0035B2C0(int a0, int *a1, int *a2, int *a3)
+__attribute__((section(".text.sftim_Tc2Time23D")))
+void sftim_Tc2Time23D(int a0, int *a1, int *a2, int *a3)
 {
   int v1;
   int s = (*((short *) (((char *) a1) + 0x1E))) * 500;

@@ -42,13 +42,13 @@ extern void func_003A52F0(void *dst, int val, int n);
 void StageBuf_init(StageBuf *self, int buf, int size);
 
 /* A free handle record, or 0. */
-void *func_0035FA88(void);
+void *sfx_SearchFreeHn(void);
 /* 1 when size is enough work for a handle. Retail passes three arguments; only the size is read. */
 int func_0035FB78(int size, int a1, int a2);
 /* Create the Z and the A handle. */
 void *func_0035FEF0(void);
 void *func_0036CAB0(void);
 /* Close a handle opened by func_0035F970. */
-void func_0035FB88(int a0);
+void SFX_Destroy(int a0);
 
 #endif

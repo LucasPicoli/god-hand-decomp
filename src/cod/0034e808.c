@@ -7,8 +7,8 @@ typedef struct {
     int hdr_size;                       /* +0x28 */
 } SfMps;
 
-extern int func_0034E8E8(const unsigned char *p, int n);   /* sfmps_IsZero */
-extern int func_00368A28(const unsigned char *p);          /* MPS_CheckDelim */
+extern int sfmps_IsZero(const unsigned char *p, int n);   /* sfmps_IsZero */
+extern int MPS_CheckDelim(const unsigned char *p);          /* MPS_CheckDelim */
 extern int sfmps_IsEndOfRingBuf(SfMps *mps, const unsigned char *p);
 
 __attribute__((section(".text.sfmps_SkipNext")))
@@ -20,14 +20,14 @@ void sfmps_SkipNext(SfMps *mps, const unsigned char *p, int len, int *out)
     *out = 0;
     n = mps->hdr_size;
     if (len >= n + 3) {
-        if (func_0034E8E8(p, n)) {
+        if (sfmps_IsZero(p, n)) {
             *out = n;
             return;
         }
     }
     cnt = 0;
     while (len >= 4) {
-        if (func_00368A28(p++) & 0x000D0000) {
+        if (MPS_CheckDelim(p++) & 0x000D0000) {
             *out = cnt;
             return;
         }

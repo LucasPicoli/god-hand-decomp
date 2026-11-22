@@ -34,8 +34,8 @@ extern int getFIFOindex(IpuFifo *f, unsigned int p);
 extern void setD3_CHCR(unsigned int v);
 extern void func_00355880(unsigned int tag);
 
-__attribute__((section(".text.func_00355F88")))
-int func_00355F88(IpuFifo *f)
+__attribute__((section(".text.viBufRestartDMA")))
+int viBufRestartDMA(IpuFifo *f)
 {
     unsigned int ctrl;
     unsigned int cur;

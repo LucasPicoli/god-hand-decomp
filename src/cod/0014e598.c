@@ -127,8 +127,8 @@ int func_003AD0C0(int a0, int a1, int a2) {
     return _strtol_r(D_003FA62C, a0, a1, a2);
 }
 
-__attribute__((section(".text.func_003B6E40")))
-int func_003B6E40(int *a0)
+__attribute__((section(".text.UnlinkAlarm")))
+int UnlinkAlarm(int *a0)
 {
     int *next;
     int *prev;

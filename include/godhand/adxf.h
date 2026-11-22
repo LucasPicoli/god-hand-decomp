@@ -24,6 +24,6 @@ typedef struct AdxfPtInfo {
 extern AdxfPtInfo *D_003EB308[];
 
 extern int adxf_ChkPrmPt(int ptid, void *ptinfo);
-extern int func_00324640(int ptid, int flid, char *fname, void **dir, int *ofst, int *fnsct, int *fsize);
+extern int adxf_GetFnameRangeEx(int ptid, int flid, char *fname, void **dir, int *ofst, int *fnsct, int *fsize);
 
 #endif

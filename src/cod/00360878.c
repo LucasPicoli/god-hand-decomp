@@ -1,10 +1,10 @@
-/* cygnus-2.96: func_00360878, scans a buffer for a tag signature and reports the last hit and its length. */
+/* cygnus-2.96: SUD_SearchSudDat, scans a buffer for a tag signature and reports the last hit and its length. */
 #include "godhand/globals.h"
 extern int func_003A50B4(const void *a, const void *b, int n);
 extern int func_00360940(char *p);
 
-__attribute__((section(".text.func_00360878")))
-void func_00360878(char *data, int size, int *out, int *outLen)
+__attribute__((section(".text.SUD_SearchSudDat")))
+void SUD_SearchSudDat(char *data, int size, int *out, int *outLen)
 {
     int i;
 

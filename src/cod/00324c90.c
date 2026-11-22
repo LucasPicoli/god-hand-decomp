@@ -20,11 +20,11 @@ void func_00324C90(void)
     D_003C80E0++;
 }
 
-__attribute__((section(".text.func_00324D18")))
-void func_00324D18(void)
+__attribute__((section(".text.adxm_unlock")))
+void adxm_unlock(void)
 {
     if (--D_003C80E0 == 0) {
-        func_00325360(D_003C8138);
+        adxm_SuspendThread(D_003C8138);
         D_003C8138;
         ChangeThreadPriority(GetThreadId(), D_003CF9D0);
     }
@@ -33,8 +33,8 @@ void func_00324D18(void)
     }
 }
 
-__attribute__((section(".text.func_00324D88")))
-void func_00324D88(int thid, int prio)
+__attribute__((section(".text.adxm_goto_svr_border")))
+void adxm_goto_svr_border(int thid, int prio)
 {
     int i;
 
@@ -50,7 +50,7 @@ void func_00324D88(int thid, int prio)
             break;
         }
         if (i > 0xBEBC1FF) {
-            func_0033B790(D_00451D78);
+            SVM_CallErr1(D_00451D78);
             break;
         }
     }

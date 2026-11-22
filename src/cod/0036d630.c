@@ -6,8 +6,8 @@ extern struct D0076A590 {
     char *tbl;
 } D_0076A590;
 
-__attribute__((section(".text.func_0036D630")))
-void func_0036D630(int idx, int val)
+__attribute__((section(".text.m2vlib_SetCondAll")))
+void m2vlib_SetCondAll(int idx, int val)
 {
     char *p;
     char *q;

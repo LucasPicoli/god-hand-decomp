@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_00386FA0, queues a copy of a 0x60-byte request in a new node unless the id is
+/* sn-2.95.3-136: SdeStrOpen, queues a copy of a 0x60-byte request in a new node unless the id is
  * already busy or the request is flagged; returns the node's handle. */
 typedef struct SndReq {
     char pad0[6];
@@ -19,24 +19,24 @@ typedef struct SndReqNode {
     SndReq req;                      /* 0x10 */
 } SndReqNode;
 
-extern int func_00387430(short id);
-extern SndReqNode *func_00377998(void);
-extern int func_00377FF8(void);
+extern int SdeStrStatusGetByWorkId(short id);
+extern SndReqNode *SdeStrExeOpen(void);
+extern int SdeSndIdNew(void);
 
-__attribute__((section(".text.func_00386FA0")))
-int func_00386FA0(short id, SndReq *req)
+__attribute__((section(".text.SdeStrOpen")))
+int SdeStrOpen(short id, SndReq *req)
 {
     SndReqNode *n;
 
-    if (func_00387430(id) != 0)
+    if (SdeStrStatusGetByWorkId(id) != 0)
         return 0;
     if (req->flags & 0x8000)
         return 0;
-    n = func_00377998();
+    n = SdeStrExeOpen();
     if (n == 0)
         return 0;
     n->used = 1;
-    n->handle = func_00377FF8();
+    n->handle = SdeSndIdNew();
     n->kind = req->kind;
     n->state = 2;
     n->link = -1;

@@ -4,15 +4,15 @@ extern int NoOp_33E6A8();
 extern int ADXT_GetOutPan();
 extern int NoOp_33E6B0();
 extern int D_003D1E70[];
-extern void func_00330180();
+extern void AIXSJD_ExecHndl();
 extern int Tramp_003356B0_00335610();
 extern void Forward33B658_3389F8(void);
 extern void Forward33B670_338A10(void);
 extern int isEffectiveVer();
-extern void func_003600E8();
-extern void func_00360428();
+extern void SFXZ_GetZfrmRange();
+extern void sfxzmv_MakeCnvZTbl();
 extern void func_0036BFB0();
-extern void func_0036D6B0();
+extern void UTY_MemcpyDword();
 extern int D_003F1AC8;
 extern int *D_003F1ABC;
 
@@ -119,7 +119,7 @@ void func_00330268(void) {
     s0 = (int)D_003D1E70;
     s1 = s0 + 0x6590;
     do {
-        func_00330180((void *)s0);
+        AIXSJD_ExecHndl((void *)s0);
         s0 = s0 + 0x1964;
     } while (s0 < s1);
 }
@@ -152,13 +152,13 @@ int func_0033A5D0(int a0, int a1) {
     s0 = a0;
     s1 = a1;
     Forward33B658_3389F8();
-    r = func_0033A618(s0, s1);
+    r = sjuni_GetNumData(s0, s1);
     Forward33B670_338A10();
     return r;
 }
 
 int Forward33B658_3403C8();
-int func_00340580();
+int pl2enc_Create();
 int Forward33B670_3403E0();
 
 __attribute__((section(".text.func_00340538")))
@@ -167,15 +167,15 @@ int func_00340538(int a0, int a1) {
     s0 = a0;
     s1 = a1;
     Forward33B658_3403C8();
-    r = func_00340580(s0, s1);
+    r = pl2enc_Create(s0, s1);
     Forward33B670_3403E0();
     return r;
 }
 
 typedef struct { int w0; int w1; int w2; int w3; } Vec128_0034C208;
 
-__attribute__((section(".text.func_0034C208")))
-void func_0034C208(int a0, int a1, int a2, Vec128_0034C208 *a3) {
+__attribute__((section(".text.SFBUF_SetUoch")))
+void SFBUF_SetUoch(int a0, int a1, int a2, Vec128_0034C208 *a3) {
     int v0;
     Vec128_0034C208 *dst;
     a2 = a2 << 4;
@@ -193,8 +193,8 @@ void func_0034C208(int a0, int a1, int a2, Vec128_0034C208 *a3) {
 
 typedef struct { int w0; int w1; int w2; int w3; } Vec128_0034C250;
 
-__attribute__((section(".text.func_0034C250")))
-void func_0034C250(int a0, int a1, int a2, Vec128_0034C250 *a3) {
+__attribute__((section(".text.SFBUF_GetUoch")))
+void SFBUF_GetUoch(int a0, int a1, int a2, Vec128_0034C250 *a3) {
     int v0;
     Vec128_0034C250 *src;
     a2 = a2 << 4;
@@ -226,8 +226,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DE38;
 
-__attribute__((section(".text.func_0035DE38")))
-int func_0035DE38(CGObj_t_0035DE38 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyNumElemTot")))
+int SFH_AnlyNumElemTot(CGObj_t_0035DE38 *a0, int *a1)
 {
     CVerData_t_0035DE38 *s0;
     int v0;
@@ -258,8 +258,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DE88;
 
-__attribute__((section(".text.func_0035DE88")))
-int func_0035DE88(CGObj_t_0035DE88 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyNumElemAud")))
+int SFH_AnlyNumElemAud(CGObj_t_0035DE88 *a0, int *a1)
 {
     CVerData_t_0035DE88 *s0;
     int v0;
@@ -290,8 +290,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DED8;
 
-__attribute__((section(".text.func_0035DED8")))
-int func_0035DED8(CGObj_t_0035DED8 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyNumElemVid")))
+int SFH_AnlyNumElemVid(CGObj_t_0035DED8 *a0, int *a1)
 {
     CVerData_t_0035DED8 *s0;
     int v0;
@@ -322,8 +322,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DF28;
 
-__attribute__((section(".text.func_0035DF28")))
-int func_0035DF28(CGObj_t_0035DF28 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyNumElemPrv")))
+int SFH_AnlyNumElemPrv(CGObj_t_0035DF28 *a0, int *a1)
 {
     CVerData_t_0035DF28 *s0;
     int v0;
@@ -353,8 +353,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DFE0;
 
-__attribute__((section(".text.func_0035DFE0")))
-int func_0035DFE0(CGObj_t_0035DFE0 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyMaxPlyLenAud")))
+int SFH_AnlyMaxPlyLenAud(CGObj_t_0035DFE0 *a0, int *a1)
 {
     CVerData_t_0035DFE0 *s0;
     int v0;
@@ -384,8 +384,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035E030;
 
-__attribute__((section(".text.func_0035E030")))
-int func_0035E030(CGObj_t_0035E030 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyMaxPlyLenVid")))
+int SFH_AnlyMaxPlyLenVid(CGObj_t_0035E030 *a0, int *a1)
 {
     CVerData_t_0035E030 *s0;
     int v0;
@@ -400,17 +400,17 @@ int func_0035E030(CGObj_t_0035E030 *a0, int *a1)
     return 1;
 }
 
-__attribute__((section(".text.func_003603D8")))
-void func_003603D8(int a0, int a1, int a2) {
+__attribute__((section(".text.SFXZ_MakeCnvZTbl")))
+void SFXZ_MakeCnvZTbl(int a0, int a1, int a2) {
     int sp0;
     int sp4;
     int s0;
     int s1;
 
     s1 = a2;
-    func_003600E8(a0, a1, &sp0, &sp4);
+    SFXZ_GetZfrmRange(a0, a1, &sp0, &sp4);
     s0 = a0;
-    func_00360428(s0, sp0, sp4, s1);
+    sfxzmv_MakeCnvZTbl(s0, sp0, sp4, s1);
 }
 
 __attribute__((section(".text.func_0036BF60")))
@@ -420,7 +420,7 @@ void func_0036BF60(int a0) {
     func_0036BFB0(a0);
     s0 = a0;
     if (s0) {
-        func_0036D6B0(s0, &D_003F1AC8, 0x100);
+        UTY_MemcpyDword(s0, &D_003F1AC8, 0x100);
         D_003F1ABC = (int *)(s0 + 0x180);
     }
 }

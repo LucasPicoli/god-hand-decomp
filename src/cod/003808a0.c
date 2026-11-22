@@ -20,7 +20,7 @@ extern float func_0032AE10(int a0);
 extern int func_0032D0C0(int a0);
 extern int func_0032AD10(int a0);
 extern int ADXPS2_GetNumDataSjtmp(int a0, int a1);
-extern int func_003261A8(int a0, int a1);
+extern int ADXPS2_GetNumDataSjiop(int a0, int a1);
 
 __attribute__((section(".text.func_003808A0")))
 int func_003808A0(MenuCtl *self, MenuPad *arg)
@@ -75,7 +75,7 @@ int func_003808A0(MenuCtl *self, MenuPad *arg)
             if (self->detail != 0) {
                 snd->unk24 = func_0032AD10(snd->handle);
                 snd->unk28 = ADXPS2_GetNumDataSjtmp(snd->handle, 0);
-                snd->unk2C = func_003261A8(snd->handle, 0);
+                snd->unk2C = ADXPS2_GetNumDataSjiop(snd->handle, 0);
             }
         }
     }

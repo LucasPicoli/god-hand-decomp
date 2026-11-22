@@ -33,8 +33,8 @@ unsigned int isceSifSendCmd(unsigned int fid, void *pkt, int pktsize,
 
 
 
-__attribute__((section(".text.func_003B41E8")))
-int func_003B41E8(void)
+__attribute__((section(".text.sceFsReset")))
+int sceFsReset(void)
 {
     D_003FAEDC = 0;
     func_003A52F0(D_007816E8, 0, 4);

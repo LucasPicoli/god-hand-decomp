@@ -1,6 +1,6 @@
 /* include/godhand/MpvDec.h - the MPEG video decoder queue slot of a Sofdec handle (CRI libsfd, src/cod/00352f40.c).
  *
- * func_003553C8 hands out the slot. The reader stores the picture attributes
+ * sfmpv_GetHd hands out the slot. The reader stores the picture attributes
  * block and a 0x200-byte work area into it, then sets busy; the consumer copies
  * the block back into the handle. Field names are ours, taken from the matched
  * routines; offsets are exact. A field nobody has named yet stays as unkNNN
@@ -45,7 +45,7 @@ typedef struct MpvPicSrc {
     int size;
 } MpvPicSrc;
 
-extern MpvDec *func_003553C8(MpvHn *hn);
+extern MpvDec *sfmpv_GetHd(MpvHn *hn);
 extern int MPV_DecodePicAtr(int pic, MpvPicSrc *src, int *out);
 extern int func_0034DD70(MpvHn *hn, int code);
 

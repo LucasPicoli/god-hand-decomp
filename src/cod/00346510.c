@@ -6,7 +6,7 @@ typedef struct D {
 } D;
 
 
-extern void func_003974D0(D *d, void *p, int n);
+extern void sceDmaRecvN(D *d, void *p, int n);
 
 /* Copy size bytes from scratchpad to dst over DMA channel 8 (fromSPR). */
 __attribute__((section(".text.MWSPR_SaveSprMem")))
@@ -14,8 +14,8 @@ int MWSPR_SaveSprMem(void *sprAddr, int size, void *dst)
 {
     D *d;
 
-    d = func_00397100(8);
+    d = sceDmaGetChan(8);
     d->sadr = sprAddr;
-    func_003974D0(d, dst, size / 16);
+    sceDmaRecvN(d, dst, size / 16);
     return 0;
 }

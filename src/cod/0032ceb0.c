@@ -14,8 +14,8 @@ struct ADXT {
 
 
 
-__attribute__((section(".text.func_0032CEB0")))
-void func_0032CEB0(struct ADXT *adxt)
+__attribute__((section(".text.ADXT_ExecRdErrChk")))
+void ADXT_ExecRdErrChk(struct ADXT *adxt)
 {
     if (adxt->f8 != 0) {
         if (func_00328098(adxt->f8) == 4) {

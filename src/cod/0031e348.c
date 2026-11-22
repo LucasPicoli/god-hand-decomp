@@ -160,9 +160,9 @@ _fpmul_parts ( fp_number_type *  a,
   return tmp;
 }
 
-__attribute__((section(".text.func_0031E348")))
+__attribute__((section(".text.dpmul")))
 FLO_type
-func_0031E348 (FLO_type arg_a, FLO_type arg_b)
+dpmul (FLO_type arg_a, FLO_type arg_b)
 {
   fp_number_type a;
   fp_number_type b;

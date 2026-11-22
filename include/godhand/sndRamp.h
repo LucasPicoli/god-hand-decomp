@@ -10,7 +10,7 @@ typedef struct SndRamp {
     unsigned short count;       /* 0x06 steps taken */
 } SndRamp;
 
-/* The sound object whose four ramps func_00377688 steps. */
+/* The sound object whose four ramps strCtlFadeStereoOne steps. */
 typedef struct SndRampOwner {
     char pad00[0x10];
     unsigned short flags;       /* 0x10 bit 0: a ramp moved this frame */
@@ -23,6 +23,6 @@ typedef struct SndRampOwner {
 void func_00378070(SndRamp *r);
 
 /* Step ramp no of self, clearing its active bit once it is at its target. */
-void func_00377688(SndRampOwner *self, int no);
+void strCtlFadeStereoOne(SndRampOwner *self, int no);
 
 #endif /* GODHAND_SNDRAMP_H */

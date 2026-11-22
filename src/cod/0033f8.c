@@ -4,7 +4,7 @@
 
 /* ── Forward declarations ───────────────────────────────────────────────── */
 extern void func_003A52F0(void *a0, int a1, int a2);
-extern void func_0033E6B8();          /* K&R: fp args, complex signature    */
+extern void ADX_GetCoefficient();          /* K&R: fp args, complex signature    */
 extern void Forward33B568_33B658(void);
 extern void Forward33B5C8_33B670(void);
 extern void func_0033F130(int);
@@ -15,9 +15,9 @@ extern char D_003EB858[];   /* struct array, size >= 0x3C0, Obj33F8_Init_D003EB8
 /* ── Branched functions — T0 attempt failed (wrong code size) ────────────── */
 extern int Obj0000_Get_D_003C80A4_NE_0_325620(void);
 
-/* func_0033F850: resolve a mode of -1 to 2 when D_003C80A4 is set, else 1. */
-__attribute__((section(".text.func_0033F850")))
-int func_0033F850(int mode) {
+/* adxmng_DecideFramework: resolve a mode of -1 to 2 when D_003C80A4 is set, else 1. */
+__attribute__((section(".text.adxmng_DecideFramework")))
+int adxmng_DecideFramework(int mode) {
     if (mode == -1) {
         if (Obj0000_Get_D_003C80A4_NE_0_325620() == 1) mode = 2;
         else mode = 1;
@@ -31,11 +31,11 @@ void Obj33F8_Init_D003EB858_F888(void) {
     func_003A52F0(D_003EB858, 0, 0x3C0);
 }
 
-/* ── Obj33F8_Thunk_0033E6B8_F988 — rearrange args and tail-call func_0033E6B8 ──────────── */
+/* ── Obj33F8_Thunk_0033E6B8_F988 — rearrange args and tail-call ADX_GetCoefficient ──────────── */
 /* Asm: new_a0=a2, a1 stays, new_a2=a0+0x30, new_a3=a0+0x32                 */
 __attribute__((section(".text.Obj33F8_Thunk_0033E6B8_F988")))
 void Obj33F8_Thunk_0033E6B8_F988(char *a0, int a1, char *a2) {
-    func_0033E6B8(a2, a1, a0 + 0x30, a0 + 0x32);
+    ADX_GetCoefficient(a2, a1, a0 + 0x30, a0 + 0x32);
 }
 
 /* ── Obj33F8_StorePair_28_2C_F9B0 — copy two u16-pairs from a1/a2 into a0 struct ────────── */
@@ -90,12 +90,12 @@ int Obj33F8_GetWord_C_FA68(char *a0) {
 }
 
 /* ── Branched store functions — moved to src/cod/0033fa70.c ──────────────── */
-/* func_0033FA70, func_0033FAA0 and func_0033FAD0 match under sn-2.95.3-136   */
+/* func_0033FA70, ADXPD_EntrySte and func_0033FAD0 match under sn-2.95.3-136   */
 /* only.  This TU needs cygnus-2.96, so the three live in their own TU.       */
 
-/* ── func_0033FB00 — acquire lock ───────────────────────────────────────── */
-__attribute__((section(".text.func_0033FB00")))
-void func_0033FB00(int *p) {
+/* ── ADXPD_Start — acquire lock ───────────────────────────────────────── */
+__attribute__((section(".text.ADXPD_Start")))
+void ADXPD_Start(int *p) {
     if (p[3] == 0) {
         p[4] = 0;
         p[3] = 1;
@@ -109,9 +109,9 @@ void Obj33F8_ResetLock_FB20(char *a0) {
     func_003A52F0(a0 + 0x28, 0, 8);
 }
 
-/* ── func_0033FB48 — clear lock if == 3 ─────────────────────────────────── */
-__attribute__((section(".text.func_0033FB48")))
-void func_0033FB48(int *p) {
+/* ── ADXPD_Reset — clear lock if == 3 ─────────────────────────────────── */
+__attribute__((section(".text.ADXPD_Reset")))
+void ADXPD_Reset(int *p) {
     if (p[3] == 3) {
         p[3] = 0;
     }

@@ -4,7 +4,7 @@ extern void NoOp_33E6A8(void);
 extern void func_0032A1B0(void *a0, int a1, int a2);
 extern void NoOp_33E6B0(void);
 extern void func_0032BB98(void *a0, int a1, int a2);
-extern void func_0032BE10(void *a0, int a1, int a2);
+extern void adxt_StartMemIdx(void *a0, int a1, int a2);
 extern void Obj33F8_NoOp_FCA0(void);
 extern void func_0032DA78(void *a0, int a1, int a2);
 extern void Obj33F8_NoOp_FCA8(void);
@@ -30,7 +30,7 @@ void func_0032BB48(void *a0, int a1, int a2) {
 __attribute__((section(".text.func_0032BDC0")))
 void func_0032BDC0(void *a0, int a1, int a2) {
     NoOp_33E6A8();
-    func_0032BE10(a0, a1, a2);
+    adxt_StartMemIdx(a0, a1, a2);
     NoOp_33E6B0();
 }
 
@@ -48,8 +48,8 @@ void func_0032DF70(void *a0, int a1, int a2) {
     Obj33F8_NoOp_FCA8();
 }
 
-__attribute__((section(".text.func_00338DE8")))
-void func_00338DE8(void *a0, int a1, int a2) {
+__attribute__((section(".text.SJMEM_EntryErrFunc")))
+void SJMEM_EntryErrFunc(void *a0, int a1, int a2) {
     Forward33B658_3389F8();
     func_00338E38(a0, a1, a2);
     Forward33B670_338A10();

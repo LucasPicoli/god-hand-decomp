@@ -2,8 +2,8 @@
 
 #include "godhand/sftim.h"
 
-__attribute__((section(".text.func_00355508")))
-int func_00355508(SftimHn *hn)
+__attribute__((section(".text.SFMPVF_GetNumFrm")))
+int SFMPVF_GetNumFrm(SftimHn *hn)
 {
     char guard[16];
     SfdWork *w;
@@ -27,8 +27,8 @@ int func_00355508(SftimHn *hn)
     return n;
 }
 
-__attribute__((section(".text.func_003555A8")))
-SfdFrm *func_003555A8(SftimHn *hn)
+__attribute__((section(".text.SFMPVF_AllocFrm")))
+SfdFrm *SFMPVF_AllocFrm(SftimHn *hn)
 {
     char guard[16];
     SfdWork *w;

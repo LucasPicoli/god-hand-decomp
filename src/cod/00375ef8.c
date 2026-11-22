@@ -59,7 +59,7 @@ int BuildSlotEntry_376200(void *a0) {
     if (*(short *)((char *)a0 + 0xA) == 0) {
         SetSlotEntry_376260(r, a0);
     } else {
-        func_003762D8(r, a0);
+        cmdParaChg(r, a0);
     }
     return 0;
 }
@@ -81,7 +81,7 @@ int BuildLinkedEntry_376510(char *a0, unsigned short *a1) {
         }
     }
     *a1 = 1;
-    *(int*)((char*)a1 + 4) = func_00377FF8();
+    *(int*)((char*)a1 + 4) = SdeSndIdNew();
     *(short*)((char*)a1 + 8) = *(unsigned short*)(a0 + 8);
     *(short*)((char*)a1 + 0xA) = *(unsigned short*)(*(int*)(a0 + 0x30) + 6);
     InitRandFields_3768B0((int)a0, a1);
@@ -103,7 +103,7 @@ int BuildMsgNode_376588(char *a0, char *a1) {
     *(short*)(t1 + 0xE) = 0;
     *(short*)(t1 + 0x12) = *(unsigned short*)(a0 + 2);
     *(short*)(t1 + 0x14) = *(unsigned short*)(a1 + 2);
-    func_00376CF8(a0, t1);
+    SdeSsqVexeComParaSet(a0, t1);
     return 0;
 }
 
@@ -124,7 +124,7 @@ int BuildHitMsgNode_376618(char *a0, char *a1) {
     *(short*)(s0 + 0x10) = 0;
     *(short*)(s0 + 0x12) = *(unsigned short*)(a0 + 2);
     *(short*)(s0 + 0x14) = *(unsigned short*)(a1 + 2);
-    func_00376CF8(a0, s0);
+    SdeSsqVexeComParaSet(a0, s0);
     *(short*)(s0 + 0x2A) = 0xD;
     *(short*)(s0 + 0x30) = *(unsigned short*)(a1 + 0xC);
     *(short*)(s0 + 0x32) = *(unsigned short*)(a1 + 0xC);
@@ -139,13 +139,13 @@ void UpdatePendingFlags_376820(void *a0) {
     if (*(unsigned short *)(s + 0x12) & 0x1) {
         *(short *)(s + 0x24) = func_003780B0(*(short *)(s + 0x20), *(short *)(s + 0x18));
         *(short *)(s + 0x26) = func_003780B0(*(short *)(s + 0x22), *(short *)(s + 0x18));
-        func_00376D28(a0, 1);
+        SdeSsqVregParaChange(a0, 1);
     }
     if (*(unsigned short *)(s + 0x12) & 0x2) {
-        func_00376D28(a0, 2);
+        SdeSsqVregParaChange(a0, 2);
     }
     if (*(unsigned short *)(s + 0x12) & 0x4) {
-        func_00376D28(a0, 4);
+        SdeSsqVregParaChange(a0, 4);
     }
     *(short *)(s + 0x12) = 0;
 }

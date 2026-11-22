@@ -4,8 +4,8 @@ extern int D_00766BA8[];
 extern int D_00766BD0[];
 extern int D_00766BD8[];
 
-__attribute__((section(".text.func_003549A8")))
-int func_003549A8(void) {
+__attribute__((section(".text.sfmpv_CheckMpvPara")))
+int sfmpv_CheckMpvPara(void) {
     int i;
     if ((unsigned int)(D_00766BA8[7] - 1) < 0x10) goto ok;
 err:

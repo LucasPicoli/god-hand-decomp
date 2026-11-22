@@ -5,8 +5,8 @@ extern void func_0035FC60(int h, int a1, int a2);
 extern void SetField_4_35FC78(int h, int v);
 extern void MWSFSVM_Error(char *msg);
 
-__attribute__((section(".text.func_00347218")))
-void func_00347218(int a0, int a1, int a2, int a3)
+__attribute__((section(".text.MWSFSFX_SetOutBufSize")))
+void MWSFSFX_SetOutBufSize(int a0, int a1, int a2, int a3)
 {
     int h;
 

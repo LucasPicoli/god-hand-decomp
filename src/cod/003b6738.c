@@ -9,8 +9,8 @@ extern void func_003B6678(int a0, void *a1, int a2);
 
 extern void FlushCache(int a0);
 
-__attribute__((section(".text.func_003B6738")))
-void func_003B6738(void)
+__attribute__((section(".text.InitExecPS2")))
+void InitExecPS2(void)
 {
     int *t;
     int *p;

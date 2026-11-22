@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 
-extern void func_003B0A40(int a);
+extern void iWakeupThread_3B0A40(int a);
 
 /* compiler: ee-2.9-991111 ; extra keys: none */
 
@@ -32,7 +32,7 @@ void _request_call(void *packet, void *data) {
     *(int *)(r + 0x34) = *(int *)(p + 0x10);
     if (*(int *)(q + 0x0) >= 0) {
         if (*(int *)(q + 0x4) == 0) {
-            func_003B0A40(*(int *)(q + 0x0));
+            iWakeupThread_3B0A40(*(int *)(q + 0x0));
         }
     }
 }

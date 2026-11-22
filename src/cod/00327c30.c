@@ -4,8 +4,8 @@
 extern char D_003D04D0[];
 extern void SFTIM_Tc2Time(int, int *, int *);
 
-__attribute__((section(".text.func_00327C30")))
-int func_00327C30(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.ADXSTMF_CreateCvfs")))
+int ADXSTMF_CreateCvfs(int a0, int a1, int a2, int a3) {
     int i;
     char *e = 0;
     for (i = 0; i < D_003D04C0; i++) {
@@ -13,15 +13,15 @@ int func_00327C30(int a0, int a1, int a2, int a3) {
         if (e[0] == 0) break;
     }
     if (i == D_003D04C0) return 0;
-    func_00327A50(e, a0, a1, a2, a3);
+    ADXSTMF_SetupHandleMember(e, a0, a1, a2, a3);
     e[3] = 0;
     return (int)e;
 }
 
 struct blk44 { int w[11]; };
 
-__attribute__((section(".text.func_00352520")))
-void func_00352520(int a0, int a1)
+__attribute__((section(".text.sfmpv_CalcFrmTtu")))
+void sfmpv_CalcFrmTtu(int a0, int a1)
 {
     int tmp[2];
     int *s1 = (int *)a1;

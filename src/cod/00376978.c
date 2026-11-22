@@ -21,8 +21,8 @@ char *func_00376978(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00377998")))
-char *func_00377998(void) {
+__attribute__((section(".text.SdeStrExeOpen")))
+char *SdeStrExeOpen(void) {
     char *p = D_0076E590;
     char *end = D_0076E590 + 0x380;
 

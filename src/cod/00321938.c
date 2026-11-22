@@ -4,8 +4,8 @@
  * Compiled with the SN toolchain (sn-2.95.3-136). Reads a base-128 varint from
  * p into *val and returns the pointer past the last byte consumed. */
 
-__attribute__((section(".text.func_00321938")))
-unsigned char *func_00321938(unsigned char *p, int *val) {
+__attribute__((section(".text.decode_uleb128")))
+unsigned char *decode_uleb128(unsigned char *p, int *val) {
     int sh = 0, r;
     unsigned char b;
     b = *p;

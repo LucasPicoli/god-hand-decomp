@@ -3,7 +3,7 @@
 #include "godhand/criStm.h"
 #include "godhand/globals.h"
 
-extern void func_0033AF28(void *p);
+extern void SJRMT_Destroy(void *p);
 extern void SJX_Destroy(void *sjx);
 extern int Tramp_sceSifFreeSysMemory_3B5A50(void *p);
 extern void *sceSifAllocIopHeap(int size);
@@ -11,8 +11,8 @@ extern void *SJUNI_CreateRmt(int mode, char *buf, int size);
 extern StmObj *func_0033A190(int mode, char *buf, int size);
 extern void *SJX_Create(StmObj *obj, void *uni, int mode);
 
-__attribute__((section(".text.func_00336E88")))
-void func_00336E88(int a, int b)
+__attribute__((section(".text.PS2RNA_SetupVoice")))
+void PS2RNA_SetupVoice(int a, int b)
 {
     int n;
 
@@ -93,8 +93,8 @@ void func_00336F48(void)
     }
 }
 
-__attribute__((section(".text.func_00337240")))
-void func_00337240(void)
+__attribute__((section(".text.ps2rna_finish_psj")))
+void ps2rna_finish_psj(void)
 {
     StmEnt *e;
     void *p;
@@ -104,7 +104,7 @@ void func_00337240(void)
         e = &D_003E0768[i];
         p = e->f4;
         if (p != 0) {
-            func_0033AF28(p);
+            SJRMT_Destroy(p);
         }
         if (e->obj != 0) {
             e->obj->vt->destroy(e->obj);

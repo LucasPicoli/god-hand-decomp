@@ -3,8 +3,8 @@
  * pointer (a0+0x10): a 64-bit -1 at +0x10, -1 at +0x1C, 0 at +0x18. The zero
  * stores are written ascending so the scheduler rotates +0x8 to the front. */
 
-__attribute__((section(".text.func_003520B0")))
-void func_003520B0(void *a0) {
+__attribute__((section(".text.sfmpv_InitComplementPts")))
+void sfmpv_InitComplementPts(void *a0) {
     char *p = (char *)a0;
     int *q = (int *)(p + 0x10);
     *(int *)(p + 0x0) = 0;

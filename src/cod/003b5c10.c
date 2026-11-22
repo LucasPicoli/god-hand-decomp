@@ -5,8 +5,8 @@
 
 extern void func_003A52F0(void *, int, int);
 
-__attribute__((section(".text.func_003B5C10")))
-int func_003B5C10(void)
+__attribute__((section(".text.sceSifLoadFileReset")))
+int sceSifLoadFileReset(void)
 {
     D_003FAEF8 = -1;
     func_003A52F0(D_00781BA8, 0, 4);

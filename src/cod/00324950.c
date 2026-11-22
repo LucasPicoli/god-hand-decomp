@@ -6,20 +6,20 @@
 extern volatile int D_003C7418;
 extern char D_003C7420[];
 extern char D_00451AC0[];
-extern void func_0033E618(void);
+extern void ADXCRS_Init(void);
 extern void Forward33B658_33E678(void);
-extern void func_0033A090(void);
-extern void func_003394A0(void);
-extern void func_00338A90(void);
+extern void SJUNI_Init(void);
+extern void SJRBF_Init(void);
+extern void SJMEM_Init(void);
 extern void func_0033F0B8(void);
 extern void func_0033F3F0(void);
 extern void Obj3260_Tramp_00337728_D288(void);
-extern void func_00335DE0(void);
+extern void LSC_Init(void);
 extern void func_0033BE80(void);
 extern void Obj3260_NoOp_D2B8(void *fn, int arg);
 extern void func_00335D18(void *fn, int arg);
 extern void func_003A52F0(void *dst, int val, int len);
-extern void func_0032AB28(int a0);
+extern void ADXT_SetDefSvrFreq(int a0);
 extern void Forward33B670_33E690(void);
 extern void Forward33F130_3248C0(void);
 extern void Forward33F130_3248D8(void);
@@ -29,7 +29,7 @@ extern void func_003248F0(void);
 extern char D_00455A80[];
 extern char D_00455AB0[];
 extern void func_00339458(const char *msg, const char *fn);
-extern void func_0036EE90(void *hn, char *start, int skipped);
+extern void m2vhdec_AnalyUd(void *hn, char *start, int skipped);
 
 /* Reference-counted start of the stream manager: the first caller sets up the module and registers the handlers. */
 __attribute__((section(".text.StmMgr_start")))
@@ -42,17 +42,17 @@ void StmMgr_start(void)
     c = *count;
     D_00755C1C = (int)D_00451AC0;
     if (c == 0) {
-        func_0033E618();
+        ADXCRS_Init();
         Forward33B658_33E678();
-        func_0033A090();
-        func_003394A0();
-        func_00338A90();
+        SJUNI_Init();
+        SJRBF_Init();
+        SJMEM_Init();
         func_0033F0B8();
-        func_003279B8();
-        func_003264C8();
+        ADXSTM_Init();
+        ADXSJD_Init();
         func_0033F3F0();
         Obj3260_Tramp_00337728_D288();
-        func_00335DE0();
+        LSC_Init();
         func_0033BE80();
         Obj3260_NoOp_D2B8(Forward33F130_3248C0, 0);
         func_00335D18(Forward33F130_3248D8, 0);
@@ -63,7 +63,7 @@ void StmMgr_start(void)
         D_003C7408 = func_0033B810(5, func_003248F0, 0, D_00451B30);
         D_003C7418 = 0;
         D_003C7410 = 0;
-        func_0032AB28(0x3C);
+        ADXT_SetDefSvrFreq(0x3C);
         Forward33B670_33E690();
         c = *count;
     }
@@ -266,6 +266,6 @@ char *MpvBits_searchStartCode(char *hn, char *start)
             REFILL();
         }
     }
-    func_0036EE90(hn, start, cnt + 4);
+    m2vhdec_AnalyUd(hn, start, cnt + 4);
     return start + (bitpos + (p - start) * 8 - 57) / 8;
 }

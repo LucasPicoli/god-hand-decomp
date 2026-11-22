@@ -2,8 +2,8 @@
 
 extern signed char D_003D9FE0[];
 
-__attribute__((section(".text.func_00334038")))
-int func_00334038(void) {
+__attribute__((section(".text.htci_is_exec_hn")))
+int htci_is_exec_hn(void) {
     signed char *p = D_003D9FE0;
     int i;
     for (i = 0; i < 13; i++) {

@@ -23,15 +23,15 @@ void func_00335CD8(void) {}
 __attribute__((section(".text.func_00335CE0")))
 void func_00335CE0(void) {}
 
-__attribute__((section(".text.func_00329EA8")))
-void func_00329EA8(int a0) {
+__attribute__((section(".text.ADXT_Stop")))
+void ADXT_Stop(int a0) {
     NoOp_33E6A8(a0);
     func_00329ED8(a0);
     NoOp_33E6B0();
 }
 
-__attribute__((section(".text.func_00345750")))
-int func_00345750(int a0) {
+__attribute__((section(".text.MWSFLIB_SetErrCode")))
+int MWSFLIB_SetErrCode(int a0) {
     int *p = GetD003EC7E0_3452B0(a0);
     *(int *)((char *)p + 0x68) = a0;
     return a0;

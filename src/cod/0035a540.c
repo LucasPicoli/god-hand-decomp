@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
 /* compiler: cygnus-2.96 ; extra keys: c_flags_drop -freorder-blocks (--drop-freorder-blocks) */
-__attribute__((section(".text.func_0035A540")))
-void func_0035A540(char *o, int t) {
+__attribute__((section(".text.SFTIM_UpdateItime")))
+void SFTIM_UpdateItime(char *o, int t) {
     int prev;
     int d;
     int lo;

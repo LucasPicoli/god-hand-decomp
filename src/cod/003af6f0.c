@@ -13,7 +13,7 @@ typedef struct _Bigint {
 typedef union { double d; unsigned int i[2]; } U;
 
 extern double func_003AF3D8(_Bigint *a, int *e);   /* _b2d */
-extern double func_0031E5F0(double a, double b);   /* __divdf3 */
+extern double dpdiv(double a, double b);   /* __divdf3 */
 
 __attribute__((section(".text.func_003AF6F0")))
 double func_003AF6F0(_Bigint *a, _Bigint *b)

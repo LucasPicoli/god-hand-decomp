@@ -20,10 +20,10 @@ typedef struct {
 } AdxSjdView;
 
 extern int func_00340128(void *dec);
-extern void func_00340308(void *dec);
+extern void DTR_Start(void *dec);
 
-__attribute__((section(".text.func_00338478")))
-void func_00338478(AdxSjdView *o)
+__attribute__((section(".text.PS2RNA_ExecHndl")))
+void PS2RNA_ExecHndl(AdxSjdView *o)
 {
     SjChunk ck;
     int cnt;
@@ -54,6 +54,6 @@ void func_00338478(AdxSjdView *o)
         sj = o->ch[i]->sj;
         sj->vt->putChunk(sj, 0, &ck);
         o->f5B = 0;
-        func_00340308(o->dec[i]);
+        DTR_Start(o->dec[i]);
     }
 }

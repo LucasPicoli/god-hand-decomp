@@ -1,7 +1,7 @@
 /* newlib mprec ratio (TU 003903, ee-gcc 2.9-991111-01).  Ratio of two
  * bignums as a double: convert each via b2d, fold the word-count and per-call
  * shift differences into the larger operand's binary exponent, then divide
- * (func_0031E5F0 is the soft-float double divide the `/` operator emits). */
+ * (dpdiv is the soft-float double divide the `/` operator emits). */
 
 typedef struct _Bigint {
     struct _Bigint *_next;   /* 0x00 */
@@ -15,7 +15,7 @@ typedef struct _Bigint {
 typedef union { double d; unsigned int i[2]; } U;  /* i[1]=word0 (high) */
 
 extern double b2d(_Bigint *a, int *e);
-extern double func_0031E5F0(double a, double b);   /* __divdf3 */
+extern double dpdiv(double a, double b);   /* __divdf3 */
 
 __attribute__((section(".text.ratio")))
 double ratio(_Bigint *a, _Bigint *b)

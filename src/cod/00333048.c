@@ -12,12 +12,12 @@ extern char D_00454458[];
 extern void func_00332808(CdStreamCtl *, char *);
 extern int func_00331570(void *);
 extern void CdSrd_finishRead(void);
-extern void func_00332958(void);
+extern void dvCiExecServer(void);
 extern int func_00333130(CdStreamCtl *);
 extern void func_003260C8(char *);
 
-__attribute__((section(".text.func_00333048")))
-void func_00333048(CdStreamCtl *o)
+__attribute__((section(".text.dvCiStopTr")))
+void dvCiStopTr(CdStreamCtl *o)
 {
     int n;
 
@@ -34,7 +34,7 @@ void func_00333048(CdStreamCtl *o)
     }
     for (;;) {
         CdSrd_finishRead();
-        func_00332958();
+        dvCiExecServer();
         func_00333130(o);
         if (o->state != 2) {
             break;

@@ -39,8 +39,8 @@ struct exc_sqrtf {
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 #define errno (*Obj0000_Get_D_003FA62C_3A4FB8())
 
-extern int func_003A4AC8(void *e);	/* matherr */
-extern int func_003A4E00(float);		/* isnanf  */
+extern int matherr(void *e);	/* matherr */
+extern int isnanf(float);		/* isnanf  */
 
 __attribute__((section(".text.sqrtf")))
 float sqrtf(float x)			/* wrapper sqrtf */
@@ -48,7 +48,7 @@ float sqrtf(float x)			/* wrapper sqrtf */
 	float z;
 	struct exc_sqrtf exc;
 	z = func_003A3B48(x);
-	if(_LIB_VERSION == _IEEE_ || func_003A4E00(x)) return z;
+	if(_LIB_VERSION == _IEEE_ || isnanf(x)) return z;
 	if(x<(float)0.0) {
 	    /* sqrtf(negative) */
 	    exc.type = DOMAIN;
@@ -61,7 +61,7 @@ float sqrtf(float x)			/* wrapper sqrtf */
 	        exc.retval = D_0045EAC0;
 	    if(_LIB_VERSION == _POSIX_)
 	      errno = EDOM;
-	    else if (!func_003A4AC8(&exc)) {
+	    else if (!matherr(&exc)) {
 	      errno = EDOM;
 	    }
 	    if (exc.err != 0)

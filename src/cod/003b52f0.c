@@ -6,7 +6,7 @@
 typedef struct { int f0; int f4; int f8; int fC; } Iob;
 
 
-extern void func_003B3F50(void);
+extern void sceFsInit(void);
 extern int SignalSema_3B3EF8(void);
 extern Iob *new_iob(void);
 
@@ -22,7 +22,7 @@ int sceDopen(const char *name)
 
     func_003B3EC8(9);
     if (D_003FAEDC == 0)
-        func_003B3F50();
+        sceFsInit();
     SignalSema_3B3EF8();
     p = new_iob();
     if (p == 0)

@@ -1,7 +1,7 @@
-/* cygnus-2.96: func_00360298, builds a 256-entry threshold table: zeros, a low plateau, a linear ramp
+/* cygnus-2.96: sfxzmv_MakeOrgZ32TblByDirect, builds a 256-entry threshold table: zeros, a low plateau, a linear ramp
  * from lo to hi over entries 17..223, a high plateau and saturated entries. INT_MIN inputs mean "max". */
-__attribute__((section(".text.func_00360298")))
-void func_00360298(int unused, int lo, int hi, int *tbl)
+__attribute__((section(".text.sfxzmv_MakeOrgZ32TblByDirect")))
+void sfxzmv_MakeOrgZ32TblByDirect(int unused, int lo, int hi, int *tbl)
 {
     int i;
 

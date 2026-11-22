@@ -1,12 +1,12 @@
-/* cygnus-2.96: func_0036C790, reads back the device status block and counters into the object. */
+/* cygnus-2.96: mpvm2v_CopyPicAtr, reads back the device status block and counters into the object. */
 #include "godhand/devObj.h"
 extern void func_0036CE68(int dev, DevStat *stat);
 extern void func_0036CE90(int dev, int *a);
 extern void func_0036CEB8(int dev, int *b, int *c, int *x);
 extern void func_0036CEE0(int dev, int *d, int *e);
 
-__attribute__((section(".text.func_0036C790")))
-void func_0036C790(DevObj *obj)
+__attribute__((section(".text.mpvm2v_CopyPicAtr")))
+void mpvm2v_CopyPicAtr(DevObj *obj)
 {
     DevStat stat;
     int a, b, c, x, d, e;

@@ -14,8 +14,8 @@ extern char D_0071B8C0[];
 
 
 
-__attribute__((section(".text.func_00394D58")))
-int func_00394D58(int *a0) {
+__attribute__((section(".text.snInitDllSystem")))
+int snInitDllSystem(int *a0) {
     char *p;
     int n;
     D_003F5520[1] = 0x31415926;

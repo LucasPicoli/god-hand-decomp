@@ -125,7 +125,7 @@ def _section_off_size(obj_path: Path, section_name: str) -> tuple[int, int]:
 
     Resolved at run time: the 0033c8.o section layout shifts whenever its TU
     gains/loses functions, so a hard-coded byte offset goes stale (the old
-    0xfd0 pin fell outside .text.func_0033C918 once the TU grew).
+    0xfd0 pin fell outside .text.ADXB_Destroy once the TU grew).
     """
     out = subprocess.check_output(
         ["readelf", "-SW", str(obj_path)], text=True, stderr=subprocess.DEVNULL,
@@ -153,15 +153,15 @@ class TestCompareSections:
     def test_byte_flip_produces_miss(self, harness, tmp_path):
         copy = tmp_path / "0033c8.o"
         b = bytearray(EXPECTED_0033C8.read_bytes())
-        # Flip a byte in the middle of .text.func_0033C918. Resolve the section's
+        # Flip a byte in the middle of .text.ADXB_Destroy. Resolve the section's
         # file range at run time (the .o layout shifts as the 0033c8 TU changes);
         # any byte inside the section triggers a MISS on it.
-        off, size = _section_off_size(EXPECTED_0033C8, ".text.func_0033C918")
+        off, size = _section_off_size(EXPECTED_0033C8, ".text.ADXB_Destroy")
         b[off + size // 2] ^= 0xff
         copy.write_bytes(bytes(b))
         rows = harness._compare_sections(EXPECTED_0033C8, copy)
         statuses = {n: s for n, _, s in rows}
-        assert statuses[".text.func_0033C918"] == "MISS"
+        assert statuses[".text.ADXB_Destroy"] == "MISS"
         # Other sections still byte-equal.
         assert statuses[".text.Obj33C8_GetByte_D"] == "OK"
 

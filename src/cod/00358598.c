@@ -4,12 +4,12 @@ typedef struct MvInf {
     int f0, f4, f8, fc, f10, f14, f18, f1c, f20, f24, f28, f2c;
 } MvInf;
 
-extern void func_00366C50(void *dst, int val, int n);
+extern void UTY_MemsetDword(void *dst, int val, int n);
 
 __attribute__((section(".text.sfply_InitMvInf")))
 void sfply_InitMvInf(MvInf *mv)
 {
-    func_00366C50(mv, 0, 0x10);
+    UTY_MemsetDword(mv, 0, 0x10);
     mv->f0 = 0;
     mv->f4 = 0;
     mv->f8 = 0;

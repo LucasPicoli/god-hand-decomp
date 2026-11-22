@@ -41,8 +41,8 @@ void func_002F2758(char *p) {
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
-__attribute__((section(".text.func_00377428")))
-void func_00377428(char *a0, char *a1) {
+__attribute__((section(".text.cmdParaChg_377428")))
+void cmdParaChg_377428(char *a0, char *a1) {
     if (*(unsigned short *)(a1 + 0x1A) & 1) {
         *(unsigned short *)(a0 + 0x5C) = *(unsigned short *)(a1 + 0x44);
         *(unsigned short *)(a0 + 0x10) |= 1;

@@ -2,8 +2,8 @@
 
 typedef struct Obj { int stat; } Obj;
 
-__attribute__((section(".text.func_0035D800")))
-int func_0035D800(Obj *o)
+__attribute__((section(".text.isEffectiveObj")))
+int isEffectiveObj(Obj *o)
 {
     int lo;
     int r;

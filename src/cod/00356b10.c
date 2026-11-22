@@ -34,7 +34,7 @@ int sfhdr_ScanChunks(char *hdr, char *buf, int len, int *nread, unsigned int *fl
     SfInfoSrc *src;
 
     while (len >= 4) {
-        more = func_00366FE0(hdr, buf, len, &used, &fl);
+        more = mpsdec_DecOneHd(hdr, buf, len, &used, &fl);
         prev = *flags;
         buf += used;
         len -= used;
@@ -102,14 +102,14 @@ int sfdmpv_DecodePicture(void *obj, void *a1, SfdOutBuf *out, SftimHn *hn)
     int nmb;
     int mode;
 
-    if (func_00356358(hn) == 0)
+    if (SFMPVP_IsSceMpegUsed(hn) == 0)
         return ReturnK_Neg1_369FB0();
     w = hn->work;
     r = (int)func_00369FB8(obj, a1, out);
     vb = SFD_WORK_VIBUF(w);
     ctl = SFD_WORK_VIDCTL(w);
     cfg = &w->cfg;
-    func_00355F88(vb);
+    viBufRestartDMA(vb);
     viBufAddDMA(vb);
     mode = hn->mode;
     ctl->pending = 1;
@@ -120,7 +120,7 @@ int sfdmpv_DecodePicture(void *obj, void *a1, SfdOutBuf *out, SftimHn *hn)
         sceMpegGetPictureRAW8((char *)w + SFD_MPEG_OFS, out->addr, nmb);
     ctl->pending = 0;
     func_00355E88(SFD_VIDCTL_VIBUF(ctl));
-    func_00356E80((char *)hn);
+    sfmpvp_ConsumePsc((char *)hn);
     if (ctl->busy != 0)
         return SFD_ERR_BUSY;
     return r;

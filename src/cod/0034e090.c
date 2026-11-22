@@ -1,8 +1,8 @@
 #include "godhand/mwsfd.h"
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *obj);
 
-__attribute__((section(".text.func_0034E090")))
-int func_0034E090(SfdHn *hn, int id, void *sj, int a, int b)
+__attribute__((section(".text.SFD_SetElementOutSj")))
+int SFD_SetElementOutSj(SfdHn *hn, int id, void *sj, int a, int b)
 {
     SfdSjTbl *tbl;
     int r;

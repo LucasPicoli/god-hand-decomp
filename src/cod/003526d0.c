@@ -1,10 +1,10 @@
 #include "godhand/sftim.h"
 
-int func_003526D0(SftimHn *hn, SftimInfo *info);
+int sfmpv_DetectTcErr(SftimHn *hn, SftimInfo *info);
 void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
 
-__attribute__((section(".text.func_003526D0")))
-int func_003526D0(SftimHn *hn, SftimInfo *info)
+__attribute__((section(".text.sfmpv_DetectTcErr")))
+int sfmpv_DetectTcErr(SftimHn *hn, SftimInfo *info)
 {
     SftimTc tc;
     int now;

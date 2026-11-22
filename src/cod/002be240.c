@@ -36,7 +36,7 @@ extern void *sceSifAllocIopHeap(int size);
 extern unsigned int func_003B2148(DmaReq *req, int n);
 extern int SifDmaStat(unsigned int id);
 extern int func_003B5E50(void *iop, int a1, int a2);
-extern int func_003B60A0(const char *path, int a1, int a2);
+extern int sceSifLoadModule(const char *path, int a1, int a2);
 
 static inline int ctype_tolower(int c) { return (D_0045F039[c] & 1) ? c + 0x20 : c; }
 
@@ -81,5 +81,5 @@ int func_002BE240(ArchiveOwner *self, char *path, int a2, int a3)
             }
         }
     }
-    return func_003B60A0(path, a2, a3);
+    return sceSifLoadModule(path, a2, a3);
 }

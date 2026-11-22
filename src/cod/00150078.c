@@ -17,7 +17,7 @@ extern void _IO_file_init(void);
 extern void func_003B0390(int);
 extern void func_003B0450(int);
 extern void func_003B0388(int);
-extern void func_003A6420(int);
+extern void fseek(int);
 extern void patch(int, int, int);
 extern unsigned long GsGetIMR(void);
 extern int D_00466470;
@@ -209,7 +209,7 @@ void func_00393298(int *a0) {
 
 __attribute__((section(".text.func_00393720")))
 void func_00393720(int *a0) {
-    func_003A6420(a0[0x16]);
+    fseek(a0[0x16]);
 }
 
 __attribute__((section(".text.patch_394328")))

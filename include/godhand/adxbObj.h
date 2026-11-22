@@ -25,13 +25,13 @@ typedef struct AdxbDisp {
     char unk100[4];
 } AdxbDisp;                             /* 0x104 */
 
-extern void func_0033D720(AdxbDisp *adx);
+extern void ADXB_ExecOneAdx(AdxbDisp *adx);
 extern void Tramp_003E9D30_0033C4C0(AdxbDisp *adx);
 extern void func_0033DBD8(AdxbDisp *adx);
-extern void func_00341458(AdxbDisp *adx);
+extern void ADXB_ExecOneAiff(AdxbDisp *adx);
 extern void func_00341EC0(AdxbDisp *adx);
 extern void func_0033E5C0(AdxbDisp *adx);
-extern void func_0033C2C0(AdxbDisp *adx);
+extern void ADXB_ExecOneAc3(AdxbDisp *adx);
 extern void Obj0000_Call_FnFC_Field_100_94_90_Scaled(AdxbDisp *adx);
 
 #endif

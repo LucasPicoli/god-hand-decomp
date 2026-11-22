@@ -85,7 +85,7 @@ extern int D_003F8670;       /* the third semaphore id */
 
 
 
-extern int func_003B2500(int fid);       /* sceSifRemoveCmdHandler */
+extern int sceSifRemoveCmdHandler(int fid);       /* sceSifRemoveCmdHandler */
 
 __attribute__((section(".text.cdvd_exit")))
 void cdvd_exit(void)
@@ -101,7 +101,7 @@ void cdvd_exit(void)
     DeleteSema(D_003F8670);
     DeleteSema(D_003F8660);
     oldstat = DIntr();
-    func_003B2500(0x80000012);
+    sceSifRemoveCmdHandler(0x80000012);
     if (oldstat)
         EIntr();
 }

@@ -23,7 +23,7 @@ extern int  SignalSema(int sema);
 extern void sceSifInitRpc(int mode);
 extern void func_003B1F28();          /* scePrintf */
 extern int  func_00398DA0(int mode);  /* sceCdSync */
-extern int  func_003B2F48(void *cd, unsigned int sid, int mode);  /* sceSifBindRpc */
+extern int  sceSifBindRpc(void *cd, unsigned int sid, int mode);  /* sceSifBindRpc */
 extern void func_003B2850(void *p, int size);  /* sceSifWriteBackDCache */
 
 
@@ -50,7 +50,7 @@ int sceCdLayerSearchFile(sceCdlFILE *fp, const char *name, int layer)
     } while (0);
     if (b < 0) {
         while (1) {
-            if (func_003B2F48(D_0077C5C0, 0x80000597, 0) < 0) {
+            if (sceSifBindRpc(D_0077C5C0, 0x80000597, 0) < 0) {
                 if (*(int *)(D_003F8640 + 0x10) > 0)
                     func_003B1F28(D_0045E1F0);
                 for (i = 0x100000; i != -1; i--)

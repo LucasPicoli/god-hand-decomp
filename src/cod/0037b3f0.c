@@ -8,7 +8,7 @@ void func_0037B3F0(void)
 {
     int st;
     func_002E0DE8(3, 4, 8, D_0045BD90);
-    st = func_00387430(0);
+    st = SdeStrStatusGetByWorkId(0);
     if (st == 0) {
         func_002E0DE8(0xC, 4, 0xF, D_0045BDA0);
         return;

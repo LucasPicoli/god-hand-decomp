@@ -1,14 +1,14 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_00333278")))
-int func_00333278(char *a0) {
+__attribute__((section(".text.dvci_getnumtr_upper")))
+int dvci_getnumtr_upper(char *a0) {
     return (int)(((long)*(int *)(a0 + 0x14) << 11) >> 32);
 }
 
 struct S_353060 { int f0, f4, f8, fC, f10, f14; int pad[2]; int f20; };
 struct T_353060 { int f0, f4, f8, fC, f10; };
-__attribute__((section(".text.func_00353060")))
-void func_00353060(struct S_353060 *a0, int a1, struct T_353060 *a2, int a3) {
+__attribute__((section(".text.sfmpv_SetMvInf")))
+void sfmpv_SetMvInf(struct S_353060 *a0, int a1, struct T_353060 *a2, int a3) {
     int t = a2->f10;
     a0->f0 = a2->f0;
     a0->f4 = a2->f4;
@@ -28,8 +28,8 @@ void func_0035BB60(struct S_35BB60 *a0, long a1) {
     a0->f18++;
 }
 
-__attribute__((section(".text.func_0035DDB0")))
-char *func_0035DDB0(char *a0, int *a1)
+__attribute__((section(".text.convAsciiToDigit")))
+char *convAsciiToDigit(char *a0, int *a1)
 {
 	int n;
 	int c;

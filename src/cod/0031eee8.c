@@ -5,8 +5,8 @@ extern void func_003B3E70(void);
 extern int WaitSema(int sema);
 extern void func_0033F130();
 
-__attribute__((section(".text.func_003A4AC8")))
-int func_003A4AC8(void *a0) {
+__attribute__((section(".text.matherr")))
+int matherr(void *a0) {
     long long p;
     p = *(long long *)((char *)a0 + 0x8);
     dpcmp(p, p);

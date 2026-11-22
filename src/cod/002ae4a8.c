@@ -41,7 +41,7 @@ void cMc_DllLoad(cMc *self, int pump) {
         }
         cTaskWork_sleep(D_00752C00.task, 1);
     }
-    if (func_00394DD8(self->dll, 0) != 0) {
+    if (snDllLoaded(self->dll, 0) != 0) {
         cMc_DllRelease(self);
         return;
     }

@@ -8,7 +8,7 @@ typedef struct { Sint8 *data; Sint32 len; } SJTAG;
 
 
 extern Sint32 sj_hexstr_to_val(Sint8 *s);
-extern void func_0033ADC0(Sint8 *p, SJTAG *out);
+extern void SJ_GetTagContent(Sint8 *p, SJTAG *out);
 
 __attribute__((section(".text.SJ_SearchTag")))
 Sint8 *SJ_SearchTag(SJCK *ck, Sint8 *tag, Sint8 *endtag, SJTAG *tagck)
@@ -22,7 +22,7 @@ Sint8 *SJ_SearchTag(SJCK *ck, Sint8 *tag, Sint8 *endtag, SJTAG *tagck)
     p = ck->data;
     while (p < end) {
         if (func_003A5BD8(p, tag, 7) == 0) {
-            func_0033ADC0(p, tagck);
+            SJ_GetTagContent(p, tagck);
             break;
         }
         if (endtag != 0 && func_003A5BD8(p, endtag, 7) == 0) {

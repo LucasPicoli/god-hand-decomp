@@ -6,8 +6,8 @@ extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern void *GetOrInitGlobal7863C8_300148(void);
 extern void *GetOrInit_460D58_2B6528(void);
 
-__attribute__((section(".text.func_003A9260")))
-int func_003A9260(char *s1, char *s2) {
+__attribute__((section(".text.strcasecmp")))
+int strcasecmp(char *s1, char *s2) {
     while (*s1) {
         int c1 = func_003AD0F8(*s1);
         int c2 = func_003AD0F8(*s2);

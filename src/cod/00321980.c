@@ -8,8 +8,8 @@ struct S_338F30 {
     int f20;
 };
 
-__attribute__((section(".text.func_00338F30")))
-int func_00338F30(struct S_338F30 *a0, int a1) {
+__attribute__((section(".text.SJMEM_GetNumData")))
+int SJMEM_GetNumData(struct S_338F30 *a0, int a1) {
     int (*fp)();
     if (a1 == 1)
         return a0->fC;
@@ -31,8 +31,8 @@ struct S_339848 {
     int f3C;
 };
 
-__attribute__((section(".text.func_00339848")))
-int func_00339848(struct S_339848 *a0, int a1) {
+__attribute__((section(".text.SJRBF_GetNumData")))
+int SJRBF_GetNumData(struct S_339848 *a0, int a1) {
     int (*fp)();
     if (a1 == 1)
         return a0->fC;
@@ -45,8 +45,8 @@ int func_00339848(struct S_339848 *a0, int a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_00321980")))
-char *func_00321980(unsigned char *a0, int *a1) {
+__attribute__((section(".text.decode_sleb128")))
+char *decode_sleb128(unsigned char *a0, int *a1) {
     unsigned int shift = 0;
     int result = 0;
     unsigned char byte;
@@ -64,8 +64,8 @@ char *func_00321980(unsigned char *a0, int *a1) {
 
 typedef struct { int *base; int count; } Desc;
 
-__attribute__((section(".text.func_00321D80")))
-void func_00321D80(int *n, Desc *d, unsigned int *pmin, unsigned int *pmax) {
+__attribute__((section(".text.add_fdes")))
+void add_fdes(int *n, Desc *d, unsigned int *pmin, unsigned int *pmax) {
     unsigned int curmin;
     unsigned int curmax;
     unsigned int v;

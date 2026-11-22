@@ -17,4 +17,4 @@
 
 
 __attribute__((section(".text.Forward35D538_34D048")))
-int Forward35D538_34D048(void) { return func_0035D538(0x20, D_00761E50); }
+int Forward35D538_34D048(void) { return SFH_Init(0x20, D_00761E50); }

@@ -2,8 +2,8 @@
 #include "godhand/seqNode.h"
 
 /* Runs every queued sound request (a stop or a start) and frees its slot. */
-__attribute__((section(".text.func_0037BE98")))
-void func_0037BE98(void)
+__attribute__((section(".text.SdeVoiceExecute")))
+void SdeVoiceExecute(void)
 {
     SeqCmd *c;
     int i;
@@ -12,7 +12,7 @@ void func_0037BE98(void)
         c = &D_0076B9C0[i];
         if (c->used != 0) {
             if (c->flags & SEQCMD_F_STOP) {
-                func_0037C330(c);
+                vexeCmdExec(c);
             } else {
                 func_0037BF10(c);
             }

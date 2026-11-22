@@ -11,9 +11,9 @@ typedef struct {
     RelSlotBody body;
 } RelSlot;
 
-extern void func_00329EA8(int obj);
+extern void ADXT_Stop(int obj);
 extern void func_0032B300(int obj, void *arg);
-extern void func_003298C0(int obj);
+extern void ADXT_Destroy(int obj);
 extern void func_0031C900(int res);
 
 __attribute__((section(".text.func_00380E10")))
@@ -27,12 +27,12 @@ void func_00380E10(char *self)
         s = &((RelSlot *)(self + 0x48))[i];
         b = &s->body;
         if (b->obj != 0) {
-            func_00329EA8(b->obj);
+            ADXT_Stop(b->obj);
             if (s->active) {
                 s->active = 0;
                 func_0032B300(b->obj, 0);
             }
-            func_003298C0(b->obj);
+            ADXT_Destroy(b->obj);
             b->obj = 0;
             func_0031C900(b->res);
         }

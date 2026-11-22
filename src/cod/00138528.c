@@ -142,12 +142,12 @@ void cCoreSave_addComboST(cCoreSave *self, int n) {
 
 __attribute__((section(".text.Forward322BD8_322AD0")))
 int Forward322BD8_322AD0(int a0, int a1, int a2, int a3) {
-    return func_00322BD8(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
+    return adxf_LoadPtFromAfsNwEx(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
 }
 
 __attribute__((section(".text.Forward322C18_322B60")))
 int Forward322C18_322B60(int a0, int a1, int a2, int a3) {
-    return func_00322C18(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
+    return adxf_LoadPtFmgLongNwEx(a0, a1, a2, a3, ((unsigned int)&D_003C532F) & -0x40, 0x800);
 }
 
 __attribute__((section(".text.Forward323050_323038")))
@@ -161,7 +161,7 @@ void Forward33E6B0_324898(void) { NoOp_33E6B0(); }
 
 __attribute__((section(".text.Forward33D4D8_33D578")))
 void Forward33D4D8_33D578(short *a0, int a1, int a2, int a3) {
-    func_0033D4D8(a0, a0 + a1, a3);
+    memcpy2(a0, a0 + a1, a3);
 }
 
 extern int Forward33B568_33B658(void);
@@ -199,7 +199,7 @@ int Forward3A52F0_3406B0(int a0, int a1, int a2, int a3) {
 
 __attribute__((section(".text.Forward33B790_340AE8")))
 int Forward33B790_340AE8(int a0, int a1, int a2, int a3) {
-    return func_0033B790(a0, a1, a2, a3);
+    return SVM_CallErr1(a0, a1, a2, a3);
 }
 
 /* writes both the StoreMotionParams_2609E0 and Set_Fields_1884_1894_2609F8 field blocks. */

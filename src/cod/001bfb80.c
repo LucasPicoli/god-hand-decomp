@@ -24,7 +24,7 @@ extern void Arena_init(void *arena, void *mem, int size, int flags);
 extern void func_00150098(int step);
 extern void Forward149400_1492E8(int step);
 extern void func_003A52F0(void *dst, int val, int n);
-extern void func_00346B78(int arg);
+extern void mwPlySetTimerCh(int arg);
 extern void mwPlySetMallocFn(void *alloc, void *free, void *obj);
 extern void func_002B48A0(void);
 extern void func_002B48C8(void);
@@ -243,7 +243,7 @@ void MoviePool_init(MoviePool *self) {
     setup.b = 1;
     setup.c = 0;
     func_003452D8(&setup);
-    func_00346B78(-1);
+    mwPlySetTimerCh(-1);
     mwPlySetMallocFn((void *)func_002B48A0, (void *)func_002B48C8, 0);
     node = self->nodes;
     do {

@@ -62,7 +62,7 @@ int func_00322C68(int id, int a1, int a2, int a3, int a4, int a5, int a6, AdxfPt
             D_003EB840 = 4;
             return -1;
         }
-        r = func_00324640(a1, a2, w->fname, (void **)&a4, &x4, &x8, &xC);
+        r = adxf_GetFnameRangeEx(a1, a2, w->fname, (void **)&a4, &x4, &x8, &xC);
         if (r < 0) {
             D_003EB840 = 4;
             return r;

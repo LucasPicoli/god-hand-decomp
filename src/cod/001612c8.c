@@ -23,8 +23,8 @@ extern void func_001D0C98(void *a0, int a1);
 extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 extern void *cIDBase(void *a0);
 extern void cRoomJump(void *a0);
-extern void func_0032EC78(int a0, int a1, int a2);
-extern void func_0032A9F0(int a0, int a1);
+extern void AIXP_SetTrackVol(int a0, int a1, int a2);
+extern void ADXT_SetOutVol(int a0, int a1);
 
 /* sn-2.95.3-136 */
 
@@ -330,7 +330,7 @@ void func_00383A20(int a0, unsigned char *p)
             }
             u = p;
             u += n * 2;
-            func_0032EC78(h, n - 1, *(short *)(u + 8));
+            AIXP_SetTrackVol(h, n - 1, *(short *)(u + 8));
         } else {
             for (j = 0; j < *(int *)(q + 8); j++) {
                 r = p + 0xBC;
@@ -339,13 +339,13 @@ void func_00383A20(int a0, unsigned char *p)
                 if (r[k] == 0) {
                     v = s;
                     v += p[4] * 2;
-                    func_0032EC78(*(int *)(q + 0x20), j, *(short *)v);
+                    AIXP_SetTrackVol(*(int *)(q + 0x20), j, *(short *)v);
                 }
             }
         }
     } else {
         if (*(int *)(p + 0x64) != 0) {
-            func_0032A9F0(*(int *)(p + 0x64), *(short *)(p + 8));
+            ADXT_SetOutVol(*(int *)(p + 0x64), *(short *)(p + 8));
         }
     }
 }

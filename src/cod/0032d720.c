@@ -15,17 +15,17 @@ typedef struct AdxtHn {
 } AdxtHn;
 
 extern void Obj33F8_Tramp_0033F130_FCB0(char *msg);
-extern void func_0032DBA0(MwPly *ply);
-extern int func_003283E8(int stm, int a, int b);
-extern void func_00327D90(int stm);
+extern void aixp_Stop(MwPly *ply);
+extern int ADXSTM_EntryEosFunc(int stm, int a, int b);
+extern void ADXSTM_Destroy(int stm);
 extern void func_0032EE88(AdxtHn *adxt);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
 extern void func_0032F428(void *sjf);
 extern void *func_003A52F0(void *p, int c, int n);
 
-__attribute__((section(".text.func_0032D720")))
-void func_0032D720(AdxtHn *adxt)
+__attribute__((section(".text.aixp_Destroy")))
+void aixp_Destroy(AdxtHn *adxt)
 {
     int stm;
     int i;
@@ -36,12 +36,12 @@ void func_0032D720(AdxtHn *adxt)
         Obj33F8_Tramp_0033F130_FCB0(D_004529F8);
         return;
     }
-    func_0032DBA0((MwPly *)adxt);
+    aixp_Stop((MwPly *)adxt);
     stm = adxt->stm;
     if (stm != 0) {
         adxt->stm = 0;
-        func_003283E8(stm, 0, 0);
-        func_00327D90(stm);
+        ADXSTM_EntryEosFunc(stm, 0, 0);
+        ADXSTM_Destroy(stm);
     }
     if (adxt->rna != 0)
         func_0032EE88(adxt);

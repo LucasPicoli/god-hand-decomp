@@ -17,8 +17,8 @@ extern int Forward33B790_340AE8(void *p);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
 
-__attribute__((section(".text.func_0032B660")))
-void func_0032B660(int a0, int a1) {
+__attribute__((section(".text.ADXT_SetLnkSw")))
+void ADXT_SetLnkSw(int a0, int a1) {
     NoOp_33E6A8();
     func_0032B6A0(a0, a1);
     NoOp_33E6B0();
@@ -31,8 +31,8 @@ int func_00335950(int a0) {
     return func_00335CE0();
 }
 
-__attribute__((section(".text.func_00359E80")))
-int func_00359E80(int a0) {
+__attribute__((section(".text.SFD_GetHnStat")))
+int SFD_GetHnStat(int a0) {
     if (Obj34D8_SetGlobalEE0B8_IfField48(a0)) {
         func_0034DD70(0, 0xFF000111);
     }
@@ -127,8 +127,8 @@ int func_0032E040(int a0, int a1) {
     return Obj33F8_NoOp_FCA8();
 }
 
-__attribute__((section(".text.func_0032EC78")))
-void func_0032EC78(int a0, int a1, int a2) {
+__attribute__((section(".text.AIXP_SetTrackVol")))
+void AIXP_SetTrackVol(int a0, int a1, int a2) {
     Obj33F8_NoOp_FCA0();
     Obj33F8_Tramp_0033B658_FC70();
     CriTrackSet_setTrackLevel(a0, a1, a2);

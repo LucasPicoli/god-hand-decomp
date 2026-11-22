@@ -3,8 +3,8 @@
 extern int D_003EE2C4[];
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_0034BFA8")))
-void func_0034BFA8(char *p, int a, int b)
+__attribute__((section(".text.sfbuf_InitBufData")))
+void sfbuf_InitBufData(char *p, int a, int b)
 {
     *(int *)(p + 0x0) = a;
     *(int *)(p + 0x4) = b;
@@ -14,8 +14,8 @@ void func_0034BFA8(char *p, int a, int b)
     *(int *)(p + 0x50) = 9;
 }
 
-__attribute__((section(".text.func_0034C8F0")))
-void func_0034C8F0(char *base, int i, int d) {
+__attribute__((section(".text.SFBUF_AddRtotSj")))
+void SFBUF_AddRtotSj(char *base, int i, int d) {
     char *p = base + i * 0x74 + 0x1320;
     int v = *(int *)(p + 0x24);
 
@@ -24,15 +24,15 @@ void func_0034C8F0(char *base, int i, int d) {
     }
 }
 
-__attribute__((section(".text.func_0034E8E8")))
-int func_0034E8E8(unsigned char *p,int n){int i;for(i=0;i<n;i++){if(*p++!=0)return 0;}return 1;}
+__attribute__((section(".text.sfmps_IsZero")))
+int sfmps_IsZero(unsigned char *p,int n){int i;for(i=0;i<n;i++){if(*p++!=0)return 0;}return 1;}
 
-__attribute__((section(".text.func_00355450")))
-void *func_00355450(int a0,int a1){int i;char *p=(char*)(*(int*)(a0+0x1FC0)+0x180);for(i=0;i<0x10;i++){if(*(int*)(p+0x58)==a1)return p;p+=0xF0;}return 0;}
+__attribute__((section(".text.SFMPVF_SearchFrmObjFromId")))
+void *SFMPVF_SearchFrmObjFromId(int a0,int a1){int i;char *p=(char*)(*(int*)(a0+0x1FC0)+0x180);for(i=0;i<0x10;i++){if(*(int*)(p+0x58)==a1)return p;p+=0xF0;}return 0;}
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_00355640")))
-void func_00355640(int *p)
+__attribute__((section(".text.SFMPVF_StbyFrm")))
+void SFMPVF_StbyFrm(int *p)
 {
     if (p) {
         *p = 2;
@@ -40,8 +40,8 @@ void func_00355640(int *p)
 }
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_00355658")))
-void func_00355658(int *p)
+__attribute__((section(".text.SFMPVF_RefStbyFrm")))
+void SFMPVF_RefStbyFrm(int *p)
 {
     if (p) {
         *p = 4;
@@ -49,8 +49,8 @@ void func_00355658(int *p)
 }
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_00355790")))
-int func_00355790(char *a, char *b)
+__attribute__((section(".text.sfmpvf_IsChkFirst")))
+int sfmpvf_IsChkFirst(char *a, char *b)
 {
     if (a == 0) {
         return 1;
@@ -58,8 +58,8 @@ int func_00355790(char *a, char *b)
     return *(int *)(a + 0x38) > *(int *)(b + 0x38);
 }
 
-__attribute__((section(".text.func_003557B0")))
-int func_003557B0(char *self)
+__attribute__((section(".text.SFMPVF_IssueFrmId")))
+int SFMPVF_IssueFrmId(char *self)
 {
     int old = *(int *)(self + 0x5C);
     int next = old + 1;
@@ -70,8 +70,8 @@ int func_003557B0(char *self)
     return old;
 }
 
-__attribute__((section(".text.func_003574A8")))
-int func_003574A8(char *p) {
+__attribute__((section(".text.sfply_StatStop")))
+int sfply_StatStop(char *p) {
     int v = *(int *)(p + 0x4C);
     int r = *(int *)(p + 0x48);
     switch (v) {
@@ -85,14 +85,14 @@ int func_003574A8(char *p) {
     return r;
 }
 
-__attribute__((section(".text.func_00358328")))
-int func_00358328(void){int i;for(i=0;i<8;i++){if(D_003EE2C4[i]==0)return i;}return -1;}
+__attribute__((section(".text.sfply_SearchFreeHn")))
+int sfply_SearchFreeHn(void){int i;for(i=0;i<8;i++){if(D_003EE2C4[i]==0)return i;}return -1;}
 
-__attribute__((section(".text.func_003596F0")))
-int func_003596F0(int a0,int a1){int p=a0+a1*0x74+0x1348;if(*(int*)p==0)return 0;return *(int*)(p+8)>=*(int*)(p+4);}
+__attribute__((section(".text.SFPTS_IsPtsQueFull")))
+int SFPTS_IsPtsQueFull(int a0,int a1){int p=a0+a1*0x74+0x1348;if(*(int*)p==0)return 0;return *(int*)(p+8)>=*(int*)(p+4);}
 
-__attribute__((section(".text.func_0035FD20")))
-void func_0035FD20(char *base, int *o1, int *o2) {
+__attribute__((section(".text.SFX_GetTagInf")))
+void SFX_GetTagInf(char *base, int *o1, int *o2) {
     int *p = (int *)(base + 0x14);
     if (p[0] == 1) {
         int u = p[1];

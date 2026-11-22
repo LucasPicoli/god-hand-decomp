@@ -108,7 +108,7 @@ int SndSlot_startFromDesc(SndDesc *d)
     s->wait = *(int *)p;
     s->kind = p[4];
     s->sub = p[5];
-    func_003761D0(s);
+    ctlTrkInit(s);
     return 0;
 }
 

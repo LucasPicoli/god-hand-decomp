@@ -127,7 +127,7 @@ extern void *func_002D50C0(void *self);
 
 extern void func_0014FE78(char *pkt);
 extern void SetPackedFields10And18_14FF60(int pkt, int *next);
-extern int func_003950F8(int mode, int timeout);   /* GS path sync */
+extern int sceGsSyncPath(int mode, int timeout);   /* GS path sync */
 extern void FlushCache(int op);
 extern void iFlushCache(int op);
 extern void cTaskWork_sleep(struct cTaskWork *task, int frames);

@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00353098, check the configured frame size against
+/* cygnus-2.96: sfmpv_ChkBufSiz, check the configured frame size against
  * the work buffer, then split the buffer into per-frame pointers. */
 #include "godhand/criStm.h"
 #include "godhand/sftim.h"
@@ -7,7 +7,7 @@ typedef struct {
     int h;
 } FrmSize;
 
-extern void func_00354A70(StmSlot *s, int *ids, int n);
+extern void sfmpv_InitFrmObj(StmSlot *s, int *ids, int n);
 
 static inline unsigned int frmBufSize(int mode, int w, int h)
 {
@@ -19,8 +19,8 @@ static inline unsigned int frmBufSize(int mode, int w, int h)
     return mbw * mbh * 384 + 64;
 }
 
-__attribute__((section(".text.func_00353098")))
-int func_00353098(SftimHn *hn, FrmSize *sz)
+__attribute__((section(".text.sfmpv_ChkBufSiz")))
+int sfmpv_ChkBufSiz(SftimHn *hn, FrmSize *sz)
 {
     SfdWork *w = hn->work;
     SfdFrmCfg *cfg = &w->cfg;
@@ -50,6 +50,6 @@ int func_00353098(SftimHn *hn, FrmSize *sz)
     }
     w->nfrm = n;
     /* StmSlot is the stream view of the same 0xF0-byte SfdFrm; its id at 0x08 is SfdFrm.buf */
-    func_00354A70((StmSlot *)w->frm, (int *)w->frmBuf, n);
+    sfmpv_InitFrmObj((StmSlot *)w->frm, (int *)w->frmBuf, n);
     return 0;
 }

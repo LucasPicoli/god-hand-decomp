@@ -6,8 +6,8 @@ extern void _waitIpuIdle(void);
 extern long long _sceMpegWaitIpuIdle64(void *);
 
 struct P { unsigned int cls; int sign; int exp; int pad; long long mant; };
-__attribute__((section(".text.func_0031E978")))
-int func_0031E978(long long a0) {
+__attribute__((section(".text.dptoli")))
+int dptoli(long long a0) {
     long long aa; struct P r; long long m; int v0, shift;
     aa = a0;
     func_0031DFA8(&aa, &r);

@@ -97,15 +97,15 @@ void *AllocZeroedBlock_313E50(void) {
 }
 
 
-/* BuildObjEntry_387160: jal func_00377998 ; conditional ldl/ldr/sdl/sdr 0x20-byte
+/* BuildObjEntry_387160: jal SdeStrExeOpen ; conditional ldl/ldr/sdl/sdr 0x20-byte
  *                memcpy loop; multiple sb/sh writes to allocated struct
  *                @ a2+0x10; 66 insns, 264 B. */
-extern void *func_00377998(void);
+extern void *SdeStrExeOpen(void);
 extern void *memcpy(void *dst, const void *src, unsigned int n);
 
 __attribute__((section(".text.BuildObjEntry_387160")))
 int BuildObjEntry_387160(short arg1, const void *src) {
-    unsigned char *obj = (unsigned char *)func_00377998();
+    unsigned char *obj = (unsigned char *)SdeStrExeOpen();
     if (obj == 0) {
         return -1;
     }

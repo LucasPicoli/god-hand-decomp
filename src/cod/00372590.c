@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
-/* func_00372590 — MPEG-1 picture_header() parser, bit reader inlined.
+/* parsePsc — MPEG-1 picture_header() parser, bit reader inlined.
    MATCH: cygnus-2.96 with -freorder-blocks DROPPED.
-     python3 .private/scripts/score_candidate.py func_00372590 <this file> \
+     python3 .private/scripts/score_candidate.py parsePsc <this file> \
              --compiler cygnus-2.96 --drop-freorder-blocks
    ctx+0x160 is the decoder state; 0xD8..0xFC are the picture-header fields
    (start code / temporal_reference / picture_coding_type / vbv_delay /
@@ -35,8 +35,8 @@
         bitpos += (n);                                              \
     }
 
-__attribute__((section(".text.func_00372590")))
-char *func_00372590(char *ctx, char *start)
+__attribute__((section(".text.parsePsc")))
+char *parsePsc(char *ctx, char *start)
 {
     char *d;
     char *p;

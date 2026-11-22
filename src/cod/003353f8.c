@@ -82,7 +82,7 @@ LSC_OBJ *func_003353F8(SJ_OBJ *sj)
         return 0;
     }
     Forward33B658_335CE8(&crs);
-    lsc = (LSC_OBJ *)func_00335360();
+    lsc = (LSC_OBJ *)lsc_Alloc();
     if (lsc == 0) {
         func_00335D40(D_00454BE8);
         goto unlock;

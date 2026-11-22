@@ -9,8 +9,8 @@ typedef struct {
 } GifPktEnt;
 
 extern GifPktEnt D_00747BA0[];
-extern int func_00397550(void *chan, int mode, int timeout);
-extern void func_003973E8(void *chan, void *tag);
+extern int sceDmaSync(void *chan, int mode, int timeout);
+extern void sceDmaSend(void *chan, void *tag);
 
 __attribute__((section(".text.func_0030A200")))
 void func_0030A200(int n)
@@ -18,9 +18,9 @@ void func_0030A200(int n)
     GifPktEnt *e = &D_00747BA0[n];
 
     if (e->ready == 1) {
-        func_00397550((void *)0x1000A000, 0, 0);
-        func_003973E8((void *)0x1000A000, e->pkt0);
-        func_00397550((void *)0x1000A000, 0, 0);
-        func_003973E8((void *)0x1000A000, e->pkt1);
+        sceDmaSync((void *)0x1000A000, 0, 0);
+        sceDmaSend((void *)0x1000A000, e->pkt0);
+        sceDmaSync((void *)0x1000A000, 0, 0);
+        sceDmaSend((void *)0x1000A000, e->pkt1);
     }
 }

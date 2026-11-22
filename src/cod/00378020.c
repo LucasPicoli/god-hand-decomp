@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-__attribute__((section(".text.func_00378020")))
-void func_00378020(void *arg) {
+__attribute__((section(".text.SdeFadeSpdSet")))
+void SdeFadeSpdSet(void *arg) {
     unsigned short *p = (unsigned short *)arg;
     int a = p[0];
     int b = p[1];

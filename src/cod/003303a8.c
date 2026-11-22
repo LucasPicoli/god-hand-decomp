@@ -8,8 +8,8 @@ extern int strlen(const char *s);
 struct DEVENT { void *dev; char name[12]; };
 extern struct DEVENT D_00755E80[32];
 
-__attribute__((section(".text.func_003303A8")))
-void *func_003303A8(char *name, void *(*openfn)(void))
+__attribute__((section(".text.addDevice")))
+void *addDevice(char *name, void *(*openfn)(void))
 {
     void *d;
     char *dst;

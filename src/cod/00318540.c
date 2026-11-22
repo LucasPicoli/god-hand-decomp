@@ -18,15 +18,15 @@ int func_00318540(void *a0) {
     return 1;
 }
 
-__attribute__((section(".text.func_00330FB8")))
-void func_00330FB8(int a0, int a1, int a2, int a3) {
+__attribute__((section(".text.srd_reset_obj")))
+void srd_reset_obj(int a0, int a1, int a2, int a3) {
     int tmp = D_003D8448;
     (void)tmp;
     func_003A52F0(&D_003D8410, 0, 0x38, a3);
 }
 
-__attribute__((section(".text.func_00335218")))
-void func_00335218(int a0) {
+__attribute__((section(".text.htCiSetOpenMode")))
+void htCiSetOpenMode(int a0) {
     if (a0 == 0) {
         D_003DA390 = 0x8001;
     } else if (a0 == 1) {

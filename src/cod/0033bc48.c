@@ -10,8 +10,8 @@ struct Ent { Fp fp; int arg; int pad; };
 
 
 
-__attribute__((section(".text.func_0033BC48")))
-int func_0033BC48(int idx) {
+__attribute__((section(".text.SVM_ExecSvrFunc")))
+int SVM_ExecSvrFunc(int idx) {
     volatile int *flag = &D_003E9970[idx];
     struct Ent *e = &D_00758620[idx * 6];
     int acc = 0;

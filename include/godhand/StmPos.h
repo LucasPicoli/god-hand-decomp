@@ -24,7 +24,7 @@ typedef struct StmPosSys {
     StmPosRange range;          /* 0xD30 */
 } StmPosSys;
 
-extern int func_0035AE18(StmPosSys *sys);
-extern int func_0035A768(StmPosSys *sys);
+extern int SFTIM_ChkRegularTime(StmPosSys *sys);
+extern int sftim_IsTimeIncre(StmPosSys *sys);
 
 #endif

@@ -6,9 +6,9 @@
 #define GODHAND_ADXM_H
 
 extern int adxm_ResumeThread(int thid);
-extern int func_00325360(int thid);     /* server suspend */
+extern int adxm_SuspendThread(int thid);     /* server suspend */
 extern void func_00325290(int thid);
-extern void func_0033B790(const char *msg);
+extern void SVM_CallErr1(const char *msg);
 
 extern int D_003C80B0;                  /* ADX thread priority */
 extern int D_003C80E0;                  /* lock nesting count */

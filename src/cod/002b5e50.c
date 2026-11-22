@@ -36,8 +36,8 @@ void CustomIDWork_ResetColorAnim(CustomIDWork *self) {
     *(int *)obj->color = rest;
 }
 
-__attribute__((section(".text.func_00328448")))
-void func_00328448(void *a0, void *a1) {
+__attribute__((section(".text.ADXSTM_SetEos")))
+void ADXSTM_SetEos(void *a0, void *a1) {
     Obj3290_Tramp_0033E6A8_9070(a0);
     func_00328488(a0, a1);
     Obj3290_Tramp_0033E6B0_9088();

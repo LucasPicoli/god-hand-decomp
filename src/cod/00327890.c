@@ -10,8 +10,8 @@ extern void func_003A52F0(void *a0, int a1, int a2);
 extern int D_003D1E70[];
 
 /* AINF volume offset while the stream prepares or plays; 0 otherwise or without AINF. */
-__attribute__((section(".text.func_00327890")))
-int func_00327890(char *a0) {
+__attribute__((section(".text.ADXSJD_GetDefOutVol")))
+int ADXSJD_GetDefOutVol(char *a0) {
     if (ADXB_GetAinfLen(*(struct ADX_BASIC **)(a0 + 4)) <= 0) {
         return 0;
     }

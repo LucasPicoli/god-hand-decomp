@@ -9,8 +9,8 @@ extern int CreateSema(struct SemaParam *p);
 
 /* ee-2.9-991111 */
 
-__attribute__((section(".text.func_003B1DE8")))
-int func_003B1DE8(char **pp, int *pn, int c)
+__attribute__((section(".text.snprintf_char")))
+int snprintf_char(char **pp, int *pn, int c)
 {
     char *p;
     if (*pn == 0)

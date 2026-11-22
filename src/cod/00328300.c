@@ -23,8 +23,8 @@ int func_00328300(void *a0) {
     return Obj3290_Tramp_0033E690_9040();
 }
 
-__attribute__((section(".text.func_0032C2A8")))
-int func_0032C2A8(void *a0) {
+__attribute__((section(".text.adxt_set_outpan")))
+int adxt_set_outpan(void *a0) {
     if (Obj3270_GetVia4_0033CE98_77A0(*(int*)((char*)a0 + 4)) == 1) {
         return func_0032A6D0(a0, 0, *(short*)((char*)a0 + 0x42));
     } else {

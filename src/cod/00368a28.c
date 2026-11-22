@@ -3,8 +3,8 @@
 #define MPS_DELIM_PES     0x40000
 #define MPS_DELIM_END     0x80000
 
-__attribute__((section(".text.func_00368A28")))
-int func_00368A28(const unsigned char *p)
+__attribute__((section(".text.MPS_CheckDelim")))
+int MPS_CheckDelim(const unsigned char *p)
 {
     unsigned char c;
 

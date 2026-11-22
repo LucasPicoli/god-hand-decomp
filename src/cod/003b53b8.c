@@ -52,7 +52,7 @@ int func_003B53B8(int fd)
     D_0077FFC0.sema = sid;
     q->dst = &result;
     q->size = 4;
-    r = func_003B3958(D_007816C0, 10, 0, q, 0x14, D_00780C00, 4, 0, 0, 0);
+    r = sceFsSifCallRpc(D_007816C0, 10, 0, q, 0x14, D_00780C00, 4, 0, 0, 0);
     if (r < 0) {
         DeleteSema(sid);
         SignalSema_3B3EF8();

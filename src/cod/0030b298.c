@@ -38,7 +38,7 @@ extern void func_0030CB30(void);
 extern int sceGsResetGraph(short mode, short inter, short omode, short ffmode);
 extern int sceGsSyncV(int mode);
 extern void func_0030B148(void);
-extern void func_00395F68(void (*fn)(void));
+extern void sceGsSyncVCallback(void (*fn)(void));
 extern void func_0030D1F8(void);
 extern int func_001FF858(void *a0, void *a1);
 extern void func_002BE6E8(void *obj);
@@ -88,7 +88,7 @@ void func_0030B298(void)
         sceGsResetGraph(0, 1, 3, 0);
         sceGsSyncV(0);
     }
-    func_00395F68(func_0030B148);
+    sceGsSyncVCallback(func_0030B148);
     func_0030D1F8();
     func_001FF858(D_00580D40, D_004504D8);
     g->unk569 = 2;

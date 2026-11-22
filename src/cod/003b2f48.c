@@ -40,8 +40,8 @@ extern int   CreateSema(sceSifSemaParam *sp);
 extern int   DeleteSema(int id);
 extern int   WaitSema(int id);
 
-__attribute__((section(".text.func_003B2F48")))
-int func_003B2F48(sceSifClientData *cd, int sid, unsigned int mode)
+__attribute__((section(".text.sceSifBindRpc")))
+int sceSifBindRpc(sceSifClientData *cd, int sid, unsigned int mode)
 {
     sceSifRpcPkt *p;
     sceSifSemaParam sp;

@@ -4,8 +4,8 @@
  * must land first LAST in source: the ee-gcc scheduler rotates the trailing
  * store to the front. */
 
-__attribute__((section(".text.func_0035A518")))
-void func_0035A518(void *a0) {
+__attribute__((section(".text.SFTIM_InitTcode")))
+void SFTIM_InitTcode(void *a0) {
     *(int *)((char *)a0 + 0x0) = 0;
     *(int *)((char *)a0 + 0x4) = 0;
     *(int *)((char *)a0 + 0x8) = 0;

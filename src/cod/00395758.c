@@ -9,8 +9,8 @@ typedef unsigned long u_long;
 
 
 
-__attribute__((section(".text.func_00395758")))
-int func_00395758(void *lp, void *srcaddr)
+__attribute__((section(".text.sceGsExecLoadImage")))
+int sceGsExecLoadImage(void *lp, void *srcaddr)
 {
     u_int i;
 

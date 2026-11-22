@@ -9,7 +9,7 @@ typedef struct {
 } StmSizeCache;
 
 extern void func_0033F130(int msg);
-extern void func_00328F70(int handle);
+extern void ADXSTM_OpenCvfs(int handle);
 extern int func_00328098(int handle);
 extern int func_00328D40(int handle);
 
@@ -24,7 +24,7 @@ int func_00324440(StmSizeCache *s)
     }
     size = s->size;
     if (size >= 0x7FFFF800) {
-        func_00328F70(s->handle);
+        ADXSTM_OpenCvfs(s->handle);
         if (func_00328098(s->handle) == 4)
             return -5;
         size = s->size = func_00328D40(s->handle);

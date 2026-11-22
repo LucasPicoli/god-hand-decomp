@@ -84,8 +84,8 @@ typedef struct { int f0; int idx; Ent ent[512]; } Ring;
 
 
 
-__attribute__((section(".text.func_003B0A40")))
-int func_003B0A40(int id)
+__attribute__((section(".text.iWakeupThread_3B0A40")))
+int iWakeupThread_3B0A40(int id)
 {
     int me;
     Ring *q;

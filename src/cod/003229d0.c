@@ -53,7 +53,7 @@ __attribute__((section(".text.func_003392F8")))
 int func_003392F8(int a0, int a1, int a2, int a3) {
     int v0;
     Forward33B658_3389F8();
-    v0 = func_00339360(a0, a1, a2, a3);
+    v0 = sjmem_IsGetChunk(a0, a1, a2, a3);
     Forward33B670_338A10();
     return v0;
 }
@@ -62,7 +62,7 @@ __attribute__((section(".text.func_00339E98")))
 int func_00339E98(int a0, int a1, int a2, int a3) {
     int v0;
     Forward33B658_3389F8();
-    v0 = func_00339F00(a0, a1, a2, a3);
+    v0 = sjrbf_IsGetChunk(a0, a1, a2, a3);
     Forward33B670_338A10();
     return v0;
 }
@@ -71,7 +71,7 @@ __attribute__((section(".text.func_0033AB68")))
 int func_0033AB68(int a0, int a1, int a2, int a3) {
     int v0;
     Forward33B658_3389F8();
-    v0 = func_0033ABD0(a0, a1, a2, a3);
+    v0 = sjuni_IsGetChunk(a0, a1, a2, a3);
     Forward33B670_338A10();
     return v0;
 }
@@ -80,13 +80,13 @@ __attribute__((section(".text.func_0033B810")))
 int func_0033B810(int a0, int a1, int a2, int a3) {
     int v0;
     Forward33B568_33B658();
-    v0 = func_0033B878(a0, a1, a2, a3);
+    v0 = svm_SetCbSvr(a0, a1, a2, a3);
     Forward33B5C8_33B670();
     return v0;
 }
 
-__attribute__((section(".text.func_00368AB0")))
-int func_00368AB0(void *a0, void *a1) {
+__attribute__((section(".text.MPS_GetPackHd")))
+int MPS_GetPackHd(void *a0, void *a1) {
     if (MPSLIB_CheckHn(a0)) {
         return MPSLIB_SetErr(0, 0xFF020201);
     }

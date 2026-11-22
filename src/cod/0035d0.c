@@ -8,12 +8,12 @@
 void Obj35D0_SetFields_0_4_8_C_D1B0(char *a0, int a1, int a2, int a3, int a4);
 void Obj35D0_ClearFields_0_4_8_D708(char *a0);
 void Obj35D0_ClearFields_0_4_8_C_D728(char *a0);
-extern int func_0035B9B0(int);
-extern int func_0035D800(char *o);
+extern int SFTIM_IsVideoTerm(int);
+extern int isEffectiveObj(char *o);
 
 /* ── External functions ─────────────────────────────────────────────────── */
 extern int  func_0034DD70(char *a0, unsigned int a1);
-extern void func_0034C990(char *a0, int a1, int a2, int a3);
+extern void SFBUF_VfrmAddRead(char *a0, int a1, int a2, int a3);
 
 /* ── External globals ───────────────────────────────────────────────────── */
 extern int  D_00766C9C;     /* reference counter for D5C8/D530 logic       */
@@ -56,8 +56,8 @@ int Obj35D0_ReturnZero_D0D8(void)
 /* 0x0035D0E0 — call-chain (jal)                                           */
 /* ════════════════════════════════════════════════════════════════════════ */
 extern void sfuo_InitInf(int a, int b, int c);
-__attribute__((section(".text.func_0035D0E0")))
-int func_0035D0E0(char *a0) {
+__attribute__((section(".text.SFUO_Create")))
+int SFUO_Create(char *a0) {
     char *p = a0 + 0x2150;
     *(void **)(p + 8) = a0 + 0x3678;
     sfuo_InitInf(a0, a0 + 0x3678, *(int *)(p + 0x10));
@@ -68,7 +68,7 @@ int func_0035D0E0(char *a0) {
 /* 0x0035D110 — call-chain (jal ×2)                                        */
 /* ════════════════════════════════════════════════════════════════════════ */
 extern void sfuo_InitUoch(char *);
-extern void func_0034C208(int, int, int, int);
+extern void SFBUF_SetUoch(int, int, int, int);
 
 __attribute__((section(".text.sfuo_InitInf")))
 void sfuo_InitInf(int a0, int a1, int a2) {
@@ -78,7 +78,7 @@ void sfuo_InitInf(int a0, int a1, int a2) {
     p = a1 + 4;
     for (i = 0; i < 3; i++) {
         sfuo_InitUoch((char *)p);
-        func_0034C208(a0, a2, i, p);
+        SFBUF_SetUoch(a0, a2, i, p);
         p += 0x10;
     }
 }
@@ -244,7 +244,7 @@ __attribute__((section(".text.sfvom_IsTerm")))
 int sfvom_IsTerm(int h)
 {
     if (GetArrayElemA0C_35A1C8(h, 0xF) == 0) return 1;
-    return func_0035B9B0(h) != 0;
+    return SFTIM_IsVideoTerm(h) != 0;
 }
 
 /* ════════════════════════════════════════════════════════════════════════ */
@@ -347,13 +347,13 @@ void Obj35D0_SendEvent_FF000701_D488(char *a0)
 /* ════════════════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════════════════════ */
-/* 0x0035D4F0 — tail-call wrapper: rearrange args → func_0034C990          */
-/* a0, *(a0+0x20D8), a1, a2  →  func_0034C990                              */
+/* 0x0035D4F0 — tail-call wrapper: rearrange args → SFBUF_VfrmAddRead          */
+/* a0, *(a0+0x20D8), a1, a2  →  SFBUF_VfrmAddRead                              */
 /* ════════════════════════════════════════════════════════════════════════ */
 __attribute__((section(".text.Obj35D0_Thunk_0034C990_Via20D8_D4F0")))
 void Obj35D0_Thunk_0034C990_Via20D8_D4F0(char *a0, int a1, int a2)
 {
-    func_0034C990(a0, *(int *)(a0 + 0x20D8), a1, a2);
+    SFBUF_VfrmAddRead(a0, *(int *)(a0 + 0x20D8), a1, a2);
 }
 
 /* ════════════════════════════════════════════════════════════════════════ */
@@ -482,7 +482,7 @@ int Obj35D0_IsField0Zero_D7A8(char *a0)
 __attribute__((section(".text.isEffectiveVer")))
 int isEffectiveVer(char *o)
 {
-    if (func_0035D800(o) == 0) return 0;
+    if (isEffectiveObj(o) == 0) return 0;
     if (*(int *)(o + 0xC) == 0x6B) goto ok;
     if (*(int *)(o + 0xC) < 0x6E) return 0;
 ok:

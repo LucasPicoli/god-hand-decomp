@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-/* cygnus-2.96. Twin of the matched func_0035DE38 in src/cod/00323618.c:
+/* cygnus-2.96. Twin of the matched SFH_AnlyNumElemTot in src/cod/00323618.c:
    same shape, offset 0x80 instead of 0xB0, and an int field instead of a byte. */
 
 extern int isEffectiveVer();
@@ -17,8 +17,8 @@ typedef struct {
     int wordC;
 } CVerData_t_0035DC08;
 
-__attribute__((section(".text.func_0035DC10")))
-int func_0035DC10(CGObj_t_0035DC08 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyHdrSiz")))
+int SFH_AnlyHdrSiz(CGObj_t_0035DC08 *a0, int *a1)
 {
     CVerData_t_0035DC08 *s0;
     int v0;

@@ -169,7 +169,7 @@ void cSeData_RegisterBank(cSeData *d)
 {
     cSeBuf *p = d->buf;                 /* 0x10 */
     func_00374B70(d->bankIdS, d->f14, d->sysMem, d->f1C, p->f18);
-    func_00375988(d->bankIdS, d->f14, d->sysMem, d->f1C);
+    SdeSsqHedOpen(d->bankIdS, d->f14, d->sysMem, d->f1C);
     cSeData_AddLoadBits(d, 0x40);
 }
 

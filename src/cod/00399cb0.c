@@ -14,8 +14,8 @@ extern int func_003B3128(void *cd, int rno, int mode, void *sbuf, int ssize,
                          void *rbuf, int rsize, void *efunc, void *epara); /* sceSifCallRpc */
 extern int SignalSema(int sema);
 
-__attribute__((section(".text.func_00399CB0")))
-int func_00399CB0(void *rtc)
+__attribute__((section(".text.sceCdReadClock")))
+int sceCdReadClock(void *rtc)
 {
     int r;
 

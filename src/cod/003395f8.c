@@ -8,8 +8,8 @@ extern SjRbf D_003E3FB8[SJRBF_POOL_NUM];
 extern int Forward340AE8_339438(void);
 extern void func_003397C8(SjRbf *e);
 
-__attribute__((section(".text.func_003395F8")))
-SjRbf *func_003395F8(int a, int b, int c)
+__attribute__((section(".text.sjrbf_Create")))
+SjRbf *sjrbf_Create(int a, int b, int c)
 {
     int i;
     SjRbf *e;

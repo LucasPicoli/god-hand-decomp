@@ -114,7 +114,7 @@ class TestAsKeyValidation:
     def test_sn_route_is_independent_of_the_sn_compiler(self):
         """`compiler: sn-*` must NOT imply `as: "sn"`. 776 TUs use SN cc1 and
         every one assembles byte-exact through ee-as today; ps2eeas loses to
-        ee-as on reorder (func_0036D460), so the two keys stay orthogonal."""
+        ee-as on reorder (m2vlib_InitHn), so the two keys stay orthogonal."""
         cfg = _mkcfg(compile_units=[
             {"path": "src/cod/000000.c", "compiler": "sn-2.95.3-136"}
         ])

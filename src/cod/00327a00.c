@@ -15,8 +15,8 @@ extern char D_003E3AD0[];
 extern char D_003E3FB8[];
 extern char D_003E7FF0[];
 
-__attribute__((section(".text.func_00327A00")))
-void func_00327A00(void) {
+__attribute__((section(".text.ADXSTM_Finish")))
+void ADXSTM_Finish(void) {
     int *p;
     int v0;
 
@@ -131,8 +131,8 @@ void func_0033A140(void)
     func_003A52F0(D_003E7FF0, 0, 0xC00);
 }
 
-__attribute__((section(".text.func_0034D450")))
-int func_0034D450(void *a0) {
+__attribute__((section(".text.sfhds_GetHd")))
+int sfhds_GetHd(void *a0) {
     void *s0;
     s0 = a0;
     if (*(int *)((char *)s0 + 0x36B0) == 0)
@@ -142,8 +142,8 @@ int func_0034D450(void *a0) {
     return *(int *)((char *)s0 + 0x36B0) + 0xC;
 }
 
-__attribute__((section(".text.func_003500E8")))
-int func_003500E8(void *a0) {
+__attribute__((section(".text.sfmps_GetHd")))
+int sfmps_GetHd(void *a0) {
     void *s0;
     s0 = a0;
     if (*(int *)((char *)s0 + 0x36B0) == 0)
@@ -153,12 +153,12 @@ int func_003500E8(void *a0) {
     return *(int *)((char *)s0 + 0x36B0) + 0x8A0;
 }
 
-__attribute__((section(".text.func_00351780")))
-void func_00351780(void *a0, int *a1) {
+__attribute__((section(".text.sfmpv_PeekChnk")))
+void sfmpv_PeekChnk(void *a0, int *a1) {
     int *s0;
     int buf[8];
     s0 = a1;
-    if (func_0034C2B8(a0, *(int *)((char *)a0 + 0x1FC8), buf) != 0) {
+    if (SFBUF_RingGetRead(a0, *(int *)((char *)a0 + 0x1FC8), buf) != 0) {
         s0[0] = 0;
         s0[1] = 0;
     } else {

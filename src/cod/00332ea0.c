@@ -20,12 +20,12 @@ extern char D_00454458[];
 extern void func_00332808(CdReadHn *hn, char *msg);
 extern void *SRD_Create(void);
 extern void func_003B0640(void *start, void *end);
-extern int func_00331110(void *srd, int lsn, int nsct, void *buf, void *mode);
+extern int SRD_ReqRdDvd(void *srd, int lsn, int nsct, void *buf, void *mode);
 extern void func_00331070(void *srd);
 extern int func_00398DA0(int mode);
 extern void func_00331BF0(void);
 extern void CdSrd_finishRead(void);
-extern void func_00331458(void *srd);
+extern void SRD_WaitComplete(void *srd);
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
@@ -63,7 +63,7 @@ int func_00332EA0(CdReadHn *hn, int nsct, void *buf)
     hn->buf = buf;
     hn->rqsct = MIN(nsct, hn->fsize - hn->ofs);
     func_003B0640(buf, (char *)buf + hn->rqsct * 2048 - 1);
-    if (func_00331110(hn->srd, hn->top + hn->ofs, hn->rqsct, hn->buf, hn->mode) == 0) {
+    if (SRD_ReqRdDvd(hn->srd, hn->top + hn->ofs, hn->rqsct, hn->buf, hn->mode) == 0) {
         func_00331070(hn->srd);
         return 0;
     }
@@ -71,7 +71,7 @@ int func_00332EA0(CdReadHn *hn, int nsct, void *buf)
         func_00398DA0(0);
         func_00331BF0();
         CdSrd_finishRead();
-        func_00331458(hn->srd);
+        SRD_WaitComplete(hn->srd);
         func_00331070(hn->srd);
         hn->srd = 0;
         hn->rdsct = nsct;

@@ -25,7 +25,7 @@ typedef struct StmEnt {
     int bufSize;                /* 0x14 */
 } StmEnt;
 
-/* One 0xF0-byte stream slot of the stream manager (set up by func_00354A70). */
+/* One 0xF0-byte stream slot of the stream manager (set up by sfmpv_InitFrmObj). */
 typedef struct StmSlot {
     int stat;                   /* 0x00 2 or 4 when it can be attached */
     int unk04;                  /* 0x04 */

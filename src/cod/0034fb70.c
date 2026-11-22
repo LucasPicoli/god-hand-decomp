@@ -39,12 +39,12 @@ typedef struct {
     char padE90[0x1F7C - 0xE90];
     StmClock *clk; /* 0x1F7C */
 } SfdObj;
-extern PlyInfo *func_003500E8(SfdObj *obj);
+extern PlyInfo *sfmps_GetHd(SfdObj *obj);
 
-__attribute__((section(".text.func_0034FB70")))
-void func_0034FB70(SfdObj *obj)
+__attribute__((section(".text.sfmps_SetMpsHd")))
+void sfmps_SetMpsHd(SfdObj *obj)
 {
-    PlyInfo *inf = func_003500E8(obj);
+    PlyInfo *inf = sfmps_GetHd(obj);
     TimBlk *tim = &obj->tim;
     StmClock *clk;
     PicInf *pic;

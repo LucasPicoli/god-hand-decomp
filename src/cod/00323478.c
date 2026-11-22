@@ -21,10 +21,10 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_00346228")))
-void func_00346228(S346228 *this, int a1, int a2) {
+__attribute__((section(".text.MWSFPLY_ReqStartAfs")))
+void MWSFPLY_ReqStartAfs(S346228 *this, int a1, int a2) {
     int x, y, z;
-    if (func_003245B0(a1, a2, this->f1A4, &x, &y, &z) == 0) {
+    if (ADXF_GetFnameRangeEx(a1, a2, this->f1A4, &x, &y, &z) == 0) {
         this->f1B0 = x;
         this->f1B4 = y;
         this->f1B8 = z;
@@ -34,8 +34,8 @@ void func_00346228(S346228 *this, int a1, int a2) {
     }
 }
 
-__attribute__((section(".text.func_00323478")))
-signed char *func_00323478(void) {
+__attribute__((section(".text.adxf_AllocAdxFs")))
+signed char *adxf_AllocAdxFs(void) {
     signed char *r;
     int i;
     r = 0;
@@ -48,8 +48,8 @@ signed char *func_00323478(void) {
     return r;
 }
 
-__attribute__((section(".text.func_0034F658")))
-void func_0034F658(void *a0, int *out)
+__attribute__((section(".text.sfmps_ShortSupply")))
+void sfmps_ShortSupply(void *a0, int *out)
 {
     int *base;
     int s1v;
@@ -58,9 +58,9 @@ void func_0034F658(void *a0, int *out)
 
     base = (int *)((char *)a0 + 0x1F74);
     s1v = base[2];
-    r = func_0034CA98(a0, base[4]);
+    r = SFBUF_GetTermFlg(a0, base[4]);
     if (r == 1) {
-        func_0034F390(a0, *(int *)(s1v + 0x3C));
+        sfmps_SetTermDst(a0, *(int *)(s1v + 0x3C));
         res = 1;
     } else {
         res = 0;
@@ -69,8 +69,8 @@ void func_0034F658(void *a0, int *out)
         *out = res;
 }
 
-__attribute__((section(".text.func_00336530")))
-signed char *func_00336530(void) {
+__attribute__((section(".text.mfci_alloc")))
+signed char *mfci_alloc(void) {
     signed char *result;
     int i;
     result = 0;
@@ -83,8 +83,8 @@ signed char *func_00336530(void) {
     return result;
 }
 
-__attribute__((section(".text.func_003325F8")))
-void func_003325F8(void) {
+__attribute__((section(".text.DTX_Finish")))
+void DTX_Finish(void) {
     signed char *p;
     int i;
     int one;

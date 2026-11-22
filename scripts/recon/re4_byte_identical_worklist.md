@@ -8,40 +8,40 @@ they are shared engine/runtime code. Regenerate the source list with
 Match approach: write C, compile with the project flags, compare .text bytes.
 ~30%% match first-try (clean compute-and-return); the rest need register/
 schedule tweaks (permuter) or canonical library source. Matched so far:
-func_0033C270, func_00324858, func_0035A518, func_00369130, func_003520B0, func_00369158, func_0036CB58, func_0034FDF0, func_0035BD88, func_003B67E8, func_003B0D48, func_003B2B90, func_003217F0, func_00333288, func_00334B58, func_00349F80, func_0035A5E0, func_003A93A8, func_00321938, func_002B9DB8, func_002BA3F0.
+ADXB_SetAc3DecSmpl, ADXF_CALC_BYTE2SCT, SFTIM_InitTcode, func_00369130, sfmpv_InitComplementPts, mpslib_InitPket, sfxalp_InitHn, sfmps_InitInf, sftrn_InitTrData, func_003B67E8, kputchar, func_003B2B90, func_003217F0, dvci_getnumtr_lower, htci_getnumtr_lower, sfadxt_GetFreeChunk, SFTIM_GetNextItime, func_003A93A8, decode_uleb128, func_002B9DB8, func_002BA3F0.
 
 NEWLIB COMPILER (ee-2.9-991111): the 0x003Bxxxx library region is newlib code,
 NOT cygnus. Functions there that look 1 insn short under the default compiler
 (cygnus fills the loop branch delay slot; newlib leaves a nop) match exactly when
 carved with `{"path":..., "compiler":"ee-2.9-991111"}` in compile_units. Matched
-func_003B67E8 (byte memcpy) and func_003B0D48 (EE I/O poll) this way. Try this
+func_003B67E8 (byte memcpy) and kputchar (EE I/O poll) this way. Try this
 compiler FIRST for any 0x3Bxxxx near-miss.
 
-Store-order trick (func_0035A518/func_00369130): when retail stores struct
+Store-order trick (SFTIM_InitTcode/func_00369130): when retail stores struct
 fields in an unusual order with one field in the jr delay slot, the ee-gcc
 scheduler ROTATES the trailing source store to the front. Write the field that
 must land FIRST as the LAST store in source and the rest match byte-for-byte —
-no permuter needed. func_0035B188 (pure-arithmetic weighted sum) is permuter-
+no permuter needed. sftim_Tc2TimeN (pure-arithmetic weighted sum) is permuter-
 RESISTANT: single expression, full register permutation, plateaus ~600.
 
-Two more reorder levers (cracked func_003520B0 / func_0036CB58):
+Two more reorder levers (cracked sfmpv_InitComplementPts / sfxalp_InitHn):
 - BASE POINTERS: when retail addresses sub-fields via `addiu vN,a0,off` and
   indexes off it, write an explicit `T *q = (T*)(p+off); q[i]=...` so the
   compiler recreates that base register (direct `*(T*)(p+off+...)` won't).
 - CONSTANT ORDER: when only the constant->register mapping differs, declare the
   constants as NAMED locals in retail's materialisation order; the allocator then
-  assigns registers to match. func_0036CB58 went from a permuter near-miss
+  assigns registers to match. sfxalp_InitHn went from a permuter near-miss
   (base 75) to an exact hand match this way.
 
-SHORT-LOOP NOPs ARE NOT A WALL (func_0034FDF0 matched): ee-gcc cc1 EMITS the
+SHORT-LOOP NOPs ARE NOT A WALL (sfmps_InitInf matched): ee-gcc cc1 EMITS the
 R5900 short-loop nops itself (verified via --print-stage s) — a down-counted
 `for(i=N;i>=0;i--)` loop with a small body produces `sw; nop; nop; nop; bgez`.
-func_0034FDF0 (34-insn min/max init + 68-word zero loop) matched in full: the
+sfmps_InitInf (34-insn min/max init + 68-word zero loop) matched in full: the
 loop+nops reproduce directly; the init-block store SCHEDULE was solved by a
 hill-climb over source statement order (cc1's list scheduler is sensitive to
 source order as a tiebreaker — the permuter plateaued at the base, but a direct
 adjacent-swap hill-climb over the 13 stores reached the exact pre-image), and the
-tail by the store-rotation rule. func_0035BD88 ALSO matched: its "missing loop nops" was a misdiagnosis — cc1
+tail by the store-rotation rule. sftrn_InitTrData ALSO matched: its "missing loop nops" was a misdiagnosis — cc1
 emits the nops fine; the real diff was a v0/v1 register swap (counter vs loop
 pointer). Writing the counter first in the for-init (`for(i=2,q=...;...)`) puts
 the counter in $v1 and the pointer in $v0, matching retail. So NO loop-nop wall
@@ -115,16 +115,16 @@ exists at all.
 
 
 ATTEMPTED, RESISTANT (2026-06-21 — logic understood, exact match not yet found):
-- func_003A4E00 (isnanf), func_0034CCB0 (64-bit hi+borrow pack): tiny
+- isnanf (isnanf), SFBUF_UpdateFlowCnt (64-bit hi+borrow pack): tiny
   register-allocation near-misses (~7-word diff, all 3 compilers); mfc1/dsll
-  destination regs are compiler-chosen. Permuter-resistant like func_0035B188.
-- func_003A95A8 (strrev), func_0032F988 (big-endian 0x10-byte deserializer):
+  destination regs are compiler-chosen. Permuter-resistant like sftim_Tc2TimeN.
+- strrev (strrev), func_0032F988 (big-endian 0x10-byte deserializer):
   longer than my C (retail uses per-field base pointers + load-delay nops +
   a specific byte-read schedule). Need exact upstream source or a big scheduling
   hill-climb; base-pointer reconstruction gets the size close but not exact.
 - func_003B6468 (word memcpy): opens with a DEAD `lw v0,0x1C(v1)` off an
   uninitialised v1 — can't reproduce without knowing what emits it.
-- func_003B64A8 (word find/memchr): convoluted movz control flow.
+- kFindAddress (word find/memchr): convoluted movz control flow.
 - func_0035BB60 (min/max/sum/count accumulator): diff=2, a daddu/movn scheduler
   tie; func_00368EE0 (cond vcall): retail emits a redundant move all compilers
   drop. Both genuine near-misses.

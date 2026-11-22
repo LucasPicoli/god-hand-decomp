@@ -3,8 +3,8 @@
 
 void *iAllocTimerCounter(void);
 
-__attribute__((section(".text.func_003B7270")))
-void *func_003B7270(void) {
+__attribute__((section(".text.AllocTimerCounter")))
+void *AllocTimerCounter(void) {
     int a = DIntr();
     void *b = iAllocTimerCounter();
     if (a != 0) {

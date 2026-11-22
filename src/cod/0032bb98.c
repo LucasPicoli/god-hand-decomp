@@ -20,11 +20,11 @@ typedef struct AdxFileHn {
 } AdxFileHn;
 
 extern void func_0033F130(char *msg);
-extern void func_00329EA8(AdxFileHn *adxt);
-extern int func_003245B0(int patid, int fid, int dir, int *ofst, int *nsct, int *c0);
+extern void ADXT_Stop(AdxFileHn *adxt);
+extern int ADXF_GetFnameRangeEx(int patid, int fid, int dir, int *ofst, int *nsct, int *c0);
 extern void ADXERR_ItoA2(int a, int b, char *buf, int n);
 extern void func_0033F1A8(char *msg, char *arg);
-extern void func_0032B660(AdxFileHn *adxt, int a1);
+extern void ADXT_SetLnkSw(AdxFileHn *adxt, int a1);
 
 __attribute__((section(".text.func_0032BB98")))
 void func_0032BB98(AdxFileHn *adxt, int patid, int fid)
@@ -36,8 +36,8 @@ void func_0032BB98(AdxFileHn *adxt, int patid, int fid)
         func_0033F130(D_00452748);
         return;
     }
-    func_00329EA8(adxt);
-    if (func_003245B0(patid, fid, adxt->dir, &ofst, &nsct, &c0) != 0)
+    ADXT_Stop(adxt);
+    if (ADXF_GetFnameRangeEx(patid, fid, adxt->dir, &ofst, &nsct, &c0) != 0)
         return;
     if (adxt->sj == 0) {
         ADXERR_ItoA2(patid, fid, buf, 0x10);
@@ -53,5 +53,5 @@ void func_0032BB98(AdxFileHn *adxt, int patid, int fid)
     adxt->stat = 1;
     adxt->unkAC = 1;
     adxt->unk02 = 1;
-    func_0032B660(adxt, 0);
+    ADXT_SetLnkSw(adxt, 0);
 }

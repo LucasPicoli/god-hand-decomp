@@ -4,46 +4,46 @@
 #include "godhand/globals.h"
 
 extern int GetD003EC7E0_3452B0(void);
-extern int func_00343D68(MwsfdHn *);
-extern void func_003487C0(MwsfdHn *, int);
-extern void func_00347420(MwsfdHn *);
-extern int func_003473A0(MwsfdHn *);
-extern void func_00347400(MwsfdHn *);
+extern int MWSFCRE_ResetSfdHn(MwsfdHn *);
+extern void MWSST_Reset(MwsfdHn *, int);
+extern void MWSFTAG_ResetAinfSj(MwsfdHn *);
+extern int MWSFTAG_SetAinfSj(MwsfdHn *);
+extern void MWSFTAG_InitTagInf(MwsfdHn *);
 extern void Obj0000_Init_Fields_B4_B8_BC_Entries(MwsfdHn *);
 extern void func_00345D10(MwsfdHn *);
 extern void func_00345AF8(MwsfdHn *);
 extern void func_00345F48(MwsfdHn *, int);
-extern void func_00348550(char *, int);
-extern void func_00348440(char *);
+extern void MWSST_Pause(char *, int);
+extern void MWSST_StartSj(char *);
 
-__attribute__((section(".text.func_00345BE0")))
-void func_00345BE0(MwsfdHn *m)
+__attribute__((section(".text.mw_sfd_start_ex")))
+void mw_sfd_start_ex(MwsfdHn *m)
 {
     char *b0 = (char *)&m->slot[0];
 
     GetD003EC7E0_3452B0();
     if (m->sfd != 0) {
-        if (func_00343D68(m) != 0) {
+        if (MWSFCRE_ResetSfdHn(m) != 0) {
             MWSFSVM_Error(D_00457EF8);
             return;
         }
-        func_003487C0(m, 0);
-        func_003487C0(m, 1);
-        func_00347420(m);
-        if (func_003473A0(m) != 0) {
+        MWSST_Reset(m, 0);
+        MWSST_Reset(m, 1);
+        MWSFTAG_ResetAinfSj(m);
+        if (MWSFTAG_SetAinfSj(m) != 0) {
             MWSFSVM_Error(D_00457F28);
             return;
         }
-        func_00347400(m);
+        MWSFTAG_InitTagInf(m);
         Obj0000_Init_Fields_B4_B8_BC_Entries(m);
     }
     func_00345D10(m);
     func_00345AF8(m);
     func_00345F48(m, m->pause);
-    func_00348550(b0, 1);
-    func_00348550((char *)&m->slot[1], 1);
-    func_00348440(b0);
-    func_00348440((char *)&m->slot[1]);
+    MWSST_Pause(b0, 1);
+    MWSST_Pause((char *)&m->slot[1], 1);
+    MWSST_StartSj(b0);
+    MWSST_StartSj((char *)&m->slot[1]);
     m->unk84 = 0;
     m->latch = 0;
     m->stopReq = 0;

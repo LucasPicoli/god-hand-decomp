@@ -9,11 +9,11 @@ typedef struct Elem {
     char pad0[0x20];
     unsigned char codec;
 } Elem;
-extern int func_0035E9E8(unsigned int id);
+extern int chkStmId(unsigned int id);
 extern int isEnableVidFtr(int a0, Elem *a1);
 
-__attribute__((section(".text.func_0035E868")))
-int func_0035E868(int a0, int a1, int *a2)
+__attribute__((section(".text.SFH_AnlyFtrFxType")))
+int SFH_AnlyFtrFxType(int a0, int a1, int *a2)
 {
     void *s1;
     int s0;
@@ -33,7 +33,7 @@ int func_0035E868(int a0, int a1, int *a2)
     return 1;
 }
 
-/* func_0035E8F8 stays in the monolith: rodata D_00459C50 refers to its jump-table labels. */
+/* getPicRate stays in the monolith: rodata D_00459C50 refers to its jump-table labels. */
 
 __attribute__((section(".text.isEnableAudFtr")))
 int isEnableAudFtr(int id, Elem *e)
@@ -41,7 +41,7 @@ int isEnableAudFtr(int id, Elem *e)
     int nz;
     int lt;
 
-    if (func_0035E9E8(id) != 0xC0) return 0;
+    if (chkStmId(id) != 0xC0) return 0;
     nz = (e->codec != 0);
     lt = (e->codec < 2);
     return lt && nz;
@@ -53,14 +53,14 @@ int isEnableVidFtr(int id, Elem *e)
     int nz;
     int lt;
 
-    if (func_0035E9E8(id) != 0xE0) return 0;
+    if (chkStmId(id) != 0xE0) return 0;
     nz = (e->codec != 0);
     lt = (e->codec < 2);
     return lt && nz;
 }
 
-__attribute__((section(".text.func_0035E9E8")))
-int func_0035E9E8(unsigned int id)
+__attribute__((section(".text.chkStmId")))
+int chkStmId(unsigned int id)
 {
     if (id - 0xC0 < 0x20) return 0xC0;
     if (id - 0xE0 < 0x10) return 0xE0;
@@ -118,74 +118,74 @@ void Obj35E8_SetField_70(char *a0, int a1)
     *(int *)(a0 + 0x70) = a1;
 }
 
-extern void func_0035FD98(void *a, int b, int c);
+extern void SFX_ShiftYccPtrByPix(void *a, int b, int c);
 extern int func_0035F830(void *a, void *b);
-extern void func_0035F1D0(void *a, void *b, int c, int d);
-extern void func_0035F3C8(void *a, void *b, int c);
-extern void func_003603D8(int a, int b, void *c);
-extern void func_0036CBC0(int a, int b, void *c);
-extern void func_0036CC08(int a, int b, void *c);
-extern void func_0036CC40(int a, int b, void *c);
+extern void sfxcnv_ExecCnvFrmByCbFunc(void *a, void *b, int c, int d);
+extern void sfxcnv_ExecFullAlphaByCbFunc(void *a, void *b, int c);
+extern void SFXZ_MakeCnvZTbl(int a, int b, void *c);
+extern void SFXA_MakeAlpLumiTbl(int a, int b, void *c);
+extern void SFXA_MakeAlp3110Tbl(int a, int b, void *c);
+extern void SFXA_MakeAlp3211Tbl(int a, int b, void *c);
 
-__attribute__((section(".text.func_0035EA30")))
-void func_0035EA30(void *self, SfxCtxArg *b, int c, int d, int e, int f)
+__attribute__((section(".text.SFX_SetClipping")))
+void SFX_SetClipping(void *self, SfxCtxArg *b, int c, int d, int e, int f)
 {
     b->unk44 = e;
     b->unk48 = f;
-    func_0035FD98(b, c, d);
+    SFX_ShiftYccPtrByPix(b, c, d);
 }
 
-extern int func_0035EB60(SfxTypeView *a, SfxModeView *b);
-INCLUDE_ASM("nonmatching", func_0035EB60);
+extern int SFX_DecideTableAlph3(SfxTypeView *a, SfxModeView *b);
+INCLUDE_ASM("nonmatching", SFX_DecideTableAlph3);
 
-__attribute__((section(".text.func_0035EB98")))
-void func_0035EB98(void *a, void *b, int mode)
+__attribute__((section(".text.SFX_MakeTable")))
+void SFX_MakeTable(void *a, void *b, int mode)
 {
     func_0035EBB0(a, b, mode);
 }
 
-__attribute__((section(".text.func_0035EDA8")))
-void func_0035EDA8(SfxCtx *a, SfxCtxArg *b)
+__attribute__((section(".text.sfxcnv_MakeZTbl")))
+void sfxcnv_MakeZTbl(SfxCtx *a, SfxCtxArg *b)
 {
-    func_003603D8(a->unk24, b->unk4C, a->unk38);
+    SFXZ_MakeCnvZTbl(a->unk24, b->unk4C, a->unk38);
 }
 
 __attribute__((section(".text.func_0035EDC8")))
 void func_0035EDC8(SfxCtx *a)
 {
-    func_0035EDE0(a->unk38);
+    SFXCNV_MakeCcirFromY(a->unk38);
 }
 
 __attribute__((section(".text.func_0035EE98")))
 void func_0035EE98(SfxCtx *a, SfxCtxArg *b)
 {
-    func_0036CBC0(a->unk30, b->unk4C, a->unk38);
+    SFXA_MakeAlpLumiTbl(a->unk30, b->unk4C, a->unk38);
 }
 
 __attribute__((section(".text.func_0035EEB8")))
 void func_0035EEB8(SfxCtx *a, SfxCtxArg *b)
 {
-    func_0036CC08(a->unk30, b->unk4C, a->unk38);
+    SFXA_MakeAlp3110Tbl(a->unk30, b->unk4C, a->unk38);
 }
 
 __attribute__((section(".text.func_0035EED8")))
 void func_0035EED8(SfxCtx *a, SfxCtxArg *b)
 {
-    func_0036CC40(a->unk30, b->unk4C, a->unk38);
+    SFXA_MakeAlp3211Tbl(a->unk30, b->unk4C, a->unk38);
 }
 
-__attribute__((section(".text.func_0035EEF8")))
-void func_0035EEF8(SfxCtx *a)
+__attribute__((section(".text.sfxcnv_MakeColAdjTbl")))
+void sfxcnv_MakeColAdjTbl(SfxCtx *a)
 {
     void (*fn)(void *) = a->unk70;
     void *arg = a->unk38;
     if (fn) fn(arg);
 }
 
-INCLUDE_ASM("permanent", func_0035ED08);
+INCLUDE_ASM("permanent", sfxcnv_IsNeedUpdateTbl);
 
-__attribute__((section(".text.func_0035EDE0")))
-void func_0035EDE0(unsigned char *t)
+__attribute__((section(".text.SFXCNV_MakeCcirFromY")))
+void SFXCNV_MakeCcirFromY(unsigned char *t)
 {
     int i;
     for (i = 0; i < 16; i++) t[i] = 0;
@@ -193,8 +193,8 @@ void func_0035EDE0(unsigned char *t)
     for (i = 0xEC; i < 0x100; i++) t[i] = 0x80;
 }
 
-__attribute__((section(".text.func_0035EA88")))
-int func_0035EA88(SfxTypeView *a)
+__attribute__((section(".text.sfxcnv_IsCnvUpHalf")))
+int sfxcnv_IsCnvUpHalf(SfxTypeView *a)
 {
     switch (a->unk4) {
     case 0x11: case 0x31: case 0x41: case 0x51: case 0x61:
@@ -218,28 +218,28 @@ void func_0035EF78(SfxTypeView *a, SfxModeView *b, int c)
     switch (type) {
     case 0x11:
         if (b->unk90 != 1) {
-            func_0035F1D0(a, b, c, 0);
+            sfxcnv_ExecCnvFrmByCbFunc(a, b, c, 0);
             return;
         }
         /* fallthrough */
     case 0x1001:
-        func_0035EB98(a, b, 0x15);
-        func_0035F1D0(a, b, c, 1);
+        SFX_MakeTable(a, b, 0x15);
+        sfxcnv_ExecCnvFrmByCbFunc(a, b, c, 1);
         return;
     case 0x21:
-        func_0035EB98(a, b, 1);
-        func_0035F3C8(a, b, c);
+        SFX_MakeTable(a, b, 1);
+        sfxcnv_ExecFullAlphaByCbFunc(a, b, c);
         return;
     case 0x31:
-        func_0035EB98(a, b, 2);
-        func_0035F1D0(a, b, c, 1);
+        SFX_MakeTable(a, b, 2);
+        sfxcnv_ExecCnvFrmByCbFunc(a, b, c, 1);
         return;
     case 0x41: case 0x51: case 0x61:
-        func_0035EB98(a, b, func_0035EB60(a, b));
-        func_0035F1D0(a, b, c, 1);
+        SFX_MakeTable(a, b, SFX_DecideTableAlph3(a, b));
+        sfxcnv_ExecCnvFrmByCbFunc(a, b, c, 1);
         return;
     case 0x101:
-        func_0035F1D0(a, b, c, 0);
+        sfxcnv_ExecCnvFrmByCbFunc(a, b, c, 0);
         return;
     case 0x71: case 0xF1: case 0x111:
     default:

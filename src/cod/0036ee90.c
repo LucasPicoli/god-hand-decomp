@@ -15,10 +15,10 @@ typedef struct {
 } SfdSjHdrWriter;
 
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
-extern void func_0036F008(SfdSjHdrWriter *s, char *data, int n);
+extern void appendUd(SfdSjHdrWriter *s, char *data, int n);
 
-__attribute__((section(".text.func_0036EE90")))
-void func_0036EE90(SfdSjHdrWriter *s, char *data, int n)
+__attribute__((section(".text.m2vhdec_AnalyUd")))
+void m2vhdec_AnalyUd(SfdSjHdrWriter *s, char *data, int n)
 {
     int cur = s->cur;
     SjObj *sj = s->ch[cur].sj;
@@ -40,8 +40,8 @@ void func_0036EE90(SfdSjHdrWriter *s, char *data, int n)
     }
     if (cur == 3 && s->open != 0) {
         if (s->hdr != 0) {
-            func_0036F008(s, D_0045A578, 8);
+            appendUd(s, D_0045A578, 8);
         }
-        func_0036F008(s, data, n);
+        appendUd(s, data, n);
     }
 }

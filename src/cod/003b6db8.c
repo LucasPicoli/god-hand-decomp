@@ -21,8 +21,8 @@ typedef struct _timer_ctl {
 
 extern sceTimerCtl D_003FBE90;
 
-__attribute__((section(".text.func_003B6DB8")))
-void func_003B6DB8(sceTimerAlarm *a)
+__attribute__((section(".text.InsertAlarm")))
+void InsertAlarm(sceTimerAlarm *a)
 {
     sceTimerAlarm *prev;
     sceTimerAlarm *cur;

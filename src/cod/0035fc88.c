@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0035FC88, records the tag chunk at +0x14 of the handle and forwards the found tag to
+/* cygnus-2.96: SFX_SetTagInf, records the tag chunk at +0x14 of the handle and forwards the found tag to
  * SFXZ_SetTagInf. */
 #include "godhand/sfxlib.h"
 typedef struct {
@@ -10,8 +10,8 @@ typedef struct {
 extern Sint8 D_0045A050[];
 extern Sint8 D_0045A058[];
 
-__attribute__((section(".text.func_0035FC88")))
-void func_0035FC88(TagHn *hn, Sint8 *data, Sint32 len)
+__attribute__((section(".text.SFX_SetTagInf")))
+void SFX_SetTagInf(TagHn *hn, Sint8 *data, Sint32 len)
 {
     SjTagRec *rec = &hn->rec;
     SjChunk ck;

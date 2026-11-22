@@ -8,8 +8,8 @@ extern char D_00455C08[];
 extern int func_002AFC48(void *a0, float f12, float f13, int a1, int a2, int a3, int t0, int t1);
 extern unsigned char D_003C23B0[];
 
-__attribute__((section(".text.func_00338D90")))
-int func_00338D90(int *a0) {
+__attribute__((section(".text.sjmem_GetUuid")))
+int sjmem_GetUuid(int *a0) {
     if (a0 == 0) {
         func_00338A48(D_00455970, D_00455920);
         return 0;
@@ -21,8 +21,8 @@ int func_00338D90(int *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_0033A3C0")))
-int func_0033A3C0(char *a0) {
+__attribute__((section(".text.sjuni_GetUuid")))
+int sjuni_GetUuid(char *a0) {
     if (a0 == 0) {
         func_0033A048(D_00455C28, D_00455BD8);
         return 0;

@@ -2,8 +2,8 @@
 
 #include "godhand/mwsfHn.h"
 
-__attribute__((section(".text.func_00346DD0")))
-int func_00346DD0(SudStmTbl *tbl, int no)
+__attribute__((section(".text.MWSFD_IsColAdjFile")))
+int MWSFD_IsColAdjFile(SudStmTbl *tbl, int no)
 {
     int i = no % 8;
 
@@ -13,8 +13,8 @@ int func_00346DD0(SudStmTbl *tbl, int no)
     return tbl->ent[i].type;
 }
 
-__attribute__((section(".text.func_00346E20")))
-int func_00346E20(SudStmTbl *tbl, int no)
+__attribute__((section(".text.MWSFD_GetFxType")))
+int MWSFD_GetFxType(SudStmTbl *tbl, int no)
 {
     int i = no % 8;
 

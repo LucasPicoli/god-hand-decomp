@@ -1,13 +1,13 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
 
-extern void func_00345750(int e);
+extern void MWSFLIB_SetErrCode(int e);
 extern void MWSFSVM_Error(char *s);
 
 __attribute__((section(".text.MWSFCRE_DestroySfd")))
 void MWSFCRE_DestroySfd(void)
 {
-    if (func_003587E8() == 0) return;
-    func_00345750(-0x132);
+    if (SFD_Destroy() == 0) return;
+    MWSFLIB_SetErrCode(-0x132);
     MWSFSVM_Error(D_004573B8);
 }

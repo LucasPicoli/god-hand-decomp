@@ -10,8 +10,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_0036D410")))
-void *func_0036D410(void) {
+__attribute__((section(".text.m2vlib_SearchFreeHn")))
+void *m2vlib_SearchFreeHn(void) {
     int n = ((Root76A590 *)D_0076A590)->count;
     char *p = ((Root76A590 *)D_0076A590)->ptr;
     int i;

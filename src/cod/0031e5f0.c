@@ -125,9 +125,9 @@ _fpdiv_parts (fp_number_type * a,
   }
 }
 
-__attribute__((section(".text.func_0031E5F0")))
+__attribute__((section(".text.dpdiv")))
 FLO_type
-func_0031E5F0 (FLO_type arg_a, FLO_type arg_b)
+dpdiv (FLO_type arg_a, FLO_type arg_b)
 {
   fp_number_type a;
   fp_number_type b;

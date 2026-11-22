@@ -11,8 +11,8 @@ typedef struct Stm {
 
 extern int GetArrayElemA0C_35A1C8(void *hn, int id);
 
-__attribute__((section(".text.func_00357DA0")))
-int func_00357DA0(void *hn)
+__attribute__((section(".text.sfply_EnoughViData")))
+int sfply_EnoughViData(void *hn)
 {
     Stm *st;
     void *obj;

@@ -8,15 +8,15 @@ extern void Obj33F8_NoOp_FCA0(void);
 extern void func_0032DEC8(int a0, int a1);
 extern void Obj33F8_NoOp_FCA8(void);
 
-__attribute__((section(".text.func_0032AF40")))
-void func_0032AF40(void *a0, int a1) {
+__attribute__((section(".text.ADXT_SetAutoRcvr")))
+void ADXT_SetAutoRcvr(void *a0, int a1) {
     NoOp_33E6A8();
     func_0032AF80(a0, a1);
     NoOp_33E6B0();
 }
 
-__attribute__((section(".text.func_0032B618")))
-void func_0032B618(void *a0, int a1) {
+__attribute__((section(".text.ADXT_SetTimeOfst")))
+void ADXT_SetTimeOfst(void *a0, int a1) {
     NoOp_33E6A8();
     func_0032B658(a0, a1);
     NoOp_33E6B0();

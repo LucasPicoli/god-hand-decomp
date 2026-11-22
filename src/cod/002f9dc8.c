@@ -136,8 +136,8 @@ void func_00318700(char *this, char *other) {
 __attribute__((section(".text.func_003754A8")))
 void func_003754A8(int a0){*(int*)(a0+0xA8)=D_0076B580[0];*(int*)(a0+0xAC)=D_0076B580[1];*(int*)(a0+0xB0)=D_0076B580[2];*(int*)(a0+0xB4)=D_0076B580[3];*(int*)(a0+0xB8)=D_0076B580[4];*(int*)(a0+0xBC)=D_0076B580[5];*(int*)(a0+0xC0)=D_0076B580[6];}
 
-__attribute__((section(".text.func_003761D0")))
-void func_003761D0(char *p) {
+__attribute__((section(".text.ctlTrkInit")))
+void ctlTrkInit(char *p) {
     char *q = p + 0x40;
     int i;
     for (i = 0; i < 8; i++) {

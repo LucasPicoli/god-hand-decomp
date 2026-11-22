@@ -4,12 +4,12 @@
 extern int GuardedCall_00329FD0_329F98(void *hn);
 extern void func_0032A160(void *hn, int *ntime, int *tunit);
 extern int Obj0000_Get_D_003EEA70_360C58(void);
-extern void func_0035C5A0(void *tst, long long *a, long long *b, long long *c);
+extern void SFTST_Calc(void *tst, long long *a, long long *b, long long *c);
 extern void func_0034BD98(void *sj, int kind);
 extern void sfply_ChkCondDfl(void);
-extern void func_00357678(void *p);
-extern void func_00357720(void *p);
-extern void func_003577A8(void *p);
+extern void sfply_FixAvPlay(void *p);
+extern void sfply_AdjustSyncMode(void *p);
+extern void sfply_AdjustEtrg(void *p);
 
 __attribute__((section(".text.sfadxt_GetTimeTst")))
 void sfadxt_GetTimeTst(void *tst, void *hn, int *ptmr, int *ptunit)
@@ -26,7 +26,7 @@ void sfadxt_GetTimeTst(void *tst, void *hn, int *ptmr, int *ptunit)
     a[1] = tunit;
     b[0] = func_00360B18();
     b[1] = Obj0000_Get_D_003EEA70_360C58();
-    func_0035C5A0(tst, a, b, c);
+    SFTST_Calc(tst, a, b, c);
     *ptmr = (int)c[0];
     *ptunit = (int)c[1];
 }
@@ -55,7 +55,7 @@ void func_003571D0(void)
 __attribute__((section(".text.sfply_AdjustPrepEnd")))
 void sfply_AdjustPrepEnd(void *p)
 {
-    func_00357678(p);
-    func_00357720(p);
-    func_003577A8(p);
+    sfply_FixAvPlay(p);
+    sfply_AdjustSyncMode(p);
+    sfply_AdjustEtrg(p);
 }

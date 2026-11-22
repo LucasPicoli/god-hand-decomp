@@ -15,8 +15,8 @@ extern void func_003B1F28(char *a0, int a1);
 extern void func_00331D78(void);
 extern char D_00454130;
 
-__attribute__((section(".text.func_00337AC8")))
-void func_00337AC8(void) {
+__attribute__((section(".text.PS2RNA_FinishIopSnd")))
+void PS2RNA_FinishIopSnd(void) {
     int buf[4];
     if (D_003E0710 == 1) {
         if (D_003E0708 <= 0) {
@@ -28,8 +28,8 @@ void func_00337AC8(void) {
     D_003E0748[1] = buf[1];
 }
 
-__attribute__((section(".text.func_0033BF18")))
-int func_0033BF18(int *a0) {
+__attribute__((section(".text.SVM_TestAndSet")))
+int SVM_TestAndSet(int *a0) {
     int r;
     int t;
     if (D_007588B8 != 0) {
@@ -62,8 +62,8 @@ int func_00330CF0(int *a0) {
     return s0;
 }
 
-__attribute__((section(".text.func_00331EE8")))
-int func_00331EE8(int a0, int a1) {
+__attribute__((section(".text.SRD_SceOpen")))
+int SRD_SceOpen(int a0, int a1) {
     int s0;
     func_00331D40();
     s0 = func_003B4220(a0, a1);

@@ -5,8 +5,8 @@ extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void Obj3260_Tramp_003382A0_D320(void *sj, int id);
 extern void Obj3260_Tramp_00338338_D338(void *sj, int id);
-extern void func_00338378(void *sj, int id);
-extern void func_00326860(void *dec);
+extern void PS2RNA_SetDiscardSw(void *sj, int id);
+extern void ADXSJD_Stop(void *dec);
 extern void func_0033C228(void *buf);
 
 __attribute__((section(".text.func_00329E08")))
@@ -17,8 +17,8 @@ void func_00329E08(StmPly *p)
     Forward33B658_33E678();
     Obj3260_Tramp_003382A0_D320(p->sj, 0);
     Obj3260_Tramp_00338338_D338(p->sj, 0);
-    func_00338378(p->sj, 1);
-    func_00326860(p->dec);
+    PS2RNA_SetDiscardSw(p->sj, 1);
+    ADXSJD_Stop(p->dec);
     if (p->kind == 2) {
         rd = p->rd;
         if (rd != 0) {

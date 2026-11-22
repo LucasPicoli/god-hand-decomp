@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_00348968")))
-int func_00348968(int *a0) {
+__attribute__((section(".text.MWSST_IsEnable")))
+int MWSST_IsEnable(int *a0) {
     if (func_00348938(a0[1]) == 0) {
         return 0;
     }

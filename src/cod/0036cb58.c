@@ -5,8 +5,8 @@
  * naming the constants so the compiler materialises 0x1F before 0x64, matching
  * retail's register assignment (0x64 -> $a1). */
 
-__attribute__((section(".text.func_0036CB58")))
-void func_0036CB58(void *a0) {
+__attribute__((section(".text.sfxalp_InitHn")))
+void sfxalp_InitHn(void *a0) {
     char *p = (char *)a0;
     signed char *s2 = (signed char *)(p + 0x14);
     int *s1 = (int *)(p + 0x8);

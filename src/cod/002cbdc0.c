@@ -22,8 +22,8 @@ void cSnd_SeRecentPush(cSnd *self, int a, int b, int tick)
 typedef struct { char b[0x20]; } T32;
 
 
-__attribute__((section(".text.func_00374980")))
-void func_00374980(short i, void *dst) {
+__attribute__((section(".text.SdeSystemEfxGet")))
+void SdeSystemEfxGet(short i, void *dst) {
     *(T32 *)dst = *(T32 *)(D_0076A7D4 + i * 0x20);
 }
 
@@ -45,8 +45,8 @@ void SdePlayVolReset(unsigned char f) {
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 
 
-__attribute__((section(".text.func_003779D0")))
-void *func_003779D0(short key) {
+__attribute__((section(".text.SdeStrExeSearchByWorkId")))
+void *SdeStrExeSearchByWorkId(short key) {
     char *p;
     char *end;
     p = D_0076E590;

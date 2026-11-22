@@ -154,8 +154,8 @@ int __sread(void *cookie, char *buf, int n);
 int __swrite(void *cookie, const char *buf, int n);
 long __sseek(void *cookie, long offset, int whence);
 int func_003A6EC8(void *cookie);                                    /* __sclose */
-size_t func_003A6308(void *buf, size_t size, size_t count, FILE *fp);   /* fread */
-int func_003AE598(int c, FILE *fp);                                 /* ungetc */
+size_t fread_3A6308(void *buf, size_t size, size_t count, FILE *fp);   /* fread */
+int ungetc(int c, FILE *fp);                                 /* ungetc */
 int __svfscanf(FILE *fp, const char *fmt0, char *ap);              /* ap: the caller's va_list */
 
 #endif /* GODHAND_NEWLIBSTDIO_H */

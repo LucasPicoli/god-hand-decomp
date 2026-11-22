@@ -28,8 +28,8 @@ void displayScrollLayer(int id, int on) {
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
-__attribute__((section(".text.func_0037C1B8")))
-void func_0037C1B8(char *d, char *s) {
+__attribute__((section(".text.vregInit")))
+void vregInit(char *d, char *s) {
     *(unsigned short *)(d + 0x0) = *(unsigned short *)(s + 0x0);
     *(unsigned char *)(d + 0x4) = *(unsigned char *)(s + 0xC);
     *(unsigned char *)(d + 0x5) = *(unsigned char *)(s + 0xD);

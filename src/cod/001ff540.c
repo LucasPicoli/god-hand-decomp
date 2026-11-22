@@ -69,7 +69,7 @@ int LoadEntryByValue_1FFD00(int a0, int a1, int a2) {
     while (func_003244C8(s0) != 3) {
         sceGsSyncV(0);
     }
-    return func_00323A70(s0);
+    return ADXF_Close(s0);
 }
 
 __attribute__((section(".text.SetColorRgba_1FFE60")))

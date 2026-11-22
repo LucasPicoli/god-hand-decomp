@@ -5,8 +5,8 @@
 
 
 
-__attribute__((section(".text.func_003B3958")))
-int func_003B3958(void *sd, int cmd, int mode, void *send, int ssize,
+__attribute__((section(".text.sceFsSifCallRpc")))
+int sceFsSifCallRpc(void *sd, int cmd, int mode, void *send, int ssize,
                   void *recv, int rsize, void *endfunc, void *efarg, int nowait)
 {
     int i;

@@ -22,7 +22,7 @@ typedef struct StmQuerySys {
 #define STMQUERY_MGR_NAME   0x118   /* offset in the manager the lookup is keyed by */
 #define STMQUERY_NONE       (-1)    /* "no result" written to both outputs */
 
-extern int func_00359518(StmQuerySys *sys, int cur, unsigned int flag, long long *out);
-extern long long func_003520D8(void *range, void *key, int no, long long *pos, void *outB, void *outA);
+extern int SFPTS_ReadPtsQue(StmQuerySys *sys, int cur, unsigned int flag, long long *out);
+extern long long sfmpv_ComplementPts(void *range, void *key, int no, long long *pos, void *outB, void *outA);
 
 #endif

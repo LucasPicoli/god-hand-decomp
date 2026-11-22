@@ -13,8 +13,8 @@ extern int SFTIM_IsStagnant(void *hn);
 
 
 
-__attribute__((section(".text.func_0035A9C8")))
-int func_0035A9C8(int a0, int a1, int *a2)
+__attribute__((section(".text.SFTIM_GetVideoStartSample")))
+int SFTIM_GetVideoStartSample(int a0, int a1, int *a2)
 {
     int *p1 = (int *)(a0 + 0x118);
     int *p2 = (int *)(a0 + 0xEC);
@@ -36,7 +36,7 @@ int func_0035A9C8(int a0, int a1, int *a2)
             return -1;
         }
     }
-    r = func_0036C920(smp, a1, den);
+    r = UTY_MulDiv(smp, a1, den);
     D_003EE314 = smp;
     D_003EE318 = r;
     return r;
@@ -47,8 +47,8 @@ int func_0035A9C8(int a0, int a1, int *a2)
 
 
 
-__attribute__((section(".text.func_0035AAC8")))
-int func_0035AAC8(int a0, int *tp, int *unit)
+__attribute__((section(".text.SFTIM_GetTimeSub")))
+int SFTIM_GetTimeSub(int a0, int *tp, int *unit)
 {
     int *tim = (int *)(a0 + 0xD30);
     int *q = (int *)(a0 + 0xE48);
@@ -62,7 +62,7 @@ int func_0035AAC8(int a0, int *tp, int *unit)
     if (u == tim[82]) {
         *tp = *tp + tim[81];
     } else if (*q != 0) {
-        *tp = *tp + func_0036C920(q[9], u, q[10]);
+        *tp = *tp + UTY_MulDiv(q[9], u, q[10]);
     }
     return r;
 }
@@ -76,8 +76,8 @@ typedef int (*GetTimeFn)(int a0, int a1, int a2);
 
 
 
-__attribute__((section(".text.func_0035ABC0")))
-int func_0035ABC0(int a0, int a1, int a2)
+__attribute__((section(".text.SFTIM_GetNowTime")))
+int SFTIM_GetNowTime(int a0, int a1, int a2)
 {
     int cs[4];
     GetTimeFn *tbl;
@@ -95,8 +95,8 @@ int func_0035ABC0(int a0, int a1, int a2)
     return r;
 }
 
-__attribute__((section(".text.func_00358090")))
-int func_00358090(void *hn)
+__attribute__((section(".text.sfply_IsStagnant")))
+int sfply_IsStagnant(void *hn)
 {
     int *tmr = (int *)((char *)hn + 0x950);
 

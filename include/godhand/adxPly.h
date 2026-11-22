@@ -20,7 +20,7 @@ typedef struct AdxPly {
     signed char stat;                   /* 0x00 0 when the handle is free */
     char unk01[2];
     signed char maxnch;                 /* 0x03 number of channels in use */
-    void *rsv04;                        /* 0x04 helper released by func_00326718 */
+    void *rsv04;                        /* 0x04 helper released by ADXSJD_Destroy */
     int stm;                            /* 0x08 stream */
     void *rsv0C;                        /* 0x0C helper released by the tramp chain */
     SjObj *sjo;                         /* 0x10 main joint */

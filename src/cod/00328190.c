@@ -1,7 +1,7 @@
 /* cygnus-2.96 */
 
-__attribute__((section(".text.func_00328190")))
-void func_00328190(char *self)
+__attribute__((section(".text.adxstm_start_sub")))
+void adxstm_start_sub(char *self)
 {
     int state = *(int *)(self + 0x14);
     *(int *)(self + 0x34) = 0;

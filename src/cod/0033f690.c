@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
 
-extern void func_0033F7B8(void);
+extern void ADXM_ExecSvrAll(void);
 extern void Forward33BC48_33BD90(void);
 extern void Forward33BC48_33BDA8(void);
 extern void Forward33BC48_33BDC0(void);
 
-/* func_0033F690 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* ADXMNG_CallMainServerFunctions -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 32 B too early. The TRUE ENTRY is 0x0033F690.
  * This body is BYTE-EXACT over the TRUE span under sn-2.95.3-136
  * with no extra keys.
@@ -18,11 +18,11 @@ extern void Forward33BC48_33BDC0(void);
  * The orchestrator must ALSO REMOVE `func_0033F694` from config/symbol_addrs.txt,
  * or the two halves stay split and this body cannot land.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_0033F690 = 0x0033F690; // type:func
+ *   config/symbol_addrs.txt  +  ADXMNG_CallMainServerFunctions = 0x0033F690; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_0033F690. AFTER the resplat rename it:
- *   sed -i 's/func_0033F690/func_0033F690/g' <this file>
- * The name is left as func_0033F690 here so the body stays verifiable against
+ * The function then carries the name ADXMNG_CallMainServerFunctions. AFTER the resplat rename it:
+ *   sed -i 's/ADXMNG_CallMainServerFunctions/ADXMNG_CallMainServerFunctions/g' <this file>
+ * The name is left as ADXMNG_CallMainServerFunctions here so the body stays verifiable against
  * today's monolith.
  */
 
@@ -32,9 +32,9 @@ extern void Forward33BC48_33BDC0(void);
 
 
 
-__attribute__((section(".text.func_0033F690")))
-int func_0033F690(void) {
-    int r = func_0033F850(D_003EB848);
+__attribute__((section(".text.ADXMNG_CallMainServerFunctions")))
+int ADXMNG_CallMainServerFunctions(void) {
+    int r = adxmng_DecideFramework(D_003EB848);
     int lo = r < 2;
     if (r == 1) goto a1;
     if (lo) goto out;
@@ -43,7 +43,7 @@ int func_0033F690(void) {
     do { } while (0);
     goto out;
 a1:
-    func_0033F7B8();
+    ADXM_ExecSvrAll();
     do { } while (0);
     goto out;
 a2:

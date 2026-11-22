@@ -12,9 +12,9 @@ extern void func_00329870(AdxPly *ply);
 extern void func_00329898(AdxPly *ply);
 extern void func_00329ED8(AdxPly *ply);
 extern void Obj3260_TrampChain_D2D8(void *p);
-extern void func_00326718(void *p);
-extern void func_003283E8(int stm, int a, int b);
-extern void func_00327D90(int stm);
+extern void ADXSJD_Destroy(void *p);
+extern void ADXSTM_EntryEosFunc(int stm, int a, int b);
+extern void ADXSTM_Destroy(int stm);
 extern void func_00335500(void *p);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
@@ -22,9 +22,9 @@ extern void ADXAMP_Destroy(void *amp);
 extern SfdDecCfgA D_00766BA8;
 extern SfdDecCfgB D_00766BD0;
 extern SfdDecIds D_00766BD8;
-extern void func_00354A70(StmSlot *s, int *ids, int n);
-extern void func_00354B20(void *que);
-extern void func_003520B0(void *win);
+extern void sfmpv_InitFrmObj(StmSlot *s, int *ids, int n);
+extern void sfmpv_InitPicAtr(void *que);
+extern void sfmpv_InitComplementPts(void *win);
 extern void func_00354B40(void *work);
 
 /* Fields of the handle that sftim.h does not name yet (offsets from the handle). */
@@ -74,14 +74,14 @@ int sfply_CanStart(SftimHn *hn)
     if (Obj35C0_IsIndexedSet_1F3C_C380(hn, 1) != 0 && func_0034CAD0(hn, 0) > 0) {
         return 0;
     }
-    if (GetArrayElemA0C_35A1C8(hn, 5) == 1 && func_00357DA0(hn) != 0) {
+    if (GetArrayElemA0C_35A1C8(hn, 5) == 1 && sfply_EnoughViData(hn) != 0) {
         return 0;
     }
-    func_0035AB98(hn, &t[0], &t[1]);
+    SFTIM_GetTime(hn, &t[0], &t[1]);
     tim = &hn->tim;
     rate = tim->f288;
     now = tim->f284;
-    now -= func_0036C920(GetArrayElemA0C_35A1C8(hn, 0x44), rate, 1000000);
+    now -= UTY_MulDiv(GetArrayElemA0C_35A1C8(hn, 0x44), rate, 1000000);
     if (t[0] <= 0 || now <= 0) {
         return 0;
     }
@@ -115,13 +115,13 @@ void adxPly_destroy(AdxPly *ply)
     p = ply->rsv04;
     if (p != 0) {
         ply->rsv04 = 0;
-        func_00326718(p);
+        ADXSJD_Destroy(p);
     }
     stm = ply->stm;
     if (stm != 0) {
         ply->stm = 0;
-        func_003283E8(stm, 0, 0);
-        func_00327D90(stm);
+        ADXSTM_EntryEosFunc(stm, 0, 0);
+        ADXSTM_Destroy(stm);
     }
     p = ply->rsv94;
     if (p != 0) {
@@ -170,7 +170,7 @@ int SfdDec_init(void *hn, SfdDecMgr *mgr)
 {
     int i;
 
-    if (func_003549A8() != 0) {
+    if (sfmpv_CheckMpvPara() != 0) {
         return func_0034DD70(0, 0xFF000F15);
     }
     mgr->cfgA = D_00766BA8;
@@ -190,14 +190,14 @@ int SfdDec_init(void *hn, SfdDecMgr *mgr)
     mgr->unk16C = 0;
     mgr->unk170 = 0;
     mgr->unk174 = 0;
-    func_00354A70(mgr->slot, mgr->ids.w, SFDDEC_SLOT_NUM);
+    sfmpv_InitFrmObj(mgr->slot, mgr->ids.w, SFDDEC_SLOT_NUM);
     mgr->unk84 = 0;
     mgr->unk88 = 0;
-    func_00354B20(mgr->que);
+    sfmpv_InitPicAtr(mgr->que);
     mgr->unk10C = -1;
     mgr->unk110 = 0;
     mgr->unk114 = 0x7FFFFFFF;
-    func_003520B0(mgr->win);
+    sfmpv_InitComplementPts(mgr->win);
     func_00354B40(mgr->work);
     for (i = SFDDEC_SLOT_NUM - 1; i >= 0; i--) {
         mgr->slot[i].unk54 = (int)&mgr->ent[i];

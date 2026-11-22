@@ -6,8 +6,8 @@ extern int Obj0000_Get_D_003F1FF0_36CCA8(void);
 
 
 
-__attribute__((section(".text.func_0036C8D0")))
-int func_0036C8D0(int *a0)
+__attribute__((section(".text.MPVM2V_RequestStop")))
+int MPVM2V_RequestStop(int *a0)
 {
     int v0 = Obj0000_Get_D_003F1FF0_36CCA8();
     if (v0 != 0) {
@@ -19,8 +19,8 @@ int func_0036C8D0(int *a0)
 }
 
 /* MATCH via cygnus-2.96. */
-__attribute__((section(".text.func_0036CBC0")))
-void func_0036CBC0(int *a0, int a1, int a2)
+__attribute__((section(".text.SFXA_MakeAlpLumiTbl")))
+void SFXA_MakeAlpLumiTbl(int *a0, int a1, int a2)
 {
     int *p = a0 + 2;
     void (*fn)(int, int, int, int) = (void (*)(int, int, int, int))a0[6];

@@ -1,10 +1,10 @@
-/* cygnus-2.96: func_003382A0, sets the transfer group's pause request; any request other than 1
+/* cygnus-2.96: PS2RNA_SetTransSw, sets the transfer group's pause request; any request other than 1
  * stops every transfer in the group. */
 #include "godhand/criStm.h"
 extern void DTR_Stop(int dtr);
 
-__attribute__((section(".text.func_003382A0")))
-void func_003382A0(char *grp, int req)
+__attribute__((section(".text.PS2RNA_SetTransSw")))
+void PS2RNA_SetTransSw(char *grp, int req)
 {
     signed char n = grp[0x52];
     int i;

@@ -31,13 +31,13 @@ typedef struct HostFileHn {
 extern char D_003DA250[];
 
 extern void func_00334008(void *dev, char *msg);
-extern HostFileHn *func_003344C8(void);
-extern void func_003351C0(void *dev, HostFileInfo *info);
+extern HostFileHn *htci_alloc(void);
+extern void htci_get_finf(void *dev, HostFileInfo *info);
 extern void func_00334D68(void *dev, char *name);
 extern void LogPrintf(char *fmt, ...);
 extern long func_00334310(void *dev);
 extern void PushGlobalD8478History_331C78(int tag);
-extern int func_00331EE8(char *name, int mode);
+extern int SRD_SceOpen(char *name, int mode);
 extern void Forward3A52F0_334500(HostFileHn *f);
 
 __attribute__((section(".text.func_00334520")))
@@ -55,12 +55,12 @@ HostFileHn *func_00334520(void *dev, void *arg, int mode)
         func_00334008(0, D_004548A0);
         return 0;
     }
-    f = func_003344C8();
+    f = htci_alloc();
     if (f == 0) {
         func_00334008(0, D_004548C8);
         return 0;
     }
-    func_003351C0(dev, &info.f);
+    htci_get_finf(dev, &info.f);
     if (info.f.size == 0) {
         func_00334D68(dev, D_003DA250);
         LogPrintf(D_004548F8, dev);
@@ -68,7 +68,7 @@ HostFileHn *func_00334520(void *dev, void *arg, int mode)
         if (f->size == 0)
             return 0;
         PushGlobalD8478History_331C78(0x4900);
-        f->fd = func_00331EE8(D_003DA250, D_003DA390);
+        f->fd = SRD_SceOpen(D_003DA250, D_003DA390);
         PushGlobalD8478History_331C78(0x4901);
         if (f->fd < 0) {
             func_00334008(0, D_00454920);

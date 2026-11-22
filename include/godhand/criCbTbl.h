@@ -15,6 +15,6 @@ typedef struct CriCbEnt {
 
 extern CriCbEnt D_00758620[CRICB_GROUPS][CRICB_SLOTS];
 
-extern void func_0033B790(const char *msg);
+extern void SVM_CallErr1(const char *msg);
 
 #endif

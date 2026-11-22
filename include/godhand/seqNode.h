@@ -75,21 +75,21 @@ typedef struct SeqCmd {
     char unk14[0x20 - 0x14];
     short req;                  /* 0x20 sound id; the channel allocators take the record from here */
     char unk22[4];
-    signed char voice;          /* 0x26 voice kind func_0037D298 allocates */
+    signed char voice;          /* 0x26 voice kind SdeVregOpen allocates */
     char unk27[0x48 - 0x27];
     unsigned short seqArg;      /* 0x48 */
     char unk4A[0x50 - 0x4A];
 } SeqCmd;
 
-#define SEQCMD_M_ALT      0x01  /* mask: take the channel from func_0037CF00 */
+#define SEQCMD_M_ALT      0x01  /* mask: take the channel from SdeVmngOpenForIss */
 #define SEQCMD_M_SEQUENCE 0x08  /* mask: the request plays a sequence */
 
 #define SEQCMD_F_STOP   0x10    /* a stop request rather than a start */
 #define SEQCMD_NUM      48
 
 extern SeqCmd D_0076B9C0[SEQCMD_NUM];
-extern int func_0037C330(SeqCmd *c);
-extern void func_0037BE98(void);
+extern int vexeCmdExec(SeqCmd *c);
+extern void SdeVoiceExecute(void);
 extern int func_0037BF10(SeqCmd *h);
 
 /* A sound voice node: its work and the method table it dispatches through. */
@@ -137,7 +137,7 @@ typedef struct SndCore {
 
 extern SndCore D_0076A7D4[2];
 extern int func_00374AE0(int id);
-extern void func_00377CB8(void);
+extern void sdeEfxWorkClear(void);
 
 /* One voice in the output block posted to the sound driver (0x20 bytes, 64 of them). */
 typedef struct SndVoiceOut {
@@ -157,12 +157,12 @@ extern SeqLink D_0076C8C0[SEQ_NUM];
 extern SeqNode D_0076CF20[SEQ_NUM];
 
 /* Take a free voice node of the given kind with the selected allocator; 0 when none is free. */
-extern SeqNode *func_0037D298(int kind);
-extern void func_0037D148(SeqNode *n);
-extern void func_0037D3B0(SeqNode *n);
+extern SeqNode *SdeVregOpen(int kind);
+extern void SdeVmngClose(SeqNode *n);
+extern void SdeVregClose(SeqNode *n);
 extern void func_0037D820(SeqNode *n);
 extern void func_0037D8B8(SeqNode *n, short arg);
-extern void func_00378020(SeqTimer *t);
+extern void SdeFadeSpdSet(SeqTimer *t);
 extern void func_0037D558(SeqNode *self);
 extern void func_0037C720(SeqNode *self);
 extern void func_003780F8(unsigned short angle, float *l, float *r);

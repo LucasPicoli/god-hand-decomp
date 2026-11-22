@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0035F1D0, builds a frame info block and the (time, rate) pair for a frame and passes
+/* cygnus-2.96: sfxcnv_ExecCnvFrmByCbFunc, builds a frame info block and the (time, rate) pair for a frame and passes
  * them to the handle's frame callback. */
 typedef struct {
     int time; /* 0x00 */
@@ -15,18 +15,18 @@ struct Sfx {
     void (*cbfn)(char *inf, void *frm, FrmTim *tim); /* 0x68 */
 };
 extern void *func_003A52F0(void *d, int c, unsigned int n);
-extern void func_0035F288(Sfx *sfx, void *src, char *inf);
+extern void sfxcnv_MakeCftSrcBuf(Sfx *sfx, void *src, char *inf);
 extern int func_0035FD78(Sfx *sfx);
 extern void Obj35E8_StepCounter_EA60(void *frm);
 
-__attribute__((section(".text.func_0035F1D0")))
-void func_0035F1D0(Sfx *sfx, void *src, void *frm, int intime)
+__attribute__((section(".text.sfxcnv_ExecCnvFrmByCbFunc")))
+void sfxcnv_ExecCnvFrmByCbFunc(Sfx *sfx, void *src, void *frm, int intime)
 {
     char inf[0x64];
     FrmTim tim;
 
     func_003A52F0(inf, 0, sizeof(inf));
-    func_0035F288(sfx, src, inf);
+    sfxcnv_MakeCftSrcBuf(sfx, src, inf);
     tim.time = (intime == 1) ? sfx->time : 0;
     tim.rate = sfx->rate;
     if (func_0035FD78(sfx) == 1)

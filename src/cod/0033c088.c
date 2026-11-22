@@ -24,8 +24,8 @@ struct AMP {
 
 
 
-__attribute__((section(".text.func_0033C088")))
-void func_0033C088(struct AMP *amp)
+__attribute__((section(".text.ADXAMP_Start")))
+void ADXAMP_Start(struct AMP *amp)
 {
     struct SJI buf;
     int i;

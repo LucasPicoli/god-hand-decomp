@@ -35,8 +35,8 @@ void func_00330E70(int a, int b)
     }
 }
 
-__attribute__((section(".text.func_00337BC8")))
-void func_00337BC8(char *p) {
+__attribute__((section(".text.PS2RNA_ResetSpu2CoreNo")))
+void PS2RNA_ResetSpu2CoreNo(char *p) {
     if (D_003E0710 == 1) {
         if (D_003E0708 <= 0) {
             return;
@@ -45,24 +45,24 @@ void func_00337BC8(char *p) {
     *(unsigned char *)(p + 0x56) = *(unsigned char *)(p + 0x1);
 }
 
-__attribute__((section(".text.func_00338990")))
-void func_00338990(void) {
+__attribute__((section(".text.SJCRS_Init")))
+void SJCRS_Init(void) {
     D_003E3A90++;
     if (D_003E3A90 == 1) {
         D_003E3A88 = 0;
     }
 }
 
-__attribute__((section(".text.func_003389C8")))
-void func_003389C8(void) {
+__attribute__((section(".text.SJCRS_Finish")))
+void SJCRS_Finish(void) {
     D_003E3A90--;
     if (D_003E3A90 == 0) {
         D_003E3A88 = 0;
     }
 }
 
-__attribute__((section(".text.func_0033E618")))
-void func_0033E618(void) {
+__attribute__((section(".text.ADXCRS_Init")))
+void ADXCRS_Init(void) {
     D_003EADB0++;
     if (D_003EADB0 == 1) {
         D_003EADA8 = 0;
@@ -75,8 +75,8 @@ void func_0033E618(void) {
 
 
 
-__attribute__((section(".text.func_003430C8")))
-int func_003430C8(void *a0, char *a1, int *out)
+__attribute__((section(".text.mwsfcre_MallocRfb")))
+int mwsfcre_MallocRfb(void *a0, char *a1, int *out)
 {
     char hold[16];
     int ret;
@@ -110,8 +110,8 @@ int func_003430C8(void *a0, char *a1, int *out)
 }
 
 /* cygnus-2.96 | drop-freorder-blocks */
-__attribute__((section(".text.func_003556A0")))
-void func_003556A0(int *p)
+__attribute__((section(".text.SFMPVF_EndRefFrm")))
+void SFMPVF_EndRefFrm(int *p)
 {
     if (p != 0) {
         if (*p == 4) {
@@ -122,8 +122,8 @@ void func_003556A0(int *p)
     }
 }
 
-__attribute__((section(".text.func_0035A260")))
-void func_0035A260(char *base, int i, int *out) {
+__attribute__((section(".text.SFSET_GetTrHn")))
+void SFSET_GetTrHn(char *base, int i, int *out) {
     int *p = *(int **)(base + i * 0x44 + 0x1F38);
     if (p == 0) {
         *out = 0;
@@ -132,8 +132,8 @@ void func_0035A260(char *base, int i, int *out) {
     }
 }
 
-__attribute__((section(".text.func_0035A768")))
-int func_0035A768(char *p) {
+__attribute__((section(".text.sftim_IsTimeIncre")))
+int sftim_IsTimeIncre(char *p) {
     char *q = p + 0x950;
 
     if (*(int *)(p + 0x48) != 4) {
@@ -145,8 +145,8 @@ int func_0035A768(char *p) {
     return *(int *)(q + 0x20) == 0;
 }
 
-__attribute__((section(".text.func_0035B5B8")))
-void func_0035B5B8(char *p, int *o1, int *o2) {
+__attribute__((section(".text.SFTIM_GetTimeOneFrmVideo")))
+void SFTIM_GetTimeOneFrmVideo(char *p, int *o1, int *o2) {
     int i = *(int *)(p + 0x920);
     int v;
 
@@ -163,8 +163,8 @@ void func_0035B5B8(char *p, int *o1, int *o2) {
 /* cygnus-2.96 | drop-freorder-blocks */
 
 
-__attribute__((section(".text.func_00377FF8")))
-int func_00377FF8(void)
+__attribute__((section(".text.SdeSndIdNew")))
+int SdeSndIdNew(void)
 {
     int n = D_0076A790[6] + 1;
 

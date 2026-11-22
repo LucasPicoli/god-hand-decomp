@@ -1469,22 +1469,22 @@ void Obj0000_Init_Fields_B4_B8_BC_Entries(Obj344FD8 *a0) {
  * See the
  * sibling TU header for the matching rationale.  */
 
-extern void func_0034FA28(void *obj, int *out0, int *out4);
-extern void func_0034F718(void *obj);
-extern void func_0034FAD8(void *obj);
-extern void func_0034F930(void *obj);
-extern void func_0034FB70(void *obj);
+extern void sfmps_GetStmNum(void *obj, int *out0, int *out4);
+extern void sfmps_ChkPrepFlg(void *obj);
+extern void sfmps_SetMvInf(void *obj);
+extern void sfmps_AdjustAvPlay(void *obj);
+extern void sfmps_SetMpsHd(void *obj);
 extern void func_0034FC20(void *obj);
 
 __attribute__((section(".text.UpdateObj0000Fields_34F6C0")))
 void UpdateObj0000Fields_34F6C0(void *obj) {
     int out0;
     int out4;
-    func_0034FA28(obj, &out0, &out4);
-    func_0034F718(obj);
-    func_0034FAD8(obj);
-    func_0034F930(obj);
-    func_0034FB70(obj);
+    sfmps_GetStmNum(obj, &out0, &out4);
+    sfmps_ChkPrepFlg(obj);
+    sfmps_SetMvInf(obj);
+    sfmps_AdjustAvPlay(obj);
+    sfmps_SetMpsHd(obj);
     func_0034FC20(obj);
 }
 
@@ -2032,9 +2032,9 @@ extern int func_003331E0(void);
 __attribute__((section(".text.Forward3331E0_3332B0")))
 int Forward3331E0_3332B0(void) { return func_003331E0(); }
 
-extern int func_00331C98(void);
+extern int SRD_SetFilesystem64(void);
 __attribute__((section(".text.Forward331C98_333F60")))
-int Forward331C98_333F60(void) { return func_00331C98(); }
+int Forward331C98_333F60(void) { return SRD_SetFilesystem64(); }
 
 extern int func_003A52F0(int a0, int a1, int a2);
 __attribute__((section(".text.Forward3A52F0_334500")))
@@ -2068,17 +2068,17 @@ extern int func_003A52F0(int a0, int a1, int a2);
 __attribute__((section(".text.Forward3A52F0_336588")))
 int Forward3A52F0_336588(int a0) { return func_003A52F0(a0, 0, 0x38); }
 
-extern int func_003406D0(int a0);
+extern int PL2ENC_Reset(int a0);
 __attribute__((section(".text.Forward3406D0_336E20")))
-int Forward3406D0_336E20(int a0) { return func_003406D0(*(int*)((char*)a0 + 0xE8)); }
+int Forward3406D0_336E20(int a0) { return PL2ENC_Reset(*(int*)((char*)a0 + 0xE8)); }
 
-extern int func_00340740(int a0, short a1);
+extern int PL2ENC_Encode(int a0, short a1);
 __attribute__((section(".text.Forward340740_336E38")))
-int Forward340740_336E38(int a0, short a1) { return func_00340740(*(int*)((char*)a0 + 0xE8), a1); }
+int Forward340740_336E38(int a0, short a1) { return PL2ENC_Encode(*(int*)((char*)a0 + 0xE8), a1); }
 
-extern int func_00340A20(int a0);
+extern int PL2ENC_SetFrequency(int a0);
 __attribute__((section(".text.Forward340A20_336E58")))
-int Forward340A20_336E58(int a0) { return func_00340A20(*(int*)((char*)a0 + 0xE8)); }
+int Forward340A20_336E58(int a0) { return PL2ENC_SetFrequency(*(int*)((char*)a0 + 0xE8)); }
 
 extern void func_0033F130(int a0);
 __attribute__((section(".text.Forward33F130_336E70")))
@@ -2108,21 +2108,21 @@ extern int func_00332778(int);
 __attribute__((section(".text.Forward332778_33B200")))
 int Forward332778_33B200(int a0) { return func_00332778(a0); }
 
-extern int func_0033B568(int);
+extern int svm_lock(int);
 __attribute__((section(".text.Forward33B568_33B658")))
-int Forward33B568_33B658(void) { return func_0033B568(1); }
+int Forward33B568_33B658(void) { return svm_lock(1); }
 
 extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B670")))
 int Forward33B5C8_33B670(void) { return svm_unlock(1); }
 
-extern int func_0033B568(int);
+extern int svm_lock(int);
 __attribute__((section(".text.Forward33B568_33B688")))
-int Forward33B568_33B688(void) { return func_0033B568(2); }
+int Forward33B568_33B688(void) { return svm_lock(2); }
 
-extern int func_0033B568(int);
+extern int svm_lock(int);
 __attribute__((section(".text.Forward33B568_33B6A0")))
-int Forward33B568_33B6A0(void) { return func_0033B568(4); }
+int Forward33B568_33B6A0(void) { return svm_lock(4); }
 
 extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B6B8")))
@@ -2132,37 +2132,37 @@ extern int svm_unlock(int);
 __attribute__((section(".text.Forward33B5C8_33B6D0")))
 int Forward33B5C8_33B6D0(void) { return svm_unlock(4); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD18")))
-int Forward33BC48_33BD18(void) { return func_0033BC48(0); }
+int Forward33BC48_33BD18(void) { return SVM_ExecSvrFunc(0); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD30")))
-int Forward33BC48_33BD30(void) { return func_0033BC48(1); }
+int Forward33BC48_33BD30(void) { return SVM_ExecSvrFunc(1); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD48")))
-void Forward33BC48_33BD48(void) { func_0033BC48(2); }
+void Forward33BC48_33BD48(void) { SVM_ExecSvrFunc(2); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD60")))
-int Forward33BC48_33BD60(void) { return func_0033BC48(3); }
+int Forward33BC48_33BD60(void) { return SVM_ExecSvrFunc(3); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD78")))
-int Forward33BC48_33BD78(void) { return func_0033BC48(4); }
+int Forward33BC48_33BD78(void) { return SVM_ExecSvrFunc(4); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BD90")))
-int Forward33BC48_33BD90(void) { return func_0033BC48(5); }
+int Forward33BC48_33BD90(void) { return SVM_ExecSvrFunc(5); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BDA8")))
-int Forward33BC48_33BDA8(void) { return func_0033BC48(6); }
+int Forward33BC48_33BDA8(void) { return SVM_ExecSvrFunc(6); }
 
-extern int func_0033BC48(int);
+extern int SVM_ExecSvrFunc(int);
 __attribute__((section(".text.Forward33BC48_33BDC0")))
-int Forward33BC48_33BDC0(void) { return func_0033BC48(7); }
+int Forward33BC48_33BDC0(void) { return SVM_ExecSvrFunc(7); }
 
 extern int func_0032B300(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward32B300_342AF0")))
@@ -2170,10 +2170,10 @@ int Forward32B300_342AF0(int a0, int a1, int a2, int a3) {
     return func_0032B300(a0, a1, a2, a3);
 }
 
-extern void func_0032A9F0(int a0, int a1);
+extern void ADXT_SetOutVol(int a0, int a1);
 __attribute__((section(".text.Forward32A9F0_342B08")))
 void Forward32A9F0_342B08(int a0, int a1) {
-    func_0032A9F0(a0, a1);
+    ADXT_SetOutVol(a0, a1);
 }
 
 extern int func_0032AAA0(int a0, int a1, int a2, int a3);
@@ -2182,10 +2182,10 @@ int Forward32AAA0_342B20(int a0, int a1, int a2, int a3) {
     return func_0032AAA0(a0, a1, a2, a3);
 }
 
-extern void func_0032B660(int a0, int a1);
+extern void ADXT_SetLnkSw(int a0, int a1);
 __attribute__((section(".text.Forward32B660_342B38")))
 void Forward32B660_342B38(int a0, int a1) {
-    func_0032B660(a0, a1);
+    ADXT_SetLnkSw(a0, a1);
 }
 
 extern int func_003443E0(int a0, int a1, int a2, int a3);
@@ -2194,10 +2194,10 @@ int Forward3443E0_3443C8(int a0, int a1, int a2, int a3) {
     return func_003443E0(a0, a1, a2, a3);
 }
 
-extern int func_00345250(int a0, int a1, int a2, int a3);
+extern int MWSFD_GetTotalFrmNum(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward345250_344F18")))
 int Forward345250_344F18(int a0, int a1, int a2, int a3) {
-    return func_00345250(a0, a1, a2, a3);
+    return MWSFD_GetTotalFrmNum(a0, a1, a2, a3);
 }
 
 extern int MWSFSVM_Error(int a0);
@@ -2206,10 +2206,10 @@ int Forward348BE0_3452C0(int a0, int a1) {
     return MWSFSVM_Error(a1);
 }
 
-extern int func_00345D58(int a0, int a1, int a2, int a3);
+extern int mwply_StartSj(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward345D58_345D40")))
 int Forward345D58_345D40(int a0, int a1, int a2, int a3) {
-    return func_00345D58(a0, a1, a2, a3);
+    return mwply_StartSj(a0, a1, a2, a3);
 }
 
 extern int func_00345EE0(int a0, int a1, int a2, int a3);
@@ -2230,10 +2230,10 @@ int Forward346450_3462C0(int a0, int a1, int a2, int a3) {
     return func_00346450(a0, a1, a2, a3);
 }
 
-extern int func_00325F20(int a0, int a1, int a2, int a3);
+extern int ADXM_WaitVsync(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward325F20_3466A8")))
 int Forward325F20_3466A8(int a0, int a1, int a2, int a3) {
-    return func_00325F20(a0, a1, a2, a3);
+    return ADXM_WaitVsync(a0, a1, a2, a3);
 }
 
 extern int LatchDmaModeAndQueueTransfers(int a0, int a1, int a2, int a3);
@@ -2242,10 +2242,10 @@ int Forward3462D8_3466C0(int a0, int a1, int a2, int a3) {
     return LatchDmaModeAndQueueTransfers(a0, a1, a2, a3);
 }
 
-extern int func_00346368(int a0, int a1, int a2, int a3);
+extern int MWRSC_RestoreRsc(int a0, int a1, int a2, int a3);
 __attribute__((section(".text.Forward346368_3466D8")))
 int Forward346368_3466D8(int a0, int a1, int a2, int a3) {
-    return func_00346368(a0, a1, a2, a3);
+    return MWRSC_RestoreRsc(a0, a1, a2, a3);
 }
 
 extern int MWSFSVM_Error(int a0);

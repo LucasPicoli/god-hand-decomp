@@ -30,8 +30,8 @@ int SdeIssTblGet(short a0, short a1, short *a2)
     return -1;
 }
 
-__attribute__((section(".text.func_00375AB0")))
-int func_00375AB0(short a0, short a1, short *a2)
+__attribute__((section(".text.SdeSsqTblGet")))
+int SdeSsqTblGet(short a0, short a1, short *a2)
 {
     SndBank *b;
     char *src;

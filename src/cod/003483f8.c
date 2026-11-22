@@ -1,7 +1,7 @@
 extern void *func_00348938(void *);
 
-__attribute__((section(".text.func_003483F8")))
-void func_003483F8(void *key, void *argument)
+__attribute__((section(".text.MWSST_DestroyCoreHn")))
+void MWSST_DestroyCoreHn(void *key, void *argument)
 {
     void *object;
     void (*method)(void *);

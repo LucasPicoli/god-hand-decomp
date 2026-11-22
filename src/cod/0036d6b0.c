@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0036D6B0")))
-void func_0036D6B0(int *d, int *s, unsigned int n)
+__attribute__((section(".text.UTY_MemcpyDword")))
+void UTY_MemcpyDword(int *d, int *s, unsigned int n)
 {
     unsigned int r = n & 0xF;
     int a, b, c, e;

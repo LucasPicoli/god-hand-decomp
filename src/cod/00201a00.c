@@ -7,7 +7,7 @@ extern char D_00752C00;
 extern void cMc_loadRunRelease(void);
 extern void cTaskManager_execute(void *, void *, int);
 extern int func_003999A8(void);
-extern void func_00323A70(void *);
+extern void ADXF_Close(void *);
 extern void func_002BF708(void *);
 extern void SysFlags_saveAndFreeze(void *);
 extern void func_002C0A08(void *);
@@ -40,7 +40,7 @@ int Entry_releaseIfReady(void) {
     if (func_003999A8() == 0x14) {
         void *e = func_00323618(&D_0042C780, 0);
         if (e != 0) {
-            func_00323A70(e);
+            ADXF_Close(e);
             return 0;
         }
     }

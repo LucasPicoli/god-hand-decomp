@@ -4,8 +4,8 @@
 /* After a decode pass: count the samples the blocks produced (the last block
  * only up to the end of the data), and when the write position runs past the
  * output ring, copy the overhang back to its start. */
-__attribute__((section(".text.func_0033D598")))
-void func_0033D598(AdxbSte *adx)
+__attribute__((section(".text.ADXB_EndDecode")))
+void ADXB_EndDecode(AdxbSte *adx)
 {
     AdxbSteWork *work;
     int frameLen;

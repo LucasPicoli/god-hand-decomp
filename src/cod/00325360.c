@@ -15,9 +15,9 @@ extern void Forward33BC48_33BD90(void);
 extern void Forward33BC48_33BDA8(void);
 extern void Forward33BC48_33BDC0(void);
 extern void SfdTrack_getObj(int, int, int *);
-extern void func_0034CAF8(int, int *, int *);
-extern long long func_0034CCB0(long long, int);
-extern void func_00344680(int *a0, int a1);
+extern void SFBUF_GetFlowCnt(int, int *, int *);
+extern long long SFBUF_UpdateFlowCnt(long long, int);
+extern void MWSFD_Free(int *a0, int a1);
 extern void func_00352AA0(int *a0, int *a1);
 extern void SFTIM_Tc2Time(int *a0, int *a1, int *a2);
 extern int D_003EE278;
@@ -28,26 +28,26 @@ extern int Obj34D8_SetGlobalEE0B8_IfField48();
 extern void (*D_003E9D28)(int);
 extern void func_0036C688(void *a0);
 extern void func_0036C440(void *a0, int a1);
-extern void func_0035AB98(void *a, void *b, void *c);
+extern void SFTIM_GetTime(void *a, void *b, void *c);
 extern void *getElemInfPtr(int a0, int a1);
 extern int isEnableVidFtr(int a0, void *a1);
 extern int D_003D84B4;
 extern int D_004541C0;
-extern void func_00329EA8(void);
+extern void ADXT_Stop(void);
 extern void Forward33B658_325C60(void);
-extern void func_00340680(void *);
-extern void func_003404F0(void *);
+extern void PL2ENC_Destroy(void *);
+extern void PL2ENC_Finish(void *);
 extern void Forward33B670_325C78(void);
 extern int Thunk_func_0033B658(int *);
 extern int Thunk_func_0033B670(int *);
-extern void func_00359DF0(int a0);
-extern void func_003298C0(void *);
+extern void sfsee_UpdateEByteRate(int a0);
+extern void ADXT_Destroy(void *);
 extern int D_00459920[];
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *a0);
 extern void M2VERR_SetCode(int a0, unsigned int a1);
 
-__attribute__((section(".text.func_00359DA8")))
-int func_00359DA8(char *a0) {
+__attribute__((section(".text.sfsee_GetInSjReadTot")))
+int sfsee_GetInSjReadTot(char *a0) {
     char *a1;
     int a2;
     int v1;
@@ -68,8 +68,8 @@ int func_00359DA8(char *a0) {
     return v0;
 }
 
-__attribute__((section(".text.func_0035A050")))
-void func_0035A050(void *a0, int a1, int a2) {
+__attribute__((section(".text.sfset_SetUsrCond")))
+void sfset_SetUsrCond(void *a0, int a1, int a2) {
     if (sfset_IsCondValid()) {
         ((int *)a0)[a1 + 0xB9C/4] = a2;
     }
@@ -88,8 +88,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DCB0;
 
-__attribute__((section(".text.func_0035DCB0")))
-int func_0035DCB0(CGObj_t_0035DCB0 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyPketSizLen")))
+int SFH_AnlyPketSizLen(CGObj_t_0035DCB0 *a0, int *a1)
 {
     CVerData_t_0035DCB0 *s0;
     int v0;
@@ -116,8 +116,8 @@ typedef struct {
     int fieldC;
 } CVerData_t_0035DD00;
 
-__attribute__((section(".text.func_0035DD00")))
-int func_0035DD00(CGObj_t_0035DD00 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyPackSiz")))
+int SFH_AnlyPackSiz(CGObj_t_0035DD00 *a0, int *a1)
 {
     CVerData_t_0035DD00 *s0;
     int v0;
@@ -148,8 +148,8 @@ typedef struct {
     int field10;
 } CVerData_t_0035E080;
 
-__attribute__((section(".text.func_0035E080")))
-int func_0035E080(CGObj_t_0035E080 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyMaxFrmNum")))
+int SFH_AnlyMaxFrmNum(CGObj_t_0035E080 *a0, int *a1)
 {
     CVerData_t_0035E080 *s0;
     int v0;
@@ -164,8 +164,8 @@ int func_0035E080(CGObj_t_0035E080 *a0, int *a1)
     return 1;
 }
 
-__attribute__((section(".text.func_0035FB88")))
-void func_0035FB88(int a0)
+__attribute__((section(".text.SFX_Destroy")))
+void SFX_Destroy(int a0)
 {
     int s0;
     int arg;
@@ -187,8 +187,8 @@ int func_0033A190(int a0, int a1, int a2) {
     return r;
 }
 
-__attribute__((section(".text.func_0033F7B8")))
-int func_0033F7B8(void) {
+__attribute__((section(".text.ADXM_ExecSvrAll")))
+int ADXM_ExecSvrAll(void) {
     Forward33BC48_33BD18();
     Forward33BC48_33BD30();
     Forward33BC48_33BD48();
@@ -200,32 +200,32 @@ int func_0033F7B8(void) {
     return 0;
 }
 
-__attribute__((section(".text.func_00342F40")))
-int func_00342F40(int *a0) {
+__attribute__((section(".text.mwPlyCalcWorkCompo")))
+int mwPlyCalcWorkCompo(int *a0) {
     int s1;
     int v0;
     s1 = func_00346C10(*(int *)((char *)a0 + 0x8), *(int *)((char *)a0 + 0xC));
-    v0 = func_003472E8((int)a0);
+    v0 = MWSFTAG_IsUseAinfSj((int)a0);
     if (v0 == 1) {
         s1 = 0x20000 + s1;
     }
     return s1;
 }
 
-__attribute__((section(".text.func_003545F8")))
-void func_003545F8(int *a0) {
+__attribute__((section(".text.sfmpv_UpdateFlowCnt")))
+void sfmpv_UpdateFlowCnt(int *a0) {
     int buf[3];
     int v0;
     SfdTrack_getObj((int)a0, *(int *)((char *)a0 + 0x1FC8), buf);
     v0 = buf[0];
     if (v0 != 0) {
-        func_0034CAF8(v0, &buf[1], &buf[2]);
-        *(long long *)((char *)a0 + 0x9A0) = func_0034CCB0(*(long long *)((char *)a0 + 0x9A0), buf[1]);
+        SFBUF_GetFlowCnt(v0, &buf[1], &buf[2]);
+        *(long long *)((char *)a0 + 0x9A0) = SFBUF_UpdateFlowCnt(*(long long *)((char *)a0 + 0x9A0), buf[1]);
     }
 }
 
-__attribute__((section(".text.func_00344710")))
-void func_00344710(int *a0) {
+__attribute__((section(".text.mwsfcre_AllFree")))
+void mwsfcre_AllFree(int *a0) {
     int i;
     int *p;
     i = 0x1F;
@@ -234,7 +234,7 @@ void func_00344710(int *a0) {
         int v;
         v = *p;
         if (v != 0) {
-            func_00344680(a0, v);
+            MWSFD_Free(a0, v);
             *p = 0;
         }
         i--;
@@ -242,8 +242,8 @@ void func_00344710(int *a0) {
     } while (i >= 0);
 }
 
-__attribute__((section(".text.func_003519A8")))
-int func_003519A8(int *a0) {
+__attribute__((section(".text.sfmpv_CalcVideoTotTime")))
+int sfmpv_CalcVideoTotTime(int *a0) {
     int buf[12];
     int *s0;
     s0 = (int*)((char*)a0 + 0xD6C);
@@ -256,11 +256,11 @@ int func_003519A8(int *a0) {
     return *(int*)((char*)buf + 0x20) - *(int*)((char*)s0 + 0x24);
 }
 
-__attribute__((section(".text.func_0035ACA0")))
-int func_0035ACA0(int *a0, int *a1, int *a2) {
+__attribute__((section(".text.sftim_GetTimeVsync")))
+int sftim_GetTimeVsync(int *a0, int *a1, int *a2) {
     int *s0;
     int r;
-    r = func_0035AE18(a0, a1, a2);
+    r = SFTIM_ChkRegularTime(a0, a1, a2);
     s0 = (int*)((char*)a0 + 0xD30);
     if (r == 0) {
         return 0;
@@ -270,8 +270,8 @@ int func_0035ACA0(int *a0, int *a1, int *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_0036A1D8")))
-int func_0036A1D8(int *a0, int *a1)
+__attribute__((section(".text.MPV_GetBitRate")))
+int MPV_GetBitRate(int *a0, int *a1)
 {
     int r;
     int *s0;
@@ -284,8 +284,8 @@ int func_0036A1D8(int *a0, int *a1)
     return 0;
 }
 
-__attribute__((section(".text.func_0035CA68")))
-void func_0035CA68(int *a0, int a1)
+__attribute__((section(".text.sftst_ModifyHist")))
+void sftst_ModifyHist(int *a0, int a1)
 {
     int *s0;
     int i;
@@ -300,11 +300,11 @@ void func_0035CA68(int *a0, int a1)
             i++;
         } while (i < *(int *)((char *)s0 + 0x10));
     }
-    *(int *)((char *)s0 + 0x1A8) = func_0035CAC8(s0);
+    *(int *)((char *)s0 + 0x1A8) = sftst_CalcMovAve(s0);
 }
 
-__attribute__((section(".text.func_00325360")))
-int func_00325360(int a0) {
+__attribute__((section(".text.adxm_SuspendThread")))
+int adxm_SuspendThread(int a0) {
     int status[12];
     int s0;
     int s1;
@@ -323,8 +323,8 @@ int func_00325360(int a0) {
     return s1;
 }
 
-__attribute__((section(".text.func_00359C58")))
-void func_00359C58(int a0, int a1) {
+__attribute__((section(".text.SFD_SetSeekPos")))
+void SFD_SetSeekPos(int a0, int a1) {
     int s0;
     int s1;
     int p;
@@ -341,8 +341,8 @@ void func_00359C58(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_0033C458")))
-void func_0033C458(int a0, int a1) {
+__attribute__((section(".text.ADXB_SetAhxDecSmpl")))
+void ADXB_SetAhxDecSmpl(int a0, int a1) {
     int s0;
     int s1;
     int v0;
@@ -357,8 +357,8 @@ void func_0033C458(int a0, int a1) {
     *(int *)(s1 + 0xBC) = s0 / 0x60;
 }
 
-__attribute__((section(".text.func_0035DF78")))
-int func_0035DF78(void *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyByteRate")))
+int SFH_AnlyByteRate(void *a0, int *a1)
 {
     char *s0 = (char *)a0;
     int *s2 = a1;
@@ -376,8 +376,8 @@ int func_0035DF78(void *a0, int *a1)
     return 1;
 }
 
-__attribute__((section(".text.func_0036C3D0")))
-int func_0036C3D0(void *a0)
+__attribute__((section(".text.MPV_Destroy")))
+int MPV_Destroy(void *a0)
 {
     char *s0 = (char *)a0;
     int r;
@@ -391,8 +391,8 @@ int func_0036C3D0(void *a0)
     return 0;
 }
 
-__attribute__((section(".text.func_00357F58")))
-int func_00357F58(void *a0)
+__attribute__((section(".text.sfply_IsEtime")))
+int sfply_IsEtime(void *a0)
 {
     int local0;
     int local4;
@@ -407,17 +407,17 @@ int func_00357F58(void *a0)
     s1 = *(int *)(v1 + 0x54);
     if (s0 == -4)
         return 0;
-    func_0035AB98(a0, &local0, &local4);
+    SFTIM_GetTime(a0, &local0, &local4);
     v0 = 0;
     v1i = local0;
     if (v1i < 0)
         return 0;
-    v0 = func_00366918(v1i, local4, s0, s1);
+    v0 = UTY_CmpTime(v1i, local4, s0, s1);
     return (unsigned)v0 < 1u;
 }
 
-__attribute__((section(".text.func_0035E6E8")))
-int func_0035E6E8(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyFtrExpand")))
+int SFH_AnlyFtrExpand(int a0, int a1, int *a2) {
     void *s1;
     int s0;
     s0 = a1 & 0xFF;
@@ -433,8 +433,8 @@ int func_0035E6E8(int a0, int a1, int *a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_003320F8")))
-void func_003320F8(int a0, char *a1, int a2) {
+__attribute__((section(".text.dtx_def_sndcbf")))
+void dtx_def_sndcbf(int a0, char *a1, int a2) {
     int i;
     for (i = 0; i < a2; i++) {
         a1[i] = (char)-0x56;
@@ -443,8 +443,8 @@ void func_003320F8(int a0, char *a1, int a2) {
     D_003D84B4 = D_003D84B4 + 1;
 }
 
-__attribute__((section(".text.func_00336DB0")))
-void func_00336DB0(void *a0) {
+__attribute__((section(".text.PL2LINK_DetachDolbyProLogicII")))
+void PL2LINK_DetachDolbyProLogicII(void *a0) {
     void *v0;
     void *s1;
     void *s0;
@@ -454,16 +454,16 @@ void func_00336DB0(void *a0) {
     if (s0 == 0) {
         return;
     }
-    func_00329EA8();
+    ADXT_Stop();
     Forward33B658_325C60();
-    func_00340680(s0);
+    PL2ENC_Destroy(s0);
     *(void **)((char *)s1 + 0xE8) = 0;
-    func_003404F0(0);
+    PL2ENC_Finish(0);
     Forward33B670_325C78();
 }
 
-__attribute__((section(".text.func_0034C6D8")))
-void func_0034C6D8(char *a0, int a1, int *a2, int *a3) {
+__attribute__((section(".text.SFBUF_RingGetDlm")))
+void SFBUF_RingGetDlm(char *a0, int a1, int *a2, int *a3) {
     int local[4];
     char *entry;
     entry = a0 + 0x1338 + a1 * 116;
@@ -473,8 +473,8 @@ void func_0034C6D8(char *a0, int a1, int *a2, int *a3) {
     Thunk_func_0033B670(local);
 }
 
-__attribute__((section(".text.func_00359AF0")))
-int func_00359AF0(int a0, int a1) {
+__attribute__((section(".text.SFD_SetFileSize")))
+int SFD_SetFileSize(int a0, int a1) {
     int s0;
     int s1;
     int v0;
@@ -491,12 +491,12 @@ int func_00359AF0(int a0, int a1) {
         return v0;
     }
     *(int *)((char *)v1 + 0xDC4) = s1;
-    func_00359DF0(s0);
+    sfsee_UpdateEByteRate(s0);
     return v0;
 }
 
-__attribute__((section(".text.func_00359BE8")))
-int func_00359BE8(int a0, int a1) {
+__attribute__((section(".text.SFD_SetByteRate")))
+int SFD_SetByteRate(int a0, int a1) {
     int s0;
     int s1;
     int v0;
@@ -513,12 +513,12 @@ int func_00359BE8(int a0, int a1) {
         return v0;
     }
     *(int *)((char *)v1 + 0xDD0) = s1;
-    func_00359DF0(s0);
+    sfsee_UpdateEByteRate(s0);
     return v0;
 }
 
-__attribute__((section(".text.func_0035E520")))
-int func_0035E520(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyFtrColType")))
+int SFH_AnlyFtrColType(int a0, int a1, int *a2) {
     int s0;
     int s1;
 
@@ -535,8 +535,8 @@ int func_0035E520(int a0, int a1, int *a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_0035E590")))
-int func_0035E590(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyFtrPicType")))
+int SFH_AnlyFtrPicType(int a0, int a1, int *a2) {
     int s0;
     int s1;
 
@@ -553,8 +553,8 @@ int func_0035E590(int a0, int a1, int *a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_0035E600")))
-int func_0035E600(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyFtrFixFlg")))
+int SFH_AnlyFtrFixFlg(int a0, int a1, int *a2) {
     int s0;
     int s1;
 
@@ -588,15 +588,15 @@ void func_0032EE88(char *a0)
         tmp = *s0;
         if (tmp != 0) {
             *s0 = 0;
-            func_003298C0((void *)tmp);
+            ADXT_Destroy((void *)tmp);
         }
         s2++;
         s0++;
     } while (s2 < (signed char)s1[3]);
 }
 
-__attribute__((section(".text.func_0035B5F8")))
-int func_0035B5F8(int a0, int *a1) {
+__attribute__((section(".text.SFD_GetFps")))
+int SFD_GetFps(int a0, int *a1) {
     int v1;
     *a1 = -1;
     if (Obj34D8_SetGlobalEE0B8_IfField48(a0, (int)a1)) {
@@ -609,8 +609,8 @@ int func_0035B5F8(int a0, int *a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_0036A300")))
-int func_0036A300(int *a0, int *a1, int *a2) {
+__attribute__((section(".text.MPV_GetLinkFlg")))
+int MPV_GetLinkFlg(int *a0, int *a1, int *a2) {
     if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(a0)) {
         return func_00369F20(0, 0xFF03020Eu);
     }
@@ -619,8 +619,8 @@ int func_0036A300(int *a0, int *a1, int *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_0036DC70")))
-void func_0036DC70(int *a0, int *a1, int *a2) {
+__attribute__((section(".text.m2v_GetLinkFlg")))
+void m2v_GetLinkFlg(int *a0, int *a1, int *a2) {
     char *s0 = (char *)a0 + 0x160;
     if (Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(a0)) {
         M2VERR_SetCode(0, 0xFF03020Eu);

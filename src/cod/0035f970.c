@@ -14,7 +14,7 @@ StageBuf *func_0035F970(int work, int size, int a2, int a3)
     void *zhn;
     void *ahn;
 
-    hn = func_0035FA88();
+    hn = sfx_SearchFreeHn();
     if (hn == 0)
         return 0;
     if (func_0035FB78(size, a2, a3) != 1) {
@@ -25,14 +25,14 @@ StageBuf *func_0035F970(int work, int size, int a2, int a3)
     zhn = func_0035FEF0();
     if (zhn == 0) {
         SFXLIB_Error(0, 0, D_0045A010);
-        func_0035FB88((int)hn);
+        SFX_Destroy((int)hn);
         return 0;
     }
     hn->zhn = zhn;
     ahn = func_0036CAB0();
     if (ahn == 0) {
         SFXLIB_Error(0, 0, D_0045A030);
-        func_0035FB88((int)hn);
+        SFX_Destroy((int)hn);
         return 0;
     }
     D_003EE338[0]++;

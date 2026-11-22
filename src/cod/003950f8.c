@@ -2,8 +2,8 @@
 
 #include "godhand/vu0.h"
 
-__attribute__((section(".text.func_003950F8")))
-int func_003950F8(void) {
+__attribute__((section(".text.sceGsSyncPath")))
+int sceGsSyncPath(void) {
     unsigned int flags;
     unsigned int vi29;
 

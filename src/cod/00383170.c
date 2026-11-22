@@ -19,8 +19,8 @@ typedef struct ListCtl {
 } ListCtl;
 
 extern int func_00383280(void *a0, CtlList *l);
-extern void func_0032EC78(int a0, int a1, int a2);
-extern void func_0032A9F0(int a0, int a1);
+extern void AIXP_SetTrackVol(int a0, int a1, int a2);
+extern void ADXT_SetOutVol(int a0, int a1);
 
 __attribute__((section(".text.func_00383170")))
 void func_00383170(void *a0, ListCtl *c, unsigned char enable)
@@ -33,15 +33,15 @@ void func_00383170(void *a0, ListCtl *c, unsigned char enable)
         if (func_00383280(a0, l) != 0) {
             for (i = 0; i < l->count; i++) {
                 if (l->on[i + 1])
-                    func_0032EC78((int)l->obj, i, -0x3C0);
+                    AIXP_SetTrackVol((int)l->obj, i, -0x3C0);
                 else
-                    func_0032EC78((int)l->obj, i, c->vals[i + 1]);
+                    AIXP_SetTrackVol((int)l->obj, i, c->vals[i + 1]);
             }
         } else {
             for (i = 0; i < l->count; i++)
-                func_0032EC78((int)l->obj, i, c->vals[i + 1]);
+                AIXP_SetTrackVol((int)l->obj, i, c->vals[i + 1]);
         }
     } else {
-        func_0032A9F0((int)c->obj64, c->vals[0]);
+        ADXT_SetOutVol((int)c->obj64, c->vals[0]);
     }
 }

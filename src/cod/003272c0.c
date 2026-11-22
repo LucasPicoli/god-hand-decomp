@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0035ABC0(int a0, int *out0, int *out1);
-extern void func_0035A7C8(int a0, int a1);
+extern void SFTIM_GetNowTime(int a0, int *out0, int *out1);
+extern void sftim_ResetVtimeTmr(int a0, int a1);
 extern int Obj35C0_GetIndexed_1F34_C368(int a0, int a1);
 extern int Obj35D0_ReturnOne_D048(int a0);
 extern int Obj35C0_SetIndexed_1F34_C350(int a0, int a1, int a2);
@@ -20,7 +20,7 @@ extern int Obj35C0_IsIndexedSet_1F3C_C380(int, int);
 extern int GetArrayElemA0C_35A1C8(int, int);
 extern void *getElemInfPtr(void *, int);
 extern void func_00335D40(void *);
-extern void func_00328368(void *);
+extern void ADXSTM_Stop(void *);
 extern void func_00335848(void *);
 extern int D_00454CD8;
 extern int GetD003EE078_3463F8();
@@ -39,8 +39,8 @@ extern char D_004592D0[];
 extern void sfbuf_PeekChunk(void *buf, int a1, void *out0, void *out1);
 extern int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(void *a0);
 extern int D_00766CE8[];
-extern void func_00368AB0(int a0, int *a1);
-extern void func_00368B18(int a0, int *a1, int a2);
+extern void MPS_GetPackHd(int a0, int *a1);
+extern void MPS_GetSysHd(int a0, int *a1, int a2);
 extern void PushGlobalD8478History_331C78(int);
 extern void Forward3A52F0_334500(void *);
 extern int D_00454948[];
@@ -49,14 +49,14 @@ extern void Thunk_func_0033B670(void *sp);
 extern int MPV_DecodePicAtr(int a0, int *a1, int *a2);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
-extern void func_00327418(void *a);
-extern void func_003272C0(void *a);
+extern void adxsjd_insert_proc(void *a);
+extern void adxsjd_decode_exec(void *a);
 extern void func_00326890(void *a);
-extern void func_00327568(void *a);
+extern void adxsjd_discard_proc(void *a);
 extern void Obj0000_PostInc_D_003E3A80_338960(void);
-extern void func_00338478(char *p);
+extern void PS2RNA_ExecHndl(char *p);
 extern void Obj0000_Decrement_D_003E3A80_338978(void);
-extern void func_00340130(void);
+extern void DTR_ExecServer(void);
 extern void Forward332778_33B200(void);
 extern int D_003E0710;
 extern int D_003E0708;
@@ -64,25 +64,25 @@ extern char D_003E2B68[];
 extern int GuardedCall_00329FD0_329F98();
 extern long long func_0031DE10(long long a, long long b);
 extern long long func_003B7FE0(long long a, long long b);
-extern void func_00326CB8(void *a0);
-extern void func_0033D870(int a0);
-extern void func_00327048(void *a0);
+extern void adxsjd_decexec_start(void *a0);
+extern void ADXB_ExecHndl(int a0);
+extern void adxsjd_decexec_end(void *a0);
 extern void func_00327230(void *a0);
-extern void func_00359F78(int a0, int a1);
+extern void sfset_SetCondAll(int a0, int a1);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *a0);
-extern void func_0035A000(void *a0, int a1, int a2);
-extern void func_0035A050(void *a0, int a1, int a2);
+extern void SFSET_SetCond(void *a0, int a1, int a2);
+extern void sfset_SetUsrCond(void *a0, int a1, int a2);
 extern int D_003EE0C0[];
 
-__attribute__((section(".text.func_0035B058")))
-void func_0035B058(int a0) {
+__attribute__((section(".text.sftim_UpdateTime")))
+void sftim_UpdateTime(int a0) {
     int tmp0, tmp1;
     int s1 = a0;
     int s0 = s1 + 0xD30;
     int v0, v1;
-    func_0035ABC0(s1, &tmp0, &tmp1);
+    SFTIM_GetNowTime(s1, &tmp0, &tmp1);
     if (*(int *)(s0 + 0x28C) != tmp0 || *(int *)(s0 + 0x290) != tmp1) {
-        func_0035A7C8(s1, s0);
+        sftim_ResetVtimeTmr(s1, s0);
         v0 = tmp0;
         v1 = tmp1;
         *(int *)(s0 + 0x28C) = v0;
@@ -95,27 +95,27 @@ __attribute__((section(".text.func_0035CFC8")))
 void func_0035CFC8(int a0) {
     int s0 = a0;
     if (Obj35C0_GetIndexed_1F34_C368(s0, 8) == 1) return;
-    if (func_0034CA98(s0, *(int *)(s0 + 0x2160)) != 1) return;
+    if (SFBUF_GetTermFlg(s0, *(int *)(s0 + 0x2160)) != 1) return;
     if (!Obj35D0_ReturnOne_D048(s0)) return;
     Obj35C0_SetIndexed_1F34_C350(s0, 8, 1);
 }
 
-__attribute__((section(".text.func_0036DE00")))
-int func_0036DE00(int a0, int a1) {
+__attribute__((section(".text.m2v_DecodePicAtr")))
+int m2v_DecodePicAtr(int a0, int a1) {
     int s1 = a0;
     int s0 = a1;
     if (Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(s1, s0)) {
         return M2VERR_SetCode(0, 0xFF03020C);
     }
-    s0 = func_0036DFF0(s1, s0);
+    s0 = m2vhdec_ParseSj(s1, s0);
     if (!s0) {
         func_0036DE80(s1);
     }
     return s0;
 }
 
-__attribute__((section(".text.func_00335DE0")))
-void func_00335DE0(void) {
+__attribute__((section(".text.LSC_Init")))
+void LSC_Init(void) {
     int *s0;
     int sp_buf[1];
     int v3;
@@ -156,8 +156,8 @@ int sfsee_IsAudioAnalyzing(int a0, int a1, int a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_0035E1B8")))
-int func_0035E1B8(void *a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemLayer")))
+int SFH_AnlyElemLayer(void *a0, int a1, int *a2) {
     int *s2;
     int s0;
     void *s1;
@@ -170,7 +170,7 @@ int func_0035E1B8(void *a0, int a1, int *a2) {
     if (!s1) {
         return 0;
     }
-    v0 = func_0035E9E8(s0);
+    v0 = chkStmId(s0);
     if (v0 != 0xC0) {
         return 0;
     }
@@ -206,7 +206,7 @@ void func_00335980(void *a0) {
         *(int *)((char *)s0 + 0x2C) = 0;
         goto common_exit;
     }
-    func_00328368(a0);
+    ADXSTM_Stop(a0);
     *(signed char *)((char *)s0 + 2) = 0;
 common_0x2C:
     *(int *)((char *)s0 + 0x2C) = 0;
@@ -243,8 +243,8 @@ done:
     return v0;
 }
 
-__attribute__((section(".text.func_00346368")))
-void func_00346368(void)
+__attribute__((section(".text.MWRSC_RestoreRsc")))
+void MWRSC_RestoreRsc(void)
 {
     int *s0;
 
@@ -261,8 +261,8 @@ void func_00346368(void)
     }
 }
 
-__attribute__((section(".text.func_00359DF0")))
-void func_00359DF0(int a0)
+__attribute__((section(".text.sfsee_UpdateEByteRate")))
+void sfsee_UpdateEByteRate(int a0)
 {
     int s0;
     int v0;
@@ -301,18 +301,18 @@ void func_00359DF0(int a0)
             return;
         }
     }
-    v0 = func_0036C920(fa0, fa1, fa2);
+    v0 = UTY_MulDiv(fa0, fa1, fa2);
     *(int *)((char *)s0 + 0xDA8) = v0;
 }
 
-__attribute__((section(".text.func_00348F68")))
-void func_00348F68(void *a0) {
+__attribute__((section(".text.mwsfsvr_StartSfd")))
+void mwsfsvr_StartSfd(void *a0) {
     void *s0;
     int r;
     int v1;
 
     s0 = a0;
-    r = func_00359E80(*(int *)((char *)s0 + 0x3C));
+    r = SFD_GetHnStat(*(int *)((char *)s0 + 0x3C));
     if (r == 3) {
         func_00345B38(s0);
         v1 = *(signed char *)((char *)s0 + 0x72);
@@ -390,8 +390,8 @@ check2:
     s0->next = 0;
 }
 
-__attribute__((section(".text.func_0036C568")))
-int func_0036C568(int *a0, int a1, int *a2) {
+__attribute__((section(".text.MPV_GetCond")))
+int MPV_GetCond(int *a0, int a1, int *a2) {
     int *s0;
     int s1;
     int *s2;
@@ -413,8 +413,8 @@ int func_0036C568(int *a0, int a1, int *a2) {
     return 0;
 }
 
-__attribute__((section(".text.func_0034FAD8")))
-void func_0034FAD8(int *a0) {
+__attribute__((section(".text.sfmps_SetMvInf")))
+void sfmps_SetMvInf(int *a0) {
     int buf[12];
     int *s2;
     int *s1;
@@ -424,13 +424,13 @@ void func_0034FAD8(int *a0) {
     s1 = (int*)((char*)a0 + 0x90C);
     s2 = (int*)*(int*)((char*)a0 + 0x1F7C);
     s0 = *s2;
-    func_00368AB0(s0, buf);
+    MPS_GetPackHd(s0, buf);
     s0 = s0;
     v0 = buf[3];
     if (v0 > 0) {
         *(int*)((char*)s1 + 0x18) = v0;
     }
-    func_00368B18(s0, (int*)((char*)buf + 0x10), 1);
+    MPS_GetSysHd(s0, (int*)((char*)buf + 0x10), 1);
     {
         int t;
         t = buf[8];
@@ -448,8 +448,8 @@ void func_0034FAD8(int *a0) {
     }
 }
 
-__attribute__((section(".text.func_00334698")))
-void func_00334698(void *a0) {
+__attribute__((section(".text.htCiClose")))
+void htCiClose(void *a0) {
     char *s1 = (char *)a0;
     int s0;
 
@@ -458,12 +458,12 @@ void func_00334698(void *a0) {
     }
 
     if ((unsigned char)s1[2] >= 2) {
-        func_00334998(s1);
+        htCiStopTr(s1);
     }
 
     if (s1[1] == 0) {
         PushGlobalD8478History_331C78(0x5000);
-        s0 = func_00331F50(*(int *)(s1 + 0x18));
+        s0 = SRD_SceClose(*(int *)(s1 + 0x18));
         PushGlobalD8478History_331C78(0x5001);
         if (s0 < 0) {
             LogPrintf(D_00454948);
@@ -475,8 +475,8 @@ void func_00334698(void *a0) {
 
 typedef int (*FN)(int, int);
 
-__attribute__((section(".text.func_0034C7F0")))
-int func_0034C7F0(int a0, int a1) {
+__attribute__((section(".text.SFBUF_GetWTot")))
+int SFBUF_GetWTot(int a0, int a1) {
     int buf[4];
     int *s0;
     int s1;
@@ -503,8 +503,8 @@ int func_0034C7F0(int a0, int a1) {
     return s1;
 }
 
-__attribute__((section(".text.func_00350820")))
-void func_00350820(int a0) {
+__attribute__((section(".text.sfmpv_ProcessAuxShc")))
+void sfmpv_ProcessAuxShc(int a0) {
     int s0;
     int s1;
     int s2;
@@ -535,8 +535,8 @@ void func_00350820(int a0) {
     *(int *)((char *)s1 + 0x78) = 0xC8;
 }
 
-__attribute__((section(".text.func_00327370")))
-void func_00327370(void *a0) {
+__attribute__((section(".text.ADXSJD_ExecHndl")))
+void ADXSJD_ExecHndl(void *a0) {
     void *s0;
     int v0;
     char v1;
@@ -545,12 +545,12 @@ void func_00327370(void *a0) {
     v0 = *(int *)((char *)s0 + 0xA0);
     if (v0 > 0) {
         Forward33B658_33E678();
-        func_00327418(s0);
+        adxsjd_insert_proc(s0);
         Forward33B670_33E690();
     }
     v1 = *(char *)((char *)s0 + 1);
     if (v1 == 2) {
-        func_003272C0(s0);
+        adxsjd_decode_exec(s0);
     } else if (v1 == 1) {
         func_00326890(s0);
     }
@@ -559,12 +559,12 @@ void func_00327370(void *a0) {
         return;
     }
     Forward33B658_33E678();
-    func_00327568(s0);
+    adxsjd_discard_proc(s0);
     Forward33B670_33E690();
 }
 
-__attribute__((section(".text.func_00338638")))
-void func_00338638(void) {
+__attribute__((section(".text.PS2RNA_ExecServer")))
+void PS2RNA_ExecServer(void) {
     int s1;
     char *s0;
     int s2;
@@ -578,13 +578,13 @@ void func_00338638(void) {
     s1 = 15;
     do {
         if (*s0 == s2) {
-            func_00338478(s0);
+            PS2RNA_ExecHndl(s0);
         }
         s1--;
         s0 += 0x64;
     } while (s1 >= 0);
     Obj0000_Decrement_D_003E3A80_338978();
-    func_00340130();
+    DTR_ExecServer();
     Forward332778_33B200();
 }
 
@@ -610,8 +610,8 @@ int func_0032F0D0(int *a0) {
     return i == n;
 }
 
-__attribute__((section(".text.func_0036C990")))
-long long func_0036C990(long long a0, long long a1, long long a2) {
+__attribute__((section(".text.UTY_MulDivRound64")))
+long long UTY_MulDivRound64(long long a0, long long a1, long long a2) {
     long long s0;
     int s1;
     long long v0;
@@ -644,8 +644,8 @@ nonzero:
     return v0;
 }
 
-__attribute__((section(".text.func_003579F0")))
-int func_003579F0(char *a0) {
+__attribute__((section(".text.sfply_ChkBpa")))
+int sfply_ChkBpa(char *a0) {
     int local[4];
     char *s0 = a0;
     int *s1 = (int *)(a0 + 0x950);
@@ -655,32 +655,32 @@ int func_003579F0(char *a0) {
         if (sfply_CanStart(s0) != 0) {
             s1[0x20/4] = 1;
             s1[0x24/4] = s1[0x24/4] + 1;
-            s2 = func_00356FD8(s0, 1);
+            s2 = SFPL2_Pause(s0, 1);
         }
     } else {
-        if (func_00357C20(s0) != 0) {
+        if (sfply_IsBpaOff(s0) != 0) {
             s1[0x20/4] = 0;
-            s2 = func_00356FD8(s0, 0);
+            s2 = SFPL2_Pause(s0, 0);
         }
     }
     Thunk_func_0033B670(local);
     return s2;
 }
 
-__attribute__((section(".text.func_003272C0")))
-void func_003272C0(void *a0) {
+__attribute__((section(".text.adxsjd_decode_exec")))
+void adxsjd_decode_exec(void *a0) {
     void *s1 = a0;
     int s0 = *(int *)((char *)a0 + 4);
     int val;
 
     if (func_0033D190(s0) == 0) {
-        func_00326CB8(s1);
+        adxsjd_decexec_start(s1);
     }
 
-    func_0033D870(s0);
+    ADXB_ExecHndl(s0);
 
     if (func_0033D190(s0) == 3) {
-        func_00327048(s1);
+        adxsjd_decexec_end(s1);
     }
 
     val = *(short *)((char *)s0 + 0x98);
@@ -689,8 +689,8 @@ void func_003272C0(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_0035E400")))
-int func_0035E400(void *a0, int a1, int *out1, int *out2)
+__attribute__((section(".text.SFH_AnlyElemPicSz")))
+int SFH_AnlyElemPicSz(void *a0, int a1, int *out1, int *out2)
 {
     int s0;
     char *s1;
@@ -702,7 +702,7 @@ int func_0035E400(void *a0, int a1, int *out1, int *out2)
     *out2 = 0;
     s1 = (char *)getElemInfPtr(a0, s0);
     if (!s1) return 0;
-    if (func_0035E9E8(s0) != 0xE0) return 0;
+    if (chkStmId(s0) != 0xE0) return 0;
     p = s1 + 0x1C;
     b0 = *(unsigned char *)p;
     *out1 = b0;
@@ -722,13 +722,13 @@ __attribute__((section(".text.SFD_SetCond")))
 int SFD_SetCond(void *a0, int a1, int a2)
 {
     if (!a0) {
-        func_00359F78(a1, a2);
+        sfset_SetCondAll(a1, a2);
         D_003EE0C0[a1] = a2;
     } else if (Obj34D8_SetGlobalEE0B8_IfField48(a0)) {
         return func_0034DD70(0, 0xFF000112U);
     } else {
-        func_0035A000(a0, a1, a2);
-        func_0035A050(a0, a1, a2);
+        SFSET_SetCond(a0, a1, a2);
+        sfset_SetUsrCond(a0, a1, a2);
     }
     return 0;
 }
@@ -740,12 +740,12 @@ int func_00334BD8(int a0, int a1)
     if (a0 == 0)
         return r;
     switch (a1) {
-    case 0xC8: r = func_00334B38(); break;
-    case 0xC9: r = func_00334B58(); break;
+    case 0xC8: r = htci_getnumtr_upper(); break;
+    case 0xC9: r = htci_getnumtr_lower(); break;
     case 0xCA:
-    case 0xCC: r = func_00334B88(); break;
+    case 0xCC: r = htci_filesize_upper(); break;
     case 0xCB:
-    case 0xCD: r = func_00334BA8(); break;
+    case 0xCD: r = htci_filesize_lower(); break;
     case 0x12B: r = 1; break;
     }
     return r;

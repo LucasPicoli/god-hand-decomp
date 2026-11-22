@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_0037A740, looks up the object's entry in one of three 0x14-byte tables by kind and runs its handler when any 0xF000 flag is set. */
+/* sn-2.95.3-136: SdeTblTestParaChange, looks up the object's entry in one of three 0x14-byte tables by kind and runs its handler when any 0xF000 flag is set. */
 #include "godhand/menuCtl.h"
 typedef struct {
     char unk0[7];
@@ -11,8 +11,8 @@ typedef struct {
 
 extern void (*D_003F2628[])(MenuActObj *obj, MenuRowEnt *e);
 
-__attribute__((section(".text.func_0037A740")))
-int func_0037A740(MenuActObj *obj)
+__attribute__((section(".text.SdeTblTestParaChange")))
+int SdeTblTestParaChange(MenuActObj *obj)
 {
     MenuRowEnt *e = 0;
 

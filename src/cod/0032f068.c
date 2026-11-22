@@ -6,13 +6,13 @@ extern void Thunk_func_0033B670(void *sp);
 extern int isEffectiveVer();
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *);
 
-__attribute__((section(".text.func_0035B500")))
-void func_0035B500(char *a0) {
+__attribute__((section(".text.sftim_AddHnVbIn")))
+void sftim_AddHnVbIn(char *a0) {
     char local[0x10];
     volatile int *s0;
     int s1;
     s0 = (volatile int *)(a0 + 0xD30);
-    s1 = func_0036C920(D_003EE278);
+    s1 = UTY_MulDiv(D_003EE278);
     Thunk_func_0033B658(local);
     s0[0x2A8/4] = s0[0x2A8/4] + s1;
     s0[0x2CC/4] = s0[0x2CC/4] + s1;
@@ -33,14 +33,14 @@ void func_0032F068(int *a0, int a1) {
     s1 = s0 + 3;
     s0 = (int *)n;
     do {
-        func_0032B660(*s1, s2);
+        ADXT_SetLnkSw(*s1, s2);
         s1++;
         s0 = (int *)((int)s0 - 1);
     } while (s0 != 0);
 }
 
-__attribute__((section(".text.func_0034C748")))
-void func_0034C748(char *a0, int a1, int a2, int a3) {
+__attribute__((section(".text.SFBUF_RingSetDlm")))
+void SFBUF_RingSetDlm(char *a0, int a1, int a2, int a3) {
     char local[0x10];
     int *e;
 
@@ -61,8 +61,8 @@ typedef struct {
     unsigned char byte0;
 } CVerData_t_DC60;
 
-__attribute__((section(".text.func_0035DC60")))
-int func_0035DC60(CGObj_t_DC60 *a0, int *a1)
+__attribute__((section(".text.SFH_AnlyPackType")))
+int SFH_AnlyPackType(CGObj_t_DC60 *a0, int *a1)
 {
     CVerData_t_DC60 *s0;
     int v0;
@@ -79,8 +79,8 @@ int func_0035DC60(CGObj_t_DC60 *a0, int *a1)
 
 void M2VERR_SetCode(int, int);
 
-__attribute__((section(".text.func_0036DB80")))
-void func_0036DB80(int *a0, int *a1) {
+__attribute__((section(".text.m2v_GetBitRate")))
+void m2v_GetBitRate(int *a0, int *a1) {
     int *s0 = (int *)((char *)a0 + 0x160);
     if (!Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(a0)) {
         *a1 = *(int *)((char *)s0 + 0x2D4);

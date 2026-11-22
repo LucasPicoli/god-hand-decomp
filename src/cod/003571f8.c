@@ -13,7 +13,7 @@ void sfply_ChkCondDfl(void)
 __attribute__((section(".text.sftim_GetTimeNone")))
 int sftim_GetTimeNone(void *p, int *tim, int *tunit)
 {
-    if (func_0035AE18(p) == 0) return 0;
+    if (SFTIM_ChkRegularTime(p) == 0) return 0;
     *tim = -2;
     *tunit = 1;
     return 0;

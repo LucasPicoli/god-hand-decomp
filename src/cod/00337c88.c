@@ -4,8 +4,8 @@
 
 extern int DTX_CallUrpc(int a0, int a1, int a2, void *a3, int t0);
 
-__attribute__((section(".text.func_00337C88")))
-void func_00337C88(void) {
+__attribute__((section(".text.PS2RNA_ShutdownDolby")))
+void PS2RNA_ShutdownDolby(void) {
     int buf[4];
     if (D_003E0710 == 1) {
         if (D_003E0708 <= 0) {

@@ -15,7 +15,7 @@ extern int  PollSema(int sema);
 extern int  SignalSema(int sema);
 extern int  sceCdSyncS(int mode);
 extern void sceSifInitRpc(int mode);
-extern int  func_003B2F48(void *cd, unsigned int sid, int mode);   /* sceSifBindRpc */
+extern int  sceSifBindRpc(void *cd, unsigned int sid, int mode);   /* sceSifBindRpc */
 extern void func_003B2850(void *p, int size);   /* sceSifWriteBackDCache */
 
 
@@ -46,7 +46,7 @@ int sceCdDiskReady_old(int mode)
     } while (0);
     if (b < 0) {
         while (1) {
-            if (func_003B2F48(D_0077C610, 0x8000059A, 0) < 0) {
+            if (sceSifBindRpc(D_0077C610, 0x8000059A, 0) < 0) {
                 if (*(int *)(D_003F8640 + 0x10) > 0)
                     func_003B1F28(D_0045E348);
                 for (i = 0x100000; i != -1; i--)

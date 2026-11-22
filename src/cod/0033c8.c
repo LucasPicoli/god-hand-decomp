@@ -6,8 +6,8 @@
 
 /* ── CALL CHAIN (4) — deferred ─────────────────────────── */
 /* Release the record and clear the whole object. */
-__attribute__((section(".text.func_0033C918")))
-void func_0033C918(Obj33C8 *self) {
+__attribute__((section(".text.ADXB_Destroy")))
+void ADXB_Destroy(Obj33C8 *self) {
     if (self) {
         Obj33F8 *rec = self->rec;
         self->rec = 0;
@@ -18,7 +18,7 @@ void func_0033C918(Obj33C8 *self) {
 }
 
 /* ── MEDIUM (1) — large initializer ───────────────────────────────────────*/
-INCLUDE_ASM("nonmatching", func_0033CC50);
+INCLUDE_ASM("nonmatching", ADXB_SetDefPrm);
 
 
 /* ── ACCESSOR / BRANCHED_LEAF (15) ─────────────────────────────────────── */
@@ -99,8 +99,8 @@ short ADXB_GetDefPan(ADX_BASIC *self, int ch) {
 
 /* ── CALL CHAIN (continued) ─────────────────────────────────────────────── */
 /* Reload the cached u16 values of the record behind the object. */
-__attribute__((section(".text.func_0033CFB8")))
-void func_0033CFB8(Obj33C8 *self) {
+__attribute__((section(".text.ADXB_TakeSnapshot")))
+void ADXB_TakeSnapshot(Obj33C8 *self) {
     Obj33F8_LoadPair_28_2C_F9D8(self->rec, self->pairA, self->pairB);
     Obj33F8_LoadU16Trio_34_FA10(self->rec, &self->trio[0], &self->trio[1], &self->trio[2]);
 }

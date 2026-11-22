@@ -10,6 +10,6 @@ int scePadGetReqState(int port, int slot)
 
     if (D_0077C110[port][slot].open == 0)
         return 0;
-    p = func_00397BC8(port, slot, 0);
+    p = scePadGetDmaStr(port, slot, 0);
     return p->reqState;
 }

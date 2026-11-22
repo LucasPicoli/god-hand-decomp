@@ -8,18 +8,18 @@ typedef struct Sub {
     int f3C;
 } Sub;
 
-extern void func_0035A000(void *p, int a1, int a2);
+extern void SFSET_SetCond(void *p, int a1, int a2);
 
-__attribute__((section(".text.func_00357720")))
-void func_00357720(char *p)
+__attribute__((section(".text.sfply_AdjustSyncMode")))
+void sfply_AdjustSyncMode(char *p)
 {
     Sub *s;
 
     s = (Sub *)(p + 0xA0C);
     if (s->f18 == 0 && s->f3C == 2) {
-        func_0035A000(p, 0xF, 1);
+        SFSET_SetCond(p, 0xF, 1);
     }
     if (s->f14 == 0 && s->f3C == 1) {
-        func_0035A000(p, 0xF, 2);
+        SFSET_SetCond(p, 0xF, 2);
     }
 }

@@ -72,13 +72,13 @@ typedef struct _adx_intbuf {
 
 
 
-__attribute__((section(".text.func_0033DFA8")))
-Sint32 func_0033DFA8(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+__attribute__((section(".text.ADXB_DecodeHeaderWav")))
+Sint32 ADXB_DecodeHeaderWav(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     Sint16 dlen;
 
     adxb->hdcdflag = 1;
-    if (func_0033DD78(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen,
+    if (ADX_DecodeInfoWav(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen,
                       &adxb->nch, &adxb->sfreq, &adxb->total_nsmpl, &adxb->blknsmpl,
                       &adxb->cdctype) < 0) {
         return 0;

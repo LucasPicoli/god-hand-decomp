@@ -6,10 +6,10 @@ typedef struct {
     char pad2[2];
     void *stm; /* 0x04 */
 } StmHandle;
-extern void func_003228C0(int kind, int phase, void *hn, int a, int b);
+extern void adxf_SetCmdHstry(int kind, int phase, void *hn, int a, int b);
 extern int OpenStreamHandle(StmHandle *hn);
-extern void func_00328018(void *stm);
-extern void func_00327D90(void *stm);
+extern void ADXSTM_ReleaseFile(void *stm);
+extern void ADXSTM_Destroy(void *stm);
 extern void *func_003A52F0(void *d, int c, unsigned int n);
 
 __attribute__((section(".text.func_00323AA0")))
@@ -17,7 +17,7 @@ void func_00323AA0(StmHandle *hn)
 {
     void *stm;
 
-    func_003228C0(3, 0, hn, -1, -1);
+    adxf_SetCmdHstry(3, 0, hn, -1, -1);
     if (hn == 0)
         return;
     if (hn->stat == 2)
@@ -26,9 +26,9 @@ void func_00323AA0(StmHandle *hn)
     if (stm != 0) {
         hn->used = 0;
         hn->stm = 0;
-        func_00328018(stm);
-        func_00327D90(stm);
+        ADXSTM_ReleaseFile(stm);
+        ADXSTM_Destroy(stm);
     }
     func_003A52F0(hn, 0, 0x44);
-    func_003228C0(3, 1, hn, -1, -1);
+    adxf_SetCmdHstry(3, 1, hn, -1, -1);
 }

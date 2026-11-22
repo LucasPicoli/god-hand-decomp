@@ -52,8 +52,8 @@ void CustomIDWork_SetNumber_1D5760(char *a0, int number) {
     CustomIDWork_SetNumber(a0 + 0x158, number);
 }
 
-__attribute__((section(".text.func_002998D8")))
-void func_002998D8(int a0, int a1, long a2) {
+__attribute__((section(".text.cFILTER_gif_tag_start")))
+void cFILTER_gif_tag_start(int a0, int a1, long a2) {
     int *p = (int *)(a0 + 0x10000);
     int v1 = p[0];
     *(short *)((char *)p + 0x14) = (short)(a1 & 0xFF);
@@ -63,8 +63,8 @@ void func_002998D8(int a0, int a1, long a2) {
     *(int *)((char *)p + 0x10) = 0;
 }
 
-__attribute__((section(".text.func_00299908")))
-void func_00299908(int a0) {
+__attribute__((section(".text.cFILTER_gif_tag_end")))
+void cFILTER_gif_tag_end(int a0) {
     char *base = (char *)(a0 + 0x10000);
     unsigned long v1 = *(unsigned short *)(base + 0x14);
     unsigned long v0 = *(unsigned int *)(base + 0x10);

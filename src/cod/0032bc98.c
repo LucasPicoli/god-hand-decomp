@@ -15,9 +15,9 @@ typedef struct {
     int nsct; /* 0xC0 */
 } AdxFnameHn;
 extern void func_0033F130(char *msg);
-extern void func_00329EA8(AdxFnameHn *hn);
+extern void ADXT_Stop(AdxFnameHn *hn);
 extern char *func_003A57C4(char *d, const char *s);
-extern void func_0032B660(AdxFnameHn *hn, int a);
+extern void ADXT_SetLnkSw(AdxFnameHn *hn, int a);
 
 __attribute__((section(".text.func_0032BC98")))
 void func_0032BC98(AdxFnameHn *hn, const char *fname, int start, int nsct)
@@ -26,7 +26,7 @@ void func_0032BC98(AdxFnameHn *hn, const char *fname, int start, int nsct)
         func_0033F130(D_004527A0);
         return;
     }
-    func_00329EA8(hn);
+    ADXT_Stop(hn);
     func_003A57C4(hn->fname, fname);
     hn->cur = hn->fname;
     hn->start = start;
@@ -35,5 +35,5 @@ void func_0032BC98(AdxFnameHn *hn, const char *fname, int start, int nsct)
     hn->stat = 1;
     hn->named = 1;
     hn->f2 = 0;
-    func_0032B660(hn, 0);
+    ADXT_SetLnkSw(hn, 0);
 }

@@ -5,8 +5,8 @@
 extern SeqNode *(*D_003F2810[])(signed char kind);  /* the voice node allocators */
 
 /* Take a free voice node of the given kind with the selected allocator. */
-__attribute__((section(".text.func_0037D298")))
-SeqNode *func_0037D298(int kind)
+__attribute__((section(".text.SdeVregOpen")))
+SeqNode *SdeVregOpen(int kind)
 {
     return D_003F2810[D_0076A7AC](kind);
 }

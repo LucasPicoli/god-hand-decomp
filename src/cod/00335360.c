@@ -2,8 +2,8 @@
 
 extern char D_003DA5F8[];
 
-__attribute__((section(".text.func_00335360")))
-char *func_00335360(void) {
+__attribute__((section(".text.lsc_Alloc")))
+char *lsc_Alloc(void) {
     char *r = 0;
     int i;
     for (i = 0; i < 0x20; i++) {

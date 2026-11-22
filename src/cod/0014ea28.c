@@ -5,9 +5,9 @@
 
 extern int D_0041EBE8;
 extern void (*D_003C4908)(void);
-extern void func_00329EA8(int a0);
+extern void ADXT_Stop(int a0);
 extern void func_0032B300(int a0, int a1);
-extern void func_003298C0(int a0);
+extern void ADXT_Destroy(int a0);
 extern void func_0031C900(int a0);
 extern void func_003A6290(void);
 extern void Obj0000_Setup_Fields_00_04_08_0C_0E_10_18_1C_20_24_28_2C_54(int a0, int a1, int a2, int a3);
@@ -53,12 +53,12 @@ __attribute__((section(".text.func_00380EB0")))
 void func_00380EB0(int a0, int a1, int a2)
 {
     int t;
-    func_00329EA8(*(int*)((char*)a1+0x30));
+    ADXT_Stop(*(int*)((char*)a1+0x30));
     if (*(unsigned char*)((char*)a2+0x0) != 0) {
         *(char*)((char*)a2+0x0) = 0;
         func_0032B300(*(int*)((char*)a1+0x30), 0);
     }
-    func_003298C0(*(int*)((char*)a1+0x30));
+    ADXT_Destroy(*(int*)((char*)a1+0x30));
     t = *(int*)((char*)a1+0x34);
     *(int*)((char*)a1+0x30) = 0;
     func_0031C900(t);

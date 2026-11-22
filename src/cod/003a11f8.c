@@ -25,7 +25,7 @@ int func_003A11F8(void)
 
 	sceSifInitRpc(0);
 	while (1) {
-		if (func_003B2F48(D_0077C900, 0x80000701, 0) < 0) {
+		if (sceSifBindRpc(D_0077C900, 0x80000701, 0) < 0) {
 			func_003B1F28(D_0045E998);
 			return -1;
 		}

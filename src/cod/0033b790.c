@@ -13,8 +13,8 @@ struct cb_0033b790 { void (*fn)(void *arg, void *p); void *arg; };
 
 
 
-__attribute__((section(".text.func_0033B790")))
-void func_0033B790(int a0) {
+__attribute__((section(".text.SVM_CallErr1")))
+void SVM_CallErr1(int a0) {
     if (a0 == 0) {
         D_007588B0.fn(D_007588B0.arg, 0);
         return;
@@ -37,8 +37,8 @@ void func_0033F1A8(int a0, int a1) {
     PrintfErrorReport(D_003EADC0);
 }
 
-__attribute__((section(".text.func_003BA058")))
-void func_003BA058(int a0) {
+__attribute__((section(".text.AC3CNV_Stop")))
+void AC3CNV_Stop(int a0) {
     if (a0 == 0) {
         func_003B9DE0(D_00460900);
         return;

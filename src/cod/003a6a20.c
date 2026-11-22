@@ -8,5 +8,5 @@ int func_003A6A20(char *fmt, ...) {
     int *r = D_003FA62C;
     int stream = *(int *)((char *)r + 0x8);
     *(int **)((char *)stream + 0x54) = r;
-    return func_003A9D88(*(int *)((char *)D_003FA62C + 0x8), fmt, ap);
+    return vfprintf(*(int *)((char *)D_003FA62C + 0x8), fmt, ap);
 }

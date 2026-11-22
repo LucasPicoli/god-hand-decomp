@@ -30,8 +30,8 @@ typedef struct TimerCtl {
 
 extern volatile TimerCtl D_003FBE90;
 extern long iGetTimerSystemTime(void);
-extern void func_003B6DB8(TimerCounter *t);
-extern TimerCounter *func_003B6E40(TimerCounter *t);
+extern void InsertAlarm(TimerCounter *t);
+extern TimerCounter *UnlinkAlarm(TimerCounter *t);
 extern void SetNextComp(long tm);
 
 #endif

@@ -102,8 +102,8 @@ int func_00398D08(void) {
     return s0;
 }
 
-__attribute__((section(".text.func_00395F68")))
-int func_00395F68(void *handler) {
+__attribute__((section(".text.sceGsSyncVCallback")))
+int sceGsSyncVCallback(void *handler) {
     void *s0;
     void *s1;
     int s2;
@@ -142,8 +142,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_0031E8C0")))
-double func_0031E8C0(SItype arg_a)
+__attribute__((section(".text.litodp")))
+double litodp(SItype arg_a)
 {
   fp_number_type in;
 

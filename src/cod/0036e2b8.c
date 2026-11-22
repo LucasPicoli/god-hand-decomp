@@ -12,8 +12,8 @@ typedef struct SndObj {
     int f134;                   /* 0x134 */
 } SndObj;
 
-__attribute__((section(".text.func_0036E2B8")))
-void func_0036E2B8(SndObj *o)
+__attribute__((section(".text.calcNumberOfFrameCentreOffsets")))
+void calcNumberOfFrameCentreOffsets(SndObj *o)
 {
     if (o->f48 == 1 || o->f118 == 1 || o->f118 == 2) {
         o->state = 1;

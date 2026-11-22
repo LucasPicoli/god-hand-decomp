@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_0037A0F0, steps idx by dir (wrapping) through the current column's list until it
+/* sn-2.95.3-136: SdeTblTestBlkNoCheck, steps idx by dir (wrapping) through the current column's list until it
  * hits an enabled entry; returns that index, or -1 if none is enabled. */
 #include "godhand/sndBank.h"
 typedef struct {
@@ -9,8 +9,8 @@ typedef struct {
 } MenuColSel;
 
 
-__attribute__((section(".text.func_0037A0F0")))
-short func_0037A0F0(MenuColSel *o, short idx, short dir)
+__attribute__((section(".text.SdeTblTestBlkNoCheck")))
+short SdeTblTestBlkNoCheck(MenuColSel *o, short idx, short dir)
 {
     short n = o->count[o->col];
     short i;

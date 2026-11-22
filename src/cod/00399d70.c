@@ -2,7 +2,7 @@
 #include "godhand/eeKernel.h"
 #include "godhand/globals.h"
 
-extern void func_003BACA0(int, int);
+extern void sceIpuSync(int, int);
 extern void _sceMpegError(void *, void *);
 
 __attribute__((section(".text._clearEach")))
@@ -21,7 +21,7 @@ void _clearEach(void *m) {
     *(volatile unsigned int *)0x1000B420 = 0;
     *(volatile unsigned int *)0x1000D420 = 0;
     *(volatile unsigned int *)0x10002010 = 0x40000000;
-    func_003BACA0(0, 0);
+    sceIpuSync(0, 0);
 }
 
 __attribute__((section(".text._clearOnce")))
@@ -78,8 +78,8 @@ void _dualPrimeVector(void *pic, int DMV[][2], int *dmvector, int mvx, int mvy) 
     }
 }
 
-__attribute__((section(".text.func_0039FDD8")))
-void func_0039FDD8(unsigned int addr, int size) {
+__attribute__((section(".text.receiveDataFromIPU")))
+void receiveDataFromIPU(unsigned int addr, int size) {
     int oldstat;
     oldstat = DIntr();
     if ((addr >> 28) == 7) {

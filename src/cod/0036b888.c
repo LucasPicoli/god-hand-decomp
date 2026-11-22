@@ -14,10 +14,10 @@ typedef struct {
 
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
 extern int MPV_CheckDelim(void *p);
-extern int func_0036BA50(SfdSjWriter *s, char *data, int n);
+extern int mpvhdec_DecSeqUdsc(SfdSjWriter *s, char *data, int n);
 
-__attribute__((section(".text.func_0036B888")))
-int func_0036B888(SfdSjWriter *s, char *data, int n)
+__attribute__((section(".text.mpvhdec_AnalyUd")))
+int mpvhdec_AnalyUd(SfdSjWriter *s, char *data, int n)
 {
     int cur = s->cur;
     int i;
@@ -34,7 +34,7 @@ int func_0036B888(SfdSjWriter *s, char *data, int n)
     }
     err = (i == n - 3) ? -1 : 0;
     if (cur == 1)
-        r = func_0036BA50(s, data, i);
+        r = mpvhdec_DecSeqUdsc(s, data, i);
     sj = s->ch[cur].sj;
     if (sj != 0) {
         sj->vt->getChunk(sj, 0, i, &ck);

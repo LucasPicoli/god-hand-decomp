@@ -2,8 +2,8 @@
 
 extern int GetD003EE804_360720(void);
 
-__attribute__((section(".text.func_003605B0")))
-void func_003605B0(char *a0, int *src, int *dst) {
+__attribute__((section(".text.sfxzmv_MakeZ32TblFromOrgZ32")))
+void sfxzmv_MakeZ32TblFromOrgZ32(char *a0, int *src, int *dst) {
     float s = *(float *)(a0 + 0x40);
     int i;
 

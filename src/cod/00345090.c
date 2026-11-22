@@ -18,9 +18,9 @@ typedef struct {
 extern void *SFH_Create(char *buf, int len);
 extern int SFH_IsSfdHeader(void *sfh, int *ver);
 extern void SFH_Destroy(void *sfh);
-extern int func_003451D8(void *sfh);
+extern int mwsffrm_AnalyColAdj(void *sfh);
 extern int func_00344F30(void *sfh);
-extern int func_00344F68(void *sfh);
+extern int mwsffrm_AnalyFxType(void *sfh);
 
 __attribute__((section(".text.func_00345090")))
 void func_00345090(SfdHdrRing *o, char *buf, int len)
@@ -41,9 +41,9 @@ void func_00345090(SfdHdrRing *o, char *buf, int len)
         SFH_Destroy(sfh);
         return;
     }
-    a = func_003451D8(sfh);
+    a = mwsffrm_AnalyColAdj(sfh);
     b = func_00344F30(sfh);
-    c = func_00344F68(sfh);
+    c = mwsffrm_AnalyFxType(sfh);
     i = o->idx;
     o->ent[i].no = o->count - 1;
     o->ent[i].a = a;

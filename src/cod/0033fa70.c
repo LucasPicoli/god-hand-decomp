@@ -16,9 +16,9 @@ int func_0033FA70(char *p, int a1, int a2, int a3, int a4) {
     return 1;
 }
 
-/* ── func_0033FAA0 — same shape, mode 2 ─────────────────────────────────── */
-__attribute__((section(".text.func_0033FAA0")))
-int func_0033FAA0(char *p, int a1, int a2, int a3, int a4) {
+/* ── ADXPD_EntrySte — same shape, mode 2 ─────────────────────────────────── */
+__attribute__((section(".text.ADXPD_EntrySte")))
+int ADXPD_EntrySte(char *p, int a1, int a2, int a3, int a4) {
     if (*(int *)(p + 0xC) != 0) {
         return 0;
     }

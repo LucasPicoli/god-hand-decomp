@@ -50,7 +50,7 @@ int func_003B5520(int fd, void *buf)
     D_0077FFC0.sema = sid;
     q->dst = &result;
     q->size = 4;
-    r = func_003B3958(D_007816C0, 11, 0, q, 0x20, D_00780C00, 4, 0, 0, 0);
+    r = sceFsSifCallRpc(D_007816C0, 11, 0, q, 0x20, D_00780C00, 4, 0, 0, 0);
     if (r < 0) {
         WaitSema(sid);
         SignalSema_3B3EF8();

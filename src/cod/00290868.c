@@ -32,8 +32,8 @@ void *cMessage_getRubyAddr(char *a0, unsigned short code) {
     return 0;
 }
 
-__attribute__((section(".text.func_003B2500")))
-void func_003B2500(int id) {
+__attribute__((section(".text.sceSifRemoveCmdHandler")))
+void sceSifRemoveCmdHandler(int id) {
     if (id < 0) {
         *(int *)(D_0077E524 + (id & 0x7FFFFFFF) * 12) = 0;
     } else {

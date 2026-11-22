@@ -8,11 +8,11 @@
  * _externalize_fp_literals.
  */
 
-extern int func_003467E8(void *a0, int a1, int a2);
+extern int MWSFD_SetFlowLimit(void *a0, int a1, int a2);
 
-__attribute__((section(".text.func_00346100")))
-int func_00346100(char *a0)
+__attribute__((section(".text.MWSFPLY_SetFlowLimit")))
+int MWSFPLY_SetFlowLimit(char *a0)
 {
     int s1 = *(int *)(a0 + 0x1C8);
-    return func_003467E8(a0, (int)((double)s1 * 0.8), s1);
+    return MWSFD_SetFlowLimit(a0, (int)((double)s1 * 0.8), s1);
 }

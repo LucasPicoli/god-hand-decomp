@@ -59,8 +59,8 @@ int func_0032E348(unsigned char *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_00331F50")))
-int func_00331F50(int a0) {
+__attribute__((section(".text.SRD_SceClose")))
+int SRD_SceClose(int a0) {
     int s0;
     func_00331D40(a0);
     s0 = func_003B44B0(a0);

@@ -11,7 +11,7 @@ int func_00345B88(void *a0) {
     if (h == 0) {
         return 0;
     }
-    r = func_00356EF8(h);
+    r = SFD_GetPaStat(h);
     if (r == 0) {
         ret = 0;
         goto out;

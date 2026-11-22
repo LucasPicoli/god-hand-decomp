@@ -5,8 +5,8 @@
 extern int adxm_ResumeThread(int tid);
 extern int WakeupThread(int tid);
 
-__attribute__((section(".text.func_00324EB0")))
-void func_00324EB0(void)
+__attribute__((section(".text.adxm_safe_proc")))
+void adxm_safe_proc(void)
 {
     while (D_003C8158 == 0) {
         Obj0000_Increment_D_003C8100_324E98();
@@ -15,20 +15,20 @@ void func_00324EB0(void)
     ExitDeleteThread();
 }
 
-__attribute__((section(".text.func_00324F08")))
-void func_00324F08(void)
+__attribute__((section(".text.adxm_vsync_proc")))
+void adxm_vsync_proc(void)
 {
     while (D_003C8178 == 0) {
         D_003C8110++;
-        func_00325360(D_003C814C);
+        adxm_SuspendThread(D_003C814C);
         if (D_003C81C8 == 0) {
             func_00325FD8();
         }
         D_003C81C8 = 0;
         if (GetD003C80A8_325610() == 1) {
-            func_00325360(D_003C8150);
+            adxm_SuspendThread(D_003C8150);
         }
-        func_00325E78();
+        ADXPS2_WakeupMainThrd();
         D_003C80E8 = 1;
         Forward33BC48_33BD48();
         D_003C80E8 = 0;
@@ -38,8 +38,8 @@ void func_00324F08(void)
     ExitDeleteThread();
 }
 
-__attribute__((section(".text.func_00325010")))
-void func_00325010(void)
+__attribute__((section(".text.adxm_fs_proc")))
+void adxm_fs_proc(void)
 {
     while (D_003C8188 == 0) {
         D_003C8118++;
@@ -61,8 +61,8 @@ void func_00325010(void)
     ExitDeleteThread();
 }
 
-__attribute__((section(".text.func_00325100")))
-void func_00325100(void)
+__attribute__((section(".text.adxm_mwidle_proc")))
+void adxm_mwidle_proc(void)
 {
     int busy;
 
@@ -92,8 +92,8 @@ void func_00325100(void)
     ExitDeleteThread();
 }
 
-__attribute__((section(".text.func_00325DF0")))
-void func_00325DF0(void)
+__attribute__((section(".text.ADXPS2_ResumeIdleThrd")))
+void ADXPS2_ResumeIdleThrd(void)
 {
     if (adxm_ResumeThread(D_003C814C) == D_003C814C) {
         func_00325290(D_003C814C);
@@ -105,8 +105,8 @@ void func_00325DF0(void)
     }
 }
 
-__attribute__((section(".text.func_00325E78")))
-void func_00325E78(void)
+__attribute__((section(".text.ADXPS2_WakeupMainThrd")))
+void ADXPS2_WakeupMainThrd(void)
 {
     struct ThreadParam info;
 

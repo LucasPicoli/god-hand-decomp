@@ -74,8 +74,8 @@ extern Ch D_0076E910[];
 
 
 
-__attribute__((section(".text.func_00376F18")))
-int func_00376F18(Rq *r)
+__attribute__((section(".text.rexeCtlOpen")))
+int rexeCtlOpen(Rq *r)
 {
     Ch *c;
     unsigned int i;

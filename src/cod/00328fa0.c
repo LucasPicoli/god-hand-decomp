@@ -45,7 +45,7 @@ int func_0032AA30(int *a0, int a1)
     }
     *((short *)a0 + 0x20) = a1;
     if (*((signed char *)a0 + 0xAD) == 1) {
-        v = func_00327890(a0[1]);
+        v = ADXSJD_GetDefOutVol(a0[1]);
     } else {
         v = 0;
     }

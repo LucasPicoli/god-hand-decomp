@@ -4,8 +4,8 @@
  * counter is written first in the for-init so it lands in $v1 and the pointer
  * in $v0, matching retail's register assignment. */
 
-__attribute__((section(".text.func_0035BD88")))
-void func_0035BD88(void *a0, int a1) {
+__attribute__((section(".text.sftrn_InitTrData")))
+void sftrn_InitTrData(void *a0, int a1) {
     char *p = (char *)a0;
     int i;
     int *q;

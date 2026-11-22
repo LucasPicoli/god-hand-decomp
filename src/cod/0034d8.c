@@ -5,14 +5,14 @@
 /* Struct: CGObj34D8_t — vec3 at +0x24 (CopyVec3); reaches +0x1F44 — likely an accessor view into a large entity object. */
 
 /* ── Forward declarations for external called functions ──────────────────── */
-extern void func_003394A0(void);
-extern void func_00339520(void);
+extern void SJRBF_Init(void);
+extern void SJRBF_Finish(void);
 extern void func_003571D0(void);
 extern void Forward35D538_34D048(void);
 extern void func_0034D068(void);
 extern int Forward33B568_33B658(void);
 extern int Forward33B5C8_33B670(void);
-extern int  func_0034CA00(char *a0, int a1, int a2);
+extern int  SFBUF_SetPrepFlg(char *a0, int a1, int a2);
 
 /* Internal forward decl (func_0034DD58 is defined later in this TU
  * but called by Obj34D8_Thunk_DD58 which appears first) */
@@ -22,20 +22,20 @@ extern void func_0034DD58(char *a0);
 extern char *D_003EE0B8;   /* set by Obj34D8_SetGlobalEE0B8_IfField48 */
 
 /* ── INCLUDE_ASM("nonmatching") — complex call-chain / jalr / odd ─────────── */
-extern int func_0035E148(int, unsigned char, int *);
-extern int func_0035E1B8(int, unsigned char, int *);
-extern int func_0035E238(int, unsigned char, int *);
-extern int func_0035E2A8(int, unsigned char, int *);
+extern int SFH_AnlyElemCodecAud(int, unsigned char, int *);
+extern int SFH_AnlyElemLayer(int, unsigned char, int *);
+extern int SFH_AnlyElemChNum(int, unsigned char, int *);
+extern int SFH_AnlyElemSmpHz(int, unsigned char, int *);
 int sfhds_CallS(int a0, int a1, int (*fn)(int, unsigned char, int *));
 
 __attribute__((section(".text.sfhds_AnlyAudio")))
 void sfhds_AnlyAudio(int h, int p, int *r)
 {
     if (p == 0) return;
-    r[0] = sfhds_CallS(h, p, func_0035E148);
-    r[1] = sfhds_CallS(h, p, func_0035E1B8);
-    r[2] = sfhds_CallS(h, p, func_0035E238);
-    r[3] = sfhds_CallS(h, p, func_0035E2A8);
+    r[0] = sfhds_CallS(h, p, SFH_AnlyElemCodecAud);
+    r[1] = sfhds_CallS(h, p, SFH_AnlyElemLayer);
+    r[2] = sfhds_CallS(h, p, SFH_AnlyElemChNum);
+    r[3] = sfhds_CallS(h, p, SFH_AnlyElemSmpHz);
 }
 __attribute__((section(".text.sfhds_CallN")))
 int sfhds_CallN(int a0, int (*fn)(int, int *)) {
@@ -79,11 +79,11 @@ int Obj34D8_GetTri78_Times100(char *a0) {
     return v1 * 100 + base;
 }
 
-/* ── func_0034DB20 ──────────────────────────────────────────────────────────
+/* ── SFHDS_GetColType ──────────────────────────────────────────────────────────
  * The old "PERMANENT (bnel)" note is wrong.  cygnus-2.96 emits the bnel from
  * two plain early returns once the +0xD4 base sits in a local. */
-__attribute__((section(".text.func_0034DB20")))
-int func_0034DB20(char *p)
+__attribute__((section(".text.SFHDS_GetColType")))
+int SFHDS_GetColType(char *p)
 {
     char *q = p + 0xD4;
 
@@ -151,13 +151,13 @@ int Obj34D8_SetGlobalEE0B8_IfField48(char *a0) {
     return 0;
 }
 
-/* ── Thunk_func_003394A0: j-thunk → func_003394A0 ─────────────────────────────── */
+/* ── Thunk_func_003394A0: j-thunk → SJRBF_Init ─────────────────────────────── */
 __attribute__((section(".text.Thunk_func_003394A0")))
-void Thunk_func_003394A0(void) { func_003394A0(); }
+void Thunk_func_003394A0(void) { SJRBF_Init(); }
 
-/* ── Thunk_func_00339520: j-thunk → func_00339520 ─────────────────────────────── */
+/* ── Thunk_func_00339520: j-thunk → SJRBF_Finish ─────────────────────────────── */
 __attribute__((section(".text.Thunk_func_00339520")))
-void Thunk_func_00339520(void) { func_00339520(); }
+void Thunk_func_00339520(void) { SJRBF_Finish(); }
 
 /* ── Call_3571D0_Then_4D048: jal func_003571D0 + j Forward35D538_34D048 ─────────────────── */
 __attribute__((section(".text.Call_3571D0_Then_4D048")))
@@ -199,12 +199,12 @@ int ReturnZero_DF98(void) { return 0; }
 __attribute__((section(".text.ReturnZero_DFA0")))
 int ReturnZero_DFA0(void) { return 0; }
 
-/* ── Obj34D8_Call4CA00_With1F44_ReturnZero: call func_0034CA00(a0, *(a0+0x1F44), 1) + return 0 ──── */
-/* addiu a2,0,1; sd $ra; jal func_0034CA00[delay:lw a1,0x1F44(a0)];
+/* ── Obj34D8_Call4CA00_With1F44_ReturnZero: call SFBUF_SetPrepFlg(a0, *(a0+0x1F44), 1) + return 0 ──── */
+/* addiu a2,0,1; sd $ra; jal SFBUF_SetPrepFlg[delay:lw a1,0x1F44(a0)];
  * daddu v0,0,0; ld $ra; jr $ra; addiu $sp */
 __attribute__((section(".text.Obj34D8_Call4CA00_With1F44_ReturnZero")))
 int Obj34D8_Call4CA00_With1F44_ReturnZero(char *a0) {
-    func_0034CA00(a0, *(int *)(a0 + 0x1F44), 1);
+    SFBUF_SetPrepFlg(a0, *(int *)(a0 + 0x1F44), 1);
     return 0;
 }
 
@@ -234,12 +234,12 @@ long SfdSys_init(SfdSysInit *init)
     SfdSys *sys = &D_003EE0C0;
     int i;
 
-    func_00366C50(sys, 0, 0x89);
-    func_00366960(sys, D_00459760, SFDSYS_DEF_LEN);
+    UTY_MemsetDword(sys, 0, 0x89);
+    MEM_Copy(sys, D_00459760, SFDSYS_DEF_LEN);
     sys->pair = *(SfdSysPair *)init;
     sys->unk198 = 0;
     Obj34D8_Thunk_DD58(sys->sub19C);
-    func_0035A298(sys->sub1B0, init->arg);
+    SFTIM_Init(sys->sub1B0, init->arg);
     func_0034BA68(sys->sub1BC);
     Obj34D8_ClearTwoWords_1FC((char *)sys);
     for (i = SFDSYS_CLR_WORDS - 1; i >= 0; i--)
@@ -247,7 +247,7 @@ long SfdSys_init(SfdSysInit *init)
     return SFTRN_Init(D_003EE280, init->tbl);
 }
 INCLUDE_ASM("nonmatching", SfErrSlot_report);
-extern int func_003587E8(void *hn);
+extern int SFD_Destroy(void *hn);
 extern void func_0035A2A8(void *work);
 extern void func_0034BA80(void *rec);
 extern int sftrn_CallTrEntry1_35BC38(void *rec);
@@ -267,7 +267,7 @@ int SfdLib_init(void)
 
     for (i = 7; i >= 0; i--) {
         if (*p != 0) {
-            hnCode = func_003587E8(*p);
+            hnCode = SFD_Destroy(*p);
         }
         p++;
     }

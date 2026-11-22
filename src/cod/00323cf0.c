@@ -13,12 +13,12 @@ typedef struct CdReadReq {
     int size;                           /* 0x28 */
 } CdReadReq;
 
-extern void func_003228C0(int id, int phase, CdReadReq *h, int nsct, void *buf);
+extern void adxf_SetCmdHstry(int id, int phase, CdReadReq *h, int nsct, void *buf);
 extern int func_003395A0(int buf, int size, int mode);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void Forward3B0640_33F3D0(void *buf, int size);
-extern int func_00323BE0(CdReadReq *h, int nsct, SjObj *sj);
+extern int adxf_read_sj32(CdReadReq *h, int nsct, SjObj *sj);
 
 __attribute__((section(".text.func_00323CF0")))
 int func_00323CF0(CdReadReq *h, int nsct, void *buf)
@@ -27,7 +27,7 @@ int func_00323CF0(CdReadReq *h, int nsct, void *buf)
     int size;
     int n;
 
-    func_003228C0(4, 0, h, nsct, buf);
+    adxf_SetCmdHstry(4, 0, h, nsct, buf);
     if (h == 0) { func_0033F130(D_00451718); return -3; }
     if (nsct < 0) { func_0033F130(D_00451740); return -3; }
     if (buf == 0) { func_0033F130(D_00451770); return -3; }
@@ -48,7 +48,7 @@ int func_00323CF0(CdReadReq *h, int nsct, void *buf)
     if (D_003EB708 == 1)
         Forward3B0640_33F3D0(buf, size);
     Forward33B670_33E690();
-    n = func_00323BE0(h, nsct, h->sj);
+    n = adxf_read_sj32(h, nsct, h->sj);
     if (n <= 0) {
         Forward33B658_33E678();
         if (h->sj != 0) {
@@ -58,6 +58,6 @@ int func_00323CF0(CdReadReq *h, int nsct, void *buf)
         Forward33B670_33E690();
     }
     h->busy = 0;
-    func_003228C0(4, 1, h, nsct, buf);
+    adxf_SetCmdHstry(4, 1, h, nsct, buf);
     return n;
 }

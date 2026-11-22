@@ -231,7 +231,7 @@ __attribute__((section(".text.FreeSequenceNode_373D48")))
 void FreeSequenceNode_373D48(int *a0) {
     int *s0 = a0;
     if (s0[0] != 0) {
-        func_003298C0(s0[0]);
+        ADXT_Destroy(s0[0]);
         func_0031C928(s0[1], D_00754210);
     }
 }

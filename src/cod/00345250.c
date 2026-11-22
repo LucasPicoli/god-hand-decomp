@@ -1,7 +1,7 @@
 #include "godhand/mwsfViews.h"
 
-__attribute__((section(".text.func_00345250")))
-int func_00345250(MwRing *r)
+__attribute__((section(".text.MWSFD_GetTotalFrmNum")))
+int MWSFD_GetTotalFrmNum(MwRing *r)
 {
     int i = r->pos % 8;
 

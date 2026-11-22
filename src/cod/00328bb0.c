@@ -3,7 +3,7 @@
 #include "godhand/Obj3290Pool.h"
 #include "godhand/sftim.h"
 
-extern void func_00352888(int time, int rate, int drop, int ofs, SftimTc *tc);
+extern void sfmpv_Pts2Tc(int time, int rate, int drop, int ofs, SftimTc *tc);
 extern void func_00352AA0(SftimTc *src, SftimTc *dst);
 
 /* With the lock held, run every queued pool entry, then release the lock. */
@@ -35,7 +35,7 @@ void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update)
     int ofs = info->ofs;
 
     if (update != 0 && time >= 0) {
-        func_00352888(time, rate, drop, ofs, &tim->tc);
+        sfmpv_Pts2Tc(time, rate, drop, ofs, &tim->tc);
         return;
     }
     if (tim->rec[1].valid == 0) {

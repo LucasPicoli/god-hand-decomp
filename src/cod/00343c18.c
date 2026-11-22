@@ -3,7 +3,7 @@
 #include "godhand/SfdHn.h"
 
 extern void SFD_SetCond(void *sfd, int id, int val);
-extern void func_003502D8(void *sfd, int a, int b);
+extern void SFD_SetMpvCond(void *sfd, int a, int b);
 
 /* Set the Sofdec playback conditions for a picture of `w` x `h`: the rate (a count of the frame
  * pixels rounded to the nearest, 1000 per pixel) and the fixed defaults. */
@@ -32,5 +32,5 @@ void SfdHn_setPlayConds(SfdHn *hn, int unused, int w, int h)
     SFD_SetCond(sfd, 0x33, 0);
     SFD_SetCond(sfd, 0xE, 0);
     SFD_SetCond(sfd, 0x1C, 0);
-    func_003502D8(sfd, 5, 0);
+    SFD_SetMpvCond(sfd, 5, 0);
 }

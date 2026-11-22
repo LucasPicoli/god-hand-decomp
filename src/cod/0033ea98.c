@@ -12,8 +12,8 @@ typedef unsigned int Uint32;
 
 extern Sint32 ADX_DecodeInfoExVer(Sint8 *ibuf, Sint32 hdlen, Uint8 *ver, Uint8 *rev);
 
-__attribute__((section(".text.func_0033EA98")))
-Sint32 func_0033EA98(Sint8 *ibuf, Sint32 hdlen, Sint16 *idly0, Sint16 *idly1)
+__attribute__((section(".text.ADX_DecodeInfoExIdly")))
+Sint32 ADX_DecodeInfoExIdly(Sint8 *ibuf, Sint32 hdlen, Sint16 *idly0, Sint16 *idly1)
 {
     Uint8 ver, rev;
 

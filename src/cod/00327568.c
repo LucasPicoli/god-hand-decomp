@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00327568, skips the bytes all channel stream joints have available (rounded to an
+/* cygnus-2.96: adxsjd_discard_proc, skips the bytes all channel stream joints have available (rounded to an
  * even count) and subtracts the per-channel amount from the pending total. */
 #include "godhand/criSj.h"
 
@@ -10,8 +10,8 @@ typedef struct AdxChDec {
     int pending;                        /* 0xA4 */
 } AdxChDec;
 
-__attribute__((section(".text.func_00327568")))
-void func_00327568(AdxChDec *dec)
+__attribute__((section(".text.adxsjd_discard_proc")))
+void adxsjd_discard_proc(AdxChDec *dec)
 {
     SjChunk ck;
     int i;

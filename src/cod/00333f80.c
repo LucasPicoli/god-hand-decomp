@@ -15,4 +15,4 @@
 
 
 __attribute__((section(".text.Forward331CE0_333F80")))
-int Forward331CE0_333F80(void) { return func_00331CE0(); }
+int Forward331CE0_333F80(void) { return SRD_SetLockHost(); }

@@ -27,7 +27,7 @@ typedef struct PadCtrl {
     int trig;                   /* 0x38 */
 } PadCtrl;
 
-extern void func_0032A8C0(void *obj, int value);
+extern void ADXT_SetOutBalance(void *obj, int value);
 
 __attribute__((section(".text.func_003813C8")))
 void func_003813C8(ValueMenu *self, PadCtrl *ctrl)
@@ -44,7 +44,7 @@ void func_003813C8(ValueMenu *self, PadCtrl *ctrl)
             item->value = c - 1;
         obj = item->obj;
         if (obj != 0)
-            func_0032A8C0(obj, item->value);
+            ADXT_SetOutBalance(obj, item->value);
     }
     if ((ctrl->trig & PAD_RIGHT) != 0) {
         c = item->value;
@@ -54,6 +54,6 @@ void func_003813C8(ValueMenu *self, PadCtrl *ctrl)
             item->value = VALUE_MIN;
         obj = item->obj;
         if (obj != 0)
-            func_0032A8C0(obj, item->value);
+            ADXT_SetOutBalance(obj, item->value);
     }
 }

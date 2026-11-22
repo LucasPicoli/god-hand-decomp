@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 
 /* compiler: ee-2.9-991111 ; extra keys: none */
-__attribute__((section(".text.func_003BACA0")))
-int func_003BACA0(int mode) {
+__attribute__((section(".text.sceIpuSync")))
+int sceIpuSync(int mode) {
     int r;
     r = 0;
     switch (mode) {

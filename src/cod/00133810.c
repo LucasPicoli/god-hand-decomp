@@ -18,7 +18,7 @@ void func_003A7AE8(void *a0, void *a1, void *a2)
     *(void **)(buf + 0x10) = a0;
     *(int *)(buf + 0x14) = 0x7FFFFFFF;
     *(int *)(buf + 0x54) = D_003FA62C;
-    func_003A9D88(buf, a1, a2);
+    vfprintf(buf, a1, a2);
     p = *(char **)buf;
     *p = 0;
 }

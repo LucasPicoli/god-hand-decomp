@@ -8,7 +8,7 @@
 #include "godhand/cGameObj.h"
 
 extern int CreateThread(void *param);
-extern void func_003B0BA8(int tid, cTaskWork *self);
+extern void StartThread_3B0BA8(int tid, cTaskWork *self);
 extern void WakeupThread(int tid);
 extern void WaitSema(int sema);
 extern void cTaskWork_kill(cTaskWork *self);
@@ -44,7 +44,7 @@ void cTaskWork_step(cTaskWork *self)
     switch (self->running) {
     case 2:
         self->tid = CreateThread(TASKWORK_THREAD_ARGS(self));
-        func_003B0BA8(self->tid, self);
+        StartThread_3B0BA8(self->tid, self);
         goto done;
     case 1:
         TASKWORK_COUNT(self) = TASKWORK_COUNT(self) - 1;

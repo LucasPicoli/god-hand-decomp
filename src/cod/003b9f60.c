@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_003B9F60, return the first free slot of D_003FC7B8, or 0. The table has one slot;
+/* cygnus-2.96: ac3cnv_alloc_hndl, return the first free slot of D_003FC7B8, or 0. The table has one slot;
  * retail still loops over it. */
 typedef struct WordSlot {
     int word;
@@ -7,8 +7,8 @@ typedef struct WordSlot {
 
 extern WordSlot D_003FC7B8[];
 
-__attribute__((section(".text.func_003B9F60")))
-WordSlot *func_003B9F60(void)
+__attribute__((section(".text.ac3cnv_alloc_hndl")))
+WordSlot *ac3cnv_alloc_hndl(void)
 {
     WordSlot *p;
     int i;

@@ -47,21 +47,21 @@ typedef struct SudStmTbl {
 
 extern int GetField0OrZero_346828(MwsfHn *mw);
 extern void MWSFSVM_Error(const char *msg);
-extern int func_00345750(int err);
+extern int MWSFLIB_SetErrCode(int err);
 extern int Forward345250_344F18(MwsfHn *mw);
-extern int func_00346848(MwsfHn *mw);
+extern int mwPlyGetStat(MwsfHn *mw);
 extern int func_003468B8(MwsfHn *mw);
 extern void func_00346968(MwsfHn *mw, int *time, int *tunit);
-extern void func_00347968(MwsfHn *mw, int a1);
-extern void func_00347BC0(MwsfHn *mw, int a1, int a2);
-extern void func_00347D08(MwsfHn *mw, int a1, int a2, int a3);
-extern void func_00348158(MwsfHn *mw);
-extern void func_00348610(void *sub, int on);
+extern void mwPlyStartFnameLp(MwsfHn *mw, int a1);
+extern void mwPlyStartAfsLp(MwsfHn *mw, int a1, int a2);
+extern void mwPlyStartFnameRangeLp(MwsfHn *mw, int a1, int a2, int a3);
+extern void CheckReleasLpTiming(MwsfHn *mw);
+extern void MWSST_SetLnkSw(void *sub, int on);
 extern int Obj0000_Call_0035A128_Field_3C(MwsfHn *mw, int id, int *out);
 
 extern int SFD_SetConcatPlay(void *sfd);
 extern int SFD_GetTime(void *sfd, int *time, int *tunit);
-extern int func_00359E80(void *sfd);
-extern int func_0035B5F8(void *sfd, int *out);
+extern int SFD_GetHnStat(void *sfd);
+extern int SFD_GetFps(void *sfd, int *out);
 
 #endif /* GODHAND_MWSFHN_H */

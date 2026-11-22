@@ -12,7 +12,7 @@ extern void func_0032B488(void *target, int whole, int rest);
 extern int D_003D8454;
 extern void Forward33B568_33B6A0(void);
 extern void Forward33B5C8_33B6D0(void);
-extern void func_00331400(void);
+extern void check_cd_status(void);
 
 /* Reference-counted start: the first caller resets the module state and registers two handlers, every caller bumps the count. */
 __attribute__((section(".text.ModuleStart_refCounted")))
@@ -79,7 +79,7 @@ extern SRD_OBJ D_003D8410;
 
 
 extern void func_00331718(SRD_OBJ *srd);
-extern void func_00331900(SRD_OBJ *srd);
+extern void srd_exec_hst(SRD_OBJ *srd);
 
 
 /* Shuts the pending read down: runs the cleanup for the object's device type, taking the lock around it when the channel is active, then clears the busy word. */
@@ -88,7 +88,7 @@ void CdSrd_finishRead(void)
 {
     SRD_OBJ *srd = &D_003D8410;
 
-    if (func_0033BF18(&D_003D844C) == 0) {
+    if (SVM_TestAndSet(&D_003D844C) == 0) {
         return;
     }
     if (srd->devtype == 1) {
@@ -104,13 +104,13 @@ void CdSrd_finishRead(void)
         if (D_003D8454 == 1) {
             Forward33B568_33B6A0();
         }
-        func_00331900(srd);
+        srd_exec_hst(srd);
         if (D_003D8454 == 1) {
             Forward33B5C8_33B6D0();
         }
     }
     if (D_003D8488 != 0) {
-        func_00331400();
+        check_cd_status();
     }
     D_003D844C = 0;
 }

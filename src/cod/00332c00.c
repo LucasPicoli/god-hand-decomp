@@ -25,13 +25,13 @@ typedef struct CdFileHn {
 } CdFileHn;
 
 extern void func_00332808(void *dev, char *msg);
-extern CdFileHn *func_00332BA8(void);
-extern int func_00333C00(void *dev, CdFileInfo *info);
+extern CdFileHn *dvci_alloc(void);
+extern int dvci_get_fstate(void *dev, CdFileInfo *info);
 extern void func_00333390(void *dev, char *name);
 extern void func_003260C8(const char *fmt, ...);
 extern void PushGlobalD8478History_331C78(int tag);
 extern int func_00398DA0(int mode);
-extern int func_00332838(CdFileInfo *info, char *name);
+extern int dvCiCdSearchFile(CdFileInfo *info, char *name);
 extern void Forward3A52F0_332BE0(CdFileHn *f);
 
 __attribute__((section(".text.func_00332C00")))
@@ -49,19 +49,19 @@ CdFileHn *func_00332C00(void *dev, void *arg, int mode)
         func_00332808(0, D_004543A8);
         return 0;
     }
-    f = func_00332BA8();
+    f = dvci_alloc();
     if (f == 0) {
         func_00332808(0, D_004543D0);
         return 0;
     }
-    kind = func_00333C00(dev, &f->info);
+    kind = dvci_get_fstate(dev, &f->info);
     if (f->info.size == 0) {
         func_00333390(dev, D_003D9C90);
         func_003260C8(D_00454400, D_003D9C90);
         PushGlobalD8478History_331C78(0x8300);
         func_00398DA0(0);
         PushGlobalD8478History_331C78(0x8301);
-        if (func_00332838(&f->info, D_003D9C90) == 0) {
+        if (dvCiCdSearchFile(&f->info, D_003D9C90) == 0) {
             func_00332808(0, D_00454428);
             Forward3A52F0_332BE0(f);
             return 0;

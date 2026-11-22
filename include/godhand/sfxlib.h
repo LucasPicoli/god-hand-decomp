@@ -62,7 +62,7 @@ typedef struct SfxTbl {
 
 extern void SFXLIB_Error(void *a, void *b, void *s);
 extern int func_0035EBB0(void *a, void *b, int mode);
-extern void func_0035EDE0(unsigned char *t);
+extern void SFXCNV_MakeCcirFromY(unsigned char *t);
 
 /* ZMV tag search state: the input chunk and the header and frame chunks found in it. */
 typedef struct SfxZmvTagState {

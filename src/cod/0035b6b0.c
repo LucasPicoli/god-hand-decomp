@@ -9,8 +9,8 @@ typedef struct Tim {
 
 extern void func_0035B6F8(void *p, int a1, int a2, int *out, int tunit);
 
-__attribute__((section(".text.func_0035B6B0")))
-int func_0035B6B0(char *p, int a1, int a2)
+__attribute__((section(".text.SFTIM_IsGetFrmTimeTunit")))
+int SFTIM_IsGetFrmTimeTunit(char *p, int a1, int a2)
 {
     int out;
     Tim *t;

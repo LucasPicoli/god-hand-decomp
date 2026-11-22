@@ -152,7 +152,7 @@ typedef struct SfdAdxt {
     void *adxt;                 /* 0x00 the ADXT handle */
     char unk04[0x38 - 0x04];
     int lead;                   /* 0x38 audio samples played ahead of the video */
-    void (*step)(void *a0, int a1, int a2, int *a3);  /* 0x3C next step, func_0034A038 once in sync */
+    void (*step)(void *a0, int a1, int a2, int *a3);  /* 0x3C next step, sfadxt_CopyData once in sync */
 } SfdAdxt;
 
 typedef struct SfdHn {
@@ -187,10 +187,10 @@ typedef struct SfdHn {
 } SfdHn;
 
 extern void MWSFSVM_Error(const char *fmt, ...);
-extern int func_0034CA30(SfdHn *hn, int ch);
-extern void func_0034CA00(SfdHn *hn, int ch, int arg);
-extern SfdBufInf *func_0034E988(SfdHn *hn);
-extern int func_0034C7F0(SfdHn *hn, int arg);
+extern int SFBUF_GetPrepFlg(SfdHn *hn, int ch);
+extern void SFBUF_SetPrepFlg(SfdHn *hn, int ch, int arg);
+extern SfdBufInf *sfmps_GetSupSj(SfdHn *hn);
+extern int SFBUF_GetWTot(SfdHn *hn, int arg);
 
 /* One stream-joint output channel of the SFD writers (0x36B888, 0x36EE90). */
 typedef struct SfdSjCh {

@@ -27,12 +27,12 @@ typedef struct {
 extern SfdIfInfo D_00760D90;
 extern int ReturnK_003EE2BC_00358A38_358A38(void);
 extern int func_0034B270(int);
-extern int func_0034B2C8(SfdIfObj *);
+extern int SFADXT_Stop(SfdIfObj *);
 extern int Obj0000_Set_D_003EE2C0_34B290(int);
 extern void IntrNest_leave(void);
 
-__attribute__((section(".text.func_0034B198")))
-int func_0034B198(SfdIfObj *o)
+__attribute__((section(".text.SFADXT_Destroy")))
+int SFADXT_Destroy(SfdIfObj *o)
 {
     SfdIfReq *r = o->req;
     int h = r->handle;
@@ -45,7 +45,7 @@ int func_0034B198(SfdIfObj *o)
     if (ReturnK_003EE2BC_00358A38_358A38() != 1) {
         h = func_0034B270(h);
     } else {
-        func_0034B2C8(o);
+        SFADXT_Stop(o);
         h = Obj0000_Set_D_003EE2C0_34B290(h);
     }
     iface->vt->fC(iface);

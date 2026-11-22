@@ -3,7 +3,7 @@
 #include "godhand/globals.h"
 
 extern int func_00323000(int ptid);
-extern void func_00323A70(int adxf);
+extern void ADXF_Close(int adxf);
 extern int func_00323E80(int a0, int a1, int a2);
 extern void *func_0031C8B8(int size, int align);
 extern void func_003A6A20(const char *s);
@@ -24,7 +24,7 @@ void func_0037FC28(FileSel *self)
     if (work->buf == 0) {
         func_003A6A20(D_0045C270);
         work->err = 1;
-        func_00323A70(work->req);
+        ADXF_Close(work->req);
         self->state = 10;
     } else {
         func_00323E80(work->req, 1, (int)work->buf);

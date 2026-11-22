@@ -72,13 +72,13 @@ typedef struct _adx_intbuf {
 
 
 
-__attribute__((section(".text.func_0033DAE0")))
-Sint32 func_0033DAE0(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+__attribute__((section(".text.ADXB_DecodeHeaderSpsd")))
+Sint32 ADXB_DecodeHeaderSpsd(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     Sint16 dlen;
 
     adxb->hdcdflag = 1;
-    if (func_0033D9C0(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen,
+    if (ADX_DecodeInfoSpsd(ibuf, ibuflen, &dlen, &adxb->code, &adxb->bps, &adxb->blklen,
                       &adxb->nch, &adxb->sfreq, &adxb->total_nsmpl, &adxb->blknsmpl,
                       &adxb->cdctype) < 0) {
         return 0;

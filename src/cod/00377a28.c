@@ -1,4 +1,4 @@
-/* sn-2.95.3-136: func_00377A28, stops every active kind-2 sequence node owned by the given track. */
+/* sn-2.95.3-136: SdeStrCtlFadeOutEnd, stops every active kind-2 sequence node owned by the given track. */
 #include "godhand/seqNode.h"
 
 typedef struct {
@@ -9,8 +9,8 @@ typedef struct {
     short state;          /* 0x14 */
 } SeqTrack;
 
-__attribute__((section(".text.func_00377A28")))
-void func_00377A28(SeqTrack *t)
+__attribute__((section(".text.SdeStrCtlFadeOutEnd")))
+void SdeStrCtlFadeOutEnd(SeqTrack *t)
 {
     SeqNode *n = D_0076CF20;
 

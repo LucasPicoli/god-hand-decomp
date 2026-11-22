@@ -7,7 +7,7 @@
 #define MENUSND_PLY(info) (*(int *)((char *)(info) + 0x20))
 
 
-extern void func_0032EC78(int ply, int ch, int vol);
+extern void AIXP_SetTrackVol(int ply, int ch, int vol);
 
 #define MENUSND_MUTE_VOL  -0x3C0        /* volume sent for a muted channel */
 
@@ -36,20 +36,20 @@ void MenuCtl_toggleSndMute(MenuCtl *self, MenuPad *pad)
         return;
     if (snd->slot != 0) {
         if (info->mute[snd->slot])
-            func_0032EC78(MENUSND_PLY(info), snd->slot - 1, MENUSND_MUTE_VOL);
+            AIXP_SetTrackVol(MENUSND_PLY(info), snd->slot - 1, MENUSND_MUTE_VOL);
         else
-            func_0032EC78(MENUSND_PLY(info), snd->slot - 1, snd->level[snd->slot]);
+            AIXP_SetTrackVol(MENUSND_PLY(info), snd->slot - 1, snd->level[snd->slot]);
         return;
     }
     if (info->mute[snd->slot]) {
         int i;
 
         for (i = 0; i < info->track; i++)
-            func_0032EC78(MENUSND_PLY(info), i, MENUSND_MUTE_VOL);
+            AIXP_SetTrackVol(MENUSND_PLY(info), i, MENUSND_MUTE_VOL);
     } else {
         int k;
 
         for (k = 0; k < info->track; k++)
-            func_0032EC78(MENUSND_PLY(info), k, snd->level[k + 1]);
+            AIXP_SetTrackVol(MENUSND_PLY(info), k, snd->level[k + 1]);
     }
 }

@@ -14,7 +14,7 @@ extern int D_00455BD8, D_00455C08;
 extern void func_0033F130(void *a0);
 extern void func_00329ED8(void *a0);
 extern void Forward33B658_33E678(void);
-extern void func_00329B60(void *a0, void *a1);
+extern void adxt_start_sj(void *a0, void *a1);
 extern void func_0032B6A0(void *a0, int a1);
 extern void Forward33B670_33E690(void);
 
@@ -105,8 +105,8 @@ void func_0033A300(char *a0)
 
 
 
-__attribute__((section(".text.func_00329D78")))
-void func_00329D78(int *a0, void *a1)
+__attribute__((section(".text.adxt_StartSj")))
+void adxt_StartSj(int *a0, void *a1)
 {
     if (a0 == 0 || a1 == 0) {
         func_0033F130(&D_00452038);
@@ -115,7 +115,7 @@ void func_00329D78(int *a0, void *a1)
     func_00329ED8(a0);
     Forward33B658_33E678();
     *((char *)a0 + 2) = 3;
-    func_00329B60(a0, a1);
+    adxt_start_sj(a0, a1);
     func_0032B6A0(a0, 1);
     Forward33B670_33E690();
 }

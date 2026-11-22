@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: quad from short xy pairs, z + 65528, then Draw_Poly_sc. */
-extern unsigned int func_0031CA58(unsigned int a0);
+extern unsigned int convColor(unsigned int a0);
 extern void Draw_Poly_sc(float (*v)[4], unsigned int col);
 
 __attribute__((section(".text.func_0031CB80")))
@@ -17,5 +17,5 @@ void func_0031CB80(short *pts, unsigned int col, unsigned int z)
         pts += 2;
         p++;
     } while (--i);
-    Draw_Poly_sc(v, func_0031CA58(col));
+    Draw_Poly_sc(v, convColor(col));
 }

@@ -39,21 +39,21 @@ int func_0036D938(int *a0, int a1){
 __attribute__((section(".text.func_00334E80")))
 int func_00334E80(signed char c){ return c == 0x5C ? 0x2F : c; }
 
-__attribute__((section(".text.func_0033A010")))
-int func_0033A010(char *a0, int a1, int a2){ return ((int *)(a0 + 0x28))[a1*2 + a2]; }
+__attribute__((section(".text.SJRBF_GetFlowCnt")))
+int SJRBF_GetFlowCnt(char *a0, int a1, int a2){ return ((int *)(a0 + 0x28))[a1*2 + a2]; }
 
-__attribute__((section(".text.func_0036C3B8")))
-void func_0036C3B8(char *a0, int *a1, int *a2){
+__attribute__((section(".text.MPV_GetDctCnt")))
+void MPV_GetDctCnt(char *a0, int *a1, int *a2){
   int *p = (int *)(a0 + 0x78);
   *a1 = p[6];
   *a2 = p[7];
 }
 
-__attribute__((section(".text.func_0033C7A0")))
-void func_0033C7A0(int *a0, int a1, int a2){ a0[35] += a2; a0[34] += a2; }
+__attribute__((section(".text.adxb_DefAddWr")))
+void adxb_DefAddWr(int *a0, int a1, int a2){ a0[35] += a2; a0[34] += a2; }
 
-__attribute__((section(".text.func_0034D188")))
-unsigned int func_0034D188(unsigned char *a0){
+__attribute__((section(".text.sfhds_ReadLong")))
+unsigned int sfhds_ReadLong(unsigned char *a0){
   unsigned int v = a0[0];
   v = (v << 8) | a0[1];
   v = (v << 8) | a0[2];

@@ -41,7 +41,7 @@ void func_00378610(char *s0) {
             return;
         }
         v = s0[7];
-        if (func_0037A0F0(s0, *(short *)(s0 + (v << 1) + 0x16), 1) >= 0) {
+        if (SdeTblTestBlkNoCheck(s0, *(short *)(s0 + (v << 1) + 0x16), 1) >= 0) {
             s0[4] = 0;
         }
         return;

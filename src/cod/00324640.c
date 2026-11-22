@@ -3,11 +3,11 @@
 #include "godhand/adxf.h"
 
 extern int adxf_ChkPrmGfr(int ptid, int flid);
-extern int func_00324858(int ent);
+extern int ADXF_CALC_BYTE2SCT(int ent);
 extern void func_003A5DA0(char *d, char *s, int n);
 
-__attribute__((section(".text.func_00324640")))
-int func_00324640(int ptid, int flid, char *fname, void **dir, int *ofst, int *fnsct, int *fsize)
+__attribute__((section(".text.adxf_GetFnameRangeEx")))
+int adxf_GetFnameRangeEx(int ptid, int flid, char *fname, void **dir, int *ofst, int *fnsct, int *fsize)
 {
     AdxfPtInfo *pt;
     unsigned short *tbl16;
@@ -27,10 +27,10 @@ int func_00324640(int ptid, int flid, char *fname, void **dir, int *ofst, int *f
     pt = D_003EB308[ptid];
     if (pt->type == 1) {
         tbl32 = pt->tbl;
-        ofs = func_00324858(pt->top);
+        ofs = ADXF_CALC_BYTE2SCT(pt->top);
         for (i = 0; i < flid; i++)
-            ofs += func_00324858(tbl32[i]);
-        *fnsct = func_00324858(tbl32[flid]);
+            ofs += ADXF_CALC_BYTE2SCT(tbl32[i]);
+        *fnsct = ADXF_CALC_BYTE2SCT(tbl32[flid]);
         *fsize = tbl32[flid];
     } else {
         ofs = *(unsigned short *)&pt->top;

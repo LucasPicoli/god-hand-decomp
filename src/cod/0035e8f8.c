@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0035E8F8")))
-int func_0035E8F8(int a0) {
+__attribute__((section(".text.getPicRate")))
+int getPicRate(int a0) {
     switch (a0) {
     case 1:
         return 0x5DA8;

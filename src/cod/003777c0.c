@@ -3,8 +3,8 @@
 extern unsigned short D_0076E910;
 extern unsigned short D_0076B340;
 
-__attribute__((section(".text.func_003777C0")))
-void func_003777C0(void) {
+__attribute__((section(".text.SdeStrReport")))
+void SdeStrReport(void) {
     int i;
     int j;
     char *ea;

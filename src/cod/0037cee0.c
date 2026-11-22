@@ -6,8 +6,8 @@ extern char D_0076CF20[];
 /* sn-2.95.3-136 */
 
 
-__attribute__((section(".text.func_0037CEE0")))
-char *func_0037CEE0(char *p)
+__attribute__((section(".text.SdeVmngOpenNml")))
+char *SdeVmngOpenNml(char *p)
 {
     int e = *(signed char *)(p + 0x6) * 32 + (int)D_0076C8C0;
 
@@ -26,8 +26,8 @@ void *func_0037D100(unsigned short a0){int i;char *p=D_0076C8C0;for(i=0;i<0x33;i
 /* sn-2.95.3-136 */
 
 
-__attribute__((section(".text.func_0037D388")))
-char *func_0037D388(signed char i)
+__attribute__((section(".text.vregOpenDirect")))
+char *vregOpenDirect(signed char i)
 {
     int e = i * 0x50 + (int)D_0076CF20;
 
@@ -37,8 +37,8 @@ char *func_0037D388(signed char i)
     return (char *)e;
 }
 
-__attribute__((section(".text.func_0037D728")))
-void func_0037D728(char *p) {
+__attribute__((section(".text.SdeVregOutPchCalc")))
+void SdeVregOutPchCalc(char *p) {
     int s;
     int t;
 
@@ -51,8 +51,8 @@ void func_0037D728(char *p) {
 }
 
 /* sn-2.95.3-136 */
-__attribute__((section(".text.func_003970A0")))
-unsigned int func_003970A0(unsigned int x)
+__attribute__((section(".text.CheckAddress")))
+unsigned int CheckAddress(unsigned int x)
 {
     if ((x >> 28) == 7) {
         x &= 0xFFFFFFF;

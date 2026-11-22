@@ -16,8 +16,8 @@ extern int func_00333B00(char *);
 extern int func_00333B40(char *, int *, int *);
 extern void func_00333A10(FileLoc *, char *, void *, int);
 
-__attribute__((section(".text.func_00333C00")))
-int func_00333C00(char *name, FileLoc *res)
+__attribute__((section(".text.dvci_get_fstate")))
+int dvci_get_fstate(char *name, FileLoc *res)
 {
     int buf[2];
 

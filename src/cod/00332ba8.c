@@ -36,8 +36,8 @@ int func_003347D0(int *hn)
     return hn[7];
 }
 
-__attribute__((section(".text.func_00334BA8")))
-int func_00334BA8(void *hn)
+__attribute__((section(".text.htci_filesize_lower")))
+int htci_filesize_lower(void *hn)
 {
     return (int)(Forward334310_334B20(hn) & 0xFFFFFFFFLL);
 }
@@ -45,8 +45,8 @@ int func_00334BA8(void *hn)
 struct E_htci { char used; char pad[47]; };
 
 
-__attribute__((section(".text.func_003344C8")))
-struct E_htci *func_003344C8(void)
+__attribute__((section(".text.htci_alloc")))
+struct E_htci *htci_alloc(void)
 {
     struct E_htci *ret = 0;
     int i;
@@ -59,8 +59,8 @@ struct E_htci *func_003344C8(void)
 struct E_cvfs { char used; char pad[71]; };
 
 
-__attribute__((section(".text.func_00332BA8")))
-struct E_cvfs *func_00332BA8(void)
+__attribute__((section(".text.dvci_alloc")))
+struct E_cvfs *dvci_alloc(void)
 {
     struct E_cvfs *ret = 0;
     int i;

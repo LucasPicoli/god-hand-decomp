@@ -20,9 +20,9 @@ void SndReq_runQueued(void)
         r = &D_0076E590[i];
         if (r->used != 0) {
             if (r->flags & SNDREQ_F_COMMAND) {
-                func_003772D8(r);
+                rexeCmdExec(r);
             } else {
-                func_00376F18(r);
+                rexeCtlOpen(r);
             }
             r->used = 0;
         }

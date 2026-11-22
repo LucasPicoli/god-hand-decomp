@@ -3,7 +3,7 @@
 extern int SFH_IsExistStmId(void *h, unsigned char id, int *out);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *hn);
 extern void func_0034DD70(void *p, unsigned int err);
-extern void func_0035AAC8(void *hn, void *a1, void *a2);
+extern void SFTIM_GetTimeSub(void *hn, void *a1, void *a2);
 
 __attribute__((section(".text.sfhds_AnlyUsedStmid")))
 int sfhds_AnlyUsedStmid(void *h, int from, int to)
@@ -26,5 +26,5 @@ void SFD_GetTime(void *hn, void *a1, void *a2)
         func_0034DD70(0, 0xFF000121);
         return;
     }
-    func_0035AAC8(hn, a1, a2);
+    SFTIM_GetTimeSub(hn, a1, a2);
 }

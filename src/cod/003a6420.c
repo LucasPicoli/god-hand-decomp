@@ -104,8 +104,8 @@ typedef unsigned int size_t;
 
 #define HASUB(fp) ((fp)->_ub._base != 0)
 
-__attribute__((section(".text.func_003A6420")))
-int func_003A6420(register FILE *fp, long offset, int whence)
+__attribute__((section(".text.fseek")))
+int fseek(register FILE *fp, long offset, int whence)
 {
   register struct _reent *ptr;
   long (*seekfn)(void *, long, int);

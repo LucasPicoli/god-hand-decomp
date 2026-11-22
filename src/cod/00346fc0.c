@@ -18,15 +18,15 @@ typedef struct {
     void  *f168;
 } SFX;
 
-extern void func_0035FD20(void *p, Sint32 *a, Sint32 *b);
+extern void SFX_GetTagInf(void *p, Sint32 *a, Sint32 *b);
 
-__attribute__((section(".text.func_00346FC0")))
-void func_00346FC0(SFX *sfx, Sint32 unused, INF *inf)
+__attribute__((section(".text.mwsfsfx_SetSfxInfTag")))
+void mwsfsfx_SetSfxInfTag(SFX *sfx, Sint32 unused, INF *inf)
 {
     Sint32 a;
     Sint32 b;
 
-    func_0035FD20(sfx->f168, &a, &b);
+    SFX_GetTagInf(sfx->f168, &a, &b);
     inf->f80 = a;
     inf->f84 = b;
     inf->f88 = 0;

@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00336D08, sets the decoder's output callback once the stream is running. */
+/* cygnus-2.96: ADXT_SetOutPos, sets the decoder's output callback once the stream is running. */
 #include "godhand/globals.h"
 typedef struct {
     char pad0[0xE8];
@@ -19,10 +19,10 @@ typedef struct {
 } DecOutHn;
 
 extern void func_0033F130(char *msg);
-extern void func_00340920(void *dec, int fn, int obj);
+extern void PL2ENC_SetPos(void *dec, int fn, int obj);
 
-__attribute__((section(".text.func_00336D08")))
-void func_00336D08(DecOutHn *hn, int fn, int obj)
+__attribute__((section(".text.ADXT_SetOutPos")))
+void ADXT_SetOutPos(DecOutHn *hn, int fn, int obj)
 {
     StmCore *c;
     void *dec;
@@ -37,7 +37,7 @@ void func_00336D08(DecOutHn *hn, int fn, int obj)
         func_0033F130(D_00455330);
         return;
     }
-    func_00340920(dec, fn, obj);
+    PL2ENC_SetPos(dec, fn, obj);
     c->cbfn = fn;
     c->cbobj = obj;
 }

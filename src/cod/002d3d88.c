@@ -36,7 +36,7 @@ extern void func_003A5DA0(void *dst, void *src, int n);
 extern int mwPlyCalcWorkCprmSfd(void *cp);
 extern void func_003B0640(void *start, void *end);
 extern void func_002D45B0(cMovieTrack *p, int i);
-extern int func_00309C30(unsigned int a, int w);
+extern int Tim2CalcBufWidth(unsigned int a, int w);
 extern int func_00309D40(int n);
 extern int func_00343E28(int *cp);
 extern int mwPlyFxSetLumiPrm(void *h, int a, int b, int c);
@@ -106,7 +106,7 @@ int func_002D3D88(cMovieTrack *p)
         im->f12 = 0;
         im->w = p->w;
         im->h = p->h;
-        a = func_00309C30(0, p->w);
+        a = Tim2CalcBufWidth(0, p->w);
         b = func_00309D40(p->w);
         c = func_00309D40(p->h);
         im->f28 = 0;

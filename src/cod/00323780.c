@@ -8,18 +8,18 @@ extern int func_00345848;
 extern void MWSFSVM_Error();
 extern int Cmp_a1_Eq_0x37B0(int *, int);
 extern char D_003DA5F8;
-extern void func_00351B70(void *a0, int a1);
+extern void sfmpv_AddRtotSj(void *a0, int a1);
 extern void func_00323AA0(int a0);
 extern void sfbuf_SetSupSj(void *a0, void *a1, void *a2, int a3);
-extern void func_0034BFA8(void *a0, int a1, int a2);
+extern void sfbuf_InitBufData(void *a0, int a1, int a2);
 extern int GetArrayElemA0C_35A1C8();
 extern int SFHDS_ProcessHdr();
 extern int Obj34D8_CopyVec3_From98_To934();
 extern int MPS_SetErrFn();
 extern void func_0034FE78();
 
-__attribute__((section(".text.func_0034A748")))
-int func_0034A748(int a0)
+__attribute__((section(".text.sfadxt_ChkPrepFlg")))
+int sfadxt_ChkPrepFlg(int a0)
 {
     int *v0;
     int s0, s2;
@@ -29,23 +29,23 @@ int func_0034A748(int a0)
     s2 = *(int *)((char *)v0 + 0x14);
     s0 = *(int *)((char *)v0 + 0x10);
 
-    r = func_0034CA30(a0, s2);
+    r = SFBUF_GetPrepFlg(a0, s2);
     if (r == 1)
         return r;
 
-    r = func_0034CA30(a0, s0);
+    r = SFBUF_GetPrepFlg(a0, s0);
     if (r != 1)
         return r;
 
-    r = func_0034A7F0(a0);
+    r = sfadxt_IsPrepEnd(a0);
     if (r == 0)
         return r;
 
-    return func_0034CA00(a0, s2, 1);
+    return SFBUF_SetPrepFlg(a0, s2, 1);
 }
 
-__attribute__((section(".text.func_0036A708")))
-int func_0036A708(int a0, int a1)
+__attribute__((section(".text.mpvhdec_GetCodec")))
+int mpvhdec_GetCodec(int a0, int a1)
 {
     int s0, s1;
     int v1, v0;
@@ -89,10 +89,10 @@ int func_00345780(int a0)
     }
 
     if (func_0034DB60(&sp) != 0) {
-        func_00345750(-0x12D);
+        MWSFLIB_SetErrCode(-0x12D);
     } else {
         if (func_0034DE20(0, &func_00345848, 0) != 0)
-            func_00345750(-0x12F);
+            MWSFLIB_SetErrCode(-0x12F);
     }
 }
 
@@ -101,8 +101,8 @@ void func_003A52F0(void *, int, int);
 void func_00335DD8(void);
 void func_00335D18(int, int);
 
-__attribute__((section(".text.func_00335E60")))
-void func_00335E60(void)
+__attribute__((section(".text.LSC_Finish")))
+void LSC_Finish(void)
 {
     int cmp;
     int i;
@@ -126,9 +126,9 @@ void func_00335E60(void)
 }
 
 int Forward328098_349B88(int);
-void func_00349AD0(int, int, int, int, int);
+void MWSTM_SetFileRange(int, int, int, int, int);
 int Forward3281C8_349B48(int);
-int func_00345750();
+int MWSFLIB_SetErrCode();
 void MWSFSVM_Error();
 void func_00342FF8(void *);
 
@@ -154,7 +154,7 @@ int func_00348FF0(void *a0)
         }
     }
 
-    func_00349AD0(
+    MWSTM_SetFileRange(
         *(int *)((char *)s0 + 0x40),
         *(int *)((char *)s0 + 0x1A4),
         *(int *)((char *)s0 + 0x1B0),
@@ -165,7 +165,7 @@ int func_00348FF0(void *a0)
 
     if (r == -1) {
         *(int *)((char *)s0 + 4) = 4;
-        func_00345750(-0x66);
+        MWSFLIB_SetErrCode(-0x66);
         MWSFSVM_Error(D_00459300, *(int *)((char *)s0 + 0x1A4));
         *(int *)((char *)s0 + 0x1AC) = 0;
         return -1;
@@ -177,8 +177,8 @@ int func_00348FF0(void *a0)
 
 void func_00349718(void *, int);
 void func_00349728(void *, int);
-void func_003572F8(int);
-void func_00349158(void *);
+void SFD_ExecOne(int);
+void mwSfdExecDecSvrHndl(void *);
 int Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4(int);
 
 __attribute__((section(".text.func_00349630")))
@@ -200,14 +200,14 @@ int func_00349630(void *a0)
 
     D_003EE0A0 = (int)s0;
     func_00349728(s0, 1);
-    func_003572F8(s2);
+    SFD_ExecOne(s2);
     func_00349728(s0, 0);
 
     if (*(int *)((char *)s0 + 4) == 0) {
         *(int *)((char *)s0 + 0x68) = 0;
     } else {
         *(int *)((char *)s0 + 0x68) = s1;
-        func_00349158(s0);
+        mwSfdExecDecSvrHndl(s0);
     }
 
     func_00349718(s0, 0);
@@ -240,7 +240,7 @@ int sfmpv_DiscardSec(void *a0, void *a1) {
                 *(void (**)(void *, int, int *))((char *)*(void **)s0 + 0x20);
             fn8(s0, 0, buf);
         }
-        func_00351B70(s1, 4);
+        sfmpv_AddRtotSj(s1, 4);
     }
 
     {
@@ -259,23 +259,23 @@ int func_00323780(int a0, int a1, int a2, int a3) {
     s1 = a2;
     s0 = a3;
 
-    func_003228C0(1, 0, s4, s3, -1);
-    s2 = func_003234D0();
+    adxf_SetCmdHstry(1, 0, s4, s3, -1);
+    s2 = adxf_CreateAdxFs();
 
     if (s2 != 0) {
-        int r = func_00323700(s2, s4, s3, s1, s0);
+        int r = adxf_SetFileInfoRange(s2, s4, s3, s1, s0);
         if (r < 0) {
             func_00323AA0(s2);
             s2 = 0;
         }
     }
 
-    func_003228C0(1, 1, s4, s3, -1);
+    adxf_SetCmdHstry(1, 1, s4, s3, -1);
     return s2;
 }
 
-__attribute__((section(".text.func_0034BC00")))
-int func_0034BC00(char *a0, int *a1, int *a2, int a3, void *t0) {
+__attribute__((section(".text.sfbuf_InitRingSj")))
+int sfbuf_InitRingSj(char *a0, int *a1, int *a2, int a3, void *t0) {
     int buf[8];
     char *s0;
     char *s1;
@@ -296,18 +296,18 @@ int func_0034BC00(char *a0, int *a1, int *a2, int a3, void *t0) {
     } else {
         int r;
         s3 = 1;
-        r = func_0034BCC0(buf, *a1, v1, t0);
+        r = sfbuf_CreateSj(buf, *a1, v1, t0);
         s2 = 5;
         if (r != 0) return r;
         sfbuf_SetSupSj(s1, buf, s0, 1);
     }
 
-    func_0034BFA8(s0, s2, s3);
+    sfbuf_InitBufData(s0, s2, s3);
     return 0;
 }
 
-__attribute__((section(".text.func_0034D210")))
-int func_0034D210(int a0, int a1, int a2) {
+__attribute__((section(".text.sfhds_SetHdrRaw")))
+int sfhds_SetHdrRaw(int a0, int a1, int a2) {
     int (*fn)();
     int elem;
     int sz;
@@ -324,7 +324,7 @@ int func_0034D210(int a0, int a1, int a2) {
     }
     sz = 0x800;
     if (a2 < 0x801) sz = a2;
-    func_00366960(a0 + 0x10C, a1, sz);
+    MEM_Copy(a0 + 0x10C, a1, sz);
     *(int *)((char *)p + 0x90) = sz;
     SFHDS_ProcessHdr(p);
     Obj34D8_CopyVec3_From98_To934(a0);
@@ -339,7 +339,7 @@ int func_0034FD28(int a0) {
 
     s2 = (int *)(a0 + 0x2198);
     *(int *)(a0 + 0x1F7C) = (int)s2;
-    func_0034FDF0(s2);
+    sfmps_InitInf(s2);
 
     s1 = func_00368FE8();
     if (!s1) {

@@ -115,9 +115,9 @@ void func_00396158(sceGsDBuffDc *db, short psm, short w, short h,
     gp = GetD003F8560_395388();
     sceGsSetDefDispEnv(&db->disp[0], psm, w, h, 0, 0);
     sceGsSetDefDispEnv(&db->disp[1], psm, w, h, 0, 0);
-    func_00396A70(&db->draw1, psm, w, h, ztest, zpsm);
+    sceGsSetDefDrawEnv(&db->draw1, psm, w, h, ztest, zpsm);
     sceGsSetDefDrawEnv2(&db->draw2, psm, w, h, ztest, zpsm);
-    func_00396A70(&db->draw1b, psm, w, h, ztest, zpsm);
+    sceGsSetDefDrawEnv(&db->draw1b, psm, w, h, ztest, zpsm);
     sceGsSetDefDrawEnv2(&db->draw2b, psm, w, h, ztest, zpsm);
     if (clear != 0) {
         x = 2048 - (w >> 1);

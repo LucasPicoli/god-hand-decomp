@@ -44,9 +44,9 @@ extern int ReferThreadStatus(int tid, struct ThreadParam *info);
 extern void SleepThread_3252E0(void);
 extern void ExitDeleteThread(void);
 
-extern int func_00325360(int thid);     /* server suspend */
+extern int adxm_SuspendThread(int thid);     /* server suspend */
 extern void func_00325290(int thid);
-extern void func_00325E78(void);
+extern void ADXPS2_WakeupMainThrd(void);
 extern void func_00325FD8(void);
 extern int GetD003C80A8_325610(void);
 extern void Forward33BC48_33BD48(void);

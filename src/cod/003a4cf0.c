@@ -20,8 +20,8 @@ do {								\
   (d) = sf_u.value;						\
 } while (0)
 
-__attribute__((section(".text.func_003A4CF0")))
-int func_003A4CF0(float x)
+__attribute__((section(".text.finitef")))
+int finitef(float x)
 {
 	int ix;
 	GET_FLOAT_WORD(ix,x);

@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
 
-extern void  func_003B3650(void *sd);
+extern void  sceSifExecRequest(void *sd);
 extern void  SleepThread(void);
 extern void SetT2_B0001010_3B6A10(int mode);
 extern unsigned long iGetTimerSystemTime(void);
@@ -73,7 +73,7 @@ void sceSifRpcLoop(void *qd)
 
     for (;;) {
         while ((sd = func_003B35F8(qd)) != 0) {
-            func_003B3650(sd);
+            sceSifExecRequest(sd);
         }
         SleepThread();
     }
@@ -85,8 +85,8 @@ void sceSifRpcLoop(void *qd)
 
 
 
-__attribute__((section(".text.func_003B7510")))
-void *func_003B7510(void *a, void *b, void *c, void *d)
+__attribute__((section(".text.SetTimerHandler")))
+void *SetTimerHandler(void *a, void *b, void *c, void *d)
 {
     int state;
     void *r;
@@ -107,8 +107,8 @@ void *func_003B7510(void *a, void *b, void *c, void *d)
 
 
 
-__attribute__((section(".text.func_003B6B90")))
-int func_003B6B90(void)
+__attribute__((section(".text.StartTimerSystemTime")))
+int StartTimerSystemTime(void)
 {
     int state;
     int mode;

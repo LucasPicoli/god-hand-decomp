@@ -60,8 +60,8 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
 #define _REENT D_003FA62C
 
 
-__attribute__((section(".text.func_003A7B88")))
-int func_003A7B88(void (*fn)(void))
+__attribute__((section(".text.atexit")))
+int atexit(void (*fn)(void))
 {
   register struct _atexit *p;
 

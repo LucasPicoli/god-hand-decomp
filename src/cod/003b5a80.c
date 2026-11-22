@@ -20,7 +20,7 @@ int func_003B5A80(void)
     if (D_003FAEF8 < 0) {
 retry:
         cd = &D_00781B80;
-        if (func_003B2F48(cd, 0x80000006, 0) < 0)
+        if (sceSifBindRpc(cd, 0x80000006, 0) < 0)
             return -1;
         if (cd->f[9] != 0) {
             D_003FAEF8 = 0;

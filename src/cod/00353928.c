@@ -2,25 +2,25 @@
 
 #include "godhand/sftim.h"
 
-extern int func_00356358(SftimHn *hn);
+extern int SFMPVP_IsSceMpegUsed(SftimHn *hn);
 extern int func_00356C58(SftimHn *hn);
-extern int func_0036C920(int a, int b, int c);
-void func_00354128(SftimHn *hn, SfdFrm *ft);
-extern SfdFrm *func_003555A8(SftimHn *hn);
-extern void func_003556A0(SfdFrm *frm);
-extern void func_00354430(SfdUsrBuf *dst, SfdUsrBuf *src);
+extern int UTY_MulDiv(int a, int b, int c);
+void sfmpv_CalcFrmTime(SftimHn *hn, SfdFrm *ft);
+extern SfdFrm *SFMPVF_AllocFrm(SftimHn *hn);
+extern void SFMPVF_EndRefFrm(SfdFrm *frm);
+extern void sfmpv_CopyPicUsrInf(SfdUsrBuf *dst, SfdUsrBuf *src);
 extern void *func_003A5148(void *d, const void *s, unsigned int n);    /* memcpy */
-void func_003542B8(SjObj *sj, int *type, unsigned char **ext, int *extLen);
-int func_00353BD8(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm);
+void sfmpv_PeekNextPicUd(SjObj *sj, int *type, unsigned char **ext, int *extLen);
+int sfmpv_SetFrmPara(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm);
 void SfdWork_getPicOffset(SftimHn *hn, SfdWork *work, int *x, int *y);
-void func_00353F68(SftimHn *hn);
-void func_00354080(SftimHn *hn, SfdFrm *ft);
-void func_00354210(SftimHn *hn, SfdFrm *ft, SjObj *sj);
+void sfmpv_SetStartTtu(SftimHn *hn);
+void sfmpv_SetFrmTime(SftimHn *hn, SfdFrm *ft);
+void sfmpv_ChangePicUd(SftimHn *hn, SfdFrm *ft, SjObj *sj);
 extern int func_00353348(SftimHn *hn, int ptype);
-extern int func_00353500(SftimHn *hn, unsigned int ptype);
+extern int sfmpv_IsPtypeSkip(SftimHn *hn, unsigned int ptype);
 
-__attribute__((section(".text.func_00353BD8")))
-int func_00353BD8(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm)
+__attribute__((section(".text.sfmpv_SetFrmPara")))
+int sfmpv_SetFrmPara(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm)
 {
     SfdWork *work = hn->work;
     SfdErr *err = &hn->errInf;
@@ -29,7 +29,7 @@ int func_00353BD8(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm)
     if (work->hold != 0) {
         *pfrm = work->hold;
     } else {
-        *pfrm = func_003555A8(hn);
+        *pfrm = SFMPVF_AllocFrm(hn);
         if (*pfrm == 0) {
             err->err = 1;
             return -1;
@@ -51,7 +51,7 @@ int func_00353BD8(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm)
         unsigned char *ref;
 
         if ((pic->picType == 1 || pic->picType == 2) && work->hold == 0) {
-            func_003556A0(work->cur);
+            SFMPVF_EndRefFrm(work->cur);
             work->cur = work->ref;
             work->ref = *pfrm;
         }
@@ -118,8 +118,8 @@ void SfdWork_getPicOffset(SftimHn *hn, SfdWork *work, int *x, int *y)
     *y = 0;
 }
 
-__attribute__((section(".text.func_00353F68")))
-void func_00353F68(SftimHn *hn)
+__attribute__((section(".text.sfmpv_SetStartTtu")))
+void sfmpv_SetStartTtu(SftimHn *hn)
 {
     SftimRec *rec = &hn->tim.rec[5];
     SftimRec *start = &hn->tim.rec[0];
@@ -129,7 +129,7 @@ void func_00353F68(SftimHn *hn)
         int time;
         int unit;
 
-        if (func_00353348(hn, 3) == 0 && func_00353500(hn, 3) == 0) {
+        if (func_00353348(hn, 3) == 0 && sfmpv_IsPtypeSkip(hn, 3) == 0) {
             tc.frameAdd = 0;
         }
         SFTIM_Tc2Time(&tc, &time, &unit);
@@ -140,18 +140,18 @@ void func_00353F68(SftimHn *hn)
     }
 }
 
-__attribute__((section(".text.func_00354080")))
-void func_00354080(SftimHn *hn, SfdFrm *ft)
+__attribute__((section(".text.sfmpv_SetFrmTime")))
+void sfmpv_SetFrmTime(SftimHn *hn, SfdFrm *ft)
 {
     ft->rec = hn->tim.rec[3];
-    if (func_00356358(hn) != 0) {
+    if (SFMPVP_IsSceMpegUsed(hn) != 0) {
         ft->count = func_00356C58(hn);
     }
-    func_00354128(hn, ft);
+    sfmpv_CalcFrmTime(hn, ft);
 }
 
-__attribute__((section(".text.func_00354128")))
-void func_00354128(SftimHn *hn, SfdFrm *ft)
+__attribute__((section(".text.sfmpv_CalcFrmTime")))
+void sfmpv_CalcFrmTime(SftimHn *hn, SfdFrm *ft)
 {
     SftimWork *w = &hn->tim;
     SftimRec *rec = &ft->rec;
@@ -160,8 +160,8 @@ void func_00354128(SftimHn *hn, SfdFrm *ft)
     ft->time = rec->time - hn->tim.rec[5].time + w->f164;
     ft->ptsTime = rec->time;
     ft->dispTime = rec->time + w->f164;
-    if (func_00356358(hn) != 0) {
-        ft->ptsTime = func_0036C920(ft->unit, (ft->count - w->f160) * 1000, D_00459920[ft->pic.rate]);
+    if (SFMPVP_IsSceMpegUsed(hn) != 0) {
+        ft->ptsTime = UTY_MulDiv(ft->unit, (ft->count - w->f160) * 1000, D_00459920[ft->pic.rate]);
         ft->time = ft->dispTime = ft->ptsTime + w->f164;
     }
     if (w->f284 < ft->time) {
@@ -170,8 +170,8 @@ void func_00354128(SftimHn *hn, SfdFrm *ft)
     }
 }
 
-__attribute__((section(".text.func_00354210")))
-void func_00354210(SftimHn *hn, SfdFrm *ft, SjObj *sj)
+__attribute__((section(".text.sfmpv_ChangePicUd")))
+void sfmpv_ChangePicUd(SftimHn *hn, SfdFrm *ft, SjObj *sj)
 {
     SfdWork *work = hn->work;
     int type;
@@ -179,13 +179,13 @@ void func_00354210(SftimHn *hn, SfdFrm *ft, SjObj *sj)
     int extLen;
 
     if (ft->pic.picType == 1 || ft->pic.picType == 2) {
-        func_00354430(&work->usr, ft->usr);
+        sfmpv_CopyPicUsrInf(&work->usr, ft->usr);
     }
-    func_003542B8(sj, &type, &ext, &extLen);
+    sfmpv_PeekNextPicUd(sj, &type, &ext, &extLen);
     if (type == 3) {
         func_003A5148(ft->usr->buf, ext, extLen);
         ft->usr->len = extLen;
     } else {
-        func_00354430(ft->usr, &work->usr);
+        sfmpv_CopyPicUsrInf(ft->usr, &work->usr);
     }
 }

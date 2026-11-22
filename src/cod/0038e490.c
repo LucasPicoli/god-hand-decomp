@@ -23,10 +23,10 @@ void _IO_seekpos(int *a0, int a1, int a2)
 
 
 
-__attribute__((section(".text.func_003973E8")))
-void func_003973E8(int *a0, int a1)
+__attribute__((section(".text.sceDmaSend")))
+void sceDmaSend(int *a0, int a1)
 {
-    int s1 = func_003970A0(a1);
+    int s1 = CheckAddress(a1);
     WaitDma(a0);
     if ((unsigned int)a0[0xC] != 0xFFFFFFFFU)
         a0[0xC] = s1;

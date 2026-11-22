@@ -162,8 +162,8 @@ int Get_460D70_3BAFF8(void) {
 
 __attribute__((section(".text.ResetChannelPairFields_37B5E0")))
 void ResetChannelPairFields_37B5E0(int a0) {
-    func_00374980(0, (void*)((char*)a0 + 0x16C));
-    func_00374980(1, (void*)((char*)a0 + 0x18C));
+    SdeSystemEfxGet(0, (void*)((char*)a0 + 0x16C));
+    SdeSystemEfxGet(1, (void*)((char*)a0 + 0x18C));
     *(char*)((char*)a0 + 0x28) = 0;
     *(char*)((char*)a0 + 0x29) = 0;
 }

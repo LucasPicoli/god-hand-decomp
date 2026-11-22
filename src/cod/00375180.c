@@ -1,8 +1,8 @@
 #include "godhand/globals.h"
 extern int SeqCmd_findStartByMask(int, int);
 
-__attribute__((section(".text.func_00375180")))
-int func_00375180(void)
+__attribute__((section(".text.SdeIssEndCheck")))
+int SdeIssEndCheck(void)
 {
     if (SeqCmd_findStartByMask(1, 0))
         return 1;

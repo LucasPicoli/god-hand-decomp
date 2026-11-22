@@ -16,8 +16,8 @@ typedef struct {
 
 extern MPSLIB *D_003F1A98;
 
-__attribute__((section(".text.func_00369020")))
-MPS *func_00369020(void)
+__attribute__((section(".text.mpslib_SearchFreeHn")))
+MPS *mpslib_SearchFreeHn(void)
 {
     MPSLIB *lib = D_003F1A98;
     MPS *p;

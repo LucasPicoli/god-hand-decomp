@@ -11,10 +11,10 @@ extern void adxPly_destroy(int a0);
 extern int D_003D1488;
 extern void func_0032E720(int a0);
 extern int D_003DA5F8;
-extern void func_00336218(int a0);
-extern void func_0035B5B8(void *, int *, int *);
-extern void func_0035B500(void *, int, int);
-extern void func_0035B568(void *, int, int);
+extern void lsc_ExecHndl(int a0);
+extern void SFTIM_GetTimeOneFrmVideo(void *, int *, int *);
+extern void sftim_AddHnVbIn(void *, int, int);
+extern void sftim_AddExtClock(void *, int, int);
 extern int Obj0000_Set_D_003EE2BC_358A28(int a0);
 extern int MWSFSVM_Error(char *msg);
 extern int MWSTM_IsFsStatErr(void *a0);
@@ -30,17 +30,17 @@ extern void func_003B1F28(int a0, int a1);
 extern void func_00331D40(int a0, int a1, int a2);
 extern void func_00331D78(void);
 extern char D_003D9150[];
-extern void func_00332890(char *a0);
+extern void dvCiExecHndl(char *a0);
 extern char D_003D9FE0[];
-extern void func_003340F0(char *a0);
+extern void htCiExecHndl(char *a0);
 extern void LogPrintf(char *a0);
 extern int D_003E9068;
 extern void DTX_Destroy(int a0);
 extern void Tramp_sceSifFreeSysMemory_3B5A50(int a0);
-extern void func_003325F8(void);
+extern void DTX_Finish(void);
 
-__attribute__((section(".text.func_0034B430")))
-void func_0034B430(void *a0, int a1) {
+__attribute__((section(".text.sfadxt_DoPause")))
+void sfadxt_DoPause(void *a0, int a1) {
     void *v1;
     int v0;
     void *a0new;
@@ -59,24 +59,24 @@ void func_0034B430(void *a0, int a1) {
     sfadxt_WtPause(a0call, a0new, v0);
 }
 
-__attribute__((section(".text.func_00366D28")))
-void func_00366D28(int *a0, int a1, int a2) {
+__attribute__((section(".text.MPS_SetSystemFn")))
+void MPS_SetSystemFn(int *a0, int a1, int a2) {
     if (!MPSLIB_CheckHn(a0)) {
         *(int *)((char *)a0 + 0xE4) = a1;
         *(int *)((char *)a0 + 0xE8) = a2;
     }
 }
 
-__attribute__((section(".text.func_00366D78")))
-void func_00366D78(int *a0, int a1, int a2) {
+__attribute__((section(".text.MPS_SetPsMapFn")))
+void MPS_SetPsMapFn(int *a0, int a1, int a2) {
     if (!MPSLIB_CheckHn(a0)) {
         *(int *)((char *)a0 + 0xEC) = a1;
         *(int *)((char *)a0 + 0xF0) = a2;
     }
 }
 
-__attribute__((section(".text.func_00338418")))
-int func_00338418(int *a0) {
+__attribute__((section(".text.PS2RNA_GetNumRoom")))
+int PS2RNA_GetNumRoom(int *a0) {
     int r;
     int *tmp;
     int *obj;
@@ -93,8 +93,8 @@ int func_00338418(int *a0) {
     return r / 2;
 }
 
-__attribute__((section(".text.func_00358A48")))
-int func_00358A48(int *a0) {
+__attribute__((section(".text.sfply_TrStop")))
+int sfply_TrStop(int *a0) {
     int r;
     int *s0;
     s0 = a0;
@@ -102,7 +102,7 @@ int func_00358A48(int *a0) {
     if (*(int*)((char*)s0 + 0x48) != 4) {
         goto set_fields;
     }
-    r = func_0035C2D0(s0, 7, 7, 0, 0);
+    r = SFTRN_CallTrtTrif(s0, 7, 7, 0, 0);
     if (r != 0) {
         return r;
     }
@@ -146,8 +146,8 @@ void func_00329AF0(void) {
     } while (s1 >= 0);
 }
 
-__attribute__((section(".text.func_0032EC00")))
-void func_0032EC00(void) {
+__attribute__((section(".text.aixp_DestroyAll")))
+void aixp_DestroyAll(void) {
     int s0;
     int s1;
     int s2;
@@ -173,15 +173,15 @@ void func_00335A40(void) {
     s2 = 1;
     do {
         if (*(char *)s0 == s2) {
-            func_00336218(s0);
+            lsc_ExecHndl(s0);
         }
         s1--;
         s0 += 0x238;
     } while (s1 >= 0);
 }
 
-__attribute__((section(".text.func_003473A0")))
-int func_003473A0(int a0) {
+__attribute__((section(".text.MWSFTAG_SetAinfSj")))
+int MWSFTAG_SetAinfSj(int a0) {
     int s0;
     int v1;
     int v0;
@@ -195,7 +195,7 @@ int func_003473A0(int a0) {
     if (v1 == 0) {
         return 0;
     }
-    v0 = func_0035CE60(*(int *)((char *)s0 + 0x3C), 2, v1, 0);
+    v0 = SFD_SetUsrSj(*(int *)((char *)s0 + 0x3C), 2, v1, 0);
     v1 = -1;
     if (v0 == 0) {
         v1 = 0;
@@ -203,8 +203,8 @@ int func_003473A0(int a0) {
     return v1;
 }
 
-__attribute__((section(".text.func_00347698")))
-int func_00347698(int a0) {
+__attribute__((section(".text.MWSFTAG_ClearUsrSj")))
+int MWSFTAG_ClearUsrSj(int a0) {
     int s0;
     int v1;
     int v0;
@@ -218,7 +218,7 @@ int func_00347698(int a0) {
     if (v1 == 0) {
         return 0;
     }
-    v0 = func_0035CE60(*(int *)((char *)s0 + 0x3C), 2, 0, 0);
+    v0 = SFD_SetUsrSj(*(int *)((char *)s0 + 0x3C), 2, 0, 0);
     v1 = -1;
     if (v0 == 0) {
         v1 = 0;
@@ -226,21 +226,21 @@ int func_00347698(int a0) {
     return v1;
 }
 
-__attribute__((section(".text.func_0035B4A0")))
-void func_0035B4A0(void *a0, int a1) {
+__attribute__((section(".text.SFTIM_Pause")))
+void SFTIM_Pause(void *a0, int a1) {
     void *s0;
     int tmp0;
     int tmp1;
     s0 = a0;
     if ((unsigned int)a1 < 2) return;
     if (a1 != 2) return;
-    func_0035B5B8(s0, &tmp0, &tmp1);
-    func_0035B500(s0, tmp0, tmp1);
-    func_0035B568(s0, tmp0, tmp1);
+    SFTIM_GetTimeOneFrmVideo(s0, &tmp0, &tmp1);
+    sftim_AddHnVbIn(s0, tmp0, tmp1);
+    sftim_AddExtClock(s0, tmp0, tmp1);
 }
 
-__attribute__((section(".text.func_003383B0")))
-int func_003383B0(int a0) {
+__attribute__((section(".text.PS2RNA_GetNumData")))
+int PS2RNA_GetNumData(int a0) {
     int v0;
     int v1;
     int t;
@@ -258,8 +258,8 @@ int func_003383B0(int a0) {
     return v0;
 }
 
-__attribute__((section(".text.func_00357988")))
-int func_00357988(int a0) {
+__attribute__((section(".text.sfply_IsStartSync")))
+int sfply_IsStartSync(int a0) {
     int a1;
     int a2;
     int v0;
@@ -287,13 +287,13 @@ int func_00357988(int a0) {
     if (v1 == 0) {
         return v0;
     }
-    v0 = func_00357FC8(a0);
+    v0 = sfply_IsEtrg(a0);
     v0 = ((unsigned int)0 < (unsigned int)v0);
     return v0;
 }
 
-__attribute__((section(".text.func_003582C0")))
-int func_003582C0(int a0) {
+__attribute__((section(".text.sfply_ChkCrePara")))
+int sfply_ChkCrePara(int a0) {
     int v1;
     int v0;
 
@@ -309,8 +309,8 @@ int func_003582C0(int a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_003589C0")))
-int func_003589C0(char *a0)
+__attribute__((section(".text.SFPLY_Stop")))
+int SFPLY_Stop(char *a0)
 {
     int r;
     char *s0;
@@ -319,14 +319,14 @@ int func_003589C0(char *a0)
     if (*(int *)(s0 + 0x48) == 1) {
         return 0;
     }
-    r = func_00358A48(s0);
+    r = sfply_TrStop(s0);
     if (r) {
         return r;
     }
     *(int *)(s0 + 0x4C) = 0;
     *(int *)(s0 + 0x48) = 0;
     Obj0000_Set_D_003EE2BC_358A28(1);
-    r = func_00358AA8(s0);
+    r = sfply_ResetHn(s0);
     Obj0000_Set_D_003EE2BC_358A28(0);
     return r;
 }
@@ -358,8 +358,8 @@ int func_00344C30(int a0)
     return r;
 }
 
-__attribute__((section(".text.func_003491D0")))
-void func_003491D0(void *a0)
+__attribute__((section(".text.mwsfd_CheckFsErr")))
+void mwsfd_CheckFsErr(void *a0)
 {
     char *s0 = (char *)a0;
     int v0;
@@ -383,7 +383,7 @@ void func_0034B7A8(void *a0)
     int r;
     r = Obj35C0_GetIndexed_1F30_C338(a0, 7);
     if (r == 1) return;
-    r = func_0034CA30(a0, *(int*)((char*)a0 + 0x211C));
+    r = SFBUF_GetPrepFlg(a0, *(int*)((char*)a0 + 0x211C));
     if (r != 1) return;
     Obj35C0_SetIndexed_1F30_C320(a0, 7, 1);
 }
@@ -394,13 +394,13 @@ void func_0034B818(void *a0)
     int r;
     r = Obj35C0_GetIndexed_1F34_C368(a0, 7);
     if (r == 1) return;
-    r = func_0034CA98(a0, *(int*)((char*)a0 + 0x211C));
+    r = SFBUF_GetTermFlg(a0, *(int*)((char*)a0 + 0x211C));
     if (r != 1) return;
     Obj35C0_SetIndexed_1F34_C350(a0, 7, 1);
 }
 
-__attribute__((section(".text.func_0035E238")))
-int func_0035E238(void *a0, int a1, int *a2)
+__attribute__((section(".text.SFH_AnlyElemChNum")))
+int SFH_AnlyElemChNum(void *a0, int a1, int *a2)
 {
     int s0;
     void *s1;
@@ -411,15 +411,15 @@ int func_0035E238(void *a0, int a1, int *a2)
     s1 = getElemInfPtr(a0, s0);
     if (!s1)
         return 0;
-    r = func_0035E9E8(s0);
+    r = chkStmId(s0);
     if (r != 0xC0)
         return 0;
     *a2 = *(unsigned char *)((char *)s1 + 0x1B);
     return 1;
 }
 
-__attribute__((section(".text.func_0035E2A8")))
-int func_0035E2A8(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemSmpHz")))
+int SFH_AnlyElemSmpHz(int a0, int a1, int *a2) {
     void *s1;
     int s0;
     s0 = a1 & 0xFF;
@@ -428,15 +428,15 @@ int func_0035E2A8(int a0, int a1, int *a2) {
     if (s1 == 0) {
         return 0;
     }
-    if (func_0035E9E8(s0) != 0xC0) {
+    if (chkStmId(s0) != 0xC0) {
         return 0;
     }
     *a2 = *(int *)((char *)s1 + 0x1C);
     return 1;
 }
 
-__attribute__((section(".text.func_0036E308")))
-void func_0036E308(int *a0) {
+__attribute__((section(".text.calcPictureCodingExt")))
+void calcPictureCodingExt(int *a0) {
     int *p;
     int v0;
     int v1;
@@ -456,8 +456,8 @@ void func_0036E308(int *a0) {
     *(int *)((char *)p + 0x330) = D_0045A590[idx];
 }
 
-__attribute__((section(".text.func_00323A00")))
-void func_00323A00(int *a0) {
+__attribute__((section(".text.adxf_CloseSjStm")))
+void adxf_CloseSjStm(int *a0) {
     int *s0;
     int *a1;
     int *v1;
@@ -480,8 +480,8 @@ void func_00323A00(int *a0) {
     v0((int)a1);
 }
 
-__attribute__((section(".text.func_0034EB28")))
-int func_0034EB28(int a0, int (*a1)(int, int), int a2, int a3, int a4, int a5) {
+__attribute__((section(".text.sfmps_CopyElemOutSj")))
+int sfmps_CopyElemOutSj(int a0, int (*a1)(int, int), int a2, int a3, int a4, int a5) {
     int r;
     r = sfmps_CopySj(a0, a4, a5, a3);
     if (r == 1) {
@@ -492,8 +492,8 @@ int func_0034EB28(int a0, int (*a1)(int, int), int a2, int a3, int a4, int a5) {
     return r;
 }
 
-__attribute__((section(".text.func_00355260")))
-int func_00355260(int a0) {
+__attribute__((section(".text.SFMPV_Seek")))
+int SFMPV_Seek(int a0) {
     int r;
     int s0;
     int s1;
@@ -502,7 +502,7 @@ int func_00355260(int a0) {
 
     s1 = a0;
     s0 = *(int *)((char *)s1 + 0x1FC0);
-    r = func_003552D0(s1, s0, &buf);
+    r = sfmpv_ReprocessShc(s1, s0, &buf);
     if (r != 0) {
         return r;
     }
@@ -517,8 +517,8 @@ int func_00355260(int a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_0035E148")))
-int func_0035E148(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemCodecAud")))
+int SFH_AnlyElemCodecAud(int a0, int a1, int *a2) {
     int s0;
     int s1;
     int v0;
@@ -530,7 +530,7 @@ int func_0035E148(int a0, int a1, int *a2) {
     if (!s1) {
         return 0;
     }
-    v0 = func_0035E9E8(s0);
+    v0 = chkStmId(s0);
     v1 = 0xC0;
     if (v0 != v1) {
         return 0;
@@ -540,8 +540,8 @@ int func_0035E148(int a0, int a1, int *a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_0035E318")))
-int func_0035E318(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemCodecVid")))
+int SFH_AnlyElemCodecVid(int a0, int a1, int *a2) {
     int s0;
     int s1;
 
@@ -551,15 +551,15 @@ int func_0035E318(int a0, int a1, int *a2) {
     if (s1 == 0) {
         return 0;
     }
-    if (func_0035E9E8(s0) != 0xE0) {
+    if (chkStmId(s0) != 0xE0) {
         return 0;
     }
     *a2 = *(unsigned char *)((char *)s1 + 0x19);
     return 1;
 }
 
-__attribute__((section(".text.func_0035E4B0")))
-int func_0035E4B0(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemPicRate")))
+int SFH_AnlyElemPicRate(int a0, int a1, int *a2) {
     int s0;
     int s1;
 
@@ -569,10 +569,10 @@ int func_0035E4B0(int a0, int a1, int *a2) {
     if (s1 == 0) {
         return 0;
     }
-    if (func_0035E9E8(s0) != 0xE0) {
+    if (chkStmId(s0) != 0xE0) {
         return 0;
     }
-    *a2 = func_0035E8F8(*(unsigned char *)((char *)s1 + 0x1F));
+    *a2 = getPicRate(*(unsigned char *)((char *)s1 + 0x1F));
     return 1;
 }
 
@@ -587,7 +587,7 @@ int func_00331E70(int a0, int a1, int a2) {
     s1 = a1;
     s2 = a2;
     func_00331D40(a0, a1, a2);
-    r = func_003B4D98(s0, s1, s2);
+    r = sceIoctl(s0, s1, s2);
     if (r < 0) {
         func_003B1F28((int)&D_00454110, r);
     }
@@ -607,8 +607,8 @@ int func_00331FA8(int a0, int a1, int a2) {
     return s0;
 }
 
-__attribute__((section(".text.func_0035E388")))
-int func_0035E388(int a0, int a1, int *a2) {
+__attribute__((section(".text.SFH_AnlyElemBitRate")))
+int SFH_AnlyElemBitRate(int a0, int a1, int *a2) {
     void *s1;
     int s0;
     int v1;
@@ -619,7 +619,7 @@ int func_0035E388(int a0, int a1, int *a2) {
     if (s1 == 0) {
         return 0;
     }
-    if (func_0035E9E8(s0) != 0xE0) {
+    if (chkStmId(s0) != 0xE0) {
         return 0;
     }
     v1 = (unsigned short)(*(unsigned short *)((char *)s1 + 0x1A));
@@ -629,18 +629,18 @@ int func_0035E388(int a0, int a1, int *a2) {
     return 1;
 }
 
-__attribute__((section(".text.func_00332958")))
-void func_00332958(void) {
+__attribute__((section(".text.dvCiExecServer")))
+void dvCiExecServer(void) {
     int s2;
     char *s0;
     int s1;
-    if (func_0033BF18(&D_003D90E0) != 0) {
+    if (SVM_TestAndSet(&D_003D90E0) != 0) {
         s2 = 1;
         s0 = D_003D9150;
         s1 = 0x27;
         do {
             if (*s0 == s2) {
-                func_00332890(s0);
+                dvCiExecHndl(s0);
             }
             s1--;
             s0 += 0x48;
@@ -649,18 +649,18 @@ void func_00332958(void) {
     }
 }
 
-__attribute__((section(".text.func_003341B8")))
-void func_003341B8(void) {
+__attribute__((section(".text.htCiExecServer")))
+void htCiExecServer(void) {
     int s2;
     char *s0;
     int s1;
-    if (func_0033BF18(&D_003D9F74) != 0) {
+    if (SVM_TestAndSet(&D_003D9F74) != 0) {
         s2 = 1;
         s0 = D_003D9FE0;
         s1 = 0xC;
         do {
             if (*s0 == s2) {
-                func_003340F0(s0);
+                htCiExecHndl(s0);
             }
             s1--;
             s0 += 0x30;
@@ -686,8 +686,8 @@ void func_00338710(int a0, int a1) {
     *(int *)((char *)s1 + 0x30) = s0;
 }
 
-__attribute__((section(".text.func_0033B3B0")))
-void func_0033B3B0(void) {
+__attribute__((section(".text.SJX_Finish")))
+void SJX_Finish(void) {
     int *p;
     int s0;
     int v0;
@@ -705,5 +705,5 @@ void func_0033B3B0(void) {
         Tramp_sceSifFreeSysMemory_3B5A50(s0);
         D_003E8DDC = 0;
     }
-    func_003325F8();
+    DTX_Finish();
 }

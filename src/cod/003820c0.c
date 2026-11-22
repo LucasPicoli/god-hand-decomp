@@ -25,11 +25,11 @@ void func_003820C0(MenuCtl *self, MenuSnd *snd)
         return;
     if (snd->slot != 0) {
         if (info->mute[snd->slot] == 0)
-            func_0032EC78((int)info->ply, snd->slot - 1, snd->level[snd->slot]);
+            AIXP_SetTrackVol((int)info->ply, snd->slot - 1, snd->level[snd->slot]);
         return;
     }
     for (i = 0; i < info->track; i++) {
         if (info->mute[i + 1] == 0)
-            func_0032EC78((int)info->ply, i, snd->level[snd->slot]);
+            AIXP_SetTrackVol((int)info->ply, i, snd->level[snd->slot]);
     }
 }

@@ -54,8 +54,8 @@ void func_00335CA8(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00341458")))
-void func_00341458(int a0) {
+__attribute__((section(".text.ADXB_ExecOneAiff")))
+void ADXB_ExecOneAiff(int a0) {
     if (*(short *)((char *)a0 + 0x9C) == 1) {
         func_003412D8(a0);
     } else {

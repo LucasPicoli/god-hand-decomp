@@ -75,8 +75,8 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
 
 #define HASUB(fp) ((fp)->_ub._base != 0)
 
-__attribute__((section(".text.func_003AE598")))
-int func_003AE598(int c, register FILE *fp)
+__attribute__((section(".text.ungetc")))
+int ungetc(int c, register FILE *fp)
 {
   if (c == EOF)
     return EOF;

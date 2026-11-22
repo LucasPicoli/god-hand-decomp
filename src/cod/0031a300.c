@@ -83,7 +83,7 @@ void func_0031A538(int *tbl)
     } else {
         FlushCache(0);
     }
-    func_003950F8(0, 0);
+    sceGsSyncPath(0, 0);
     *(volatile u_int *)0x1000E010 = 2;
     *(volatile u_int *)0x1000E020 = 2;
     *(volatile u_int *)0x10009020 = 0;

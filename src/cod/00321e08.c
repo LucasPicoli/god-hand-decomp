@@ -1,4 +1,4 @@
-/* ee-2.9-991111: func_00321E08, libgcc frame.c frame_init: counts the object's FDEs, sorts them
+/* ee-2.9-991111: frame_init, libgcc frame.c frame_init: counts the object's FDEs, sorts them
  * into a single array and records the covered pc range. */
 typedef struct Fde Fde;
 
@@ -21,8 +21,8 @@ typedef struct FdeAccumulator {
 } FdeAccumulator;
 
 extern void *func_003A7C70(unsigned int n);
-extern unsigned int func_00321D38(Fde *f);
-extern void func_00321D80(Fde *f, FdeAccumulator *accu, void **beg_ptr, void **end_ptr);
+extern unsigned int count_fdes(Fde *f);
+extern void add_fdes(Fde *f, FdeAccumulator *accu, void **beg_ptr, void **end_ptr);
 extern Fde **end_fde_sort(FdeAccumulator *accu, unsigned int count);
 
 static inline void start_fde_sort(FdeAccumulator *accu, unsigned int count)
@@ -33,8 +33,8 @@ static inline void start_fde_sort(FdeAccumulator *accu, unsigned int count)
     accu->erratic.count = 0;
 }
 
-__attribute__((section(".text.func_00321E08")))
-void func_00321E08(FrameObject *ob)
+__attribute__((section(".text.frame_init")))
+void frame_init(FrameObject *ob)
 {
     unsigned int count;
     FdeAccumulator accu;
@@ -43,9 +43,9 @@ void func_00321E08(FrameObject *ob)
     if (ob->fde_array) {
         Fde **p = ob->fde_array;
         for (count = 0; *p; ++p)
-            count += func_00321D38(*p);
+            count += count_fdes(*p);
     } else
-        count = func_00321D38(ob->fde_begin);
+        count = count_fdes(ob->fde_begin);
 
     ob->count = count;
 
@@ -56,9 +56,9 @@ void func_00321E08(FrameObject *ob)
     if (ob->fde_array) {
         Fde **p = ob->fde_array;
         for (; *p; ++p)
-            func_00321D80(*p, &accu, &pc_begin, &pc_end);
+            add_fdes(*p, &accu, &pc_begin, &pc_end);
     } else
-        func_00321D80(ob->fde_begin, &accu, &pc_begin, &pc_end);
+        add_fdes(ob->fde_begin, &accu, &pc_begin, &pc_end);
 
     ob->fde_array = end_fde_sort(&accu, count);
     ob->pc_begin = pc_begin;

@@ -1336,14 +1336,14 @@ extern void _IO_flush_all_linebuffered __P ((void));
 /* ---- body ---- */
 /* <stdio.h>: newlib spells getc as an in-line refill test.  __srget lives at
    0x003A6C10 and fread at 0x003A6308; this repo names those addresses
-   func_003A6C10 and func_003A6308. */
+   func_003A6C10 and fread_3A6308. */
 struct __sFILE { unsigned char *_p; int _r; };
 extern "C" {
 int func_003A6C10(FILE *);
-unsigned int func_003A6308(void *, unsigned int, unsigned int, FILE *);
+unsigned int fread_3A6308(void *, unsigned int, unsigned int, FILE *);
 }
 #define getc(p) (--(p)->_r < 0 ? func_003A6C10(p) : (int)(*(p)->_p++))
-#define fread(b, s, n, f) func_003A6308(b, s, n, f)
+#define fread(b, s, n, f) fread_3A6308(b, s, n, f)
 
 __attribute__((section(".text.sys_read__8stdiobufPcl")))
 streamsize stdiobuf::sys_read(char* buf, streamsize size)

@@ -35,10 +35,10 @@ struct exception {
 };
 
 extern float func_003A2ED8(float x, float y);		/* __ieee754_powf */
-extern int func_003A4E00(float x);			/* isnanf */
-extern int func_003A4CF0(float x);			/* finitef */
+extern int isnanf(float x);			/* isnanf */
+extern int finitef(float x);			/* finitef */
 extern double func_003A4AF0(double x);			/* rint */
-extern int func_003A4AC8(struct exception *e);		/* matherr */
+extern int matherr(struct exception *e);		/* matherr */
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 extern const double D_0045EA00;				/* HUGE_VAL */
 
@@ -49,9 +49,9 @@ float func_003A1F38(float x, float y)
 	struct exception exc;
 
 	z = func_003A2ED8(x, y);
-	if (D_0045F024 == -1 || func_003A4E00(y))
+	if (D_0045F024 == -1 || isnanf(y))
 		return z;
-	if (func_003A4E00(x)) {
+	if (isnanf(x)) {
 		if (y == (float)0.0) {
 			exc.type = 1;
 			exc.name = D_0045EA98;
@@ -61,7 +61,7 @@ float func_003A1F38(float x, float y)
 			exc.retval = (double)x;
 			if (D_0045F024 == 2)
 				exc.retval = 1.0;
-			else if (func_003A4AC8(&exc) == 0)
+			else if (matherr(&exc) == 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 			if (exc.err != 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = exc.err;
@@ -79,13 +79,13 @@ float func_003A1F38(float x, float y)
 			exc.retval = 0.0;
 			if (D_0045F024 != 0)
 				exc.retval = 1.0;
-			else if (func_003A4AC8(&exc) == 0)
+			else if (matherr(&exc) == 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 			if (exc.err != 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = exc.err;
 			return (float)exc.retval;
 		}
-		if (func_003A4CF0(y) && y < (float)0.0) {
+		if (finitef(y) && y < (float)0.0) {
 			exc.type = 1;
 			exc.name = D_0045EA98;
 			exc.err = 0;
@@ -97,7 +97,7 @@ float func_003A1F38(float x, float y)
 				exc.retval = -D_0045EA00;
 			if (D_0045F024 == 2)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
-			else if (func_003A4AC8(&exc) == 0)
+			else if (matherr(&exc) == 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 			if (exc.err != 0)
 				*Obj0000_Get_D_003FA62C_3A4FB8() = exc.err;
@@ -105,9 +105,9 @@ float func_003A1F38(float x, float y)
 		}
 		return z;
 	}
-	if (func_003A4CF0(z) == 0) {
-		if (func_003A4CF0(x) && func_003A4CF0(y)) {
-			if (func_003A4E00(z)) {
+	if (finitef(z) == 0) {
+		if (finitef(x) && finitef(y)) {
+			if (isnanf(z)) {
 				exc.type = 1;
 				exc.name = D_0045EA98;
 				exc.err = 0;
@@ -117,7 +117,7 @@ float func_003A1F38(float x, float y)
 					exc.retval = 0.0;
 				else
 					exc.retval = D_0045EAA0;
-				if (D_0045F024 == 2 || func_003A4AC8(&exc) == 0)
+				if (D_0045F024 == 2 || matherr(&exc) == 0)
 					*Obj0000_Get_D_003FA62C_3A4FB8() = 33;
 			} else {
 				exc.type = 3;
@@ -138,7 +138,7 @@ float func_003A1F38(float x, float y)
 				}
 				if (D_0045F024 == 2)
 					*Obj0000_Get_D_003FA62C_3A4FB8() = 34;
-				else if (func_003A4AC8(&exc) == 0)
+				else if (matherr(&exc) == 0)
 					*Obj0000_Get_D_003FA62C_3A4FB8() = 34;
 			}
 			if (exc.err != 0)
@@ -146,7 +146,7 @@ float func_003A1F38(float x, float y)
 			return (float)exc.retval;
 		}
 	}
-	if (z == (float)0.0 && func_003A4CF0(x) && func_003A4CF0(y)) {
+	if (z == (float)0.0 && finitef(x) && finitef(y)) {
 		exc.type = 4;
 		exc.name = D_0045EA98;
 		exc.err = 0;
@@ -155,7 +155,7 @@ float func_003A1F38(float x, float y)
 		exc.retval = 0.0;
 		if (D_0045F024 == 2)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 34;
-		else if (func_003A4AC8(&exc) == 0)
+		else if (matherr(&exc) == 0)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = 34;
 		if (exc.err != 0)
 			*Obj0000_Get_D_003FA62C_3A4FB8() = exc.err;

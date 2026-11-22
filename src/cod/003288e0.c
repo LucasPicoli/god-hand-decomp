@@ -7,7 +7,7 @@ extern void func_00330AD0(int a0);
 extern void func_0033F1A8(int a0, int a1);
 extern void func_00330BB0(int a0, int a1, int a2);
 extern void func_003280D8(int a0, int a1);
-extern void func_003284B8(void *a0);
+extern void adxstmf_stat_exec(void *a0);
 
 __attribute__((section(".text.func_003288E0")))
 void func_003288E0(void *a0)
@@ -42,7 +42,7 @@ void func_003288E0(void *a0)
                 Obj3290_Tramp_0033E690_9040();
                 s1 = 1;
                 if (*(int *)(s0 + 0x8) == 0) {
-                    int r = func_00330780(*(int *)(s0 + 0x50), *(int *)(s0 + 0x54), 0);
+                    int r = cvFsOpen(*(int *)(s0 + 0x50), *(int *)(s0 + 0x54), 0);
                     *(int *)(s0 + 0x8) = r;
                     if (r == 0) {
                         func_0033F1A8((int)&D_00451ED0, *(int *)(s0 + 0x50));
@@ -109,7 +109,7 @@ void func_003288E0(void *a0)
     if (*(char *)(s0 + 0x1) == 2) {
         if (*(char *)(s0 + 0x49) == 1) {
             if (*(char *)(s0 + 0x45) == 0) {
-                return func_003284B8(s0);
+                return adxstmf_stat_exec(s0);
             }
         }
     }

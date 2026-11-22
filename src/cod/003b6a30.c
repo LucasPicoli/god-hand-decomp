@@ -37,8 +37,8 @@ extern int func_003B0740(int);    /* EnableIntc */
 
 #define T2_MODE (*(volatile u_int *)0x10001010)
 
-__attribute__((section(".text.func_003B6A30")))
-int func_003B6A30(int mode)
+__attribute__((section(".text.InitTimer")))
+int InitTimer(int mode)
 {
     int i;
     int hid;

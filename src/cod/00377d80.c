@@ -17,8 +17,8 @@ typedef struct E2 {
     unsigned char pad1[0x9C];
 } E2;
 
-__attribute__((section(".text.func_00377D80")))
-void func_00377D80(void) {
+__attribute__((section(".text.sdeStrWorkClear")))
+void sdeStrWorkClear(void) {
     int i;
 
     func_003A52F0(D_0076E510, 0, 0x80);

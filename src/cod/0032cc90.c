@@ -21,14 +21,14 @@ extern int Obj3260_Tramp_003383B0_D358(void *rna);
 extern int Obj3270_GetVia4_0033CE98_77A0(void *sjd);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
-extern void func_0033ACA0(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
+extern void SJ_SplitChunk(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
 extern void *func_003A52F0(void *dst, int c, int n);
 extern void Obj3260_Tramp_003382A0_D320(void *rna, int a);
 extern void Obj3260_Tramp_00338338_D338(void *rna, int a);
-extern void func_00338378(void *rna, int a);
+extern void PS2RNA_SetDiscardSw(void *rna, int a);
 
-__attribute__((section(".text.func_0032CC90")))
-void func_0032CC90(AdxSjdObj *hn)
+__attribute__((section(".text.adxt_stat_decend")))
+void adxt_stat_decend(AdxSjdObj *hn)
 {
     SjChunk ck[2];
     SjChunk tail[2];
@@ -49,7 +49,7 @@ void func_0032CC90(AdxSjdObj *hn)
             len = (unsigned int)ck[i].len / 2;
     }
     for (i = 0; i < n; i++) {
-        func_0033ACA0(&ck[i], len * 2, &ck[i], &tail[i]);
+        SJ_SplitChunk(&ck[i], len * 2, &ck[i], &tail[i]);
         func_003A52F0(ck[i].data, 0, ck[i].len);
         hn->sj[i]->vt->putChunk(hn->sj[i], 1, &ck[i]);
         hn->sj[i]->vt->ungetChunk(hn->sj[i], 0, &tail[i]);
@@ -65,7 +65,7 @@ void func_0032CC90(AdxSjdObj *hn)
     if (mx + Obj3260_Tramp_003383B0_D358(hn->rna) - hn->written <= 0) {
         Obj3260_Tramp_003382A0_D320(hn->rna, 0);
         Obj3260_Tramp_00338338_D338(hn->rna, 0);
-        func_00338378(hn->rna, 1);
+        PS2RNA_SetDiscardSw(hn->rna, 1);
         hn->stat = 5;
     }
 }

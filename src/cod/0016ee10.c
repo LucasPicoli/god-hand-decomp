@@ -28,7 +28,7 @@ extern void func_002949C8(void *self);
 extern void func_002B4528(void *self, int value);
 extern void func_002D5918(void *self);
 extern void func_002D5990(void *self);
-extern int func_00394DD8(void *value, int mode);
+extern int snDllLoaded(void *value, int mode);
 extern int SetEffect(
     int effect, int resource, void *owner, int arg3,
     int arg4, unsigned int arg5);
@@ -160,7 +160,7 @@ int func_002B3050(char *self)
 __attribute__((section(".text.func_002BE6A0")))
 int func_002BE6A0(void **self)
 {
-    return func_00394DD8(*self, 0) == 0;
+    return snDllLoaded(*self, 0) == 0;
 }
 
 __attribute__((section(".text.func_001627A0")))

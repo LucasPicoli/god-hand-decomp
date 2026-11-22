@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00334998, stop a running stream: cancel its request, then poll until it leaves
+/* cygnus-2.96: htCiStopTr, stop a running stream: cancel its request, then poll until it leaves
  * state 2 (giving up with an error after 0x63FFF6 polls) and reset it. */
 #include "godhand/globals.h"
 typedef struct CdStream {
@@ -12,13 +12,13 @@ typedef struct CdStream {
 extern void func_00334008(CdStream *s, char *msg);
 extern int func_00331570(void *req);
 extern void CdSrd_finishRead(void);
-extern void func_003341B8(void);
+extern void htCiExecServer(void);
 extern int func_00334A90(CdStream *s);
 extern void func_00333FD8(void);
 extern void func_003260C8(char *msg);
 
-__attribute__((section(".text.func_00334998")))
-void func_00334998(CdStream *s)
+__attribute__((section(".text.htCiStopTr")))
+void htCiStopTr(CdStream *s)
 {
     int n = 0;
 
@@ -32,7 +32,7 @@ void func_00334998(CdStream *s)
         func_00331570(s->req);
     for (;;) {
         CdSrd_finishRead();
-        func_003341B8();
+        htCiExecServer();
         func_00334A90(s);
         if (s->state != 2)
             break;

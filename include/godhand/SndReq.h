@@ -1,8 +1,8 @@
 /* include/godhand/SndReq.h - the queue of sound-channel requests at D_0076E590.
  *
  * Eight 0x70-byte records. A record is free while used is 0. The flags byte
- * says whether the record is a channel command (applied with func_003772D8)
- * or a channel start request (applied with func_00376F18). Field names are
+ * says whether the record is a channel command (applied with rexeCmdExec)
+ * or a channel start request (applied with rexeCtlOpen). Field names are
  * ours; offsets are exact.
  */
 #ifndef GODHAND_SNDREQ_H

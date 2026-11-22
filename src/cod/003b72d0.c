@@ -16,7 +16,7 @@ typedef struct {
 
 extern volatile TimerCtl D_003FBE90;
 extern long iGetTimerSystemTime(void);
-extern void func_003B6DB8(TimerCounter *t);
+extern void InsertAlarm(TimerCounter *t);
 extern void SetNextComp(long tm);
 
 __attribute__((section(".text.iStartTimerCounter")))
@@ -41,7 +41,7 @@ int iStartTimerCounter(int id)
     c = t->f0C | 1;
     t->f0C = c;
     if (c & 2) {
-        func_003B6DB8(t);
+        InsertAlarm(t);
         SetNextComp(tm);
     }
     return 0;

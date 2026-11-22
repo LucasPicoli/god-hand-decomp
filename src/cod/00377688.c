@@ -3,8 +3,8 @@
 
 /* Step ramp no of self: clear its active bit once it has reached its target,
  * otherwise move it and mark self changed. */
-__attribute__((section(".text.func_00377688")))
-void func_00377688(SndRampOwner *self, int no)
+__attribute__((section(".text.strCtlFadeStereoOne")))
+void strCtlFadeStereoOne(SndRampOwner *self, int no)
 {
     int bit = 1 << no;
 

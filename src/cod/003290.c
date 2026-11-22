@@ -4,7 +4,7 @@
 /* ── External forward declarations ──────────────────────────────────────── */
 extern void Forward33B658_33E678(void);   /* target of Obj3290_Tramp_0033E678_9028 trampoline     */
 extern void Forward33B670_33E690(void);   /* target of Obj3290_Tramp_0033E690_9040 trampoline     */
-extern void func_0033BF18(void);   /* target of Obj3290_Tramp_0033BF18_9058 trampoline     */
+extern void SVM_TestAndSet(void);   /* target of Obj3290_Tramp_0033BF18_9058 trampoline     */
 extern void NoOp_33E6A8(void);   /* target of Obj3290_Tramp_0033E6A8_9070 trampoline     */
 extern void NoOp_33E6B0(void);   /* target of Obj3290_Tramp_0033E6B0_9088 trampoline     */
 extern void func_0033F130(void *a0); /* target of Obj3290_TrampViaA1_0033F130_90A0 (arg-reroute)*/
@@ -18,18 +18,18 @@ extern void GetD003D848C_3313E0(void);   /* target of Obj3290_Tramp_003313E0_929
 /* ────────────────────────────────────────────────────────────────────────── */
 
 /* func_003290B8: 0x100 B, complex multi-jal init; calls func_003A50B4 ×2,
- * func_00330E70, func_00330318 ×2, func_00330580, func_00333E68, j func_00333E88 */
+ * func_00330E70, func_00330318 ×2, cvFsSetDefDev, dvCiSetRdMode, j dvCiSetRootDir */
 INCLUDE_ASM("nonmatching", func_003290B8);
 
 /* ADXPS2_LoadFcacheDvd: 0x5C B, branched call: lw args from *a0, jal func_00333CE0 */
 
-/* func_00329438: 0x58 B, wraps NoOp_33E6A8 + func_00329490 + NoOp_33E6B0 */
-extern int func_00329490(int a0, int a1, int a2);
+/* func_00329438: 0x58 B, wraps NoOp_33E6A8 + adxt_Create + NoOp_33E6B0 */
+extern int adxt_Create(int a0, int a1, int a2);
 __attribute__((section(".text.func_00329438")))
 int func_00329438(int a0, int a1, int a2) {
     int r;
     NoOp_33E6A8();
-    r = func_00329490(a0, a1, a2);
+    r = adxt_Create(a0, a1, a2);
     NoOp_33E6B0();
     return r;
 }
@@ -45,13 +45,13 @@ int func_003297A8(int a0, int a1) {
     return r;
 }
 
-/* func_003297F0: 0x54 B, call func_00329490 then func_00336BA8 if result non-null */
-extern int func_00329490(int, int, int);
+/* func_003297F0: 0x54 B, call adxt_Create then func_00336BA8 if result non-null */
+extern int adxt_Create(int, int, int);
 extern int func_00336BA8(int, int, int);
 
 __attribute__((section(".text.func_003297F0")))
 int func_003297F0(int a0, int a1) {
-    int p = func_00329490(2, a0 + 0x400, a1 - 0x400);
+    int p = adxt_Create(2, a0 + 0x400, a1 - 0x400);
     if (p != 0) {
         func_00336BA8(p, a0, 0x400);
         return p;
@@ -71,9 +71,9 @@ void Obj3290_Tramp_0033E678_9028(void) { Forward33B658_33E678(); }
 __attribute__((section(".text.Obj3290_Tramp_0033E690_9040")))
 void Obj3290_Tramp_0033E690_9040(void) { Forward33B670_33E690(); }
 
-/* Obj3290_Tramp_0033BF18_9058: addiu sp,-0x10; sd ra; ld ra; j func_0033BF18; addiu sp,+0x10 */
+/* Obj3290_Tramp_0033BF18_9058: addiu sp,-0x10; sd ra; ld ra; j SVM_TestAndSet; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033BF18_9058")))
-void Obj3290_Tramp_0033BF18_9058(void) { func_0033BF18(); }
+void Obj3290_Tramp_0033BF18_9058(void) { SVM_TestAndSet(); }
 
 /* Obj3290_Tramp_0033E6A8_9070: addiu sp,-0x10; sd ra; ld ra; j NoOp_33E6A8; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3290_Tramp_0033E6A8_9070")))

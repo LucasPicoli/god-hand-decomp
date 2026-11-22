@@ -12,8 +12,8 @@ typedef unsigned char  Uint8;
 
 #define SWP16(x) ((((x) >> 8) & 0xFF) | (((x) << 8) & ~0xFF))
 
-__attribute__((section(".text.func_0033F050")))
-Sint32 func_0033F050(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
+__attribute__((section(".text.ADX_DecodeFooter")))
+Sint32 ADX_DecodeFooter(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
 {
     if (ibuflen < 0x10) {
         return -1;
@@ -32,8 +32,8 @@ typedef struct {
     char b[2];
 } Str2;
 
-__attribute__((section(".text.func_00333E88")))
-void func_00333E88(char *dirname)
+__attribute__((section(".text.dvCiSetRootDir")))
+void dvCiSetRootDir(char *dirname)
 {
     char c;
 

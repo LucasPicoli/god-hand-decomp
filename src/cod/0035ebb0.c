@@ -21,7 +21,7 @@ int func_0035EBB0(void *a0, void *a1, int a2)
 {
     int r;
 
-    r = func_0035ED08(a0, a2);
+    r = sfxcnv_IsNeedUpdateTbl(a0, a2);
     if (r != 1) {
         return r;
     }
@@ -29,7 +29,7 @@ int func_0035EBB0(void *a0, void *a1, int a2)
     switch (a2) {
     case 11:
     case 13:
-        return func_0035EDA8(a0, a1);
+        return sfxcnv_MakeZTbl(a0, a1);
     case 2:
         return func_0035EE98(a0, a1);
     case 4:
@@ -37,7 +37,7 @@ int func_0035EBB0(void *a0, void *a1, int a2)
     case 5:
         return func_0035EED8(a0, a1);
     case 21:
-        return func_0035EEF8(a0, a1);
+        return sfxcnv_MakeColAdjTbl(a0, a1);
     case 1:
         return func_0035EDC8(a0, a1);
     case 0:

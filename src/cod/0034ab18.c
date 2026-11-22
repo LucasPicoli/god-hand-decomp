@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0034AB18, fills the audio info record once the ADX decoder has its header: rate,
+/* cygnus-2.96: sfadxt_SetAdxtHd, fills the audio info record once the ADX decoder has its header: rate,
  * channels, bits and the derived per-frame size. */
 #include "godhand/mwsfd.h"
 typedef struct {
@@ -9,16 +9,16 @@ typedef struct {
     int rate; /* 0x10 */
     int bits; /* 0x14 */
 } AudInfo;
-extern AudInfo *func_0034B618(SfdHn *hn);
+extern AudInfo *sfadxt_GetHd(SfdHn *hn);
 extern int sfadxt_IsEndDecinfo(void *adxt);
 extern int func_0032A530(void *adxt);
 extern int func_0032A4A8(void *adxt);
 extern int func_0032A5B8(void *adxt);
 
-__attribute__((section(".text.func_0034AB18")))
-void func_0034AB18(SfdHn *hn)
+__attribute__((section(".text.sfadxt_SetAdxtHd")))
+void sfadxt_SetAdxtHd(SfdHn *hn)
 {
-    AudInfo *inf = func_0034B618(hn);
+    AudInfo *inf = sfadxt_GetHd(hn);
     void *adxt;
 
     if (inf == 0 || inf->valid != 0)

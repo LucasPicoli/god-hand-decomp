@@ -66,6 +66,6 @@ typedef struct SndSlotHead {
 
 extern SndSlotHead *FindSlotEntry_376A10(SndDesc *key);
 extern short func_003780B0(short a, short b);
-extern void func_003761D0(SndSlotHead *slot);
+extern void ctlTrkInit(SndSlotHead *slot);
 
 #endif

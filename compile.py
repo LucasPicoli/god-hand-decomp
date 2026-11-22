@@ -404,7 +404,7 @@ class Config:
             # lui/ori + fixed dsll16 steps. Retail matches ps2eeas at all 551
             # strict-chain sites in the monolith (notes/110). Opt-in per TU ONLY
             # and NOT implied by compiler: 'sn-*' — the two differ on reorder as
-            # well (measured 1 DIFF in 60 already-matched TUs: func_0036D460,
+            # well (measured 1 DIFF in 60 already-matched TUs: m2vlib_InitHn,
             # where ee-as hoists `sdr` into a jal delay slot, ps2eeas refuses to
             # split the sdl/sdr pair, and retail matches ee-as).
             as_route = raw.get("as", "ee")

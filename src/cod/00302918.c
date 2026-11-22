@@ -3,8 +3,8 @@
 extern int NoOp_33E6A8(int a0, int a1);
 extern int NoOp_33E6B0(void);
 
-__attribute__((section(".text.func_0032A9F0")))
-void func_0032A9F0(int a0, int a1) {
+__attribute__((section(".text.ADXT_SetOutVol")))
+void ADXT_SetOutVol(int a0, int a1) {
     NoOp_33E6A8(a0, a1);
     func_0032AA30(a0, a1);
     NoOp_33E6B0();

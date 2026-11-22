@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0034BFA8(void *d, int type, int flag);
+extern void sfbuf_InitBufData(void *d, int type, int flag);
 
 /* cygnus-2.96 candidate: sfbuf_InitAringBuf */
 
@@ -10,8 +10,8 @@ typedef struct SjBuf {
 
 
 
-__attribute__((section(".text.func_0034BEB8")))
-void func_0034BEB8(SjBuf *buf, int *a, int *b, int no)
+__attribute__((section(".text.sfbuf_InitAringBuf")))
+void sfbuf_InitAringBuf(SjBuf *buf, int *a, int *b, int no)
 {
     char *d = (char *)&buf[no];
     int *p = (int *)(d + 0x10);
@@ -19,7 +19,7 @@ void func_0034BEB8(SjBuf *buf, int *a, int *b, int no)
     int *pb = b + no;
     int va;
     int vb;
-    func_0034BFA8(d, 2, *pb != 0);
+    sfbuf_InitBufData(d, 2, *pb != 0);
     va = *pa;
     vb = *pb;
     do { } while (0);
@@ -37,11 +37,11 @@ void func_0034BEB8(SjBuf *buf, int *a, int *b, int no)
     p[11] = 0;
 }
 
-__attribute__((section(".text.func_0035A6F8")))
-void func_0035A6F8(int a0)
+__attribute__((section(".text.sftim_CntupHnVbIn")))
+void sftim_CntupHnVbIn(int a0)
 {
     volatile int *t = (volatile int *)(a0 + 0xD30);
-    if (func_0035A768(a0) != 0) {
+    if (sftim_IsTimeIncre(a0) != 0) {
         t[0xAA] += t[0xAB];
     }
     if (func_0035A7A0(a0, a0 + 0xD30) != 0) {
