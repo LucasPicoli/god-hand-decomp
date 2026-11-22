@@ -1,17 +1,16 @@
 /* cygnus-2.96 matched TU. */
-
-extern int Obj0000_Get_D_003F1FF0_36CCA8(void);
+#include "godhand/MpvHandle.h"
 
 /* MATCH via cygnus-2.96. */
 
 
 
 __attribute__((section(".text.MPVM2V_RequestStop")))
-int MPVM2V_RequestStop(int *a0)
+int MPVM2V_RequestStop(MpvHandle *hn)
 {
     int v0 = Obj0000_Get_D_003F1FF0_36CCA8();
     if (v0 != 0) {
-        v0 = a0[0xED];
+        v0 = hn->dev;
         if (v0 != 0)
             return func_0036CF08(v0);
     }

@@ -1,50 +1,34 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/criAix.h"
+#include "godhand/MpvHandle.h"
 
-extern void MPV_GoNextDelimSj(void *a0);
 extern long long func_003A9228(int a0, int *buf, int size);
 extern void LogPrintf(char *fmt, int val);
 
+/* prev is the start code decoded before this one; it is not read here. */
 __attribute__((section(".text.mpvhdec_DecEscSj")))
-int mpvhdec_DecEscSj(void *a0, void *a1) {
-    int buf[4];
-    void *s0;
-    int *s1;
-    int v1;
-    int a1_part;
-    int diff;
-    int step;
-    int next;
+int mpvhdec_DecEscSj(MpvHandle *hn, SjObj *sj, int prev) {
+    SjChunk tail;
+    SjChunk *ck;
+    int start;
+    int word;
+    int bits;
+    int end;
 
-    s0 = a1;
-    s1 = (int *)((char *)a0 + 0x38C);
+    ck = &hn->ck;
+    sj->vt->getChunk(sj, 1, 0x7FFFFFFF, ck);
 
-    {
-        void (*fn)(void *, int, int, int *) =
-            *(void (**)(void *, int, int, int *))((char *)*(void **)s0 + 0x18);
-        fn(s0, 1, 0x7FFFFFFF, s1);
-    }
+    start = (int)ck->data;
+    word = start & -4;
+    bits = (start - word) << 3;
+    end = word + (bits >> 3) + 4;
+    SJ_SplitChunk(ck, end - start, ck, &tail);
 
-    v1 = *s1;
-    a1_part = v1 & -4;
-    diff = v1 - a1_part;
-    step = (diff << 3) >> 3;
-    next = a1_part + step + 4;
-    SJ_SplitChunk(s1, next - v1, s1, buf);
+    sj->vt->putChunk(sj, 0, ck);
+    sj->vt->ungetChunk(sj, 1, &tail);
 
-    {
-        void (*fn)(void *, int, int *) =
-            *(void (**)(void *, int, int *))((char *)*(void **)s0 + 0x20);
-        fn(s0, 0, s1);
-    }
-
-    {
-        void (*fn)(void *, int, int *) =
-            *(void (**)(void *, int, int *))((char *)*(void **)s0 + 0x1C);
-        fn(s0, 1, buf);
-    }
-
-    MPV_GoNextDelimSj(s0);
+    MPV_GoNextDelimSj(sj);
 
     return 0;
 }

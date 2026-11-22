@@ -1,24 +1,20 @@
-/* cygnus-2.96: mpvm2v_CopyPicAtr, reads back the device status block and counters into the object. */
-#include "godhand/devObj.h"
-extern void func_0036CE68(int dev, DevStat *stat);
-extern void func_0036CE90(int dev, int *a);
-extern void func_0036CEB8(int dev, int *b, int *c, int *x);
-extern void func_0036CEE0(int dev, int *d, int *e);
+/* cygnus-2.96: mpvm2v_CopyPicAtr, reads the picture attributes and counters back from the M2V decoder into the handle. */
+#include "godhand/MpvHandle.h"
 
 __attribute__((section(".text.mpvm2v_CopyPicAtr")))
-void mpvm2v_CopyPicAtr(DevObj *obj)
+void mpvm2v_CopyPicAtr(MpvHandle *hn)
 {
-    DevStat stat;
+    MpvPicAtr atr;
     int a, b, c, x, d, e;
 
-    func_0036CE68(obj->dev, &stat);
-    func_0036CE90(obj->dev, &a);
-    func_0036CEB8(obj->dev, &b, &c, &x);
-    func_0036CEE0(obj->dev, &d, &e);
-    obj->stat = stat;
-    obj->a = a;
-    obj->blocks = b / 2048;
-    obj->c = c;
-    obj->d = d;
-    obj->e = e;
+    func_0036CE68(hn->dev, &atr);
+    func_0036CE90(hn->dev, &a);
+    func_0036CEB8(hn->dev, &b, &c, &x);
+    func_0036CEE0(hn->dev, &d, &e);
+    hn->picAtr = atr;
+    hn->bitRate = a;
+    hn->blocks = b / 2048;
+    hn->c = c;
+    hn->d = d;
+    hn->e = e;
 }

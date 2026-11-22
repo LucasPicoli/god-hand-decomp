@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 __attribute__((section(".text.func_00368EE0")))
 int func_00368EE0(int *a0, int a1){
@@ -13,13 +14,13 @@ int func_00368EE0(int *a0, int a1){
 }
 
 __attribute__((section(".text.func_00369F70")))
-int func_00369F70(int *a0, int a1){
-  int v = a1;
-  a0[2] = v;
+int func_00369F70(MpvErr *err, int code){
+  int v = code;
+  err->code = v;
   if (v != 0) {
-    v = a0[0];
+    v = (int)err->fn;
     if (v != 0)
-      v = ((int (*)(int))v)(a0[1]);
+      v = err->fn(err->obj, code);
   }
   return v;
 }

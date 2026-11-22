@@ -1,27 +1,26 @@
 /* cygnus-2.96: MPV decode one unit from the stream joint, then skip to the next delimiter (0x36B798). */
-#include "godhand/criSj.h"
-extern int mpvhdec_AnalyUd(char *h, unsigned char *p, int n);
-extern void SJ_SplitChunk(SjChunk *ck, int n, SjChunk *a, SjChunk *b);
-extern unsigned int MPV_GoNextDelimSj(SjObj *sj);
+#include "godhand/criAix.h"
+#include "godhand/MpvHandle.h"
 
+/* prev is the start code decoded before this one; it is not read here. */
 __attribute__((section(".text.mpvhdec_DecUdscSj")))
-int mpvhdec_DecUdscSj(char *h, SjObj *sj)
+int mpvhdec_DecUdscSj(MpvHandle *hn, SjObj *sj, int prev)
 {
     SjChunk tail;
     SjChunk *ck;
-    unsigned char *p;
+    char *p;
     int base;
     int bit;
     int ret;
 
     base = ~3;
-    ck = (SjChunk *)(h + 0x38C);
+    ck = &hn->ck;
     sj->vt->getChunk(sj, 1, 0x7FFFFFFF, ck);
-    p = (unsigned char *)ck->data;
+    p = ck->data;
     base &= (int)p;
     bit = ((int)p - base) * 8;
     base += 8;
-    ret = mpvhdec_AnalyUd(h, p, *(int *)(h + 0x390));
+    ret = mpvhdec_AnalyUd(hn, p, hn->ck.len);
     base += bit >> 3;
     base -= 4;
     SJ_SplitChunk(ck, base - (int)ck->data, ck, &tail);

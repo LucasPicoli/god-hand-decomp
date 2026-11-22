@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int MPV_CheckDelim(char *p);
+#include "godhand/MpvHandle.h"
 
 __attribute__((section(".text.MPV_BsearchDelim")))
 char *MPV_BsearchDelim(char *ptr, int n, int mask)

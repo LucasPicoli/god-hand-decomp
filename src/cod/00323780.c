@@ -1,8 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/MpvHandle.h"
 
-extern int MPV_SearchDelim(int, int, int);
-extern int MPV_CheckDelim(int);
 extern struct S2 { int a; int b; } D_00457B10;
 extern int func_00345848;
 extern void MWSFSVM_Error();
@@ -45,34 +44,29 @@ int sfadxt_ChkPrepFlg(int a0)
 }
 
 __attribute__((section(".text.mpvhdec_GetCodec")))
-int mpvhdec_GetCodec(int a0, int a1)
+int mpvhdec_GetCodec(MpvHandle *hn, SjChunk *ck)
 {
-    int s0, s1;
-    int v1, v0;
+    Sint8 *p;
+    int d;
 
-    s0 = a1;
-    s1 = a0;
+    if (hn->codec != 0)
+        return hn->codec;
 
-    v1 = *(int *)(s1 + 0x35C);
-    if (v1 != 0)
-        return v1;
+    p = MPV_SearchDelim(ck->data, ck->len, MPV_DLM_SHC);
+    if (p == 0)
+        return hn->codec;
 
-    v1 = MPV_SearchDelim(*(int *)(s0 + 0), *(int *)(s0 + 4), 0x40);
-    if (v1 == 0)
-        return *(int *)(s1 + 0x35C);
+    p += 4;
+    p = MPV_SearchDelim(p, ck->len - (p - ck->data), -1);
+    if (p == 0)
+        return hn->codec;
 
-    v1 += 4;
-    v1 = MPV_SearchDelim(v1, *(int *)(s0 + 4) - (v1 - *(int *)(s0 + 0)), -1);
-    if (v1 == 0)
-        return *(int *)(s1 + 0x35C);
-
-    v1 = MPV_CheckDelim(v1);
-    v0 = v1 & 0x10;
-    if (v0 != 0)
-        *(int *)(s1 + 0x35C) = 2;
-    else if (v1 != 0)
-        *(int *)(s1 + 0x35C) = 1;
-    return *(int *)(s1 + 0x35C);
+    d = MPV_CheckDelim(p);
+    if (d & MPV_DLM_ESC)
+        hn->codec = MPV_CODEC_M2V;
+    else if (d != 0)
+        hn->codec = MPV_CODEC_M1V;
+    return hn->codec;
 }
 
 __attribute__((section(".text.func_00345780")))
@@ -215,39 +209,17 @@ int func_00349630(void *a0)
 }
 
 __attribute__((section(".text.sfmpv_DiscardSec")))
-int sfmpv_DiscardSec(void *a0, void *a1) {
-    int buf[4];
-    void *s0;
-    void *s1;
-    int s2;
-    int s3;
-
-    s0 = a1;
-    s1 = a0;
-    s2 = 4;
-    s3 = 0x80;
+void sfmpv_DiscardSec(void *a0, SjObj *sj) {
+    SjChunk ck;
 
     while (1) {
-        void (*fn6)(void *, int, int, int *) =
-            *(void (**)(void *, int, int, int *))((char *)*(void **)s0 + 0x18);
-        fn6(s0, 1, 4, buf);
-
-        if (buf[1] != s2) break;
-        if (MPV_CheckDelim(buf[0]) != s3) break;
-
-        {
-            void (*fn8)(void *, int, int *) =
-                *(void (**)(void *, int, int *))((char *)*(void **)s0 + 0x20);
-            fn8(s0, 0, buf);
-        }
-        sfmpv_AddRtotSj(s1, 4);
+        sj->vt->getChunk(sj, 1, 4, &ck);
+        if (ck.len != 4) break;
+        if (MPV_CheckDelim(ck.data) != MPV_DLM_SEC) break;
+        sj->vt->putChunk(sj, 0, &ck);
+        sfmpv_AddRtotSj(a0, 4);
     }
-
-    {
-        int (*fn7)(void *, int, int *) =
-            *(int (**)(void *, int, int *))((char *)*(void **)s0 + 0x1C);
-        return fn7(s0, 1, buf);
-    }
+    sj->vt->ungetChunk(sj, 1, &ck);
 }
 
 __attribute__((section(".text.func_00323780")))

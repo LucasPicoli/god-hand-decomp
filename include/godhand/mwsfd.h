@@ -192,11 +192,4 @@ extern void SFBUF_SetPrepFlg(SfdHn *hn, int ch, int arg);
 extern SfdBufInf *sfmps_GetSupSj(SfdHn *hn);
 extern int SFBUF_GetWTot(SfdHn *hn, int arg);
 
-/* One stream-joint output channel of the SFD writers (0x36B888, 0x36EE90). */
-typedef struct SfdSjCh {
-    SjObj *sj;                          /* 0x00 */
-    void (*cb)(int arg, int ch);        /* 0x04 */
-    int arg;                            /* 0x08 */
-} SfdSjCh;
-
 #endif

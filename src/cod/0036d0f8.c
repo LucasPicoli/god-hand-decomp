@@ -1,14 +1,11 @@
-typedef unsigned char Uint8;
-typedef int Sint32;
-extern Uint8 *MPV_SearchDelim(Uint8 *buf, Sint32 len, Sint32 type);
-extern Sint32 MPV_CheckDelim(Uint8 *ptr);
+#include "godhand/MpvHandle.h"
 
 __attribute__((section(".text.m2v_IsConformable")))
 Sint32 m2v_IsConformable(Uint8 *buf, Sint32 len)
 {
     Uint8 *p;
 
-    p = MPV_SearchDelim(buf, len, 0x40);
+    p = MPV_SearchDelim(buf, len, MPV_DLM_SHC);
     if (p == 0)
         return 0;
     p += 4;
@@ -19,7 +16,7 @@ Sint32 m2v_IsConformable(Uint8 *buf, Sint32 len)
     p = MPV_SearchDelim(buf, len, -1);
     if (p == 0)
         return 0;
-    if ((MPV_CheckDelim(p) & 0x10) == 0)
+    if ((MPV_CheckDelim(p) & MPV_DLM_ESC) == 0)
         return 0;
     p += 4;
     len -= p - buf;

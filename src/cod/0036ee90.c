@@ -3,6 +3,7 @@
 #include "godhand/mwsfd.h"
 #include "godhand/criSj.h"
 #include "godhand/globals.h"
+#include "godhand/MpvHandle.h"
 
 typedef struct {
     char pad0[0x11C];

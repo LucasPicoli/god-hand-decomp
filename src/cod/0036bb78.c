@@ -1,39 +1,26 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/criAix.h"
+#include "godhand/MpvHandle.h"
 
 /* cygnus-2.96 */
-
-typedef struct Sj { unsigned char *f0; int f4; } Sj;
-
-typedef struct SjIf {
-    int pad[6];
-    void (*getChunk)(void *sj, int id, unsigned int len, Sj *out);   /* +0x18 */
-    void (*ungetChunk)(void *sj, int id, Sj *ck);                    /* +0x1C */
-    void (*putChunk)(void *sj, int id, Sj *ck);                      /* +0x20 */
-} SjIf;
-
-typedef struct SjObj { SjIf *vt; } SjObj;
-
-extern unsigned char *MPV_SearchDelim(unsigned char *p, int n, unsigned int mask);
-extern unsigned int MPV_CheckDelim(unsigned char *p);
-extern void SJ_SplitChunk(Sj *ck, int n, Sj *a, Sj *b);
 
 __attribute__((section(".text.MPV_GoNextDelimSj")))
 unsigned int MPV_GoNextDelimSj(SjObj *sj)
 {
-    Sj ck;
-    Sj ck2;
-    unsigned char *p;
+    SjChunk ck;
+    SjChunk ck2;
+    Sint8 *p;
     unsigned int code;
 
-    while (sj->vt->getChunk(sj, 1, 0x7FFFFFFF, &ck), ck.f4 >= 4) {
-        p = MPV_SearchDelim(ck.f0, ck.f4, 0xFFFFFFFF);
+    while (sj->vt->getChunk(sj, 1, 0x7FFFFFFF, &ck), ck.len >= 4) {
+        p = MPV_SearchDelim(ck.data, ck.len, 0xFFFFFFFF);
         if (p == 0) {
-            SJ_SplitChunk(&ck, ck.f4 - 3, &ck, &ck2);
+            SJ_SplitChunk(&ck, ck.len - 3, &ck, &ck2);
             sj->vt->putChunk(sj, 0, &ck);
             sj->vt->ungetChunk(sj, 1, &ck2);
         } else {
             code = MPV_CheckDelim(p);
-            SJ_SplitChunk(&ck, p - ck.f0, &ck, &ck2);
+            SJ_SplitChunk(&ck, p - ck.data, &ck, &ck2);
             sj->vt->putChunk(sj, 0, &ck);
             sj->vt->ungetChunk(sj, 1, &ck2);
             goto done;
