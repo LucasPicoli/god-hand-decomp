@@ -1,6 +1,6 @@
 /* include/godhand/adxbSte.h - the ADXB decoder's output-buffer wrap (CRI libadxe, 0x33D598).
  *
- * After a block is decoded, func_0033D598 works out how many samples the
+ * After a block is decoded, ADXB_EndDecode works out how many samples the
  * output ring still has to hold and, when the write position has run past
  * the end of the ring, copies the overhang back to the start (stereo copies
  * both channels). This is the same 0x104-byte object as ADX_BASIC in

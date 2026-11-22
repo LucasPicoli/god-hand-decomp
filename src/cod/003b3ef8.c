@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003FAEE4;
 extern void SignalSema(int);
 
 __attribute__((section(".text.SignalSema_3B3EF8")))

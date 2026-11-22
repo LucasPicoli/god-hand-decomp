@@ -22,11 +22,11 @@ extern int GetArrayElemA0C_35A1C8(void *hn, int id);
 extern int sfmps_AutoVchPlay(void *hn, int t);
 
 
-extern void func_00356928(void *hn, int n);
-extern void func_00356C68(void *hn, char *data, int n);
+extern void SFMPVP_Unput(void *hn, int n);
+extern void SFMPVP_SearchPsc(void *hn, char *data, int n);
 
-__attribute__((section(".text.func_0034ED08")))
-int func_0034ED08(void *hn, int t, char *data, int len, void *ctx)
+__attribute__((section(".text.sfmps_CopyVideo")))
+int sfmps_CopyVideo(void *hn, int t, char *data, int len, void *ctx)
 {
     Sub *sub;
     Mv *mv;
@@ -64,13 +64,13 @@ int func_0034ED08(void *hn, int t, char *data, int len, void *ctx)
 store:
     mv->f24 = t;
     if (cur != t) return 1;
-    len = func_003568B8(hn, data, len);
+    len = SFMPVP_Put(hn, data, len);
     if (len <= 0) return 0;
-    r = func_0034F200(hn, sub->f14, data, len, ctx);
+    r = sfmps_CopyDstBuft(hn, sub->f14, data, len, ctx);
     if (r != 1) {
-        func_00356928(hn, len);
+        SFMPVP_Unput(hn, len);
     } else {
-        func_00356C68(hn, data, len);
+        SFMPVP_SearchPsc(hn, data, len);
     }
     return r;
 }

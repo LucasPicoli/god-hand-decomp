@@ -28,8 +28,8 @@ extern void SifSetReg(unsigned int reg, unsigned int val);
 extern int SifSetDma(SifDmaTransfer *t, int count);
 extern void func_003B2850(void *p, int len);
 
-__attribute__((section(".text.func_003B60E8")))
-int func_003B60E8(char *arg, int mode)
+__attribute__((section(".text.sceSifResetIop")))
+int sceSifResetIop(char *arg, int mode)
 {
     SifDmaTransfer dma;
     unsigned int iopaddr;

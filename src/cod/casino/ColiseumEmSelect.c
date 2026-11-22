@@ -1,7 +1,7 @@
 /* TU: ColiseumEmSelect [casino] - recovered C++ class. */
 #include "godhand/ColiseumEmSelect.h"
-extern char D_003BF0A8[];
 #include "include_asm.h"
+#include "godhand/globals.h"
 
 /* Call the handler picked by vtIndex through the g++ delta/pfn table. */
 __attribute__((section(".text.ColiseumEmSelect_Main")))

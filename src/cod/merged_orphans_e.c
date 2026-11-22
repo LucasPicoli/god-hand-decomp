@@ -1,4 +1,5 @@
 /* cSnd_SetBgmTblNo: `func_002D0658(0.0f)` — forwarding call with a float arg. */
+#include "godhand/globals.h"
 extern void func_002D0658(float);
 __attribute__((section(".text.cSnd_SetBgmTblNo")))
 void cSnd_SetBgmTblNo(void) { func_002D0658(0.0f); }
@@ -33,7 +34,6 @@ void *cEmWrap_getPos(void *a0) {
 
 /* InitObjVtableAndRegister_2E76F8: constructor — store vtable at obj+0xF0, register via
  * cWorldLight_Del_LightData, then init via func_002FBE28(obj, a1). */
-extern int D_0044E640;
 extern int D_00604700;
 extern void cWorldLight_Del_LightData(void *a, unsigned short b, int c);
 extern void func_002FBE28(void *obj, void *a1);

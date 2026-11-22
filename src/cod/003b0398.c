@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
 
 #include "godhand/sync.h"
+#include "godhand/globals.h"
 
 typedef unsigned int u_int;
 
-extern char *D_003FAE44;
 extern void *EndOfHeap(void);
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);
 

@@ -18,7 +18,7 @@ int SFH_IsEffFtrInf(Hdr *h, int id, int *out)
 
     b = id & 0xFF;
     if (h->fC < 0x6E) return 0;
-    kind = func_0035E9E8(b);
+    kind = chkStmId(b);
     switch (kind) {
     case 0xC0:
         p = getElemInfPtr(h, b);

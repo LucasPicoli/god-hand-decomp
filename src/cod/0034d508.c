@@ -37,14 +37,14 @@ void sfhds_DoProcessHdr(void *h, HdInf *inf)
 
     if (SFH_IsSfdHeader(h, &ok) == 0) ok = 0;
     if (ok == 0) return;
-    if (func_0035DB38(h, &ver, &rev) == 0) {
+    if (SFH_AnlyHdrToolVer(h, &ver, &rev) == 0) {
         ver = 0;
         rev = 0;
     }
     inf->ver = ver;
     inf->rev = rev;
     tv = ver * 100 + rev;
-    if (func_0035DF78(h, &rate) == 0) rate = 0;
+    if (SFH_AnlyByteRate(h, &rate) == 0) rate = 0;
     if (tv < 0x6E) rate = -rate;
     inf->rate = rate;
     sfhds_AnlyHead(h, inf);

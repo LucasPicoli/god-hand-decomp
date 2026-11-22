@@ -1,5 +1,6 @@
 #include "godhand/vu0.h"
 #include "godhand/cCamera.h"
+#include "godhand/globals.h"
 
 /* cCamera — large object constructor: set the vtable at 0x35C, zero a
  * block of quadwords, lay down seven identity matrices at 0x0/0x40/0x80/0xC0/
@@ -7,7 +8,6 @@
  * alternates v0/v1 as retail does), reset the camera, return the object.
  * sn-2.95.3-136. */
 
-extern int D_0041D8B8;
 extern void cCamera_reset(struct cCamera *self);
 
 /* Constructor: set the vtable, zero the vectors, lay seven identity

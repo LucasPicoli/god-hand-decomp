@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cIDManager.h"
+#include "godhand/globals.h"
 
 extern void func_0031EC48(float *, int *);
 extern int D_007476B0;
 extern void func_0014FF00(int a0, int a1, int a2, int a3);
 extern void func_002B6400(void *a0);
 extern int D_007858B8;
-extern unsigned char D_00429E90[];
 extern unsigned char D_00785878[];
 extern void GetOrInitGlobal785878_1B8058(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);

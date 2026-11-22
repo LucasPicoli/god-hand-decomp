@@ -1,9 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void (*D_003EADB8)(void *, void *);
-extern void *D_003EADBC;
 extern char D_003EADC0;
-extern char D_00456930[];
 extern void PrintfErrorReport(char *fmt, ...);
 
 __attribute__((section(".text.func_0033F130")))

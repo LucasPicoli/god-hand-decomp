@@ -1,7 +1,7 @@
 #include "godhand/seqNode.h"
 #include "godhand/sndTiming.h"
 extern int func_00377FA0(void);
-extern void func_003777C0(void);
+extern void SdeStrReport(void);
 extern void func_0037C930(void);
 extern void func_003754A8(SndTiming *sys);
 extern void func_0037CA98(void);
@@ -9,9 +9,9 @@ extern void func_00386D48(void);
 extern void func_00376E00(void);
 extern void func_00375F68(void);
 extern void func_0037CAE0(void);
-extern void func_00374B00(void);
-extern void func_003778D8(void);
-extern void func_0037CE20(void);
+extern void SdeEfxOrderMake(void);
+extern void SdeStrOrderMake(void);
+extern void SdeVoiceOrderMake(void);
 extern void Obj0000_Set_D_0076B080_Field_A4_3754F0(SndTiming *sys);
 extern void func_00372CB0(SndVoiceNode *v);
 
@@ -30,7 +30,7 @@ void func_00375380(void)
     start = *(volatile int *)0x10000800;
     sys->frame++;
     func_00377FA0();
-    func_003777C0();
+    SdeStrReport();
     func_0037C930();
     func_003754A8(sys);
     func_0037CA98();
@@ -38,9 +38,9 @@ void func_00375380(void)
     func_00376E00();
     func_00375F68();
     func_0037CAE0();
-    func_00374B00();
-    func_003778D8();
-    func_0037CE20();
+    SdeEfxOrderMake();
+    SdeStrOrderMake();
+    SdeVoiceOrderMake();
     Obj0000_Set_D_0076B080_Field_A4_3754F0(sys);
     for (i = 0; i < 3; i++) {
         func_00372CB0(&D_0076A600[i]);

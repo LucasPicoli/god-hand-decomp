@@ -1,12 +1,12 @@
 /* TU: cSnd [sound] - recovered C++ class. */
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 #define CSND_HIT(s) (*(cBgmHit **)((char *)(s) + 0x24))
 extern int cSnd_getEmSeGroupOwner(void *a0, int a1);
 extern void *cSnd_GetSeData(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
 extern int cSeData_IsFailed(void *p);
-extern int D_0044CE48[];
 extern void *cSnd_AllocVoice(void *a0);
 extern int cSndSeVoice_StartAtOrigin(void *p, short a1, int a2, int a3, int a4, int a5, int a6);
 extern void cSndBgmNode_FadeOut(int a0, float f12);
@@ -326,7 +326,6 @@ extern void cBgmData_Reset(cBgmData *);
 extern int cBgmData_LoadNumbered(cBgmData *, int, int);
 
 extern int func_003A5678(cBgmHit *, char *);
-extern char D_0044D100[];
 
 /* Set or clear the hit flag of the hit table entries whose id matches. */
 __attribute__((section(".text.cSnd_BgmHitBeSet")))

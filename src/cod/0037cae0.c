@@ -7,7 +7,7 @@
 extern int GetSequenceResult_373770(void *seq);
 extern void UpdateSequenceNode_373430(void *seq);
 extern void ResetNodeData_3733C8(void *seq);
-extern void func_0037CC78(unsigned short *v);
+extern void vregFadeControl(unsigned short *v);
 extern void func_0037CCE0(SeqNode *v);
 
 __attribute__((section(".text.func_0037CAE0")))
@@ -35,17 +35,17 @@ void func_0037CAE0(void)
                 ResetNodeData_3733C8(&D_0076A600[v->id]);
                 /* fall through */
             case 0:
-                func_0037D148(v);
-                func_0037D3B0(v);
+                SdeVmngClose(v);
+                SdeVregClose(v);
                 break;
             default:
-                func_0037CC78(&v->flags);
+                vregFadeControl(&v->flags);
                 func_0037CCE0(v);
                 n1++;
                 break;
             }
         } else {
-            func_0037CC78(&v->flags);
+            vregFadeControl(&v->flags);
             func_0037CCE0(v);
             if (v->kind & 1)
                 n1++;

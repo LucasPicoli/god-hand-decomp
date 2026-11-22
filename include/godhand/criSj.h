@@ -103,7 +103,7 @@ extern Sint8 *SJ_SearchTag(SjChunk *ck, Sint8 *tag, Sint8 *endtag, SjChunk *tagc
 
 /* Sofdec stream-joint position feed (0x327818..). */
 extern int GetVia4_Obj33C8_GetField_28_7818_327818(void *sj);
-extern int func_00327830(void *sj);
+extern int ADXSJD_GetLpStartOfst(void *sj);
 extern int GetVia4_Obj33C8_GetField_30_7860_327860(void *sj);
 extern int Forward33CFB8_327970(void *sj);
 extern void Forward33CFF8_327988(void *sj);

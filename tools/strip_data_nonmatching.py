@@ -83,6 +83,12 @@ DATA_SECTION_FILES = [
 INCLUDE_ROOT = REPO_ROOT / "include"
 EXTRA_DECLS_FILE = REPO_ROOT / "config" / "data_decls_extra.txt"
 
+# Headers whose externs do not count as typing a data symbol.
+# include/godhand/globals.h declares every global that C units read but no
+# unit owns yet, mostly as address-only `char D_X[]`; a symbol counts once
+# a class or module header declares it with its real type.
+UNTYPED_DECL_HEADERS = frozenset({"godhand/globals.h"})
+
 
 # Regex for `extern <type> <name>(\[...\])?(\s*=\s*...)?;`.  Captures
 # the name.  Deliberately simple:
@@ -162,6 +168,8 @@ def collect_decls(
     n_inc = 0
     if include_root.exists():
         for hpath in sorted(include_root.rglob("*.h")):
+            if hpath.relative_to(include_root).as_posix() in UNTYPED_DECL_HEADERS:
+                continue
             try:
                 text = hpath.read_text(encoding="utf-8", errors="replace")
             except OSError:

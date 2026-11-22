@@ -1,17 +1,16 @@
 /* cygnus-2.96: Sofdec stream-joint position feed (0x32BF90..0x32C1E0). */
 
 #include "godhand/criSj.h"
-
-extern char D_00452890[];
+#include "godhand/globals.h"
 
 void func_0032C048(char *self);
 
-__attribute__((section(".text.func_0032BF90")))
-void func_0032BF90(char *self)
+__attribute__((section(".text.adxt_trap_entry_lps")))
+void adxt_trap_entry_lps(char *self)
 {
     void *sj = *(void **)(self + 4);
     int top = GetVia4_Obj33C8_GetField_28_7818_327818(sj);
-    int size = func_00327830(sj);
+    int size = ADXSJD_GetLpStartOfst(sj);
     int end = GetVia4_Obj33C8_GetField_30_7860_327860(sj);
     int len;
 
@@ -31,7 +30,7 @@ void func_0032C048(char *self)
     void *sj = *(void **)(self + 4);
     SjObj *in = *(SjObj **)(self + 0x14);
     int top = GetVia4_Obj33C8_GetField_28_7818_327818(sj);
-    int size = func_00327830(sj);
+    int size = ADXSJD_GetLpStartOfst(sj);
     int end = GetVia4_Obj33C8_GetField_30_7860_327860(sj);
     int len;
     SjChunk ck;

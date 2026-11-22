@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00358688, clear the header, init the five channel blocks and the master
+/* cygnus-2.96: sfply_InitTmrInf, clear the header, init the five channel blocks and the master
  * block, and zero the trailing counters. */
 typedef struct {
     char body[0x20];
@@ -14,16 +14,16 @@ typedef struct {
     int dc;
 } ChSet;
 
-extern void func_00366C50(void *dst, int c, int n);
+extern void UTY_MemsetDword(void *dst, int c, int n);
 extern void func_0035BB40(ChBlock *b);
 
-__attribute__((section(".text.func_00358688")))
-void func_00358688(ChSet *s)
+__attribute__((section(".text.sfply_InitTmrInf")))
+void sfply_InitTmrInf(ChSet *s)
 {
     ChBlock *b;
     int i;
 
-    func_00366C50(s, 0, 0x38);
+    UTY_MemsetDword(s, 0, 0x38);
     b = s->ch;
     for (i = 4; i >= 0; i--)
         func_0035BB40(b++);

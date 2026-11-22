@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
-extern char D_003BE0B0[];
 extern int D_00747A2C;
 extern void Slot2_blinkMarkTick(int a0);
 extern void Slot2_blinkMarksAt4A2(int a0);

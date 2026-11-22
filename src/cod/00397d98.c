@@ -11,7 +11,7 @@ int scePadGetState(int port, int slot)
 
     if (D_0077C110[port][slot].open == 0)
         return 0x63;
-    func_00397BC8(port, slot, &buf);
+    scePadGetDmaStr(port, slot, &buf);
     if (buf.state == 6) {
         if (buf.reqState == 2)
             return 5;

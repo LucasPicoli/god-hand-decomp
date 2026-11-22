@@ -1,18 +1,8 @@
-extern int D_00424F28;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_00785CF8;
-extern int D_00424FD8;
+#include "godhand/globals.h"
 extern int D_00785878;
-extern int D_00425000;
-extern int D_00785D08;
-extern int D_004250B8;
-extern int D_00785808;
-extern int D_004250F0;
-extern int D_00785D18;
-extern int D_004251A8;
 extern int D_007858B8;
-extern int D_004251C0;
 
 #include "godhand/vu0.h"
 

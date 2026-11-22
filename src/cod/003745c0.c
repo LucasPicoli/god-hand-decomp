@@ -3,7 +3,7 @@
 extern char D_005FEE00[];
 extern char D_003F2060[];
 extern int SdeSystemOutModeGet(void);
-extern void func_0032EC78(int a0, int a1, int a2);
+extern void AIXP_SetTrackVol(int a0, int a1, int a2);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -33,12 +33,12 @@ void func_003745C0(void *arg, int idx, int n, float val) {
     }
     if (n == -1) {
         for (i = 0; i < *(int *)(p + 0xC); i++) {
-            func_0032EC78(*(int *)p, i,
+            AIXP_SetTrackVol(*(int *)p, i,
                           *(short *)(D_003F2060 + (int)t * 2));
             *(float *)(p + 0x14 + i * 4) = val;
         }
     } else {
-        func_0032EC78(*(int *)p, n, *(short *)(D_003F2060 + (int)t * 2));
+        AIXP_SetTrackVol(*(int *)p, n, *(short *)(D_003F2060 + (int)t * 2));
         {
             int k = n * 4;
             *(float *)(p + k + 0x14) = val;

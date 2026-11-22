@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/globals.h"
 
 /* newlib libc/stdlib/mbtowc_r.c -- transcribed. */
 
@@ -24,9 +25,6 @@ extern int func_003A5678(const char *a, const char *b);    /* strcmp */
 
 extern JIS_STATE D_003FA630[][JIS_C_NUM];    /* JIS_state_table */
 extern JIS_ACTION D_003FA7E0[][JIS_C_NUM];   /* JIS_action_table */
-extern char D_0045F5F0[];   /* "C-SJIS" */
-extern char D_0045F5F8[];   /* "C-EUCJP" */
-extern char D_0045F600[];   /* "C-JIS" */
 
 /* Convert the multibyte character at s (at most n bytes) to a wide character in the current locale. */
 __attribute__((section(".text.func_003A7D08")))

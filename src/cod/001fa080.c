@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
-
-extern int D_003BF160[];
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 

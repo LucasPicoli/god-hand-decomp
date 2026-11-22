@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
 /* compiler: cygnus-2.96 ; extra keys: c_flags_drop -f=-freorder-blocks (score with --drop-freorder-blocks) */
-__attribute__((section(".text.func_00336378")))
-int func_00336378(char *p, char **endp, int base) {
+__attribute__((section(".text.mfci_str_to_uint_ptr")))
+int mfci_str_to_uint_ptr(char *p, char **endp, int base) {
     int acc;
     unsigned char c;
     int d;

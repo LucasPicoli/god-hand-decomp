@@ -1,13 +1,12 @@
 /* sn-2.95.3-136: func_002A4970, binds the font textures from the game data pack: three texture/palette pairs
  * (slots 0, 1, 4) for language 0, two (slots 0, 4) for languages 1-6, then clears the font's pending count. */
 #include "godhand/gameWork.h"
+#include "godhand/globals.h"
 typedef struct FontWork {
     char pad00000[0x2A08C];
     int pending;                        /* 0x2A08C */
 } FontWork;
 
-extern char D_0044ACE0[];
-extern char D_0044ACE8[];
 extern void *SearchData(void *pack, char *name, int index);
 extern void cFont_setTextureAddr(FontWork *font, int slot, void *tex, void *clut);
 

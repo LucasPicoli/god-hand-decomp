@@ -3,6 +3,7 @@
 #include "godhand/heapArena.h"
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 
 extern void cBgmData_Reset(cBgmData *);
 extern int cBgmData_AddLoadBits(cBgmData *, int);
@@ -10,8 +11,6 @@ extern int func_003A6C58(char *buf, const char *fmt, ...);
 extern int cDvd_FileExist(char *, char *);
 extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
 extern char D_00583F20[];
-extern char D_0044D078[];
-extern char D_0044D088[];
 
 __attribute__((section(".text.cBgmData_LoadNumbered")))
 int cBgmData_LoadNumbered(cBgmData *d, int kind, int req)

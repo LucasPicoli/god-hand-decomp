@@ -16,8 +16,8 @@ extern char D_00580D40[];
 extern void func_003A57C4(void *dst, const void *src);
 extern void FreeResourceNode_2D3710(cMovieTrack *track);
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
-extern void func_00347BC0(int handle, int a1, int found);
-extern void func_00346078(int handle, int a1, int found);
+extern void mwPlyStartAfsLp(int handle, int a1, int found);
+extern void mwPlyStartAfs(int handle, int a1, int found);
 extern char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *snd, int b, int c, void *obj, int e, int f, int g, int h);
 extern float Turn_dest_dir(float cur, float dest, float speed);
@@ -142,9 +142,9 @@ int cMovieTrack_start(cMovieTrack *track, const char **clip) {
     }
     found = FindEntryValue_1FF9C0(D_00580D40, name, 0, 0);
     if ((MOVIE_TRACK_FLAGS(track) & MOVIE_TRACK_LOOP) != 0) {
-        func_00347BC0(track->handle, 0, found);
+        mwPlyStartAfsLp(track->handle, 0, found);
     } else {
-        func_00346078(track->handle, 0, found);
+        mwPlyStartAfs(track->handle, 0, found);
     }
     return 1;
 }

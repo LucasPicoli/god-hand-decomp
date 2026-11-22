@@ -25,7 +25,7 @@ typedef struct MwPlyOpen {
 } MwPlyOpen;
 
 extern void Obj33F8_Tramp_0033F130_FCB0(char *msg);
-extern void func_0032DBA0(MwPlyOpen *o);
+extern void aixp_Stop(MwPlyOpen *o);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
 extern char *func_003A57C4(char *dst, const char *src);

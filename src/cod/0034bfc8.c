@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0034BFC8")))
-void func_0034BFC8(int *p) {
+__attribute__((section(".text.sfbuf_InitUoSj")))
+void sfbuf_InitUoSj(int *p) {
     int i = 2;
     do {
         i--;

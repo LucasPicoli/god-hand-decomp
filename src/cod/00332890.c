@@ -9,8 +9,8 @@ extern int Forward33B5C8_33B6B8(void);
 
 
 
-__attribute__((section(".text.func_00332890")))
-void func_00332890(void *a0){ char *s0=(char*)a0;
+__attribute__((section(".text.dvCiExecHndl")))
+void dvCiExecHndl(void *a0){ char *s0=(char*)a0;
  if(*(int*)(s0+0x1C)==0) return;
  Forward33B568_33B688();
  switch(func_003312B0(*(void**)(s0+0x1C))){

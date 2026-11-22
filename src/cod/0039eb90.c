@@ -1,15 +1,14 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_007817C0[];
-extern int D_003FAEF4;
 extern void _waitIpuIdle(void *);
 extern long long _sceMpegWaitIpuIdle64(void *);
 
-__attribute__((section(".text.func_003B58E0")))
-int func_003B58E0(void) {
+__attribute__((section(".text.sceSifInitIopHeap")))
+int sceSifInitIopHeap(void) {
     int r; int status; int i;
     for (;;) {
-        r = func_003B2F48(D_007817C0, 0x80000003u, 0);
+        r = sceSifBindRpc(D_007817C0, 0x80000003u, 0);
         if (r < 0) return -1;
         status = *(int *)((char *)D_007817C0 + 0x24);
         if (status != 0) { D_003FAEF4 = 0; break; }

@@ -1,9 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 /* printf-style error report: format into the 0x80-byte message buffer, then hand it to the error callback if one is set. */
 struct cb_0033b790 { int (*fn)(int, char *); int arg; };
 extern struct cb_0033b790 D_007588B0;
-extern char D_003E9990[];
 extern void func_003A52F0(void *buf, int a1, int a2);
 extern void func_003A7AE8(void *buf, void *s, void *args);
 

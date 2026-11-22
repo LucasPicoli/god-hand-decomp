@@ -13,8 +13,6 @@ extern char D_005FEE00[];
 #include "godhand/cModel.h"
 #include "godhand/emPhaseTable.h"
 
-extern EmPhaseTable D_003BDC80;
-
 /* A gimmick that takes hits: it staggers on a hit and dies once its hp is gone.
  * func_001AEF40 shakes its z rotation. */
 typedef struct cOmHitStagger {

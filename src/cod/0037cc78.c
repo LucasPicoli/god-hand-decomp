@@ -1,8 +1,8 @@
 extern void func_0037D820(void *self);
 extern void func_00378070(void *p);
 
-__attribute__((section(".text.func_0037CC78")))
-void func_0037CC78(unsigned short *self)
+__attribute__((section(".text.vregFadeControl")))
+void vregFadeControl(unsigned short *self)
 {
     unsigned short f = self[0];
     if ((f & 0x40) == 0)

@@ -1,10 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
-extern long D_00747650;
-extern char D_0042BAC0[];
-extern char D_0042BAE0[];
 extern void printf_2E0D60(int a, int b, int c, int d, int e, int f, char *g, int h);
 extern void func_001D5690(void *a0, int a1);
 extern void SetBlendField820_1D5B90(void *a0, int a1);

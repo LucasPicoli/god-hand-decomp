@@ -1,14 +1,12 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cDamageGive.h"
+#include "godhand/globals.h"
 
-extern unsigned char D_0042C4D8[];
-extern unsigned char D_0042C4B8[];
-extern unsigned char D_0042C498[];
 extern void func_001FF0B0(void *);
 extern void ClearSlotArray_1FF5B8(void *);
 extern void func_0032A6D0(void *a0, void *a1, void *a2);
 extern void ClearSlotRefs_376AE0(void *a0, int a1);
-extern void func_00378020(void *a0);
+extern void SdeFadeSpdSet(void *a0);
 extern void func_00378070(void *a0);
 
 __attribute__((section(".text.ResetObjectFields_1FCDE8")))
@@ -92,7 +90,7 @@ void SetSlotEntry_376260(void *a0, void *a1) {
     }
     *(short *)((char *)a0 + 0x1A) = *(unsigned short *)(p + 2) << 8;
     *(short *)((char *)a0 + 0x1E) = *(unsigned short *)(p + 6);
-    func_00378020((char *)a0 + 0x18);
+    SdeFadeSpdSet((char *)a0 + 0x18);
     *(unsigned short *)a0 |= 0x100;
 }
 

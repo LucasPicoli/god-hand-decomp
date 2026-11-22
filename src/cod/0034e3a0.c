@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0034E3A0, fetches the current read chunk of the stream; when a new
+/* cygnus-2.96: sfmps_RingGetRead, fetches the current read chunk of the stream; when a new
  * sector-aligned chunk of at least 2 KiB arrives, notifies the read callback once. */
 #include "godhand/mwsfd.h"
 typedef struct {
@@ -8,15 +8,15 @@ typedef struct {
     int extra; /* 0xC */
     int pad10[4];
 } SfdRdChunk;
-extern int func_0034C2B8(SfdHn *hn, void *sj, SfdRdChunk *ck);
+extern int SFBUF_RingGetRead(SfdHn *hn, void *sj, SfdRdChunk *ck);
 
-__attribute__((section(".text.func_0034E3A0")))
-int func_0034E3A0(SfdHn *hn, char **ptr, int *len, int unused, int *end)
+__attribute__((section(".text.sfmps_RingGetRead")))
+int sfmps_RingGetRead(SfdHn *hn, char **ptr, int *len, int unused, int *end)
 {
     SfdRdChunk ck;
     int ret;
 
-    ret = func_0034C2B8(hn, hn->ch.sj, &ck);
+    ret = SFBUF_RingGetRead(hn, hn->ch.sj, &ck);
     if (ret == 0) {
         *len = ck.len;
         *end = ck.len + ck.extra;

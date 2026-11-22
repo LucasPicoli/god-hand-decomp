@@ -1,8 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cArea.h"
-
-extern float D_0041FE60[];
-extern float D_0041FE78[];
+#include "godhand/globals.h"
 
 /* Build an area at height band [s[1], s[1] + z). Type 1 is a quad of size x by y centred on (s[0], s[2]);
  * type 2 is a circle of radius x / 2 centred there. */

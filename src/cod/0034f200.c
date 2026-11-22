@@ -24,13 +24,13 @@ typedef struct SfdUsrPts {
 
 extern int func_0034C2A0(SfdWork *w, int ch, SfdRbSpan *span);
 extern int func_0034C378(SfdWork *w, int ch, int len, int tag);
-extern int func_003596F0(SfdWork *w, int ch);
-extern int func_003593F0(SfdWork *w, int ch, SfdPtsReq *req, void *out);
-extern int func_00366960(void *dst, const void *src, int n);
+extern int SFPTS_IsPtsQueFull(SfdWork *w, int ch);
+extern int SFPTS_WritePtsQue(SfdWork *w, int ch, SfdPtsReq *req, void *out);
+extern int MEM_Copy(void *dst, const void *src, int n);
 extern int (*D_003EE2FC)(void *obj, SfdUsrPts *pts);
 
-__attribute__((section(".text.func_0034F200")))
-int func_0034F200(SfdWork *w, int ch, char *src, int len, long pts)
+__attribute__((section(".text.sfmps_CopyDstBuft")))
+int sfmps_CopyDstBuft(SfdWork *w, int ch, char *src, int len, long pts)
 {
     SfdRbSpan span;
     SfdPtsReq req;
@@ -53,13 +53,13 @@ int func_0034F200(SfdWork *w, int ch, char *src, int len, long pts)
     }
     if (ch == 1) {
         if (pts >= 0) {
-            if (func_003596F0(w, 1) != 0) {
+            if (SFPTS_IsPtsQueFull(w, 1) != 0) {
                 return 0;
             }
             req.pts = pts;
             req.ptr = ptr0;
             req.len = len;
-            r = func_003593F0(w, 1, &req, out);
+            r = SFPTS_WritePtsQue(w, 1, &req, out);
             if (r != 0) {
                 return r;
             }
@@ -74,50 +74,50 @@ int func_0034F200(SfdWork *w, int ch, char *src, int len, long pts)
         }
     }
     if (len0 >= len) {
-        func_00366960(ptr0, src, len);
+        MEM_Copy(ptr0, src, len);
     } else {
-        func_00366960(ptr0, src, len0);
-        func_00366960(ptr1, src + len0, len - len0);
+        MEM_Copy(ptr0, src, len0);
+        MEM_Copy(ptr1, src + len0, len - len0);
     }
     r = func_0034C378(w, ch, len, tag);
     return r == 0 ? 1 : r;
 }
 
-extern void func_0034CA68(SfdWork *w, int ch, int flag);
-extern int func_0034CA98(SfdWork *w, int ch);
-extern void func_00356988(SfdWork *w, int a1);
+extern void SFBUF_SetTermFlg(SfdWork *w, int ch, int flag);
+extern int SFBUF_GetTermFlg(SfdWork *w, int ch);
+extern void SFMPVP_Flush(SfdWork *w, int a1);
 
-__attribute__((section(".text.func_0034F390")))
-void func_0034F390(SfdWork *w, int a1)
+__attribute__((section(".text.sfmps_SetTermDst")))
+void sfmps_SetTermDst(SfdWork *w, int a1)
 {
     SfdChIds *ch = &w->ch;
 
     if (ch->video != SFD_CH_NONE) {
-        func_0034CA68(w, ch->video, 1);
+        SFBUF_SetTermFlg(w, ch->video, 1);
     }
     if (ch->audio != SFD_CH_NONE) {
-        func_0034CA68(w, ch->audio, 1);
+        SFBUF_SetTermFlg(w, ch->audio, 1);
     }
     if (ch->other != SFD_CH_NONE) {
-        func_0034CA68(w, ch->other, 1);
+        SFBUF_SetTermFlg(w, ch->other, 1);
     }
-    func_00356988(w, a1);
+    SFMPVP_Flush(w, a1);
 }
 
-__attribute__((section(".text.func_0034F418")))
-int func_0034F418(SfdWork *w)
+__attribute__((section(".text.sfmps_GetTermDst")))
+int sfmps_GetTermDst(SfdWork *w)
 {
     SfdChIds *ch = &w->ch;
     int done = 1;
 
     if (ch->video != SFD_CH_NONE) {
-        done = func_0034CA98(w, ch->video) & 1;
+        done = SFBUF_GetTermFlg(w, ch->video) & 1;
     }
     if (ch->audio != SFD_CH_NONE) {
-        done &= func_0034CA98(w, ch->audio);
+        done &= SFBUF_GetTermFlg(w, ch->audio);
     }
     if (ch->other != SFD_CH_NONE) {
-        done &= func_0034CA98(w, ch->other);
+        done &= SFBUF_GetTermFlg(w, ch->other);
     }
     return done;
 }

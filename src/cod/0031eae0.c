@@ -20,8 +20,8 @@ float dptofp(double a0)
     return func_0031EDA0(buf.a, buf.b, buf.c, sffrac);
 }
 
-__attribute__((section(".text.func_00397450")))
-void func_00397450(void *a0, int a1, void *a2)
+__attribute__((section(".text.sceDmaSendN")))
+void sceDmaSendN(void *a0, int a1, void *a2)
 {
     void *s0;
     int s1;
@@ -31,7 +31,7 @@ void func_00397450(void *a0, int a1, void *a2)
 
     s0 = a0;
     s2 = a2;
-    s1 = func_003970A0(a1);
+    s1 = CheckAddress(a1);
     WaitDma(s0);
     v1 = *(int *)((char *)s0 + 0x10);
     if ((unsigned int)v1 != 0xFFFFFFFFu)

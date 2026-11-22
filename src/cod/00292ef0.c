@@ -1,8 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
-extern volatile int D_003D847C;
-extern volatile int D_003D8478;
 extern void NoOp_33E6A8(int);
 extern void NoOp_33E6B0(void);
 

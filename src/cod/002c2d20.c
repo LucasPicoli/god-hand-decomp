@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_0044C238;
 extern void cSceAtManager_refreshUnit(void *, void *);
 extern void func_002C2EF8(void *, void *);
 extern void func_003A6C58(void *, void *, ...);

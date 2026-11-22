@@ -298,8 +298,8 @@ def _compare_slot_is_full(lines, i) -> bool:
     The twenty sites it was measured on sit in EIGHT functions, none of which
     mixes the two forms:
 
-        func_0032A1B0 2  func_0032DD70 1  func_0033E6B8 3  func_00343C18 1
-        func_0035B6F8 1  func_0035B8C0 4  func_00366110 4  func_00366368 4
+        func_0032A1B0 2  func_0032DD70 1  ADX_GetCoefficient 3  func_00343C18 1
+        func_0035B6F8 1  func_0035B8C0 4  func_00366110 4  CFT_MakeArgb8888Alp3211Tbl 4
 
     Census: `.scratch/decomp-velocity/findings/wave-2026-08-31/cmpfull_census.py`.
     """

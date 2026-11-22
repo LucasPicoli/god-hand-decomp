@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 typedef struct { int base; int count; } Range;
-__attribute__((section(".text.func_0033ACA0")))
-void func_0033ACA0(Range *a0, int a1, Range *a2, Range *a3){
+__attribute__((section(".text.SJ_SplitChunk")))
+void SJ_SplitChunk(Range *a0, int a1, Range *a2, Range *a3){
     int c; int n;
     *a2 = *a0;
     a3->count = a2->count;

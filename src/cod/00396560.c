@@ -9,8 +9,8 @@ void func_00396560(void) {
 
 #include "godhand/eesyscall.h"
 
-__attribute__((section(".text.func_003B64E8")))
-void func_003B64E8(void) {
+__attribute__((section(".text.FindAddress")))
+void FindAddress(void) {
     EE_SYSCALL(0x83);
 }
 

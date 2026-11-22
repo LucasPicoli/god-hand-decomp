@@ -12,17 +12,17 @@ typedef struct {
     int f10;
 } SfPic;
 
-extern int func_0036A1D8(int h, unsigned int *rate);                 /* MPV_GetBitRate */
+extern int MPV_GetBitRate(int h, unsigned int *rate);                 /* MPV_GetBitRate */
 extern int func_0034DD70(void *hn, int code);                        /* SFLIB_SetErr */
-extern void func_0036A238(int h, int *a, int *b, int *c);            /* MPV_GetVbvBufSiz */
+extern void MPV_GetVbvBufSiz(int h, int *a, int *b, int *c);            /* MPV_GetVbvBufSiz */
 extern int GetArrayElemA0C_35A1C8(void *hn, int idx);                /* SFSET_GetCond */
-extern int func_0034C7B0(void *hn, int f);                           /* SFBUF_GetRingBufSiz */
-extern void func_00352F40(void *hn, int rate, void *para);           /* sfmpv_SetMpvHd */
-extern void func_00353060(void *pa, int rate, int a2, int vbv);      /* sfmpv_SetMvInf */
-extern int func_00353098(void *hn, void *pa);                        /* sfmpv_ChkBufSiz */
+extern int SFBUF_GetRingBufSiz(void *hn, int f);                           /* SFBUF_GetRingBufSiz */
+extern void sfmpv_SetMpvHd(void *hn, int rate, void *para);           /* sfmpv_SetMpvHd */
+extern void sfmpv_SetMvInf(void *pa, int rate, int a2, int vbv);      /* sfmpv_SetMvInf */
+extern int sfmpv_ChkBufSiz(void *hn, void *pa);                        /* sfmpv_ChkBufSiz */
 
-__attribute__((section(".text.func_00352E10")))
-int func_00352E10(char *hn, int h, int a2, void *para)
+__attribute__((section(".text.sfmpv_FirstPicAtr")))
+int sfmpv_FirstPicAtr(char *hn, int h, int a2, void *para)
 {
     unsigned int rate;
     int vbv;
@@ -36,18 +36,18 @@ int func_00352E10(char *hn, int h, int a2, void *para)
     src = *(SfSrc **) (hn + 0x1FC0);
     if (pa->f10 != 0)
         return 0;
-    if (func_0036A1D8(h, &rate) != 0)
+    if (MPV_GetBitRate(h, &rate) != 0)
         return func_0034DD70(hn, 0xFF000F16);
-    func_0036A238(h, &vbv, &b, &c);
+    MPV_GetVbvBufSiz(h, &vbv, &b, &c);
     if (GetArrayElemA0C_35A1C8(hn, 0x3C) == 0) {
         src->f114 = 0;
     } else {
-        sz = func_0034C7B0(hn, 1);
+        sz = SFBUF_GetRingBufSiz(hn, 1);
         if (c == -1)
             c = vbv;
         src->f114 = c < sz ? c : sz;
     }
-    func_00352F40(hn, rate, para);
-    func_00353060(pa, rate, a2, vbv);
-    return func_00353098(hn, pa);
+    sfmpv_SetMpvHd(hn, rate, para);
+    sfmpv_SetMvInf(pa, rate, a2, vbv);
+    return sfmpv_ChkBufSiz(hn, pa);
 }

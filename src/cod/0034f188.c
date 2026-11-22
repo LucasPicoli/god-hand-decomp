@@ -21,7 +21,7 @@ struct SfMps {
     SjIf *vt;
 };
 
-extern void func_00366960(void *src, void *dst, int size);   /* MEM_Copy */
+extern void MEM_Copy(void *src, void *dst, int size);   /* MEM_Copy */
 
 __attribute__((section(".text.sfmps_ExecCopySj")))
 int sfmps_ExecCopySj(SfMps *mps, void *dst, int len)
@@ -29,7 +29,7 @@ int sfmps_ExecCopySj(SfMps *mps, void *dst, int len)
     SjBlk blk;
 
     mps->vt->GetSj(mps, 0, len, &blk);
-    func_00366960((void *) blk.addr, dst, blk.size);
+    MEM_Copy((void *) blk.addr, dst, blk.size);
     mps->vt->PutSj(mps, 1, &blk);
     return blk.size;
 }

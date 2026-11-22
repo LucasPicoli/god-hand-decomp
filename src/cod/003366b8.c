@@ -1,13 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern const char D_004551B8[];
-extern const char D_004551D0[];
-extern const char D_00455130[];
-extern void func_00336980(void);
+extern void mfCiStopTr(void);
 extern void Forward3A52F0_336588(void *hn);
 extern void Forward33B658_3362E8(void);
 extern void Forward33B670_336300(void);
-extern const char D_00455110[];
 
 __attribute__((section(".text.func_003369D0")))
 int func_003369D0(signed char *hn)
@@ -53,7 +51,7 @@ __attribute__((section(".text.mfCiClose")))
 void mfCiClose(signed char *hn)
 {
     if (hn == 0) return;
-    func_00336980();
+    mfCiStopTr();
     if (hn[0] == 1) {
         hn[0] = 0;
         Forward3A52F0_336588(hn);

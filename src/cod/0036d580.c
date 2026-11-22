@@ -2,7 +2,7 @@
 
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(char *h);
 extern void M2VERR_SetCode(int a, int b);
-extern void func_0036D630(int n, void *fn);
+extern void m2vlib_SetCondAll(int n, void *fn);
 extern void func_0036CD70(void);
 extern void *D_0076A590[];
 
@@ -15,7 +15,7 @@ void M2V_SetCond(char *h, int n, void *fn)
         if (fn == 0) fn = func_0036CD70;
     }
     if (h == 0) {
-        func_0036D630(n, fn);
+        m2vlib_SetCondAll(n, fn);
         p = D_0076A590;
     } else {
         if (Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(h) != 0) {

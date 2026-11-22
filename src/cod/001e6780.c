@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_005686D0[];
 extern char D_00580D20[];
-extern char D_0057F060[];
 extern void SetFields_4_And_8_1FE6B8(void *dst, void *src, int count);
 
 __attribute__((section(".text.Slot2_SetSlotLayer")))

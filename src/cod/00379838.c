@@ -1,4 +1,5 @@
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 typedef struct {
     char pad0[7];
     signed char mode;
@@ -6,8 +7,6 @@ typedef struct {
     signed char idx;
 } MenuRowObj;
 
-extern char D_0045B758[];
-extern char D_0045B760[];
 extern void func_002E0DE8(int a0, int a1, int a2, const char *fmt, ...);
 
 __attribute__((section(".text.func_00379838")))

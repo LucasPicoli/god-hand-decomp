@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
@@ -39,8 +40,6 @@ extern void cSnd_BgmEventFade(void *a0, int a1, float f12, float f13, float f14)
 extern void SlotList_selectPrev(void *a0);
 extern void func_001F6AF8(void *a0);
 extern char D_007474A0[];
-extern int *D_003BF0C0[];
-extern int D_003BF0D0[];
 extern void func_00294AD8(void *a0);
 extern void func_00125F38(void *a0);
 extern float SetMotionStep(void *a0, float f);

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* MATCH (exact), 2380 B.  Wave 23 lane G, 2026-09-07.
  * newlib libm kf_rem_pio2.c -- __kernel_rem_pio2f.  Donor: sce_crt_libm/kf_rem_pio2.o.
@@ -27,8 +28,6 @@
 
 extern float scalbnf(float, int);
 extern float floorf(float);	/* floorf */
-extern const int D_0045EF90[3];		/* init_jk = {4,7,9} */
-extern const float D_0045EFA0[];	/* PIo2[] */
 #define init_jk D_0045EF90
 #define PIo2    D_0045EFA0
 

@@ -1,12 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void cCamera__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
-extern int D_00785578;
-extern int D_0041D920;
-extern int D_00460D20;
-extern int D_00785588;
-extern int D_0041D950;
 
 __attribute__((section(".text.func_00139820")))
 void *func_00139820(void) {

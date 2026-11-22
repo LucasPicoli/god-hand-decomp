@@ -1,7 +1,6 @@
 /* cygnus-2.96: derive the three 16-bit key words from a key string through the log/exp tables in
  * D_00456080, once per seed. */
-extern int D_003E9D3C;
-extern short D_00456080[];
+#include "godhand/globals.h"
 extern void func_0033C520(void);
 
 __attribute__((section(".text.func_0033C548")))

@@ -11,8 +11,8 @@ extern u_long128 D_003FC860[];
 #define IPU_CTRL (*(volatile u_int *)0x10002010)
 #define IPU_FIFO (*(volatile u_long128 *)0x10007010)
 
-__attribute__((section(".text.func_003BAD80")))
-void func_003BAD80(void)
+__attribute__((section(".text.sceIpuInit")))
+void sceIpuInit(void)
 {
     func_003BAD08(1);
     IPU_CTRL = 0x40000000;

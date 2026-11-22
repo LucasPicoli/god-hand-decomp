@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* LANE X1 repair, wave 18.
  * CAUSE 1: the merged TU holds three fdlibm wrappers that each define
@@ -33,17 +34,13 @@ struct exc_sqrtf {
 #define EDOM	33
 #define ERANGE	34
 
-extern const int D_0045F024;		/* _LIB_VERSION */
 #define _LIB_VERSION D_0045F024
 
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 #define errno (*Obj0000_Get_D_003FA62C_3A4FB8())
 
-extern int func_003A4AC8(void *e);	/* matherr */
-extern int func_003A4E00(float);		/* isnanf  */
-
-extern char D_0045EAB8[];		/* "sqrtf" */
-extern const double D_0045EAC0;		/* nan */
+extern int matherr(void *e);	/* matherr */
+extern int isnanf(float);		/* isnanf  */
 
 __attribute__((section(".text.sqrtf")))
 float sqrtf(float x)			/* wrapper sqrtf */
@@ -51,7 +48,7 @@ float sqrtf(float x)			/* wrapper sqrtf */
 	float z;
 	struct exc_sqrtf exc;
 	z = func_003A3B48(x);
-	if(_LIB_VERSION == _IEEE_ || func_003A4E00(x)) return z;
+	if(_LIB_VERSION == _IEEE_ || isnanf(x)) return z;
 	if(x<(float)0.0) {
 	    /* sqrtf(negative) */
 	    exc.type = DOMAIN;
@@ -64,7 +61,7 @@ float sqrtf(float x)			/* wrapper sqrtf */
 	        exc.retval = D_0045EAC0;
 	    if(_LIB_VERSION == _POSIX_)
 	      errno = EDOM;
-	    else if (!func_003A4AC8(&exc)) {
+	    else if (!matherr(&exc)) {
 	      errno = EDOM;
 	    }
 	    if (exc.err != 0)

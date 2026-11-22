@@ -2,9 +2,9 @@
 
 #include "godhand/cSpline.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern void sceVu0ApplyMatrix(cVec *out, void *mtx, cVec *in);
-extern char D_003C3560[];
 
 /* Fit the cubic through four control points: for each coordinate, run the
  * four values through the basis matrix and store the result across the

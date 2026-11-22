@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
 
 extern void Obj0000_PreDec_D_003FC50C_3B9D80(void);
-extern void func_00324AC8(void);
+extern void ADXT_Finish(void);
 extern void StmMgr_start(void);
 extern void Obj0000_PostInc_D_003FC50C_3B9D68(void);
-extern void func_00366C50(void *dst, int val, int n);
+extern void UTY_MemsetDword(void *dst, int val, int n);
 extern int D_00760D90[];
 extern void func_0032B300(void *hn, int sw);
 extern void Obj35C0_SetField_4_C538(int a0, int sw);
@@ -14,7 +14,7 @@ __attribute__((section(".text.SFADXT_Finish")))
 int SFADXT_Finish(void)
 {
     Obj0000_PreDec_D_003FC50C_3B9D80();
-    func_00324AC8();
+    ADXT_Finish();
     return 0;
 }
 
@@ -23,7 +23,7 @@ int SFADXT_Init(void)
 {
     StmMgr_start();
     Obj0000_PostInc_D_003FC50C_3B9D68();
-    func_00366C50(D_00760D90, 0, 7);
+    UTY_MemsetDword(D_00760D90, 0, 7);
     return 0;
 }
 

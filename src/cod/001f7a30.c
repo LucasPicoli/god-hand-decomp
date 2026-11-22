@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00568288[];
-extern char D_0042C2D8[];
-extern char D_0042C2B0[];
 extern void Setup_1F7AE8(void *p);
 
 __attribute__((section(".text.func_001F7A30")))

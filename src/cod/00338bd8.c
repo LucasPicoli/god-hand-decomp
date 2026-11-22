@@ -1,10 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 struct SJMEM { void *f0; int f4; void *f8; char padC[8]; int f14; int f18;
                void *f1C; void *f20; };
 extern struct SJMEM D_003E3AD0[0x20];
-extern int D_003E3A98[];
-extern int D_004558F0[];
 extern void Forward340AE8_338A28(void);
 extern void func_00338EC8(struct SJMEM *e);
 

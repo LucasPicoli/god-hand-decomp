@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *);
 extern void M2VERR_SetCode(int, unsigned int);
@@ -7,10 +8,9 @@ extern void func_003B9DE0(void *);
 extern void func_003B9DB0(void);
 extern void SjFeedCtl_step(void *);
 extern void func_003B9DC8(void);
-extern int D_00460950;
 
-__attribute__((section(".text.func_0036DA80")))
-void func_0036DA80(char *o, void *dst) {
+__attribute__((section(".text.m2v_GetPicAtr")))
+void m2v_GetPicAtr(char *o, void *dst) {
     if (Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2((int *)o)) {
         M2VERR_SetCode(0, 0xFF03020C);
         return;
@@ -18,8 +18,8 @@ void func_0036DA80(char *o, void *dst) {
     memcpy(dst, o + 0x58, 0x80);
 }
 
-__attribute__((section(".text.func_003BA0C8")))
-void func_003BA0C8(int *o) {
+__attribute__((section(".text.AC3CNV_ExecHndl")))
+void AC3CNV_ExecHndl(int *o) {
     int i;
     if (o == 0) {
         func_003B9DE0(&D_00460950);

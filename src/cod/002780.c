@@ -1,4 +1,5 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 /* The derived part of the enemy record: only the fields this constructor sets. */
 typedef struct EmDerived {
@@ -9,7 +10,6 @@ typedef struct EmDerived {
 } EmDerived;
 
 extern const unsigned char D_00447D48[];    /* method table */
-extern const char D_00447CB0[];             /* type name */
 extern void *func_0028EB00(void *self);     /* enemy base constructor */
 
 /* Enemy constructor: base setup, method table, five zeroed vectors and the type name. */

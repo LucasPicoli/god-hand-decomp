@@ -10,8 +10,8 @@ typedef struct AdxBufDec {
 extern int func_003297A8(int addr, int size);
 extern int func_00329438(int nch, int addr, int size);
 
-__attribute__((section(".text.func_0032ED70")))
-int func_0032ED70(AdxBufDec *d, int addr, int size)
+__attribute__((section(".text.aixp_create_track")))
+int aixp_create_track(AdxBufDec *d, int addr, int size)
 {
     int cur, rest, unit, i;
 

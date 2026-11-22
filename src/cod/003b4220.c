@@ -1,4 +1,5 @@
 /* ee-2.9-991111: sceOpen-style open(name, flags, mode) over the SIF RPC packet at D_0077FFC0 (0x3B4220). */
+#include "godhand/globals.h"
 extern int func_003B3EC8(int cmd);
 
 typedef struct { int f0; int f4; int f8; int fC; } Iob;
@@ -22,9 +23,9 @@ struct SemaParam {
 };
 
 extern Iob *new_iob(void);
-extern void func_003B3F50(void);
+extern void sceFsInit(void);
 extern int func_003B4158(void);
-extern int func_003B3958(void *, int, int, void *, int, void *, int, int, int, int);
+extern int sceFsSifCallRpc(void *, int, int, void *, int, void *, int, int, int, int);
 
 extern int SignalSema_3B3EF8(void);
 extern int CreateSema(struct SemaParam *p);
@@ -32,13 +33,8 @@ extern int DeleteSema(int id);
 extern int WaitSema(int id);
 extern int SignalSema(int id);
 
-extern int D_003FAEDC;
-extern int D_003FAEE8;
 extern Iob D_007814C0[32];
 extern OpenPkt D_0077FFC0;
-extern char D_00460120[];
-extern char D_00780C00[];
-extern char D_007816C0[];
 
 __attribute__((section(".text.func_003B4220")))
 int func_003B4220(const char *name, int flags, ...)
@@ -56,7 +52,7 @@ int func_003B4220(const char *name, int flags, ...)
 
     func_003B3EC8(0);
     if (!D_003FAEDC)
-        func_003B3F50();
+        sceFsInit();
     if (func_003B4158()) {
         SignalSema_3B3EF8();
         return 0xFFFEFFFC;
@@ -84,7 +80,7 @@ int func_003B4220(const char *name, int flags, ...)
     q->dst = &result;
     q->sema = sid;
     q->size = 4;
-    r = func_003B3958(D_007816C0, 0, 0, &D_0077FFC0, 0x418, D_00780C00, 4, 0, 0, 0);
+    r = sceFsSifCallRpc(D_007816C0, 0, 0, &D_0077FFC0, 0x418, D_00780C00, 4, 0, 0, 0);
     if (r < 0) {
         DeleteSema(sid);
         SignalSema_3B3EF8();

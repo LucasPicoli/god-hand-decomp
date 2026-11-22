@@ -1,21 +1,11 @@
-extern int D_00785C88;
-extern int D_00424948;
+#include "godhand/globals.h"
 extern int D_00785798;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_00424960;
-extern int D_00785C98;
-extern int D_00424A30;
-extern int D_00424A48;
-extern int D_00785CA8;
-extern int D_00424B18;
 extern int D_00424B68;
 extern int D_005CAE50;
 extern int D_007419A0;
-extern int D_00785CB8;
-extern int D_00424C18;
 extern int D_00785878;
-extern int D_00424C30;
 
 __attribute__((section(".text.GetBInstance_193948")))
 void *GetBInstance_193948(void) {

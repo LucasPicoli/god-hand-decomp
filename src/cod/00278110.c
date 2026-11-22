@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -16,8 +17,6 @@ extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 
 extern int D_00462FC0;
-extern char D_00447CB8[];
-extern char D_00447CC0[];
 
 struct sph { int a; float b; int c; float d; };
 

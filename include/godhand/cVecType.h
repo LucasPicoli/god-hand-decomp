@@ -25,4 +25,12 @@ static __inline__ void cVec_set4(cVec *v, float x, float y, float z, float w) {
     v->w = w;
 }
 
+extern cVec D_005681E0;
+extern cVec D_005681F0;
+extern cVec D_00568200;
+extern cVec D_00568210;
+extern cVec D_00568220;
+extern cVec D_00568230;
+extern cVec D_00583F00[2];
+
 #endif

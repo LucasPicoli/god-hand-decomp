@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002E0DE8();
 extern void func_00384350();
@@ -6,16 +7,9 @@ extern void func_00384590();
 extern void func_00384828();
 extern void func_00384980();
 extern void func_00384B10();
-extern char D_0045CAA0[], D_0045CAB8[], D_0045CAC0[], D_0045CAD0[], D_0045CAE8[], D_0045CB00[], D_0045CB10[], D_0045CB30[];
-extern int D_003F28C8[];
-extern char D_0045CB48[], D_0045CB68[], D_0045CB88[], D_0045CBA0[], D_0045CBB0[], D_0045CBC0[];
-extern char D_003F28D0[];
-extern char *D_003F2858[];
 extern char *D_003F2848[];
 extern char *D_003F2840[];
 extern char *D_003F2820[];
-extern char D_0045BB50[], D_0045BB68[], D_0045BB80[], D_0045BB98[], D_0045BBB0[], D_0045BBC8[], D_0045BBE0[], D_0045BBF8[];
-extern char D_0045BC10[], D_0045BC28[], D_0045BC40[], D_0045BC58[], D_0045BC70[], D_0045BC88[], D_0045BCA0[], D_0045BCA8[];
 extern short D_0076A790[];
 
 __attribute__((section(".text.func_00384198")))

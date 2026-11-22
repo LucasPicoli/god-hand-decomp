@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_005FEE00;
-extern int D_00580D80;
 extern int D_00754200;
 extern int D_00580D40;
 extern int D_00747A78[];
@@ -69,7 +69,7 @@ int LoadEntryByValue_1FFD00(int a0, int a1, int a2) {
     while (func_003244C8(s0) != 3) {
         sceGsSyncV(0);
     }
-    return func_00323A70(s0);
+    return ADXF_Close(s0);
 }
 
 __attribute__((section(".text.SetColorRgba_1FFE60")))

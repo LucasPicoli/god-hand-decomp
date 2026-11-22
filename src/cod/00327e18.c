@@ -14,36 +14,36 @@ void func_00332808(int a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00327E18")))
-int func_00327E18(int a0, int a1, int a2, int a3, int a4) {
+__attribute__((section(".text.ADXSTM_BindFileNw")))
+int ADXSTM_BindFileNw(int a0, int a1, int a2, int a3, int a4) {
     Obj3290_Tramp_0033E6A8_9070();
     func_00327E88(a0, a1, a2, a3, a4);
     return Obj3290_Tramp_0033E6B0_9088();
 }
 
-__attribute__((section(".text.func_00327FA8")))
-int func_00327FA8(int a0) {
+__attribute__((section(".text.ADXSTM_ReleaseFileNw")))
+int ADXSTM_ReleaseFileNw(int a0) {
     Obj3290_Tramp_0033E6A8_9070();
     func_00327FD8(a0);
     return Obj3290_Tramp_0033E6B0_9088();
 }
 
-__attribute__((section(".text.func_003282D0")))
-int func_003282D0(int a0) {
+__attribute__((section(".text.ADXSTM_StopNw")))
+int ADXSTM_StopNw(int a0) {
     Obj3290_Tramp_0033E6A8_9070();
     func_00328300(a0);
     return Obj3290_Tramp_0033E6B0_9088();
 }
 
-__attribute__((section(".text.func_003283E8")))
-int func_003283E8(int a0, int a1, int a2) {
+__attribute__((section(".text.ADXSTM_EntryEosFunc")))
+int ADXSTM_EntryEosFunc(int a0, int a1, int a2) {
     Obj3290_Tramp_0033E6A8_9070();
     func_00328438(a0, a1, a2);
     return Obj3290_Tramp_0033E6B0_9088();
 }
 
-__attribute__((section(".text.func_003298C0")))
-void func_003298C0(int a0) {
+__attribute__((section(".text.ADXT_Destroy")))
+void ADXT_Destroy(int a0) {
     NoOp_33E6A8();
     adxPly_destroy(a0);
     NoOp_33E6B0();
@@ -52,28 +52,28 @@ void func_003298C0(int a0) {
 __attribute__((section(".text.func_0032B188")))
 void func_0032B188(int a0, int a1) {
     NoOp_33E6A8();
-    func_0032B1C8(a0, a1);
+    adxt_SetLpFlg(a0, a1);
     NoOp_33E6B0();
 }
 
-__attribute__((section(".text.func_0034CA30")))
-int func_0034CA30(int *a0, int a1) {
+__attribute__((section(".text.SFBUF_GetPrepFlg")))
+int SFBUF_GetPrepFlg(int *a0, int a1) {
     int off;
     if (a1 == 8) return 0;
     off = a1 * 116;
     return *(int*)((char*)a0 + (off + 0x1318));
 }
 
-__attribute__((section(".text.func_0034CA98")))
-int func_0034CA98(int *a0, int a1) {
+__attribute__((section(".text.SFBUF_GetTermFlg")))
+int SFBUF_GetTermFlg(int *a0, int a1) {
     int off;
     if (a1 == 8) return 1;
     off = a1 * 116;
     return *(int*)((char*)a0 + (off + 0x131C));
 }
 
-__attribute__((section(".text.func_00366C50")))
-void func_00366C50(int *a0, int a1, unsigned int a2) {
+__attribute__((section(".text.UTY_MemsetDword")))
+void UTY_MemsetDword(int *a0, int a1, unsigned int a2) {
     int *p = a0 + a2;
     unsigned int rem = a2 & 0xF;
     if (rem != 0) {
@@ -98,8 +98,8 @@ int func_00373A58(int *a0) {
     return v != 0;
 }
 
-__attribute__((section(".text.func_0037D148")))
-void func_0037D148(void *a0) {
+__attribute__((section(".text.SdeVmngClose")))
+void SdeVmngClose(void *a0) {
     void *p = *(void**)((char*)a0 + 0x8);
     if (p) {
         *(short*)((char*)p + 0x0) = 0;
@@ -109,8 +109,8 @@ void func_0037D148(void *a0) {
     }
 }
 
-__attribute__((section(".text.func_0037D3B0")))
-void func_0037D3B0(void *a0) {
+__attribute__((section(".text.SdeVregClose")))
+void SdeVregClose(void *a0) {
     *(short*)((char*)a0 + 0x0) = 0;
     *(int*)((char*)a0 + 0x10) = 0;
     *(int*)((char*)a0 + 0x14) = 0;

@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_003577A8, derives element 0x19 of the A0C array from the two enable flags
+/* cygnus-2.96: sfply_AdjustEtrg, derives element 0x19 of the A0C array from the two enable flags
  * (1 = first only, 2 = second only, both = keep a set value or pick 3, neither = 3). */
 typedef struct {
     char pad0[0x14];
@@ -11,10 +11,10 @@ typedef struct {
 } ElemArrayOwner;
 extern int GetArrayElemA0C_35A1C8(ElemArrayOwner *p, int idx);
 extern int Obj0000_Get_D_003EEA70_LT_2_360C40(void);
-extern void func_0035A000(ElemArrayOwner *p, int idx, int val);
+extern void SFSET_SetCond(ElemArrayOwner *p, int idx, int val);
 
-__attribute__((section(".text.func_003577A8")))
-void func_003577A8(ElemArrayOwner *p)
+__attribute__((section(".text.sfply_AdjustEtrg")))
+void sfply_AdjustEtrg(ElemArrayOwner *p)
 {
     ElemEnableFlags *f = &p->flags;
     unsigned int st;
@@ -43,5 +43,5 @@ void func_003577A8(ElemArrayOwner *p)
         val = 3;
         break;
     }
-    func_0035A000(p, 0x19, val);
+    SFSET_SetCond(p, 0x19, val);
 }

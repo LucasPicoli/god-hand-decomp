@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 #pragma interface
 /* gcc-2.95.2 gcc/cp/tinfo2.cc, the BUILTIN(Ul) macro (lines 288-300).
@@ -28,9 +29,6 @@ struct __builtin_type_info : public type_info {
    gcc/cp/init.c:2315 sets check_new from TYPE_NOTHROW_P, and that null check
    is retail's `beqz $a1`. */
 inline void *operator new (unsigned int, void *place) throw() { return place; }
-
-extern unsigned char D_003C4468[8];          /* __tiUl */
-extern const char D_00451130[];              /* "Ul" */
 
 extern "C" const type_info &func_0031FE38 (void)
   __attribute__((section(".text.func_0031FE38")));

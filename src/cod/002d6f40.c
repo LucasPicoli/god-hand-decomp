@@ -4,11 +4,10 @@
 #include "godhand/cIDManager.h"
 #include "godhand/criStm.h"
 #include "godhand/gameWork.h"
+#include "godhand/globals.h"
 
 extern int LightData_Load(cWorldLightBlob4 *data);
 extern void Set_bg_mode(int mode, unsigned char r, unsigned char g, unsigned char b);
-extern char D_0044D260[];
-extern char D_0044D268[];
 
 /* Resets the stage lighting: loads the area tables and light presets from the room pack, or,
  * when the room has none, sets the default sky, fog and an empty light list and fills every

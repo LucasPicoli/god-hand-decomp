@@ -1,10 +1,10 @@
 #include "godhand/mwPly.h"
+#include "godhand/globals.h"
 
-extern char D_00452E58[];
 extern void Obj33F8_Tramp_0033F130_FCB0(char *);
 extern int func_0032F4C8(void *);
-extern int func_0032F4D0(void *, int);
-extern int func_0032F4E0(void *, int);
+extern int AIXSJD_GetSfreq(void *, int);
+extern int AIXSJD_GetNumChan(void *, int);
 
 __attribute__((section(".text.func_0032E3A0")))
 int func_0032E3A0(MwPly *s)
@@ -23,7 +23,7 @@ int func_0032E3A0(MwPly *s)
         total = 0;
         n = func_0032F4C8(d);
         for (i = 0; i < n; i++) {
-            total += func_0032F4D0(d, i) * func_0032F4E0(d, i) * 18 / 32;
+            total += AIXSJD_GetSfreq(d, i) * AIXSJD_GetNumChan(d, i) * 18 / 32;
         }
         return total;
     }

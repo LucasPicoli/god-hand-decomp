@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct {
     char pad0[3];
     signed char nch;
@@ -10,11 +11,8 @@ typedef struct {
     signed char mode;
 } AdxPanHn;
 
-extern int D_003C7410;
-extern char D_004521C8[];
-extern char D_004521F8[];
 extern void func_0033F130(const char *msg);
-extern int func_003278E8(int sj, int ch);
+extern int ADXSJD_GetDefPan(int sj, int ch);
 extern int Obj3270_GetVia4_0033CE98_77A0(int sj);
 extern void Obj3260_Tramp_003387C8_D3F8(int rna, int ch, int pan);
 
@@ -29,7 +27,7 @@ void func_0032A720(AdxPanHn *a, int ch, int pan)
         return;
     }
     if (a->mode == 1) {
-        base = func_003278E8(a->sj, ch);
+        base = ADXSJD_GetDefPan(a->sj, ch);
         if (base == -128)
             base = 0;
     } else {

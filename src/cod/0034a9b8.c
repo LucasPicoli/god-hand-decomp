@@ -18,13 +18,13 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_0034A9B8")))
-Sint32 func_0034A9B8(SFD *sfd, Sint8 **pdata, Sint32 *plen)
+__attribute__((section(".text.sfadxt_RingGetRead")))
+Sint32 sfadxt_RingGetRead(SFD *sfd, Sint8 **pdata, Sint32 *plen)
 {
     SJCK ck;
     Sint32 r;
 
-    r = func_0034C2B8(sfd, sfd->f8204, &ck);
+    r = SFBUF_RingGetRead(sfd, sfd->f8204, &ck);
     *pdata = ck.data;
     *plen = ck.len;
     return r;

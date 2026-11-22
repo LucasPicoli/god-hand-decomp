@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -13,7 +14,6 @@ extern void CustomIDWork_SetNumber_1DD218(void *a0, int a1);
 extern void cSnd_SetBgmState(void *a0, int a1);
 extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
 extern char D_005FEE00[];
-extern int D_0042B2F0[];
 extern long D_007474A0[];
 extern long D_00747640;
 

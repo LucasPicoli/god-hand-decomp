@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* newlib s_floor.c -- floor (0x003AD158). */
 
@@ -9,8 +10,6 @@ typedef union { double value; unsigned int i[2]; } U;
 
 #define INSERT_WORDS(d, ix0, ix1)                                       \
     do { U iw_u; iw_u.i[1] = (ix0); iw_u.i[0] = (ix1); (d) = iw_u.value; } while (0)
-
-extern const double D_0045FBE8;         /* huge = 1.0e300 */
 
 __attribute__((section(".text.func_003AD158")))
 double func_003AD158(double x)

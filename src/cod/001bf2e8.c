@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-/* func_003669B0 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* UTY_MemcpyByte -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 56 B too early. The TRUE ENTRY is 0x003669B0.
  * This body is BYTE-EXACT over the TRUE span under cygnus-2.96
  * with no extra keys.
@@ -8,15 +8,15 @@
  * 14 words with REG 0 / IMM 0 / OPC 0. That is what a CORRECT body
  * looks like in this class. Do not edit it.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_003669B0 = 0x003669B0; // type:func
+ *   config/symbol_addrs.txt  +  UTY_MemcpyByte = 0x003669B0; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_003669B0. AFTER the resplat rename it:
- *   sed -i 's/func_003669B0/func_003669B0/g' <this file>
- * The name is left as func_003669B0 here so the body stays verifiable against
+ * The function then carries the name UTY_MemcpyByte. AFTER the resplat rename it:
+ *   sed -i 's/UTY_MemcpyByte/UTY_MemcpyByte/g' <this file>
+ * The name is left as UTY_MemcpyByte here so the body stays verifiable against
  * today's monolith.
  */
-__attribute__((section(".text.func_003669B0")))
-void func_003669B0(char *d, signed char *s, unsigned int n) {
+__attribute__((section(".text.UTY_MemcpyByte")))
+void UTY_MemcpyByte(char *d, signed char *s, unsigned int n) {
     unsigned int r = n & 0x1F;
     if (r != 0) {
         do {

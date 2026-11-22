@@ -1,9 +1,9 @@
 /* cygnus-2.96: CRI AIX header parse / chunk server (0x32F988..). */
 
 #include "godhand/criAix.h"
+#include "godhand/globals.h"
 
 extern void Obj33F8_Tramp_0033F130_FCB0(const char *msg);
-extern char D_00453078[];
 extern void *func_003A5148(void *dst, const void *src, int n);
 
 extern inline int aix_be32(const unsigned char *p)
@@ -54,7 +54,7 @@ void func_0032FAD8(AixDmx *d)
             d->hdrCb(d->hdrCbArg, &d->info);
         }
     }
-    func_0033ACA0(&ck, r, &ck, &tail);
+    SJ_SplitChunk(&ck, r, &ck, &tail);
     sj->vt->putChunk(sj, 0, &ck);
     sj->vt->ungetChunk(sj, 1, &tail);
     d->total += r;
@@ -72,7 +72,7 @@ void func_00330080(AixDmx *d)
     (*out)->vt->getChunk(*out, 0, ck.len, &dst);
     func_003A5148(dst.data, ck.data, dst.len);
     (*out)->vt->putChunk(*out, 1, &dst);
-    func_0033ACA0(&ck, dst.len, &ck, &tail);
+    SJ_SplitChunk(&ck, dst.len, &ck, &tail);
     sj->vt->putChunk(sj, 0, &ck);
     sj->vt->ungetChunk(sj, 1, &tail);
     d->total += dst.len;

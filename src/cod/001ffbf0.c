@@ -1,5 +1,4 @@
-extern int D_00580D80;
-
+#include "godhand/globals.h"
 __attribute__((section(".text.LoadAndWaitReady_1FFBF0")))
 void LoadAndWaitReady_1FFBF0(char *a0, int a1){
 	if (func_00322AF8(0, a1, 0, &D_00580D80) == 0) {

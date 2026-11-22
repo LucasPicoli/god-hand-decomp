@@ -1,10 +1,9 @@
 /* sn-2.95.3-136: func_00288DA8, pick the 0/25/50 value from the actor id and enemy number, look up the model
  * and texture, swap textures for enemy 0x2A7 and set the model up. */
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 #define TEXFLAG_EXCHANGE  0x10000000    /* texFlags: a texture exchange is active */
-extern char D_00448C90[];
-extern char D_00448C98[];
 
 extern int GetEm00CharIndex(int type, int sub);
 extern void Obj0000_Set_Field_424_1595E8(int *self, int v);

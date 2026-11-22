@@ -64,8 +64,8 @@ void _request_end(void *packet, void *data)
 
 /* ee-2.9-991111 */
 
-__attribute__((section(".text.func_003B0E68")))
-int func_003B0E68(unsigned long long d)
+__attribute__((section(".text.ftoi")))
+int ftoi(unsigned long long d)
 {
     long long e;
 

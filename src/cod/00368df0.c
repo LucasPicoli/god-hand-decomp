@@ -20,8 +20,8 @@ extern void MPS_Destroy(MPS *p);
 extern void func_00366D20(void);
 extern void func_00368AA8(void);
 
-__attribute__((section(".text.func_00368DF0")))
-void func_00368DF0(void)
+__attribute__((section(".text.MPS_Finish")))
+void MPS_Finish(void)
 {
     MPSLIB *lib = D_003F1A98;
     MPS *p;

@@ -15,4 +15,4 @@
 
 
 __attribute__((section(".text.Forward36CC80_35FD58")))
-int Forward36CC80_35FD58(int *a0) { return func_0036CC80(a0[0xC]); }
+int Forward36CC80_35FD58(int *a0) { return SFXA_SetLumiPrm(a0[0xC]); }

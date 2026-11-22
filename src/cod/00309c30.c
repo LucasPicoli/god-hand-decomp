@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-__attribute__((section(".text.func_00309C30")))
-int func_00309C30(unsigned int a0, int a1) {
+__attribute__((section(".text.Tim2CalcBufWidth")))
+int Tim2CalcBufWidth(unsigned int a0, int a1) {
     switch (a0) {
     case 0:
     case 1:

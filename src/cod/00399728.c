@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd005.o :: sceCdRead */
 
@@ -24,16 +25,10 @@ struct rmode {
 };
 
 extern struct ncmdr D_003F8740;   /* _sceCd_ncmdsdata */
-extern volatile int D_003F8678;          /* _sceCd_ee_read_mode */
-extern int   D_003F9800;          /* _sceCd_Read_cur_pos */
-extern char  D_003F9740[];        /* _sceCd_rd_intr_data */
 extern char  D_003F8640[];        /* D_003F8640+0x10 == SCE_CD_debug */
-extern volatile int D_003F86A0;          /* sceCdCbfunc_num */
 extern volatile int D_003F8674;          /* _sceCd_c_cb_sem */
 extern char  D_003F9810[];        /* _sceCd_cd_ncmd */
 extern volatile int D_003F8668;          /* _sceCd_ncmd_semid */
-extern char  D_0045E398[];
-extern char  D_0045E3B0[];
 extern char  _sceCd_cd_read_intr[];
 
 extern int  func_00398D08(void);            /* sceCdNcmdDiskReady */

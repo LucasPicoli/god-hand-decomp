@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -7,11 +8,9 @@ extern void func_003B6668(int a0, int a1);
 extern void func_003B6678(int a0, void *a1, int a2);
 
 extern void FlushCache(int a0);
-extern int D_003FB6C8[];
-extern char D_003FAF20[];
 
-__attribute__((section(".text.func_003B6738")))
-void func_003B6738(void)
+__attribute__((section(".text.InitExecPS2")))
+void InitExecPS2(void)
 {
     int *t;
     int *p;

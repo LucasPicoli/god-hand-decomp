@@ -61,8 +61,8 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
   while (0)
 
 
-__attribute__((section(".text.func_003A6130")))
-int func_003A6130(FILE *f)
+__attribute__((section(".text.fileno_3A6130")))
+int fileno_3A6130(FILE *f)
 {
   CHECK_INIT (f);
   return f->_file;

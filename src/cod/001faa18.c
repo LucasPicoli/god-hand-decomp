@@ -1,15 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cObj21C0.h"
+#include "godhand/globals.h"
 
-extern char D_00447AD0[];
 extern char D_00447E68[];
 extern int NoOp_279E70();
-extern char D_00447F70[];
-extern char D_00448028[];
 extern char D_004483A8[];
 extern int cCollisionSolidManage_ReleaseUnit_27E088();
-extern char D_00448890[];
-extern char D_00448948[];
 
 /* clone */
 

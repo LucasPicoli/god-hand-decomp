@@ -1,12 +1,5 @@
-extern int D_003E0710;
-extern int D_003E0708;
-extern int D_003E0750;
-extern int D_003E0748[2];
-extern int D_003E073C;
-extern int D_003E0740;
-extern unsigned short D_003E0764;
-extern unsigned short D_003E0766;
-extern char D_00455668[];
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 extern int NameTable_getValue(void *name, int *out);
 extern int DTX_CallUrpc(int cmd, void *in, int nin, void *out, int nout);
 

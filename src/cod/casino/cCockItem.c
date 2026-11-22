@@ -1,5 +1,6 @@
 /* TU: cCockItem [casino] - recovered C++ class. */
 #include "include_asm.h"
+#include "godhand/globals.h"
 
 extern void cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
@@ -8,7 +9,6 @@ extern void cIDManager_setIDData();
 extern void cIDBase_initialize();
 extern void cIDBase_restartAnim();
 extern int D_003C2388;
-extern char D_0041E030[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern int *D_003C2384;

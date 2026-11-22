@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3: func_0030CAA0, end-of-frame: sync, flush the cache (interrupt-safe variant on flag)
  * and swap the GS double buffer. */
 #include "godhand/gameWork.h"
-extern int D_007476C0[];
+#include "godhand/globals.h"
 extern void func_0030B870(int a0);
 extern void iFlushCache(int op);
 extern void FlushCache(int op);

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int InitFields_1B6E90(void *);
-extern char D_00427230[];
 
 #include "godhand/vu0.h"
 

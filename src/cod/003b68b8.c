@@ -1,18 +1,13 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003FBE50[];
-extern int D_003FB6E8;
-extern int D_003FBE28;
 extern void func_003B6850(int, int);
 extern void func_003B6860(int, void *, int);
 extern void FlushCache(int);
-extern int D_003FC240[];
-extern int D_003FBEC0;
-extern int D_003FC238;
 extern void func_003B7B30(int, int);
 
-__attribute__((section(".text.func_003B68B8")))
-void func_003B68B8(void) {
+__attribute__((section(".text.InitAlarm")))
+void InitAlarm(void) {
     unsigned int i;
     int *p;
     if ((*(volatile int *)0x10001810 & 0x100) != 0)
@@ -33,8 +28,8 @@ void func_003B68B8(void) {
     } while (i < 8);
 }
 
-__attribute__((section(".text.func_003B7B40")))
-void func_003B7B40(void) {
+__attribute__((section(".text.InitTLBFunctions")))
+void InitTLBFunctions(void) {
     unsigned int i;
     func_003B7B30(D_003FC240[0], D_003FC240[1]);
     func_003B7AD8(0x80075000, (int)&D_003FBEC0, 0x330);

@@ -1,12 +1,11 @@
 /* cygnus-2.96 */
 #include "godhand/CriServer.h"
+#include "godhand/globals.h"
 
 extern void func_003B9DE0(void *);
-extern char D_00460AD0[];
-extern char D_00460AF8[];   /* "E03032501 : NULL pointer is passed." */
 
-__attribute__((section(".text.func_003BA830")))
-void func_003BA830(char *self, int *out_a, int *out_b)
+__attribute__((section(".text.AC3CNV_GetNumByteCnv")))
+void AC3CNV_GetNumByteCnv(char *self, int *out_a, int *out_b)
 {
     if (self == 0) {
         func_003B9DE0(D_00460AD0);

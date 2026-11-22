@@ -1,42 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/PadRec.h"
+#include "godhand/globals.h"
 
 extern int D_00747A0C;
 extern unsigned int D_00747A34;
 extern int D_00747A78;
-extern unsigned int D_003C3D50[64];
-extern unsigned int D_003C3E50[64];
 extern void func_0031B410(void *ctx, void *out);
 extern void func_0031B4B8(void *ctx, void *out);
 extern void func_0031B2E0(void *ctx, void *out);
 extern void func_002E0DE8(int, int, int, const char *, ...);
 extern void func_00379838(char *);
 extern void func_00379910(char *);
-extern char D_0045B350[];
-extern char D_0045B360[];
-extern char D_0045B5C0[];
-extern char D_0045B5D8[];
-extern char D_0045B5F0[];
-extern char D_0045B4C0[];
-extern char D_0045B608[];
-extern char D_0045B620[];
-extern char D_0045B460[];
-extern char D_0045B478[];
-extern char D_0045B638[];
-extern char D_0045B650[];
-extern char D_0045B3E8[];
-extern char D_0045B400[];
-extern char D_0045B668[];
-extern char D_0045B680[];
-extern char D_0045B550[];
-extern char D_0045B698[];
-extern char D_0045B6B0[];
-extern char D_0045B560[];
-extern char D_0045B578[];
-extern char D_0045B590[];
-extern char D_0045B5A8[];
-extern int D_003F2610[];
 
 /* sn-2.95.3-136: turns one raw controller sample into the game's pad record (0x31AFE0). Keeps the previous bits, maps the three 64-button words through a mask table into bit sets, sets the stick direction bits, derives the pressed and released edges, then either hands the record to the replay or hold hook, or copies the analog bytes across and scores the stick turn. Raw offsets from PadRec.h: a typed member access lets the scheduler move loads across the plain int globals, which retail does not. */
 

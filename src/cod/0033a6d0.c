@@ -20,29 +20,29 @@ void func_0033A6D0(void *a0, int a1, int a2, int a3) {
     Forward33B670_338A10();
 }
 
-__attribute__((section(".text.func_0033A880")))
-void func_0033A880(void *a0, int a1, int a2) {
+__attribute__((section(".text.SJUNI_PutChunk")))
+void SJUNI_PutChunk(void *a0, int a1, int a2) {
     Forward33B658_3389F8();
     func_0033A8D0(a0, a1, a2);
     Forward33B670_338A10();
 }
 
-__attribute__((section(".text.func_0033A9F8")))
-void func_0033A9F8(void *a0, int a1, int a2) {
+__attribute__((section(".text.SJUNI_UngetChunk")))
+void SJUNI_UngetChunk(void *a0, int a1, int a2) {
     Forward33B658_3389F8();
     func_0033AA48(a0, a1, a2);
     Forward33B670_338A10();
 }
 
-__attribute__((section(".text.func_00340920")))
-void func_00340920(void *a0, int a1, int a2) {
+__attribute__((section(".text.PL2ENC_SetPos")))
+void PL2ENC_SetPos(void *a0, int a1, int a2) {
     Forward33B658_3403C8();
     func_00340970(a0, a1, a2);
     Forward33B670_3403E0();
 }
 
-__attribute__((section(".text.func_0033D230")))
-void func_0033D230(void *obj) {
+__attribute__((section(".text.ADXB_Stop")))
+void ADXB_Stop(void *obj) {
     if (*(int *)((char*)obj + 0xE8) != 0) {
         D_003E9D50();
     }
@@ -50,8 +50,8 @@ void func_0033D230(void *obj) {
     *(int *)((char*)obj + 0x4) = 0;
 }
 
-__attribute__((section(".text.func_00345040")))
-void func_00345040(void *obj) {
+__attribute__((section(".text.MWSFFRM_SetShfCbFn")))
+void MWSFFRM_SetShfCbFn(void *obj) {
     int s1 = *(int *)((char*)obj + 0x3C);
     SFD_SetCond((void*)s1, 0x4B, (int)func_00345090);
     SFD_SetCond((void*)s1, 0x4C, (int)obj);

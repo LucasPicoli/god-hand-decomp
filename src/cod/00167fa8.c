@@ -2,6 +2,7 @@
 
 #include "godhand/cMessDrawFont.h"
 #include "godhand/cIDBase.h"
+#include "godhand/globals.h"
 
 extern unsigned int cMessCommon_getCodeSize(unsigned int code);
 extern int cMessCommon_isHighCodeEnd(unsigned short code);
@@ -12,7 +13,6 @@ extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_restartAnim(void *self);
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern char D_0041FC50[];
 extern void **D_003C2384;
 extern float Curve_sample(void *a0, int a1, int a2, int a3);
 

@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 extern int D_00786648;
-extern char D_00451078[];
 extern char D_00460DA0[];
 extern void func_0031F4A0();
 

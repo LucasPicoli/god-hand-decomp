@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_0033F130(char *msg);
-extern char D_00452438[];
 
 /* cygnus-2.96 matched TU. */
 

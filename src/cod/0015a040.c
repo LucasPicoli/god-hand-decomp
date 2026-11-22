@@ -4,6 +4,7 @@
 #include "godhand/cTaskManager.h"
 #include "godhand/cTaskWork.h"
 #include "godhand/cOmBase.h"
+#include "godhand/globals.h"
 
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
 extern void cIDManager_setIDData(void *mgr, int kind, int res);
@@ -11,7 +12,6 @@ extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
 extern int cIDBase_setPackedMessData(void *self, int kind, int arg);
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern char D_0041F378[];
 extern void **D_003C2384;
 extern cTaskManager D_00752C00;
 extern void cTaskWork_sleep(cTaskWork *task, int frames);
@@ -22,7 +22,6 @@ extern void CustomIDWork_ResetMoveOffsetPos(void *work);
 extern void CustomIDWork_SetColorAnimSin(void *work, int from, int to, int frames);
 extern void CustomIDWork_ResetColorAnim(void *work);
 extern char D_00747B00[];
-extern char D_0044BD60[];
 
 /* Constructor of the 6-part display object: base setup, then (when its data table matches) the ID data, initial animation and message, and the 27 display works. */
 

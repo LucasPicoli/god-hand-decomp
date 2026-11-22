@@ -3,18 +3,13 @@
 #include "godhand/sfxlib.h"
 #include "godhand/adxsjd.h"
 #include "godhand/criFs.h"
+#include "godhand/globals.h"
 
 extern int Obj0000_Get_D_003EE34C_35FC28(void);
-extern char D_00459F60[];
 extern int Obj3260_Tramp_003383B0_D358(void *rna);
 extern int Obj3270_GetVia4_Obj33C8_10_77D0(void *sjd);
 extern int Obj3260_GetByte_1_D778(void *sjd);
 extern void Obj3260_Tramp_00338338_D338(void *rna, int a);
-extern char D_003D9EE8[];
-extern char D_004544F8[];
-extern char D_00454510[];
-extern char D_00454528[];
-extern char D_00454540[];
 extern void LogPrintf(char *fmt, ...);
 extern void func_00333390(char *name, char *dir);
 extern void PushGlobalD8478History_331C78(int id);
@@ -75,7 +70,7 @@ struct Sfx {
     void (*cbfn)(SfdFrmInf *inf, FrmRec *frm, FrmTim *tim); /* 0x6C */
 };
 
-extern void func_0035F288(Sfx *sfx, void *src, SfdFrmInf *inf);
+extern void sfxcnv_MakeCftSrcBuf(Sfx *sfx, void *src, SfdFrmInf *inf);
 
 
 
@@ -92,7 +87,7 @@ void Sfx_buildFrameRecord(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
     char **fp;
     int half;
 
-    func_0035F288(sfx, src, &inf);
+    sfxcnv_MakeCftSrcBuf(sfx, src, &inf);
     yp = &inf.y_ptr;
     up = &inf.u_ptr;
     vp = &inf.v_ptr;
@@ -234,7 +229,7 @@ int FileList_resolveAll(char *tbl, int num)
             ;
         PushGlobalD8478History_331C78(0x9401);
         PushGlobalD8478History_331C78(0x9500);
-        if (func_00332838(&info, D_003D9EE8) == 1) {
+        if (dvCiCdSearchFile(&info, D_003D9EE8) == 1) {
             PushGlobalD8478History_331C78(0x9501);
             ok++;
             ((int *)tbl)[i * 2] = info.unk00;

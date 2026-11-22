@@ -1,4 +1,5 @@
 #include "godhand/cObjBase.h"
+#include "godhand/globals.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
@@ -6,7 +7,6 @@ extern unsigned int D_00747A84;
 extern void VecRotVec(float *out, float *in, cVec *rot, int order);
 extern void Adjust_theta_vec(cVec *v);
 extern void SetNodeListFlag_134608(void *a0, int a1);
-extern float D_007479FC;
 extern float Turn_dest(int a0, float f12, float f13);
 extern float Adjust_theta(float f12);
 

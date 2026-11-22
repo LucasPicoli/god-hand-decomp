@@ -85,7 +85,7 @@ void cSndSeVoice_Update(cSndSeVoice *voice)
         sndNow = (cSnd *)D_005FEE00;
         sndNow->f9C = ratio;
     }
-    state = func_003750E0(voice->handle);
+    state = SdeIssStatusGetBySndId(voice->handle);
     switch ((unsigned int)state) {
     case 0:
         if (*(unsigned char *)(buf + 0x22) < voice->pri) {

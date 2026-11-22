@@ -71,7 +71,7 @@ void FreeObjectSlot_2018F0(int a0)
 
     v0 = (int *)s0[0];
     if (v0 != 0) {
-        func_00323A70(v0[0x21]);
+        ADXF_Close(v0[0x21]);
         v0 = (int *)s0[0];
         v0[0x21] = 0;
         v0 = (int *)s0[0];

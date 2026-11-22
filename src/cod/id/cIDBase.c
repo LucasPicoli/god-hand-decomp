@@ -1,6 +1,7 @@
 /* TU: cIDBase [id] - recovered C++ class. */
 #include "godhand/vu0.h"
 #include "godhand/cIDBase.h"
+#include "godhand/globals.h"
 extern int *D_003C2384;
 
 /* The stores go through a raw byte offset: through the struct fields the
@@ -109,9 +110,6 @@ void cIDBase_move(cIDBaseObj *self)
 extern void *D_003C2380;
 extern int D_005E7510;
 extern int D_007474A0;
-extern char D_0044AF20[];
-extern char D_0044AF28[];
-extern char D_0044AF30[];
 extern void *SearchData(void *a, void *b, int c);
 extern void cFont_setTextureAddr(void *a0, int a1, void *a2, void *a3);
 extern void cScrSpriteDraw_drawInit(void *p);

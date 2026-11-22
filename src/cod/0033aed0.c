@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_00758400[3];
-extern int D_00758500[1];
 extern int DTX_CallUrpc(int cmd, void *in, int nin, void *out, int nout);
 
 __attribute__((section(".text.SJUNI_CreateRmt")))

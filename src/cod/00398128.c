@@ -11,7 +11,7 @@ int scePadSetActDirect(int port, int slot, const unsigned char *data)
     int i;
     int ret;
 
-    func_00397BC8(port, slot, &buf);
+    scePadGetDmaStr(port, slot, &buf);
     if (buf.ok != 1)
         return 0;
     p = D_0077C110[port][slot].cmd;

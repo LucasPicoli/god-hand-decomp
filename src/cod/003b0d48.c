@@ -3,8 +3,8 @@
  * 0x1000F180. Compiled with ee-2.9-991111: cygnus-2.96 fills the poll-loop
  * branch delay slot, newlib leaves the short-loop nops. */
 
-__attribute__((section(".text.func_003B0D48")))
-void *func_003B0D48(int a0) {
+__attribute__((section(".text.kputchar")))
+void *kputchar(int a0) {
     while (*(volatile int *)0x1000F130 & 0x8000) {
     }
     *(volatile char *)0x1000F180 = (char)a0;

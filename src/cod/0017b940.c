@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 extern void func_0017C028(void *a0, int a1, void *a2);
-extern unsigned char D_00421AD0[];
 extern void func_001A9210(void *a0, int a1, void *a2);
-extern unsigned char D_00427948[];
 
 /* sn-2.95.3-136 */
 

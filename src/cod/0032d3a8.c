@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00329D38(int a0, int a1);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(int a0, int a1);
@@ -8,34 +9,31 @@ extern int MPSLIB_CheckHn();
 extern int MPSLIB_SetErr();
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
-extern void func_0035A810(void *, void *, int *, int *);
+extern void sftim_GetVtimeTmr(void *, void *, int *, int *);
 extern void viBufDelete(void *a0);
 extern int ReturnK_003EE2BC_00358A38_358A38(void);
 extern void func_0039A998(void *a0);
 extern void func_0039AA48(void);
-extern void func_00356868(void *a0);
+extern void sfmpvp_SaveMpvp(void *a0);
 extern unsigned char D_003F1AC8[];
 extern unsigned char *D_003F1ABC;
-extern unsigned char D_003F1C48[];
-extern void func_00366C50(int a0, int a1, int a2);
+extern void UTY_MemsetDword(int a0, int a1, int a2);
 extern void func_00368E68(int a0);
 extern int D_003F1A98;
-extern int D_00760DB0;
-extern int D_00760DB4;
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(void *);
 extern void M2VERR_SetCode(int, unsigned int);
 extern void func_00368E80(void *a);
-extern void func_00369118(void *a);
+extern void mpslib_InitPack(void *a);
 extern void func_00369130(void *a);
-extern void func_00369158(void *a);
+extern void mpslib_InitPket(void *a);
 extern void sfhdr_ScanChunks(void);
 extern void SfdTrack_getObj(char *a0, int a1, int *a2);
-extern void func_0034CAF8(int a0, int *a1, int *a2);
-extern long long func_0034CCB0(long long a0, int a1);
-extern void func_00368B18(char *a0, char *a1, int a2);
-extern void func_00349F80(void *a0, int a1, int *out);
-extern void func_00366960(int a0, int a1, int a2);
-extern void func_00349FB0(void *a0, int a1, int *out);
+extern void SFBUF_GetFlowCnt(int a0, int *a1, int *a2);
+extern long long SFBUF_UpdateFlowCnt(long long a0, int a1);
+extern void MPS_GetSysHd(char *a0, char *a1, int a2);
+extern void sfadxt_GetFreeChunk(void *a0, int a1, int *out);
+extern void MEM_Copy(int a0, int a1, int a2);
+extern void sfadxt_PutDataChunk(void *a0, int a1, int *out);
 
 __attribute__((section(".text.func_0032EFE8")))
 void func_0032EFE8(int *a0) {
@@ -56,8 +54,8 @@ void func_0032EFE8(int *a0) {
     }
 }
 
-__attribute__((section(".text.func_0034B648")))
-void func_0034B648(int a0, int a1) {
+__attribute__((section(".text.SFD_SetOutVol")))
+void SFD_SetOutVol(int a0, int a1) {
     int s0, s1;
     int v0, v1;
     s0 = a0;
@@ -76,8 +74,8 @@ void func_0034B648(int a0, int a1) {
     ((void (*)(int, int))v1)(s0, s1);
 }
 
-__attribute__((section(".text.func_00359370")))
-void func_00359370(int a0, int a1, int a2) {
+__attribute__((section(".text.sfpts_SetupPtsQue")))
+void sfpts_SetupPtsQue(int a0, int a1, int a2) {
     int s2, s1, s0, v1;
     s1 = (a1 + 7) & -8;
     v1 = s1 - a1;
@@ -96,8 +94,8 @@ void func_00359370(int a0, int a1, int a2) {
     *(int *)(s2 + 0x10) = 0;
 }
 
-__attribute__((section(".text.func_00368C60")))
-int func_00368C60(int a0, int a1) {
+__attribute__((section(".text.MPS_GetPketHd")))
+int MPS_GetPketHd(int a0, int a1) {
     int s0 = a0;
     int s1 = a1;
     if (!MPSLIB_CheckHn(a0, a1)) {
@@ -135,8 +133,8 @@ int func_0032D3A8(int a0, int a1, int a2, int a3) {
     return r;
 }
 
-__attribute__((section(".text.func_00357E58")))
-int func_00357E58(int a0) {
+__attribute__((section(".text.sfply_EnoughAiData")))
+int sfply_EnoughAiData(int a0) {
     int *s0;
     int t;
     int v0;
@@ -164,8 +162,8 @@ int func_00357E58(int a0) {
     return 1;
 }
 
-__attribute__((section(".text.func_0035A8E8")))
-int func_0035A8E8(void *a0) {
+__attribute__((section(".text.sftim_IsAudioStagnant")))
+int sftim_IsAudioStagnant(void *a0) {
     void *s0;
     int s1;
     int v0;
@@ -181,15 +179,15 @@ int func_0035A8E8(void *a0) {
     if (!s1) {
         return 0;
     }
-    func_0035A810(s0, (char *)s0 + 0xD30, &sp0, &sp4);
+    sftim_GetVtimeTmr(s0, (char *)s0 + 0xD30, &sp0, &sp4);
     v0 = sp0;
     v1 = sp4;
     v0 = v0 / v1;
     return s1 < v0;
 }
 
-__attribute__((section(".text.func_00351170")))
-int func_00351170(void *a0) {
+__attribute__((section(".text.sfmpv_CheckViBufSiz")))
+int sfmpv_CheckViBufSiz(void *a0) {
     void *s0;
     int s2;
     int s1;
@@ -198,7 +196,7 @@ int func_00351170(void *a0) {
 
     s0 = a0;
     s2 = *(int *)((char *)s0 + 0x1FC8);
-    s1 = func_0034C7B0(s0, s2);
+    s1 = SFBUF_GetRingBufSiz(s0, s2);
     v0 = func_0034CAD0(s0, s2);
     v1 = *(int *)((char *)s0 + 0x28);
     s1 -= v0;
@@ -208,14 +206,14 @@ int func_00351170(void *a0) {
     return 0;
 }
 
-__attribute__((section(".text.func_003567E0")))
-void func_003567E0(void *a0) {
+__attribute__((section(".text.SFMPVP_Destroy")))
+void SFMPVP_Destroy(void *a0) {
     void *s1;
     void *s0;
     int v0;
 
     s1 = a0;
-    v0 = func_00356358(s1);
+    v0 = SFMPVP_IsSceMpegUsed(s1);
     if (v0 == 0) {
         return;
     }
@@ -224,7 +222,7 @@ void func_003567E0(void *a0) {
     v0 = ReturnK_003EE2BC_00358A38_358A38();
     if (v0 == 1) {
         func_0039AA48();
-        func_00356868(s1);
+        sfmpvp_SaveMpvp(s1);
         return;
     }
     func_0039A998((void *)((char *)s0 + 0x1150));
@@ -260,8 +258,8 @@ void func_0036BFB0(void)
     D_003F1ABC = D_003F1C48;
 }
 
-__attribute__((section(".text.func_00368D60")))
-int func_00368D60(int a0, int a1) {
+__attribute__((section(".text.mpslib_InitLibWork")))
+int mpslib_InitLibWork(int a0, int a1) {
     int *s0;
     int s1;
     int v0;
@@ -271,7 +269,7 @@ int func_00368D60(int a0, int a1) {
     s0 = &D_003F1A98;
     s1 = a0;
     *s0 = v0;
-    func_00366C50(v0, 0, (s1 << 6) + 4);
+    UTY_MemsetDword(v0, 0, (s1 << 6) + 4);
     func_00368E68(*s0);
     v0 = *s0;
     *(int *)(v0 + 0xC) = s1;
@@ -299,8 +297,8 @@ typedef struct Obj_s {
 
 
 
-__attribute__((section(".text.func_0034CBB0")))
-void func_0034CBB0(void) {
+__attribute__((section(".text.sfbuf_InitSjUuid")))
+void sfbuf_InitSjUuid(void) {
     char buf[8];
     Obj *s0;
 
@@ -312,8 +310,8 @@ void func_0034CBB0(void) {
     ((vtfnv)s0->vtable[3])(s0);
 }
 
-__attribute__((section(".text.func_0036DBE0")))
-void func_0036DBE0(void *a0, int *a1, int *a2, int *a3)
+__attribute__((section(".text.m2v_GetVbvBufSiz")))
+void m2v_GetVbvBufSiz(void *a0, int *a1, int *a2, int *a3)
 {
     char *s0 = (char *)a0 + 0x160;
     int r;
@@ -329,8 +327,8 @@ void func_0036DBE0(void *a0, int *a1, int *a2, int *a3)
 
 struct block32_00368BC8 { long long a, b, c, d; } __attribute__((packed));
 
-__attribute__((section(".text.func_00368BC8")))
-int func_00368BC8(int a0, int a1) {
+__attribute__((section(".text.MPS_GetLastSysHd")))
+int MPS_GetLastSysHd(int a0, int a1) {
     if (MPSLIB_CheckHn((void *)a0)) {
         return MPSLIB_SetErr(0, 0xFF020202u);
     }
@@ -338,22 +336,22 @@ int func_00368BC8(int a0, int a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_00369078")))
-void *func_00369078(void *a0) {
+__attribute__((section(".text.mpslib_InitHn")))
+void *mpslib_InitHn(void *a0) {
     void *s0;
     int s1;
     s0 = a0;
     s1 = 2;
-    func_00366C50(a0, 0, 0x40);
+    UTY_MemsetDword(a0, 0, 0x40);
     *(int *)((char *)s0 + 0x00) = s1;
     func_00368E80((char *)s0 + 4);
     *(int *)((char *)s0 + 0x10) = s1;
-    func_00369118((char *)s0 + 0x18);
+    mpslib_InitPack((char *)s0 + 0x18);
     func_00369130((char *)s0 + 0x28);
     func_00369130((char *)s0 + 0x48);
     func_00369130((char *)s0 + 0x68);
     func_00369130((char *)s0 + 0x88);
-    func_00369158((char *)s0 + 0xA8);
+    mpslib_InitPket((char *)s0 + 0xA8);
     *(int *)((char *)s0 + 0xD0) = 0;
     *(int *)((char *)s0 + 0xD4) = (int)sfhdr_ScanChunks;
     *(int *)((char *)s0 + 0xD8) = 0;
@@ -364,8 +362,8 @@ void *func_00369078(void *a0) {
     return s0;
 }
 
-__attribute__((section(".text.func_0034AA20")))
-void func_0034AA20(char *a0) {
+__attribute__((section(".text.sfadxt_UpdateFlowCnt")))
+void sfadxt_UpdateFlowCnt(char *a0) {
     int local;
     int buf1;
     int buf2;
@@ -378,19 +376,19 @@ void func_0034AA20(char *a0) {
 
     if (!local) return;
 
-    func_0034CAF8(local, &buf1, &buf2);
+    SFBUF_GetFlowCnt(local, &buf1, &buf2);
 
-    *(long long *)((char *)a0 + 0x9B8) = func_0034CCB0(*(long long *)((char *)a0 + 0x9B8), buf1);
-    *(long long *)((char *)a0 + 0x9C0) = func_0034CCB0(*(long long *)((char *)a0 + 0x9C0), buf2);
+    *(long long *)((char *)a0 + 0x9B8) = SFBUF_UpdateFlowCnt(*(long long *)((char *)a0 + 0x9B8), buf1);
+    *(long long *)((char *)a0 + 0x9C0) = SFBUF_UpdateFlowCnt(*(long long *)((char *)a0 + 0x9C0), buf2);
 
-    func_0034CAF8(*(int *)((int)s1 + 4), &buf1, &buf2);
+    SFBUF_GetFlowCnt(*(int *)((int)s1 + 4), &buf1, &buf2);
 
-    *(long long *)((char *)a0 + 0x9D0) = func_0034CCB0(*(long long *)((char *)a0 + 0x9D0), buf1);
-    *(long long *)((char *)a0 + 0x9D8) = func_0034CCB0(*(long long *)((char *)a0 + 0x9D8), buf2);
+    *(long long *)((char *)a0 + 0x9D0) = SFBUF_UpdateFlowCnt(*(long long *)((char *)a0 + 0x9D0), buf1);
+    *(long long *)((char *)a0 + 0x9D8) = SFBUF_UpdateFlowCnt(*(long long *)((char *)a0 + 0x9D8), buf2);
 }
 
-__attribute__((section(".text.func_00366E18")))
-void func_00366E18(int *a0, int a1, int *a2, int *a3, int *a4) {
+__attribute__((section(".text.MPS_DecHd")))
+void MPS_DecHd(int *a0, int a1, int *a2, int *a3, int *a4) {
     void (*fn)(int *, int);
     *a3 = 0;
     *a4 = 0;
@@ -402,8 +400,8 @@ void func_00366E18(int *a0, int a1, int *a2, int *a3, int *a4) {
     fn(a0, a1);
 }
 
-__attribute__((section(".text.func_0034FA28")))
-void func_0034FA28(char *a0, int *out0, int *out4)
+__attribute__((section(".text.sfmps_GetStmNum")))
+void sfmps_GetStmNum(char *a0, int *out0, int *out4)
 {
     int lbuf[8];
     int *s3;
@@ -418,7 +416,7 @@ void func_0034FA28(char *a0, int *out0, int *out4)
     s3 = *(int **)((char *)a0 + 0x1F7C);
     s4 = (char *)s3[0];
     do {
-        func_00368B18(s4, (char *)lbuf, s0);
+        MPS_GetSysHd(s4, (char *)lbuf, s0);
         s0++;
         if (lbuf[2] >= s1) s1 = lbuf[2];
         if (lbuf[3] >= s2) s2 = lbuf[3];
@@ -429,8 +427,8 @@ void func_0034FA28(char *a0, int *out0, int *out4)
     *out4 = s3[1];
 }
 
-__attribute__((section(".text.func_0034A038")))
-void func_0034A038(void *a0, int a1, int a2, int *a3)
+__attribute__((section(".text.sfadxt_CopyData")))
+void sfadxt_CopyData(void *a0, int a1, int a2, int *a3)
 {
     int local[2];
     int *s1;
@@ -439,12 +437,12 @@ void func_0034A038(void *a0, int a1, int a2, int *a3)
 
     s1 = *(int **)((char *)a0 + 0x2004);
     s3 = *(int *)((char *)s1 + 4);
-    func_00349F80((void *)s3, *(int *)((char *)s1 + 8), local);
+    sfadxt_GetFreeChunk((void *)s3, *(int *)((char *)s1 + 8), local);
     s0 = local[1];
     if (a2 < s0) s0 = a2;
     if (0x19000 < s0) s0 = 0x19000;
-    func_00366960(local[0], a1, s0);
-    func_00349FB0((void *)s3, s0, local);
+    MEM_Copy(local[0], a1, s0);
+    sfadxt_PutDataChunk((void *)s3, s0, local);
     *(int *)((char *)s1 + 0x48) += s0;
     *a3 = s0;
 }

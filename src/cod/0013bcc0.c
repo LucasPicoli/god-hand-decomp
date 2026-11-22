@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern short D_005CAE40;
 extern void cIDBase_move(void *);
 extern void cIDBase_trans(void *);
 extern void CustomIDWork_SetMessNo(void *work, int messNo);

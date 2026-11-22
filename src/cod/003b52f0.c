@@ -1,18 +1,17 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
 typedef struct { int f0; int f4; int f8; int fC; } Iob;
 
 
-extern void func_003B3F50(void);
+extern void sceFsInit(void);
 extern int SignalSema_3B3EF8(void);
 extern Iob *new_iob(void);
 
 extern int WaitSema(int semid);
 extern int SignalSema(int semid);
-extern int D_003FAEDC;
-extern int D_003FAEE8;
 extern Iob D_007814C0[32];
 
 __attribute__((section(".text.sceDopen")))
@@ -23,7 +22,7 @@ int sceDopen(const char *name)
 
     func_003B3EC8(9);
     if (D_003FAEDC == 0)
-        func_003B3F50();
+        sceFsInit();
     SignalSema_3B3EF8();
     p = new_iob();
     if (p == 0)

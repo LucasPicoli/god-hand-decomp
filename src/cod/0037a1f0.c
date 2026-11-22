@@ -15,7 +15,7 @@ typedef struct {
 } ModeSel;
 extern int SdeIssTblGet(int x, int y, void *obj);
 extern void func_00386DE0(int x, int y, void *obj);
-extern int func_00375AB0(int x, int y, void *obj);
+extern int SdeSsqTblGet(int x, int y, void *obj);
 
 __attribute__((section(".text.func_0037A1F0")))
 void func_0037A1F0(ModeSel *m)
@@ -32,7 +32,7 @@ void func_0037A1F0(ModeSel *m)
         func_00386DE0(x, y, m->obj1);
         break;
     case 2:
-        func_00375AB0(x, y, m->obj2);
+        SdeSsqTblGet(x, y, m->obj2);
         break;
     }
     m->curflag = m->flag[m->mode];

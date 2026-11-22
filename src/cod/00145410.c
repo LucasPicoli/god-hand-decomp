@@ -77,7 +77,7 @@ __attribute__((section(".text.func_0037AAB0")))
 void func_0037AAB0(char *a0) {
     char *p = a0 + 0xCC;
     if (*(signed char *)(a0 + 0x25) != 7) return;
-    if ((func_00387430(0) & 8) == 0) return;
+    if ((SdeStrStatusGetByWorkId(0) & 8) == 0) return;
     *(short *)(p + 0xA) = 1;
     BuildObjEntry_387160(0, p);
 }

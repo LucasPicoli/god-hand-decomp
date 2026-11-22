@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0034F658(void *hn, int *out);
+extern void sfmps_ShortSupply(void *hn, int *out);
 extern int (*D_00459680[])(void *hn, int a1, void *dst, int n, long long first);
 
 /* StreamReadBlock cygnus-2.96 drop-freorder: 90/94 length-exact, only prologue save/copy order differs (s3,s4,s2 first in retail). permuter 400s: no gain */
@@ -38,7 +38,7 @@ int StreamReadBlock(char *hn, void *dst, int max, int *outLen, int *outStatus)
     *outStatus = 0;
     /* read as int, not int *: same alias set as the two status stores above, so the load stays below them */
     tbl = (int *)*(int *)(hn + 0x1F7C);
-    if (func_00368C60(tbl[0], &info) != 0)
+    if (MPS_GetPketHd(tbl[0], &info) != 0)
         ret = func_0034DD70(hn, 0xFF000D06);
     n = info.length;
     kind = info.kind;
@@ -53,11 +53,11 @@ int StreamReadBlock(char *hn, void *dst, int max, int *outLen, int *outStatus)
         return 0;
     }
     if (max < n) {
-        func_0034F658(hn, 0);
+        sfmps_ShortSupply(hn, 0);
         return 0;
     }
     if (*(int *)(kind * 4 + (int)tbl - 0x2B0) != 0)
-        *outStatus = func_0034EB28(*(int *)(kind * 4 + (int)tbl - 0x2B0), tbl[0x150 / 4], tbl[0x154 / 4], kind, (int)dst, n);
+        *outStatus = sfmps_CopyElemOutSj(*(int *)(kind * 4 + (int)tbl - 0x2B0), tbl[0x150 / 4], tbl[0x154 / 4], kind, (int)dst, n);
     else
         *outStatus = D_00459680[mode](hn, arg, dst, n, first);
     st = *outStatus;
@@ -79,7 +79,7 @@ __attribute__((section(".text.AdxAlloc_Forward")))
 long AdxAlloc_Forward(int x, int n)
 {
     if (n < 0x100)
-        func_00327B58(0, 0, 0, x);
+        ADXSTMF_CreateCvfsRt(0, 0, 0, x);
     else
-        func_00327C30(0, 0, 0, x);
+        ADXSTMF_CreateCvfs(0, 0, 0, x);
 }

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern float __ieee754_asinf(float);
 
@@ -26,19 +27,16 @@ struct exception {
 #define EDOM	33
 #define ERANGE	34
 
-extern const int D_0045F024;		/* _LIB_VERSION */
 #define _LIB_VERSION D_0045F024
 
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 #define errno (*Obj0000_Get_D_003FA62C_3A4FB8())
 
-extern int func_003A4AC8(struct exception *);	/* matherr */
-extern int func_003A4E00(float);		/* isnanf  */
-extern int func_003A4CF0(float);		/* finitef */
+extern int matherr(struct exception *);	/* matherr */
+extern int isnanf(float);		/* isnanf  */
+extern int finitef(float);		/* finitef */
 extern float func_003A19D8(float);		/* fabsf   */
 
-
-extern char D_0045EA68[];		/* "asinf" */
 
 __attribute__((section(".text.func_003A1B78")))
 float func_003A1B78(float x)		/* asinf */
@@ -46,7 +44,7 @@ float func_003A1B78(float x)		/* asinf */
 	float z;
 	struct exception exc;
 	z = __ieee754_asinf(x);
-	if(_LIB_VERSION == _IEEE_ || func_003A4E00(x)) return z;
+	if(_LIB_VERSION == _IEEE_ || isnanf(x)) return z;
 	if(func_003A19D8(x)>(float)1.0) {
 	    /* asinf(|x|>1) */
 	    exc.type = DOMAIN;
@@ -56,7 +54,7 @@ float func_003A1B78(float x)		/* asinf */
 	    exc.retval = 0.0;
 	    if(_LIB_VERSION == _POSIX_)
 	      errno = EDOM;
-	    else if (!func_003A4AC8(&exc)) {
+	    else if (!matherr(&exc)) {
 	      errno = EDOM;
 	    }
 	    if (exc.err != 0)

@@ -1,8 +1,7 @@
-extern char D_00762868[];
+#include "godhand/globals.h"
 extern char D_00766BA8[];
 extern char D_00766BD0[];
 extern char D_00766BD8[];
-extern int D_003EE2EC;
 extern void SFMPVP_Init(void);
 extern int func_003506D8(void);
 extern int M2vDec_init(int, char *);

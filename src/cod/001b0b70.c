@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/objFactory.h"
 #include "godhand/objCtor.h"
+#include "godhand/globals.h"
 
 /* ──────────────────────────── small picks ─────────────────────────────── */
 
@@ -23,8 +24,6 @@ void *InitPilotVtable_1B0B70(void *a) {
  *                GetOrInitGlobal785878_1B8058() + SetField_0_4_8_31EEA8(&D_00785858, &D_004294D0,
  *                &D_00785878) when the underlying word is 0.
  *                20 insns, 80 B. */
-extern int D_00785858;
-extern int D_004294D0;
 extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
 extern void SetField_0_4_8_31EEA8(void *, void *, void *);
@@ -43,9 +42,6 @@ void *GetPilotClassDesc_1BDE00(void) {
  *                SetField_0_4_8_31EEA8(&D_00786358, &D_0044BE48, &D_00460D68) when
  *                the underlying word is 0.
  *                20 insns, 80 B. */
-extern int D_00786358;
-extern int D_0044BE48;
-extern int D_00460D68;
 extern void GetOrInit_460D68_2BAFA0(void);
 extern void SetField_0_4_8_31EEA8(void *, void *, void *);
 
@@ -101,15 +97,15 @@ void *AllocZeroedBlock_313E50(void) {
 }
 
 
-/* BuildObjEntry_387160: jal func_00377998 ; conditional ldl/ldr/sdl/sdr 0x20-byte
+/* BuildObjEntry_387160: jal SdeStrExeOpen ; conditional ldl/ldr/sdl/sdr 0x20-byte
  *                memcpy loop; multiple sb/sh writes to allocated struct
  *                @ a2+0x10; 66 insns, 264 B. */
-extern void *func_00377998(void);
+extern void *SdeStrExeOpen(void);
 extern void *memcpy(void *dst, const void *src, unsigned int n);
 
 __attribute__((section(".text.BuildObjEntry_387160")))
 int BuildObjEntry_387160(short arg1, const void *src) {
-    unsigned char *obj = (unsigned char *)func_00377998();
+    unsigned char *obj = (unsigned char *)SdeStrExeOpen();
     if (obj == 0) {
         return -1;
     }
@@ -144,7 +140,6 @@ extern void MarkObj_setPulse();
 extern short D_00568240[];
 extern EmEntry D_003BE8B0[];
 extern int D_003C2388;
-extern char D_0042BF40[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern int *D_003C2384;

@@ -3,7 +3,7 @@
 #include "godhand/cWorldLight.h"
 
 #include "godhand/fileBuf.h"
-extern int D_003C118C;
+#include "godhand/gsPacket.h"
 
 __attribute__((section(".text.func_002C7F88")))
 int func_002C7F88(unsigned char *p){unsigned int v;if(p==0)return 0;v=p[0]|(p[1]<<8)|(p[2]<<16)|(p[3]<<24);return (v^0x514553)==0;}

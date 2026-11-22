@@ -20,8 +20,8 @@ do {								\
   (d) = sf_u.value;						\
 } while (0)
 
-__attribute__((section(".text.func_003A4E00")))
-int func_003A4E00(float x)
+__attribute__((section(".text.isnanf")))
+int isnanf(float x)
 {
 	int ix;
 	GET_FLOAT_WORD(ix,x);

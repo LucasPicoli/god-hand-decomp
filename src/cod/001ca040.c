@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_005864F0[];
 extern float cEmManage_GetSpeedRate(void *a0);
@@ -8,23 +9,8 @@ extern int D_005864E0[];
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 extern unsigned int irand(void);
 extern void cEmManage_EntryEm(void *, void *, int, void *);
-extern char D_003BF958[];
-extern char D_003BF970[];
-extern char D_003BF988[];
-extern char D_003BF9A0[];
-extern char D_003BF9B8[];
-extern char D_003BFA10[];
-extern char D_003BFA68[];
 extern char D_005850C0[];
 extern void func_001038E0(char *a0, char *a1, char *a2, float f12, float f13);
-extern char D_003BFFD0[];
-extern char D_003BFFE8[];
-extern char D_003C0000[];
-extern char D_003C0018[];
-extern char D_003C0030[];
-extern char D_003C0088[];
-extern char D_003C00E0[];
-extern char D_00585660[];
 
 /* sn-2.95.3-136 matched TU. */
 

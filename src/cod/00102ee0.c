@@ -1,9 +1,8 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00785508;
 extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
-extern char D_0041B7D0[];
 extern char D_007854C8[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 #include "godhand/motion.h"

@@ -1,6 +1,6 @@
 #include "godhand/vu0.h"
 
-extern void func_0032A8C0(void *obj, int counter);
+extern void ADXT_SetOutBalance(void *obj, int counter);
 
 __attribute__((section(".text.func_00385410")))
 void func_00385410(char *self, char *ctrl)
@@ -17,7 +17,7 @@ void func_00385410(char *self, char *ctrl)
             *(int *)(sub + 0x20) = c - 1;
         obj = *(void **)(sub + 0x30);
         if (obj != 0)
-            func_0032A8C0(obj, *(int *)(sub + 0x20));
+            ADXT_SetOutBalance(obj, *(int *)(sub + 0x20));
     }
     if ((*(int *)(ctrl + 0x38) & 0x2000) != 0) {
         c = *(int *)(sub + 0x20);
@@ -27,7 +27,7 @@ void func_00385410(char *self, char *ctrl)
             *(int *)(sub + 0x20) = -0xF;
         obj = *(void **)(sub + 0x30);
         if (obj != 0)
-            func_0032A8C0(obj, *(int *)(sub + 0x20));
+            ADXT_SetOutBalance(obj, *(int *)(sub + 0x20));
     }
 }
 

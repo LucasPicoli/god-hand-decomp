@@ -1,12 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003D8490;
-extern volatile int D_003D848C;
 extern void PushGlobalD8478History_331C78(int a0);
 extern char D_003DED70[];
 
-__attribute__((section(".text.func_00331400")))
-void func_00331400(void) {
+__attribute__((section(".text.check_cd_status")))
+void check_cd_status(void) {
     D_003D8490 = 1;
     PushGlobalD8478History_331C78(0x2600);
     D_003D848C = func_00399A68();
@@ -14,8 +13,8 @@ void func_00331400(void) {
     D_003D8490 = 0;
 }
 
-__attribute__((section(".text.func_003364A0")))
-void func_003364A0(void) {
+__attribute__((section(".text.mfCiExecServer")))
+void mfCiExecServer(void) {
     char *p = D_003DED70;
     int i;
     for (i = 0x27; i >= 0; i--) {

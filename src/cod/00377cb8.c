@@ -3,8 +3,8 @@
 
 /* Resets both SPU2 cores' state: full volume, effect areas at the top of
  * sound RAM (core 0 just below core 1). */
-__attribute__((section(".text.func_00377CB8")))
-void func_00377CB8(void)
+__attribute__((section(".text.sdeEfxWorkClear")))
+void sdeEfxWorkClear(void)
 {
     int i;
 

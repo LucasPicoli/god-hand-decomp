@@ -29,7 +29,6 @@ extern void func_00274FE8(void *a0);
 extern void func_0027DB50(int a0, int a1);
 extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_005CB010;
 extern unsigned char D_00747A2C[];
 
 /* Fields cEm00.h does not name yet. Offsets are from the record start. */

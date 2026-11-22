@@ -42,7 +42,7 @@ typedef struct Tim2PicHdr {
 extern int D_0041ED80[];        /* GS pixel format of each TIM2 image type, from 1 (texture bank loads) */
 
 /* GS buffer width (in 64-pixel units) of a width-pixel image of format psm. */
-int func_00309C30(unsigned int psm, int width);
+int Tim2CalcBufWidth(unsigned int psm, int width);
 
 /* Build the upload of the texture file tim (image at tbp, CLUT at cbp) into
  * work and its TEX0 register in out, one builder per file kind 0, 1, 2. */

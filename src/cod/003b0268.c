@@ -1,22 +1,16 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern int _sceSnprintf(void *cb, void *state, int a, int b, void *ap);
 extern void func_003B7AA8(char *s);
-extern int D_003FAE4C;
-extern char D_0077E3A0[];
 extern int Tramp_003B4AD8_1F6E98(void *buf, int n);
-extern char D_003FAE30[];
 extern int NoOp_1F6ED8(void *buf, int n);
 extern int CreateSema(struct SemaParam *p);
-extern char D_00460370[];
-extern char D_00460380[];
-extern int D_003FAF18;
-extern int D_003FAF1C;
 
 /* ee-2.9-991111 */
 
-__attribute__((section(".text.func_003B1DE8")))
-int func_003B1DE8(char **pp, int *pn, int c)
+__attribute__((section(".text.snprintf_char")))
+int snprintf_char(char **pp, int *pn, int c)
 {
     char *p;
     if (*pn == 0)

@@ -1,14 +1,14 @@
 #include "godhand/sftim.h"
 
-int func_003526D0(SftimHn *hn, SftimInfo *info);
+int sfmpv_DetectTcErr(SftimHn *hn, SftimInfo *info);
 void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
 
-__attribute__((section(".text.func_00352888")))
-void func_00352888(int time, int rate, int drop, int ofs, SftimTc *tc)
+__attribute__((section(".text.sfmpv_Pts2Tc")))
+void sfmpv_Pts2Tc(int time, int rate, int drop, int ofs, SftimTc *tc)
 {
     int fps1000 = D_00459920[rate];
     int fps = D_004596C8[rate];
-    int frames = func_0036C990(time, fps1000 * 2, 90000000);
+    int frames = UTY_MulDivRound64(time, fps1000 * 2, 90000000);
     int hour;
     int min;
     int sec;

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* __tf7fstream: the g++ 2.95.2 synthesized type-info function for class fstream
    (gcc/cp/rtti.c synthesize_tinfo_fn + expand_class_desc), written out as a
@@ -12,8 +13,6 @@ extern "C" void func_0038A7E0(void);                 /* __tf of the first base  
 extern "C" void func_0038A340(void);                 /* __tf of the second base */
 extern "C" void __rtti_class(void *, const char *, const base_info *, unsigned int);
 
-extern unsigned char D_00786748[];                    /* __ti7fstream */
-extern const char D_0045D1D7[];                       /* "7fstream" sits at +1 */
 extern const base_info D_0045D1E8[];                  /* the two-entry base list */
 
 extern "C" const type_info &func_00389BD8 (void)

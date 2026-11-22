@@ -1,8 +1,7 @@
 /* sn-2.95.3-136: __malloc_alloc_template<0>::_S_oom_malloc (0x31D6E8). */
 
 #include "godhand/stlAlloc.h"
-
-extern char D_00450F38[];             /* "out of memory" */
+#include "godhand/globals.h"
 
 static inline void *ostream_manip(void *os, void *(*manip)(void *))
 {

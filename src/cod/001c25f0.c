@@ -1,31 +1,10 @@
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern int D_00460D40;
-extern int D_0042C348;
-extern int D_00460D48;
 extern int D_0042C4F8;
 extern char D_00462FC0[];
-extern int D_00460D50;
-extern char D_0044AF10[];
-extern int D_00460D58;
-extern char D_0044B330[];
-extern int D_00460D60;
 extern char D_0044BE98[];
-extern int D_00460D68;
-extern int D_0044BF60;
-extern int D_00460D78;
-extern int D_0044D200;
-extern int D_00460D80;
-extern int D_0044D210;
-extern int D_00460D88;
-extern int D_0044D3A0;
-extern int D_00460D90;
-extern int D_0044D3D8;
 extern int D_0044EE38;
-extern int D_00460D98;
-extern int D_00450098;
-extern int D_00460D70;
-extern int D_0045A5F8;
 
 __attribute__((section(".text.InitStructZeroedFields_1E7960")))
 void *InitStructZeroedFields_1E7960(void *a0) {
@@ -183,8 +162,8 @@ int Get_460D70_3BAFF8(void) {
 
 __attribute__((section(".text.ResetChannelPairFields_37B5E0")))
 void ResetChannelPairFields_37B5E0(int a0) {
-    func_00374980(0, (void*)((char*)a0 + 0x16C));
-    func_00374980(1, (void*)((char*)a0 + 0x18C));
+    SdeSystemEfxGet(0, (void*)((char*)a0 + 0x16C));
+    SdeSystemEfxGet(1, (void*)((char*)a0 + 0x18C));
     *(char*)((char*)a0 + 0x28) = 0;
     *(char*)((char*)a0 + 0x29) = 0;
 }

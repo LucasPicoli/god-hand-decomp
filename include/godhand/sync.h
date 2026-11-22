@@ -23,7 +23,7 @@
  * # What it unblocks
  *
  * Three functions are byte-exact from plain C except for a single `sync`:
- * `sceGsSetDefClear`, `func_00396A70` and `VSync` — 896 B.  Two more,
+ * `sceGsSetDefClear`, `sceGsSetDefDrawEnv` and `VSync` — 896 B.  Two more,
  * `sceGsSetDefDrawEnv2` and `VSync2`, carry the same single-instruction gap.
  * Measured 2026-09-01 by wave 22 lane LB5.
  *

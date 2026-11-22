@@ -4,11 +4,11 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern unsigned int D_00747A84;
 extern void func_0028E858(void);
 extern char D_007474A0[];
-extern char D_0044B100[];
 extern void *SearchData(void *name, void *table, int which);
 extern unsigned int D_00747A78;
 extern char *D_005CAFF0;
@@ -18,11 +18,8 @@ extern void cModel_calcParts(void *self);
 extern char D_00747AC0[];
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
-extern char D_0044C048[];
-extern char D_0044C068[];
 extern char D_00583F20[];
 extern char D_005FEE00[];
-extern char D_005E79D0[];
 extern char D_005E6900[];
 extern void FileLoader_readWholeFile(void *self);
 extern void func_00397128(int a0);

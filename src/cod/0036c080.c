@@ -12,8 +12,8 @@ typedef struct BufSetupObj {
 extern char *D_00766D38;
 extern int D_003F1ABC;
 
-__attribute__((section(".text.func_0036C080")))
-void func_0036C080(BufSetupObj *o)
+__attribute__((section(".text.mpvlib_InitObj")))
+void mpvlib_InitObj(BufSetupObj *o)
 {
     o->buf = D_00766D38 + 0x1100;
     o->f40 = D_003F1ABC;

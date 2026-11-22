@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int strlen(const char *s);
 extern char *getDevice(char *name);
-extern char D_00755E84[];
 
 struct H_zp {
     int f0, f4;

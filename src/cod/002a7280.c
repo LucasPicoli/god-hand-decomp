@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern int D_0077DB88;
+#include "godhand/globals.h"
 
 typedef struct {
     void *items;

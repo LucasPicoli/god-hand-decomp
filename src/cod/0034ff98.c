@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0034D3E8(void *hn);
+extern void SFHDS_ReprocessHdr(void *hn);
 extern void func_00350040(void *hn);
 
-__attribute__((section(".text.func_00350048")))
-int func_00350048(void *hn, void **pp, void *ctx)
+__attribute__((section(".text.sfmps_ReprocessHdr")))
+int sfmps_ReprocessHdr(void *hn, void **pp, void *ctx)
 {
     int a;
     int b;
@@ -15,8 +15,8 @@ int func_00350048(void *hn, void **pp, void *ctx)
 
     sub = (char *)ctx + 0x30;
     st = *pp;
-    r1 = func_00366E18(st, sub, *(int *)(sub + 0x160), &a, &b);
-    r2 = func_00366E18(st, (char *)ctx + 0xE0, *(int *)(sub + 0x164), &a, &b);
+    r1 = MPS_DecHd(st, sub, *(int *)(sub + 0x160), &a, &b);
+    r2 = MPS_DecHd(st, (char *)ctx + 0xE0, *(int *)(sub + 0x164), &a, &b);
     if (r1 != 0 || r2 != 0) {
         return func_0034DD70(hn, 0xFF000D0DU);
     }
@@ -45,22 +45,22 @@ typedef struct Sub {
 
 
 
-__attribute__((section(".text.func_0034FF98")))
-int func_0034FF98(void *hn)
+__attribute__((section(".text.SFMPS_Seek")))
+int SFMPS_Seek(void *hn)
 {
     Hd *hd;
     Sub *sub;
     char *tm;
     int err;
 
-    hd = func_003500E8(hn);
+    hd = sfmps_GetHd(hn);
     if (hd == 0) return 0;
     if (hd->f0 == 0) return 0;
     sub = *(Sub **)((char *)hn + 0x1F7C);
-    func_0034D3E8(hn);
+    SFHDS_ReprocessHdr(hn);
     func_00350040(hn);
     tm = (char *)hn + 0xD30;
-    err = func_00350048(hn, sub, hd);
+    err = sfmps_ReprocessHdr(hn, sub, hd);
     if (err != 0) return err;
     sub->f2C = hd->f28;
     sub->f30 = hd->f2C;

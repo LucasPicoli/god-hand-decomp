@@ -3,8 +3,8 @@
 extern void func_003A9E58(int a0, void *a1, void *a2, int a3);
 extern void func_003AB188(int a0, void *a1, void *a2, int a3);
 
-__attribute__((section(".text.func_003A9D88")))
-void func_003A9D88(char *a0, char *a1, int a2) {
+__attribute__((section(".text.vfprintf")))
+void vfprintf(char *a0, char *a1, int a2) {
     char *p = a1;
     if (*a1 != 0) {
         do {

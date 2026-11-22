@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_00382D30, menu page update: show the "no data" prompt when there is no
  * list, otherwise run cursor input, page/scroll handlers and redraw the window frame. */
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
 extern void func_00380DC0(MenuCtl *a0);
 extern void func_00381010(MenuCtl *a0, MenuPad *a1, unsigned char a2);
@@ -14,8 +15,6 @@ extern void func_00383478(MenuCtl *a0, MenuPad *a1);
 extern void func_00383518(void *a0, void *a1);
 extern void func_003835A0(void *a0, void *a1);
 extern void func_00384198(MenuCtl *a0);
-extern char D_0045CA00[];
-extern char D_0045CA20[];
 
 __attribute__((section(".text.func_00382D30")))
 int func_00382D30(MenuCtl *self, MenuPad *arg)

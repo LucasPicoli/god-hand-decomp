@@ -1,14 +1,13 @@
 /* cygnus-2.96: MWSF handle playback server tick / start time (0x347F20, 0x348098). */
 
 #include "godhand/mwsfHn.h"
+#include "godhand/globals.h"
 
-extern char D_00459210[];
-
-void func_00347FE0(MwsfHn *mw);
+void RestartSingleLoop(MwsfHn *mw);
 int func_00348098(MwsfHn *mw);
 
-__attribute__((section(".text.func_00347F20")))
-void func_00347F20(MwsfHn *mw)
+__attribute__((section(".text.mwPlyExecInfiniteLoopHandle")))
+void mwPlyExecInfiniteLoopHandle(MwsfHn *mw)
 {
     int st;
 
@@ -16,7 +15,7 @@ void func_00347F20(MwsfHn *mw)
         return;
     }
     if (mw->f2E8 == 1) {
-        st = func_00346848(mw);
+        st = mwPlyGetStat(mw);
         if (st == 2) {
             if (func_00348098(mw) < 0) {
                 return;
@@ -28,9 +27,9 @@ void func_00347F20(MwsfHn *mw)
         return;
     }
     if (func_003468B8(mw) == 3) {
-        func_00347FE0(mw);
+        RestartSingleLoop(mw);
     }
-    func_00348158(mw);
+    CheckReleasLpTiming(mw);
 }
 
 __attribute__((section(".text.func_00348098")))
@@ -40,7 +39,7 @@ int func_00348098(MwsfHn *mw)
     int q, t;
 
     Obj0000_Call_0035A128_Field_3C(mw, 0x36, &base);
-    func_0035B5F8(mw->sfd, &rate);
+    SFD_GetFps(mw->sfd, &rate);
     if (rate <= 0) {
         MWSFSVM_Error(D_00459210);
         mw->f2FC = base;

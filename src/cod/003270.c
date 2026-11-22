@@ -6,12 +6,12 @@ extern int Forward33C548_33D040(void *a0);
 extern int Obj33C8_GetShort_98(void *a0);
 extern int Obj33C8_GetField_14(void *a0);
 extern int func_0033CE98(void *a0);
-extern int func_0033CEF0(void *a0);
+extern int ADXB_GetOutBps(void *a0);
 extern int Obj33C8_GetField_10(void *a0);
 extern int Obj33C8_GetField_18(void *a0);
 
 /* -- 1 call_chain ----------------------------------------------------------- */
-/* func_003276A8: iterating loop with bnel, calls func_00327370 — nonmatching */
+/* func_003276A8: iterating loop with bnel, calls ADXSJD_ExecHndl — nonmatching */
 
 /* -- 16 accessor leaves ----------------------------------------------------- */
 
@@ -88,10 +88,10 @@ int Obj3270_GetVia4_0033CE98_77A0(void *a0) {
     return func_0033CE98(*(void **)((char *)a0 + 0x4));
 }
 
-/* addiu sp,-0x10; sd ra; lw $a0,0x4($a0); ld ra; j func_0033CEF0; addiu sp,+0x10 */
+/* addiu sp,-0x10; sd ra; lw $a0,0x4($a0); ld ra; j ADXB_GetOutBps; addiu sp,+0x10 */
 __attribute__((section(".text.Obj3270_GetVia4_0033CEF0_77B8")))
 int Obj3270_GetVia4_0033CEF0_77B8(void *a0) {
-    return func_0033CEF0(*(void **)((char *)a0 + 0x4));
+    return ADXB_GetOutBps(*(void **)((char *)a0 + 0x4));
 }
 
 /* addiu sp,-0x10; sd ra; lw $a0,0x4($a0); ld ra; j Obj33C8_GetField_10; addiu sp,+0x10 */

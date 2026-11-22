@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-__attribute__((section(".text.func_00321D38")))
-int func_00321D38(char *p)
+__attribute__((section(".text.count_fdes")))
+int count_fdes(char *p)
 {
   int count = 0;
   int off = *((int *) p);

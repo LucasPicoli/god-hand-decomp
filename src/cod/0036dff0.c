@@ -13,16 +13,16 @@ typedef struct SfdCounters {
 } SfdCounters;
 
 extern int MPV_GoNextDelimSj(SjObj *sj);
-extern char *func_0036E380(char *dec, char *p);
+extern char *parseShc(char *dec, char *p);
 extern char *func_0036EB58(char *dec, char *p);
 extern char *MpvBits_searchStartCode(char *dec, char *p);
-extern char *func_0036F048(char *dec, char *p);
+extern char *parseEsc(char *dec, char *p);
 extern char *func_00372028(char *dec, char *p);
-extern char *func_00372590(char *dec, char *p);
-extern void func_0033ACA0(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
+extern char *parsePsc(char *dec, char *p);
+extern void SJ_SplitChunk(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
 
-__attribute__((section(".text.func_0036DFF0")))
-int func_0036DFF0(char *dec, SjObj *sj)
+__attribute__((section(".text.m2vhdec_ParseSj")))
+int m2vhdec_ParseSj(char *dec, SjObj *sj)
 {
     SjChunk ck;
     SjChunk tail;
@@ -42,7 +42,7 @@ int func_0036DFF0(char *dec, SjObj *sj)
         end = 0;
         switch (d) {
         case 0x40:
-            end = func_0036E380(dec, ck.data);
+            end = parseShc(dec, ck.data);
             break;
         case 0x80:
             end = func_0036EB58(dec, ck.data);
@@ -51,20 +51,20 @@ int func_0036DFF0(char *dec, SjObj *sj)
             end = MpvBits_searchStartCode(dec, ck.data);
             break;
         case 0x10:
-            end = func_0036F048(dec, ck.data);
+            end = parseEsc(dec, ck.data);
             break;
         case 0x08:
             end = func_00372028(dec, ck.data);
             break;
         case 0x04:
-            end = func_00372590(dec, ck.data);
+            end = parsePsc(dec, ck.data);
             break;
         }
         if (end == 0) {
             sj->vt->ungetChunk(sj, 1, &ck);
             break;
         }
-        func_0033ACA0(&ck, end - (char *)ck.data, &ck, &tail);
+        SJ_SplitChunk(&ck, end - (char *)ck.data, &ck, &tail);
         sj->vt->putChunk(sj, 0, &ck);
         sj->vt->ungetChunk(sj, 1, &tail);
         if (c->ready != 0)

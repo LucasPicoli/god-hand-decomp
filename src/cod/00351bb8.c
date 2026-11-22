@@ -9,7 +9,7 @@ int sfmpv_IsTerm(SfMpv *p, int n, int code)
 {
     if (code == 0x80) return 1;
     if (n < 5) {
-        if (func_00351C00(p) == 1) return 1;
+        if (sfmpv_GetTermSrc(p) == 1) return 1;
     }
     return 0;
 }

@@ -1,0 +1,3735 @@
+{
+  "_schema": "unit_sources/1",
+  "description": "Original source file of game-binary functions, read from the debug records (DWARF 1 / ECOFF mdebug) of other PS2 builds that link the same code byte-for-byte modulo relocation. Keyed by the original file's basename; `functions` are function starts in the current split of SLUS_215.03. `split_hints` are addresses where another build starts a function that the current split does not (a missed or merged function boundary). Evidence only: the repo layout is not changed by this file.",
+  "confidence": "every prototype with a procedure record for the matched function names the same file and the same function name; range-only hits excluded",
+  "count": 1581,
+  "split_hint_count": 8,
+  "files": {
+    "T_vview.cpp": {
+      "functions": [
+        "0x00201BE0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_amp.c": {
+      "functions": [
+        "0x0033C038",
+        "0x0033C088"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_bac3.c": {
+      "functions": [
+        "0x0033C240",
+        "0x0033C270",
+        "0x0033C290",
+        "0x0033C2C0",
+        "0x0033C2F0",
+        "0x0033C3A0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "adx_bahx.c": {
+      "functions": [
+        "0x0033C428",
+        "0x0033C458",
+        "0x0033C4C0",
+        "0x0033C4E8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_baif.c": {
+      "functions": [
+        "0x00340E90",
+        "0x00340EF8",
+        "0x00341008",
+        "0x003412D8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_bau.c": {
+      "functions": [
+        "0x00341798",
+        "0x003417F0",
+        "0x00341900",
+        "0x00341A00",
+        "0x00341B98",
+        "0x00341D18",
+        "0x00341EC0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_bsc.c": {
+      "functions": [
+        "0x0033C7A0",
+        "0x0033C918",
+        "0x0033CC50",
+        "0x0033CEF0",
+        "0x0033CF70",
+        "0x0033CFA8",
+        "0x0033CFB8",
+        "0x0033CFF8",
+        "0x0033D040",
+        "0x0033D090",
+        "0x0033D198",
+        "0x0033D218",
+        "0x0033D230",
+        "0x0033D278",
+        "0x0033D2D0",
+        "0x0033D320",
+        "0x0033D378",
+        "0x0033D3D0",
+        "0x0033D4D8",
+        "0x0033D508",
+        "0x0033D578",
+        "0x0033D598",
+        "0x0033D720"
+      ],
+      "split_hints": [
+        "0x0033C770"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_bsps.c": {
+      "functions": [
+        "0x0033D9C0",
+        "0x0033DAE0",
+        "0x0033DBD8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_bwav.c": {
+      "functions": [
+        "0x0033DD78",
+        "0x0033DFA8",
+        "0x0033E0A8",
+        "0x0033E220",
+        "0x0033E3B8",
+        "0x0033E558",
+        "0x0033E5C0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_dcd.c": {
+      "functions": [
+        "0x0033E6B8",
+        "0x0033E8A0",
+        "0x0033E9A0",
+        "0x0033EA20",
+        "0x0033EA98",
+        "0x0033EBD0",
+        "0x0033EE30",
+        "0x0033F050"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_dcd5.c": {
+      "functions": [
+        "0x00341F00",
+        "0x003420E0",
+        "0x003424A8",
+        "0x003427F0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_errs.c": {
+      "functions": [
+        "0x0033F0B8",
+        "0x0033F0F0",
+        "0x0033F240",
+        "0x0033F348"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_fcch.c": {
+      "functions": [
+        "0x0033F3D0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "adx_fs.c": {
+      "functions": [
+        "0x003228C0",
+        "0x00322978",
+        "0x00323478",
+        "0x003234D0",
+        "0x00323700",
+        "0x00323A00",
+        "0x00323BE0",
+        "0x00324108",
+        "0x00324530",
+        "0x00324858"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_mps2.c": {
+      "functions": [
+        "0x00324D18",
+        "0x00324D88",
+        "0x00324E70",
+        "0x00324E98",
+        "0x00324EB0",
+        "0x00324F08",
+        "0x00325290",
+        "0x003252F8",
+        "0x00325360",
+        "0x003257C8",
+        "0x00325818",
+        "0x00325DF0",
+        "0x00325E78",
+        "0x00325EF8",
+        "0x00325FD8"
+      ],
+      "split_hints": [
+        "0x00325C98"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_psfs.c": {
+      "functions": [
+        "0x00326050",
+        "0x003260C8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_rnap.c": {
+      "functions": [
+        "0x00326160",
+        "0x003261A8",
+        "0x00326238",
+        "0x00326250"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_sjd.c": {
+      "functions": [
+        "0x00326568",
+        "0x00326780",
+        "0x003267C0",
+        "0x00326800",
+        "0x00326830",
+        "0x00326860",
+        "0x00326B98",
+        "0x00327230",
+        "0x003272C0",
+        "0x00327370",
+        "0x00327418",
+        "0x00327568",
+        "0x00327830",
+        "0x00327890",
+        "0x003278E8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_stmc.c": {
+      "functions": [
+        "0x00327A50"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "adx_sudv.c": {
+      "functions": [
+        "0x003291B8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_tlk.c": {
+      "functions": [
+        "0x00329C68",
+        "0x0032B758",
+        "0x0032B7F0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_tsvr.c": {
+      "functions": [
+        "0x0032BF90",
+        "0x0032C048",
+        "0x0032C310",
+        "0x0032CC90",
+        "0x0032CEB0",
+        "0x0032CF30"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "adx_xpnd.c": {
+      "functions": [
+        "0x0033F8B8",
+        "0x0033F988",
+        "0x0033F9B0",
+        "0x0033F9D8",
+        "0x0033FA00",
+        "0x0033FA10",
+        "0x0033FA30",
+        "0x0033FA70",
+        "0x0033FAA0",
+        "0x0033FAD0",
+        "0x0033FB00",
+        "0x0033FB20",
+        "0x0033FB48",
+        "0x0033FB78"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "all_cpp.cpp": {
+      "split_hints": [
+        "0x003951B8"
+      ],
+      "seen_in": [
+        "[PS2] God of War - The Hydra Battle (USA) [SCUS-97467]",
+        "[PS2] God of War II (Europe) (Demo) [SCED-54680]"
+      ]
+    },
+    "atof.c": {
+      "functions": [
+        "0x003A7C28"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "atoi.c": {
+      "functions": [
+        "0x003A7C48"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "cFilter.cpp": {
+      "functions": [
+        "0x00299868",
+        "0x002998A0",
+        "0x002998D8",
+        "0x00299908",
+        "0x002999D0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "cache.c": {
+      "functions": [
+        "0x003B0468",
+        "0x003B0510",
+        "0x003B0598",
+        "0x003B0640"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "caplib.cpp": {
+      "functions": [
+        "0x001F7EF0",
+        "0x001F7FB8",
+        "0x001F8080"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "cfg_lib.c": {
+      "functions": [
+        "0x0033FCD0",
+        "0x0033FD70"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "cft_lib.c": {
+      "functions": [
+        "0x00321268",
+        "0x00360D28",
+        "0x00360D50"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cft_mbraw8rgb.c": {
+      "functions": [
+        "0x00360D78"
+      ],
+      "seen_in": [
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cft_mbraw8toplaneargb.c": {
+      "functions": [
+        "0x00363620"
+      ],
+      "seen_in": [
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cft_raw8rgb.c": {
+      "functions": [
+        "0x00365D90"
+      ],
+      "seen_in": [
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cftfx.c": {
+      "functions": [
+        "0x00365EC0",
+        "0x00366110",
+        "0x00366368",
+        "0x003665C0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cmptime.c": {
+      "functions": [
+        "0x00366918"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "cri_cvfs.c": {
+      "functions": [
+        "0x003303A8",
+        "0x00330480",
+        "0x00330518",
+        "0x003306D8",
+        "0x00330780",
+        "0x003308A8",
+        "0x00330920",
+        "0x00330A68",
+        "0x00330C88",
+        "0x00330E70",
+        "0x00330EC0",
+        "0x00330F10"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "cri_skg.c": {
+      "functions": [
+        "0x0033C520",
+        "0x0033C548"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "cri_srd.c": {
+      "functions": [
+        "0x00330FB8",
+        "0x00330FE8",
+        "0x00331110",
+        "0x00331200",
+        "0x003312B8",
+        "0x003312E8",
+        "0x00331310",
+        "0x00331458",
+        "0x00331718",
+        "0x00331900",
+        "0x00331C78",
+        "0x00331C98",
+        "0x00331CE0",
+        "0x00331D40",
+        "0x00331D78",
+        "0x00331DB8",
+        "0x00331E70",
+        "0x00331EE8",
+        "0x00331F50",
+        "0x00331FA8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "crt0.s": {
+      "functions": [
+        "0x00100008"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Kingdom Hearts - Re Chain of Memories (Preview)",
+        "[PS2] Midway Arcade Treasures 2 (USA) [SLUS-20997]"
+      ]
+    },
+    "csc.c": {
+      "functions": [
+        "0x0039BB20",
+        "0x0039BFF8",
+        "0x0039C140"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge"
+      ]
+    },
+    "defhandler.c": {
+      "functions": [
+        "0x0039AE50",
+        "0x0039AE78"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "diei.c": {
+      "functions": [
+        "0x003B63A0",
+        "0x003B63F0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "dtr.c": {
+      "functions": [
+        "0x00340130",
+        "0x003401F0",
+        "0x003402E0",
+        "0x00340308",
+        "0x00340318"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "dtx.c": {
+      "functions": [
+        "0x00332020",
+        "0x00332090",
+        "0x003320F8",
+        "0x00332178",
+        "0x00332310",
+        "0x00332508",
+        "0x003325F8",
+        "0x00332670",
+        "0x00332778"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "dvci.c": {
+      "functions": [
+        "0x003327D8",
+        "0x00332838",
+        "0x00332890",
+        "0x00332958",
+        "0x003329E8",
+        "0x00332A60",
+        "0x00332AE8",
+        "0x00332BA8",
+        "0x00332BE0",
+        "0x00332D78",
+        "0x00333048",
+        "0x00333278",
+        "0x00333288",
+        "0x003332C8"
+      ],
+      "split_hints": [
+        "0x003331E0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "dvci_sub.c": {
+      "functions": [
+        "0x00333438",
+        "0x00333470",
+        "0x003334C8",
+        "0x00333560",
+        "0x003336F8",
+        "0x00333A10",
+        "0x00333C00",
+        "0x00333E68",
+        "0x00333E88"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "eecdvd.c": {
+      "functions": [
+        "0x00394328",
+        "0x003984D8",
+        "0x00398818",
+        "0x00398B90",
+        "0x003999A8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "eeloadfile.c": {
+      "functions": [
+        "0x003B5E50",
+        "0x003B60A0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "ef_asin.c": {
+      "functions": [
+        "0x003A2558"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] Burnout Dominator"
+      ]
+    },
+    "ef_log.c": {
+      "functions": [
+        "0x003A2BB0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "ef_pow.c": {
+      "functions": [
+        "0x003A2ED8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "ef_rem_pio2.c": {
+      "functions": [
+        "0x003A3768"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "ef_sqrt.c": {
+      "functions": [
+        "0x003A3B48"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "em_sub.cpp": {
+      "functions": [
+        "0x002DA940"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "eprintf.cpp": {
+      "functions": [
+        "0x002E12D8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "error.c": {
+      "functions": [
+        "0x0039C228",
+        "0x0039C2C8",
+        "0x0039C390",
+        "0x0039C3E8"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "exception.cc": {
+      "functions": [
+        "0x00321218",
+        "0x00321288",
+        "0x003212C0",
+        "0x00321308",
+        "0x00321378",
+        "0x00321408",
+        "0x003214D0",
+        "0x003217B8",
+        "0x003217F0",
+        "0x00321860"
+      ],
+      "split_hints": [
+        "0x00321738"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "exit.c": {
+      "functions": [
+        "0x003B67E8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] ATMINWON (v1.13)",
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]"
+      ]
+    },
+    "ext.c": {
+      "functions": [
+        "0x003A0018",
+        "0x003A05E0",
+        "0x003A0680",
+        "0x003A0A10",
+        "0x003A0C18",
+        "0x003A0E28",
+        "0x003A0F88",
+        "0x003A0FD8",
+        "0x003A1068",
+        "0x003A1100"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "filebuf.cc": {
+      "functions": [
+        "0x0038EB98",
+        "0x0038EC08",
+        "0x0038EC90",
+        "0x0038ED40",
+        "0x0038EDC0",
+        "0x0038EF60",
+        "0x0038F020",
+        "0x0038F0F0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "filedoalloc.c": {
+      "functions": [
+        "0x0038F3D8"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "fileops.c": {
+      "functions": [
+        "0x00392718",
+        "0x00392758",
+        "0x00392830",
+        "0x00392998",
+        "0x00392A30",
+        "0x00392A80",
+        "0x00392BA0",
+        "0x00392CD0",
+        "0x00392E48",
+        "0x00392F00",
+        "0x00393230",
+        "0x00393258",
+        "0x00393278",
+        "0x00393298",
+        "0x003932B8",
+        "0x00393368"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "filestub.c": {
+      "functions": [
+        "0x003B38D0",
+        "0x003B3958",
+        "0x003B3AB8",
+        "0x003B3E70",
+        "0x003B3F08",
+        "0x003B3F50",
+        "0x003B4158",
+        "0x003B41E8",
+        "0x003B4220",
+        "0x003B4D98",
+        "0x003B5120"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "findfp.c": {
+      "functions": [
+        "0x003A6188"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]"
+      ]
+    },
+    "fiprintf.c": {
+      "functions": [
+        "0x003AE188"
+      ],
+      "seen_in": [
+        "[PS2] Dream Audition (Japan) [SLPS-20016]",
+        "[PS2] Driving Emotion Type-S (USA) [SLUS-20113]"
+      ]
+    },
+    "floatconv.c": {
+      "functions": [
+        "0x0038F4C0",
+        "0x0038F4E8",
+        "0x0038F548",
+        "0x0038F570",
+        "0x0038F5B8",
+        "0x0038F630",
+        "0x0038F700",
+        "0x0038F838",
+        "0x0038F8C0",
+        "0x0038F980",
+        "0x0038F9B8",
+        "0x0038FBF0",
+        "0x0038FC68",
+        "0x0038FDE8",
+        "0x0038FE50",
+        "0x0038FFE0",
+        "0x00390078",
+        "0x003901A8",
+        "0x00390318"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "frame.c": {
+      "functions": [
+        "0x00321938",
+        "0x00321980",
+        "0x003219D0",
+        "0x00321AD0",
+        "0x00321D38",
+        "0x00321D80",
+        "0x00321E08",
+        "0x00321F48",
+        "0x00322030",
+        "0x00322138",
+        "0x003224D0",
+        "0x003224F8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "genops.c": {
+      "functions": [
+        "0x0038C280",
+        "0x0038C2B8",
+        "0x0038C2F0",
+        "0x0038C3A0",
+        "0x0038C5B8",
+        "0x0038C688",
+        "0x0038C768",
+        "0x0038C7F0",
+        "0x0038C860",
+        "0x0038C8B0",
+        "0x0038C9E8",
+        "0x0038CA10",
+        "0x0038CB28",
+        "0x0038CBF0",
+        "0x0038CC40",
+        "0x0038CC88",
+        "0x0038CD18",
+        "0x0038CD98",
+        "0x0038CE10",
+        "0x0038CE58",
+        "0x0038CFC0",
+        "0x0038D038",
+        "0x0038D070",
+        "0x0038D080",
+        "0x0038D0B8",
+        "0x0038D140",
+        "0x0038D168"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "glue.c": {
+      "functions": [
+        "0x0038B530",
+        "0x003B0130",
+        "0x003B01C0",
+        "0x003B0268",
+        "0x003B02E8",
+        "0x003B0360",
+        "0x003B0398",
+        "0x003B0450"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "graphdev.c": {
+      "functions": [
+        "0x003951F8",
+        "0x00395398",
+        "0x00395430",
+        "0x00395618",
+        "0x00395758",
+        "0x00395F68",
+        "0x00396008",
+        "0x00396048",
+        "0x003960D0",
+        "0x00396158",
+        "0x00396440",
+        "0x003964C0",
+        "0x00396560",
+        "0x003968E8",
+        "0x003969A8",
+        "0x00396A70",
+        "0x00396C58",
+        "0x00396E48"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "htci.c": {
+      "functions": [
+        "0x00333FA0",
+        "0x00333FD8",
+        "0x00334038",
+        "0x00334090",
+        "0x003340F0",
+        "0x003341B8",
+        "0x00334248",
+        "0x003342E8",
+        "0x003344C8",
+        "0x00334500",
+        "0x00334698",
+        "0x00334808",
+        "0x00334998",
+        "0x00334B38",
+        "0x00334B58",
+        "0x00334B88",
+        "0x00334BA8",
+        "0x00334BD8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "htci_sub.c": {
+      "functions": [
+        "0x00334CA0",
+        "0x00334D10",
+        "0x00334E80",
+        "0x00334E98",
+        "0x00334EF0",
+        "0x00334F90",
+        "0x003350F0",
+        "0x003351C0",
+        "0x00335218",
+        "0x00335248",
+        "0x003352D0"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "init.c": {
+      "functions": [
+        "0x0039C218"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "initsys.c": {
+      "functions": [
+        "0x003B64A8",
+        "0x003B64E8",
+        "0x003B6500"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 3D Fighting School 2 (Japan) [SLPS-20214]",
+        "[PS2] ATMINWON (v1.13)"
+      ]
+    },
+    "intr.c": {
+      "functions": [
+        "0x003B06C8",
+        "0x003B06D8",
+        "0x003B0740",
+        "0x003B07A8",
+        "0x003B0810"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 3D Fighting School 2 (Japan) [SLPS-20214]",
+        "[PS2] ATMINWON (v1.13)"
+      ]
+    },
+    "ioassign.cc": {
+      "functions": [
+        "0x0038F140",
+        "0x0038F1A0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iogetc.c": {
+      "functions": [
+        "0x0038EAE0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iogetline.c": {
+      "functions": [
+        "0x0038E258"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iopadn.c": {
+      "functions": [
+        "0x0038E138"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iopreset.c": {
+      "functions": [
+        "0x003B60E8",
+        "0x003B6240"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] ATMINWON (v1.13)",
+        "[PS2] Burnout Dominator"
+      ]
+    },
+    "ioputc.c": {
+      "functions": [
+        "0x0038EB28"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "ioseekoff.c": {
+      "functions": [
+        "0x0038E3F0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "ioseekpos.c": {
+      "functions": [
+        "0x0038E490"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iostream.cc": {
+      "functions": [
+        "0x003874C0",
+        "0x003875A8",
+        "0x00387610",
+        "0x003876D0",
+        "0x00387788",
+        "0x00387890",
+        "0x00387958",
+        "0x003879C0",
+        "0x00387A10",
+        "0x00387A60",
+        "0x00387AB8",
+        "0x00387F78",
+        "0x00387FD8",
+        "0x00388038",
+        "0x00388098",
+        "0x003880F8",
+        "0x00388158",
+        "0x003881B8",
+        "0x00388218",
+        "0x00388278",
+        "0x003882D8",
+        "0x00388380",
+        "0x00388420",
+        "0x003884C0",
+        "0x00388A00",
+        "0x00388AA0",
+        "0x00388B18",
+        "0x00388BA8",
+        "0x00388C18",
+        "0x00388CA8",
+        "0x00388D18",
+        "0x00388E30",
+        "0x00388FB0",
+        "0x00389090",
+        "0x00389170",
+        "0x003891C0",
+        "0x00389210",
+        "0x00389268",
+        "0x003892E0",
+        "0x00389398",
+        "0x00389400",
+        "0x00389438",
+        "0x00389490",
+        "0x00389548",
+        "0x003895B0",
+        "0x00389710",
+        "0x00389770",
+        "0x003897A8",
+        "0x003897C8",
+        "0x003897E8",
+        "0x00389828",
+        "0x00389880",
+        "0x00389980",
+        "0x003899D8",
+        "0x00389AB8",
+        "0x00389BD8",
+        "0x00389C38",
+        "0x00389D50",
+        "0x00389D70",
+        "0x00389E30",
+        "0x00389E88",
+        "0x00389ED8",
+        "0x00389F38",
+        "0x00389FE0",
+        "0x0038A040",
+        "0x0038A0C0",
+        "0x0038A1D8",
+        "0x0038A1F8",
+        "0x0038A238",
+        "0x0038A278",
+        "0x0038A298",
+        "0x0038A340",
+        "0x0038A398",
+        "0x0038A448",
+        "0x0038A478",
+        "0x0038A4B8",
+        "0x0038A508",
+        "0x0038A528",
+        "0x0038A588",
+        "0x0038A5A8",
+        "0x0038A628",
+        "0x0038A660",
+        "0x0038A698",
+        "0x0038A6D0",
+        "0x0038A700",
+        "0x0038A740",
+        "0x0038A7E0",
+        "0x0038A838"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "ioungetc.c": {
+      "functions": [
+        "0x0038EAB0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "iovfscanf.c": {
+      "functions": [
+        "0x0038E030"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "ipuinit.c": {
+      "functions": [
+        "0x003BAD80"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "isgetline.cc": {
+      "functions": [
+        "0x0038A8D8",
+        "0x0038AA60",
+        "0x0038AB70",
+        "0x0038ACB0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "isscan.cc": {
+      "functions": [
+        "0x0038ADC8",
+        "0x0038AE80"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "kf_cos.c": {
+      "functions": [
+        "0x003A3C80"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "kf_rem_pio2.c": {
+      "functions": [
+        "0x003A3DD8"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "kf_sin.c": {
+      "functions": [
+        "0x003A4728"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "kf_tan.c": {
+      "functions": [
+        "0x003A4830"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "klib.s": {
+      "functions": [
+        "0x003AF880",
+        "0x003AF890",
+        "0x003AF8A0",
+        "0x003AF8B0",
+        "0x003AF8C0",
+        "0x003AF8D0",
+        "0x003AF8E0",
+        "0x003AF8F0",
+        "0x003AF900",
+        "0x003AF910",
+        "0x003AF920",
+        "0x003AF930",
+        "0x003AF940",
+        "0x003AF950",
+        "0x003AF960",
+        "0x003AF970",
+        "0x003AF980",
+        "0x003AF990",
+        "0x003AF9A0",
+        "0x003AF9B0",
+        "0x003AF9C0",
+        "0x003AF9D0",
+        "0x003AF9E0",
+        "0x003AF9F0",
+        "0x003AFA00",
+        "0x003AFA10",
+        "0x003AFA20",
+        "0x003AFA30",
+        "0x003AFA40",
+        "0x003AFA50",
+        "0x003AFA60",
+        "0x003AFA70",
+        "0x003AFA80",
+        "0x003AFA90",
+        "0x003AFAA0",
+        "0x003AFAB0",
+        "0x003AFAD0",
+        "0x003AFAE0",
+        "0x003AFAF0",
+        "0x003AFB00",
+        "0x003AFB10",
+        "0x003AFB20",
+        "0x003AFB30",
+        "0x003AFB40",
+        "0x003AFB50",
+        "0x003AFB60",
+        "0x003AFB70",
+        "0x003AFB80",
+        "0x003AFB90",
+        "0x003AFBA0",
+        "0x003AFBB0",
+        "0x003AFBC0",
+        "0x003AFBD0",
+        "0x003AFBE0",
+        "0x003AFBF0",
+        "0x003AFC00",
+        "0x003AFC10",
+        "0x003AFC20",
+        "0x003AFC30",
+        "0x003AFC40",
+        "0x003AFC50",
+        "0x003AFC60",
+        "0x003AFC70",
+        "0x003AFC80",
+        "0x003AFC90",
+        "0x003AFCA0",
+        "0x003AFCB0",
+        "0x003AFCC0",
+        "0x003AFCD0",
+        "0x003AFCE0",
+        "0x003AFCF0",
+        "0x003AFD00",
+        "0x003AFD10",
+        "0x003AFD20",
+        "0x003AFD30",
+        "0x003AFD40",
+        "0x003AFD50",
+        "0x003AFD60",
+        "0x003AFD70",
+        "0x003AFD80",
+        "0x003AFD90",
+        "0x003AFDA0",
+        "0x003AFDB0",
+        "0x003AFDC0",
+        "0x003AFDD0",
+        "0x003AFDE0",
+        "0x003AFE10",
+        "0x003AFE20",
+        "0x003AFE30",
+        "0x003AFE40",
+        "0x003AFE50",
+        "0x003AFE60",
+        "0x003AFE70",
+        "0x003AFE80",
+        "0x003AFE90",
+        "0x003AFEA0",
+        "0x003AFEB0",
+        "0x003AFEC0",
+        "0x003AFED0",
+        "0x003AFEE0",
+        "0x003AFEF0",
+        "0x003AFF00",
+        "0x003AFF10",
+        "0x003AFF20",
+        "0x003AFF30",
+        "0x003AFF40",
+        "0x003AFF50",
+        "0x003AFF60",
+        "0x003AFF70",
+        "0x003AFF80",
+        "0x003AFF90",
+        "0x003AFFA0",
+        "0x003AFFB0",
+        "0x003AFFC0",
+        "0x003AFFD0",
+        "0x003AFFE0",
+        "0x003AFFF0",
+        "0x003B0000",
+        "0x003B0010",
+        "0x003B0030",
+        "0x003B0040",
+        "0x003B0050",
+        "0x003B0060",
+        "0x003B0070",
+        "0x003B0080",
+        "0x003B0090",
+        "0x003B00A0",
+        "0x003B00B0",
+        "0x003B00C0",
+        "0x003B00D0",
+        "0x003B00E0",
+        "0x003B00F0",
+        "0x003B0100",
+        "0x003B0110"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "kprintf.c": {
+      "functions": [
+        "0x003B0D48",
+        "0x003B0E30",
+        "0x003B0E68"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "kprintf2.c": {
+      "functions": [
+        "0x003B0EF8",
+        "0x003B10D0",
+        "0x003B1DE8",
+        "0x003B1E40",
+        "0x003B1E68",
+        "0x003B1E90",
+        "0x003B1EE0",
+        "0x003B1F28",
+        "0x003B1FA8"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Chicken Little (USA) [SLUS-21088]"
+      ]
+    },
+    "libdma.c": {
+      "functions": [
+        "0x00397028",
+        "0x003970A0",
+        "0x003970C8",
+        "0x00397100",
+        "0x00397128",
+        "0x003973E8",
+        "0x00397450",
+        "0x003974D0",
+        "0x00397550",
+        "0x00397590"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "libgcc2.c": {
+      "functions": [
+        "0x0031DB70",
+        "0x003202A8",
+        "0x00320338",
+        "0x00320360",
+        "0x003203B0",
+        "0x00320418",
+        "0x00320440",
+        "0x003B7FE0",
+        "0x003B86D0",
+        "0x003B8730",
+        "0x003B8820",
+        "0x003B8E88",
+        "0x003B9458"
+      ],
+      "split_hints": [
+        "0x003205B8",
+        "0x003206D0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "libgs2.cpp": {
+      "functions": [
+        "0x00309CA0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "libipu.c": {
+      "functions": [
+        "0x003BA978",
+        "0x003BAA68",
+        "0x003BAB50",
+        "0x003BACA0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "libosd.c": {
+      "functions": [
+        "0x003B66D0",
+        "0x003B6738"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 3D Fighting School 2 (Japan) [SLPS-20214]",
+        "[PS2] ATMINWON (v1.13)"
+      ]
+    },
+    "libpad.c": {
+      "functions": [
+        "0x00397780",
+        "0x00397BC8",
+        "0x00397D20",
+        "0x00397D98",
+        "0x00397E18",
+        "0x00397ED0",
+        "0x00397F38",
+        "0x00398070",
+        "0x00398128",
+        "0x003981F0",
+        "0x003983F8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "lsc.c": {
+      "functions": [
+        "0x00335360"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "lsc_err.c": {
+      "functions": [
+        "0x00335D18"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "lsc_ini.c": {
+      "functions": [
+        "0x00335DE0",
+        "0x00335E60"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "lsc_svr.c": {
+      "functions": [
+        "0x00335F20",
+        "0x00336048",
+        "0x00336110",
+        "0x00336218"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "m2v_api.c": {
+      "functions": [
+        "0x0036CD18",
+        "0x0036CE38"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "m2v_err.c": {
+      "functions": [
+        "0x0036D7F8",
+        "0x0036D868"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "m2v_frm.c": {
+      "functions": [
+        "0x0036D970"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "m2v_get.c": {
+      "functions": [
+        "0x0036DA80",
+        "0x0036DB80",
+        "0x0036DBE0",
+        "0x0036DC70"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "m2v_hdec.c": {
+      "functions": [
+        "0x0036DCE8",
+        "0x0036DE00",
+        "0x0036E208",
+        "0x0036E2B8",
+        "0x0036E308"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "m2v_lib.c": {
+      "functions": [
+        "0x0036D0F8",
+        "0x0036D1A8",
+        "0x0036D280",
+        "0x0036D3D8",
+        "0x0036D528",
+        "0x0036D580",
+        "0x0036D688"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "main.cpp": {
+      "functions": [
+        "0x0031CEF8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "memcmp.S": {
+      "functions": [
+        "0x003A50B4"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]"
+      ]
+    },
+    "memcpy.S": {
+      "functions": [
+        "0x003A5148"
+      ],
+      "seen_in": [
+        "[PS2] From Software First Previews (Japan) [SLPM-60102]"
+      ]
+    },
+    "memcpyb.c": {
+      "functions": [
+        "0x003669B0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "memcpyd.c": {
+      "functions": [
+        "0x0036D6B0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "memmove.S": {
+      "functions": [
+        "0x003A51F4"
+      ],
+      "seen_in": [
+        "[PS2] From Software First Previews (Japan) [SLPM-60102]",
+        "[PS2] Street Fighter EX3 (Europe) [SLES-50072]",
+        "[PS2] Street Fighter EX3 (USA) [SLUS-20130]"
+      ]
+    },
+    "memsetb.c": {
+      "functions": [
+        "0x00366B80"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "memsetd.c": {
+      "functions": [
+        "0x00366C50"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mfci.c": {
+      "functions": [
+        "0x00336318",
+        "0x003364A0",
+        "0x00336510",
+        "0x00336530",
+        "0x00336588",
+        "0x003365A8",
+        "0x00336618",
+        "0x003366B8",
+        "0x003367F8",
+        "0x00336980",
+        "0x00336A40"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mm.c": {
+      "functions": [
+        "0x0039F0E8",
+        "0x0039F160",
+        "0x0039F1F8",
+        "0x0039F2B0",
+        "0x0039F380",
+        "0x0039F430",
+        "0x0039F4E8",
+        "0x0039F5E0",
+        "0x0039F6E0",
+        "0x0039F780",
+        "0x0039F830",
+        "0x0039F910",
+        "0x0039F9F8",
+        "0x0039FAD0",
+        "0x0039FBA0",
+        "0x0039FCC0"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "mpc.c": {
+      "functions": [
+        "0x0039C430",
+        "0x0039CCC0",
+        "0x0039CF10",
+        "0x0039DB28",
+        "0x0039DF50",
+        "0x0039E648",
+        "0x0039E7C0",
+        "0x0039E928",
+        "0x0039EAA8",
+        "0x0039EB90",
+        "0x0039EC20",
+        "0x0039EDB8",
+        "0x0039EF68",
+        "0x0039FDD8"
+      ],
+      "split_hints": [
+        "0x0039EEA8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 3D Fighting School 2 (Japan) [SLPS-20214]",
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]"
+      ]
+    },
+    "mpeg.c": {
+      "functions": [
+        "0x00399D70",
+        "0x0039A078",
+        "0x0039A2F8",
+        "0x0039A5B0",
+        "0x0039A720",
+        "0x0039A8E8",
+        "0x0039A9A8",
+        "0x0039A9F0",
+        "0x0039AA38",
+        "0x0039AA48",
+        "0x0039AAD8",
+        "0x0039AB20",
+        "0x0039AB98",
+        "0x0039AC10",
+        "0x0039AC58"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge"
+      ]
+    },
+    "mpeg.h": {
+      "functions": [
+        "0x0039ECB8",
+        "0x003A0DE8"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "mprec.c": {
+      "functions": [
+        "0x003AEB38",
+        "0x003AEBC0",
+        "0x003AF118"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]"
+      ]
+    },
+    "mps_dec.c": {
+      "functions": [
+        "0x00366D28",
+        "0x00366D78",
+        "0x00366DC8",
+        "0x00366E18",
+        "0x00366EC0",
+        "0x003670E8",
+        "0x00367550",
+        "0x00367DC0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mps_del.c": {
+      "functions": [
+        "0x00368A28"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mps_get.c": {
+      "functions": [
+        "0x00368AB0",
+        "0x00368B18",
+        "0x00368BC8",
+        "0x00368C60"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mps_lib.c": {
+      "functions": [
+        "0x00368CE8",
+        "0x00368D60",
+        "0x00368FC0",
+        "0x00368FE8",
+        "0x00369020",
+        "0x00369078",
+        "0x00369118",
+        "0x00369130",
+        "0x00369158",
+        "0x00369188"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_deli.c": {
+      "functions": [
+        "0x003691D8",
+        "0x00369270",
+        "0x00369370"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_emp.c": {
+      "functions": [
+        "0x00369478",
+        "0x00369920"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_frm.c": {
+      "functions": [
+        "0x00369FB8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_get.c": {
+      "functions": [
+        "0x0036A0D0",
+        "0x0036A1D8",
+        "0x0036A238",
+        "0x0036A300"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mpv_hdec.c": {
+      "functions": [
+        "0x0036A5F8",
+        "0x0036A668",
+        "0x0036BB78",
+        "0x0036BDA0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_lib.c": {
+      "functions": [
+        "0x0036BED8",
+        "0x0036BF60",
+        "0x0036BFB0",
+        "0x0036C220",
+        "0x0036C3B8",
+        "0x0036C450",
+        "0x0036C568",
+        "0x0036C5F8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mpv_m2v.c": {
+      "functions": [
+        "0x0036C628"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "muldiv.c": {
+      "functions": [
+        "0x0036C920"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "muldivr.c": {
+      "functions": [
+        "0x0036C990"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "mwrscps2.c": {
+      "functions": [
+        "0x003462D8",
+        "0x00346368",
+        "0x00346410",
+        "0x00346450",
+        "0x00346478",
+        "0x00346498",
+        "0x003464D8",
+        "0x00346510",
+        "0x00346578",
+        "0x003465B8",
+        "0x003465E8",
+        "0x00346660"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdcre.c": {
+      "functions": [
+        "0x00342BC8",
+        "0x00342CB0",
+        "0x00342D00",
+        "0x00342F40",
+        "0x003430C8",
+        "0x003431D8",
+        "0x00343A98",
+        "0x00343BD0",
+        "0x003441D0",
+        "0x00344520",
+        "0x00344648",
+        "0x003446D8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdfrm.c": {
+      "functions": [
+        "0x00344BC0",
+        "0x00344BF0",
+        "0x00344E18",
+        "0x00344E58"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdlib.c": {
+      "functions": [
+        "0x00345598",
+        "0x003455B8",
+        "0x003455D8",
+        "0x00345750"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdset.c": {
+      "functions": [
+        "0x00346B78"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdsfx.c": {
+      "functions": [
+        "0x001646B0",
+        "0x00346FB0",
+        "0x00346FC0",
+        "0x00347008",
+        "0x003472E8",
+        "0x00347700"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdsl.c": {
+      "functions": [
+        "0x00347DF8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdsst.c": {
+      "functions": [
+        "0x003481D8",
+        "0x00348210"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdsvm.c": {
+      "functions": [
+        "0x003489B0",
+        "0x00348A50",
+        "0x00348AA8",
+        "0x00348B00",
+        "0x00348BE0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwsfdsvr.c": {
+      "functions": [
+        "0x003492E8",
+        "0x003493D8",
+        "0x00349408",
+        "0x00349438",
+        "0x003496F0",
+        "0x00349778",
+        "0x003497A0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "mwstm.c": {
+      "functions": [
+        "0x00349A40",
+        "0x00349A68",
+        "0x00349AD0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "outfloat.c": {
+      "functions": [
+        "0x0038E4F0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "output.c": {
+      "functions": [
+        "0x0039AEA0",
+        "0x0039B130",
+        "0x0039B3F0",
+        "0x0039B8D0"
+      ],
+      "seen_in": [
+        "[PS2] Burnout Dominator",
+        "[PS2] Burnout Revenge",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]"
+      ]
+    },
+    "pl2enc.c": {
+      "functions": [
+        "0x00340538",
+        "0x00340580"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "pl2link.c": {
+      "functions": [
+        "0x00336D08",
+        "0x00336DB0",
+        "0x00336E20",
+        "0x00336E38",
+        "0x00336E58"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "ps2_rna.c": {
+      "functions": [
+        "0x00336E88",
+        "0x00337240",
+        "0x00337320",
+        "0x003373A0",
+        "0x00337B30",
+        "0x00337D20",
+        "0x003381B0",
+        "0x003382A0",
+        "0x00338338",
+        "0x00338378",
+        "0x003383B0",
+        "0x00338418",
+        "0x00338478",
+        "0x003386E0",
+        "0x00338788",
+        "0x003387C8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "s_matherr.c": {
+      "functions": [
+        "0x003A4AC8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "s_rint.c": {
+      "functions": [
+        "0x003A4AF0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "sbscan.cc": {
+      "functions": [
+        "0x0038AF30",
+        "0x0038AF78"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "scr_set.c": {
+      "functions": [
+        "0x002A38E8"
+      ],
+      "seen_in": [
+        "[PS2] Devil May Cry (Japan) (Demo) [SLPM-61010]",
+        "[PS2] Devil May Cry (Japan) (Demo) [SLPM-65023]"
+      ]
+    },
+    "sde_efx.cpp": {
+      "functions": [
+        "0x00374980",
+        "0x00374AE0",
+        "0x00374B00"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_iss0.cpp": {
+      "functions": [
+        "0x00374CB8",
+        "0x00374D98",
+        "0x00375050",
+        "0x003750E0",
+        "0x00375180",
+        "0x00375A78",
+        "0x00375B90"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_iss1.cpp": {
+      "functions": [
+        "0x00386D70"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_main.cpp": {
+      "functions": [
+        "0x00375600",
+        "0x00375630",
+        "0x00375748"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_ssq1.cpp": {
+      "functions": [
+        "0x00375FA0",
+        "0x00376080",
+        "0x003761D0",
+        "0x00376200",
+        "0x00376260",
+        "0x003762D8"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_ssq2.cpp": {
+      "functions": [
+        "0x00376400",
+        "0x00376438",
+        "0x00376510",
+        "0x00376588",
+        "0x00376618",
+        "0x003766E0",
+        "0x003766F8",
+        "0x00376708",
+        "0x00376720",
+        "0x003767B0",
+        "0x00376820",
+        "0x003768B0"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_ssq3.cpp": {
+      "functions": [
+        "0x00376A10",
+        "0x00376AE0",
+        "0x00376CF8",
+        "0x00376D28"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_str0.cpp": {
+      "functions": [
+        "0x00386DE0",
+        "0x00386F38",
+        "0x003870E0",
+        "0x00387160",
+        "0x00387270",
+        "0x00387328",
+        "0x00387430"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_str1.cpp": {
+      "functions": [
+        "0x00376E38",
+        "0x00376EA0",
+        "0x00376F18",
+        "0x003772D8",
+        "0x00377378",
+        "0x00377428"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_str2.cpp": {
+      "functions": [
+        "0x003774A8",
+        "0x00377530",
+        "0x00377598",
+        "0x003775F0",
+        "0x00377688",
+        "0x00377700"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_str3.cpp": {
+      "functions": [
+        "0x003777C0",
+        "0x003778D8",
+        "0x00377998",
+        "0x003779D0",
+        "0x00377A28",
+        "0x00377AC0"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_sub0.cpp": {
+      "functions": [
+        "0x00377CB8",
+        "0x00377D58",
+        "0x00377D80",
+        "0x00377FA0",
+        "0x00377FF8",
+        "0x00378020",
+        "0x00378070",
+        "0x003780B0"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_vo0.cpp": {
+      "functions": [
+        "0x0037C1B8",
+        "0x0037C2E0",
+        "0x0037C330",
+        "0x0037C618"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_vo1.cpp": {
+      "functions": [
+        "0x0037CC78",
+        "0x0037CE20"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_vo2.cpp": {
+      "functions": [
+        "0x0037CEE0",
+        "0x0037CF00",
+        "0x0037D148",
+        "0x0037D170",
+        "0x0037D1A8"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sde_vo3.cpp": {
+      "functions": [
+        "0x0037D298",
+        "0x0037D388",
+        "0x0037D3B0",
+        "0x0037D728",
+        "0x0037D760"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe (USA) [SLUS-20951]",
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "sf_atan.c": {
+      "functions": [
+        "0x003A1648"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]"
+      ]
+    },
+    "sf_copysign.c": {
+      "functions": [
+        "0x003A4F88"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "sf_cos.c": {
+      "functions": [
+        "0x003A18F0"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "sf_fabs.c": {
+      "functions": [
+        "0x003A19D8"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "sf_finite.c": {
+      "functions": [
+        "0x003A4CF0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "sf_floor.c": {
+      "functions": [
+        "0x003A4D18"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "sf_isnan.c": {
+      "functions": [
+        "0x003A4E00"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "sf_scalbn.c": {
+      "functions": [
+        "0x003A4E28"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "sf_sin.c": {
+      "functions": [
+        "0x003A19F8"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "sf_tan.c": {
+      "functions": [
+        "0x003A1AE8"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    },
+    "sfd_adxt.c": {
+      "functions": [
+        "0x002C23E0",
+        "0x0032D170",
+        "0x00349CE0",
+        "0x00349D38",
+        "0x00349D78",
+        "0x00349F80",
+        "0x00349FB0",
+        "0x0034A358",
+        "0x0034A4C0",
+        "0x0034A6F8",
+        "0x0034ABD0",
+        "0x0034AF70",
+        "0x0034AFF0",
+        "0x0034B290",
+        "0x0034B2A8",
+        "0x0034B478",
+        "0x0034B4B8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_aoap.c": {
+      "functions": [
+        "0x0034B8F8",
+        "0x0034B940",
+        "0x0034B988"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_buf.c": {
+      "functions": [
+        "0x0034BA88",
+        "0x0034BBC0",
+        "0x0034BC00",
+        "0x0034BCC0",
+        "0x0034BEB8",
+        "0x0034BF58",
+        "0x0034BFA8",
+        "0x0034BFC8",
+        "0x0034C158",
+        "0x0034C4F8",
+        "0x0034C588",
+        "0x0034C680",
+        "0x0034CAD0",
+        "0x0034CAF8",
+        "0x0034CCB0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_con.c": {
+      "functions": [
+        "0x0034CCE8",
+        "0x0034CD48",
+        "0x0034CD68",
+        "0x0034CDB0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_hds.c": {
+      "functions": [
+        "0x0034D048",
+        "0x0034D080",
+        "0x0034D098",
+        "0x0034D0A8",
+        "0x0034D160",
+        "0x0034D188",
+        "0x0034D1B8",
+        "0x0034D210",
+        "0x0034D3E8",
+        "0x0034D4A0",
+        "0x0034D508",
+        "0x0034D660",
+        "0x0034D7A8",
+        "0x0034DA50",
+        "0x0034DA88",
+        "0x0034DAC0",
+        "0x0034DAE8",
+        "0x0034DB20"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_lib.c": {
+      "functions": [
+        "0x0034DC88",
+        "0x0034DC98",
+        "0x0034DDE0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_mps.c": {
+      "functions": [
+        "0x0034E808",
+        "0x0034E8E8",
+        "0x0034E928",
+        "0x0034EB28",
+        "0x0034EEE0",
+        "0x0034EF68",
+        "0x0034F0E0",
+        "0x0034F188",
+        "0x0034F608",
+        "0x0034F6C0",
+        "0x0034FC28",
+        "0x0034FDF0",
+        "0x00350048"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_mpv.c": {
+      "functions": [
+        "0x00350150",
+        "0x00350248",
+        "0x003507B0",
+        "0x00350988",
+        "0x00351108",
+        "0x003511F8",
+        "0x00351350",
+        "0x00351888",
+        "0x00351AB0",
+        "0x00351BB8",
+        "0x00351C18",
+        "0x003520B0",
+        "0x003520D8",
+        "0x00352258",
+        "0x003525F0",
+        "0x00352888",
+        "0x00352AA0",
+        "0x00352DC0",
+        "0x00353060",
+        "0x00353550",
+        "0x00353EE0",
+        "0x003542B8",
+        "0x00354430",
+        "0x003549A8",
+        "0x00354B20",
+        "0x00354B40",
+        "0x00354B98"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_mpvf.c": {
+      "functions": [
+        "0x00355630",
+        "0x00355640",
+        "0x00355658",
+        "0x003556A0",
+        "0x00355790"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_mpvp.c": {
+      "functions": [
+        "0x00356368",
+        "0x00356648"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_pl2.c": {
+      "functions": [
+        "0x00356EF8",
+        "0x00356F48",
+        "0x00356FD8",
+        "0x003570F8",
+        "0x00357140",
+        "0x00357150"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_ply.c": {
+      "functions": [
+        "0x003571D0",
+        "0x003571F8",
+        "0x00357258",
+        "0x00357490",
+        "0x003574A8",
+        "0x003574D8",
+        "0x00357598",
+        "0x00357648",
+        "0x00357870",
+        "0x00357910",
+        "0x00357D00",
+        "0x00358328",
+        "0x00358598",
+        "0x00358678",
+        "0x00358700",
+        "0x00358768",
+        "0x003587D0",
+        "0x003587E8",
+        "0x00358888",
+        "0x003588B0",
+        "0x00358930",
+        "0x00358940",
+        "0x00358968",
+        "0x003589C0",
+        "0x00358A48",
+        "0x00358E78",
+        "0x00358EE8",
+        "0x00359270"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_pts.c": {
+      "functions": [
+        "0x00359370",
+        "0x00359480",
+        "0x00359590",
+        "0x00359628"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sfd_see.c": {
+      "functions": [
+        "0x00359730",
+        "0x003599B0",
+        "0x00359A30",
+        "0x00359AB0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_set.c": {
+      "functions": [
+        "0x00359E80",
+        "0x00359EC0",
+        "0x0035A0A0",
+        "0x0035A128",
+        "0x0035A1E0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_tim.c": {
+      "functions": [
+        "0x0035A298",
+        "0x0035A2B0",
+        "0x0035A4D0",
+        "0x0035A518",
+        "0x0035A540",
+        "0x0035A5E0",
+        "0x0035A6A8",
+        "0x0035A7A0",
+        "0x0035A7C8",
+        "0x0035A810",
+        "0x0035A8A8",
+        "0x0035A968",
+        "0x0035A9C8",
+        "0x0035AC58",
+        "0x0035AE18",
+        "0x0035AEE0",
+        "0x0035B0E8",
+        "0x0035B188",
+        "0x0035B218",
+        "0x0035B250",
+        "0x0035B288",
+        "0x0035B2C0",
+        "0x0035B360",
+        "0x0035B3F8",
+        "0x0035B4A0",
+        "0x0035B5B8",
+        "0x0035B5F8",
+        "0x0035B678"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_tmr.c": {
+      "functions": [
+        "0x0035BB40",
+        "0x0035BB60"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_trn.c": {
+      "functions": [
+        "0x0035BBA0",
+        "0x0035BCD0",
+        "0x0035BD88",
+        "0x0035BFE0",
+        "0x0035C080",
+        "0x0035C120",
+        "0x0035C180",
+        "0x0035C1A0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_tst.c": {
+      "functions": [
+        "0x0035C4C8",
+        "0x0035C4E0",
+        "0x0035C4F8",
+        "0x0035C510",
+        "0x0035C528",
+        "0x0035C548",
+        "0x0035CA68",
+        "0x0035CAC8",
+        "0x0035CB20",
+        "0x0035CC80"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_uo.c": {
+      "functions": [
+        "0x0035CF80",
+        "0x0035D110",
+        "0x0035D188",
+        "0x0035D1B0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_vib.c": {
+      "functions": [
+        "0x003557C8",
+        "0x00355C08",
+        "0x00355C88",
+        "0x00355F88",
+        "0x003562F8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfd_vom.c": {
+      "functions": [
+        "0x0035D288",
+        "0x0035D360"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfh_main.c": {
+      "functions": [
+        "0x0035D538",
+        "0x0035D5C8",
+        "0x0035D610",
+        "0x0035D6D8",
+        "0x0035D718",
+        "0x0035D740",
+        "0x0035D758",
+        "0x0035D7B8",
+        "0x0035D800",
+        "0x0035D918",
+        "0x0035D988",
+        "0x0035DA58",
+        "0x0035DAA0",
+        "0x0035DB38",
+        "0x0035DC10",
+        "0x0035DC60",
+        "0x0035DCB0",
+        "0x0035DD00",
+        "0x0035DD50",
+        "0x0035DDB0",
+        "0x0035DE38",
+        "0x0035DE88",
+        "0x0035DED8",
+        "0x0035DF28",
+        "0x0035DF78",
+        "0x0035DFE0",
+        "0x0035E030",
+        "0x0035E080",
+        "0x0035E0F0",
+        "0x0035E148",
+        "0x0035E1B8",
+        "0x0035E238",
+        "0x0035E2A8",
+        "0x0035E318",
+        "0x0035E388",
+        "0x0035E400",
+        "0x0035E4B0",
+        "0x0035E520",
+        "0x0035E590",
+        "0x0035E600",
+        "0x0035E670",
+        "0x0035E6E8",
+        "0x0035E758",
+        "0x0035E7E0",
+        "0x0035E868",
+        "0x0035E8F8",
+        "0x0035E968",
+        "0x0035E9A8",
+        "0x0035E9E8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfx_alp.c": {
+      "functions": [
+        "0x0036CAB0",
+        "0x0036CB58",
+        "0x0036CB98",
+        "0x0036CC80"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfx_cnv.c": {
+      "functions": [
+        "0x0035EA88",
+        "0x0035EDE0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfx_lib.c": {
+      "functions": [
+        "0x0035F838",
+        "0x0035F900",
+        "0x0035FB88",
+        "0x0035FBD8"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfx_set.c": {
+      "functions": [
+        "0x0035FC88"
+      ],
+      "seen_in": [
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sfx_zmv.c": {
+      "functions": [
+        "0x0035FEF0",
+        "0x0035FF48",
+        "0x0035FF98",
+        "0x0035FFB0",
+        "0x003600E8",
+        "0x00360200",
+        "0x00360298",
+        "0x003603D8",
+        "0x00360428",
+        "0x003605B0"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "sifcmd.c": {
+      "functions": [
+        "0x003B2028",
+        "0x003B2058",
+        "0x003B2080",
+        "0x003B2148",
+        "0x003B2488",
+        "0x003B2500",
+        "0x003B2550",
+        "0x003B2688",
+        "0x003B26C8",
+        "0x003B2708",
+        "0x003B2850"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "sifrpc.c": {
+      "functions": [
+        "0x003B2AA0",
+        "0x003B2B90",
+        "0x003B2BC0",
+        "0x003B2C00",
+        "0x003B2CD0",
+        "0x003B2D10",
+        "0x003B2F48",
+        "0x003B3098",
+        "0x003B3328",
+        "0x003B3368",
+        "0x003B3400",
+        "0x003B34D0",
+        "0x003B3568",
+        "0x003B35F8",
+        "0x003B3650"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "sj_mem.c": {
+      "functions": [
+        "0x0032D340",
+        "0x00338B90",
+        "0x00338BD8",
+        "0x00338D58",
+        "0x00338F30",
+        "0x003392F8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sj_rbf.c": {
+      "functions": [
+        "0x003395A0",
+        "0x003395F8",
+        "0x00339848",
+        "0x00339E98",
+        "0x0033A010"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sj_uni.c": {
+      "functions": [
+        "0x0033A190",
+        "0x0033A1E8",
+        "0x0033A388",
+        "0x0033A5D0",
+        "0x0033A6D0",
+        "0x0033AB68"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sj_utl.c": {
+      "functions": [
+        "0x0033ACA0",
+        "0x0033AD08",
+        "0x0033ADC0",
+        "0x0033ADF8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sjr_clt.c": {
+      "functions": [
+        "0x0033AED0",
+        "0x0033AF70",
+        "0x0033AFC0",
+        "0x0033B010"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sjx.c": {
+      "functions": [
+        "0x0033B050",
+        "0x0033B0F0",
+        "0x0033B3B0",
+        "0x0033B520"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "sndll.c": {
+      "functions": [
+        "0x00394D58"
+      ],
+      "seen_in": [
+        "[PS2] EverQuest - Online Adventures (Europe) (Demo) [SCED-51728]",
+        "[PS2] EverQuest - Online Adventures (USA) (Beta 1) [SLUS-20470]",
+        "[PS2] Mace Griffin - Bounty Hunter (Europe) [SLES-12345]"
+      ]
+    },
+    "stdio.c": {
+      "functions": [
+        "0x003A6EC8"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]"
+      ]
+    },
+    "stdiostream.cc": {
+      "functions": [
+        "0x00393540",
+        "0x003935D0",
+        "0x00393628",
+        "0x003936C0",
+        "0x00393720",
+        "0x00393740",
+        "0x00393770",
+        "0x003937D0",
+        "0x00393820",
+        "0x00393878",
+        "0x00393900",
+        "0x00393920",
+        "0x00393AB8",
+        "0x00393B10",
+        "0x00393C18",
+        "0x00393C38",
+        "0x00393DD0",
+        "0x00393E28",
+        "0x00393F10"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "stdstreams.cc": {
+      "functions": [
+        "0x0038AFB0"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "streambuf.cc": {
+      "functions": [
+        "0x0038B0B0",
+        "0x0038B108",
+        "0x0038B138",
+        "0x0038B168",
+        "0x0038B218",
+        "0x0038B2F8",
+        "0x0038B3E0",
+        "0x0038B460",
+        "0x0038B4A0",
+        "0x0038B4E0",
+        "0x0038B5A0",
+        "0x0038B668",
+        "0x0038B680",
+        "0x0038B698",
+        "0x0038B6E8",
+        "0x0038B748",
+        "0x0038B7A8",
+        "0x0038B7F0",
+        "0x0038B810",
+        "0x0038B858",
+        "0x0038B888",
+        "0x0038B8A0",
+        "0x0038B900",
+        "0x0038B920",
+        "0x0038B9A0",
+        "0x0038BA10",
+        "0x0038BA38",
+        "0x0038BA68",
+        "0x0038BA88",
+        "0x0038BAB0",
+        "0x0038BAC0",
+        "0x0038BAD0",
+        "0x0038BAF8",
+        "0x0038BB48",
+        "0x0038BB70",
+        "0x0038BB98",
+        "0x0038BBA8",
+        "0x0038BC38",
+        "0x0038BC60",
+        "0x0038BC80",
+        "0x0038BCA0",
+        "0x0038BCD8",
+        "0x0038BD40",
+        "0x0038BD50",
+        "0x0038BD60",
+        "0x0038BD90",
+        "0x0038BDB0",
+        "0x0038BDD8",
+        "0x0038BDF0",
+        "0x0038BE10",
+        "0x0038BE40",
+        "0x0038BE68",
+        "0x0038BF00",
+        "0x0038BF18",
+        "0x0038BF38",
+        "0x0038BF78",
+        "0x0038BFD8",
+        "0x0038BFE8",
+        "0x0038BFF8",
+        "0x0038C030",
+        "0x0038C048",
+        "0x0038C068",
+        "0x0038C078"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]"
+      ]
+    },
+    "strrchr.c": {
+      "functions": [
+        "0x003A93A8"
+      ],
+      "seen_in": [
+        "[PS2] Dream Audition (Japan) [SLPS-20016]",
+        "[PS2] Driving Emotion Type-S (USA) [SLUS-20113]",
+        "[PS2] Golf Paradise (Japan) (Demo) [SLPM-60107]"
+      ]
+    },
+    "strtok.c": {
+      "functions": [
+        "0x003A9470"
+      ],
+      "seen_in": [
+        "[PS2] Army Men - Green Rogue (Europe) [SLES-50191]",
+        "[PS2] Army Men - Green Rogue (USA) [SLUS-20087]",
+        "[PS2] Centre Court - Hard Hitter (Europe) [SLES-50636]"
+      ]
+    },
+    "sud_lib.c": {
+      "functions": [
+        "0x00360740",
+        "0x003607A0",
+        "0x003607C8",
+        "0x00360808",
+        "0x00360878"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "svm.c": {
+      "functions": [
+        "0x0033B568",
+        "0x0033B6E8",
+        "0x0033BB80",
+        "0x0033BBD8",
+        "0x0033BDA8",
+        "0x0033BE80",
+        "0x0033BEC0",
+        "0x0033BF18",
+        "0x0033BFB8",
+        "0x0033BFE8"
+      ],
+      "seen_in": [
+        "[PS2] Ai yori Aoshi (Japan) [SLPS-25225]",
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]"
+      ]
+    },
+    "thread.c": {
+      "functions": [
+        "0x003B0878",
+        "0x003B0950",
+        "0x003B0A40",
+        "0x003B0BA8",
+        "0x003B0D20"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]"
+      ]
+    },
+    "timer.c": {
+      "functions": [
+        "0x003B6990",
+        "0x003B6A00",
+        "0x003B6A10",
+        "0x003B6A20",
+        "0x003B6A30",
+        "0x003B6B90",
+        "0x003B6C28",
+        "0x003B6DB8",
+        "0x003B6E40",
+        "0x003B6E78",
+        "0x003B7130",
+        "0x003B7180",
+        "0x003B7200",
+        "0x003B7270",
+        "0x003B7380",
+        "0x003B7510",
+        "0x003B7590"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] ATMINWON (v1.13)",
+        "[PS2] Burnout Dominator"
+      ]
+    },
+    "timeralarm.c": {
+      "functions": [
+        "0x003B7708",
+        "0x003B7768",
+        "0x003B7898"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] ATMINWON (v1.13)",
+        "[PS2] Burnout Dominator"
+      ]
+    },
+    "tinfo.cc": {
+      "functions": [
+        "0x0031EEE8",
+        "0x0031EF18",
+        "0x0031EFB0",
+        "0x0031F1A8",
+        "0x0031F238",
+        "0x0031F2C0",
+        "0x0031F378",
+        "0x0031F410",
+        "0x0031F460"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "tinfo2.cc": {
+      "functions": [
+        "0x0031F4E0",
+        "0x0031F508",
+        "0x0031F9D0",
+        "0x0031FA20",
+        "0x0031FA40",
+        "0x0031FA68",
+        "0x0031FA88",
+        "0x0031FAA8",
+        "0x0031FAC8",
+        "0x0031FAE8",
+        "0x0031FF50",
+        "0x0031FFC0",
+        "0x00320030",
+        "0x003200A0",
+        "0x00320110",
+        "0x00320180",
+        "0x003201F0"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]"
+      ]
+    },
+    "tlbfunc.c": {
+      "functions": [
+        "0x003B7B40",
+        "0x003B7C08",
+        "0x003B7C18"
+      ],
+      "seen_in": [
+        "[PS2] 007 - Everything or Nothing (USA) [SLUS-20751]",
+        "[PS2] 3D Fighting School 2 (Japan) [SLPS-20214]",
+        "[PS2] ATMINWON (v1.13)"
+      ]
+    },
+    "tst_wrap.c": {
+      "functions": [
+        "0x0031CA58"
+      ],
+      "seen_in": [
+        "[PS2] Viewtiful Joe 2 (Japan) [SLPS-00000]"
+      ]
+    },
+    "uty_tmr.c": {
+      "functions": [
+        "0x00360AA8",
+        "0x00360B18"
+      ],
+      "seen_in": [
+        "[PS2] Devil Kings (Japan) [SLPM-66058]",
+        "[PS2] Devil Kings (USA) [SLUS-21297]",
+        "[PS2] Galactic Wrestling feat. Ultimate Muscle (Japan) [SLPS-20369]"
+      ]
+    },
+    "vfprintf.c": {
+      "functions": [
+        "0x003AB158"
+      ],
+      "seen_in": [
+        "[PS2] Dream Audition (Japan) [SLPS-20016]",
+        "[PS2] Driving Emotion Type-S (USA) [SLUS-20113]"
+      ]
+    },
+    "vu.c": {
+      "functions": [
+        "0x00395058",
+        "0x003950F8"
+      ],
+      "seen_in": [
+        "[PS2] 18 Wheeler - American Pro Trucker (Europe) [SLES-50214]",
+        "[PS2] 18 Wheeler - American Pro Trucker (USA) [SLUS-20210]",
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]"
+      ]
+    },
+    "wf_acos.c": {
+      "functions": [
+        "0x003A1B78"
+      ],
+      "seen_in": [
+        "[PS2] Activision Anthology (Europe, Australia) [SLES-51313]",
+        "[PS2] Activision Anthology (USA) [SLUS-20588]",
+        "[PS2] Alias (Europe) [SLES-99999]"
+      ]
+    },
+    "wf_sqrt.c": {
+      "functions": [
+        "0x003A2440"
+      ],
+      "seen_in": [
+        "[PS2] 2002 FIFA World Cup (Japan) [SLPS-25118]",
+        "[PS2] 2002 FIFA World Cup (USA) [SLUS-20404]",
+        "[PS2] 2002 FIFA World Cup Korea Japan (Europe) [SLES-50796]"
+      ]
+    }
+  }
+}

@@ -5,8 +5,8 @@
 extern int GetArrayElemA0C_35A1C8(int, int);
 extern int D_003EE270;
 
-__attribute__((section(".text.func_0035A810")))
-void func_0035A810(int a0, int a1, int *a2, int *a3)
+__attribute__((section(".text.sftim_GetVtimeTmr")))
+void sftim_GetVtimeTmr(int a0, int a1, int *a2, int *a3)
 {
     int *dp = &D_003EE270;
     int t;

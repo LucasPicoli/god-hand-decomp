@@ -5,13 +5,13 @@ __attribute__((section(".text.ADX_InitHandlers")))
 void ADX_InitHandlers(AdxInitCfg *cfg)
 {
     func_00330E70(Forward33F130_3292C0, 0);
-    func_00330318(D_00451F50, func_00336318, 0);
+    func_00330318(D_00451F50, mfCiGetInterface, 0);
     func_00330E70(Forward33F130_3292C0, 0);
-    func_00330318(D_00451F58, func_00333FA0, 0);
-    func_00330580(D_00451F58);
+    func_00330318(D_00451F58, htCiGetInterface, 0);
+    cvFsSetDefDev(D_00451F58);
     if (cfg != 0) {
-        func_00335218(cfg->mode);
-        func_00335248(cfg->fmt);
+        htCiSetOpenMode(cfg->mode);
+        htCiSetRootDir(cfg->fmt);
         if (cfg->flagA == 0)
             Forward331C98_333F60(0);
         else
@@ -23,8 +23,8 @@ void ADX_InitHandlers(AdxInitCfg *cfg)
         Forward331CE0_333F80(1);
         return;
     }
-    func_00335218(0);
-    func_00335248(0);
+    htCiSetOpenMode(0);
+    htCiSetRootDir(0);
     Forward331C98_333F60(0);
     Forward331CE0_333F80(0);
 }

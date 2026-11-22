@@ -77,8 +77,8 @@ extern Sint32 ADX_DecodeInfoAu(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen, Sint8 
                                Sint8 *bps, Sint8 *blksize, Sint8 *nch, Sint32 *sfreq,
                                Sint32 *total_nsmpl, Sint32 *nsmpl_blk, Sint32 *cdc);
 
-__attribute__((section(".text.func_00341900")))
-Sint32 func_00341900(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
+__attribute__((section(".text.ADXB_DecodeHeaderAu")))
+Sint32 ADXB_DecodeHeaderAu(ADXB adxb, Sint8 *ibuf, Sint32 ibuflen)
 {
     Sint16 dlen;
     Sint32 cdc;

@@ -1,6 +1,4 @@
-extern int D_00785848;
-extern int D_004209D0;
-extern int D_00785858;
+#include "godhand/globals.h"
 extern unsigned char D_005864F0[];
 extern int D_00747B00[];
 extern int *D_003C2F84;

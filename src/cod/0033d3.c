@@ -18,8 +18,8 @@ typedef struct ADXB_t {
 } ADXB_t;
 typedef ADXB_t *ADXB;
 typedef void *ADXPD;
-extern void func_0033FAA0(ADXPD xpd, Sint16 *ibuf, Sint32 n, Sint16 *o1, Sint16 *o2); /* ADXPD_EntrySte */
-extern void func_0033FB00(ADXPD xpd);                                                  /* ADXPD_Start  */
+extern void ADXPD_EntrySte(ADXPD xpd, Sint16 *ibuf, Sint32 n, Sint16 *o1, Sint16 *o2); /* ADXPD_EntrySte */
+extern void ADXPD_Start(ADXPD xpd);                                                  /* ADXPD_Start  */
 
 __attribute__((section(".text.ADXB_EvokeExpandSte")))
 void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk) {
@@ -30,6 +30,6 @@ void ADXB_EvokeExpandSte(ADXB adxb, Sint32 nblk) {
     xpd = adxb->xpd;
     obuf_l = (Sint16 *)dp->pcmbuf;
     obuf_l += dp->wpos;
-    func_0033FAA0(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
-    func_0033FB00(xpd);
+    ADXPD_EntrySte(xpd, dp->ibuf, nblk * 2, obuf_l, obuf_l + dp->pcmbdist);
+    ADXPD_Start(xpd);
 }

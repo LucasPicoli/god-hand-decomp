@@ -22,8 +22,8 @@ typedef struct {
 } AIXSJD_OBJ;
 typedef AIXSJD_OBJ *AIXSJD;
 
-__attribute__((section(".text.func_0032F4F8")))
-void func_0032F4F8(AIXSJD aixsjd, Sint32 phno, Sint32 *ofst, Sint32 *len)
+__attribute__((section(".text.AIXSJD_GetPhMediaInf")))
+void AIXSJD_GetPhMediaInf(AIXSJD aixsjd, Sint32 phno, Sint32 *ofst, Sint32 *len)
 {
     if (ofst != 0) {
         *ofst = aixsjd->aixinf.phinf[phno].ofst;

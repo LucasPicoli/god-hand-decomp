@@ -41,16 +41,16 @@ void func_0037C930(void)
             if (!(c->flags & 0x10)) {
                 continue;
             }
-            func_0037D148(n);
-            func_0037D3B0(n);
+            SdeVmngClose(n);
+            SdeVregClose(n);
             continue;
         }
         if (!(n->flags & 2)) {
             n->flags |= 2;
         }
         if (c->flags & 0x80) {
-            func_0037D148(n);
-            func_0037D3B0(n);
+            SdeVmngClose(n);
+            SdeVregClose(n);
         } else {
             n->busy++;
         }

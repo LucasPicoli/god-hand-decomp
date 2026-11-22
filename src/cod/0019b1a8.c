@@ -3,6 +3,7 @@
 /* Phase tick: run the handler picked by the state byte, then for each live part (up to 12) update its scrolling vectors from the speed rate, rotate and scale the model matrix and retire a part that drifts below -1000; finish with the sync step. */
 
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *a0);
 extern void func_002A87E8(void *a0, int a1);
@@ -16,7 +17,6 @@ extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
 extern char D_005864F0[];
-extern char D_00425800[];
 
 struct VtEnt { short delta; short index; void *pfn; };
 struct Pmf { short delta; short index; union { void *fn; short vo; } u; };

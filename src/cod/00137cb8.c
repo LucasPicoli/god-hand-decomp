@@ -5,6 +5,7 @@
 #include "godhand/pathRec.h"
 #include "godhand/vu0.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
@@ -13,7 +14,6 @@ extern void SlotList_selectPrev(void *self);
 extern void func_001F6AF8(void *self);
 extern char D_005FEE00[];
 extern char D_007474A0[];
-extern char D_00585040[];
 extern void displayScrollLayer(int id, int on);
 extern float sceVu0Normalize(void *dst, void *src);
 extern float sceVu0InnerProduct(void *a, void *b);

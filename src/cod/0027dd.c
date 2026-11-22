@@ -1,4 +1,5 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 /* The derived part of the cEm66 record: only the fields this constructor sets. */
 typedef struct cEm66 {
@@ -14,7 +15,6 @@ typedef struct cEm66 {
 
 extern cEm66 *func_0028EB00(cEm66 *self);       /* enemy base constructor */
 extern const char D_004483A8[];                 /* method table */
-extern const char D_004482B0[];                 /* "cEm66" */
 
 /* cEm66 constructor: base setup, method table, zeroed vectors, then the zeroed slot array and the type name. */
 __attribute__((section(".text.cEm66_construct")))

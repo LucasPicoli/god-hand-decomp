@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern void func_002A84A8(void *a0, int a1, int a2, int a3, float f12);
 extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
@@ -7,7 +8,6 @@ extern void func_002B6400(int a0);
 extern void *func_001346C8(int a0, int a1, int a2, int a3, float f);
 extern void func_00134520(void *p, int a2, int a3, float f);
 extern void CustomIDWork_SetNumber(void *self, int number);
-extern int D_00429DD8;
 extern int SetField214PtrThenInit_1B6F38(void *obj);
 extern char *InitFields_1B6E90(char *a0);
 extern int func_00305908(void *self, int id, void *data);
@@ -52,8 +52,8 @@ void CustomIDWork_SetNumber_1D5760(char *a0, int number) {
     CustomIDWork_SetNumber(a0 + 0x158, number);
 }
 
-__attribute__((section(".text.func_002998D8")))
-void func_002998D8(int a0, int a1, long a2) {
+__attribute__((section(".text.cFILTER_gif_tag_start")))
+void cFILTER_gif_tag_start(int a0, int a1, long a2) {
     int *p = (int *)(a0 + 0x10000);
     int v1 = p[0];
     *(short *)((char *)p + 0x14) = (short)(a1 & 0xFF);
@@ -63,8 +63,8 @@ void func_002998D8(int a0, int a1, long a2) {
     *(int *)((char *)p + 0x10) = 0;
 }
 
-__attribute__((section(".text.func_00299908")))
-void func_00299908(int a0) {
+__attribute__((section(".text.cFILTER_gif_tag_end")))
+void cFILTER_gif_tag_end(int a0) {
     char *base = (char *)(a0 + 0x10000);
     unsigned long v1 = *(unsigned short *)(base + 0x14);
     unsigned long v0 = *(unsigned int *)(base + 0x10);

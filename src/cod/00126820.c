@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cMessCommon.h"
+#include "godhand/globals.h"
 
 extern unsigned int D_00747A78;
 extern void func_002B2438(cMessageWin *win);
@@ -183,7 +184,6 @@ typedef struct FileLoader {
     void *buf;                          /* 0x4C0 the file's contents */
 } FileLoader;
 
-extern char D_0044C0B8[];               /* file path */
 extern int D_003C3CF0;                  /* heap the buffer comes from */
 extern int func_00398B90(CdFile *file, const char *path);       /* sceCdSearchFile */
 extern int sceCdRead(unsigned int lsn, unsigned int sectors, void *buf, CdRMode *mode);

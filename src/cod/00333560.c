@@ -12,8 +12,8 @@ extern LineTable D_003D9DC0;
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
 extern void dvci_to_large_to_yen(char *s);
 
-__attribute__((section(".text.func_00333560")))
-int func_00333560(char *out, char *buf, int size, int nmax, int width)
+__attribute__((section(".text.analysis_flist")))
+int analysis_flist(char *out, char *buf, int size, int nmax, int width)
 {
     int i;
     int start;

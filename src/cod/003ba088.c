@@ -1,10 +1,10 @@
 /* cygnus-2.96 */
+#include "godhand/globals.h"
 
 extern void func_003B9DE0(void *);
-extern char D_00460928[];
 
-__attribute__((section(".text.func_003BA088")))
-void func_003BA088(char *self)
+__attribute__((section(".text.AC3CNV_TermSupply")))
+void AC3CNV_TermSupply(char *self)
 {
     if (self == 0) {
         func_003B9DE0(D_00460928);

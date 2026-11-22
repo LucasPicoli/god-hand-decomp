@@ -1,19 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cObjSimple.h"
+#include "godhand/globals.h"
 
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
-extern char D_0044B430[];
-extern char D_0044B438[];
-extern char D_0044B440[];
-extern char D_0044B448[];
-extern char D_0044B458[];
-extern char D_0044B468[];
-extern char D_0044B470[];
-extern char D_0044B478[];
-extern char D_0044B480[];
-extern char D_0044B488[];
-extern char D_0044B490[];
-extern char D_0044B498[];
 
 /* Set the one-body flag; when on, hide the extra body meshes that this object id has. */
 __attribute__((section(".text.cObjSimple_SetOneBodyFlag")))

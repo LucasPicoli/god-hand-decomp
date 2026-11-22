@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_00460D18;
-extern int D_006046C0;
 extern int D_0042C320;
 extern int InitFields_1B6E90(void *obj);
 extern int D_00421F20;
 extern void cSnd_SeCallGlobal(void *obj, int a1, int a2, int a3);
 extern int cPlBase(void *obj);
 extern int D_0041D220;
-extern int D_0041B800;
 
 __attribute__((section(".text.func_00134690")))
 void func_00134690(int *p) {

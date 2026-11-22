@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd039.o :: sceCdReadClock */
 
@@ -6,7 +7,6 @@ typedef unsigned int u_int;
 typedef struct { char b[8]; } T8;
 
 extern char D_003FA1C0;      /* _sceCd_cd_scmd (sceSifClientData; pass &) */
-extern int  D_003F9840[];    /* _sceCd_scmdrdata */
 extern int  D_003F866C;      /* _sceCd_scmd_semid */
 
 extern int func_00398EB0(int cmd);   /* _sceCd_scmd_prechk */
@@ -14,8 +14,8 @@ extern int func_003B3128(void *cd, int rno, int mode, void *sbuf, int ssize,
                          void *rbuf, int rsize, void *efunc, void *epara); /* sceSifCallRpc */
 extern int SignalSema(int sema);
 
-__attribute__((section(".text.func_00399CB0")))
-int func_00399CB0(void *rtc)
+__attribute__((section(".text.sceCdReadClock")))
+int sceCdReadClock(void *rtc)
 {
     int r;
 

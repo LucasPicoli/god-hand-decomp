@@ -1,14 +1,12 @@
-/* cygnus-2.96: func_003477A8, queues a read request of size bytes on an open stream handle,
+/* cygnus-2.96: mwPlyEntryFname, queues a read request of size bytes on an open stream handle,
  * counting successful requests and flagging the handle on failure. */
 #include "godhand/mwsfd.h"
-extern char D_00458E80[];
-extern char D_00458EB0[];
-extern char D_00458EE0[];
+#include "godhand/globals.h"
 extern int GetField0OrZero_346828(MwsfdHn *hn);
 extern int func_003355C8(void *sj, int size);
 
-__attribute__((section(".text.func_003477A8")))
-void func_003477A8(MwsfdHn *hn, int size)
+__attribute__((section(".text.mwPlyEntryFname")))
+void mwPlyEntryFname(MwsfdHn *hn, int size)
 {
     if (GetField0OrZero_346828(hn) != 1) {
         MWSFSVM_Error(D_00458E80);

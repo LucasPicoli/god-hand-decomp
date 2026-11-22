@@ -1,12 +1,9 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00428A20;
-extern int D_004289F0;
 extern void cOmWeapon_setFall(int arg);
 extern void ReleaseObj(int);
 extern int D_00785878;
-extern int D_00428AD0;
-extern int D_007854D8;
 extern void cGameObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 

@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern char D_00761E50[];
+#include "godhand/globals.h"
 
 /* Forward35D538_34D048 -- DEAD-HEAD BOUNDARY DEFECT.
  * The declared span starts 64 B too early; the TRUE entry is 0x0034D048.
@@ -18,4 +17,4 @@ extern char D_00761E50[];
 
 
 __attribute__((section(".text.Forward35D538_34D048")))
-int Forward35D538_34D048(void) { return func_0035D538(0x20, D_00761E50); }
+int Forward35D538_34D048(void) { return SFH_Init(0x20, D_00761E50); }

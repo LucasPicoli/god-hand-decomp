@@ -10,7 +10,6 @@ extern void func_001D0408(void *a0);
 extern void Obj1D00_ClearState_6(void *a0);
 extern void Obj1D00_ClearState_7(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);
-extern cPmf D_003BF878[];
 
 __attribute__((section(".text.func_0025E600")))
 void func_0025E600(char *self)

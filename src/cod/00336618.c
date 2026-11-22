@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct {
     signed char f0;
@@ -16,10 +17,7 @@ typedef struct {
 
 
 extern void func_003A57C4(char *dst, const char *src);
-extern void func_003365A8(MFH *hn);
-extern const char D_00455090[];
-extern const char D_004550B8[];
-extern const char D_004550E0[];
+extern void mfci_reset_hn(MFH *hn);
 
 __attribute__((section(".text.mfCiOpen")))
 MFH *mfCiOpen(const char *fname, int a1, int a2)
@@ -33,12 +31,12 @@ MFH *mfCiOpen(const char *fname, int a1, int a2)
         func_00336330(0, D_004550B8);
         return 0;
     }
-    hn = func_00336530();
+    hn = mfci_alloc();
     if (hn == 0) {
         func_00336330(0, D_004550E0);
         return 0;
     }
     func_003A57C4(hn->f1C, fname);
-    func_003365A8(hn);
+    mfci_reset_hn(hn);
     return hn;
 }

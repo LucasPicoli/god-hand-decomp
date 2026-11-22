@@ -4,8 +4,8 @@ extern void func_0031DFA8(void *a0, void *a1);
 
 struct s20 { char b[0x20]; };
 
-__attribute__((section(".text.func_0031E288")))
-int func_0031E288(long long a0, long long a1) {
+__attribute__((section(".text.dpadd")))
+int dpadd(long long a0, long long a1) {
     struct s20 b00;
     struct s20 b20;
     struct s20 b40;

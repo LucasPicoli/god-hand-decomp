@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 typedef unsigned int size_t;
 
@@ -7,7 +8,6 @@ typedef struct Obj {
 } Obj;
 
 extern char *func_0031D778(size_t n, int *nobjs);   /* _S_chunk_alloc */
-extern void *D_003C4030[16];                        /* _S_free_list */
 
 __attribute__((section(".text.func_0031D928")))
 void *func_0031D928(size_t n)

@@ -3,6 +3,7 @@
 #include "godhand/Slot2.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void func_001E6ED8(Slot2 *a0, int a1, int a2);
@@ -12,7 +13,6 @@ extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
 extern char D_005FEE00[];
-extern long D_00747650;
 extern void func_001E6C80(Slot2 *a0, int a1, int a2);
 
 /* Slot2 payout stage, first line prize: pay out coin by coin until a button

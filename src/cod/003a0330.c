@@ -1,5 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
 extern void _initSeq(int h);
 
@@ -13,10 +14,6 @@ extern void func_003A0C18(void *v);		/* _extensionAndUserData */
 
 
 
-
-extern char D_0045E7F8[];			/* "vertical size > 2800" */
-extern unsigned char D_003FA280[];		/* _defIQM  */
-extern unsigned char D_003FA2C0[];		/* _defNIQM */
 
 #define IPU_CMD  (*(volatile unsigned int *)0x10002000)
 #define D4_CHCR  (*(volatile unsigned int *)0x1000B400)

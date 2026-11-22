@@ -2,6 +2,7 @@
  * pick the boot room, then start the graphics, data and sound systems. */
 #include "godhand/gameWork.h"
 #include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 /* The game work (D_007474A0) as the boot code sees it: only word fields, so 4-byte aligned. */
 typedef struct BootWork {
@@ -24,12 +25,9 @@ typedef struct BootWork {
     char pad5B2[0x620 - 0x5B2];
 } BootWork;
 
-extern int D_003C3CCC;
-extern int D_00752D3C;
 extern char D_005E8140[];
 extern char D_005E8640[];
 extern char D_00580D40[];
-extern char D_004504D8[];
 
 extern void func_0030D258(void);
 extern void func_0030ECF8(int a0);
@@ -40,7 +38,7 @@ extern void func_0030CB30(void);
 extern int sceGsResetGraph(short mode, short inter, short omode, short ffmode);
 extern int sceGsSyncV(int mode);
 extern void func_0030B148(void);
-extern void func_00395F68(void (*fn)(void));
+extern void sceGsSyncVCallback(void (*fn)(void));
 extern void func_0030D1F8(void);
 extern int func_001FF858(void *a0, void *a1);
 extern void func_002BE6E8(void *obj);
@@ -90,7 +88,7 @@ void func_0030B298(void)
         sceGsResetGraph(0, 1, 3, 0);
         sceGsSyncV(0);
     }
-    func_00395F68(func_0030B148);
+    sceGsSyncVCallback(func_0030B148);
     func_0030D1F8();
     func_001FF858(D_00580D40, D_004504D8);
     g->unk569 = 2;

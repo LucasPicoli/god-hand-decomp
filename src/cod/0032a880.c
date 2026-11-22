@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern const char D_00452228[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.ADXT_GetOutPan")))
 int ADXT_GetOutPan(int adxt, int ch)

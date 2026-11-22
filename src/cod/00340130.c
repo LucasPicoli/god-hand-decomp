@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00340130, waits out pending SIF DMA on the stream slots: if any active slot
+/* cygnus-2.96: DTR_ExecServer, waits out pending SIF DMA on the stream slots: if any active slot
  * still has a transfer in flight, try again later; otherwise finish every used slot. */
 typedef struct {
     signed char used; /* 0x0 */
@@ -13,8 +13,8 @@ extern int SifDmaStat(unsigned int id);
 extern void func_0033FDC0(SifDmaSlot *slot);
 extern void func_00332778(void);
 
-__attribute__((section(".text.func_00340130")))
-void func_00340130(void)
+__attribute__((section(".text.DTR_ExecServer")))
+void DTR_ExecServer(void)
 {
     SifDmaSlot *slot;
     int i;

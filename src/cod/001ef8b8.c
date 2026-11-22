@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/ColiseumBattle.h"
+#include "godhand/globals.h"
 
 extern char D_005864F0[];
 extern char D_00747470[];
-extern unsigned char D_0074748C;
 extern int D_00747A24[];
 extern int D_00747A78;
 extern char **D_003C2384;

@@ -1,7 +1,7 @@
-extern volatile int D_003C814C;
-extern int D_003C80C8;
+#include "godhand/adxm.h"
+#include "godhand/adxmThread.h"
+#include "godhand/globals.h"
 extern int SleepThread(void);
-extern volatile int D_003C80FC;
 extern int Obj33C8_GetShort_24(int a0);
 extern int Obj33C8_GetField_28(int a0);
 extern int Obj33C8_GetField_30(int a0);
@@ -106,7 +106,7 @@ __attribute__((section(".text.Forward335A18_324C78")))
 int Forward335A18_324C78(int a0) { return func_00335A18(a0); }
 
 __attribute__((section(".text.Forward324D88_324E70")))
-int Forward324D88_324E70(void) { return func_00324D88(D_003C814C, D_003C80C8); }
+int Forward324D88_324E70(void) { return adxm_goto_svr_border(D_003C814C, D_003C80C8); }
 
 __attribute__((section(".text.SleepThread_3252E0")))
 void SleepThread_3252E0(void) { SleepThread(); }
@@ -124,7 +124,7 @@ __attribute__((section(".text.Forward325C98_325DC0")))
 int Forward325C98_325DC0(int a0) { return func_00325C98(a0); }
 
 __attribute__((section(".text.Forward33F690_325DD8")))
-int Forward33F690_325DD8(int a0) { return func_0033F690(a0); }
+int Forward33F690_325DD8(int a0) { return ADXMNG_CallMainServerFunctions(a0); }
 
 __attribute__((section(".text.SetFlagAndForward_325EF8")))
 void SetFlagAndForward_325EF8(void) {
@@ -148,7 +148,7 @@ __attribute__((section(".text.GetVia4_Obj33C8_GetByte_D_327950")))
 int GetVia4_Obj33C8_GetByte_D_327950(char *a0) { return Obj33C8_GetByte_D(*(int*)(a0 + 4)); }
 
 __attribute__((section(".text.Forward33CFB8_327970")))
-int Forward33CFB8_327970(int *a0) { return func_0033CFB8(a0[1]); }
+int Forward33CFB8_327970(int *a0) { return ADXB_TakeSnapshot(a0[1]); }
 
 extern void AdxbLoop_storeLoopInfo(int a0);
 
@@ -156,10 +156,10 @@ __attribute__((section(".text.Forward33CFF8_327988")))
 void Forward33CFF8_327988(int *a0) { AdxbLoop_storeLoopInfo(a0[1]); }
 
 __attribute__((section(".text.Forward330C88_328C58")))
-int Forward330C88_328C58(void) { return func_00330C88(); }
+int Forward330C88_328C58(void) { return cvFsExecServer(); }
 
 __attribute__((section(".text.Forward326800_32B4C8")))
-int Forward326800_32B4C8(int *a0) { return func_00326800(a0[1]); }
+int Forward326800_32B4C8(int *a0) { return ADXSJD_TermSupply(a0[1]); }
 
 __attribute__((section(".text.Tramp_Obj3270_Tramp_0033D040_7728_32BB20")))
 int Tramp_Obj3270_Tramp_0033D040_7728_32BB20(void) { return Obj3270_Tramp_0033D040_7728(); }
@@ -171,4 +171,4 @@ __attribute__((section(".text.Forward32D868_32DA08")))
 int Forward32D868_32DA08(int a0, int a1, int a2) { return MwPly_openByName(a0, a1, a2, 0, 0xFFFFF); }
 
 __attribute__((section(".text.ForwardField3ByOffset_32ED48")))
-int ForwardField3ByOffset_32ED48(int *a0, int a1, int a2) { a0 += a1; return func_0032A9F0(a0[3], a2); }
+int ForwardField3ByOffset_32ED48(int *a0, int a1, int a2) { a0 += a1; return ADXT_SetOutVol(a0[3], a2); }

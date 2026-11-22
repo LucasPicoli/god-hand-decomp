@@ -42,6 +42,6 @@ typedef struct AixDmx {
 } AixDmx;
 
 extern int func_0032F580(unsigned char *ptr, int len, AixInfo *info);
-extern void func_0033ACA0(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
+extern void SJ_SplitChunk(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
 
 #endif /* GODHAND_CRIAIX_H */

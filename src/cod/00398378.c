@@ -10,7 +10,7 @@ int scePadInfoPressMode(int port, int slot)
 
     if (D_0077C110[port][slot].open == 0)
         goto ng;
-    func_00397BC8(port, slot, &buf);
+    scePadGetDmaStr(port, slot, &buf);
     if (buf.ok == 1)
         goto ok;
 ng: /* retail's block order needs these gotos: the forms without them do not match */

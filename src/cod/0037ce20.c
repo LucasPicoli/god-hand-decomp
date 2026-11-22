@@ -1,7 +1,7 @@
 #include "godhand/seqNode.h"
 
-__attribute__((section(".text.func_0037CE20")))
-void func_0037CE20(void)
+__attribute__((section(".text.SdeVoiceOrderMake")))
+void SdeVoiceOrderMake(void)
 {
     int i;
 

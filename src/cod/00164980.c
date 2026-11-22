@@ -1,10 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern char D_00567D80[];
-extern char D_00567D70[];
-extern char D_00567E80[];
-extern char D_00567F80[];
-extern char D_00567FA0[];
+#include "godhand/globals.h"
 
 typedef struct {
     float x;

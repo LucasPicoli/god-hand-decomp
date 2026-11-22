@@ -5,6 +5,7 @@
 #include "godhand/sceVu0.h"
 #include "godhand/cVec.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 #define ACTOR_PLAYER     0x100      /* actorId of the player */
 #define ACTOR_PARTNER    0x101      /* actorId of the object this function moves */
@@ -26,12 +27,6 @@ typedef struct cPartner {
 extern float capVu0Sin(float a);
 extern float Adjust_theta(float a);
 extern void func_00104010(void *self, void *work, void *model);
-extern float D_003BC730;            /* hover offset in the player's frame: x */
-extern float D_003BC734;            /*                                     y */
-extern float D_003BC738;            /*                                     z */
-extern float D_003BC73C;            /* bob amplitude */
-extern float D_003BC740;            /* bob phase */
-extern float D_003BC744;            /* bob phase step per frame */
 
 /* While following the player with the hover bit set, place the hover offset
  * along the player's heading, scaled by a sine bob, then run the move. */

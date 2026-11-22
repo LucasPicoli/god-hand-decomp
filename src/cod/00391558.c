@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* libio floatconv.c -- transcribed verbatim from gcc-2.95.2 libio.
  * Config block resolved for MIPSEL / IEEE_8087 exactly as the vendor build did. */
@@ -94,7 +95,7 @@ extern CONST double D_0045D970[];      /* tinytens[] */
 /* The floatconv helpers, already carved in this repository. */
 extern Bigint *Binit(Bigint *b);
 extern Bigint *Balloc(int k);
-extern void func_0038F548(Bigint *v);
+extern void Bfree_38F548(Bigint *v);
 extern void Bcopy(Bigint *x, Bigint *y);
 extern Bigint *Brealloc(Bigint *b, int k);
 extern Bigint *multadd(Bigint *b, int m, int a);
@@ -102,28 +103,27 @@ extern Bigint *func_0038F700(Bigint *result, CONST char *s, int nd0, int nd, uns
 extern int hi0bits(register unsigned32 x);
 extern int lo0bits(unsigned32 *y);
 extern Bigint *func_0038F980(Bigint *result, int i);
-extern Bigint *func_0038F9B8(Bigint *c, Bigint *a, Bigint *b);
+extern Bigint *mult_38F9B8(Bigint *c, Bigint *a, Bigint *b);
 extern Bigint *pow5mult(Bigint *b, int k);
-extern Bigint *func_0038FC68(Bigint *b, int k);
+extern Bigint *lshift_38FC68(Bigint *b, int k);
 extern int cmp(Bigint *a, Bigint *b);
-extern Bigint *func_0038FE50(Bigint *c, Bigint *a, Bigint *b);
+extern Bigint *diff_38FE50(Bigint *c, Bigint *a, Bigint *b);
 extern double ulp(double x);
 extern double b2d(Bigint *a, int *e);
 extern Bigint *d2b(Bigint *result, double d, _G_int32_t *e, _G_int32_t *bits);
 extern double ratio(Bigint *a, Bigint *b);
 extern int func_00391340(Bigint *b, Bigint *S);
 
-#define Bfree   func_0038F548
+#define Bfree   Bfree_38F548
 #define s2b     func_0038F700
 #define i2b     func_0038F980
-#define mult    func_0038F9B8
-#define lshift  func_0038FC68
-#define diff    func_0038FE50
+#define mult    mult_38F9B8
+#define lshift  lshift_38FC68
+#define diff    diff_38FE50
 #define quorem  func_00391340
 
 /* dtoa's two function-scope statics live in retail's own .data/.bss. */
 extern Bigint *D_003F5178;      /* result   */
-extern int D_0077C080;          /* result_k */
 #define result   D_003F5178
 #define result_k D_0077C080
 
@@ -144,9 +144,6 @@ extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);
    wildcard appends, and it shifts every later rodata byte away from retail.
    Every address below is read off `--link-check`'s relocation join, which
    prints retail's own operand at each site. */
-extern char D_0045DA6F[];       /* 0x0045DA70 = "Infinity", one byte in */
-extern char D_0045DA80[];       /* "NaN" */
-extern char D_0045DA88[];       /* "0"   */
 
  char *
 __attribute__((section(".text._IO_dtoa")))

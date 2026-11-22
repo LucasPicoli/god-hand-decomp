@@ -1,5 +1,6 @@
 /* Enemy constructor: base setup, then its method table, three zeroed vectors and the type name. */
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 #define EM_VEC_A_OFFSET   0x1530        /* first zeroed quadword */
 #define EM_VEC_B_OFFSET   0x1540
@@ -13,7 +14,6 @@ typedef struct EnemyRec {
 } EnemyRec;
 
 extern const unsigned char D_00447BA0[];    /* method table */
-extern const char D_00447B88[];             /* type name */
 extern void *func_0028EB00(void *self);     /* enemy base constructor */
 
 __attribute__((section(".text.EnemyBase_constructTriVec")))

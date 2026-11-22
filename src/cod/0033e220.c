@@ -71,8 +71,8 @@ typedef struct _adx_intbuf {
 
 extern Sint32 Obj33F8_GetWord_C_FA68(ADXPD xpd);
 
-__attribute__((section(".text.func_0033E220")))
-void func_0033E220(ADXB adxb)
+__attribute__((section(".text.ADXB_ExecOneWav8")))
+void ADXB_ExecOneWav8(ADXB adxb)
 {
     AdxDecPara *dp;
     Sint16 *pcmbuf_l;

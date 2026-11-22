@@ -3,8 +3,8 @@
 extern int GetArrayElemA0C_35A1C8(int a0, int a1);
 
 struct buf { unsigned char b; char _p[7]; long long v8; long long v10; };
-__attribute__((section(".text.func_0034E790")))
-void func_0034E790(int a0, int a1, long long a2) {
+__attribute__((section(".text.sfmps_pesfn")))
+void sfmps_pesfn(int a0, int a1, long long a2) {
     struct buf s;
     unsigned char bv = a1 & 0xFF;
     long long v10;

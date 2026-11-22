@@ -2,10 +2,8 @@
 #include "godhand/gameWork.h"
 #include "godhand/classFADE.h"
 #include "godhand/cMovie.h"
+#include "godhand/globals.h"
 extern char D_005FEE00[];
-extern char D_005E79D0[];
-extern int D_00566E40;
-extern int D_00566E44;
 
 extern void KeyStop(void);
 extern void cSnd_BattleBgmAllPause(void *, float);

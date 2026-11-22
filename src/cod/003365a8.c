@@ -15,8 +15,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_003365A8")))
-void func_003365A8(MFH *hn)
+__attribute__((section(".text.mfci_reset_hn")))
+void mfci_reset_hn(MFH *hn)
 {
     int n;
     hn->f4 = 0x800;

@@ -9,7 +9,7 @@ typedef struct {
     int flags;           /* 0x34 */
 } SeqActor;
 
-extern int func_0037A0F0(SeqActor *a, int motion, int mode);
+extern int SdeTblTestBlkNoCheck(SeqActor *a, int motion, int mode);
 
 __attribute__((section(".text.func_00378B58")))
 int func_00378B58(SeqActor *a)
@@ -27,7 +27,7 @@ int func_00378B58(SeqActor *a)
         a->dir = 0;
         a->side = 0;
     }
-    if (func_0037A0F0(a, a->motion[a->side], 1) < 0) {
+    if (SdeTblTestBlkNoCheck(a, a->motion[a->side], 1) < 0) {
         a->dir = dir;
         a->side = side;
         return 0;

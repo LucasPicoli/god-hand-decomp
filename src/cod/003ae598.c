@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int write(int fd, const void *buf, int n);
 
@@ -10,8 +11,6 @@ extern int write(int fd, const void *buf, int n);
 
 extern void func_003A61F0(void *ptr);		/* __sinit */
 extern int fflush(void *fp);		/* fflush */
-
-extern char D_0045FC90[];			/* the overflow message */
 
 struct _reent;
 
@@ -76,8 +75,8 @@ extern struct _reent *D_003FA62C;	/* _impure_ptr */
 
 #define HASUB(fp) ((fp)->_ub._base != 0)
 
-__attribute__((section(".text.func_003AE598")))
-int func_003AE598(int c, register FILE *fp)
+__attribute__((section(".text.ungetc")))
+int ungetc(int c, register FILE *fp)
 {
   if (c == EOF)
     return EOF;

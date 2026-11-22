@@ -22,8 +22,8 @@ typedef int _G_int32_t;
 extern int cmp(Bigint *a, Bigint *b);
 
 /* libio floatconv.c :: diff -- c = a - b */
-__attribute__((section(".text.func_0038FE50")))
-Bigint *func_0038FE50(Bigint *c, Bigint *a, Bigint *b) {
+__attribute__((section(".text.diff_38FE50")))
+Bigint *diff_38FE50(Bigint *c, Bigint *a, Bigint *b) {
         int i, wa, wb;
         _G_int32_t borrow, y;
         unsigned32 *xa, *xae, *xb, *xbe, *xc;

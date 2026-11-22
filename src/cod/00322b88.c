@@ -4,8 +4,8 @@
 
 
 
-__attribute__((section(".text.func_00322BD8")))
-int func_00322BD8(int a0, int a1, int a2, int a3, int t0, int t1) {
+__attribute__((section(".text.adxf_LoadPtFromAfsNwEx")))
+int adxf_LoadPtFromAfsNwEx(int a0, int a1, int a2, int a3, int t0, int t1) {
     return func_00322C68(a0, a1, a2, 0, 0, 0, 0xFFFFF, a3, t0, t1, 0);
 }
 
@@ -13,8 +13,8 @@ int func_00322BD8(int a0, int a1, int a2, int a3, int t0, int t1) {
 
 
 
-__attribute__((section(".text.func_00322B88")))
-int func_00322B88(int a0, int a1, int a2, int a3, int t0, int t1) {
+__attribute__((section(".text.adxf_LoadPtNwEx")))
+int adxf_LoadPtNwEx(int a0, int a1, int a2, int a3, int t0, int t1) {
     return func_00322C68(a0, 0, 0, a1, a2, 0, 0xFFFFF, a3, t0, t1, 0);
 }
 

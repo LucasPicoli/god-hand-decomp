@@ -1,11 +1,11 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, error.o :: _sceMpegErrorBdec */
 
 typedef unsigned int u_int;
 
-extern char D_0045E610[];                     /* the error message */
 extern void _sceMpegError(void *m, const char *msg);
 struct cbp { int reason; int pad[7]; };
 extern int  func_0039AB20(void *p, struct cbp *q);       /* _sceMpegDispatchMpegCallback */

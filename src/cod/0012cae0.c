@@ -4,6 +4,7 @@
 #include "godhand/cSceAtManager.h"
 #include "godhand/cFontTex.h"
 #include "godhand/cMessCommon.h"
+#include "godhand/globals.h"
 
 extern void *SearchData(void *name, void *table, int which);
 extern void cSndSeVoice_CheckEnd(void *snd, int handle);
@@ -13,8 +14,6 @@ extern cSceAtManager D_005FEA60;
 extern int FindNodeByHit_2C2490(cSceAtManager *mgr, cVec *shape, float *out);
 extern int SetEffect(int kind, int id, void *owner, int param, int handle, unsigned int owner2);
 extern int D_00747A2C;
-
-extern char D_0044B1E0[];               /* name of the sound data to look up */
 
 
 typedef struct Owner2B2E80 {
@@ -136,7 +135,6 @@ typedef struct ScriptState {
 } ScriptState;
 
 extern ScriptState *D_003C23A4;
-extern unsigned short D_003C23A8;       /* the wait length the last 0x8700 command set */
 
 /* Length in script ticks of one command: 0x1E for plain data, 0 for most kinds, and for the wait kinds a count taken
  * from the command, the script state or the last set length (0x8700 sets it and takes no time). */

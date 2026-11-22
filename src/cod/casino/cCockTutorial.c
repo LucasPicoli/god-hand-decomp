@@ -1,9 +1,9 @@
 /* TU: cCockTutorial [casino] - recovered C++ class. */
 #include "godhand/cCockTutorial.h"
+#include "godhand/globals.h"
 
 extern void *D_003C2388;
 extern void *D_003C2384;
-extern char D_0041E970[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern void cIDManager_getLocalFileName(void *mgr, char *out, char *fmt, int n);

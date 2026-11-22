@@ -1,6 +1,7 @@
 /* cygnus-2.96: decoder handle update: poll the stream state and error, latch and map errors to
  * 0xFF000C07..09, reset the sub-object at the end states and stop on error or completion. */
 #include "godhand/sftim.h"
+#include "godhand/globals.h"
 
 typedef struct DecStm {
     int sj;                             /* 0x00 */
@@ -8,16 +9,15 @@ typedef struct DecStm {
     int busy;                           /* 0x48 */
 } DecStm;
 
-extern int D_00760DAC;
 extern int GuardedCall_00329FD0_329F98(int a);
 extern int func_0032B0B0(int sj);
 extern void Obj35C0_SetField_C_C540(void *obj, int v);
-extern void func_0034AAF8(char *hn, int stop);
-extern int func_0034AAC8(char *hn);
-extern void func_0032B498(int sj);
+extern void sfadxt_SetTermDst(char *hn, int stop);
+extern int sfadxt_GetTermSrc(char *hn);
+extern void ADXT_TermSupply(int sj);
 
-__attribute__((section(".text.func_0034A818")))
-void func_0034A818(char *hn, int keep)
+__attribute__((section(".text.sfadxt_ChkTermFlg")))
+void sfadxt_ChkTermFlg(char *hn, int keep)
 {
     void *sub = hn + 0x1020;
     DecStm *st;
@@ -49,10 +49,10 @@ void func_0034A818(char *hn, int keep)
     if (stat == 4 || stat == 5)
         Obj35C0_SetField_C_C540(sub, 0);
     if (stat == 5 || err != 0)
-        func_0034AAF8(hn, 1);
-    if (func_0034AAC8(hn) == 1 && keep == 0) {
-        func_0032B498(sj);
+        sfadxt_SetTermDst(hn, 1);
+    if (sfadxt_GetTermSrc(hn) == 1 && keep == 0) {
+        ADXT_TermSupply(sj);
         if (st->busy == 0)
-            func_0034AAF8(hn, 1);
+            sfadxt_SetTermDst(hn, 1);
     }
 }

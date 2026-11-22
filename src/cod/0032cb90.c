@@ -1,12 +1,11 @@
-/* cygnus-2.96: func_0032CB90, ADX stream server step: stop the input at the end offset, and once
+/* cygnus-2.96: adxt_stat_playing, ADX stream server step: stop the input at the end offset, and once
  * the input has finished move to the flush state when every channel buffer has room. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 extern int Obj3270_GetField_30(void *sj);
 extern void Obj3270_SetField_3C(void *sj, int v);
 extern int Obj3260_GetByte_1_D778(void *sj);
 extern int Obj3270_GetVia4_0033CE98_77A0(void *sj);
-extern int D_003D1460;
-extern int D_003D1464;
 
 typedef struct AdxSvrHn {
     char unk0;
@@ -21,8 +20,8 @@ typedef struct AdxSvrHn {
     int endOfs;                 /* 0xC4 */
 } AdxSvrHn;
 
-__attribute__((section(".text.func_0032CB90")))
-void func_0032CB90(AdxSvrHn *adx)
+__attribute__((section(".text.adxt_stat_playing")))
+void adxt_stat_playing(AdxSvrHn *adx)
 {
     int i;
     int nch;

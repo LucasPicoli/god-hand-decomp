@@ -1334,9 +1334,9 @@ extern void _IO_flush_all_linebuffered __P ((void));
 	(fp)->_IO_read_ptr = (g), (fp)->_IO_read_end = (eg))
 
 /* ---- body ---- */
-/* fileno lives at 0x003A6130; this repo names that address func_003A6130. */
-extern "C" int func_003A6130(FILE *);
-#define fileno(f) func_003A6130(f)
+/* fileno lives at 0x003A6130; this repo names that address fileno_3A6130. */
+extern "C" int fileno_3A6130(FILE *);
+#define fileno(f) fileno_3A6130(f)
 
 __attribute__((section(".text.__8stdiobufP7__sFILE")))
 stdiobuf::stdiobuf(FILE *f) : filebuf(fileno(f))

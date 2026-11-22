@@ -1,11 +1,11 @@
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 /* cEm00 field not named in cEm00.h yet: 0x4AC pointer to the class name string. */
 #define CEM00_TYPENAME(self) (*(void **)((char *)(self) + 0x4AC))
 
 extern int D_0044A528;
-extern int D_0044A510;
 extern void *func_0028EB00(void *obj);
 
 /* Enemy constructor: run the base constructor, set the vtable at +0x214, clear one quadword, set the flag byte at +0x1541 and the type name at +0x4AC. */

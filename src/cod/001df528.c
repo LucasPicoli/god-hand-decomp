@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void CustomIDWork_SetOffsetPosX(void *a0, int a1);
 extern void CustomIDWork_SetMoveOffsetPosX(void *a0, int a1, int a2, int a3);
 extern void CustomIDWork_SetColorAnimNormal_2D68D8(void *a0, int a1, int a2, int a3);
 extern void func_001DEE60(void *a0, int a1, int a2);
-extern char D_0042B6B8[];
 
 /* sn-2.95.3-136 matched TU. */
 

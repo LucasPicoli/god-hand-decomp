@@ -63,4 +63,6 @@ void terminate(void) __attribute__((noreturn));
 extern eh_handler D_003C4908;           /* __terminate_func */
 extern eh_handler D_003C4F00;           /* __unexpected_func */
 
+extern struct eh_context D_00755BF8; /* the context */
+
 #endif

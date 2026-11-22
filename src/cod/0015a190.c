@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern float sqrtf(float x);
-extern int D_0041EE48[];
 
 /* sn-2.95.3-136 matched TU. */
 

@@ -23,8 +23,8 @@ static __inline__ void GsAdFloat_setST(GsAdFloat *e, float s, float t)
 }
 
 /* Append an A+D entry that writes s and t to GS register addr. */
-__attribute__((section(".text.func_002998A0")))
-void func_002998A0(GsPktCtx *ctx, long addr, float s, float t)
+__attribute__((section(".text.cFILTER_pack_f")))
+void cFILTER_pack_f(GsPktCtx *ctx, long addr, float s, float t)
 {
     GsAdFloat_setST(ctx->cur, s, t);
     ctx->cur->addr = addr;

@@ -126,7 +126,7 @@ def load_candidate_dict(name: str) -> dict | None:
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("name", help="canonical function name, e.g. func_003B9F60")
+    ap.add_argument("name", help="canonical function name, e.g. ac3cnv_alloc_hndl")
     ap.add_argument(
         "--config",
         default=str(ROOT / "compile_config.json"),

@@ -2,13 +2,13 @@
 
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern void cBgmData_Reset(cBgmData *);
 extern void cSndBgmNode_SetFlagsFade(cSndBgmNode *, int, int, float);
-extern char D_0044D100[];
 extern void cSndBgmNode_Init(int);
 
 /* Fire cSndBgmNode_SetFlagsFade on every live node whose flag 0x100000 is set. */

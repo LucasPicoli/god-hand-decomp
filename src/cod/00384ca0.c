@@ -2,6 +2,7 @@
  * there is no list, otherwise run cursor input and page handlers, refresh the selected entry's model info and redraw
  * the window frame. */
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
 extern void func_00380DC0(MenuCtl *a0);
 extern void func_00380D68(void *a0, void *a1);
@@ -18,8 +19,6 @@ extern void func_0032A160(int a0, int *a1, void *a2);
 extern int func_0032B6E0(int a0);
 extern float func_0032AE10(int a0);
 extern int func_0032D0C0(int a0);
-extern char D_0045CD90[];
-extern char D_0045CDB0[];
 
 __attribute__((section(".text.func_00384CA0")))
 int func_00384CA0(MenuCtl *self, MenuPad *arg)

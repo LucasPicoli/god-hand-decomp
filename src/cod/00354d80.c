@@ -9,12 +9,12 @@ typedef struct SfdRefView {
     SfdRef *ref;                /* 0x1FC0 */
 } SfdRefView;
 
-extern void func_0036A070(void *obj);
+extern void MPV_RequestStop(void *obj);
 
-__attribute__((section(".text.func_00354D80")))
-int func_00354D80(SfdRefView *w)
+__attribute__((section(".text.SFMPV_RequestStop")))
+int SFMPV_RequestStop(SfdRefView *w)
 {
     if (w->ref->obj == 0) return 0;
-    func_0036A070(w->ref->obj);
+    MPV_RequestStop(w->ref->obj);
     return 0;
 }

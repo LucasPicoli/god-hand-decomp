@@ -3,8 +3,8 @@ typedef int Sint32;
 extern Uint8 *MPV_SearchDelim(Uint8 *buf, Sint32 len, Sint32 type);
 extern Sint32 MPV_CheckDelim(Uint8 *ptr);
 
-__attribute__((section(".text.func_0036D0F8")))
-Sint32 func_0036D0F8(Uint8 *buf, Sint32 len)
+__attribute__((section(".text.m2v_IsConformable")))
+Sint32 m2v_IsConformable(Uint8 *buf, Sint32 len)
 {
     Uint8 *p;
 

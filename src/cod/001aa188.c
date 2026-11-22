@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *a0);
 extern int cCollisionSolidManage_ChkHit(void *a0, void *a1);
 extern void SetMotionStep(void *a0, float f12);
-extern float D_00747A14;
 extern char D_00462FC0[];
 extern void cOmBase_blinkTick(void *a0);
 extern void func_001AADE0(void *a0);
@@ -21,7 +21,6 @@ extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
 extern char D_005864F0[];
-extern char D_00427C50[];
 
 struct VtEnt { short delta; short index; void *pfn; };
 struct Pmf { short delta; short index; union { void *fn; short vo; } u; };

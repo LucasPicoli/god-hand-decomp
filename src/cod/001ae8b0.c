@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern char D_00428090[];
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
 extern char D_00428160[];
-extern int D_004283D8;
 extern int D_00462FC0;
 extern void cCollisionSolidManage_ReleaseUnit(void *, void *);
 extern void cOm71_SetMotionWait(int a0);

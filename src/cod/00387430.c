@@ -2,13 +2,13 @@
 
 extern unsigned short D_0076E910;
 
-__attribute__((section(".text.func_00387430")))
-int func_00387430(short idx) {
+__attribute__((section(".text.SdeStrStatusGetByWorkId")))
+int SdeStrStatusGetByWorkId(short idx) {
     unsigned short flags;
     int result;
     int t;
 
-    if (func_003779D0(idx)) {
+    if (SdeStrExeSearchByWorkId(idx)) {
         return 1;
     }
     flags = *(unsigned short *)((char *)&D_0076E910 + idx * 0xA0);

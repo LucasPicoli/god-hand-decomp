@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern int D_007476B0;
-extern int D_004A6E10;
 extern int D_00566E10;
 extern unsigned char D_005E85F8;
 extern int D_00747A2C;
@@ -40,8 +40,8 @@ void func_0031A088(char *a0, unsigned int a1) {
     p[a1 >> 5] |= 0x80000000u >> (a1 & 0x1F);
 }
 
-__attribute__((section(".text.func_0031CA58")))
-unsigned int func_0031CA58(unsigned int a0) {
+__attribute__((section(".text.convColor")))
+unsigned int convColor(unsigned int a0) {
     unsigned int v1, v0, a1;
     v1 = a0 >> 16;
     v0 = a0 & 0xFF000000;

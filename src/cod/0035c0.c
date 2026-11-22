@@ -4,26 +4,26 @@
 /* Struct: CGObj35C0_t — indexed 68-byte-stride table +0x138..+0x170 (CopyPair); fields +0x1F30..+0x1F3C with callbacks at +0x1F3C; view into a large entity object. */
 
 /* ── Forward declarations for within-TU calls ────────────────────────────── */
-void func_0035C1C0(char *a0, int a1, int a2, int a3);
-void func_0035C200(char *a0, int a1, int a2);
+void sftrn_ConnTrnBuf(char *a0, int a1, int a2, int a3);
+void sftrn_ConnBufTrn(char *a0, int a1, int a2);
 void Obj35C0_Set_a1_0_a2_C140(char *a0, int a1, int a2);
 
 /* ── INCLUDE_ASM: call-chain / loop-leaf / medium-leaf (nonmatching) ───────── */
 __attribute__((section(".text.sftrn_BuildAudio")))
 void sftrn_BuildAudio(char *h, char *s)
 {
-    func_0035C200(h, 2, 3);
+    sftrn_ConnBufTrn(h, 2, 3);
     Obj35C0_Set_a1_0_a2_C140(h, 3, 4);
     if (*(int *)(s + 0x14) != 0) {
-        func_0035C200(h, 4, 5);
+        sftrn_ConnBufTrn(h, 4, 5);
         Obj35C0_Set_a1_0_a2_C140(h, 5, 6);
-        func_0035C200(h, 6, 7);
+        sftrn_ConnBufTrn(h, 6, 7);
         return;
     }
-    func_0035C200(h, 4, 7);
+    sftrn_ConnBufTrn(h, 4, 7);
 }
-__attribute__((section(".text.func_0035C238")))
-int func_0035C238(int a0, int a1) {
+__attribute__((section(".text.SFTRN_CallTrSetup")))
+int SFTRN_CallTrSetup(int a0, int a1) {
     char *e = (char *)(a0 + 0x1F30);
     int i;
     int ret = 0;
@@ -41,8 +41,8 @@ int func_0035C238(int a0, int a1) {
 
 typedef int (*Fn)(int, int, int, int);
 
-__attribute__((section(".text.func_0035C2D0")))
-int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
+__attribute__((section(".text.SFTRN_CallTrtTrif")))
+int SFTRN_CallTrtTrif(int a0, int a1, int a2, int a3, int t0) {
     Fn *tbl;
     char *p = (char *)a0 + a1 * 68;
     tbl = *(Fn **)(p + 0x1F3C);
@@ -51,11 +51,11 @@ int func_0035C2D0(int a0, int a1, int a2, int a3, int t0) {
     }
     return tbl[a2](a0, a3, t0, 0);
 }
-/* func_0035C1C0: two strided table writes into base — a3 at stride 0x44
+/* sftrn_ConnTrnBuf: two strided table writes into base — a3 at stride 0x44
  * (+0x1F44), a1 at stride 0x74 (+0x135C).  The intermediate int `r` keeps the
  * addu operand order retail uses. */
-__attribute__((section(".text.func_0035C1C0")))
-void func_0035C1C0(char *base, int a1, int a2, int a3) {
+__attribute__((section(".text.sftrn_ConnTrnBuf")))
+void sftrn_ConnTrnBuf(char *base, int a1, int a2, int a3) {
     char *q = base + a1 * 0x44;
     int r = a2 * 4 + (int)q;
     char *w = base + a3 * 0x74;
@@ -64,11 +64,11 @@ void func_0035C1C0(char *base, int a1, int a2, int a3) {
     *(int *)(w + 0x135C) = a1;
 }
 
-/* func_0035C200 (RE4 twin): two strided table writes into a0 — a2 at stride
+/* sftrn_ConnBufTrn (RE4 twin): two strided table writes into a0 — a2 at stride
  * 0x44 (+0x1F40), a1 at stride 0x74 (+0x1360). Offsets hoisted to locals so the
  * base register lands first in each addu (commutative-operand match). */
-__attribute__((section(".text.func_0035C200")))
-void func_0035C200(char *a0, int a1, int a2) {
+__attribute__((section(".text.sftrn_ConnBufTrn")))
+void sftrn_ConnBufTrn(char *a0, int a1, int a2) {
     int o2 = a2 * 0x44;
     int o1 = a1 * 0x74;
     *(int *)(a0 + o2 + 0x1F40) = a1;
@@ -83,39 +83,39 @@ void func_0035C200(char *a0, int a1, int a2) {
 /*           j TARGET; delay: addiu sp,+10                                     */
 /* ════════════════════════════════════════════════════════════════════════════ */
 
-/* 0x0035C120 — set a1=7, a2=8, tail-call func_0035C200                        */
+/* 0x0035C120 — set a1=7, a2=8, tail-call sftrn_ConnBufTrn                        */
 __attribute__((section(".text.sftrn_BuildUsr")))
 void sftrn_BuildUsr(char *a0)
 {
-    func_0035C200(a0, 7, 8);
+    sftrn_ConnBufTrn(a0, 7, 8);
 }
 
-/* 0x0035C140 — move a2→a3, set a2=0, tail-call func_0035C1C0                  */
+/* 0x0035C140 — move a2→a3, set a2=0, tail-call sftrn_ConnTrnBuf                  */
 __attribute__((section(".text.Obj35C0_Set_a1_0_a2_C140")))
 void Obj35C0_Set_a1_0_a2_C140(char *a0, int a1, int a2)
 {
-    func_0035C1C0(a0, a1, 0, a2);
+    sftrn_ConnTrnBuf(a0, a1, 0, a2);
 }
 
 /* 0x0035C160 — identical to C140 (same disassembly, different address)         */
 __attribute__((section(".text.Obj35C0_Set_a1_0_a2_C160")))
 void Obj35C0_Set_a1_0_a2_C160(char *a0, int a1, int a2)
 {
-    func_0035C1C0(a0, a1, 0, a2);
+    sftrn_ConnTrnBuf(a0, a1, 0, a2);
 }
 
-/* 0x0035C180 — move a2→a3, set a2=1, tail-call func_0035C1C0                  */
+/* 0x0035C180 — move a2→a3, set a2=1, tail-call sftrn_ConnTrnBuf                  */
 __attribute__((section(".text.sftrn_ConnTrnBufA")))
 void sftrn_ConnTrnBufA(char *a0, int a1, int a2)
 {
-    func_0035C1C0(a0, a1, 1, a2);
+    sftrn_ConnTrnBuf(a0, a1, 1, a2);
 }
 
-/* 0x0035C1A0 — move a2→a3, set a2=2, tail-call func_0035C1C0                  */
+/* 0x0035C1A0 — move a2→a3, set a2=2, tail-call sftrn_ConnTrnBuf                  */
 __attribute__((section(".text.sftrn_ConnTrnBufU")))
 void sftrn_ConnTrnBufU(char *a0, int a1, int a2)
 {
-    func_0035C1C0(a0, a1, 2, a2);
+    sftrn_ConnTrnBuf(a0, a1, 2, a2);
 }
 
 /* ════════════════════════════════════════════════════════════════════════════ */
@@ -277,7 +277,7 @@ void SftrnHn_init(SftrnHn *hn)
     hn->unk190[8] = 0;
     hn->unk190[9] = 0;
     hn->unk1B8 = 0;
-    func_0035CB20();
+    sftst_DebInit();
 }
 extern void func_003A52F0(void *a0, int a1, int a2);
 
@@ -287,4 +287,4 @@ void func_0035C480(char *a0) {
     *(int *)(a0 + 0x14) = 0;
     *(int *)(a0 + 0x19C) += 1;
 }
-INCLUDE_ASM("permanent", func_0035C5A0);
+INCLUDE_ASM("permanent", SFTST_Calc);

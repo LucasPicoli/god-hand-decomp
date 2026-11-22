@@ -10,8 +10,8 @@ typedef struct {
 
 typedef struct { int f0; unsigned char pad[0x20]; } Ent3F1EC8;
 
-__attribute__((section(".text.func_0036CB08")))
-void *func_0036CB08(void) {
+__attribute__((section(".text.sfxalp_SearchFreeHn")))
+void *sfxalp_SearchFreeHn(void) {
     int n = ((Root3F1EC8 *)D_003F1EC8)->count;
     Ent3F1EC8 *p = (Ent3F1EC8 *)((Root3F1EC8 *)D_003F1EC8)->ents;
     int i;

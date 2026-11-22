@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0035A620, vblank-in: count the vblank and tick the timer of every active handle. */
+/* cygnus-2.96: SFTIM_VbIn, vblank-in: count the vblank and tick the timer of every active handle. */
 typedef struct {
     int vcount;
     char pad04[0x54 - 0x04];
@@ -9,8 +9,8 @@ extern SfdLibWork D_003EE270;
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *hn);
 extern void sftim_HnVbIn(void *hn);
 
-__attribute__((section(".text.func_0035A620")))
-void func_0035A620(void)
+__attribute__((section(".text.SFTIM_VbIn")))
+void SFTIM_VbIn(void)
 {
     int i;
     void *hn;

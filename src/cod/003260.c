@@ -1,28 +1,29 @@
 /* Struct: CGObj3260_t — dispatch/trampoline object; byte flag +0x1, indirect target +0xC (mostly tail-call trampolines). */
 #include "include_asm.h"
 #include "godhand/adxsjd.h"
+#include "godhand/globals.h"
 
 /* ── Forward declarations for called external functions ─────────────────── */
-extern void func_00336E88(void);
+extern void PS2RNA_SetupVoice(void);
 extern void PollUrpcOnce(void);
-extern void func_00337C88(void);
-extern void func_00337B30(int a0);
-extern void func_00337B80(int a0);
-extern void func_00337BC8(int a0);
+extern void PS2RNA_ShutdownDolby(void);
+extern void PS2RNA_SetStmType(int a0);
+extern void PS2RNA_SetSpu2CoreNo(int a0);
+extern void PS2RNA_ResetSpu2CoreNo(int a0);
 extern void func_00337728(void);
-extern void func_00337D20(void);
+extern void PS2RNA_Finish(void);
 extern void func_00337DE0(void);
-extern void func_003382A0(int, int);  /* K&R: accepts any args */
-extern void func_003381B0();  /* K&R: accepts any args */
-extern void func_00338338(int, int);  /* K&R: accepts any args */
-extern int func_003383B0(int);
-extern void func_00338418(void);
-extern void func_00338638(void);
-extern void func_003386E0(void);
+extern void PS2RNA_SetTransSw(int, int);  /* K&R: accepts any args */
+extern void PS2RNA_Destroy();  /* K&R: accepts any args */
+extern void PS2RNA_SetPlaySw(int, int);  /* K&R: accepts any args */
+extern int PS2RNA_GetNumData(int);
+extern void PS2RNA_GetNumRoom(void);
+extern void PS2RNA_ExecServer(void);
+extern void PS2RNA_SetNumChan(void);
 extern void func_00338710(void);
-extern void func_00338788(void);
-extern void func_003387C8(int, int, int);
-extern void func_00338818(int, int);
+extern void PS2RNA_SetOutVol(void);
+extern void PS2RNA_SetOutPan(int, int, int);
+extern void PS2RNA_SetOutBalance(int, int);
 extern int PS2RNA_SetBitPerSmpl(long handle, long bitsPerSample);
 extern void func_003388B0(void);
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -33,7 +34,6 @@ extern int D_003CF9E8;      /* reference counter for D_003CF9F0 region      */
 /* ── Call-chain functions (11 = deferred) ───────────── */
 extern void Obj0000_Set_D_003DA394_335348(int a0);
 extern void Obj0000_Set_D_003D9DD8_3331C0(int a0);
-extern int D_003CF9E0;
 
 /* func_00326020: store the value in D_003CF9E0, then hand it to the two setters. */
 __attribute__((section(".text.func_00326020")))
@@ -44,7 +44,6 @@ void func_00326020(int v) {
 }
 extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
-extern int D_003CF9E0;
 
 __attribute__((section(".text.func_003260C8")))
 void func_003260C8(void *a0, ...)
@@ -145,8 +144,8 @@ Sint32 ADXPS2_GetNumDataSjtmp(ADXT adxt, Sint32 chno)
     return (Uint32)sjtmp->vtbl->GetNumData(sjtmp, 1) >> 1;
 }
 
-__attribute__((section(".text.func_003261A8")))
-Sint32 func_003261A8(ADXT adxt, Sint32 chno)
+__attribute__((section(".text.ADXPS2_GetNumDataSjiop")))
+Sint32 ADXPS2_GetNumDataSjiop(ADXT adxt, Sint32 chno)
 {
     PS2RNA ps2rna;
     PS2PSJ psj;
@@ -155,13 +154,13 @@ Sint32 func_003261A8(ADXT adxt, Sint32 chno)
     psj = ps2rna->psj[chno];
     return (Uint32)SJRMT_GetNumData(psj->sjiop, 1) >> 1;
 }
-/* Obj3260_TrampChain_D2D8: call func_00338338(a0,0) + func_003382A0(a0,0) + tail-call   */
-/* func_003381B0(a0). Saves a0 in $s0 across both calls.                        */
+/* Obj3260_TrampChain_D2D8: call PS2RNA_SetPlaySw(a0,0) + PS2RNA_SetTransSw(a0,0) + tail-call   */
+/* PS2RNA_Destroy(a0). Saves a0 in $s0 across both calls.                        */
 __attribute__((section(".text.Obj3260_TrampChain_D2D8")))
 void Obj3260_TrampChain_D2D8(void *a0) {
-    func_00338338(a0, 0);
-    func_003382A0(a0, 0);
-    func_003381B0(a0);
+    PS2RNA_SetPlaySw(a0, 0);
+    PS2RNA_SetTransSw(a0, 0);
+    PS2RNA_Destroy(a0);
 }
 /* cygnus-2.96: AdxSjd_create, claims a free ADX stream-joint decoder slot, creates its ADXB decoder
  * from the first stream joint and copies the stream joint handles in. Returns the slot or 0. */
@@ -171,7 +170,7 @@ extern int func_0033A000(int sj);
 extern int func_0033A008(int sj);
 extern void *ADXB_Create(int nsj, int a, int b, int c);
 extern void Obj33C8_SetFields_78_7C(void *adxb, void *fn, AdxSjd *slot);
-extern void func_00326568(char *p);
+extern void adxsjd_clear(char *p);
 extern int adxsjd_get_wr(void *, int *, int *, int *);
 
 __attribute__((section(".text.AdxSjd_create")))
@@ -202,7 +201,7 @@ AdxSjd *AdxSjd_create(int owner, int nsj, int *sj)
     for (j = 0; j < nsj; j++)
         slot->sj[j] = sj[j];
     slot->unk01 = 0;
-    func_00326568((char *)slot);
+    adxsjd_clear((char *)slot);
     slot->unk48 = 0;
     slot->unk4C = 0;
     slot->unk50 = 0;
@@ -210,20 +209,20 @@ AdxSjd *AdxSjd_create(int owner, int nsj, int *sj)
     slot->used = 1;
     return slot;
 }
-extern void func_0033C918(int);
+extern void ADXB_Destroy(int);
 extern void Forward33B658_33E678(void);
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern void Forward33B670_33E690(void);
 
-__attribute__((section(".text.func_00326718")))
-void func_00326718(int a0) {
+__attribute__((section(".text.ADXSJD_Destroy")))
+void ADXSJD_Destroy(int a0) {
     int v0;
     if (a0 == 0)
         return;
     v0 = *(int*)(a0 + 4);
     if (v0 != 0) {
         *(int*)(a0 + 4) = 0;
-        func_0033C918(v0);
+        ADXB_Destroy(v0);
     }
     Forward33B658_33E678();
     func_003A52F0((void *)a0, 0, 0xAC);
@@ -241,14 +240,14 @@ void StoreArgAndUpdateChildA(void *obj, int a1) {
     func_0033C240(*(void **)((char *)obj + 4), a1);
 }
 /* Store the value at +0x38, then forward the child object at +4 to two updaters. */
-extern void func_0033C458(void *a0, int a1);
-extern void func_0033C270(void *a0, int a1);
+extern void ADXB_SetAhxDecSmpl(void *a0, int a1);
+extern void ADXB_SetAc3DecSmpl(void *a0, int a1);
 
 __attribute__((section(".text.StoreArgAndUpdateChildB")))
 void StoreArgAndUpdateChildB(void *obj, int a1) {
     *(int *)((char *)obj + 0x38) = a1;
-    func_0033C458(*(void **)((char *)obj + 4), a1);
-    func_0033C270(*(void **)((char *)obj + 4), a1);
+    ADXB_SetAhxDecSmpl(*(void **)((char *)obj + 4), a1);
+    ADXB_SetAc3DecSmpl(*(void **)((char *)obj + 4), a1);
 }
 
 /* ── Obj3260_CallReturn0_003388F8_D498: simple call-then-return-zero (8 insns, jal) ─────────── */
@@ -260,79 +259,79 @@ int Obj3260_CallReturn0_003388F8_D498(void) { RefreshEntryIfActive(); return 0; 
 /* ── Simple trampolines (addiu; sd $ra; ld $ra; j target; addiu) ────────── */
 /* 5 insns each: prologue saves $ra, epilogue restores $ra then tail-jumps.  */
 
-/* Obj3260_Tramp_00336E88_D148 → j func_00336E88 */
+/* Obj3260_Tramp_00336E88_D148 → j PS2RNA_SetupVoice */
 __attribute__((section(".text.Obj3260_Tramp_00336E88_D148")))
-void Obj3260_Tramp_00336E88_D148(void) { func_00336E88(); }
+void Obj3260_Tramp_00336E88_D148(void) { PS2RNA_SetupVoice(); }
 
 /* Obj3260_Tramp_00337C00_D1F0 → j PollUrpcOnce */
 __attribute__((section(".text.Obj3260_Tramp_00337C00_D1F0")))
 void Obj3260_Tramp_00337C00_D1F0(void) { PollUrpcOnce(); }
 
-/* Obj3260_Tramp_00337C88_D208 → j func_00337C88 */
+/* Obj3260_Tramp_00337C88_D208 → j PS2RNA_ShutdownDolby */
 __attribute__((section(".text.Obj3260_Tramp_00337C88_D208")))
-void Obj3260_Tramp_00337C88_D208(void) { func_00337C88(); }
+void Obj3260_Tramp_00337C88_D208(void) { PS2RNA_ShutdownDolby(); }
 
 /* Obj3260_Tramp_00337728_D288 → j func_00337728 */
 __attribute__((section(".text.Obj3260_Tramp_00337728_D288")))
 void Obj3260_Tramp_00337728_D288(void) { func_00337728(); }
 
-/* Obj3260_Tramp_00337D20_D2A0 → j func_00337D20 */
+/* Obj3260_Tramp_00337D20_D2A0 → j PS2RNA_Finish */
 __attribute__((section(".text.Obj3260_Tramp_00337D20_D2A0")))
-void Obj3260_Tramp_00337D20_D2A0(void) { func_00337D20(); }
+void Obj3260_Tramp_00337D20_D2A0(void) { PS2RNA_Finish(); }
 
 /* Obj3260_Tramp_00337DE0_D2C0 → j func_00337DE0 */
 __attribute__((section(".text.Obj3260_Tramp_00337DE0_D2C0")))
 void Obj3260_Tramp_00337DE0_D2C0(void) { func_00337DE0(); }
 
-/* Obj3260_Tramp_003382A0_D320 → j func_003382A0 */
+/* Obj3260_Tramp_003382A0_D320 → j PS2RNA_SetTransSw */
 __attribute__((section(".text.Obj3260_Tramp_003382A0_D320")))
 void Obj3260_Tramp_003382A0_D320(int a0, int a1) {
-    func_003382A0(a0, a1);
+    PS2RNA_SetTransSw(a0, a1);
 }
 
-/* Obj3260_Tramp_00338338_D338 → j func_00338338 */
+/* Obj3260_Tramp_00338338_D338 → j PS2RNA_SetPlaySw */
 __attribute__((section(".text.Obj3260_Tramp_00338338_D338")))
 void Obj3260_Tramp_00338338_D338(int a0, int a1) {
-    func_00338338(a0, a1);
+    PS2RNA_SetPlaySw(a0, a1);
 }
 
-/* Obj3260_Tramp_003383B0_D358 → j func_003383B0 */
+/* Obj3260_Tramp_003383B0_D358 → j PS2RNA_GetNumData */
 __attribute__((section(".text.Obj3260_Tramp_003383B0_D358")))
 int Obj3260_Tramp_003383B0_D358(int a0) {
-    return func_003383B0(a0);
+    return PS2RNA_GetNumData(a0);
 }
 
-/* func_00326370 → j func_00338418 */
+/* func_00326370 → j PS2RNA_GetNumRoom */
 /* NOTE: 3 trailing nops after endlabel (0xC extra bytes); ALIGN(8) only       */
 /* adds 4 bytes → 8-byte deficit shifts all subsequent VMAs. Use INCLUDE_ASM.  */
 INCLUDE_ASM("nonmatching", func_00326370);
 
-/* Obj3260_Tramp_00338638_D390 → j func_00338638 */
+/* Obj3260_Tramp_00338638_D390 → j PS2RNA_ExecServer */
 __attribute__((section(".text.Obj3260_Tramp_00338638_D390")))
-void Obj3260_Tramp_00338638_D390(void) { func_00338638(); }
+void Obj3260_Tramp_00338638_D390(void) { PS2RNA_ExecServer(); }
 
-/* Obj3260_Tramp_003386E0_D3B0 → j func_003386E0 */
+/* Obj3260_Tramp_003386E0_D3B0 → j PS2RNA_SetNumChan */
 __attribute__((section(".text.Obj3260_Tramp_003386E0_D3B0")))
-void Obj3260_Tramp_003386E0_D3B0(void) { func_003386E0(); }
+void Obj3260_Tramp_003386E0_D3B0(void) { PS2RNA_SetNumChan(); }
 
 /* Obj3260_Tramp_00338710_D3C8 → j func_00338710 */
 __attribute__((section(".text.Obj3260_Tramp_00338710_D3C8")))
 void Obj3260_Tramp_00338710_D3C8(void) { func_00338710(); }
 
-/* Obj3260_Tramp_00338788_D3E0 → j func_00338788 */
+/* Obj3260_Tramp_00338788_D3E0 → j PS2RNA_SetOutVol */
 __attribute__((section(".text.Obj3260_Tramp_00338788_D3E0")))
-void Obj3260_Tramp_00338788_D3E0(void) { func_00338788(); }
+void Obj3260_Tramp_00338788_D3E0(void) { PS2RNA_SetOutVol(); }
 
-/* Obj3260_Tramp_003387C8_D3F8 → j func_003387C8 */
+/* Obj3260_Tramp_003387C8_D3F8 → j PS2RNA_SetOutPan */
 __attribute__((section(".text.Obj3260_Tramp_003387C8_D3F8")))
 void Obj3260_Tramp_003387C8_D3F8(int a0, int a1, int a2) {
-    func_003387C8(a0, a1, a2);
+    PS2RNA_SetOutPan(a0, a1, a2);
 }
 
-/* Obj3260_Tramp_00338818_D410 → j func_00338818 */
+/* Obj3260_Tramp_00338818_D410 → j PS2RNA_SetOutBalance */
 __attribute__((section(".text.Obj3260_Tramp_00338818_D410")))
 void Obj3260_Tramp_00338818_D410(int a0, int a1) {
-    func_00338818(a0, a1);
+    PS2RNA_SetOutBalance(a0, a1);
 }
 
 /* Obj3260_Tramp_00338848_D428 → j PS2RNA_SetBitPerSmpl */
@@ -346,17 +345,17 @@ void Obj3260_Tramp_003388B0_D468(void) { func_003388B0(); }
 /* ── Modified trampolines (lw $a0, 0xC($a0); j target) ─────────────────── */
 /* 6 insns: prologue + load $a0 = *(a0+0xC) + tail-jump with modified arg.  */
 
-/* Obj3260_TrampVia0C_00337B30_D220: $a0 = *(int*)($a0+0xC), then j func_00337B30 */
+/* Obj3260_TrampVia0C_00337B30_D220: $a0 = *(int*)($a0+0xC), then j PS2RNA_SetStmType */
 __attribute__((section(".text.Obj3260_TrampVia0C_00337B30_D220")))
-void Obj3260_TrampVia0C_00337B30_D220(char *a0) { func_00337B30(*(int *)(a0 + 0xC)); }
+void Obj3260_TrampVia0C_00337B30_D220(char *a0) { PS2RNA_SetStmType(*(int *)(a0 + 0xC)); }
 
-/* Obj3260_TrampVia0C_00337B80_D238: $a0 = *(int*)($a0+0xC), then j func_00337B80 */
+/* Obj3260_TrampVia0C_00337B80_D238: $a0 = *(int*)($a0+0xC), then j PS2RNA_SetSpu2CoreNo */
 __attribute__((section(".text.Obj3260_TrampVia0C_00337B80_D238")))
-void Obj3260_TrampVia0C_00337B80_D238(char *a0) { func_00337B80(*(int *)(a0 + 0xC)); }
+void Obj3260_TrampVia0C_00337B80_D238(char *a0) { PS2RNA_SetSpu2CoreNo(*(int *)(a0 + 0xC)); }
 
-/* Obj3260_TrampVia0C_00337BC8_D250: $a0 = *(int*)($a0+0xC), then j func_00337BC8 */
+/* Obj3260_TrampVia0C_00337BC8_D250: $a0 = *(int*)($a0+0xC), then j PS2RNA_ResetSpu2CoreNo */
 __attribute__((section(".text.Obj3260_TrampVia0C_00337BC8_D250")))
-void Obj3260_TrampVia0C_00337BC8_D250(char *a0) { func_00337BC8(*(int *)(a0 + 0xC)); }
+void Obj3260_TrampVia0C_00337BC8_D250(char *a0) { PS2RNA_ResetSpu2CoreNo(*(int *)(a0 + 0xC)); }
 
 /* ── Empty functions (jr $ra; nop) ─────────────────────────────────────── */
 
@@ -376,8 +375,8 @@ int Obj3260_GetByte_1_D778(char *a0) { return a0[1]; }
 /* Store-rotation order: cygnus rotates the last source store to the front  */
 /* and the second-to-last into the jr delay slot, so sw 0xA0 is written     */
 /* second-to-last and sw 0x3C last to land them as front/delay.             */
-__attribute__((section(".text.func_00326568")))
-void func_00326568(char *p) {
+__attribute__((section(".text.adxsjd_clear")))
+void adxsjd_clear(char *p) {
   *(int *)(p + 0x38) = 0x7FFFFFFF;
   *(int *)(p + 0xA4) = 0;
   *(int *)(p + 0x98) = 0;
@@ -392,6 +391,6 @@ void func_00326568(char *p) {
 }
 
 /* ── Branched-leaf (T0 attempt 1 failed → INCLUDE_ASM) ─────────────────── */
-/* func_00326520: decrement refcount + conditional tail-call.                */
+/* ADXSJD_Finish: decrement refcount + conditional tail-call.                */
 /* C compiler inverts branch logic (beqz vs bnez) → structural mismatch.    */
 /* Deferred.                                              */

@@ -1,11 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern void func_0034CE80(void *a0, int x, int y);
-extern int D_004551E8;
+extern void SFCON_WriteTotSmplQue(void *a0, int x, int y);
 extern void func_00336330(void *, void *);
 
-__attribute__((section(".text.func_00349DA0")))
-void func_00349DA0(char *a0) {
+__attribute__((section(".text.sfadxt_HeadDecCallBack")))
+void sfadxt_HeadDecCallBack(char *a0) {
     int *region; int id; int x; int y;
     region = (int *)(a0 + 0xD30);
     id = **(int **)(a0 + 0x2004);
@@ -14,7 +14,7 @@ void func_00349DA0(char *a0) {
     y = func_0032A530(id);
     if (x <= 0) return;
     if (y <= 0) return;
-    func_0034CE80(a0, x, y);
+    SFCON_WriteTotSmplQue(a0, x, y);
 }
 
 typedef struct {
@@ -30,8 +30,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_00336A40")))
-void func_00336A40(P *p, int n) {
+__attribute__((section(".text.mfCiSetSctLen")))
+void mfCiSetSctLen(P *p, int n) {
     int a, u, t;
     if (p == 0) {
         func_00336330(p, &D_004551E8);
@@ -46,8 +46,8 @@ void func_00336A40(P *p, int n) {
     p->f14 = p->f18 * n;
 }
 
-__attribute__((section(".text.func_003593F0")))
-int func_003593F0(char *base, int idx, long long *pval, int *out) {
+__attribute__((section(".text.SFPTS_WritePtsQue")))
+int SFPTS_WritePtsQue(char *base, int idx, long long *pval, int *out) {
     int *entry;
     *out = 0;
     if (*pval < 0) return 0;
@@ -59,15 +59,15 @@ int func_003593F0(char *base, int idx, long long *pval, int *out) {
     return 0;
 }
 
-__attribute__((section(".text.func_0034F718")))
-int func_0034F718(void *a0) {
+__attribute__((section(".text.sfmps_ChkPrepFlg")))
+int sfmps_ChkPrepFlg(void *a0) {
     int s0, r;
-    r = func_0034F7A0(a0);
+    r = sfmps_GetPrepDst(a0);
     if (r == 1) return r;
     s0 = *(int *)((char *)a0 + 0x1F84);
-    r = func_0034CA30(a0, s0);
+    r = SFBUF_GetPrepFlg(a0, s0);
     if (r != 1) return r;
-    r = func_0034F8D0(a0, s0);
+    r = sfmps_IsPrepEnd(a0, s0);
     if (r == 0) return r;
-    return func_0034F830(a0, 1);
+    return sfmps_SetPrepDst(a0, 1);
 }

@@ -11,15 +11,15 @@ typedef struct Tm2 {
     long long f;
 } Tm2;
 
-extern void func_0034B430(void *hn, int sw);
+extern void sfadxt_DoPause(void *hn, int sw);
 extern int sfadxt_IsEndDecinfo(void *ax);
 
-extern void func_0034B4B8(void *hn, int *tm, int sfreq);
+extern void sfadxt_GetTimeOneFrmAudio(void *hn, int *tm, int sfreq);
 
-extern void func_0035C548(void *p, Tm2 *t2);
+extern void SFTST_GoNextFrame(void *p, Tm2 *t2);
 
-__attribute__((section(".text.func_0034B2F0")))
-int func_0034B2F0(void *hn, unsigned int sw)
+__attribute__((section(".text.SFADXT_Pause")))
+int SFADXT_Pause(void *hn, unsigned int sw)
 {
     Tm2 t2;
     int tm;
@@ -34,21 +34,21 @@ int func_0034B2F0(void *hn, unsigned int sw)
     switch (sw) {
     case 0:
         p->f30 = 0;
-        func_0034B430(hn, 0);
+        sfadxt_DoPause(hn, 0);
         break;
     case 1:
-        func_0034B430(hn, sw);
+        sfadxt_DoPause(hn, sw);
         break;
     case 2:
         if (sfadxt_IsEndDecinfo(ax) != 0) {
             sfreq = func_0032A530(ax);
-            func_0034B4B8(hn, &tm, sfreq);
+            sfadxt_GetTimeOneFrmAudio(hn, &tm, sfreq);
             n = tm + p->f30;
             r = func_0032B4E8(ax, n);
             t2.t = tm;
             t2.f = sfreq;
             p->f30 = n - r;
-            func_0035C548((char *)hn + 0x1020, &t2);
+            SFTST_GoNextFrame((char *)hn + 0x1020, &t2);
         }
         break;
     }

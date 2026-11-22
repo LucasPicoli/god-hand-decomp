@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cIDBase.h"
 #include "godhand/cScenario.h"
+#include "godhand/globals.h"
 
-extern char D_005E7910[];
 extern char *D_00754C58;
 
 /* Resolve each entry's parent: an entry whose parentRef (0x29) names the id

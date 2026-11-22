@@ -1,4 +1,5 @@
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 
 typedef struct FileName {
     long a;
@@ -29,7 +30,6 @@ extern void func_0032D9B8(int handle, char *name, int a2);
 extern int func_0032E040(int handle, int a1);
 extern FileName D_0045C7F0;
 extern FileName D_0077BF80;
-extern char D_0045C800[];
 
 __attribute__((section(".text.func_00381BC8")))
 int func_00381BC8(FileNameSel *sel, FileLoadWork *work)

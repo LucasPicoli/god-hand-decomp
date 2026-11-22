@@ -20,7 +20,7 @@ int MPV_DecodePicAtr(void *h, S *s, int *out)
 
     p = func_00338B90(s->f0, s->f4);
     if (p == 0) return -1;
-    r = func_0036A3E8(h, p);
+    r = MPV_DecodePicAtrSj(h, p);
     *out = s->f4 - p->vt->f24(p, 1);
     p->vt->fC(p);
     return r;
@@ -31,7 +31,7 @@ void MWDMA_WaitEnd(int ch)
 {
     void *p;
 
-    p = func_00397100(ch);
-    while (func_00397550(p, 1, 0x1E) != 0)
+    p = sceDmaGetChan(ch);
+    while (sceDmaSync(p, 1, 0x1E) != 0)
         ;
 }

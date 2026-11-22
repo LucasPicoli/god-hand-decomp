@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 candidate. */
 
@@ -7,9 +8,6 @@ extern void cParts_calcLocal(void *o);
 extern void func_001501D0(void *o, int a1);
 extern void func_002AD2B8(void *a0, int a1, void *a2, int a3, void *t0, int t1,
                           float f12);
-extern unsigned char D_004209E8[];
-extern char D_004209F8[];
-extern char D_00420A88[];
 
 __attribute__((section(".text.func_001717C0")))
 void func_001717C0(char *self, float *p1, float *p2)

@@ -18,6 +18,6 @@ extern CallbackEnt D_00758620[CALLBACK_GROUP_NUM][CALLBACK_SLOT_NUM];
 extern char D_00455EC8[];
 extern char D_00455EF0[];
 extern char D_00455EF8[];
-extern void func_0033B790(const char *msg);
+extern void SVM_CallErr1(const char *msg);
 
 #endif

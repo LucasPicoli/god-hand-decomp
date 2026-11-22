@@ -1,6 +1,6 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00755BC8;
 extern void __do_global_ctors(void);
 extern void _IO_free_backup_area(int);
 extern void _sceMpegWaitIpuIdle(int);

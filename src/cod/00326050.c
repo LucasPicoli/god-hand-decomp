@@ -1,9 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 /* printf-style logger: unless logging is off, format the variadic args into a stack buffer and print it. */
 extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
-extern int D_003CF9E0;
 
 __attribute__((section(".text.LogPrintf")))
 void LogPrintf(void *a0, ...)

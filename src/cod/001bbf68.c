@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern unsigned char D_004452D8[];
 
 __attribute__((section(".text.func_001BBF68")))
 int func_001BBF68(char *p)

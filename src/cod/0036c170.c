@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0036C170")))
-void func_0036C170(char *p) {
+__attribute__((section(".text.mpvlib_InitPicAtr")))
+void mpvlib_InitPicAtr(char *p) {
     int one = 1;
     int neg = -1;
     *(int *)(p + 0x0) = 0;
@@ -46,8 +46,8 @@ void func_0036C170(char *p) {
     *(unsigned char *)(p + 0x64) = neg;
 }
 
-__attribute__((section(".text.func_0036D320")))
-void func_0036D320(char *p) {
+__attribute__((section(".text.m2vlib_InitPicAtr")))
+void m2vlib_InitPicAtr(char *p) {
     int one = 1;
     int neg = -1;
     *(int *)(p + 0x0) = 0;

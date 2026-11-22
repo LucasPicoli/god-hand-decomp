@@ -16,12 +16,12 @@ typedef struct SfdRingView {
     int sj;             /* 0x1FC8 */
 } SfdRingView;
 
-extern int func_0034C2B8(SfdRingView *sf, int sj, SfdRing *r);
+extern int SFBUF_RingGetRead(SfdRingView *sf, int sj, SfdRing *r);
 extern unsigned char *sfmpv_SearchDelim(SfdRing *r, int mask, int *found);
-extern void func_003545D8(SfdRingView *sf, int n);
+extern void sfmpv_RingAddRead(SfdRingView *sf, int n);
 
-__attribute__((section(".text.func_00354478")))
-int func_00354478(SfdRingView *sf, int unused, int mask)
+__attribute__((section(".text.sfmpv_GoDdelim")))
+int sfmpv_GoDdelim(SfdRingView *sf, int unused, int mask)
 {
     SfdRing r;
     int found;
@@ -31,7 +31,7 @@ int func_00354478(SfdRingView *sf, int unused, int mask)
     int nz;
     unsigned char *q;
 
-    if (func_0034C2B8(sf, sf->sj, &r) != 0)
+    if (SFBUF_RingGetRead(sf, sf->sj, &r) != 0)
         return 0;
     if (r.n0 == 0)
         return 0;
@@ -47,7 +47,7 @@ int func_00354478(SfdRingView *sf, int unused, int mask)
     } else {
         n = 0;
     }
-    func_003545D8(sf, n);
+    sfmpv_RingAddRead(sf, n);
     nz = 0;
     for (i = 0; i < (n < 4 ? n : 3); i++) {
         if (i < r.n0)

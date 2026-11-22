@@ -21,8 +21,8 @@ void SFD_CalcYccPlane(char *buf, int w, int h, char *out) {
     *(int *)(out + 0x4) = (int)(p + bh * mh * 512);
 }
 
-__attribute__((section(".text.func_00366678")))
-void func_00366678(int *p) {
+__attribute__((section(".text.CFT_Argb8888mbToA256V")))
+void CFT_Argb8888mbToA256V(int *p) {
     int h = p[2] / 16;
     int w = p[3] / 32;
     unsigned char *init = (unsigned char *)p[1];

@@ -4,6 +4,7 @@
 #include "godhand/cIDBase.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void displayScrollLayer(int layer, int on);
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
@@ -12,7 +13,6 @@ extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
 extern int cIDBase_setPackedMessData(void *self, int kind, int arg);
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern char D_0041FA90[];
 extern void **D_003C2384;
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
@@ -38,7 +38,6 @@ typedef struct EnemyRec {
 } EnemyRec;
 
 extern const unsigned char D_00448CA0[];    /* method table */
-extern const char D_00448A00[];             /* type name */
 extern void *func_0028EB00(void *self);     /* enemy base constructor */
 
 __attribute__((section(".text.EnemyBase_constructAimQuad5")))

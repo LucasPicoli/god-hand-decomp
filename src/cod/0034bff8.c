@@ -26,5 +26,5 @@ int SFBUF_SetSupplySj(void *hn, SupInfo *q)
     } else {
         no = 0;
     }
-    return func_0034C0E8(hn, q, no);
+    return sfbuf_SetSupplySjSub(hn, q, no);
 }

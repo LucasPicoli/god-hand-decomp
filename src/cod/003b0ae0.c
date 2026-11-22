@@ -3,6 +3,7 @@
 /* ee-2.9-991111 */
 
 #include "godhand/sync.h"
+#include "godhand/globals.h"
 
 struct SemaParam {
     int currentCount;
@@ -12,8 +13,6 @@ struct SemaParam {
     unsigned int attr;
     unsigned int option;
 };
-
-extern char D_0045FE40[];
 
 extern int CreateSema(struct SemaParam *param);
 extern int DeleteSema(int semid);

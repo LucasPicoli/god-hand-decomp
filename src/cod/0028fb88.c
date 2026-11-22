@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern unsigned char D_00747A50[];
-extern unsigned char D_005CB010;
-extern char *D_00586A80;
 
 /* sn-2.95.3-136 matched TU. */
 

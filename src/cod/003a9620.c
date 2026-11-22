@@ -1,8 +1,8 @@
-extern char D_003FA998[];
-extern char *func_003A95A8(char *s);
+#include "godhand/globals.h"
+extern char *strrev(char *s);
 
-__attribute__((section(".text.func_003A9620")))
-char *func_003A9620(int value, char *str, int base)
+__attribute__((section(".text.itoa")))
+char *itoa(int value, char *str, int base)
 {
     unsigned int u;
     int neg;
@@ -25,5 +25,5 @@ char *func_003A9620(int value, char *str, int base)
         i = i + 1;
     }
     str[i] = 0;
-    return func_003A95A8(str);
+    return strrev(str);
 }

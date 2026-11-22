@@ -4,12 +4,11 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cEmManage.h"
 #include "godhand/CustomIDWork.h"
+#include "godhand/globals.h"
 
 extern cModelNode *cModel_getMeshPtr_14B730(void *self, void *name);
-extern char D_00428AF0[];
 extern void *SearchData(void *pack, void *name, int which);
 extern int D_007474A0;
-extern char D_0044B100[];
 extern char *D_003C23A4;
 extern void CustomIDWork_SetNumber(CustomIDWork *work, int number);
 extern void CustomIDWork_setDispAllButEight(void *self, int id, int on);

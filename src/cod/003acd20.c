@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 TU. */
+#include "godhand/globals.h"
 
 extern void __malloc_lock(void *reent);
 extern void __malloc_unlock(void *reent);
@@ -6,7 +7,6 @@ extern void __malloc_unlock(void *reent);
 /* newlib mallocr.c :: _malloc_trim_r -> func_003ACD20 */
 
 #include "godhand/newlibMalloc.h"
-extern char *D_003FADE8;          /* __malloc_sbrk_base */
 struct mallinfo {
     int arena;
     int ordblks;

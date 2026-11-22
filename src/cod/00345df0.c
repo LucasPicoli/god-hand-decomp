@@ -1,10 +1,10 @@
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
-extern char D_00458068[];
 extern int mwlSfdSleepDecSvr(void *h);
-extern int func_00358968(int);
-extern int func_00345750(int);
-extern void func_00348498(MwsfdSlot *slot);
+extern int SFD_Stop(int);
+extern int MWSFLIB_SetErrCode(int);
+extern void MWSST_Stop(MwsfdSlot *slot);
 extern void func_00349B60(int);
 extern int func_00335950(int);
 
@@ -19,13 +19,13 @@ void func_00345DF0(MwsfdHn *o)
     mwlSfdSleepDecSvr(o);
     o->stat = 0;
     o->sfd = 0;
-    if (func_00358968(sfd) != 0) {
-        func_00345750(-0x134);
+    if (SFD_Stop(sfd) != 0) {
+        MWSFLIB_SetErrCode(-0x134);
         MWSFSVM_Error(D_00458068);
     }
     o->sfd = sfd;
-    func_00348498(&o->slot[0]);
-    func_00348498(&o->slot[1]);
+    MWSST_Stop(&o->slot[0]);
+    MWSST_Stop(&o->slot[1]);
     o->unk2CC = 0;
     if (o->unk40 != 0) {
         func_00349B60(o->unk40);

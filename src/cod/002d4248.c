@@ -1,5 +1,5 @@
 extern int func_003447A8(void *a0, void *a1, void *a2);
-extern int func_00344E88(int a0, int a1);
+extern int mwPlyRelFrm(int a0, int a1);
 
 __attribute__((section(".text.func_002D4248")))
 int func_002D4248(char *self)
@@ -14,7 +14,7 @@ int func_002D4248(char *self)
         return 1;
     if (last < 0)
         goto neg;
-    func_00344E88(*(int *)self, last);
+    mwPlyRelFrm(*(int *)self, last);
     cur = *(int *)(self + 0x58);
 neg:
     *(int *)(self + 0x5C) = cur;

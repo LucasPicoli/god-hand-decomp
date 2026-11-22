@@ -3,11 +3,10 @@
 #include "godhand/cScrSpriteDraw.h"
 #include "godhand/drawPrim.h"
 #include "godhand/gsPacket.h"
-
-extern unsigned int D_003C3B60[8];      /* the debug text colours */
+#include "godhand/globals.h"
 
 /* Draw str from (x, y): one sprite per character, its 8x8 cell of the font
- * texture picked by func_002E12D8; '\n' moves to the next line, ' ' only
+ * texture picked by sp_char_ck; '\n' moves to the next line, ' ' only
  * advances. Stops once the frame's character count is used up; otherwise leaves the
  * cursor after the string. */
 __attribute__((section(".text.func_002E0F18")))
@@ -45,7 +44,7 @@ void func_002E0F18(char *str, int x, int y, unsigned int color, int depth)
             y = D_0061B280.curY += 8;
         } else {
             if (ch != ' ') {
-                cell = func_002E12D8(ch) - 0x20;
+                cell = sp_char_ck(ch) - 0x20;
                 u = (cell & 0x1F) * 8;
                 t = (cell & 0xE0) >> 2;
                 v[0].x = x;

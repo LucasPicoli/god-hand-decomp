@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003B1F28(char *fmt);
-extern char D_0045DD40[];
 
 typedef unsigned int  u_int;
 typedef unsigned long u_long;
@@ -9,8 +9,8 @@ typedef unsigned long u_long;
 
 
 
-__attribute__((section(".text.func_00395758")))
-int func_00395758(void *lp, void *srcaddr)
+__attribute__((section(".text.sceGsExecLoadImage")))
+int sceGsExecLoadImage(void *lp, void *srcaddr)
 {
     u_int i;
 

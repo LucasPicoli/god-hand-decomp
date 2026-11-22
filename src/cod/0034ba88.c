@@ -16,32 +16,32 @@ typedef struct SfdBufPtr {
 } SfdBufPtr;
 
 extern void sfbuf_MakeBufPtr(SfdBufPtr *bp, SfdRange *rng, int size);
-extern int func_0034BC00(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx, int n);
-extern void func_0034BE00(void *sfd, void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
-extern void func_0034BEB8(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
-extern void func_0034BF58(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
+extern int sfbuf_InitRingSj(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx, int n);
+extern void sfbuf_InitVfrmBuf(void *sfd, void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
+extern void sfbuf_InitAringBuf(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
+extern void sfbuf_InitUoSjBuf(void *sfb, SfdBufPtr *bp, SfdRange *rng, int idx);
 
-__attribute__((section(".text.func_0034BA88")))
-int func_0034BA88(void *sfd, void *sfb, SfdRangeHdr *h)
+__attribute__((section(".text.SFBUF_InitHn")))
+int SFBUF_InitHn(void *sfd, void *sfb, SfdRangeHdr *h)
 {
     SfdBufPtr bp;
     SfdRange *rng = &h->rng;
     int r;
 
     sfbuf_MakeBufPtr(&bp, rng, h->size);
-    r = func_0034BC00(sfb, &bp, rng, 0, rng->pos % h->unit);
+    r = sfbuf_InitRingSj(sfb, &bp, rng, 0, rng->pos % h->unit);
     if (r != 0)
         return r;
-    r = func_0034BC00(sfb, &bp, rng, 1, 0x800);
+    r = sfbuf_InitRingSj(sfb, &bp, rng, 1, 0x800);
     if (r != 0)
         return r;
-    r = func_0034BC00(sfb, &bp, rng, 2, 0);
+    r = sfbuf_InitRingSj(sfb, &bp, rng, 2, 0);
     if (r != 0)
         return r;
-    func_0034BE00(sfd, sfb, &bp, rng, 3);
-    func_0034BEB8(sfb, &bp, rng, 4);
-    func_0034BE00(sfd, sfb, &bp, rng, 5);
-    func_0034BEB8(sfb, &bp, rng, 6);
-    func_0034BF58(sfb, &bp, rng, 7);
+    sfbuf_InitVfrmBuf(sfd, sfb, &bp, rng, 3);
+    sfbuf_InitAringBuf(sfb, &bp, rng, 4);
+    sfbuf_InitVfrmBuf(sfd, sfb, &bp, rng, 5);
+    sfbuf_InitAringBuf(sfb, &bp, rng, 6);
+    sfbuf_InitUoSjBuf(sfb, &bp, rng, 7);
     return 0;
 }

@@ -18,6 +18,6 @@ typedef struct CriTrackSet {
 } CriTrackSet;
 
 /* CriTrackSet_setTrackLevel on the set ply, under the middleware lock. */
-extern void func_0032EC78(int ply, int trno, int level);
+extern void AIXP_SetTrackVol(int ply, int trno, int level);
 
 #endif

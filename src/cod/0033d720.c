@@ -31,28 +31,28 @@ struct AdxbObj {
 };
 
 extern int Obj33F8_GetWord_C_FA68(AdxDec *dec);
-extern void func_0033FB78(AdxDec *dec);
-extern void func_0033FB48(AdxDec *dec);
-extern void func_0033D3D0(AdxbObj *adx);
-extern void func_0033D598(AdxbObj *adx);
+extern void ADXPD_ExecHndl(AdxDec *dec);
+extern void ADXPD_Reset(AdxDec *dec);
+extern void ADXB_EvokeDecode(AdxbObj *adx);
+extern void ADXB_EndDecode(AdxbObj *adx);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void (*D_003E9D4C)(AdxbObj *adx, int v, short *a, short *b);
 
-__attribute__((section(".text.func_0033D720")))
-void func_0033D720(AdxbObj *adx)
+__attribute__((section(".text.ADXB_ExecOneAdx")))
+void ADXB_ExecOneAdx(AdxbObj *adx)
 {
     AdxDec *dec;
     int i;
 
     if (adx->stat == 1 && Obj33F8_GetWord_C_FA68(adx->dec) == 0) {
         adx->hdrcb(adx->hdrobj, &adx->hdr68, &adx->hdr6C, &adx->hdr70);
-        func_0033D3D0(adx);
+        ADXB_EvokeDecode(adx);
         adx->stat = 2;
     }
     if (adx->stat != 2)
         return;
-    func_0033FB78(adx->dec);
+    ADXPD_ExecHndl(adx->dec);
     if (Obj33F8_GetWord_C_FA68(adx->dec) != 3)
         return;
     if (adx->replay != 0) {
@@ -62,8 +62,8 @@ void func_0033D720(AdxbObj *adx)
             D_003E9D4C(adx, dec->a[i], &dec->a[i], &dec->b[i]);
         Forward33B670_33E690();
     }
-    func_0033D598(adx);
-    func_0033FB48(adx->dec);
+    ADXB_EndDecode(adx);
+    ADXPD_Reset(adx->dec);
     adx->endcb(adx->endobj, adx->end94, adx->end90);
     adx->stat = 3;
 }

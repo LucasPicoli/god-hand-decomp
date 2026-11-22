@@ -1,8 +1,8 @@
 /* cygnus-2.96: stream/SFD/sound singletons. */
 #include "godhand/criStm.h"
 
-__attribute__((section(".text.func_00355490")))
-void *func_00355490(StmSys *w, void *key)
+__attribute__((section(".text.SFMPVF_SearchVfrmData")))
+void *SFMPVF_SearchVfrmData(StmSys *w, void *key)
 {
     StmMgr *t = w->mgr;
     char *e;

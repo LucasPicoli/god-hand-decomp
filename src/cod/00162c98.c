@@ -3,17 +3,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern void func_001645E0(void *a0);
 extern void Set_Field_0_4_8_1646B0(void *a0, void *a1, void *a2, int a3);
 extern void func_001646C0(void *a0, void *a1, float f);
 extern unsigned char *D_00586B28;
-extern unsigned short D_00583EEC;
 extern char *D_003C23A4;
-extern char D_00567D70[];
-extern char D_00567D80[];
-extern char D_00567E80[];
-extern float D_003BD9A8[];
 
 static __inline__ int MakeId(unsigned short h)
 {

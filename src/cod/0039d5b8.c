@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: _sceMpegPictureData0 */
 
@@ -9,8 +10,6 @@
 #define IPU_CTRL (*(volatile unsigned int *)0x10002010)
 #define IPU_BP   (*(volatile unsigned int *)0x10002020)
 #define IPU_TOP  (*(volatile long long *)0x10002030)
-
-extern char D_0045E6E0[];
 
 extern void _waitIpuIdle(void *s);
 extern void func_0039AB98(int h);

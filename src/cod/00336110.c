@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00336110, advances a 16-entry ring of queued requests; when the ring empties it
+/* cygnus-2.96: lsc_StatEnd, advances a 16-entry ring of queued requests; when the ring empties it
  * finishes the stream, and in mode 1 forwards the entry that was current. */
 typedef struct StmReq {
     int unk0;
@@ -26,8 +26,8 @@ typedef struct StmReqRing {
 extern void func_00335C30(void);
 extern int func_00335638(StmReqRing *r, int a, int b, int c, int d);
 
-__attribute__((section(".text.func_00336110")))
-void func_00336110(StmReqRing *r)
+__attribute__((section(".text.lsc_StatEnd")))
+void lsc_StatEnd(StmReqRing *r)
 {
     int a = 0, c = 0, d = 0, b = 0;
 

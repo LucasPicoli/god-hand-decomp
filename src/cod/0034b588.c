@@ -19,25 +19,25 @@ typedef struct Hd {
 
 
 extern void func_003B9D60(void *ax, int a1, int a2, int a3);
-extern void func_0032B618(void *ax, int sw);
-extern void func_0034A5E0(void);
+extern void ADXT_SetTimeOfst(void *ax, int sw);
+extern void sfadxt_ExcludeSilence(void);
 
-__attribute__((section(".text.func_0034B588")))
-int func_0034B588(void *hn)
+__attribute__((section(".text.SFADXT_Seek")))
+int SFADXT_Seek(void *hn)
 {
     Hd *hd;
     Obj *p;
     void *ax;
 
-    hd = func_0034B618(hn);
+    hd = sfadxt_GetHd(hn);
     if (hd == 0) return 0;
     p = *(Obj **)((char *)hn + 0x2004);
     ax = p->f0;
     if (p->f34 != 0) return 0;
     if (hd->f0 == 0) return 0;
     func_003B9D60(ax, hd->fC, hd->f10, hd->f14);
-    func_0032B618(ax, 0);
+    ADXT_SetTimeOfst(ax, 0);
     p->f34 = 1;
-    p->f3C = func_0034A5E0;
+    p->f3C = sfadxt_ExcludeSilence;
     return 0;
 }

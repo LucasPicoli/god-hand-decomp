@@ -20,8 +20,8 @@ extern Bigint *Brealloc(Bigint *b, int k);
 ((unsigned short *)a)[0] = (unsigned short)c, a++)
 
 /* libio floatconv.c :: mult -- c = a * b */
-__attribute__((section(".text.func_0038F9B8")))
-Bigint *func_0038F9B8(Bigint *c, Bigint *a, Bigint *b) {
+__attribute__((section(".text.mult_38F9B8")))
+Bigint *mult_38F9B8(Bigint *c, Bigint *a, Bigint *b) {
         int k, wa, wb, wc;
         unsigned32 carry, y, z;
         unsigned32 *x, *xa, *xae, *xb, *xbe, *xc, *xc0;

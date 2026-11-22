@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
-extern char D_0044BB20[];
 extern char D_005FEE00[];
 extern void SlotList_selectPrev(void *self);
 extern void func_001F6AF8(void *self);
@@ -87,8 +87,6 @@ PoolObj *Pool_createObjWithVt(Pool *pool, int arg, int a, int b, int c, int last
     obj->owner = sub;
     return obj;
 }
-
-extern long D_00747650;                 /* pad press bits */
 
 
 

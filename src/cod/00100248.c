@@ -1,21 +1,15 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003B6820(int);
 extern void func_00320280(void);
 extern void func_003B1F28(char *fmt, ...);
-extern char D_0045E630[];
 extern void func_0039EC20(char *a0, unsigned int a1);
 extern void _sceMpegError(int a0, int a1);
-extern char s__sequenceScalableExtension___is_n_0045e8b0[];
-extern char s_Unknown_Extension_0045e8e0[];
-extern char s__pictureSpatialScalableExtension_0045e8f8[];
-extern char s__pictureTemporalScalableExtensio_0045e930[];
 extern void func_003A0E20(char *a0, unsigned int a1);
 extern void func_003B7C18(void);
 extern void SetT2(unsigned int a0, void *a1);
 extern void func_003224D0(void *a0, void *a1);
-extern void *D_003FC9B4;
-extern char D_007854B0[];
 
 __attribute__((section(".text._exit")))
 void _exit(int a0) {

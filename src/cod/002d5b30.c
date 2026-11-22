@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_003F5520[];
-extern int D_0040A420;
 extern char *D_003F852C;
 extern char *D_00754C38;
 extern char D_0061B7C0[];
@@ -14,8 +14,8 @@ extern char D_0071B8C0[];
 
 
 
-__attribute__((section(".text.func_00394D58")))
-int func_00394D58(int *a0) {
+__attribute__((section(".text.snInitDllSystem")))
+int snInitDllSystem(int *a0) {
     char *p;
     int n;
     D_003F5520[1] = 0x31415926;

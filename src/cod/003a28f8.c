@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* MATCH (exact), 692 B.  Wave 23 lane G, 2026-09-07.
  * newlib libm ef_exp.c -- __ieee754_expf.  Donor: sce_crt_libm/ef_exp.o.
@@ -24,10 +25,6 @@
  */
 /* newlib libm ef_exp.c -- __ieee754_expf */
 
-extern const float D_0045EAD0[2];	/* halF  */
-extern const float D_0045EAE8[2];	/* ln2HI */
-extern const float D_0045EAF0[2];	/* ln2LO */
-extern const float D_0045EB10;		/* huge*huge, folded to +inf */
 #define halF  D_0045EAD0
 #define ln2HI D_0045EAE8
 #define ln2LO D_0045EAF0

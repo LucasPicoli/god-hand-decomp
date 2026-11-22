@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
 extern int func_003A6C58(char *buf, const char *fmt, ...);
@@ -7,30 +8,6 @@ extern int func_0032B0B0(int handle);
 extern void func_00380720(void *self, int a, int b, int *hh, int *mm, int *ss, int *cc);
 
 extern char D_0045C4D0[];
-extern char D_0045C4F8[];
-extern char D_0045C510[];
-extern char D_0045C520[];
-extern char D_0045C538[];
-extern char D_0045C548[];
-extern char D_0045C558[];
-extern char D_0045C560[];
-extern char D_0045C568[];
-extern char D_0045C588[];
-extern char D_0045C5A8[];
-extern char D_0045C5C8[];
-extern char D_0045C5E8[];
-extern char D_0045C600[];
-extern char D_0045C620[];
-extern char D_0045C630[];
-extern char D_0045C640[];
-extern char D_0045C650[];
-extern char D_0045C660[];
-extern char D_0045C670[];
-extern char D_0045C680[];
-extern char D_0045C698[];
-extern char D_0045C6A8[];
-extern char D_0045C6B8[];
-extern char D_0045C6C8[];
 extern char *D_003F2820[];
 extern char *D_003F2840[];
 extern char *D_003F2848[];

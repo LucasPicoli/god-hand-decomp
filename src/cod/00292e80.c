@@ -2,8 +2,8 @@
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 extern int D_00747A30;
-extern int D_0044F448;
 
 /* Plays the big-hit effect unless its wait runs or flag 0x800 of
  * D_00747A30 is set, then starts the wait. */

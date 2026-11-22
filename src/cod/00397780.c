@@ -1,14 +1,11 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003F8664;
 extern void (*D_003F85D0)(int port);
-extern void *D_0077C380;
 
 #include "godhand/gp.h"
 
 extern void (*D_0077C3C8)(void *);   /* sceCdPoffCbfunc */
-extern void *D_0077C3CC;             /* its gp */
-extern void *D_0077C3D0;             /* sceCdPoffCbdata */
 
 
 __attribute__((section(".text._sceCd_Poff_Intr")))

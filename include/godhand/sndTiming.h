@@ -59,4 +59,6 @@ void func_00375380(void);
 /* Flush the transfer buffers and keep the timing peaks. */
 void func_00375500(void);
 
+extern SndSystemVol D_0076A7B8; /* D_0076A790.vol */
+
 #endif /* GODHAND_SNDTIMING_H */

@@ -1,14 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Tramp_003302B0_003302E0(const char *msg);
 extern void func_003302B0(void);
-extern volatile int D_003D8400;
-extern const char D_00453128[], D_00453150[], D_00453178[];
-extern void func_00330920(char *path, char *dev, char *fname);
+extern void getDevName(char *path, char *dev, char *fname);
 extern void func_00330910(int *hn);
 extern char *variousProc(char *path, char *dev, char *fname);
-extern const char D_00453218[], D_00453238[], D_00453280[];
-extern const char D_004532A0[], D_004532B8[];
 extern void func_00334008(void *hn, const char *msg);
 extern void *SRD_Create(void);
 extern void htci_zero_padding(void *hn);
@@ -16,8 +13,7 @@ extern int SRD_ReqRdHst(void *srd, int a, int b, long long n, void *buf);
 extern void func_00331BF0(void);
 extern void CdSrd_finishRead(void);
 extern void func_00331070(void *srd);
-extern int D_003DA390;
-extern const char D_00454960[], D_00454978[], D_00454998[];
+extern const char D_00454960[];
 
 typedef void (*CVFS_INITFN)(void (*)(void), int);
 
@@ -36,7 +32,7 @@ void func_00330318(char *name, void *openfn)
         Tramp_003302B0_003302E0(D_00453150);
         return;
     }
-    dev = func_003303A8(name, openfn);
+    dev = addDevice(name, openfn);
     if (dev == 0) {
         Tramp_003302B0_003302E0(D_00453178);
         return;
@@ -47,8 +43,8 @@ void func_00330318(char *name, void *openfn)
     }
 }
 
-__attribute__((section(".text.func_00330780")))
-int *func_00330780(char *fname, int mode, int arg)
+__attribute__((section(".text.cvFsOpen")))
+int *cvFsOpen(char *fname, int mode, int arg)
 {
     char path[304];
     char dev[304];
@@ -60,12 +56,12 @@ int *func_00330780(char *fname, int mode, int arg)
         Tramp_003302B0_003302E0(D_00453218);
         return 0;
     }
-    func_00330920(path, dev, fname);
+    getDevName(path, dev, fname);
     if (dev[0] == 0) {
         Tramp_003302B0_003302E0(D_00453218);
         return 0;
     }
-    hn = func_003308A8();
+    hn = allocCvFsHn();
     if (hn == 0) {
         Tramp_003302B0_003302E0(D_00453238);
         return 0;
@@ -108,8 +104,8 @@ struct HTCI_RD {
     void *f2C;
 };
 
-__attribute__((section(".text.func_00334808")))
-int func_00334808(struct HTCI_RD *hn, int nsct, void *buf)
+__attribute__((section(".text.htCiReqRd")))
+int htCiReqRd(struct HTCI_RD *hn, int nsct, void *buf)
 {
     long long lim;
     int n;
@@ -119,7 +115,7 @@ int func_00334808(struct HTCI_RD *hn, int nsct, void *buf)
     if (hn == 0) { func_00334008(hn, D_00454960); return 0; }
     if (nsct < 0) { func_00334008(hn, D_00454978); return 0; }
     if (buf == 0) { func_00334008(hn, D_00454998); return 0; }
-    if (func_00334038(hn) == 1) return 0;
+    if (htci_is_exec_hn(hn) == 1) return 0;
     if (hn->stat == 2) return 0;
     if (nsct == 0) {
         hn->stat = 1;

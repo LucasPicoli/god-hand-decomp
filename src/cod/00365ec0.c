@@ -4,8 +4,8 @@
 /* Fill the luma and the two chroma blocks of the YUV tables, then the luma
  * ramp: alpha << 6 on one side of lo..hi, 0 on the other and a linear slope
  * between them, falling when mode is 1 and rising otherwise. */
-__attribute__((section(".text.func_00365EC0")))
-void func_00365EC0(int mode, int lo, int hi, SfdYuvTab *tab)
+__attribute__((section(".text.CFT_MakeArgb8888AlpLumiTbl")))
+void CFT_MakeArgb8888AlpLumiTbl(int mode, int lo, int hi, SfdYuvTab *tab)
 {
     SfdYuvEnt *luma = tab->luma;
     SfdYuvEnt *blue = tab->blue;

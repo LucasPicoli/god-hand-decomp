@@ -1,8 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_00586AF0;
-extern int D_004A6D80;
-extern int D_003BD8D0;
 
 /* cygnus-2.96 --drop-freorder-blocks — byte_match: true (36 B) */
 

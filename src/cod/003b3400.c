@@ -43,8 +43,8 @@ typedef struct {
 
 extern sceSifRpcCtl D_0077FF40;
 
-__attribute__((section(".text.func_003B3400")))
-void func_003B3400(sceSifServeData *sd, unsigned int command,
+__attribute__((section(".text.sceSifRegisterRpc")))
+void sceSifRegisterRpc(sceSifServeData *sd, unsigned int command,
                    sceSifRpcFunc func, void *buff,
                    sceSifRpcFunc cfunc, void *cbuff, sceSifQueueData *qd)
 {

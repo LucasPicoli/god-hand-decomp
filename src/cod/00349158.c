@@ -1,16 +1,16 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_00348D58(void *);
+extern void mwlSfdExecDecSvrPrep(void *);
 extern void func_003490B0(void *);
-extern void func_003491D0(void *);
+extern void mwsfd_CheckFsErr(void *);
 extern void func_003466F0(void *);
 
-__attribute__((section(".text.func_00349158")))
-int func_00349158(void *p)
+__attribute__((section(".text.mwSfdExecDecSvrHndl")))
+int mwSfdExecDecSvrHndl(void *p)
 {
     switch (*(int *)((char *)p + 4)) {
     case 1:
-        func_00348D58(p);
+        mwlSfdExecDecSvrPrep(p);
         break;
     case 2:
         func_003490B0(p);
@@ -20,7 +20,7 @@ int func_00349158(void *p)
     case 4:
         break;
     }
-    func_003491D0(p);
+    mwsfd_CheckFsErr(p);
     func_003466F0(p);
     return 0;
 }

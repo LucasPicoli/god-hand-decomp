@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct Pic {
     char pad_00[0x28];
@@ -18,8 +19,6 @@ typedef struct Ctx {
     Pic *f1F0;
 } Ctx;
 
-extern char D_0045E548[];
-extern char D_0045E568[];
 extern void _sceMpegError(Ctx *c, char *msg);
 
 

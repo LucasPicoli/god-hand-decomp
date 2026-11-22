@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00450B28[];
 extern char D_00450C38[];
 extern char D_00450CE8[];
-extern char D_00454D68[];
 extern char D_0076A790[];
 
 /* clone */
@@ -53,8 +53,8 @@ int func_00335B40(int *a0) {
 
 
 
-__attribute__((section(".text.func_00386D70")))
-void func_00386D70(void) {
+__attribute__((section(".text.sdeIssLumpProcess")))
+void sdeIssLumpProcess(void) {
     unsigned char *base = D_0076A790;
     unsigned short *p = (unsigned short *)(base + 0x22);
     unsigned short v;

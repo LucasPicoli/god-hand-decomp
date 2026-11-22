@@ -1,12 +1,12 @@
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 
-extern void func_00323A70(int req);
-extern int func_003A92E0(const char *a, const char *b, unsigned int n);
+extern void ADXF_Close(int req);
+extern int strncasecmp(const char *a, const char *b, unsigned int n);
 extern void func_0031C900(void *buf);
 extern int func_00381B38(FileSel *sel, SlotInfoA *info, FileSelWork *work);
 extern void func_0032DA28(int handle, int a1, int cursor);
 extern void func_0032BB48(int handle, int a1, int cursor);
-extern char D_0045C2A8[];
 
 __attribute__((section(".text.func_0037FD28")))
 int func_0037FD28(FileSel *sel, FileSelWork *work)
@@ -17,8 +17,8 @@ int func_0037FD28(FileSel *sel, FileSelWork *work)
 
     if (b[0] == 0 && b[1] == 0 && b[2] == 0 && b[3] == 0)
         return 1;
-    func_00323A70(work->req);
-    if (func_003A92E0((char *)work->buf, D_0045C2A8, 4) == 0)
+    ADXF_Close(work->req);
+    if (strncasecmp((char *)work->buf, D_0045C2A8, 4) == 0)
         work->unk02[1] |= 2;
     else
         work->unk02[1] &= ~2;

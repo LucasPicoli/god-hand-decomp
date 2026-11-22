@@ -4,27 +4,27 @@ extern void Thunk_func_0033B658(void *p);
 extern void Thunk_func_0033B670(void *p);
 extern void func_0032B300(int x, int a1);
 extern int CreateThread(void *);
-extern void func_003B0BA8(int, int);
+extern void StartThread_3B0BA8(int, int);
 extern void ChangeThreadPriority(int, int);
 extern int D_003CF9D8;
 extern int D_003C80C0;
 extern unsigned char D_003CA9D0[];
 extern int D_00468CF0;
-extern void func_00325010(void);
+extern void adxm_fs_proc(void);
 extern volatile int D_003C8144;
 extern void *getElemInfPtr(void *, int);
 extern int isEnableVidFtr(int, void *);
 extern char D_003DA4D8[];
 extern void (*D_003DA4D0)(int, void *);
 extern int D_003DA4D4;
-extern void func_00324F08(void);
+extern void adxm_vsync_proc(void);
 extern char D_003C99D0[];
 extern int D_003C80BC;
 extern volatile int D_003C8140;
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *);
 
-__attribute__((section(".text.func_0034CDF8")))
-void func_0034CDF8(char *base, int delta) {
+__attribute__((section(".text.SFCON_UpdateConcatTime")))
+void SFCON_UpdateConcatTime(char *base, int delta) {
     int local[4]; int *region; int sum; int count;
     region = (int *)(base + 0xD30);
     Thunk_func_0033B658(local);
@@ -81,19 +81,19 @@ typedef struct {
 __attribute__((section(".text.func_003254F0")))
 void func_003254F0(void) {
     ThreadParamB tp;
-    tp.entry = (void *)func_00325010;
+    tp.entry = (void *)adxm_fs_proc;
     tp.stack = D_003CA9D0;
     tp.stackSize = 0x1000;
     tp.initPriority = D_003CF9D8;
     tp.gpReg = &D_00468CF0;
     D_003C8144 = CreateThread(&tp);
     (void)D_003C8144;
-    func_003B0BA8(D_003C8144, 0);
+    StartThread_3B0BA8(D_003C8144, 0);
     ChangeThreadPriority(D_003C8144, D_003C80C0);
 }
 
-__attribute__((section(".text.func_0035E758")))
-int func_0035E758(void *arg0, int arg1, int *arg2) {
+__attribute__((section(".text.SFH_AnlyFtrGopN")))
+int SFH_AnlyFtrGopN(void *arg0, int arg1, int *arg2) {
     int b;
     unsigned char *p;
     int v;
@@ -121,8 +121,8 @@ void func_00335D40(void *fmt, ...) {
         D_003DA4D0(D_003DA4D4, D_003DA4D8);
 }
 
-__attribute__((section(".text.func_00350390")))
-int func_00350390(char *obj, int *arr, unsigned int nbytes) {
+__attribute__((section(".text.SFMPV_SaveCond")))
+int SFMPV_SaveCond(char *obj, int *arr, unsigned int nbytes) {
     void *h;
     int n;
     int i;
@@ -134,7 +134,7 @@ int func_00350390(char *obj, int *arr, unsigned int nbytes) {
     if ((unsigned int)n >= 0x11)
         n = 0x10;
     for (i = 0; i < n; i++) {
-        func_0036C568(h, i, &arr[i]);
+        MPV_GetCond(h, i, &arr[i]);
     }
     return n;
 }
@@ -164,19 +164,19 @@ typedef struct {
 __attribute__((section(".text.func_00325468")))
 void func_00325468(void) {
     ThreadParam param;
-    param.func = func_00324F08;
+    param.func = adxm_vsync_proc;
     param.stack = D_003C99D0;
     param.stackSize = 0x1000;
     param.initPriority = D_003CF9D8;
     param.gpReg = &D_00468CF0;
     D_003C8140 = CreateThread(&param);
     D_003C8140;
-    func_003B0BA8(D_003C8140, 0);
+    StartThread_3B0BA8(D_003C8140, 0);
     ChangeThreadPriority(D_003C8140, D_003C80BC);
 }
 
-__attribute__((section(".text.func_00359B60")))
-int func_00359B60(char *p, int x, int y) {
+__attribute__((section(".text.SFD_SetTotTime")))
+int SFD_SetTotTime(char *p, int x, int y) {
     int r;
     char *q;
     r = Obj34D8_SetGlobalEE0B8_IfField48(p);
@@ -189,12 +189,12 @@ int func_00359B60(char *p, int x, int y) {
     }
     *(int *)(q + 0xDC8) = x;
     *(int *)(q + 0xDCC) = y;
-    func_00359DF0(p);
+    sfsee_UpdateEByteRate(p);
     return r;
 }
 
-__attribute__((section(".text.func_0035E7E0")))
-int func_0035E7E0(void *arg0, int arg1, int *arg2) {
+__attribute__((section(".text.SFH_AnlyFtrGopM")))
+int SFH_AnlyFtrGopM(void *arg0, int arg1, int *arg2) {
     int b;
     unsigned char *p;
     int v;

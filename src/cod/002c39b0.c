@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cScenario.h"
+#include "godhand/globals.h"
 
 extern int D_00747A78;
 extern int D_00747A84;
-extern char D_00747B20[];
 extern char D_005864F0[];
 extern void HideModelMgr_ResetHiddenModels(void *a0);
 extern void HideModelMgr_ClearHiddenModelList(void *a0);

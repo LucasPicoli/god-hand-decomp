@@ -26,10 +26,10 @@ typedef struct {
     SfdVideoCh ch;
 } SfdVideoView;
 
-extern int func_0034F200(void *w, int ch, char *src, int len, long pts);
+extern int sfmps_CopyDstBuft(void *w, int ch, char *src, int len, long pts);
 
-__attribute__((section(".text.func_0034EB98")))
-int func_0034EB98(SfdVideoView *s, int t, char *src, int len, long pts)
+__attribute__((section(".text.sfmps_CopyAudio")))
+int sfmps_CopyAudio(SfdVideoView *s, int t, char *src, int len, long pts)
 {
     SfdVideoCh *ch;
     SfdVideoTime *tm;
@@ -60,5 +60,5 @@ int func_0034EB98(SfdVideoView *s, int t, char *src, int len, long pts)
         tm->tmin0 = (pts < tm->tmin0) ? pts : tm->tmin0;
         tm->tmin1 = (pts < tm->tmin1) ? pts : tm->tmin1;
     }
-    return func_0034F200(s, ch->video, src, len, pts);
+    return sfmps_CopyDstBuft(s, ch->video, src, len, pts);
 }

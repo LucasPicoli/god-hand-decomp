@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 extern void func_001B6FB8(void *a0);
-extern unsigned char D_004209E8[];
 extern int cOl30_SetInitialPosition(char *a0, int a1, char *a2);
-extern unsigned char D_00422A10[];
 
 __attribute__((section(".text.func_00171140")))
 int func_00171140(char *p)

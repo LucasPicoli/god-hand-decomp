@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern float scalbnf(float, int);
 
@@ -28,10 +29,6 @@ extern float func_003A19D8(float);		/* fabsf           */
 extern float func_003A3B48(float);		/* __ieee754_sqrtf */
 
 
-extern const float D_0045EB48[2];		/* bp   */
-extern const float D_0045EB50[2];		/* dp_h */
-extern const float D_0045EB58[2];		/* dp_l */
-extern const float D_0045EBCC;			/* huge*huge, folded to +inf */
 #define bp   D_0045EB48
 #define dp_h D_0045EB50
 #define dp_l D_0045EB58

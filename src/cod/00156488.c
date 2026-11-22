@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00305A18(void *);
 extern char D_007419A0[];
-extern char D_00743250[];
 extern void sceVu0MulVector(float *v0, float *m0, float *v1);
 
 #include "godhand/vu0.h"

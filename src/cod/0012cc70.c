@@ -10,7 +10,7 @@ extern unsigned char D_0076CF20[];
 extern void func_0037C5C8(void *slot, void *obj, int bit);
 extern void func_0037C6A0(void *slot);
 extern void func_0037C5F8(void *slot, void *obj, int bit);
-extern void func_0037C618(void *slot, void *obj, int bit);
+extern void cmdParaPch(void *slot, void *obj, int bit);
 extern int *D_003C2384;
 extern int D_003C2388;
 extern void cIDBase_buildEntries(int a0, int a1, int a2);
@@ -124,7 +124,7 @@ void func_0037C4C0(void *obj)
             func_0037C5F8(p, obj, 4);
         }
         if (f & 8) {
-            func_0037C618(p, obj, 8);
+            cmdParaPch(p, obj, 8);
         }
     }
 }

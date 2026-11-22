@@ -4,6 +4,7 @@
 #include "godhand/cTaskManager.h"
 #include "godhand/vu0.h"
 #include "godhand/objFactory.h"
+#include "godhand/globals.h"
 
 extern int D_00747A34;
 extern char D_00754C10[];
@@ -16,8 +17,6 @@ extern void func_002D5440(cTaskManager *self, int index);
 extern void InitFields_1B6E90(void *);
 #include "godhand/objField.h"
 extern int D_00428778;
-extern char D_003BC7B0[];
-extern char D_003BC7B8[];
 
 /* Allocate and zero a 0x4D0-byte object, run the base constructor and set its vtable pointer; 0 if the allocator is locked or full. */
 

@@ -5,5 +5,5 @@
 
 __attribute__((section(".text.sfhds_IsPrvate2PketStart")))
 int sfhds_IsPrvate2PketStart(void) {
-    return func_0034D188() == 447;
+    return sfhds_ReadLong() == 447;
 }

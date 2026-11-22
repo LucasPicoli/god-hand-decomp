@@ -1,8 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_003D9DE0[];
-extern char D_004544E0[];
-extern char D_004544E8[];
 extern void func_003A57C4(char *, char *);
 extern void func_003A53A8(char *, char *);
 extern unsigned int strlen(const char *);

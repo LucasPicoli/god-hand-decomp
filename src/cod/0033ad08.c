@@ -1,10 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003E8C08[];
-extern char D_003F0298[];
-
-__attribute__((section(".text.func_0033C2F0")))
-int func_0033C2F0(char *p) {
+__attribute__((section(".text.ADXB_DecodeHeaderAc3")))
+int ADXB_DecodeHeaderAc3(char *p) {
     if (*(int *)(p + 0xC0) == 0) {
         return 0;
     }
@@ -53,7 +51,7 @@ typedef struct {
     char b[0x1800];
 } Blk1800;
 
-__attribute__((section(".text.func_003665C0")))
-void func_003665C0(void *dst) {
+__attribute__((section(".text.CFT_MakeArgb8888ColAdjTbl")))
+void CFT_MakeArgb8888ColAdjTbl(void *dst) {
     *(Blk1800 *)dst = *(Blk1800 *)D_003F0298;
 }

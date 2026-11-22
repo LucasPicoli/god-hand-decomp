@@ -9,8 +9,8 @@ extern int SetFieldIfUnset_359218(int *a0, int a1);
 
 
 
-__attribute__((section(".text.func_00359168")))
-int func_00359168(int *a0, int a1)
+__attribute__((section(".text.SFD_RelIdFrm")))
+int SFD_RelIdFrm(int *a0, int a1)
 {
     int r;
     if (Obj34D8_SetGlobalEE0B8_IfField48(a0) != 0)
@@ -18,7 +18,7 @@ int func_00359168(int *a0, int a1)
     r = SetFieldIfUnset_359218(a0, 2);
     if (r == 0) {
         a0[0x25B]++;
-        return func_0035C2D0((int)a0, 6, 0xC, 0, a1);
+        return SFTRN_CallTrtTrif((int)a0, 6, 0xC, 0, a1);
     }
     return r;
 }

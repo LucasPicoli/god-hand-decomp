@@ -31,18 +31,18 @@ typedef struct MpvPara {
     MpvWork *w;
 } MpvPara;
 
-extern MpvDec *func_003553C8(MpvHn *hn);
-extern int func_00366960(MpvWork *w, void *src, int len);
+extern MpvDec *sfmpv_GetHd(MpvHn *hn);
+extern int MEM_Copy(MpvWork *w, void *src, int len);
 
-__attribute__((section(".text.func_00352F40")))
-void func_00352F40(MpvHn *hn, int rate, MpvPara *para)
+__attribute__((section(".text.sfmpv_SetMpvHd")))
+void sfmpv_SetMpvHd(MpvHn *hn, int rate, MpvPara *para)
 {
     MpvDec *m;
     MpvSub *sub;
     int len;
     MpvWork *w;
 
-    m = func_003553C8(hn);
+    m = sfmpv_GetHd(hn);
     if (m == 0 || m->busy != 0)
         return;
     len = para->len;
@@ -51,7 +51,7 @@ void func_00352F40(MpvHn *hn, int rate, MpvPara *para)
     w = &m->work;
     w->size = len;
     sub = &hn->sub;
-    func_00366960(w, para->src, len);
+    MEM_Copy(w, para->src, len);
     if (rate == 0x3FFFF) {
         m->rate = 0;
         m->on = 0;

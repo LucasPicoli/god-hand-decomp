@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
-extern void func_002998D8(int a0, int a1, long a2);
-extern void func_00299908(int a0);
+extern void cFILTER_gif_tag_start(int a0, int a1, long a2);
+extern void cFILTER_gif_tag_end(int a0);
 extern void PushEntryAtField10000_299868(char *a0, long a1, long a2);
-extern unsigned char D_003BD758[];
-extern char D_004A6980[];
 extern void func_001D5360(void *a0, int a1);
 extern void func_001D5500(void *a0, int a1);
 extern void SetBlendField6AC_1D58F0(void *a0, int a1);
@@ -65,14 +64,14 @@ void func_00299BA0(char *a0, int a1, int *pal, int mode)
             i++;
         } while (n != 0);
     }
-    func_002998D8((int)s0, 0, 0xE);
+    cFILTER_gif_tag_start((int)s0, 0, 0xE);
     PushEntryAtField10000_299868(s0, 0x3F, 0xFF);
     PushEntryAtField10000_299868(s0, 0x50,
                                  hi | ((unsigned long)0x8000 << 33));
     PushEntryAtField10000_299868(s0, 0x51, 0);
     PushEntryAtField10000_299868(s0, 0x52, ((unsigned long)0x8000 << 21) | 0x10);
     PushEntryAtField10000_299868(s0, 0x53, 0);
-    func_00299908((int)s0);
+    cFILTER_gif_tag_end((int)s0);
     *(long *)(*(long **)(s0 + 0x10000)) = ((unsigned long)0x8000 << 44) | 0x40;
     *(long *)((char *)*(long **)(s0 + 0x10000) + 8) = 0;
     *(int *)(s0 + 0x10000) = *(int *)(s0 + 0x10000) + 0x10;
@@ -85,9 +84,9 @@ void func_00299BA0(char *a0, int a1, int *pal, int mode)
         *(long *)(*(long **)(s0 + 0x10000)) = e;
         *(int *)(s0 + 0x10000) = *(int *)(s0 + 0x10000) + 8;
     } while (n != 0);
-    func_002998D8((int)s0, 0, 0xE);
+    cFILTER_gif_tag_start((int)s0, 0, 0xE);
     PushEntryAtField10000_299868(s0, 0x3F, 0xFF);
-    func_00299908((int)s0);
+    cFILTER_gif_tag_end((int)s0);
 }
 
 /* Betting state: pad buttons confirm the bet or step it by 100 up to the table limit. */

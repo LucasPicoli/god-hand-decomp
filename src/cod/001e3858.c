@@ -2,12 +2,8 @@
 
 #include "godhand/cModel.h"
 #include "godhand/Slot2.h"
+#include "godhand/globals.h"
 
-extern char D_0044AC48[];
-extern char D_0044AC50[];
-extern char D_0044AC58[];
-extern char D_0044AC60[];
-extern char D_0044AC68[];
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
 extern void displayScrollLayer(int id, int on);
 

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_004479C8[];
-extern unsigned char D_0042C7F0[];
 
 #include "godhand/vu0.h"
 

@@ -4,6 +4,7 @@
 #include "godhand/cOmDoor.h"
 #include "godhand/cSceAtManager.h"
 #include "godhand/cGrid.h"
+#include "godhand/globals.h"
 
 extern void *D_003C264C;
 extern char D_005FEE00[];
@@ -13,7 +14,6 @@ extern unsigned int D_00747A78;
 extern void cIDBase_trans(void *self);
 
 extern char D_005CAE50[];           /* collision list */
-extern char D_00429290[];           /* six unit vectors of the door box */
 
 typedef struct { char b[0x60]; } cDoorBoxAxes;
 typedef struct { cVec v[6]; } cDoorBoxVecs;

@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_0036D280, fits as many 0x700-byte entries as the work area allows and clears them. */
+/* cygnus-2.96: m2vlib_InitWork, fits as many 0x700-byte entries as the work area allows and clears them. */
 typedef struct {
     char pad0[0x40];
     int count;   /* 0x40 */
@@ -8,8 +8,8 @@ typedef struct {
 extern EntPool D_0076A590;
 extern void *func_003A52F0(void *p, int c, int n);
 
-__attribute__((section(".text.func_0036D280")))
-void *func_0036D280(int n, int work, unsigned int size)
+__attribute__((section(".text.m2vlib_InitWork")))
+void *m2vlib_InitWork(int n, int work, unsigned int size)
 {
     void *r;
 

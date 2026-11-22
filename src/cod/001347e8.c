@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/CustomIDWork.h"
 #include "godhand/cMessCommon.h"
+#include "godhand/globals.h"
 
-extern int D_0044FAD0;
 extern unsigned int D_007476B0;
 extern int D_00568288;
 extern void cActionButton_set(int *a0, int a1, int a2, int a3, int t0, int t1, int t2);

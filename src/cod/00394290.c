@@ -57,8 +57,8 @@ struct __sFILE {
 
 
 
-__attribute__((section(".text.func_003A6CE0")))
-int func_003A6CE0(const char *str, const char *fmt, ...) {
+__attribute__((section(".text.sscanf")))
+int sscanf(const char *str, const char *fmt, ...) {
     int ret;
     va_list ap;
     struct __sFILE f;

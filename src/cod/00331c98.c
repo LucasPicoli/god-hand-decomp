@@ -1,11 +1,10 @@
 /* cygnus-2.96 */
+#include "godhand/globals.h"
 
-extern int D_003D8480;
-extern char D_00454098[];
 extern void func_003B1F28(void *);
 
-__attribute__((section(".text.func_00331C98")))
-void func_00331C98(int value)
+__attribute__((section(".text.SRD_SetFilesystem64")))
+void SRD_SetFilesystem64(int value)
 {
     D_003D8480 = value;
     if (value == 1)

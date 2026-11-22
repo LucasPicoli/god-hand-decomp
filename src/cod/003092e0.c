@@ -1,4 +1,5 @@
 /* sn-2.95.3-136: texture TEX0 / MIPTBP1-2 setup and per-level upload (0x3092E0). */
+#include "godhand/globals.h"
 typedef struct GsTex0 {
     unsigned long TBP0 : 14;
     unsigned long TBW : 6;
@@ -30,10 +31,9 @@ typedef struct TexHdr {
     int mipOfs[1];              /* 0x40 */
 } TexHdr;
 
-extern int D_004501D0[];
-extern int func_00309C30(unsigned int psm, int w);
+extern int Tim2CalcBufWidth(unsigned int psm, int w);
 extern void func_003099D8(int psm, int tbp, int tbw, int w, int h, char *data);
-extern int func_00309CA0(int psm, int w, int h);
+extern int Tim2CalcBufSize(int psm, int w, int h);
 
 __attribute__((section(".text.func_003092E0")))
 int func_003092E0(TexHdr *t, int tbp)
@@ -51,12 +51,12 @@ int func_003092E0(TexHdr *t, int tbp)
         h = t->h;
         data = (char *)t + t->dataOfs;
         t->tex0.PSM = psm;
-        tbw = func_00309C30(psm, w);
+        tbw = Tim2CalcBufWidth(psm, w);
         t->tex0.TBP0 = tbp;
         t->tex0.TBW = tbw;
         t->tex0.TCC = 1;
         func_003099D8(psm, tbp, tbw, w, h, data);
-        tbp += func_00309CA0(psm, w, h);
+        tbp += Tim2CalcBufSize(psm, w, h);
         if (t->nlevels >= 2) {
             unsigned long *mip = &t->mip1;
 
@@ -65,13 +65,13 @@ int func_003092E0(TexHdr *t, int tbp)
                 w /= 2;
                 h /= 2;
                 data += t->mipOfs[i - 1];
-                tbw = func_00309C30(psm, w);
+                tbw = Tim2CalcBufWidth(psm, w);
                 if (i < 4)
                     mip[0] = mip[0] | ((unsigned long)(unsigned int)tbp << ((i - 1) * 20)) | ((unsigned long)tbw << ((i - 1) * 20 + 14));
                 else
                     mip[1] = mip[1] | ((unsigned long)(unsigned int)tbp << ((i - 4) * 20)) | ((unsigned long)tbw << ((i - 4) * 20 + 14));
                 func_003099D8(psm, tbp, tbw, w, h, data);
-                tbp += func_00309CA0(psm, w, h);
+                tbp += Tim2CalcBufSize(psm, w, h);
             }
         }
     }

@@ -2,11 +2,11 @@
 
 #include "godhand/cOl21.h"
 #include "godhand/ColiseumBattle.h"
+#include "godhand/globals.h"
 
 extern void func_0012EC58(char *a0, void *a1);
 extern char D_005CAE50[];
 extern char D_00747470[];
-extern unsigned char D_0074748C;
 extern int D_00747A24[];
 extern int D_00747A78;
 extern char **D_003C2384;

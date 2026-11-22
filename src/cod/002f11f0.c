@@ -1,13 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_007419A0[];
 extern void func_002D9F68(void *, int, ...);
-extern int D_0061B674;
-extern unsigned char D_003C3BB0;
-extern int D_003C3BB4;
-extern unsigned char D_0061B670;
-extern int D_0044EC08;
-extern int D_0044EC28;
 extern void MtxCopy(void *mtx, void *src);
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *src);
 extern char *D_005CAFF0;

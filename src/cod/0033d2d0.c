@@ -3,7 +3,7 @@
 extern int *GetD003EEA90_360D18(void);
 extern void func_0035FE20(int a0, int a1, int a2);
 
-/* func_00360CF0 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* CFTPS2_InitMaxAlpha -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 32 B too early. The TRUE ENTRY is 0x00360CF0.
  * This body is BYTE-EXACT over the TRUE span under cygnus-2.96
  * with no extra keys.
@@ -11,23 +11,23 @@ extern void func_0035FE20(int a0, int a1, int a2);
  * 8 words with REG 0 / IMM 0 / OPC 0. That is what a CORRECT body
  * looks like in this class. Do not edit it.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_00360CF0 = 0x00360CF0; // type:func
+ *   config/symbol_addrs.txt  +  CFTPS2_InitMaxAlpha = 0x00360CF0; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_00360CF0. AFTER the resplat rename it:
- *   sed -i 's/func_00360CF0/func_00360CF0/g' <this file>
- * The name is left as func_00360CF0 here so the body stays verifiable against
+ * The function then carries the name CFTPS2_InitMaxAlpha. AFTER the resplat rename it:
+ *   sed -i 's/CFTPS2_InitMaxAlpha/CFTPS2_InitMaxAlpha/g' <this file>
+ * The name is left as CFTPS2_InitMaxAlpha here so the body stays verifiable against
  * today's monolith.
  */
 
 
 
-__attribute__((section(".text.func_00360CF0")))
-int func_00360CF0(void) {
+__attribute__((section(".text.CFTPS2_InitMaxAlpha")))
+int CFTPS2_InitMaxAlpha(void) {
     *GetD003EEA90_360D18() = 0;
     return func_00360D28(0x80);
 }
 
-/* func_0033D2D0 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* ADXB_EvokeExpandMono -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 8 B too early. The TRUE ENTRY is 0x0033D2D0.
  * This body is BYTE-EXACT over the TRUE span under cygnus-2.96
  * with no extra keys.
@@ -35,25 +35,25 @@ int func_00360CF0(void) {
  * 2 words with REG 0 / IMM 0 / OPC 0. That is what a CORRECT body
  * looks like in this class. Do not edit it.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_0033D2D0 = 0x0033D2D0; // type:func
+ *   config/symbol_addrs.txt  +  ADXB_EvokeExpandMono = 0x0033D2D0; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_0033D2D0. AFTER the resplat rename it:
- *   sed -i 's/func_0033D2D0/func_0033D2D0/g' <this file>
- * The name is left as func_0033D2D0 here so the body stays verifiable against
+ * The function then carries the name ADXB_EvokeExpandMono. AFTER the resplat rename it:
+ *   sed -i 's/ADXB_EvokeExpandMono/ADXB_EvokeExpandMono/g' <this file>
+ * The name is left as ADXB_EvokeExpandMono here so the body stays verifiable against
  * today's monolith.
  */
 
 
 
-__attribute__((section(".text.func_0033D2D0")))
-int func_0033D2D0(int *a0, int a1) {
+__attribute__((section(".text.ADXB_EvokeExpandMono")))
+int ADXB_EvokeExpandMono(int *a0, int a1) {
     int *p = (int *)((char *)a0 + 0x48);
     int s0 = a0[2];
     func_0033FA70(s0, p[0], a1, p[5] + (p[8] << 1), 0);
-    return func_0033FB00(s0);
+    return ADXPD_Start(s0);
 }
 
-/* func_0035FD98 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* SFX_ShiftYccPtrByPix -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 24 B too early. The TRUE ENTRY is 0x0035FD98.
  * This body is BYTE-EXACT over the TRUE span under cygnus-2.96
  * with no extra keys.
@@ -65,17 +65,17 @@ int func_0033D2D0(int *a0, int a1) {
  * The orchestrator must ALSO REMOVE `func_0035FDA8` from config/symbol_addrs.txt,
  * or the two halves stay split and this body cannot land.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_0035FD98 = 0x0035FD98; // type:func
+ *   config/symbol_addrs.txt  +  SFX_ShiftYccPtrByPix = 0x0035FD98; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_0035FD98. AFTER the resplat rename it:
- *   sed -i 's/func_0035FD98/func_0035FD98/g' <this file>
- * The name is left as func_0035FD98 here so the body stays verifiable against
+ * The function then carries the name SFX_ShiftYccPtrByPix. AFTER the resplat rename it:
+ *   sed -i 's/SFX_ShiftYccPtrByPix/SFX_ShiftYccPtrByPix/g' <this file>
+ * The name is left as SFX_ShiftYccPtrByPix here so the body stays verifiable against
  * today's monolith.
  */
 
 
-__attribute__((section(".text.func_0035FD98")))
-void func_0035FD98(int a0, int a1, int a2) {
+__attribute__((section(".text.SFX_ShiftYccPtrByPix")))
+void SFX_ShiftYccPtrByPix(int a0, int a1, int a2) {
     int u = (a2 / 2) * 2;
     int v = (a1 / 2) * 2;
     func_0035FE20(a0 + 0x4, u, v);

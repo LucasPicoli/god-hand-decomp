@@ -1,4 +1,5 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 /* func_00171C90 - object constructor: base init, vtable@0x214, loop zeroing a
  * sub-block per slot (Obj0000_Set_Byte_54), then a few trailing field clears.
@@ -6,7 +7,6 @@
 
 extern void InitFields_1B6E90(void *);
 #include "godhand/objField.h"
-extern int D_00420EF0;
 __attribute__((section(".text.func_00171C90")))
 void *func_00171C90(void *a0){
   char *s0; int i;

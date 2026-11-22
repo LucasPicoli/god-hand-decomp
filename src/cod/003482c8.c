@@ -12,8 +12,8 @@ typedef struct {
 extern RefCount *Obj0000_Get_Ptr_D_003EE088_Scaled_8_348920(void *key);
 extern RefObj *func_00348938(void *key);
 
-__attribute__((section(".text.func_003482C8")))
-void func_003482C8(void *key)
+__attribute__((section(".text.MWSST_Finish")))
+void MWSST_Finish(void *key)
 {
     RefCount *r = Obj0000_Get_Ptr_D_003EE088_Scaled_8_348920(key);
     RefObj *o = func_00348938(key);

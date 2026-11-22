@@ -6,6 +6,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/cGrid.h"
+#include "godhand/globals.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *obj);
 extern void func_002A87E8(void *obj, int arg);
@@ -214,7 +215,6 @@ int DoorBox_initWithBoxA(DoorLikeObj *self) {
 
 
 extern char D_005CAE50[];           /* collision list */
-extern char D_004293C0[];           /* six unit vectors of the door box */
 
 /* A door-like object past cOmBase with its box size at 0x600 and the collision handle at 0x77C. */
 typedef struct DoorBoxHost {

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136: func_001D4DF0, load the blackjack ID file, set up its 45 ID works and default display. */
 #include "godhand/heapArena.h"
+#include "godhand/globals.h"
 extern int D_003C2388;
 extern char **D_003C2384;
 extern char D_00583F20[];
-extern char D_0042B190[];
 
 extern int cIDManager_getLocalFileName(int mgr, char *buf, char *name, int lang);
 extern int cDvd_ReadAlloc(char *dvd, char *name, void *out, void *heap, int a4, int a5, int a6, int a7);

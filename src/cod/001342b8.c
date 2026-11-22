@@ -1,16 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_0044BAB0[];
 extern void __builtin_delete(void *a);
-extern unsigned char D_0044D3C0[];
 extern int cIDBase_initialize();
 extern int D_00747A80;
 extern int cGameObj_isClip();
 extern int cIDBase_getIDWork(void *a, int b);
-extern int D_00785548;
-extern int D_00460D10;
-extern int D_0041D830;
-extern int D_0041D848;
 extern void func_0031EEC8(void *a, void *b);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 

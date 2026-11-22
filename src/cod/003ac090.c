@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* newlib mallocr.c :: malloc_extend_top  -> func_003AC090 */
+/* newlib mallocr.c :: malloc_extend_top  -> malloc_extend_top */
 
 typedef unsigned int INTERNAL_SIZE_T;
 
@@ -51,8 +51,8 @@ extern void func_003ACA28(void *reent, void *mem); /* _free_r */
 #define MORECORE(x) func_003AE0C8(RARG, (x))
 #define MORECORE_FAILURE (-1)
 
-__attribute__((section(".text.func_003AC090")))
-void func_003AC090(void *RARG, INTERNAL_SIZE_T nb)
+__attribute__((section(".text.malloc_extend_top")))
+void malloc_extend_top(void *RARG, INTERNAL_SIZE_T nb)
 {
     char *brk;
     INTERNAL_SIZE_T front_misalign;

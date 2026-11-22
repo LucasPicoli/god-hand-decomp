@@ -2,17 +2,17 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cSnd.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
-extern int D_00428A18;
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern void cSndMemHeap_ResetFirstBlk(void *);
 extern void MessWin_closeIfNoEndCode(void *);
 extern void func_002B45E8(void *);
 extern char *D_003C23A4;
 extern void cOmBase_dieCommon(void *a0);
-extern void func_003870E0(int);
+extern void SdeStrPlay(int);
 
 /* cOmBase_setTexChange — sn-2.95.3-136 */
 
@@ -90,10 +90,10 @@ __attribute__((section(".text.func_0037A5F0")))
 void func_0037A5F0(char *a0) {
     char *p = a0 + 0xCC;
     int r;
-    if (func_00387430(0) != 0) return;
+    if (SdeStrStatusGetByWorkId(0) != 0) return;
     if (*(int *)(p + 0x40) == 2 && *(signed char *)(p + 0x7) == 0x2F) return;
-    r = func_00386FA0(0, p);
+    r = SdeStrOpen(0, p);
     *(int *)(a0 + 0xC) = r;
     if (r == 0) return;
-    func_003870E0(0);
+    SdeStrPlay(0);
 }

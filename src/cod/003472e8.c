@@ -5,8 +5,8 @@ extern int SFCON_IsSystemEndcodeSkip(void *h);
 
 typedef struct H { char pad0[0x20]; int f20; } H;
 
-__attribute__((section(".text.func_003472E8")))
-int func_003472E8(H *h)
+__attribute__((section(".text.MWSFTAG_IsUseAinfSj")))
+int MWSFTAG_IsUseAinfSj(H *h)
 {
     int ret;
 
@@ -30,6 +30,6 @@ int sfmps_IsEffectiveEndcode(void *h, int code)
 __attribute__((section(".text.sfmpv_IsPrepEnd")))
 int sfmpv_IsPrepEnd(void *h)
 {
-    if (func_003554E8(h) || (func_003509E8(h) && func_00350A50(h))) return 1;
+    if (func_003554E8(h) || (sfmpv_IsPrepFrmEnough(h) && sfmpv_IsVbvEnough(h))) return 1;
     return 0;
 }

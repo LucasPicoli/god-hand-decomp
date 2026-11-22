@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int write(int fd, const void *buf, int n);
 
@@ -6,10 +7,6 @@ extern int write(int fd, const void *buf, int n);
  * a3 == 1 flushes the pending buffer; otherwise it appends `len` bytes and
  * flushes every 0x80 bytes. */
 
-
-extern char D_0077DA88[];   /* the 0x80-byte staging buffer */
-extern int  D_003FA9C0;     /* bytes held in the buffer     */
-extern char *D_003FA9C4;    /* the next free byte           */
 
 __attribute__((section(".text.func_003A9C80")))
 int func_003A9C80(int fd, const char *b, unsigned int len, int flush)
@@ -39,13 +36,13 @@ int func_003A9C80(int fd, const char *b, unsigned int len, int flush)
     return i;
 }
 
-/* func_003AAEA0 -- thousands-separator insert. Decompiled from the monolith;
+/* add_separators -- thousands-separator insert. Decompiled from the monolith;
  * no upstream name recovered. */
 
 extern void *func_003A5148(void *dst, const void *src, int n);	/* memcpy */
 
-__attribute__((section(".text.func_003AAEA0")))
-char *func_003AAEA0(char *dst, const char *start, const char *end, int *outlen)
+__attribute__((section(".text.add_separators")))
+char *add_separators(char *dst, const char *start, const char *end, int *outlen)
 {
 	int num;
 	int len;
@@ -106,10 +103,6 @@ char *func_003AAEA0(char *dst, const char *start, const char *end, int *outlen)
  * a3 == 1 flushes the pending buffer; otherwise it appends `len` bytes and
  * flushes every 0x80 bytes. */
 
-
-extern char D_0077DB08[];   /* the 0x80-byte staging buffer */
-extern int  D_003FA9C8;     /* bytes held in the buffer     */
-extern char *D_003FA9CC;    /* the next free byte           */
 
 __attribute__((section(".text.func_003AB050")))
 int func_003AB050(int fd, const char *b, unsigned int len, int flush)

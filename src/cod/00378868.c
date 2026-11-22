@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002E0DE8();
 extern void func_0031C950();
 extern void func_0031CB80();
 extern void func_0031CA88();
-extern char D_0045B1B8[], D_0045B1C8[], D_0045B1E8[], D_0045B200[], D_0045B218[], D_0045B230[], D_0045B248[], D_0045B260[], D_0045B278[], D_0045B290[], D_0045B2A0[], D_0045B2C0[], D_0045B2C8[], D_0045B2D8[], D_0045B2F0[], D_0045B300[], D_0045B308[];
-extern signed char D_003F21C0[], D_003F21D0[];
 typedef struct { short s[8]; } R;
 
 __attribute__((section(".text.func_00378868")))

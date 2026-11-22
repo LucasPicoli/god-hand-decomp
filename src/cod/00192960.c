@@ -1,14 +1,8 @@
-extern int D_00785C28;
-extern char D_004243D8[];
+#include "godhand/globals.h"
 extern char D_00785878[];
-extern char D_004243F0[];
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_00785C38;
-extern int D_004244C0;
 extern int D_00785798;
-extern int D_004244D8;
-extern int D_004245C0;
 
 __attribute__((section(".text.GetOrInit_D_00785C28_192960")))
 void *GetOrInit_D_00785C28_192960(void) {

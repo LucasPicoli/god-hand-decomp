@@ -1,8 +1,8 @@
-/* cygnus-2.96: func_0036DD18, clear the 0x4D0-byte work area at +0x160 and set its defaults. */
+/* cygnus-2.96: M2VHDEC_InitHn, clear the 0x4D0-byte work area at +0x160 and set its defaults. */
 extern void *func_003A52F0(void *dst, int c, int n);
 
-__attribute__((section(".text.func_0036DD18")))
-void func_0036DD18(char *self)
+__attribute__((section(".text.M2VHDEC_InitHn")))
+void M2VHDEC_InitHn(char *self)
 {
     char *w = self + 0x160;
 

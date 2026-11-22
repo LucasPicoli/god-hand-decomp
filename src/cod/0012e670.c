@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern void ClearLinkedNodeList_12ECF0(void *p);
 extern void *D_00747A4C;
-extern char D_0041D418[];
-extern char D_0041D420[];
 extern unsigned char D_007474A0[];
 extern void cMessDrawFont_setBodyData(void *a0, void *a1, void *a2, void *a3);
 extern void cMessDrawFont_setRubyData(void *a0, int a1, int a2);

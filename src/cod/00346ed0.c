@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_00346ED0, fills the request's picture planes: one plane, or Y/U/V (half height chroma) for fmt 3. */
+/* cygnus-2.96: mwsfsfx_SetYcc420plnInfToSfx, fills the request's picture planes: one plane, or Y/U/V (half height chroma) for fmt 3. */
 typedef struct {
     int buf;
     int unk4;
@@ -30,8 +30,8 @@ typedef struct {
 extern void mwPlyCalcYccPlane(int buf, int width, int height, YccPlane *out);
 extern void func_00346FB0(PicPlane *pl, int ptr, int pitch, int lines);
 
-__attribute__((section(".text.func_00346ED0")))
-void func_00346ED0(PicFrm *frm, PicReq *req)
+__attribute__((section(".text.mwsfsfx_SetYcc420plnInfToSfx")))
+void mwsfsfx_SetYcc420plnInfToSfx(PicFrm *frm, PicReq *req)
 {
     YccPlane ycc;
     int w = frm->width;

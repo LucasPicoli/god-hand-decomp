@@ -21,7 +21,6 @@ typedef struct cEmFallWork {
 
 extern unsigned int D_00747A78;
 extern char D_00462FC0[];
-extern cPmf D_003BFAC0[];
 extern float capVu0MagnitudeSqXZ(void *a, void *b);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cObjBase_SetSeqEffect(cObjBase *a0);

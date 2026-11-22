@@ -213,7 +213,7 @@ typedef struct ViBuf ViBuf;
 /* Frame-pool lock guard enter/leave (16-byte guard on the caller stack). */
 extern void Thunk_func_0033B658(char *guard);
 extern void Thunk_func_0033B670(char *guard);
-extern SfdFrm *func_003555A8(SftimHn *hn);
+extern SfdFrm *SFMPVF_AllocFrm(SftimHn *hn);
 
 extern int D_00459730[];        /* picture/extension type by 3-bit code */
 extern int D_003EE2F0;          /* delimiter search error count */
@@ -246,12 +246,12 @@ typedef struct SftimDf {
 extern int D_00459920[];        /* frame rate * 1000 by rate index */
 extern SftimDf D_004596F0;      /* 29.97 */
 extern SftimDf D_00459710;      /* 59.94 */
-extern long long func_0036C990(long long a, long long b, long long c);    /* a * b / c */
+extern long long UTY_MulDivRound64(long long a, long long b, long long c);    /* a * b / c */
 
 extern void SFTIM_Tc2Time(SftimTc *tc, int *time, int *unit);
 extern int GetArrayElemA0C_35A1C8(void *hn, int idx);      /* SFSET_GetCond */
 extern int func_0034DD70(SftimHn *hn, int code);
 extern int Obj34D8_GetTri78_Times100(void *hn);
-extern void func_0035A000(void *hn, int idx, int val);      /* SFSET_SetCond */
+extern void SFSET_SetCond(void *hn, int idx, int val);      /* SFSET_SetCond */
 
 #endif

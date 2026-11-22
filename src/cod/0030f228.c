@@ -1,9 +1,7 @@
+#include "godhand/globals.h"
 extern void MoveEmitter(void);
 extern void MoveEsp(void);
-extern int D_003C3BB8;
 extern int D_00747A78;
-extern int D_00752D00;
-extern float D_00741DC0;
 
 __attribute__((section(".text.MoveEffect")))
 void MoveEffect(void)

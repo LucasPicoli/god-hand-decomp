@@ -1,5 +1,5 @@
-__attribute__((section(".text.func_00355408")))
-void *func_00355408(char *object, void *key)
+__attribute__((section(".text.SFMPVF_SearchFrmObj")))
+void *SFMPVF_SearchFrmObj(char *object, void *key)
 {
     char *record;
     char *slot;

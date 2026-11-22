@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002B45D0(void *self);
 extern void func_002B45D8(void *self);
@@ -10,7 +11,6 @@ typedef struct FrameClock {
 } FrameClock;
 
 extern FrameClock *D_003C23A4;
-extern long D_003C3D48;
 
 typedef struct SysFlags {
     char unk000[0x178];

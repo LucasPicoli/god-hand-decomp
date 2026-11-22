@@ -4,14 +4,13 @@
 #include "godhand/cGameObj.h"
 #include "godhand/cSnd.h"
 #include "godhand/cScenario.h"
+#include "godhand/globals.h"
 
 extern void CustomIDWork_SetMoveOffsetPosYSin(CustomIDWork *self, int amp, unsigned short frames);
 extern void CustomIDWork_ResetMoveOffsetPos(CustomIDWork *self);
 extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int sel, int on);
 extern void func_0017C028(void *self, int pos, void *rot);
 extern int cSnd_SeFadeOut(cSnd *self, int handle, short fade);
-extern char D_0044C2B8[];
-extern char D_0044C2C0[];
 extern cSnd D_005FEE00;
 extern unsigned int D_00747A30;
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, int d, int e, int f, int g, int h);

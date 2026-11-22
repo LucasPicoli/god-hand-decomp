@@ -7,9 +7,8 @@
 #include "godhand/cModel.h"
 #include "godhand/vu0.h"
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
-extern char D_0044ACE0[];
-extern char D_0044ACE8[];
 extern void *SearchData(void *pack, void *name, int id);
 extern void cFont_setTextureAddr(cFont *self, int slot, void *tex0, void *tex1);
 extern int cEm00_ckDown(cGameObj *em);

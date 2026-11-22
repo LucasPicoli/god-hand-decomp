@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
 #include "godhand/SndVol.h"
+#include "godhand/globals.h"
 
-extern char D_00452348[];
 extern void func_0033F130(char *msg);
 extern void func_00328C80(void *voice, int a, int b);
 

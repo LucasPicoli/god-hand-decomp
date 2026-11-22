@@ -19,11 +19,11 @@ FrameState *__frame_state_for(void *pc_target, FrameState *state_in)
     CieInfo info;
     FrameStateInternal state;
 
-    f = func_00321F48(pc_target);
+    f = find_fde(pc_target);
     if (f == 0)
         return 0;
 
-    insn = func_00322030(f, &info);
+    insn = extract_cie_info(f, &info);
     if (insn == 0)
         return 0;
 
@@ -33,21 +33,21 @@ FrameState *__frame_state_for(void *pc_target, FrameState *state_in)
 
     end = next_fde(get_cie(f));
     while (insn < end)
-        insn = func_00322138(insn, &state, &info, 0);
+        insn = execute_cfa_insn(insn, &state, &info, 0);
 
     insn = f + 1;
 
     if (info.augmentation[0] == 'z') {
         int i;
 
-        insn = func_00321938(insn, &i);
+        insn = decode_uleb128(insn, &i);
         insn += i;
     }
 
     end = next_fde(f);
     pc = f->pc_begin;
     while (insn < end && pc <= pc_target)
-        insn = func_00322138(insn, &state, &info, &pc);
+        insn = execute_cfa_insn(insn, &state, &info, &pc);
 
     memcpy(state_in, &state.s, sizeof(state.s));
     return state_in;

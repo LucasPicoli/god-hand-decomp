@@ -1,14 +1,13 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd017.o :: sceCdStatus */
 
 typedef unsigned int u_int;
 
 extern char D_003FA1C0;      /* _sceCd_cd_scmd (sceSifClientData; pass &) */
-extern int  D_003F9840[];    /* _sceCd_scmdrdata */
 extern int  D_003F866C;      /* _sceCd_scmd_semid */
 extern int  D_003F8640[];    /* D_003F8640[4] == SCE_CD_debug */
-extern char D_0045E3C0[];    /* the scePrintf format string */
 
 extern int func_00398EB0(int cmd);   /* _sceCd_scmd_prechk */
 extern int func_003B3128(void *cd, int rno, int mode, void *sbuf, int ssize,

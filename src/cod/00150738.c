@@ -5,12 +5,11 @@
 #include "godhand/cSnd.h"
 #include "godhand/cOm1f.h"
 #include "godhand/cSceAtManager.h"
+#include "godhand/globals.h"
 
 extern int D_00747A0C;
 extern void TaskFnWork_runAndExit(void);
 extern char D_00468CF0[];
-extern unsigned char D_003D9DD0[];
-extern int D_003D9DD4;
 
 /* cygnus-2.96 */
 __attribute__((section(".text.CasinoWork_SetWarmUpRoom")))
@@ -299,8 +298,8 @@ void func_00328488(char *p, int v)
     }
 }
 
-__attribute__((section(".text.func_0032F538")))
-int func_0032F538(char *p) {
+__attribute__((section(".text.AIXSJD_GetTotalNumSmpl")))
+int AIXSJD_GetTotalNumSmpl(char *p) {
     int n = *(int *)(p + 0x2B0);
     int sum = 0;
     int *q;
@@ -329,8 +328,8 @@ int func_00333438(char c) {
 
 
 
-__attribute__((section(".text.func_00333E68")))
-void func_00333E68(int a, int b, int c, int d)
+__attribute__((section(".text.dvCiSetRdMode")))
+void dvCiSetRdMode(int a, int b, int c, int d)
 {
     D_003D9DD4 = d;
     D_003D9DD0[0] = a;
@@ -339,8 +338,8 @@ void func_00333E68(int a, int b, int c, int d)
 }
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_00334B38")))
-int func_00334B38(char *p)
+__attribute__((section(".text.htci_getnumtr_upper")))
+int htci_getnumtr_upper(char *p)
 {
     unsigned long a = (long)*(int *)(p + 0x28) << 11;
     unsigned long b = *(unsigned long *)(p + 0x8);
@@ -363,8 +362,8 @@ int func_00342958(int *a, int *b, int *c) {
 }
 
 /* cygnus-2.96 */
-__attribute__((section(".text.func_00342B78")))
-char *func_00342B78(char *p, unsigned int i)
+__attribute__((section(".text.MWSKG_Create")))
+char *MWSKG_Create(char *p, unsigned int i)
 {
     if (i < 0x8C) {
         return 0;
@@ -373,8 +372,8 @@ char *func_00342B78(char *p, unsigned int i)
     return p;
 }
 
-__attribute__((section(".text.func_00344D50")))
-void func_00344D50(int a0,int a1){int t=*(int*)(a1+0x3C);a0+=0x88;*(int*)(a0+0)=*(int*)(a1+0x58);*(int*)(a0+4)=*(int*)(a1+0x5C);*(int*)(a0+8)=*(signed char*)(a1+0x6C);*(int*)(a0+0xC)=*(signed char*)(a1+0x6D);*(int*)(a0+0x10)=*(signed char*)(a1+0x6E);*(int*)(a0+0x14)=t;*(int*)(a0+0x18)=*(int*)(a1+0x40);*(int*)(a0+0x1C)=0;}
+__attribute__((section(".text.mwsffrm_SaveFrmDetail")))
+void mwsffrm_SaveFrmDetail(int a0,int a1){int t=*(int*)(a1+0x3C);a0+=0x88;*(int*)(a0+0)=*(int*)(a1+0x58);*(int*)(a0+4)=*(int*)(a1+0x5C);*(int*)(a0+8)=*(signed char*)(a1+0x6C);*(int*)(a0+0xC)=*(signed char*)(a1+0x6D);*(int*)(a0+0x10)=*(signed char*)(a1+0x6E);*(int*)(a0+0x14)=t;*(int*)(a0+0x18)=*(int*)(a1+0x40);*(int*)(a0+0x1C)=0;}
 
 __attribute__((section(".text.func_00348210")))
 int func_00348210(int *a, int *b, int *c) {

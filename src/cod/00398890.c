@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: sceCdLayerSearchFile */
 
@@ -14,17 +15,7 @@ struct sfdata {
 
 extern volatile int D_003F8668;       /* _sceCd_ncmd_semid */
 extern char  D_003F8640[];            /* +0x10 == SCE_CD_debug */
-extern int   D_003F865C;              /* ncmd_sema_keep_cmd */
-extern int   D_003F868C;              /* _sf_bind */
 extern struct sfdata D_0077C440;      /* _sf_data */
-extern char  D_0077C464[];            /* _sf_data.name */
-extern int   D_0077C580[];            /* sfrdata */
-extern int   D_0077C5C0[];            /* cdrdsf (sceSifClientData) */
-extern char  D_0045E1F0[];
-extern char  D_0045E210[];
-extern char  D_0045E228[];
-extern char  D_0045E238[];
-extern char  D_0045E248[];
 
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
@@ -32,7 +23,7 @@ extern int  SignalSema(int sema);
 extern void sceSifInitRpc(int mode);
 extern void func_003B1F28();          /* scePrintf */
 extern int  func_00398DA0(int mode);  /* sceCdSync */
-extern int  func_003B2F48(void *cd, unsigned int sid, int mode);  /* sceSifBindRpc */
+extern int  sceSifBindRpc(void *cd, unsigned int sid, int mode);  /* sceSifBindRpc */
 extern void func_003B2850(void *p, int size);  /* sceSifWriteBackDCache */
 
 
@@ -59,7 +50,7 @@ int sceCdLayerSearchFile(sceCdlFILE *fp, const char *name, int layer)
     } while (0);
     if (b < 0) {
         while (1) {
-            if (func_003B2F48(D_0077C5C0, 0x80000597, 0) < 0) {
+            if (sceSifBindRpc(D_0077C5C0, 0x80000597, 0) < 0) {
                 if (*(int *)(D_003F8640 + 0x10) > 0)
                     func_003B1F28(D_0045E1F0);
                 for (i = 0x100000; i != -1; i--)

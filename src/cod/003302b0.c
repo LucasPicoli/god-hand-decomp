@@ -12,8 +12,8 @@ void func_003302B0(void) {
     }
 }
 
-__attribute__((section(".text.func_00338338")))
-void func_00338338(void *a0, int a1) {
+__attribute__((section(".text.PS2RNA_SetPlaySw")))
+void PS2RNA_SetPlaySw(void *a0, int a1) {
     if (D_003E0710 != 1) {
         *(char*)((char*)a0 + 0x50) = a1;
         return;
@@ -23,8 +23,8 @@ void func_00338338(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00338378")))
-void func_00338378(void *a0, int a1) {
+__attribute__((section(".text.PS2RNA_SetDiscardSw")))
+void PS2RNA_SetDiscardSw(void *a0, int a1) {
     if (D_003E0710 != 1) {
         *(char*)((char*)a0 + 0x5B) = a1;
         return;
@@ -34,8 +34,8 @@ void func_00338378(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_003386E0")))
-void func_003386E0(void *a0, int a1) {
+__attribute__((section(".text.PS2RNA_SetNumChan")))
+void PS2RNA_SetNumChan(void *a0, int a1) {
     if (D_003E0710 != 1) {
         *(char*)((char*)a0 + 0x52) = a1;
         return;
@@ -45,8 +45,8 @@ void func_003386E0(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_00338818")))
-void func_00338818(void *a0, int a1) {
+__attribute__((section(".text.PS2RNA_SetOutBalance")))
+void PS2RNA_SetOutBalance(void *a0, int a1) {
     if (D_003E0710 != 1) {
         *(int*)((char*)a0 + 0x5C) = a1;
         return;
@@ -56,8 +56,8 @@ void func_00338818(void *a0, int a1) {
     }
 }
 
-__attribute__((section(".text.func_0033D4D8")))
-void func_0033D4D8(short *a0, unsigned short *a1, int a2) {
+__attribute__((section(".text.memcpy2")))
+void memcpy2(short *a0, unsigned short *a1, int a2) {
     unsigned short v;
     if (a2 <= 0) return;
     do {

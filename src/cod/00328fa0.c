@@ -1,15 +1,13 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Obj33F8_Tramp_0033F130_FCB0(void *a0);
 extern void func_0032EF68(void *a0, int a1);
-extern int D_00452D10;
 extern int Obj3260_Tramp_00338788_D3E0(int a0, int a1);
-extern int D_004522B8;
 extern int Obj3290_Tramp_0033BF18_9058(void *a0);
 extern void func_003288E0(void *a0);
 extern int D_003D04C4;
 extern int MWSFSVM_Error(void *a0);
-extern int D_004575C8, D_004575F8, D_00457620;
 
 /* MATCH via cygnus-2.96 +drop-freorder. */
 
@@ -47,7 +45,7 @@ int func_0032AA30(int *a0, int a1)
     }
     *((short *)a0 + 0x20) = a1;
     if (*((signed char *)a0 + 0xAD) == 1) {
-        v = func_00327890(a0[1]);
+        v = ADXSJD_GetDefOutVol(a0[1]);
     } else {
         v = 0;
     }

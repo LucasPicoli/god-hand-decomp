@@ -4,7 +4,7 @@ extern int __srefill(void *fp);
 
 /* newlib libc/stdio/fread.c -- fread. */
 
-extern void *func_003A62D8(void *, const void *, unsigned int);	/* memcpy */
+extern void *memcpyalpha(void *, const void *, unsigned int);	/* memcpy */
 
 
 struct _reent;
@@ -46,8 +46,8 @@ typedef struct __sFILE {
 
 typedef unsigned int size_t;
 
-__attribute__((section(".text.func_003A6308")))
-size_t func_003A6308(void *buf, size_t size, size_t count, register FILE *fp)
+__attribute__((section(".text.fread_3A6308")))
+size_t fread_3A6308(void *buf, size_t size, size_t count, register FILE *fp)
 {
   register size_t resid;
   register char *p;
@@ -62,7 +62,7 @@ size_t func_003A6308(void *buf, size_t size, size_t count, register FILE *fp)
   p = buf;
   while (resid > (r = fp->_r))
     {
-      (void) func_003A62D8 ((void *) p, (void *) fp->_p, (size_t) r);
+      (void) memcpyalpha ((void *) p, (void *) fp->_p, (size_t) r);
       fp->_p += r;
       p += r;
       resid -= r;
@@ -72,7 +72,7 @@ size_t func_003A6308(void *buf, size_t size, size_t count, register FILE *fp)
 	  return (total - resid) / size;
 	}
     }
-  (void) func_003A62D8 ((void *) p, (void *) fp->_p, resid);
+  (void) memcpyalpha ((void *) p, (void *) fp->_p, resid);
   fp->_r -= resid;
   fp->_p += resid;
   return count;

@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
-extern int D_003EE2F4;
 extern unsigned char D_00766C28[0x48];
 extern void sceMpegInit(void);
 extern int WaitSema(int sid);
@@ -34,8 +34,8 @@ typedef struct {
     int f10;
 } SfMpvCond;
 
-__attribute__((section(".text.func_00353500")))
-int func_00353500(char *p, unsigned int ptype)
+__attribute__((section(".text.sfmpv_IsPtypeSkip")))
+int sfmpv_IsPtypeSkip(char *p, unsigned int ptype)
 {
     SfMpvCond *c = (SfMpvCond *) (p + 0xA0C);
 
@@ -58,8 +58,8 @@ typedef struct {
     int f28;
 } Ttu;
 
-__attribute__((section(".text.func_003538B0")))
-void func_003538B0(char *p)
+__attribute__((section(".text.sfmpv_SetSkipTtu")))
+void sfmpv_SetSkipTtu(char *p)
 {
     Ttu *cur = (Ttu *) (p + 0xDF0);
     Ttu *nxt = cur + 1;
@@ -108,8 +108,8 @@ typedef struct {
 
 
 
-__attribute__((section(".text.func_00355C08")))
-int func_00355C08(ViBuf *b, int n)
+__attribute__((section(".text.viBufUnput")))
+int viBufUnput(ViBuf *b, int n)
 {
     WaitSema(b->sema);
     b->wr -= n;

@@ -38,8 +38,8 @@ typedef struct StmReqRing {
     StmReq req[STMREQ_NUM];             /* 0x38 */
 } StmReqRing;
 
-extern void func_00336048(StmReqRing *r);
-extern void func_00336110(StmReqRing *r);
-extern void func_00335F20(StmReqRing *r);
+extern void lsc_StatRead(StmReqRing *r);
+extern void lsc_StatEnd(StmReqRing *r);
+extern void lsc_StatWait(StmReqRing *r);
 
 #endif

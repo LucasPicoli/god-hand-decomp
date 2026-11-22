@@ -1,4 +1,5 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 /* func_001BDE50 - object constructor: base init, set vtable at 0x214, then loop zeroing
  * a 5-quadword sub-block per slot and tagging it (Obj0000_Set_Byte_54). Loop
@@ -6,7 +7,6 @@
 
 extern void InitFields_1B6E90(void *);
 #include "godhand/objField.h"
-extern int D_004294F0;
 __attribute__((section(".text.func_001BDE50")))
 void *func_001BDE50(void *a0){
   char *s0; int i;

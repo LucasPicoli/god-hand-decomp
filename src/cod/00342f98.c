@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void MWSFSVM_Error(char *s);
-extern char D_004571D8[];
 
 
 
@@ -12,5 +12,5 @@ int mwPlyCalcWorkCprmSfd(void *p)
         MWSFSVM_Error(D_004571D8);
         return 0;
     }
-    return func_00342E88() + func_00342F40(p);
+    return mwPlyCalcWorkSfd() + mwPlyCalcWorkCompo(p);
 }

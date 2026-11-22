@@ -1,31 +1,21 @@
 /* cygnus-2.96 matched TU. */
 
 #include "godhand/mwPlyOpen.h"
+#include "godhand/globals.h"
 
-extern volatile int D_003EEA78;
-extern int D_003EEA7C;
-extern unsigned int D_003EEA80;
-extern volatile unsigned int *D_0045A260[];
-extern int D_003EE098;
-extern volatile int D_003EE09C;
-extern int D_003EC7DC;
 extern char *GetD003EC7E0_3452B0(void);
 extern int Forward33BF18_348BC8(void *p);
 extern void func_00357240(void);
-extern volatile int D_00766CE0;
-extern int D_0045A3D0[];
 extern char *D_00766D38;
 extern int Obj0000_Check_D_0045A460_Magic_And_D_0045A470_Val(void);
 extern void func_0036BF50(void);
-extern void func_0036C0B0(int a0, int a1);
+extern void mpvlib_InitWork(int a0, int a1);
 extern void func_00369E60();
 extern void func_0036A378(void);
 extern void func_0036BF60(int a0);
-extern void func_0036C038(void);
+extern void mpvlib_InitObjTbl(void);
 extern void func_0036C0A8(void);
-extern void func_0036C628(void);
-extern volatile int D_003D140C;
-extern int D_003D1414;
+extern void MPVM2V_Init(void);
 extern char D_003C7420[];
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
@@ -33,9 +23,6 @@ extern void func_003276A8(void);
 extern void func_0032CFC8(char *ent);
 extern void Obj3260_Tramp_00338638_D390(void);
 extern volatile int D_00451AC0;
-extern char D_00452A20[];
-extern char D_00452A48[];
-extern char D_00452A78[];
 
 /* Drop one nesting level; at zero, write the saved control word (bit 0xC00 toggled) to the register picked by D_003EEA7C unless the low bits say 0x82. Never leaves the count negative. */
 __attribute__((section(".text.IntrNest_leave")))
@@ -87,14 +74,14 @@ int M2vDec_init(int a0, int a1)
         return r;
     }
     func_0036BF50();
-    func_0036C0B0(a0, (int)func_0036BF58((void *)a1));
+    mpvlib_InitWork(a0, (int)func_0036BF58((void *)a1));
     work = D_00766D38;
     func_00369E60();
     func_0036A378();
     func_0036BF60((int)work + 0x17E0);
-    func_0036C038();
+    mpvlib_InitObjTbl();
     func_0036C0A8();
-    func_0036C628();
+    MPVM2V_Init();
     return 0;
 }
 
@@ -152,7 +139,7 @@ void MwPly_openByName(MwPlyOpen *o, char *file, int a2, int sizeA, int sizeB)
         Obj33F8_Tramp_0033F130_FCB0(D_00452A78);
         return;
     }
-    func_0032DBA0(o);
+    aixp_Stop(o);
     Obj33F8_Tramp_0033B658_FC70();
     func_003A57C4(o->name, file);
     o->nameSaved = o->name;

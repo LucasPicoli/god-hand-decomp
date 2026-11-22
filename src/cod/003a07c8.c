@@ -1,12 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* MPEG-2 sequence_extension() -- Sony libmpeg ext.c::_sequenceExtension */
 
 extern int func_0039EAA8(void *v, int n);		/* getBits */
 extern void _sceMpegError(void *v, char *msg);
-
-extern char D_0045E810[];	/* "_chroma_format needs to be 1: 420" */
-extern char D_0045E838[];	/* "Unsupported profile/level" */
 
 #define IPU_CTRL (*(volatile unsigned int *)0x10002010)
 

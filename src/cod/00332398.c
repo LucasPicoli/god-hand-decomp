@@ -1,5 +1,6 @@
 /* cygnus-2.96: IOP transfer pump: hand a finished receive to its callback, then fill the buffer and
  * start the next DMA to the IOP. */
+#include "godhand/globals.h"
 
 typedef struct {
     char pad0[0x3C];
@@ -31,14 +32,12 @@ typedef struct {
     int id;
 } IopXfer;
 
-extern int D_003D84B8;
-extern int D_003D84AC;
 extern void func_003B0640(void *start, void *end);
 extern void SyncDCache(void *start, void *end);
 extern int func_003B2148(SifDmaData *dma, int n);
 
-__attribute__((section(".text.func_00332398")))
-void func_00332398(IopXfer *x)
+__attribute__((section(".text.DTX_ExecHndl")))
+void DTX_ExecHndl(IopXfer *x)
 {
     D_003D84B8++;
     if (x->state == 1 && x->count < x->hdr->seq) {

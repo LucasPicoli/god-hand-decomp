@@ -17,8 +17,8 @@ typedef struct Bigint Bigint;
 extern Bigint *Brealloc(Bigint *b, int k);
 
 /* libio floatconv.c :: lshift */
-__attribute__((section(".text.func_0038FC68")))
-Bigint *func_0038FC68(Bigint *b, int k) {
+__attribute__((section(".text.lshift_38FC68")))
+Bigint *lshift_38FC68(Bigint *b, int k) {
     int i;
     unsigned32 *x, *x1, *xe;
     int old_wds = b->wds;

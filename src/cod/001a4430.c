@@ -5,6 +5,7 @@
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cMovie.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void func_001B6FB8(void *self);
 extern void cOm4f_setOpenCloseRot(void *self, float a, float b);
@@ -17,13 +18,6 @@ extern void Obj3260_Tramp_00337C88_D208(void);
 extern void Forward3443E0_3443C8(int handle);
 extern void sndDrv_start(void);
 extern void func_003A11F8(void);
-extern char D_0044CD20[];
-extern char D_0044CD40[];
-extern char D_0044CD60[];
-extern char D_0044CD80[];
-extern char D_0044CDA0[];
-extern char D_0044CDA8[];
-extern char D_0044CDC8[];
 extern int IsEntryActive_1C2490(int entry);
 extern void ColiseumBattle_DefeatAllEnemies(ColiseumBattle *self);
 extern void cEmSetParam_setEm(void *param, int slot);

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 /* The part of an effect's owner this file reads. */
 typedef struct EspOwner {
@@ -29,9 +30,7 @@ extern int D_0071B840[];                /* bit set: destroy the slot next frame 
 extern int D_0071B8C0[];                /* bit set: destroy the slot this frame */
 extern char D_0061B7C0[];               /* the 0x400 effect slots */
 extern int D_00747A84;                 /* GameWork.flags5E4; D_007474A0.flags5E4 changes the code */
-extern int D_003C3BB8;
 extern char D_007419A0;
-extern char D_00743250[];
 extern void func_00305C20(struct cAreaFx *self);
 extern void func_00306E38(char *pool);
 

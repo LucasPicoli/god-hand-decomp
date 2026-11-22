@@ -1,13 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045C220[];
-extern const char D_0045C250[];
-extern const char D_0045C258[];
-extern unsigned short D_003F215E;
 extern void func_00385A20(void *);
-extern void func_0032A9F0(void *, short);
+extern void ADXT_SetOutVol(void *, short);
 extern void func_0032A6D0(void *, int, short);
 extern void func_0032BDC0(void *, void *, int);
 
@@ -15,7 +11,6 @@ extern void func_0032BDC0(void *, void *, int);
 
 
 
-extern char D_003BB168[];                     /* basic_string<char>::nilRep */
 extern const char D_0045C208[];               /* "" */
 
 
@@ -247,7 +242,7 @@ void func_0037F4F8(char *self)
     *(short *)(s3 + 6) = 0x7F;
     hw = D_003F215E;
     *(short *)(s3 + 4) = hw;
-    func_0032A9F0(*(void **)(s4 + 0x30), hw);
+    ADXT_SetOutVol(*(void **)(s4 + 0x30), hw);
     *(short *)(s3 + 8) = -0x80;
     *(short *)(s3 + 0xA) = -0x80;
     func_0032A6D0(*(void **)(s4 + 0x30), 0, *(short *)(s3 + 8));

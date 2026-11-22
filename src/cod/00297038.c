@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEvent.h"
+#include "godhand/globals.h"
 
 extern int cEvent_nullHookI();
 extern void func_0();
@@ -17,7 +18,6 @@ extern void func_00297EF0(void *, char *);
 extern void func_00297F38(void *, char *);
 extern void func_00297F80(void *, char *);
 extern void func_00297FC8(void *, char *);
-extern int D_00586B34;
 extern int D_003C2558;
 extern char D_00747470[];
 extern void cEvent_endPlay(cEvent *);

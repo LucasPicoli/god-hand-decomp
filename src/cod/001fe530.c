@@ -1,12 +1,8 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cDataManager.h"
+#include "godhand/globals.h"
 
-extern int D_007861A8;
-extern int D_00460D48;
 extern char D_0042C4F8[];
-extern char D_0042C508[];
-extern int D_007861B8;
-extern char D_0042C518[];
 extern int D_00583F20;
 
 __attribute__((section(".text.GetSlotInstance_1FE530")))

@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct MpvSeqHn {
     char pad0[0x360];
     int w360;
@@ -7,14 +8,12 @@ typedef struct MpvSeqHn {
     int w398;
 } MpvSeqHn;
 
-extern char D_0045A3C0[];
-extern char D_0045A3C8[];
 extern int func_003A5BD8(char *a, char *b, int n);
 extern int func_003A7C48(char *s);
 extern int MPV_CheckDelim(char *p);
 
-__attribute__((section(".text.func_0036BA50")))
-int func_0036BA50(MpvSeqHn *m, char *buf, int size)
+__attribute__((section(".text.mpvhdec_DecSeqUdsc")))
+int mpvhdec_DecSeqUdsc(MpvSeqHn *m, char *buf, int size)
 {
     int n;
     int i;

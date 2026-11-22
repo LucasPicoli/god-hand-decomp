@@ -13,7 +13,7 @@ typedef struct {
     unsigned int pad;
 } SelObj;
 
-extern short func_0037A0F0(SelObj *o, short idx, int dir);
+extern short SdeTblTestBlkNoCheck(SelObj *o, short idx, int dir);
 
 __attribute__((section(".text.func_0037A020")))
 int func_0037A020(SelObj *o)
@@ -23,9 +23,9 @@ int func_0037A020(SelObj *o)
     short v = old;
 
     if (o->pad & 0x20000000)
-        v = func_0037A0F0(o, old - 1, -1);
+        v = SdeTblTestBlkNoCheck(o, old - 1, -1);
     if (o->pad & 0x10000000)
-        v = func_0037A0F0(o, old + 1, 1);
+        v = SdeTblTestBlkNoCheck(o, old + 1, 1);
     if (v != old) {
         sel->v[o->col] = v;
         o->timer[o->col] = 0;

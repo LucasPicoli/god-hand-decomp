@@ -25,8 +25,8 @@ typedef struct {
   int field;
 } InnerObj;
 
-__attribute__((section(".text.func_003554D8")))
-void func_003554D8(OuterObj *o) {
+__attribute__((section(".text.SFMPVF_TermDec")))
+void SFMPVF_TermDec(OuterObj *o) {
   InnerObj *inner = o->ptr;
   inner->field = 1;
 }

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0();
 extern void cIDManager_setIDData();
@@ -11,7 +12,6 @@ extern int cIDBase_getIDWork(void *self, int idx);
 extern void func_00162B18();
 extern void func_00162C98();
 extern void func_001630E8();
-extern int D_0041F430;
 extern int *D_003C2384;
 extern int D_00747A24;
 

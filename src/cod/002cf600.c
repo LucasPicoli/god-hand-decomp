@@ -2,13 +2,13 @@
 
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern void cBgmData_Reset(cBgmData *);
 extern int D_00747A2C;
-extern char D_0044CF68[];
 extern char D_00583F20[];
 extern void cSeData_Release(cSeData *);
 extern void cSeData_SelectHeap(cSeData *);
@@ -16,7 +16,6 @@ extern int cDvd_FileExist(char *, char *);
 extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
 extern void cSeData_AddLoadBits(cSeData *, int);
 extern char D_00603A40[];
-extern char D_0044CFB8[];
 
 /* Load bank bankId from the file named by arg; 1 when the data arrived. */
 __attribute__((section(".text.cSeData_LoadFile")))

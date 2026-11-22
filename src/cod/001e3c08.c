@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
-extern char D_0044A9B0[];
-extern char D_0044A9B8[];
 extern void displayScrollLayer(int layer, int on);
 
 /* Costume hook for the objects with actor id 0x605 and 0x607: from costume 0x10 on, hide the first part mesh (and show the second one on 0x605). */

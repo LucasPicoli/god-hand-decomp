@@ -2,16 +2,13 @@
 #include "godhand/cObjBase.h"
 #include "godhand/DispMgr.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern char D_0041EBE8[];
-extern char D_0041EB80[];
 extern void *cObj__ctor(void *self);
 extern void func_003A52F0(void *dst, int val, int n);
-extern int D_007854F8;
-extern int D_0041EC58;
-extern int D_007856E8;
 extern void cObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern int D_00754230;
@@ -19,21 +16,15 @@ extern void func_002A94F0(void *a0);
 extern int D_004292F0;
 extern void *InitFields_1B6E90(void *a0);
 extern int D_007859B8;
-extern int D_004293A0;
 extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
-extern int D_007854D8;
-extern int D_0044AEC8;
 extern void *cIDBase_getIDWork(void *self, int idx);
 extern void cIDBase_initEntry(void *a0, int a1, void *a2);
 extern void func_002B64C0(int a0);
-extern char D_0045C470[];
-extern char D_0045C4A0[];
 extern char D_005FEE00[];
 extern void SetCustomIDDispOneOrAll_1DD258(int a0, int a1, int a2);
 extern void cScenario_sleepFrames(int a0);
 extern int cDvd_Check(int a0, int a1);
-extern int D_0044A660;
 extern int D_00462FC0;
 extern void func_001FE370(cDamageManage *a0, int a1);
 extern void cCollisionSolidManage_ReleaseUnit(int *a0, int a1);

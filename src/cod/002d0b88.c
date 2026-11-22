@@ -1,7 +1,6 @@
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cSnd.h"
 
-extern cSndKindEnt D_003C3120;           /* fallback entry, just before the table */
 extern cSndKindEnt D_003C3138[44];
 
 __attribute__((section(".text.func_002D0B88")))

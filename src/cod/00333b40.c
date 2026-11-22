@@ -1,14 +1,12 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void MPV_GoNextDelimSj(void *a0);
 extern long long func_003A9228(int a0, int *buf, int size);
 extern void LogPrintf(char *fmt, int val);
-extern char D_00454570[];
-extern char D_00454588[];
-extern char D_00454598[];
 
-__attribute__((section(".text.func_0036B6D8")))
-int func_0036B6D8(void *a0, void *a1) {
+__attribute__((section(".text.mpvhdec_DecEscSj")))
+int mpvhdec_DecEscSj(void *a0, void *a1) {
     int buf[4];
     void *s0;
     int *s1;
@@ -32,7 +30,7 @@ int func_0036B6D8(void *a0, void *a1) {
     diff = v1 - a1_part;
     step = (diff << 3) >> 3;
     next = a1_part + step + 4;
-    func_0033ACA0(s1, next - v1, s1, buf);
+    SJ_SplitChunk(s1, next - v1, s1, buf);
 
     {
         void (*fn)(void *, int, int *) =

@@ -1,12 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045C210[];
-extern unsigned short D_003F215E;
-extern void func_0032A9F0(void *, short);
+extern void ADXT_SetOutVol(void *, short);
 extern void func_0032A6D0(void *, int, short);
-extern void func_0032BD50(void *, const char *);
+extern void ADXT_StartFname(void *, const char *);
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -40,7 +38,6 @@ typedef struct Frame {
 
 
 
-extern char D_003BB168[];                                                     /* nilRep */
 extern const char D_0045C208[];                                               /* "" */
 
 
@@ -198,7 +195,7 @@ void func_0037E908(char *self)
 
     *(short *)(b + 6) = 0x7F;
     *(short *)(b + 4) = D_003F215E;
-    func_0032A9F0(*(void **)(sub + 0x30), *(short *)(b + 4));
+    ADXT_SetOutVol(*(void **)(sub + 0x30), *(short *)(b + 4));
     *(short *)(b + 8) = -0x80;
     *(short *)(b + 0xA) = -0x80;
     func_0032A6D0(*(void **)(sub + 0x30), 0, -0x80);
@@ -243,7 +240,7 @@ void func_0037E908(char *self)
             fr.t.dat[((Rep *)(fr.t.dat - 16))->len] = 0;
             cs3 = fr.t.dat;
         }
-        func_0032BD50(*(void **)(sub + 0x30), cs3);
+        ADXT_StartFname(*(void **)(sub + 0x30), cs3);
     }
     *(char *)(self + 2) = 2;
     {

@@ -1,14 +1,13 @@
-/* cygnus-2.96: func_00339F00, how many of want bytes are available in lane 0 (free) or lane 1 (data)
+/* cygnus-2.96: sjrbf_IsGetChunk, how many of want bytes are available in lane 0 (free) or lane 1 (data)
  * of the ring buffer; any other lane goes to the error callback. Returns 1 when all are. */
 #include "godhand/criSj.h"
-extern int D_00455B88;
+#include "godhand/globals.h"
 extern int D_00455A80;
-extern int D_00455B98;
 extern int D_00455AB0;
 extern int func_00339458(void *a0, void *a1);
 
-__attribute__((section(".text.func_00339F00")))
-int func_00339F00(SjRbf *r, int lane, int want, int *got)
+__attribute__((section(".text.sjrbf_IsGetChunk")))
+int sjrbf_IsGetChunk(SjRbf *r, int lane, int want, int *got)
 {
     int n, len;
 

@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void *D_003F1A98;
 extern void func_00368EE0();
@@ -23,8 +24,6 @@ void *MPSLIB_SetErr(char *a0, void *a1) {
 typedef signed char Sint8;
 typedef signed int  Sint32;
 
-extern char D_00456918[];   /* "FORM" */
-extern char D_00456920[];   /* "AIFF" */
 extern int func_003A50B4(const void *a, const void *b, int n);   /* memcmp */
 
 __attribute__((section(".text.func_0033E558")))
@@ -41,8 +40,6 @@ Sint32 func_0033E558(Sint8 *ibuf)
 typedef signed char Sint8;
 typedef signed int  Sint32;
 
-extern char D_00457040[];   /* "FORM" */
-extern char D_00457048[];   /* "AIFF" */
 extern int func_003A50B4(const void *a, const void *b, int n);   /* memcmp */
 
 __attribute__((section(".text.func_00340E90")))

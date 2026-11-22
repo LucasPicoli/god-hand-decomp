@@ -2,17 +2,10 @@
 
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
 extern unsigned char D_00747A50[];
 extern int irand(void);
-extern int D_003C0490[];
-extern int D_003C04A8[];
-extern int D_003C04B8[];
-extern int D_003C04D0[];
-extern int D_003C04E8[];
-extern int D_003C0500[];
-extern int D_003C0518[];
-extern int D_003C0530[];
 
 /* Picks the item id of a skill scroll the player has not learned yet, from
  * the list for the current stage; 0x3D8 when every skill of the list is known. */

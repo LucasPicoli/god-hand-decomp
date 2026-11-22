@@ -31,7 +31,7 @@ extern void Obj35C0_CopyPair_158_C4F8(void *tm, long long *p);
 extern void Obj35C0_CopyPair_168_C510(void *tm, long long *p);
 extern void Obj35C0_SetField10_IfPositive_C528(void *tm, int v);
 extern void func_00360950(int v);
-extern void func_0034A038(void *a0, int a1, int a2, int *a3);
+extern void sfadxt_CopyData(void *a0, int a1, int a2, int *a3);
 
 __attribute__((section(".text.func_0034ADB8")))
 int func_0034ADB8(char *hn, StmReq *req)
@@ -49,7 +49,7 @@ int func_0034ADB8(char *hn, StmReq *req)
     req->f30 = 0;
     req->f34 = 0;
     req->f38 = 0;
-    req->cb = func_0034A038;
+    req->cb = sfadxt_CopyData;
     req->f40 = 0;
     req->f44 = -1;
     req->f48 = 0;

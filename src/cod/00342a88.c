@@ -2,8 +2,8 @@
 
 extern int GuardedCall_00329FD0_329F98();
 
-__attribute__((section(".text.func_00342A88")))
-int func_00342A88(void) {
+__attribute__((section(".text.MWADX_GetStat")))
+int MWADX_GetStat(void) {
     switch (GuardedCall_00329FD0_329F98()) {
     case 0:
         return 0;

@@ -2,6 +2,7 @@
 
 /* ee-2.9-991111 — donor sce302_libsdr/sdr_main.o :: sceSdRemote */
 #include "godhand/gp.h"
+#include "godhand/globals.h"
 
 typedef unsigned int   u_int;
 typedef unsigned short u_short;
@@ -12,15 +13,6 @@ extern u_int D_0077C8C0[];   /* transData            */
 extern char  D_0077C900[];   /* sbuff (client data)  */
 extern void *D_003FA300;     /* sceSdEndFunc         */
 extern void *D_003FA304;     /* sceSdEndGp           */
-extern char  D_003FA308[];   /* +0x10 = _sce_sdr_transIntr0Hdr */
-extern void *D_003FA31C;     /* _sce_sdr_transIntr1Hdr */
-extern void *D_003FA320;     /* _sce_sdr_spu2IntrHdr   */
-extern void *D_003FA324;     /* _sce_sdr_transIntr0Arg */
-extern void *D_003FA328;     /* _sce_sdr_transIntr1Arg */
-extern void *D_003FA32C;     /* _sce_sdr_spu2IntrArg   */
-extern void *D_003FA330;     /* _sce_sdr_transIntr0Gp  */
-extern void *D_003FA334;     /* _sce_sdr_transIntr1Gp  */
-extern void *D_003FA338;     /* _sce_sdr_spu2IntrGp    */
 
 __attribute__((section(".text.sceSdRemote")))
 int sceSdRemote(int arg, ...)

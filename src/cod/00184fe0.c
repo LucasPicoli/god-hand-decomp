@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void cOmBase_setDispMode(void *a0, int a1);
 extern void cOmBase_setDispModeLayers2E(void *a0, int a1);
-extern int D_006046C0;
 extern void cSpline_setBasePoint(void *a0, void *a1);
 extern void cSpline_getPoint(void *a0, void *a1, float a2);
 extern int D_003C23B0;

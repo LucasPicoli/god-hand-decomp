@@ -1,7 +1,7 @@
 #include "godhand/menuCtl.h"
 
 extern void func_0032B188(int handle, int a1);
-extern void func_0032A9F0(int handle, int a1);
+extern void ADXT_SetOutVol(int handle, int a1);
 extern void func_0032A6D0(int handle, int a1, int a2);
 extern void func_0032B300(int handle, void *a1);
 extern void func_0032BDC0(int handle, int a1, int idx);
@@ -23,7 +23,7 @@ int func_00384EC8(MenuCtl *ctl, MenuList *list)
     work->f04 = info->f04;
     work->f08 = info->f08;
     work->f0C = info->f0C;
-    func_0032A9F0(work->handle, list->unk04);
+    ADXT_SetOutVol(work->handle, list->unk04);
     func_0032A6D0(work->handle, 0, list->unk08);
     func_0032A6D0(work->handle, 1, list->unk0A);
     list->unk00 = 0;

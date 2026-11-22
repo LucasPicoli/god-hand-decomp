@@ -4,8 +4,8 @@ extern int SifGetReg(int reg);
 extern void Obj0000_Set_D_003FAE30_Field_10_Zero(void);
 extern void func_003B79C0(int a0, int a1);
 
-__attribute__((section(".text.func_003B6240")))
-int func_003B6240(void) {
+__attribute__((section(".text.sceSifSyncIop")))
+int sceSifSyncIop(void) {
     if (SifGetReg(4) & 0x40000) {
         Obj0000_Set_D_003FAE30_Field_10_Zero();
         func_003B79C0(1, 1);

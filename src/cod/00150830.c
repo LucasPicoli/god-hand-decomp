@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00583EC0[];
 extern void cDoor_aimJump();
 extern void func_001FFF30();
 extern void func_0016B1F8();
-extern void *D_005FEC68;
 extern void cRelSys_loadSlot(void *, int);
 extern void *D_003C3CF0;
 extern void *_MemoryAlloc(void *, int, void *);
@@ -46,8 +46,8 @@ void *func_0031C8B8(void *a0, int a1) { return _MemoryAlloc(a0, a1, D_003C3CF0);
 __attribute__((section(".text.func_003A9470")))
 void func_003A9470(void *a0, int a1) { func_003A9498(a0, a1, (char *)D_003FA62C + 0x5C); }
 
-__attribute__((section(".text.func_003B60A0")))
-void func_003B60A0(int a0, int a1, int a2)
+__attribute__((section(".text.sceSifLoadModule")))
+void sceSifLoadModule(int a0, int a1, int a2)
 {
     char buf[0x10];
     func_003B5E78(a0, a1, a2, buf, 0);

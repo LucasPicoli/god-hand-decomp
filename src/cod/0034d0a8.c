@@ -21,6 +21,6 @@ int SFHDS_SetHdr(void *hn, int kind, char *buf, int len, int *out)
     buf -= 12;
     len += 12;
     if (SFHDS_IsSfdHeader(buf, len) == 0) return 0;
-    *out = func_0034D210(hn, buf, len);
+    *out = sfhds_SetHdrRaw(hn, buf, len);
     return 1;
 }

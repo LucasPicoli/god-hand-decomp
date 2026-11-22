@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/StdString.h"
-
-extern char D_0045D008[];   /* "" */
+#include "godhand/globals.h"
 
 /* Directory depth of a path: the number of '/' in it minus one, never below
    0. Terminates the string in place first. */

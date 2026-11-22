@@ -14,8 +14,8 @@ typedef struct {
 
 extern SndChOut D_0076AFC0[];
 
-__attribute__((section(".text.func_003778D8")))
-void func_003778D8(void)
+__attribute__((section(".text.SdeStrOrderMake")))
+void SdeStrOrderMake(void)
 {
     int i;
 

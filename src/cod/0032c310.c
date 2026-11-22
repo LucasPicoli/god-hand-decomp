@@ -1,11 +1,11 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_0032B660(void *a0, int a1);
-extern void func_0033ACA0(void *a0, int a1, void *a2, void *a3);
+extern void ADXT_SetLnkSw(void *a0, int a1);
+extern void SJ_SplitChunk(void *a0, int a1, void *a2, void *a3);
 extern int Obj3270_GetField_2C(void *a0);
-extern void func_00326860(void *a0);
-extern void func_00326830(void *a0);
-extern void func_00327370(void *a0);
+extern void ADXSJD_Stop(void *a0);
+extern void ADXSJD_Start(void *a0);
+extern void ADXSJD_ExecHndl(void *a0);
 extern int Obj3260_GetByte_1_D778(void *a0);
 extern void StoreArgAndUpdateChildB(void *a0, int a1);
 extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
@@ -13,8 +13,8 @@ extern void Obj3270_SetField_3C(void *a0, int a1);
 extern void Obj3270_SetField_44(void *a0, int a1);
 extern void Obj3270_SetField_40(void *a0, int a1);
 
-__attribute__((section(".text.func_0032C310")))
-void func_0032C310(void *a0)
+__attribute__((section(".text.adxt_nlp_trap_entry")))
+void adxt_nlp_trap_entry(void *a0)
 {
     char *s4 = (char *)a0;
     int b0[4];
@@ -46,8 +46,8 @@ void func_0032C310(void *a0)
         void (*f2)() = *(void (**)())(vt2 + 0x18);
         f2(s1, 1, 0x7FFFFFFF, b20);
     }
-    if (func_0033F050(b0[0], b0[1], &h40) != 0) {
-        func_0032B660(s4, 0);
+    if (ADX_DecodeFooter(b0[0], b0[1], &h40) != 0) {
+        ADXT_SetLnkSw(s4, 0);
         {
             int vt3 = *(int *)s1;
             int (*f3)() = *(int (**)())(vt3 + 0x1C);
@@ -61,10 +61,10 @@ void func_0032C310(void *a0)
         return;
     }
     s0 = h40;
-    s3 = func_0033E818(b0[0] + s0, b0[1] - s0, &h40);
+    s3 = ADX_ScanInfoCode(b0[0] + s0, b0[1] - s0, &h40);
     v1 = -1;
     if (s3 != 0) {
-        v1 = func_0033E818(b20[0], b20[1], &h42);
+        v1 = ADX_ScanInfoCode(b20[0], b20[1], &h42);
     }
     s0 = s0 + h40;
     s6 = h42;
@@ -80,7 +80,7 @@ void func_0032C310(void *a0)
             int (*f6)() = *(int (**)())(vt6 + 0x1C);
             f6(s1, 1, b0);
         }
-        func_0032B660(s4, 0);
+        ADXT_SetLnkSw(s4, 0);
         return;
     }
     {
@@ -88,7 +88,7 @@ void func_0032C310(void *a0)
         int (*f7)() = *(int (**)())(vt7 + 0x1C);
         f7(s1, 1, b20);
     }
-    func_0033ACA0(b0, s0, b0, b10);
+    SJ_SplitChunk(b0, s0, b0, b10);
     {
         int vt8 = *(int *)s1;
         int (*f8)() = *(int (**)())(vt8 + 0x20);
@@ -106,7 +106,7 @@ blockC:
         int (*f10)() = *(int (**)())(vt10 + 0x20);
         f10(s1, 0, b0);
     }
-    func_0033ACA0(b20, s6, b20, b30);
+    SJ_SplitChunk(b20, s6, b20, b30);
     {
         int vt11 = *(int *)s1;
         int (*f11)() = *(int (**)())(vt11 + 0x20);
@@ -119,11 +119,11 @@ blockC:
     }
 blockD:
     *(int *)(s4 + 0xA4) += Obj3270_GetField_2C(s2);
-    func_00326860(s2);
-    func_00326830(s2);
-    func_00327370(s2);
+    ADXSJD_Stop(s2);
+    ADXSJD_Start(s2);
+    ADXSJD_ExecHndl(s2);
     if (Obj3260_GetByte_1_D778(s2) != 2) {
-        func_0032B660(s4, 0);
+        ADXT_SetLnkSw(s4, 0);
         return;
     }
     StoreArgAndUpdateChildB(s2, *(int *)(s4 + 0x48));

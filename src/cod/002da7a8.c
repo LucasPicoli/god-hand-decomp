@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern float func_003A1648(float a0);
 extern float func_003A1C78(float a0);
-extern float D_0061B5C0[];
 
 /* sn-2.95.3-136 matched TU. */
 

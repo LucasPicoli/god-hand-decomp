@@ -1,7 +1,7 @@
 extern int func_00357068(char *hn, int mode);
 
-__attribute__((section(".text.func_00356FD8")))
-int func_00356FD8(char *hn, unsigned int mode)
+__attribute__((section(".text.SFPL2_Pause")))
+int SFPL2_Pause(char *hn, unsigned int mode)
 {
     int r = 0;
 

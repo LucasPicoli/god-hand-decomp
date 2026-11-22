@@ -9,8 +9,8 @@ extern int D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void EmitterAllKill(void);
 extern void EspAllKill(void);
-extern void func_00386D70(void);
-extern void func_0037BE98(void);
+extern void sdeIssLumpProcess(void);
+extern void SdeVoiceExecute(void);
 extern void FlushCache(int mode);
 extern int sceIpuStopDMA(int chan);
 extern int sceIpuRestartDMA(int chan);
@@ -20,10 +20,10 @@ extern void Deci2Call(int a, int *b);
 extern void cSndSeVoice_Init(void *a);
 extern void cIDParam_initialize(void *a);
 extern void Setup_00309028_309028(void *a0);
-extern void func_00329EA8(void *p);
+extern void ADXT_Stop(void *p);
 extern void func_0032B300(void *p, int b);
 extern void func_0032A6D0(void *p);
-extern void func_00336D08(void *p);
+extern void ADXT_SetOutPos(void *p);
 extern void func_0032DB70(void *p);
 extern void func_0032E040(void *p, int b);
 extern int D_0076DF10;
@@ -47,14 +47,14 @@ void func_0031CE98(void) {
     func_0031CE90(1, 0xFFFF);
 }
 
-__attribute__((section(".text.func_0034AA00")))
-int func_0034AA00(int a0, int a1) {
-    return func_0034C390(a0, *(int *)((char *)a0 + 0x200C), a1);
+__attribute__((section(".text.sfadxt_RingAddRead")))
+int sfadxt_RingAddRead(int a0, int a1) {
+    return SFBUF_RingAddRead(a0, *(int *)((char *)a0 + 0x200C), a1);
 }
 
-__attribute__((section(".text.func_003545D8")))
-int func_003545D8(int a0, int a1) {
-    return func_0034C390(a0, *(int*)((char*)a0 + 0x1FC8), a1);
+__attribute__((section(".text.sfmpv_RingAddRead")))
+int sfmpv_RingAddRead(int a0, int a1) {
+    return SFBUF_RingAddRead(a0, *(int*)((char*)a0 + 0x1FC8), a1);
 }
 
 int func_003757A0(int a0, int a1);
@@ -131,8 +131,8 @@ void func_00305B90(void) {
 
 __attribute__((section(".text.func_00386D48")))
 void func_00386D48(void) {
-    func_00386D70();
-    func_0037BE98();
+    sdeIssLumpProcess();
+    SdeVoiceExecute();
 }
 
 __attribute__((section(".text.func_00395180")))
@@ -193,7 +193,7 @@ __attribute__((section(".text.func_00373F78")))
 void func_00373F78(void **a0)
 {
 	if (*a0) {
-		func_00329EA8(*a0);
+		ADXT_Stop(*a0);
 	}
 }
 
@@ -217,7 +217,7 @@ __attribute__((section(".text.func_00374148")))
 void func_00374148(void **a0)
 {
 	if (*a0) {
-		func_00336D08(*a0);
+		ADXT_SetOutPos(*a0);
 	}
 }
 
@@ -237,18 +237,18 @@ void func_00374598(void **a0)
 	}
 }
 
-void func_0032DDF8(int *p);
+void AIXP_SetReloadTime(int *p);
 __attribute__((section(".text.func_00374958")))
 void func_00374958(int *a0) {
 	int *p = *(int **)a0;
 	if (p) {
-		func_0032DDF8(p);
+		AIXP_SetReloadTime(p);
 	}
 }
 
 void func_003A52F0(int *p, int b, int c);
-__attribute__((section(".text.func_00377D58")))
-void func_00377D58(void) {
+__attribute__((section(".text.sdeIssWorkClear")))
+void sdeIssWorkClear(void) {
 	func_003A52F0(&D_0076DF10, 0, 0x600);
 }
 
@@ -261,11 +261,11 @@ int func_003B1E40(int a0, int a1, int a2) {
 	return 1;
 }
 
-int func_003B0E30(int c);
+int serialPutchar(int c);
 __attribute__((section(".text.func_003B1E68")))
 int func_003B1E68(int a0, int a1, int a2) {
 	if (a2) {
-		func_003B0E30(a2);
+		serialPutchar(a2);
 	}
 	return 1;
 }

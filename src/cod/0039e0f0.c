@@ -1,16 +1,16 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: _decMB0 */
 
 #define IPU_CTRL (*(volatile unsigned int *)0x10002010)
 
-extern char D_0045E750[];
 extern void _waitIpuIdle(void *s);
 extern long long _sceMpegWaitIpuIdle64(void *s);
 
 extern void _sceMpegError(void *s, char *msg);
 extern void func_0039ECF0(void *s, int n);
-extern void func_0039FDD8(int a, int b);
+extern void receiveDataFromIPU(int a, int b);
 extern void func_0039DF50(void *s, int *PMV, int *dmv, int *mvfs, int idx,
                           int mvcount, int mvformat, int hr, int vr,
                           int dmvf, int mvscale);
@@ -116,7 +116,7 @@ int _decMB0(char *s, int *mbtypep, int *motion_typep, int *dct_typep,
     if ((*mbtypep & 1) != 0 && *(int *)(s + 0x190) != 0)
         func_0039ECF0(s, 1);
     if ((*mbtypep & 3) != 0) {
-        func_0039FDD8(*(int *)(s + *(int *)(s + 0x820) * 0x140 + 0x5A4), 0x300);
+        receiveDataFromIPU(*(int *)(s + *(int *)(s + 0x820) * 0x140 + 0x5A4), 0x300);
         _waitIpuIdle(s);
         q = (*(int *)(s + 0x1C4) << 16) | 0x20000000;
         cmd = (((*mbtypep & 1) << 27)

@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern const char D_004549F8[];
 extern struct FL_htci D_003D9DC0;
 extern struct FL_htci2 D_003DA380;
 

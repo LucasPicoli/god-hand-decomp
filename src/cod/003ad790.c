@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* newlib e_log.c -- __ieee754_log (0x003AD790). */
 
@@ -13,8 +14,6 @@ typedef union { double value; unsigned int i[2]; } U;
 #define SET_HIGH_WORD(d, v)                                             \
     do { U sh_u; sh_u.value = (d); sh_u.i[1] = (v); (d) = sh_u.value; } while (0)
 
-extern const double D_0045FC60;         /* -two54/zero, folded to -inf */
-
 #define ln2_hi  6.93147180369123816490e-01      /* 3fe62e42 fee00000 */
 #define ln2_lo  1.90821492927058770002e-10      /* 3dea39ef 35793c76 */
 #define two54   1.80143985094819840000e+16      /* 43500000 00000000 */
@@ -27,8 +26,8 @@ extern const double D_0045FC60;         /* -two54/zero, folded to -inf */
 #define Lg7     1.479819860511658591e-01        /* 3FC2F112 DF3E5244 */
 #define zero    0.0
 
-__attribute__((section(".text.func_003AD790")))
-double func_003AD790(double x)
+__attribute__((section(".text.sn_log")))
+double sn_log(double x)
 {
     double hfsq, f, s, z, R, w, t1, t2, dk;
     int k, hx, i, j;
@@ -91,12 +90,10 @@ double func_003AD790(double x)
  * SET_HIGH_WORD are register shifts through a union, not memory accesses.
  * `long` is the 64-bit type here; `long long` is 128-bit and cc1 rejects it. */
 
-extern double func_0031E348(double a, double b);	/* dpmul */
-extern double func_0031E288(double a, double b);	/* dpadd */
-extern double func_0031E8C0(int i);			/* litodp */
-extern double func_003AD790(double x);			/* __ieee754_log */
-
-extern const double D_0045FC80;				/* -two54/zero == -inf */
+extern double dpmul(double a, double b);	/* dpmul */
+extern double dpadd(double a, double b);	/* dpadd */
+extern double litodp(int i);			/* litodp */
+extern double sn_log(double x);			/* __ieee754_log */
 
 typedef union {
 	double	value;
@@ -131,8 +128,8 @@ typedef union {
 #define log10_2hi 3.01029995663611771306e-01	/* 0x3FD34413, 0x509F6000 */
 #define log10_2lo 3.69423907715893089906e-13	/* 0x3D59FEF3, 0x11F12B36 */
 
-__attribute__((section(".text.func_003ADDA8")))
-double func_003ADDA8(double x)
+__attribute__((section(".text.sn_log10")))
+double sn_log10(double x)
 {
 	double y, z;
 	int i, k, hx;
@@ -159,6 +156,6 @@ double func_003ADDA8(double x)
 	hx = (hx & 0x000fffff) | ((0x3ff - i) << 20);
 	y = (double) (k + i);
 	SET_HIGH_WORD (x, hx);
-	z = y * log10_2lo + ivln10 * func_003AD790 (x);
+	z = y * log10_2lo + ivln10 * sn_log (x);
 	return z + y * log10_2hi;
 }

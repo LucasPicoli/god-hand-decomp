@@ -1,8 +1,6 @@
 /* sn-2.95.3-136: menu slot status message for a slot kind (0x380048). */
+#include "godhand/globals.h"
 extern void func_002E0DE8(int a0, int a1, int a2, const char *fmt, ...);
-extern const char *D_003F28A0[];
-extern const char *D_003F28B0[];
-extern char D_0045C328[];
 
 __attribute__((section(".text.func_00380048")))
 void func_00380048(unsigned char *self, char *pad, unsigned char kind)

@@ -1,30 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003A6C58(void *a0, void *a1, ...);
-extern char D_0044FEA8[];
-extern char D_0044FEB8[];
-extern char D_0044FEC8[];
-extern char D_0044FED8[];
-extern char D_0044FEE0[];
-extern char D_0044FEF0[];
-extern char D_0044FF00[];
-extern char D_0044FF10[];
-extern char D_0044FF20[];
-extern char D_0044FF30[];
-extern char D_0044FF40[];
-extern char D_0044FF50[];
-extern char D_0044FF60[];
-extern char D_0044FF70[];
-extern char D_0044FF80[];
-extern char D_0044FF90[];
-extern char D_0044FFA0[];
-extern char D_0044FFB0[];
-extern char D_0044FFC0[];
-extern char D_0044FFD0[];
-extern char D_0044FFE0[];
-extern char D_0044FFF0[];
-extern char D_00450000[];
-extern char D_00450010[];
 
 /* sn-2.95.3-136 */
 

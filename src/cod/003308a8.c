@@ -2,8 +2,8 @@
 
 extern struct S003308A8 { int a_003308A8; int b; } D_00755D40[];
 
-__attribute__((section(".text.func_003308A8")))
-struct S003308A8 *func_003308A8(void)
+__attribute__((section(".text.allocCvFsHn")))
+struct S003308A8 *allocCvFsHn(void)
 {
     int i;
 

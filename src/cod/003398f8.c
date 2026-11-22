@@ -1,12 +1,9 @@
 /* cygnus-2.96: SJ ring buffer GetChunk: take up to nbyte contiguous bytes from lane 0 (free) or lane 1
  * (data) and advance that lane; other lanes report -3 through the error callback. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 extern char D_00455A80[];
 extern char D_00455AB0[];
-extern char D_00455AF0[];
-extern char D_00455B00[];
-extern char D_00455B10[];
-extern char D_00455B20[];
 extern void func_00339458(const char *msg, const char *fn);
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))

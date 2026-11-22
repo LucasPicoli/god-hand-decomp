@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
@@ -35,17 +36,10 @@ extern void cIDBase_initialize();
 extern void cIDBase_resetAnim();
 extern char *cIDBase_getIDWork();
 extern int D_003C2388;
-extern char D_0041E190[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern int *D_003C2384;
 extern void SetMotionStep(void *a0, float f12);
-extern float D_003BDE70;
-extern float D_003BDE74;
-extern float D_003BDE78;
-extern float D_003BDE7C;
-extern float D_003BDE80;
-extern float D_003BDE84;
 extern int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void SetOrientByType_26AF20(void *a0, int a1, unsigned int a2);

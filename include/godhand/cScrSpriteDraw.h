@@ -117,4 +117,7 @@ void cScrSheet_drawCellBox(cScrSheet *sheet, int idx, unsigned int color, float 
 /* The same with a size instead of the far corner. */
 void cScrSheet_drawCell(cScrSheet *sheet, int idx, unsigned int color, float x, float y, float w, float h);
 
+extern cScrSheetCell D_003C2478[]; /* its ten cells */
+extern cScrSheet D_005E75A0; /* the panel frame's sheet */
+
 #endif

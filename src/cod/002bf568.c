@@ -3,8 +3,8 @@
 /* sn-2.95.3-136: scenario step kind 5 (0x2BF568). Runs when the step is not blocked by the pause bit: clears the step record, fades the event bgm out, then jumps to the room stored in the game work block. */
 #include "godhand/player.h"
 #include "godhand/ScenarioStep.h"
+#include "godhand/globals.h"
 
-extern unsigned char D_0074748C;        /* pause state, bit 2 = menu open */
 extern int D_00747A84;         /* GameWork flags5E4: system flags; the other work words are reached from its address as in the older TUs */
 extern int D_003C264C;
 extern char D_00583EC0[];               /* the door jump record */

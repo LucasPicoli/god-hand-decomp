@@ -27,13 +27,13 @@ extern int Obj33C8_GetShort_98(void *sj);
 extern int Obj3270_GetVia4_Obj33C8_18_77E8(AdxSjHdrHn *hn);
 extern int Obj3270_GetVia4_Obj33C8_10_77D0(AdxSjHdrHn *hn);
 extern int func_003279A0(AdxSjHdrHn *hn);
-extern int func_0033F050(char *p, int len, short *out);
-extern void func_0033ACA0(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
-extern void func_0033D198(void *sj, char *p, int len);
+extern int ADX_DecodeFooter(char *p, int len, short *out);
+extern void SJ_SplitChunk(SjChunk *ck, int len, SjChunk *head, SjChunk *tail);
+extern void ADXB_EntryData(void *sj, char *p, int len);
 extern void func_0033D218(void *sj);
 
-__attribute__((section(".text.func_00326CB8")))
-void func_00326CB8(AdxSjHdrHn *hn)
+__attribute__((section(".text.adxsjd_decexec_start")))
+void adxsjd_decexec_start(AdxSjHdrHn *hn)
 {
     SjChunk tail;
     short h;
@@ -51,12 +51,12 @@ void func_00326CB8(AdxSjHdrHn *hn)
     if (Obj33C8_GetShort_98(sj) == 0 && hn->ck.len >= 4
         && (unsigned short)((*(unsigned short *)hn->ck.data << 8) | (unsigned char)hn->ck.data[1]) == 0x8001) {
         hn->st = 3;
-        if (func_0033F050(hn->ck.data, hn->ck.len, &h) == 0) {
+        if (ADX_DecodeFooter(hn->ck.data, hn->ck.len, &h) == 0) {
             if (hn->ck.len < h) {
                 in->vt->ungetChunk(in, 1, &hn->ck);
                 return;
             }
-            func_0033ACA0(&hn->ck, h, &hn->ck, &tail);
+            SJ_SplitChunk(&hn->ck, h, &hn->ck, &tail);
             in->vt->putChunk(in, 0, &hn->ck);
             in->vt->ungetChunk(in, 1, &tail);
         }
@@ -71,7 +71,7 @@ void func_00326CB8(AdxSjHdrHn *hn)
                 for (i = 0; i < hn->ck.len && hn->ck.data[i] == 0; i++)
                     ;
                 found = i < n;
-                func_0033ACA0(&hn->ck, i, &hn->ck, &tail);
+                SJ_SplitChunk(&hn->ck, i, &hn->ck, &tail);
                 in->vt->putChunk(in, 0, &hn->ck);
                 in->vt->ungetChunk(in, 1, &tail);
                 if (found)
@@ -97,6 +97,6 @@ void func_00326CB8(AdxSjHdrHn *hn)
         in->vt->ungetChunk(in, 1, &hn->ck);
     if (Obj33C8_GetShort_98(sj) == 15)
         in->vt->ungetChunk(in, 1, &hn->ck);
-    func_0033D198(sj, hn->ck.data, hn->ck.len);
+    ADXB_EntryData(sj, hn->ck.data, hn->ck.len);
     func_0033D218(sj);
 }

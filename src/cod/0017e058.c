@@ -2,13 +2,13 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/cGameObj.h"
+#include "godhand/globals.h"
 
 extern float cEmManage_GetSpeedRate(void *manager);
 extern int D_00586AF0;
 extern void func_002987F8(void);
 extern void func_002988A8(void);
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
-extern int D_00422240;
 extern char D_007419A0[];
 extern void espSys_effDataRelease(void *sys, int effNo);
 extern void SetField214PtrThenInit_1B6F38(cGameObj *self, int flag);
@@ -23,7 +23,6 @@ typedef struct WaitObj {
 
 
 extern int D_005864F0;                  /* enemy manager */
-extern float D_00747A14;                /* global speed rate */
 
 /* Wait step: load the countdown from the start time, count it down by the frame rate, and when it is spent go back to phase 0 in mode 1. */
 __attribute__((section(".text.WaitObj_stepCountdown")))

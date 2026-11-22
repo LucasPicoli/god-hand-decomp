@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0033D198")))
-void func_0033D198(char *o, int a1, int a2) {
+__attribute__((section(".text.ADXB_EntryData")))
+void ADXB_EntryData(char *o, int a1, int a2) {
     int q;
     if (*(short *)(o + 0x98) == 0) {
         *(int *)(o + 0x48) = a1;
@@ -20,8 +20,8 @@ void func_0033D198(char *o, int a1, int a2) {
     *(int *)(o + 0xF4) = 0;
 }
 
-__attribute__((section(".text.func_0036E208")))
-void func_0036E208(int *s){
+__attribute__((section(".text.calcHvSize")))
+void calcHvSize(int *s){
     unsigned int w = ((unsigned int)s[0x50/4] << 12) | s[0x4/4];
     unsigned int h = ((unsigned int)s[0x54/4] << 12) | s[0x8/4];
     int v1, a0;
@@ -40,8 +40,8 @@ void func_0036E208(int *s){
 }
 
 struct Obj_0033d198 { char pad0[7]; unsigned char unk7; unsigned char unk8; unsigned char unk9; char pad_a[2]; int unkC; char pad10[0x1A]; unsigned short unk2A; };
-__attribute__((section(".text.func_0033D9C0")))
-int func_0033D9C0(struct Obj_0033d198 *obj, int a1u, short *out2, char *outNeg1, signed char *out5, signed char *out6, signed char *out7, int *out8, int *out9, int *out10, short *out11) {
+__attribute__((section(".text.ADX_DecodeInfoSpsd")))
+int ADX_DecodeInfoSpsd(struct Obj_0033d198 *obj, int a1u, short *out2, char *outNeg1, signed char *out5, signed char *out6, signed char *out7, int *out8, int *out9, int *out10, short *out11) {
  unsigned char type; int v;
  *out2 = obj->unk7 << 4; *out7 = (obj->unk9 & 3) + 1; *out8 = obj->unk2A;
  type = obj->unk8;

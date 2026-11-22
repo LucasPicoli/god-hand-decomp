@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_0076B040[];
 extern char D_0076A7D4[];
 extern void (*D_003C4908)(void);
 
@@ -15,8 +15,8 @@ extern void (*D_003C4908)(void);
 
 struct S374B00 { char b[0x20]; };
 
-__attribute__((section(".text.func_00374B00")))
-void func_00374B00(void) {
+__attribute__((section(".text.SdeEfxOrderMake")))
+void SdeEfxOrderMake(void) {
     int i;
     struct S374B00 *d = (struct S374B00 *)D_0076B040;
     struct S374B00 *s = (struct S374B00 *)D_0076A7D4;

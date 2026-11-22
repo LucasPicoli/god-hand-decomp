@@ -154,7 +154,7 @@ int SndMsg_buildVoiceNode(SndSrc *src, SndRow *row, unsigned int voice)
     SndNode *n;
     int code;
 
-    src->slot[voice] = func_00377FF8();
+    src->slot[voice] = SdeSndIdNew();
     n = func_0037D170();
     if (n == 0)
         return -1;

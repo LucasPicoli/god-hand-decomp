@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern const char D_00454C78[];
 extern const char D_00454458[];
 extern int ReferThreadStatus(int thid, struct THST *info);
 extern int ResumeThread(int thid);

@@ -4,12 +4,9 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cModel.h"
 #include "godhand/cEmSetParam.h"
+#include "godhand/globals.h"
 
-extern char D_003BDD08[];
-extern char D_003BDE98[];
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
-extern char D_0044A9D0[];
-extern char D_0044A9D8[];
 extern cModelNode *cModel_getMeshPtr(cModel *self, int idx);
 extern int cModel_getMeshNum(cModel *self);
 extern void func_00155D60(cModelNode *node, int value, int slot);

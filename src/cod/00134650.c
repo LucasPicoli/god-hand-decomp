@@ -2,13 +2,11 @@
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
-extern char D_005F3970[];
 extern void func_003A52F0(void *, int, int);
 extern void func_001F2708(void *);
 extern void cGameObj(void *);
-extern int D_0044A660;
-extern int D_0044A630;
 
 __attribute__((section(".text.func_00134650")))
 void *func_00134650(void *this) {

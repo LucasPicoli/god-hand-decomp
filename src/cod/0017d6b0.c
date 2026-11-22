@@ -4,6 +4,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cGameObj.h"
 #include "godhand/CustomIDWork.h"
+#include "godhand/globals.h"
 
 extern cGameObj *Getplayer(void);
 extern int D_003C264C;
@@ -57,8 +58,6 @@ void cScenario_endExtraGame(RoomJumpTarget *target)
 #define BANK_Y_OFFSET   0x348
 
 typedef struct { int w[5]; } SlotY;
-
-extern int D_0042BDC0[5];               /* local Y per slot */
 
 /* Set message `messNo` on slot `msgSlot` of both banks and move the work entry of slot `ySlot` to that slot's Y
  * from the table. Both slots must be below 5. */

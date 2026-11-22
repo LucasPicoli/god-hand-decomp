@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int MWSFSVM_Error(char *a0, int a1);
-extern char D_00457EC8[];
 
 __attribute__((section(".text.func_00345B88")))
 int func_00345B88(void *a0) {
@@ -11,7 +11,7 @@ int func_00345B88(void *a0) {
     if (h == 0) {
         return 0;
     }
-    r = func_00356EF8(h);
+    r = SFD_GetPaStat(h);
     if (r == 0) {
         ret = 0;
         goto out;

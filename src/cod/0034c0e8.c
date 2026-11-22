@@ -14,8 +14,8 @@ typedef struct SupInfo {
 
 extern void sfbuf_SetSupSj(void *d, SupInfo *q, void *e, int flag);
 
-__attribute__((section(".text.func_0034C0E8")))
-int func_0034C0E8(char *p, SupInfo *q, int no)
+__attribute__((section(".text.sfbuf_SetSupplySjSub")))
+int sfbuf_SetSupplySjSub(char *p, SupInfo *q, int no)
 {
     SjBuf *e = (SjBuf *)(p + 0x1310);
     char *b = (char *)&e[no];

@@ -1,20 +1,13 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00785E68;
-extern unsigned char D_00426420[];
 extern unsigned char D_00785798[];
 extern void GetOrInitGlobal785798_1C3BE8(void);
 extern void SetField_0_4_8_31EEA8(void *, unsigned char *, unsigned char *);
-extern int D_00426438;
 extern void InitVtable214_429C80_1C27E8(void *);
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 extern void ResetField214FreeField180_1C2820(void *, int);
-extern int D_00785E78;
-extern int D_00426508;
-extern int D_00426520;
-extern int D_00785E88;
-extern int D_004265F0;
 extern int D_00426608;
 
 __attribute__((section(".text.GetObjClassDesc_19E670")))

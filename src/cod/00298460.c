@@ -1,14 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
-extern char D_0044AA10[];
-extern char D_0044AA18[];
-extern char D_0044AA20[];
-extern char D_0044AA28[];
-extern char D_0044AA30[];
-extern char D_0044AA38[];
-extern char D_0044AA40[];
-extern char D_0044AA48[];
 
 /* sn-2.95.3-136 matched TU. */
 

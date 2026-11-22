@@ -34,9 +34,9 @@ typedef struct
 
 extern void func_0031DFA8 (long long *, fp_number_type *);   /* unpack_d */
 
-__attribute__((section(".text.func_0031EA10")))
+__attribute__((section(".text.dptoul")))
 unsigned int
-func_0031EA10 (long long arg_a)
+dptoul (long long arg_a)
 {
   fp_number_type a;
 

@@ -18,14 +18,14 @@ typedef struct {
     int f114;
 } SfSrc;
 
-extern int func_00351C00(void *hn);                    /* sfmpv_GetTermSrc */
-extern void func_0036A1D8(int h, unsigned int *rate);  /* MPV_GetBitRate */
-extern int func_0034C7F0(void *hn, int f);             /* SFBUF_GetWTot */
+extern int sfmpv_GetTermSrc(void *hn);                    /* sfmpv_GetTermSrc */
+extern void MPV_GetBitRate(int h, unsigned int *rate);  /* MPV_GetBitRate */
+extern int SFBUF_GetWTot(void *hn, int f);             /* SFBUF_GetWTot */
 extern int Obj35C0_IsIndexedSet_1F3C_C380(void *hn, int f);   /* SFTRN_IsSetup */
-extern int func_0034C7B0(void *hn, int f);             /* SFBUF_GetRingBufSiz */
+extern int SFBUF_GetRingBufSiz(void *hn, int f);             /* SFBUF_GetRingBufSiz */
 
-__attribute__((section(".text.func_00350A50")))
-int func_00350A50(char *hn)
+__attribute__((section(".text.sfmpv_IsVbvEnough")))
+int sfmpv_IsVbvEnough(char *hn)
 {
     SfCond *cond = (SfCond *) (hn + 0x78);
     SfSrc *src = *(SfSrc **) (hn + 0x1FC0);
@@ -33,17 +33,17 @@ int func_00350A50(char *hn)
     unsigned int rate;
     int f;
 
-    if (func_00351C00(hn) == 1)
+    if (sfmpv_GetTermSrc(hn) == 1)
         return 1;
     if (cond->f0 != 0 && cond->f7C == 0)
         return 1;
-    func_0036A1D8(h, &rate);
+    MPV_GetBitRate(h, &rate);
     if (rate == 0x3FFFF)
         return 1;
-    if (func_0034C7F0(hn, 1) >= src->f114)
+    if (SFBUF_GetWTot(hn, 1) >= src->f114)
         return 1;
     f = Obj35C0_IsIndexedSet_1F3C_C380(hn, 1) == 0;
-    if (func_0034C7F0(hn, f) < func_0034C7B0(hn, f))
+    if (SFBUF_GetWTot(hn, f) < SFBUF_GetRingBufSiz(hn, f))
         return 0;
     return 1;
 }

@@ -2,9 +2,9 @@
 #include "godhand/cTaskManager.h"
 #include "godhand/cTaskWork.h"
 #include "godhand/cMovie.h"
+#include "godhand/globals.h"
 
 extern void cTaskWork_exit(cTaskWork *self);
-extern char D_005E79D0[];               /* the movie manager */
 extern cTaskManager D_00752C00;
 
 extern void cTaskWork_sleep(char *w, int n);

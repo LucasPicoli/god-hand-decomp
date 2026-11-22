@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/espSys.h"
+#include "godhand/globals.h"
 
 #define EMITTER_SLOT_NUM    0x100
 #define EMITTER_VT_DESTROY  1
@@ -10,8 +11,6 @@ extern int D_00741960[];                /* bit set: destroy the slot next frame 
 extern int D_00741980[];                /* bit set: destroy the slot this frame */
 extern unsigned char D_0071B940[];      /* the 0x100 emitter slots */
 extern unsigned int D_00747A84;         /* GameWork.flags5E4; D_007474A0.flags5E4 changes the code */
-extern int D_003C3BC0;
-extern char D_0044FC10[];
 extern void printf_2E0DA8(int x, int y, int a2, int a3, char *fmt, ...);
 
 /* Nonzero when any bit of mask is set in flags. */

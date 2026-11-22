@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/fileBuf.h"
-
-extern int D_003C1180;
+#include "godhand/gsPacket.h"
 
 __attribute__((section(".text.func_002E0B18")))
 int func_002E0B18(int a0, int a1) {

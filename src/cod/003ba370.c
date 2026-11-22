@@ -1,5 +1,5 @@
-__attribute__((section(".text.func_003BA370")))
-int func_003BA370(unsigned char *p, int n)
+__attribute__((section(".text.ac3cnv_search_header")))
+int ac3cnv_search_header(unsigned char *p, int n)
 {
     int i;
 

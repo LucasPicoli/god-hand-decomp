@@ -2,6 +2,7 @@
 
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int moveMotion(void *a0);
@@ -11,7 +12,6 @@ extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern float fRand1_1(void);
 extern unsigned int Rnd(void);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern char *D_00586A7C;
 extern unsigned char D_005FEE00[];
 
 #include "godhand/vu0.h"

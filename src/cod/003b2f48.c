@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 matched TU. */
 
@@ -31,7 +32,6 @@ typedef struct _ee_sema {
 } sceSifSemaParam;
 
 extern unsigned char D_0077FF40;
-extern unsigned char D_00460060;
 
 extern void  func_003B2B70(sceSifRpcPkt *p);
 extern int   sceSifSendCmd(unsigned int fno, void *pkt, int pktsize,
@@ -40,8 +40,8 @@ extern int   CreateSema(sceSifSemaParam *sp);
 extern int   DeleteSema(int id);
 extern int   WaitSema(int id);
 
-__attribute__((section(".text.func_003B2F48")))
-int func_003B2F48(sceSifClientData *cd, int sid, unsigned int mode)
+__attribute__((section(".text.sceSifBindRpc")))
+int sceSifBindRpc(sceSifClientData *cd, int sid, unsigned int mode)
 {
     sceSifRpcPkt *p;
     sceSifSemaParam sp;

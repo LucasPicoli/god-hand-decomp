@@ -21,4 +21,6 @@ typedef struct cTaskWork {
     char unk51[7];
 } cTaskWork;                    /* 0x58, TASKMGR_WORK_SIZE */
 
+extern cTaskWork*D_00752C04; /* the main task, used when no script task runs */
+
 #endif

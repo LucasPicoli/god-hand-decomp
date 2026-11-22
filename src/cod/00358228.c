@@ -1,8 +1,8 @@
 /* cygnus-2.96: func_00358228, creates a handle in a free slot of D_003EE2C4;
  * reports when every slot is taken. */
 extern void *D_003EE2C4[8];
-extern int func_003582C0(int a0);
-extern int func_00358328(void);
+extern int sfply_ChkCrePara(int a0);
+extern int sfply_SearchFreeHn(void);
 extern void *func_00358368(int a0, int a1);
 extern int func_0034DD70(int a0, int code);
 
@@ -13,9 +13,9 @@ void *func_00358228(int a0, int a1)
     void *hn;
     int i;
 
-    if (func_003582C0(a0) != 0)
+    if (sfply_ChkCrePara(a0) != 0)
         return 0;
-    i = func_00358328();
+    i = sfply_SearchFreeHn();
     if (i == -1) {
         func_0034DD70(0, 0xFF000206);
         return 0;

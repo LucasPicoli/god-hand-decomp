@@ -2,8 +2,8 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cActionButton.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern int D_00428A20;
 extern char D_005CAE50[];
 extern char D_00462FC0[];
 extern void func_001331B8(char *a0, long a1, int a2);

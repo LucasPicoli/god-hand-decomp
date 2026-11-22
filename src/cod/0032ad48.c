@@ -1,7 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern const char D_00452500[];
-extern const char D_004523D8[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.ADXT_ClearErrCode")))
 void ADXT_ClearErrCode(char *adxt)

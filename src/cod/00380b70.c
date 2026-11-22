@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045C4C0[];
 extern void func_0032B188(void *, int);
-extern void func_0032A9F0(void *, short);
+extern void ADXT_SetOutVol(void *, short);
 extern void func_0032A6D0(void *, int, short);
-extern void func_0032BD50(void *, const char *);
+extern void ADXT_StartFname(void *, const char *);
 extern void func_0032B300(void *, int);
 
 typedef unsigned int size_t;
@@ -26,8 +25,6 @@ extern char *func_003BB058(void *);                                            /
 extern void *func_003BB178(void *, unsigned int, unsigned int, const char *, unsigned int); /* replace */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *);                          /* free */
 
-
-extern char D_003BB168[];                                                        /* nilRep */
 
 extern const char D_0045C4D0[];                                               /* "" */
 
@@ -63,7 +60,7 @@ int func_00380B70(char *self, char *b)
         return 1;
     }
     func_0032B188(*(void **)(sub + 0x30), 1);
-    func_0032A9F0(*(void **)(sub + 0x30), *(short *)(b + 4));
+    ADXT_SetOutVol(*(void **)(sub + 0x30), *(short *)(b + 4));
     func_0032A6D0(*(void **)(sub + 0x30), 0, *(short *)(b + 8));
     func_0032A6D0(*(void **)(sub + 0x30), 1, *(short *)(b + 0xA));
 
@@ -99,7 +96,7 @@ int func_00380B70(char *self, char *b)
         s.dat[((Rep *)(s.dat - 16))->len] = 0;
         cs2 = s.dat;
     }
-    func_0032BD50(*(void **)(sub + 0x30), cs2);
+    ADXT_StartFname(*(void **)(sub + 0x30), cs2);
     *(char *)b = 0;
     func_0032B300(*(void **)(sub + 0x30), 0);
 

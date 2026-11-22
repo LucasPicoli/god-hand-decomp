@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct FsCacheEnt {
     int unk00;
     char *name;
@@ -24,19 +25,18 @@ typedef struct FsCacheCtl {
     FsCacheEnt ent[1];
 } FsCacheCtl;
 
-extern char D_00455000[];
 extern unsigned int strlen(const char *s);
 extern void func_00335D40(char *fmt, ...);
-extern int func_003282D0(void *h);
-extern int func_00327FA8(void *h);
-extern int func_00327E18(void *h, char *name, int a, int b, int c);
-extern void func_00328448(void *h, int a);
+extern int ADXSTM_StopNw(void *h);
+extern int ADXSTM_ReleaseFileNw(void *h);
+extern int ADXSTM_BindFileNw(void *h, char *name, int a, int b, int c);
+extern void ADXSTM_SetEos(void *h, int a);
 extern int func_00328C80(void *h, int a, int b);
 extern int func_003280D8(void *h, int a);
 extern int func_003281C8(void *h);
 
-__attribute__((section(".text.func_00335F20")))
-void func_00335F20(FsCacheCtl *self)
+__attribute__((section(".text.lsc_StatWait")))
+void lsc_StatWait(FsCacheCtl *self)
 {
     FsCacheEnt *e = &self->ent[self->cur];
     char *name;
@@ -45,8 +45,8 @@ void func_00335F20(FsCacheCtl *self)
     int sum;
 
     if (self->num > 0) {
-        func_003282D0(self->handle);
-        func_00327FA8(self->handle);
+        ADXSTM_StopNw(self->handle);
+        ADXSTM_ReleaseFileNw(self->handle);
         name = e->name;
         len = strlen(name);
         sum = 0;
@@ -57,8 +57,8 @@ void func_00335F20(FsCacheCtl *self)
             func_00335D40(D_00455000, e->name, len, sum);
             return;
         }
-        func_00327E18(self->handle, e->name, e->unk0C, e->unk10, e->unk14);
-        func_00328448(self->handle, e->unk14);
+        ADXSTM_BindFileNw(self->handle, e->name, e->unk0C, e->unk10, e->unk14);
+        ADXSTM_SetEos(self->handle, e->unk14);
         self->unk2C = e->unk14;
         e->unk1C = 0;
         self->active = 0;

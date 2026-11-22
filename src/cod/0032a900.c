@@ -1,5 +1,6 @@
 /* cygnus-2.96: func_0032A900, clamp the pan to -15..15 into +0x46 and forward it to the voice at +0xC
  * (-0x80 while D_003C7410 mutes). */
+#include "godhand/globals.h"
 typedef struct {
     char pad00[0x0C];
     int voice;
@@ -7,8 +8,6 @@ typedef struct {
     short pan;
 } PanCtl;
 
-extern int D_003C7410;
-extern char D_00452258[];
 extern void func_0033F130(int msg);
 extern void Obj3260_Tramp_00338818_D410(int voice, int pan);
 

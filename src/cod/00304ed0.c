@@ -1,10 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_007865B8;
-extern int D_007865A8;
-extern int D_0044FDB8;
-extern int D_0044FDC8;
-extern int D_00460D58;
 extern void GetOrInit_460D58_2B6528(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 

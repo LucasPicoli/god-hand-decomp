@@ -2,8 +2,8 @@
 
 #include "godhand/cEvent.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
-extern char D_0044A960[];
 extern char D_00583F20[];
 extern int D_003C3CF0;
 extern int cDvd_ReadAlloc(void *, void *, void *, void *, int, int, int, int);
@@ -14,7 +14,6 @@ extern unsigned int D_00747A80;
 extern int D_00586B30[];
 extern char D_00586AB0[];
 extern unsigned char D_00604700[];
-extern short D_005CAE40;
 extern char D_00747470[];
 extern void cEvent_releaseWork(cEvent *);
 extern void cHeap_free(int, void *);

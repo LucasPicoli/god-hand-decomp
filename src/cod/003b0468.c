@@ -1,9 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern int iWakeupThread(int id);
 extern int iSignalSema(int id);
-extern int D_003FAE48;
-extern int D_0077DF90;
 extern char D_0077DF98[];
 
 #include "godhand/sync.h"
@@ -85,8 +84,8 @@ typedef struct { int f0; int idx; Ent ent[512]; } Ring;
 
 
 
-__attribute__((section(".text.func_003B0A40")))
-int func_003B0A40(int id)
+__attribute__((section(".text.iWakeupThread_3B0A40")))
+int iWakeupThread_3B0A40(int id)
 {
     int me;
     Ring *q;

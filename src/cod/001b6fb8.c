@@ -2,16 +2,13 @@
 
 #include "godhand/cEm00.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int a4);
 extern void ReleaseObj(void *a0);
 extern void cOmBase_setTexChange(void *a0, int a1);
 extern void cParts_setRotationOrder(void *a0, int a1);
-extern int D_004289F8;
-extern int D_00428A00;
-extern int D_00428A08;
-extern int D_00428A10;
 extern void ReleaseField6ECByTag564_26B1E8(void *);
 extern void cNode_updateWorldMatrix(void *a0);
 extern void func_00147C88(void *a0, void *a1, int a2);

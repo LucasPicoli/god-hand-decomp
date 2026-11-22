@@ -1,6 +1,6 @@
 /* include/godhand/adxfObj.h - the 0x44-byte slots of the ADXF object pool (CRI libadxe).
  *
- * D_003EAEC8 holds 16 slots. func_00323478 hands out the first slot whose
+ * D_003EAEC8 holds 16 slots. adxf_AllocAdxFs hands out the first slot whose
  * first byte is 0. Field names are ours, taken from the constructor; offsets
  * are exact. A field nobody has named yet stays as unkNNN padding.
  */
@@ -29,7 +29,7 @@ typedef struct AdxfObj {
     char unk30[0x14];
 } AdxfObj;                              /* 0x44 */
 
-extern AdxfObj *func_00323478(void);
+extern AdxfObj *adxf_AllocAdxFs(void);
 extern void *func_00327D00(int a, int len);
 extern void func_0033F130(const char *msg);
 extern char D_004515E8[];

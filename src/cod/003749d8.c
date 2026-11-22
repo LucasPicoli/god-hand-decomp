@@ -46,7 +46,7 @@ int BuildSoundNode_374DF8(void *a0, int a1) {
     if (p == 0) return 0;
     *(short *)(p + 0x0) = 3;
     if (a1 != 0) *(int *)(p + 0x4) = a1;
-    else *(int *)(p + 0x4) = func_00377FF8();
+    else *(int *)(p + 0x4) = SdeSndIdNew();
     *(char *)(p + 0xC) = 2;
     *(char *)(p + 0xD) = 1;
     *(int *)(p + 0x8) = 0;
@@ -91,8 +91,8 @@ int AddSoundEntry_374F30(int a0, void *a1) {
     return 0;
 }
 
-__attribute__((section(".text.func_003750E0")))
-int func_003750E0(void *a0) {
+__attribute__((section(".text.SdeIssStatusGetBySndId")))
+int SdeIssStatusGetBySndId(void *a0) {
     if (SeqCmd_findStartByMask(1, a0) != 0) return 1;
     if (func_0037D060(a0) != 0) return 2;
     return 0;
@@ -175,7 +175,7 @@ int BuildSoundEvent_375BF0(void *a0)
         return 0;
     }
     *(short *)(p + 0x0) = 1;
-    *(int *)(p + 0x4) = func_00377FF8();
+    *(int *)(p + 0x4) = SdeSndIdNew();
     *(char *)(p + 0x8) = *(unsigned char *)((char *)a0 + 0x6);
     *(char *)(p + 0x9) = 4;
     *(short *)(p + 0xA) = -1;

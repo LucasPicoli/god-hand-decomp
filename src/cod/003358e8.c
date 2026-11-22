@@ -1,12 +1,10 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00335D40();
 extern void func_00335950();
-extern const char D_00454CA8[];
 extern void sfadxt_WtPause(void *, void *, int);
 extern struct FnEntry D_007588A0;
-extern volatile int D_003E9948;
-extern volatile int D_003E994C;
 
 __attribute__((section(".text.func_003358E8")))
 void func_003358E8(void *a0) {
@@ -50,8 +48,8 @@ Sint32 sfadxt_AdjDiscard(Sint8 *buf, Sint32 size, Sint32 *pFound) {
     return i;
 }
 
-__attribute__((section(".text.func_0034B3E0")))
-void func_0034B3E0(void *a0, int a1) {
+__attribute__((section(".text.sfadxt_WaitStart")))
+void sfadxt_WaitStart(void *a0, int a1) {
     void *v1;
     int v0;
     void *a0new;
@@ -79,8 +77,8 @@ struct FnEntry {
 
 
 
-__attribute__((section(".text.func_0033B568")))
-void func_0033B568(int a0) {
+__attribute__((section(".text.svm_lock")))
+void svm_lock(int a0) {
     void (*fn)(int);
     fn = D_007588A0.fn;
     if (fn) {

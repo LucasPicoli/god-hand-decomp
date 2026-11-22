@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: line strip from short xy pairs into a VLA of float4, then Draw_Line_sc. */
-extern unsigned int func_0031CA58(unsigned int a0);
+extern unsigned int convColor(unsigned int a0);
 #include "godhand/drawPrim.h"
 
 __attribute__((section(".text.func_0031CA88")))
@@ -17,5 +17,5 @@ void func_0031CA88(short *pts, short n, unsigned int col, unsigned int z)
         pts += 2;
         p++;
     } while (--i);
-    Draw_Line_sc(v, n - 1, func_0031CA58(col), 1);
+    Draw_Line_sc(v, n - 1, convColor(col), 1);
 }

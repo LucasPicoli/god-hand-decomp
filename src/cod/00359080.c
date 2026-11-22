@@ -3,11 +3,11 @@
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *a0);
 extern int func_0034DD70(int a, int b);
 extern int SetFieldIfUnset_359218(void *self, int flag);
-extern int func_0035C2D0(void *self, int a, int b, int *c, int *d);
+extern int SFTRN_CallTrtTrif(void *self, int a, int b, int *c, int *d);
 extern void (*D_003EE304)(void *self, int v);
 extern long func_0035BA58(void);
-__attribute__((section(".text.func_00359080")))
-int func_00359080(char *self, int *slot, int *count)
+__attribute__((section(".text.SFD_GetIdFrm")))
+int SFD_GetIdFrm(char *self, int *slot, int *count)
 {
   int n;
   void (*fn)(void *, int);
@@ -22,7 +22,7 @@ int func_00359080(char *self, int *slot, int *count)
   {
     return 0;
   }
-  func_0035C2D0(self, 6, 0xB, count, slot);
+  SFTRN_CallTrtTrif(self, 6, 0xB, count, slot);
   fn = D_003EE304;
   if (fn == 0)
   {

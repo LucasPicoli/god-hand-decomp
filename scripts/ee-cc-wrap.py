@@ -273,8 +273,8 @@ def _compare_slot_is_full(lines, i) -> bool:
     The twenty sites it was measured on sit in EIGHT functions, none of which
     mixes the two forms:
 
-        func_0032A1B0 2  func_0032DD70 1  func_0033E6B8 3  func_00343C18 1
-        func_0035B6F8 1  func_0035B8C0 4  func_00366110 4  func_00366368 4
+        func_0032A1B0 2  func_0032DD70 1  ADX_GetCoefficient 3  func_00343C18 1
+        func_0035B6F8 1  func_0035B8C0 4  func_00366110 4  CFT_MakeArgb8888Alp3211Tbl 4
 
     Census: `.scratch/decomp-velocity/findings/wave-2026-08-31/cmpfull_census.py`.
     """
@@ -1807,7 +1807,7 @@ def main(argv: list[str]) -> int:
             # "different immediate-synth path" was an assembler, not a
             # compiler).  Opt-in per-TU only: on `.set noreorder` input the two
             # assemblers agree byte-for-byte except on reorder, where they
-            # differ on 1 of 60 already-matched TUs (func_0036D460: ee-as
+            # differ on 1 of 60 already-matched TUs (m2vlib_InitHn: ee-as
             # hoists `sdr` into a jal delay slot, ps2eeas will not split the
             # sdl/sdr pair, and retail matches ee-as there).
             if not PS2EEAS.exists():

@@ -5,8 +5,8 @@ extern unsigned char D_00766CE8[];
 typedef struct { char pad[0x54]; int n; char *p; } S0036C518;
 
 
-__attribute__((section(".text.func_0036C518")))
-void func_0036C518(int idx, int val) {
+__attribute__((section(".text.mpvlib_SetCondAll")))
+void mpvlib_SetCondAll(int idx, int val) {
     int n = ((S0036C518 *)D_00766CE8)->n;
     char *p = ((S0036C518 *)D_00766CE8)->p;
     if (n > 0) {

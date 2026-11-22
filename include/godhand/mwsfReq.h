@@ -30,10 +30,10 @@ typedef struct MwsfReq {
     int unk14;                  /* 0x14 */
 } MwsfReq;
 
-#define MWSFREQ_ERR  (-0x138)   /* error passed to func_00345750 when the request fails */
+#define MWSFREQ_ERR  (-0x138)   /* error passed to MWSFLIB_SetErrCode when the request fails */
 
-extern int func_00359270(void *sfd, MwsfReq *req);
-extern int func_00345750(int err);
+extern int SFD_SetSupplySj(void *sfd, MwsfReq *req);
+extern int MWSFLIB_SetErrCode(int err);
 extern int MWSFSVM_Error(char *msg);
 
 #endif

@@ -1,16 +1,16 @@
-extern int func_00387430(int a0);
-extern void *func_00377998(void);
+extern int SdeStrStatusGetByWorkId(int a0);
+extern void *SdeStrExeOpen(void);
 
-__attribute__((section(".text.func_003870E0")))
-int func_003870E0(short id)
+__attribute__((section(".text.SdeStrPlay")))
+int SdeStrPlay(short id)
 {
     int st;
     char *node;
 
-    st = func_00387430(id);
+    st = SdeStrStatusGetByWorkId(id);
     if (st & 8)
         return -1;
-    node = func_00377998();
+    node = SdeStrExeOpen();
     if (node == 0)
         return -1;
     *(short *)(node + 0xC) = id;

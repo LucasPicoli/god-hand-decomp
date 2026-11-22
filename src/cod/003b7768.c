@@ -11,8 +11,8 @@ typedef struct alarm {
 } Alarm;
 
 extern Alarm *volatile D_00784040;   /* g_pFreeAlarm */
-extern int func_003B7270(void);      /* AllocTimerCounter */
-extern int func_003B7510(int id, int time, void *handler, void *arg);   /* SetTimerHandler */
+extern int AllocTimerCounter(void);      /* AllocTimerCounter */
+extern int SetTimerHandler(int id, int time, void *handler, void *arg);   /* SetTimerHandler */
 extern int func_003B7380(int id);    /* StartTimerCounter */
 extern int AlarmHandler(int id, int time, void *common, void *arg);
 
@@ -53,7 +53,7 @@ int func_003B7768(int time, void *fn, void *common)
         if (intr) EIntr();
         return 0x80008005;
     }
-    id = func_003B7270();
+    id = AllocTimerCounter();
     if (id < 0) {
         FreeAlarm(p);
         if (intr) EIntr();
@@ -62,7 +62,7 @@ int func_003B7768(int time, void *fn, void *common)
     p->fn = fn;
     p->arg = common;
     p->id = id;
-    func_003B7510(id, time, AlarmHandler, p);
+    SetTimerHandler(id, time, AlarmHandler, p);
     func_003B7380(id);
     if (intr) EIntr();
     return (((u_int)p << 4) | (id & 0xFE)) | 1;

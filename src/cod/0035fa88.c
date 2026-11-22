@@ -11,8 +11,8 @@ typedef struct {
 
 
 typedef struct { int f0; unsigned char pad[0x90]; } Ent3EE338;
-__attribute__((section(".text.func_0035FA88")))
-void *func_0035FA88(void) {
+__attribute__((section(".text.sfx_SearchFreeHn")))
+void *sfx_SearchFreeHn(void) {
     int n = ((Root3EE338 *)D_003EE338)->count;
     Ent3EE338 *p = (Ent3EE338 *)((Root3EE338 *)D_003EE338)->ents;
     int i;

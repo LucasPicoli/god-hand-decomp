@@ -1,21 +1,16 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int cSceAtManager_SetDisableById(int a0, int a1);
 extern void cScenario_taskExec(void *a0, void *a1, void *a2, int a3);
 extern char D_005FEA60[];
 extern char *D_003C2F84;
 extern void func_001E9F68(void);
-extern int D_00785BD8;
-extern int D_00423F00;
 extern int D_007858B8;
 extern void func_001C8F30(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
-extern int D_00785F88;
-extern int D_004274B0;
 extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
-extern int D_007860B8;
-extern int D_00428828;
 extern void Obj0000_Set_D_007474A0_Fields_5D8_5E0(int a0);
 extern void cIDBase_release(int a0);
 extern void func_00161590(int a0);

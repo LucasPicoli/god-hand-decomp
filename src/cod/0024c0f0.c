@@ -13,7 +13,6 @@ extern void KillEffect(void *a0, int a1, int a2);
 extern int cEm00_stepFadeIn(void *a0);
 extern void func_00276478(void *a0);
 extern void func_002A87E8(void *a0, int a1);
-extern cPmf D_003BF738[];
 
 __attribute__((section(".text.func_0024C0F0")))
 void func_0024C0F0(char *self)

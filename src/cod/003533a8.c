@@ -18,11 +18,11 @@ typedef struct SfdPly {
     SfdPlySub *sub;     /* 0x1FC0 */
 } SfdPly;
 
-extern int func_0036A300(void *dec, int *eos, int *term);
+extern int MPV_GetLinkFlg(void *dec, int *eos, int *term);
 extern int GetArrayElemA0C_35A1C8(SfdPly *ply, int idx);
 
-__attribute__((section(".text.func_003533A8")))
-void func_003533A8(SfdPly *ply, SfdPlyFrm *frm, int mode)
+__attribute__((section(".text.sfmpv_UpdateDefect")))
+void sfmpv_UpdateDefect(SfdPly *ply, SfdPlyFrm *frm, int mode)
 {
     SfdPlySub *s = ply->sub;
     void *dec = s->dec;
@@ -30,7 +30,7 @@ void func_003533A8(SfdPly *ply, SfdPlyFrm *frm, int mode)
     int eos, term;
 
     if (s->active != 0) {
-        func_0036A300(dec, &eos, &term);
+        MPV_GetLinkFlg(dec, &eos, &term);
         if (eos == 1) {
             stat = 5;
         } else {

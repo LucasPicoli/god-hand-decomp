@@ -1,4 +1,4 @@
-/* cygnus-2.96: func_003B9BF0, per-frame stream decoder step: start it in state 1, then track the
+/* cygnus-2.96: AC3LINK_ExecOneAc3, per-frame stream decoder step: start it in state 1, then track the
  * decoded sample count in state 2 until the decoder reports done (3). */
 typedef struct SndStream {
     char unk00[4];
@@ -15,33 +15,33 @@ typedef struct SndStream {
 } SndStream;
 
 extern int func_003BA800(int dec);
-extern void func_003BA058(int dec);
-extern void func_003BA000(int dec);
-extern void func_003BA0C8(int dec);
-extern void func_003BA830(int dec, int *pos, int *bytes);
+extern void AC3CNV_Stop(int dec);
+extern void AC3CNV_Start(int dec);
+extern void AC3CNV_ExecHndl(int dec);
+extern void AC3CNV_GetNumByteCnv(int dec, int *pos, int *bytes);
 
-__attribute__((section(".text.func_003B9BF0")))
-void func_003B9BF0(SndStream *s)
+__attribute__((section(".text.AC3LINK_ExecOneAc3")))
+void AC3LINK_ExecOneAc3(SndStream *s)
 {
     int dec = s->dec;
     int pos, bytes;
 
     if (func_003BA800(dec) == 0) {
         s->played = 0;
-        func_003BA058(dec);
+        AC3CNV_Stop(dec);
     }
     if (s->state == 1) {
         s->played = 0;
-        func_003BA000(dec);
+        AC3CNV_Start(dec);
         s->state = 2;
     } else if (s->state == 2) {
-        func_003BA0C8(dec);
-        func_003BA830(dec, &pos, &bytes);
+        AC3CNV_ExecHndl(dec);
+        AC3CNV_GetNumByteCnv(dec, &pos, &bytes);
         s->pos = pos;
         s->delta = bytes / 4 - s->played;
         s->played += s->delta;
         if (func_003BA800(dec) == 3) {
-            func_003BA058(dec);
+            AC3CNV_Stop(dec);
             s->state = 0;
             s->total = bytes / 4;
         }

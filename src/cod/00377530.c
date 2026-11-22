@@ -1,4 +1,4 @@
-extern void func_00377A28(void *self);
+extern void SdeStrCtlFadeOutEnd(void *self);
 
 typedef struct SndSeqCtl {
     unsigned short flags;   /* 0x00 */
@@ -9,15 +9,15 @@ typedef struct SndSeqCtl {
     short wait;             /* 0x3A */
 } SndSeqCtl;
 
-__attribute__((section(".text.func_00377530")))
-void func_00377530(SndSeqCtl *o)
+__attribute__((section(".text.strCtlInit")))
+void strCtlInit(SndSeqCtl *o)
 {
     unsigned short flags = o->flags;
 
     if (flags & 0x10) {
         if (o->wait == 0) {
             o->flags = flags & ~0x10;
-            func_00377A28(o);
+            SdeStrCtlFadeOutEnd(o);
             return;
         }
     }

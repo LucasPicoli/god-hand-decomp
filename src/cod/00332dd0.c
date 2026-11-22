@@ -38,8 +38,8 @@ struct SJX { int n; char pad[0xC]; struct E e[1]; };
 
 
 
-__attribute__((section(".text.func_0033B050")))
-void func_0033B050(void *unused, struct SJX *p)
+__attribute__((section(".text.sjx_rcvcbf")))
+void sjx_rcvcbf(void *unused, struct SJX *p)
 {
     int i, n;
     if (p == 0) for (;;) ;

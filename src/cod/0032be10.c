@@ -1,12 +1,11 @@
+#include "godhand/globals.h"
 extern void func_0033F130(const char *msg);
-extern void func_00329EA8(void *self);
+extern void ADXT_Stop(void *self);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void *func_00338B90(void *src, int mode);
-extern void func_00329B60(char *self, void *sj);
-extern void func_0032B660(char *self, int arg);
-extern char D_00452830[];
-extern char D_00452860[];
+extern void adxt_start_sj(char *self, void *sj);
+extern void ADXT_SetLnkSw(char *self, int arg);
 
 #define BSWAP32(x) ((((unsigned int)(x) >> 24) | ((x) << 24)) | ((((x) << 8) & 0xFF0000) | (((x) >> 8) & 0xFF00)))
 
@@ -19,8 +18,8 @@ typedef struct {
     } ent[1];
 } AdxPackHdr;
 
-__attribute__((section(".text.func_0032BE10")))
-void func_0032BE10(char *self, AdxPackHdr *hdr, int no)
+__attribute__((section(".text.adxt_StartMemIdx")))
+void adxt_StartMemIdx(char *self, AdxPackHdr *hdr, int no)
 {
     void *sj;
 
@@ -28,7 +27,7 @@ void func_0032BE10(char *self, AdxPackHdr *hdr, int no)
         func_0033F130(D_00452830);
         return;
     }
-    func_00329EA8(self);
+    ADXT_Stop(self);
     if (no >= (int)BSWAP32(hdr->count) || no < 0) {
         return;
     }
@@ -40,8 +39,8 @@ void func_0032BE10(char *self, AdxPackHdr *hdr, int no)
         return;
     }
     self[2] = 2;
-    func_00329B60(self, sj);
-    func_0032B660(self, 0);
+    adxt_start_sj(self, sj);
+    ADXT_SetLnkSw(self, 0);
     Forward33B670_33E690();
 }
 

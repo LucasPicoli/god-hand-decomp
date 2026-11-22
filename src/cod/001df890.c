@@ -4,8 +4,8 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
-extern unsigned char D_0074748C;
 extern short D_00568240[];
 extern void ColiseumEmSelect_close(void);
 extern void ColiseumUi_StartFade(void *self, int mode);
@@ -20,7 +20,6 @@ extern void func_001DD0D8(void *self);
 extern void func_001DECE0(void *work);
 extern int D_003C2388;
 extern int *D_003C2384;
-extern char D_0042B6E8[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern char D_005E8040[];

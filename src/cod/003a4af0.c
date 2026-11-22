@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 matched TU. */
 
@@ -43,7 +44,6 @@ do {								\
   (d) = sh_u.value;						\
 } while (0)
 
-extern const double D_0045F028[2];	/* TWO52 */
 #define TWO52 D_0045F028
 
 __attribute__((section(".text.func_003A4AF0")))

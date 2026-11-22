@@ -33,7 +33,7 @@ void Moji_size_set(int w, int h);
 
 /* The font character for c: c itself, except the codes 1..4, which map to
  * 0x7D, 0x60, 0x7C and 0x7B. */
-int func_002E12D8(signed char c);
+int sp_char_ck(signed char c);
 
 /* Draw str from (x, y), one 8x8 font cell per character, in color (below
  * 0x10: an index into the debug colour table) at depth 0xFFFF - depth;

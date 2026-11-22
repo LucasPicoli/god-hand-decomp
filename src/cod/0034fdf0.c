@@ -9,8 +9,8 @@
  * emission order, and the tail is written 0x154/0x158/0x150 so the scheduler
  * rotates 0x150 to the front and 0x154 into the jr delay slot. */
 
-__attribute__((section(".text.func_0034FDF0")))
-void func_0034FDF0(void *a0) {
+__attribute__((section(".text.sfmps_InitInf")))
+void sfmps_InitInf(void *a0) {
     char *p = (char *)a0;
     int i;
     int *q;

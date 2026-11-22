@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
-__attribute__((section(".text.func_0035A298")))
-void func_0035A298(int *p, int a) {
+__attribute__((section(".text.SFTIM_Init")))
+void SFTIM_Init(int *p, int a) {
     p[0] = 0;
     do { } while (0);
     p[2] = a;

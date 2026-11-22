@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
 
 /* compiler: cygnus-2.96 ; extra keys: c_flags_drop ["-f=-freorder-blocks"] */
-__attribute__((section(".text.func_0033C3A0")))
-int func_0033C3A0(unsigned char *a0) {
+__attribute__((section(".text.ADXB_CheckAc3")))
+int ADXB_CheckAc3(unsigned char *a0) {
     unsigned char *p;
     p = a0;
     if (p[0] == 0xB) {

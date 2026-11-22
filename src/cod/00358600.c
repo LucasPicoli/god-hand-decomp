@@ -1,16 +1,16 @@
 /* cygnus-2.96 matched TU. */
 
-extern void func_00366C50(int *a0, int a1, int a2);
-extern void func_00358678(int *a0);
+extern void UTY_MemsetDword(int *a0, int a1, int a2);
+extern void sfply_InitFlowCnt(int *a0);
 
 /* MATCH via cygnus-2.96. */
 
 
 
-__attribute__((section(".text.func_00358600")))
-void func_00358600(int *a0)
+__attribute__((section(".text.sfply_InitPlyInf")))
+void sfply_InitPlyInf(int *a0)
 {
-    func_00366C50(a0, 0, 0x2A);
+    UTY_MemsetDword(a0, 0, 0x2A);
     a0[0] = 0;
     a0[1] = 0;
     a0[2] = 0;
@@ -23,8 +23,8 @@ void func_00358600(int *a0)
     a0[0xA] = 0;
     a0[0xB] = 0;
     a0[0xC] = 0;
-    func_00358678(a0 + 0xE);
-    func_00358678(a0 + 0x14);
-    func_00358678(a0 + 0x1A);
-    func_00358678(a0 + 0x20);
+    sfply_InitFlowCnt(a0 + 0xE);
+    sfply_InitFlowCnt(a0 + 0x14);
+    sfply_InitFlowCnt(a0 + 0x1A);
+    sfply_InitFlowCnt(a0 + 0x20);
 }

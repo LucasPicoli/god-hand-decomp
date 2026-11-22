@@ -1,8 +1,8 @@
 /* TU: cDoor - recovered C++ class. */
 #include "godhand/cDoor.h"
+#include "godhand/globals.h"
 
 extern cDoorWorld D_007474A0;
-extern char D_0042C768[];
 extern void *SearchData(void *name, void *table, int which);
 
 __attribute__((section(".text.cDoor_getJumpData")))

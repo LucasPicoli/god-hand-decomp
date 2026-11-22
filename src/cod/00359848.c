@@ -39,11 +39,11 @@ typedef struct MpsHn {
 extern int sfsee_IsAudioAnalyzing(int a0, int a1, int a2);
 extern int sfsee_IsVideoAnalyzing(void *a0, int *a1, int *a2);
 extern int sfsee_IsMpsStream(void *h);
-extern int func_0036C920(int a, int b, int c);
-extern void func_00359DF0(int a0);
+extern int UTY_MulDiv(int a, int b, int c);
+extern void sfsee_UpdateEByteRate(int a0);
 
-__attribute__((section(".text.func_00359848")))
-void func_00359848(MpsHn *sfd)
+__attribute__((section(".text.sfsee_ExecHeadAnaly")))
+void sfsee_ExecHeadAnaly(MpsHn *sfd)
 {
     MpsWork *w = sfd->work;
     MpsAud *aud = &w->aud;
@@ -71,7 +71,7 @@ void func_00359848(MpsHn *sfd)
         } else if (aud->rate > 0) {
             int scale = aud->scale;
             if (w->num > 0 && scale > 0)
-                rate = func_0036C920(w->num, 1000, scale);
+                rate = UTY_MulDiv(w->num, 1000, scale);
             else
                 rate = aud->rate;
         } else if (Obj34D8_GetTri78_Times100(sfd) < 108) {
@@ -92,5 +92,5 @@ void func_00359848(MpsHn *sfd)
     w->rate = rate;
     w->ch = ch;
     w->done = 1;
-    func_00359DF0((int)sfd);
+    sfsee_UpdateEByteRate((int)sfd);
 }

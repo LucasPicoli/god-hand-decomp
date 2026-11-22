@@ -1,8 +1,7 @@
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
-extern char D_004559D0[];
 extern char D_00455920[];
-extern char D_004559E0[];
 extern char D_00455950[];
 extern int func_00338A48(char *, char *);
 

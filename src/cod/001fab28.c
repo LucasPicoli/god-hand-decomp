@@ -4,8 +4,8 @@
 
 extern char D_0076A880[];
 
-__attribute__((section(".text.func_003A95A8")))
-char *func_003A95A8(char *s) {
+__attribute__((section(".text.strrev")))
+char *strrev(char *s) {
     int i;
     int j;
     char c;
@@ -25,8 +25,8 @@ char *func_003A95A8(char *s) {
     return s;
 }
 
-__attribute__((section(".text.func_00375860")))
-void func_00375860(void) {
+__attribute__((section(".text.SdeRpcClientInit")))
+void SdeRpcClientInit(void) {
     char *base;
     int status;
     int done;
@@ -34,7 +34,7 @@ void func_00375860(void) {
 
     base = D_0076A880;
     do {
-        status = func_003B2F48(base + 0xDC, 0x19720317, 0);
+        status = sceSifBindRpc(base + 0xDC, 0x19720317, 0);
         if (status < 0) {
             for (;;) {
                 ;
@@ -72,8 +72,8 @@ int cEmManage_countKind(cEmManage *self, int kind) {
     return n;
 }
 
-__attribute__((section(".text.func_003A62D8")))
-void func_003A62D8(unsigned char *dst, unsigned char *src, unsigned int n) {
+__attribute__((section(".text.memcpyalpha")))
+void memcpyalpha(unsigned char *dst, unsigned char *src, unsigned int n) {
     while (n--) {
         *dst++ = *src++;
     }

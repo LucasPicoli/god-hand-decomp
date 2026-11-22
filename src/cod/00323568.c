@@ -1,21 +1,16 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Tramp_003302B0_003302E0(void *a0);
 extern void func_00330910(void *a0);
-extern char D_004532D8[];
-extern char D_004532F8[];
-extern void func_00327F00(int a0, int a1, int a2, int a3, int t0);
-extern void func_00328018(int a0);
+extern void ADXSTM_BindFile(int a0, int a1, int a2, int a3, int t0);
+extern void ADXSTM_ReleaseFile(int a0);
 extern void func_0033F130(int a0);
-extern char D_00451658[];
-extern char D_00452060[];
 extern int D_003D1420;
-extern void func_00326860(int *a0);
-extern void func_00327FA8(int a0);
+extern void ADXSJD_Stop(int *a0);
+extern void ADXSTM_ReleaseFileNw(int a0);
 extern void func_00335950(int a0);
 extern void func_00329E08(void *a0);
-extern char D_004531C8[];
-extern char D_004531F0[];
 extern unsigned int strlen(const char *a0);
 extern void toUpperStr(char *a0);
 extern int isExistDev(char *a0, int a1);
@@ -38,17 +33,17 @@ void func_00330AD0(void *a0) {
     Tramp_003302B0_003302E0(D_004532F8);
 }
 
-__attribute__((section(".text.func_00323700")))
-int func_00323700(void *a0, int a1, int a2, int a3, int t0) {
+__attribute__((section(".text.adxf_SetFileInfoRange")))
+int adxf_SetFileInfoRange(void *a0, int a1, int a2, int a3, int t0) {
     *(int *)((char *)a0 + 0x34) = a2;
     *(int *)((char *)a0 + 0x30) = a3;
     *(int *)((char *)a0 + 0x38) = a1;
     *(int *)((char *)a0 + 0x3C) = a3;
     *(int *)((char *)a0 + 0x40) = t0;
     *(int *)((char *)a0 + 0x14) = 0;
-    func_00327F00(*(int *)((char *)a0 + 4), a1, a2, a3, t0);
+    ADXSTM_BindFile(*(int *)((char *)a0 + 4), a1, a2, a3, t0);
     if (func_00328098(*(int *)((char *)a0 + 4)) == 4) {
-        func_00328018(*(int *)((char *)a0 + 4));
+        ADXSTM_ReleaseFile(*(int *)((char *)a0 + 4));
         return -1;
     }
     *(int *)((char *)a0 + 0xC) = t0;
@@ -65,9 +60,9 @@ int func_00323568(void *a0, int a1, int a2) {
     *(int *)((char *)a0 + 0x34) = a2;
     *(int *)((char *)a0 + 0x38) = a1;
     *(int *)((char *)a0 + 0x14) = 0;
-    func_00327F00(*(int *)((char *)a0 + 4), a1, a2, 0, 0xFFFFF);
+    ADXSTM_BindFile(*(int *)((char *)a0 + 4), a1, a2, 0, 0xFFFFF);
     if (func_00328098(*(int *)((char *)a0 + 4)) == 4) {
-        func_00328018(*(int *)((char *)a0 + 4));
+        ADXSTM_ReleaseFile(*(int *)((char *)a0 + 4));
         return -1;
     }
     {
@@ -89,11 +84,11 @@ void func_00329ED8(void *a0) {
         return;
     }
     if (D_003D1420 != 0) {
-        func_00326860(*(int **)((char *)a0 + 4));
+        ADXSJD_Stop(*(int **)((char *)a0 + 4));
         (*(void (*)(void *))D_003D1420)(a0);
     }
     if (*(int *)((char *)a0 + 8) != 0)
-        func_00327FA8(*(int *)((char *)a0 + 8));
+        ADXSTM_ReleaseFileNw(*(int *)((char *)a0 + 8));
     if (*(signed char *)((char *)a0 + 2) == 4) {
         func_00335950(*(int *)((char *)a0 + 0x94));
         {
@@ -105,8 +100,8 @@ void func_00329ED8(void *a0) {
     func_00329E08(a0);
 }
 
-__attribute__((section(".text.func_00330580")))
-void func_00330580(char *a0) {
+__attribute__((section(".text.cvFsSetDefDev")))
+void cvFsSetDefDev(char *a0) {
     int len;
     if (a0 == 0) {
         Tramp_003302B0_003302E0(D_004531C8);

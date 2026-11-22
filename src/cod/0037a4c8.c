@@ -10,8 +10,8 @@ typedef struct MenuSndItem {
 } MenuSndItem;
 
 extern int func_00375050(int a, int b);
-extern void func_00375D98(int a, int b, int c);
-extern void func_00387270(int a, int b, int c, int d);
+extern void SdeSsqFadeSet(int a, int b, int c);
+extern void SdeStrFadeSet2(int a, int b, int c, int d);
 extern void func_0037A5F0(MenuSndItem *self);
 extern void func_0037A668(MenuSndItem *self);
 extern int BuildSoundNode_374DF8(void *desc, int arg);
@@ -25,10 +25,10 @@ int func_0037A4C8(MenuSndItem *self)
             func_00375050(0, -1);
             break;
         case 1:
-            func_00387270(-1, 0, -1, 0xF);
+            SdeStrFadeSet2(-1, 0, -1, 0xF);
             break;
         case 2:
-            func_00375D98(0, 0, -1);
+            SdeSsqFadeSet(0, 0, -1);
             break;
         }
         return 1;

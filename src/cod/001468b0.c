@@ -4,11 +4,11 @@
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
 #include "godhand/CustomIDWork.h"
+#include "godhand/globals.h"
 
 extern unsigned short D_00747A50;
 extern void func_0026ECD0(cEm00 *self, int flag);
 extern float ESLib_ESHermite(float t, float p0, float p1, float m0, float m1);
-extern char D_0044E960[];
 extern void cHeap_free(int heap, int *block);
 extern void cIDBase_initIDWork(void *part, int idx);
 extern CustomIDWork *cIDBase_getIDWork(void *part, int idx);

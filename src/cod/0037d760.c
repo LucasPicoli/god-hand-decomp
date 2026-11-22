@@ -6,8 +6,8 @@ extern int func_00377FA0(void);
 extern void UpdateSequenceNode_373430(void *node);
 extern void ResetNodeData_3733C8(void *node);
 
-__attribute__((section(".text.func_0037D760")))
-short func_0037D760(SeqRange *r)
+__attribute__((section(".text.SdeVregRndPchGet")))
+short SdeVregRndPchGet(SeqRange *r)
 {
     short lo = r->min;
     short hi = r->max;
@@ -31,10 +31,10 @@ void func_0037D820(SeqNode *n)
     if (n->kind & 8) {
         UpdateSequenceNode_373430(&D_0076A600[n->id]);
         ResetNodeData_3733C8(&D_0076A600[n->id]);
-        func_0037D148(n);
-        func_0037D3B0(n);
+        SdeVmngClose(n);
+        SdeVregClose(n);
     } else {
-        func_0037D148(n);
+        SdeVmngClose(n);
         n->parent = 0;
         n->flags |= 0x10;
     }
@@ -50,8 +50,8 @@ void func_0037D8B8(SeqNode *n, short arg)
         }
         if (n->flags & 2) {
             if (n->parent != 0 && n->parent->busy == 0) {
-                func_0037D148(n);
-                func_0037D3B0(n);
+                SdeVmngClose(n);
+                SdeVregClose(n);
                 return;
             }
         } else {
@@ -66,7 +66,7 @@ void func_0037D8B8(SeqNode *n, short arg)
     } else if (n->timer.f30 != 0) {
         n->timer.f36 = arg;
         n->timer.f32 = 0;
-        func_00378020(&n->timer);
+        SdeFadeSpdSet(&n->timer);
         n->flags |= 0x40;
     }
 }

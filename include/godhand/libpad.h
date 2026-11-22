@@ -74,7 +74,7 @@ extern PadSif D_0077C300;
 extern SifRpcClientData D_0077C0C0[2];  /* the pad RPC clients, bound to servers 0x80000100 and 0x80000101 */
 
 /* Copy the current DMA frame into buf (if not null); returns the current frame. */
-PadData *func_00397BC8(int port, int slot, PadData *buf);
+PadData *scePadGetDmaStr(int port, int slot, PadData *buf);
 int scePadInit(int mode);
 int scePadPortOpen(int port, int slot, void *data);
 int func_00397D20(int port, int slot, unsigned char *data);

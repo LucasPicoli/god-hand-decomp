@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern signed char D_003F2620[];
+#include "godhand/globals.h"
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.func_0026A338")))
@@ -78,8 +77,8 @@ skip:
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 
 
-__attribute__((section(".text.func_0037A6A8")))
-int func_0037A6A8(char *a0) {
+__attribute__((section(".text.SdeTblTestParaMove")))
+int SdeTblTestParaMove(char *a0) {
     int old;
     int t;
     int lim;
@@ -106,8 +105,8 @@ int func_0037A6A8(char *a0) {
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
-__attribute__((section(".text.func_003762D8")))
-void func_003762D8(char *d, char *s) {
+__attribute__((section(".text.cmdParaChg")))
+void cmdParaChg(char *d, char *s) {
     if ((*(unsigned short *)(s + 0x1A) & 1) != 0) {
         *(short *)(d + 0x20) = *(unsigned short *)(s + 0x28);
         *(short *)(d + 0x12) = *(unsigned short *)(d + 0x12) | 1;

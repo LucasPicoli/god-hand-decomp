@@ -89,8 +89,8 @@ short func_0037A8F8(char *a, char *b, short v) {
     return v;
 }
 
-__attribute__((section(".text.func_00376D28")))
-void func_00376D28(char *o, unsigned short mode) {
+__attribute__((section(".text.SdeSsqVregParaChange")))
+void SdeSsqVregParaChange(char *o, unsigned short mode) {
     int i;
     for (i = 0; i < 48; i++) {
         char *e = D_0076CF20 + i * 0x50;

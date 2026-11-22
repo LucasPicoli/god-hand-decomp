@@ -4,8 +4,7 @@
  * The dispatch pointer in .rodata (0x0041D224) stores 0x0012CF08.
  * This natural body byte-matches retail 0x0012CF08..0x0012CF58 (80 B).
  */
-extern int D_00785518;
-extern int D_0041D2C0;
+#include "godhand/globals.h"
 extern int D_007854C8;
 extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);

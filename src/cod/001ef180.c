@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/ColiseumBattle.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
@@ -20,7 +21,6 @@ extern char D_00747470[];
 extern int D_005CAFF0;
 extern int D_00747A24[];
 extern long D_00747640;
-extern unsigned char D_0074748C;
 extern char *D_003C2F84;
 
 /* Result sequence after a fight: marks the ring cleared, pays the prize

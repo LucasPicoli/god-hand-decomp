@@ -14,6 +14,6 @@ int SFD_SetConcatPlay(SfdHn *sfd)
     if (Obj34D8_SetGlobalEE0B8_IfField48(sfd) != 0) {
         return func_0034DD70(0, SFD_ERR_CONCAT_PLAY_INVALID_HANDLE);
     }
-    func_0035A000(sfd, SFSET_COND_CONCAT_PLAY, SFD_CONCAT_PLAY_ENABLED);
+    SFSET_SetCond(sfd, SFSET_COND_CONCAT_PLAY, SFD_CONCAT_PLAY_ENABLED);
     return 0;
 }

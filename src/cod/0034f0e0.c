@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 /* cygnus-2.96 matched TU. */
 
@@ -19,7 +20,6 @@ struct SfMps {
 };
 
 extern int sfmps_ExecCopySj(SfMps *mps, void *dst, int len);
-extern int D_003EE2E8;
 
 __attribute__((section(".text.sfmps_CopySj")))
 int sfmps_CopySj(SfMps *mps, void *dst, int len)

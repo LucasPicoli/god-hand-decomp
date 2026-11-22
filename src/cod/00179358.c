@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int cOmBase_checkDamage();
 extern int ClearStateAndFlag_1C7E08();
 extern char D_005CAE50[];
 extern char D_00421938[];
-extern char D_00421A08[];
 extern int SetField214PtrThenInit_1B6F38();
 extern char D_00421C80[];
 extern int InitField214WithPtr429420_1BD650();

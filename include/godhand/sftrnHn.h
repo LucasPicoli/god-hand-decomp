@@ -42,6 +42,6 @@ typedef struct SftrnHn {
 
 extern void func_003A52F0(void *dst, int val, int n);
 extern void func_0035C480(char *hn);
-extern void func_0035CB20(void);
+extern void sftst_DebInit(void);
 
 #endif

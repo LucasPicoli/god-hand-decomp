@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void sceSifInitRpc(int mode);
 extern void func_003B1F28(const char *fmt);
 extern void FlushCache(int mode);
 extern unsigned char D_0077C900[];
-extern char D_0045E998[];
 extern int D_003FA300;
 extern int D_003FA304;
 
@@ -25,7 +25,7 @@ int func_003A11F8(void)
 
 	sceSifInitRpc(0);
 	while (1) {
-		if (func_003B2F48(D_0077C900, 0x80000701, 0) < 0) {
+		if (sceSifBindRpc(D_0077C900, 0x80000701, 0) < 0) {
 			func_003B1F28(D_0045E998);
 			return -1;
 		}

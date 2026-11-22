@@ -3,6 +3,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -18,7 +19,6 @@ extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int D_00463050;
-extern int D_0042CAD0;
 
 typedef struct {
     float f00;

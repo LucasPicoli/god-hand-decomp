@@ -23,11 +23,11 @@ typedef struct AdxbHn {
 } AdxbHn;
 
 extern void ADXB_EvokeExpandSte(AdxbHn *adxb, int nblk);
-extern int func_0033D378(int a0, int a1);
-extern int func_0033D2D0(int *a0, int a1);
+extern int ADXB_EvokeExpandPl2(int a0, int a1);
+extern int ADXB_EvokeExpandMono(int *a0, int a1);
 
-__attribute__((section(".text.func_0033D3D0")))
-void func_0033D3D0(AdxbHn *b)
+__attribute__((section(".text.ADXB_EvokeDecode")))
+void ADXB_EvokeDecode(AdxbHn *b)
 {
     AdxbIn *in = &b->in;
     int nch = in->nch;
@@ -61,8 +61,8 @@ void func_0033D3D0(AdxbHn *b)
         return;
     }
     if (b->ext != 0) {
-        func_0033D378((int)b, nin);
+        ADXB_EvokeExpandPl2((int)b, nin);
         return;
     }
-    func_0033D2D0((int *)b, nin);
+    ADXB_EvokeExpandMono((int *)b, nin);
 }

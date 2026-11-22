@@ -6,8 +6,8 @@ extern int Obj0000_Get_D_003EEA98_365EB0(void);
 
 
 
-__attribute__((section(".text.func_003634E0")))
-int func_003634E0(int a0, int a1, int *a2)
+__attribute__((section(".text.CFT_Ycc420mbToArgb8888mb")))
+int CFT_Ycc420mbToArgb8888mb(int a0, int a1, int *a2)
 {
     int v0 = *a2;
     if (v0 == 0)

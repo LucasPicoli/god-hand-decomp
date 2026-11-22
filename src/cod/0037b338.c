@@ -1,9 +1,6 @@
+#include "godhand/globals.h"
 extern void func_002E0DE8(int a0, int a1, int a2, const char *fmt, ...);
-extern int func_003750E0(void *p);
-extern char D_0045BD90[];
-extern char D_0045BDA0[];
-extern char D_0045BDA8[];
-extern char D_0045BDB8[];
+extern int SdeIssStatusGetBySndId(void *p);
 
 __attribute__((section(".text.func_0037B338")))
 void func_0037B338(char *self)
@@ -17,7 +14,7 @@ void func_0037B338(char *self)
         func_002E0DE8(0xC, 4, 0xF, D_0045BDA0);
         return;
     }
-    st = func_003750E0(item);
+    st = SdeIssStatusGetBySndId(item);
     if (st == 0) {
         func_002E0DE8(0xC, 4, 0xF, D_0045BDA0);
         return;

@@ -1,17 +1,8 @@
-extern int D_00785EE8;
-extern int D_00426B68;
+#include "godhand/globals.h"
 extern int D_00785798;
-extern int D_00426B80;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_00785EF8;
-extern int D_00426C50;
-extern int D_00426C68;
-extern int D_00785F08;
-extern int D_00426D38;
 extern int D_00426D50;
-extern int D_00785F18;
-extern int D_00426E20;
 
 __attribute__((section(".text.GetTypeDescriptorD_1A05B8")))
 int *GetTypeDescriptorD_1A05B8(void)

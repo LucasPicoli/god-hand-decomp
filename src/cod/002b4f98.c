@@ -1,10 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/sideCounter.h"
 #include "godhand/cSceAtManager.h"
-
-extern int D_003E0710;
-extern int D_003E0708;
-extern int D_003E0738;
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_002B4F98")))
 int func_002B4F98(void *a0, int key) {
@@ -53,8 +51,8 @@ int func_002D05D8(void *a0, int idx, void *out) {
     return *(int *)(*(char **)(p + 0x30) + 8) + *(int *)e * 0xC;
 }
 
-__attribute__((section(".text.func_00337B30")))
-void func_00337B30(void *a0, int v) {
+__attribute__((section(".text.PS2RNA_SetStmType")))
+void PS2RNA_SetStmType(void *a0, int v) {
     char *p = (char *)a0;
     if (D_003E0710 == 1 && D_003E0708 <= 0) return;
     if (*(signed char *)(p + 0x54) == v) return;

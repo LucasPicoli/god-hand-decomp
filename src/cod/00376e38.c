@@ -30,7 +30,7 @@ void CopyChannelParams_377378(char *a0, char *a1) {
         if (*(int*)(a0 + 0x58) & mask) {
             *(short*)(s0 - 4) = (short)(*(unsigned short*)(s1 - 4) << 8);
             *(short*)(s0 + 0) = (short)*(unsigned short*)(s1 + 0);
-            func_00378020(s3);
+            SdeFadeSpdSet(s3);
         }
         mask <<= 1;
         s3 += 8;
@@ -58,7 +58,7 @@ void UpdateChannelState_3775F0(void *a0) {
     int i;
     if ((*(unsigned short*)a0 & 0x10) != 0) {
         for (i = 0; i < 4; i++) {
-            func_00377688(a0, i);
+            strCtlFadeStereoOne(a0, i);
         }
         if (*(int*)((char*)a0 + 0x58) == 0) {
             short *p;
@@ -69,7 +69,7 @@ void UpdateChannelState_3775F0(void *a0) {
                 if (*p != 0) return;
                 p += 4;
             }
-            func_00377A28(a0);
+            SdeStrCtlFadeOutEnd(a0);
         }
     }
 }

@@ -1,6 +1,6 @@
 /* include/godhand/sfdStat.h - the Sofdec playback statistics dump (cygnus code at 0x35CC80).
  *
- * When logging is on (D_003EE320 non-zero), func_0035CC80 formats the
+ * When logging is on (D_003EE320 non-zero), sftst_DebWrite formats the
  * handle's counters into one line (func_003A6C58 is sprintf) and appends
  * it to the log ring D_003EE328 (func_003A57C4 is strcat), wrapping the
  * write position when the ring is nearly full.

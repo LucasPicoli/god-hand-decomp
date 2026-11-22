@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/Slot2.h"
+#include "godhand/globals.h"
 
 extern void MtxInitRotY(void *a0);
 extern void Tramp_func_0030A2B0_001508D8(int, void *, int);
 extern void cIDBase_move(void *p);
 extern void displayScrollLayer(int id, int on);
-extern char D_003BE528[];
 extern void func_001EC088(void *self);
 extern void cTaskWork_exit(void *work);
 

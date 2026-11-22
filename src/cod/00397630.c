@@ -1,12 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/libpad.h"
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
-
-extern int  D_003F85C8;
-extern int  D_003F85CC;
-extern char D_0045E038[];
-extern char D_0045E060[];
 
 
 extern int  scePadGetModVersion(void);
@@ -21,7 +17,7 @@ int scePadInit(int mode)
 
     if (D_003F85C8 == 0) {
         for (;;) {
-            func_003B2F48(&D_0077C0C0[0], 0x80000100, 0);
+            sceSifBindRpc(&D_0077C0C0[0], 0x80000100, 0);
             if (D_0077C0C0[0].server != 0)
                 break;
             i = 0x10000;
@@ -30,7 +26,7 @@ int scePadInit(int mode)
             } while (i != -1);
         }
         for (;;) {
-            func_003B2F48(&D_0077C0C0[1], 0x80000101, 0);
+            sceSifBindRpc(&D_0077C0C0[1], 0x80000101, 0);
             if (D_0077C0C0[1].server != 0)
                 break;
             i = 0x10000;

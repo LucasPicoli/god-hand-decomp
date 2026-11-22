@@ -16,7 +16,7 @@ char *MemFile_readMapHeader(char *map, int *avail)
     if (strlen(map) >= 0x12)
         func_00336330(0, 0);
     end = map;
-    first = func_00336378(map, &end, 16);
+    first = mfci_str_to_uint_ptr(map, &end, 16);
     if (*end != 0)
         end++;
     if (avail != 0)

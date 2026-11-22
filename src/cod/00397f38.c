@@ -10,7 +10,7 @@ int scePadInfoMode(int port, int slot, int term, int offs)
 
     if (D_0077C110[port][slot].open == 0)
         return 0;
-    func_00397BC8(port, slot, &fr);
+    scePadGetDmaStr(port, slot, &fr);
     if (fr.ok != 1)
         return 0;
     if (fr.reqState == 2)

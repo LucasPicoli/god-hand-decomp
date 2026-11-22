@@ -6,8 +6,8 @@ extern int buffered__8stdiobufi();
 /* clone */
 
 
-__attribute__((section(".text.func_00386F38")))
-void func_00386F38(short a0, short a1, short *a2)
+__attribute__((section(".text.strTblSetError")))
+void strTblSetError(short a0, short a1, short *a2)
 {
     func_003A52F0(a2, 0, 0x60);
     a2[1] = a1;

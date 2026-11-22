@@ -1,5 +1,6 @@
 /* cygnus-2.96: read the first sectors of a file into buf; host paths go to the host reader, disc paths
  * are searched and read through libcdvd with progress codes in the history ring. */
+#include "godhand/globals.h"
 typedef struct CdlFile {
     unsigned int lsn;                   /* 0x00 */
     unsigned int size;                  /* 0x04 */
@@ -19,20 +20,17 @@ typedef struct DrvName {
     char c[5];
 } DrvName;
 
-extern char D_004544F0[];
-extern char D_003D9EE8[];
-
-extern int func_003A9260(const char *a, const char *b);
-extern int func_00334F90(char *path, void *buf);
+extern int strcasecmp(const char *a, const char *b);
+extern int htci_load_flist(char *path, void *buf);
 extern void *func_003A52F0(void *dst, int c, int n);
 extern void func_00333390(char *path, char *out);
 extern void PushGlobalD8478History_331C78(int code);
 extern int func_00398DA0(int mode);
-extern int func_00332838(CdlFile *file, char *name);
+extern int dvCiCdSearchFile(CdlFile *file, char *name);
 extern int sceCdRead(unsigned int lsn, unsigned int sectors, void *buf, CdRMode *mode);
 
-__attribute__((section(".text.func_003336F8")))
-int func_003336F8(char *path, void *buf)
+__attribute__((section(".text.load_flist")))
+int load_flist(char *path, void *buf)
 {
     CdlFile file;
     CdRMode mode;
@@ -40,8 +38,8 @@ int func_003336F8(char *path, void *buf)
 
     *(DrvName *)drv = *(DrvName *)path;
     drv[4] = 0;
-    if (func_003A9260(drv, D_004544F0) == 0)
-        return func_00334F90(path + 4, buf);
+    if (strcasecmp(drv, D_004544F0) == 0)
+        return htci_load_flist(path + 4, buf);
     func_003A52F0(D_003D9EE8, 0, 0x80);
     func_00333390(path, D_003D9EE8);
     PushGlobalD8478History_331C78(0x9000);
@@ -49,7 +47,7 @@ int func_003336F8(char *path, void *buf)
         ;
     PushGlobalD8478History_331C78(0x9001);
     PushGlobalD8478History_331C78(0x9100);
-    if (func_00332838(&file, D_003D9EE8) == 0) {
+    if (dvCiCdSearchFile(&file, D_003D9EE8) == 0) {
         PushGlobalD8478History_331C78(0x9101);
         return 0;
     }

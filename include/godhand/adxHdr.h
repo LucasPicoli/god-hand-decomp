@@ -46,4 +46,6 @@ typedef struct AdxAinfId {
 
 extern Sint32 ADX_DecodeInfoExVer(Sint8 *ibuf, Sint32 hdlen, Uint8 *ver, Uint8 *rev);
 
+extern Sint16 D_003EC460[256]; /* static ulaw_exp_table in adx_bau.c */
+
 #endif

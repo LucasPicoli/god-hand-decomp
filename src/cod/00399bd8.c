@@ -1,16 +1,12 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd036.o :: sceCdMmode */
 
 typedef unsigned int u_int;
 
 extern char D_003FA1C0;      /* _sceCd_cd_scmd (sceSifClientData; pass &) */
-extern int  D_003F9840[];    /* _sceCd_scmdrdata */
-extern int  D_003F9C80[];    /* _sceCd_scmdsdata */
 extern int  D_003F866C;      /* _sceCd_scmd_semid */
-extern int  D_003FA1E8;      /* rpc function number */
-extern int  D_003FA1EC;      /* send size */
-extern int  D_003FA1F0;      /* receive size */
 
 extern int func_00398EB0(int cmd);   /* _sceCd_scmd_prechk */
 extern void func_003B2850(void *p, int size);  /* sceSifWriteBackDCache */

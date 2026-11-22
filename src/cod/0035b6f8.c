@@ -2,8 +2,8 @@
 
 /* cygnus-2.96 candidate: SFTIM_IsExecTime */
 
-extern void func_0035AB98(int a0, int *t0, int *t1);
-extern void func_0035B848(int a0, int a1, int a2, int *a3);
+extern void SFTIM_GetTime(int a0, int *t0, int *t1);
+extern void sftim_IsTakeOffExecTime(int a0, int a1, int a2, int *a3);
 extern void func_0035B8C0(int a0, int *out, float cur, float t);
 extern int D_003EE270;
 
@@ -17,14 +17,14 @@ void func_0035B6F8(int a0, int a1, int a2, int *a3, int scale)
     int mode;
     float vt;
     float vt2;
-    func_0035AB98(a0, &t[0], &t[1]);
+    SFTIM_GetTime(a0, &t[0], &t[1]);
     m = t[1];
     if (m == 1) {
         if (t[0] == -2) {
             *a3 = 1;
             return;
         }
-        func_0035B848(a0, a1, a2, a3);
+        sftim_IsTakeOffExecTime(a0, a1, a2, a3);
         return;
     }
     vt = (float)a1 * 10000.0f / (float)a2;

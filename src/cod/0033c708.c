@@ -1,9 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int D_003E9D5C;
-extern int D_003EE804;
-extern int D_0045A290;
-extern int *volatile D_00766CD0;
+#include "godhand/globals.h"
 
 /* GetField_F_33CE80 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 8 B too early. The TRUE ENTRY is 0x0033CE80.
@@ -117,7 +113,7 @@ void func_00360710(int a0) { D_003EE804 = a0; }
 __attribute__((section(".text.SetField_1_35FC58")))
 void SetField_1_35FC58(int *a0, int a1) { a0[1] = a1; }
 
-/* func_00360CA0 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
+/* CFT_Init -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 16 B too early. The TRUE ENTRY is 0x00360CA0.
  * This body is BYTE-EXACT over the TRUE span under cygnus-2.96
  * with no extra keys.
@@ -125,19 +121,19 @@ void SetField_1_35FC58(int *a0, int a1) { a0[1] = a1; }
  * 4 words with REG 0 / IMM 0 / OPC 0. That is what a CORRECT body
  * looks like in this class. Do not edit it.
  * Land it only after the boundary moves:
- *   config/symbol_addrs.txt  +  func_00360CA0 = 0x00360CA0; // type:func
+ *   config/symbol_addrs.txt  +  CFT_Init = 0x00360CA0; // type:func
  *   scripts/resplat.sh
- * The function then carries the name func_00360CA0. AFTER the resplat rename it:
- *   sed -i 's/func_00360CA0/func_00360CA0/g' <this file>
- * The name is left as func_00360CA0 here so the body stays verifiable against
+ * The function then carries the name CFT_Init. AFTER the resplat rename it:
+ *   sed -i 's/CFT_Init/CFT_Init/g' <this file>
+ * The name is left as CFT_Init here so the body stays verifiable against
  * today's monolith.
  */
 
 
 
 
-__attribute__((section(".text.func_00360CA0")))
-int func_00360CA0(void) {
+__attribute__((section(".text.CFT_Init")))
+int CFT_Init(void) {
     D_00766CD0 = &D_0045A290;
-    return func_00360CF0();
+    return CFTPS2_InitMaxAlpha();
 }

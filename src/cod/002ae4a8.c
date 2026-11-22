@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cMc.h"
+#include "godhand/globals.h"
 
 extern void func_0();
 extern char cEvent_nullStr00[];
 extern unsigned int D_00747A30;
-extern char D_0044B0B0[];
-extern char D_0044B0E8[];
 extern char D_00583F20[];
 extern char D_00754230[];
 extern cMcTaskRef D_00752C00;
@@ -42,7 +41,7 @@ void cMc_DllLoad(cMc *self, int pump) {
         }
         cTaskWork_sleep(D_00752C00.task, 1);
     }
-    if (func_00394DD8(self->dll, 0) != 0) {
+    if (snDllLoaded(self->dll, 0) != 0) {
         cMc_DllRelease(self);
         return;
     }

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00126770(void *a0);
@@ -12,7 +13,6 @@ extern void func_0012C348(void *a0, int a1);
 extern void FollowObj_snapToPlayer(void *a0, int a1);
 extern void pl00_reset(void *a0);
 extern char D_005FEE00[];
-extern char *D_00586A88;
 __attribute__((section(".text.func_0012C540"))) void func_0012C540(void *a0, int a1)
 {
   char *s0 = (char *) a0;

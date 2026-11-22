@@ -1,9 +1,8 @@
+#include "godhand/globals.h"
 extern void *func_003A52F0(void *d, int c, unsigned int n);
-extern int D_003E9950[6];
 extern char D_003E9970[];
 extern char D_007588A0[];
 extern char D_007588A8[];
-extern int D_007588B8;
 extern char D_007588C0[];
 extern char D_007588C8[];
 

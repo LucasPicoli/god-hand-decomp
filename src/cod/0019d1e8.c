@@ -1,23 +1,15 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_005CAE50[];
-extern int D_00785DE8;
-extern char D_00425D30[];
 extern char D_007858B8[];
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 extern int D_00425D48;
-extern int D_00785DF8;
-extern char D_00425DF8[];
 extern char D_007859B8[];
-extern char D_00425E10[];
 extern void func_001BFB00(void *a0, void *a1);
-extern int D_00785E08;
-extern int D_00425EC8;
-extern int D_00785808;
 extern void func_001C0018(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
-extern int D_00425EE0;
 extern void func_001BFAC8(void *a0);
 
 __attribute__((section(".text.ResetObjState_19D1E8")))

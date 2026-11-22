@@ -9,7 +9,7 @@ typedef struct MixCh {
 } MixCh;
 
 extern int func_00382850(void *self, SndTrkSet *list);
-extern void func_0032EC78(void *mixer, int ch, int vol);
+extern void AIXP_SetTrackVol(void *mixer, int ch, int vol);
 
 __attribute__((section(".text.func_003821D8")))
 void func_003821D8(void *self, MixCh *ch)
@@ -20,12 +20,12 @@ void func_003821D8(void *self, MixCh *ch)
     if (func_00382850(self, list) != 0) {
         for (i = 0; i < list->count; i++) {
             if (ch->mute[i + 1])
-                func_0032EC78(list->ply, i, -0x3C0);
+                AIXP_SetTrackVol(list->ply, i, -0x3C0);
             else
-                func_0032EC78(list->ply, i, ch->vol[i + 1]);
+                AIXP_SetTrackVol(list->ply, i, ch->vol[i + 1]);
         }
     } else {
         for (i = 0; i < list->count; i++)
-            func_0032EC78(list->ply, i, ch->vol[i + 1]);
+            AIXP_SetTrackVol(list->ply, i, ch->vol[i + 1]);
     }
 }

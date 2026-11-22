@@ -22,15 +22,15 @@ typedef struct StmFrameHn {
 
 extern int func_0032F4F0(void *src);
 extern int func_0032F570(void *src);
-extern void func_0032F4F8(void *src, int frame, int *ofs, int *len);
+extern void AIXSJD_GetPhMediaInf(void *src, int frame, int *ofs, int *len);
 extern void func_003280D8(void *rd, int sct);
-extern void func_00328448(void *rd, int sct);
+extern void ADXSTM_SetEos(void *rd, int sct);
 extern void func_003281C8(void *rd);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
 
-__attribute__((section(".text.func_0032E488")))
-void func_0032E488(StmFrameHn *s)
+__attribute__((section(".text.aixp_entry_eos_cb")))
+void aixp_entry_eos_cb(StmFrameHn *s)
 {
     int frame;
     int kind;
@@ -59,14 +59,14 @@ void func_0032E488(StmFrameHn *s)
     kind = func_0032F570(s->src);
     switch (kind) {
     case 0:
-        func_0032F4F8(s->src, frame, &ofs, &len);
+        AIXSJD_GetPhMediaInf(s->src, frame, &ofs, &len);
         func_003280D8(s->rd, ofs / 2048);
-        func_00328448(s->rd, (ofs + len) / 2048);
+        ADXSTM_SetEos(s->rd, (ofs + len) / 2048);
         func_003281C8(s->rd);
         break;
     case 1:
         func_003280D8(s->rd, 0);
-        func_00328448(s->rd, -1);
+        ADXSTM_SetEos(s->rd, -1);
         func_003281C8(s->rd);
         break;
     }

@@ -71,8 +71,8 @@ typedef struct {
 #define SCE_GS_SET_TRXREG(rrw, rrh) \
     ((u_long)(rrw) | ((u_long)(rrh) << 32))
 
-__attribute__((section(".text.func_00395618")))
-int func_00395618(sceGsStoreImage *sg, short sbp, short sbw, short spsm,
+__attribute__((section(".text.sceGsSetDefStoreImage")))
+int sceGsSetDefStoreImage(sceGsStoreImage *sg, short sbp, short sbw, short spsm,
                   short ssax, short ssay, short rrw, short rrh)
 {
     sg->vifnop      = 0;

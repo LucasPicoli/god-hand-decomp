@@ -1,4 +1,4 @@
-/* cygnus-2.96: skip-and-copy step like func_00327568, with the pending count at 0xA0: copied chunks
+/* cygnus-2.96: skip-and-copy step like adxsjd_discard_proc, with the pending count at 0xA0: copied chunks
  * are cleared before they go on lane 1. */
 #include "godhand/criSj.h"
 
@@ -12,8 +12,8 @@ typedef struct AdxSjDec {
 
 extern void *func_003A52F0(void *dst, int c, int n);
 
-__attribute__((section(".text.func_00327418")))
-void func_00327418(AdxSjDec *dec)
+__attribute__((section(".text.adxsjd_insert_proc")))
+void adxsjd_insert_proc(AdxSjDec *dec)
 {
     SjChunk ck;
     int i;

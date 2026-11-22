@@ -35,8 +35,8 @@ extern int Forward33B5C8_33B6B8(void);
 extern void PushGlobalD8478History_331C78(int code);
 extern int func_00398DA0(int mode);
 
-__attribute__((section(".text.func_00331110")))
-Bool func_00331110(SRD srd, Uint32 lsn, Uint32 nsct, void *buf, sceCdRMode *mode)
+__attribute__((section(".text.SRD_ReqRdDvd")))
+Bool SRD_ReqRdDvd(SRD srd, Uint32 lsn, Uint32 nsct, void *buf, sceCdRMode *mode)
 {
     Bool ret;
     int busy;
