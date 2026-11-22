@@ -44,10 +44,10 @@ void cOm4f_setOpen(cOm4f *self) {
     }
     self->active = 1;
     cGameObjCam_startSubCamera(self);
-    self->moveCmd = 1;
-    self->unk2F5[0] = 0;
-    self->unk2F5[1] = 0;
-    self->unk2F5[2] = 0;
+    self->base.mode = COM4F_MODE_OPEN;
+    self->base.phase = 0;
+    self->base.step = 0;
+    self->base.stepArg = 0;
 }
 
 
@@ -62,8 +62,8 @@ void cOm4f_setClose(cOm4f *self) {
     }
     self->active = 1;
     cGameObjCam_startSubCamera(self);
-    self->moveCmd = 2;
-    self->unk2F5[0] = 0;
-    self->unk2F5[1] = 0;
-    self->unk2F5[2] = 0;
+    self->base.mode = COM4F_MODE_CLOSE;
+    self->base.phase = 0;
+    self->base.step = 0;
+    self->base.stepArg = 0;
 }
