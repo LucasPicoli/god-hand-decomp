@@ -3,8 +3,7 @@
  * (effect, SE 0xE7) and holds 15 frames before going idle again. */
 #include "godhand/cOmBase.h"
 #include "godhand/cEmManage.h"
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
+#include "godhand/cSnd.h"
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 
 /* A gimmick that tips over once, falling faster as it goes. The tilt is rot.x (0x100, the
@@ -51,13 +50,13 @@ void func_0017EF98(cOmTipOver *self)
         self->base.rot.x = self->base.rot.x - s * rate * 0.017453292f;
         self->speed = s + s * 0.16f * rate;
         if (self->timer <= 0.0f) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xE6, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xE6, (cObj *)self, 0, 0, 0, 0);
             self->timer = 1000.0f;
         }
         t = self->base.rot.x;
         if (t <= (-1.5707964f)) {
             SetEffect(1, 1, 0, 0, -1, 0xFFFFFFFFU);
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xE7, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xE7, (cObj *)self, 0, 0, 0, 0);
             self->base.rot.x = (-1.5707964f);
             self->fallen = 1;
             self->timer = 15.0f;

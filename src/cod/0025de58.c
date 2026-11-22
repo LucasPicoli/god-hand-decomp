@@ -13,11 +13,11 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
 extern char D_00462FC0[];
 extern char D_005CB000[];
 
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
@@ -33,9 +33,9 @@ void cEm_heldByPlayerPhase(void *a0)
     char *s0 = (char *)a0;
     char *s2;
     unsigned char frame[0x10];
-    float buf[4];
+    cVec buf;
     void *m1;
-    unsigned char *m2;
+    cVec *m2;
 
     s2 = (char *)Getplayer();
     {
@@ -154,16 +154,16 @@ void cEm_heldByPlayerPhase(void *a0)
             else s1 = 0;
             if (s1 != 0) {
                 VU0_SQC2_VF0(frame, 0x10);
-                buf[0] = fRand1_1() * 0.1f;
-                buf[1] = fRand1_1() * 0.1f + 0.1f;
-                buf[2] = fRand0_1() * 0.1f + 0.2f;
+                buf.x = fRand1_1() * 0.1f;
+                buf.y = fRand1_1() * 0.1f + 0.1f;
+                buf.z = fRand0_1() * 0.1f + 0.2f;
                 /* One pointer local per call, cleared after it: retail recomputes
                  * $sp+0x10 at each call instead of holding it in a saved register. */
-                m1 = (void *)buf;
+                m1 = &buf;
                 sceVu0ApplyMatrix(m1, s1 + 0x80, m1);
                 m1 = 0;
-                m2 = frame + 0x10;
-                SetEffectPos(0, 0x4F, 0, m2, -1, 1.0f);
+                m2 = &buf;
+                SetEffectPos(0, 0x4F, 0, m2, 1.0f, -1);
                 m2 = 0;
             }
             vt = *(char **)(s0 + 0x214);

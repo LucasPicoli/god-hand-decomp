@@ -1,14 +1,13 @@
 /* sn-2.95.3-136: func_001AF098, enemy damage-phase update: sync motion speed, run the current phase handler, and on a confirmed hit either kill (guard at zero) or stagger with two hit sounds. */
 #include "godhand/cEmManage.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cSnd.h"
 extern void SetMotionStep(void *a0, float f12);
 extern int cOmBase_checkDamage(cOmBase *self, cDamageTake *hit);
 extern void func_001B7EE0(void *a0, float fp12);
 extern void func_001AEEA8(void *self, int a1);
 extern void func_001B0078(char *self);
 extern void func_001AEF40(char *self);
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int id, void *owner, int t0, int t1, int t2, int t3);
-extern char D_005FEE00[];
 
 #include "godhand/cModel.h"
 #include "godhand/emPhaseTable.h"
@@ -42,8 +41,8 @@ void func_001AF098(cOmHitStagger *self)
             self->base.stepArg = 0;
         } else {
             func_001AEEA8(self, 8);
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x55, self, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 10, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x55, (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 10, (cObj *)self, 0, 0, 0, 0);
         }
     }
     func_001B0078((char *)self);

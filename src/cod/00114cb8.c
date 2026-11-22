@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern unsigned char D_005FEE00[];
 extern int D_00462FC0;
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -35,7 +34,7 @@ void func_0028A9E8(void *a0)
         }
         b = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(b + 0x98) + b, *(int *)(b + 0x9C) + b, 5, 0.0f, 0, 0);
-        cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5F, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5F, a0, 0, 0, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }
     case 1:
@@ -71,7 +70,7 @@ void func_00114CB8(void *a0)
         v0 = *(char **)(s0 + 0x304);
         p1 = *(int *)(v0 + 0x3D8) + (int)v0;
         p2 = *(int *)(v0 + 0x3DC) + (int)v0;
-        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x29, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x29, a0, 0, 0, 0, 0);
         func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) += 1;
     }

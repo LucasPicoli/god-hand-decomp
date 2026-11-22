@@ -4,12 +4,12 @@
 #include "godhand/cSceAtManager.h"
 #include "godhand/cFontTex.h"
 #include "godhand/cMessCommon.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern void *SearchData(void *name, void *table, int which);
 extern void cSndSeVoice_CheckEnd(void *snd, int handle);
 extern int cSnd_ReserveSeSlot(void *snd, void *data);
-extern char D_005FEE00[];
 extern cSceAtManager D_005FEA60;
 extern int FindNodeByHit_2C2490(cSceAtManager *mgr, cVec *shape, float *out);
 extern int SetEffect(int kind, int id, void *owner, int param, int handle, unsigned int owner2);
@@ -51,10 +51,10 @@ void cSndSeTrack_switchSoundData(SeTrack2B2E80 *self)
     }
     if (data != self->data) {
         if (self->data != 0) {
-            cSndSeVoice_CheckEnd(D_005FEE00, self->slot);
+            cSndSeVoice_CheckEnd(&D_005FEE00, self->slot);
         }
         if (data != 0) {
-            self->slot = cSnd_ReserveSeSlot(D_005FEE00, data);
+            self->slot = cSnd_ReserveSeSlot(&D_005FEE00, data);
         }
         self->data = data;
     }

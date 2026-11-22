@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
 
@@ -7,7 +8,6 @@ extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern unsigned int D_00747A78;
-extern char D_005FEE00[];
 extern void cEmBase_setTalkButton(void);
 extern int Getplayer(void);
 extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
@@ -17,7 +17,6 @@ extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
 extern void func_002A87E8(void *a0, int a1);
 extern int cSnd_SeEndCk(void *a0, int a1);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int func_00291010(void *a0, void *a1, int a2, int a3, float f12, float f13, float f14, int t0);
 extern char D_005864F0[];
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int a4);
@@ -156,8 +155,8 @@ void func_0028E420(void *a0)
     IK_InverseKinematics(s0 + 0x448, s0);
     cModel_calcWorldParts(s0);
     func_002A87E8(s0, 0);
-    if (cSnd_SeEndCk(D_005FEE00, *(int *)(s0 + 0x1550)) != 0) {
-        *(int *)(s0 + 0x1550) = cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x12, s0, 0, 0, 0, 0);
+    if (cSnd_SeEndCk(&D_005FEE00, *(int *)(s0 + 0x1550)) != 0) {
+        *(int *)(s0 + 0x1550) = cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x12, a0, 0, 0, 0, 0);
     }
     q = (float *)(s0 + 0x490);
     p = *(float **)(s0 + 0xF0);

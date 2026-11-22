@@ -16,7 +16,6 @@ extern int D_0071B840[];
 extern int D_0071B8C0[];
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern void *func_002FACA8(int slot, int a1);
-extern void cSnd_SeFadeVoicesByKey(cSnd *self, int key, int frames);
 extern void cSndSeVoice_Stop(cSndSeVoice *voice);
 extern void cSndBgmNode_FadeOut(cSndBgmNode *node, float time);
 extern void cSndBgmNode_SetFlagsFadeOut(cSndBgmNode *node, int flags, float time);

@@ -6,6 +6,7 @@ extern void *Getplayer(void);
 extern void SetMotionStep(void *a0, float f);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
+#include "godhand/effectPos.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -14,7 +15,6 @@ extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
 extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern char D_00462FC0[];
 extern int D_005CB000;
 
@@ -36,7 +36,11 @@ extern int D_005CB000;
 __attribute__((section(".text.func_0025D678")))
 void func_0025D678(void *a0)
 {
-    float f[8] __attribute__((aligned(16)));
+    struct {
+        int childCount;     /* 0x00 the child count, stored on the way */
+        char unk04[0xC];
+        cVec pos;           /* 0x10 the effect position */
+    } f __attribute__((aligned(16)));
     char *s0 = (char *)a0;
     char *s1 = (char *)Getplayer();
     float t;
@@ -214,19 +218,19 @@ void func_0025D678(void *a0)
             int ok;
             int idx = 4;
 
-            ok = ((*(int *)f = n = *(unsigned char *)(s0 + 0x2B4)), (idx < n));
+            ok = ((f.childCount = n = *(unsigned char *)(s0 + 0x2B4)), (idx < n));
             if (ok) {
                 s1 = *(char **)(*(int *)(s0 + 0x278) + 0x10);
             } else {
                 s1 = 0;
             }
             if (s1 != 0) {
-                VU0_SQC2_VF0(f, 0x10);
-                f[4] = fRand1_1() * 0.1f;
-                f[5] = fRand1_1() * 0.1f + 0.1f;
-                f[6] = fRand0_1() * 0.1f + 0.2f;
-                { float *e = &f[4]; sceVu0ApplyMatrix(e, s1 + 0x80, e); e = 0; }
-                SetEffectPos(0, 0x4F, 0, &f[4], -1, 1.0f);
+                VU0_SQC2_VF0(&f, 0x10);
+                f.pos.x = fRand1_1() * 0.1f;
+                f.pos.y = fRand1_1() * 0.1f + 0.1f;
+                f.pos.z = fRand0_1() * 0.1f + 0.2f;
+                { float *e = &f.pos.x; sceVu0ApplyMatrix(e, s1 + 0x80, e); e = 0; }
+                SetEffectPos(0, 0x4F, 0, &f.pos, 1.0f, -1);
             }
         }
         *(short *)(s0 + 0x56A) = 0;

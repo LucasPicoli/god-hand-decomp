@@ -24,7 +24,6 @@ extern void cModel_calcParts(void *self);
 extern void cSnd_BgmEventStart(void *snd, int event, int a2, int a3);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void func_001DEE40(void *p, int a1);
-extern char D_005FEE00[];
 extern void cIDBase_initIDWork(cNowLoading *self, int idx);
 extern cIDBaseEnt *cIDBase_getIDWork(cNowLoading *self, int idx);
 extern void cIDBase_restartAnim(cNowLoading *self);
@@ -206,7 +205,7 @@ void Poker_updateResultWait(Poker *self)
     case 1:
         if (!Poker_timerDone(self))
             return;
-        cSnd_BgmEventStart(D_005FEE00, POKER_BGM_EVENT, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, POKER_BGM_EVENT, 0, 0);
         func_001DF528(POKER_UI(self), 1, 4);
         /* fall through */
     case 0:

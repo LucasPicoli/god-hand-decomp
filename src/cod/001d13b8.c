@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void func_001D5360(void *a0, int a1);
 extern void func_001D5430(void *a0, int a1);
@@ -8,8 +9,6 @@ extern void func_001D5500(void *a0, int a1);
 extern void SetBlendField5B4_1D57A0(void *a0, int a1);
 extern void NoOp_1D4B70(void *a0);
 extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_005FEE00[];
 extern int D_007474A0;
 extern int D_00747A2C;
 extern void PushEntryAtField10000_299868(char *a0, long a1, long a2);
@@ -58,7 +57,7 @@ void BlackJack_UpdateAddBetMenu(BlackJack *self)
         if ((f & 0x8800004000000L) != 0) {
             func_001D5360(self, 1);
             SetBlendField5B4_1D57A0(self, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             self->phase = 0;
             self->state = 2;
             return;
@@ -66,7 +65,7 @@ void BlackJack_UpdateAddBetMenu(BlackJack *self)
         if ((f & 0x4400008000000L) != 0) {
             func_001D5360(self, 1);
             SetBlendField5B4_1D57A0(self, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             if (self->bet != 0) {
                 self->phase = 0;
                 self->state = 3;
@@ -79,7 +78,7 @@ void BlackJack_UpdateAddBetMenu(BlackJack *self)
         if ((f & 0x3300003000000L) != 0) {
             func_001D5360(self, 1);
             SetBlendField5B4_1D57A0(self, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             self->phase = 0;
             self->state = 4;
             return;
@@ -106,7 +105,7 @@ void BlackJack_UpdateAddBetMenu(BlackJack *self)
                     }
                     self->flags &= ~8;
                 }
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 return;
             }
             if ((h & 0x20000000L) != 0) {
@@ -125,7 +124,7 @@ void BlackJack_UpdateAddBetMenu(BlackJack *self)
                     self->phase = 0;
                     self->state = 4;
                 }
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             }
         }
         break;

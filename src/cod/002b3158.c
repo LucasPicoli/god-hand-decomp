@@ -1,4 +1,5 @@
-extern char D_005FEE00[];
+#include "godhand/cSnd.h"
+
 extern int cSnd_SeIsLoaded(void *, int);
 extern void func_002B45C8(void *);
 
@@ -17,6 +18,6 @@ __attribute__((section(".text.func_002B31F8")))
 int func_002B31F8(int *p)
 {
     if (p[7] != 0)
-        return cSnd_SeIsLoaded(D_005FEE00, p[8]);
+        return cSnd_SeIsLoaded(&D_005FEE00, p[8]);
     return 1;
 }

@@ -2,6 +2,7 @@
 
 /* sn-2.95.3-136, as=sn: the poker table's bet step, 100 gold per press between the save and the bet. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/Poker.h"
 
 extern void func_001DD770(void *a0, int a1);
@@ -12,10 +13,8 @@ extern void SetBlendField1D4_1DDB10(void *a0, int a1);
 extern void NoOp_1DCE60(void *a0);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int D_007474A0;
 extern int D_00747A2C;
-extern unsigned char D_005FEE00[];
 
 #define POKER_BET_STEP      0x64        /* gold moved per press */
 #define POKER_F_HELP        0x2         /* flags: the help panel is open */
@@ -66,7 +65,7 @@ void Poker_updateBet(Poker *self) {
         if (*(long *)(g + 0x1B0) & PAD_QUIT) {
             func_001DD770(o, 1);
             SetBlendField1D4_1DDB10(o, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, SE_CANCEL, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_CANCEL, -1, -1, 0, 0);
             /* the store pair is written in both arms: one shared store pair if-converts to movn */
             if (self->bet != 0) {
                 self->phase = 0;
@@ -78,7 +77,7 @@ void Poker_updateBet(Poker *self) {
         } else if (*(long *)(g + 0x1B0) & PAD_BACK) {
             func_001DD770(o, 1);
             SetBlendField1D4_1DDB10(o, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, SE_CANCEL, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_CANCEL, -1, -1, 0, 0);
             self->phase = 0;
             self->state = POKER_STATE_BACK;
         } else if (*(long *)(g + 0x1A0) & PAD_BET_UP) {
@@ -97,7 +96,7 @@ void Poker_updateBet(Poker *self) {
                 }
                 self->flags = self->flags & ~POKER_F_BET_CHANGED;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, SE_BET_UP, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_BET_UP, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & PAD_BET_DOWN) {
             if (self->bet > 0) {
                 cCoreSave_addGold(&D_00569B70, POKER_BET_STEP, 0);
@@ -113,7 +112,7 @@ void Poker_updateBet(Poker *self) {
                 self->phase = 0;
                 self->state = POKER_STATE_QUIT;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, SE_BET_DOWN, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, SE_BET_DOWN, -1, -1, 0, 0);
         }
         break;
     }

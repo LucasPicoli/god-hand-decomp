@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void func_001852E8(void *a0, int a1);
+extern void func_001852E8(void *arg0, unsigned int arg1);
 
 __attribute__((section(".text.func_00184A40")))
 void func_00184A40(void *a0) {

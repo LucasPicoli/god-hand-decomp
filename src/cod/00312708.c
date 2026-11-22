@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/player.h"
 
-extern int D_005FEE00;
-extern void cSnd_SeDetachObj(int *arg0, void *arg1);
 
 __attribute__((section(".text.ReleaseObj")))
 void ReleaseObj(char *arg0) {

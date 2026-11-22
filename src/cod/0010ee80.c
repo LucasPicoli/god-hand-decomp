@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
@@ -24,7 +25,6 @@ extern void func_0010A438(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
 extern int  D_00747A0C;
 extern char D_005864F0[];
-extern char D_005FEE00[];
 
 __attribute__((section(".text.func_0010EE80")))
 void func_0010EE80(void *a0)
@@ -106,11 +106,11 @@ void func_0010EE80(void *a0)
         pl00_clearMotionCam(s1, 1, 0);
     } else {
         if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
-            char *g = D_005FEE00;
+            cSnd *g = &D_005FEE00;
             cSnd_SeStop(g, *(int *)(s1 + 0x161C));
             *(int *)(s1 + 0x161C) = 0;
-            *(int *)(g + 0xB0) &= 0xFFBFFFFF;
-            *(int *)(g + 0xAC) &= 0xFFBFFFFF;
+            g->flagsB0 &= 0xFFBFFFFF;
+            g->flagsAC &= 0xFFBFFFFF;
         }
         *(unsigned short *)(s1 + 0x3AC) |= 0x800;
         *(float *)(s1 + 0x674) = 0.05f;

@@ -24,8 +24,6 @@ typedef struct cOmEmSpawner {
     float baseY;                            /* 0x61C height the enemies stand at */
 } cOmEmSpawner;
 
-extern cSnd D_005FEE00;
-extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 extern cEmActor *cEmSetParam_setEm(cEmSetParam *self, unsigned char no);
 extern int cEmWrap_setPos_2959B0(int *a0, int a1);
 extern void cEmWrap_StartAction(cEmWrap *self);

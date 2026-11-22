@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cScenario.h"
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageManage.h"
@@ -19,7 +20,6 @@ extern char D_00747AC0[];
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
 extern char D_00583F20[];
-extern char D_005FEE00[];
 extern char D_005E6900[];
 extern void FileLoader_readWholeFile(void *self);
 extern void func_00397128(int a0);
@@ -265,7 +265,7 @@ void System_bringUp(void *arg) {
         sceGsResetGraph(0, 1, 2, 0);
     sceGsSyncV(0);
     cDvd_init(D_00583F20);
-    func_002C9D20(D_005FEE00);
+    func_002C9D20(&D_005FEE00);
     MoviePool_init(D_005E79D0);
     SlotIds_sendSetup(D_005E6900);
     func_0031A718(arg);

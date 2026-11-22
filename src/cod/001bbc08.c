@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 
 
-extern int D_005FEE00;
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern float fRand1_1(void);
 extern void cObjBase_MoveByNullSpeed(void *a0, float f12, float f13);
 
@@ -28,7 +27,7 @@ void func_001BBC08(char *s0)
     case 2:
         *(short *)(s0 + 0x568) = 0x1E;
         *(short *)(s0 + 0x56A) = 0xF;
-        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x110, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x110, (cObj *)s0, 0, 0, 0, 0);
         *(float *)(s0 + 0x330) = fRand1_1() * 0.200000003f;
         *(float *)(s0 + 0x334) = 0.100000001f;
         *(float *)(s0 + 0x338) = -0.100000001f;
@@ -56,7 +55,7 @@ void func_001BBC08(char *s0)
         if (*(short *)(s0 + 0x56A) != 0) {
             *(short *)(s0 + 0x56A) = *(unsigned short *)(s0 + 0x56A) - 1;
             if (*(short *)(s0 + 0x56A) == 0) {
-                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s0, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, (cObj *)s0, 0, 0, 0, 0);
             }
         }
         if (*(short *)(s0 + 0x568) != 0) {

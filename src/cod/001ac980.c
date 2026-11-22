@@ -1,13 +1,12 @@
 /* sn-2.95.3-136: func_001AC980, breakable gimmick phase update: run the handler of the current
  * phase entry, regenerate one guard point every 5 frames, and on a new hit (when not locked)
  * take its damage from the guard, breaking it at zero, with a hit sound. */
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int id, void *owner, int t0, int t1, int t2, int t3);
 extern void func_001AC370(char *self);
 extern void func_001B7EE0(void *self, float f);
-extern char D_005FEE00[];
 
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
+#include "godhand/cSnd.h"
 #include "godhand/emPhaseTable.h"
 #include "godhand/cDamageUnit.h"
 
@@ -56,7 +55,7 @@ void func_001AC980(char *self)
                 *(short *)(self + 0x610) = 8;
                 *(float *)(self + 0x614) = (*(float **)(self + 0xF0))[1];
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 10, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 10, (cObj *)self, 0, 0, 0, 0);
             }
         }
     }

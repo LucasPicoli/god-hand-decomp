@@ -170,7 +170,6 @@ int ComboObj_startNext(pl00 *self)
     return combo;
 }
 
-extern char D_005FEE00[];               /* cSnd */
 
 
 #define BGM_REQ_A   0x25
@@ -182,8 +181,8 @@ void Slot2_endGameFade(Slot2 *self)
 {
     switch (self->step) {
     case 0:
-        cSnd_BgmEventFade(D_005FEE00, BGM_REQ_A, 15.0f, 0.0f, -1.0f);
-        cSnd_BgmEventFade(D_005FEE00, BGM_REQ_B, 15.0f, 0.0f, -1.0f);
+        cSnd_BgmEventFade(&D_005FEE00, BGM_REQ_A, 15.0f, 0.0f, -1.0f);
+        cSnd_BgmEventFade(&D_005FEE00, BGM_REQ_B, 15.0f, 0.0f, -1.0f);
         displayScrollLayer(1, 0);
         func_00143A90(&Cockpit->gold);
         self->endFlag |= 1;

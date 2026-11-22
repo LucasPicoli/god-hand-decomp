@@ -149,7 +149,7 @@ __attribute__((section(".text.func_002C0A08")))
 void func_002C0A08(void) { cMc_startLoadRunReleaseB(2); }
 
 __attribute__((section(".text.func_002CA690")))
-void func_002CA690(void) { Forward325C98_325DC0(0); }
+void func_002CA690(cSnd *self) { Forward325C98_325DC0(0); } /* self is unused */
 
 extern void func_003735E0(cSndBgmNode *node, int a1, float to, float time);
 /* Fades a node with the given target and time; -1 selects the whole sequence. */

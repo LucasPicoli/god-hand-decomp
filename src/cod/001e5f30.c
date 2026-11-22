@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/DispMgr.h"
@@ -8,7 +9,6 @@ extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void func_001E6ED8(void *a0, int a1, int a2);
 extern void func_001E6D48(void *a0, int a1, int a2);
 extern void UiPanel_setMessAndShow(void *a0, int a1, int a2);
-extern char D_005FEE00[];
 extern char D_007474A0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -43,7 +43,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
         SetEffect(1, 2, 0, 0, -1, 0xFFFFFFFFU);
         func_001E6ED8(self, 1, 1);
         func_001E6D48(self, 1, 1);
-        cSnd_BgmEventStart(D_005FEE00, 0x32, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x32, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:

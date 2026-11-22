@@ -2,16 +2,15 @@
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f12);
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern float fRand1_1(void);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern unsigned int irand(void);
 extern void func_0012C348(void *a0, int a1);
 extern char D_00462FC0[];
-extern char D_005FEE00[];
 
 #include "godhand/vu0.h"
 
@@ -31,7 +30,7 @@ extern char D_005FEE00[];
 __attribute__((section(".text.func_0010B9C0")))
 void func_0010B9C0(void *a0)
 {
-    float fr[4];
+    cVec fr;
     char *s0 = (char *)a0;
 
     *(float *)(s0 + 0x54C) = 5.0f;
@@ -101,15 +100,15 @@ void func_0010B9C0(void *a0)
             *(short *)(s0 + 0x568) != 0) {
             float k;
 
-            VU0_SQC2_VF0(fr, 0);
+            VU0_SQC2_VF0(&fr, 0);
             k = 0.1f;
-            fr[0] = fRand1_1() * k + -0.2f;
-            fr[1] = fRand1_1() * k + 1.5f;
-            fr[2] = fRand1_1() * k + 0.5f;
-            sceVu0ApplyMatrix(fr, s0 + 0x80, fr);
+            fr.x = fRand1_1() * k + -0.2f;
+            fr.y = fRand1_1() * k + 1.5f;
+            fr.z = fRand1_1() * k + 0.5f;
+            sceVu0ApplyMatrix(&fr, s0 + 0x80, &fr);
             *(short *)(s0 + 0x568) = 0;
-            SetEffectPos(0, 0x40, 0, fr, -1, 1.0f);
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x111, s0, 0, 0, 0, 0);
+            SetEffectPos(0, 0x40, 0, &fr, 1.0f, -1);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x111, a0, 0, 0, 0, 0);
         }
         break;
     case 4: {
@@ -143,7 +142,7 @@ void func_0010B9C0(void *a0)
             break;
         }
         func_002A8578(s0, f1, f2, 1, 0.0f, 0, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCE, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xCE, a0, 0, 0, 0, 0);
         func_0012C348(s0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     }

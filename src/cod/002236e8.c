@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -15,9 +16,7 @@ extern int func_00275888(void *a0, float f);
 extern void func_00262750(void *a0, int a1);
 extern void func_00274FE8(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern unsigned char D_005864F0[];
-extern unsigned char D_005FEE00[];
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #define FRAME ((char *)va)
@@ -321,7 +320,7 @@ __attribute__((section(".text.func_002236E8"))) void func_002236E8(cEm00 *self)
             break;
         case 8:
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 6), s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 6), (cObj *)self, 0, 0, 0, 0);
             {
                 char *v = *(char **)(s1 + 0x304);
                 func_002A8578(s1, EM_RES_REC((int)v, 0x1A08), EM_RES_REC((int)v, 0x1A0C), 2, 0.0f,

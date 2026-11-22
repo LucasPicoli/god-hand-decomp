@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_00185910(void *a0, int a1);
-extern void func_00185A20(void *a0, int a1);
+extern void func_00185A20(void *arg0, unsigned int arg1);
 
 /* sn-2.95.3-136 matched TU. */
 

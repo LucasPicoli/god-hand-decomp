@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEvent.h"
+#include "godhand/cSnd.h"
 
-extern int D_005FEE00;
 extern int D_003C2558;
-extern void cSnd_SeFadeVoicesByKey(int *, int, int);
 extern void LoadResourceEntry_297378();
 extern void cSnd_BgmEvDataInit();
 extern void LoadDisplayText_297450();

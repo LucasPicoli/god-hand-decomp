@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *slot);
-extern char D_005FEE00[];
 extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int on);
 extern int SetEffect(int effNo, int kind, void *obj, int a3, int a4, unsigned int a5);
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *obj, int a4, int a5, int a6, int a7);
 #include "godhand/objField.h"
 extern void sceVu0ApplyMatrix(void *out, void *mtx, void *vec);
 extern float LengthPositionToGivenLine(void *line, void *pos, void *dir, int *flag);
@@ -106,7 +105,7 @@ void cOmBase_setDispModeLayers2E(cOmBase *self, int mode)
         break;
     case 4:
         SetEffect(0x298, 6, self, 0, -1, -1);
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x113, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, (cObj *)self, 0, 0, 0, 0);
         break;
     }
 }
@@ -134,7 +133,7 @@ void cOmBase_setDispModeLayers1E(cOmBase *self, int mode)
         break;
     case 4:
         SetEffect(0x298, 3, self, 0, -1, -1);
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x113, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, (cObj *)self, 0, 0, 0, 0);
         break;
     }
 }

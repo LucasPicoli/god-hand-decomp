@@ -2,6 +2,7 @@
 
 #include "godhand/cModel.h"
 #include "godhand/cObjBase.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cEma2.h"
@@ -16,7 +17,6 @@ extern void cModel_queuePacket(cModel *self, short id);
 extern void func_0014C5A0(cModel *self, short id);
 extern void func_0031A600(void *queue, int kind, int id, void *packet);
 extern void KillEffect(void *owner, int handle, int arg);
-extern void SetEffectPos(int kind, int id, int arg, void *pos, int handle, float scale);
 extern int SetEffect(int kind, int id, void *owner, void *param, int handle, void *owner2);
 extern char D_005864E0[];
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
@@ -135,7 +135,7 @@ void cObjBase_SetSeqEffect(cObjBase *self) {
         owner = (flags & SEQEFF_OWNED) ? self : 0;
         if (part == 0xFF) {
             if (flags & SEQEFF_AT_POS) {
-                SetEffectPos(kind, id, 0, self->pos, -1, 1.0f);
+                SetEffectPos(kind, id, 0, self->pos, 1.0f, -1);
             } else if (self->motionFlags & 2) {
                 param.flags |= EFFECT_PARAM_LOOP;
                 SetEffect(kind, id, owner, &param, handle, owner);

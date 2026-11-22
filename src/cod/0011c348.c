@@ -17,8 +17,8 @@ extern void func_0012C348(void *a0, int a1);
 extern int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
 extern void *Getplayer(void);
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
@@ -43,8 +43,6 @@ extern char D_005CB000[];
 
 
 
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4,
-                               int a5, int a6, int a7);
 
 
 
@@ -120,15 +118,15 @@ void func_00121E88(void *a0)
             if (s0 != 0)
                 func_0012C0F8(s1, (int)(*(float *)(s0 + 0x76C) * 30.0f));
             if (*(short *)(s1 + 0x54A) <= 0) {
-                char *g = D_005FEE00;
+                cSnd *g = &D_005FEE00;
 
                 *(short *)(s1 + 0x54A) = 0;
-                cSnd_SeCall_2CBA48(g, 0, 0xD6, s1, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(g, 0, 0xD6, a0, 0, 0, 0, 0);
                 cSnd_DieDemoStart(g);
                 cCoreSave_addGameLevelPoint(s2, -0x3E8);
                 *(unsigned short *)(s1 + 0x434) |= 8;
             } else {
-                cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
             }
             func_0012C348(s1, 2);
         }
@@ -153,8 +151,6 @@ void func_00121E88(void *a0)
 
 
 
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4,
-                               int a5, int a6, int a7);
 
 
 
@@ -230,15 +226,15 @@ void func_0011C348(void *a0)
                 cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
             }
             if (*(short *)(s1 + 0x54A) <= 0) {
-                char *g = D_005FEE00;
+                cSnd *g = &D_005FEE00;
 
                 *(short *)(s1 + 0x54A) = 0;
-                cSnd_SeCall_2CBA48(g, 0, 0xD6, s1, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(g, 0, 0xD6, a0, 0, 0, 0, 0);
                 cSnd_DieDemoStart(g);
                 cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                 *(unsigned short *)(s1 + 0x434) |= 8;
             } else {
-                cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
             }
             func_0012C348(s1, 2);
         }

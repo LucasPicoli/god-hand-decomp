@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cBgmData.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern void func_001DBF18(void *self, unsigned short *a, unsigned short *b, unsigned short *c, unsigned short *d);
@@ -53,7 +54,6 @@ int PartHolder_markIfSequence(PartHolder *self)
 }
 
 extern char D_00586AF0[];               /* cEvent */
-extern char D_005FEE00[];               /* cSnd */
 
 
 
@@ -75,15 +75,15 @@ void EventBgm_startByStageCount(void)
     switch (n) {
     case 1:
         func_00297C88(D_00586AF0, 0x1001);
-        cBgmData_LoadNamed(cSnd_GetBgmData(D_005FEE00, 1), 1, D_0044AC00);
+        cBgmData_LoadNamed(cSnd_GetBgmData(&D_005FEE00, 1), 1, D_0044AC00);
         break;
     case 2:
         func_00297C88(D_00586AF0, 0x1002);
-        cBgmData_LoadNamed(cSnd_GetBgmData(D_005FEE00, 1), 1, D_0044AC08);
+        cBgmData_LoadNamed(cSnd_GetBgmData(&D_005FEE00, 1), 1, D_0044AC08);
         break;
     case 3:
         func_00297C88(D_00586AF0, 0x1003);
-        cBgmData_LoadNamed(cSnd_GetBgmData(D_005FEE00, 1), 1, D_0044AC10);
+        cBgmData_LoadNamed(cSnd_GetBgmData(&D_005FEE00, 1), 1, D_0044AC10);
         break;
     }
 }

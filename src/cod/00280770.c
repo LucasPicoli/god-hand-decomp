@@ -1,12 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int moveMotion(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int GetSeqSEBase(void *a0);
-extern int D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -26,7 +25,7 @@ __attribute__((section(".text.func_00280770"))) void func_00280770(cEm00 *self)
         case 0:
             res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x120), EM_RES_REC(res, 0x124), 2, 0.0f, t0, 0);
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
             self->step++;
             goto L_mm;
         case 2:

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/Slot1.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -10,7 +11,6 @@ extern void func_001E3D78(Slot1 *a0, int a1, int a2);
 extern void func_001E8E48(void *a0, void *a1);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
-extern char D_005FEE00[];
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void Slot2_setMarkLayersAt464(Slot1 *a0, int a1, int a2);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
@@ -55,12 +55,12 @@ void Slot1_payoutLine4(Slot1 *self) {
         self->coinNum = self->prize[3] / 10;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId);
+            cSnd_SeStop(&D_005FEE00, self->seId);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             Slot2_selectMark(self, self->slotId, 0, 0);
             func_001E3D78(self, 0, 0);
@@ -116,12 +116,12 @@ void Slot1_payoutLine5(Slot1 *self) {
         self->coinNum = self->prize[4] / 10;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId);
+            cSnd_SeStop(&D_005FEE00, self->seId);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             Slot2_selectMark(self, self->slotId, 0, 0);
             func_001E3D78(self, 0, 0);
@@ -177,12 +177,12 @@ void Slot1_payoutLine6(Slot1 *self) {
         self->coinNum = self->prize[5] / 10;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId);
+            cSnd_SeStop(&D_005FEE00, self->seId);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             Slot2_selectMark(self, self->slotId, 0, 0);
             func_001E3D78(self, 0, 0);
@@ -237,17 +237,17 @@ void Slot1_payoutLine1(Slot1 *self) {
             done = 1;
         }
         if ((done & 0xFF) == 0) break;
-        cSnd_BgmEventStart(D_005FEE00, 0x32, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x32, 0, 0);
         self->coinUnit = 100;
         self->coinNum = self->prize[0] / 100;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId);
+            cSnd_SeStop(&D_005FEE00, self->seId);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             Slot2_selectMark(self, self->slotId, 0, 0);
             Slot2_setMarkLayersAt464(self, 0, 0);
@@ -302,17 +302,17 @@ void Slot1_payoutLine2(Slot1 *self) {
             done = 1;
         }
         if ((done & 0xFF) == 0) break;
-        cSnd_BgmEventStart(D_005FEE00, 0x33, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x33, 0, 0);
         self->coinUnit = 100;
         self->coinNum = self->prize[1] / 100;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId);
+            cSnd_SeStop(&D_005FEE00, self->seId);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             Slot2_selectMark(self, self->slotId, 0, 0);
             Slot2_setMarkLayersAt46C(self, 0, 0);

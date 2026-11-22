@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 
-extern int D_005FEE00;
 
 /* Like cSndBgmNode_Setup for a node that already has its bank and state: stores flags and the request's values. */
 __attribute__((section(".text.cSndBgmNode_ApplyReq")))

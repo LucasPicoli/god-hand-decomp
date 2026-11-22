@@ -3,6 +3,7 @@
  * the scenario; then the point is reloaded from the stage start table or restored from the save. */
 #include "godhand/cScenario.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 #include "godhand/cSubScr.h"
 #include "godhand/cVecType.h"
 #include "godhand/globals.h"
@@ -38,7 +39,6 @@ typedef struct SavePointWork {
 extern int D_00747A2C[];
 extern int D_00747A24;
 extern unsigned int D_00747A84;         /* D_007474A0.flags5E4 under its own symbol */
-extern char D_005FEE00[];
 extern void cSnd_SetBgmState(void *snd, int state);
 
 __attribute__((section(".text.func_002006B8")))
@@ -67,7 +67,7 @@ int func_002006B8(SavePointWork *self)
             if (v != 0 && v != ROOM_NOPLAYER)
                 self->save = self->cur;
         }
-        cSnd_SetBgmState(D_005FEE00, 0);
+        cSnd_SetBgmState(&D_005FEE00, 0);
         cSubScr_SubScrOn(D_003BD930, 3, 2, 0x11);
         cScenario_release(D_003C2F84);
         self->step++;

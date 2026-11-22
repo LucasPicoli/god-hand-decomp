@@ -1,15 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned char D_005FEE00[];
 extern unsigned char D_007474A0[];
 extern unsigned int irand(void);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -51,7 +50,7 @@ void func_0011ADD8(void *a0)
     *(float *)(s1 + 0x54C) = 15.0f;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0: {
-        char *g;
+        cSnd *g;
         char *p;
 
         switch (*(unsigned char *)(s1 + 0x2F7)) {
@@ -126,9 +125,9 @@ void func_0011ADD8(void *a0)
             break;
         }
         }
-        g = (char *)&D_005FEE00;
-        cSnd_SeCall_2CBA48(g, 0, 0xD7, s1, 0, 0, 0, 0);
-        cSnd_SeCall_2CBA48(g, 0, 0x123, s1, 0, 0, 0, 0);
+        g = &D_005FEE00;
+        cSnd_SeCall_2CBA48(g, 0, 0xD7, a0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(g, 0, 0x123, a0, 0, 0, 0, 0);
         pl00_clearMotionCam(s1, 0, 0);
         func_0012C348(s1, 2);
         p = *(char **)(s1 + 0x678);

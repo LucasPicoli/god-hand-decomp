@@ -5,13 +5,13 @@
 #include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern cEmActor *cEmManage_GetEm(cEmManage *mgr, unsigned char entryNo);
 extern void cEm00_setEm65Separate(cEmActor *em);
 extern void cScenario_startSoftEvent(int scenario, int arg);
 extern void cScenario__endSoftEvent(int scenario);
-extern char D_005FEE00[];
 extern void cSnd_SeStop(void *snd, int handle);
 extern void KillEffect(void *obj, int a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *obj, int flag);
@@ -94,7 +94,7 @@ __attribute__((section(".text.cGiveOwner_destruct")))
 void cGiveOwner_destruct(cGiveOwner *self, int flag) {
     self->base.vtable = (cVtEnt *)&D_004282F0;
     if (self->seHandle != 0) {
-        cSnd_SeStop(D_005FEE00, self->seHandle);
+        cSnd_SeStop(&D_005FEE00, self->seHandle);
         self->seHandle = 0;
     }
     if (cDamageManage_ReleaseDamageGive(&D_00574380, self->give[0]) != 0) {

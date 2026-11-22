@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
@@ -14,12 +15,10 @@ extern void func_0010A438(void *a0);
 
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int a4, int a5);
 extern void SetMotionStep(void *a0, float f12);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void cSnd_SeStop(void *a0, int a1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern char *Getplayer(void);
-extern char D_005FEE00[];
 extern int D_007474A0;
 
 struct VtEnt { short delta; short index; void *pfn; };
@@ -123,7 +122,7 @@ void func_0010E5B8(void *a0)
                 if (*(float *)(s1 + 0x15C0) >= 1.10000002f) {
                     if (*(int *)(s1 + 0x15B8) != 0) {
                         *(int *)(s1 + 0x15B8) = 0;
-                        *(int *)(s1 + 0x1620) = cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x11B, s1, 0, 0, 0, 0);
+                        *(int *)(s1 + 0x1620) = cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x11B, a0, 0, 0, 0, 0);
                     }
                 }
             } else {
@@ -141,7 +140,7 @@ void func_0010E5B8(void *a0)
                     KillEffect(Getplayer(), 2, 2);
                     SetEffect(0, 0x32, s1, 0, -1, 0xFFFFFFFFu);
                 }
-                cSnd_SeStop(D_005FEE00, *(int *)(s1 + 0x1620));
+                cSnd_SeStop(&D_005FEE00, *(int *)(s1 + 0x1620));
                 *(int *)(s1 + 0x1620) = 0;
             }
         }

@@ -16,9 +16,9 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
 extern int D_00747A24;
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -118,7 +118,7 @@ void func_0011C608(void *a0)
     case 4:
         cEm00_GetPlMotion(s1, 9, 3.0f, 0.0f);
         *(int *)(s0 + 0x15B0) = 0x1E;
-        cSnd_DieDemoStart(D_005FEE00);
+        cSnd_DieDemoStart(&D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     /* fallthrough */

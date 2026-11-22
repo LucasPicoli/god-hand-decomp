@@ -1,15 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
-extern char D_005FEE00[];
 extern unsigned int irand(void);
 extern int GetSeqSEBase(void *a0);
 
@@ -45,7 +44,7 @@ __attribute__((section(".text.func_00288178"))) void func_00288178(cEm00 *self)
             cCoreSave_addKillNpcNum(&D_00569B70);
             res = EM_RES(self);
             func_002A8578(self, EM_RES_REC(res, 0x90), EM_RES_REC(res, 0x94), 5, z, 0, 0);
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5F, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5F, (cObj *)self, 0, 0, 0, 0);
             self->step++;
         case 3:
             if (moveMotion(self) != 0) {
@@ -103,7 +102,7 @@ __attribute__((section(".text.func_002801F8"))) void func_002801F8(cEm00 *self)
                         break;
                 }
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
             self->step++;
         case 1:
             if (moveMotion(self) != 0) {

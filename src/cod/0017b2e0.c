@@ -1,8 +1,7 @@
 /* sn-2.95.3-136: func_0017B2E0, double swing gimmick step (variant of 0017b0d8.c with start/stop SE calls). */
 #include "godhand/cOmSubGimmick.h"
+#include "godhand/cSnd.h"
 
-extern int cSnd_SeCall_2CB8A0(void *snd, int slot, short key1, short idA, short idB, int a5, int a6);
-extern char D_005FEE00[];
 
 __attribute__((section(".text.func_0017B2E0")))
 void func_0017B2E0(cOmDoubleSwing *self)
@@ -40,7 +39,7 @@ void func_0017B2E0(cOmDoubleSwing *self)
             self->base.step = 0;
             self->base.phase = 2;
             self->base.stepArg = 0;
-            cSnd_SeCall_2CB8A0(D_005FEE00, 2, 0x1F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 2, 0x1F, -1, -1, 0, 0);
         }
         self->timer -= 1;
         break;
@@ -48,7 +47,7 @@ void func_0017B2E0(cOmDoubleSwing *self)
         r = cOmSub_move(self->moveA);
         r2 = cOmSub_move(self->moveB);
         if (r == 0 && r2 == 0) {
-            cSnd_SeCall_2CB8A0(D_005FEE00, 2, 0x20, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 2, 0x20, -1, -1, 0, 0);
             self->timer = 15;
             self->base.phase = 3;
             self->swung = 0;

@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 
-extern int D_005FEE00;
 extern int cSnd_GetBgmData(int a0, int a1);
 extern void cSndBgmNode_StepState(void *a0);
 extern void cSndBgmNode_Link(void *a0);

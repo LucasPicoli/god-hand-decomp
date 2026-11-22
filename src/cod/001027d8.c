@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
@@ -12,9 +13,7 @@ extern unsigned int func_0031ED08(float f);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int D_00462FC0;
-extern char D_005FEE00[];
 extern char *func_002DDAB0(void *a0, int a1, float f);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -68,7 +67,7 @@ void func_00288B78(void *a0)
         cCoreSave_addKillNpcNum(&D_00569B70);
         v0 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x130) + v0, *(int *)(v0 + 0x134) + v0, 5, 0.0f, 0, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5F, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5F, a0, 0, 0, 0, 0);
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (moveMotion(s0) != 0) {

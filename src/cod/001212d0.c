@@ -17,7 +17,6 @@ extern void cSnd_DieDemoStart(void *a0);
 extern int  D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
 extern unsigned short D_003F2060[];
 extern void ADXT_SetOutVol(int a0, int a1);
 extern void sceVu0ApplyMatrix(void *v1, void *m0, void *v0);
@@ -27,6 +26,7 @@ extern char D_00754240[];
 
 /* func_001212D0 — 0x001212D0, 760 B — sn-2.95.3-136.
  * +0x2F6 phase machine, 0x694 object family; template src/cod/0011c348.c. */
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -134,7 +134,7 @@ void func_001212D0(void *a0)
                 }
                 if (*(short *)(s0 + 0x54A) <= 0) {
                     *(short *)(s0 + 0x54A) = 0;
-                    cSnd_DieDemoStart(D_005FEE00);
+                    cSnd_DieDemoStart(&D_005FEE00);
                     cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                     *(unsigned short *)(s0 + 0x434) |= 8;
                 }

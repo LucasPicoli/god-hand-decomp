@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/player.h"
@@ -10,7 +11,6 @@ extern char D_0044E538[];
 extern void func_002FBE28(void *self, int flags);
 extern char D_0044A528[];
 extern char D_007419A0[];
-extern char D_005FEE00[];
 extern void func_002A84A8(void *);
 extern void espSys_effDataRelease(void *, int);
 extern void cSnd_SeStop(void *, int);
@@ -114,7 +114,7 @@ void EffObj_teardown(EffObj *self, int flag) {
     func_002A84A8(self);
     espSys_effDataRelease(D_007419A0, EFFDATA_SLOT);
     if (self->seHandle != 0)
-        cSnd_SeStop(D_005FEE00, self->seHandle);
+        cSnd_SeStop(&D_005FEE00, self->seHandle);
     NoOp_28E418(self);
     func_0028EB88(self, flag);
 }

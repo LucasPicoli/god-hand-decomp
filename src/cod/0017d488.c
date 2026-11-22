@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
-extern char D_005FEE00[];
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float f12);
 extern int cSnd_SeCall(void *a0, int a1, int a2, void *a3, int a4, int a5);
 extern void CustomIDWork_SetOffsetPosY(void *work, int y);
 extern void CustomIDWork_SetMoveOffsetPosY(void *work, int from, int to, int frames);
@@ -89,21 +89,28 @@ typedef struct HitRec {
     unsigned int surface;               /* 0x4 */
 } HitRec;
 
+/* What ChkLine fills in: the hit point, then the record of the surface it hit. */
+typedef struct LineHit {
+    cVec point;                         /* 0x00 */
+    HitRec *rec;                        /* 0x10 */
+    char unk14[0xC];
+} LineHit;
+
 #define SURFACE_WATER  0x400
-#define FRAME ((char *)buf - 0x30)
+#define FRAME ((char *)&hit - 0x30)
 
 __attribute__((section(".text.LineObjB_checkWaterHit")))
 void LineObjB_checkWaterHit(LineObjB *self) {
-    float buf[8];
+    LineHit hit;
     if (self->done == 0) {
-        float *v = buf;
+        cVec *v = &hit.point;
         int one;
         VU0_SQC2_VF0(FRAME, 0x30);
         one = 1;
-        if (ChkLine(self->pos, self->owner, v, 0, 7, 0, &buf[4], 1, 0, 0, 0, 0, one) != 0
-            && (((HitRec *)*(void **)&buf[4])->surface & SURFACE_WATER) != 0) {
-            SetEffectPos(0, 0x55, 0, v, -1, 1.0f);
-            cSnd_SeCall(D_005FEE00, 2, 0x50, self->owner, 0, 0);
+        if (ChkLine(self->pos, self->owner, v, 0, 7, 0, &hit.rec, 1, 0, 0, 0, 0, one) != 0
+            && (hit.rec->surface & SURFACE_WATER) != 0) {
+            SetEffectPos(0, 0x55, 0, v, 1.0f, -1);
+            cSnd_SeCall(&D_005FEE00, 2, 0x50, self->owner, 0, 0);
             self->done = one;
         }
     }

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);

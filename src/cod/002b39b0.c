@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern void cSnd_SeCallGlobal(unsigned char *, int, int, int);
+#include "godhand/cSnd.h"
 
 __attribute__((section(".text.func_002B39B0")))
 int func_002B39B0(unsigned char *obj)
@@ -28,6 +27,6 @@ int func_002B39B0(unsigned char *obj)
         mode = *(int *)(obj + 0x20);
         break;
     }
-    cSnd_SeCallGlobal(obj, mode, *(short *)(*(unsigned char **)(obj + 0x8C) + 4), *(int *)(obj + 0x18));
+    cSnd_SeCallGlobal(obj, mode, *(short *)(*(unsigned char **)(obj + 0x8C) + 4), *(void **)(obj + 0x18));
     return 0;
 }

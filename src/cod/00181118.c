@@ -1,10 +1,9 @@
 /* sn-2.95.3-136: func_00181118, enemy phase update: run the handler of the current phase entry, regenerate one guard point every 4 frames, and on a new hit take its damage from the guard (breaking it at zero) with a hit sound. */
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int id, void *owner, int t0, int t1, int t2, int t3);
 extern void func_00180CD8(char *self);
-extern char D_005FEE00[];
 
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
+#include "godhand/cSnd.h"
 #include "godhand/emPhaseTable.h"
 #include "godhand/cDamageUnit.h"
 
@@ -49,7 +48,7 @@ void func_00181118(char *self)
             *(short *)(self + 0x600) = 8;
             *(float *)(self + 0x604) = (*(float **)(self + 0xF0))[1];
         }
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 10, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 10, (cObj *)self, 0, 0, 0, 0);
         }
     }
     func_00180CD8(self);

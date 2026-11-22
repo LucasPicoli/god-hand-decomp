@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern int D_00460D18;
 extern int D_0042C320;
 extern int InitFields_1B6E90(void *obj);
 extern int D_00421F20;
-extern void cSnd_SeCallGlobal(void *obj, int a1, int a2, int a3);
 extern int cPlBase(void *obj);
 extern int D_0041D220;
 
@@ -94,14 +94,14 @@ void func_002B3460(void *obj) {
     unsigned short *p;
     unsigned int i;
     int x;
-    int y;
+    void *y;
     int z;
 
     z = 0;
     x = *(int *)(this + 0x20);
     y = 0;
     if (*(unsigned char *)(this + 0x70) == 0) {
-        y = *(int *)(this + 0x18);
+        y = *(void **)(this + 0x18);
     }
     cSnd_SeCallGlobal(this, x, 0, y);
     p = (unsigned short *)(this + 0x24);

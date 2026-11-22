@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern float fRand1_1(void);
 extern void cDamageUnit_SetDamageCollFlashActive(void *a0, int a1, short a2);
@@ -6,15 +7,12 @@ extern int cOmSub_move(void *a0);
 extern void cOmSub_setReverse(void *a0, int a1);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void func_001B7EE0(void *a0, float f12);
-extern char D_005FEE00[];
 
 extern void cOmSub_initMove1_pos(void *a0, void *a1, int a2, int a3, void *t0,
                                  float f12, float f13);
 
 
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5,
-                              int a6, int a7);
 
 
 
@@ -84,21 +82,21 @@ void func_00194D10(void *a0)
         break;
     }
     case 2: {
-        int t1;
+        cOmBase *t1;
         if (cOmSub_move(s0 + 0x990) != 0)
             break;
         SetEffect(0x177, 1, s0, 0, -1, 0xFFFFFFFFU);
         i6 = 1;
         ok6 = ((*(int *)frame = b6 = *(unsigned char *)(s0 + 0x2B4)), (i6 < b6));
-        if (ok6) t1 = *(int *)(*(int *)(s0 + 0x278) + i6 * 4); else t1 = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xB6, s0, 0, t1, 0, 0);
+        if (ok6) t1 = (*(cOmBase ***)(s0 + 0x278))[i6]; else t1 = 0;
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xB6, a0, 0, (cParts *)t1, 0, 0);
         *(short *)(s0 + 0xAF0) = 0x3C;
         *(unsigned char *)(s0 + 0x2F6) = 3;
         *(unsigned char *)(s0 + 0x2F7) = 0;
         break;
     }
     case 3: {
-        int t1;
+        cOmBase *t1;
         int t = *(unsigned short *)(s0 + 0xAF0) - 1;
         *(short *)(s0 + 0xAF0) = t;
         if ((short)t >= 0)
@@ -110,8 +108,8 @@ void func_00194D10(void *a0)
         }
         i7 = 1;
         ok7 = ((*(int *)frame = b7 = *(unsigned char *)(s0 + 0x2B4)), (i7 < b7));
-        if (ok7) t1 = *(int *)(*(int *)(s0 + 0x278) + i7 * 4); else t1 = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xB7, s0, 0, t1, 0, 0);
+        if (ok7) t1 = (*(cOmBase ***)(s0 + 0x278))[i7]; else t1 = 0;
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xB7, a0, 0, (cParts *)t1, 0, 0);
         *(unsigned char *)(s0 + 0x2F7) = 0;
         *(unsigned char *)(s0 + 0x2F6) = 4;
         break;

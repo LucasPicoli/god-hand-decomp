@@ -1,12 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int moveMotion(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int GetSeqSEBase(void *a0);
-extern int D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int irand(void);
 extern void cModel_calcNullPart(void *a0);
@@ -29,7 +28,7 @@ __attribute__((section(".text.func_002803F0"))) void func_002803F0(cEm00 *self)
                 res = EM_RES(self);
                 func_002A8578(self, EM_RES_REC(res, 0x100), EM_RES_REC(res, 0x104), 2, 0.0f, t0, 0);
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
             self->step = self->step + 1;
         case 1:
             if (moveMotion(self) != 0) {
@@ -59,7 +58,7 @@ __attribute__((section(".text.func_002887D0"))) void func_002887D0(cEm00 *self)
                 func_002A8578(self, EM_RES_REC(res, 0xB0), EM_RES_REC(res, 0xB4), 10, 0.0f, 0, 0);
             }
             if (self->stepArg == 0)
-                cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5C, self, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5C, (cObj *)self, 0, 0, 0, 0);
             self->step = self->step + 1;
         case 1:
             if (moveMotion(self) != 0) {
@@ -97,7 +96,7 @@ __attribute__((section(".text.func_00288660"))) void func_00288660(cEm00 *self)
                 s2 = EM_RES_REC(b, 0x58);
                 s1 = EM_RES_REC(b, 0x5C);
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x5C, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5C, (cObj *)self, 0, 0, 0, 0);
             func_002A8578(self, s2, s1, 5, 0.0f, 0, 0);
             self->timerA = 10;
             self->step = self->step + 1;
@@ -173,7 +172,7 @@ __attribute__((section(".text.func_00280000"))) void func_00280000(cEm00 *self)
                         break;
                 }
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
             self->step = self->step + 1;
         case 1:
             if (moveMotion(self) != 0) {

@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void func_001DE858(void *a0, int a1);
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_001DD770(void *a0, int a1);
 extern void func_001DD840(void *a0, int a1);
 extern void func_001DD910(void *a0, int a1);
 extern void func_001DD9E0(void *a0, int a1);
-extern unsigned char D_005FEE00[];
 extern float D_00568170[];
 
 /* sn-2.95.3-136 matched TU. */

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: Move, the per-frame game update: runs every subsystem's move in order and records the elapsed
  * timer-0 counts of the first step and of the whole frame. */
 #include "godhand/cScenario.h"
+#include "godhand/cSnd.h"
 #include "godhand/cSubScr.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cDataManager.h"
@@ -22,7 +23,6 @@ extern char D_00604700[];
 extern char D_00462FC0[];
 extern char D_00583EC0[];
 extern int *D_00754C50[];
-extern char D_005FEE00[];
 
 extern void func_002B9D58(void *p);
 extern void ListOwner_updateFollowFocus(void *p);
@@ -74,6 +74,6 @@ void Move(void)
     func_00140E58(Cockpit);
     func_001FE748(&D_00580D20);
     func_001FE748(&D_005864E0);
-    InitSubsystemGroup_2CA518(D_005FEE00);
+    InitSubsystemGroup_2CA518(&D_005FEE00);
     D_00752D44 -= T0_COUNT;
 }

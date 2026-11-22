@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/cMovie.h"
 #include "godhand/cGameObj.h"
@@ -18,8 +19,6 @@ extern void FreeResourceNode_2D3710(cMovieTrack *track);
 extern int FindEntryValue_1FF9C0(char *table, char *name, int *size, char *key);
 extern void mwPlyStartAfsLp(int handle, int a1, int found);
 extern void mwPlyStartAfs(int handle, int a1, int found);
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *snd, int b, int c, void *obj, int e, int f, int g, int h);
 extern float Turn_dest_dir(float cur, float dest, float speed);
 extern float Adjust_theta(float f12);
 
@@ -173,7 +172,7 @@ void cGameObjTurn_stepTurn(cGameObjTurn *self) {
     switch (self->base.step) {
     case 0:
         if (self->base.actorId != ACTOR_ID_A && self->base.actorId != ACTOR_ID_B) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 3, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 3, (cObj *)self, 0, 0, 0, 0);
         }
         self->base.stepArg = 0;
         self->base.step = 1;

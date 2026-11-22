@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
-extern unsigned char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
 extern float capVu0Atan2(float y, float x);
@@ -22,18 +21,18 @@ __attribute__((section(".text.cEm00_stepFaceLinkTarget"))) void cEm00_stepFaceLi
 {
     char buf[0x30] __attribute__((aligned(16)));
     int s2v, s1v;
-    char *g;
+    cSnd *g;
 
     switch (self->step) {
         case 0: {
             int v0 = EM_RES(self);
             char *p;
-            g = (char *)&D_005FEE00;
+            g = &D_005FEE00;
             s2v = EM_RES_REC(v0, 0x270);
             s1v = EM_RES_REC(v0, 0x274);
-            cSnd_SeCall_2CBA48(g, 0, 0xCF, self, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(g, 0, 0x2D, self, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(g, 0, 0x32, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(g, 0, 0xCF, (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(g, 0, 0x2D, (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(g, 0, 0x32, (cObj *)self, 0, 0, 0, 0);
             self->hitFlash = 5.0f;
             func_0012C348(self, 2);
             CallWithAndClearField698_12AC28(self);

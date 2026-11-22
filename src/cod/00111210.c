@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
@@ -9,12 +10,10 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern unsigned int irand(void);
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
-extern char D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
@@ -117,9 +116,9 @@ void func_0011AAA0(void *a0)
         }
         func_002A8578(s1, p1, p2, 1, 0.0f, 0, 0);
         if (irand() & 1) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xCF, a0, 0, 0, 0, 0);
         } else {
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD0, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD0, a0, 0, 0, 0, 0);
         }
         func_0012C348(s1, 1);
         pl00_clearMotionCam(s1, 0, 0);
@@ -294,11 +293,11 @@ void func_00111210(void *a0)
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
-        char *g = D_005FEE00;
+        cSnd *g = &D_005FEE00;
         cSnd_SeStop(g, *(int *)(s1 + 0x161C));
         *(int *)(s1 + 0x161C) = 0;
-        *(int *)(g + 0xB0) &= 0xFFBFFFFF;
-        *(int *)(g + 0xAC) &= 0xFFBFFFFF;
+        g->flagsB0 &= 0xFFBFFFFF;
+        g->flagsAC &= 0xFFBFFFFF;
     }
     if (func_00123938(s1, 1) != 0) {
         func_00129630(s1);

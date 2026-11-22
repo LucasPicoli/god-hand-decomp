@@ -1,6 +1,6 @@
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 extern int D_00754200;
-extern char D_005FEE00[];
 
 __attribute__((section(".text.InitAllocBuffer_14FE08")))
 void InitAllocBuffer_14FE08(unsigned char *a0, int a1) {
@@ -51,7 +51,7 @@ void AddQueueEntry_1FF4D0(int a0, int a1)
 
     new_var = a1 - 0x200;
     if ((unsigned int)new_var < 0xFF) {
-        v0 = func_002CB278(D_005FEE00);
+        v0 = func_002CB278(&D_005FEE00);
         base = (int *)((char *)s0 + 0x24);
         q1 = base + s0[6];
         *q1 = v0;

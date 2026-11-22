@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern int GetSeqSEBase(void *a0);
 extern int irand(void);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, void *t0, int t1, int t2, int t3);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -12,9 +11,9 @@ extern unsigned char D_005FEE00[];
 
 
 
-#define SE(k) cSnd_SeCall_2CBA48(&D_005FEE00, 1, \
-                                 (short)(GetSeqSEBase(p) + (k)), \
-                                 p, 0, 0, 0, 0)
+#define SE(obj, k) cSnd_SeCall_2CBA48(&D_005FEE00, 1, \
+                                      (short)(GetSeqSEBase(obj) + (k)), \
+                                      (obj), 0, 0, 0, 0)
 
 __attribute__((section(".text.func_002744E0")))
 void func_002744E0(void *a0)
@@ -25,25 +24,25 @@ void func_002744E0(void *a0)
     default:
     case 0x202:
         if ((irand() & 1) != 0) {
-            SE(0xA);
+            SE(a0, 0xA);
         } else {
-            SE(0xB);
+            SE(a0, 0xB);
         }
         break;
     case 0x20b:
         switch ((unsigned int)irand() & 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         case 3:
-            SE(0xF);
+            SE(a0, 0xF);
             break;
         }
         break;
@@ -52,22 +51,22 @@ void func_002744E0(void *a0)
             switch (irand() & 1) {
             default:
             case 0:
-                SE(0xA);
+                SE(a0, 0xA);
                 break;
             case 1:
-                SE(0xF);
+                SE(a0, 0xF);
                 break;
             }
         } else if ((irand() & 1) != 0) {
-            SE(0xF);
+            SE(a0, 0xF);
         } else {
             switch (irand() & 1) {
             default:
             case 0:
-                SE(0xB);
+                SE(a0, 0xB);
                 break;
             case 1:
-                SE(0xE);
+                SE(a0, 0xE);
                 break;
             }
         }
@@ -76,22 +75,22 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 6) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         case 3:
-            SE(0xF);
+            SE(a0, 0xF);
             break;
         case 4:
-            SE(0x10);
+            SE(a0, 0x10);
             break;
         case 5:
-            SE(0x11);
+            SE(a0, 0x11);
             break;
         }
         break;
@@ -104,19 +103,19 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 5) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         case 3:
-            SE(0xF);
+            SE(a0, 0xF);
             break;
         case 4:
-            SE(0x10);
+            SE(a0, 0x10);
             break;
         }
         break;
@@ -125,46 +124,46 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 5) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         case 3:
-            SE(0xF);
+            SE(a0, 0xF);
             break;
         case 4:
-            SE(0x10);
+            SE(a0, 0x10);
             break;
         case 5:
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)0x1A, p, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)0x1A, a0, 0, 0, 0, 0);
             break;
         }
         break;
     case 0x264:
         if ((irand() & 1) != 0) {
-            SE(0xA);
+            SE(a0, 0xA);
         } else {
-            SE(0xB);
+            SE(a0, 0xB);
         }
         break;
     case 0x265:
         switch ((unsigned int)irand() & 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         case 3:
-            SE(0xF);
+            SE(a0, 0xF);
             break;
         }
         break;
@@ -172,13 +171,13 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         }
         break;
@@ -186,13 +185,13 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         }
         break;
@@ -200,13 +199,13 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         }
         break;
@@ -214,13 +213,13 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         }
         break;
@@ -228,13 +227,13 @@ void func_002744E0(void *a0)
         switch ((unsigned int)irand() % 3) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         case 2:
-            SE(0xE);
+            SE(a0, 0xE);
             break;
         }
         break;
@@ -242,34 +241,34 @@ void func_002744E0(void *a0)
         switch (irand() & 1) {
         default:
         case 0:
-            SE(0xA);
+            SE(a0, 0xA);
             break;
         case 1:
-            SE(0xB);
+            SE(a0, 0xB);
             break;
         }
         break;
     case 0x256:
     case 0x27e:
         if ((*(unsigned short *)(p + 0x3AC) & 2) != 0) {
-            SE(0xB);
+            SE(a0, 0xB);
         } else {
             switch ((unsigned int)irand() % 5) {
             default:
             case 0:
-                SE(0xB);
+                SE(a0, 0xB);
                 break;
             case 1:
-                SE(0xE);
+                SE(a0, 0xE);
                 break;
             case 2:
-                SE(0xF);
+                SE(a0, 0xF);
                 break;
             case 3:
-                SE(0x10);
+                SE(a0, 0x10);
                 break;
             case 4:
-                SE(0x11);
+                SE(a0, 0x11);
                 break;
             }
         }

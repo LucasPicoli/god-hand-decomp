@@ -3,6 +3,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/heapArena.h"
 #include "godhand/heapList.h"
@@ -13,7 +14,6 @@ extern void *cSnd_GetSeData(cSnd *self, int i);
 extern cBgmData *cSnd_GetBgmData(cSnd *self, int i);
 extern void cSeData_Update(void *se);
 extern void cBgmData_UpdateLoad(cBgmData *bgm);
-extern void SetEffectPos(int kind, int effNo, int a2, void *pos, int a4, float scale);
 extern void func_002FBED0(void *self);
 extern void BufHolder_deletingDtor(int entry, int mode);
 extern void cHeap_free(int heap, int *node);
@@ -73,16 +73,16 @@ typedef struct EffObj {
 __attribute__((section(".text.EffObj_startEffectAtPos")))
 void EffObj_startEffectAtPos(EffObj *self)
 {
-    float pos[4] __attribute__((aligned(16)));
+    cVec pos;
     float *p;
-    VU0_SQC2_VF0(pos, 0);
+    VU0_SQC2_VF0(&pos, 0);
     p = (*(GetPosFn *)(self->vt + VT_GETPOS_FN))((char *)self + *(short *)(self->vt + VT_GETPOS_DELTA));
-    if (pos != p) {
-        pos[0] = p[0];
-        pos[1] = p[1];
-        pos[2] = p[2];
+    if (&pos.x != p) {
+        pos.x = p[0];
+        pos.y = p[1];
+        pos.z = p[2];
     }
-    SetEffectPos(1, self->effNo, 0, pos, -1, 1.0f);
+    SetEffectPos(1, self->effNo, 0, &pos, 1.0f, -1);
 }
 
 typedef struct ScrollObj {

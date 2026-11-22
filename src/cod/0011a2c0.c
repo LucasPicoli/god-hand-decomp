@@ -1,15 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/pl00.h"
 
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_005FEE00[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
@@ -40,7 +39,7 @@ void func_0011A2C0(void *a0)
     cEmManage_SetSlotWait(&D_005864F0, 2);
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x200;
     if (func_0010B2E8(s1, 0) != 0) {
-        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s1, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, a0, 0, 0, 0, 0);
     }
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:

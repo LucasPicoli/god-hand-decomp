@@ -14,8 +14,6 @@
 #define SE_MENU_MOVE   0x15F
 #define SE_MENU_CANCEL 0x161
 
-extern cSnd D_005FEE00;
-extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 
 /* Moves the menu's three-way selection (-1, 0, 1) with the pad and handles decide and cancel while the panel is shown. */
 __attribute__((section(".text.func_001682C8")))

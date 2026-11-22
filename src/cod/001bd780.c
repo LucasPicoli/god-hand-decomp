@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmb2.h"
+#include "godhand/cSnd.h"
 
 extern void cOmSub_initMove1_pos(void *move, void *obj, int idx, int frames, cVec *pos, float a, float b);
 extern void cOmSub_initMove3_y(void *move, void *obj, int idx, cVec *dir, float a, float b, float c);
 extern int cOmSub_move(void *move);
-extern int cSnd_SeCall_2CB8A0(char *snd, int slot, int key, int idA, int idB, int a5, int a6);
-extern char D_005FEE00[];
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
 extern void SetFlagOnEntries7C_1D51B8(void *obj, int entry, int on);
@@ -54,7 +53,7 @@ void cOmb2_updateSlide(cOmb2Slide *self)
             v.w = 1.0f;
             cOmSub_initMove3_y(self->base.move, self, -1, &v, SLIDE_DECAY, -self->slideY, v.x);
         }
-        cSnd_SeCall_2CB8A0(D_005FEE00, 2, SLIDE_SE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 2, SLIDE_SE, -1, -1, 0, 0);
         self->base.base.step = 0;
         self->playing = 1;
         self->base.base.phase = 1;

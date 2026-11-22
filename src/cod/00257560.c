@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -8,14 +9,12 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
 extern void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(int a0, int a1);
 extern int GetSeqSEBase(void *a0);
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_002726F8(void *a0);
 extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern int moveMotion(void *a0);
 extern void func_00274FE8(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -214,8 +213,8 @@ __attribute__((section(".text.func_00257560"))) void func_00257560(cEm00 *self)
                     break;
             }
             func_002A8578(s2, s1v, s0v, 5, 0.0f, s3, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(s2), s2, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x112, s2, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(s2), (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x112, (cObj *)self, 0, 0, 0, 0);
             c17c1 = *(unsigned char *)(s2 + 0x17C1);
             if (c17c1 == 0) {
                 lim548 = *(short *)(s2 + 0x548);

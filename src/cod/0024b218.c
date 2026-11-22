@@ -1,16 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern unsigned char D_005FEE00[];
 extern void *Getplayer(void);
 extern int irand(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f);
@@ -25,7 +24,7 @@ extern void func_0026DB00(void *a0, int a1, int a2);
 __attribute__((section(".text.func_0025FCF8"))) void func_0025FCF8(cEm00 *self)
 {
     char *s1 = (char *)self;
-    void *self;
+    void *dmg;
     int p;
     int nb;
     int b;
@@ -33,15 +32,15 @@ __attribute__((section(".text.func_0025FCF8"))) void func_0025FCF8(cEm00 *self)
     float one;
 
     p = *(int *)(s1 + 0x214);
-    self = (*(void *(**)(void *))(p + 0xB4))(s1 + *(short *)(p + 0xB0));
+    dmg = (*(void *(**)(void *))(p + 0xB4))(s1 + *(short *)(p + 0xB0));
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0:
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
             b = *(int *)(s1 + 0x304);
             o = EM_RES_REC(b, 0x108C);
             func_002A8578(s1, o, o, 3, 0.0f, nb, 0);
-            cDamageUnit_SetDamageCollActive(self, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 8), s1, 0, 0, 0, 0);
+            cDamageUnit_SetDamageCollActive(dmg, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 8), (cObj *)self, 0, 0, 0, 0);
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 1:
             if (moveMotion(s1) != 0) {

@@ -8,7 +8,6 @@ extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
 extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern void cBgmData_Reset(cBgmData *);
 extern void cSndBgmNode_FadeOut(cSndBgmNode *, float);
-extern cSnd D_005FEE00;
 extern char D_00583F20[];
 extern void cSnd_SeVoiceCallAll(cSnd *, int, int);
 extern void cDvd_cancel(char *, int);
