@@ -1,7 +1,8 @@
 /* include/godhand/Poker.h - the casino poker table.
  *
  * Poker is one object of about 0x3040 bytes. Its layout is the same idea as
- * BlackJack (see BlackJack.h): display entries first, then the card deck of
+ * BlackJack (see BlackJack.h): display entries first (a cIDBase at 0x10 and
+ * its CustomIDWork elements from 0x60), then the card deck of
  * 52 objects with one flag word each, a hand of 5 card slots, the state
  * machine fields and the bet. Offsets are exact; unnamed fields stay as
  * unkNNN padding.
@@ -11,6 +12,7 @@
 
 #include "godhand/BlackJack.h"   /* BlackJackCard, BlackJackCardObj, BlackJackVtEnt */
 
+#define POKER_ELEM_NUM   0x4D   /* CustomIDWork elements of the display */
 #define POKER_DECK_NUM   52
 #define POKER_HAND_NUM   5
 #define POKER_SUIT_NUM   4
@@ -19,7 +21,11 @@
 #define POKER_CARD_RESET 0x9    /* BlackJackCard.flags of every card after a deck reset */
 
 typedef struct Poker {
-    char unk0000[0x2E60];
+    char unk0000[0x10];
+    cIDBaseObj id;                      /* 0x0010 the elements' display */
+    char unk0058[0x60 - 0x10 - sizeof(cIDBaseObj)];
+    CustomIDWork elem[POKER_ELEM_NUM];  /* 0x0060 */
+    char unk25AC[0x2E60 - 0x25AC];
     int level;                          /* 0x2E60 table level, 0..3 */
     BlackJackCard deck[POKER_DECK_NUM]; /* 0x2E64 */
     BlackJackCard *hand[POKER_HAND_NUM]; /* 0x3004 */
@@ -45,8 +51,14 @@ typedef struct Poker {
     short cardId[POKER_HAND_NUM];       /* 0x3052 card ids, POKER_CARD_NONE = empty slot */
 } Poker;                                /* 0x305C */
 
+typedef char Poker_level_check[((int)&((Poker *)0)->level == 0x2E60) ? 1 : -1];
+
 /* The table's UI record (a PanelObj) sits at 0x25B0 and is not typed in Poker yet. */
 #define POKER_UI(self)  ((char *)(self) + 0x25B0)
+
+/* Build the display: set up the cIDBase and its elements, hide element 0 and
+ * zero the shown numbers. */
+void func_001DD0D8(Poker *p);
 
 /* Sorted rank patterns of the nine non-royal straights (A-5 .. 9-K). */
 typedef struct PokerStraightTbl {

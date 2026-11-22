@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cCockGameOver.h"
 
-extern int cIDBase_getIDWork(void *this, int idx);
 extern void IconScreen_stepGrow(void *this);
 extern void func_0013D7B0(void *this);
 extern void IconScreen_waitChildDone(void *this);
 extern void func_0013DB50(void *this);
 extern void CustomIDWork_Main(void *p);
-extern void cIDBase_move(void *p);
 
 /* func_0013D540 — sn-2.95.3-136, --call-loop-pad.
    The CustomIDWork_Main sweep (for j=4; j>=0; j--) is the padded call-loop
@@ -22,19 +21,18 @@ extern void cIDBase_move(void *p);
 
 
 
-struct Obj { char _pad[0x94]; int ids[11]; };
 
 __attribute__((section(".text.func_0013D540")))
 void func_0013D540(void *this) {
     char *base = (char *)this;
-    struct Obj *o = (struct Obj *)this;
+    cCockGameOver *o = this;
     unsigned short i;
     int j;
-    char *pD0;
+    cIDBaseObj *pD0;
     char *p;
 
-    for (i = 0; i < 11; i++) {
-        o->ids[i] = cIDBase_getIDWork(this, i);
+    for (i = 0; i < COCKGAMEOVER_ENT_NUM; i++) {
+        o->ent[i] = cIDBase_getIDWork(&o->base, i);
     }
 
     switch (*(unsigned short *)(base + 0x92)) {
@@ -56,7 +54,7 @@ void func_0013D540(void *this) {
         func_0013DB50(this);
     }
 
-    pD0 = base + 0xD0;
+    pD0 = &o->base2;
     p = base + 0x120;
     for (j = 4; j >= 0; j--) {
         CustomIDWork_Main(p);

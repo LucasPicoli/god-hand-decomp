@@ -1,17 +1,17 @@
 /* sn-2.95.3-136 */
-#include "godhand/idSet.h"
+#include "godhand/cCockActButton.h"
 #include "godhand/globals.h"
 
 extern void cIDBase_move(cIDBaseObj *self);
 
 /* Bit 0 of the active byte is clear. */
-static __inline__ int IdSet_isStopped(IdSet *self)
+static __inline__ int cCockActButton_isStopped(cCockActButton *self)
 {
     return (self->active & 1) == 0;
 }
 
 /* Elements 7 and 8 show the message when one is set, and are hidden otherwise. */
-static __inline__ void IdSet_showMsg(IdSet *self)
+static __inline__ void cCockActButton_showMsg(cCockActButton *self)
 {
     if (self->msg != -1) {
         self->work[7]->flags &= ~IDENT_FLAG_NO_DRAW;
@@ -26,11 +26,11 @@ static __inline__ void IdSet_showMsg(IdSet *self)
 
 /* Id set update: hide every element group, then show the group of the current step and animate it. */
 __attribute__((section(".text.func_0013BD40")))
-void func_0013BD40(IdSet *self)
+void func_0013BD40(cCockActButton *self)
 {
     unsigned short i;
 
-    if (IdSet_isStopped(self))
+    if (cCockActButton_isStopped(self))
         return;
     for (i = 1; i < 5; i++)
         self->work[i]->flags |= IDENT_FLAG_NO_DRAW;
@@ -42,7 +42,7 @@ void func_0013BD40(IdSet *self)
     self->work[12]->flags |= IDENT_FLAG_NO_DRAW;
     self->work[0]->posX = self->x;
     self->work[0]->posY = self->y;
-    IdSet_showMsg(self);
+    cCockActButton_showMsg(self);
     switch (self->step) {
     case 0:
     case 1:
@@ -73,7 +73,7 @@ void func_0013BD40(IdSet *self)
                 D_003BD6E0 = 1;
             }
         }
-        IdSet_showMsg(self);
+        cCockActButton_showMsg(self);
         break;
     case 5:
         self->work[11]->flags &= ~IDENT_FLAG_NO_DRAW;

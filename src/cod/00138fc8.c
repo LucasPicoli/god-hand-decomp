@@ -98,7 +98,7 @@ __attribute__((section(".text.SlotUi_release")))
 void SlotUi_release(SlotUi *self)
 {
     SlotUiHost *host;
-    cIDBase_release(self->idBase2);
+    cIDBase_release(&self->id2);
     cIDBase_release(self);
     host = *D_003C2384;
     host->pickB = 0;

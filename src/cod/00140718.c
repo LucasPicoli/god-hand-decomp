@@ -18,7 +18,6 @@ typedef struct IDItemMenu {
     signed char wait;                   /* 0x384 */
 } IDItemMenu;
 
-extern cIDBaseEnt *cIDBase_getIDWork(void *base, int id);
 
 __attribute__((section(".text.func_00140718")))
 void func_00140718(IDItemMenu *m, int sel, int force)
@@ -31,13 +30,13 @@ void func_00140718(IDItemMenu *m, int sel, int force)
     m->wait += 10;
     n = 1;
     m->order[0] = &m->item[sel];
-    cIDBase_getIDWork(&m->item[sel], 0)->colorBase.c[3] = 0x80;
+    cIDBase_getIDWork(&m->item[sel].base, 0)->colorBase.c[3] = 0x80;
     for (i = sel - 1; i >= 0; i--) {
         m->order[n++] = &m->item[i];
-        cIDBase_getIDWork(&m->item[i], 0)->colorBase.c[3] = 0x20;
+        cIDBase_getIDWork(&m->item[i].base, 0)->colorBase.c[3] = 0x20;
     }
     for (i = sel + 1; i < m->count; i++) {
         m->order[n++] = &m->item[i];
-        cIDBase_getIDWork(&m->item[i], 0)->colorBase.c[3] = 0x20;
+        cIDBase_getIDWork(&m->item[i].base, 0)->colorBase.c[3] = 0x20;
     }
 }

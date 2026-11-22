@@ -10,7 +10,6 @@ extern void SetBlendField6AC_1D58F0(BlackJack *self, int on);
 extern void func_001D5360(BlackJack *self, int a);
 extern void func_001D5430(BlackJack *self, int a);
 extern void func_001D5500(BlackJack *self, int a);
-extern void CustomIDWork_SetNumber_1D5760(BlackJack *self, int n);
 extern int D_007474A0;
 
 /* Bet state: press a button to leave (deal or quit) or take chips back off the bet. */

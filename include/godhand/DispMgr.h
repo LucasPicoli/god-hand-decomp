@@ -16,6 +16,7 @@
 #include "godhand/cIDBaseScreen.h"
 #include "godhand/cCockGetPoint.h"
 #include "godhand/cCockItem.h"
+#include "godhand/cCockPrintData.h"
 #include "godhand/cCockTutorial.h"
 #include "godhand/TrackSet.h"
 
@@ -51,14 +52,6 @@ typedef struct cCockPlBar {
     char unk094[0x280 - 0x94];
 } cCockPlBar;                           /* 0x280 */
 
-/* The gold display (registered as kind 17). */
-typedef struct DispMgrGold {
-    char unk000[0x90];
-    int gold;                           /* 0x090 the gold shown */
-    cIDBaseEnt *num;                    /* 0x094 the number entry that shows it, 0 before setup */
-    char unk098[0x1D0 - 0x98];
-} DispMgrGold;                          /* 0x1D0 */
-
 /* The sub-record registered as kind 7 (class not yet known). */
 typedef struct DispMgrKind7 {
     char unk00[0x94];
@@ -81,7 +74,7 @@ typedef struct DispMgr {
     char unk1A18[0x1A20 - 0x1910 - sizeof(cCockItem)];
     cCockTutorial tutorial;             /* 0x1A20 */
     char unk1ADC[0x1AE0 - 0x1A20 - sizeof(cCockTutorial)];
-    DispMgrGold gold;                   /* 0x1AE0 */
+    cCockPrintData gold;                /* 0x1AE0 the gold display, registered as kind 17 */
     char unk1CB0[0x1E90 - 0x1CB0];
     TrackSet track;                     /* 0x1E90 */
     char unk2200[DISPMGR_SLOT_OFS - 0x1E90 - sizeof(TrackSet)];
@@ -90,7 +83,6 @@ typedef struct DispMgr {
 } DispMgr;                              /* 0x23C0 */
 
 typedef char cCockPlBar_size_check[(sizeof(cCockPlBar) == 0x280) ? 1 : -1];
-typedef char DispMgrGold_size_check[(sizeof(DispMgrGold) == 0x1D0) ? 1 : -1];
 typedef char DispMgrKind7_size_check[(sizeof(DispMgrKind7) == 0xF0) ? 1 : -1];
 typedef char DispMgr_nowLoading_check[((int)&((DispMgr *)0)->nowLoading == 0x3A0) ? 1 : -1];
 typedef char DispMgr_plBar_check[((int)&((DispMgr *)0)->plBar == 0x460) ? 1 : -1];
@@ -114,7 +106,7 @@ void func_001410A8(DispMgr *self);
 /* Run the player bar's hook method (vtable entry DISPMGR_SUB_HOOK). */
 void cCockPlBar_initData(cCockPlBar *self);
 /* Show the current gold in the gold display, then reset the gold being added. */
-void func_00143A90(DispMgrGold *self);
+void func_00143A90(cCockPrintData *self);
 
 /* Retail's name for this word, from the script table at 0x4137A0: a pointer to the DispMgr at 0x464080, which every reader reaches through this word. */
 extern DispMgr *Cockpit;

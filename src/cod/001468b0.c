@@ -3,7 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
-#include "godhand/CustomIDWork.h"
+#include "godhand/cCockScroll.h"
 #include "godhand/globals.h"
 
 extern unsigned short D_00747A50;
@@ -11,7 +11,6 @@ extern void func_0026ECD0(cEm00 *self, int flag);
 extern float ESLib_ESHermite(float t, float p0, float p1, float m0, float m1);
 extern void cHeap_free(int heap, int *block);
 extern void cIDBase_initIDWork(void *part, int idx);
-extern CustomIDWork *cIDBase_getIDWork(void *part, int idx);
 extern void StoreVecFromFieldB0_2B6160(void *dst, void *self);
 extern float capVu0Length(void *a0);
 extern char *D_005CAFF0;
@@ -102,27 +101,13 @@ void BlockOwner_dtor(BlockOwner *self, int flags)
     func_002FBE28(self, flags);
 }
 
-#define IDPAIR_WORK_NUM  4
-#define IDPAIR_AMP       (-50.0f)       /* sine amplitude of the first element of each part */
-
-/* A display with two cIDBase parts, at 0 and 0xA0, and four state bytes at 0x79. */
-typedef struct IdPair {
-    char unk00[0x79];
-    unsigned char state[4];             /* 0x79 */
-    char unk7D[0x85];
-    short timer;                        /* 0x102 */
-} IdPair;
-
-
-
-
-/* Clear the state bytes, initialise the four elements of both parts, give
- * the first element of each part its sine amplitude and set the timer to 90. */
-__attribute__((section(".text.IdPair_init")))
-void IdPair_init(IdPair *self)
+/* Clear the state bytes, initialise the four entries of both parts, put the
+ * first entry of each part at the top and set the timer to 90. */
+__attribute__((section(".text.cCockScroll_reset")))
+void cCockScroll_reset(cCockScroll *self)
 {
     unsigned short i;
-    char *part;
+    cIDBaseObj *part;
 
     i = 0;
     self->state[0] = 0;
@@ -132,16 +117,16 @@ void IdPair_init(IdPair *self)
     do {
         cIDBase_initIDWork(self, i);
         i = i + 1;
-    } while (i < IDPAIR_WORK_NUM);
-    cIDBase_getIDWork(self, 0)->offsAmp[0] = IDPAIR_AMP;
+    } while (i < COCKSCROLL_WORK_NUM);
+    cIDBase_getIDWork(&self->base, 0)->posY = COCKSCROLL_TOP;
     i = 0;
-    part = (char *)self + 0xA0;
+    part = &self->part2;
     do {
         cIDBase_initIDWork(part, i);
         i = i + 1;
-    } while (i < IDPAIR_WORK_NUM);
-    cIDBase_getIDWork(part, 0)->offsAmp[0] = IDPAIR_AMP;
-    self->timer = 0x5A;
+    } while (i < COCKSCROLL_WORK_NUM);
+    cIDBase_getIDWork(part, 0)->posY = COCKSCROLL_TOP;
+    self->timer = COCKSCROLL_SHOW_TIME;
 }
 
 /* A trigger object with a reach (a float at 0x2B8); 0 means it always fires. */

@@ -4,7 +4,6 @@
 
 extern int *D_003C2384;
 extern int D_003C2388;
-extern void cIDBase_initEntry(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent);
 
 /* Hide or show an entry and, recursively, its parent chain. */
 __attribute__((section(".text.cIDBase_setDispParent")))
@@ -46,7 +45,7 @@ __attribute__((section(".text.cIDBase_initEntry")))
 void cIDBase_initEntry(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent)
 {
     ent->src = src;
-    ent->seed = 0xBC614E;
+    ent->number = 0xBC614E;
     ent->kind = src->kind;
     ent->flags = src->flags;
     ent->posX = src->posX;

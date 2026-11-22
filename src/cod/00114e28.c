@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cIDBase.h"
 #include "godhand/effectPos.h"
 #include "godhand/globals.h"
 
@@ -33,7 +34,6 @@ extern void cDvd_CheckWait();
 extern void cIDManager_setIDData();
 extern void cIDBase_initialize();
 extern void cIDBase_resetAnim();
-extern char *cIDBase_getIDWork();
 extern int D_003C2388;
 extern char D_00583F20[];
 extern char D_00754220[];
@@ -322,10 +322,14 @@ void func_00114E28(void *a0)
 
 
 
-typedef struct { char b[0x50]; } IDBase50;
+typedef struct {
+    cIDBaseObj id;
+    char pad48[0x50 - sizeof(cIDBaseObj)];
+} IDBase50;
 
 typedef struct {
-    char pad00[0x90];
+    cIDBaseObj base;     /* 0x00 */
+    char pad48[0x90 - sizeof(cIDBaseObj)];
     int f90;             /* 0x90 */
     char pad94[0xC];
     int fA0;             /* 0xA0 */
@@ -355,23 +359,23 @@ void cCockMiddleBoss_roomInit(MiddleBoss *a0) {
             a0->fA4 = r;
             cDvd_CheckWait(D_00583F20, r);
             cIDManager_setIDData(*D_003C2384, 0xD, a0->fA0);
-            cIDBase_initialize(a0, 0xD, 0);
-            cIDBase_resetAnim(a0);
-            *(float *)(cIDBase_getIDWork(a0, 0) + 0x38) = -100.0f;
+            cIDBase_initialize(&a0->base, 0xD, 0);
+            cIDBase_resetAnim(&a0->base);
+            cIDBase_getIDWork(&a0->base, 0)->posX = -100.0f;
             a0->f90 = 0;
             for (i = 0; i < 5; i++) {
                 IDBase50 *id = &a0->id[i];
-                char *w;
-                cIDBase_initialize(id, 0xD, 1);
-                cIDBase_resetAnim(id);
+                cIDBaseEnt *w;
+                cIDBase_initialize(&id->id, 0xD, 1);
+                cIDBase_resetAnim(&id->id);
                 a0->f2C0[i] = 1.0f;
                 a0->f2D4[i] = 1.0f;
                 a0->f2E8[i] = 1.0f;
                 a0->f2FC[i] = 0;
                 a0->f370[i] = 0;
                 a0->fA8[i] = 0;
-                w = cIDBase_getIDWork(id, 0);
-                *(float *)(w + 0x3C) = *(float *)(cIDBase_getIDWork(a0, 0) + 0x3C);
+                w = cIDBase_getIDWork(&id->id, 0);
+                w->posY = cIDBase_getIDWork(&a0->base, 0)->posY;
             }
         }
     } while (0);

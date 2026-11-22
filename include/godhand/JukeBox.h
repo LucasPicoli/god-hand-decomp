@@ -1,7 +1,7 @@
 /* include/godhand/JukeBox.h - the casino jukebox screen.
  *
- * JukeBox owns one cIDBase at 0x30 (the on-screen ID object, 0x50 bytes) and
- * the loaded data file whose handle sits at 0x80. JukeBox_Execute runs the
+ * JukeBox owns one cIDBase at 0x30 (the on-screen ID object: a cIDBaseObj and
+ * 8 bytes up to 0x78) and the loaded data file whose handle sits at 0x80. JukeBox_Execute runs the
  * whole screen from one call; func_001F5A98 loads and sets it up, JukeBox_Release
  * tears it down.
  *
@@ -11,12 +11,14 @@
 #ifndef GODHAND_JUKEBOX_H
 #define GODHAND_JUKEBOX_H
 
+#include "godhand/cIDBase.h"
+
 #define JUKEBOX_ID_NO       0x1E    /* ID data slot of the jukebox screen */
 #define JUKEBOX_ID_OFFSET   0x30
 #define JUKEBOX_BGM_NONE    (-2)
 
 typedef struct JukeBoxObj {
-    unsigned char unk00;
+    unsigned char type;         /* 0x00 index into the hook table D_003BF0E0 */
     unsigned char unk01;
     unsigned char unk02;
     unsigned char unk03;
@@ -32,8 +34,12 @@ typedef struct JukeBoxObj {
     int unk20;                  /* 0x20 */
     int bgmEvent;               /* 0x24 id of the running BGM event */
     char unk28[8];
-    char idBase[0x50];          /* 0x30 cIDBase */
+    cIDBaseObj idBase;          /* 0x30 */
+    char unk78[8];
     int dataFile;               /* 0x80 loaded file, 0 if none */
 } JukeBoxObj;
+
+/* One frame: run the step hook for `type`, then move and draw the ID object. */
+void Entry_runHookAndDraw(JukeBoxObj *self);
 
 #endif

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/ScenarioCursor.h"
+#include "godhand/cCockAlert.h"
 
 extern void func_002BF708(ScenarioCursor *self);
 extern void SysFlags_saveAndFreeze(ScenarioCursor *self);
@@ -11,7 +12,6 @@ extern void ReleaseObj(void *obj);
 extern void func_002FBE28(void *self, int flags);
 extern void func_002D5790(void *work);
 extern void cIDBase_restartAnim(void *self);
-extern void *cIDBase_getIDWork(void *self, int idx);
 
 /* Re-initialise a second scenario cursor: run the two reset steps, tell the manager,
  * then set its four state bytes (step = 2, keep = old keep value, rest 0). */
@@ -72,10 +72,9 @@ void TaskPool_runAll(TaskPool *self) {
 #define ENTRY_COUNT 3
 
 typedef struct IdScreen3 {
-    char unk00[0x1C];
-    unsigned char started;              /* 0x1C */
-    char unk1D[0x73];
-    void *ent[ENTRY_COUNT];             /* 0x90 */
+    cIDBaseObj base;                    /* 0x00 */
+    char unk48[0x90 - sizeof(cIDBaseObj)];
+    cIDBaseEnt *ent[ENTRY_COUNT];       /* 0x90 */
 } IdScreen3;
 
 
@@ -86,38 +85,24 @@ __attribute__((section(".text.IdScreen3_refillEntries")))
 void IdScreen3_refillEntries(IdScreen3 *self) {
     unsigned short i = 0;
     cIDBase_restartAnim(self);
-    self->started = 1;
+    self->base.playing = 1;
     do {
-        self->ent[i] = cIDBase_getIDWork(self, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
     } while (i < ENTRY_COUNT);
 }
 
-#define ENTRY_COUNT 4
-
-typedef struct IdScreen4 {
-    char unk00[0x1C];
-    unsigned char started;              /* 0x1C */
-    char unk1D[0x73];
-    int unk90;                          /* 0x90 */
-    int sel;                            /* 0x94 */
-    void *ent[ENTRY_COUNT];             /* 0x98 */
-} IdScreen4;
-
-
-
-
 /* Restart the animation and refill the 4 entry pointers at 0x98 from
  * cIDBase_getIDWork, then clear the selection word at 0x94. */
-__attribute__((section(".text.IdScreen4_refillEntries")))
-void IdScreen4_refillEntries(IdScreen4 *self) {
+__attribute__((section(".text.cCockAlert_refillEntries")))
+void cCockAlert_refillEntries(cCockAlert *self) {
     unsigned short i = 0;
     self->unk90 = 0;
     cIDBase_restartAnim(self);
-    self->started = 1;
+    self->base.playing = 1;
     do {
-        self->ent[i] = cIDBase_getIDWork(self, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
-    } while (i < ENTRY_COUNT);
+    } while (i < COCKALERT_ENT_NUM);
     self->sel = 0;
 }

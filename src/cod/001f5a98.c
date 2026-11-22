@@ -47,12 +47,12 @@ __attribute__((section(".text.JukeBox_Load")))
 int JukeBox_Load(JukeBoxObj *self)
 {
     char name[0x40];
-    char *id;
+    cIDBaseObj *id;
     int h;
     char *game;  /* retail keeps the full address of D_007474A0 in one register */
 
     cIDManager_getLocalFileName(D_003C2388, name, D_0042C000, -1);
-    id = self->idBase;
+    id = &self->idBase;
     h = cDvd_ReadAlloc(D_00583F20, name, &self->dataFile, D_00754220, 0, 0, 0, 0);
     cDvd_CheckWait(D_00583F20, h);
     cIDManager_setIDData(*D_003C2384, JUKEBOX_ID_NO, self->dataFile);
@@ -89,7 +89,7 @@ int JukeBox_Load(JukeBoxObj *self)
         self->unk1C = 0;
     }
     SlotList_selectPrev(self);
-    self->unk00 = 0;
+    self->type = 0;
     self->unk01 = 0;
     self->unk02 = 0;
     self->unk03 = 0;

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/motion.h"
+#include "godhand/BlackJack.h"
 #include "godhand/globals.h"
 
 extern void func_002A84A8(void *a0, int a1, int a2, int a3, float f12);
@@ -48,8 +49,8 @@ void cCollisionSolidManage_CreateSphere(int a0, int a1, int a2, int a3, float f)
 }
 
 __attribute__((section(".text.CustomIDWork_SetNumber_1D5760")))
-void CustomIDWork_SetNumber_1D5760(char *a0, int number) {
-    CustomIDWork_SetNumber(a0 + 0x158, number);
+void CustomIDWork_SetNumber_1D5760(BlackJack *self, int number) {
+    CustomIDWork_SetNumber(&self->elem[BLACKJACK_ELEM_NUMBER], number);
 }
 
 __attribute__((section(".text.cFILTER_gif_tag_start")))

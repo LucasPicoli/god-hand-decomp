@@ -12,7 +12,6 @@ extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
 extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_restartAnim(void *self);
-extern void *cIDBase_getIDWork(void *self, int idx);
 extern void **D_003C2384;
 extern float Curve_sample(void *a0, int a1, int a2, int a3);
 
@@ -80,7 +79,7 @@ void IdDispObj16_construct(IdDispObj16 *self)
         self->state = IDOBJ16_PLAYING;
     }
     for (i = 0; i < IDOBJ16_WORK_NUM; i++) {
-        self->work[i] = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
     }
     if (self->variant == 1) {
         IdDispLink *link;

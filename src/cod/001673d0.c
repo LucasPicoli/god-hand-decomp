@@ -12,7 +12,6 @@ extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
 extern int cIDBase_setPackedMessData(void *self, int kind, int arg);
-extern void *cIDBase_getIDWork(void *self, int idx);
 extern void **D_003C2384;
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
@@ -158,7 +157,7 @@ void IdDispObj_constructKind1B(IdDispObj *self)
         self->b5D = 0;
     }
     for (i = 0; i < IDOBJ_WORK_NUM; i++) {
-        self->work[i] = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
     }
     self->b110 = 0;
     self->b111 = 0;

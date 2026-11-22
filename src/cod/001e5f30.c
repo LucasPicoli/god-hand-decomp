@@ -76,7 +76,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
             }
         }
         cCoreSave_addCasinoTicket(&D_00569B70, 1);
-        Cockpit->item.ticketSeed =
+        Cockpit->item.ticketNumber =
             (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
         func_001E6ED8(self, 0, 0);
         func_001E6D48(self, 0, 0);

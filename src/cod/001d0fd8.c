@@ -12,7 +12,6 @@ extern float D_00568050[4];
 extern void cOmTrump_Initialize(BlackJackCardObj *obj, int rank);
 extern void func_001D4DF0(BlackJack *self);
 extern void BlackJackId_SetDefaultDisp(BlackJack *self);
-extern void CustomIDWork_SetNumber_1D5760(BlackJack *self, int n);
 extern void func_001D5780(BlackJack *self, int gold);
 extern int *D_003C2384;
 extern void *D_003C2380;

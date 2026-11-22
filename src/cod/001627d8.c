@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/DispMgr.h"
+#include "godhand/cIDBase.h"
 #include "godhand/globals.h"
 
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0();
@@ -8,7 +9,6 @@ extern void cIDManager_setIDData();
 extern void cIDBase_initialize();
 extern void cIDBase_restartAnim();
 extern int cIDBase_setPackedMessData();
-extern int cIDBase_getIDWork(void *self, int idx);
 extern void func_00162B18();
 extern void func_00162C98();
 extern void func_001630E8();
@@ -36,10 +36,19 @@ extern int D_00747A24;
 
 
 
+/* cSubScrMap, retail's name (its type-info function func_00164E88 registers
+ * "10cSubScrMap"): a display (ID set 7) with its 0x1C entries cached at 0x80;
+ * the rest is read at offsets. */
+typedef struct cSubScrMap {
+    cIDBaseObj base;
+    char unk48[0x80 - sizeof(cIDBaseObj)];
+    cIDBaseEnt *ent[0x1C];
+} cSubScrMap;
+
 __attribute__((section(".text.func_001627D8")))
-void func_001627D8(void *a0) {
+void func_001627D8(cSubScrMap *a0) {
     char *s1 = (char *)a0;
-    int *p;
+    cIDBaseEnt **p;
     int i;
     unsigned long t;
 
@@ -53,9 +62,9 @@ void func_001627D8(void *a0) {
         cIDBase_setPackedMessData(s1, 7, 1);
         *(int *)(s1 + 0x60) = 3;
     }
-    p = (int *)(s1 + 0x80);
+    p = a0->ent;
     for (i = 0; i < 0x1C; i++) {
-        p[i] = cIDBase_getIDWork(s1, i);
+        p[i] = cIDBase_getIDWork(&a0->base, i);
     }
     for (i = 1; i < 9; i++) {
         int k = i + 8;
