@@ -1,11 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGrid.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_001B6FB8(void *a0);
-extern int func_0012EAD8(void *a0, void *a1, void *a2, float *a3, float *t0,
-                         float *t1, float *t2, float *t3,
-                         float *s0, float *s1, float *s2, float *s3);
 extern char D_005CAE50[];
 
 typedef struct Blob {
@@ -23,7 +21,7 @@ int func_001A83E0(void *a0)
     float *pb;
     float *pc;
     float *pd;
-    int r;
+    cCollisionScrollSolid *r;
     char *p80;
 
     func_001B6FB8(s0);
@@ -51,6 +49,6 @@ int func_001A83E0(void *a0)
     p80 = s0 + 0x80;
     r = func_0012EAD8(D_005CAE50, s0, p80, &f[8], &f[12], &f[4], &f[16], &f[20],
                       &f[24], &f[28], &f[32], &f[36]);
-    *(int *)(s0 + 0x600) = r;
+    *(cCollisionScrollSolid **)(s0 + 0x600) = r;
     return 1;
 }

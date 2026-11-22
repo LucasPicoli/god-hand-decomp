@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cOm1f.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cOm5a.h"
 
 extern int cOm5a_setCloseFix();
 extern int cOm5a_setOpenFix();
@@ -68,16 +69,16 @@ void cOm5a_setClose(unsigned char *a0)
 
 
 __attribute__((section(".text.cOm5a_setOpenType")))
-void cOm5a_setOpenType(int a0, int a1) {
-    if (*(int *)((char *)a0 + 0x600) == a1) {
+void cOm5a_setOpenType(cOm5a *self, int type) {
+    if (self->openType == type) {
         return;
     }
-    if (*(unsigned char *)((char *)a0 + 0x60D) == 1) {
-        cOm5a_setCloseFix(a0);
-        *(int *)((char *)a0 + 0x600) = a1;
-        cOm5a_setOpenFix(a0);
+    if (self->open == 1) {
+        cOm5a_setCloseFix(self);
+        self->openType = type;
+        cOm5a_setOpenFix(self);
     } else {
-        *(int *)((char *)a0 + 0x600) = a1;
+        self->openType = type;
     }
 }
 
