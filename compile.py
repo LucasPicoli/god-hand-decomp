@@ -1263,8 +1263,8 @@ SUPPORTED_COMPILERS = frozenset(
 # block-scoped locals never escape can share one stack slot between blocks,
 # which C never does, and some retail frames need that: `func_001ABE80` is
 # 315 words in a 0x140 frame only as C++. But sn-2.95.3-136's cc1plus also
-# emits one exception FDE per function into `.data` (0x38 bytes for a
-# one-function unit), which retail doesn't have, and `.data` then shifts.
+# emits one exception FDE per function into `.data` (0x5C bytes in
+# func_001ABE80's unit), which retail doesn't have, and `.data` then shifts.
 # The flag removes that block and leaves `.text` as it was. The ee strip
 # (`strip_cxx_frame`) can't stand in: it looks for `__FRAME_BEGIN__:`, and
 # SN's `.s` names the label `__FRAME_BEGIN__0:` (#60).

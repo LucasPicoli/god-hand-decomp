@@ -7,10 +7,10 @@ extern "C" {
 #include "godhand/cScrSpriteDraw.h"
 #include "godhand/cGrid.h"
 
-/* The six axis vectors func_0012EAD8 takes for the box. */
-typedef struct cOm5aBoxAxes {
+/* The six face records func_0012EAD8 copies into the box (u.box.face[0..5]). */
+typedef struct cOm5aBoxFaces {
     cVec v[6];
-} cOm5aBoxAxes;
+} cOm5aBoxFaces;
 
 /* As its definition takes it (src/cod/001b6fb8.c). cOmHitVolumeSetup.h
  * declares it for cOmHitVolume. */
@@ -19,7 +19,7 @@ extern int func_001B6FB8(void *self);
  * it as unsigned short. */
 extern unsigned char D_00747A50[];
 extern char D_005CAE50[];
-extern cOm5aBoxAxes D_00427DC0;
+extern cOm5aBoxFaces D_00427DC0;
 
 /* Sets all four components of v. */
 static __inline__ void om5a_vec(cVec *v, float x, float y, float z, float w)
@@ -32,7 +32,7 @@ static __inline__ void om5a_vec(cVec *v, float x, float y, float z, float w)
 
 /* Sets the object up: a sphere take on the first child, a box give, 80 hit
  * points times a factor picked by D_00747A50[1], the collision box, and the
- * open type from the lock. */
+ * open type from unk5E0's type. */
 __attribute__((section(".text.func_001ABE80")))
 int func_001ABE80(cOm5a *self)
 {
@@ -96,22 +96,22 @@ int func_001ABE80(cOm5a *self)
     {
         cVec half;
         cVec zero;
-        cOm5aBoxAxes ax;
+        cOm5aBoxFaces faces;
 
         om5a_vec(&center, size.x, size.y, size.z, 1.0f);
         VU0_VADDX_XYZ_MEM(&center, 0, 0.1f);
         om5a_vec(&half, 0.0f, size.y * 0.5f, 0.0f, 1.0f);
         om5a_vec(&zero, 0.0f, 0.0f, 0.0f, 1.0f);
-        ax = D_00427DC0;
+        faces = D_00427DC0;
         mtx = self->base.mtx;
         func_0012EAD8(D_005CAE50, self, mtx, &half, &zero, &center,
-                      &ax.v[0], &ax.v[1], &ax.v[2], &ax.v[3], &ax.v[4], &ax.v[5]);
+                      &faces.v[0], &faces.v[1], &faces.v[2], &faces.v[3], &faces.v[4], &faces.v[5]);
     }
     self->base.flags2 |= 0x188;
     func_001ADA70(self, 3.1f);
     cOm5a_setFaceOpen(self);
-    if (self->lock != 0) {
-        switch (self->lock->type) {
+    if (self->unk5E0 != 0) {
+        switch (self->unk5E0->type) {
         case 0:
             cOm5a_setOpenType(self, 0);
             break;

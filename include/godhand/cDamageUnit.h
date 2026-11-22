@@ -125,10 +125,10 @@ int func_001FD9D8(cDamageUnit *self, const struct cMatrix *mtx, const cVec *ofs,
 /* A sphere of radius (KeyFollower_attachScaled). */
 int cDamageUnit_AddDamageCollSphere(cDamageUnit *self, const struct cMatrix *mtx,
                                     const cVec *ofs, float radius);
-/* A cylinder of radius and half, turned by rot (SpawnRec_create). */
+/* A cylinder of height and radius, turned by rot (SpawnRec_create). */
 int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *mtx,
                                       const cVec *ofs, const cVec *rot,
-                                      float radius, float half);
+                                      float height, float radius);
 
 #define CDAMAGE_SHAPE_SETRADIUS  3      /* vt[3] of cCollisionShape */
 

@@ -1,9 +1,9 @@
 /* include/godhand/cOm5a.h - cOm5a, a breakable object with a face that opens.
  *
- * cOm5a is a cOmBase with a lock record, an open type, a face state, a hit
+ * cOm5a is a cOmBase with a record at 0x5E0, an open type, a face state, a hit
  * shake, and one take and one give from the damage manager, 0x7A0 bytes in
  * all. func_001ABE80 sets it up: the take is a sphere on the first child, the
- * give a box, and the open type follows the lock's type.
+ * give a box, and the open type follows unk5E0's type.
  *
  * Method names are the game's own. Field names are ours, taken from the
  * methods that read and write them. Offsets are exact: every body that uses
@@ -15,15 +15,15 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageGive.h"
 
-/* The lock state that decides the open type. */
-typedef struct cOm5aLock {
+/* Read only at 0x2C: 1 gives open type 1, anything else 0. */
+typedef struct cOm5aUnk5E0 {
     char unk00[0x2C];
     unsigned char type;                 /* 0x2C 1: open */
-} cOm5aLock;
+} cOm5aUnk5E0;
 
 typedef struct cOm5a {
     cOmBase base;                       /* 0x000 */
-    cOm5aLock *lock;                    /* 0x5E0 */
+    cOm5aUnk5E0 *unk5E0;                /* 0x5E0 */
     char unk5E4[0x600 - 0x5E4];
     int openType;                       /* 0x600 */
     float unk604;                       /* 0x604 cleared by cOm5a_setFaceOpen and setFaceClose */

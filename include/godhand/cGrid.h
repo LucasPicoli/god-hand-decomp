@@ -86,9 +86,9 @@ void func_001334A8(cVec *pts, int quad, int color);
 /* Adds a box body for obj at the end of the collision list self (first body
  * at 0x190, count at 0x194) and returns it; 0 when obj is 0 or the body
  * can't be made. The body is cHitRec_constructSixBlob on func_0030F550(0x190). */
-cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *half,
-                                     void *zero, void *center, void *ax0, void *ax1,
-                                     void *ax2, void *ax3, void *ax4, void *ax5);
+cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *v70,
+                                     void *v90, void *extent, void *face0, void *face1,
+                                     void *face2, void *face3, void *face4, void *face5);
 
 extern void func_00133948(void *self, void *boxMin, void *boxMax);
 extern int func_00133408(void *unused, float *min, float *max, float *boxMin, float *boxMax);

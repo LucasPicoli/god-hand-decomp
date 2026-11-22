@@ -43,7 +43,7 @@ extern int SpawnRec_create(void *obj, int r, int p2, int p3, int p4, void *self,
 __attribute__((section(".text.cDamageUnit_AddDamageCollCylinder")))
 int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *mtx,
                                       const cVec *ofs, const cVec *rot,
-                                      float radius, float half)
+                                      float height, float radius)
 {
     const cDamageVtEnt *vt;
     char *obj;
@@ -55,7 +55,7 @@ int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *m
     obj = (char *)((int (*)(void *))vt[2].pfn)((char *)self + vt[2].delta);
     if (obj == 0) return -1;
     if (func_001FD908(self) == 0) return -1;
-    r = SpawnRec_create(obj, func_001FD908(self), (int)mtx, (int)ofs, (int)rot, self, radius, half);
+    r = SpawnRec_create(obj, func_001FD908(self), (int)mtx, (int)ofs, (int)rot, self, height, radius);
     if (r == -1) return r;
     if (self->nodes != 0) {
         p = (char *)self->nodes;

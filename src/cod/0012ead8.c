@@ -11,9 +11,9 @@ extern cCoreSaveData D_005686D0;   /* the record itself */
 
 
 __attribute__((section(".text.func_0012EAD8")))
-cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *half, void *zero,
-                    void *center, void *ax0, void *ax1, void *ax2, void *ax3,
-                    void *ax4, void *ax5)
+cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *v70, void *v90,
+                    void *extent, void *face0, void *face1, void *face2, void *face3,
+                    void *face4, void *face5)
 {
     cCollisionScrollSolid *q;
     cCollisionScrollSolid *p;
@@ -24,14 +24,14 @@ cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *hal
             while (q->next != 0) {
                 q = q->next;
             }
-            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, mtx, half, zero, center, ax0, ax1, ax2, ax3, ax4, ax5);
+            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, mtx, v70, v90, extent, face0, face1, face2, face3, face4, face5);
             q->next = p;
             if (p != 0) {
                 *(int *)(self + 0x194) = *(int *)(self + 0x194) + 1;
                 return q->next;
             }
         } else {
-            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, mtx, half, zero, center, ax0, ax1, ax2, ax3, ax4, ax5);
+            p = cHitRec_constructSixBlob(func_0030F550(0x190), obj, mtx, v70, v90, extent, face0, face1, face2, face3, face4, face5);
             *(cCollisionScrollSolid **)(self + 0x190) = p;
             if (p != 0) {
                 *(int *)(self + 0x194) = *(int *)(self + 0x194) + 1;
