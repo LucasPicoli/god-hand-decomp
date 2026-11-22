@@ -10,7 +10,7 @@ __attribute__((section(".text.func_0031C4E0")))
 void func_0031C4E0(void)
 {
     cGameObj *obj;
-    cObjInitVt *vt;
+    cGameObjVt *vt;
 
     if (D_007474A0.room != GAMEWORK_ROOM_NOPLAYER) {
         if (!(D_007474A0.flags & GAMEWORK_PLAYER_READY)) {
@@ -20,8 +20,8 @@ void func_0031C4E0(void)
         }
         obj = CreateObj(0x100, 0xFFFF);
         D_007474A0.playerObj = obj;
-        vt = (cObjInitVt *)obj->vtable;
-        vt->init((char *)obj + vt->initDelta);
+        vt = cGameObj_vt(obj);
+        vt->initial((char *)obj + vt->initialDelta);
         func_0031C5C0();
     } else {
         D_007474A0.playerObj = func_00107E40(func_0030F550(0x1690));
