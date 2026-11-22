@@ -5,6 +5,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cGrid.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *obj);
 extern void func_002A87E8(void *obj, int arg);
@@ -221,7 +222,7 @@ typedef struct DoorBoxHost {
     char unk5E0[0x20];
     float size[3];                      /* 0x600 */
     char unk60C[0x77C - 0x60C];
-    int collision;                      /* 0x77C collision handle */
+    cCollisionScrollSolid *collision;   /* 0x77C collision body */
 } DoorBoxHost;
 
 typedef struct { char b[0x60]; } cDoorBoxAxes;

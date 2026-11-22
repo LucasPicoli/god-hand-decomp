@@ -1258,9 +1258,31 @@ SUPPORTED_COMPILERS = frozenset(
 # against 122, and `func_003090F8` from 29 off to 50.
 # Census: compile each C unit as built and again with the flag, and compare
 # the bytes of its `.text` sections.
+#
+# `-f=-fno-exceptions` is for SN C++ units. Compiled as C++, a body whose
+# block-scoped locals never escape can share one stack slot between blocks,
+# which C never does, and some retail frames need that: `func_001ABE80` is
+# 315 words in a 0x140 frame only as C++. But sn-2.95.3-136's cc1plus also
+# emits one exception FDE per function into `.data` (0x38 bytes for a
+# one-function unit), which retail doesn't have, and `.data` then shifts.
+# The flag removes that block and leaves `.text` as it was. The ee strip
+# (`strip_cxx_frame`) can't stand in: it looks for `__FRAME_BEGIN__:`, and
+# SN's `.s` names the label `__FRAME_BEGIN__0:` (#60).
+#
+# REACH. Every build that has C or C++ units takes it: compiled over all
+# 3,798 C units and 136 C++ units at the time (2026-11-21), none rejects it.
+#
+# BLAST RADIUS. None of the 3,798 C units changes its `.text` with it
+# (1,119 cygnus-2.96, 2,330 sn-2.95.3-136, 349 ee-2.9). Of the 135
+# ee-2.9-991111 C++ units, 29 do (`00321240.cc`, and 28 of the libio group
+# from `00387cd8.cc` to `00393e28.cc`). They're built as they are, so the flag must
+# never become global and none of them may take it. `func_001ABE80`'s unit
+# is the same with and without it in `.text`.
+# Census: compile each C and C++ unit as built and again with the flag, and
+# compare the bytes of its `.text` sections.
 SUPPORTED_C_FLAG_ADDS = frozenset(
     {"-f=-fno-gcse", "-f=-ffast-math", "-f=-fno-rtti", "-f=-ftrapv",
-     "-f=-fmove-all-movables"})
+     "-f=-fmove-all-movables", "-f=-fno-exceptions"})
 
 # Closed vocabulary for the per-TU `c_flags_drop` key (Config.compile_units).
 #

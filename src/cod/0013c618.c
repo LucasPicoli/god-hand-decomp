@@ -1,4 +1,5 @@
 #include "godhand/cOm60.h"
+#include "godhand/cOm5a.h"
 #include "godhand/cCockTutorial.h"
 
 __attribute__((section(".text.ClearBytesAt74And79To7C_13C618")))
@@ -87,9 +88,9 @@ void SetField_9E0_1AA500(void *a0) {
 }
 
 __attribute__((section(".text.cOm5a_setFaceOpen")))
-void cOm5a_setFaceOpen(void *a0) {
-    *(int *)((char *)a0 + 0x604) = 0;
-    *(int *)((char *)a0 + 0x608) = 1;
+void cOm5a_setFaceOpen(cOm5a *self) {
+    self->unk604 = 0.0f;
+    self->faceState = 1;
 }
 
 /* 1 while the object is still held by a parent. */

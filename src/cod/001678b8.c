@@ -3,6 +3,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmDoor.h"
 #include "godhand/cSceAtManager.h"
+#include "godhand/cGrid.h"
 
 extern void *D_003C264C;
 extern char D_005FEE00[];
