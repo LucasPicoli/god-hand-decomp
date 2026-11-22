@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -18,7 +19,6 @@ extern void func_0026E7A8(void *a0, int a1);
 extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern void cObj_setupAimStep2(void *a0, void *a1, int a2, void *a3, void *a4);
 extern void SetField_2F6_1C2308(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 
 #include "godhand/vu0.h"
@@ -160,7 +160,7 @@ __attribute__((section(".text.func_00241EB0"))) void func_00241EB0(cEm00 *self)
         case 7:
             *(int *)(s3 + 0x16D0) |= 0x400;
             if (self != 0) {
-                cGameObj_SetTgtTurn(s3, *(int *)((char *)self + 0xF0),
+                cGameObj_SetTgtTurn((cGameObj *)s3, *(cVec **)((char *)self + 0xF0),
                                     *(float *)(s3 + 0x5A8) * 0.098174770424681f);
                 if (capVu0MagnitudeSqXZ(*(void **)((char *)self + 0xF0), *(void **)(s3 + 0xF0)) <
                     64.0f) {

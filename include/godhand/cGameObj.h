@@ -193,4 +193,8 @@ static __inline__ unsigned char cGameObjSortEnt_less(const cGameObjSortEnt *a, c
 
 extern void func_002831C8(struct cGameObj *self, unsigned int kind, unsigned char arg);
 
+/* cGameObj::SetTgtTurn: turn rot.y toward target by at most rate (scaled by
+ * D_007479FC), through Turn_dest and Adjust_theta. */
+void cGameObj_SetTgtTurn(struct cGameObj *self, const cVec *target, float rate);
+
 #endif /* GODHAND_CGAMEOBJ_H */

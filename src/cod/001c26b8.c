@@ -1,13 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cGameObj.h"
+#include "godhand/cCamera.h"
 
 extern cGameObj *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
-/* Turn_dest is (from, to, cur, max) in src/cod/002da038.c. Declared with the floats
- * first, as src/cod/002dcd50.c does: the registers are the same and only this
- * order puts the f12 load ahead of the a1 load, as retail has it. */
-extern float Turn_dest(cVec *from, float rot, float limit, cVec *to);
 
 #define NEAR_SQ   0.5f        /* closer than this (squared): counts as in front */
 #define FAR_SQ    2.0f        /* farther than this: not in front */
@@ -29,7 +26,7 @@ int cGameObj_isFacedByPlayer(cGameObj *self)
     if (FAR_SQ < dist) {
         return 0;
     }
-    a = Turn_dest(player->pos, player->rot.y, 3.1415927f, self->pos);
+    a = Turn_dest(&player->pos->x, player->rot.y, &self->pos->x, 3.1415927f);
     if (a < 0.0f) {
         t = -a;
     } else {

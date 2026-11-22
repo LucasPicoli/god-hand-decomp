@@ -1,6 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cCamera.h"
 #include "godhand/motion.h"
 
 extern int irand(void);
@@ -8,10 +10,7 @@ extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern char *Getplayer(void);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Adjust_theta(float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern float SetMotionStep(void *a0, float f12);
 extern void Obj293_OrByte_5A3(void *a0, int a1);
@@ -102,7 +101,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
         case 1: {
             char *m = s1 + 0x580;
 
-            cGameObj_SetTgtTurn(s1, (int)m, *(float *)(s1 + 0x5A8) * 0.196349546f);
+            cGameObj_SetTgtTurn((cGameObj *)s1, &self->unk580, *(float *)(s1 + 0x5A8) * 0.196349546f);
             moveMotion(s1);
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);
             cObjBase_addNullSpeed(s1, 1.0f);
@@ -138,7 +137,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             /* fallthrough */
         case 3:
             if (s2 != 0) {
-                cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
+                cGameObj_SetTgtTurn((cGameObj *)s1, *(cVec **)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
             }
             moveMotion(s1);
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);
@@ -165,7 +164,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             /* fallthrough */
         case 5:
             if (s2 != 0) {
-                cGameObj_SetTgtTurn(s1, *(int *)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
+                cGameObj_SetTgtTurn((cGameObj *)s1, *(cVec **)(s2 + 0xF0), *(float *)(s1 + 0x5A8) * 0.196349546f);
             }
             moveMotion(s1);
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);
@@ -257,10 +256,10 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             if (2.0f <= *(float *)(s1 + 0x604)) {
                 theta = Adjust_theta(*(float *)(s1 + 0x104) + 3.14159274f);
                 {
-                    char *o = *(char **)(s1 + 0xF0);
+                    float *o = &self->pos->x;
                     char *r = Getplayer();
 
-                    turn = Turn_dest(o, theta, 3.14159274f, *(void **)(r + 0xF0));
+                    turn = Turn_dest(o, theta, *(void **)(r + 0xF0), 3.14159274f);
                 }
                 if (irand() & 1) {
                     if (-0.785398185f < turn) {

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cModel.h"
 #include "godhand/cEmSetParam.h"
@@ -8,7 +9,6 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
 extern void func_0026B240(void *a0, int a1, int a2, int a3);
 extern unsigned char D_00747A50[];
@@ -60,7 +60,7 @@ void cEm00_stepCircleTargetTurn(cEm00 *self)
         self->step = self->step + 1;
     case 1:
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.19634954f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.19634954f);
         {
             int fa = 0x10000;
             int fb = 0x20000;
@@ -95,7 +95,7 @@ void cEm00_stepCircleTargetTurn(cEm00 *self)
         self->step = self->step + 1;
     case 3:
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.19634954f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.19634954f);
         {
             int fa = 0x10000;
             int fb = 0x20000;

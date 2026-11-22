@@ -2,8 +2,8 @@
 
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
+#include "godhand/cOmWeapon.h"
 
-extern int cOmWeapon_setParent();
 
 /* Weapon-effect parameter loader, same shape as SetOrientByType_26AF20: a type (a2) picks six or fewer
  * floats, a count and zeroed slots in a 7 word stack vector, then cOmWeapon_setParent runs. No-op when a1 is 0.
@@ -11,7 +11,7 @@ extern int cOmWeapon_setParent();
 __attribute__((section(".text.cOmWeapon_loadEffectParamsByType")))
 void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
     void *a3 = a0;
-    float buf[7];   /* sp[0..0x18] */
+    cVec buf[2];   /* sp[0..0x1F] */
     int count;
     if (a1 == 0) {
         return;
@@ -29,7 +29,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f2 = 1.5707964f;
             f3 = 0.69813168f;
             count = 2;
-            buf[0] = f4; buf[1] = f0; buf[2] = f1; buf[4] = f2; buf[6] = f3;
+            buf[0].x = f4; buf[0].y = f0; buf[0].z = f1; buf[1].x = f2; buf[1].z = f3;
             *(int *)((char *)buf + 0x14) = 0;
             break;
         }
@@ -41,7 +41,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f1 = -0.054f;
             f2 = -0.52359879f;
             count = 0x10;
-            buf[0] = f3; buf[1] = f0; buf[2] = f1; buf[5] = f2;
+            buf[0].x = f3; buf[0].y = f0; buf[0].z = f1; buf[1].y = f2;
             *(int *)((char *)buf + 0x10) = 0;
             *(int *)((char *)buf + 0x18) = 0;
             break;
@@ -51,7 +51,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             float f0, f1;
             f1 = 0.0974999964f;
             f0 = 0.0189999994f;
-            buf[1] = f1; buf[2] = f0;
+            buf[0].y = f1; buf[0].z = f0;
             *(int *)((char *)buf + 0x0) = 0;
             count = 4;
             *(int *)((char *)buf + 0x10) = 0;
@@ -69,7 +69,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f2 = -2.87979317f;
             f3 = -0.942477763f;
             f4 = 2.33874106f;
-            buf[0] = f5; buf[1] = f0; buf[2] = f1; buf[4] = f2; buf[5] = f3; buf[6] = f4;
+            buf[0].x = f5; buf[0].y = f0; buf[0].z = f1; buf[1].x = f2; buf[1].y = f3; buf[1].z = f4;
             break;
         }
     case 4:
@@ -117,7 +117,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f1 = -0.17f;
             f2 = 1.5707964f;
             f3 = 0.610865235f;
-            buf[0] = f4; buf[1] = f0; buf[2] = f1; buf[4] = f2; buf[6] = f3;
+            buf[0].x = f4; buf[0].y = f0; buf[0].z = f1; buf[1].x = f2; buf[1].z = f3;
             *(int *)((char *)buf + 0x14) = 0;
             break;
         }
@@ -130,7 +130,7 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f1 = 0.296999991f;
             f2 = -0.785398185f;
             f3 = -3.14159274f;
-            buf[0] = f4; buf[1] = f0; buf[2] = f1; buf[5] = f2; buf[6] = f3;
+            buf[0].x = f4; buf[0].y = f0; buf[0].z = f1; buf[1].y = f2; buf[1].z = f3;
             *(int *)((char *)buf + 0x10) = 0;
             break;
         }
@@ -142,11 +142,11 @@ void cOmWeapon_loadEffectParamsByType(void *a0, int a1, unsigned int a2) {
             f0 = -0.027f;
             f1 = 0.01f;
             f2 = 1.5707964f;
-            buf[0] = f3; buf[1] = f0; buf[2] = f1; buf[5] = f2;
+            buf[0].x = f3; buf[0].y = f0; buf[0].z = f1; buf[1].y = f2;
             *(int *)((char *)buf + 0x10) = 0;
             *(int *)((char *)buf + 0x18) = 0;
             break;
         }
     }
-    cOmWeapon_setParent(a1, a3, count, buf, (char *)buf + 0x10);
+    cOmWeapon_setParent((cOmWeapon *)a1, a3, count, &buf[0], &buf[1]);
 }

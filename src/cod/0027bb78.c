@@ -7,6 +7,7 @@
 #include "godhand/cModel.h"
 #include "godhand/player.h"
 #include "godhand/vecInline.h"
+#include "godhand/cCamera.h"
 
 #define SYS_FLAG_FREEZE   0x40000000    /* D_00747A78: enemies skip their update */
 #define TURN_SPEED        0.049087387f  /* pi/64 a frame, scaled by speedRate */
@@ -17,9 +18,6 @@ extern void SetMotionStep(void *a0, float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_0027BDD8(char *self);
 extern void cObjBase_SetSeqEffect(cObjBase *a0);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Turn_dest_dir(float f12, float f13, float f14);
-extern float Adjust_theta(float angle);
 extern void func_0027D300(char *self);
 extern void func_0027D400(char *self);
 extern void cModel_calcParts(cModel *a0);
@@ -65,7 +63,7 @@ void func_0027BB78(cEm00 *self)
         if (self->unk1560 & 2u) {
             void *pos = parent->pos;
 
-            ang = Turn_dest(pos, parent->rot.y, 3.1415927f, Getplayer()->pos);
+            ang = Turn_dest(pos, parent->rot.y, &Getplayer()->pos->x, 3.1415927f);
         } else {
             ang = 0.0f;
         }

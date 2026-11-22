@@ -1,19 +1,18 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/cOmWeapon.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void Obj1D00_ClearState_6(int a0);
-extern void Obj1D00_ClearState_7(int a0);
 extern int Obj1D00_IsSet_Byte_2F4_EqFour_Byte_2F5_1D0B08(int a0);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
@@ -153,10 +152,10 @@ void cEm00_idleChooseNext(void *a0)
             func_002A8578(self, recA, recB, 1, 0.0f, nb, 0);
         }
         if (EM_AT(int, self, EM_FX0_OFFSET) != 0) {
-            Obj1D00_ClearState_6(EM_AT(int, self, EM_FX0_OFFSET));
+            Obj1D00_ClearState_6(EM_AT(cOmBase *, self, EM_FX0_OFFSET));
         }
         if (EM_AT(int, self, EM_FX6_OFFSET) != 0) {
-            Obj1D00_ClearState_7(EM_AT(int, self, EM_FX6_OFFSET));
+            Obj1D00_ClearState_7(EM_AT(cOmBase *, self, EM_FX6_OFFSET));
         }
         {
             char *e;
@@ -212,7 +211,7 @@ void cEm00_idleChooseNext(void *a0)
             int c = EM_AT(int, self, EM_TURNFRAMES_OFFSET);
             if (c != 0) {
                 EM_AT(int, self, EM_TURNFRAMES_OFFSET) = c - 1;
-                cGameObj_SetTgtTurn(self, (char *)self + EM_TURNTO_OFFSET, self->speedRate * 0.3926991f);
+                cGameObj_SetTgtTurn((cGameObj *)self, &self->posB, self->speedRate * 0.3926991f);
             }
         }
         if (moveMotion(self) != 0 || (self->seqFlags & 0x10) != 0) {

@@ -8,8 +8,8 @@ __attribute__((section(".text.func_001CF3A8")))
 void func_001CF3A8(cOmWeapon *self)
 {
     char hold[16];
-    cOmBase *par;
-    cOmBase *o2;
+    cGameObj *par;
+    cGameObj *o2;
     cOmBase *part;
     int idx;
     int cnt;

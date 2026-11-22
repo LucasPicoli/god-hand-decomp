@@ -3,6 +3,7 @@
 /* cEm00_stepPatrolAttackDrop: a patrolling enemy. It walks to the player (steps 0 to 5),
  * then picks one of three attack motions (steps 6 and 7), and on the drop
  * steps (8 to 13) it spawns its drop item once and winds down. */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
@@ -13,7 +14,6 @@ extern int IsEntryActive_1C2490(int a0);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int irand(void);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
@@ -102,7 +102,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     case 5:
         if ((self->seqFlags & 2) == 0) {
             player = Getplayer();
-            cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
+            cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.049087386f);
         }
         if (moveMotion(self) != 0) {
             if ((self->gotoFlags & 4) == 0) {
@@ -156,7 +156,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     case 7:
         self->gotoFlags = self->gotoFlags | 1;
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.049087386f);
         if (400.0f < self->playerDist) {
             return;
         }
@@ -172,7 +172,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     }
     case 9:
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.049087386f);
         if (moveMotion(self) != 0) {
             self->step = self->step + 1;
         }
@@ -208,7 +208,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     }
     case 11:
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.049087386f);
         moveMotion(self);
         cModel_calcNullPart(self);
         Add_nullspeed(self);
@@ -225,7 +225,7 @@ void cEm00_stepPatrolAttackDrop(cEm00 *self)
     }
     case 13:
         player = Getplayer();
-        cGameObj_SetTgtTurn(self, player->pos, self->speedRate * 0.049087386f);
+        cGameObj_SetTgtTurn((cGameObj *)self, player->pos, self->speedRate * 0.049087386f);
         if (moveMotion(self) != 0) {
             self->step = 6;
         }

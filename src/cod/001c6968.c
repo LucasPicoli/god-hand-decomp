@@ -170,12 +170,12 @@ void cOmThrow_SetThrow(unsigned char *p, float *v)
 
 
 
-/* Throw a weapon with velocity v: let go of the holder, aim the collision body and enter state 3. */
+/* cOmWeapon::setThrow: throw a weapon with velocity v for thrower: let go of the holder, aim the collision body and enter state 3. */
 __attribute__((section(".text.cOmWeapon_setThrow")))
-void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
+void cOmWeapon_setThrow(cOmWeapon *self, const cVec *v, cGameObj *thrower)
 {
     char hold[16];
-    cOmBase *par;
+    cGameObj *par;
     cOmBase *body;
     int cnt;
 
@@ -205,7 +205,7 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
     }
     if (body != 0) {
         cVec *d;
-        cVec *s;
+        const cVec *s;
 
         body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
@@ -219,7 +219,7 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
             d->y = s->y;
             d->z = s->z;
         }
-        self->throwArg = n;
+        self->thrower = thrower;
         self->base.mode = 0;
         self->base.phase = 3;
         self->base.step = 0;
@@ -234,10 +234,10 @@ void cOmWeapon_setThrow(cOmWeapon *self, cVec *v, int n)
 
 /* Throw a weapon at the player with velocity v: like setThrow, but the collision body gets a random spin (stored in rot.z) and the state is 5. */
 __attribute__((section(".text.cOmWeapon_setThrowPL")))
-void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
+void cOmWeapon_setThrowPL(cOmWeapon *self, const cVec *v)
 {
     char hold[16];
-    cOmBase *par;
+    cGameObj *par;
     cOmBase *body;
     int cnt;
 
@@ -267,7 +267,7 @@ void cOmWeapon_setThrowPL(cOmWeapon *self, cVec *v)
     }
     if (body != 0) {
         cVec *d;
-        cVec *s;
+        const cVec *s;
 
         body->parent = (struct cParts *)&self->base;
         body->rot.x = 0.0f;
@@ -300,12 +300,12 @@ static inline int GetLayerObj(char *a0, int *frame, int idx)
     return 0;
 }
 
-/* Throw variant that also zeroes the body's anchor vector: velocity pos, throw argument arg, state 4. */
+/* Throw variant that also zeroes the body's anchor vector: velocity vel, keeps the thrower, state 4. */
 __attribute__((section(".text.func_001CFB28")))
-void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
+void func_001CFB28(cOmWeapon *self, const cVec *vel, cGameObj *thrower)
 {
     unsigned char frame[0x10];
-    cOmBase *holder;
+    cGameObj *holder;
     cVec *d;
     cOmBase *body;
 
@@ -331,9 +331,9 @@ void func_001CFB28(cOmWeapon *self, cVec *pos, int arg)
         cModel_calcParts(self);
         {
             cVec *d2 = &self->vel;
-            if (d2 != pos) { d2->x = pos->x; d2->y = pos->y; d2->z = pos->z; }
+            if (d2 != vel) { d2->x = vel->x; d2->y = vel->y; d2->z = vel->z; }
         }
-        self->throwArg = arg;
+        self->thrower = thrower;
         self->base.phase = 4;
         self->base.mode = 0;
         self->base.step = 0;

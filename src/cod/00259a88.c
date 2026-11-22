@@ -1,7 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 
 extern float fRand0_1(void);
 extern int irand(void);
@@ -10,10 +12,7 @@ extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern char *Getplayer(void);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Adjust_theta(float f12);
 extern void Obj1D00_SetState_7_E_a1(void *a0, int a1);
 extern void Obj1D00_SetState_7_10(void *a0);
 extern void Obj1D00_SetState_7_12(void *a0);
@@ -338,7 +337,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
             *(int *)(s1 + 0x16D4) |= 0x80000;
             g = Getplayer();
             t = Turn_dest(*(void **)(g + 0xF0), *(float *)(s1 + 0x104),
-                          *(float *)(s1 + 0x5A8) * 0.098174773f, *(void **)(s1 + 0xF0));
+                          *(void **)(s1 + 0xF0), *(float *)(s1 + 0x5A8) * 0.098174773f);
             *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + t;
             *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
             if (moveMotion(s1) != 0) {
@@ -451,7 +450,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
         case 13: {
             char *g = Getplayer();
 
-            cGameObj_SetTgtTurn(s1, *(int *)(g + 0xF0), *(float *)(s1 + 0x5A8) * 0.049087387f);
+            cGameObj_SetTgtTurn((cGameObj *)s1, *(cVec **)(g + 0xF0), *(float *)(s1 + 0x5A8) * 0.049087387f);
             moveMotion(s1);
             *(float *)(s1 + 0x338) = *(float *)(s1 + 0x5A8) * -0.05f;
             cObjBase_addNullSpeed_Rotation(s1, 1.0f);

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/cCamera.h"
 
 #define PI_F 3.1415927f
 #define ABS_F(x) (0.0f < (x) ? (x) : -(x))
@@ -7,7 +8,7 @@ extern float func_003A1648(float x);
 
 /* Signed yaw step from cur toward the XZ direction from -> to, clamped to max. */
 __attribute__((section(".text.Turn_dest")))
-float Turn_dest(float *from, float *to, float cur, float max)
+float Turn_dest(const float *from, float cur, const float *to, float max)
 {
     float dx;
     float dz;

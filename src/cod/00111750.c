@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
@@ -7,7 +8,6 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cEm00_armAttackVolume(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
@@ -90,7 +90,7 @@ void func_00227FE8(void *a0)
             char *v0;
             *(int *)(s1 + 0x5F0) -= 1;
             v0 = (char *)Getplayer();
-            cGameObj_SetTgtTurn(s1, *(int *)(v0 + 0xF0), *(float *)(s1 + 0x5A8) * 0.19634955f);
+            cGameObj_SetTgtTurn((cGameObj *)s1, *(cVec **)(v0 + 0xF0), *(float *)(s1 + 0x5A8) * 0.19634955f);
         }
         f1 = *(float *)(s1 + 0x600);
         if (f1 > 0.0f) {

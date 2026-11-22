@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cGameObj.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -10,7 +11,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f);
 extern unsigned int Rnd(void);
 extern int func_002DDAB0(void *a0, int a1, float f);
 extern void func_0026EE40(void *a0, int a1, int a2);
@@ -108,7 +108,7 @@ void func_00277858(void *a0){ char *s0=(char*)a0; int v0;
   func_002A8578(s0,*(int*)(v0+0x64)+v0,*(int*)(v0+0x68)+v0,3,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 1:
-  cGameObj_SetTgtTurn(s0,*(int*)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
+  cGameObj_SetTgtTurn((cGameObj *)s0,*(cVec **)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
   if(moveMotion(s0)!=0 && (Rnd()&1)!=0) *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
   cObjBase_addNullSpeed_Rotation(s0,1.0f);
   cObjBase_addNullSpeed(s0,1.0f);
@@ -118,7 +118,7 @@ void func_00277858(void *a0){ char *s0=(char*)a0; int v0;
   func_002A8578(s0,*(int*)(v0+0xC)+v0,*(int*)(v0+0x10)+v0,3,0.0f,0,0);
   *(unsigned char*)(s0+0x2F6)=*(unsigned char*)(s0+0x2F6)+1;
  case 3:
-  cGameObj_SetTgtTurn(s0,*(int*)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
+  cGameObj_SetTgtTurn((cGameObj *)s0,*(cVec **)((char*)Getplayer()+0xF0),*(float*)(s0+0x5A8)*0.09817477f);
   if(moveMotion(s0)!=0 && (Rnd()&1)!=0) *(unsigned char*)(s0+0x2F6)=0;
   cObjBase_addNullSpeed_Rotation(s0,1.0f);
   cObjBase_addNullSpeed(s0,1.0f);

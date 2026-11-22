@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -11,7 +12,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern float fRand0_1(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 
@@ -73,7 +73,7 @@ __attribute__((section(".text.func_002448E0"))) void func_002448E0(cEm00 *self)
             *(char *)((char *)self + 0x623) = 1;
             self->hitFlash = 2.0f;
             *(char *)((char *)self + 0x531) = -1;
-            cGameObj_SetTgtTurn(self, &self->unk16A0, self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->unk16A0, self->speedRate * 0.09817477f);
             *(unsigned short *)((char *)self + 0x434) =
                 *(unsigned short *)((char *)self + 0x434) | 8;
             moveMotion(self);

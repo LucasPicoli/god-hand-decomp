@@ -41,6 +41,7 @@ typedef struct cBox {
 #define CPARTS_NO_MOTION_ROT    0x100    /* skip the rotation channels (3..5) */
 #define CPARTS_NO_MOTION_POS    0x200    /* skip the translation channels (0..2) */
 #define CPARTS_NO_MOTION_SCALE  0x400    /* skip the scale channels (6..8) */
+#define CPARTS_EXTRA_YAW        0x800    /* turn the part's matrix by extraYaw about the Y axis (func_001501D0) */
 #define CPARTS_ZERO_UNKEYED_ROT 0x8000   /* zero each rotation component no channel keys this frame */
 #define CPARTS_NO_BLEND         0x100000 /* leave the part out of the blend */
 
@@ -239,7 +240,7 @@ struct cParts;
     struct cParts *next;                /* 0x144 on a model the first part, on a part the next */ \
     struct cParts *parent;              /* 0x148 */ \
     struct cParts *link;                /* 0x14C */ \
-    char unk150[0x4]; \
+    float extraYaw;                     /* 0x150 angle of the extra Y turn, when CPARTS_EXTRA_YAW is set */ \
     int partFlags;                      /* 0x154 CPARTS_* */ \
     char unk158[0xBC]; \
     cVtEnt *vtable;                     /* 0x214 */ \

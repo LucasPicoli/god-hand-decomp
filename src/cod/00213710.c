@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
@@ -8,7 +9,6 @@ extern int GetSeqSEBase(void *a0);
 extern int irand(void);
 extern int moveMotion(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern char *Getplayer(void);
@@ -295,7 +295,7 @@ void func_00213710(void *a0)
         float lim = 16.0f;
         int w;
 
-        cGameObj_SetTgtTurn(p, (int)(p + 0x16A0),
+        cGameObj_SetTgtTurn((cGameObj *)p, (cVec *)(p + 0x16A0),
                                          *(float *)(p + 0x5A8) * 0.2617994f);
         moveMotion(p);
         cObjBase_addNullSpeed_Rotation(p, one);

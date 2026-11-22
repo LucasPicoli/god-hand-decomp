@@ -58,6 +58,8 @@ struct cCamera {
 /* The type is only ever written `struct cCamera`: the constructor function has the same name. */
 
 extern float Adjust_theta(float angle);
+/* The signed yaw step from cur toward the XZ direction from -> to, at most max. */
+float Turn_dest(const float *from, float cur, const float *to, float max);
 /* The signed step from now toward dest: at most spd, the shorter way round. */
 float Turn_dest_dir(float now, float dest, float spd);
 

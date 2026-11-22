@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
+#include "godhand/cCamera.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cEm00.h"
@@ -16,11 +18,9 @@ extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1
 extern int D_00462FC0;
 extern char D_005FEE00[];
 extern char *func_002DDAB0(void *a0, int a1, float f);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int D_00747A78;
 extern void *Getplayer(void);
-extern float Adjust_theta(float f12);
 extern void func_001034E0(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 
@@ -101,7 +101,7 @@ void func_00277B18(void *a0)
         *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
     case 1:
         if (s1 != 0) {
-            cGameObj_SetTgtTurn(s0, *(int *)(s1 + 0xF0),
+            cGameObj_SetTgtTurn((cGameObj *)s0, *(cVec **)(s1 + 0xF0),
                                              *(float *)(s0 + 0x5A8) * 0.39269909f);
             if (capVu0MagnitudeSqXZ(*(void **)(s1 + 0xF0), *(void **)(s0 + 0xF0)) < 0.25f) {
                 *(unsigned char *)(s0 + 0x2F4) = 0;
@@ -193,7 +193,7 @@ void func_00246370(void *a0)
             *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
             *(float *)(s0 + 0x600) = f - *(float *)(s0 + 0x5A8);
         }
-        cGameObj_SetTgtTurn(s0, *(int *)((char *)Getplayer() + 0xF0),
+        cGameObj_SetTgtTurn((cGameObj *)s0, *(cVec **)((char *)Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.19634955f);
         if (moveMotion(s0) != 0 || (*(unsigned short *)(s0 + 0x3AC) & 0x10) != 0) {
             func_002705D8(s0);
@@ -236,7 +236,7 @@ void func_002461F0(void *a0)
             *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
             *(float *)(s0 + 0x600) = f - *(float *)(s0 + 0x5A8);
         }
-        cGameObj_SetTgtTurn(s0, *(int *)((char *)Getplayer() + 0xF0),
+        cGameObj_SetTgtTurn((cGameObj *)s0, *(cVec **)((char *)Getplayer() + 0xF0),
                                          *(float *)(s0 + 0x5A8) * 0.19634955f);
         if (moveMotion(s0) != 0 || (*(unsigned short *)(s0 + 0x3AC) & 0x10) != 0) {
             func_002705D8(s0);

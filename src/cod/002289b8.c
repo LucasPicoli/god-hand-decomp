@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern int irand(void);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -63,7 +63,7 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
                 char *p;
                 self->timerA = self->timerA - 1;
                 p = Getplayer();
-                cGameObj_SetTgtTurn(self, *(int *)(p + 0xF0), self->speedRate * 0.19634954f);
+                cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634954f);
             }
             if (moveMotion(self))
                 func_002705D8(self);
@@ -117,7 +117,7 @@ __attribute__((section(".text.func_002289B8"))) void func_002289B8(cEm00 *self)
                 char *p;
                 self->timerA = self->timerA - 1;
                 p = Getplayer();
-                cGameObj_SetTgtTurn(self, *(int *)(p + 0xF0), self->speedRate * 0.19634954f);
+                cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634954f);
             }
             if (moveMotion(self))
                 func_002705D8(self);

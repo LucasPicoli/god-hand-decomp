@@ -2,7 +2,6 @@
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int espSys_effDataRegist(void *a0, int a1, void *a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int cOmWeapon_setParent();
 extern int D_00747B00;
 extern int D_007419A0;
 
@@ -11,6 +10,7 @@ extern int D_007419A0;
 #include "godhand/vu0.h"
 #include "godhand/player.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cOmWeapon.h"
 
 
 
@@ -271,7 +271,7 @@ int func_001C9268(char *p)
             buf[8] = 0.0f;
             buf[9] = 0.0f;
             buf[10] = 0.0f;
-            cOmWeapon_setParent(*(int *)(p + 0x68C), p, 2, buf, (char *)buf + 0x20);
+            cOmWeapon_setParent(*(cOmWeapon **)(p + 0x68C), (cGameObj *)p, 2, (cVec *)buf, (cVec *)&buf[8]);
         }
     }
 

@@ -1,6 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cOmWeapon.h"
 #include "godhand/motion.h"
 
 extern unsigned int irand(void);
@@ -11,9 +13,7 @@ extern void Obj1D00_SetState_7_6(int a0);
 extern void Obj1D00_SetState_7_4(int a0);
 extern void Obj1D00_SetState_7_8(int a0);
 extern void Obj1D00_SetState_7_18(int a0);
-extern void Obj1D00_ClearState_7(int a0);
 extern int Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -48,7 +48,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
         }
         /* fallthrough */
         case 1:
-            cGameObj_SetTgtTurn(self, *(int *)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
             if (moveMotion(self))
                 self->step++;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
@@ -100,7 +100,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
         /* fallthrough */
         case 3: {
             unsigned short fl;
-            cGameObj_SetTgtTurn(self, *(int *)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
             if (moveMotion(self)) {
                 if (36.0f < self->playerDist)
                     self->step = 6;
@@ -143,13 +143,13 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
         }
         /* fallthrough */
         case 5:
-            cGameObj_SetTgtTurn(self, *(int *)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
             if (moveMotion(self)) {
-                int p;
+                cOmBase *p;
                 cObjBase_addNullSpeed_Rotation(self, 1.0f);
                 cObjBase_addNullSpeed(self, 1.0f);
                 func_002705D8(self);
-                p = *(int *)((char *)self + 0x708);
+                p = *(cOmBase **)((char *)self + 0x708);
                 if (p != 0)
                     Obj1D00_ClearState_7(p);
             } else {
@@ -173,7 +173,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
         }
         /* fallthrough */
         case 7:
-            cGameObj_SetTgtTurn(self, *(int *)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
             if (moveMotion(self))
                 self->step = 4;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
@@ -199,7 +199,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
         }
         /* fallthrough */
         case 9:
-            cGameObj_SetTgtTurn(self, *(int *)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0), self->speedRate * 0.09817477f);
             if (moveMotion(self)) {
                 self->mode = 0;
                 self->phase = 0x6C;

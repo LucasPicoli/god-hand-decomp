@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
@@ -15,7 +16,6 @@ extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
                    int a7, int a8, int a9, int a10, int a11, int a12);
 extern unsigned char D_005FEE00[];
@@ -200,7 +200,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
 
         if (c != 0) {
             self->timerA = c - 1;
-            cGameObj_SetTgtTurn(self, &self->posB, self->speedRate * 0.3926991f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->posB, self->speedRate * 0.3926991f);
         }
         self->pos->y = self->pos->y + self->home.y * self->speedRate;
         q = self->pos;
@@ -364,7 +364,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
 
         if (c != 0) {
             self->timerA = c - 1;
-            cGameObj_SetTgtTurn(self, &self->posB, self->speedRate * 0.3926991f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->posB, self->speedRate * 0.3926991f);
         }
         if (self->seqFlags & 4) {
             cVec *q;

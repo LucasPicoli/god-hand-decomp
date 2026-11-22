@@ -2,13 +2,13 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 
 extern void *Getplayer(void);
 extern void func_001D0408(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int irand(void);
 extern int getItemNumInRoom(void);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
 extern char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -319,7 +319,7 @@ void func_002705D8(void *a0)
     }
     *(unsigned char *)(s0 + 0x1864) = 0;
     if (1.5707964f < Turn_dest(*(void **)(s0 + 0xF0), *(float *)(s0 + 0x104),
-                               3.1415927f, s0 + 0x16A0)) {
+                               (float *)(s0 + 0x16A0), 3.1415927f)) {
         *(unsigned char *)(s0 + 0x2F4) = 0;
         *(unsigned char *)(s0 + 0x2F5) = 8;
         *(int *)(s0 + 0x16D4) = *(int *)(s0 + 0x16D4) | 1;

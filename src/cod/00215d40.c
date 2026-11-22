@@ -1,15 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cCamera.h"
 #include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 
 /* Phase machine on the step byte, 6 case labels. Calls irand, Obj0000_Get_Byte_17C3_NZ_2_276468,
  * func_002A8578, cGameObj_SetTgtTurn, moveMotion, cObjBase_addNullSpeed_Rotation and 5 more. */
@@ -29,7 +29,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
         }
         /* fallthrough */
         case 1:
-            cGameObj_SetTgtTurn(self, (int)(&self->unk16A0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->unk16A0, self->speedRate * 0.09817477f);
             if (moveMotion(self))
                 self->step++;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
@@ -47,7 +47,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
         /* fallthrough */
         case 3: {
             float d;
-            cGameObj_SetTgtTurn(self, (int)(&self->unk16A0), self->speedRate * 0.19634954f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->unk16A0, self->speedRate * 0.19634954f);
             moveMotion(self);
             if (cCoreSave_getGameLevel(&D_00569B70) == 5)
                 self->nullSpeed.z = self->speedRate * 0.6f;
@@ -55,7 +55,7 @@ __attribute__((section(".text.func_00215D40"))) void func_00215D40(cEm00 *self)
                 self->nullSpeed.z = self->speedRate * 0.3f;
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);
-            d = Turn_dest((void *)self->pos, ((char *)self + 0x1690), self->rot.y, 3.14159274f);
+            d = Turn_dest(&self->pos->x, self->rot.y, &self->wallPoint.x, 3.14159274f);
             if (d < 0.0f)
                 d = -d;
             if (self->stepArg) {

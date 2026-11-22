@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
@@ -6,7 +7,6 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int irand(void);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
 
 extern void func_0026BDD0(void *a0, int a1);
@@ -51,7 +51,7 @@ __attribute__((section(".text.func_0022C1A8"))) void func_0022C1A8(cEm00 *self)
                 self->emFlags = self->emFlags | 0x800000;
             }
             p = (char *)Getplayer();
-            cGameObj_SetTgtTurn(self, *(void **)(p + 0xF0), self->speedRate * 0.19634955f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 func_002705D8(self);
             }

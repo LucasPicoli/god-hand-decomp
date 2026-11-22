@@ -5,11 +5,11 @@
  * speed from the turn, then both steps run the move and a level-dependent
  * chance to end the action. */
 #include "godhand/cEm00.h"
+#include "godhand/cCamera.h"
 #include "godhand/motion.h"
 
 extern int moveMotion(void *a0);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -30,7 +30,7 @@ void cEm00_stepMotionByEmNo(cEm00 *self)
     switch (self->step) {
     case 0:
         motion = Obj0000_Get_Byte_17C3_NZ_2_276468(self) & 0xFFFF;
-        turn = Turn_dest(self->pos, &self->unk16A0, self->rot.y, 3.14159274f);
+        turn = Turn_dest(&self->pos->x, self->rot.y, &self->unk16A0.x, 3.14159274f);
         flag = 0;
         if (0.0f < turn) {
             flag = 1;

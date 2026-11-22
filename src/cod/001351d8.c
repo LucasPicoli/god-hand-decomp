@@ -7,10 +7,9 @@ extern unsigned int D_00747A84;
 extern void VecRotVec(float *out, float *in, cVec *rot, int order);
 extern void Adjust_theta_vec(cVec *v);
 extern void SetNodeListFlag_134608(void *a0, int a1);
-extern float Turn_dest(int a0, float f12, float f13);
-extern float Adjust_theta(float f12);
 
 #include "godhand/vu0.h"
+#include "godhand/cCamera.h"
 
 
 
@@ -53,8 +52,7 @@ void cCollisionSolidManage_SetActive(int a0, int a1, int a2) {
 }
 
 __attribute__((section(".text.cGameObj_SetTgtTurn")))
-void cGameObj_SetTgtTurn(int a0, float f12) {
-    int s0 = a0;
-    float r = Turn_dest(*(int*)(s0 + 0xF0), *(float*)(s0 + 0x104), f12 * D_007479FC);
-    *(float*)(s0 + 0x104) = Adjust_theta(*(float*)(s0 + 0x104) + r);
+void cGameObj_SetTgtTurn(struct cGameObj *self, const cVec *target, float rate) {
+    float r = Turn_dest(&self->pos->x, self->rot.y, &target->x, rate * D_007479FC);
+    self->rot.y = Adjust_theta(self->rot.y + r);
 }
