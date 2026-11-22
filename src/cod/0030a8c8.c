@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/sceVu0.h"
 
 extern void sceVu0UnitMatrix(void *m);
 extern void sceVu0OuterProduct(void *d, void *a, void *b);
-extern void sceVu0Normalize(void *d, void *s);
 extern void sceVu0TransMatrix(void *d, void *a, void *b);
 extern void sceVu0InversMatrix(void *d, void *s);
 

@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/sceVu0.h"
 
-extern void sceVu0ScaleVector(void *dst, void *src, float s);
-extern void sceVu0Normalize(void *dst, void *src);
 extern void sceVu0TransposeMatrix(void *dst, void *src);
 
 __attribute__((section(".text.sceVu0NormalLightMatrix")))

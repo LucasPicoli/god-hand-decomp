@@ -11,7 +11,6 @@ extern void sceVu0RotMatrixY(void *dst, void *src, float ry);
 extern void func_0030A700(void *dst, void *src, float rz);
 extern void sceVu0MulMatrix(void *dst, void *a, void *b);
 extern void sceVu0TransposeMatrix(void *dst, void *src);
-extern void sceVu0SubVector(void *v0, void *v1, void *v2);
 
 static inline void setTrans(float (*out)[4], float *pos)
 {

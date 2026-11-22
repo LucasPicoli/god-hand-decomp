@@ -99,14 +99,37 @@ void cCollisionSolidBox__dtor(cCollisionSolidObj *self, int flags);
 cCollisionSolidObj *cCollisionSolid_constructSphere(cCollisionSolidObj *self, const struct cMatrix *body,
                                                     const cVec *center, float radius);
 
-/* A box collision body: the solid record, then the eight corners, bottom face first. */
+/* A box in world space, as func_00136A88 tests it (0x60 bytes). The box's
+ * bounds method (func_00133BC8, updateBounds in D_0041D790) fills one at
+ * 0x180: the centre through the body matrix, a copy of the whole body
+ * matrix, and x, y, z from the box's 0x60. */
+typedef struct cCollisionSolidBoxWorld {
+    cVec center;                        /* 0x00 the box's 0x50 through the body matrix */
+    cVec axis[3];                       /* 0x10 rows 0..2 of the body matrix */
+    cVec pos;                           /* 0x40 row 3 of the body matrix; func_00136A88 doesn't read it */
+    cVec size;                          /* 0x50 x, y and z are read */
+} cCollisionSolidBoxWorld;
+
+typedef char cCollisionSolidBoxWorld_size_check[(sizeof(cCollisionSolidBoxWorld) == 0x60) ? 1 : -1];
+
+/* A box collision body: the solid record, the eight corners, bottom face
+ * first, then the box in world space. At least 0x1E0 bytes; its real size is
+ * not known. */
 typedef struct cCollisionSolidBox {
     cCollisionSolidObj base;
     char unk74[0xF0 - 0x74];
     cVec corner[8];                     /* 0xF0 0..3 bottom face, 4..7 top face, in order around */
+    char unk170[0x10];
+    cCollisionSolidBoxWorld world;      /* 0x180 */
 } cCollisionSolidBox;
 
 typedef char cCollisionSolidBox_corner_check[((int)&((cCollisionSolidBox *)0)->corner == 0xF0) ? 1 : -1];
+typedef char cCollisionSolidBox_world_check[((int)&((cCollisionSolidBox *)0)->world == 0x180) ? 1 : -1];
+
+/* Do boxes a and b overlap? 0 when they can't touch, else *reach is the
+ * centre distance below which they overlap (assembly; the parameters as its
+ * callers pass them). */
+int func_00136A88(const cCollisionSolidBoxWorld *a, const cCollisionSolidBoxWorld *b, float *reach);
 
 #define CSOLID_HIT_MAX       32         /* cCollisionSolidManage.hits */
 
@@ -182,6 +205,11 @@ void cCollisionSolidManage_CreateSphere(cCollisionSolidManage *self, struct cGam
 void cCollisionSolidManage_SetActive(cCollisionSolidManage *self, struct cGameObj *owner, int active);
 /* Set the priority of owner's unit (a cCollisionSolidManageUnit::ePRIORITY). */
 void cCollisionSolidManage_SetPriority(cCollisionSolidManage *self, struct cGameObj *owner, int priority);
+
+/* Push ua's owner out of box b in the ground plane; 0 when the boxes don't touch. */
+int cCollisionSolidManage_pushBoxBox(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua,
+                                     cCollisionSolidBox *a, cCollisionSolidManageUnit *ub,
+                                     cCollisionSolidBox *b);
 
 /* Nonzero when obj hits a solid of the manager. */
 int cCollisionSolidManage_ChkHit(cCollisionSolidManage *self, struct cGameObj *obj);
