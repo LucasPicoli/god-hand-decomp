@@ -1,6 +1,5 @@
 /* ee-2.9-991111 matched TU. */
-
-extern float D_0045EB40;
+#include "godhand/globals.h"
 
 /* newlib fdlibm ef_log.c -- __ieee754_logf
  *

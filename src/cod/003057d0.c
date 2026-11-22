@@ -1,7 +1,7 @@
+#include "godhand/globals.h"
 extern void func_00305358(void *a0, void *a1);
 extern void *SearchData(void *a, void *b, int c);
 extern int func_00306AF0(void *a0, int a1, void *a2);
-extern char D_00450048[];
 extern char D_00741DC8[];
 
 __attribute__((section(".text.func_003057D0")))

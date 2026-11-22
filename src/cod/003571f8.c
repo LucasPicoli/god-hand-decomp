@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_004598E0;
 extern void func_0034DD70(void *p, unsigned int err);
 
 __attribute__((section(".text.sfply_ChkCondDfl")))

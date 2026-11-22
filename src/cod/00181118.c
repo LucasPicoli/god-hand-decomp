@@ -8,8 +8,6 @@ extern char D_005FEE00[];
 #include "godhand/emPhaseTable.h"
 #include "godhand/cDamageUnit.h"
 
-extern EmPhaseTable D_003BDB18;
-
 __attribute__((section(".text.func_00181118")))
 void func_00181118(char *self)
 {

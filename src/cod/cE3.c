@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 */
 #include "godhand/cE3.h"
+#include "godhand/globals.h"
 
 extern cE3World D_007474A0;
 extern cE3Sys D_00747A2C;
-extern char D_0042C7A0[];
-extern char D_0042C7B8[];
 extern void printf_2E0D60(int a, int b, int c, int d, int e, int f, char *format, ...);
 
 /* Shows the E3 time limit (cursor minutes, 0 = unlimited) and moves it with the pad, clamped to 0..CE3_MENU_LAST. */

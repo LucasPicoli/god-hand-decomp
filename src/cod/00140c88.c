@@ -6,9 +6,8 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
 #include "godhand/fileBuf.h"
+#include "godhand/globals.h"
 
-extern char D_0044E030[];
-extern char D_0044E040[];
 extern unsigned int D_00747A34;
 extern void *_MemoryAlloc(int size, int align, void *heap);
 extern int LoadEntryByValue_1FFD00(char *table, char *name, void *dest);
@@ -19,7 +18,6 @@ extern void ClearFields_A0_250_358_13F2F8(void *p);
 extern void ClearFields94And9C_13E7D8(void *p);
 extern void ClearFields_B0_AC_147018(void *p);
 extern void sceVu0ApplyMatrix(void *dst, void *mtx, void *vec);
-extern char D_0042CAB8[];
 extern void *cModel_getMeshPtr_14B730(void *obj, char *name);
 
 /* Reset a hit-flash driver: drop its nine state flags, clear its fields, and (unless bit 31 of the system flags is set) fade its target's hit flash down by speed * frame rate, not below the driver's floor. */

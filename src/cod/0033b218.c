@@ -1,14 +1,7 @@
 /* cygnus-2.96: DTX init (reference counted): clear the EE work area, start the RPC client, allocate
  * the IOP buffer, open remote slot 0 and install its callbacks. */
-extern int D_003E8DD4;
-extern int D_003E8DD8;
-extern int D_003E8DDC;
-extern int D_003E8DE0;
+#include "godhand/globals.h"
 extern void *D_003E9068;
-extern int D_003E906C;
-extern char D_003E9070[];
-extern char D_00455DC8[];
-extern char D_00455DF8[];
 extern void *func_003A52F0(void *dst, int c, int n);
 extern void func_00332508(void);
 extern int sceSifAllocIopHeap(int size);

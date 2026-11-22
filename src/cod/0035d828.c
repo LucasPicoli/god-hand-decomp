@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct Hdr {
     int f0;
@@ -7,7 +8,6 @@ typedef struct Hdr {
     int fC;
 } Hdr;
 
-extern char D_00459C28[];
 extern int Obj35D0_IsField0Zero_D7A8(Hdr *h);
 
 

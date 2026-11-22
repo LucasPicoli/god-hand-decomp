@@ -1,17 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_003FA62C;
 extern int write(int, char *, int);
-extern int D_0077DB88;
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
-extern int D_00785FB8;
-extern int D_00427740;
 extern int D_007859B8;
 extern void func_0031EEC8(void *a, void *b);
-extern int D_00785528;
-extern int D_00460D00;
-extern int D_0041D5D0;
-extern int D_0041D5E8;
 
 __attribute__((section(".text.func_003A7AE8")))
 void func_003A7AE8(void *a0, void *a1, void *a2)

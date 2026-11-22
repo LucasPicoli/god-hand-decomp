@@ -1,5 +1,6 @@
 /* cygnus-2.96: stream/SFD/sound singletons. */
 #include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 typedef struct AdxStatHn {
     char unk00[0x0E];
@@ -9,7 +10,6 @@ typedef struct AdxStatHn {
 } AdxStatHn;
 
 extern void func_0033F130(const char *msg);
-extern char D_004568D0[];
 
 __attribute__((section(".text.func_0033CE98")))
 int func_0033CE98(AdxStatHn *h)

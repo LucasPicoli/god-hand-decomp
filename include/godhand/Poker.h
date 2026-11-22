@@ -80,4 +80,6 @@ typedef struct PokerHandView {
     PokerHandSlot *slot[POKER_HAND_NUM]; /* 0x3004 Poker.hand */
 } PokerHandView;
 
+extern int D_0042B270[POKER_SUIT_NUM];
+
 #endif

@@ -1,5 +1,6 @@
 /* cygnus-2.96: memory-file read of nsct sectors into buf: clip to the file, copy from the mapped block
  * and zero the tail, under the reader lock. */
+#include "godhand/globals.h"
 typedef struct MemFileReader {
     char unk00;
     signed char stat;                   /* 0x01 1 = idle, 2 = busy */
@@ -14,10 +15,6 @@ typedef struct MemFileReader {
     int off;                            /* 0x30 */
     int size;                           /* 0x34 */
 } MemFileReader;
-
-extern char D_00455150[];
-extern char D_00455170[];
-extern char D_00455190[];
 
 extern void func_00336330(MemFileReader *h, char *msg);
 extern void Forward33B658_3362E8(void);

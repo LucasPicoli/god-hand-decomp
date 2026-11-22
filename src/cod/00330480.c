@@ -1,13 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_003DA380[4];
 extern void func_003350F0(int *out, char *name, int tbl, int num);
 extern int strlen(const char *s);
-extern char D_00755E84[];
 extern char *Obj0000_Get_D_00756080_3306C8(void);
 extern int isNeedDevName(char *name);
-extern char D_00756090[];
-extern const char D_00453D80[];
 
 /* htci_get_finf (second link instance).  D_003DA380 is the file-list header:
  * [0] = table pointer, [1] = entry count. */

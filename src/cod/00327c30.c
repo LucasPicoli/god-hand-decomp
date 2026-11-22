@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003D04C0;
-extern int D_003D04BC;
 extern char D_003D04D0[];
 extern void SFTIM_Tc2Time(int, int *, int *);
 

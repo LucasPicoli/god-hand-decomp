@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_0032E770(void *a0);
-extern int D_003D147C;
 extern void func_00347450(void *a0);
 extern void Forward33B658_3389F8(void);
 extern void func_00338FD8(int a0, int a1, int a2, int a3);

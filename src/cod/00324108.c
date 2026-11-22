@@ -1,9 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int MPV_GoNextDelimSj();
-extern int D_00455A30;
 extern int D_00455920;
-extern int D_00455A40;
 extern int D_00455950;
 extern int GetArrayElemA0C_35A1C8(void *, int);
 extern void func_0034CDF8(void *, int);

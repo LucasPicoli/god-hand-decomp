@@ -1,5 +1,6 @@
 /* cygnus-2.96: func_0032BC98, starts a handle on a named file range: stops it, copies the file name and
  * sets the sector range, then kicks playback. */
+#include "godhand/globals.h"
 typedef struct {
     char pad0;
     signed char stat; /* 0x01 */
@@ -13,7 +14,6 @@ typedef struct {
     int start; /* 0xBC */
     int nsct; /* 0xC0 */
 } AdxFnameHn;
-extern char D_004527A0[];
 extern void func_0033F130(char *msg);
 extern void func_00329EA8(AdxFnameHn *hn);
 extern char *func_003A57C4(char *d, const char *s);

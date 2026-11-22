@@ -1,20 +1,13 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 
-extern int D_003E0710;
-extern int D_003E0708;
-extern int D_003E0738;
-extern int D_003E0748[];
 extern int DTX_CallUrpc(int a0, int a1, int a2, void *a3, int t0);
 extern int GetD003EE078_3463F8(void);
 extern void mwrsc_WaitSprDmaEnd(void);
 extern int SprMem_save(int scratchpadOffset, int byteCount, void *destination);
 extern int SprMem_restore(void *source, int byteCount, int scratchpadOffset);
 extern void MWDMA_WaitEnd(int ch);
-extern int D_003EE080;
-extern int D_00758C80;
-extern int D_0075CC80;
-extern int D_00451800;
-extern int D_00451828;
 extern void Forward33B658_33E678(void);
 extern void func_00323A00(int *);
 extern void Forward33B670_33E690(void);

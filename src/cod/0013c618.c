@@ -1,6 +1,7 @@
 #include "godhand/cOm60.h"
 #include "godhand/cOm5a.h"
 #include "godhand/cCockTutorial.h"
+#include "godhand/globals.h"
 
 __attribute__((section(".text.ClearBytesAt74And79To7C_13C618")))
 void ClearBytesAt74And79To7C_13C618(char *a0) {
@@ -184,10 +185,6 @@ __attribute__((section(".text.NoOp_1FFE00")))
 void NoOp_1FFE00(void)
 {
 }
-
-extern int D_00760D84;
-extern int D_00760D88;
-extern int D_00760D8C;
 
 __attribute__((section(".text.Forward3428A0_342870")))
 int Forward3428A0_342870(int a0, int a1, int a2) {

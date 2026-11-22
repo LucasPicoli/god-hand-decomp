@@ -1,8 +1,7 @@
 /* cygnus-2.96: Sofdec stream-joint position feed (0x32BF90..0x32C1E0). */
 
 #include "godhand/criSj.h"
-
-extern char D_00452890[];
+#include "godhand/globals.h"
 
 void func_0032C048(char *self);
 

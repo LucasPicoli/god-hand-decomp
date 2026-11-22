@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct AdxPs2Work {
     char pad0[0xE8];
     int dma;
@@ -16,12 +17,6 @@ typedef struct AdxtPs2Hn {
     AdxPs2Obj *obj;
 } AdxtPs2Hn;
 
-extern char D_00455290[];
-extern char D_004552D0[];
-extern void *D_003D1424;
-extern void *D_003E9D4C;
-extern void *D_003E9D50;
-extern void *D_003CF9EC;
 extern void func_0033F130(char *msg);
 extern void func_00329EA8(AdxtPs2Hn *adxt);
 extern void func_00336CE0(AdxtPs2Hn *adxt);

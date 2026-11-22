@@ -2,8 +2,8 @@
 #include "godhand/cSnd.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
-extern int D_0077E6C0[];
 extern void cOmBase_dieCommon(void);
 extern void func_001FDEA8(void *);
 extern void KeyStop(void);

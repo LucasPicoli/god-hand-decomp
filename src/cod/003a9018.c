@@ -1,5 +1,5 @@
 /* sn-2.95.3-136: newlib _strtoul_r. D_0045F039 is _ctype_ + 1 (bits: 1 upper, 2 lower, 4 digit, 8 space). */
-extern unsigned char D_0045F039[];
+#include "godhand/newlibStdlib.h"
 
 struct _reent { int _errno; };
 

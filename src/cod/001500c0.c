@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void cActionButton_set(void *, int, int, int, void *, void *, int);
 extern char D_00568288;
@@ -12,8 +13,6 @@ extern char D_00423E48[];
 extern void func_001C7DE0(void *a, void *b);
 extern char D_00427148[];
 extern void ResetField214FreeField180_1C2820(void *a, void *b);
-extern char D_00427230[];
-extern char D_004272F8[];
 extern char D_00427E60[];
 
 /* clone */

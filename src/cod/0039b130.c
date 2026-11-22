@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, output.o :: _dispRefImage */
 
@@ -7,8 +8,6 @@ extern void func_003B1EE0(char *buf, int size, char *fmt, int a, int b);
 extern void _sceMpegError(char *c, char *msg);
 extern void func_0039BB20(char *c, char *pic);
 extern void _cpr8(char *c, char *pic);
-extern char D_0045E5A8[];
-extern unsigned int D_003FA1F8[];
 
 __attribute__((section(".text._dispRefImage")))
 void _dispRefImage(char *c, char *pic, int n)

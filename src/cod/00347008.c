@@ -1,9 +1,6 @@
 /* cygnus-2.96: Sofdec frame-info conversion to the SFX layout (0x347008..). */
 #include "godhand/mwsfd.h"
-
-extern char D_004588D8[];
-extern char D_00458900[];
-extern char D_00458928[];
+#include "godhand/globals.h"
 
 int func_00347080(MwsfdHn *hn);
 int func_003470F0(MwsfdHn *hn);

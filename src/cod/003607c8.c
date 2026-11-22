@@ -1,7 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern char D_0045A230[];
-extern char D_0045A218[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.SUD_AnalyTypeCcs")))
 int SUD_AnalyTypeCcs(char *p, int n)

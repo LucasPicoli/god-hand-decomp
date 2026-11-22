@@ -1,5 +1,5 @@
 /* cygnus-2.96 matched TU. */
-extern int D_003EE084; /* Scratchpad copy mode: zero uses DMA, nonzero uses the CPU. */
+#include "godhand/globals.h"
 extern int MWSPR_SaveSprMem(void *sprAddr, int size, void *dst);
 extern int func_003464D8(int scratchpadOffset, int byteCount, void *destination);
 

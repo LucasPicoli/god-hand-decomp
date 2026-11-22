@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: sceCdLayerSearchFile */
 
@@ -14,17 +15,7 @@ struct sfdata {
 
 extern volatile int D_003F8668;       /* _sceCd_ncmd_semid */
 extern char  D_003F8640[];            /* +0x10 == SCE_CD_debug */
-extern int   D_003F865C;              /* ncmd_sema_keep_cmd */
-extern int   D_003F868C;              /* _sf_bind */
 extern struct sfdata D_0077C440;      /* _sf_data */
-extern char  D_0077C464[];            /* _sf_data.name */
-extern int   D_0077C580[];            /* sfrdata */
-extern int   D_0077C5C0[];            /* cdrdsf (sceSifClientData) */
-extern char  D_0045E1F0[];
-extern char  D_0045E210[];
-extern char  D_0045E228[];
-extern char  D_0045E238[];
-extern char  D_0045E248[];
 
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);

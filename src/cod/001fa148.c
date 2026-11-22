@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 /* Starting levelPoint for each game level. The table holds ints; the game
  * reads the low halfword of each. */
-extern unsigned short D_003BF178[];
 
 /* Jump to game level 1..5 (clamped) and grant two level-down graces. */
 __attribute__((section(".text.cCoreSave_setGameLevel")))

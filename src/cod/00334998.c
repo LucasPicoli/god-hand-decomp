@@ -1,5 +1,6 @@
 /* cygnus-2.96: func_00334998, stop a running stream: cancel its request, then poll until it leaves
  * state 2 (giving up with an error after 0x63FFF6 polls) and reset it. */
+#include "godhand/globals.h"
 typedef struct CdStream {
     char unk00[2];
     char state;                 /* 0x02 */
@@ -15,8 +16,6 @@ extern void func_003341B8(void);
 extern int func_00334A90(CdStream *s);
 extern void func_00333FD8(void);
 extern void func_003260C8(char *msg);
-extern char D_004549C0[];
-extern char D_004549D8[];
 
 __attribute__((section(".text.func_00334998")))
 void func_00334998(CdStream *s)

@@ -1,10 +1,8 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 extern int D_00747A84;
-extern int D_00420070;
 extern char D_007419A0[];
-extern int D_00420158;
-extern int D_00420240;
 
 __attribute__((section(".text.UpdateStateAndClearFlag_3734F0")))
 void UpdateStateAndClearFlag_3734F0(void *a0)

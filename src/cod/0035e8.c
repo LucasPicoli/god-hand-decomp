@@ -2,6 +2,7 @@
  * and the field setters. */
 #include "include_asm.h"
 #include "godhand/sfxlib.h"
+#include "godhand/globals.h"
 
 extern void *getElemInfPtr(int a0, int a1);
 typedef struct Elem {
@@ -118,9 +119,6 @@ void Obj35E8_SetField_70(char *a0, int a1)
 }
 
 extern void func_0035FD98(void *a, int b, int c);
-extern char D_00459C70[];
-extern char D_00459ED8[];
-extern char D_00459EE0[];
 extern int func_0035F830(void *a, void *b);
 extern void func_0035F1D0(void *a, void *b, int c, int d);
 extern void func_0035F3C8(void *a, void *b, int c);

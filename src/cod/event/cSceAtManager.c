@@ -1,7 +1,6 @@
 /* TU: cSceAtManager [event] - the attack/hit-box manager. */
 #include "godhand/cSceAtManager.h"
 
-extern cSceAtTypeEnt D_003C2650[];
 extern int func_002C0E68(cSceAtUnit *unit);
 extern void cSceAtUnit_SetEnable(cSceAtUnit *unit, int arg);
 extern void cSceAtUnit_SetDisable(cSceAtUnit *unit, int arg);

@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int SFXLIB_Error(void *a0, void *a1, char *msg);
-extern char D_00459CA0[];
 
 /* cygnus-2.96 matched TU (compiled with -freorder-blocks dropped). */
 

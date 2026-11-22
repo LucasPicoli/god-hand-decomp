@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern void cSnd_LoadStartupBanks(void *a0);
 extern int cDvd_ReadAlloc(void *a0, void *a1, void *a2, void *a3, int t0, int t1, int t2, int t3);
@@ -10,10 +11,8 @@ extern void func_0030D8E0(int a0);
 extern void cTaskWork_exit(int a0);
 extern int D_00747A24;
 extern char D_005FEE00[];
-extern int D_003C3BC8[];
 extern char D_00583F20[];
 extern char D_00754200[];
-extern int *D_003C3CC4;
 extern char D_00752C38[];
 extern char D_00752C00[];
 

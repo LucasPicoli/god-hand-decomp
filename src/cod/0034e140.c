@@ -1,9 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void *getElemInfPtr();
 extern int isEnableVidFtr();
-extern int D_00762058;
-extern int D_003EE2E8;
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(void *);
 extern int M2VERR_SetCode(int, unsigned int);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(void *);

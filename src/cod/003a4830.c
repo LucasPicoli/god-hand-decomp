@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 typedef union
 {
@@ -21,7 +22,6 @@ do {								\
 } while (0)
 
 extern float func_003A19D8(float);	/* fabsf */
-extern const float D_0045EFF0[];	/* T[] */
 #define T D_0045EFF0
 
 #define one ((float)(1.0000000000e+00))

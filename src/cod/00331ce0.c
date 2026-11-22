@@ -1,24 +1,15 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 extern volatile int D_003D8454;
-extern int D_003D8484;
-extern char D_004540B8[];
 extern void func_003B1F28(char *a0);
 extern volatile int D_00766C9C;
-extern volatile int *D_00766C88;
 extern int D_00766C90;
 extern int *Obj35D0_GetStringPtr_D00459BF0(void);
 extern void initLibWork(int a0, int a1);
 extern void Obj35D0_SetFields_a1_Clear4_a2_D718(int *a0, int a1, int a2);
-extern int D_003EEA6C;
-extern int *volatile D_00766CA4;
 extern int *Obj0000_Get_D_0045A1B0_360790(void);
-extern int D_003E0710;
-extern int D_003E0708;
-extern int D_003E0754;
-extern int D_003E0724;
-extern int D_003E31A8;
-extern int D_003E075C;
 extern void Tramp_sceSifFreeSysMemory_3B5A50(int a0);
 extern void DTX_Destroy(int a0);
 extern void func_00337240(void);

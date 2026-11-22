@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern int D_00747A10;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.SetEventFrame")))
 void SetEventFrame(int n) {

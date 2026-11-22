@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern char D_00428650[];
 extern int SetField214PtrThenInit_1B6F38();
 extern int ClearField5B4IfFlagUnset_1B76B0();
 extern char D_00429190[];
@@ -11,7 +11,6 @@ extern char D_004296F0[];
 extern char D_004297D8[];
 extern char D_00429B88[];
 extern int cOmBase_checkDamage();
-extern char D_00429EC8[];
 
 /* clone */
 

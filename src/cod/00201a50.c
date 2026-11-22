@@ -1,13 +1,12 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int GuardedCall_00329FD0_329F98(void *hn);
 extern void func_0032A160(void *hn, int *ntime, int *tunit);
 extern int Obj0000_Get_D_003EEA70_360C58(void);
 extern void func_0035C5A0(void *tst, long long *a, long long *b, long long *c);
-extern int D_003EE0A4;
 extern void func_0034BD98(void *sj, int kind);
 extern void sfply_ChkCondDfl(void);
-extern int D_003EE304;
 extern void func_00357678(void *p);
 extern void func_00357720(void *p);
 extern void func_003577A8(void *p);

@@ -1,13 +1,12 @@
 /* cygnus-2.96: func_00340970, stores the four distances of a (-127..127) pan pair from both ends of the
  * range; out-of-range or missing handles report an error. */
+#include "godhand/globals.h"
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
 typedef struct {
     char pad0[0x1C];
     int d[4]; /* 0x1C */
 } PanWork;
-extern char D_00456F90[];
-extern char D_00456FB8[];
 extern void func_00340450(char *msg);
 
 __attribute__((section(".text.func_00340970")))

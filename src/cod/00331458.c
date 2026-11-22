@@ -1,12 +1,11 @@
 #include "godhand/iopReq.h"
+#include "godhand/globals.h"
 typedef struct IopReqMgr {
     char unk0;
     signed char mode;
 } IopReqMgr;
 
 extern IopReqMgr D_003D8410;
-extern int D_003D844C;
-extern int D_003D846C;
 extern int Forward33B568_33B658(void);
 extern int Forward33B5C8_33B670(void);
 extern void func_003312B8(void);

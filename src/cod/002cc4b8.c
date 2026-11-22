@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/globals.h"
 
-extern int D_00450FF0;
 extern void NoOp_33E6A8(void);
 extern void func_0032A720(int a0, int a1, int a2);
 extern int NoOp_33E6B0(void);

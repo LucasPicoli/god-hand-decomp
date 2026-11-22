@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -21,11 +22,7 @@ extern int CreateSema(struct SemaParam *p);
 extern int DeleteSema(int id);
 extern int WaitSema(int id);
 
-extern int D_003FAEDC;
 extern Pkt D_0077FFC0;
-extern char D_00460240[];
-extern char D_00780C00[];
-extern char D_007816C0[];
 
 __attribute__((section(".text.func_003B5520")))
 int func_003B5520(int fd, void *buf)

@@ -4,8 +4,8 @@
 #include "godhand/cModel.h"
 #include "godhand/vu0.h"
 #include "godhand/cVec.h"
+#include "godhand/globals.h"
 
-extern char D_0042CAC8[];
 extern void cModel_setTextureExchange(void *model, int set, int rec, int flag);
 extern void *cModel_getMeshPtr_14B730(void *obj, char *name);
 extern float capVu0LengthSq(void *v);

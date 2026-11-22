@@ -1,13 +1,11 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* MPEG-2 quant_matrix_extension() -- Sony libmpeg ext.c::_quantMatrixExtension */
 
 extern int func_0039EAA8(void *v, int n);		/* getBits */
 extern void func_003A0DE8(void *v);			/* _waitIpuIdle */
 extern void _sceMpegError(void *v, char *msg);
-
-extern char D_0045E858[];	/* "load_chroma_intra_quantizer_matrix == 1" */
-extern char D_0045E880[];	/* "load_chroma_non_intra_quantizer_matrix == 1" */
 
 #define IPU_CMD (*(volatile unsigned int *)0x10002000)
 

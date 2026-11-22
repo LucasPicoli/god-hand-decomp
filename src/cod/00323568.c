@@ -1,21 +1,16 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Tramp_003302B0_003302E0(void *a0);
 extern void func_00330910(void *a0);
-extern char D_004532D8[];
-extern char D_004532F8[];
 extern void func_00327F00(int a0, int a1, int a2, int a3, int t0);
 extern void func_00328018(int a0);
 extern void func_0033F130(int a0);
-extern char D_00451658[];
-extern char D_00452060[];
 extern int D_003D1420;
 extern void func_00326860(int *a0);
 extern void func_00327FA8(int a0);
 extern void func_00335950(int a0);
 extern void func_00329E08(void *a0);
-extern char D_004531C8[];
-extern char D_004531F0[];
 extern unsigned int strlen(const char *a0);
 extern void toUpperStr(char *a0);
 extern int isExistDev(char *a0, int a1);

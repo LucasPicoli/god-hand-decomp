@@ -1,18 +1,12 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00426180;
 extern void InitVtable214_429C80_1C27E8(void *a);
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 extern void ResetField214FreeField180_1C2820(void *a, int b);
-extern int D_00785E48;
-extern int D_00426250;
 extern int D_00785798;
 extern void GetOrInitGlobal785798_1C3BE8(void);
-extern int D_00426268;
-extern int D_00785E58;
-extern int D_00426338;
-extern int D_00426350;
 
 #include "godhand/vu0.h"
 

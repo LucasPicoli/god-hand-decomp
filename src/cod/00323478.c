@@ -1,10 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void MWSFSVM_Error();
-extern char D_00458168[];
 extern signed char D_003EAEC8[];
 extern signed char D_003DED70[];
-extern int D_003D84BC;
 extern signed char D_003D84C0[];
 extern void DTX_Destroy(void *);
 

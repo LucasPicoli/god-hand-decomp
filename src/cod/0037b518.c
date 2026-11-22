@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002E0DE8();
 extern int GetSoundEntryStatus_375EF8();
-extern char D_0045BD90[], D_0045BDA0[], D_0045BDA8[], D_0045BDB8[], D_0045BDE8[];
 
 __attribute__((section(".text.func_0037B518")))
 void func_0037B518(unsigned char *a0)

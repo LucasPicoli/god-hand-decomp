@@ -5,6 +5,7 @@
 #include "godhand/cCamera.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void Obj1D00_SetState_7_16(void *a0);
@@ -97,8 +98,6 @@ __attribute__((section(".text.cEm00_stepTurnToLinkedObject"))) void cEm00_stepTu
         self->emFlags2 &= 0xFFFFFBFF;
     }
 }
-
-extern char D_0041DBA0[];           /* the follow routine table, one pointer to member per mode */
 
 typedef struct { char b[0x10]; } cPlCamTbl;
 

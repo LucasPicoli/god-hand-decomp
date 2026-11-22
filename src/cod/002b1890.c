@@ -2,11 +2,9 @@
 #include "godhand/cMessDrawFont.h"
 #include "godhand/messPanel.h"
 #include "godhand/cScrSpriteDraw.h"
+#include "godhand/globals.h"
 
 extern cMessDrawFont D_005E7510;
-extern cScrSheet D_005E75A0;            /* the panel frame's sheet */
-extern cScrSheetCell D_003C2478[];      /* its ten cells */
-extern unsigned int D_003C254C;         /* the frame colour */
 
 __attribute__((section(".text.func_002B1890")))
 void func_002B1890(Panel *self)

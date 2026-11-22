@@ -2,6 +2,7 @@
 
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 
 extern cBgmData *cSnd_GetBgmData(cSnd *, int);
 extern cBgmHead *cBgmData_GetHeadPtr(cBgmData *);
@@ -9,16 +10,12 @@ extern cBgmTbl *cBgmData_GetTblPtr(cBgmData *, int);
 extern void cBgmData_Reset(cBgmData *);
 extern char D_005FEE00[];
 extern char D_00580D40[];
-extern char D_0044D0B0[];
-extern char D_0044D0C0[];
-extern char D_0044D0D8[];
 extern void *_MemoryAlloc(int, int, void *);
 extern int FindEntryValue_1FF9C0(char *, char *, int, int);
 extern void cBgmData_AddLoadBits(cBgmData *, int);
 extern int cBgmData_LoadNumbered(cBgmData *, int, int);
 extern char D_00754210[];
 extern char D_00583F20[];
-extern char D_0044D0A0[];
 extern int cDvd_FileExist(char *, char *);
 extern int cDvd_ReadAlloc(char *, char *, void *, void *, int, int, int, int);
 

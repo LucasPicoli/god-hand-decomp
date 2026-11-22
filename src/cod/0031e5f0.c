@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111; libgcc fp-bit.c :: divide (double variant, gofast dpdiv), _fpdiv_parts inlined as upstream. */
 
@@ -36,7 +37,6 @@ typedef struct
 #define FRACBITS 52
 #define IMPLICIT_1 (1LL<<(FRACBITS+NGARDS))
 
-extern unsigned char D_00755BD0[];
 #define nan() ((fp_number_type *)D_00755BD0)
 
 extern void func_0031DFA8 (FLO_type *, fp_number_type *);   /* unpack_d */

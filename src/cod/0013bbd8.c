@@ -1,54 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00139820(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
-extern int D_00785598;
-extern int D_0041DBD8;
-extern int D_00785578;
 extern void GetOrInitSingletonC_13C758(void);
-extern int D_007855A8;
-extern int D_0041DC58;
-extern int D_00460D28;
-extern int D_007855B8;
-extern int D_0041DCB8;
-extern int D_007855C8;
-extern int D_0041DE80;
-extern int D_007855D8;
-extern int D_0041DEC8;
-extern int D_007855E8;
-extern int D_0041DF10;
-extern int D_007855F8;
-extern int D_0041DF98;
-extern int D_00785608;
-extern int D_0041DFE8;
-extern int D_00785618;
-extern int D_0041E070;
-extern int D_00785628;
-extern int D_0041E0D8;
-extern int D_00785638;
-extern int D_0041E128;
-extern int D_00785648;
-extern int D_0041E170;
-extern int D_00785658;
-extern int D_0041E580;
-extern int D_00785668;
-extern int D_0041E658;
-extern int D_00785678;
-extern int D_0041E6A0;
-extern int D_00785688;
-extern int D_0041E700;
-extern int D_00785698;
-extern int D_0041E830;
-extern int D_007856A8;
-extern int D_0041E8F8;
-extern int D_007856B8;
-extern int D_0041E948;
-extern int D_007856C8;
-extern int D_0041E9F0;
-extern int D_007856D8;
 extern void GetOrInitSingletonD_150638(void);
-extern int D_0041EAD8;
-extern int D_00460D30;
 
 __attribute__((section(".text.func_0013BBD8")))
 void *func_0013BBD8(void) {

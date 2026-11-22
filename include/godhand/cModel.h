@@ -344,4 +344,8 @@ static __inline__ void cMtxMulVu0(void *dst, void *a, void *b) {
     VU0_SQC2(15, dst, 0x30);
 }
 
+extern cPmf D_003BF738[];
+extern cPmf D_003BF878[];
+extern cPmf D_003BFAC0[];
+
 #endif

@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/criStm.h"
-
-extern char D_004557C8[];   /* "PS2RNA_SetBitPerSmpl: not support %d bps\n" */
+#include "godhand/globals.h"
 
 /* Warn about any sample width other than 16 bits, unless the pool was configured with no entries.
  * The int return stays without a value: as void, cygnus emits a `j` tail call where retail has `jal`. */

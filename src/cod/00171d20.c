@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_002A87E8(void *a0, int a1);
@@ -12,9 +13,7 @@ extern void func_001C0450(void *);
 extern float cEmManage_GetSpeedRate(void *a0);
 extern char D_005864F0[];
 extern void cModel_ScrollTexture(void *a0, float f);
-extern char D_003C0480[];
 extern int D_005CAE50;
-extern int D_00420EF0;
 extern void func_0012EC58(void *a, int b);
 extern void *SetField214PtrThenInit_1B6F38(void *a, void *b);
 

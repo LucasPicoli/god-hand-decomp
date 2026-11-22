@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_004544E0[];
 extern void func_003A53A8(char *, char *);
 extern unsigned int strlen(const char *);
 
@@ -24,8 +24,6 @@ Sint32 func_0033F050(Sint8 *ibuf, Sint32 ibuflen, Sint16 *dlen)
     *dlen = (((Uint8 *)ibuf)[3] | ((*(Uint16 *)(ibuf + 2) << 8) & ~0xFF)) + 4;
     return 0;
 }
-
-extern char D_003D9DE0[];    /* dvg_ci_root_dir */
 
 
 

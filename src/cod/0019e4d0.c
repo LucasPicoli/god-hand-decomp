@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern int D_00426350;
 extern void ResetField214FreeField180_1C2820(void *, int);
 
 __attribute__((section(".text.ResetObjVtableAndFree_19E4D0")))

@@ -1,12 +1,12 @@
 /* ee-2.9-991111 matched TU. */
 
 #include "godhand/ehFrameObj.h"
+#include "godhand/globals.h"
 
 extern long long *SlotTable_resolveValue(int col, void *a1, int a2);
 extern void _dispRefImage(void *, int, int);
 extern void _dispRefImageField(void *, int, int, int);
 extern int SignalSema(int);
-extern int D_003F86C0;
 extern int D_003F9810;
 extern int D_003F8668;
 extern void *GetD003F8560_395388(void);

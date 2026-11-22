@@ -1,5 +1,6 @@
 /* cygnus-2.96: func_003B9EB0, takes a free 0x3C-byte work record for a buffer of at least 0x1800 bytes and
  * marks it in use. */
+#include "godhand/globals.h"
 typedef struct {
     int used; /* 0x00 */
     int pad4;
@@ -8,8 +9,6 @@ typedef struct {
     char pad10[0x18 - 0x10];
     int state; /* 0x18 */
 } WorkRec;
-extern char D_00460888[];
-extern char D_004608B0[];
 extern void func_003B9DE0(char *msg);
 extern WorkRec *func_003B9F60(void);
 extern void *func_003A52F0(void *d, int c, unsigned int n);

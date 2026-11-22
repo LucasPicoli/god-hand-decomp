@@ -1,7 +1,5 @@
 #include "godhand/heapArena.h"
-extern int D_003C3CF8;
-extern int D_003C3D00;
-extern int D_003C3CF4;
+#include "godhand/globals.h"
 extern char D_003C3CFC;
 
 __attribute__((section(".text.func_0030ECF8")))

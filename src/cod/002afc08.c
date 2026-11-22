@@ -1,12 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_00455970[];
 extern char D_00455920[];
-extern char D_00455980[];
 extern char D_00455950[];
-extern char D_00455C28[];
 extern char D_00455BD8[];
-extern char D_00455C38[];
 extern char D_00455C08[];
 extern int func_002AFC48(void *a0, float f12, float f13, int a1, int a2, int a3, int t0, int t1);
 extern unsigned char D_003C23B0[];

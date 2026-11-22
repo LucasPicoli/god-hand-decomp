@@ -1,13 +1,13 @@
 /* TU: cEmWrap [enemy] - recovered C++ class. */
 #include "godhand/cEmWrap.h"
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 struct vec4 { int a; float b; int c; float d; };
 extern int D_00747B00[];
 extern unsigned char D_005864F0[];
 extern void func_0026E7A8(int a0, int a1);
 extern void func_0026E7A0(int a0, float f);
 extern void cEm00_clearSetFlags(int a0);
-extern int D_0044A878;
 extern void cEma2_SetEscPos(int a0, int a1);
 
 __attribute__((section(".text.cEmWrap_setPos_2959B0")))

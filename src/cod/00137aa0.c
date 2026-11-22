@@ -1,5 +1,5 @@
 #include "godhand/sndTiming.h"
-extern int D_0076A7A4;
+#include "godhand/globals.h"
 extern void MtxMultiply(int a, int b, void *buf);
 
 __attribute__((section(".text.SdeSystemOutModeSet")))

@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045D018[];
 
 typedef unsigned int size_t;
 

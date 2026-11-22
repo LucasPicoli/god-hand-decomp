@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern signed char D_003F2620[];
+#include "godhand/globals.h"
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.func_0026A338")))

@@ -1,17 +1,14 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int GetField0OrZero_346828(void *a0);
 extern int MWSFSVM_Error();
-extern char D_00459110[];
 extern void func_003461B0(void *a0, int a1);
 extern void func_00335950(int a0);
 extern void MwsfdHn_forwardStmRequest(void *a0, int a1, int a2, int a3);
 extern void func_00347908(void *a0, int a1);
 extern void func_00347868(void *a0);
-extern char D_00458F78[];
-extern char D_00458FA8[];
 extern void func_003477A8(void *a0, int a1);
-extern char D_004590A8[];
 extern void func_00347AF8(void *a0, int a1, int a2);
 
 __attribute__((section(".text.func_00347D08")))

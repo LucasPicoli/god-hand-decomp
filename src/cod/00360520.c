@@ -1,6 +1,6 @@
+#include "godhand/globals.h"
 extern int GetD003EE804_360720(void);
 extern void SFXLIB_Error(void *a0, void *a1, char *msg);
-extern char D_0045A0A0[];
 
 __attribute__((section(".text.func_00360520")))
 void func_00360520(void *hn, unsigned int *src, short *dst)

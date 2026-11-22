@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003FC7A8;
 extern unsigned char D_003FC7B8[];
 
 __attribute__((section(".text.func_003534B0")))

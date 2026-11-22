@@ -6,13 +6,12 @@
 #include "godhand/cActionButton.h"
 #include "godhand/cMessCommon.h"
 #include "godhand/cGame.h"
+#include "godhand/globals.h"
 
-extern int D_00747A44;
 extern float *cRoomJump_getRecord(cRoomJump *self, unsigned short id, unsigned char kind);
 extern cE3World D_007474A0;
 extern int D_0061A990;
 extern int D_00747A24;
-extern char D_0042C7D0[];
 extern void *D_003C2F84;
 extern void cWorldTime_getGlobalHMS(void *clock, int a, unsigned int *out, int b);
 extern void cScenario_debugPrint(void *printer, char *fmt, int value);
@@ -20,13 +19,7 @@ extern void cE3_setEnding(cE3 *self, int kind);
 extern unsigned int D_00747A78;
 extern void Set_bg_mode(int a, int b, int c, int d);
 extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(cActionButton *self, int priority, cActionButtonEnt *ent);
-extern int D_005685B0[];
-extern unsigned short D_00568650[];
-extern unsigned char D_005686A0[];
 extern cE3Sys D_00747A2C;
-extern int D_00752CF0;
-extern char D_00585038[];
-extern int D_005CAFF4;
 extern void *D_003BD930;
 extern void cE3_exec(void *e3);
 extern void func_002A6FF8(cGame *self);

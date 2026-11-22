@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cObjSimple.h"
+#include "godhand/globals.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern void cModel_setTextureExchange(void *self, void *tex, int tbl, int n);
-extern char D_0044B4A8[];
-extern char D_0044B4B0[];
 
 /* sn-2.95.3-136 matched TU. */
 

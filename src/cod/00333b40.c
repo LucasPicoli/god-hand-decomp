@@ -1,11 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void MPV_GoNextDelimSj(void *a0);
 extern long long func_003A9228(int a0, int *buf, int size);
 extern void LogPrintf(char *fmt, int val);
-extern char D_00454570[];
-extern char D_00454588[];
-extern char D_00454598[];
 
 __attribute__((section(".text.func_0036B6D8")))
 int func_0036B6D8(void *a0, void *a1) {

@@ -1,11 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern char D_0044D010[];
-extern char D_0044D018[];
-extern int D_003C3100[];
-extern int D_003C3104;
-extern int D_003C310C;
-extern int D_003C3118;
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 

@@ -1,6 +1,6 @@
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
-extern char D_00458068[];
 extern int mwlSfdSleepDecSvr(void *h);
 extern int func_00358968(int);
 extern int func_00345750(int);

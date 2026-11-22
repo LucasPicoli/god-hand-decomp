@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char *D_00773250[];
-extern int D_0076A7A4;
 
 __attribute__((section(".text.func_0037C630")))
 int func_0037C630(char *o) {

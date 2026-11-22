@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
 extern void SetFlagOnEntries7C_1D51B8(void *a0, int a1, int a2);
 extern void SetCustomIDDispOneOrAll_1DD258(void *a0, int a1, int a2);
@@ -7,7 +8,6 @@ extern int D_00466470;
 extern void func_002A9790(void *);
 extern int D_004664A0;
 extern void EntryTable_constructPairs(void *);
-extern int D_00566E50;
 extern void func_001612C8(void *);
 extern int D_00568240;
 extern void ClearField00_1F6CE0(void *);
@@ -31,7 +31,6 @@ extern int D_00603A40;
 extern void func_002D2DC8(void *);
 extern int D_00604700;
 extern void *func_002D6D80(void *);
-extern int D_0061A998;
 extern void Obj0000_Set_Vtbl_D_0044D388_2D9E18(void *);
 extern void func_001B6FB8(void *);
 extern void func_0032DB70(int);
@@ -40,7 +39,6 @@ extern void func_0032D6F0(int);
 extern void func_0031C900(int);
 extern void SetFields_4_And_8_1FE6B8(void *, void *, int);
 extern char D_005864E0[];
-extern char D_00585960[];
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);

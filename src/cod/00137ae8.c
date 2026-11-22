@@ -1,12 +1,11 @@
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
-extern int D_00466448[];
 extern void func_002A9790(void *p);
 extern void ForwardGlobalIfFlagSet_149550(int a0, int a1);
 extern int D_00747A80;
-extern int D_00747AA8;
 extern void InitStructDefaults_137AA0(void);
 extern void *memcpy(void *, const void *, unsigned int);
 

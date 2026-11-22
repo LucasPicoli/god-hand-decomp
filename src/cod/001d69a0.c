@@ -1,21 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void SetFlagOnEntries7C_1D51B8(void *a, int b, void *c);
-extern char D_00447B90[];
-extern char D_00447B98[];
 extern void Obj0000_Set_Field_424_1595E8(void *a, int b);
 extern void *SearchData(void *a, void *b, int c);
 extern int cModel_setupModel(void *a, void *b, void *c, int d, int e);
-extern char D_00447D38[];
-extern char D_00447D40[];
-extern char D_00447E58[];
-extern char D_00447E60[];
-extern char D_00448180[];
-extern char D_00448188[];
-extern char D_004482C8[];
-extern char D_004482D0[];
-extern char D_00448588[];
-extern char D_00448590[];
 
 __attribute__((section(".text.func_001D69A0")))
 void func_001D69A0(void *a0, void *a1) {

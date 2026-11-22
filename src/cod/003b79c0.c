@@ -2,6 +2,7 @@
 
 /* ee-2.9-991111 */
 #include "godhand/gp.h"
+#include "godhand/globals.h"
 
 typedef struct {
     void (*func)(void *, void *);
@@ -12,7 +13,6 @@ typedef struct {
 
 extern NotifyHandler D_00784048[];
 extern NotifyHandler *D_003FBEB8;
-extern int D_003FBEBC;
 
 __attribute__((section(".text.func_003B79C0")))
 void func_003B79C0(int sys, void *arg)

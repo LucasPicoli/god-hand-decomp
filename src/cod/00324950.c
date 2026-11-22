@@ -1,18 +1,11 @@
 /* cygnus-2.96 matched TU. */
 
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
-extern int D_003C7400;
-extern int D_003C7408;
-extern int D_003C7410;
-extern int D_003C7414;
 extern volatile int D_003C7418;
 extern char D_003C7420[];
-extern volatile int D_00755C1C;
 extern char D_00451AC0[];
-extern char D_00451B10[];
-extern char D_00451B20[];
-extern char D_00451B30[];
 extern void func_0033E618(void);
 extern void Forward33B658_33E678(void);
 extern void func_0033A090(void);
@@ -33,15 +26,9 @@ extern void Forward33F130_3248D8(void);
 extern void func_00324910(void);
 extern void func_00324930(void);
 extern void func_003248F0(void);
-extern char D_00455B58[];
-extern char D_00455B68[];
-extern char D_00455B78[];
 extern char D_00455A80[];
 extern char D_00455AB0[];
-extern char D_00455B20[];
 extern void func_00339458(const char *msg, const char *fn);
-extern char D_00455B38[];
-extern char D_00455B48[];
 extern void func_0036EE90(void *hn, char *start, int skipped);
 
 /* Reference-counted start of the stream manager: the first caller sets up the module and registers the handlers. */

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
 
 extern void *Getplayer(void);
 extern int irand(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
-extern unsigned char D_005CB010;
 
 __attribute__((section(".text.func_0020CAC8")))
 long func_0020CAC8(void *a0, int a1)

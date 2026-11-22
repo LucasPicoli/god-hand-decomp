@@ -1,6 +1,7 @@
 /* cygnus-2.96: step over the 0x12-byte padding records that equal the template at D_00459410, switch
  * the stream callback at the first other record, and add the skipped bytes to the totals. */
 #include "godhand/sftim.h"
+#include "godhand/globals.h"
 typedef struct SfdStmHdr {
     char pad0[0x38];
     int total;
@@ -14,7 +15,6 @@ typedef struct SfdPosView {
     SfdStmHdr *hdr;
 } SfdPosView;
 
-extern char D_00459410[];
 extern void func_0034A400(int a0, int a1, int a2, int a3);
 extern int func_003A50B4(const char *a, const char *b, int n);
 extern int func_0034A6F8(SfdPosView *o, int *a, int *b);

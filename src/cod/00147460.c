@@ -1,11 +1,11 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
 extern void cIDBase_trans(void *);
 extern void func_00155AE8(int pkt, int id, int buf);
 extern char D_0041DCC8[];
 extern void __builtin_delete(void);
 extern int D_007476B0;
-extern int D_00466448[];
 extern int D_00747A34;
 
 __attribute__((section(".text.ForwardIfStateActive_147460")))

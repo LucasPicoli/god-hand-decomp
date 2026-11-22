@@ -1,7 +1,4 @@
-extern int D_0044B360[];
-extern int D_0044B378[];
-extern int D_0044B410[];
-
+#include "godhand/globals.h"
 __attribute__((section(".text.func_002B6688")))
 int func_002B6688(int id)
 {

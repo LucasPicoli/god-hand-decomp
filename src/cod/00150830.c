@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00583EC0[];
 extern void cDoor_aimJump();
 extern void func_001FFF30();
 extern void func_0016B1F8();
-extern void *D_005FEC68;
 extern void cRelSys_loadSlot(void *, int);
 extern void *D_003C3CF0;
 extern void *_MemoryAlloc(void *, int, void *);

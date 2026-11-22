@@ -1,10 +1,10 @@
 /* cygnus-2.96: func_003580E8, in mode 4 check whether timer 0x36 (started on first use with the
  * longest whole-second span the tick rate allows) has passed the current position. */
+#include "godhand/globals.h"
 extern int func_0035AAC8(void *self, int *pos, int *len);
 extern int GetArrayElemA0C_35A1C8(void *self, int idx);
 extern void func_0035A000(void *self, int idx, int val);
 extern int func_0035AEC8(int limit, int scale, int pos, int len);
-extern int D_003EE278;
 
 __attribute__((section(".text.func_003580E8")))
 int func_003580E8(char *self)

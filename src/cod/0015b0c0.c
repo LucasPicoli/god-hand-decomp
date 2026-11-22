@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern int D_007476B0;
-extern int D_004A6E10;
 extern int D_00566E10;
 extern unsigned char D_005E85F8;
 extern int D_00747A2C;

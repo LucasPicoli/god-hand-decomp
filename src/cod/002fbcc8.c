@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
 extern void InitObjectVtable_2FBD98(char *p);
-extern int D_0044FAD0;
 
 #include "godhand/vu0.h"
 

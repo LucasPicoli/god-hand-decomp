@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int ClearStateAndFlag_1C7E08();
 extern char D_005CAE50[];
@@ -9,7 +10,6 @@ extern char D_00423C70[];
 extern char D_00423D40[];
 extern int ResetActorState_1BBF00();
 extern char D_00424128[];
-extern char D_004241F0[];
 extern char D_00425290[];
 extern char D_00425378[];
 extern char D_00425460[];

@@ -1,9 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cDamageGive.h"
+#include "godhand/globals.h"
 
-extern unsigned char D_0042C4D8[];
-extern unsigned char D_0042C4B8[];
-extern unsigned char D_0042C498[];
 extern void func_001FF0B0(void *);
 extern void ClearSlotArray_1FF5B8(void *);
 extern void func_0032A6D0(void *a0, void *a1, void *a2);

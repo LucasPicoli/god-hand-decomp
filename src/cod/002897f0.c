@@ -4,6 +4,7 @@
 #include "godhand/cEma2.h"
 #include "godhand/motion.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void func_0028EBF0(cEma2 *self, SET_EM_DATA *data, void *arg);
 extern int func_0028AC58(cEma2 *self);
@@ -38,15 +39,6 @@ extern float fRand0_1(void);
 
 extern int Rnd(void);
 extern int D_00462FC0;
-extern char D_003C3F68[];
-extern char D_00448DB8[];
-extern char D_00448DC0[];
-extern char D_00448DC8[];
-extern char D_00448DD0[];
-extern char D_00448DD8[];
-extern char D_00448DE0[];
-extern char D_00448DE8[];
-extern char D_00448DF0[];
 struct sph { int a; float b; int c; float d; };
 /* Sets up the enemy from its room entry: copies the entry, clears the state
  * bytes, picks the motion set, builds the damage spheres and the solid

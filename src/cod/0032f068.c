@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Thunk_func_0033B658(void *sp);
 extern void Thunk_func_0033B670(void *sp);
-extern int D_003EE278;
 extern int isEffectiveVer();
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *);
 

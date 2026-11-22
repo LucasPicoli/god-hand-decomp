@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int MWSFSVM_Error(char *a0);
 extern void Forward3443E0_3443C8(void *a0);
-extern char D_00458C68[];
 
 /* MATCH via cygnus-2.96 +drop-freorder. */
 

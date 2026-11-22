@@ -3,14 +3,13 @@
 #include "godhand/cObj.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDvd.h"
+#include "godhand/globals.h"
 
 extern void func_001C2378(void *self);
 extern void cModel_calcParts(void *self);
 extern void cOmBase_setMeshColorFromLayer(void *self, int layer, float r, float g, float b);
 extern cOmBase *Getplayer(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *obj);
-extern int D_00586A04;
-extern char D_0044D420[];
 extern void func_001C24E8(void *self);
 extern void func_002011B0(cDvd *self);
 

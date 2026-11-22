@@ -1,16 +1,10 @@
+#include "godhand/globals.h"
 extern void func_00323B58(void);
 extern void *func_003A52F0(void *d, int c, unsigned int n);
-extern int D_003EAEC0;
 extern signed char D_003EAEC8[];
 extern char D_003EB308[];
-extern int D_003EB708;
 extern char D_003EB710[];
 extern char D_003EB810[];
-extern int D_003EB830;
-extern int D_003EB834;
-extern int D_003EB838;
-extern int D_003EB83C;
-extern int D_003EB840;
 
 __attribute__((section(".text.func_0033F4C8")))
 void func_0033F4C8(void)

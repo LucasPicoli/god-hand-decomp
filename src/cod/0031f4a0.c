@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_0031EEC8(void *a, void *b);
 extern int D_00460DA0;
-extern int D_004510B0;
 
 /* clone */
 

@@ -1,8 +1,5 @@
 #include "godhand/criFs.h"
-extern char D_003D9C90[];
-extern char D_004542F8[];
-extern char D_00454328[];
-extern char D_00454350[];
+#include "godhand/globals.h"
 extern int func_00333C00(char *name, CriFileStat *info);
 extern int func_00333390(char *name, char *dir);
 extern void PushGlobalD8478History_331C78(int id);

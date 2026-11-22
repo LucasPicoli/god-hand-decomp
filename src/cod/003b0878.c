@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -10,8 +11,6 @@ extern int WakeupThread(int id);
 extern int RotateThreadReadyQueue(int id);
 extern int SuspendThread(int id);
 extern void func_003B1FA8(char *msg);
-extern int D_0077DF90;
-extern char D_0045FDFF[];
 
 __attribute__((section(".text.topThread")))
 void topThread(Ring *r)

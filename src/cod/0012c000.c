@@ -1,8 +1,7 @@
 /* sn-2.95.3-136: func_0012C000, whether a combo set is used up. */
 #include "godhand/cCoreSave.h"
 #include "godhand/pl00.h"
-
-extern unsigned char D_005CB010;
+#include "godhand/cEm00.h"
 
 /* Whether combo set `set` is used up: it is the holder's current set and the slot has reached the set's size. Set 0 (and any unknown set) also needs D_005CB010 clear. */
 __attribute__((section(".text.func_0012C000")))

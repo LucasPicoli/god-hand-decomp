@@ -5,12 +5,12 @@
 #include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern cEmActor *cEmManage_GetEm(cEmManage *mgr, unsigned char entryNo);
 extern void cEm00_setEm65Separate(cEmActor *em);
 extern void cScenario_startSoftEvent(int scenario, int arg);
 extern void cScenario__endSoftEvent(int scenario);
-extern int D_004282F0;
 extern char D_005FEE00[];
 extern void cSnd_SeStop(void *snd, int handle);
 extern void KillEffect(void *obj, int a, int b);

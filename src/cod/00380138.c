@@ -1,9 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002E0DE8(int, int, int, void *);
-extern void *D_003C4030[16];
-extern void *D_003F28C0[];
-extern char D_0045C328[];
 
 typedef unsigned int size_t;
 

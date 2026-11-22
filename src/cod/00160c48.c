@@ -2,6 +2,7 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/cNode.h"
+#include "godhand/gsPacket.h"
 
 extern float Adjust_theta(float f12);
 extern float capVu0Sin(float f12);
@@ -75,9 +76,6 @@ void FadeOverlay_tick(FadeOverlay *self) {
     }
     self->tick = self->tick + 1;
 }
-
-extern int D_003C1180;                  /* screen width */
-extern int D_003C118C;                  /* screen height */
 
 /* A node that keeps its last screen position. */
 typedef struct cScreenNode {

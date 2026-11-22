@@ -1,4 +1,5 @@
 /* cygnus-2.96: func_00344568, allocates a buffer for a creator handle (own pool or user malloc) and records it. */
+#include "godhand/globals.h"
 typedef struct {
     char pad0[0x1EC];
     int pool;          /* 0x1EC */
@@ -7,7 +8,6 @@ typedef struct {
     void *buf[0x20];   /* 0x204 */
 } MwsfCre;
 
-extern char D_00457748[];
 extern void MWSFSVM_Error(char *msg);
 extern void *func_00344610(MwsfCre *c, int size);
 extern void *mwsfcre_UsrMalloc(int size);

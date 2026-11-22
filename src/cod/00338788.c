@@ -1,9 +1,6 @@
 /* cygnus-2.96: stream/SFD/sound singletons. */
 #include "godhand/criStm.h"
 
-extern int D_003E0708;
-extern int D_003E0710;
-
 __attribute__((section(".text.func_00338788")))
 void func_00338788(StmVolHn *h, int vol)
 {

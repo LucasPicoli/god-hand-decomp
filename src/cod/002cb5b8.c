@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cSnd.h"
+#include "godhand/globals.h"
 
 extern void sceVu0CopyVector(float *pos, int mtx);
 extern void cSndSeVoice_Unlink(cSndSeVoice *v);
-extern int D_0044CE48[];
 extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int idx);
 
 /* Starts a free voice with the given key pair and ids, at the global origin. */

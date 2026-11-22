@@ -1,23 +1,14 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
-extern int D_00425EE0;
+#include "godhand/globals.h"
 extern void func_001BFB00(void *a0, void *a1);
-extern int D_00785E18;
-extern int D_00425F98;
-extern int D_00785808;
 extern void func_001C0018(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
-extern int D_00425FB0;
 extern void InitVtable214_429C80_1C27E8(void *a0);
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 extern void ResetField214FreeField180_1C2820(void *a, void *b);
-extern int D_00785E28;
-extern int D_00426080;
 extern int D_00785798;
 extern void GetOrInitGlobal785798_1C3BE8(void);
-extern int D_00426098;
-extern int D_00785E38;
-extern int D_00426168;
 
 __attribute__((section(".text.ClearObjResource_19D7E8")))
 void ClearObjResource_19D7E8(void *a0, void *a1) {

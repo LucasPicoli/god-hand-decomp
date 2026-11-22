@@ -1,9 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int D_003E9D5C;
-extern int D_003EE804;
-extern int D_0045A290;
-extern int *volatile D_00766CD0;
+#include "godhand/globals.h"
 
 /* GetField_F_33CE80 -- DEAD-HEAD BOUNDARY DEFECT (wave 18, lane K2).
  * The declared span starts 8 B too early. The TRUE ENTRY is 0x0033CE80.

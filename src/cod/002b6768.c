@@ -1,14 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void *SearchData(void *a, void *b, int c);
 extern int cModel_setupModel(void *a, void *b, void *c, int d, int e);
 extern void cObjBase_KageInit(void *a, void *b, void *c);
-extern char D_0044B4A8[];
-extern char D_0044B4B0[];
-extern char D_0044B4B8[];
-extern char D_003C3F58[];
-extern char D_003C3F68[];
-extern char D_003C3FB0[];
 
 /* sn-2.95.3-136 matched TU. */
 

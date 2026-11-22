@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: _decMB0 */
 
 #define IPU_CTRL (*(volatile unsigned int *)0x10002010)
 
-extern char D_0045E750[];
 extern void _waitIpuIdle(void *s);
 extern long long _sceMpegWaitIpuIdle64(void *s);
 

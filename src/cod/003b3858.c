@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 matched TU. */
 
@@ -11,10 +12,6 @@ typedef struct _ee_sema {
     unsigned int   option;       /* 0x14 */
 } sceFsSemaParam;
 
-extern int  D_003FAEE8;
-extern int  D_003FAEEC;
-extern unsigned char D_00460080;
-extern unsigned char D_00460090;
 extern int  CreateSema(sceFsSemaParam *sp);
 
 __attribute__((section(".text.func_003B3858")))

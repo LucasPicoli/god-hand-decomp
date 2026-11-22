@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* libio floatconv.c -- transcribed verbatim from gcc-2.95.2 libio.
  * Config block resolved for MIPSEL / IEEE_8087 exactly as the vendor build did. */
@@ -123,7 +124,6 @@ extern int func_00391340(Bigint *b, Bigint *S);
 
 /* dtoa's two function-scope statics live in retail's own .data/.bss. */
 extern Bigint *D_003F5178;      /* result   */
-extern int D_0077C080;          /* result_k */
 #define result   D_003F5178
 #define result_k D_0077C080
 

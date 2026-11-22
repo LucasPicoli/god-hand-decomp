@@ -1,6 +1,7 @@
 /* cygnus-2.96: func_0035F288, fills a frame info block from a picture source; type 2 is reported as
  * type 1, type 3 also carries two half-height chroma planes. */
 #include "godhand/sfxlib.h"
+#include "godhand/globals.h"
 
 typedef struct Sfx Sfx;
 
@@ -36,8 +37,6 @@ typedef struct SfdFrmInf {
     int v_pitch;                        /* 0x2C */
     int v_height;                       /* 0x30 */
 } SfdFrmInf;
-
-extern char D_00459F20[];
 
 __attribute__((section(".text.func_0035F288")))
 void func_0035F288(Sfx *sfx, SfdPicSrc *src, SfdFrmInf *inf)

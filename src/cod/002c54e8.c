@@ -1,4 +1,5 @@
 #include "godhand/cScrSpriteDraw.h"
+#include "godhand/globals.h"
 
 /* cygnus-2.96 matched TU. */
 
@@ -18,7 +19,6 @@ extern void NoOp_33E6B0(void);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern void Obj33F8_Tramp_0033B670_FC88(void);
 extern void PushGlobalD8478History_331C78(int a0);
-extern int D_003D90DC;
 extern void func_00333048(void);
 extern void Forward3A52F0_332BE0(void *a0);
 extern void Forward33B658_3389F8(void);

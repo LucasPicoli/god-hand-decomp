@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct {
     int unk0;
     int unk4;
@@ -8,8 +9,6 @@ typedef struct {
     int unk4;
 } FileLocTbl;
 
-extern char D_004545B0[];
-extern char D_004545B8[];
 extern FileLocTbl D_003D9DC0;
 extern int func_003A5678(char *, char *);
 extern void func_003260C8(char *, int);

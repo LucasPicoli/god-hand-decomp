@@ -4,6 +4,7 @@
 #include "godhand/sndBank.h"
 #include "godhand/SndSlot.h"
 #include "godhand/cIDParam.h"
+#include "godhand/globals.h"
 
 extern void func_0032B118(int handle);
 extern int sceSifInitRpc(int mode);
@@ -17,9 +18,6 @@ extern void func_00376720(SndSlot *slot);
 extern void UpdateSlotState_3767B0(SndSlot *slot);
 extern void UpdatePendingFlags_376820(SndSlot *slot);
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
-extern char D_0045CD50[];
-extern char D_0045CD60[];
-extern char *D_003F2870[];
 extern void func_003A52F0(void *dst, int fill, int size);
 
 /* Poll the page's stream and refresh the list. Returns 3 or 4 (3 when the poll says -1), 0 when idle. */

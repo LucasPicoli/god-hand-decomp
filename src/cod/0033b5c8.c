@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void PrintfErrorReport(char *fmt, ...);
 extern void func_0036D7C0(void);
@@ -14,10 +15,6 @@ struct FnEntry {
 };
 
 extern struct FnEntry D_007588A8;
-extern volatile int D_003E9948;     /* lock nesting depth */
-extern volatile int D_003E994C;     /* lock owner type */
-
-extern char D_00455E78[];           /* "...(type org=%d, type now=%d)" */
 
 /* Leave one nesting level; at the outermost, report an owner mismatch (org, now), clear the owner, then call the unlock hook. */
 __attribute__((section(".text.svm_unlock")))
@@ -36,10 +33,6 @@ void svm_unlock(int owner)
         D_007588A8.fn(D_007588A8.arg);
     }
 }
-
-extern unsigned char D_0045A514;                /* decoder build tag, must read 4 */
-extern unsigned char D_0045A478[];              /* entry table */
-extern unsigned char *volatile D_0076A588;      /* entry table pointer, volatile keeps retail's lui+addiu address */
 
 
 
@@ -63,9 +56,6 @@ void cri_InitEntryPool(int n, int work, unsigned int size)
     func_0036D238();
 }
 
-extern unsigned char D_0045A370;                /* build tag, must read 4 */
-extern char D_0045A320[];                       /* mode table */
-extern char *volatile D_00766CD4;               /* active mode table, volatile keeps retail's lui+addiu address */
 extern int func_00368D60(int a, int b);         /* pool setup: entry count, work area; defined in 0032d3a8.c */
 
 

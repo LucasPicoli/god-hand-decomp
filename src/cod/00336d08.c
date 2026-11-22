@@ -1,4 +1,5 @@
 /* cygnus-2.96: func_00336D08, sets the decoder's output callback once the stream is running. */
+#include "godhand/globals.h"
 typedef struct {
     char pad0[0xE8];
     void *dec;     /* 0xE8 */
@@ -17,8 +18,6 @@ typedef struct {
     StmLink *link;    /* 0x04 */
 } DecOutHn;
 
-extern char D_00455308[];
-extern char D_00455330[];
 extern void func_0033F130(char *msg);
 extern void func_00340920(void *dec, int fn, int obj);
 

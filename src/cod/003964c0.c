@@ -1,6 +1,5 @@
 /* ee-2.9-991111 matched TU. */
-
-extern char D_0045DF50[];
+#include "godhand/globals.h"
 
 extern int func_003B4220(const char *path, int flag);   /* sceOpen  */
 extern int func_003B4868(int fd, void *buf, int nbyte); /* sceRead  */

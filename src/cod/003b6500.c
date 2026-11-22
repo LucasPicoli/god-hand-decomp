@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -6,8 +7,6 @@ extern void func_003B6600(int a, int b);
 
 extern void func_003B64A8(void);
 extern void func_003B6470(void);
-extern int D_003FAF08[4];
-extern void *D_003FAF00;
 
 __attribute__((section(".text.InitSystemCallTableAddress")))
 void InitSystemCallTableAddress(void)

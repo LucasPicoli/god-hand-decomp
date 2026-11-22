@@ -1,10 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_00568050[];
-extern unsigned char D_00568060[];
-extern unsigned char D_00568070[];
 extern unsigned char D_00568080[];
-extern unsigned char D_005680E0[];
 extern unsigned char D_005680F0[];
 
 typedef struct Vec4_1D4B78 {

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00450B28[];
 extern char D_00450C38[];
 extern char D_00450CE8[];
-extern char D_00454D68[];
 extern char D_0076A790[];
 
 /* clone */

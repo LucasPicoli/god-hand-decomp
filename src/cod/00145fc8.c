@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_00145FC8, pop-in animation of a five-part HUD effect: shrink the scale each frame,
  * fade in colour 0 on every part, then colour 1 on the second part's third entry, then stop. */
 #include "godhand/cIDBase.h"
+#include "godhand/globals.h"
 
 typedef struct EffPartSlot {
     cIDBaseEnt *a;            /* 0x00 */
@@ -25,7 +26,6 @@ typedef struct EffPartObj {
 } EffPartObj;
 
 extern float D_0041E880[];
-extern float D_0041E884;
 
 __attribute__((section(".text.func_00145FC8")))
 void func_00145FC8(EffPartObj *self)

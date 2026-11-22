@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -8,9 +9,6 @@ typedef struct {
 
 #define D_CTRL (*(volatile unsigned int *)0x1000E000)
 #define D_STAT (*(volatile unsigned int *)0x1000E010)
-
-extern int              D_0045DFE0[10];
-extern volatile unsigned int *D_003F8590[10];
 
 extern void func_003970C8(sceDmaEnv *env, int size);
 extern int  sceDmaPutEnv(sceDmaEnv *env);

@@ -3,8 +3,7 @@
 #include "godhand/cDataManager.h"
 #include "godhand/heapArena.h"
 #include "godhand/player.h"
-
-extern float D_00747A14;
+#include "godhand/globals.h"
 
 /* The manager's speed rate scaled by the global rate in D_00747A14. */
 __attribute__((section(".text.cEmManage_GetSpeedRate")))

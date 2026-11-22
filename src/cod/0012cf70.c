@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cScrSpriteDraw.h"
+#include "godhand/globals.h"
 
 extern void func_0032A6D0(void *x, int mode, short v);
 extern void *cModel_getMeshPtr(void *m, int i);
 extern void *D_00754C58;
 extern int D_0041D5A8;
-extern int D_0041D580;
 extern int D_003C2388;
-extern int D_003C11B0;
 extern void *cIDManager_getTexAddr(int a, int b, int c);
 extern void cIDBase_trans(void *p);
 

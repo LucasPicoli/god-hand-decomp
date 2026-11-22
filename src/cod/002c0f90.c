@@ -1,5 +1,6 @@
 /* sn-2.95.3-136: func_002C0F90, cSceAtManager init (four SearchData unit tables linked into the free lists). */
 #include "godhand/gameWork.h"
+#include "godhand/globals.h"
 
 typedef struct {
     char pad0[0x36];
@@ -31,11 +32,6 @@ typedef struct {
     int f6C;
     int f70;
 } AtMgr;
-
-extern char D_0044C210[];
-extern char D_0044C218[];
-extern char D_0044C220[];
-extern char D_0044C228[];
 
 extern void cSceAtManager_initFreeList(void *self, unsigned int *lists, int n);
 extern AtHdr *SearchData(int pack, char *name, int flag);

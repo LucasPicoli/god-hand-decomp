@@ -1,12 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_00452B98[];
-extern char D_00452BC0[];
 extern int Obj33F8_Tramp_0033F130_FCB0(char *p);
-extern char D_00452DB0[];
-extern char D_00452DE8[];
-extern char D_00452E20[];
-extern char D_00454150[];
 
 __attribute__((section(".text.func_0032DD18")))
 int func_0032DD18(char *a0, int a1) {

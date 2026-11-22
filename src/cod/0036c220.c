@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_0036C658(void);
 extern void *D_00766D38;
 extern void func_0036C440(void *, int);
 extern int D_003FBEB8;
-extern int D_003FBEBC;
 extern char D_00784048[];
 extern void func_003A52F0(void *, int, int);
 

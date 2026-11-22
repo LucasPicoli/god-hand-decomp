@@ -2,6 +2,7 @@
  * its callback, and on channel 3 write the header. */
 #include "godhand/mwsfd.h"
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
 typedef struct {
     char pad0[0x11C];
@@ -13,7 +14,6 @@ typedef struct {
     int cur;
 } SfdSjHdrWriter;
 
-extern char D_0045A578[];
 extern void *func_003A5148(void *d, const void *s, unsigned int n);
 extern void func_0036F008(SfdSjHdrWriter *s, char *data, int n);
 

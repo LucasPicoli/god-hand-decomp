@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/globals.h"
 
 typedef struct GsTex0 {
     unsigned long TBP0 : 14;
@@ -36,8 +37,6 @@ typedef struct Tim2PicHdr {
     GsTex0 tex0;                /* 0x18 */
 } Tim2PicHdr;
 
-extern int D_0041EE70[];        /* GS pixel format of each TIM2 image type, from 1 (second table) */
-extern int D_0041EE88[];        /* GS pixel format of each TIM2 image type, from 1 */
 extern int func_00309C30(unsigned int psm, int w);
 extern void func_0015E510(void *work, int psm, int tbp, int tbw, int w, int h, char *data);
 extern void func_0015E708(void *work, int psm, int tbp, int tbw, int w, int h, char *data);

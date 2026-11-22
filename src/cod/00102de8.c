@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -12,7 +13,6 @@ extern int D_00462FC0;
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00123938(void *a0, int a1);
-extern float D_003BD488;
 
 __attribute__((section(".text.func_00102DE8")))
 void func_00102DE8(void *a0){ char *s0=(char*)a0; int p1,p2;

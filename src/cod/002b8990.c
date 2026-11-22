@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002BAC88(void *);
 extern void func_002BB040(void *);
-extern char D_0044BAF8;
 
 /* sn-2.95.3-136 matched TU. One CALL-loop -> one errata pad nop
    (needs --call-loop-pad). */

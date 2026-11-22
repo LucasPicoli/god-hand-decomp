@@ -1,10 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void *InitObject_2FBCC8(void *this);
-extern char D_0044E300[];
-extern char D_0044E8C8[];
 extern void func_002D9F68(void *this, void *tbl, int n);
-extern char D_0044EB50[];
 
 /* sn-2.95.3-136 matched TU. */
 

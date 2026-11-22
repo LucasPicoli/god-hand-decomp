@@ -1,14 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003FBE50[];
-extern int D_003FB6E8;
-extern int D_003FBE28;
 extern void func_003B6850(int, int);
 extern void func_003B6860(int, void *, int);
 extern void FlushCache(int);
-extern int D_003FC240[];
-extern int D_003FBEC0;
-extern int D_003FC238;
 extern void func_003B7B30(int, int);
 
 __attribute__((section(".text.func_003B68B8")))

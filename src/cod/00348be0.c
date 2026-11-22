@@ -1,6 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
-extern unsigned char D_00760C80[];
 extern void func_003A52F0(void *buf, int a1, int a2);
 extern void func_003A7AE8(void *buf, void *s, void *args);
 extern void Forward33B790_348C98(void *buf);

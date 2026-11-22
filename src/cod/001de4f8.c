@@ -1,9 +1,6 @@
 /* sn-2.95.3-136: CustomID panel helpers (offset slides, scale/colour pulses on 0x7C-byte works at +0x60). */
 #include "godhand/CustomIDPanel.h"
 
-extern CustomIDSlotTbl8 D_0042B678;
-extern CustomIDSlotTbl8 D_0042B698;
-
 __attribute__((section(".text.func_001DE5F8")))
 void func_001DE5F8(char *self, unsigned char sel, unsigned char mode)
 {

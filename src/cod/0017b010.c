@@ -4,6 +4,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cOmBase.h"
 #include "godhand/FileLoadRec.h"
+#include "godhand/globals.h"
 
 extern void SetCustomIDDispOneOrAll_1F4778(void *self, int no, int show);
 extern void *InitFields_1B6E90(void *self);
@@ -44,8 +45,6 @@ void Panel_showSlotMark(void *self, unsigned short no, int right, int lit)
         }
     }
 }
-
-extern char D_004272F8[];               /* the class's method table */
 
 #define SLOT_NUM     7
 #define SLOT_SIZE    0x60

@@ -1,9 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/libpad.h"
+#include "godhand/globals.h"
 
-extern char D_00450D80[];
-extern char D_00450D90[];
-extern char D_00450DA8[];
 extern void func_003A6A20(const char *s);
 extern int sceSifCheckStatRpc(void *cd);
 extern unsigned char D_0076A880[];

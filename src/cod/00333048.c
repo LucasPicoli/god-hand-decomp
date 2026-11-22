@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct {
     char pad0[2];
     char state;
@@ -8,7 +9,6 @@ typedef struct {
 } CdStreamCtl;
 
 extern char D_00454458[];
-extern char D_004544B8[];
 extern void func_00332808(CdStreamCtl *, char *);
 extern int func_00331570(void *);
 extern void CdSrd_finishRead(void);

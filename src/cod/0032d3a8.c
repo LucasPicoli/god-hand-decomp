@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00329D38(int a0, int a1);
 extern int Obj34D8_SetGlobalEE0B8_IfField48(int a0, int a1);
@@ -16,12 +17,9 @@ extern void func_0039AA48(void);
 extern void func_00356868(void *a0);
 extern unsigned char D_003F1AC8[];
 extern unsigned char *D_003F1ABC;
-extern unsigned char D_003F1C48[];
 extern void func_00366C50(int a0, int a1, int a2);
 extern void func_00368E68(int a0);
 extern int D_003F1A98;
-extern int D_00760DB0;
-extern int D_00760DB4;
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(void *);
 extern void M2VERR_SetCode(int, unsigned int);
 extern void func_00368E80(void *a);

@@ -1,13 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_0033F130(char *msg);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void Obj3260_Tramp_00338338_D338(int a0, int a1);
 extern void func_0032A1B0(void *a0, int a1, int a2);
-extern char D_00452630[];
-extern int D_003D1408;
-extern int D_003D1454;
 extern int D_003C7418;
 
 /* cygnus-2.96 candidate. */

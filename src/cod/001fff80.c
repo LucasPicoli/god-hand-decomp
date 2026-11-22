@@ -4,6 +4,7 @@
 #include "godhand/classFADE.h"
 #include "godhand/cScenario.h"
 #include "godhand/player.h"
+#include "godhand/globals.h"
 
 #define SYS_FLAG_DOOR_STEP  0x2000000   /* D_00747A84: the door step is running */
 #define SYS_MODE_KEEP_MESS  0x100       /* D_00747A24: keep the open messages once */
@@ -23,7 +24,6 @@ typedef struct cMessage cMessage;
 
 extern int D_00747A84;
 extern cMessage *D_003C23A4;
-extern short D_005CAE40;
 
 extern void cMessage_closeAll(cMessage *self);
 extern void KeyStop(void);

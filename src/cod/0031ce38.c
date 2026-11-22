@@ -1,7 +1,7 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern void *D_00747A4C;
-extern char D_00450ED8[];
 extern void *SearchData(void *, void *, void *);
 
 __attribute__((section(".text.SearchCameraData")))

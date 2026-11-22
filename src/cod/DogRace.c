@@ -1,23 +1,9 @@
 /* TU: DogRace - recovered C++ class. */
 #include "godhand/DogRace.h"
+#include "godhand/globals.h"
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern char D_00754C38[];
-extern signed char D_0042BBC0[];
-extern signed char D_0042BBC8[];
-extern signed char D_0042BBD0[];
-extern signed char D_0042BBD8[];
-extern signed char D_0042BBE0[];
-extern signed char D_0042BBE8[];
-extern signed char D_0042BBF8[];
-extern signed char D_0042BC08[];
-extern signed char D_0042BC18[];
-extern signed char D_0042BC28[];
-extern signed char D_0042BC38[];
-extern signed char D_0042BC48[];
-extern signed char D_0042BC58[];
-extern signed char D_0042BC68[];
-extern signed char D_0042BC78[];
 extern int cScrArray_SearchScroll(char *arr, long mask);
 extern void displayScrollLayer(int a0, int a1);
 

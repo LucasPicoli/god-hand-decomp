@@ -1,12 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern char D_0059ACC8[];
-extern char D_0059AFB0[];
-extern char D_0059B228[];
-extern char D_0059B4A0[];
-extern char D_0059B718[];
-extern char D_0059B990[];
-extern char D_0059BC08[];
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 

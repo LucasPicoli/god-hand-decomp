@@ -1,7 +1,7 @@
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern int D_00448598;
-extern int D_004484B0;
 extern void *func_0028EB00(void *self);
 
 /* InitObjVtableAndTypeFull_27EE68: enemy constructor. Runs the cEm00 base constructor, sets the method

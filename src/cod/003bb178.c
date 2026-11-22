@@ -1,7 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern const char D_0045C430[];
-extern const char D_0045C440[];
+#include "godhand/globals.h"
 
 typedef unsigned int size_t;
 
@@ -23,8 +21,6 @@ extern void *func_0031D928(size_t);                           /* _S_refill */
 extern void func_003A5148(char *, const char *, size_t);      /* memcpy */
 extern void func_003A51F4(char *, const char *, size_t);      /* memmove */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *);          /* free */
-extern void *D_003C4030[16];                                  /* _S_free_list */
-extern const char D_0045C3F8[];                               /* "bastring.cc" */
 
 
 

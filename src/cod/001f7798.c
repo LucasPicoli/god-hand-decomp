@@ -1,7 +1,6 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/cScenario.h"
-
-extern int D_00463964;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.cScenario_isCamEnd")))
 /* 1 once the setCam camera move has finished (the camera sets bit 1). */

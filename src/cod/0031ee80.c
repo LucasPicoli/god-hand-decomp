@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int D_00450FC0;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.__rtti_class")))
 void __rtti_class(int *p, int a, int b, int c) {

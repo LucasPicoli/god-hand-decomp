@@ -1,14 +1,11 @@
 #include "godhand/gameWork.h"
+#include "godhand/globals.h"
 typedef struct EspSys {
     char pad000[0x41C];
     unsigned char active;
 } EspSys;
 
 extern char D_00741DC8[];
-extern char D_00743250[];
-extern char D_00450068[];
-extern char D_00450070[];
-extern char D_00450078[];
 extern void EmitterAllKill(void);
 extern void EspAllKill(void);
 extern void func_003057A0(EspSys *self);

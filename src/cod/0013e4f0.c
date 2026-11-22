@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern void func_00326020(int a0);
 extern void func_003A6A20(const char *s);
@@ -15,11 +16,6 @@ extern void func_0032BAF0(const char *s);
 extern void Obj3290_Tramp_003313F0_9278(int a0);
 extern int SdeSystemOutModeGet(void);
 extern void func_0032BA30(int a0);
-extern char D_0044CDE0[];
-extern char D_0044CE00[];
-extern char D_0044CE10[];
-extern char D_0044CE20[];
-extern char D_00601F80[];
 extern char D_00747A24[];
 extern void cIDBase_move(void *p);
 extern char *cIDBase_getIDWork(void *this, int idx);

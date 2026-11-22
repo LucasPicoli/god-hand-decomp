@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
+#include "godhand/globals.h"
 
 extern void cSnd_SeCallGlobal(unsigned char *, int, int, int);
 extern void func_002B4768(unsigned char *, unsigned char *, unsigned char *);
@@ -17,8 +18,6 @@ extern void func_001D5690(void *a0, int a1);
 extern void func_002998D8(int a0, int a1, long a2);
 extern void func_00299908(int a0);
 extern void PushEntryAtField10000_299868(char *a0, long a1, long a2);
-extern unsigned char D_003BD758[];
-extern char D_004A6980[];
 
 /* sn-2.95.3-136, as=sn */
 

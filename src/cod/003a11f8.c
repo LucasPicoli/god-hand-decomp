@@ -1,10 +1,10 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void sceSifInitRpc(int mode);
 extern void func_003B1F28(const char *fmt);
 extern void FlushCache(int mode);
 extern unsigned char D_0077C900[];
-extern char D_0045E998[];
 extern int D_003FA300;
 extern int D_003FA304;
 

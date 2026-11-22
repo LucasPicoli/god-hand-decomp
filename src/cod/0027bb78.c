@@ -29,8 +29,6 @@ extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 
 #include "godhand/emPhaseTable.h"
 
-extern EmPhaseTable D_003BFE00;
-
 static inline cOmBase *getPart0(cEm00 *self)
 {
     int frame[3];

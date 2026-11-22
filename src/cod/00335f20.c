@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct FsCacheEnt {
     int unk00;
     char *name;
@@ -24,7 +25,6 @@ typedef struct FsCacheCtl {
     FsCacheEnt ent[1];
 } FsCacheCtl;
 
-extern char D_00455000[];
 extern unsigned int strlen(const char *s);
 extern void func_00335D40(char *fmt, ...);
 extern int func_003282D0(void *h);

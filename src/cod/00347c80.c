@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
 
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
 extern int GetField0OrZero_346828(MwsfdHn *mw);
 extern void func_00335638(void *stm, int a, int b, int c, int d);
-extern char D_004590D8[];
 
 /* Forward a request to the handle's stream, or report a bad handle state. */
 __attribute__((section(".text.MwsfdHn_forwardStmRequest")))

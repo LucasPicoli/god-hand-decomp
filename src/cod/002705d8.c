@@ -9,7 +9,6 @@ extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int irand(void);
 extern int getItemNumInRoom(void);
 extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern unsigned char D_005CB010;
 extern char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */

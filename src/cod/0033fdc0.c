@@ -1,5 +1,6 @@
 /* cygnus-2.96: CRI stream DMA transfer kick. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 typedef struct {
     signed char f0;
     signed char active;
@@ -15,11 +16,6 @@ typedef struct {
     int total;
 } SjDmaXfer;
 
-extern char D_00456A10[];
-extern char D_00456A30[];
-extern char D_00456A58[];
-extern char D_00456A88[];
-extern char D_00456AB0[];
 extern void func_003260C8(const char *fmt, ...);
 extern void func_0033ACA0(SjChunk *in, int n, SjChunk *out, SjChunk *rest);
 extern void SyncDCache(void *start, void *end);

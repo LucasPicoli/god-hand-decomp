@@ -1,7 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int D_003DA4D0;
-extern int D_003DA4D4;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_00335D18")))
 void func_00335D18(int a, int b) {

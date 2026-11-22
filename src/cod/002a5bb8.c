@@ -2,12 +2,11 @@
 #include "godhand/gameWork.h"
 #include "godhand/cSubScr.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 extern char D_004664A0[];
 extern void **D_003C2384;
 extern void *D_003C2388;
-extern char D_0044AD58[];
 extern void *D_003C264C;
-extern char D_005E80E0[];
 extern void *D_003C2380;
 extern void *D_003C23A4;
 extern char D_00586AF0[];

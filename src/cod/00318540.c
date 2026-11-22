@@ -1,9 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int D_003D8410;
-extern volatile int D_003D8448;
 extern void func_003A52F0(void *a0, int a1, int a2, int a3);
-extern int D_003DA390;
 
 __attribute__((section(".text.func_00318540")))
 int func_00318540(void *a0) {

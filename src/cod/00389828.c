@@ -1,8 +1,6 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern void *D_00786708;
-extern char D_0045D188[];
-extern char D_0045D1A8[];
 extern void func_0038A7E0();
 extern void __rtti_class(void *a, void *b, void *c, int d);
 

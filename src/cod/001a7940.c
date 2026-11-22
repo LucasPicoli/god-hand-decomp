@@ -4,10 +4,10 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cPlCamera.h"
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
-extern char D_003C03F8[];
 extern void func_002A87E8(void *obj, int arg);
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
@@ -134,8 +134,6 @@ done:
 /* sn-2.95.3-136 */
 
 
-
-extern char D_004275A0[];           /* the routine table, one pointer to member per phase */
 
 typedef struct { char b[0x10]; } PmfTbl;
 

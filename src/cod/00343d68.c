@@ -1,13 +1,12 @@
 /* cygnus-2.96: func_00343D68, starts playback of the attached movie handle
  * with func_00345848 as its callback; reports and returns -1 on failure. */
+#include "godhand/globals.h"
 extern int func_00358968(char *mv);
 extern int func_0034DE20(char *mv, int cb, int arg);
 extern void func_00345848(int a0, int a1);
 extern int func_00345750(int code);
 extern void MWSFSVM_Error(char *msg);
 extern int func_00343AE8(int ply);
-extern char D_004573D8[];
-extern char D_00457410[];
 
 __attribute__((section(".text.func_00343D68")))
 int func_00343D68(char *ply)

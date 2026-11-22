@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 */
 #include "godhand/gameWork.h"
 #include "godhand/sceVu0.h"
+#include "godhand/globals.h"
 
 /* The part at 0x1C of D_005FEB00: func_002D50C0's class, derived; its vtable pointer is at 0x30. */
 typedef struct StaticPart {
@@ -16,7 +17,6 @@ typedef struct StaticObj {
 } StaticObj;
 
 extern StaticObj D_005FEB00;
-extern char D_0044D1A8[];               /* the derived class's vtable */
 
 /* The derived constructor: the base constructor, then the derived vtable. */
 static __inline__ void StaticPart_construct(StaticPart *self)

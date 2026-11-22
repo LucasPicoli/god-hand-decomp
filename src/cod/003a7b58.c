@@ -1,5 +1,5 @@
+#include "godhand/globals.h"
 extern int *D_003FA62C;
-extern char D_0045F5C0[];
 extern int func_003AE188(int, int, ...);
 extern void func_003A7B48(void) __attribute__((noreturn));
 

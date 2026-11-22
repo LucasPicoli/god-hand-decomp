@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern volatile int D_003CF9E8;
 extern char D_003CF9F0;
@@ -6,7 +7,6 @@ extern void func_003A52F0(void *, int, int);
 extern void func_0033C728(void);
 extern long long func_0031DE10(long long, long long);
 extern long long func_003B7FE0(long long, long long);
-extern int D_003EE25C;
 extern void SfErrSlot_report(int);
 extern int Obj35C0_GetIndexed_1F30_C338(int, int);
 extern int Obj35D0_ReturnOne_D0D0(int);

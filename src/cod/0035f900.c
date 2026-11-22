@@ -1,4 +1,4 @@
-extern int D_003EE330;
+#include "godhand/globals.h"
 extern void func_0035FEE8(void);
 extern void func_0036CAA8(void);
 extern void func_0035FE78(void);

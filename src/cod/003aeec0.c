@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* newlib mprec __pow5mult (0x003AEEC0). */
 typedef struct _Bigint {
@@ -14,7 +15,6 @@ extern void func_003AE8C0(void *ptr, _Bigint *v);                    /* _Bfree  
 extern _Bigint *func_003AE8F8(void *ptr, _Bigint *b, int m, int a);  /* __multadd  */
 extern _Bigint *func_003AEC80(void *ptr, int i);                     /* __i2b      */
 extern _Bigint *func_003AECB8(void *ptr, _Bigint *a, _Bigint *b);    /* __multiply */
-extern const int D_0045FCD8[];                                       /* p05[3]     */
 
 #define P5S(p) (*(_Bigint **)((char *)(p) + 0x48))
 

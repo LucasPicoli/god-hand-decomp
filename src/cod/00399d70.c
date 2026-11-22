@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
 extern void func_003BACA0(int, int);
-extern unsigned char D_0045E400[];
 extern void _sceMpegError(void *, void *);
 
 __attribute__((section(".text._clearEach")))

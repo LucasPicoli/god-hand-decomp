@@ -3,9 +3,8 @@
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: dmaRefImage */
 #include <godhand/sync.h>
+#include "godhand/globals.h"
 
-
-extern unsigned long long D_0077C680[];   /* _sprtagdata, 0x240 B */
 
 #define D9_CHCR (*(volatile unsigned int *)0x1000D400)
 #define D9_QWC  (*(volatile unsigned int *)0x1000D420)

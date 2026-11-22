@@ -3,15 +3,14 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cGameObj.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern float fRand1_1(void);
 extern void func_001DEE60(void *ui, int sub, int on);
-extern int D_00428840;
 extern void SetField214PtrThenInit_1B6F38(void *self, int flag);
 extern char D_00754C80[];
 extern void func_0031A600(void *queue, int kind, int id, void *packet);
 extern void cIDBase_trans(void *rec);
-extern char D_003BDE50[];
 
 #define OMSHAKE_JITTER  0.015f
 

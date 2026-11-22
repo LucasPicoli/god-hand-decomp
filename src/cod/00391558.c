@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* libio floatconv.c -- transcribed verbatim from gcc-2.95.2 libio.
  * Config block resolved for MIPSEL / IEEE_8087 exactly as the vendor build did. */
@@ -123,7 +124,6 @@ extern int func_00391340(Bigint *b, Bigint *S);
 
 /* dtoa's two function-scope statics live in retail's own .data/.bss. */
 extern Bigint *D_003F5178;      /* result   */
-extern int D_0077C080;          /* result_k */
 #define result   D_003F5178
 #define result_k D_0077C080
 
@@ -144,9 +144,6 @@ extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);
    wildcard appends, and it shifts every later rodata byte away from retail.
    Every address below is read off `--link-check`'s relocation join, which
    prints retail's own operand at each site. */
-extern char D_0045DA6F[];       /* 0x0045DA70 = "Infinity", one byte in */
-extern char D_0045DA80[];       /* "NaN" */
-extern char D_0045DA88[];       /* "0"   */
 
  char *
 __attribute__((section(".text._IO_dtoa")))

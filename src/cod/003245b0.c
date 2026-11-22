@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Forward33E6A8_324880(void);
 extern int Forward33E6B0_324898(void);
 extern void func_00348950(void *a0, int a1);
 extern void Forward345EE0_345EC8(int a0);
-extern int D_003EC668;
 
 /* MATCH via cygnus-2.96. */
 

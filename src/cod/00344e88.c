@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int GetField0OrZero_346828(void *a0);
 extern int MWSFSVM_Error(char *a0);
-extern char D_00457918[];
 extern void func_003448B0(int a0, int a1);
 
 /* MATCH via cygnus-2.96. */

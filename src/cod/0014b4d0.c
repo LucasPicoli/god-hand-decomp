@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
-extern int D_00747AA8;
 extern void func_00148BD8(cModelNode *node, int prio, int arg, int mode);
 extern void func_00148690(cModelNode *node, int prio, unsigned char *texSlot, int mode);
 

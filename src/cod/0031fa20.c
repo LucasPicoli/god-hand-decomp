@@ -1,10 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern char D_004511B8[];
-extern char D_00451188[];
-extern char D_00451178[];
-extern char D_00451168[];
-extern char D_00451158[];
+#include "godhand/globals.h"
 
 /* clone */
 

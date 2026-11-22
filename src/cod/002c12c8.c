@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSceAtManager.h"
 
 /* sn-2.95.3-136 candidate. */
 
@@ -19,7 +20,6 @@ typedef struct Table {
 } Table;
 
 extern char D_007474A0[];
-extern char D_0044C230[];
 extern Table *SearchData(int a0, char *a1, int a2);
 extern int cSceAtManager_getJumpPointAt(void *a0, int a1);
 

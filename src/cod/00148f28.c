@@ -8,9 +8,8 @@
 #include "godhand/cEma2.h"
 #include "godhand/cGame.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern int D_00747A3C;
-extern char D_003BD718[];
 extern void func_001F8A88(void *a0, float x0, float x1, float y0, float y1, float z0, float z1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
@@ -22,7 +21,6 @@ extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
 extern void func_001BE498(char *a0, int a1, float *a2, float *a3);
 extern int D_00747A78;
-extern char *D_00586A7C;
 
 /* sn-2.95.3-136 */
 __attribute__((section(".text.Binit")))

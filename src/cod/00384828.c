@@ -1,16 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 */
 
 extern void func_002E0DE8(int, int, int, const char *, ...);
 extern void func_00380720(int a0, int a1, int a2, int *a3, int *t0, int *t1, int *t2);
-extern char D_0045CBC8[];
-extern char D_0045CBD8[];
-extern char D_0045CBE8[];
-extern char D_0045CC18[];
-extern char D_0045CC28[];
-extern char D_0045CC60[];
-extern char D_0045CCA0[];
 
 __attribute__((section(".text.func_00384828")))
 void func_00384828(int a0, char *a1)

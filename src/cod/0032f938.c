@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/criStm.h"
 #include "godhand/sync.h"
+#include "godhand/globals.h"
 
 extern void *func_003A52F0(void *p, int v, int n);
 extern void func_00325DF0(void);
@@ -14,8 +15,6 @@ extern void func_0035FF98(int);
 extern int D_003EE800;
 extern void func_0036CB58(int);
 extern int D_003F1EC8;
-extern int D_00760D88;
-extern int D_00760D8C;
 extern int GetArrayElemA0C_35A1C8(int, int);
 extern int func_0035E080(int, int *);
 extern void Obj33F8_Init_D003EB858_F888(void);

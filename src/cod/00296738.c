@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEvent.h"
+#include "godhand/globals.h"
 
 extern int D_00747A2C;
-extern int D_00586B34;
 extern char D_00747470[];
 extern void classFADE_start(char *, int, int, int, int, int, int);
 extern int D_00747A84;

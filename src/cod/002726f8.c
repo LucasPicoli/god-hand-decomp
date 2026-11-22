@@ -1,36 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 */
 
 extern void MtxInitRotY(void *a0, float angle);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int D_00747A0C;
-extern char D_0042CA40[];
-extern char D_0042CA48[];
-extern char D_0042CA58[];
-extern char D_0042CA60[];
-extern char D_0042CA68[];
-extern char D_0042CA78[];
-extern char D_0042CA88[];
-extern char D_0042CA90[];
-extern char D_0042CA98[];
-extern char D_0042CAA0[];
-extern char D_0042CAA8[];
-extern char D_004365A8[];
-extern char D_004365B0[];
-extern char D_00446600[];
-extern char D_00446610[];
-extern char D_00446620[];
-extern char D_00446628[];
-extern char D_00446638[];
-extern char D_00446648[];
-extern char D_00446650[];
-extern char D_00446658[];
-extern char D_00446660[];
-extern char D_00446668[];
-extern char D_00446670[];
-extern char D_00446678[];
-extern char D_00446680[];
 
 #include "godhand/cModel.h"
 #include "godhand/vu0.h"

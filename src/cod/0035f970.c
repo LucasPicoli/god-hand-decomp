@@ -1,11 +1,9 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/sfxlib.h"
 #include "godhand/StageBuf.h"
+#include "godhand/globals.h"
 
 extern int D_003EE338[];                /* [0] open handle count, [1] number of records */
-extern char D_00459FE0[];               /* "E201194: sfx_InitHn: work size is short." */
-extern char D_0045A010[];               /* "E201281: SfxZHn: can't create." */
-extern char D_0045A030[];               /* "E202011: SfxAHn: can't create." */
 
 /* Open an SFX handle: take a free record, check the work size, set the record
  * up over the work buffer and create its Z and A handles. */

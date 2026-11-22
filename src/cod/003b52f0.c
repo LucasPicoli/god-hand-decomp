@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -11,8 +12,6 @@ extern Iob *new_iob(void);
 
 extern int WaitSema(int semid);
 extern int SignalSema(int semid);
-extern int D_003FAEDC;
-extern int D_003FAEE8;
 extern Iob D_007814C0[32];
 
 __attribute__((section(".text.sceDopen")))

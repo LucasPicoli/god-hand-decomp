@@ -5,9 +5,9 @@
 #include "godhand/cModel.h"
 #include "godhand/cOmBase.h"
 #include "godhand/CustomIDWork.h"
+#include "godhand/globals.h"
 
 extern void *InitFields_1B6E90(void *self);
-extern int D_004282F0;
 extern void func_001B6FB8(void *self);
 extern int cMessCommon_isPageEndCode(int code);
 extern void cOmThrow_SetParent(void *thrown, void *owner);

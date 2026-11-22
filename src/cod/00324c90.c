@@ -1,10 +1,10 @@
 /* cygnus-2.96: ADX manager lock (raise the caller to the ADX priority) and the server wait (0x324C90..). */
 
 #include "godhand/adxm.h"
+#include "godhand/globals.h"
 
 extern int GetThreadId(void);
 extern int ChangeThreadPriority(int thid, int prio);
-extern char D_00451D78[];
 
 __attribute__((section(".text.func_00324C90")))
 void func_00324C90(void)

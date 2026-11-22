@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Obj3290_Tramp_0033E678_9028();
 extern void Obj3290_Tramp_0033E690_9040(void);
@@ -7,8 +8,6 @@ extern void func_0033F1A8(int a0, int a1);
 extern void func_00330BB0(int a0, int a1, int a2);
 extern void func_003280D8(int a0, int a1);
 extern void func_003284B8(void *a0);
-extern int D_00451ED0;
-extern int D_00451F00;
 
 __attribute__((section(".text.func_003288E0")))
 void func_003288E0(void *a0)

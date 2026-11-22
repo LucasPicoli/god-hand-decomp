@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* sceGsExecStoreImage - libgraph graphdev.c */
 
@@ -47,10 +48,6 @@ typedef struct {
 extern void  func_003B1F28(char *fmt);
 extern u_int GsGetIMR(void);           /* u_int here: the syscall's 64-bit return adds an instruction to this body */
 extern u_int GsPutIMR(u_int imr);
-extern char  D_0045DD80[];
-extern char  D_0045DDB8[];
-extern char  D_0045DDE8[];
-extern char  D_0045DE28[];
 extern qword D_003F8570;
 
 

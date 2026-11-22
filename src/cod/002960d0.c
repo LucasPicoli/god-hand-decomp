@@ -1,11 +1,11 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/globals.h"
 
 extern int FindResolveActor_295978(void *a0, float f);
 extern void func_0026E7A0(int a0, float f);
 extern int D_0044A870;
 extern void cEm00_clearSetFlags(int a0);
 extern void func_00289028(int a0);
-extern int D_0044A878;
 extern void cEma2_SetEscPos(int a0, int a1);
 extern void cEm00_setAlphaMode(int a0, int a1);
 

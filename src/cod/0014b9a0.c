@@ -1,4 +1,5 @@
 #include "godhand/cModel.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -11,11 +12,7 @@ extern void func_0030A548(void *dst, void *src);
 extern void sceVu0UnitMatrix(void *m);
 extern int D_007476B0;
 extern unsigned char D_00754C80[];
-extern float D_003BD860[];
-extern float D_003BD870[];
 extern float D_003BD880[];
-extern float D_003BD890[];
-extern char D_004A6940[];
 extern void sceVu0ApplyMatrix(void *dst, void *m, void *v);
 extern void Draw_Line2(void *pts, int n, unsigned color, int flag);
 extern void ClearFields_4_8_C_E_159998(int a0);

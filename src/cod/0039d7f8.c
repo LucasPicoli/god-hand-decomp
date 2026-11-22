@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 — SCE libmpeg 3.0.2, mpc.o :: _slice0 */
 
@@ -12,8 +13,6 @@
 typedef struct Blk {
     int f00, f04, f08, f0C, f10, f14, f18, f1C;
 } Blk;
-
-extern char D_0045E700[];
 
 extern void _waitIpuIdle(void *s);
 extern void func_0039AB98(int h);

@@ -1,8 +1,5 @@
-extern volatile int D_003C80F0;
-extern volatile long D_003C8190;
-extern volatile long D_003C8188;
-extern volatile int D_003C8144;
-extern volatile int D_003C81CC;
+#include "godhand/adxmThread.h"
+#include "godhand/globals.h"
 extern int ChangeThreadPriority(int tid, int prio);
 extern int WakeupThread(int tid);
 extern int adxm_ResumeThread(int tid);

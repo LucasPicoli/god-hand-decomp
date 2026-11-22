@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045C4C0[];
 extern void func_0032B188(void *, int);
 extern void func_0032A9F0(void *, short);
 extern void func_0032A6D0(void *, int, short);
@@ -26,8 +25,6 @@ extern char *func_003BB058(void *);                                            /
 extern void *func_003BB178(void *, unsigned int, unsigned int, const char *, unsigned int); /* replace */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *);                          /* free */
 
-
-extern char D_003BB168[];                                                        /* nilRep */
 
 extern const char D_0045C4D0[];                                               /* "" */
 

@@ -4,12 +4,11 @@
 #include "godhand/Slot2.h"
 #include "godhand/cEvent.h"
 #include "godhand/seqNode.h"
+#include "godhand/globals.h"
 
 extern int func_0();
 extern char *InitFields_1B6E90(void *);
 extern int D_00427E60;
-extern char D_003BE0D8[];
-extern char D_003BE168[];
 
 __attribute__((section(".text.cEvent_isEndCreateWork")))
 int cEvent_isEndCreateWork(void) {

@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int sj_hexstr_to_val(char *s);
 extern int D_00758400[2];
-extern int D_00758500[1];
 extern int DTX_CallUrpc(int cmd, void *in, int nin, void *out, int nout);
 
 struct TAG { char *p; int val; };

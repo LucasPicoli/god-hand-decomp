@@ -1,11 +1,8 @@
 #include "godhand/cScenario.h"
+#include "godhand/globals.h"
 typedef struct { char pad[0x10]; unsigned char type; } LookupEnt;
 
 extern int D_00747A30;
-extern char D_0044C0E0[];
-extern char D_0044C118[];
-extern char D_0044C150[];
-extern char D_0044C170[];
 extern LookupEnt *func_002C5028(cScenario *sc, unsigned short id);
 extern int func_003A6C58(char *buf, const char *fmt, ...);
 extern void func_002BE838(void *a0, char *name, int a2);

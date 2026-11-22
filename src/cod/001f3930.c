@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -19,8 +20,6 @@ extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1,
                               int t2);
 extern unsigned char D_005FEE00[];
 extern int D_007474A0;
-extern unsigned char D_0074748C;
-extern unsigned char D_00586AA4;
 extern char D_003BE8B0[];
 
 __attribute__((section(".text.func_001F3930")))

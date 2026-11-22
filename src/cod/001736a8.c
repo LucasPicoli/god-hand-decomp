@@ -1,25 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
 extern void func_001733B0(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00420FA8[];
 extern void func_00176758(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00421290[];
 extern void func_00177DE0(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_004213A0[];
 extern void func_001915D8(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00424010[];
 extern void func_001971A8(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00424ED0[];
 extern void func_001987D0(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00424FE0[];
 extern void func_001A20C8(char *a0, int a1, float *a2, float *a3, int a4);
-extern unsigned char D_00426F30[];
 extern void func_0018A130(char *a0, int a1, float *a2, float *a3);
-extern unsigned char D_004236C0[];
 extern void func_0019B780(char *a0, int a1, float *a2, float *a3);
-extern unsigned char D_004258D8[];
 
 /* sn-2.95.3-136 matched TU. */
 

@@ -1,7 +1,7 @@
 /* cygnus-2.96: fill the M2V decoder interface table (D_003F1FF4..D_003F2044) and mark it initialised. */
+#include "godhand/globals.h"
 typedef void (*M2vIfFn)(void);
 
-extern int D_003F1FF0;
 extern M2vIfFn D_003F1FF4;
 extern M2vIfFn D_003F1FF8;
 extern M2vIfFn D_003F1FFC;

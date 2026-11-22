@@ -171,4 +171,6 @@ extern int SdeSystemOutModeGet(void);   /* sound output mode: 0 mono, 1 stereo, 
 /* The node's word at 0x48 (definition in 002b5e50.c). */
 int func_00373A50(void *node);
 
+extern SeqLink D_0076CEC0[3];
+
 #endif /* GODHAND_SEQNODE_H */

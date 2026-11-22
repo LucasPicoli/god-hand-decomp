@@ -1,8 +1,8 @@
 /* cygnus-2.96: once the decoder reaches state 3 and neither slot has data queued, finish the stream:
  * stop, check for concatenated play, and close both slots. */
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
-extern char D_004592D0[];
 extern int func_003484F0(MwsfdSlot *s);
 extern void func_00345B38(MwsfdHn *o);
 extern void func_00345F48(MwsfdHn *o, int mode);

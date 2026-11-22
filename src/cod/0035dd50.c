@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern char D_00459C48[];
+#include "godhand/globals.h"
 
 
 

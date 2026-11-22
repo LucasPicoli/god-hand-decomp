@@ -1,5 +1,6 @@
 /* Struct: CGObj33F8_t — lock/word at +0xC/+0x10; u16 pair +0x28..+0x2E; s16 trio +0x34..+0x38 (StorePair/LoadPair/StoreS16Trio). */
 #include "godhand/NameTable.h"
+#include "godhand/globals.h"
 
 /* ── Forward declarations ───────────────────────────────────────────────── */
 extern void func_003A52F0(void *a0, int a1, int a2);
@@ -10,7 +11,6 @@ extern void func_0033F130(int);
 
 /* ── Extern globals ─────────────────────────────────────────────────────── */
 extern char D_003EB858[];   /* struct array, size >= 0x3C0, Obj33F8_Init_D003EB858_F888   */
-extern int  D_003EB850;     /* boolean flag, Obj33F8_SetFlag_D003EB850_FB68 sets = 1          */
 
 /* ── Branched functions — T0 attempt failed (wrong code size) ────────────── */
 extern int Obj0000_Get_D_003C80A4_NE_0_325620(void);

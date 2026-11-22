@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cArea.h"
+#include "godhand/globals.h"
 
 extern char D_007474A0[];
-extern unsigned int D_00754250[];
-extern int D_003C3D08;
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.cCollisionScroll_SetLayerCollEnable")))

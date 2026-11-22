@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct Blk {
     int f00, f04, f08, f0C, f10, f14, f18, f1C;
@@ -16,8 +17,6 @@ typedef struct Ctx {
     int  f878;
 } Ctx;
 
-extern char D_0045E7A8[];
-extern char D_0045E7D0[];
 extern void func_003A0E20(Ctx *s, int n);
 extern void flushByteBoundary(Ctx *s);
 extern void func_003A0F80(Ctx *s);

@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 extern char *GetD003EC7E0_3452B0(void);
 extern int Forward3443E0_3443C8(void *p);
 extern void func_00349738(int a0, int a1);
@@ -16,7 +17,6 @@ extern void func_00338B10(void);
 extern void func_00339520(void);
 extern int Forward346450_3462C0(void);
 extern int Forward33BEC0_3489F0(void);
-extern int D_003EC7D8;
 
 __attribute__((section(".text.func_00345610")))
 void func_00345610(void)

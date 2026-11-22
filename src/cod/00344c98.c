@@ -1,5 +1,5 @@
 #include "godhand/sftim.h"
-extern char D_004578B8[];
+#include "godhand/globals.h"
 extern void MWSFSVM_Error(char *msg);
 extern int MWSFD_GetUsePicUsr(void);
 extern int SUD_AnalyTypeDivField(void *usr, int size);

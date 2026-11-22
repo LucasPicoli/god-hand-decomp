@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003EE314;
-extern int D_003EE318;
 extern void Thunk_func_0033B658(void *p);
 extern void Thunk_func_0033B670(void *p);
 extern int GetArrayElemA0C_35A1C8(int, int);

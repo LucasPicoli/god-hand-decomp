@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/globals.h"
 
 extern int D_00747A0C;
-extern char *D_0077E524;
-extern char *D_0077E52C;
 
 /* The listed enemy with the given entry number, or 0. */
 __attribute__((section(".text.cEmManage_GetEm")))

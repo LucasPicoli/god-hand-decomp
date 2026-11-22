@@ -1,15 +1,8 @@
-extern int D_0041D930;
-extern int D_004283D8;
-extern int D_00568280;
-extern int D_0044ADD8[];
+#include "godhand/globals.h"
 extern int D_007474A0[];
-extern int D_0044BA68;
 extern int D_0044CEE8;
 extern int D_007419A0;
-extern int D_0044FB60;
 extern int D_0044E090;
-extern int D_0044E820;
-extern int D_0044EA10;
 
 __attribute__((section(".text.InitObjectFields364_1398D0")))
 void *InitObjectFields364_1398D0(void *a0) {

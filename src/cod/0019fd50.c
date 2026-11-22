@@ -1,17 +1,9 @@
+#include "godhand/globals.h"
 extern char D_005CAE50[];
-extern int D_00785EB8;
-extern int D_004268B0;
 extern int D_007858B8;
-extern int D_004268C8;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_00785EC8;
-extern char D_00426998[];
 extern char D_00785798[];
-extern int D_004269B0;
-extern int D_00785ED8;
-extern char D_00426A80[];
-extern int D_00426A98;
 
 __attribute__((section(".text.ClearDamageCollAndState_19FD50")))
 void ClearDamageCollAndState_19FD50(void *a0) {

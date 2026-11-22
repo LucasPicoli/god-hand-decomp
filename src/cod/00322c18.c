@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003282D0(void *a0);
 extern void func_0033F590(void);
@@ -6,7 +7,6 @@ extern void func_00335950(void);
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern int GetField0OrZero_346828(int a0);
 extern int MWSFSVM_Error(char *a0, int a1);
-extern char D_00459008[];
 extern void func_0034DD70(int a0, unsigned int a1);
 extern void Thunk_func_0033B658(void *a0);
 extern void Thunk_func_0033B670(void *a0);

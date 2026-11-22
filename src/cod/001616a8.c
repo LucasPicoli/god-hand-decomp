@@ -3,6 +3,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cIDBase.h"
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 extern void displayScrollLayer(int layer, int show);
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
@@ -10,7 +11,6 @@ extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern char D_0041F1F0[];
 extern void **D_003C2384;
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
@@ -37,7 +37,6 @@ typedef struct EnemyRec {
 } EnemyRec;
 
 extern const unsigned char D_00448E20[];    /* method table */
-extern const char D_00448DB0[];             /* type name */
 extern void *func_0028EB00(void *self);     /* enemy base constructor */
 
 __attribute__((section(".text.EnemyBase_constructAimQuad")))

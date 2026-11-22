@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int write(int fd, const void *buf, int n);
 
@@ -6,10 +7,6 @@ extern int write(int fd, const void *buf, int n);
  * a3 == 1 flushes the pending buffer; otherwise it appends `len` bytes and
  * flushes every 0x80 bytes. */
 
-
-extern char D_0077DA88[];   /* the 0x80-byte staging buffer */
-extern int  D_003FA9C0;     /* bytes held in the buffer     */
-extern char *D_003FA9C4;    /* the next free byte           */
 
 __attribute__((section(".text.func_003A9C80")))
 int func_003A9C80(int fd, const char *b, unsigned int len, int flush)
@@ -106,10 +103,6 @@ char *func_003AAEA0(char *dst, const char *start, const char *end, int *outlen)
  * a3 == 1 flushes the pending buffer; otherwise it appends `len` bytes and
  * flushes every 0x80 bytes. */
 
-
-extern char D_0077DB08[];   /* the 0x80-byte staging buffer */
-extern int  D_003FA9C8;     /* bytes held in the buffer     */
-extern char *D_003FA9CC;    /* the next free byte           */
 
 __attribute__((section(".text.func_003AB050")))
 int func_003AB050(int fd, const char *b, unsigned int len, int flush)

@@ -1,9 +1,9 @@
 /* cygnus-2.96: CRI AIX header parse / chunk server (0x32F988..). */
 
 #include "godhand/criAix.h"
+#include "godhand/globals.h"
 
 extern void Obj33F8_Tramp_0033F130_FCB0(const char *msg);
-extern char D_00453078[];
 extern void *func_003A5148(void *dst, const void *src, int n);
 
 extern inline int aix_be32(const unsigned char *p)

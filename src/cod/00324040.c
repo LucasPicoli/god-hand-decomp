@@ -1,16 +1,12 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003C7410;
 extern signed char D_003C7420[];
 extern int ADXT_GetOutPan(signed char *, int);
 extern void func_0032A720(signed char *, int, int);
 extern void func_0032A900(signed char *, int);
-extern int D_00451858;
-extern int D_00451880;
-extern int D_00457650, D_00457678;
 extern void func_00344710(void *);
 extern void MWSFSVM_Error(void *);
-extern int D_00455040;
 
 __attribute__((section(".text.func_0032BA30")))
 void func_0032BA30(int a0) {

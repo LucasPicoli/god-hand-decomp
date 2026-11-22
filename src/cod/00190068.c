@@ -1,11 +1,9 @@
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int D_005CAE50;
 extern int D_00423F58;
-extern int D_00785C48[];
-extern int D_004245A8;
 extern int D_00785798;
-extern int D_004246A8;
 
 __attribute__((section(".text.SetStateDisabled_190068")))
 void SetStateDisabled_190068(void *a0) {

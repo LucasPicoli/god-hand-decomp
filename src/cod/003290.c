@@ -1,4 +1,5 @@
 #include "include_asm.h"
+#include "godhand/globals.h"
 
 /* ── External forward declarations ──────────────────────────────────────── */
 extern void Forward33B658_33E678(void);   /* target of Obj3290_Tramp_0033E678_9028 trampoline     */
@@ -11,7 +12,6 @@ extern void Obj0000_Set_D_003D8488_3313F0(void);   /* target of Obj3290_Tramp_00
 extern void GetD003D848C_3313E0(void);   /* target of Obj3290_Tramp_003313E0_9298 trampoline     */
 
 /* ── External global ─────────────────────────────────────────────────────── */
-extern int D_003D1400;   /* word-sized global; setter Obj3290_SetGlobal_D003D1400          */
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /* call_chain — 6 functions (deferred)                    */

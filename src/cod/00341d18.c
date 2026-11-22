@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/adxHdr.h"
 
 /* cygnus-2.96 matched TU. */
 
@@ -74,7 +75,6 @@ typedef struct _adx_intbuf {
 
 
 extern Sint32 Obj33F8_GetWord_C_FA68(ADXPD xpd);
-extern Sint16 D_003EC460[256];   /* static ulaw_exp_table in adx_bau.c */
 
 __attribute__((section(".text.func_00341D18")))
 void func_00341D18(ADXB adxb)

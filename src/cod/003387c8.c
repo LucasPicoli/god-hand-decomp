@@ -1,7 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern int D_003E0710;
-extern int D_003E0708;
+#include "godhand/criStm.h"
 
 __attribute__((section(".text.func_003387C8")))
 void func_003387C8(char *a0, int idx, int val) {

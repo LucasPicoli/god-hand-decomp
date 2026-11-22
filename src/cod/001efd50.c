@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/CustomIDWork.h"
 #include "godhand/ColiseumBattle.h"
+#include "godhand/globals.h"
 
-extern int D_0044E808;
 extern void func_002D9F68(void *, int, ...);
 
 /* Sets the element's local position and stops its animation. */

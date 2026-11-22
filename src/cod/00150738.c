@@ -5,12 +5,11 @@
 #include "godhand/cSnd.h"
 #include "godhand/cOm1f.h"
 #include "godhand/cSceAtManager.h"
+#include "godhand/globals.h"
 
 extern int D_00747A0C;
 extern void TaskFnWork_runAndExit(void);
 extern char D_00468CF0[];
-extern unsigned char D_003D9DD0[];
-extern int D_003D9DD4;
 
 /* cygnus-2.96 */
 __attribute__((section(".text.CasinoWork_SetWarmUpRoom")))

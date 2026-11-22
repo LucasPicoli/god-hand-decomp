@@ -1,18 +1,13 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern char D_00429C80[];
 extern void SetField214PtrThenInit_1B6F38(int *, int);
 extern int D_00785798;
-extern int D_00429D50;
 extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
-extern int D_007863C8;
-extern int D_00786598;
-extern int D_0044FBA8;
-extern int D_00460D58;
-extern int D_0044FBB8;
 extern void GetOrInit_460D58_2B6528(void);
 extern int SignalSema(int sema);
 extern int SleepThread(void);

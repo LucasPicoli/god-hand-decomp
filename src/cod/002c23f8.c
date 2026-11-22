@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003F2160;
 extern int D_005FEA60;
 
 __attribute__((section(".text.func_00374AE0")))

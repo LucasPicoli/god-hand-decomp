@@ -1,10 +1,9 @@
 /* cygnus-2.96: func_003391F8, puts a data chunk back into the memory stream (lane 1 only); a chunk
  * that is not the one just taken, or any other lane, notifies the callback with -3. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 extern int func_00338A48(void *a0, void *a1);
-extern char D_00455A10[];
 extern char D_00455920[];
-extern char D_00455A20[];
 extern char D_00455950[];
 
 __attribute__((section(".text.func_003391F8")))

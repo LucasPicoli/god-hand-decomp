@@ -1,11 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned char D_007474A0[];
-extern int D_007559A8[];
-extern char D_00450EF0[];
-extern char D_00450EF8[];
-extern char D_00450F00[];
-extern char D_00450F08[];
 extern int SearchData(int a0, void *a1, int a2);
 extern void func_0031D658(int a0, int a1);
 extern char D_0061B7C0[];

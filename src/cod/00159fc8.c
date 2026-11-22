@@ -5,16 +5,14 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cOmBase.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int sel, int on);
-extern int D_0044CE48[];
 extern void cSndSeVoice_CheckEnd(cSnd *self, int slot);
 extern cSndSeEntry *cSnd_GetSeData(cSnd *self, int slot);
 extern void cSeData_Release(cSndSeEntry *e);
 extern void KeyStop(void);
 extern float capVu0Cos(float rad);
-extern char D_0044A518[];
-extern char D_0044A520[];
 extern void *SearchData(void *pack, void *name, int c);
 extern int cModel_setupModel(void *self, void *a, void *b, int c, int d);
 extern int D_00747A2C;

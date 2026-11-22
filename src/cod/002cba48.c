@@ -1,11 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void *cSnd_GetSeData(void *a0, int a1);
-extern int D_0044CE48[];
 extern void func_002FBFB0(int a0);
 extern void UpdateObjByIndexedOp_2FBE50(int a0);
-extern int D_00741DB8;
-extern unsigned char D_0044D3B0[];
 extern void getEffTypeString(void *a0, int a1);
 extern void func_003A6C58(void *a0, void *a1, void *a2, int a3, int t0);
 

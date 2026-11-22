@@ -2,10 +2,10 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cSnd.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern void cModel_setTextureExchange(void *a0, int a1, int a2, int a3);
-extern int D_00428A18;
 extern void func_003A52F0(void *a0, int a1, int a2);
 extern void cSndMemHeap_ResetFirstBlk(void *);
 extern void MessWin_closeIfNoEndCode(void *);

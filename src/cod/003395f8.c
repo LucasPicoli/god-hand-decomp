@@ -1,11 +1,10 @@
 /* cygnus-2.96: CRI stream-joint object create, 256-entry pool of 0x40-byte objects (0x3395F8), with three init arguments. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
 #define SJRBF_POOL_NUM  0x100
 
 extern SjRbf D_003E3FB8[SJRBF_POOL_NUM];
-extern int D_003E3F80[];
-extern int D_00455A50[];
 extern int Forward340AE8_339438(void);
 extern void func_003397C8(SjRbf *e);
 

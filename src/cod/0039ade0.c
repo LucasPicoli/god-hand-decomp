@@ -1,7 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
-
-extern char D_0045E588[];
-extern int D_0077DB88;
+#include "godhand/globals.h"
 
 typedef struct {
     unsigned int f0;

@@ -1,9 +1,5 @@
 /* ee-2.9-991111 matched TU. */
-
-extern int D_003FAEF4;
-extern int D_00781800;
-extern int D_00781840;
-extern char D_007817C0[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.sceSifFreeSysMemory")))
 int sceSifFreeSysMemory(int addr)

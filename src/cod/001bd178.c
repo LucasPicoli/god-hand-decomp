@@ -3,9 +3,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cOmDoor.h"
-
-extern unsigned char D_0058503A;
-extern int D_005E8600;
+#include "godhand/globals.h"
 
 /* Lock the door (on == 1) or unlock it. */
 __attribute__((section(".text.cOmDoor_setLock")))

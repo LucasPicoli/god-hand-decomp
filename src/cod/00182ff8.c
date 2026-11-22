@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 candidate. */
 
@@ -6,9 +7,6 @@ extern void cModel_calcNullPart(void *p);
 extern void cParts_calcLocal(int obj);
 extern void func_001501D0(int obj, int a);
 extern int func_002AD2B8(void *g, int a, void *b, int c, void *d, int e, float f);
-extern unsigned char D_00422A10[];
-extern char D_00422A20[];
-extern char D_00422A58[];
 
 static __inline__ void SetVec4(float *d, float x, float y, float z)
 {

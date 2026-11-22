@@ -1,10 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int Obj3260_Tramp_003388B0_D468(int a0);
 extern void func_0032AF88(void);
 extern void func_0032A1B0(void *a0, int a1, int a2);
-extern int D_003D1408;
-extern int D_003D1454;
 extern int D_003C7418;
 
 /* cygnus-2.96 matched TU. */

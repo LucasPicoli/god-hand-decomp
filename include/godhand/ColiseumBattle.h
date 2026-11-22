@@ -99,4 +99,7 @@ extern ColiseumEmNode *D_005869F0;      /* live enemy list head */
 extern int cEmBase_checkDeadFlag(void *em);
 extern int IsEntryActive_1C2490(int entry);
 
+extern ColiseumVtEnt D_003BE570[];
+extern ColiseumVtEnt D_003BE710[];
+
 #endif

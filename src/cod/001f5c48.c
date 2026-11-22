@@ -1,7 +1,7 @@
+#include "godhand/globals.h"
 extern void cSnd_BgmEventFade(void *snd, int a1, float f12, float f13, float f14);
 extern int cIDBase_release(void *p);
 extern void cHeap_free(void *heap, void *block);
-extern int D_007474B0;
 extern char D_005FEE00[];
 extern int D_003C2388;
 

@@ -7,6 +7,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/Slot2.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern void func_002CAF28(cSnd *self);
 extern void cSnd_BgmControl(cSnd *self);
@@ -22,13 +23,10 @@ extern void MtxInverse(void *dst, void *src);
 extern void sceVu0ApplyMatrix(void *dst, void *mtx, void *vec);
 extern void cNode_setLocalTranslation(void *self, void *v);
 extern int strlen(const char *s);
-extern char D_0044B060[];
-extern char D_0044B090[];
 extern void BlendWork_copyShortTable(void *self, void *src, short num);
 extern void BlendWork_copyTable(void *self, void *src, short num);
 extern void func_001451A0(void *self, void *src, short num);
 extern void SetFlagAfterCopy_145160(void *self, void *src);
-extern char D_003BD6F8[];
 extern void cSnd_BgmEventFade(void *snd, int reqNo, float time, float level, float weight);
 extern void displayScrollLayer(int id, int on);
 
@@ -93,8 +91,6 @@ void cNode_setTranslationFromWorld(void *self, float *pos)
 
 extern char D_005E8140[];               /* request queue */
 
-extern char D_0044B080[];               /* 10 byte string constant */
-
 
 typedef struct { char b[10]; } Str10;
 
@@ -148,8 +144,6 @@ void BlendSetup_load(BlendSetup *self, void *tblA, void *tblB, void *tblC, short
     }
     self->extra = D_003BD70C;
 }
-
-extern int D_003BC7D0[];                /* combo table, 0x14 bytes per combo, first word used */
 
 #define COMBO_ENTRY_WORDS  5            /* 0x14 bytes */
 

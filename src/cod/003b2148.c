@@ -1,7 +1,7 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
-extern int D_003FAE50;
 extern int SifSetDma(int, int);
 
 /* SifSetDma(a, b), or func_003B2080(a, b, 0) while D_003FAE50 is set; interrupts are

@@ -1,12 +1,11 @@
 #include "godhand/heapArena.h"
 #include "godhand/gameWork.h"
+#include "godhand/globals.h"
 
 extern int func_003A6C58(char *buf, const char *fmt, ...);
 extern int cDvd_ReadAllocSized(void *dvd, void *path, void *out, void *heap, int t0, void *t1, int t2, int t3);
 extern void cDvd_CheckWaitFrame(void *dvd, int frame);
-extern char D_00450EC0[];
 extern char D_00583F20[];
-extern int D_007558A0[];
 
 __attribute__((section(".text.func_0031CC48")))
 void func_0031CC48(void)

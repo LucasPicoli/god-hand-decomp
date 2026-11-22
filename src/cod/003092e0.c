@@ -1,4 +1,5 @@
 /* sn-2.95.3-136: texture TEX0 / MIPTBP1-2 setup and per-level upload (0x3092E0). */
+#include "godhand/globals.h"
 typedef struct GsTex0 {
     unsigned long TBP0 : 14;
     unsigned long TBW : 6;
@@ -30,7 +31,6 @@ typedef struct TexHdr {
     int mipOfs[1];              /* 0x40 */
 } TexHdr;
 
-extern int D_004501D0[];
 extern int func_00309C30(unsigned int psm, int w);
 extern void func_003099D8(int psm, int tbp, int tbw, int w, int h, char *data);
 extern int func_00309CA0(int psm, int w, int h);

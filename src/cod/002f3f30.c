@@ -1,8 +1,7 @@
 /* sn-2.95.3-136: func_002F3F30, reach slot init: copy the two reach volumes to the global, scale the reach radius, validate the slot indices and latch them when in reach. */
 #include "godhand/reachObj.h"
+#include "godhand/globals.h"
 
-extern char D_0044F038[];
-extern char D_0044F058[];
 extern void func_002D9F68(ReachObj *o, char *fmt, int v);
 
 __attribute__((section(".text.func_002F3F30")))

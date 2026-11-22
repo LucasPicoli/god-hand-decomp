@@ -2,7 +2,6 @@
 #include "godhand/sndTiming.h"
 
 extern char D_00747A78[];
-extern SndSystemVol D_0076A7B8;         /* D_0076A790.vol */
 
 typedef struct {
     char b[24];

@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
 #include "godhand/EspDataBank.h"
+#include "godhand/globals.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *a0);
 extern void cNode_setLocalTranslation(void *self, void *v);
 extern void func_002FBED0(void *self);
 extern void MtxCopy(void *a, void *b);
-extern int D_0076B580[];
 
 /* sn-2.95.3-136 */
 

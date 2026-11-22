@@ -3,10 +3,10 @@
 #include "godhand/sftim.h"
 #include "godhand/adxPly.h"
 #include "godhand/SfdDec.h"
+#include "godhand/globals.h"
 
 extern int sfply_IsAnyoneTerm(SftimHn *);
 extern int Obj35C0_IsIndexedSet_1F3C_C380(SftimHn *, int);
-extern char D_00452010[];
 extern void func_00329848(void);
 extern void func_00329870(AdxPly *ply);
 extern void func_00329898(AdxPly *ply);

@@ -1,24 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_007856E8;
 extern void func_0014E538(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
-extern int D_0041EB60;
-extern int D_007856D8;
-extern int D_007856F8;
-extern int D_0041F240;
-extern int D_00460D38;
 extern void *GetOrInit_00460D38_161628(void);
-extern int D_00785708;
-extern int D_0041F3C8;
-extern int D_00785718;
-extern int D_0041F620;
-extern int D_00785728;
-extern int D_0041F708;
-extern int D_00785738;
-extern int D_0041FB60;
-extern int D_00785748;
-extern int D_0041FC28;
 
 __attribute__((section(".text.cObj__tf")))
 void *cObj__tf(void) {

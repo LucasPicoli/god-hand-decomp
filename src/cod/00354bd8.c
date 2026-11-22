@@ -1,6 +1,7 @@
 /* cygnus-2.96: apply a pending request: copy its parameter blocks to the globals and run it, then
  * change state on success or clear the request. */
 #include "godhand/sftim.h"
+#include "godhand/globals.h"
 typedef struct ReqPrmA { int w[9]; } ReqPrmA;      /* 0x24 */
 typedef struct ReqPrmB { int w[2]; } ReqPrmB;      /* 0x08 */
 typedef struct ReqPrmC { int w[16]; } ReqPrmC;     /* 0x40 */
@@ -19,9 +20,6 @@ typedef struct PendingReq {
 extern ReqPrmA D_00766BA8;
 extern ReqPrmB D_00766BD0;
 extern ReqPrmC D_00766BD8;
-extern int D_00766C18;
-extern int D_00766C1C;
-extern int D_00766C20;
 
 extern void func_003567E0(char *p);
 extern int func_00354D68(int id);

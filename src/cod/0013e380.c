@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/objFactory.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern void cIDBase_initialize(void *a0, int a1, int a2);
 extern int cIDBase_getIDWork(void *a0, int a1);
@@ -8,11 +9,9 @@ extern void func_002B2580(char *self);
 extern void cSndSeTrack_switchSoundData(char *self);
 extern int D_00747A34;
 extern char D_00754C10[];
-extern int D_0044B840;
 extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A52F0(void *dst, int val, int len);
 extern void cObjBase(void *a0);
-extern int D_00450B98;
 
 /* Slot1 end-of-game stage: on the first call run the end hook, then flag the game as over. */
 #define SLOT_STEP(s)     (*(int *)((s) + 0x08))

@@ -133,6 +133,20 @@ def test_extra_decls_missing_file() -> None:
     check("extra decls missing file → empty", out == set(), str(out))
 
 
+def test_collect_skips_untyped_globals_header() -> None:
+    with tempfile.TemporaryDirectory() as td:
+        inc = Path(td) / "include" / "godhand"
+        inc.mkdir(parents=True)
+        (inc / "globals.h").write_text("extern char D_00400000[];\n")
+        (inc / "cFoo.h").write_text("extern int D_00400010;\n")
+        decls, n_inc, _ = m.collect_decls(Path(td) / "include", Path(td) / "none.txt")
+        check(
+            "globals.h externs do not count as typed decls",
+            decls == {"D_00400010"} and n_inc == 1,
+            str(decls),
+        )
+
+
 # --------------------------------------------------------------------------
 # strip_file
 # --------------------------------------------------------------------------

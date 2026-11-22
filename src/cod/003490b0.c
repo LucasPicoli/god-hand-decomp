@@ -1,7 +1,7 @@
 /* cygnus-2.96: func_003490B0, per-frame server step of an mwsfd handle: stops a pending decode, kicks
  * the next one when idle, and flags the end status. */
 #include "godhand/mwsfd.h"
-extern char D_00459330[];
+#include "godhand/globals.h"
 extern int func_00335B08(void *adxt);
 extern int func_00358F68(void *sfd);
 extern void func_00346158(MwsfdHn *hn);

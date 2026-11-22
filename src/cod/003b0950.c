@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 
@@ -32,12 +33,8 @@ extern int GetThreadId(void);
 extern int ChangeThreadPriority(int tid, int prio);
 extern void func_003B0BA8(int tid, Ring *r);
 extern void topThread(Ring *r);
-extern int D_003FAE48;
-extern int D_0077DF90;
 extern Ring D_0077DF98;
-extern char D_0077DB90[];
 extern char D_00468CF0[];
-extern char D_0045FE28[];
 
 __attribute__((section(".text.func_003B0950")))
 int func_003B0950(void)

@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 */
 #include "godhand/idSet.h"
+#include "godhand/globals.h"
 
 extern void cIDBase_move(cIDBaseObj *self);
-
-extern unsigned char D_003BD6E0;    /* swing direction of element 10: 1 swings up, 0 swings down */
 
 /* Bit 0 of the active byte is clear. */
 static __inline__ int IdSet_isStopped(IdSet *self)

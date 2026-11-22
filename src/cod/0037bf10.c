@@ -2,7 +2,6 @@
  * link them, and when the request is sequenced find the channel's slot in D_0076CEC0 and start the sequence there. */
 #include "godhand/seqNode.h"
 
-extern SeqLink D_0076CEC0[3];
 extern int D_00773250[];
 extern char *func_0037CF00(void *a0);
 extern char *func_0037CEE0(void *a0);

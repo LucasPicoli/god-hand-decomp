@@ -1,28 +1,7 @@
-extern int D_0044EAB8;
-extern int D_0044EB70;
-extern int D_0044EC68;
-extern int D_0044EFA0;
+#include "godhand/globals.h"
 extern int D_0044F078;
 extern int D_0044F1C8;
-extern int D_0044F270;
-extern int D_0044F3A0;
-extern int D_0044F630;
-extern int D_0044F880;
 extern int D_0044FCF8;
-extern int D_0044FC98;
-extern int D_0044FC38;
-extern int D_00460D08;
-extern int D_0041D618;
-extern int D_00460D10;
-extern int D_0041D830;
-extern int D_00460D20;
-extern int D_0041D8D8;
-extern int D_00460D28;
-extern int D_0041DD00;
-extern int D_00460D30;
-extern int D_0041ECB8;
-extern int D_00460D38;
-extern int D_0041F1D0;
 extern int D_00429620;
 
 __attribute__((section(".text.InitObjectSetVtable_4EAB8_2FFCC8")))

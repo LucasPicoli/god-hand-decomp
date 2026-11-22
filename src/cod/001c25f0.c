@@ -1,31 +1,10 @@
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
-extern int D_00460D40;
-extern int D_0042C348;
-extern int D_00460D48;
 extern int D_0042C4F8;
 extern char D_00462FC0[];
-extern int D_00460D50;
-extern char D_0044AF10[];
-extern int D_00460D58;
-extern char D_0044B330[];
-extern int D_00460D60;
 extern char D_0044BE98[];
-extern int D_00460D68;
-extern int D_0044BF60;
-extern int D_00460D78;
-extern int D_0044D200;
-extern int D_00460D80;
-extern int D_0044D210;
-extern int D_00460D88;
-extern int D_0044D3A0;
-extern int D_00460D90;
-extern int D_0044D3D8;
 extern int D_0044EE38;
-extern int D_00460D98;
-extern int D_00450098;
-extern int D_00460D70;
-extern int D_0045A5F8;
 
 __attribute__((section(".text.InitStructZeroedFields_1E7960")))
 void *InitStructZeroedFields_1E7960(void *a0) {

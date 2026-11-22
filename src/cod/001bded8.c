@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cGameObj.h"
+#include "godhand/globals.h"
 
 extern int D_00586AF0;
 extern void func_00297B20(void *a, void *b);
@@ -10,7 +11,6 @@ extern void func_00298460(void);
 extern char D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *manager, void *unit);
 extern void cOmBase_dieCommon(void *obj);
-extern int D_004294F0;
 extern char D_007419A0[];
 extern void espSys_effDataRelease(void *sys, int effNo);
 extern void SetField214PtrThenInit_1B6F38(cGameObj *self, int flag);

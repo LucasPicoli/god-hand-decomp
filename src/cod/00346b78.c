@@ -1,4 +1,4 @@
-extern char D_00458848[];
+#include "godhand/globals.h"
 extern void MWSFSVM_Error(void *);
 extern int SFD_SetCond(int, int, int);
 

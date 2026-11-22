@@ -1,15 +1,9 @@
-extern int D_007857B8;
-extern unsigned char D_00420310[];
+#include "godhand/globals.h"
 extern unsigned char D_00785798[];
 extern int D_00420328;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 extern unsigned char D_005FEE00[];
-extern int D_007857C8;
-extern unsigned char D_004203F8[];
-extern int D_00420410;
-extern int D_007857D8;
-extern int D_004204E0;
 
 __attribute__((section(".text.GetOrInit_007857B8_16FC30")))
 void *GetOrInit_007857B8_16FC30(void)

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00754C58[];
-extern signed char s_Handcart_0044abe0[];
 extern int *cObjBaseArray_SearchOM(char *arr, long mask);
 extern int D_00586AF0;
 extern void func_00297B60(void *a, void *b);

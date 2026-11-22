@@ -1,17 +1,15 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int GetField0OrZero_346828(void *a0);
 extern void func_00345DF0(void *a0);
 extern void func_00347E58(void *a0, int a1);
 extern int MWSFSVM_Error(char *a0);
-extern char D_00458088[];
 extern int GetArrayElemA0C_35A1C8(void *a0, int a1);
 extern void func_0032AB70(int a0, int a1);
 extern void func_0034D318(void *a0, int a1);
 extern void SFHDS_ProcessHdr(void *a0);
 extern void Obj34D8_CopyVec3_From98_To934(void *a0);
-extern int D_00766C70;
-extern char D_00766C78[];
 extern void *memcpy(void *dst, const void *src, unsigned int n);
 extern void func_0035B4A0(void);
 extern int sfpl2_TrPause(void *a0, void *a1);

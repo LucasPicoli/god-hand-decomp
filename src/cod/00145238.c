@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00145410(void *a0);
 extern void func_00145460(void *a0);
@@ -7,7 +8,6 @@ extern void func_00145FC8(void *a0);
 extern void func_00146190(void *a0);
 extern void cIDBase_move(void *a0);
 extern void *cIDBase_getIDWork(void *self, int idx);
-extern float D_0041E898[];
 extern short D_003BD70C;
 
 /* sn-2.95.3-136 matched TU. */

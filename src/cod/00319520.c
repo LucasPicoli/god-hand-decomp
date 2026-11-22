@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cModel_calcParts(void *a0);
 extern void VecRotVec(void *a0, void *a1, void *a2, int a3);
 extern float sqrtf(float x);
 extern char *D_005CAFF0;
-extern char D_003BD8C0[];
 
 /* sn-2.95.3-136 matched TU. */
 

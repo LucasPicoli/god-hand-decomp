@@ -1,23 +1,13 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void Obj3290_Tramp_0033E678_9028(void *a0);
 extern int Obj3290_Tramp_0033E690_9040(void);
 extern int Obj3270_GetVia4_0033CE98_77A0(int a0);
-extern int D_00453310;
-extern int D_00453330;
 extern void Tramp_003302B0_003302E0(int *a0);
-extern int D_00453348;
-extern int D_00453368;
-extern int D_00453380;
-extern int D_004533A0;
-extern int D_00453EB0;
-extern int D_00453ED0;
 extern int Forward33B568_33B688(void);
 extern int Forward33B5C8_33B6B8(void);
 extern void func_003B1F28(int *a0);
-extern volatile unsigned int D_003D8460;
-extern int D_003D844C;
-extern int D_00453F98;
 
 __attribute__((section(".text.func_00328300")))
 int func_00328300(void *a0) {

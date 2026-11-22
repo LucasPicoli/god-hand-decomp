@@ -5,7 +5,6 @@
 extern void *Getplayer(void);
 extern int Obj0000_Get_Field_5FC_NE_Zero_12C748(void *a0);
 extern int irand(void);
-extern unsigned char D_005CB010;
 
 __attribute__((section(".text.func_0020D140")))
 int func_0020D140(void *a0)

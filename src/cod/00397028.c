@@ -1,10 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct {
     volatile unsigned int chcr;
 } sceDmaChan;
-
-extern char D_0045DFC8[];
 
 extern int sceDmaPause(sceDmaChan *chan);
 

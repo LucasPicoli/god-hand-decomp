@@ -1,7 +1,6 @@
 /* func_00305A18 — set the vtable pointer (D_00450080) at 0x424 and the float
  * field at 0x420 to 1.0; return the object. */
-
-extern int D_00450080;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_00305A18")))
 void *func_00305A18(void *a0) {

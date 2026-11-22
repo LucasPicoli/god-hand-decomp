@@ -1,5 +1,6 @@
 /* cygnus-2.96: func_0032BB98, ADX stream start by file id: look the file up in the AFS partition and
  * begin playback, or report the missing id and enter the error state. */
+#include "godhand/globals.h"
 typedef struct AdxFileHn {
     char unk00;
     char stat;                  /* 0x01 */
@@ -24,8 +25,6 @@ extern int func_003245B0(int patid, int fid, int dir, int *ofst, int *nsct, int 
 extern void ADXERR_ItoA2(int a, int b, char *buf, int n);
 extern void func_0033F1A8(char *msg, char *arg);
 extern void func_0032B660(AdxFileHn *adxt, int a1);
-extern char D_00452748[];
-extern char D_00452778[];
 
 __attribute__((section(".text.func_0032BB98")))
 void func_0032BB98(AdxFileHn *adxt, int patid, int fid)

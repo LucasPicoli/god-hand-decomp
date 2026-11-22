@@ -1,17 +1,13 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int MPV_SearchDelim(int, int, int);
 extern int MPV_CheckDelim(int);
 extern struct S2 { int a; int b; } D_00457B10;
-extern int D_00457BD8;
-extern int D_00457BE0;
 extern int func_00345848;
 extern void MWSFSVM_Error();
 extern int Cmp_a1_Eq_0x37B0(int *, int);
-extern int D_003DA5F0;
 extern char D_003DA5F8;
-extern char D_00459300[];
-extern int D_003EE0A0;
 extern void func_00351B70(void *a0, int a1);
 extern void func_00323AA0(int a0);
 extern void sfbuf_SetSupSj(void *a0, void *a1, void *a2, int a3);

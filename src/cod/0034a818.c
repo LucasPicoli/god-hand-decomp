@@ -1,6 +1,7 @@
 /* cygnus-2.96: decoder handle update: poll the stream state and error, latch and map errors to
  * 0xFF000C07..09, reset the sub-object at the end states and stop on error or completion. */
 #include "godhand/sftim.h"
+#include "godhand/globals.h"
 
 typedef struct DecStm {
     int sj;                             /* 0x00 */
@@ -8,7 +9,6 @@ typedef struct DecStm {
     int busy;                           /* 0x48 */
 } DecStm;
 
-extern int D_00760DAC;
 extern int GuardedCall_00329FD0_329F98(int a);
 extern int func_0032B0B0(int sj);
 extern void Obj35C0_SetField_C_C540(void *obj, int v);

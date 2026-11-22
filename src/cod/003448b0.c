@@ -1,7 +1,6 @@
 /* cygnus-2.96: set the handle's status once; a different status after that is an error. */
 #include "godhand/mwsfd.h"
-
-extern char D_00457830[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_003448B0")))
 void func_003448B0(MwsfdHn *m, int stat)

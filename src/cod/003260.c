@@ -1,6 +1,7 @@
 /* Struct: CGObj3260_t — dispatch/trampoline object; byte flag +0x1, indirect target +0xC (mostly tail-call trampolines). */
 #include "include_asm.h"
 #include "godhand/adxsjd.h"
+#include "godhand/globals.h"
 
 /* ── Forward declarations for called external functions ─────────────────── */
 extern void func_00336E88(void);
@@ -33,7 +34,6 @@ extern int D_003CF9E8;      /* reference counter for D_003CF9F0 region      */
 /* ── Call-chain functions (11 = deferred) ───────────── */
 extern void Obj0000_Set_D_003DA394_335348(int a0);
 extern void Obj0000_Set_D_003D9DD8_3331C0(int a0);
-extern int D_003CF9E0;
 
 /* func_00326020: store the value in D_003CF9E0, then hand it to the two setters. */
 __attribute__((section(".text.func_00326020")))
@@ -44,7 +44,6 @@ void func_00326020(int v) {
 }
 extern void func_003A7AE8(void *a0, void *a1, void *a2);
 extern void func_003B1F28();
-extern int D_003CF9E0;
 
 __attribute__((section(".text.func_003260C8")))
 void func_003260C8(void *a0, ...)

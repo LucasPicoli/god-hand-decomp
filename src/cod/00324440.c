@@ -1,4 +1,5 @@
 /* cygnus-2.96: func_00324440, stream size; refreshed from the handle while the cached value is the 0x7FFFF800+ marker. */
+#include "godhand/globals.h"
 typedef struct {
     int pad0;
     int handle;
@@ -7,7 +8,6 @@ typedef struct {
     int size;
 } StmSizeCache;
 
-extern char D_00451928[];
 extern void func_0033F130(int msg);
 extern void func_00328F70(int handle);
 extern int func_00328098(int handle);

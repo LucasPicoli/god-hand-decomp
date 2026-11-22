@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void MWSFSVM_Error(char *s);
-extern char D_00457140[];
 
 __attribute__((section(".text.mwsfcre_ConvBufFmtFromMwsfd")))
 int mwsfcre_ConvBufFmtFromMwsfd(int fmt)

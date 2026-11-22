@@ -2,6 +2,7 @@
 
 /* ee-2.9-991111 candidate: func_003B3128 = sceSifCallRpc (libkernl sifrpc.c) */
 #include "godhand/gp.h"
+#include "godhand/globals.h"
 
 typedef unsigned int u_int;
 
@@ -42,7 +43,6 @@ struct SemaParam {
 };
 
 extern unsigned char D_0077FF40;
-extern unsigned char D_00460070;
 
 extern sceSifRpcPkt *func_003B2AC8(void *rd);      /* _sceRpcGetPacket */
 extern void  func_003B2B70(sceSifRpcPkt *p);       /* _sceRpcFreePacket */

@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int _MemoryAlloc(void *ctx, int k, int v);
-extern char D_0044B288[];
 extern void cIDBase_initialize(void *p, int a, int b);
 extern void cIDBase_restartAnim(void *p);
 extern void *cIDBase_getIDWork(void *p, int i);

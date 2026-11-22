@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -12,7 +13,6 @@ extern void *Getplayer(void);
 extern float SetMotionStep(void *a0, float f12);
 extern void cOmWeapon_kickOff(int a0);
 
-extern float D_003BD4A0;
 extern int D_00747A2C;
 extern char D_005CB000[];
 

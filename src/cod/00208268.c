@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int GetEm00CharIndex(int a, int b);
 extern void *SearchData(void *a, void *b, int c);
 extern int cModel_setTextureExchange(void *self, void *tex, void *tbl, int n);
 extern int cModel_setupModel(void *a, void *b, void *c, int d, int e);
-extern char D_0042FD50[];
-extern char D_0042FD58[];
 
 /* sn-2.95.3-136 matched TU. */
 

@@ -4,6 +4,7 @@
 #include "godhand/ScenarioCursor.h"
 #include "godhand/Slot2.h"
 #include "godhand/cGameObj.h"
+#include "godhand/globals.h"
 
 extern unsigned int D_00747A84[];
 extern char D_00752C00;
@@ -12,10 +13,8 @@ extern void cTaskManager_execute(void *, void *, int);
 extern void cScenarioCursor_reinit(ScenarioCursor *self);
 extern void func_002BF420(ScenarioCursor *self);
 extern void displayScrollLayer(int id, int on);
-extern int D_00427A58;
 extern void func_002AD288(void *sub, int mode);
 extern void SetField214PtrThenInit_1B6F38(cGameObj *self, int flags);
-extern int D_00421BB8;
 
 /* Start the second memory card load/run/release task: set the pending flag
  * (bit 31) in the system flags, then register the task with the caller's arg. */

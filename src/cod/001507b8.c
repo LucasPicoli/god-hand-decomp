@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003D8490;
-extern volatile int D_003D848C;
 extern void PushGlobalD8478History_331C78(int a0);
 extern char D_003DED70[];
 

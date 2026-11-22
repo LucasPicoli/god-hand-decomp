@@ -5,9 +5,8 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
-extern char D_0044CE28[];
-extern char D_0044CE30[];
 extern void *cSnd_GetSeData(cSnd *self, int bank);
 extern void *cSnd_GetBgmData(cSnd *self, int bank);
 extern void cSeData_Release(void *seData);

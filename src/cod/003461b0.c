@@ -1,12 +1,12 @@
 /* cygnus-2.96: func_003461B0, copy a file name into the handle's name buffer, truncating
  * (with an error) when it is longer than the buffer. */
+#include "godhand/globals.h"
 typedef struct {
     char pad000[0x1A4];
     char *name;
     int nameMax;
 } MwsfNameHn;
 
-extern char D_00458147[];
 extern unsigned int strlen(const char *s);
 extern void MWSFSVM_Error(const char *msg);
 extern void func_003A5DA0(char *dst, const char *src, int n);

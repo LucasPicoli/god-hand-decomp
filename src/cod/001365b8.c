@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern char D_005FEE00[];
 extern int cSnd_SeCall_2CBA48(void *snd, int bus, int no, void *obj, int a4, int a5, int a6, int a7);
 extern int irand(void);
 extern int func_002D3210(char *rec);
-extern char D_0042BE90[];
 extern int func_00135EC8(void *a0, void *a1, void *a2, void *a3, void *hit);
 extern int func_001361A0(void *a0, void *hit);
 

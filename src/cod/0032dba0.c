@@ -2,7 +2,7 @@
  * lock releases an owned input stream. */
 #include "godhand/mwPly.h"
 #include "godhand/criSj.h"
-extern char D_00452B20[];
+#include "godhand/globals.h"
 extern void Obj33F8_Tramp_0033F130_FCB0(char *msg);
 extern void func_0032EF00(MwPly *ply);
 extern int func_003282D0(void *sfd);

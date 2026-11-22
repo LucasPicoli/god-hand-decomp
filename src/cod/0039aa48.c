@@ -1,9 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/eeKernel.h"
+#include "godhand/globals.h"
 
 extern int iStartTimerCounter(int);
-extern int D_003FAEE4;
-extern int D_00460108;
 extern int CreateSema();
 extern void _clearEach();
 

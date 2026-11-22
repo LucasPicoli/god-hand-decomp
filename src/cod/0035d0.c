@@ -1,6 +1,7 @@
 /* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 #include "include_asm.h"
 #include "godhand/SfdPlay.h"
+#include "godhand/globals.h"
 /* Struct: CGObj35D0_t — header words +0x0..+0xC (ClearFields/SetFields); reaches +0x20D8 — likely a large entity object. */
 
 /* ── Forward declarations for within-TU functions called before definition ── */
@@ -15,7 +16,6 @@ extern int  func_0034DD70(char *a0, unsigned int a1);
 extern void func_0034C990(char *a0, int a1, int a2, int a3);
 
 /* ── External globals ───────────────────────────────────────────────────── */
-extern char D_00459BF0[];   /* 0x00459BF0 — ASCII string used as base ptr  */
 extern int  D_00766C9C;     /* reference counter for D5C8/D530 logic       */
 typedef struct SfhLib { int f0; int nobj; int f8; } SfhLib;
 extern SfhLib D_00766C90;   /* sfh_objinf: 3 int fields                      */

@@ -1,7 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 #include "godhand/rand.h"
-
-extern float D_00747A14;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.fRand1_1")))
 float fRand1_1(void) {

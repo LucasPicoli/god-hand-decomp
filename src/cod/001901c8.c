@@ -1,20 +1,11 @@
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 extern char D_00423F58[];
-extern int D_00785BE8;
-extern int D_00424008;
 extern int D_00785878;
-extern int D_00424040;
-extern int D_00785BF8;
-extern int D_00424110;
 extern int D_00785798;
 extern int D_00424128;
-extern int D_00785C08;
-extern char D_004241D8[];
 extern char D_007859B8[];
-extern char D_004241F0[];
-extern int D_00785C18;
-extern char D_004242A0[];
 
 #include "godhand/vu0.h"
 

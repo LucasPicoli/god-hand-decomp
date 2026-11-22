@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct {
     char pad0[0x4C];
     int chbuf; /* 0x4C */
@@ -6,7 +7,6 @@ typedef struct {
     int work; /* 0x58 */
 } ChMgr;
 extern ChMgr D_00766CE8;
-extern char D_0045A420[];
 extern void func_00366C50(int dst, int c, int n);
 extern void func_0036C438(int pool, int size);
 extern void func_0036D6B0(ChMgr *mgr, char *name, unsigned int n);

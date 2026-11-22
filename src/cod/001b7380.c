@@ -2,10 +2,10 @@
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cEm00.h"
 
 extern float Tramp_001F7DF8_00101E28(void *a0);
 extern void func_001B7568(void *a0, void *a1);
-extern unsigned char D_005CB010;
 
 
 

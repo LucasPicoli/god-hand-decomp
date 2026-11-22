@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_0076B040[];
 extern char D_0076A7D4[];
 extern void (*D_003C4908)(void);
 

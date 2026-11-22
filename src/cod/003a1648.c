@@ -14,14 +14,9 @@
  *          D_0045EA28 (aT). `one` and `huge` are lui immediates in retail, so
  *          they become plain literals. The TU now emits NO .rodata and every
  *          relocation is comparable against retail. */
+#include "godhand/globals.h"
 
 extern float func_003A19D8(float x);		/* fabsf */
-
-extern const float D_0045EA08[4];		/* atanhi[0..3] */
-extern const float D_0045EA14;			/* atanhi[3]    */
-extern const float D_0045EA18[4];		/* atanlo[0..3] */
-extern const float D_0045EA24;			/* atanlo[3]    */
-extern const float D_0045EA28[11];		/* aT[0..10]    */
 
 typedef union {
 	float value;

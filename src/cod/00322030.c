@@ -1,6 +1,7 @@
 /* ee-2.9-991111: func_00322030, libgcc frame.c extract_cie_info: parses a CIE's augmentation, alignment
  * factors and return-address column; returns the first instruction byte, or 0 for an unknown augmentation. */
 #include "godhand/ehFrameObj.h"
+#include "godhand/globals.h"
 
 typedef struct DwarfCie {
     unsigned int length;
@@ -13,8 +14,6 @@ union Unaligned {
     void *p;
 } __attribute__((packed));
 
-extern char D_004512C0[];
-extern char D_004512C8[];
 extern int func_003A5678(const char *a, const char *b);
 extern unsigned int strlen(const char *s);
 extern unsigned char *func_00321980(unsigned char *p, int *val);

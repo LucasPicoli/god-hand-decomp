@@ -3,12 +3,12 @@
 #include "godhand/objField.h"
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
+#include "godhand/globals.h"
 
 extern float fRand1_1(void);
 extern float fRand0_1(void);
 extern void func_00147C88(void *a0, void *a1, int a2);
 extern void *cSnd_GetSeData(void *a0, int a1);
-extern int D_0044CE48[];
 extern int cSaveLoad_openSave(void *p, int a1);
 extern char D_00747A24[];
 extern char D_00747A2C[];
@@ -17,8 +17,6 @@ extern char D_003C2648[];
 extern void func_00381D38(void);
 extern void func_003A6A20(char *a0);
 extern void func_0031C900(int a0);
-extern char D_0045C7A0[];
-extern char D_0045C7D0[];
 extern void CustomIDWork_SetLocalPosY(char *a0, int a1);
 extern int ChangeThreadPriority(int tid, int prio);
 extern int SignalSema(int sema);

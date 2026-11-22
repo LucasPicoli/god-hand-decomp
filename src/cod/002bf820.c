@@ -1,4 +1,4 @@
-extern char D_005F38F0[];
+#include "godhand/globals.h"
 extern void *cIDBase(void *);
 
 static inline void initIDBase(char *obj)

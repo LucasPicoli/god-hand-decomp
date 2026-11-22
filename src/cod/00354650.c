@@ -1,6 +1,7 @@
 /* cygnus-2.96: create the MPV decoder for a Sofdec handle: set it up with its header callback, picture
  * sizes and mode, and attach the work buffer when one is configured. */
 #include "godhand/sftim.h"
+#include "godhand/globals.h"
 typedef struct SfdDecView {
     char pad0[0x38];
     int mode;               /* 0x38 */
@@ -9,10 +10,6 @@ typedef struct SfdDecView {
     char pad1FC4[0x23A8 - 0x1FC4];
     int mpv;                /* 0x23A8 */
 } SfdDecView;
-
-extern int D_00766C18;
-extern int D_00766C1C;
-extern int D_00766C20;
 
 extern int SfdDec_init(SfdDecView *sf, int *dec);
 extern void func_003563B8(SfdDecView *sf);

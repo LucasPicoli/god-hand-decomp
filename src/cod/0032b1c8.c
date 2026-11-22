@@ -1,4 +1,5 @@
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
 typedef struct AdxLoopHn {
     char pad0[2];
@@ -13,7 +14,6 @@ typedef struct AdxLoopHn {
     int lpPos;
 } AdxLoopHn;
 
-extern char D_00452560[];
 extern int Obj3270_GetField_30(void *);
 extern int func_00327830(void *);
 extern int GetVia4_Obj33C8_GetField_34_7878_327878(void *);

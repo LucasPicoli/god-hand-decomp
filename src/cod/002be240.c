@@ -1,7 +1,7 @@
 /* sn-2.95.3-136: load a file, preferring a copy packed in the resident archive at 0x4C0: match the lowercased basename
  * against the archive directory, DMA the hit into IOP heap and load from there; otherwise load from the path. */
-extern unsigned char D_0045F039[];
-extern char D_0044C088[];
+#include "godhand/globals.h"
+#include "godhand/newlibStdlib.h"
 
 typedef struct PackEnt {
     char name[0x10];

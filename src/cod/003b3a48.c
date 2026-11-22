@@ -1,9 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003B3858(void);
 extern int WaitSema(int sema);
 extern int SignalSema(int sema);
-extern int D_003FAEE8;
 extern char D_007814C0[];
 
 __attribute__((section(".text.get_iob")))

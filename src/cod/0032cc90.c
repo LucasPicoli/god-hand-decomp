@@ -1,6 +1,7 @@
 /* cygnus-2.96: ADX end-of-stream flush: zero-fill the shortest pending chunk of every output SJ and
  * hand it back, then stop once all queued data has played. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 typedef struct AdxSjdObj {
     char f0;
     unsigned char stat;                 /* 0x01 */
@@ -16,7 +17,6 @@ typedef struct AdxSjdObj {
     int written;                        /* 0xA8 */
 } AdxSjdObj;
 
-extern int D_003D1468;
 extern int Obj3260_Tramp_003383B0_D358(void *rna);
 extern int Obj3270_GetVia4_0033CE98_77A0(void *sjd);
 extern void Forward33B658_33E678(void);

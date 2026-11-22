@@ -1,7 +1,5 @@
 /* sn-2.95.3-136: func_0030F348, Mersenne Twister genrand_int32 (N 624, M 397). */
-extern unsigned int D_00754250[624];
-extern int D_003C3D08;
-extern unsigned int D_003C3D10[2];
+#include "godhand/globals.h"
 extern void func_0030F2B0(unsigned int s);
 
 __attribute__((section(".text.func_0030F348")))

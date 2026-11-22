@@ -1,6 +1,7 @@
 /* cygnus-2.96: func_003B9998, set up the ADX decoder for the handle (same shape as
  * func_00336BA8): reset and configure, create the decoder under the lock, then install the five callbacks. */
 #include "godhand/CriServer.h"
+#include "godhand/globals.h"
 
 typedef struct AdxtDecWork {
     char pad0[0xC0];
@@ -21,13 +22,7 @@ typedef struct AdxtView {
     int sfreq;              /* 0x18 */
 } AdxtView;
 
-extern char D_00460818[];
-extern char D_00460840[];
-extern void *D_003D141C;
-extern void *D_003E9D20;
 extern void *D_003D1420;
-extern void *D_003E9D18;
-extern void *D_003E9D1C;
 
 extern void func_00329EA8(AdxtView *adxt);
 extern void func_003B9AF8(AdxtView *adxt);

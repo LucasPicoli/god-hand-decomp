@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
-
-extern char D_004479A0[];
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 

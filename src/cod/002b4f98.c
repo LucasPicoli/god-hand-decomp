@@ -1,10 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/sideCounter.h"
 #include "godhand/cSceAtManager.h"
-
-extern int D_003E0710;
-extern int D_003E0708;
-extern int D_003E0738;
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_002B4F98")))
 int func_002B4F98(void *a0, int key) {

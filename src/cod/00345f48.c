@@ -1,9 +1,6 @@
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
-extern char D_004580B0[];
-extern char D_004580D8[];
-extern char D_00458100[];
-extern char D_00458108[];
 extern int GetField0OrZero_346828(MwsfdHn *mw);
 extern void MWSFSVM_Error(const char *msg, ...);
 extern int MWSFD_GetPauseBdr(void);

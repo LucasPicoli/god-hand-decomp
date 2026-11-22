@@ -1,6 +1,5 @@
 #include "godhand/cDamageManage.h"
-
-extern int D_00424C30;
+#include "godhand/globals.h"
 
 __attribute__((section(".text.ResetField214FreeField600H_195CA8")))
 void *ResetField214FreeField600H_195CA8(void *a0, int a1) {

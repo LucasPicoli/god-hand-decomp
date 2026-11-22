@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void NoOp_33E6A8(void);
 extern void func_00329AF0(void);
@@ -49,7 +50,6 @@ extern void _IO_flush_all(void);
 extern void _IO_unbuffer_all(void);
 extern void func_0036CF30(void);
 extern void func_0036CCC8(int, int, int);
-extern char D_00766D48[];
 extern void func_0033A140(void);
 extern void ADXT_ExecHndl(int);
 extern void func_00335CD8(void);

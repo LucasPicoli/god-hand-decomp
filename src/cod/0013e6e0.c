@@ -3,6 +3,7 @@
 #include "godhand/SlotUi.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
 extern void func_001E7470(SlotUi *self, int mark, int show);
 extern void func_001E7538(SlotUi *self, int mark, int show);
@@ -51,8 +52,6 @@ void func_002BA7B8(Part2BA7B8 *self)
     float b = self->child->first.fn((char *)self + self->child->first.delta);
     self->size = a + b;
 }
-
-extern char D_0044D1E8[];               /* the class's method table */
 
 typedef struct Obj2D5708 {
     char unk00[0x10];

@@ -3,6 +3,7 @@
 #include "godhand/Slot1.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/globals.h"
 
 extern int IsEntryActive_1C2490(int a0);
 extern void SetField_630_1C2370(int a0);
@@ -23,7 +24,6 @@ extern void func_001E8E48(void *a0, void *a1);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
 extern char D_005FEE00[];
-extern long D_00747650;
 
 /* Phase-machine tick: drop the pending entry at +0x15B0 (stop it if still running), then run the handler of the 0..1 state byte. */
 

@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 /* cygnus-2.96 matched TU. */
 
@@ -68,8 +69,6 @@ extern void func_00335D40(char *msg);
 
 extern void Forward33B658_335CE8(Sint32 *crs);
 extern void Forward33B670_335D00(Sint32 *crs);
-extern char D_00454BB8[];
-extern char D_00454BE8[];
 
 __attribute__((section(".text.func_003353F8")))
 LSC_OBJ *func_003353F8(SJ_OBJ *sj)

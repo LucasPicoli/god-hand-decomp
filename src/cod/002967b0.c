@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEvent.h"
+#include "godhand/globals.h"
 
 extern int D_00747A2C;
-extern int D_00586B34;
-extern unsigned char D_0074748C;
 
 /* Nonzero when a cutscene is blocked by a screen flag. Needs the call-loop
  * pad: retail's assembler padded the short backward branch. */

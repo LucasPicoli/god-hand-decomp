@@ -4,9 +4,8 @@
 #include "godhand/vu0.h"
 #include "godhand/cRoomSave.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
-extern char D_00585240[];
-extern char D_00585450[];
 extern void Obj0000_Set_D_007474A0_Fields_5D8_5E0(int a0);
 extern int cIDBase_release(int a0);
 extern void func_00161590(int a0);

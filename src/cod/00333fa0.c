@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern volatile int D_003D9F68;
-extern int D_003D9F78;
 extern void func_00335248(int a0);
 extern void setDevName(int a0);
 

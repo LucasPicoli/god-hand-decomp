@@ -1,8 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 /* cygnus-2.96 candidate: sftim_IsGrExecTime */
-
-extern int D_003EE278;
 
 __attribute__((section(".text.func_0035B8C0")))
 void func_0035B8C0(int p, int *out, float cur, float t)

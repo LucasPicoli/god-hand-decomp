@@ -29,8 +29,6 @@ extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(cModel *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 
-extern EmPhaseTable D_003BFB00;
-
 __attribute__((section(".text.func_00278390")))
 void func_00278390(cEm00 *self)
 {

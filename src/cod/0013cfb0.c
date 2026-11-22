@@ -1,5 +1,5 @@
+#include "godhand/globals.h"
 extern int D_0041DCC8[];
-extern char D_00464080;
 
 __attribute__((section(".text.SetField80AndForward_13CFB0")))
 void SetField80AndForward_13CFB0(int *a0, int a1) {

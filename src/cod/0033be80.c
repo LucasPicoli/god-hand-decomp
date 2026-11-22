@@ -1,6 +1,6 @@
 /* cygnus-2.96 */
+#include "godhand/globals.h"
 
-extern int D_003E9944;
 extern void func_0033BDD8(void);
 
 __attribute__((section(".text.func_0033BE80")))

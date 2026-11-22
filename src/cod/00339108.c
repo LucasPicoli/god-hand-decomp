@@ -1,9 +1,8 @@
 /* cygnus-2.96: func_00339108, releases a non-empty chunk back to the stream and notifies its callback with -3. */
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 extern int func_00338A48(void *a0, void *a1);
-extern char D_004559F0[];
 extern char D_00455920[];
-extern char D_00455A00[];
 extern char D_00455950[];
 
 __attribute__((section(".text.func_00339108")))

@@ -1,5 +1,6 @@
 /* cygnus-2.96: open a file handle on dev: look the file up, open it, read its size when unknown, and
  * reset the read state. */
+#include "godhand/globals.h"
 #define SECTOR_SHIFT  11
 #define SECTOR_MASK   0x7FF
 
@@ -27,13 +28,7 @@ typedef struct HostFileHn {
     int unk24;
 } HostFileHn;
 
-extern char D_00454878[];
-extern char D_004548A0[];
-extern char D_004548C8[];
-extern char D_004548F8[];
-extern char D_00454920[];
 extern char D_003DA250[];
-extern int D_003DA390;
 
 extern void func_00334008(void *dev, char *msg);
 extern HostFileHn *func_003344C8(void);

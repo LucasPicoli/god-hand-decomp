@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void CdSrd_finishRead(void);
@@ -5,7 +6,6 @@ extern void func_00328C30(void);
 extern void func_00328B88(void);
 extern void func_003241D0(void);
 extern void func_00328C70(void);
-extern int D_003EB844;
 
 __attribute__((section(".text.func_0033F5B8")))
 void func_0033F5B8(void)

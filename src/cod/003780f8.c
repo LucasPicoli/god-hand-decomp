@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 */
-
-extern const float D_0045A610[][2];
+#include "godhand/globals.h"
 
 /* Look up the left/right gains for a pan angle; odd half-turns mirror the table. */
 __attribute__((section(".text.func_003780F8")))

@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEvent.h"
+#include "godhand/globals.h"
 
 extern unsigned int D_00747A80[];
-extern char D_00747B20[];
 extern char D_00747470[];
 extern int D_003C2F84;
 extern int D_003C2558;

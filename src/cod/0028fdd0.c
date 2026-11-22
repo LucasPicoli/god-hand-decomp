@@ -1,10 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void __builtin_delete(void);
-extern int D_00451038;
-extern int D_007861D8;
-extern int D_0044A750;
-extern int D_007854D8;
 extern void cGameObj__tf(void);
 extern void SetField_0_4_8_31EEA8(int *, int *, int *);
 

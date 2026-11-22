@@ -2,9 +2,9 @@
 
 #include "godhand/cSnd.h"
 #include "godhand/cBgmData.h"
+#include "godhand/globals.h"
 
 extern char D_00583F20[];
-extern unsigned char D_0044D070;
 extern void cDvd_cancel(char *, int);
 extern void func_00322F58(void);
 extern void cHeap_free(int, void *);
@@ -15,7 +15,6 @@ extern void cBgmData_Reset(cBgmData *);
 extern void cBgmData_Relocate(cBgmData *);
 extern void cBgmData_AddLoadBits(cBgmData *, int);
 extern char D_00603A40[];
-extern char D_0044CF78[];
 extern unsigned int D_00747A34;
 extern void func_003A6A20(char *, int, int, int);
 extern void cSeData_AddLoadBits(cSeData *, int);

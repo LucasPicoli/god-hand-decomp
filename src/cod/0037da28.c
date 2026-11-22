@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 candidate. */
 
@@ -14,10 +15,6 @@ typedef struct Rep {
 typedef struct String {
     char *dat;
 } String;
-
-extern char D_003BB168[];   /* basic_string<char>::nilRep */
-extern char D_0045C130[];
-extern void *D_003F2878[];
 
 extern char *func_003BB058(void *);            /* Rep::clone */
 extern void *func_003A52F0(void *, int, int);   /* memset */

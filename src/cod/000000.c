@@ -7,6 +7,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cOmbb.h"
 #include "godhand/pl00.h"
+#include "godhand/globals.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -14,9 +15,7 @@
 extern unsigned char *D_003C23A4;  /* 0x003C23A4: pointer in .data */
 extern char D_003C2555;                  /* 0x003C2555: 1-byte flag in .data */
 extern int D_0044BED0;                   /* 0x0044BED0: first int of rodata table */
-extern int D_005FEAC0;                   /* 0x005FEAC0: BSS word */
 extern int D_00747A80;                   /* 0x00747A80: BSS word */
-extern int D_00747A94;                   /* 0x00747A94: BSS word */
 extern int D_00747A98;                   /* 0x00747A98: BSS word */
 
 
@@ -441,8 +440,6 @@ void NoOp_1F1140(void) {}
 __attribute__((section(".text.NoOp_1F15B8")))
 void NoOp_1F15B8(void) {}
 
-extern int D_003C80A8;
-
 __attribute__((section(".text.GetD003C80A8_325610")))
 int GetD003C80A8_325610(void) {
     return D_003C80A8;
@@ -454,8 +451,6 @@ __attribute__((section(".text.Obj0000_Get_D_00756080_3306C8")))
 unsigned char *Obj0000_Get_D_00756080_3306C8(void) {
     return D_00756080;
 }
-
-extern int D_003D9DD8;
 
 __attribute__((section(".text.Obj0000_Set_D_003D9DD8_3331C0")))
 void Obj0000_Set_D_003D9DD8_3331C0(int a0) {
@@ -469,35 +464,25 @@ void Obj0000_Set_D_003DA394_335348(int a0) {
     D_003DA394 = a0;
 }
 
-extern int D_003E9D5C;
-
 __attribute__((section(".text.GetD003E9D5C_33C718")))
 int GetD003E9D5C_33C718(void) {
     return D_003E9D5C;
 }
-
-extern unsigned char D_003EC7E0[];
 
 __attribute__((section(".text.GetD003EC7E0_3452B0")))
 void *GetD003EC7E0_3452B0(void) {
     return D_003EC7E0;
 }
 
-extern int D_003EE078;
-
 __attribute__((section(".text.GetD003EE078_3463F8")))
 int GetD003EE078_3463F8(void) {
     return D_003EE078;
 }
 
-extern int D_003EE2C0;
-
 __attribute__((section(".text.Obj0000_ReturnD_003EE2C0_34AFE0")))
 int Obj0000_ReturnD_003EE2C0_34AFE0(void) {
     return D_003EE2C0;
 }
-
-extern int D_003EE2F4;
 
 __attribute__((section(".text.Obj0000_Set_D_003EE2F4_356348")))
 void Obj0000_Set_D_003EE2F4_356348(int a0) {
@@ -517,8 +502,6 @@ int ReturnK_003EE2BC_00358A38_358A38(void) {
     return D_003EE2BC;
 }
 
-extern unsigned char D_00459FA8[];
-
 __attribute__((section(".text.Obj0000_Get_D_00459FA8_35F8A8")))
 unsigned char *Obj0000_Get_D_00459FA8_35F8A8(void) {
     return D_00459FA8;
@@ -537,14 +520,10 @@ int Obj0000_Get_D_003EE34C_35FC28(void) {
     return D_003EE34C;
 }
 
-extern int D_003EE804;
-
 __attribute__((section(".text.GetD003EE804_360720")))
 int GetD003EE804_360720(void) {
     return D_003EE804;
 }
-
-extern unsigned char D_0045A1B0[];
 
 __attribute__((section(".text.Obj0000_Get_D_0045A1B0_360790")))
 unsigned char *Obj0000_Get_D_0045A1B0_360790(void) {
@@ -565,42 +544,30 @@ void Obj0000_Set_D_003EEA70_360C80(long long a0) {
     D_003EEA70 = a0;
 }
 
-extern char D_003EEA90[];
-
 __attribute__((section(".text.GetD003EEA90_360D18")))
 char *GetD003EEA90_360D18(void) {
     return D_003EEA90;
 }
-
-extern char D_003EEA98[];
 
 __attribute__((section(".text.Obj0000_Get_D_003EEA98_365EB0")))
 void *Obj0000_Get_D_003EEA98_365EB0(void) {
     return D_003EEA98;
 }
 
-extern int D_003F1FF0;
-
 __attribute__((section(".text.Obj0000_Get_D_003F1FF0_36CCA8")))
 int Obj0000_Get_D_003F1FF0_36CCA8(void) {
     return D_003F1FF0;
 }
-
-extern unsigned char D_0045A478[];
 
 __attribute__((section(".text.Obj0000_Get_D_0045A478_36D0E8")))
 unsigned char *Obj0000_Get_D_0045A478_36D0E8(void) {
     return D_0045A478;
 }
 
-extern int D_0076A7A4;
-
 __attribute__((section(".text.SdeSystemOutModeGet")))
 int SdeSystemOutModeGet(void) {
     return D_0076A7A4;
 }
-
-extern unsigned char D_003F8560[];
 
 __attribute__((section(".text.GetD003F8560_395388")))
 unsigned char *GetD003F8560_395388(void) {
@@ -614,14 +581,10 @@ int Obj0000_Get_D_003FA62C_3A4FB8(void) {
     return (int)D_003FA62C;
 }
 
-extern unsigned char D_0045FB80[];
-
 __attribute__((section(".text.Obj0000_Get_D_0045FB80_3AD118")))
 unsigned char *Obj0000_Get_D_0045FB80_3AD118(void) {
     return D_0045FB80;
 }
-
-extern int D_003C80A4;
 
 __attribute__((section(".text.Obj0000_Get_D_003C80A4_NE_0_325620")))
 int Obj0000_Get_D_003C80A4_NE_0_325620(void) {
@@ -672,14 +635,12 @@ typedef struct CGObj38B8
 {
   unsigned char unk[0x60];
 } CGObj38B8_t;
-extern volatile int D_003D848C;
 __attribute__((section(".text.GetD003D848C_3313E0")))
 int GetD003D848C_3313E0(void)
 {
   return D_003D848C;
 }
 
-extern volatile int D_003D8488;
 __attribute__((section(".text.Obj0000_Set_D_003D8488_3313F0")))
 void Obj0000_Set_D_003D8488_3313F0(int a0)
 {
@@ -693,8 +654,6 @@ int Obj0000_Set_D_003EE2C0_34B290(int a0) {
     return 0;
 }
 
-extern int D_0076B080;
-
 __attribute__((section(".text.Obj0000_Set_D_0076B080_Field_A4_3754F0")))
 void Obj0000_Set_D_0076B080_Field_A4_3754F0(void *arg0) {
     D_0076B080 = *(int *)((char *)arg0 + 0xA4);
@@ -707,8 +666,6 @@ void Obj0000_Clear_Bytes_D_003C2554_D_003C2555_2B6598(void) {
     D_003C2555 = 0;
     D_003C2554 = 0;
 }
-
-extern int D_00747A44;
 
 __attribute__((section(".text.cRoomJump")))
 int *cRoomJump(int *arg0) {
@@ -724,15 +681,11 @@ void *Obj0000_Set_Vtbl_D_0044D388_2D9E18(void **a0) {
     return a0;
 }
 
-extern int D_00451008;
-
 __attribute__((section(".text.Obj0000_Set_Vtbl_D_00451008_31F360")))
 void *Obj0000_Set_Vtbl_D_00451008_31F360(void **a0) {
     *a0 = &D_00451008;
     return a0;
 }
-
-extern int D_00451020;
 
 __attribute__((section(".text.Obj0000_Set_Ptr_VTable_D_00451020_31F3F8")))
 void *Obj0000_Set_Ptr_VTable_D_00451020_31F3F8(void *arg0) {
@@ -740,15 +693,11 @@ void *Obj0000_Set_Ptr_VTable_D_00451020_31F3F8(void *arg0) {
     return arg0;
 }
 
-extern int D_00451270;
-
 __attribute__((section(".text.Obj0000_Set_Vtbl_D_00451270_321848")))
 void *Obj0000_Set_Vtbl_D_00451270_321848(void **a0) {
     *a0 = &D_00451270;
     return a0;
 }
-
-extern int D_00451288;
 
 __attribute__((section(".text.Obj0000_Set_Vtbl_00451288_3218E0")))
 void *Obj0000_Set_Vtbl_00451288_3218E0(void *a0) {
@@ -765,26 +714,17 @@ void Obj0000_Set_D_003D1410_And_D_003D1414_32AB58(int a0) {
     D_003D1414 = a0;
 }
 
-extern int D_003D90D4;
-extern int D_003D90D8;
-
 __attribute__((section(".text.Obj0000_Set_D_003D90D4_D_003D90D8_3329D0")))
 void Obj0000_Set_D_003D90D4_D_003D90D8_3329D0(int a0, int a1) {
     D_003D90D4 = a0;
     D_003D90D8 = a1;
 }
 
-extern int D_003D9F6C;
-extern int D_003D9F70;
-
 __attribute__((section(".text.Obj0000_Set_D_003D9F6C_D_003D9F70_334230")))
 void Obj0000_Set_D_003D9F6C_D_003D9F70_334230(int a0, int a1) {
     D_003D9F6C = a0;
     D_003D9F70 = a1;
 }
-
-extern int D_003DECFC;
-extern int D_003DED00;
 
 __attribute__((section(".text.Obj0000_Set_D_003DECFC_D_003DED00_3364F8")))
 void Obj0000_Set_D_003DECFC_D_003DED00_3364F8(int a0, int a1) {
@@ -827,9 +767,6 @@ void Obj0000_Set_D_007588C8_Args_0_1_33BFA0(int a0, int a1) {
     D_007588C8[1] = a1;
 }
 
-extern int D_003EC454;
-extern int D_003EC458;
-
 __attribute__((section(".text.Obj0000_Set_D_003EC454_D_003EC458_340438")))
 void Obj0000_Set_D_003EC454_D_003EC458_340438(int a0, int a1) {
     D_003EC454 = a0;
@@ -859,9 +796,6 @@ void *Obj0000_Set_Field_80_372C68(void *arg0) {
     return arg0;
 }
 
-extern int D_003FC7AC;
-extern int D_003FC7B0;
-
 __attribute__((section(".text.Obj0000_Set_D_003FC7AC_D_003FC7B0_3B9D98")))
 void Obj0000_Set_D_003FC7AC_D_003FC7B0_3B9D98(int a0, int a1) {
     D_003FC7AC = a0;
@@ -875,16 +809,12 @@ unsigned int Obj0000_IsSet_D_00747A80_Bit_10000000_2B8978(void) {
     return (unsigned int)(0U < v);
 }
 
-extern int D_00450FF0;
-
 __attribute__((section(".text.Obj0000_Setup_Fields_00_01_D_00450FF0_31F2A8")))
 int *Obj0000_Setup_Fields_00_01_D_00450FF0_31F2A8(int *a0, int a1) {
     a0[0] = a1;
     a0[1] = (int)&D_00450FF0;
     return a0;
 }
-
-extern int D_00451038;
 
 __attribute__((section(".text.Obj0000_Set_Fields_00_01_D_00451038_31F488")))
 int *Obj0000_Set_Fields_00_01_D_00451038_31F488(int *a0, int a1) {
@@ -900,14 +830,10 @@ int Obj0000_Get_D_003EB308_Plus10_By_Index_324808(int a0) {
     return D_003EB308[a0] + 0x10;
 }
 
-extern long long D_003C8100;
-
 __attribute__((section(".text.Obj0000_Increment_D_003C8100_324E98")))
 void Obj0000_Increment_D_003C8100_324E98(void) {
     D_003C8100 += 1;
 }
-
-extern int D_003D04CC;
 
 __attribute__((section(".text.Obj0000_PostInc_D_003D04CC_3284A0")))
 int Obj0000_PostInc_D_003D04CC_3284A0(void) {
@@ -945,8 +871,6 @@ int Obj0000_Swap_D_003C4F00_321218(int a0) {
     return new_var;
 }
 
-extern int D_003E3A80;
-
 __attribute__((section(".text.Obj0000_PostInc_D_003E3A80_338960")))
 int Obj0000_PostInc_D_003E3A80_338960(void) {
     return ++D_003E3A80;
@@ -964,8 +888,6 @@ __attribute__((section(".text.Obj0000_PreDec_D_003EC450_340520")))
 int Obj0000_PreDec_D_003EC450_340520(void) {
     return --D_003EC450;
 }
-
-extern int D_003FC50C;
 
 __attribute__((section(".text.Obj0000_PostInc_D_003FC50C_3B9D68")))
 int Obj0000_PostInc_D_003FC50C_3B9D68(void) {
@@ -1047,8 +969,6 @@ void Obj0000_Set_Byte_54(void *rec, int value) {
     ((char *)rec)[0x54] = value;
 }
 
-extern unsigned char D_0061B670;
-
 __attribute__((section(".text.Obj0000_Get_Byte_D_0061B670")))
 int Obj0000_Get_Byte_D_0061B670(void) {
     return D_0061B670;
@@ -1074,7 +994,6 @@ void CustomIDWork_ResetMoveOffsetPos(char *a0) {
     *(int *)(ptr + 0x34) = 0;
 }
 
-extern int D_003D8408;
 void func_003302B0(void *, void *, int);
 
 __attribute__((section(".text.Tramp_003302B0_003302E0")))
@@ -1171,8 +1090,6 @@ int Obj0000_Get_Field_44_LT_1_If_Field_48_In_1_4(unsigned char *a0) {
     return (unsigned int)*(int *)(a0 + 0x44) < 1;
 }
 
-extern int D_00766CD8;
-
 __attribute__((section(".text.MPSLIB_CheckHn")))
 int MPSLIB_CheckHn(int *a0) {
     int v1;
@@ -1202,8 +1119,6 @@ void Tramp_003356B0_00335610(int a0, int a1) {
     func_003356B0(a0, a1, 0, 0, 0xFFFFF);
 }
 
-extern void *D_00766D44;
-
 __attribute__((section(".text.Obj0000_Set_D_00766D44_Check_Field_188_NE_2")))
 int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *a0) {
     D_00766D44 = (void *)a0;
@@ -1223,8 +1138,6 @@ int Obj0000_Get_Field_3B4_Via_func_0036CD98(unsigned char *a0) {
     }
     return func_0036CD98(v0);
 }
-
-extern int *D_0076A5D8;
 
 __attribute__((section(".text.Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2")))
 int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *a0) {
@@ -1487,9 +1400,6 @@ void Obj0000_Call_FnFC_Field_100_94_90_Scaled(unsigned char *arg0)
   fn(*((int *) (arg0 + 0x100)), a1, a2 << 1);
   *((int *) (arg0 + 0xF4)) = *((int *) (arg0 + 0x94));
 }
-
-extern int D_0045A460;
-extern unsigned char D_0045A470;
 
 extern int func_00369F20(int, unsigned int);
 
@@ -2183,17 +2093,14 @@ __attribute__((section(".text.Forward33B670_338A10")))
 void Forward33B670_338A10(void) { Forward33B5C8_33B670(); }
 
 extern int Forward33B790_340AE8(void *a0);
-extern char D_00455900[];
 __attribute__((section(".text.Forward340AE8_338A28")))
 int Forward340AE8_338A28(void) { return Forward33B790_340AE8(D_00455900); }
 
 extern int Forward33B790_340AE8(void *a0);
-extern char D_00455A60[];
 __attribute__((section(".text.Forward340AE8_339438")))
 int Forward340AE8_339438(void) { return Forward33B790_340AE8(D_00455A60); }
 
 extern int Forward33B790_340AE8(void *a0);
-extern char D_00455BB8[];
 __attribute__((section(".text.Forward340AE8_33A028")))
 int Forward340AE8_33A028(void) { return Forward33B790_340AE8(D_00455BB8); }
 

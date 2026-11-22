@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003EB848;
 extern void func_0033F7B8(void);
 extern void Forward33BC48_33BD90(void);
 extern void Forward33BC48_33BDA8(void);

@@ -3,10 +3,10 @@
 #include "godhand/DispMgr.h"
 #include "godhand/cSubScrOption.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
-extern char D_00506E10[];
 extern int D_00747A78;
 
 __attribute__((section(".text.UpdateField78_FromField90_146F70")))
@@ -251,8 +251,6 @@ extern int D_0061A990[];
 extern unsigned short D_007474A0[];
 extern unsigned char D_005E85F8;
 extern unsigned int D_00747A34;
-extern int D_00747A38;
-extern int D_00747A3C;
 extern int D_00747A80;
 extern unsigned char D_0041D5A8[];
 extern unsigned char D_0041D540[];

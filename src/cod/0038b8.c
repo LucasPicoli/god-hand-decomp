@@ -1,6 +1,7 @@
 /* Struct: CGObj38B8_t */
 #include "include_asm.h"
 #include "godhand/libio.h"
+#include "godhand/globals.h"
 
 /* -- Forward declarations for called functions -------------------------------- */
 extern int _IO_getc(char *a0);
@@ -16,9 +17,6 @@ extern void *func_0038BE98(void);
 
 /* -- Extern globals ----------------------------------------------------------- */
 extern int D_786768;
-extern int D_786778;
-extern char D_0045D350[];
-extern char D_0045D360[];
 extern char D_00460DB0[];
 
 

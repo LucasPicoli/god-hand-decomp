@@ -1,5 +1,4 @@
-extern char D_00456FE8[];
-extern char D_00457010[];
+#include "godhand/globals.h"
 extern void func_00340450(int msg);
 
 __attribute__((section(".text.func_00340A60")))

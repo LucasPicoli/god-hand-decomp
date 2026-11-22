@@ -1,6 +1,8 @@
 /* sn-2.95.3-136 */
 #include "godhand/cSnd.h"
 #include "godhand/cSubScr.h"
+#include "godhand/cEm00.h"
+#include "godhand/globals.h"
 
 /* View of the bgm override record D_00586B28 points at. */
 typedef struct BgmOverride {
@@ -10,8 +12,6 @@ typedef struct BgmOverride {
 } BgmOverride;
 
 extern BgmOverride *D_00586B28;
-extern unsigned short D_00583EEC;
-extern unsigned char D_005CB010;
 
 /* No screen is stacked on the open sub screen. */
 static __inline__ unsigned char subScr_isIdle(cSubScr *m)

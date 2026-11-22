@@ -4,14 +4,9 @@
 #include "godhand/espSys.h"
 #include "godhand/player.h"
 #include "godhand/cObjBase.h"
+#include "godhand/globals.h"
 
 /* The error messages, one per failing step. */
-extern char D_0044ED00[];               /* "esp20: model[%d] data not found." */
-extern char D_0044ED28[];               /* "esp20: model create failed." */
-extern char D_0044ED48[];               /* "esp20: model initial failed." */
-extern char D_0044ED68[];               /* "esp20: TYPE invalid." */
-extern char D_0044ED80[];               /* "esp20: EFF_TEX setup failed." */
-extern char D_0044EDA0[];               /* "esp20: model setup failed." */
 
 extern int cModel_setupModel(void *model, void *mdl, void *tex, int a3, int a4);
 extern int SetEffect(int kind, int id, void *owner, cEffectParam *param, int handle, unsigned int follow);

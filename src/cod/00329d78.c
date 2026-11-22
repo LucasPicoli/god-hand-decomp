@@ -1,23 +1,22 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int Obj33F8_Tramp_0033F130_FCB0(void *a0);
 extern void Obj33F8_Tramp_0033B658_FC70(void);
 extern int Obj33F8_Tramp_0033B670_FC88(void);
-extern int D_00452C98;
 extern void func_00338A48(void *a0, void *a1);
 extern void func_003A52F0(void *a0, int a1, int a2);
-extern int D_00455910, D_00455920, D_00455940, D_00455950;
+extern int D_00455920, D_00455950;
 extern void func_00339458(void *a0, void *a1);
-extern int D_00455A70, D_00455A80, D_00455AA0, D_00455AB0;
+extern int D_00455A80, D_00455AB0;
 extern void func_0033A048(void *a0, void *a1);
-extern int D_00455BC8, D_00455BD8, D_00455BF8, D_00455C08;
+extern int D_00455BD8, D_00455C08;
 extern void func_0033F130(void *a0);
 extern void func_00329ED8(void *a0);
 extern void Forward33B658_33E678(void);
 extern void func_00329B60(void *a0, void *a1);
 extern void func_0032B6A0(void *a0, int a1);
 extern void Forward33B670_33E690(void);
-extern int D_00452038;
 
 /* MATCH via cygnus-2.96 +drop-freorder. */
 

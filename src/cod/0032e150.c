@@ -1,6 +1,6 @@
 /* cygnus-2.96: func_0032E150, returns the active decoder's buffer state for a running stream player. */
 #include "godhand/criStm.h"
-extern char D_00452D78[];
+#include "godhand/globals.h"
 extern void Obj33F8_Tramp_0033F130_FCB0(char *msg);
 extern int func_0032F570(void *dec);
 extern int func_0032F538(void *dec);

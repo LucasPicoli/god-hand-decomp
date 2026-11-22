@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cPlCamera.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern float SetMotionStep(void *a0, float f12);
 extern void cPlCamera_setCamUpdate(struct cPlCamera *self, int snap);
@@ -9,7 +10,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cEm00_startJumpSetup(void *a0);
-extern float D_003BD478;
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);

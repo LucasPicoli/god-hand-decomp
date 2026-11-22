@@ -1,7 +1,7 @@
-extern volatile int D_003C814C;
-extern int D_003C80C8;
+#include "godhand/adxm.h"
+#include "godhand/adxmThread.h"
+#include "godhand/globals.h"
 extern int SleepThread(void);
-extern volatile int D_003C80FC;
 extern int Obj33C8_GetShort_24(int a0);
 extern int Obj33C8_GetField_28(int a0);
 extern int Obj33C8_GetField_30(int a0);

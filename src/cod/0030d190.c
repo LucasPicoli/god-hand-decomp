@@ -4,9 +4,8 @@
 #include "godhand/cObjPtrArrayWrapper.h"
 #include "godhand/SndSlotInit.h"
 #include "godhand/sync.h"
+#include "godhand/globals.h"
 
-extern volatile int D_00753D88;
-extern int D_00747A18;
 extern char D_005FEE00[];
 extern void func_002CA690(char *a0);
 

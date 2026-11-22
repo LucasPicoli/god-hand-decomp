@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern struct Ent D_00758620[];
 extern volatile int D_003E9970[];
-extern int D_003E9950[];
 
 typedef int (*Fp)(int);
 struct Ent { Fp fp; int arg; int pad; };

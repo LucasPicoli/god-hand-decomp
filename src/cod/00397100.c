@@ -1,6 +1,5 @@
 /* ee-2.9-991111 matched TU. */
-
-extern int D_003F8580[];
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
 

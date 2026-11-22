@@ -3,10 +3,10 @@
 #include "godhand/cEmSetParam.h"
 #include "godhand/cEm00.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern void cEmSetParam_setEm(cEmSetParam *param, int entry);
 extern void cEmWrap_StartAction(void *wrap);
-extern char D_0044BCA0[];
 extern int D_005CAE50;
 extern void func_0012EC58(void *pool, void *handle);
 

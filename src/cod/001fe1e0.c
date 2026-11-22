@@ -2,9 +2,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/FileLoadRec.h"
 #include "godhand/cDamageManage.h"
-
-extern char D_00569B80[];
-extern char D_0056C380[];
+#include "godhand/globals.h"
 
 __attribute__((section(".text.func_001FE1E0")))
 cDamageGive *func_001FE1E0(cDamageManage *self) {

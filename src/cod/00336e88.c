@@ -1,23 +1,11 @@
 /* cygnus-2.96: CRI stream handle pool (0x336E88..). */
 
 #include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 extern void func_0033AF28(void *p);
 extern void SJX_Destroy(void *sjx);
 extern int Tramp_sceSifFreeSysMemory_3B5A50(void *p);
-extern int D_003E0730;
-extern int D_003E0734;
-extern char D_00455398[];
-extern char D_004553C8[];
-extern char D_004553F8[];
-extern char D_00455438[];
-extern char D_00455480[];
-extern char D_004554B0[];
-extern char D_004554E0[];
-extern char D_00455518[];
-extern char D_00455548[];
-extern char D_00455580[];
-extern char D_003E0A68[];
 extern void *sceSifAllocIopHeap(int size);
 extern void *SJUNI_CreateRmt(int mode, char *buf, int size);
 extern StmObj *func_0033A190(int mode, char *buf, int size);

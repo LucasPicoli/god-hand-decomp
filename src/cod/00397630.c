@@ -1,12 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/libpad.h"
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 */
-
-extern int  D_003F85C8;
-extern int  D_003F85CC;
-extern char D_0045E038[];
-extern char D_0045E060[];
 
 
 extern int  scePadGetModVersion(void);

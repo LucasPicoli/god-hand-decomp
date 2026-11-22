@@ -1,7 +1,6 @@
 /* cygnus-2.96: stream reset; reports a null handle or a closed stream, else rewinds and clears counters. */
-extern int D_00455AD0;
+#include "godhand/globals.h"
 extern int D_00455A80;
-extern int D_00455AE0;
 extern int D_00455AB0;
 extern int func_00339458(void *a0, void *a1);
 

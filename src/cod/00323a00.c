@@ -1,9 +1,9 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
 
 extern void sfadxt_WtPause(void *, void *, int);
 extern int MPSLIB_CheckHn(void *);
-extern int D_003E0710;
-extern int D_003E0708;
 extern int D_003EAEC8;
 extern void func_00323AA0(int a0);
 extern int D_003C7420;
@@ -17,35 +17,24 @@ extern void func_0035B500(void *, int, int);
 extern void func_0035B568(void *, int, int);
 extern int Obj0000_Set_D_003EE2BC_358A28(int a0);
 extern int MWSFSVM_Error(char *msg);
-extern char D_00457890[];
 extern int MWSTM_IsFsStatErr(void *a0);
 extern int Obj35C0_GetIndexed_1F30_C338(void *a, int b);
 extern void Obj35C0_SetIndexed_1F30_C320(void *a, int b, int c);
 extern int Obj35C0_GetIndexed_1F34_C368(void *a, int b);
 extern void Obj35C0_SetIndexed_1F34_C350(void *a, int b, int c);
 extern void *getElemInfPtr(void *a, int b);
-extern int D_0045A580[];
-extern int D_0045A590[];
-extern int D_003EB708;
 extern void Forward3B0640_33F3D0(int a0, int a1);
 extern int sfmps_CopySj(int a0, int a1, int a2, int a3);
 extern int GetArrayElemA0C_35A1C8(int a0, int a1);
 extern void func_003B1F28(int a0, int a1);
-extern int D_00454110;
-extern char D_00454170[];
 extern void func_00331D40(int a0, int a1, int a2);
 extern void func_00331D78(void);
-extern int D_003D90E0;
 extern char D_003D9150[];
 extern void func_00332890(char *a0);
-extern int D_003D9F74;
 extern char D_003D9FE0[];
 extern void func_003340F0(char *a0);
-extern char D_00455788[];
 extern void LogPrintf(char *a0);
-extern int D_003E8DD4;
 extern int D_003E9068;
-extern int D_003E8DDC;
 extern void DTX_Destroy(int a0);
 extern void Tramp_sceSifFreeSysMemory_3B5A50(int a0);
 extern void func_003325F8(void);

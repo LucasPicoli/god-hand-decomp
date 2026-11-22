@@ -1,8 +1,7 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_0045E720[];
 extern void _sceMpegError(void *s, char *msg);
-extern char D_0045E770[];
 extern void _waitIpuIdle(void *s);
 extern long long _sceMpegWaitIpuIdle64(void *s);
 extern unsigned int func_0039EB90(void *s, int n);

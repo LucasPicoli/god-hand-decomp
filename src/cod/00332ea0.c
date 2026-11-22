@@ -1,5 +1,6 @@
 /* cygnus-2.96: CD file handle read request: clamp the sector count to what is left of the file, issue
  * SRD_ReqRdCd and, in blocking mode, wait for it and advance the offset. */
+#include "godhand/globals.h"
 typedef struct CdReadHn {
     char pad00[2];
     signed char stat;                   /* 0x02 */
@@ -16,10 +17,6 @@ typedef struct CdReadHn {
 } CdReadHn;
 
 extern char D_00454458[];
-extern char D_00454470[];
-extern char D_00454490[];
-extern unsigned char D_003D9DD0[];
-extern int D_003D9DD4;
 extern void func_00332808(CdReadHn *hn, char *msg);
 extern void *SRD_Create(void);
 extern void func_003B0640(void *start, void *end);

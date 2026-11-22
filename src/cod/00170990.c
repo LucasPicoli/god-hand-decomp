@@ -1,15 +1,7 @@
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int D_005FEE00[];
-extern int D_00785818;
-extern int D_00420768;
-extern int D_00785808;
-extern int D_00420780;
-extern int D_00785828;
-extern int D_00420838;
-extern int D_00420850;
-extern int D_00785838;
-extern int D_00420908;
 extern int D_00420920;
 
 __attribute__((section(".text.InitActorVU0Slots0A0C_170990")))

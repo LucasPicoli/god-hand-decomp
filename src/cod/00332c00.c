@@ -1,5 +1,6 @@
 /* cygnus-2.96: open a file handle on dev: look the file up, read its size from the disc when unknown,
  * and reset the read state. */
+#include "godhand/globals.h"
 #define SECTOR_SHIFT  11
 #define SECTOR_MASK   0x7FF
 
@@ -22,13 +23,6 @@ typedef struct CdFileHn {
     int unk1C;
     CdFileInfo info;                /* 0x20 */
 } CdFileHn;
-
-extern char D_00454380[];
-extern char D_004543A8[];
-extern char D_004543D0[];
-extern char D_00454400[];
-extern char D_00454428[];
-extern char D_003D9C90[];
 
 extern void func_00332808(void *dev, char *msg);
 extern CdFileHn *func_00332BA8(void);

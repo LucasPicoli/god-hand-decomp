@@ -1,9 +1,9 @@
 #include "godhand/cObjBase.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int D_0041EBE8;
-extern char D_0044AE28[];
 extern void (*D_003C4908)(void);
 extern void func_00329EA8(int a0);
 extern void func_0032B300(int a0, int a1);

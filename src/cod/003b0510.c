@@ -1,13 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern int EnableDmac(int cause);
 extern void _sceSDC(unsigned int start, unsigned int end);
 extern void _sceIDC(unsigned int start, unsigned int end);
-extern char D_007816E8[];
-extern char D_003FAE30[];
-extern char *D_003FAEF0;
-extern char D_00781BA8[];
-extern char *D_003FAEFC;
 
 /* ee-2.9-991111; libkernl intr.o wrapper around the EnableDmac syscall stub. */
 

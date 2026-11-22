@@ -1,7 +1,6 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_007817C0[];
-extern int D_003FAEF4;
 extern void _waitIpuIdle(void *);
 extern long long _sceMpegWaitIpuIdle64(void *);
 

@@ -1,9 +1,8 @@
 /* cygnus-2.96: start playback of an MWSFD handle: on a pending start, set up the stream, both channels
  * and the header reader, then reset the play state and buffers and mark it playing. */
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
-extern char D_00457EF8[];
-extern char D_00457F28[];
 extern int GetD003EC7E0_3452B0(void);
 extern int func_00343D68(MwsfdHn *);
 extern void func_003487C0(MwsfdHn *, int);

@@ -1,5 +1,6 @@
 /* cygnus-2.96: read the first sectors of a file into buf; host paths go to the host reader, disc paths
  * are searched and read through libcdvd with progress codes in the history ring. */
+#include "godhand/globals.h"
 typedef struct CdlFile {
     unsigned int lsn;                   /* 0x00 */
     unsigned int size;                  /* 0x04 */
@@ -18,9 +19,6 @@ typedef struct CdRMode {
 typedef struct DrvName {
     char c[5];
 } DrvName;
-
-extern char D_004544F0[];
-extern char D_003D9EE8[];
 
 extern int func_003A9260(const char *a, const char *b);
 extern int func_00334F90(char *path, void *buf);

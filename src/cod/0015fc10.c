@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern int func_003950F8(int a0, int a1);
 extern void classCFILTER_TAG_initialize(void *);
 extern void classCFILTER_TAG_Filter_main(void *);
-extern int D_00566E30;
-extern int D_00752D08;
 extern int D_00747A2C;
 extern char D_00586C00;
 

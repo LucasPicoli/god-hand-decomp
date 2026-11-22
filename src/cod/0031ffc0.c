@@ -1,14 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_00786698;
-extern char D_004511E0[];
 extern char D_00460DA0[];
 extern void func_0031F4A0();
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
-extern int D_007866A8;
-extern char D_004511F8[];
-extern int D_007866B8;
-extern char D_00451210[];
 
 __attribute__((section(".text.func_0031FFC0")))
 void *func_0031FFC0(void) {

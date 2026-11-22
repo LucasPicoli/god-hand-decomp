@@ -2,6 +2,7 @@
  * fill the load record and start ADXF_ReadNw. */
 #include "godhand/adxf.h"
 #include "godhand/criSj.h"
+#include "godhand/globals.h"
 
 extern void func_00323AA0(int);
 extern void *func_003A52F0(void *dst, int c, int n);
@@ -9,18 +10,6 @@ extern int func_00323960(int, int);
 extern int func_00323780(int, int, int, int);
 extern void func_003A5DA0(char *, char *, int);
 extern int ADXF_ReadNw(int, int, int);
-
-extern int D_003EB834;
-extern int D_003EB838;
-extern int D_003EB83C;
-extern int D_003EB840;
-extern int D_003C5298;
-extern int D_003C529C;
-extern char D_004513F8[];
-extern char D_00451438[];
-extern char D_00451468[];
-extern char D_00451490[];
-extern char D_004514C0[];
 
 __attribute__((section(".text.func_00322C68")))
 int func_00322C68(int id, int a1, int a2, int a3, int a4, int a5, int a6, AdxfPtInfo *w, int a8, int a9, int a10)

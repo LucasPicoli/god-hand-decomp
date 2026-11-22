@@ -1,7 +1,6 @@
 #include "godhand/mwPly.h"
+#include "godhand/globals.h"
 
-extern char D_00452AA8[];
-extern char D_00755C40[];
 extern void Obj33F8_Tramp_0033F130_FCB0(char *msg);
 extern void func_0032DBA0(MwPly *);
 extern void Obj33F8_Tramp_0033B658_FC70(void);

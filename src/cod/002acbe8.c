@@ -1,5 +1,4 @@
-extern char D_005CB020[];
-extern char D_005CB300[];
+#include "godhand/globals.h"
 extern void *cIDParam(void *);
 extern void *func_00309000(void *);
 

@@ -3,12 +3,10 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 extern void func_001646C0(void *a0, void *a1, float f12);
 extern char D_003BD880[];
-extern float D_003BD9D0;
-extern float D_003BD9D4;
-extern char D_00567D70[];
 typedef struct { float f[4]; } F4;
 extern F4 D_0041F630[];
 extern int D_007474A0;

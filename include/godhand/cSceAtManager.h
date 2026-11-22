@@ -103,4 +103,6 @@ int cSceAtManager_findJumpPoint(cSceAtManager *self, cVec *pos, cVec *point, flo
 
 extern char D_0044C230[];               /* name of the room data's jump point table */
 
+extern cSceAtTypeEnt D_003C2650[];
+
 #endif

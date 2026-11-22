@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/globals.h"
 
 typedef unsigned char u_char;
 typedef unsigned int  u_int;
@@ -25,10 +26,6 @@ typedef struct GsStoreImageWords {
 extern void func_003B1F28(char *fmt, ...);
 extern unsigned long Tramp_GsGetIMR_3964A0(void);
 extern u_long func_00396008(u_long newMask);
-extern char D_00450808[];
-extern char D_00450840[];
-extern char D_00450870[];
-extern char D_004508B0[];
 extern qword D_003C3CE0;
 
 /* The game's copy of libgraph sceGsExecStoreImage: read a GS image back through the GIF/VIF1 path into dstaddr; -1 on a timeout. */

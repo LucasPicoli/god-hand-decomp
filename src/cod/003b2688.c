@@ -1,8 +1,7 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003A52F0(void *, int, int);
-extern int D_003FAEDC;
-extern char D_007816E8[];
 
 /* ee-2.9-991111 */
 

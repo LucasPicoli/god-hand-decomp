@@ -1,17 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/criStm.h"
+#include "godhand/globals.h"
+#include "godhand/sftim.h"
 
-extern int D_003D8404;
-extern int D_003D8408;
-extern int D_003E0710;
-extern int D_003E0708;
-extern volatile int D_003E3A90;
-extern volatile int D_003E3A88;
-extern volatile int D_003EADB0;
-extern int D_003EADA8;
-extern int D_003EC7D0;
-extern int D_003EC7D4;
-extern int D_00758A30[];
-extern int D_00459920[];
 extern int D_0076A790[];
 
 __attribute__((section(".text.func_00306FC0")))

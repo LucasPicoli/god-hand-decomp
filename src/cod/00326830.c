@@ -1,8 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00326568(int a0);
 extern void (*D_003EADB8)(void *, void *);
-extern void *D_003EADBC;
 extern char D_003EADC0[];
 
 /* clone */

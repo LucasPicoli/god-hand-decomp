@@ -1,15 +1,7 @@
-extern int D_00785C58;
-extern char D_00424690[];
+#include "godhand/globals.h"
 extern char D_00785798[];
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern int D_004246A8;
-extern int D_00785C68;
-extern int D_00424778[];
-extern int D_00424790[];
-extern int D_00785C78;
-extern int D_00424860;
-extern int D_00424878;
 
 __attribute__((section(".text.GetObjSingleton_1931A0")))
 void *GetObjSingleton_1931A0(void) {

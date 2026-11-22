@@ -1,4 +1,5 @@
 #include "godhand/cObj.h"
+#include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -8,7 +9,6 @@ extern void __as__22_IO_istream_withassignR7istream(void *a0, void *a1);
 extern int D_003BAFE0[];
 extern void __builtin_delete(void);
 extern void func_003B9DE0(void *);
-extern int D_00460AA8;
 extern void func_001495A0(cObj *self);
 extern int D_0041EAF0;
 extern void func_001BD580(void *);
@@ -22,7 +22,6 @@ extern int D_00425AC0;
 extern void cObjBase(void *);
 extern int D_00450C38;
 extern int D_003FA62C;
-extern int D_003FBEA8;
 
 __attribute__((section(".text.Tramp_flush__7ostream_3892C0")))
 void Tramp_flush__7ostream_3892C0(void *a0) {

@@ -1,6 +1,5 @@
 /* cygnus-2.96 matched TU. */
-
-extern char D_00761E50[];
+#include "godhand/globals.h"
 
 /* Forward35D538_34D048 -- DEAD-HEAD BOUNDARY DEFECT.
  * The declared span starts 64 B too early; the TRUE entry is 0x0034D048.

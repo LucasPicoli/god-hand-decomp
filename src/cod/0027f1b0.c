@@ -30,8 +30,6 @@ extern void cModel_ScrollTexture(cModel *a0, float f);
 
 #include "godhand/emPhaseTable.h"
 
-extern EmPhaseTable D_003BFE98;
-
 __attribute__((section(".text.func_0027F1B0")))
 void func_0027F1B0(cEm00 *self)
 {

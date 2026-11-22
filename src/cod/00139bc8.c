@@ -1,5 +1,6 @@
 #include "godhand/vu0.h"
 #include "godhand/cPlCamera.h"
+#include "godhand/globals.h"
 
 /* cPlCamera — extends cCamera: run the base constructor, then set
  * (and re-set) the vtable at 0x35C while zeroing two further blocks of
@@ -8,7 +9,6 @@
 
 extern struct cCamera *cCamera(struct cCamera *self);
 extern int D_0041D8F8;
-extern int D_0041DBB0;
 
 /* Constructor: run the cCamera one, set the vtable (twice, as retail does:
  * the memory clobbers of the asm keep the first store), zero the vectors

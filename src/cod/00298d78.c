@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 */
+#include "godhand/globals.h"
 
-extern unsigned char D_003C0548[3];
 extern int D_00586AF0;
 extern void EventBgm_startByStageCount(void);
 extern void func_00297C80(void *slot, void (*cb)(void));

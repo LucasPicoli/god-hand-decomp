@@ -1,12 +1,10 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_00335D40();
 extern void func_00335950();
-extern const char D_00454CA8[];
 extern void sfadxt_WtPause(void *, void *, int);
 extern struct FnEntry D_007588A0;
-extern volatile int D_003E9948;
-extern volatile int D_003E994C;
 
 __attribute__((section(".text.func_003358E8")))
 void func_003358E8(void *a0) {

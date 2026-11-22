@@ -1,14 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cWorldLight.h"
+#include "godhand/globals.h"
 
 extern int D_003C2388;
 extern void *cIDManager_getTexAddr(int a, int b, int c);
-extern char D_0041ECC0[];
-extern char D_0041ECD8[];
-extern char D_0041ED08[];
-extern char D_0041ED28[];
-extern char D_0041ED48[];
 extern void printf_2E0DA8(int x, int y, int a2, int a3, char *fmt, ...);
 extern void func_002D9458(void *dst, void *src);
 extern void func_003A52F0(void *d, int c, int n);

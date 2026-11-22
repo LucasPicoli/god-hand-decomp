@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern int Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2(int *);
 extern void M2VERR_SetCode(int, unsigned int);
@@ -7,7 +8,6 @@ extern void func_003B9DE0(void *);
 extern void func_003B9DB0(void);
 extern void SjFeedCtl_step(void *);
 extern void func_003B9DC8(void);
-extern int D_00460950;
 
 __attribute__((section(".text.func_0036DA80")))
 void func_0036DA80(char *o, void *dst) {

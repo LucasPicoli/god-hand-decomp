@@ -3,8 +3,7 @@
 #include "godhand/cScrSpriteDraw.h"
 #include "godhand/drawPrim.h"
 #include "godhand/gsPacket.h"
-
-extern unsigned int D_003C3B60[8];      /* the debug text colours */
+#include "godhand/globals.h"
 
 /* Draw str from (x, y): one sprite per character, its 8x8 cell of the font
  * texture picked by func_002E12D8; '\n' moves to the next line, ' ' only

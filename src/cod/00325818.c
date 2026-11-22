@@ -1,3 +1,5 @@
+#include "godhand/adxmThread.h"
+#include "godhand/globals.h"
 extern void func_003257C8(void);
 extern void func_003258B8(void);
 extern void func_00325A58(void);
@@ -7,9 +9,6 @@ extern int ChangeThreadPriority(int tid, int prio);
 extern void Obj0000_Set_D_007588A0_Pair_33BC18(int a, int b);
 extern void Obj0000_Set_D_007588A8_XY_33BC30(int x, int y);
 extern void func_0033BEC0(void);
-extern int D_003C80A4;
-extern volatile int D_003C8148;
-extern int D_003CF9D8;
 
 __attribute__((section(".text.func_00325818")))
 void func_00325818(void)

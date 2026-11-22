@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 typedef struct {
     signed char f0;
@@ -17,9 +18,6 @@ typedef struct {
 
 extern void func_003A57C4(char *dst, const char *src);
 extern void func_003365A8(MFH *hn);
-extern const char D_00455090[];
-extern const char D_004550B8[];
-extern const char D_004550E0[];
 
 __attribute__((section(".text.mfCiOpen")))
 MFH *mfCiOpen(const char *fname, int a1, int a2)

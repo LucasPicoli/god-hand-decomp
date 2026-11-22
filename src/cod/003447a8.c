@@ -1,6 +1,7 @@
 /* cygnus-2.96: func_003447A8, Sofdec header analysis: clears the header info, then (in the standby
  * state) reads the stream header and fills the info block; returns 1 on success, 0 otherwise. */
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 typedef struct SfdHdrInf {
     int stat;           /* 0x00 */
     int size;           /* 0x04 */
@@ -9,7 +10,6 @@ typedef struct SfdHdrInf {
     char unk34[0x5C];
 } SfdHdrInf;         /* 0x90 */
 
-extern char D_004577D0[];
 extern void *func_003A52F0(void *p, int c, int n);
 extern int GetField0OrZero_346828(MwsfdHn *m);
 extern void func_003448B0(MwsfdHn *m, int stat);

@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* LANE X1 repair, wave 18.
  * CAUSE 1: the merged TU holds three fdlibm wrappers that each define
@@ -33,7 +34,6 @@ struct exc_sqrtf {
 #define EDOM	33
 #define ERANGE	34
 
-extern const int D_0045F024;		/* _LIB_VERSION */
 #define _LIB_VERSION D_0045F024
 
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
@@ -41,9 +41,6 @@ extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
 
 extern int func_003A4AC8(void *e);	/* matherr */
 extern int func_003A4E00(float);		/* isnanf  */
-
-extern char D_0045EAB8[];		/* "sqrtf" */
-extern const double D_0045EAC0;		/* nan */
 
 __attribute__((section(".text.sqrtf")))
 float sqrtf(float x)			/* wrapper sqrtf */

@@ -1,10 +1,10 @@
 /* cygnus-2.96: MWSFD handle setters. */
 #include "godhand/mwsfd.h"
+#include "godhand/globals.h"
 
 
 extern int GetField0OrZero_346828(MwsfdHn *mw);
 extern void func_00335C68(void *p, int v);
-extern char D_00458F48[];
 
 __attribute__((section(".text.func_00347908")))
 void func_00347908(MwsfdHn *mw, int v)

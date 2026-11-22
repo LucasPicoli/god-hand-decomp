@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111; libgcc fp-bit.c :: multiply (double variant, gofast dpmul), _fpmul_parts inlined as upstream.
    The four 64-bit partial products are the compiler's own __muldi3 libcalls (func_0031DE10). */
@@ -41,7 +42,6 @@ typedef struct
 #define IMPLICIT_1 (1LL<<(FRACBITS+NGARDS))
 #define IMPLICIT_2 (1LL<<(FRACBITS+1+NGARDS))
 
-extern unsigned char D_00755BD0[];
 #define nan() ((fp_number_type *)D_00755BD0)
 
 extern void func_0031DFA8 (FLO_type *, fp_number_type *);   /* unpack_d */

@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU — CRI libadxe, recovered from recvx-decomp (CC0). */
+#include "godhand/globals.h"
 
 typedef unsigned short Uint16;
 typedef signed char   Sint8;
@@ -18,19 +19,12 @@ Sint32 ADXT_IsEndcode(Sint8 *adr, Sint32 siz, Sint32 *endsiz) {
 }
 
 extern void Obj33F8_Tramp_0033F130_FCB0(int);
-extern char D_00452BF8[];
-extern char D_00452C20[];
 extern void func_00335D40(int);
-extern char D_00454FA0[];
 extern void func_003412D8(int);
 extern void AdxDecodeSwapCopy(int);
 extern void func_0033F130(int);
-extern char D_00452318[];
-extern int D_003D1414;
 extern int Obj3270_GetField_2C(int);
-extern char D_00452688[];
 extern int Forward33B568_33B6A0(void);
-extern int D_003D8484;
 extern int Forward33B5C8_33B6D0(void);
 
 __attribute__((section(".text.func_0032DEC8")))

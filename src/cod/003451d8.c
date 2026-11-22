@@ -1,10 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_003B9DE0(void *a0);
-extern char D_00460A00[];
-extern int D_003EE330;
-extern int D_003EE334;
-extern int *volatile D_00766CA0;
 extern int *Obj0000_Get_D_00459FA8_35F8A8(void);
 extern void func_0035F8B8(void);
 extern void func_0035FE60(void);

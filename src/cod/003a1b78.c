@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 extern float __ieee754_asinf(float);
 
@@ -26,7 +27,6 @@ struct exception {
 #define EDOM	33
 #define ERANGE	34
 
-extern const int D_0045F024;		/* _LIB_VERSION */
 #define _LIB_VERSION D_0045F024
 
 extern int *Obj0000_Get_D_003FA62C_3A4FB8(void);	/* __errno */
@@ -37,8 +37,6 @@ extern int func_003A4E00(float);		/* isnanf  */
 extern int func_003A4CF0(float);		/* finitef */
 extern float func_003A19D8(float);		/* fabsf   */
 
-
-extern char D_0045EA68[];		/* "asinf" */
 
 __attribute__((section(".text.func_003A1B78")))
 float func_003A1B78(float x)		/* asinf */

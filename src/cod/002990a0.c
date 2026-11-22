@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern char D_00754C58[];
-extern signed char D_0044AC28[];
-extern signed char D_0044AC30[];
 extern void *cObjBaseArray_SearchOM(char *arr, long mask);
 
 static inline void Clr(char *tbl, signed char *str) {

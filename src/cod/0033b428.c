@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
 typedef signed char Sint8;
 typedef short Sint16;
@@ -19,7 +20,6 @@ typedef struct sjx_obj {
 } SJX_OBJ, *SJX;
 
 extern SJX_OBJ D_003E8DE8[32];
-extern char D_00455E20[];
 
 
 extern int DTX_CallUrpc(int cmd, void *in, int nin, void *out, int nout);

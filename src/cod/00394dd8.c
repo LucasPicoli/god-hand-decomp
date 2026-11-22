@@ -1,5 +1,7 @@
 /* sn-2.95.3-136: func_00394DD8, module load/start: resolves the module, links it, reports the result and runs its start callback. */
 #include "godhand/regTbl.h"
+#include "godhand/globals.h"
+#include "godhand/iopModStop.h"
 typedef struct {
     char pad0[0x14];
     int arg;              /* 0x14 */
@@ -9,8 +11,6 @@ typedef struct {
     int hasRes;           /* 0x24 */
 } IopModule;
 
-extern int D_003F8528;
-extern char D_0045DBD8[];
 extern int func_00393F80(IopModule *m);
 extern void func_003951C0(void);
 extern int func_00394828(IopModule *m, IopModule *m2);

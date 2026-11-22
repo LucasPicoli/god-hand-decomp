@@ -1,11 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
+#include "godhand/gsPacket.h"
 
-extern int D_003C118C;
-extern float D_003C1190;
 extern char D_00586C00[];
-extern int D_00586B80;
-extern float D_00586B84;
-extern float D_00586B88;
 
 /* sn-2.95.3-136 matched TU. */
 

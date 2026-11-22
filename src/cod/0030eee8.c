@@ -6,12 +6,10 @@
 #include "godhand/cDataManager.h"
 #include "godhand/DispMgr.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 #define T0_COUNT (*(volatile int *)0x10000800)
 
-extern int D_00752CF0;
-extern int D_00752CFC;
-extern int D_00752D44;
 extern int D_00747A78;
 extern void *D_003C2648;
 extern void *D_003C23A4;
@@ -24,7 +22,6 @@ extern char D_00604700[];
 extern char D_00462FC0[];
 extern char D_00583EC0[];
 extern int *D_00754C50[];
-extern char D_00747B20[];
 extern char D_005FEE00[];
 
 extern void func_002B9D58(void *p);

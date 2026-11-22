@@ -5,6 +5,7 @@
 #include "godhand/pl00.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/globals.h"
 
 extern int cOmSub_move(void *move);
 extern void cOmSub_initMove3_y(void *dst, void *obj, int idx, int a3, float f12, float f13, float f14);
@@ -16,8 +17,6 @@ extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a
 extern void cHeatSys_AddHeatGage(void *heat, int a1, float amount);
 extern char D_005FEE00[];
 extern int D_005CB000;
-extern char D_0044ABB0[];
-extern char D_0044ABB8[];
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
 
 #define MOVE_STEP_PHASE_START  0

@@ -1,6 +1,6 @@
 /* cygnus-2.96 */
+#include "godhand/globals.h"
 
-extern int D_003D04B0;
 extern char D_003D04D0[];
 extern void *func_003A52F0(void *, int, int);
 

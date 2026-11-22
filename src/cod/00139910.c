@@ -3,6 +3,7 @@
 #include "godhand/cDvd.h"
 #include "godhand/cOmBase.h"
 #include "godhand/CustomIDWork.h"
+#include "godhand/globals.h"
 
 extern void *sceSifAllocIopHeap(int size);
 extern int Tramp_sceSifFreeSysMemory_3B5A50(void *p);
@@ -13,8 +14,6 @@ extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int sel, int on);
 extern int Rnd(void);
 extern char D_00427CD8[];
 extern void CustomIDWork_SetLocalPosY(CustomIDWork *work, int y);
-extern int D_0042BD40[5];
-extern int D_0042BD58[5];
 
 /* Allocate size bytes on the IOP heap, hand them to Forward2D2F78_2D3020 and store the block in *out on success; free it on failure. */
 __attribute__((section(".text.cSif_allocAndForward")))

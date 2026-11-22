@@ -196,4 +196,6 @@ int cSnd_BgmReqFromEnemies(void *self);
 /* Set the default system volumes and copy master and sub channels into the two triples. */
 void func_002C9E78(cSnd *self);
 
+extern cSndKindEnt D_003C3120; /* fallback entry, just before the table */
+
 #endif /* GODHAND_CSND_H */

@@ -1,7 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern unsigned char D_00456888[];
-extern unsigned char D_004568A8[];
 extern int (*D_003E9D48)(int a0, void *a1);
 extern void func_0033F1A8(void *a0, void *a1);
 extern int ADX_DecodeInfoExVer(int a0, int a1, void *a2, void *a3);

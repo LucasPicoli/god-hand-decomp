@@ -2,6 +2,7 @@
 #include "godhand/cNode.h"
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
+#include "godhand/globals.h"
 
 /* Draw settings embedded at 0x1A0 of cDrawNode. */
 typedef struct cNodeDrawState {
@@ -77,7 +78,6 @@ typedef struct cDrawNode {
 } cDrawNode;
 
 extern cNode *cNode_construct(cNode *self, int name, cNode *parent);
-extern char D_0044FD58[];
 
 /* Zeroes a quadword vector with one VU0 store. */
 static __inline__ void cVec_zero(cVec *v)

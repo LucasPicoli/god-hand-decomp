@@ -1,6 +1,5 @@
 /* ee-2.9-991111 matched TU. */
-
-extern unsigned char D_00755BD0[];
+#include "godhand/globals.h"
 
 /* libgcc fp-bit.c :: _fpadd_parts (double variant) */
 

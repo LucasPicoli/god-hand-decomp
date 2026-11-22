@@ -3,10 +3,9 @@
 /* ee-2.9-991111 */
 #include "godhand/sync.h"
 #include "godhand/gp.h"
+#include "godhand/globals.h"
 
 typedef struct { void (*fn)(void *); void *arg; } PoffCb;
-
-extern void *D_00781780;
 
 __attribute__((section(".text._sceFs_Poff_Intr")))
 void _sceFs_Poff_Intr(int a0, PoffCb *cb)

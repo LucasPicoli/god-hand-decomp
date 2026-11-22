@@ -1,9 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern unsigned int strlen(const char *);
-extern void *D_003C4030[16];
-extern const char D_0045C210[];
-extern const char D_0045C220[];
 extern void UpdateChildAndFreeSoundHandle(void *);
 extern void func_003A6A20(const char *);
 extern void func_003229D0(int, const char *, int, void *);
@@ -33,8 +31,6 @@ typedef struct String {
 extern char *func_003BB058(void *);                                            /* Rep::clone */
 extern void *func_003BB178(void *, unsigned int, unsigned int, const char *, unsigned int); /* replace */
 extern void UpdateGlobalPtrWithParam_3A7CC0(void *);                          /* free */
-
-extern char D_003BB168[];                                                     /* nilRep */
 
 
 

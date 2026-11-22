@@ -1,4 +1,5 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
 /* ee-2.9-991111 matched TU.  NO fp_hazard_rules (none needed).
  * newlib libm ef_rem_pio2.c -- __ieee754_rem_pio2f.  Donor: sce_crt_libm/ef_rem_pio2.o.
@@ -10,8 +11,6 @@
 
 extern float func_003A19D8(float);	/* fabsf */
 extern int __kernel_rem_pio2f(float *, float *, int, int, int, const int *);	/* __kernel_rem_pio2f */
-extern const int D_0045EEE8[32];	/* npio2_hw   */
-extern const int D_0045EBD0[];		/* two_over_pi */
 #define npio2_hw    D_0045EEE8
 #define two_over_pi D_0045EBD0
 

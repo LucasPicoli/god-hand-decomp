@@ -1,25 +1,18 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern int D_003D04B0;
 extern char D_003D04D0[];
 extern int Obj3270_GetVia4_Obj33C8_18_77E8(void *a0);
-extern char D_004520D8[];
 extern int Obj3270_GetVia4_Obj33C8_14_7788(void *a0);
-extern char D_00452108[];
 extern int Obj3270_GetVia4_0033CE98_77A0(void *a0);
-extern char D_00452138[];
 extern void func_0033F130(void *a);
 extern int GetVia4_Obj33C8_GetByte_D_327950(char *a0);
-extern char D_00452198[];
 extern void func_00332808(char *a, char *b);
 extern char D_00454458[];
 extern void func_00334008(char *a, char *b);
 extern char D_00454960[];
-extern int D_003E3AC8;
 extern char D_003E3AD0[];
-extern int D_003E3FB0;
 extern char D_003E3FB8[];
-extern int D_003E7FE8;
 extern char D_003E7FF0[];
 
 __attribute__((section(".text.func_00327A00")))

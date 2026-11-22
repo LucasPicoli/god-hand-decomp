@@ -1,4 +1,5 @@
 /* ee-2.9-991111: sceOpen-style open(name, flags, mode) over the SIF RPC packet at D_0077FFC0 (0x3B4220). */
+#include "godhand/globals.h"
 extern int func_003B3EC8(int cmd);
 
 typedef struct { int f0; int f4; int f8; int fC; } Iob;
@@ -32,13 +33,8 @@ extern int DeleteSema(int id);
 extern int WaitSema(int id);
 extern int SignalSema(int id);
 
-extern int D_003FAEDC;
-extern int D_003FAEE8;
 extern Iob D_007814C0[32];
 extern OpenPkt D_0077FFC0;
-extern char D_00460120[];
-extern char D_00780C00[];
-extern char D_007816C0[];
 
 __attribute__((section(".text.func_003B4220")))
 int func_003B4220(const char *name, int flags, ...)

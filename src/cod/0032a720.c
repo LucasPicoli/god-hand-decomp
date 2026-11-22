@@ -1,3 +1,4 @@
+#include "godhand/globals.h"
 typedef struct {
     char pad0[3];
     signed char nch;
@@ -10,9 +11,6 @@ typedef struct {
     signed char mode;
 } AdxPanHn;
 
-extern int D_003C7410;
-extern char D_004521C8[];
-extern char D_004521F8[];
 extern void func_0033F130(const char *msg);
 extern int func_003278E8(int sj, int ch);
 extern int Obj3270_GetVia4_0033CE98_77A0(int sj);

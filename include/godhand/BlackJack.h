@@ -79,4 +79,6 @@ typedef struct BlackJack {
     short cardIdB[BLACKJACK_HAND_NUM];  /* 0x182C card ids dealt to hand B */
 } BlackJack;                            /* 0x1836 */
 
+extern int D_0042AFE0[BLACKJACK_SUIT_NUM];
+
 #endif

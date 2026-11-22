@@ -1,20 +1,15 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/globals.h"
 
-extern char D_0045E260[];
-extern char D_0045E288[];
 extern void cmd_sem_init(void);
 extern int  PollSema(int sema);
 extern int  SignalSema(int sema);
 extern void sceSifInitRpc(int mode);
-extern char D_0045E2C0[];
-extern char D_0045E2E8[];
 
 /* ee-2.9-991111 — SCE libcdvd 3.0.2, cdvd000.o :: _sceCd_ncmd_prechk */
 
 extern volatile int D_003F8668;      /* _sceCd_ncmd_semid */
 extern int  D_003F8640[];    /* D_003F8640[4] == SCE_CD_debug */
-extern int  D_003F865C;      /* the pending ncmd */
-extern int  D_003F867C;      /* the "ncmd rpc not bound" flag */
 extern int  D_003F9810[];    /* _sceCd_cd_ncmd (sceSifClientData) */
 
 
@@ -69,8 +64,6 @@ int func_00398BB0(int cmd)
 
 extern volatile int D_003F866C;      /* _sceCd_scmd_semid */
 extern int  D_003F8640[];    /* D_003F8640[4] == SCE_CD_debug */
-extern int  D_003F8658;      /* the pending ncmd */
-extern int  D_003F8694;      /* the "ncmd rpc not bound" flag */
 extern int  D_003FA1C0[];    /* _sceCd_cd_scmd (sceSifClientData) */
 
 

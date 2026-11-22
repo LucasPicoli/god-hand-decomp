@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/messPanel.h"
+#include "godhand/globals.h"
 
 extern unsigned int D_00747A84[];
 extern char D_00752C00;
@@ -7,7 +8,6 @@ extern void cMc_loadRunRelease(void);
 extern void cTaskManager_execute(void *, void *, int);
 extern int func_003999A8(void);
 extern void func_00323A70(void *);
-extern char D_0042C780;
 extern void func_002BF708(void *);
 extern void SysFlags_saveAndFreeze(void *);
 extern void func_002C0A08(void *);

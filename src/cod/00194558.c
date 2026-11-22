@@ -2,6 +2,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/player.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cEm00.h"
 
 #define BREAK_FLASH_FRAMES  8
 #define BREAK_MESH_LAYER    2
@@ -18,7 +19,6 @@ typedef struct cOmBreakObj {
     int flash;                          /* 0xAF4 frames of hit flash left */
 } cOmBreakObj;
 
-extern unsigned char D_005CB010;
 extern unsigned char D_005FEE00[];
 extern int func_001FDD38(void *trigger, void *pl);
 extern int cOmBase_checkDamage(cOmBase *self, cDamageTake *give);

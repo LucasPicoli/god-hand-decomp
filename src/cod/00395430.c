@@ -3,6 +3,7 @@
 /* ee-2.9-991111 — SCE libgraph 3.0.2, graph015.o :: sceGsSetDefLoadImage */
 
 #include <godhand/sync.h>
+#include "godhand/globals.h"
 
 typedef unsigned int  u_int;
 typedef unsigned long u_long;
@@ -65,7 +66,6 @@ typedef struct {
 #define SCE_GS_SET_TRXREG(rrw, rrh) \
     ((u_long)(rrw) | ((u_long)(rrh) << 32))
 
-extern char D_0045DC20[];                    /* the scePrintf format string */
 extern void func_003B1F28(const char *fmt);  /* scePrintf */
 
 __attribute__((section(".text.sceGsSetDefLoadImage")))

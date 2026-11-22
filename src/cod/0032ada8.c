@@ -1,9 +1,7 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/globals.h"
 
-extern const char D_00452408[];
-extern int D_003E8DCC;
 extern void func_003325F8(void);
-extern volatile int D_003E8DC8;
 extern void func_00332508(void);
 
 typedef struct SJ SJ;

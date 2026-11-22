@@ -1,9 +1,8 @@
 /* cygnus-2.96: func_00339F00, how many of want bytes are available in lane 0 (free) or lane 1 (data)
  * of the ring buffer; any other lane goes to the error callback. Returns 1 when all are. */
 #include "godhand/criSj.h"
-extern int D_00455B88;
+#include "godhand/globals.h"
 extern int D_00455A80;
-extern int D_00455B98;
 extern int D_00455AB0;
 extern int func_00339458(void *a0, void *a1);
 

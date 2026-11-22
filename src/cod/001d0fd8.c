@@ -6,8 +6,8 @@
 #include "godhand/cIDBase.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/DispMgr.h"
+#include "godhand/globals.h"
 
-extern int D_0042AFE0[BLACKJACK_SUIT_NUM];
 extern float D_00568050[4];
 extern void cOmTrump_Initialize(BlackJackCardObj *obj, int rank);
 extern void func_001D4DF0(BlackJack *self);
@@ -19,9 +19,6 @@ extern void *D_003C2380;
 extern unsigned char *D_003C23A4;
 extern int D_005E7510;
 extern int D_007474A0;
-extern char D_0044AF20[];
-extern char D_0044AF28[];
-extern char D_0044AF30[];
 extern void *SearchData(void *a, void *b, int c);
 extern void cFont_setTextureAddr(void *a0, int a1, void *a2, void *a3);
 extern void cMessDrawFont_setEnvInit(void *a0);

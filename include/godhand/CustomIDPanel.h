@@ -33,4 +33,8 @@ extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int id, int disp);
 extern void CustomIDWork_SetNoDisp(void *work, int noDisp);
 extern void CustomIDWork_SetChildNoDisp(void *work, int noDisp);
 
+extern CustomIDSlotTbl8 D_0042B678;
+extern CustomIDSlotTbl8 D_0042B698;
+extern CustomIDDigitTbl D_0042BD70;
+
 #endif

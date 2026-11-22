@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/globals.h"
 
 extern void func_002E0DE8();
-extern char D_0045BD90[], D_0045BDA0[], D_0045BDA8[], D_0045BDC0[], D_0045BDC8[], D_0045BDD0[], D_0045BDD8[], D_0045BDE0[];
-extern char D_0045CCB0[], D_0045CCD0[], D_0045CCE0[], D_0045CCF0[], D_0045CD10[], D_0045CD28[];
 
 __attribute__((section(".text.func_0037B3F0")))
 void func_0037B3F0(void)

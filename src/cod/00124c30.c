@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/globals.h"
 
 extern int irand(void);
 extern int moveMotion(void *a0);
@@ -22,7 +23,6 @@ extern void CustomIDWork_SetMessNo();
 extern void CustomIDWork_SetNumber();
 extern void SlotUi_showEndMarks();
 extern int D_003C2388;
-extern char D_0042BB20[];
 extern char D_00583F20[];
 extern char D_00754220[];
 extern int *D_003C2384;

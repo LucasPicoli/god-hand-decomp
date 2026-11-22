@@ -1,37 +1,12 @@
 /* sn-2.95.3-136 */
 
 #include "godhand/menuCtl.h"
+#include "godhand/globals.h"
 
 extern void func_002E0DE8(int x, int y, int color, const char *fmt, ...);
 extern void func_00380720(void *self, int a, int b, int *hh, int *mm, int *ss, int *cc);
 
-extern char D_0045C800[];
-extern char D_0045C808[];
-extern char D_0045C820[];
-extern char D_0045C830[];
-extern char D_0045C850[];
-extern char D_0045C870[];
-extern char D_0045C888[];
-extern char D_0045C898[];
-extern char D_0045C8A0[];
-extern char D_0045C8A8[];
-extern char D_0045C8C8[];
-extern char D_0045C8E8[];
-extern char D_0045C8F8[];
-extern char D_0045C908[];
-extern char D_0045C918[];
-extern char D_0045C928[];
-extern char D_0045C948[];
-extern char D_0045C960[];
-extern char D_0045C970[];
-extern char D_0045C980[];
-extern char D_0045C990[];
-extern char D_0045C9B0[];
-extern char D_0045C9C0[];
-extern char D_0045C9D0[];
 extern char *D_003F2840[];
-extern char *D_003F2858[];
-extern char *D_003F2870[];
 
 /* The g++ string's text, terminated, or "" when it is empty. */
 static __inline__ char *StrText(char **s)

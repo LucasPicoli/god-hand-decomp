@@ -1,13 +1,11 @@
+#include "godhand/globals.h"
 extern void func_0032D720(char *p);
 extern void *func_003A52F0(void *d, int c, unsigned int n);
 extern void func_0033B938(int a0, int a1);
 extern void func_0032F288(void);
 extern void func_00324AC8(void);
 extern void func_0033B790(void *p);
-extern int D_003D1474;
-extern int D_003D1478;
 extern char D_003D1488[];
-extern char D_004529A0[];
 
 __attribute__((section(".text.func_0032D250")))
 void func_0032D250(void)

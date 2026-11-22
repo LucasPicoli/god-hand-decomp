@@ -1,5 +1,6 @@
 /* cygnus-2.96: read a text file into fixed-width line slots: check the arguments, read the file and
  * split it into lines; returns the bytes used. */
+#include "godhand/globals.h"
 #define WORK_SIZE  0x1000
 
 extern char D_007563C0[WORK_SIZE];
@@ -11,10 +12,6 @@ typedef struct DevTblEnt {
 } DevTblEnt;
 
 extern DevTblEnt D_003D9DC0;            /* the open table; Tramp_003A52F0_00333AD8 clears it */
-extern char D_004545E0[];
-extern char D_00454610[];
-extern char D_00454640[];
-extern char D_00454668[];
 
 extern void *func_003A52F0(void *dst, int c, int n);
 extern void Tramp_003A52F0_00333AD8(void);
