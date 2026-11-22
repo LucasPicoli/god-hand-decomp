@@ -5,12 +5,10 @@
 #include "godhand/cModel.h"
 #include "godhand/cOm1f.h"
 #include "godhand/motion.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *a0);
-extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern void func_001BFB28(void *a0);
-extern int D_00574380;
 extern int D_0071B7C0[];
 extern int D_0071B840[];
 extern int D_0071B8C0[];
@@ -64,7 +62,7 @@ int SpawnDamageTakeVolumeF(char *p)
     f[10] = 0.0f;
     f[9] = f[1] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -72,7 +70,7 @@ int SpawnDamageTakeVolumeF(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -116,7 +114,7 @@ int SpawnDamageTakeVolumeG(char *p)
     f[10] = 0.0f;
     f[9] = f[5] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -124,7 +122,7 @@ int SpawnDamageTakeVolumeG(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;

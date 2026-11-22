@@ -22,12 +22,9 @@ extern char D_005864F0[];
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int a4);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cObjBase_KageInit(void *a0, void *a1, void *a2);
-extern int cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, void *a2, float f);
 extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
 extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern int D_00462FC0;
-extern char D_00574380[];
 extern char D_003C3F58[];
 extern char *D_00586A88;
 
@@ -173,6 +170,7 @@ void func_0028E420(void *a0)
 }
 
 #include "godhand/vu0.h"
+#include "godhand/cDamageManage.h"
 
 
 
@@ -234,7 +232,7 @@ int func_00101EB8(char *a0)
     int v0;
     int v3;
     int n;
-    int base;
+    char *base;
     struct sph *q;
     float z;
     float *p;
@@ -260,7 +258,7 @@ int func_00101EB8(char *a0)
     } else {
         *(short *)(s1 + 0x54A) = v3;
     }
-    *(int *)(s1 + 0x5B0) = cDamageManage_CreateDamageTake(D_00574380, s1, 0);
+    *(cDamageTake **)(s1 + 0x5B0) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)s1, 0);
     if (*(int *)(s1 + 0x5B0) != 0) {
         struct sph *rr;
         n = *(unsigned char *)(s1 + 0x2B4);
@@ -268,7 +266,7 @@ int func_00101EB8(char *a0)
         {
             int one = 1;
             if (one < n) {
-                base = *(int *)(*(int *)(s1 + 0x278) + 4);
+                base = *(char **)(*(char **)(s1 + 0x278) + 4);
             } else {
                 base = 0;
             }
@@ -279,7 +277,7 @@ int func_00101EB8(char *a0)
         *(int *)(buf + 0x8) = 0;
         rr->d = 1.0f;
         *(int *)(s1 + 0x5B4) = cDamageUnit_AddDamageCollSphere(
-            *(int *)(s1 + 0x5B0), base + 0x80, rr, 0.25f);
+            *(cDamageUnit **)(s1 + 0x5B0), (const struct cMatrix *)(base + 0x80), (const cVec *)rr, 0.25f);
     }
     *(unsigned char *)(s1 + 0x2F5) = 6;
     v0 = *(int *)(s1 + 0x304);

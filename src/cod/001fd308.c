@@ -15,7 +15,7 @@ int Rnd(void)
 
 /* Take x, y and z of the vector as the push direction. */
 __attribute__((section(".text.cDamageGive_SetDmgGiveHitVec")))
-void cDamageGive_SetDmgGiveHitVec(cDamageGive *self, cVec *dir)
+void cDamageGive_SetDmgGiveHitVec(cDamageGive *self, const cVec *vec)
 {
-    cVec_copy3(&self->hitVec, dir);
+    cVec_copy3(&self->hitVec, vec);
 }

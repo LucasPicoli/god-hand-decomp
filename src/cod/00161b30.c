@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cOm1f.h"
+#include "godhand/cDamageManage.h"
 
 extern int cOm5a_setCloseFix();
 extern int cOm5a_setOpenFix();
-extern int ClearAndResetFields_1FE278();
 extern char D_00420328[];
-extern char D_00574380[];
 extern int ResetField214FreeField180_1C2820();
 extern char D_00420920[];
 extern int InitField214WithPtr429420_1BD650();

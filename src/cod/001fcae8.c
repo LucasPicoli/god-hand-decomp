@@ -4,8 +4,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cDamageGive.h"
 #include "godhand/cDamageUnit.h"
-
-extern char D_00574380[];
+#include "godhand/cDamageManage.h"
 extern char D_00568240[];
 extern void cWorldTime_gameInit(void *w);
 extern void cCamManager_setPlCamera(void *cam, int on);
@@ -69,7 +68,7 @@ void GameInitObj_start(GameInitObj *self)
     cCamManager_setPlCamera(D_00463050, 0);
     self->started = 1;
     cEmManage_reset(D_005864F0);
-    func_001FDEA8(D_00574380);
+    func_001FDEA8(&D_00574380);
     cHeatSys_Initialize(D_005CB000);
     Obj0000_Clear_Fields_00_08_0C_0E_10_12_1F6CF8(D_00568240);
     cCoreSave_gameInit(&D_00569B70);

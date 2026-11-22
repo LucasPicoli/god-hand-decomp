@@ -2,15 +2,10 @@
 
 #include "godhand/cOmDamageBox.h"
 #include "godhand/player.h"
+#include "godhand/cDamageManage.h"
 
 extern int func_001B6FB8(cOmDamageBox *self);    /* cOmBase constructor step */
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void *cDamageManage_CreateDamageGive(void *mgr, int kind, void *owner);
-extern int cDamageUnit_AddDamageCollSphere(void *unit, void *mtx, float *ofs, float r);
-extern int cDamageUnit_AddDamageCollCylinder(void *unit, void *mtx, float *ofs, float *rot, float h, float r);
-extern void cDamageUnit_SetDamageCollActive(void *unit, int on);
 extern void cOmBase_setMeshDispFromLayer(cOmDamageBox *self, int a, int b);
-extern char D_00574380[];                        /* the damage manager */
 
 /* Set up a 0.872 x 1.34 damage-take cylinder and a radius 2.5 damage-give sphere sized by the player's power, 50 hit points, and flag every piece. */
 __attribute__((section(".text.cOmDamageBox_setupGuard")))
@@ -42,7 +37,7 @@ int cOmDamageBox_setupGuard(cOmDamageBox *em)
     v[2].y = 0.0f;
     v[2].z = 0.0f;
     ofs->w = 1.0f;
-    give = cDamageManage_CreateDamageGive(D_00574380, 3, (char *)em);
+    give = cDamageManage_CreateDamageGive(&D_00574380, 3, (cGameObj *)em);
     em->dmgGive = give;
     if (give != 0) {
         pl = (cOmDamageBoxPlayer *)Getplayer();
@@ -51,12 +46,12 @@ int cOmDamageBox_setupGuard(cOmDamageBox *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         ov[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere(em->dmgGive, em->base.mtx, ov, 2.5f);
+        cDamageUnit_AddDamageCollSphere(em->dmgGive, (const struct cMatrix *)em->base.mtx, (const cVec *)ov, 2.5f);
         *(short *)(((char *)em->dmgGive) + 0x46) = 0x52;
         *(int *)(((char *)em->dmgGive) + 0x4C) = (int)(pl->power * 80.0f);
         cDamageUnit_SetDamageCollActive(em->dmgGive, 0);
     }
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->dmgTake = slot;
     if (slot != 0) {
         rot = &v[3];
@@ -64,7 +59,7 @@ int cOmDamageBox_setupGuard(cOmDamageBox *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         rot->w = 1.0f;
-        cDamageUnit_AddDamageCollCylinder(slot, em->base.mtx, &ofs->x, &rot->x, v[1].y, v[1].x * 0.5f);
+        cDamageUnit_AddDamageCollCylinder(slot, (const struct cMatrix *)em->base.mtx, (const cVec *)&ofs->x, (const cVec *)&rot->x, v[1].y, v[1].x * 0.5f);
     }
     em->unk65C = 0;
     em->base.hp = em->base.hpMax = 50;

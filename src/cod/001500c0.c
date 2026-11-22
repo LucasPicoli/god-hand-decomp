@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern void cActionButton_set(void *, int, int, int, void *, void *, int);
 extern char D_00568288;
@@ -6,9 +7,6 @@ extern void ActBtnHandler_Variant2(void);
 extern int D_00466470[];
 extern int D_00747A34;
 extern char D_00423338[];
-extern char D_00574380[];
-extern void ClearAndResetFields_1FE278(void *a, void *b);
-extern void cDamageManage_ReleaseDamageGive(void *a, void *b);
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
 extern char D_00423E48[];
 extern void func_001C7DE0(void *a, void *b);

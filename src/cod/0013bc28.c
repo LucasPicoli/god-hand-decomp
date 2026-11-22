@@ -2,6 +2,7 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
+#include "godhand/cDamageUnit.h"
 
 extern int D_00747A78;
 extern cOmBase *Getplayer(void);
@@ -11,7 +12,6 @@ extern void CustomIDWork_SetNumber(void *work, int value);
 extern int cIDBase_initialize(void *self, int a1, int a2);
 extern int cIDBase_getIDWork(void *self, int idx);
 extern int ChkLine(cVec *from, cVec *to, cVec *hit, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
-extern void func_001FD988(void *self, int n);
 
 #define SYSFLAG_FREEZE  0x40000000      /* bit of D_00747A78: the game is frozen */
 
@@ -116,47 +116,29 @@ float Pos_probeGroundBelow(cVec *pos)
     return pos->y;
 }
 
-typedef struct ActorRec {
-    int unk00;                          /* 0x00 */
-    char unk04[0xC];
-    cVec pointA;                        /* 0x10 */
-    cVec pointB;                        /* 0x20 */
-    int unk30;                          /* 0x30 */
-    char unk34[4];
-    int unk38;                          /* 0x38 */
-    int unk3C;                          /* 0x3C */
-    int unk40;                          /* 0x40 -1 when unset */
-    short unk44;                        /* 0x44 */
-    short unk46;                        /* 0x46 */
-    char unk48[2];
-    char unk4A;                         /* 0x4A */
-    char unk4B;
-    int unk4C;                          /* 0x4C */
-} ActorRec;
-
-/* Resets the record: zero flags, two zeroed points (w 1.0), the 0x30..0x4C settings, then runs step 4. */
+/* Resets a damage record: zero flags, two zeroed vectors (w 1.0), the 0x30..0x4C fields, and unit kind 4. */
 __attribute__((section(".text.ActorRec_reset")))
-void ActorRec_reset(ActorRec *self) {
+void ActorRec_reset(cDamageUnit *self) {
     cVec zero;
 
-    self->unk00 = 0;
-    self->unk4A = 0;
+    self->flags = 0;
+    self->live = 0;
     zero.x = 0.0f;
     zero.y = 0.0f;
     zero.z = 0.0f;
     zero.w = 1.0f;
-    cVec_copy3(&self->pointA, &zero);
+    cVec_copy3(&self->hitVec, &zero);
     zero.x = 0.0f;
     zero.y = 0.0f;
     zero.z = 0.0f;
     zero.w = 1.0f;
-    cVec_copy3(&self->pointB, &zero);
-    self->unk30 = 0;
+    cVec_copy3(&self->unk20, &zero);
+    self->owner = 0;
     self->unk38 = 0;
-    self->unk3C = 0;
+    self->nodes = 0;
     self->unk40 = -1;
     self->unk44 = 0;
-    self->unk46 = 0;
+    self->kind = 0;
     func_001FD988(self, 4);
-    self->unk4C = 0;
+    self->power = 0;
 }

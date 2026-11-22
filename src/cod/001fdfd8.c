@@ -1,11 +1,4 @@
-typedef struct { char pad[0x4A]; unsigned char active; char pad2[0x60 - 0x4B]; } DmgCollSlot;
-typedef struct { char pad[0x4A]; unsigned char active; char pad2[0x70 - 0x4B]; } FlashSlot;
-typedef struct {
-    DmgCollSlot dmg[160];
-    FlashSlot fl[256];
-    char pad[0xACD0 - 0x3C00 - 256 * 0x70];
-    int wait;
-} DmgFlashMgr;
+#include "godhand/cDamageManage.h"
 
 extern void Trail_snapToSources(void *a0);
 extern void FlashDriver_resetFlash(void *a0);
@@ -14,44 +7,44 @@ extern void cDamageUnit_UpdateDamageCollFlash(void *a0);
 extern void NoOp_1FD528(void *a0);
 
 __attribute__((section(".text.func_001FDFD8")))
-void func_001FDFD8(DmgFlashMgr *m)
+void func_001FDFD8(cDamageManage *self)
 {
-    DmgCollSlot *d;
-    FlashSlot *f;
+    cDamageGive *d;
+    cDamageTake *f;
     unsigned int i;
 
-    if (m->wait != 0) {
-        m->wait--;
+    if (self->hitStop != 0) {
+        self->hitStop--;
         return;
     }
-    d = m->dmg;
+    d = self->give;
     do {
-        if (d->active) Trail_snapToSources(d);
+        if (d->live) Trail_snapToSources(d);
         d++;
-    } while (d < m->dmg + 160);
+    } while (d < self->give + CDAMAGE_GIVE_MAX);
     i = 0;
-    f = m->fl;
+    f = self->take;
     do {
-        if (f->active) FlashDriver_resetFlash(f);
+        if (f->live) FlashDriver_resetFlash(f);
         i++;
         f++;
-    } while (i < 256);
-    d = m->dmg;
+    } while (i < CDAMAGE_TAKE_MAX);
+    d = self->give;
     do {
-        if (d->active) {
+        if (d->live) {
             func_001FCF20(d);
             cDamageUnit_UpdateDamageCollFlash(d);
         }
         d++;
-    } while (d < m->dmg + 160);
-    f = m->fl;
+    } while (d < self->give + CDAMAGE_GIVE_MAX);
+    f = self->take;
     i = 0;
     do {
-        if (f->active) {
+        if (f->live) {
             NoOp_1FD528(f);
             cDamageUnit_UpdateDamageCollFlash(f);
         }
         i++;
         f++;
-    } while (i < 256);
+    } while (i < CDAMAGE_TAKE_MAX);
 }

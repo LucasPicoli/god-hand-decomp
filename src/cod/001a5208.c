@@ -1,16 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern unsigned short D_003F2060[];
 extern void func_001B6FB8(void *);
-extern int cDamageManage_CreateDamageTake(int a0, int a1, int a2);
-extern int cDamageManage_CreateDamageGive(int a0, int a1, int a2);
-extern int cDamageUnit_AddDamageCollSphere(int a0, int a1, int a2, float f);
-extern void cDamageUnit_SetDamageCollActive(int a0, int a1);
 extern void cCollisionSolidManage_CreateUnit(void *a, void *b, int c, float d);
 extern void cCollisionSolidManage_CreateSphere(void *a, void *b, int c, void *d, float e);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int D_00574380;
 extern int D_00462FC0;
 extern char D_00747B00[];
 
@@ -311,20 +307,20 @@ int cOmGiveTake_initSphere(char *p)
 {
     float buf[8] __attribute__((aligned(16)));
     float *sph;
-    int n;
-    int m;
+    char *n;
+    char *m;
     int k;
     void *solid;
     int flag;
     char *vt;
 
     func_001B6FB8(p);
-    *(int *)(p + OBJ_GIVE) = cDamageManage_CreateDamageGive((int)&D_00574380, 2, (int)p);
+    *(cDamageGive **)(p + OBJ_GIVE) = cDamageManage_CreateDamageGive(&D_00574380, 2, (cGameObj *)p);
     if (*(int *)(p + OBJ_GIVE) != 0) {
         flag = *(unsigned char *)(p + OBJ_MTX_FLAG);
         *(int *)buf = flag;
         if (flag)
-            n = **(int **)(p + OBJ_MTX_PTR);
+            n = **(char ***)(p + OBJ_MTX_PTR);
         else
             n = 0;
         buf[4] = 0.0f;
@@ -332,26 +328,26 @@ int cOmGiveTake_initSphere(char *p)
         buf[6] = 0.0f;
         sph = buf + 4;
         sph[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere(*(int *)(p + OBJ_GIVE), n + 0x80, (int)sph, GIVE_SPHERE);
+        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + OBJ_GIVE), (const struct cMatrix *)(n + 0x80), (const cVec *)sph, GIVE_SPHERE);
         *(short *)(*(int *)(p + OBJ_GIVE) + 0x46) = GIVE_HIT_KIND;
         *(int *)(*(int *)(p + OBJ_GIVE) + 0x4C) = GIVE_DAMAGE;
-        cDamageUnit_SetDamageCollActive(*(int *)(p + OBJ_GIVE), 0);
+        cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + OBJ_GIVE), 0);
     }
-    *(int *)(p + OBJ_TAKE) = cDamageManage_CreateDamageTake((int)&D_00574380, (int)p, 2);
+    *(cDamageTake **)(p + OBJ_TAKE) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     if (*(int *)(p + OBJ_TAKE) != 0) {
         flag = *(unsigned char *)(p + OBJ_MTX_FLAG);
         *(int *)buf = flag;
         if (flag)
-            m = **(int **)(p + OBJ_MTX_PTR);
+            m = **(char ***)(p + OBJ_MTX_PTR);
         else
             m = 0;
         buf[3] = 1.0f;
         buf[0] = 0.0f;
         buf[1] = 0.0f;
         buf[2] = 0.0f;
-        cDamageUnit_AddDamageCollSphere(*(int *)(p + OBJ_TAKE), m + 0x80, (int)buf, TAKE_SPHERE);
+        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + OBJ_TAKE), (const struct cMatrix *)(m + 0x80), (const cVec *)buf, TAKE_SPHERE);
         *(int *)(*(int *)(p + OBJ_TAKE)) |= 1;
-        cDamageUnit_SetDamageCollActive(*(int *)(p + OBJ_TAKE), 1);
+        cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + OBJ_TAKE), 1);
     }
     solid = &D_00462FC0;
     *(short *)(p + 0x548) = HIT_SIZE;

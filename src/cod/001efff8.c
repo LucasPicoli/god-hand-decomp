@@ -3,6 +3,7 @@
 #include "godhand/cScenario.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageManage.h"
 
 extern unsigned int D_00747A84;
 extern void func_0028E858(void);
@@ -14,10 +15,7 @@ extern char *D_005CAFF0;
 extern void func_001582A0(void *self, void *link, float f12, float f13, int a2, int a3, int t0);
 extern void cParts_setRotationOrder(void *self, int order);
 extern void cModel_calcParts(void *self);
-extern char D_00574380[];
 extern char D_00747AC0[];
-extern int cDamageUnit_AddDamageCollSphere(void *unit, void *mtx, void *ofs, float radius);
-extern void cDamageUnit_SetDamageCollActive(void *unit, int active);
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
 extern char D_0044C048[];
@@ -139,47 +137,38 @@ void PartObj_refresh(PartObj *self) {
 /* Create the six damage-give volumes of the object (slots from 0xBB0): each
  * is kind 3 with a unit sphere at the origin of the global D_00747AC0,
  * hit values 0x55 and 100, switched off, with bit 0 of its flags set. */
-typedef struct DmgGive {
-    unsigned int flags;                 /* 0x00 */
-    char unk04[0x42];
-    short hitA;                         /* 0x46 */
-    char unk48[4];
-    int hitB;                           /* 0x4C */
-} DmgGive;
-
 typedef struct GiveOwner {
     char unk000[0xBB0];
-    DmgGive *give[6];                   /* 0xBB0 */
+    cDamageGive *give[6];                   /* 0xBB0 */
 } GiveOwner;
 
 #define GIVE_COUNT      6
 #define GIVE_KIND       3
-#define GIVE_HIT_A      0x55
-#define GIVE_HIT_B      100
+#define GIVE_ATTACK_KIND      0x55
+#define GIVE_POWER      100
 
 
 
-extern DmgGive *cDamageManage_CreateDamageGive(void *mgr, int kind, void *obj);
 
 
 
 __attribute__((section(".text.GiveOwner_createGiveVolumes")))
 void GiveOwner_createGiveVolumes(GiveOwner *self) {
     unsigned int i = 0;
-    DmgGive **slot = self->give;
+    cDamageGive **slot = self->give;
     do {
         float v[4];
         i++;
-        *slot = cDamageManage_CreateDamageGive(D_00574380, GIVE_KIND, 0);
+        *slot = cDamageManage_CreateDamageGive(&D_00574380, GIVE_KIND, 0);
         if (*slot != 0) {
             v[0] = 0.0f;
             v[1] = 0.0f;
             v[2] = 0.0f;
             v[3] = 1.0f;
-            cDamageUnit_AddDamageCollSphere(*slot, D_00747AC0, v, 1.0f);
-            (*slot)->hitA = GIVE_HIT_A;
-            (*slot)->hitB = GIVE_HIT_B;
-            cDamageUnit_SetDamageCollActive(*slot, 0);
+            cDamageUnit_AddDamageCollSphere((cDamageUnit *)*slot, (const struct cMatrix *)D_00747AC0, (const cVec *)v, 1.0f);
+            (*slot)->kind = GIVE_ATTACK_KIND;
+            (*slot)->power = GIVE_POWER;
+            cDamageUnit_SetDamageCollActive((cDamageUnit *)*slot, 0);
             (*slot)->flags |= 1;
         }
         slot++;

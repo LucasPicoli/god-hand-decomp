@@ -5,6 +5,7 @@
 #include "godhand/Slot2.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cMessage.h"
+#include "godhand/cDamageManage.h"
 
 extern int D_00747A24;
 extern void Slot2_hideLayerIds(Slot2 *self);
@@ -12,7 +13,6 @@ extern void displayScrollLayer(int id, int on);
 extern int cDvd_ReadAlloc(void *dvd, const char *name, void *outBuf, void *heap, int a4, int a5, int a6, int a7);
 extern void cDvd_CheckWaitFrame(void *dvd, int id);
 extern void cHeap_free(int heap, int *node);
-extern int cDamageManage_ReleaseDamageGive(void *mgr, void *give);
 extern void KillEffect(void *obj, int a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *obj, void *arg);
 extern char D_005FEE00[];
@@ -134,7 +134,6 @@ typedef struct cOmTwoGive {
 } cOmTwoGive;
 
 extern char D_004290C8[];               /* this class's vtable */
-extern char D_00574380[];               /* damage manager */
 
 
 
@@ -143,11 +142,11 @@ __attribute__((section(".text.cOmTwoGive_destroy")))
 void cOmTwoGive_destroy(cOmTwoGive *self, void *arg)
 {
     *(void **)((char *)self + OM_OFFSET_VTABLE) = D_004290C8;
-    if (cDamageManage_ReleaseDamageGive(D_00574380, self->ref[0].give) != 0) {
+    if (cDamageManage_ReleaseDamageGive(&D_00574380, self->ref[0].give) != 0) {
         self->ref[0].give = 0;
         self->ref[0].id = -1;
     }
-    if (cDamageManage_ReleaseDamageGive(D_00574380, self->ref[1].give) != 0) {
+    if (cDamageManage_ReleaseDamageGive(&D_00574380, self->ref[1].give) != 0) {
         self->ref[1].give = 0;
         self->ref[1].id = -1;
     }

@@ -3,6 +3,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cIDBase.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageManage.h"
 
 extern void displayScrollLayer(int layer, int on);
 extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
@@ -14,10 +15,7 @@ extern void *cIDBase_getIDWork(void *self, int idx);
 extern char D_0041FA90[];
 extern void **D_003C2384;
 extern void func_001B6FB8(void *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void func_001FD9D8(void *unit, void *mtx, float *pos, float *dir, float *box);
 extern void cOmDoor_setObjCollision(void *self);
-extern int D_00574380;
 
 /* Enemy constructor: base setup, method table, aim lock byte, zeroed vectors and the type name. */
 
@@ -267,7 +265,7 @@ int DoorBox_initWithBoxC(DoorLikeObj *self) {
     f[10] = 0.0f;
     f[8] = -f[0] * 0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damage = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -275,7 +273,7 @@ int DoorBox_initWithBoxC(DoorLikeObj *self) {
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, self->base.mtx, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)self->base.mtx, (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     self->base.hpMax = OBJ_LIFE;
     self->base.hp = OBJ_LIFE;

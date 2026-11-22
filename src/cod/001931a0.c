@@ -2,11 +2,11 @@ extern int D_00785C58;
 extern char D_00424690[];
 extern char D_00785798[];
 #include "godhand/objField.h"
+#include "godhand/cDamageManage.h"
 extern int D_004246A8;
 extern int D_00785C68;
 extern int D_00424778[];
 extern int D_00424790[];
-extern int D_00574380[];
 extern int D_00785C78;
 extern int D_00424860;
 extern int D_00424878;
@@ -81,11 +81,11 @@ void *Setup_Ptr_214_VU0Array_620_193468(void *a0) {
 
 __attribute__((section(".text.ResetField214FreeField600E_1934F0")))
 void ResetField214FreeField600E_1934F0(void *a0, int a1) {
-    int v1;
+    cDamageTake *v1;
     *(int**)((char*)a0 + 0x214) = D_00424790;
-    v1 = *(int*)((char*)a0 + 0x600);
+    v1 = *(cDamageTake **)((char*)a0 + 0x600);
     if (v1 != 0) {
-        ClearAndResetFields_1FE278(D_00574380, v1);
+        ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int*)((char*)a0 + 0x600) = 0;
     }
     ResetField214FreeField180_1C2820(a0, a1);
@@ -126,9 +126,9 @@ void *Setup_Field_214_Obj0000Array_620_193718(void *a0) {
 
 __attribute__((section(".text.ClearSlotResources_1937A0")))
 void ClearSlotResources_1937A0(void *a0, void *a1) {
-    int v1;
+    cDamageTake *v1;
     *(int *)((char *)a0 + 0x214) = (int)&D_00424878;
-    v1 = *(int *)((char *)a0 + 0x600);
+    v1 = *(cDamageTake **)((char *)a0 + 0x600);
     if (v1 != 0) {
         ClearAndResetFields_1FE278(&D_00574380, v1);
         *(int *)((char *)a0 + 0x600) = 0;

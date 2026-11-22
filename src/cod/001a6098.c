@@ -5,11 +5,9 @@
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
 #include "godhand/capVu0.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void cDamageUnit_AddDamageCollCylinder(void *unit, void *mtx, float *pos, float *dir, float radius, float half);
-extern int D_00574380;
 extern float fRand1_1(void);
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
@@ -59,7 +57,7 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
     f[10] = 0.0f;
     f[6] = ca;
     pos[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, self, 1);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 1);
     self->damage = slot;
     if (slot != 0) {
         dir = &f[12];
@@ -67,7 +65,7 @@ int DamagedObj_setupHitCylinder(DamagedObj *self) {
         f[13] = 0.0f;
         f[14] = 0.0f;
         dir[3] = one;
-        cDamageUnit_AddDamageCollCylinder(slot, self->base.mtx, pos, dir, f[5], f[4] * 0.5f);
+        cDamageUnit_AddDamageCollCylinder(slot, (const struct cMatrix *)self->base.mtx, (const cVec *)pos, (const cVec *)dir, f[5], f[4] * 0.5f);
     }
     self->flag604 = 0;
     self->base.hpMax = OBJ_LIFE;

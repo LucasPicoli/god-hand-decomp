@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001B76D8(void *a0);
@@ -9,10 +10,7 @@ extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, 
 extern void SetEffect(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
 extern int D_005FEE00;
 extern void func_001B6FB8(void *a0);
-extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern void func_001BFB28(void *a0);
-extern int D_00574380;
 
 /* Phase-machine tick: run the handler picked by the state byte, then the shared post-update steps. */
 struct Entry_func_00194480 { short f0; short f2; short f4; short f6; };
@@ -153,7 +151,7 @@ int SpawnDamageTakeVolumeC(char *p)
     f[10] = 0.0f;
     f[9] = f[1] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -161,7 +159,7 @@ int SpawnDamageTakeVolumeC(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -205,7 +203,7 @@ int SpawnDamageTakeVolumeD(char *p)
     f[10] = 0.0f;
     f[9] = f[1] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -213,7 +211,7 @@ int SpawnDamageTakeVolumeD(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;
@@ -257,7 +255,7 @@ int SpawnDamageTakeVolumeE(char *p)
     f[10] = 0.0f;
     f[9] = f[1] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x600) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -265,7 +263,7 @@ int SpawnDamageTakeVolumeE(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;

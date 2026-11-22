@@ -2,15 +2,13 @@
 
 #include "godhand/cEmSetParam.h"
 #include "godhand/cEm00.h"
+#include "godhand/cDamageManage.h"
 
 extern void cEmSetParam_setEm(cEmSetParam *param, int entry);
 extern void cEmWrap_StartAction(void *wrap);
 extern char D_0044BCA0[];
 extern int D_005CAE50;
-extern int D_00574380;
 extern void func_0012EC58(void *pool, void *handle);
-extern void ClearAndResetFields_1FE278(void *pool, void *handle);
-extern void cDamageManage_ReleaseDamageGive(void *mgr, void *give);
 
 /* Arena wave step: step 0 defeats every enemy and starts a 300 frame timer; step 1 waits until the ring is clear or the timer runs out, then sets the next enemy up and starts its action. */
 
@@ -58,16 +56,8 @@ void ArenaEm_stepWave(ArenaEm *self)
 /* Switch off the five damage volumes of the object: clear each unit's hit kind, deactivate it, shrink its radius to 0 and clear its damage word. Does nothing unless all five exist. */
 #define DMG_PAIR_NUM  5
 
-/* One damage unit as this function touches it. */
-typedef struct DmgUnit {
-    char unk00[0x46];
-    short kind;                         /* 0x46 */
-    char unk48[4];
-    int damage;                         /* 0x4C */
-} DmgUnit;
-
 typedef struct DmgPair {
-    DmgUnit *unit;                      /* +0x00 */
+    cDamageUnit *unit;                  /* +0x00 */
     int radiusId;                       /* +0x04 node id handed to SetDamageCollRadius */
 } DmgPair;
 
@@ -75,9 +65,7 @@ typedef struct DmgObj {
     char unk000[0x5B0];
     DmgPair pair[DMG_PAIR_NUM];         /* 0x5B0 */
 } DmgObj;
-
-extern void cDamageUnit_SetDamageCollActive(DmgUnit *unit, int active);
-extern void cDamageUnit_SetDamageCollRadius(DmgUnit *unit, int id, float radius);
+extern void cDamageUnit_SetDamageCollRadius(cDamageUnit *self, int id, float radius);
 
 __attribute__((section(".text.DmgObj_stopDamageVolumes")))
 void DmgObj_stopDamageVolumes(DmgObj *self)
@@ -92,23 +80,23 @@ void DmgObj_stopDamageVolumes(DmgObj *self)
     self->pair[0].unit->kind = 0;
     cDamageUnit_SetDamageCollActive(self->pair[0].unit, 0);
     cDamageUnit_SetDamageCollRadius(self->pair[0].unit, self->pair[0].radiusId, zero);
-    self->pair[0].unit->damage = 0;
+    self->pair[0].unit->power = 0;
     self->pair[1].unit->kind = 0;
     cDamageUnit_SetDamageCollActive(self->pair[1].unit, 0);
     cDamageUnit_SetDamageCollRadius(self->pair[1].unit, self->pair[1].radiusId, zero);
-    self->pair[1].unit->damage = 0;
+    self->pair[1].unit->power = 0;
     self->pair[2].unit->kind = 0;
     cDamageUnit_SetDamageCollActive(self->pair[2].unit, 0);
     cDamageUnit_SetDamageCollRadius(self->pair[2].unit, self->pair[2].radiusId, zero);
-    self->pair[2].unit->damage = 0;
+    self->pair[2].unit->power = 0;
     self->pair[3].unit->kind = 0;
     cDamageUnit_SetDamageCollActive(self->pair[3].unit, 0);
     cDamageUnit_SetDamageCollRadius(self->pair[3].unit, self->pair[3].radiusId, zero);
-    self->pair[3].unit->damage = 0;
+    self->pair[3].unit->power = 0;
     self->pair[4].unit->kind = 0;
     cDamageUnit_SetDamageCollActive(self->pair[4].unit, 0);
     cDamageUnit_SetDamageCollRadius(self->pair[4].unit, self->pair[4].radiusId, zero);
-    self->pair[4].unit->damage = 0;
+    self->pair[4].unit->power = 0;
 }
 
 /* Take a free object from the pool and set it up with the caller's table: base init, the embedded sub-object (table D_0044BCA0 as method table), state 2, then two scale calls through its methods 3 and 5; when the taken record is not free it is handed back through the pool's method 6. Returns the object, or 0. */

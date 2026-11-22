@@ -92,8 +92,43 @@ typedef struct cDamageTake {
 
 typedef char cDamageTake_size_check[(sizeof(cDamageTake) == 0x70) ? 1 : -1];
 
+/* Hand take to owner and set it up for kind; nothing on the spare. Returns 1. */
+int SetTarget_1FD530(cDamageTake *self, struct cGameObj *owner, int kind);
+
+/* Clears the head: flags, both vectors, owner, unk38, nodes, unk44, kind, live
+ * and power; unk40 to -1 and unit kind 4. */
+void ActorRec_reset(cDamageUnit *self);
+/* Resets a take: the head, attacker, type 2 and hitFlags. */
+void ResetObjectFields_1FCDE8(cDamageTake *self);
+
+/* Sets unitKind and stores the unit's group (func_001FD908) in the record of
+ * every node. */
+void func_001FD988(cDamageUnit *self, int kind);
+
 /* Turns every node of the unit on or off. */
 void cDamageUnit_SetDamageCollActive(cDamageUnit *self, int active);
+
+/* Retail's matrix type, cMatrix (MtxInitRotY__FR7cMatrixf and others). Only
+ * its address is passed here, so no layout yet. */
+struct cMatrix;
+
+/* The three volume adders. Each takes a new node from the unit's vtable,
+ * attaches it to mtx at ofs and links it at the end of nodes. They return
+ * the node's id, or -1 when the unit has no type, no node is free or the
+ * attach fails. The sphere and cylinder types are retail's:
+ * AddDamageCollSphere__11cDamageUnitRC7cMatrixRC4cVecf and
+ * AddDamageCollCylinder__11cDamageUnitRC7cMatrixRC4cVecT2ff, with the
+ * references as pointers. The box has no retail name and follows them. */
+/* A box of size, turned by rot (KeyFollower_attach). */
+int func_001FD9D8(cDamageUnit *self, const struct cMatrix *mtx, const cVec *ofs,
+                  const cVec *rot, const cVec *size);
+/* A sphere of radius (KeyFollower_attachScaled). */
+int cDamageUnit_AddDamageCollSphere(cDamageUnit *self, const struct cMatrix *mtx,
+                                    const cVec *ofs, float radius);
+/* A cylinder of radius and half, turned by rot (SpawnRec_create). */
+int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *mtx,
+                                      const cVec *ofs, const cVec *rot,
+                                      float radius, float half);
 
 #define CDAMAGE_SHAPE_SETRADIUS  3      /* vt[3] of cCollisionShape */
 

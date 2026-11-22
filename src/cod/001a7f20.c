@@ -1,4 +1,5 @@
 #include "godhand/cOm53.h"
+#include "godhand/cDamageManage.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -29,19 +30,16 @@ int cOm53_setGetOffEm(cOm53 *self, int n) {
 }
 
 __attribute__((section(".text.func_001FE310")))
-unsigned char *func_001FE310(unsigned char *p) {
-    unsigned int i = 0;
-    unsigned char *q = p + 0x3C00;
-loop:
-    if (q[0x4A] == 0) {
-        return q;
+cDamageTake *func_001FE310(cDamageManage *self) {
+    unsigned int i;
+    cDamageTake *q = self->take;
+
+    for (i = 0; i < CDAMAGE_TAKE_MAX; i++, q++) {
+        if (q->live == 0) {
+            return q;
+        }
     }
-    i++;
-    if (i < 0x100) {
-        q = q + 0x70;
-        goto loop;
-    }
-    return p + 0xAC60;
+    return &self->takeSpare;
 }
 
 __attribute__((section(".text._IO_switch_to_main_get_area")))

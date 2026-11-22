@@ -1,11 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cOmHitVolume.h"
+#include "godhand/cDamageManage.h"
 
-extern int D_00574380;
 extern void func_001B6FB8(void *a0);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void func_001FD9D8(void *take, void *mtx, float *center, float *zero, float *half);
 
 
 #define BOX_HALF_XY 2.0f                /* half extent along x and y */
@@ -40,7 +38,7 @@ int cOmHitVolume_setupBox_20_16(cOmHitVolume *self)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damageTake = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -48,7 +46,7 @@ int cOmHitVolume_setupBox_20_16(cOmHitVolume *self)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, self->base.mtx, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)self->base.mtx, (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     self->unk5E8 = 0;
     self->base.hpMax = 1;

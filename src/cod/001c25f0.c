@@ -1,3 +1,5 @@
+#include "godhand/cDamageManage.h"
+
 extern int D_00460D40;
 extern int D_0042C348;
 extern int D_00460D48;
@@ -52,12 +54,12 @@ int *GetOrInit_460D40_1F7C88(void) {
 }
 
 __attribute__((section(".text.ClearAndResetFields_1FE278")))
-int ClearAndResetFields_1FE278(int a0, int a1) {
-    if (a1 == 0) {
+int ClearAndResetFields_1FE278(cDamageManage *self, cDamageTake *take) {
+    if (take == 0) {
         return 0;
     }
-    cDvd_releaseAll(a1);
-    ResetObjectFields_1FCDE8(a1);
+    cDvd_releaseAll(take);
+    ResetObjectFields_1FCDE8(take);
     return 1;
 }
 

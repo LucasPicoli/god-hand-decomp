@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cDamageManage.h"
 
-extern int ClearAndResetFields_1FE278();
 extern char D_00425630[];
-extern char D_00574380[];
 extern int ResetField214FreeField180_1C2820();
 extern char D_00425718[];
 extern char D_00425820[];

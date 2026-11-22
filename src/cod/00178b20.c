@@ -28,7 +28,7 @@ int func_00178B20(cOmHitVolume *em)
     v[2].y = 0.0f;
     v[2].z = 0.0f;
     ofs->w = 1.0f;
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->damageTake = slot;
     if (slot != 0) {
         rot = &v[3];
@@ -36,9 +36,9 @@ int func_00178B20(cOmHitVolume *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         rot->w = 1.0f;
-        func_001FD9D8(slot, em->base.mtx, ofs, rot, size);
+        func_001FD9D8(slot, (const struct cMatrix *)em->base.mtx, ofs, rot, size);
     }
-    give = cDamageManage_CreateDamageGive(D_00574380, 0, (char *)em);
+    give = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)em);
     em->damageGive = give;
     if (give != 0) {
         ov = &v[3].x;
@@ -46,7 +46,7 @@ int func_00178B20(cOmHitVolume *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         ov[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere(give, em->base.mtx, ov, 2.0f);
+        cDamageUnit_AddDamageCollSphere(give, (const struct cMatrix *)em->base.mtx, (const cVec *)ov, 2.0f);
         *(short *)(((char *)em->damageGive) + 0x46) = 0x2E;
         *(int *)(((char *)em->damageGive) + 0x4C) = 0;
         cDamageUnit_SetDamageCollActive(em->damageGive, 0);

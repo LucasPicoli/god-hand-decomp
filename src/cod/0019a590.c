@@ -26,7 +26,7 @@ int func_0019A590(cOmHitVolume *em)
     v[2].y = 0.0f;
     v[2].z = 0.0f;
     ofs->w = 1.0f;
-    slot = cDamageManage_CreateDamageTake(D_00574380, em, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)em, 2);
     em->damageTake = slot;
     if (slot != 0) {
         rot = &v[3];
@@ -34,7 +34,7 @@ int func_0019A590(cOmHitVolume *em)
         v[3].y = 0.0f;
         v[3].z = 0.0f;
         rot->w = 1.0f;
-        func_001FD9D8(slot, em->base.mtx, ofs, rot, size);
+        func_001FD9D8(slot, (const struct cMatrix *)em->base.mtx, ofs, rot, size);
     }
     cOmHitVolume_initWork(em, 1, em->tableData, 7, 7, 0);
     func_001C28A0(em);

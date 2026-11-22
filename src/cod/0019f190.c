@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cModel.h"
+#include "godhand/cDamageManage.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -9,10 +10,7 @@ extern int cOmSub_move(void *a0);
 extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern float D_00568020[];
 extern void func_001B6FB8(void *a0);
-extern void *cDamageManage_CreateDamageTake(void *a0, void *a1, int a2);
-extern void func_001FD9D8(void *a0, void *a1, float *a2, float *a3, float *t0);
 extern int cModel_getMeshPtr(void *a0, int a1);
-extern int D_00574380;
 
 /* sn-2.95.3-136 matched TU. */
 /* sn-2.95.3-136, -f=-fno-gcse */
@@ -49,7 +47,7 @@ int func_0019F190(char *p)
     f[9] = 0.0f;
     f[10] = 0.0f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, p, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 2);
     *(void **)(p + 0x650) = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -57,7 +55,7 @@ int func_0019F190(char *p)
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, p + 0x80, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)(p + 0x80), (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     *(short *)(p + 0x548) = 1;
     *(short *)(p + 0x54A) = 1;

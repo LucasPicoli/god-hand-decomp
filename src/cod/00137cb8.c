@@ -4,12 +4,10 @@
 #include "godhand/Slot2.h"
 #include "godhand/pathRec.h"
 #include "godhand/vu0.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void func_001FD9D8(void *unit, void *mtx, float *pos, float *dir, float *box);
 extern void cOmDoor_setObjCollision(void *self);
-extern int D_00574380;
 extern void cSnd_SeCall_2CB8A0(char *snd, int a1, int a2, int a3, int t0, int t1, int t2);
 extern void SlotList_selectPrev(void *self);
 extern void func_001F6AF8(void *self);
@@ -73,7 +71,7 @@ int cOmDoor_initWithBox(DoorLikeObj *self) {
     f[10] = 0.0f;
     f[8] = f[0] * -0.5f;
     m[3] = one;
-    slot = cDamageManage_CreateDamageTake(&D_00574380, self, 2);
+    slot = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 2);
     self->damage = slot;
     if (slot != 0) {
         nv = &f[12];
@@ -81,7 +79,7 @@ int cOmDoor_initWithBox(DoorLikeObj *self) {
         f[13] = 0.0f;
         f[14] = 0.0f;
         nv[3] = one;
-        func_001FD9D8(slot, self->base.mtx, m, nv, t);
+        func_001FD9D8(slot, (const struct cMatrix *)self->base.mtx, (const cVec *)m, (const cVec *)nv, (const cVec *)t);
     }
     self->base.hpMax = OBJ_LIFE;
     self->base.hp = OBJ_LIFE;

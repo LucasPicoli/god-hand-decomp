@@ -4,6 +4,7 @@
 #include "godhand/cEmWrap.h"
 #include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
+#include "godhand/cDamageManage.h"
 
 extern cEmActor *cEmManage_GetEm(cEmManage *mgr, unsigned char entryNo);
 extern void cEm00_setEm65Separate(cEmActor *em);
@@ -11,9 +12,7 @@ extern void cScenario_startSoftEvent(int scenario, int arg);
 extern void cScenario__endSoftEvent(int scenario);
 extern int D_004282F0;
 extern char D_005FEE00[];
-extern char D_00574380[];
 extern void cSnd_SeStop(void *snd, int handle);
-extern int cDamageManage_ReleaseDamageGive(void *mgr, void *give);
 extern void KillEffect(void *obj, int a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *obj, int flag);
 
@@ -98,11 +97,11 @@ void cGiveOwner_destruct(cGiveOwner *self, int flag) {
         cSnd_SeStop(D_005FEE00, self->seHandle);
         self->seHandle = 0;
     }
-    if (cDamageManage_ReleaseDamageGive(D_00574380, self->give[0]) != 0) {
+    if (cDamageManage_ReleaseDamageGive(&D_00574380, self->give[0]) != 0) {
         self->give[0] = 0;
         self->giveId[0] = -1;
     }
-    if (cDamageManage_ReleaseDamageGive(D_00574380, self->give[1]) != 0) {
+    if (cDamageManage_ReleaseDamageGive(&D_00574380, self->give[1]) != 0) {
         self->give[1] = 0;
         self->giveId[1] = -1;
     }

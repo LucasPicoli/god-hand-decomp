@@ -5,6 +5,7 @@ extern int D_0042AA98;
 
 /* sn-2.95.3-136 candidate. */
 #include "godhand/vu0.h"
+#include "godhand/cDamageUnit.h"
 
 
 
@@ -34,35 +35,35 @@ void *func_001C9140(void *a0)
 
 /* sn-2.95.3-136 candidate. */
 
-struct VtEnt { short delta; short index; void *pfn; };
 
 
 extern int SpawnRec_create(void *obj, int r, int p2, int p3, int p4, void *self,
                          float f12, float f13);
 
 __attribute__((section(".text.cDamageUnit_AddDamageCollCylinder")))
-int cDamageUnit_AddDamageCollCylinder(char *self, int a1, int a2, int a3,
-                                      float f12, float f13)
+int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *mtx,
+                                      const cVec *ofs, const cVec *rot,
+                                      float radius, float half)
 {
-    struct VtEnt *vt;
+    const cDamageVtEnt *vt;
     char *obj;
     char *p;
     int r;
 
-    if (*(signed char *)(self + 0x49) == 0) return -1;
-    vt = *(struct VtEnt **)(self + 0x50);
-    obj = (char *)((int (*)(void *))vt[2].pfn)(self + vt[2].delta);
+    if (self->type == 0) return -1;
+    vt = self->vt;
+    obj = (char *)((int (*)(void *))vt[2].pfn)((char *)self + vt[2].delta);
     if (obj == 0) return -1;
     if (func_001FD908(self) == 0) return -1;
-    r = SpawnRec_create(obj, func_001FD908(self), a1, a2, a3, self, f12, f13);
+    r = SpawnRec_create(obj, func_001FD908(self), (int)mtx, (int)ofs, (int)rot, self, radius, half);
     if (r == -1) return r;
-    if (*(char **)(self + 0x3C) != 0) {
-        p = *(char **)(self + 0x3C);
+    if (self->nodes != 0) {
+        p = (char *)self->nodes;
         while (*(char **)(p + 0x24) != 0) p = *(char **)(p + 0x24);
         *(char **)(p + 0x24) = obj;
         *(char **)(obj + 0x20) = p;
     } else {
-        *(char **)(self + 0x3C) = obj;
+        self->nodes = (cDamageNode *)obj;
     }
     return r;
 }

@@ -2,6 +2,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/DispMgr.h"
 #include "godhand/cSubScrOption.h"
+#include "godhand/cDamageManage.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -27,14 +28,14 @@ void SetField2F5IfField615Active_1A7A08(int a0) {
     }
 }
 
-__attribute__((section(".text.SetField_ACD0_1FE348")))
-void SetField_ACD0_1FE348(int a0, int a1) {
-    *(int*)(a0 + 0xACD0) = a1;
+__attribute__((section(".text.StartHitStop_1FE348")))
+void StartHitStop_1FE348(cDamageManage *self, int frames) {
+    self->hitStop = frames;
 }
 
 __attribute__((section(".text.cDamageManage_CkHitStop")))
-int cDamageManage_CkHitStop(int a0) {
-    return *(int*)(a0 + 0xACD0) != 0;
+int cDamageManage_CkHitStop(cDamageManage *self) {
+    return self->hitStop != 0;
 }
 
 __attribute__((section(".text.IsStateVal6_10B5C8")))

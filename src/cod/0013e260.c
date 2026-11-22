@@ -2,12 +2,11 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/cGameObj.h"
+#include "godhand/cDamageManage.h"
 
 extern float fRand1_1(void);
 extern void func_001DEE60(void *ui, int sub, int on);
 extern int D_00428840;
-extern char D_00574380[];
-extern void ClearAndResetFields_1FE278(void *pool, void *handle);
 extern void SetField214PtrThenInit_1B6F38(void *self, int flag);
 extern char D_00754C80[];
 extern void func_0031A600(void *queue, int kind, int id, void *packet);
@@ -68,7 +67,7 @@ __attribute__((section(".text.cKidOwner_destruct")))
 void cKidOwner_destruct(cKidOwner *self, int flag) {
     self->base.vtable = (cVtEnt *)&D_00428840;
     if (self->handle != 0) {
-        ClearAndResetFields_1FE278(D_00574380, self->handle);
+        ClearAndResetFields_1FE278(&D_00574380, self->handle);
         self->handle = 0;
     }
     if (self->kidA != 0) {

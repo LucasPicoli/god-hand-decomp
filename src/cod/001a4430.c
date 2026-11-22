@@ -4,14 +4,12 @@
 #include "godhand/vu0.h"
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cMovie.h"
+#include "godhand/cDamageManage.h"
 
 extern void func_001B6FB8(void *self);
-extern void *cDamageManage_CreateDamageTake(void *mgr, void *owner, int kind);
-extern void cDamageUnit_AddDamageCollSphere(void *unit, void *mtx, cVec *pos, float radius);
 extern void cOm4f_setOpenCloseRot(void *self, float a, float b);
 extern void cOm4f_setCloseFix(void *self);
 extern void cOm4f_setEventMode(void *self, int mode);
-extern int D_00574380;
 extern void displayScrollLayer(int layer, int show);
 extern void cHeap_free(void *heap, void *p);
 extern void Forward342910_342888(int handle);
@@ -62,10 +60,10 @@ int cOm4f_construct(Om4fObj *self)
     c.y = 0.0f;
     c.z = 0.7f;
     c.w = 1.0f;
-    dmg = cDamageManage_CreateDamageTake(&D_00574380, self, 1);
+    dmg = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, 1);
     self->damage = dmg;
     if (dmg != 0) {
-        cDamageUnit_AddDamageCollSphere(dmg, self->base.mtx, &c, OM4F_SPHERE_R);
+        cDamageUnit_AddDamageCollSphere(dmg, (const struct cMatrix *)self->base.mtx, &c, OM4F_SPHERE_R);
     }
     self->base.hpMax = OM4F_LIFE;
     self->base.hp = OM4F_LIFE;

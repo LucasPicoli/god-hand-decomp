@@ -5,6 +5,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cDataManager.h"
 #include "godhand/DispMgr.h"
+#include "godhand/cDamageManage.h"
 
 #define T0_COUNT (*(volatile int *)0x10000800)
 
@@ -20,7 +21,6 @@ extern char D_0061A990[];
 extern char D_00586AF0[];
 extern char D_00463050[];
 extern char D_00604700[];
-extern char D_00574380[];
 extern char D_00462FC0[];
 extern char D_00583EC0[];
 extern int *D_00754C50[];
@@ -34,7 +34,6 @@ extern void func_00296530(void *p);
 extern void cScenario_moveFrame(void *p);
 extern void func_00138F98(void *p);
 extern void cWorldLight_Move(void *p);
-extern void func_001FDFD8(void *p);
 extern void MoveObj(void);
 extern void NoOp_1352F0(void *p);
 extern void func_002BF2D0(char *p);
@@ -62,7 +61,7 @@ void Move(void)
     func_00138F98(D_00463050);
     cEmManage_Main(&D_005864F0);
     cWorldLight_Move(D_00604700);
-    func_001FDFD8(D_00574380);
+    func_001FDFD8(&D_00574380);
     MoveObj();
     NoOp_1352F0(D_00462FC0);
     func_002BF2D0(D_003C2648);
