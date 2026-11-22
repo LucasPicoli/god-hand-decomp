@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#define COBJBASE_NO_TYPEDEF
+#include "godhand/cObjBase.h"
 #include "godhand/objFactory.h"
 #include "godhand/DispMgr.h"
 #include "godhand/globals.h"
@@ -11,7 +13,6 @@ extern int D_00747A34;
 extern char D_00754C10[];
 extern void *_MemoryAlloc(int size, int align, void *region);
 extern void func_003A52F0(void *dst, int val, int len);
-extern void cObjBase(void *a0);
 
 /* Slot1 end-of-game stage: on the first call run the end hook, then flag the game as over. */
 #define SLOT_STEP(s)     (*(int *)((s) + 0x08))
@@ -87,13 +88,13 @@ int UpdatePlayStage(char *self) {
 
 __attribute__((section(".text.CreateObjectWithVtableA")))
 void *CreateObjectWithVtableA(void) {
-    char *s0;
+    struct cObjBase *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = _MemoryAlloc(0x4E0, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x4E0);
     cObjBase(s0);
-    *(int **)(s0 + 0x214) = &D_0044B840;
+    s0->vtable = D_0044B840;
     return s0;
 }
 
@@ -107,12 +108,12 @@ void *CreateObjectWithVtableA(void) {
 
 __attribute__((section(".text.CreateObjectWithVtableB")))
 void *CreateObjectWithVtableB(void) {
-    char *s0;
+    struct cObjBase *s0;
     if (D_00747A34 & 0x10000) return 0;
     s0 = _MemoryAlloc(0x4D0, 0x10, D_00754C10);
     if (s0 == 0) return 0;
     func_003A52F0(s0, 0, 0x4D0);
     cObjBase(s0);
-    *(int **)(s0 + 0x214) = &D_00450B98;
+    s0->vtable = D_00450B98;
     return s0;
 }

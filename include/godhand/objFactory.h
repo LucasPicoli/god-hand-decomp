@@ -24,6 +24,10 @@ typedef struct cObjVec2 {
 typedef char cObjVec2_size_check[sizeof(cObjVec2) == 0x360 ? 1 : -1];
 
 extern unsigned char D_003C3D18;        /* serial stamped into each new actor (cObj.unk2FC) */
+extern cVtEnt D_0044B840[];            /* cObjTestSet's method table (CreateObjectWithVtableA) */
+extern cVtEnt D_00450B98[];            /* objDummy's method table (CreateObjectWithVtableB) */
+extern cVtEnt D_00450B28[];            /* dbObj's method table (CreateObjectWithVtableC) */
+extern cVtEnt D_00450C38[];            /* objCock's method table (func_003184E0) */
 
 /* 0xFFFF is the "no data" id. */
 static __inline__ int validId(int d)

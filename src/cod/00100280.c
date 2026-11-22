@@ -1,9 +1,10 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#define CGAMEOBJ_NO_TYPEDEF
+#include "godhand/cGameObj.h"
 #include "godhand/globals.h"
 
 extern int D_00462FC0;
 extern void cCollisionSolidManage_ReleaseUnit(void *, void *);
-extern void cGameObj__dtor(void *, void *);
 extern int D_007854C8;
 extern void cGameObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *, void *, void *);
@@ -34,10 +35,10 @@ void *cPlBase(void *a0) {
 }
 
 __attribute__((section(".text.cPlBase__dtor")))
-void cPlBase__dtor(void *a0, void *a1) {
+void cPlBase__dtor(void *a0, int flags) {
     *(int **)((char*)a0 + 0x214) = &D_0041B598;
     cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
-    cGameObj__dtor(a0, a1);
+    cGameObj__dtor(a0, flags);
 }
 
 __attribute__((section(".text.cPlBase__tf")))

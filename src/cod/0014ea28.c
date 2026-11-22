@@ -1,4 +1,4 @@
-#include "godhand/cObjBase.h"
+#include "godhand/cGameObj.h"
 #include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -24,19 +24,18 @@ extern void func_0015EAC8(char *work);
 extern void func_002D5890(int a0, int a1);
 extern void func_002D5440(int a0, int a1);
 
-extern int cObj__dtor(struct cObjBase *self);
 /* The cObjBase part of the destructor: put this class's vtable back, then run
  * the cObj destructor. */
 __attribute__((section(".text.cObjBase__dtor")))
-int cObjBase__dtor(struct cObjBase *self) {
+void cObjBase__dtor(struct cObjBase *self, int flags) {
     self->vtable = (cVtEnt *)&D_0041EBE8;
-    return cObj__dtor(self);
+    cObj__dtor(self, flags);
 }
 
 __attribute__((section(".text.cGameObj__dtor")))
-int cGameObj__dtor(int a0) {
-    *(int*)((char*)a0+0x214) = (int)D_0044AE28;
-    return cObjBase__dtor(a0);
+void cGameObj__dtor(struct cGameObj *self, int flags) {
+    self->vtable = D_0044AE28;
+    cObjBase__dtor((struct cObjBase *)self, flags);
 }
 
 __attribute__((section(".text.func_00201228")))

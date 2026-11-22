@@ -45,7 +45,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
                         if (func_002A7CA0(self, &self->unk16A0) != 0) {
                             self->emFlags2 = self->emFlags2 | 0x8000000;
                         }
-                        if (*(float *)((char *)self + 0x510) < 8.0f) {
+                        if (self->unk510 < 8.0f) {
                             self->step = 2;
                         }
                     }

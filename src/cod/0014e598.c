@@ -1,4 +1,7 @@
 #include "godhand/cObj.h"
+#define COBJBASE_NO_TYPEDEF
+#include "godhand/cObjBase.h"
+#include "godhand/objFactory.h"
 #include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -19,8 +22,6 @@ extern void func_001BFAC8(void *);
 extern int D_00422B48;
 extern int D_00423C70;
 extern int D_00425AC0;
-extern void cObjBase(void *);
-extern int D_00450C38;
 extern int D_003FA62C;
 
 __attribute__((section(".text.Tramp_flush__7ostream_3892C0")))
@@ -112,9 +113,10 @@ void *func_0019C118(void *a0){
 
 __attribute__((section(".text.func_003184E0")))
 void *func_003184E0(void *a0){
-  cObjBase(a0);
-  *(int**)((char*)a0+0x214) = &D_00450C38;
-  return a0;
+  struct cObjBase *self = a0;
+  cObjBase(self);
+  self->vtable = D_00450C38;
+  return self;
 }
 
 __attribute__((section(".text.func_003A9228")))

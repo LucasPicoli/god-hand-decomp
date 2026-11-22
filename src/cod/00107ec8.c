@@ -3,7 +3,7 @@
 extern int D_0041D220[];
 extern int D_00462FC0[];
 extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
-extern void cPlBase__dtor(void *a0, void *a1);
+extern void cPlBase__dtor(void *a0, int flags);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f);
 #include "godhand/motion.h"
@@ -33,10 +33,10 @@ void ResetAnimSlotArray_13F510(char *a0) {
 }
 
 __attribute__((section(".text.InitActorWithVtable_107EC8")))
-void InitActorWithVtable_107EC8(void *a0, void *a1) {
+void InitActorWithVtable_107EC8(void *a0, int flags) {
     *(int **)((char*)a0+0x214) = D_0041D220;
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
-    cPlBase__dtor(a0, a1);
+    cPlBase__dtor(a0, flags);
 }
 
 /* The player's mode-5 (sub-screen) handler, entry 5 of the mode table D_003BD0B8. */

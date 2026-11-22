@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#define CGAMEOBJ_NO_TYPEDEF
+#include "godhand/cGameObj.h"
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
@@ -6,7 +8,6 @@
 
 extern void func_003A52F0(void *, int, int);
 extern void func_001F2708(void *);
-extern void cGameObj(void *);
 
 __attribute__((section(".text.func_00134650")))
 void *func_00134650(void *this) {

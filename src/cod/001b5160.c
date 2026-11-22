@@ -11,7 +11,6 @@ extern void func_0028CE70(void);
 extern void func_00297660(void);
 extern void func_002B4560(void);
 extern void mwPlyFinishSfdFx(void);
-extern void cObjBase__dtor(void);
 extern void func_002BB010(void);
 extern void func_002BF170(void *a0);
 extern void cMc_startLoadRunRelease(int a0);
@@ -107,13 +106,13 @@ void func_002B4A30(void)
 }
 
 __attribute__((section(".text.cObjSimple_Dtor")))
-void cObjSimple_Dtor(void) {
-    cObjBase__dtor();
+void cObjSimple_Dtor(void *self, int flags) {
+    cObjBase__dtor(self, flags);
 }
 
 __attribute__((section(".text.func_002B8908")))
-void func_002B8908(void) {
-    cObjBase__dtor();
+void func_002B8908(void *self, int flags) {
+    cObjBase__dtor(self, flags);
 }
 
 __attribute__((section(".text.func_002BA4B0")))
@@ -239,11 +238,9 @@ void func_00306A88(void) {
     func_00306AA8();
 }
 
-void cObjBase__dtor(void);
-
 __attribute__((section(".text.func_00318338")))
-void func_00318338(void) {
-    cObjBase__dtor();
+void func_00318338(void *self, int flags) {
+    cObjBase__dtor(self, flags);
 }
 
 int _MemoryAlloc(void);

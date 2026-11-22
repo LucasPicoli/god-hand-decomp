@@ -28,7 +28,6 @@ extern int cDvd_Check(int a0, int a1);
 extern int D_00462FC0;
 extern void func_001FE370(cDamageManage *a0, int a1);
 extern void cCollisionSolidManage_ReleaseUnit(int *a0, int a1);
-extern void cGameObj__dtor(int a0, int a1);
 extern void *D_005CAFF0;
 extern void func_00138CA8(void *a0, void *a1, void *a2, int a3);
 
@@ -238,7 +237,7 @@ void func_0028EB88(int a0, int a1) {
     *(int **)((char *)a0 + 0x214) = &D_0044A660;
     func_001FE370(&D_00574380, a0);
     cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
-    cGameObj__dtor(a0, a1);
+    cGameObj__dtor((struct cGameObj *)a0, a1);
 }
 
 __attribute__((section(".text.func_002B4768")))

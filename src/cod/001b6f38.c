@@ -10,20 +10,20 @@ extern void func_001331B8(char *a0, long a1, int a2);
 extern void cCollisionSolidManage_ReleaseUnit(char *a0, char *a1);
 extern void ReleaseObj(char *a0);
 extern void func_001FE370(cDamageManage *a0, char *a1);
-extern void cGameObj__dtor(char *a0, char *a1);
 extern cActionButtonEnt *func_001F7798(cActionButton *self);
 extern void Obj0000_Swap_Field_4_In_Scaled_A1_Entry_1F7800(cActionButton *self, int priority, cActionButtonEnt *ent);
 extern void cHeap_free(int, int *);
 extern int D_00747A34;
 
 __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
-void SetField214PtrThenInit_1B6F38(char *a0, char *a1) {
+void SetField214PtrThenInit_1B6F38(void *self, int flags) {
+    char *a0 = self;
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
     func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
     cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
     ReleaseObj(a0);
     func_001FE370(&D_00574380, a0);
-    cGameObj__dtor(a0, a1);
+    cGameObj__dtor(self, flags);
 }
 
 __attribute__((section(".text.ReleaseField6ECByTag564_26B1E8")))
