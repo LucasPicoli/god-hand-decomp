@@ -1,11 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
+#include "godhand/PanelObj.h"
 
 extern void func_001DEE40(void *p, int a1);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void UiRecord_setDispSubs6to10(void *p, int a1);
-extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
 extern char D_005681C0[];
 extern long D_007474A0[];
@@ -63,7 +63,7 @@ void func_001DB558(void *arg)
     case 2:
         f = TickDown((int *)(s1 + 0x3028));
         if (f) {
-            char *p = s1 + 0x25B0;
+            PanelObj *p = (PanelObj *)(s1 + 0x25B0);
 
             *(int *)(s1 + 0x3040) = 0;
             UiRecord_setDispSubs6to10(p, 1);
@@ -83,17 +83,17 @@ void func_001DB558(void *arg)
         if ((D_007474A0[54] & 0xCC0000C000000L) != 0) {
             if (*(int *)(s1 + 0x3040) == 0) {
                 *(int *)(s1 + 0x3040) = 1;
-                func_001DF7D0(s1 + 0x25B0, 0);
+                func_001DF7D0((PanelObj *)(s1 + 0x25B0), 0);
             } else {
                 *(int *)(s1 + 0x3040) = 0;
-                func_001DF7D0(s1 + 0x25B0, 1);
+                func_001DF7D0((PanelObj *)(s1 + 0x25B0), 1);
             }
             cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else {
             m = D_007474A0[52];
             if ((m & 0x20000000) != 0) {
                 *(int *)(s1 + 0x3040) = 1;
-                func_001DF7D0(s1 + 0x25B0, 0);
+                func_001DF7D0((PanelObj *)(s1 + 0x25B0), 0);
                 cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             } else if ((m & 0x10000000) != 0) {
                 char *p;

@@ -5,6 +5,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cCockScroll.h"
 #include "godhand/globals.h"
+#include "godhand/PanelObj.h"
 
 extern unsigned short D_00747A50;
 extern void func_0026ECD0(cEm00 *self, int flag);
@@ -168,10 +169,6 @@ int ReachObj_isWithinReach(ReachObj *self)
 #define PANEL_STEP_RIGHT   0x12
 #define PANEL_STEP_SAME    0x13
 
-typedef struct PanelObj {
-    char unk00[4];
-} PanelObj;
-
 /* The record a competitor points to: its ranking key at 0x604 (0 = default). */
 typedef struct Competitor {
     char unk000[0x604];
@@ -187,7 +184,7 @@ typedef struct CompetitorRef {
 typedef struct PanelOwner {
     char unk0000[0x25B0];
     PanelObj panel;                     /* 0x25B0 */
-    char unk25B4[0xA50];
+    char unk2E4C[0x3004 - 0x2E4C];
     CompetitorRef *left;                /* 0x3004 */
     CompetitorRef *right;               /* 0x3008 */
     char unk300C[0x18];
@@ -196,9 +193,6 @@ typedef struct PanelOwner {
     char unk3026[0x1E];
     unsigned char reversed;             /* 0x3044 */
 } PanelOwner;
-
-extern void PanelObj_setCursorMode(PanelObj *self, unsigned char mode);
-extern void PanelObj_setArrowMode(PanelObj *self, unsigned char mode);
 
 /* Move to a step and restart its sub-step. Written as a helper so that every
  * arm ends in the same store pair, in retail's order (sub first). */

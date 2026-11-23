@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
+#include "godhand/PanelObj.h"
 #include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -9,7 +10,6 @@ extern void CustomIDOwner_setScoreNumber(void *a0, int a1);
 extern void func_001DE5F8(void *a0, int a1, int a2);
 extern void func_001DD910(void *a0, int a1);
 extern void UiRecord_setDispSubs6to10(void *p, int a1);
-extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
 extern void CustomIDWork_SetNumber_1DD218(void *a0, int a1);
 extern void cSnd_SetBgmState(void *a0, int a1);
@@ -72,7 +72,7 @@ void func_001D9D28(void *arg)
     case 4:
         f = TickDown((int *)(s1 + 0x3028));
         if (f) {
-            char *s0 = s1 + 0x25B0;
+            PanelObj *s0 = (PanelObj *)(s1 + 0x25B0);
 
             *(int *)(s1 + 0x3040) = 0;
             UiRecord_setDispSubs6to10(s0, 1);
@@ -85,10 +85,10 @@ void func_001D9D28(void *arg)
         if (D_007474A0[0x1B0 / 8] & 0xCC0000C000000L) {
             if (*(int *)(s1 + 0x3040) == 0) {
                 *(int *)(s1 + 0x3040) = 1;
-                func_001DF7D0(s1 + 0x25B0, 0);
+                func_001DF7D0((PanelObj *)(s1 + 0x25B0), 0);
             } else {
                 *(int *)(s1 + 0x3040) = 0;
-                func_001DF7D0(s1 + 0x25B0, 1);
+                func_001DF7D0((PanelObj *)(s1 + 0x25B0), 1);
             }
             cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             return;
@@ -96,15 +96,15 @@ void func_001D9D28(void *arg)
         m = D_007474A0[0x1A0 / 8];
         if (m & 0x20000000L) {
             *(int *)(s1 + 0x3040) = 1;
-            func_001DF7D0(s1 + 0x25B0, 0);
+            func_001DF7D0((PanelObj *)(s1 + 0x25B0), 0);
             cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             return;
         }
         if (m & 0x10000000L) {
-            char *s0;
+            PanelObj *s0;
 
             func_001DD910(s1, 1);
-            s0 = s1 + 0x25B0;
+            s0 = (PanelObj *)(s1 + 0x25B0);
             UiRecord_setDispSubs6to10(s0, 0);
             func_001DF7D0(s0, 0);
             func_001DF820(s0, 0);
