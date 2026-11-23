@@ -1,10 +1,7 @@
 #include "godhand/sftim.h"
 
-int sfmpv_DetectTcErr(SftimHn *hn, SftimInfo *info);
-void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
-
 __attribute__((section(".text.sfmpv_Pts2Tc")))
-void sfmpv_Pts2Tc(int time, int rate, int drop, int ofs, SftimTc *tc)
+void sfmpv_Pts2Tc(long time, int rate, int drop, int ofs, SftimTc *tc)
 {
     int fps1000 = D_00459920[rate];
     int fps = D_004596C8[rate];

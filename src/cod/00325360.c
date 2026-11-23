@@ -271,7 +271,7 @@ int sftim_GetTimeVsync(int *a0, int *a1, int *a2) {
 }
 
 __attribute__((section(".text.MPV_GetBitRate")))
-int MPV_GetBitRate(MpvHandle *hn, int *rate)
+int MPV_GetBitRate(MpvHandle *hn, unsigned int *rate)
 {
     int r;
     r = Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn);

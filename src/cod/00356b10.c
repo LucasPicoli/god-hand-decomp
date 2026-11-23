@@ -106,7 +106,7 @@ int sfdmpv_DecodePicture(void *obj, void *a1, SfdOutBuf *out, SftimHn *hn)
         return ReturnK_Neg1_369FB0();
     w = hn->work;
     r = (int)func_00369FB8(obj, a1, out);
-    vb = SFD_WORK_VIBUF(w);
+    vb = &w->vi;
     ctl = SFD_WORK_VIDCTL(w);
     cfg = &w->cfg;
     viBufRestartDMA(vb);

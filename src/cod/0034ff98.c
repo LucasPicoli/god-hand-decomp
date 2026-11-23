@@ -1,6 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sftim.h"
 
-extern void SFHDS_ReprocessHdr(void *hn);
 extern void func_00350040(void *hn);
 
 __attribute__((section(".text.sfmps_ReprocessHdr")))

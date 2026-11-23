@@ -2,9 +2,9 @@
 
 #include "godhand/sftim.h"
 
-/* Record the current timecode as the last frame's time (relative to the start record) and keep it as the longest when it is not shorter. */
+/* Record the current timecode as the last frame's time (relative to the start record) and keep it as the longest when it is not shorter. pic is not read. */
 __attribute__((section(".text.SftimHn_recordLastFrame")))
-void SftimHn_recordLastFrame(SftimHn *hn)
+void SftimHn_recordLastFrame(SftimHn *hn, MpvPicAtr *pic)
 {
     SftimTc tc = hn->tim.tc;
     int time;

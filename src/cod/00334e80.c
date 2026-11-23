@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/MpvHandle.h"
+#include "godhand/criSj.h"
 
 __attribute__((section(".text.func_00368EE0")))
 int func_00368EE0(int *a0, int a1){
@@ -41,7 +42,7 @@ __attribute__((section(".text.func_00334E80")))
 int func_00334E80(signed char c){ return c == 0x5C ? 0x2F : c; }
 
 __attribute__((section(".text.SJRBF_GetFlowCnt")))
-int SJRBF_GetFlowCnt(char *a0, int a1, int a2){ return ((int *)(a0 + 0x28))[a1*2 + a2]; }
+int SJRBF_GetFlowCnt(SjObj *sj, int lane, int kind){ SjRbf *rbf = (SjRbf *)sj; return rbf->flow[lane][kind]; }
 
 __attribute__((section(".text.MPV_GetDctCnt")))
 void MPV_GetDctCnt(char *a0, int *a1, int *a2){

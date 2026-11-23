@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sftim.h"
 
 extern int D_003EE2C4[];
 
@@ -15,12 +16,12 @@ void sfbuf_InitBufData(char *p, int a, int b)
 }
 
 __attribute__((section(".text.SFBUF_AddRtotSj")))
-void SFBUF_AddRtotSj(char *base, int i, int d) {
-    char *p = base + i * 0x74 + 0x1320;
-    int v = *(int *)(p + 0x24);
+void SFBUF_AddRtotSj(SftimHn *hn, int ch, int n) {
+    SfdBufCh *buf = &hn->track[ch].buf;
+    int v = buf->rtotSj;
 
     if (v >= 0) {
-        *(int *)(p + 0x24) = v + d;
+        buf->rtotSj = v + n;
     }
 }
 

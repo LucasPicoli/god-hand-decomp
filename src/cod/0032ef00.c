@@ -1,13 +1,12 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/sftim.h"
 
 extern int GetField0OrZero_346828(void *a0);
 extern void func_00345DF0(void *a0);
 extern void func_00347E58(void *a0, int a1);
 extern int MWSFSVM_Error(char *a0);
-extern int GetArrayElemA0C_35A1C8(void *a0, int a1);
 extern void ADXT_SetSvrFreq(int a0, int a1);
-extern void func_0034D318(void *a0, int a1);
 extern void SFHDS_ProcessHdr(void *a0);
 extern void Obj34D8_CopyVec3_From98_To934(void *a0);
 extern void *memcpy(void *dst, const void *src, unsigned int n);
@@ -51,13 +50,13 @@ void sfadxt_SetSvrFreq(char *a0) {
 }
 
 __attribute__((section(".text.SFHDS_ReprocessHdr")))
-void SFHDS_ReprocessHdr(char *a0) {
-    char *s0 = a0 + 0x78;
-    int r = sfhds_GetHd(a0);
+void SFHDS_ReprocessHdr(SftimHn *hn) {
+    SfdHdInf *hdr = &hn->hdr;
+    SfdHdInf *r = (SfdHdInf *)sfhds_GetHd(hn);
     if (r != 0) {
-        func_0034D318(s0, r);
-        SFHDS_ProcessHdr(s0);
-        Obj34D8_CopyVec3_From98_To934(a0);
+        func_0034D318(hdr, r);
+        SFHDS_ProcessHdr(hdr);
+        Obj34D8_CopyVec3_From98_To934(hn);
     }
 }
 
@@ -81,24 +80,24 @@ int func_00357068(void *a0, void *a1) {
 }
 
 __attribute__((section(".text.SFPLY_AddDecPic")))
-void SFPLY_AddDecPic(void *a0, int a1, void *a2) {
-    int *slot = (int *)((char *)a0 + 0x950);
-    void (*fp)(void *, void *, void *);
-    *slot = *slot + a1;
-    fp = GetArrayElemA0C_35A1C8(a0, 0x24);
+void SFPLY_AddDecPic(SftimHn *hn, int n, int picType) {
+    SfdErr *inf = &hn->errInf;
+    SfdPicCntFn fp;
+    inf->nDec = inf->nDec + n;
+    fp = (SfdPicCntFn)GetArrayElemA0C_35A1C8(hn, 0x24);
     if (fp != 0) {
-        fp(a0, a2, slot);
+        fp(hn, picType, inf);
     }
 }
 
 __attribute__((section(".text.SFPLY_AddSkipPic")))
-void SFPLY_AddSkipPic(void *a0, int a1, void *a2) {
-    int *base = (int *)((char *)a0 + 0x950);
-    void (*fp)(void *, void *, void *);
-    base[1] = base[1] + a1;
-    fp = GetArrayElemA0C_35A1C8(a0, 0x25);
+void SFPLY_AddSkipPic(SftimHn *hn, int n, int picType) {
+    SfdErr *inf = &hn->errInf;
+    SfdPicCntFn fp;
+    inf->nSkip = inf->nSkip + n;
+    fp = (SfdPicCntFn)GetArrayElemA0C_35A1C8(hn, 0x25);
     if (fp != 0) {
-        fp(a0, a2, base);
+        fp(hn, picType, inf);
     }
 }
 
