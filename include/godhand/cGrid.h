@@ -91,6 +91,7 @@ cCollisionScrollSolid *func_0012EAD8(char *self, void *obj, void *mtx, void *v70
                                      void *face2, void *face3, void *face4, void *face5);
 
 extern void func_00133948(void *self, void *boxMin, void *boxMax);
-extern int func_00133408(void *unused, float *min, float *max, float *boxMin, float *boxMax);
+/* Nonzero when the bounds amin..amax and bmin..bmax overlap; self isn't read. */
+int func_00133408(cGrid *self, float *amin, float *amax, float *bmin, float *bmax);
 
 #endif /* GODHAND_CGRID_H */

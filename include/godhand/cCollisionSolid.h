@@ -211,7 +211,19 @@ int cCollisionSolidManage_pushBoxBox(cCollisionSolidManage *self, cCollisionSoli
                                      cCollisionSolidBox *a, cCollisionSolidManageUnit *ub,
                                      cCollisionSolidBox *b);
 
-/* Nonzero when obj hits a solid of the manager. */
+/* Nonzero when the bounds amin..amax and bmin..bmax overlap; self isn't read. */
+int func_00135250(cCollisionSolidManage *self, float *amin, float *amax, float *bmin, float *bmax);
+/* Nonzero when sphere a of unit ua touches sphere b of unit ub (assembly). */
+int func_00134CB0(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
+                  cCollisionSolidManageUnit *ub, cCollisionSolidObj *b);
+/* Nonzero when sphere a of unit ua touches box b of unit ub; swapped is 1 when
+ * the box is the solid being checked (assembly). */
+int func_00134E18(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
+                  cCollisionSolidManageUnit *ub, cCollisionSolidBox *b, int swapped);
+
+/* Refresh the bounds of obj's unit, flag every touching pair of its active
+ * solids with the active solids of the other units, list up to
+ * CSOLID_HIT_MAX owners hit, and return 1 on any hit. */
 int cCollisionSolidManage_ChkHit(cCollisionSolidManage *self, struct cGameObj *obj);
 
 /* The line test between two points (assembly); the parameters as its callers pass them. */

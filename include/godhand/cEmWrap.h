@@ -11,7 +11,6 @@
 #ifndef GODHAND_CEMWRAP_H
 #define GODHAND_CEMWRAP_H
 
-#define EMACTOR_FLAG_NOSCRCOLL  4   /* in scrFlags: screen collision off */
 #define EMACTOR_FLAG_DEAD  0x80000000   /* in objFlags: the actor is gone */
 
 /* The actor's method table: each entry is a g++ delta (short) and a pfn. */

@@ -23,6 +23,7 @@
 /* Bits of cGameObj.scrFlags (0x5A0). */
 #define GAMEOBJ_SCR_CLIP     0x01       /* cut off by the screen frustum */
 #define GAMEOBJ_SCR_BEHIND   0x02       /* behind the camera */
+#define GAMEOBJ_SCR_NOSCRCOLL 0x04      /* screen collision off (cEmWrap::setScrCollEnable) */
 #define GAMEOBJ_SCR_SUSPEND  0x08       /* set by setSuspend(1) */
 
 /* Bits of cGameObj.seqFlags (0x3AC). These names are still under review:

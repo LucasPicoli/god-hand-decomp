@@ -1,5 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/cCollisionSolid.h"
+#include "godhand/cGrid.h"
 
 extern int D_00747A78;
 extern char D_00747A50[];
@@ -70,32 +72,26 @@ int func_00274F50(char *a0) {
     return 1;
 }
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Nonzero when the bounds amin..amax and bmin..bmax overlap; self isn't read. */
 __attribute__((section(".text.func_00133408")))
-int func_00133408(void *unused, float *a1, float *a2, float *a3, float *t0) {
-    if (a2[0] < a3[0]) goto ret0;
-    if (!(a1[0] > t0[0])) goto cont;
-ret0:
-    return 0;
-cont:
-    if (a2[2] < a3[2]) goto ret0;
-    if (a1[2] > t0[2]) goto ret0;
-    if (a2[1] < a3[1]) goto ret0;
-    if (a1[1] > t0[1]) goto ret0;
+int func_00133408(cGrid *self, float *amin, float *amax, float *bmin, float *bmax) {
+    if (amax[0] < bmin[0] || amin[0] > bmax[0])
+        return 0;
+    if (amax[2] < bmin[2] || amin[2] > bmax[2])
+        return 0;
+    if (amax[1] < bmin[1] || amin[1] > bmax[1])
+        return 0;
     return 1;
 }
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Nonzero when the bounds amin..amax and bmin..bmax overlap; self isn't read. */
 __attribute__((section(".text.func_00135250")))
-int func_00135250(void *unused, float *a1, float *a2, float *a3, float *t0) {
-    if (a2[0] < a3[0]) goto ret0;
-    if (!(a1[0] > t0[0])) goto cont;
-ret0:
-    return 0;
-cont:
-    if (a2[2] < a3[2]) goto ret0;
-    if (a1[2] > t0[2]) goto ret0;
-    if (a2[1] < a3[1]) goto ret0;
-    if (a1[1] > t0[1]) goto ret0;
+int func_00135250(cCollisionSolidManage *self, float *amin, float *amax, float *bmin, float *bmax) {
+    if (amax[0] < bmin[0] || amin[0] > bmax[0])
+        return 0;
+    if (amax[2] < bmin[2] || amin[2] > bmax[2])
+        return 0;
+    if (amax[1] < bmin[1] || amin[1] > bmax[1])
+        return 0;
     return 1;
 }

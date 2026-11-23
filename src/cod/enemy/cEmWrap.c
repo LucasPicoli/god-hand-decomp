@@ -161,9 +161,9 @@ __attribute__((section(".text.cEmWrap_setScrCollEnable")))
 void cEmWrap_setScrCollEnable(cEmWrap *self, int enable) {
     if (FindResolveActor_295978(self, enable) == 0) return;
     if (enable == 1) {
-        self->actor->scrFlags &= ~EMACTOR_FLAG_NOSCRCOLL;
+        self->actor->scrFlags &= ~GAMEOBJ_SCR_NOSCRCOLL;
     } else {
-        self->actor->scrFlags |= EMACTOR_FLAG_NOSCRCOLL;
+        self->actor->scrFlags |= GAMEOBJ_SCR_NOSCRCOLL;
     }
 }
 
