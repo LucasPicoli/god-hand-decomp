@@ -1,5 +1,4 @@
 /* sn-2.95.3-136 matched TU. */
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int espSys_effDataRegist(void *a0, int a1, void *a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern int cOmWeapon_setParent();
@@ -11,6 +10,7 @@ extern int D_007419A0;
 #include "godhand/vu0.h"
 #include "godhand/player.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cObjBase.h"
 
 
 
@@ -154,7 +154,7 @@ int func_001C9268(char *p)
     }
 
     if (*(unsigned short *)(p + 0x2FE) == 0x3B7) {
-        SetEffect(0x58, 0x8D, p, 0, 8, 0xFFFFFFFF);
+        SetEffect(0x58, 0x8D, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
     }
     switch (*(unsigned short *)(p + 0x2FE)) {
     case 0x3AE:
@@ -163,22 +163,22 @@ int func_001C9268(char *p)
             espSys_effDataRegist(&D_007419A0, 0x206,
                                  (void *)(*(int *)(e + 0xC) + (int)e));
         }
-        SetEffect(0x206, 1, p, 0, 8, 0xFFFFFFFF);
+        SetEffect(0x206, 1, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
         break;
     case 0x3B7:
-        SetEffect(0x58, 0x8D, p, 0, 8, 0xFFFFFFFF);
+        SetEffect(0x58, 0x8D, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
         break;
     case 0x3B8:
-        SetEffect(0x69, 4, p, 0, 8, 0xFFFFFFFF);
-        SetEffect(0x69, 9, p, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x69, 4, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
+        SetEffect(0x69, 9, (cObj *)p, 0, -1, EFFECT_FOLLOW_OWNER);
         break;
     case 0x3B9:
-        SetEffect(0x69, 5, p, 0, 8, 0xFFFFFFFF);
-        SetEffect(0x69, 0xA, p, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x69, 5, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
+        SetEffect(0x69, 0xA, (cObj *)p, 0, -1, EFFECT_FOLLOW_OWNER);
         break;
     case 0x3BA:
-        SetEffect(0x69, 6, p, 0, 8, 0xFFFFFFFF);
-        SetEffect(0x69, 0xB, p, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x69, 6, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
+        SetEffect(0x69, 0xB, (cObj *)p, 0, -1, EFFECT_FOLLOW_OWNER);
         break;
     case 0x369:
         break;

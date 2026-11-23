@@ -1,8 +1,8 @@
 #include "godhand/cModel.h"
+#include "godhand/cObjBase.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void func_001E7E68(void *dst, void *a, void *b, int n);
 extern void InitClearStructAndSet_1E79A8(int *a0, int a1);
 extern void Scroll_showLayerBySelector(void *a0, int a1);
@@ -45,19 +45,19 @@ void func_0012CC70(void *this)
     *(void **)((char *)this + 0x644) = q;
     *(int *)((char *)this + 0x15F4) |= 0x800000;
     if (*(int *)((char *)q + 0x564) != 0x26A) {
-        SetEffect(0, 0x61, q, 0, 6, 0xFFFFFFFFu);
+        SetEffect(0, 0x61, q, 0, 6, EFFECT_FOLLOW_OWNER);
         return;
     }
-    SetEffect(0, 0x79, q, 0, 6, 0xFFFFFFFFu);
+    SetEffect(0, 0x79, q, 0, 6, EFFECT_FOLLOW_OWNER);
     e = *(void **)((char *)this + 0x644);
     if (*(void **)((char *)e + 0x748) != 0) {
-        SetEffect(0, 0x79, *(void **)((char *)e + 0x748), 0, 6, 0xFFFFFFFFu);
+        SetEffect(0, 0x79, *(void **)((char *)e + 0x748), 0, 6, EFFECT_FOLLOW_OWNER);
     }
     if (*(void **)((char *)e + 0x74C) != 0) {
-        SetEffect(0, 0x79, *(void **)((char *)e + 0x74C), 0, 6, 0xFFFFFFFFu);
+        SetEffect(0, 0x79, *(void **)((char *)e + 0x74C), 0, 6, EFFECT_FOLLOW_OWNER);
     }
     if (*(void **)((char *)e + 0x750) != 0) {
-        SetEffect(0, 0x79, *(void **)((char *)e + 0x750), 0, 6, 0xFFFFFFFFu);
+        SetEffect(0, 0x79, *(void **)((char *)e + 0x750), 0, 6, EFFECT_FOLLOW_OWNER);
     }
 }
 

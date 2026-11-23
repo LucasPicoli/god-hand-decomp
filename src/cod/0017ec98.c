@@ -2,9 +2,9 @@
 
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cObjBase.h"
 
 extern int espSys_effDataRegist(void *table, int id, void *data);
-extern int SetEffect(int kind, int id, void *obj, int a3, int a4, unsigned int a5);
 extern char D_007419A0[];
 
 #define EFFDATA_ID 0x27D
@@ -24,7 +24,7 @@ int cOmBase_initEffData27D(cOmBase *self)
     func_001B6FB8(self);
     res = (int)self->pack;
     espSys_effDataRegist(D_007419A0, EFFDATA_ID, (void *)(*(int *)(res + 0xC) + res));
-    SetEffect(EFFDATA_ID, 1, self, 0, -1, 0xFFFFFFFF);
+    SetEffect(EFFDATA_ID, 1, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
     return 1;
 }
 

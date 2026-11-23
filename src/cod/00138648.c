@@ -8,12 +8,12 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageUnit.h"
 #include "godhand/cEm00.h"
+#include "godhand/cObjBase.h"
 
 extern void sceVu0ApplyMatrix(cVec *out, float *mtx, cVec *in);
 extern void sceVu0CameraMatrix(float *out, cVec *p, cVec *zd, cVec *yd);
 extern void *Getplayer(void);
 extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int on);
-extern int SetEffect(int effNo, int kind, void *obj, int a3, int a4, unsigned int a5);
 extern void KillEffect(void *obj, int effNo, int mode);
 
 /* Build the view matrix: take the eye and the target through the model
@@ -116,7 +116,7 @@ void cOmBase_setDispMode(cOmBase *self, int mode)
         cOmBase_setMeshDispFromLayer(self, 0x33, 1);
         break;
     case 4:
-        SetEffect(0x298, 2, self, 0, -1, -1);
+        SetEffect(0x298, 2, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, (cObj *)self, 0, 0, 0, 0);
         break;
     }

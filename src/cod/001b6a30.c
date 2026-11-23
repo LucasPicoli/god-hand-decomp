@@ -2,7 +2,6 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void MtxInitRotVec(void *a0, void *a1, int a2);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
@@ -16,6 +15,7 @@ extern char D_005864F0[];
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
+#include "godhand/cObjBase.h"
 
 #define FRAME ((char *)mtx - 0x30)
 
@@ -64,7 +64,7 @@ void func_001B6A30(void *a0)
         SetEffectPos(1, 1, 0, (cVec *)(s1 + 0x600), 1.0f, -1);
         v0 = s1 + 0x610;
         v2 = s1 + 0x100;
-        SetEffect(1, 2, s1, 0, 1, 0xFFFFFFFFu);
+        SetEffect(1, 2, a0, 0, 1, EFFECT_FOLLOW_OWNER);
         *(int *)(s1 + 0x610) = 0;
         *(int *)(v0 + 0x4) = 0;
         *(float *)(v0 + 0x8) = 1.0f;

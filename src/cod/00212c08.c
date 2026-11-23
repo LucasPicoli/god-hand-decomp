@@ -3,6 +3,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -12,44 +13,16 @@ extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void Obj1D00_ClearState_9(void *a0);
 extern int D_00463050;
 
-typedef struct {
-    float f00;
-    float f04;
-    float f08;
-    float f0C;
-    char q10[0x10];
-    char q20[0x10];
-    float f30;
-    float f34;
-    float f38;
-    float f3C;
-    float f40;
-    int i44;
-    int i48;
-    signed char b4C;
-    signed char b4D;
-    signed char b4E;
-    unsigned char b4F;
-    int i50;
-    char pad54[0xC];
-    char q60[0x10];
-    short h70;
-    short h72;
-    signed char b74;
-    char pad75[3];
-    int i78;
-} S;
 
 /* Phase machine on the step byte, 15 case labels. Calls Getplayer, VU0_SQC2_VF0,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, moveMotion, func_002705D8 and 7 more. */
 __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
 {
     char *s1 = (char *)self;
-    S s;
+    cEffectParam s;
     void *s2;
     char *base;
     char *parts;
@@ -61,33 +34,33 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
     int spill[2];
 
     s2 = Getplayer();
-    s.f00 = 1.0f;
-    s.f04 = 1.0f;
-    s.f08 = 1.0f;
-    s.f0C = 1.0f;
+    s.color.x = 1.0f;
+    s.color.y = 1.0f;
+    s.color.z = 1.0f;
+    s.color.w = 1.0f;
     VU0_SQC2_VF0(&s, 0x10);
     VU0_SQC2_VF0(&s, 0x20);
     {
-        float *q = &s.f30;
-        s.f30 = 1.0f;
+        float *q = &s.scale.x;
+        s.scale.x = 1.0f;
         q[1] = 1.0f;
         q[2] = 1.0f;
         q[3] = 1.0f;
     }
-    s.f40 = 1.0f;
-    s.b4C = -1;
-    s.b4F = 0xFF;
-    s.i44 = 0;
-    s.i48 = 0;
-    s.b4D = 0;
-    s.b4E = 0;
-    s.i50 = 0;
+    s.size = 1.0f;
+    s.unk4C = -1;
+    s.unk4F = 0xFF;
+    s.unk44 = 0;
+    s.flags = 0;
+    s.unk4D = 0;
+    s.unk4E = 0;
+    s.unk50 = 0;
     VU0_SQC2_VF0(&s, 0x60);
-    s.h70 = 0;
-    s.f40 = *(float *)(s1 + 0x114);
-    s.h72 = 0;
-    s.b74 = 0;
-    s.i78 = 0;
+    s.unk70 = 0;
+    s.size = *(float *)(s1 + 0x114);
+    s.unk72 = 0;
+    s.unk74 = 0;
+    s.unk78 = 0;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0:
             nb = Obj0000_Get_Byte_17C3_NZ_2_276468(s1) & 0xFFFF;
@@ -163,7 +136,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
                 int v0 = *(int *)(s1 + 0x304);
                 func_002A8578(s1, EM_RES_REC(v0, 0x2EE4), EM_RES_REC(v0, 0x2EE8), 0, 0.0f, nb, 0);
             }
-            SetEffect(0x7B, 0xB9, s1, 0, -1, 0xFFFFFFFFu);
+            SetEffect(0x7B, 0xB9, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             *(unsigned char *)(s1 + 0x616) = 1;
             if (*(int *)(s1 + 0x6F4) != 0) {
                 Obj1D00_ClearState_9(*(void **)(s1 + 0x6F4));
@@ -172,7 +145,7 @@ __attribute__((section(".text.func_00212C08"))) void func_00212C08(cEm00 *self)
         case 5:
             *(float *)(s1 + 0x54C) = 3.0f;
             if (moveMotion(s1) != 0) {
-                SetEffect(0x7B, 0xB7, s1, &s, 1, 0xFFFFFFFFu);
+                SetEffect(0x7B, 0xB7, (cObj *)self, &s, 1, EFFECT_FOLLOW_OWNER);
                 func_002705D8(s1);
                 *(unsigned char *)(s1 + 0x616) = 0;
             }

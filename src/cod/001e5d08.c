@@ -5,8 +5,8 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void func_001E6ED8(Slot2 *a0, int a1, int a2);
 extern void Slot2_setLineMark(Slot2 *a0, int a1, int a2);
 extern void func_001E8E48(void *a0, void *a1);
@@ -40,7 +40,7 @@ void Slot2_payoutLine1(Slot2 *self) {
 
     switch (self->phase) {
     case 0:
-        SetEffect(1, 1, 0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 1, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         func_001E6ED8(self, 1, 1);
         Slot2_setLineMark(self, 1, 1);
         self->timer = 0x3C;
@@ -107,7 +107,7 @@ void Slot2_payoutLine2(Slot2 *self) {
 
     switch (self->phase) {
     case 0:
-        SetEffect(1, 2, 0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 2, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         func_001E6ED8(self, 1, 1);
         func_001E6C80(self, 1, 1);
         self->timer = 0x3C;

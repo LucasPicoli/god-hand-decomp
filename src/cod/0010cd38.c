@@ -8,7 +8,6 @@
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void cSnd_SeStop(cSnd *self, int handle);
 extern int func_00124540(void *a0, int a1);
 extern void InvokeVirtualAtField214AndForward_124E68(char *a0, float f12);
@@ -48,7 +47,7 @@ void func_0010CD38(pl00 *self)
             Obj0000_Clear_Fields_640_648_124E58((char *)self);
             p1 = EM_RES_REC(EM_RES(&self->base), 0x48);
             p2 = EM_RES_REC(EM_RES(&self->base), 0x4C);
-            SetEffect(0, 0x17, self, 0, -1, 0xFFFFFFFF);
+            SetEffect(0, 0x17, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, (cObj *)self, 0, 0, 0, 0);
             self->base.unk568 = 0xC;
             break;
@@ -57,14 +56,14 @@ void func_0010CD38(pl00 *self)
             Obj0000_Clear_Fields_640_648_124E58((char *)self);
             p1 = EM_RES_REC(EM_RES(&self->base), 0x50);
             p2 = EM_RES_REC(EM_RES(&self->base), 0x54);
-            SetEffect(0, 0x18, self, 0, -1, 0xFFFFFFFF);
+            SetEffect(0, 0x18, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             break;
         case 2:
             self->base.hitFlash = 5.0f;
             func_00124540(self, 5);
             p1 = EM_RES_REC(EM_RES(&self->base), 0x40);
             p2 = EM_RES_REC(EM_RES(&self->base), 0x44);
-            SetEffect(0, 0x16, self, 0, -1, 0xFFFFFFFF);
+            SetEffect(0, 0x16, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, (cObj *)self, 0, 0, 0, 0);
             self->stepScale = 1.2f;
             break;
@@ -73,7 +72,7 @@ void func_0010CD38(pl00 *self)
             func_00124540(self, 5);
             p1 = EM_RES_REC(EM_RES(&self->base), 0x38);
             p2 = EM_RES_REC(EM_RES(&self->base), 0x3C);
-            SetEffect(0, 0x15, self, 0, -1, 0xFFFFFFFF);
+            SetEffect(0, 0x15, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2A, (cObj *)self, 0, 0, 0, 0);
             self->stepScale = 1.2f;
             break;

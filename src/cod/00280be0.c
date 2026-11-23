@@ -1,41 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void cNode_setLocalTranslation(void *self, void *v);
 extern void LinkObj_callLockOn(void *a0);
 
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
+#include "godhand/cObjBase.h"
 
 
 
-typedef struct {
-    float f00;          /* 0x00 */
-    float f04;          /* 0x04 */
-    float f08;          /* 0x08 */
-    float f0C;          /* 0x0C */
-    char q10[0x10];     /* 0x10 sqc2 */
-    char q20[0x10];     /* 0x20 sqc2 */
-    float f30;          /* 0x30 */
-    float f34;          /* 0x34 */
-    float f38;          /* 0x38 */
-    float f3C;          /* 0x3C */
-    float f40;          /* 0x40 */
-    int i44;            /* 0x44 */
-    int i48;            /* 0x48 */
-    signed char b4C;    /* 0x4C */
-    signed char b4D;    /* 0x4D */
-    signed char b4E;    /* 0x4E */
-    unsigned char b4F;  /* 0x4F */
-    int i50;            /* 0x50 */
-    char pad54[0xC];    /* 0x54 */
-    char q60[0x10];     /* 0x60 sqc2 */
-    short h70;          /* 0x70 */
-    short h72;          /* 0x72 */
-    signed char b74;    /* 0x74 */
-    char pad75[3];      /* 0x75 */
-    int i78;            /* 0x78 */
-} S;
 
 static inline void cpy3(float *d, float *s)
 {
@@ -49,7 +22,7 @@ static inline void cpy3(float *d, float *s)
 __attribute__((section(".text.func_00280BE0")))
 void func_00280BE0(char *p, char *par, int idx, float *v0p, float *v1p)
 {
-    S s;
+    cEffectParam s;
     unsigned char frame[0x10] __attribute__((aligned(16)));
     int b, b2;
     unsigned char ok, ok2;
@@ -57,32 +30,32 @@ void func_00280BE0(char *p, char *par, int idx, float *v0p, float *v1p)
     char *o;
     float *sv;
 
-    s.f00 = 1.0f;
-    s.f04 = 1.0f;
-    s.f08 = 1.0f;
-    s.f0C = 1.0f;
+    s.color.x = 1.0f;
+    s.color.y = 1.0f;
+    s.color.z = 1.0f;
+    s.color.w = 1.0f;
     VU0_SQC2_VF0(&s, 0x10);
     VU0_SQC2_VF0(&s, 0x20);
     {
-        float *q = &s.f30;
-        s.f30 = 1.0f;
+        float *q = &s.scale.x;
+        s.scale.x = 1.0f;
         q[1] = 1.0f;
         q[2] = 1.0f;
         q[3] = 1.0f;
     }
-    s.f40 = 1.0f;
-    s.b4C = -1;
-    s.b4F = 0xFF;
-    s.i44 = 0;
-    s.i48 = 0;
-    s.b4D = 0;
-    s.b4E = 0;
-    s.i50 = 0;
+    s.size = 1.0f;
+    s.unk4C = -1;
+    s.unk4F = 0xFF;
+    s.unk44 = 0;
+    s.flags = 0;
+    s.unk4D = 0;
+    s.unk4E = 0;
+    s.unk50 = 0;
     VU0_SQC2_VF0(&s, 0x60);
-    s.h70 = 0;
-    s.h72 = 0;
-    s.b74 = 0;
-    s.i78 = 0;
+    s.unk70 = 0;
+    s.unk72 = 0;
+    s.unk74 = 0;
+    s.unk78 = 0;
     ok = ((*(int *)frame = b = *(unsigned char *)(par + 0x2B4)), (idx >= 0 && idx < b));
     if (ok) obj = *(char **)(*(char **)(par + 0x278) + idx * 4); else obj = 0;
     if (obj == 0) return;
@@ -101,8 +74,8 @@ void func_00280BE0(char *p, char *par, int idx, float *v0p, float *v1p)
     cpy3((float *)(p + 0x1590), v0p);
     cpy3((float *)(p + 0x15A0), v1p);
     cpy3((float *)(p + 0x110), (float *)(par + 0x110));
-    s.f40 = *(float *)(p + 0x114);
-    SetEffect(0xC2, 1, p, &s, 1, 0xFFFFFFFFu);
+    s.size = *(float *)(p + 0x114);
+    SetEffect(0xC2, 1, (cObj *)p, &s, 1, EFFECT_FOLLOW_OWNER);
 }
 
 /* sn-2.95.3-136 matched TU. */

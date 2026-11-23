@@ -17,5 +17,5 @@ void SetEffectPos(int kind, int id, cObj *owner, const cVec *pos, float size, in
     param.unk78 = 0;
     cVec_copy3(&param.unk20, pos);
     param.size = size;
-    SetEffect(kind, id, owner, &param, handle, 0xFFFFFFFF);
+    SetEffect(kind, id, owner, &param, handle, EFFECT_FOLLOW_OWNER);
 }

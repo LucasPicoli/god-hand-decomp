@@ -4,6 +4,7 @@
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cOmWeapon.h"
 #include "godhand/globals.h"
 
 extern int cSnd_SeCall(void *a0, int a1, int a2, void *a3, int a4, int a5);
@@ -36,19 +37,10 @@ extern void func_002F5588(void *dst, void *self);
 extern void cNode_setTranslationFromWorld(void *self, void *v);
 extern void LinkObj_callLockOn(void *self);
 
-/* Once per object (flag byte 0x688): cast a line from the object's position
- * (0x490) along a zeroed direction; when the hit surface (flags at hit+4)
- * has bit 0x400 (water), spawn effect 0x55 at the hit point and play sound
- * 0x50 on the owner, then set the flag. */
+/* Once per weapon (waterHit): cast a line from posA to pos; when the hit
+ * surface (flags at hit+4) has bit 0x400 (water), spawn effect 0x55 at the
+ * hit point and play sound 0x50 at pos, then set waterHit. */
 
-
-typedef struct LineObj {
-    char unk000[0xF0];
-    void *owner;                        /* 0xF0 */
-    char unk0F4[0x39C];
-    char pos[0x1F8];                    /* 0x490 */
-    unsigned char done;                 /* 0x688 */
-} LineObj;
 
 typedef struct HitRec {
     int unk0;
@@ -72,18 +64,18 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, void *a
 
 
 __attribute__((section(".text.LineObj_checkWaterHit")))
-void LineObj_checkWaterHit(LineObj *self) {
+void LineObj_checkWaterHit(cOmWeapon *self) {
     LineHit hit;
-    if (self->done == 0) {
+    if (self->waterHit == 0) {
         cVec *v = &hit.point;
         int one;
         VU0_SQC2_VF0(FRAME, 0x30);
         one = 1;
-        if (ChkLine(self->pos, self->owner, v, 0, 7, 0, &hit.rec, 1, 0, 0, 0, 0, one) != 0
+        if (ChkLine(&self->base.posA, self->base.pos, v, 0, 7, 0, &hit.rec, 1, 0, 0, 0, 0, one) != 0
             && (hit.rec->surface & SURFACE_WATER) != 0) {
             SetEffectPos(0, 0x55, 0, v, 1.0f, -1);
-            cSnd_SeCall(&D_005FEE00, 2, 0x50, self->owner, 0, 0);
-            self->done = one;
+            cSnd_SeCall(&D_005FEE00, 2, 0x50, self->base.pos, 0, 0);
+            self->waterHit = one;
         }
     }
 }

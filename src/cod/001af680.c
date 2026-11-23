@@ -1,6 +1,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -8,7 +9,6 @@ extern int moveMotion(void *a0);
 extern void cOmSub_initMove1_pos(void *a0, void *a1, int a2, int a3, void *t0, float f12, float f13);
 extern void cOmSub_setVibration(void *a0, int a1, int a2, float f12, float f13, float f14);
 extern int cOmSub_move(void *a0);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void cSnd_SeStop(void *a0, int a1);
 extern void cDamageUnit_SetDamageCollActive(int a0, int a1);
 /* Phase machine on the step byte, 3 case labels. Calls cOmSub_initMove1_pos, cOmSub_setVibration,
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_001AF680"))) void func_001AF680(cEm00 *self)
             *(unsigned char *)(s1 + 0x2F6) = 1;
             *(unsigned char *)(s1 + 0x2F7) = 0;
             func_002A8578(s1, EM_RES_REC(v0, 0x10), 0, 0, z, 0, 0);
-            SetEffect(0, 0x50, s1, 0, -1, 0xFFFFFFFFU);
+            SetEffect(0, 0x50, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
             *(int *)(s1 + 0xAF4) = cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x107, (cObj *)self, 0, 0, 0, 0);
             break;
         }

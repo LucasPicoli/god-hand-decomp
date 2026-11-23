@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 
 extern unsigned char D_005864F0[];
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
@@ -11,7 +12,6 @@ extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern void func_0012CC70(void *a0);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern void SetMotionStep(void *a0, float f12);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern void func_00126770(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void FreeFieldObject_1267F8(void *a0);
@@ -99,7 +99,7 @@ void func_00114608(void *a0)
                             case 2:
                             case 4:
                             case 6:
-                                SetEffect(0, 0xE, s1, 0, -1, 0xFFFFFFFFU);
+                                SetEffect(0, 0xE, a0, 0, -1, EFFECT_FOLLOW_OWNER);
                                 break;
                             case 1:
                             case 3:
