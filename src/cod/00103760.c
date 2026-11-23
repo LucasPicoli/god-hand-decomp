@@ -3,6 +3,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/rollObj.h"
 
 extern void CustomIDWork_SetLocalPosY(char *work, int y);
 extern void SetCustomIDDispOneOrAll_1F4778(char *self, int id, int on);
@@ -10,7 +11,6 @@ extern void StoreVecFromFieldB0_2B6160(float *out, void *obj);
 extern void cNode_setTranslationFromWorld(void *self, float *pos);
 extern void func_002FBED0(void *self);
 extern int cOmBase_checkDamage(void *self, void *damage);
-extern void func_001B0540(void *self);
 extern void func_001B7EE0(void *self, float f);
 extern float capVu0LengthSq(void *v);
 extern cOmBase *Getplayer(void);
@@ -166,15 +166,9 @@ struct Entry_func_001B0838 { short f0; short f2; short f4; short f6; };
 struct Table_func_001B0838 { struct Entry_func_001B0838 e[1]; };
 extern struct Table_func_001B0838 D_003BDCB0;
 
-typedef struct HitPhaseObj {
-    cOmBase base;                       /* 0x000 */
-    char unk5E0[0x20];
-    void *damage;                       /* 0x600 */
-} HitPhaseObj;
-
 /* Phase tick: on a damage hit cap the displayed health at 1000, flash and play sound 0x2D and enter phase 1; then run the handler the phase picks from the table and the two shared post steps. */
 __attribute__((section(".text.HitPhaseObj_tickPhase")))
-void HitPhaseObj_tickPhase(HitPhaseObj *self)
+void HitPhaseObj_tickPhase(RollObj *self)
 {
     char *s0 = (char *)self;
     char *e;
