@@ -36,7 +36,7 @@ fi
 # Marker present but report missing → skip (can't decide).
 if [[ ! -f "$REPORT" ]]; then
     echo "progress/in_progress_tu.txt set but progress/report.json missing;"
-    echo "run `python compile.py --setup` then `scripts/progress.sh`."
+    echo 'run "python compile.py --setup" then "scripts/progress.sh".'
     exit 77
 fi
 
