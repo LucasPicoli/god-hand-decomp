@@ -1,4 +1,6 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#define CGAMEOBJ_NO_TYPEDEF
+#include "godhand/cGameObj.h"
 #include "godhand/globals.h"
 
 extern void cOmWeapon_setFall(int arg);
@@ -18,7 +20,7 @@ __attribute__((section(".text.InitFields_1B6E90")))
 char *InitFields_1B6E90(char *a0) {
     char *p490;
     char *p5D0;
-    cGameObj(a0);
+    cGameObj((struct cGameObj *)a0);
     *(int*)(a0 + 0x5B0) = 0;
     *(int*)(a0 + 0x5B4) = 0;
     *(int*)(a0 + 0x214) = (int)&D_00428A20;

@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cObjBase.h"
+#include "godhand/objFactory.h"
 #include "godhand/globals.h"
 
-extern char D_00450B28[];
-extern char D_00450C38[];
 extern char D_00450CE8[];
 extern char D_0076A790[];
 
@@ -11,9 +11,9 @@ extern char D_0076A790[];
 
 
 __attribute__((section(".text.func_00318418")))
-int func_00318418(void *a0) {
-    *(char**)((char*)a0+0x214) = D_00450B28;
-    return cObjBase__dtor(a0);
+void func_00318418(struct cObjBase *self, int flags) {
+    self->vtable = D_00450B28;
+    cObjBase__dtor(self, flags);
 }
 
 /* clone */
@@ -21,9 +21,9 @@ int func_00318418(void *a0) {
 
 
 __attribute__((section(".text.func_00318518")))
-int func_00318518(void *a0) {
-    *(char**)((char*)a0+0x214) = D_00450C38;
-    return cObjBase__dtor(a0);
+void func_00318518(struct cObjBase *self, int flags) {
+    self->vtable = D_00450C38;
+    cObjBase__dtor(self, flags);
 }
 
 /* clone */
@@ -31,9 +31,9 @@ int func_00318518(void *a0) {
 
 
 __attribute__((section(".text.func_0031A018")))
-int func_0031A018(void *a0) {
+void func_0031A018(void *a0, int flags) {
     *(char**)((char*)a0+0x214) = D_00450CE8;
-    return cObj__dtor(a0);
+    cObj__dtor(a0, flags);
 }
 
 /* clone */

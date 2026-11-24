@@ -145,11 +145,19 @@ struct cObjBase {
     COBJBASE_FIELDS
 };                                      /* 0x4D0 */
 
-/* As in cModel.h: the constructor is the function cObjBase, so its TU defines
- * COBJBASE_NO_TYPEDEF before this include and writes struct cObjBase. */
+/* As in cModel.h: the constructor is the function cObjBase, so a TU that
+ * defines or calls it defines COBJBASE_NO_TYPEDEF before this include, writes
+ * struct cObjBase, and gets the constructor's prototype. */
 #ifndef COBJBASE_NO_TYPEDEF
 typedef struct cObjBase cObjBase;
+#else
+struct cObjBase *cObjBase(struct cObjBase *self);
 #endif
+
+/* The destructors: put the class's vtable back, then run the base's. flags
+ * is g++'s in-charge argument, passed on unchanged. */
+int cObj__dtor(struct cObjBase *self, int flag);
+void cObjBase__dtor(struct cObjBase *self, int flags);
 
 /* Byte offset of a cObjBase field, for the few bodies that must form the
  * address by hand to match retail. */

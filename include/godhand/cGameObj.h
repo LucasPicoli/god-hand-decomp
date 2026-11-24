@@ -86,13 +86,19 @@ typedef struct cGameObjEffect {
 /* cGameObj is cObjBase (COBJBASE_FIELDS, 0x000..0x4D0) plus its own fields:
  * the retail constructor (0x2A7338) calls cObjBase first, then writes only
  * 0x214, 0x4AC and 0x4D0 onward. That constructor is the function cGameObj,
- * so its TU defines CGAMEOBJ_NO_TYPEDEF before this include. */
+ * so a TU that defines or calls it defines CGAMEOBJ_NO_TYPEDEF before this
+ * include, writes struct cGameObj, and gets the constructor's prototype. */
 #ifndef CGAMEOBJ_NO_TYPEDEF
 typedef struct cGameObj cGameObj;
+#else
+struct cGameObj *cGameObj(struct cGameObj *self);
 #endif
 #define CGAMEOBJ_FIELDS \
     COBJBASE_FIELDS \
-    char unk4D0[0x520 - 0x4D0]; \
+    int unk4D0;                         /* 0x4D0 0xFFFF after construction */ \
+    char unk4D4[0x510 - 0x4D4]; \
+    float unk510;                       /* 0x510 0 after construction; cEm00 compares it with 8.0 */ \
+    char unk514[0x520 - 0x514]; \
     cVec stored;                        /* 0x520 position remembered with storedWait (w is 1.0) */ \
     unsigned char storedWait;           /* 0x530 */ \
     signed char unk531;                 /* 0x531 -1 after construction */ \
@@ -121,6 +127,13 @@ typedef struct cGameObj cGameObj;
 struct cGameObj {
     CGAMEOBJ_FIELDS
 };                                      /* 0x5B0: the longs at 0x538 make it 8-aligned */
+
+/* cGameObj's own method table, which its constructor stores at 0x214. */
+extern cVtEnt D_0044AE28[];
+
+/* The destructor (retail _$_8cGameObj): put D_0044AE28 back, then run the
+ * cObjBase part. flags is g++'s in-charge argument, passed on unchanged. */
+void cGameObj__dtor(struct cGameObj *self, int flags);
 
 /* The typed method table behind cGameObj's g++ vtable (0x214). */
 static __inline__ cGameObjVt *cGameObj_vt(const struct cGameObj *self)
