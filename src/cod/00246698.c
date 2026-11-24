@@ -11,7 +11,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int irand(void);
 extern void func_002744E0(void *a0);
-extern int cOmWeapon_setParent();
 extern void func_001D0340(void *a0);
 extern void func_001D0408(void *a0);
 extern int cEmManage_findEma2Near(void *a0, void *a1, float f);
@@ -20,6 +19,7 @@ extern char D_005864F0[];
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/cOmWeapon.h"
 
 
 
@@ -45,7 +45,7 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
 {
     char *p = (char *)self;
     int s2v, s1v;
-    float buf[7];
+    cVec buf[2];
 
     switch (*(unsigned char *)(p + 0x2F6)) {
         case 0: {
@@ -319,13 +319,13 @@ __attribute__((section(".text.func_00246698"))) void func_00246698(cEm00 *self)
                     p100[0] = 0;
                     p100[1] = 0;
                     p100[2] = 0;
-                    buf[0] = 0.0f;
-                    buf[1] = -0.3f;
-                    buf[2] = 0.1f;
-                    buf[4] = 1.3f;
-                    buf[5] = 0.0f;
-                    buf[6] = 0.0f;
-                    cOmWeapon_setParent(*(int *)(p + 0x738), p, 10, buf, (char *)buf + 0x10);
+                    buf[0].x = 0.0f;
+                    buf[0].y = -0.3f;
+                    buf[0].z = 0.1f;
+                    buf[1].x = 1.3f;
+                    buf[1].y = 0.0f;
+                    buf[1].z = 0.0f;
+                    cOmWeapon_setParent(*(cOmWeapon **)(p + 0x738), (cGameObj *)self, 10, &buf[0], &buf[1]);
                 }
             }
             if ((*(unsigned short *)(p + 0x3AC) & 2) != 0 && *(int *)(p + 0x738) != 0) {

@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -8,7 +9,6 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *Getplayer(void);
-extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -41,7 +41,7 @@ __attribute__((section(".text.func_0022B9E0"))) void func_0022B9E0(cEm00 *self)
             if (*(unsigned char *)(p + 0x2F7) == 0) {
                 char *h = Getplayer();
 
-                cGameObj_SetTgtTurn(p, *(int *)(h + 0xF0), *(float *)(p + 0x5A8) * 0.19634955f);
+                cGameObj_SetTgtTurn((cGameObj *)p, *(cVec **)(h + 0xF0), *(float *)(p + 0x5A8) * 0.19634955f);
             }
             if (moveMotion(p) != 0) {
                 *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
@@ -72,7 +72,7 @@ __attribute__((section(".text.func_0022B9E0"))) void func_0022B9E0(cEm00 *self)
 
                     *(int *)(p + 0x5F0) = t - 1;
                     h = Getplayer();
-                    cGameObj_SetTgtTurn(p, *(int *)(h + 0xF0),
+                    cGameObj_SetTgtTurn((cGameObj *)p, *(cVec **)(h + 0xF0),
                                         *(float *)(p + 0x5A8) * 0.049087387f);
                 }
             }

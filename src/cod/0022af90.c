@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cCamera.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -10,9 +11,6 @@ extern void func_002495E0(void *a0, float f);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void *Getplayer(void);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
-extern float Turn_dest_dir(float f12, float f13, float f14);
-extern float Adjust_theta(float f12);
 extern int cEmManage_CkPlCatched(void *a0);
 extern char D_005864F0[];
 
@@ -87,8 +85,8 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
 {
     char *s1 = (char *)self;
     char *v0;
-    char *pos;
-    char *s2;
+    float *pos;
+    float *s2;
     int gb, b;
     float one;
     float th, d, ad, f, g;
@@ -104,10 +102,10 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
             *(int *)(s1 + 0x5FC) = 0;
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         case 1:
-            pos = *(char **)(s1 + 0xF0);
+            pos = &self->pos->x;
             v0 = (char *)Getplayer();
             one = 1.0f;
-            th = Turn_dest(pos, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x1670), 0.5235988f);
+            th = Turn_dest(pos, *(float *)(s1 + 0x1670), *(void **)(v0 + 0xF0), 0.5235988f);
             d = Turn_dest_dir(*(float *)(s1 + 0x104), Adjust_theta(th + *(float *)(s1 + 0x1670)),
                               *(float *)(s1 + 0x5A8) * 0.19634955f);
             *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + d;
@@ -122,9 +120,9 @@ __attribute__((section(".text.func_0022AF90"))) void func_0022AF90(cEm00 *self)
             }
             f = *(float *)(s1 + 0x618);
             if (9.0f < f && f < 400.0f && *(float *)(s1 + 0x1714) <= 0.0f) {
-                s2 = *(char **)(s1 + 0xF0);
+                s2 = &self->pos->x;
                 v0 = (char *)Getplayer();
-                d = Turn_dest(s2, *(void **)(v0 + 0xF0), *(float *)(s1 + 0x104), 3.14159274f);
+                d = Turn_dest(s2, *(float *)(s1 + 0x104), *(void **)(v0 + 0xF0), 3.14159274f);
                 if (d < 0.0f) {
                     f = -d;
                     ad = f;

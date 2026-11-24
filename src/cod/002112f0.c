@@ -1,12 +1,12 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
@@ -28,7 +28,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
     float ad;
     float f0z;
     float k3;
-    char *sp0;
+    float *sp0;
     *((int *)(s2 + 0x16D0)) = (*((int *)(s2 + 0x16D0))) | 0x400;
     switch (*((unsigned char *)(s2 + 0x2F6))) {
         case 0:
@@ -318,8 +318,8 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
                     cObjBase_addNullSpeed(s2, 1.0f);
                 }
             }
-            sp0 = *((char **)(s2 + 0xF0));
-            d = Turn_dest(sp0, *((void **)(((char *)Getplayer()) + 0xF0)), *((float *)(s2 + 0x104)),
+            sp0 = *((float **)(s2 + 0xF0));
+            d = Turn_dest(sp0, *((float *)(s2 + 0x104)), *((float **)(((char *)Getplayer()) + 0xF0)),
                           3.14159274f);
             if (d < 0.0f) {
                 ad = (new_var = -d);
@@ -333,8 +333,8 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
 
         case 2:
             gb = Obj0000_Get_Byte_17C3_NZ_2_276468(s2) & 0xFFFF;
-            sp0 = *((char **)(s2 + 0xF0));
-            d = Turn_dest(sp0, *((void **)(((char *)Getplayer()) + 0xF0)), *((float *)(s2 + 0x104)),
+            sp0 = *((float **)(s2 + 0xF0));
+            d = Turn_dest(sp0, *((float *)(s2 + 0x104)), *((float **)(((char *)Getplayer()) + 0xF0)),
                           3.14159274f);
             if (d < 0.0f) {
                 switch (*((int *)(s2 + 0x564))) {
@@ -865,7 +865,7 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
             *((unsigned char *)(s2 + 0x2F6)) = (*((unsigned char *)(s2 + 0x2F6))) + 1;
 
         case 3:
-            cGameObj_SetTgtTurn(s2, *((int *)(((char *)Getplayer()) + 0xF0)),
+            cGameObj_SetTgtTurn((cGameObj *)s2, *((cVec **)(((char *)Getplayer()) + 0xF0)),
                                 (*((float *)(s2 + 0x5A8))) * 0.09817477f);
             if (900.0f < (*((float *)(s2 + 0x618)))) {
                 if ((D_007476B0 & 7) == ((*((unsigned int *)(s2 + 0x17D0))) & 7)) {
@@ -874,8 +874,8 @@ __attribute__((section(".text.func_002112F0"))) void func_002112F0(cEm00 *self)
             } else {
                 moveMotion(s2);
             }
-            sp0 = *((char **)(s2 + 0xF0));
-            d = Turn_dest(sp0, *((void **)(((char *)Getplayer()) + 0xF0)), *((float *)(s2 + 0x104)),
+            sp0 = *((float **)(s2 + 0xF0));
+            d = Turn_dest(sp0, *((float *)(s2 + 0x104)), *((float **)(((char *)Getplayer()) + 0xF0)),
                           3.14159274f);
             if (d < 0.0f) {
                 ad = -d;

@@ -18,7 +18,6 @@ typedef struct DropFrame {
 } DropFrame;
 
 extern void MtxInitRotY(void *a0, float angle);
-extern void func_001D0240(cOmWeapon *self, cVec *pos, int arg);
 
 /* Puts the weapon at the enemy's hand and lets it go straight ahead. */
 __attribute__((section(".text.func_0026BDD0")))
@@ -44,5 +43,5 @@ void func_0026BDD0(cGameObj *self, cOmWeapon *weapon)
     f.vel.y = 0;
     f.vel.z = DROP_SPEED;
     cVec_applyMatrix(&f.vel, f.mtx);
-    func_001D0240(weapon, &f.vel, (int)self);
+    func_001D0240(weapon, &f.vel, self);
 }

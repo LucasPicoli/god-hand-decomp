@@ -8,6 +8,7 @@ extern char D_00463050[];
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 extern void Obj1D00_SetState_7_1C(int a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
 extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
@@ -15,7 +16,6 @@ extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_002DC390(void *a0);
 
@@ -261,7 +261,7 @@ void func_00271298(char *p)
     int i4;
     int o;
     char *g;
-    char *q;
+    float *q;
     float z;
     float r;
     float t;
@@ -279,9 +279,9 @@ void func_00271298(char *p)
     if (*(float *)(g + 0x54C) > z) return;
     if (*(int *)(g + 0x6A0) != 0) return;
     if (o == 0) return;
-    q = *(char **)((char *)Getplayer() + 0xF0);
-    dy = Turn_dest(q, *(char **)(o + 0xF0),
-                   *(float *)((char *)Getplayer() + 0x104),
+    q = *(float **)((char *)Getplayer() + 0xF0);
+    dy = Turn_dest(q, *(float *)((char *)Getplayer() + 0x104),
+                   *(float **)(o + 0xF0),
                    3.14159274f);
     r = dy;
     if (r < z) t = -r; else t = r;

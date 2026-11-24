@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -7,7 +8,6 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int moveMotion(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 
@@ -201,7 +201,7 @@ __attribute__((section(".text.func_002591F8"))) void func_002591F8(cEm00 *self)
 
             if (t != 0) {
                 *(int *)(s3 + 0x5F0) = t - 1;
-                cGameObj_SetTgtTurn(s3, (int)(s3 + 0x5D0), *(float *)(s3 + 0x5A8) * 0.39269909f);
+                cGameObj_SetTgtTurn((cGameObj *)s3, &self->posB, *(float *)(s3 + 0x5A8) * 0.39269909f);
             }
             if (moveMotion(s3) != 0) {
                 func_002705D8(s3);

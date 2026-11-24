@@ -19,7 +19,7 @@ static inline void cpy3(float *d, float *s)
 
 /* Attach the weapon to slot idx of a fighter: pin its collision body to the fighter's body part, copy the hold offsets and start the held state. */
 __attribute__((section(".text.cOmWeapon_setParent")))
-void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, cVec *heldRot)
+void cOmWeapon_setParent(cOmWeapon *self, cGameObj *par, unsigned int idx, const cVec *heldPos, const cVec *heldRot)
 {
     unsigned char frame[0x10] __attribute__((aligned(16)));
     int b, b2;
@@ -28,7 +28,7 @@ void cOmWeapon_setParent(cOmWeapon *self, cOmBase *par, int idx, cVec *heldPos, 
     cOmBase *body;
     cVec *anchor;
 
-    ok = ((*(int *)frame = b = par->partNum), (idx >= 0 && idx < b));
+    ok = ((*(int *)frame = b = par->partNum), ((int)idx >= 0 && (int)idx < b));
     if (ok) part = par->children[idx]; else part = 0;
     if (part == 0) return;
     ok2 = ((*(int *)frame = b2 = self->base.partNum), (b2 != 0));

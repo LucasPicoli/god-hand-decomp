@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -5,7 +6,6 @@
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern int moveMotion(void *a0);
 extern void func_0026B240(void *a0, int a1, int a2, int a3);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
@@ -33,7 +33,7 @@ __attribute__((section(".text.func_0022A258"))) void func_0022A258(cEm00 *self)
             self->step++;
         case 1:
             v = (char *)Getplayer();
-            cGameObj_SetTgtTurn(self, *(int *)(v + 0xF0), self->speedRate * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(v + 0xF0), self->speedRate * 0.09817477f);
             self->emFlags |= 0x800000;
             if (moveMotion(self) != 0) {
                 func_002705D8(self);

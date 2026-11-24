@@ -1,4 +1,5 @@
 #include "godhand/cCollisionSolid.h"
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -9,7 +10,6 @@ extern int moveMotion(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int irand(void);
 extern void cModel_calcNullPart(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void Add_nullspeed(void *a0);
 
 /* Phase machine on the step byte, 2 case labels. Calls func_002A8578, cSnd_SeCall_2CBA48,
@@ -107,7 +107,7 @@ __attribute__((section(".text.func_00288660"))) void func_00288660(cEm00 *self)
                 self->timerA = t - 1;
                 v0 = *(int *)(q + 0x34);
                 if (v0 != 0)
-                    cGameObj_SetTgtTurn(self, *(int *)(v0 + 0xF0), self->speedRate * 0.39269909f);
+                    cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(v0 + 0xF0), self->speedRate * 0.39269909f);
             }
             if (moveMotion(self) != 0) {
                 if (self->gotoFlags & 0x80) {

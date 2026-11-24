@@ -7,11 +7,11 @@
 #include "godhand/cDamageManage.h"
 #include "godhand/cGrid.h"
 #include "godhand/globals.h"
+#include "godhand/cOmWeapon.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(void *obj);
 extern void func_002A87E8(void *obj, int arg);
 extern void func_001B76D8(void *obj);
-extern int cOmWeapon_setParent();
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
 
@@ -76,10 +76,8 @@ void cOmBase_tickModeTableB(cOmBase *self) {
 #define GRIP_LEFT          0x10
 
 typedef struct GripBuf {
-    float ofs[3];                       /* 0x00 grip offset */
-    float pad0C;
-    float rot[3];                       /* 0x10 grip rotation */
-    float pad1C;
+    cVec ofs;                           /* 0x00 grip offset */
+    cVec rot;                           /* 0x10 grip rotation */
 } GripBuf;
 
 
@@ -97,38 +95,38 @@ void cOmBase_attachWeaponGripB(cOmBase *self, void *weapon, int left)
     VU0_SQC2_VF0(&grip, 0x10);
     if (self->emNo != EM_KIND_LEFTY_A && self->emNo != EM_KIND_LEFTY_B) {
         idx = GRIP_RIGHT;
-        grip.ofs[0] = -0.28f;
-        grip.ofs[1] = -0.035f;
-        grip.ofs[2] = 0.185f;
-        grip.rot[1] = -0.78539819f;
-        *(int *)&grip.rot[0] = 0;
-        *(int *)&grip.rot[2] = 0;
+        grip.ofs.x = -0.28f;
+        grip.ofs.y = -0.035f;
+        grip.ofs.z = 0.185f;
+        grip.rot.y = -0.78539819f;
+        *(int *)&grip.rot.x = 0;
+        *(int *)&grip.rot.z = 0;
         if (left) {
             mirror = 0.28f;
             idx = GRIP_LEFT;
             turn = 0.78539819f;
-            grip.ofs[0] = mirror;
-            grip.rot[1] = turn;
+            grip.ofs.x = mirror;
+            grip.rot.y = turn;
         }
     } else {
         mirror = -0.08f;
         idx = GRIP_RIGHT;
         turn = -0.03f;
-        grip.ofs[0] = mirror;
-        grip.ofs[1] = turn;
-        *(int *)&grip.ofs[2] = 0;
-        *(int *)&grip.rot[0] = 0;
-        *(int *)&grip.rot[1] = 0;
-        *(int *)&grip.rot[2] = 0;
+        grip.ofs.x = mirror;
+        grip.ofs.y = turn;
+        *(int *)&grip.ofs.z = 0;
+        *(int *)&grip.rot.x = 0;
+        *(int *)&grip.rot.y = 0;
+        *(int *)&grip.rot.z = 0;
         if (left) {
             mirror = 0.08f;
             idx = GRIP_LEFT;
             turn = 3.1415927f;
-            grip.ofs[0] = mirror;
-            grip.rot[2] = turn;
+            grip.ofs.x = mirror;
+            grip.rot.z = turn;
         }
     }
-    cOmWeapon_setParent(weapon, self, idx, &grip, &grip.rot[0]);
+    cOmWeapon_setParent(weapon, (cGameObj *)self, idx, &grip.ofs, &grip.rot);
 }
 
 /* sn-2.95.3-136 */

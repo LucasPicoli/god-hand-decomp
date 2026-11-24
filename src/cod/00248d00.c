@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cCoreSave.h"
@@ -13,7 +14,6 @@ extern int ChkLine(void *a0, void *a1, void *a2, void *a3, int a4, int a5, void 
 extern int Rnd(void);
 extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void cGameObj_SetTgtTurn(char *self, void *target, float rate);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
@@ -63,7 +63,7 @@ void func_00248D00(cEm00 *self)
         self->step++;
     case 1:
         self->emFlags |= 0x800000;
-        cGameObj_SetTgtTurn((char *)self, Getplayer()->pos, self->speedRate * 0.19634955f);
+        cGameObj_SetTgtTurn((cGameObj *)self, Getplayer()->pos, self->speedRate * 0.19634955f);
         if (moveMotion(self) != 0) {
             if (16.0f < self->playerDist && self->playerDist < 144.0f) {
                 if (irand() & 1) {

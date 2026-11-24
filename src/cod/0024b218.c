@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -12,7 +13,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void *Getplayer(void);
 extern int irand(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f);
 extern void Obj2810_SetState_8_a1(char *a0, int a1);
 extern void SetBytes2F4Mode7_283270(char *a0, char a1);
 extern void ClearBytes2F4To2F7_283170(void *a0);

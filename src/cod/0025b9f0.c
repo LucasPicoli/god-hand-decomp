@@ -31,8 +31,8 @@ void cEm00_stepGetUp(cEm00 *self)
         p1 = EM_RES_REC(res, 0x3E34);
         p2 = EM_RES_REC(res, 0x3E38);
         self->emFlags = self->emFlags & 0xFEFFFFFF;
-        *(int *)&self->unk16F4 = 0;
-        func_002A8578(self, p1, p2, 2, self->unk16F4, motion, 0);
+        *(int *)&self->neckYaw = 0;
+        func_002A8578(self, p1, p2, 2, self->neckYaw, motion, 0);
         if (self->sub0 != 0) {
             func_00281470(self->sub0, 0);
         }
@@ -74,8 +74,8 @@ void cEm00_stepGetUp(cEm00 *self)
         res = EM_RES(self);
         p1 = EM_RES_REC(res, 0x3E3C);
         p2 = EM_RES_REC(res, 0x3E40);
-        *(int *)&self->unk16F4 = 0;
-        func_002A8578(self, p1, p2, 2, self->unk16F4, motion, 0);
+        *(int *)&self->neckYaw = 0;
+        func_002A8578(self, p1, p2, 2, self->neckYaw, motion, 0);
         if (self->sub0 != 0) {
             func_00281470(self->sub0, 1);
         }

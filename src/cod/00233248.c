@@ -2,13 +2,11 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cOmWeapon.h"
+#include "godhand/cCamera.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void Obj1D00_ClearState_6(void *a0);
-extern void Obj1D00_ClearState_7(void *a0);
 extern void *Getplayer(void);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
-extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
@@ -132,13 +130,13 @@ void func_00233248(void *arg0)
             *(float *)(s1 + 0x604) -= *(float *)(s1 + 0x5A8);
         }
         if (*(int *)(s1 + 0x5F0) != 0) {
-            char *tgt;
+            float *tgt;
             char *o;
             float d;
             *(int *)(s1 + 0x5F0) -= 1;
-            tgt = *(char **)(s1 + 0xF0);
+            tgt = *(float **)(s1 + 0xF0);
             o = (char *)Getplayer();
-            d = Turn_dest(tgt, *(void **)(o + 0xF0), *(float *)(s1 + 0x600),
+            d = Turn_dest(tgt, *(float *)(s1 + 0x600), *(void **)(o + 0xF0),
                           *(float *)(s1 + 0x5A8) * 0.19634955f);
             *(float *)(s1 + 0x600) += d;
             *(float *)(s1 + 0x600) = Adjust_theta(*(float *)(s1 + 0x600));

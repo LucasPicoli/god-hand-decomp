@@ -24,12 +24,107 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cGameObj.h"
 
+struct cOmWeapon;
+
 /* The address of a record in the resource blob. The blob starts with a
  * table of offsets from its own start; res is the blob's address as an int
  * and off the table slot. */
 #define EM_RES_REC(res, off) (*(int *)((res) + (off)) + (res))
 /* The blob's address as an int: the data pack at 0x304. */
 #define EM_RES(obj) ((int)(obj)->pack)
+
+/* The hand child, grip offset and grip rotation enemy self holds a weapon of
+ * CreateObj kind with, into hand, pos and rot (cVec, zeroed first). Enemy
+ * 0x279, and every enemy but 0x209 and 0x21F when left is set, hold it
+ * mirrored in the other hand. Shared by func_0026AB20 and func_0028D138. */
+#define CEM00_WEAPON_GRIP(self, kind, left, pos, rot, hand) \
+    {                                    \
+        (hand) = 0x10;                   \
+        switch (kind) {                  \
+        case 0x361:                      \
+        case 0x375:                      \
+        case 0x3B7:                      \
+        default:                         \
+            (pos).x = 0.2f;              \
+            (pos).y = -0.03f;            \
+            (pos).z = 0.3f;              \
+            (rot).x = 0.0f;              \
+            (rot).y = 0.34906584f;       \
+            (rot).z = 0.0f;              \
+            break;                       \
+        case 0x363:                      \
+            (pos).x = 0.3f;              \
+            (pos).y = -0.07f;            \
+            (pos).z = 0.6f;              \
+            (rot).x = 0.0f;              \
+            (rot).y = 0.34906584f;       \
+            (rot).z = 0.0f;              \
+            break;                       \
+        case 0x366:                      \
+        case 0x369:                      \
+            (pos).x = 0.0f;              \
+            (pos).y = 0.0f;              \
+            (pos).z = 0.0f;              \
+            (rot).x = 0.0f;              \
+            (rot).y = 0.0f;              \
+            (rot).z = 0.0f;              \
+            break;                       \
+        case 0x36D:                      \
+            if ((self)->emNo != 0x223) { \
+                (hand) = 0x10;           \
+            } else {                     \
+                (hand) = 0xC;            \
+            }                            \
+            (pos).x = -0.5452f;          \
+            (pos).y = -0.0683f;          \
+            (pos).z = 0.6069f;           \
+            (rot).x = 0.47145009f;       \
+            (rot).y = 0.17922089f;       \
+            (rot).z = -2.01402092f;      \
+            break;                       \
+        case 0x377:                      \
+        case 0x378:                      \
+            (hand) = 0x10;               \
+            (pos).x = 0.57f;             \
+            (pos).y = -0.04f;            \
+            (pos).z = 0.47f;             \
+            (rot).x = 0.0f;              \
+            (rot).y = 0.7853982f;        \
+            (rot).z = 0.0f;              \
+            break;                       \
+        }                                \
+        if ((self)->emNo == 0x279) {     \
+            (hand) = 0xA;                \
+            (pos).x = -(pos).x;          \
+            (rot).y = -(rot).y;          \
+        }                                \
+        if (left) {                      \
+            switch ((self)->emNo) {      \
+            case 0x209:                  \
+            case 0x21F:                  \
+                break;                   \
+            case 0x223:                  \
+                (hand) = 0x12;           \
+                (pos).x = -(pos).x;      \
+                (rot).y = -(rot).y;      \
+                break;                   \
+            case 0x279:                  \
+                (hand) = 0x10;           \
+                (pos).x = -(pos).x;      \
+                (rot).y = -(rot).y;      \
+                break;                   \
+            default:                     \
+                (hand) = 0xA;            \
+                (pos).x = -(pos).x;      \
+                (rot).y = -(rot).y;      \
+                break;                   \
+            }                            \
+        }                                \
+    }
+
+/* Bit 31 of emFlags2: set by cEm00::setNeckMoveOff, cleared by setNeckMoveOn.
+ * While it is set, func_00269B50 holds neckYaw at 0. */
+#define CEM00_FLAG2_NECK_OFF 0x80000000
 
 /* The method table at 0x214. Each method is a short delta, added to this
  * before the call, a short index and a pfn. */
@@ -118,18 +213,18 @@ typedef struct cEm00 {
     cVec unk6D0;                            /* 0x6D0 */
     float unk6E0;                           /* 0x6E0 copied to the facing angle (rot.y) at the start of a step */
     struct cOm60 *held[2];                  /* 0x6E4 objects held in the hands, made by func_0026A638 */
-    int unk6EC;                             /* 0x6EC handle released by ReleaseField6ECByTag564_26B1E8 */
-    int fx0;                                /* 0x6F0 effect handle */
-    int fx1;                                /* 0x6F4 effect handle */
+    struct cOmWeapon *unk6EC;               /* 0x6EC weapon released by ReleaseField6ECByTag564_26B1E8; any kind func_0026AB20 doesn't slot */
+    struct cOmWeapon *weapon366;            /* 0x6F0 weapon of kind 0x366 (func_0026AB20) */
+    struct cOmWeapon *weapon36D;            /* 0x6F4 weapon of kind 0x36D (func_0026AB20; 00212c08.c passes it to Obj1D00_ClearState_9) */
     int fx2;                                /* 0x6F8 effect handle */
     int fx3;                                /* 0x6FC effect handle */
     int fx4;                                /* 0x700 effect handle */
-    int fx5;                                /* 0x704 effect handle */
-    int fx6;                                /* 0x708 effect handle */
+    struct cOmWeapon *weapon375;            /* 0x704 weapon of kind 0x375, 0x377 or 0x378 (func_0026AB20) */
+    int fx6;                                /* 0x708 object address: Obj1D00_ClearState_7 (0023afd8.c and others), Obj1D00_SetState_7_16 (00138240.c) */
     int unk70C;                             /* 0x70C attached object, updated with func_001C2378 */
     char unk710[0x20];
     int unk730;                             /* 0x730 effect handle, released when moveFlags bit 0 is set */
-    int unk734;                             /* 0x734 effect handle */
+    struct cOmWeapon *weapon369;            /* 0x734 weapon of kind 0x369 (func_0026AB20) */
     void *gotoEffect;                       /* 0x738 effect a goto drops (func_001D0408) */
     char unk73C[0x4];
     int subA;                               /* 0x740 child object started with a variant number */
@@ -179,9 +274,12 @@ typedef struct cEm00 {
     unsigned char unk1614;                  /* 0x1614 selector of the derived enemy, 0 to 2 */
     char unk1615[0xB];
     int unk1620;                            /* 0x1620 sound handle, stopped with cSnd_SeStop */
-    char unk1624[0x20];
+    char unk1624[0x10];
+    struct cOmWeapon *unk1634;              /* 0x1634 weapon of any kind but 0x369 (func_0028D138) */
+    char unk1638[0xC];
     int flags1644;                          /* 0x1644 flag word, bit 0x800000 keeps the body down */
-    char unk1648[0x8];
+    struct cOmWeapon *unk1648;              /* 0x1648 weapon of kind 0x369 (func_0028D138) */
+    char unk164C[0x4];
     unsigned char unk1650;                  /* 0x1650 set to 4 when a knockdown ends in a stand-up */
     char unk1651[0x2F];
     cVec aimPos;                            /* 0x1680 the point the player aims at on this enemy */
@@ -192,7 +290,7 @@ typedef struct cEm00 {
     int hitKind;                            /* 0x16C4 which hit this reaction answers, 0 to 16 */
     char unk16C8[0x8];
     int emFlags;                            /* 0x16D0 */
-    int emFlags2;                           /* 0x16D4 */
+    int emFlags2;                           /* 0x16D4 CEM00_FLAG2_* */
     unsigned int unk16D8;                   /* 0x16D8 */
     int unk16DC;                            /* 0x16DC  */
     int unk16E0;                            /* 0x16E0  */
@@ -200,9 +298,17 @@ typedef struct cEm00 {
     int unk16E8;                            /* 0x16E8 */
     int unk16EC;                            /* 0x16EC */
     char unk16F0[0x4];
-    float unk16F4;                          /* 0x16F4 the float argument of the motion start, always stored as the int 0 */
+    /* Neck yaw: func_00269B50 turns it toward the player, holds it at 0 while CEM00_FLAG2_NECK_OFF is set
+     * (cEm00::setNeckMoveOff), and copies it to parts 3 and 4's extraYaw. The motion starts in 0025b9f0.c
+     * zero it with an int store and pass it as the float argument. */
+    float neckYaw;                          /* 0x16F4 */
     int unk16F8;                            /* 0x16F8 */
-    char unk16FC[0xC];
+    /* Yaw nudge of parts 1 and 2: func_0026A338 (called from func_0020A178, func_0020DCF0 and func_0020E480)
+     * sets it to +-15 or +-7 degrees, the sign alternating with the count at 0x1700.
+     * func_0026A3D8 copies it to parts 1 and 2's extraYaw and scales it by 0.6 a frame (by -0.6 for enemies 0x223,
+     * 0x275 and 0x276). */
+    float unk16FC;                          /* 0x16FC */
+    char unk1700[0x8];
     float pitch;                            /* 0x1708 body pitch toward the ground slope */
     float unk170C;                          /* 0x170C scaled by 10.0 into unk1710 on a hard hit */
     int unk1710;                            /* 0x1710 cleared at the start of a step */
@@ -233,7 +339,8 @@ typedef struct cEm00 {
     unsigned char unk1864;                  /* 0x1864 */
     char unk1865[0x2];
     unsigned char hitCount;                 /* 0x1867 the hits taken in a row, counted up to 4 */
-    char unk1868[0x2];
+    char unk1868[0x1];
+    signed char unk1869;                    /* 0x1869 picks the start point of func_0026BBD0's throw, counted down to 0 there */
     unsigned char unk186A;                  /* 0x186A */
     unsigned char unk186B;                  /* 0x186B a scalar byte */
     char unk186C[0x4];
@@ -299,5 +406,14 @@ extern unsigned char D_005CB010;
 int Obj0000_IsSet_Field_16D4_Bit_4_26F308(void *a0);    /* definition in 000000.c */
 int func_00273EB8(void *a0);                            /* definition in 00273eb8.c; 1 once unk1720 has run down to 0 */
 int func_00273EE0(void *a0);                            /* definition in 00273ee0.c */
+
+/* Put weapon in the enemy's hand and keep it in the slot for its kind. */
+void func_0026AB20(cEm00 *self, struct cOmWeapon *weapon, int kind);
+/* Throw weapon w from the enemy's part 8, forward along its facing. */
+void func_0026BBD0(cEm00 *self, struct cOmWeapon *w);
+/* Put weapon in the enemy's hand and keep it as unk1648 (kind 0x369) or unk1634. */
+void func_0028D138(cEm00 *self, struct cOmWeapon *weapon, int kind);
+/* Offer the player's action button on the enemy when it stands close behind the player. */
+void func_00271148(cEm00 *self);
 
 #endif

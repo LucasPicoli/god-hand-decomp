@@ -9,8 +9,6 @@ extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern int cDataManager_addPinnedData(void *a0, int a1, int a2);
-extern int cOmWeapon_setParent();
-extern void Obj1D00_ClearState_8(char *a0);
 extern char D_005864E0[];
 
 /* func_0027B810 - object/enemy Init.  MATCH (exact) under sn-2.95.3-136.
@@ -37,6 +35,7 @@ extern char D_005864E0[];
  */
 #include "godhand/vu0.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cOmWeapon.h"
 
 
 
@@ -173,8 +172,8 @@ int func_0027B810(char *a0)
             *(int *)(buf + 0x60) = 0;
             *(int *)(buf + 0x64) = 0;
             *(int *)(buf + 0x68) = 0;
-            cOmWeapon_setParent(*(char **)(s1 + 0x15B0), s1, 0x12, q, buf + 0x60);
-            Obj1D00_ClearState_8(*(char **)(s1 + 0x15B0));
+            cOmWeapon_setParent(*(cOmWeapon **)(s1 + 0x15B0), (cGameObj *)s1, 0x12, (cVec *)q, (cVec *)(buf + 0x60));
+            Obj1D00_ClearState_8(*(cOmBase **)(s1 + 0x15B0));
         }
     }
     *(char *)(s1 + 0x531) = -1;

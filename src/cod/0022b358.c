@@ -1,9 +1,9 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float f);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -70,7 +70,7 @@ void func_0022B358(cEm00 *self)
     case 1:
         *(int *)(s0 + 0x16DC) = 0x64;
         *(int *)(s0 + 0x16E0) = 0x96;
-        cGameObj_SetTgtTurn(s0, s0 + 0x16A0,
+        cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         if (moveMotion(s0) != 0)
             *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
@@ -107,7 +107,7 @@ void func_0022B358(cEm00 *self)
         *(int *)(s0 + 0x16DC) = 0x64;
         *(int *)(s0 + 0x16E0) = 0x96;
         *(int *)(s0 + 0x16D0) |= 0x400;
-        cGameObj_SetTgtTurn(s0, s0 + 0x16A0,
+        cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         moveMotion(s0);
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
@@ -139,7 +139,7 @@ void func_0022B358(cEm00 *self)
         *(int *)(s0 + 0x16DC) = 0x64;
         *(int *)(s0 + 0x16E0) = 0x96;
         *(int *)(s0 + 0x16D0) |= 0x400;
-        cGameObj_SetTgtTurn(s0, s0 + 0x16A0,
+        cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
                                          *(float *)(s0 + 0x5A8) * 0.09817477f);
         moveMotion(s0);
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);

@@ -7,9 +7,8 @@ extern void func_0012B928(void *a0);
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 extern int moveMotion(void *a0);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Adjust_theta(float f12);
 extern void func_00124EC0(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -74,9 +73,9 @@ void func_001162C0(void *a0) {
     }
         /* fallthrough */
     case 1: {
-        float r = Turn_dest(s1 + 0x580, *(float *)(s1 + 0x104),
-                            *(float *)(s1 + 0x5A8) * 0.39269909f,
-                            *(void **)(s1 + 0xF0));
+        float r = Turn_dest((float *)(s1 + 0x580), *(float *)(s1 + 0x104),
+                            *(float **)(s1 + 0xF0),
+                            *(float *)(s1 + 0x5A8) * 0.39269909f);
 
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + r;
         *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
@@ -166,9 +165,9 @@ void func_001162C0(void *a0) {
                 rate = 0.0f;
             }
         }
-        r = Turn_dest(s1 + 0x580, *(float *)(s1 + 0x104),
-                      *(float *)(s1 + 0x5A8) * 0.39269909f,
-                      *(void **)(s1 + 0xF0));
+        r = Turn_dest((float *)(s1 + 0x580), *(float *)(s1 + 0x104),
+                      *(float **)(s1 + 0xF0),
+                      *(float *)(s1 + 0x5A8) * 0.39269909f);
         *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + r;
         *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
         func_00124EC0(s1);

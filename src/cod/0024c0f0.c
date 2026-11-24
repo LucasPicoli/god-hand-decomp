@@ -1,5 +1,6 @@
 #include "godhand/cModel.h"
 #include "godhand/cEm00.h"
+#include "godhand/cOmWeapon.h"
 typedef void (*Pfn)(void *self);
 
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
@@ -7,8 +8,6 @@ extern void ClearField630_SetField2F6_1C2318(void *a0);
 extern void func_001D0108(void *a0);
 extern void cEm_breakHeldWeapons(void *a0);
 extern void func_001D0408(void *a0);
-extern void Obj1D00_ClearState_6(void *a0);
-extern void Obj1D00_ClearState_7(void *a0);
 extern void KillEffect(void *a0, int a1, int a2);
 extern int cEm00_stepFadeIn(void *a0);
 extern void func_00276478(void *a0);
@@ -51,7 +50,7 @@ void func_0024C0F0(char *self)
             *(unsigned char *)(self + 0x1867) = 0;
         }
         if (*(void **)(self + 0x6F0) != 0) {
-            Obj1D00_ClearState_6(*(void **)(self + 0x6F0));
+            Obj1D00_ClearState_6(*(cOmBase **)(self + 0x6F0));
         }
         if (*(void **)(self + 0x708) != 0) {
             Obj1D00_ClearState_7(*(void **)(self + 0x708));

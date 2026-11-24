@@ -2,6 +2,7 @@
 #include "godhand/cModel.h"
 #include "godhand/cOmbb.h"
 #include "godhand/cSceAtManager.h"
+#include "godhand/cCamera.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -11,12 +12,9 @@ extern char *Getplayer(void);
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
 extern int cEmManage_CkPlCatched(void *p);
 extern int D_005864F0;
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
-extern float Adjust_theta(float f12);
 extern void func_00129718(void *a, void *b, int c);
 extern cSceAtManager D_005FEA60;
 extern int D_00568288;
-extern float Turn_dest_dir(float f12, float f13, float f14);
 extern void func_002DCA58(void);
 extern void cActionButton_set(void *a0, int a1, int a2, int a3, void *t0, int t1, int t2);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
@@ -158,8 +156,8 @@ void func_002DC670(void *arg)
                     r[0x2F4] = 0;
                     r[0x2F6] = 0;
                     *((float *) (r + 0x104)) = *((float *) (r + 0x104)) +
-                        (Turn_dest(*((void **) (r + 0xF0)), *((void **) (s1 + 0xF0)),
-                                   *((float *) (r + 0x104)), 3.14159274f) + 3.14159274f);
+                        (Turn_dest(*((void **) (r + 0xF0)), *((float *) (r + 0x104)),
+                                   *((void **) (s1 + 0xF0)), 3.14159274f) + 3.14159274f);
                     *((float *) (r + 0x104)) = Adjust_theta(*((float *) (r + 0x104)));
                 }
             }
@@ -279,8 +277,8 @@ void func_002DC740(void *arg)
                     if (ad > 0.5f) {
                         return;
                     }
-                    t = Turn_dest(*((void **) (r + 0xF0)), *((void **) (s1 + 0xF0)),
-                                  *((float *) (r + 0x104)), 3.14159274f);
+                    t = Turn_dest(*((void **) (r + 0xF0)), *((float *) (r + 0x104)),
+                                  *((void **) (s1 + 0xF0)), 3.14159274f);
                     if (t < 0.0f) {
                         at = -t;
                     } else {

@@ -1,5 +1,7 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
+#include "godhand/cOmWeapon.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -15,8 +17,6 @@ extern void SetBytes2F4Mode1_283188(int a0, int a1);
 extern void Obj1D00_SetState_7_2(int a0);
 extern void Obj1D00_SetState_7_4(int a0);
 extern void Obj1D00_SetState_7_8(int a0);
-extern void Obj1D00_ClearState_7(int a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002744E0(void *a0);
@@ -632,7 +632,7 @@ __attribute__((section(".text.func_0023B968"))) void func_0023B968(cEm00 *self)
 
             if (t < 0x264 || (t >= 0x266 && t != 0x26A)) {
                 int r = Getplayer();
-                cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.19634955f);
+                cGameObj_SetTgtTurn((cGameObj *)s3, *(cVec **)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.19634955f);
             }
             if (moveMotion(s3) != 0) {
                 func_002705D8(s3);
@@ -675,7 +675,7 @@ __attribute__((section(".text.func_0023B968"))) void func_0023B968(cEm00 *self)
             {
                 int r = Getplayer();
 
-                cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.09817477f);
+                cGameObj_SetTgtTurn((cGameObj *)s3, *(cVec **)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.09817477f);
                 if (moveMotion(s3) != 0) {
                     *(unsigned char *)(s3 + 0x2F6) += 1;
                 }
@@ -700,13 +700,13 @@ __attribute__((section(".text.func_0023B968"))) void func_0023B968(cEm00 *self)
         case 7: {
             int r = Getplayer();
 
-            cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.09817477f);
+            cGameObj_SetTgtTurn((cGameObj *)s3, *(cVec **)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.09817477f);
             if (moveMotion(s3) != 0) {
                 cObjBase_addNullSpeed_Rotation(s3, 1.0f);
                 cObjBase_addNullSpeed(s3, 1.0f);
                 func_002705D8(s3);
                 if (*(int *)(s3 + 0x708) != 0) {
-                    Obj1D00_ClearState_7(*(int *)(s3 + 0x708));
+                    Obj1D00_ClearState_7(*(cOmBase **)(s3 + 0x708));
                 }
                 return;
             }

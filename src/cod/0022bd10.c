@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -7,9 +8,7 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern unsigned int irand(void);
 extern void *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
-extern void func_0026BBD0(void *a0, int a1);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -92,8 +91,8 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
                     self->unk568 = 4;
                     break;
             }
-            if ((char)*(unsigned char *)((char *)self + 0x1869) < self->unk568) {
-                self->unk568 = (char)*(unsigned char *)((char *)self + 0x1869);
+            if (self->unk1869 < self->unk568) {
+                self->unk568 = self->unk1869;
             }
             self->step += 1;
         }
@@ -103,7 +102,7 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
 
             self->emFlags = self->emFlags | 0x800000;
             p = (char *)Getplayer();
-            cGameObj_SetTgtTurn(self, *(void **)(p + 0xF0), self->speedRate * 0.19634955f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 self->step = 2;
             }
@@ -132,10 +131,10 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             self->timerA = 1;
             cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x23, (cObj *)self, 0, 0, 0, 0);
             self->unk568 = self->unk568 - 1;
-            if (*(char *)((char *)self + 0x1869) > 0) {
+            if (self->unk1869 > 0) {
                 r = func_0026AA30(self, 0x36A);
                 if (r != 0) {
-                    func_0026BBD0(self, r);
+                    func_0026BBD0(self, (struct cOmWeapon *)r);
                 }
             }
             self->step += 1;
@@ -145,7 +144,7 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             char *p;
 
             p = (char *)Getplayer();
-            cGameObj_SetTgtTurn(self, *(void **)(p + 0xF0), self->speedRate * 0.19634955f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 if (self->unk568 > 0) {
                     self->step = 2;
@@ -180,7 +179,7 @@ __attribute__((section(".text.func_0022BD10"))) void func_0022BD10(cEm00 *self)
             char *p;
 
             p = (char *)Getplayer();
-            cGameObj_SetTgtTurn(self, *(void **)(p + 0xF0), self->speedRate * 0.19634955f);
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(p + 0xF0), self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 func_002705D8(self);
             }

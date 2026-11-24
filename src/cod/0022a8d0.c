@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cCamera.h"
 #include "godhand/motion.h"
 
 extern unsigned char D_005864F0[];
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
 extern char *Getplayer(void);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
-extern float Adjust_theta(float f12);
 extern int moveMotion(void *a0);
 extern int cEmManage_CkPlSorry(void *a0);
 extern int cEmManage_CkPlCatched(void *a0);
@@ -69,7 +68,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
             float th;
 
             *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x800000;
-            t = Turn_dest(e, *(void **)(Getplayer() + 0xF0), *(float *)(s1 + 0x600),
+            t = Turn_dest(e, *(float *)(s1 + 0x600), *(void **)(Getplayer() + 0xF0),
                           *(float *)(s1 + 0x5A8) * 0.09817477f);
             th = *(float *)(s1 + 0x600) + t;
             *(float *)(s1 + 0x600) = th;
@@ -118,7 +117,7 @@ __attribute__((section(".text.func_0022A8D0"))) void func_0022A8D0(cEm00 *self)
             char *g;
 
             *(int *)(s1 + 0x16D0) = *(int *)(s1 + 0x16D0) | 0x800000;
-            t = Turn_dest(e, *(void **)(Getplayer() + 0xF0), *(float *)(s1 + 0x600),
+            t = Turn_dest(e, *(float *)(s1 + 0x600), *(void **)(Getplayer() + 0xF0),
                           *(float *)(s1 + 0x5A8) * 0.09817477f);
             th = *(float *)(s1 + 0x600) + t;
             *(float *)(s1 + 0x600) = th;

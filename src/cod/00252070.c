@@ -1,18 +1,17 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 
 extern unsigned int irand(void);
 extern void *Getplayer(void);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Adjust_theta(float f12);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern int GetSeqSEBase(void *a0);
@@ -70,7 +69,7 @@ void func_00252070(void *a0)
 
                 self->stepArg = 0;
                 if (tgt != 0) {
-                    float d = Turn_dest(self->pos, self->rot.y, 3.14159274f, *(void **)(tgt + 0xF0));
+                    float d = Turn_dest(&self->pos->x, self->rot.y, *(void **)(tgt + 0xF0), 3.14159274f);
 
                     if (d < 0.0f) {
                         d = -d;
@@ -78,7 +77,7 @@ void func_00252070(void *a0)
                     if (tgt == Getplayer()) {
                         self->rot.y = Adjust_theta(((cEm00 *)Getplayer())->rot.y + 3.14159274f);
                     } else {
-                        cGameObj_SetTgtTurn(self, *(void **)(tgt + 0xF0), 3.14159274f);
+                        cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(tgt + 0xF0), 3.14159274f);
                     }
                     if (d > 1.57079637f) {
                         self->stepArg = 1;

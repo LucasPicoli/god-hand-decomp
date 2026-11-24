@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern int cOmWeapon_setParent();
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -13,11 +12,12 @@ extern int cOmWeapon_setParent();
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/player.h"
+#include "godhand/cOmWeapon.h"
 
 __attribute__((section(".text.pl00_setPaper")))
 void pl00_setPaper(void *a0) {
     char *s0 = (char *)a0;
-    float buf[8];
+    cVec buf[2];
     cCoreSave *w;
     cGameObj *obj;
 
@@ -57,9 +57,9 @@ void pl00_setPaper(void *a0) {
             p100[2] = 0;
             VU0_SQC2_VF0(buf, 0x0);
             VU0_SQC2_VF0(buf, 0x10);
-            buf[0] = 0.0f;
-            buf[1] = 0.047f;
-            buf[2] = -0.14f;
+            buf[0].x = 0.0f;
+            buf[0].y = 0.047f;
+            buf[0].z = -0.14f;
             switch (cCoreSave_getCostumeNo(w)) {
             case 0:
             case 1:
@@ -68,16 +68,16 @@ void pl00_setPaper(void *a0) {
             case 3:
             case 4:
             case 5:
-                buf[2] = -0.155f;
+                buf[0].z = -0.155f;
                 break;
             case 6:
             case 7:
                 break;
             }
-            buf[4] = 0.0f;
-            buf[5] = 0.0f;
-            buf[6] = 0.0f;
-            cOmWeapon_setParent(*(int *)(s0 + 0x6A8), s0, 2, buf, (char *)buf + 0x10);
+            buf[1].x = 0.0f;
+            buf[1].y = 0.0f;
+            buf[1].z = 0.0f;
+            cOmWeapon_setParent(*(cOmWeapon **)(s0 + 0x6A8), a0, 2, &buf[0], &buf[1]);
         }
     }
 }

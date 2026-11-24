@@ -1,6 +1,8 @@
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cOmWeapon.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -10,9 +12,6 @@ extern int GetSeqSEBase(void *a0);
 extern int Getplayer(void);
 extern int moveMotion(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void Obj1D00_ClearState_6(int a0);
-extern void Obj1D00_ClearState_7(int a0);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
@@ -228,11 +227,11 @@ __attribute__((section(".text.func_0023AFD8"))) void func_0023AFD8(cEm00 *self)
             if (*(unsigned char *)(s3 + 0x2F7) != 0) {
                 *(float *)(s3 + 0x604) = -0.3f;
             }
-            if (*(int *)(s3 + 0x6F0) != 0) {
-                Obj1D00_ClearState_6(*(int *)(s3 + 0x6F0));
+            if (self->weapon366 != 0) {
+                Obj1D00_ClearState_6(&self->weapon366->base);
             }
             if (*(int *)(s3 + 0x708) != 0) {
-                Obj1D00_ClearState_7(*(int *)(s3 + 0x708));
+                Obj1D00_ClearState_7(*(cOmBase **)(s3 + 0x708));
             }
             *(int *)(s3 + 0x5F0) = 5;
             *(float *)(s3 + 0x600) = 15.0f;
@@ -248,7 +247,7 @@ __attribute__((section(".text.func_0023AFD8"))) void func_0023AFD8(cEm00 *self)
                 int r;
                 *(int *)(s3 + 0x5F0) = c - 1;
                 r = Getplayer();
-                cGameObj_SetTgtTurn(s3, *(int *)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.39269909f);
+                cGameObj_SetTgtTurn((cGameObj *)s3, *(cVec **)(r + 0xF0), *(float *)(s3 + 0x5A8) * 0.39269909f);
             }
             moveMotion(s3);
             {

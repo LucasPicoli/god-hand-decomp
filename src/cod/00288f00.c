@@ -2,11 +2,11 @@
 
 #include "godhand/cEma2.h"
 #include "godhand/cSnd.h"
+#include "godhand/cCamera.h"
 
 extern cGameObj *Getplayer(void);
 extern unsigned short D_00747A50;
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
-extern float Turn_dest(cVec *from, cVec *to, float rot, float limit);
 
 /* 65/73 words exact (89.0%), sn-2.95.3-136 with fp_hazard_rules mtc1, insn delta +3. Shape aligned; retail cross-jumps the mode/phase/step tail of the two no-flag arms (mode constant set in the branch delay slot), this body keeps them apart. A local mode variable made it worse (54/73). */
 
@@ -91,7 +91,7 @@ void func_00292F70(cEmManage *self, cVec *pos)
     if (EM_TURN_FAR_SQ < dist)
         return;
     playerPos = Getplayer()->pos;
-    turn = Turn_dest(playerPos, pos, Getplayer()->rot.y, 3.1415927f);
+    turn = Turn_dest(&playerPos->x, Getplayer()->rot.y, &pos->x, 3.1415927f);
     sideCopy = &side;   /* a second name for side keeps the two float copies in retail order */
     amount = turn;
     side = turn;

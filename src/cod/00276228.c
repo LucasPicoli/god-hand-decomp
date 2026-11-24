@@ -28,12 +28,12 @@ void func_00276228(cEm00 *self, float *pos)
     IK_InverseKinematics(self->ik, self);
     cModel_calcWorldParts(self);
     if (self->unk6EC != 0) {
-        func_001CF3A8((void *)self->unk6EC);
+        func_001CF3A8(self->unk6EC);
         cModel_calcParts((void *)self->unk6EC);
     }
-    if (self->fx0 != 0) {
-        func_001CF3A8((void *)self->fx0);
-        cModel_calcParts((void *)self->fx0);
+    if (self->weapon366 != 0) {
+        func_001CF3A8(self->weapon366);
+        cModel_calcParts((void *)self->weapon366);
     }
     if (self->fx2 != 0) {
         func_001CF3A8((void *)self->fx2);
@@ -47,21 +47,21 @@ void func_00276228(cEm00 *self, float *pos)
         func_001CF3A8((void *)self->fx4);
         cModel_calcParts((void *)self->fx4);
     }
-    if (self->fx5 != 0) {
-        func_001CF3A8((void *)self->fx5);
-        cModel_calcParts((void *)self->fx5);
+    if (self->weapon375 != 0) {
+        func_001CF3A8(self->weapon375);
+        cModel_calcParts((void *)self->weapon375);
     }
     if (self->fx6 != 0) {
         func_001CF3A8((void *)self->fx6);
         cModel_calcParts((void *)self->fx6);
     }
-    if (self->unk734 != 0) {
-        func_001CF3A8((void *)self->unk734);
-        cModel_calcParts((void *)self->unk734);
+    if (self->weapon369 != 0) {
+        func_001CF3A8(self->weapon369);
+        cModel_calcParts((void *)self->weapon369);
     }
-    if (self->fx1 != 0) {
-        func_001CF3A8((void *)self->fx1);
-        cModel_calcParts((void *)self->fx1);
+    if (self->weapon36D != 0) {
+        func_001CF3A8(self->weapon36D);
+        cModel_calcParts((void *)self->weapon36D);
     }
     if (self->unk70C != 0) {
         func_001C2378((void *)self->unk70C);

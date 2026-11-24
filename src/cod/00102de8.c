@@ -3,12 +3,12 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
+#include "godhand/cEm00.h"
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *func_002DDAB0(int a0, float f, int a1);
-extern void func_0026AB20(void *a0, char *a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00123938(void *a0, int a1);
@@ -48,7 +48,7 @@ void func_0023F970(void *a0){ char *s2=(char*)a0; int v0,p1,p2,t0;
  if(*(int*)(s2+0x6EC)==0){
   if(*(unsigned short*)(s2+0x3AC)&1){
    char *a=func_002DDAB0(*(int*)(s2+0xF0),1.5f,1);
-   if(a!=0) func_0026AB20(s2,a,*(unsigned short*)(a+0x2FE)); } } }
+   if(a!=0) func_0026AB20(a0,(struct cOmWeapon *)a,*(unsigned short*)(a+0x2FE)); } } }
 
 typedef struct { int w[3]; } T3;
 __attribute__((section(".text.func_001AB8F8")))

@@ -9,7 +9,6 @@
 #define HOLD_FACE_TARGET  0
 #define HOLD_FACE_HOLDER  1
 
-extern float Turn_dest(void *from, void *to, float cur, float max);
 extern void MtxInitRotY(void *mtx, float angle);
 
 /* dst = m * v, through a work copy. */
@@ -39,7 +38,7 @@ void func_001299F0(cGameObj *self, cGameObj *held, cVec *offset, int how, float 
     switch (how) {
     default:
     case HOLD_FACE_TARGET:
-        self->rot.y += Turn_dest(self->pos, held->pos, self->rot.y, 3.1415927f);
+        self->rot.y += Turn_dest(&self->pos->x, self->rot.y, &held->pos->x, 3.1415927f);
         self->rot.y = Adjust_theta(self->rot.y);
         held->rot.y = self->rot.y + 3.1415927f;
         held->rot.y = Adjust_theta(held->rot.y);

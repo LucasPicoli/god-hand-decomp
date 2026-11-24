@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -7,7 +8,6 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern unsigned int irand(void);
-extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -297,7 +297,7 @@ __attribute__((section(".text.func_0024F050"))) void func_0024F050(cEm00 *self)
                 int t = *(int *)(s2 + 0x5F0);
                 if (t != 0) {
                     *(int *)(s2 + 0x5F0) = t - 1;
-                    cGameObj_SetTgtTurn(s2, (int)(s2 + 0x5D0), *(float *)(s2 + 0x5A8) * 0.3926991f);
+                    cGameObj_SetTgtTurn((cGameObj *)s2, &self->posB, *(float *)(s2 + 0x5A8) * 0.3926991f);
                 }
             }
             if (moveMotion(s2)) {

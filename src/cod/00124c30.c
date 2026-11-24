@@ -3,6 +3,7 @@
 #include "godhand/motion.h"
 #include "godhand/SlotUi.h"
 #include "godhand/globals.h"
+#include "godhand/cCamera.h"
 
 extern int irand(void);
 extern int moveMotion(void *a0);
@@ -10,7 +11,6 @@ extern void func_00280EB8(void *a0, int a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern int cEmManage_ChkActiveEm(void *a0, void *a1);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 extern char D_005864F0[];
 extern int cIDManager_getLocalFileName();
 extern int cDvd_ReadAlloc();
@@ -196,7 +196,7 @@ __attribute__((section(".text.func_00124C30"))) void func_00124C30(char *s1, int
     self = *((char **) (s1 + 0xF0));
     vt = *((char **) (o4 + 0x214));
     pos = (char *) (*((vfn *) (vt + 0x6C)))(o4 + (*((short *) (vt + 0x68))));
-    t = Turn_dest(self, pos, *((float *) (s1 + 0x104)), 3.14159274f);
+    t = Turn_dest((float *) self, *((float *) (s1 + 0x104)), (float *) pos, 3.14159274f);
     if (t < 0.0f)
     {
       at = -t;

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
@@ -12,7 +13,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
@@ -261,7 +261,7 @@ void cEm00_hitReaction(void *a0)
             int c = self->timerA;
             if (c != 0) {
                 self->timerA = c - 1;
-                cGameObj_SetTgtTurn(self, &self->posB, self->speedRate * 0.3926991f);
+                cGameObj_SetTgtTurn((cGameObj *)self, &self->posB, self->speedRate * 0.3926991f);
             }
         }
         self->pos->y = self->pos->y + self->home.y * self->speedRate;
@@ -725,7 +725,7 @@ void cEm00_hitReaction(void *a0)
             int c = self->timerA;
             if (c != 0) {
                 self->timerA = c - 1;
-                cGameObj_SetTgtTurn(self, &self->posB, self->speedRate * 0.3926991f);
+                cGameObj_SetTgtTurn((cGameObj *)self, &self->posB, self->speedRate * 0.3926991f);
             }
         }
         if (moveMotion(self) != 0) {

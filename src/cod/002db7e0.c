@@ -1,6 +1,7 @@
+#include "godhand/cCamera.h"
+
 extern char *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern float Turn_dest(void *a0, void *a1, float f12, float f13);
 
 __attribute__((section(".text.func_002DB7E0")))
 int func_002DB7E0(void *pos)
@@ -16,7 +17,7 @@ int func_002DB7E0(void *pos)
     if (d < 0.5f) {
         return 1;
     }
-    a = Turn_dest(*(void **)(pl + 0xF0), pos, *(float *)(pl + 0x104), 3.1415927f);
+    a = Turn_dest(*(void **)(pl + 0xF0), *(float *)(pl + 0x104), pos, 3.1415927f);
     if (a < 0.0f) {
         t = -a;
     } else {

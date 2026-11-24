@@ -555,7 +555,7 @@ __attribute__((section(".text.func_002580B8"))) void func_002580B8(cEm00 *self)
                     s1 = EM_RES_REC(b, 0x2278);
                 } break;
             }
-            if (*(int *)((char *)self + 0x6EC) != 0) {
+            if (self->unk6EC != 0) {
                 int b = EM_RES(self);
                 s2 = EM_RES_REC(b, 0x44C);
                 s1 = EM_RES_REC(b, 0x450);

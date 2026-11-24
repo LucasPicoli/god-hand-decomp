@@ -1,17 +1,16 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cCollisionSolid.h"
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *Getplayer(void);
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern void func_00271148(void *a0);
 
 extern void func_00129718(void *a0, void *a1, int a2);
 #include "godhand/vu0.h"
@@ -35,7 +34,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
             self->step += 1;
             /* fallthrough */
         case 1:
-            cGameObj_SetTgtTurn(self, *(void **)(Getplayer() + 0xF0),
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0),
                                 self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 self->step += 1;
@@ -98,7 +97,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
             }
             VU0_VMULX_XYZ(4, 4, 5);
             VU0_SQC2(4, self, 0x590);
-            cGameObj_SetTgtTurn(self, d, 3.14159274f);
+            cGameObj_SetTgtTurn((cGameObj *)self, &self->unk580, 3.14159274f);
             self->step += 1;
         }
             /* fallthrough */
@@ -161,7 +160,7 @@ __attribute__((section(".text.cEm00_stepChargePlayer"))) void cEm00_stepChargePl
             /* fallthrough */
         case 7:
             cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
-            cGameObj_SetTgtTurn(self, *(void **)(Getplayer() + 0xF0),
+            cGameObj_SetTgtTurn((cGameObj *)self, *(cVec **)(Getplayer() + 0xF0),
                                 self->speedRate * 0.19634955f);
             if (moveMotion(self) != 0) {
                 if (func_00270DB0(self) != 0) {

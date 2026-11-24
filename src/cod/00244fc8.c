@@ -1,13 +1,12 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
+#include "godhand/cCamera.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
-extern float Turn_dest(void *a0, float f12, float f13, void *a1);
-extern float Adjust_theta(float f12);
 extern float SetMotionStep(void *a0, float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int irand(void);
@@ -99,8 +98,8 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
             *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         }
         case 1: {
-            float r = Turn_dest(s1 + 0x580, *(float *)(s1 + 0x104),
-                                *(float *)(s1 + 0x5A8) * 0.39269909f, *(void **)(s1 + 0xF0));
+            float r = Turn_dest((float *)(s1 + 0x580), *(float *)(s1 + 0x104),
+                                *(void **)(s1 + 0xF0), *(float *)(s1 + 0x5A8) * 0.39269909f);
             *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + r;
             *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
             if (moveMotion(s1) != 0) {
@@ -160,8 +159,8 @@ __attribute__((section(".text.func_00244FC8"))) void func_00244FC8(cEm00 *self)
             char *v580 = s1 + 0x580;
             float r;
             float mag;
-            r = Turn_dest(v580, *(float *)(s1 + 0x104), *(float *)(s1 + 0x5A8) * 0.39269909f,
-                          *(void **)(s1 + 0xF0));
+            r = Turn_dest((float *)v580, *(float *)(s1 + 0x104), *(void **)(s1 + 0xF0),
+                          *(float *)(s1 + 0x5A8) * 0.39269909f);
             *(float *)(s1 + 0x104) = *(float *)(s1 + 0x104) + r;
             *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
             SetMotionStep(s1, *(float *)(s1 + 0x5A8) * 1.5f);

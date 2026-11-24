@@ -1,11 +1,11 @@
 /* sn-2.95.3-136: walk-to-target step: start the walk motion and turn to the target, then advance
  * until the enemy stalls or reaches the target, and push the null speed. */
+#include "godhand/cGameObj.h"
 #include "godhand/cEm00.h"
 #include "godhand/vecInline.h"
 #include "godhand/cObjBase.h"
 #include "godhand/motion.h"
 
-extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int moveMotion(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
@@ -24,7 +24,7 @@ void func_00114AC0(cEm00 *self)
         self->unk5E0 = 0;
         self->unk5E2 = 0;
         func_002A8578(self, EM_RES_REC(EM_RES(self), 0x48), EM_RES_REC(EM_RES(self), 0x4C), 3, 0.0f, 0, 0);
-        cGameObj_SetTgtTurn(self, &self->unk580, 3.1415927f);
+        cGameObj_SetTgtTurn((cGameObj *)self, &self->unk580, 3.1415927f);
         self->stepVar.count = 0;
         self->unk1590.x = 99999.9f;
         self->unk1590.y = 99999.9f;

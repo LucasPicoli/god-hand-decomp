@@ -64,5 +64,10 @@ extern void BlendSetup_load(void *anim, int *cmdTbl, unsigned short *idTbl,
 
 /* Set action button 0xB (handler func_002DBB90) while the player is up, free and not caught. */
 void func_002DBB08(void);
+/* Set action button 0xB, kind 0xC, for the enemy arg while the player is up,
+ * free and not caught; the handler is func_002DC2F0 (func_002DC260) or
+ * func_002DC670 (func_002DC5E0). */
+void func_002DC260(void *arg);
+void func_002DC5E0(void *arg);
 
 #endif
