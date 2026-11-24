@@ -18,8 +18,6 @@ typedef struct cOmGimmick {
 } cOmGimmick;
 
 extern int ClearField5B4IfFlagUnset_1B76B0(cOmBase *self);
-extern int ChkCollScrWall(void *a0, void *a1, int a2, void *a3, int t0, int t1, float f12);
-extern int func_001329C0(void *a0, void *a1, int a2, void *a3, float f12);
 extern void cObjBase_SetSeqEffect(void *self);
 extern void func_001B76D8(void *self);
 
@@ -46,7 +44,7 @@ void func_001B1C78(cOmGimmick *self)
 
         if (((walls >> 5) & 1) == 1) {
             VU0_SQC2_VF0(&hit, 0);
-            if (ChkCollScrWall(self, &hit, 0, 0, 0, 0, GIM_WALL_RADIUS) != 0) {
+            if (ChkCollScrWall((cGameObj *)self, GIM_WALL_RADIUS, &hit, 0, 0, 0, 0) != 0) {
                 self->base.pos->x = hit.x;
                 self->base.pos->z = hit.z;
             }
@@ -57,7 +55,7 @@ void func_001B1C78(cOmGimmick *self)
 
         if (((floor >> 4) & 1) == 1) {
             VU0_SQC2_VF0(&hit, 0);
-            if (func_001329C0(self, &hit, 0, 0, GIM_FLOOR_RANGE) != 0) {
+            if (func_001329C0((cGameObj *)self, &hit, 0, 0, GIM_FLOOR_RANGE) != 0) {
                 self->base.pos->y = hit.y;
             }
         }

@@ -21,11 +21,8 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int D_00747A24;
 extern char *Getplayer(void);
 extern void func_0012C540(void *a0, int a1);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int GetSeqSEBase(void *a0);
 extern void func_00102418(void *a0);
-extern int ChkCollScrWall(void *a0, void *a1, int a2, void *a3, int t0, int t1, float f12);
-extern int func_001329C0(void *a0, void *a1, int a2, void *a3, float f12);
 extern void cObjBase_SetSeqEffect(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
@@ -204,17 +201,17 @@ void func_00102418(void *a0)
         break;
     }
     case 0x4A:
-        SetEffect(0x58, 0x2A, 0, 0, -1, -1);
+        SetEffect(0x58, 0x2A, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         if (s2 != 0)
             cSnd_SeCall_2CB8A0(&D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
     case 0x4B:
-        SetEffect(0xA8, 0xE, 0, 0, -1, -1);
+        SetEffect(0xA8, 0xE, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         if (s2 != 0)
             cSnd_SeCall_2CB8A0(&D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
     case 0x4C:
-        SetEffect(0x63, 0xE, 0, 0, -1, -1);
+        SetEffect(0x63, 0xE, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         if (s2 != 0)
             cSnd_SeCall_2CB8A0(&D_005FEE00, 1, (short)(GetSeqSEBase(s2) + 0x1F), -1, -1, 0, 0);
         break;
@@ -242,12 +239,13 @@ struct Table_00102150 { struct Entry_00102150 e[1]; };
 extern struct Table_00102150 D_003BC748;
 
 #include "godhand/vu0.h"
+#include "godhand/cObjBase.h"
 
 __attribute__((section(".text.func_00102150")))
 void func_00102150(void *a0)
 {
-    float buf[4];
-    int w;
+    cVec buf;
+    struct AK_HIT_INFO *w;
     unsigned short *hit;
     char *s1 = (char *)a0;
     char *s3;
@@ -285,10 +283,10 @@ void func_00102150(void *a0)
     }
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s1);
     if ((*(volatile int *)(s1 + 0x14B0) & 1) != 0) {
-        VU0_SQC2_VF0(buf, 0);
-        if (ChkCollScrWall(s1, buf, 0, &w, 0, 0, 0.400000006f) != 0) {
-            (*(float **)(s1 + 0xF0))[0] = buf[0];
-            (*(float **)(s1 + 0xF0))[2] = buf[2];
+        VU0_SQC2_VF0(&buf, 0);
+        if (ChkCollScrWall(a0, 0.400000006f, &buf, 0, &w, 0, 0) != 0) {
+            (*(float **)(s1 + 0xF0))[0] = buf.x;
+            (*(float **)(s1 + 0xF0))[2] = buf.z;
         }
     }
     if ((*(int *)(s1 + 0x14B0) & 1) != 0) {
@@ -296,9 +294,9 @@ void func_00102150(void *a0)
 
         *(int *)(s1 + 0x474) = 0;
         y = (*(float **)(s1 + 0xF0))[1];
-        VU0_SQC2_VF0(buf, 0);
-        if (func_001329C0(s1, buf, 0, &hit, 20.0f) != 0) {
-            y = buf[1];
+        VU0_SQC2_VF0(&buf, 0);
+        if (func_001329C0(a0, &buf, 0, &hit, 20.0f) != 0) {
+            y = buf.y;
             *(int *)(s1 + 0x474) = *hit;
         }
         *(float *)(s1 + 0x5BC) = *(float *)(s1 + 0x5BC) - *(float *)(s1 + 0x5B8);

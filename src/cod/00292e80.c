@@ -3,6 +3,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEmManage.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 extern int D_00747A30;
 
 /* Plays the big-hit effect unless its wait runs or flag 0x800 of
@@ -12,7 +13,7 @@ void cEmManage_setBigHitEff(cEmManage *self)
 {
     if ((D_00747A30 & 0x800) == 0) {
         if (cEmManage_CkBigHitEffWait(self) == 0) {
-            SetEffect(0, 0xF, 0, 0, -1, 0xFFFFFFFFu);
+            SetEffect(0, 0xF, 0, 0, -1, EFFECT_FOLLOW_OWNER);
             cEmManage_SetBigHitEffWait(self, EM_BIG_HIT_EFF_TIME);
         }
     }

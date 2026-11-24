@@ -70,6 +70,6 @@ void func_001AAB10(cOmBreakable *self)
     for (i = BREAK_FIRST_PIECE; i < BREAK_PIECE_END && self->base.partNum != i; i++) {
         func_001AA8D8((char *)self, i, &f.push.x, &f.rot.x);
     }
-    SetEffect(1, BREAK_EFFECT, self, 0, BREAK_EFFECT, (unsigned int)self);
+    SetEffect(1, BREAK_EFFECT, (cObj *)self, 0, BREAK_EFFECT, (cObj *)self);
     self->flags |= BREAK_DONE;
 }

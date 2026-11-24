@@ -43,7 +43,9 @@ typedef struct cOmWeapon {
     float unk66C;                           /* 0x66C */
     struct cGameObj *thrower;               /* 0x670 the fighter that threw it (setThrow's cGameObj argument) */
     float fallVel;                          /* 0x674 vertical speed while dropping */
-    char unk678[0x18];
+    char unk678[0x10];
+    unsigned char waterHit;                 /* 0x688 set once LineObj_checkWaterHit finds water */
+    char unk689[0x7];
     int target;                             /* 0x690 object the weapon was thrown at */
     float spin;                             /* 0x694 */
     char unk698[0x8];
@@ -68,5 +70,9 @@ void func_001D0140(cOmWeapon *self, const cVec *vel, struct cGameObj *thrower);
 void func_001D0240(cOmWeapon *self, const cVec *vel, struct cGameObj *thrower);
 
 typedef char cOmWeapon_size_check[(sizeof(cOmWeapon) == 0x790) ? 1 : -1];
+
+/* Once per weapon: cast a line from posA to pos and, on a water surface,
+ * splash and play the splash sound. */
+void LineObj_checkWaterHit(cOmWeapon *self);
 
 #endif

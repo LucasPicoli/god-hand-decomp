@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cObjBase.h"
 
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void func_00186038(void *a0, int a1);
 
 __attribute__((section(".text.func_00185CB8")))
@@ -29,7 +29,7 @@ void func_00185CB8(void *a0, int a1) {
         cOmBase_setMeshDispFromLayer(s0, 0x13, 1);
         break;
     case 4:
-        SetEffect(0x298, 0xB, s0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(0x298, 0xB, s0, 0, -1, EFFECT_FOLLOW_OWNER);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x112, s0, 0, 0, 0, 0);
         cOmBase_setMeshDispFromLayer(s0, 0x13, 1);
         func_00186038(s0, 0xE);

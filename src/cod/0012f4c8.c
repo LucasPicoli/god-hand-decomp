@@ -2,13 +2,13 @@
 #include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjBase.h"
 
 extern void func_002D4C20(void *a0, int a1, int a2, int a3);
 extern void func_001E87E0(void *dst, void *a, void *b, int n);
 extern void InitClearStructAndSet_1E79A8(int *a0, int a1);
 extern void Slot2_showMarkLayers(void *a0, int a1);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int SetEffect(int a0, int a1, cObj *a2, int a3, int a4, unsigned int a5);
 extern void func_00186038(char *a0, int a1);
 extern void func_0012F600(void *this, void *p, int arg);
 extern int cSnd_GetBgmData(int a0, int a1);
@@ -104,7 +104,7 @@ void func_001851C0(void *arg0, unsigned int arg1)
         func_00186038(arg0, 0x12);
         func_00186038(arg0, 0x13);
         cOmBase_setMeshDispFromLayer(arg0, 0x80, 1);
-        SetEffect(0x298, 1, arg0, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x298, 1, arg0, 0, -1, EFFECT_FOLLOW_OWNER);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x116, arg0, 0, 0, 0, 0);
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 2, arg0, 0, 0, 0, 0);
         break;

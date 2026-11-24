@@ -5,7 +5,6 @@
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 extern void func_00188798(void *a0);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cDamageUnit_SetDamageCollActive(void *a0, int a1);
 extern void func_00195620(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
@@ -22,6 +21,7 @@ extern void CopyVec3ToField30_147C40(void *a0, void *a1);
 extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
+#include "godhand/cObjBase.h"
 extern char D_005864F0[];
 
 struct VtEnt { short delta; short index; void *pfn; };
@@ -58,7 +58,7 @@ void cOmBreakable_stepBreak(void *a0)
             if (ok) part = *(int *)(*(int *)(s1 + 0x278) + 8); else part = 0;
         }
         ForwardVec3At30_147C60(buf, (float *)(part + 0x80));
-        SetEffect(0x177, 2, s1, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x177, 2, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         {
             int two = 2;
             cnt = *(unsigned char *)(s1 + 0x2B4);

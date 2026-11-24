@@ -25,8 +25,6 @@ extern void cObjBase_SetSeqEffect(cObjBase *a0);
 extern void cModel_calcParts(cModel *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(cModel *a0);
-extern int ChkCollScrWall(void *a0, void *a1, int a2, void *a3, int t0, int t1, float f12);
-extern int func_001329C0(void *a0, void *a1, int a2, void *a3, float f12);
 
 /* Per-frame update: run the handler for the current mode, solve the body, then
  * push out of walls and fall onto the floor unless grounded. */
@@ -35,7 +33,7 @@ void func_00277568(cEm00 *self)
 {
     cVec wall;
     cVec floor;
-    cVec norm;
+    struct AK_HIT_INFO *info;
     short idx;
     void (*fn)(void *self);
     cVtEnt8 e;
@@ -67,13 +65,13 @@ void func_00277568(cEm00 *self)
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)self);
     if (!(EMFALL(self)->flags & EMFALL_GROUNDED)) {
         VU0_SQC2_VF0(&wall, 0);
-        if (ChkCollScrWall(self, &wall, 0, &norm, 0, 0, EMFALL_WALL_RADIUS) != 0) {
+        if (ChkCollScrWall((cGameObj *)self, EMFALL_WALL_RADIUS, &wall, 0, &info, 0, 0) != 0) {
             self->pos->x = wall.x;
             self->pos->z = wall.z;
         }
         floorY = self->pos->y;
         VU0_SQC2_VF0_MEM(&floor, 0);
-        if (func_001329C0(self, &floor, 0, &norm, EMFALL_FLOOR_RANGE) != 0) {
+        if (func_001329C0((cGameObj *)self, &floor, 0, &info, EMFALL_FLOOR_RANGE) != 0) {
             floorY = floor.y;
         }
         EMFALL(self)->fallVel -= EMFALL(self)->gravity;

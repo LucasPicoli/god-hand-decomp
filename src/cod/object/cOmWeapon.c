@@ -1,11 +1,11 @@
 /* TU: cOmWeapon [object] - recovered C++ class. */
 #include "godhand/cOmWeapon.h"
 #include "include_asm.h"
+#include "godhand/cObjBase.h"
 
 extern void func_001CF3A8(void *a0);
 extern void cModel_calcParts(void *a0);
 extern void func_001331B8(char *a0, long a1, int a2);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern char D_005CAE50[];
 
 static inline void cpy3(float *d, float *s)
@@ -56,9 +56,9 @@ void cOmWeapon_setParent(cOmWeapon *self, cGameObj *par, unsigned int idx, const
     if (self->base.actorId != 0x369) return;
     if (par == 0) return;
     if (par->emNo == 0x252) {
-        SetEffect(0xAA, 0xC, self, 0, 8, 0xFFFFFFFFu);
+        SetEffect(0xAA, 0xC, (cObj *)self, 0, 8, EFFECT_FOLLOW_OWNER);
     }
     if (par->emNo == 0x263) {
-        SetEffect(0xBC, 0x1D, self, 0, 8, 0xFFFFFFFFu);
+        SetEffect(0xBC, 0x1D, (cObj *)self, 0, 8, EFFECT_FOLLOW_OWNER);
     }
 }

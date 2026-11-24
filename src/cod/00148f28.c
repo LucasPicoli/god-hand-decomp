@@ -10,10 +10,10 @@
 #include "godhand/cGame.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 
 extern void func_001F8A88(void *a0, float x0, float x1, float y0, float y1, float z0, float z1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cModel_setLayerDisplay(int a0, int a1, int a2);
 extern int D_003BD880;
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
@@ -350,7 +350,7 @@ void func_001B1630(char *p)
             *(int *)(p + 0x250) = *(int *)(p + 0x250) & 0xFFFFFFEF;
         if (*(unsigned char *)(p + 0x667) == 0) {
             *(unsigned char *)(p + 0x667) = 1;
-            SetEffect(0x58, 5, p, 0, 7, 0xFFFFFFFFu);
+            SetEffect(0x58, 5, (cObj *)p, 0, 7, EFFECT_FOLLOW_OWNER);
             *(int *)(p + 0x668) = cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x117, (cObj *)p, 0, 0, 0, 0);
         }
     }

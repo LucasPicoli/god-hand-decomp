@@ -3,6 +3,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
+#include "godhand/cObjBase.h"
 
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern int  moveMotion(void *a0);
@@ -17,7 +18,6 @@ extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int a4, in
 extern void SetMotionStep(void *a0, float f12);
 extern void cSnd_SeStop(void *a0, int a1);
 extern void KillEffect(void *a0, int a1, int a2);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern char *Getplayer(void);
 extern int D_007474A0;
 
@@ -138,7 +138,7 @@ void func_0010E5B8(void *a0)
                 *(int *)(s1 + 0x15B4) = 0;
                 if (*(float *)(s1 + 0x15C0) >= 2.5f) {
                     KillEffect(Getplayer(), 2, 2);
-                    SetEffect(0, 0x32, s1, 0, -1, 0xFFFFFFFFu);
+                    SetEffect(0, 0x32, a0, 0, -1, EFFECT_FOLLOW_OWNER);
                 }
                 cSnd_SeStop(&D_005FEE00, *(int *)(s1 + 0x1620));
                 *(int *)(s1 + 0x1620) = 0;

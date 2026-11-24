@@ -2,11 +2,11 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 
 extern void *Getplayer(void);
 extern void cSnd_DieDemoStart(void *a0);
 extern void func_0012C348(void *a0, int a1);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
@@ -32,7 +32,7 @@ void func_00103370(void *a0)
         cCoreSave_dropLevelPoint(&D_00569B70);
         func_0012C348(s3, 3);
         func_002A8578(s2, p1, p2, 2, 0.0f, 0, 0);
-        SetEffect(0, 0x53, s2, 0, -1, 0xFFFFFFFF);
+        SetEffect(0, 0x53, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         *(int *)(s2 + 0x1490) = 0x82;
         *(unsigned char *)(s2 + 0x2F6) = *(unsigned char *)(s2 + 0x2F6) + 1;
     case 1:

@@ -4,6 +4,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 
 extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -15,38 +16,10 @@ extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void ReleaseObj(void *a0);
 extern void func_00275DA8(void *a0);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern int D_00463050;
 
-typedef struct {
-    float f00;
-    float f04;
-    float f08;
-    float f0C;
-    char q10[0x10];
-    char q20[0x10];
-    float f30;
-    float f34;
-    float f38;
-    float f3C;
-    float f40;
-    int i44;
-    int i48;
-    signed char b4C;
-    signed char b4D;
-    signed char b4E;
-    unsigned char b4F;
-    int i50;
-    char pad54[0xC];
-    char q60[0x10];
-    short h70;
-    short h72;
-    signed char b74;
-    char pad75[3];
-    int i78;
-} S;
 
 /* Phase machine on the step byte, 4 case labels. Calls Getplayer,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, cEm00_attachToTarget, cModel_getMeshPtr_14B730,
@@ -56,7 +29,7 @@ __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
     char *s1 = (char *)self;
     char *s2;
     int spill[2];
-    S s;
+    cEffectParam s;
     char *v;
     char *base;
     char *parts;
@@ -111,35 +84,35 @@ __attribute__((section(".text.func_00247B18"))) void func_00247B18(cEm00 *self)
                     *(int *)(s1 + 0x744) = 0;
                     func_00275DA8(s1);
                 }
-                fp = &s.f00;
-                s.f00 = 1.0f;
+                fp = &s.color.x;
+                s.color.x = 1.0f;
                 fp[1] = 1.0f;
                 fp[2] = 1.0f;
                 fp[3] = 1.0f;
                 VU0_SQC2_VF0(spill, 0x20);
                 VU0_SQC2_VF0(spill, 0x30);
                 {
-                    float *q = &s.f30;
-                    s.f30 = 1.0f;
+                    float *q = &s.scale.x;
+                    s.scale.x = 1.0f;
                     q[1] = 1.0f;
                     q[2] = 1.0f;
                     q[3] = 1.0f;
                 }
                 fp[0x10] = 1.0f;
-                s.i44 = 0;
-                s.i48 = 0;
+                s.unk44 = 0;
+                s.flags = 0;
                 ((signed char *)fp)[0x4C] = -1;
-                s.b4D = 0;
-                s.b4E = 0;
+                s.unk4D = 0;
+                s.unk4E = 0;
                 ((unsigned char *)fp)[0x4F] = 0xFF;
-                s.i50 = 0;
+                s.unk50 = 0;
                 VU0_SQC2_VF0(spill, 0x70);
-                s.f40 = *(float *)(s1 + 0x114);
-                s.h70 = 0;
-                s.h72 = 0;
-                s.b74 = 0;
-                s.i78 = 0;
-                SetEffect(0xBD, 0x19, s1, &s, 1, 0xFFFFFFFF);
+                s.size = *(float *)(s1 + 0x114);
+                s.unk70 = 0;
+                s.unk72 = 0;
+                s.unk74 = 0;
+                s.unk78 = 0;
+                SetEffect(0xBD, 0x19, (cObj *)self, &s, 1, EFFECT_FOLLOW_OWNER);
                 *(int *)(s1 + 0x16D4) = *(int *)(s1 + 0x16D4) | 0x20000000;
                 *(char *)(s1 + 0x186C) = 2;
                 *(unsigned char *)(s1 + 0x2F6) = 2;

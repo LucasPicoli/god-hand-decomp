@@ -6,9 +6,9 @@
 #include "godhand/cOmHitVolumeSetup.h"
 #include "godhand/cDamageGive.h"
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 extern char D_00747B00[];
 extern void SetMotionStep(void *a0, float f12);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern int moveMotion(void *a0);
 extern void VecRotVec(float *out, float *in, float *rot, int order);
 extern int cOmBase_checkDamage(cOmBase *self, cDamageTake *take);
@@ -60,7 +60,7 @@ void func_001A5540(cOmStrike *self)
         VCall(self, 15, D_00747B00);
         mot = self->base.pack;
         func_002A8578(self, *(int *)(mot + 0xC) + (int)mot, *(int *)(mot + 0x10) + (int)mot, 0, 0.0f, 0, 0);
-        SetEffect(1, 2, self, 0, -1, 0xFFFFFFFF);
+        SetEffect(1, 2, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
         if (self->give)
             cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 1);
         self->base.phase = 1;

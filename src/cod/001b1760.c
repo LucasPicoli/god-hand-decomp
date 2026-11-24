@@ -2,9 +2,9 @@
 
 #include "godhand/cOm60.h"
 #include "godhand/cSnd.h"
+#include "godhand/cObjBase.h"
 
 extern float capVu0Atan2(float y, float x);
-extern int SetEffect(int kind, int id, void *owner, void *param, int handle, unsigned int owner2);
 
 /* The held bit cleared as an unsigned mask: retail builds it with lui+ori,
  * where ~0x10 would give a one-instruction addiu. */
@@ -26,7 +26,7 @@ void cOm60_setThrow(cOm60 *self, cVec *dir, float time) {
     self->hitFlag = 0;
     if (self->started == 0) {
         self->started = 1;
-        SetEffect(COM60_THROW_EFFECT, 5, self, 0, 7, 0xFFFFFFFF);
+        SetEffect(COM60_THROW_EFFECT, 5, (cObj *)self, 0, 7, EFFECT_FOLLOW_OWNER);
         self->seHandle = cSnd_SeCall_2CBA48(&D_005FEE00, 0, COM60_THROW_SE, (cObj *)self, 0, 0, 0, 0);
     }
 }

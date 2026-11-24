@@ -6,6 +6,7 @@ extern void cPlBase__tf(void);
 extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_007854C8[];
 #include "godhand/motion.h"
+#include "godhand/cObjBase.h"
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -64,7 +65,7 @@ void UpdateAttackMovePhase_102FE8(void *a0) {
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0x54) + g),
                       (void *)(*(int *)((char *)g + 0x58) + g), 0, 0.0f, 0, 0);
-        if (SetEffect(0, 0x51, a0, 0, -1, 0xFFFFFFFF)) { }
+        if (SetEffect(0, 0x51, a0, 0, -1, EFFECT_FOLLOW_OWNER)) { }
         (*(unsigned char *)((char *)a0 + 0x2F6))++;
         /* fallthrough */
     case 1:

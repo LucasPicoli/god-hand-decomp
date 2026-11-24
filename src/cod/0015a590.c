@@ -8,7 +8,6 @@ extern void CustomIDOwner_setAllShown(void *self, int on);
 extern void func_001F4928(void *self, int on);
 extern void Effect_killByModeB(int a0, int a1);
 extern int EffEventIsCutDataExist(unsigned int id);
-extern int SetEffect(int kind, int id, void *owner, void *param, int handle, unsigned int owner2);
 
 #define DISP_ALL  0x6F                  /* id that stands for every element */
 
@@ -67,7 +66,7 @@ void SetEventCutEffect(unsigned int id) {
         param.unk72 = 0;
         param.unk74 = 0;
         param.unk78 = 0;
-        SetEffect(EFFECT_CUT_KIND, id + 1, 0, &param, id + EFFECT_CUT_HANDLE, 0xFFFFFFFF);
+        SetEffect(EFFECT_CUT_KIND, id + 1, 0, &param, id + EFFECT_CUT_HANDLE, EFFECT_FOLLOW_OWNER);
     }
 }
 

@@ -4,7 +4,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cSnd.h"
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
+#include "godhand/cObjBase.h"
 
 /* A gimmick that tips over once, falling faster as it goes. The tilt is rot.x (0x100, the
  * euler angles, as in cParts). */
@@ -55,7 +55,7 @@ void func_0017EF98(cOmTipOver *self)
         }
         t = self->base.rot.x;
         if (t <= (-1.5707964f)) {
-            SetEffect(1, 1, 0, 0, -1, 0xFFFFFFFFU);
+            SetEffect(1, 1, 0, 0, -1, EFFECT_FOLLOW_OWNER);
             cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xE7, (cObj *)self, 0, 0, 0, 0);
             self->base.rot.x = (-1.5707964f);
             self->fallen = 1;

@@ -7,7 +7,6 @@ extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern void func_0019BA08(void *a0, int a1, int a2);
 extern void SetField5B0Bit2ClearBit8_1B7908(int a0);
 extern float capVu0Atan2(float y, float x);
-extern int SetEffect();
 extern void DamageObj_disableDamage(void *a0);
 extern void func_00373FA0(void *a0);
 extern void func_0032BDC0(void *a0, int a1, int a2);
@@ -161,6 +160,7 @@ void func_0019B580(void *a0)
 
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
+#include "godhand/cObjBase.h"
 
 
 
@@ -174,38 +174,10 @@ typedef struct Vec4 {
     float w;
 } Vec4;
 
-typedef struct S {
-    float f00;            /* 0x00 */
-    float f04;
-    float f08;
-    float f0C;
-    Vec4 v10;             /* 0x10 sqc2 */
-    Vec4 v20;             /* 0x20 sqc2 */
-    float f30;            /* 0x30 */
-    float f34;
-    float f38;
-    float f3C;
-    float f40;            /* 0x40 */
-    int i44;
-    int i48;
-    signed char b4C;      /* 0x4C */
-    signed char b4D;
-    signed char b4E;
-    unsigned char b4F;
-    int i50;              /* 0x50 */
-    char pad54[0xC];
-    char q60[0x10];       /* 0x60 sqc2 */
-    short h70;            /* 0x70 */
-    short h72;
-    signed char b74;      /* 0x74 */
-    char pad75[3];
-    int i78;              /* 0x78 */
-    char pad7C[4];
-} S;
 
 typedef struct Frame {
     Vec4 a;               /* 0x00 */
-    S s;                  /* 0x10 */
+    cEffectParam s;                  /* 0x10 */
 } Frame;
 
 __attribute__((section(".text.func_001BFD28")))
@@ -213,7 +185,7 @@ void func_001BFD28(void *a0)
 {
     char *s0 = (char *)a0;
     Frame fr;
-    S *e;
+    cEffectParam *e;
     float ang;
 
     switch (*(unsigned char *)(s0 + 0x2F5)) {
@@ -234,40 +206,40 @@ void func_001BFD28(void *a0)
             fr.a.z = src[2];
         }
         e = &fr.s;
-        e->f00 = 1.0f;
-        e->f04 = 1.0f;
-        e->f08 = 1.0f;
-        e->f0C = 1.0f;
+        e->color.x = 1.0f;
+        e->color.y = 1.0f;
+        e->color.z = 1.0f;
+        e->color.w = 1.0f;
         VU0_SQC2_VF0(&fr, 0x20);
         VU0_SQC2_VF0(&fr, 0x30);
         {
-            float *q = &e->f30;
+            float *q = &e->scale.x;
             q[0] = 1.0f;
             q[1] = 1.0f;
             q[2] = 1.0f;
             q[3] = 1.0f;
         }
-        e->f40 = 1.0f;
-        fr.s.i44 = 0;
-        fr.s.i48 = 0;
-        e->b4C = -1;
-        fr.s.b4D = 0;
-        fr.s.b4E = 0;
-        e->b4F = 0xFF;
-        fr.s.i50 = 0;
+        e->size = 1.0f;
+        fr.s.unk44 = 0;
+        fr.s.flags = 0;
+        e->unk4C = -1;
+        fr.s.unk4D = 0;
+        fr.s.unk4E = 0;
+        e->unk4F = 0xFF;
+        fr.s.unk50 = 0;
         VU0_SQC2_VF0(&fr, 0x70);
-        fr.s.v10.y = ang;
-        fr.s.h70 = 0;
-        fr.s.h72 = 0;
-        fr.s.b74 = 0;
-        fr.s.i78 = 0;
-        if ((void *)&fr.s.v20 != (void *)&fr.a) {
-            fr.s.v20.x = fr.a.x;
-            fr.s.v20.y = fr.a.y;
-            fr.s.v20.z = fr.a.z;
+        fr.s.unk10.y = ang;
+        fr.s.unk70 = 0;
+        fr.s.unk72 = 0;
+        fr.s.unk74 = 0;
+        fr.s.unk78 = 0;
+        if ((void *)&fr.s.unk20 != (void *)&fr.a) {
+            fr.s.unk20.x = fr.a.x;
+            fr.s.unk20.y = fr.a.y;
+            fr.s.unk20.z = fr.a.z;
         }
-        fr.s.f40 = 1.0f;
-        SetEffect(0, 0x1C, 0, &fr.s, -1, 0xFFFFFFFF);
+        fr.s.size = 1.0f;
+        SetEffect(0, 0x1C, 0, &fr.s, -1, EFFECT_FOLLOW_OWNER);
         {
             char *vt2 = *(char **)(s0 + 0x214);
             short off2 = *(short *)(vt2 + 0xA8);

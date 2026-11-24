@@ -11,13 +11,13 @@ extern int moveMotion(void *a0);
 extern void Obj0000_Set_Bytes_2F4_2F7_2F5_2F6_27DCD0(int a0, int a1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern int cDamageUnit_SetDamageCollActive(void *a0, int a1);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/vu0.h"
+#include "godhand/cObjBase.h"
 
 
 
@@ -34,72 +34,45 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 
 
-typedef struct {
-    float f00;          /* 0x00 */
-    float f04;          /* 0x04 */
-    float f08;          /* 0x08 */
-    float f0C;          /* 0x0C */
-    char q10[0x10];     /* 0x10 sqc2 */
-    char q20[0x10];     /* 0x20 sqc2 */
-    float f30;          /* 0x30 */
-    float f34;          /* 0x34 */
-    float f38;          /* 0x38 */
-    float f3C;          /* 0x3C */
-    float f40;          /* 0x40 */
-    int i44;            /* 0x44 */
-    int i48;            /* 0x48 */
-    signed char b4C;    /* 0x4C */
-    signed char b4D;    /* 0x4D */
-    signed char b4E;    /* 0x4E */
-    unsigned char b4F;  /* 0x4F */
-    int i50;            /* 0x50 */
-    char pad54[0xC];    /* 0x54 */
-    char q60[0x10];     /* 0x60 sqc2 */
-    short h70;          /* 0x70 */
-    short h72;          /* 0x72 */
-    signed char b74;    /* 0x74 */
-    char pad75[3];      /* 0x75 */
-    int i78;            /* 0x78 */
-} S;
 
 /* Phase machine on the step byte, 58 case labels. Calls VU0_SQC2_VF0, fp,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, irand, cSnd_SeCall_2CBA48, GetSeqSEBase and 9 more. */
 __attribute__((section(".text.func_0025E790"))) void func_0025E790(cEm00 *self)
 {
     char *s3 = (char *)self;
-    S s;
+    cEffectParam s;
     int s2;
     int s1;
     int nb;
     void *s5;
 
-    s.f00 = 1.0f;
-    s.f04 = 1.0f;
-    s.f08 = 1.0f;
-    s.f0C = 1.0f;
+    s.color.x = 1.0f;
+    s.color.y = 1.0f;
+    s.color.z = 1.0f;
+    s.color.w = 1.0f;
     VU0_SQC2_VF0(&s, 0x10);
     VU0_SQC2_VF0(&s, 0x20);
-    s.f30 = 1.0f;
+    s.scale.x = 1.0f;
     {
-        float *q = &s.f30;
+        float *q = &s.scale.x;
         q[1] = 1.0f;
         q[2] = 1.0f;
         q[3] = 1.0f;
     }
-    s.f40 = 1.0f;
-    s.b4C = -1;
-    s.b4F = 0xFF;
-    s.i44 = 0;
-    s.i48 = 0;
-    s.b4D = 0;
-    s.b4E = 0;
-    s.i50 = 0;
+    s.size = 1.0f;
+    s.unk4C = -1;
+    s.unk4F = 0xFF;
+    s.unk44 = 0;
+    s.flags = 0;
+    s.unk4D = 0;
+    s.unk4E = 0;
+    s.unk50 = 0;
     VU0_SQC2_VF0(&s, 0x60);
-    s.h70 = 0;
-    s.f40 = *(float *)(s3 + 0x114);
-    s.h72 = 0;
-    s.b74 = 0;
-    s.i78 = 0;
+    s.unk70 = 0;
+    s.size = *(float *)(s3 + 0x114);
+    s.unk72 = 0;
+    s.unk74 = 0;
+    s.unk78 = 0;
     {
         int *vt = *(int **)(s3 + 0x214);
         short off = *(short *)((char *)vt + 0xB0);
@@ -281,7 +254,7 @@ __attribute__((section(".text.func_0025E790"))) void func_0025E790(cEm00 *self)
                 case 0x249:
                 case 0x24A:
                 case 0x24E:
-                    SetEffect(0x58, 0x9F, s3, &s, -1, 0xFFFFFFFF);
+                    SetEffect(0x58, 0x9F, (cObj *)self, &s, -1, EFFECT_FOLLOW_OWNER);
                     cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 0x22), (cObj *)self, 0, 0,
                                        0, 0);
                     break;

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void cHeatSys_SetHeatGage(void *a0, float f12);
 extern int cHeatSys_SubHeatGage(void *a0, int a1, float f12);
@@ -81,13 +81,13 @@ void func_00123460(void *arg)
             case 4:
             case 6:
             default:
-                SetEffect(0, 0x25, Getplayer(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x25, Getplayer(), 0, 3, EFFECT_FOLLOW_OWNER);
                 break;
             case 1:
             case 3:
             case 5:
             case 7:
-                SetEffect(0, 0x73, Getplayer(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x73, Getplayer(), 0, 3, EFFECT_FOLLOW_OWNER);
                 break;
             }
             }
@@ -102,13 +102,13 @@ void func_00123460(void *arg)
             case 4:
             case 6:
             default:
-                SetEffect(0, 0x21, s0, 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x21, arg, 0, 3, EFFECT_FOLLOW_OWNER);
                 break;
             case 1:
             case 3:
             case 5:
             case 7:
-                SetEffect(0, 0x72, Getplayer(), 0, 3, 0xFFFFFFFFu);
+                SetEffect(0, 0x72, Getplayer(), 0, 3, EFFECT_FOLLOW_OWNER);
                 break;
             }
         }

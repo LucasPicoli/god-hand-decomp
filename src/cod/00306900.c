@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 */
 #include "godhand/cObjBase.h"
 
-extern int SetEffect(int kind, int id, void *owner, cEffectParam *param, int handle, unsigned int follow);
 
 /* Start an effect on part `part` of owner at (x, y, z) with the default
  * parameters and the given size; returns SetEffect's result. */
@@ -20,5 +19,5 @@ int SetEffectParts(int kind, int id, void *owner, int part, float x, float y, fl
     param.unk72 = 0;
     param.unk74 = 0;
     param.unk78 = 0;
-    return SetEffect(kind, id, owner, &param, handle, 0xFFFFFFFF);
+    return SetEffect(kind, id, owner, &param, handle, EFFECT_FOLLOW_OWNER);
 }

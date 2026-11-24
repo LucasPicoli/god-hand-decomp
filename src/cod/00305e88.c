@@ -29,5 +29,5 @@ void func_00305E88(cFxOnce *self, int no)
     param.unk72 = 0;
     param.unk74 = 0;
     param.unk78 = 0;
-    SetEffect(FXONCE_KIND, no, 0, &param, no + FXONCE_HANDLE, 0xFFFFFFFF);
+    SetEffect(FXONCE_KIND, no, 0, &param, no + FXONCE_HANDLE, EFFECT_FOLLOW_OWNER);
 }

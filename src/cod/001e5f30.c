@@ -3,8 +3,8 @@
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/DispMgr.h"
+#include "godhand/cObjBase.h"
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void func_001E6ED8(void *a0, int a1, int a2);
 extern void func_001E6D48(void *a0, int a1, int a2);
@@ -40,7 +40,7 @@ void Slot2_PayoutTicket(Slot2 *self) {
         self->phase = self->phase + 1;
         break;
     case 1:
-        SetEffect(1, 2, 0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 2, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         func_001E6ED8(self, 1, 1);
         func_001E6D48(self, 1, 1);
         cSnd_BgmEventStart(&D_005FEE00, 0x32, 0, 0);

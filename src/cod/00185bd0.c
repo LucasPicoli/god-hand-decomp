@@ -2,11 +2,11 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/cSnd.h"
+#include "godhand/cObjBase.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001B76D8(void *a0);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int SetEffect(int a0, int a1, cObj *a2, int a3, int a4, unsigned int a5);
 extern void func_001B6FB8(void *a0);
 extern void func_001BFB28(void *a0);
 
@@ -108,7 +108,7 @@ void SetMeshLayerAndPlayEffect(void *arg0, int arg1)
         break;
     case 4:
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, arg0, 0, 0, 0, 0);
-        SetEffect(0x298, 4, arg0, 0, -1, 0xFFFFFFFF);
+        SetEffect(0x298, 4, arg0, 0, -1, EFFECT_FOLLOW_OWNER);
         break;
     }
 }

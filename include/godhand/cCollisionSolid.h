@@ -229,5 +229,16 @@ int cCollisionSolidManage_ChkHit(cCollisionSolidManage *self, struct cGameObj *o
 /* The line test between two points (assembly); the parameters as its callers pass them. */
 int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
             int a7, int a8, int a9, int a10, int a11, int a12);
+/* The collision record of a surface ChkCollScrWall hits (retail's name; its layout isn't known). */
+struct AK_HIT_INFO;
+
+/* Wall test of obj (its posA to pos) within radius; the hit point goes to hit
+ * and the record of the wall hit to *info (assembly, typed from retail's
+ * ChkCollScrWall__FR8cGameObjfP4cVecUiPP11AK_HIT_INFOUiPUi). */
+int ChkCollScrWall(struct cGameObj *obj, float radius, cVec *hit, unsigned int a2, struct AK_HIT_INFO **info,
+                   unsigned int a4, unsigned int *a5);
+/* Floor test of obj within range of its position; the hit point goes to hit
+ * (assembly; obj and hit as for ChkCollScrWall, the others as its callers pass them). */
+int func_001329C0(struct cGameObj *obj, cVec *hit, int a2, void *a3, float range);
 
 #endif

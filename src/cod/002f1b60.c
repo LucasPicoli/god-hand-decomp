@@ -9,7 +9,6 @@
 /* The error messages, one per failing step. */
 
 extern int cModel_setupModel(void *model, void *mdl, void *tex, int a3, int a4);
-extern int SetEffect(int kind, int id, void *owner, cEffectParam *param, int handle, unsigned int follow);
 
 /* Build the effect object's model: look up its model data, create the model
  * object and set it up (with the effect's T32 table in the modes that use
@@ -62,7 +61,7 @@ int func_002F1B60(EffModelObj *self)
         param.unk70 = 0;
         param.unk72 = 0;
         param.unk78 = 0;
-        SetEffect(self->effKind, self->effNo, self->model, &param, -1, 0xFFFFFFFF);
+        SetEffect(self->effKind, self->effNo, (cObj *)self->model, &param, -1, EFFECT_FOLLOW_OWNER);
     }
     return 1;
 }

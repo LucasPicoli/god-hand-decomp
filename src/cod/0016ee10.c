@@ -1,3 +1,4 @@
+#include "godhand/cObjBase.h"
 /* sn-2.95.3-136 matched TU. */
 
 typedef struct {
@@ -29,9 +30,6 @@ extern void func_002B4528(void *self, int value);
 extern void func_002D5918(void *self);
 extern void func_002D5990(void *self);
 extern int snDllLoaded(void *value, int mode);
-extern int SetEffect(
-    int effect, int resource, void *owner, int arg3,
-    int arg4, unsigned int arg5);
 
 __attribute__((section(".text.func_0031AF70")))
 int func_0031AF70(int value)
@@ -60,19 +58,19 @@ int func_00294998(char *self)
 __attribute__((section(".text.func_0016FE68")))
 void func_0016FE68(void *owner)
 {
-    SetEffect(1, 3, owner, 0, -1, 0xFFFFFFFFU);
+    SetEffect(1, 3, owner, 0, -1, EFFECT_FOLLOW_OWNER);
 }
 
 __attribute__((section(".text.func_00170150")))
 void func_00170150(void *owner)
 {
-    SetEffect(1, 4, owner, 0, -1, 0xFFFFFFFFU);
+    SetEffect(1, 4, owner, 0, -1, EFFECT_FOLLOW_OWNER);
 }
 
 __attribute__((section(".text.func_00170438")))
 void func_00170438(void *owner)
 {
-    SetEffect(1, 5, owner, 0, -1, 0xFFFFFFFFU);
+    SetEffect(1, 5, owner, 0, -1, EFFECT_FOLLOW_OWNER);
 }
 
 __attribute__((section(".text.func_002714E8")))
@@ -189,8 +187,8 @@ void func_0016F608(char *self)
     int resource = *(int *)(self + 0x5EC);
     if (resource != 0) {
         SetEffect(
-            *(int *)(self + 0x5F0), resource, self, 0,
-            -1, 0xFFFFFFFFU);
+            *(int *)(self + 0x5F0), resource, (cObj *)self, 0,
+            -1, EFFECT_FOLLOW_OWNER);
     }
 }
 
@@ -200,8 +198,8 @@ void func_0016F900(char *self)
     int resource = *(int *)(self + 0x5EC);
     if (resource != 0) {
         SetEffect(
-            *(int *)(self + 0x5F0), resource, self, 0,
-            -1, 0xFFFFFFFFU);
+            *(int *)(self + 0x5F0), resource, (cObj *)self, 0,
+            -1, EFFECT_FOLLOW_OWNER);
     }
 }
 
@@ -211,8 +209,8 @@ void func_0016FBF8(char *self)
     int resource = *(int *)(self + 0x5EC);
     if (resource != 0) {
         SetEffect(
-            *(int *)(self + 0x5F0), resource, self, 0,
-            -1, 0xFFFFFFFFU);
+            *(int *)(self + 0x5F0), resource, (cObj *)self, 0,
+            -1, EFFECT_FOLLOW_OWNER);
     }
 }
 

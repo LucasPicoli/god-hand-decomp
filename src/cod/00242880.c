@@ -6,13 +6,13 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern void Spawner_spawnChild(void *a0);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjBase.h"
 
 
 
@@ -34,71 +34,43 @@ typedef struct Vec4 {
     float w;
 } Vec4;
 
-typedef struct S {
-    float f00;            /* 0x00 */
-    float f04;
-    float f08;
-    float f0C;
-    Vec4 v10;             /* 0x10 sqc2 */
-    Vec4 v20;             /* 0x20 sqc2 */
-    float f30;            /* 0x30 */
-    float f34;
-    float f38;
-    float f3C;
-    float f40;            /* 0x40 */
-    int i44;
-    int i48;
-    signed char b4C;      /* 0x4C */
-    signed char b4D;
-    signed char b4E;
-    unsigned char b4F;
-    int i50;              /* 0x50 */
-    char pad54[0xC];
-    char q60[0x10];       /* 0x60 sqc2 */
-    short h70;            /* 0x70 */
-    short h72;
-    signed char b74;      /* 0x74 */
-    char pad75[3];
-    int i78;              /* 0x78 */
-    char pad7C[4];
-} S;
 
 /* Phase machine on the step byte, 7 case labels. Calls VU0_SQC2_VF0,
  * cCollisionSolidManage_SetActive, func_002A8578, cCoreSave_getGameLevel, Spawner_spawnChild,
  * cSnd_SeCall_2CBA48 and 4 more. */
 __attribute__((section(".text.func_00242880"))) void func_00242880(cEm00 *self)
 {
-    S fr;
-    S *e = &fr;
+    cEffectParam fr;
+    cEffectParam *e = &fr;
 
-    e->f00 = 1.0f;
-    e->f04 = 1.0f;
-    e->f08 = 1.0f;
-    e->f0C = 1.0f;
+    e->color.x = 1.0f;
+    e->color.y = 1.0f;
+    e->color.z = 1.0f;
+    e->color.w = 1.0f;
     VU0_SQC2_VF0(&fr, 0x10);
     VU0_SQC2_VF0(&fr, 0x20);
     {
-        float *q = &e->f30;
+        float *q = &e->scale.x;
         q[0] = 1.0f;
         q[1] = 1.0f;
         q[2] = 1.0f;
         q[3] = 1.0f;
     }
-    e->f40 = 1.0f;
-    fr.i44 = 0;
-    fr.i48 = 0;
-    e->b4C = -1;
-    fr.b4D = 0;
-    fr.b4E = 0;
-    e->b4F = 0xFF;
-    fr.i50 = 0;
+    e->size = 1.0f;
+    fr.unk44 = 0;
+    fr.flags = 0;
+    e->unk4C = -1;
+    fr.unk4D = 0;
+    fr.unk4E = 0;
+    e->unk4F = 0xFF;
+    fr.unk50 = 0;
     VU0_SQC2_VF0(&fr, 0x60);
-    e->f40 = self->scale.y;
+    e->size = self->scale.y;
     self->hitFlash = 3.0f;
-    fr.h70 = 0;
-    fr.h72 = 0;
-    fr.b74 = 0;
-    fr.i78 = 0;
+    fr.unk70 = 0;
+    fr.unk72 = 0;
+    fr.unk74 = 0;
+    fr.unk78 = 0;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
 
     self->emFlags |= 0x10000;
@@ -128,7 +100,7 @@ __attribute__((section(".text.func_00242880"))) void func_00242880(cEm00 *self)
             }
             Spawner_spawnChild(self);
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x107, (cObj *)self, 0, 0, 0, 0);
-            SetEffect(0x69, 1, self, &fr, 1, 0xFFFFFFFFU);
+            SetEffect(0x69, 1, (cObj *)self, &fr, 1, EFFECT_FOLLOW_OWNER);
             self->emFlags2 |= 0x20;
             self->step++;
         }

@@ -1,6 +1,7 @@
 /* TU: cOl2b [object] - recovered C++ class. */
 #include "godhand/cSnd.h"
 #include "include_asm.h"
+#include "godhand/cObjBase.h"
 typedef struct CGUnk_00180310
 {
   unsigned char unk[0xA28];
@@ -40,7 +41,6 @@ unsigned char cOl2b_isActive(unsigned char *a0) {
     return a0[0xA28];
 }
 
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 
 __attribute__((section(".text.cOl2b_setFire")))
 void cOl2b_setFire(char *p)
@@ -51,7 +51,7 @@ void cOl2b_setFire(char *p)
     int idx;
 
     if (*(unsigned char *)(p + 0xA29) != 0) return;
-    SetEffect(1, 3, p, 0, -1, 0xFFFFFFFFu);
+    SetEffect(1, 3, (cObj *)p, 0, -1, EFFECT_FOLLOW_OWNER);
     idx = 2;
     if ((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (idx >= 0 && idx < b))
         obj = (*(cOmBase ***)(p + 0x278))[idx];

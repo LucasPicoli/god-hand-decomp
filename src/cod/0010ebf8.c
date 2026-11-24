@@ -20,7 +20,6 @@ extern int cOmBase_checkDamage(void *a0, int a1);
 extern void StunObj_startStun(void *a0);
 extern void func_001B48E0(void *a0);
 extern void func_001B54E8(void *a0);
-extern int func_001329C0(void *a0, void *a1, int a2, void *a3, float f12);
 extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);
 
@@ -254,6 +253,7 @@ struct Table_001B4068 { struct Entry_001B4068 e[1]; };
 extern struct Table_001B4068 D_003BDD38;
 
 #include "godhand/vu0.h"
+#include "godhand/cCollisionSolid.h"
 
 static __inline__ char *GetChild(char *p, int idx, char *fr)
 {
@@ -333,7 +333,7 @@ void func_001B4068(void *a0)
         break;
     }
     VU0_SQC2_VF0(buf, 0x10);
-    if (func_001329C0(s0, buf + 0x10, 0, 0, 10.0f) != 0)
+    if (func_001329C0(a0, (cVec *)(buf + 0x10), 0, 0, 10.0f) != 0)
         (*(float **)(s0 + 0xF0))[1] = *(float *)(buf + 0x14);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);

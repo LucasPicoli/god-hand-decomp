@@ -5,7 +5,6 @@ extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
 extern void *Getplayer(void);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
-extern int SetEffect(int a0, int a1, void *a2, void *a3, int t0, unsigned int t1);
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
@@ -17,6 +16,7 @@ extern int D_00747A24;
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cObjBase.h"
 __attribute__((section(".text.func_00103170")))
 void func_00103170(void *a0)
 {
@@ -32,7 +32,7 @@ void func_00103170(void *a0)
         int v0 = *(int *)(s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x2C) + v0, *(int *)(v0 + 0x30) + v0, 1, 0.0f, 0, 0);
     }
-        SetEffect(0, 0x52, s0, 0, -1, 0xFFFFFFFFu);
+        SetEffect(0, 0x52, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         func_0012C348(s1, 0);
         pl00_clearMotionCam(s1, 0, 0);
         {

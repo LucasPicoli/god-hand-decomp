@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/cObjBase.h"
 
 extern int cOmSub_move(void *a0);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
 
 extern void cOmSub_initMove1_ang(void *a0, void *a1, int a2, int a3, void *t0,
                                  float f12, float f13, int t1);
@@ -87,7 +87,7 @@ void func_001812B8(void *a0)
         ok3 = ((*(int *)(frame + 0x20) = b3 = *(unsigned char *)(s1 + 0x2B4)), (i3 < b3));
         if (ok3) t1c = (*(cOmBase ***)(s1 + 0x278))[i3]; else t1c = 0;
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xDE, a0, 0, (cParts *)t1c, 0, 0);
-        SetEffect(1, 1, s1, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 1, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         *(unsigned char *)(s1 + 0x2F5) = 4;
         *(unsigned char *)(s1 + 0x2F6) = 0;
         *(unsigned char *)(s1 + 0x2F7) = 0;

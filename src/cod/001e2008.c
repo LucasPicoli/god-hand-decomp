@@ -5,13 +5,13 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
+#include "godhand/cObjBase.h"
 
 extern void Slot2_selectMark(Slot1 *a0, int a1, int a2, int a3);
 extern void func_001E3D78(Slot1 *a0, int a1, int a2);
 extern void func_001E8E48(void *a0, void *a1);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
-extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
 extern void Slot2_setMarkLayersAt464(Slot1 *a0, int a1, int a2);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void Slot2_setMarkLayersAt46C(Slot1 *a0, int a1, int a2);
@@ -223,7 +223,7 @@ void Slot1_payoutLine1(Slot1 *self) {
     switch (self->phase) {
     case 0:
         self->payMode = SLOT1_PAYMODE_ON;
-        SetEffect(1, 1, 0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 1, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         Slot2_selectMark(self, self->slotId, 1, 1);
         Slot2_setMarkLayersAt464(self, 1, 1);
         self->timer = 0x3C;
@@ -288,7 +288,7 @@ void Slot1_payoutLine2(Slot1 *self) {
     switch (self->phase) {
     case 0:
         self->payMode = SLOT1_PAYMODE_ON;
-        SetEffect(1, 2, 0, 0, -1, 0xFFFFFFFFU);
+        SetEffect(1, 2, 0, 0, -1, EFFECT_FOLLOW_OWNER);
         Slot2_selectMark(self, self->slotId, 1, 1);
         Slot2_setMarkLayersAt46C(self, 1, 1);
         self->timer = 0x3C;

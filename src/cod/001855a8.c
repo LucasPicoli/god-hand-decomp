@@ -6,8 +6,8 @@
 
 extern void UpdateObjByIndexedOp_2FBE50(void *slot);
 extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int on);
-extern int SetEffect(int effNo, int kind, void *obj, int a3, int a4, unsigned int a5);
 #include "godhand/objField.h"
+#include "godhand/cObjBase.h"
 extern void sceVu0ApplyMatrix(void *out, void *mtx, void *vec);
 extern float LengthPositionToGivenLine(void *line, void *pos, void *dir, int *flag);
 extern void func_003039E8(void *slot, int a0, int a1);
@@ -104,7 +104,7 @@ void cOmBase_setDispModeLayers2E(cOmBase *self, int mode)
         cOmBase_setMeshDispFromLayer(self, 0x2F, 1);
         break;
     case 4:
-        SetEffect(0x298, 6, self, 0, -1, -1);
+        SetEffect(0x298, 6, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, (cObj *)self, 0, 0, 0, 0);
         break;
     }
@@ -132,7 +132,7 @@ void cOmBase_setDispModeLayers1E(cOmBase *self, int mode)
         cOmBase_setMeshDispFromLayer(self, 0x1F, 1);
         break;
     case 4:
-        SetEffect(0x298, 3, self, 0, -1, -1);
+        SetEffect(0x298, 3, (cObj *)self, 0, -1, EFFECT_FOLLOW_OWNER);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x113, (cObj *)self, 0, 0, 0, 0);
         break;
     }

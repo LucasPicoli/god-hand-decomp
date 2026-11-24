@@ -163,4 +163,12 @@ void cObjBase__dtor(struct cObjBase *self, int flags);
  * address by hand to match retail. */
 #define COBJBASE_OFFSET(field) ((int)&((struct cObjBase *)0)->field)
 
+/* SetEffect's follow argument for an effect that follows its owner. */
+#define EFFECT_FOLLOW_OWNER ((cObj *)0xFFFFFFFF)
+
+/* Start effect id of the given kind on owner (param 0: the defaults). follow is
+ * the object the effect follows, EFFECT_FOLLOW_OWNER for owner itself. Returns 0
+ * when the effect file is missing, otherwise 1 or the started count. */
+int SetEffect(int kind, int id, cObj *owner, cEffectParam *param, int handle, cObj *follow);
+
 #endif
