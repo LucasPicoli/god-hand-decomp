@@ -13,6 +13,7 @@
 #define GODHAND_MPVHANDLE_H
 
 #include "godhand/criSjIf.h"
+#include "godhand/MpvPicAtr.h"
 
 /* MpvHandle.stat */
 #define MPV_HN_FREE         1
@@ -39,12 +40,6 @@ typedef struct SfdSjCh {
     int arg;                            /* 0x08 */
 } SfdSjCh;
 typedef char SfdSjCh_size_check[(sizeof(SfdSjCh) == 0xC) ? 1 : -1];
-
-/* The picture attributes block (MPV_GetPicAtr copies it out). */
-typedef struct MpvPicAtr {
-    char data[0x80];
-} MpvPicAtr;
-typedef char MpvPicAtr_size_check[(sizeof(MpvPicAtr) == 0x80) ? 1 : -1];
 
 /* The picture user data buffer (MPV_SetPicUsrBuf). */
 typedef struct MpvPicUsr {
@@ -124,6 +119,9 @@ extern int MPV_DecodePicAtrSj(MpvHandle *hn, SjObj *sj);
 extern int MPV_GetPicAtr(MpvHandle *hn, MpvPicAtr *atr);
 extern void MPV_SetPicUsrBuf(MpvHandle *hn, char *buf, int size);
 extern void MPV_GetPicUsr(MpvHandle *hn, char **buf, int *len);
+extern int MPV_GetBitRate(MpvHandle *hn, unsigned int *rate);
+extern int MPV_GetVbvBufSiz(MpvHandle *hn, int *p1, int *p2, int *p3);
+extern int func_00369FB8(MpvHandle *hn, SjObj *sj);
 
 /* Start codes. */
 extern Sint8 *MPV_SearchDelim(Sint8 *buf, int len, int mask);

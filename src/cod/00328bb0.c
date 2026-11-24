@@ -3,7 +3,6 @@
 #include "godhand/Obj3290Pool.h"
 #include "godhand/sftim.h"
 
-extern void sfmpv_Pts2Tc(int time, int rate, int drop, int ofs, SftimTc *tc);
 extern void func_00352AA0(SftimTc *src, SftimTc *dst);
 
 /* With the lock held, run every queued pool entry, then release the lock. */
@@ -27,7 +26,7 @@ void func_00328BB0(void) {
 
 /* Set the handle's current timecode: from a time value when given, else from the start record or a cleared one. */
 __attribute__((section(".text.Sftim_setTimecode")))
-void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update)
+void Sftim_setTimecode(SftimHn *hn, MpvPicAtr *info, long time, int update)
 {
     SftimWork *tim = &hn->tim;
     int drop = info->drop;

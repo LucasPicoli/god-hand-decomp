@@ -2,10 +2,6 @@
  * the work buffer, then split the buffer into per-frame pointers. */
 #include "godhand/criStm.h"
 #include "godhand/sftim.h"
-typedef struct {
-    int w;
-    int h;
-} FrmSize;
 
 extern void sfmpv_InitFrmObj(StmSlot *s, int *ids, int n);
 
@@ -20,7 +16,7 @@ static inline unsigned int frmBufSize(int mode, int w, int h)
 }
 
 __attribute__((section(".text.sfmpv_ChkBufSiz")))
-int sfmpv_ChkBufSiz(SftimHn *hn, FrmSize *sz)
+int sfmpv_ChkBufSiz(SftimHn *hn, SfdMvInf *mv)
 {
     SfdWork *w = hn->work;
     SfdFrmCfg *cfg = &w->cfg;
@@ -32,9 +28,9 @@ int sfmpv_ChkBufSiz(SftimHn *hn, FrmSize *sz)
     char *buf;
     int i;
 
-    if (cfg->maxW * cfg->maxH < sz->w * sz->h)
+    if (cfg->maxW * cfg->maxH < mv->width * mv->height)
         return func_0034DD70(hn, 0xFF000F17);
-    size = frmBufSize(mode, sz->w, sz->h);
+    size = frmBufSize(mode, mv->width, mv->height);
     /* frmBufSize() here instead changes the register allocation */
     mbw = cfg->bufW / 16;
     mbh = cfg->bufH / 16;

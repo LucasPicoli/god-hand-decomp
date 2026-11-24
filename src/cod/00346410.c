@@ -1,12 +1,11 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sftim.h"
 
 extern int *GetD003EC7E0_3452B0(int a0);
-extern void SFBUF_AddRtotSj(int a0, int a1, int a2);
 extern int GetD003EE078_3463F8(void);
 extern void (*D_003EE07C)(int, int);
 extern void func_0033BA10(int a0, int a1, int a2, int a3, int a4);
 extern int D_00760D84;
-extern void func_0034D318(struct S_0034d318 *a, struct S_0034d318 *b);
 extern int WaitSema(int sema);
 extern int SignalSema(int sema);
 
@@ -24,9 +23,9 @@ void MWSFD_SetReqSvrBdrHn(int a0, int a1) {
 /* MATCH via cygnus-2.96. */
 
 __attribute__((section(".text.sfmpv_AddRtotSj")))
-void sfmpv_AddRtotSj(int a0, int a1) {
-    SFBUF_AddRtotSj(a0, *(int *)(a0 + 0x1FC8), a1);
-    *(long *)(a0 + 0x9A8) += a1;
+void sfmpv_AddRtotSj(SftimHn *hn, int n) {
+    SFBUF_AddRtotSj(hn, hn->vidCh, n);
+    hn->rtotSj += n;
 }
 
 /* MATCH via cygnus-2.96. */
@@ -51,14 +50,13 @@ void MWSFSVM_EntryIdVfunc(int a0, int a1, int a2, int a3) {
 }
 
 /* MATCH via cygnus-2.96. */
-struct S_0034d318 { int x[549]; };
 
 
 __attribute__((section(".text.func_0034D2D8")))
-void func_0034D2D8(void *a0) {
-    struct S_0034d318 *p = (struct S_0034d318 *)sfhds_GetHd(a0);
+void func_0034D2D8(SftimHn *hn) {
+    SfdHdInf *p = (SfdHdInf *)sfhds_GetHd(hn);
     if (p != 0) {
-        func_0034D318(p, (struct S_0034d318 *)((char *)a0 + 0x78));
+        func_0034D318(p, &hn->hdr);
     }
 }
 

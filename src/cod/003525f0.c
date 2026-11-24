@@ -2,11 +2,8 @@
 
 #include "godhand/sftim.h"
 
-int sfmpv_DetectTcErr(SftimHn *hn, SftimInfo *info);
-void Sftim_setTimecode(SftimHn *hn, SftimInfo *info, int time, int update);
-
 __attribute__((section(".text.sfmpv_ReformTc")))
-void sfmpv_ReformTc(SftimHn *hn, SftimInfo *info, int time, int update)
+void sfmpv_ReformTc(SftimHn *hn, MpvPicAtr *info, long time, int update)
 {
     int cond = GetArrayElemA0C_35A1C8(hn, 0x34);
 
@@ -22,8 +19,9 @@ void sfmpv_ReformTc(SftimHn *hn, SftimInfo *info, int time, int update)
     }
 }
 
+/* Record the current timecode as the start record, once. pic is not read. */
 __attribute__((section(".text.sfmpv_SetHeadTtu")))
-void sfmpv_SetHeadTtu(SftimHn *hn)
+void sfmpv_SetHeadTtu(SftimHn *hn, MpvPicAtr *pic)
 {
     SftimRec *rec = &hn->tim.rec[0];
 

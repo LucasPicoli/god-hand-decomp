@@ -107,7 +107,7 @@ void SjRbf_ungetChunk(SjRbf *sj, int id, SjChunk *ck)
         } else if (sj->err != 0) {
             sj->err(sj->errObj, -3);
         }
-        sj->freeTaken -= ck->len;
+        sj->flow[0][0] -= ck->len;
     } else if (id == 1) {
         pos = (sj->dataPos + size - len) % size;
         if (pos == (data - sj->buf) % size) {
@@ -116,7 +116,7 @@ void SjRbf_ungetChunk(SjRbf *sj, int id, SjChunk *ck)
         } else if (sj->err != 0) {
             sj->err(sj->errObj, -3);
         }
-        sj->dataTaken -= ck->len;
+        sj->flow[1][0] -= ck->len;
     } else {
         ck->len = 0;
         ck->data = 0;
@@ -174,10 +174,10 @@ void SjRbf_putChunk(SjRbf *sj, int id, SjChunk *ck)
             cnt = ck->len;
         }
         sj->data += cnt;
-        sj->unk34 += ck->len;
+        sj->flow[1][1] += ck->len;
     } else if (id == 0) {
         sj->free += len;
-        sj->unk2C += ck->len;
+        sj->flow[0][1] += ck->len;
     } else {
         ck->len = 0;
         ck->data = 0;

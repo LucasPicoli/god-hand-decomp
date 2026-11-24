@@ -1,22 +1,21 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sftim.h"
 
 __attribute__((section(".text.dvci_getnumtr_upper")))
 int dvci_getnumtr_upper(char *a0) {
     return (int)(((long)*(int *)(a0 + 0x14) << 11) >> 32);
 }
 
-struct S_353060 { int f0, f4, f8, fC, f10, f14; int pad[2]; int f20; };
-struct T_353060 { int f0, f4, f8, fC, f10; };
 __attribute__((section(".text.sfmpv_SetMvInf")))
-void sfmpv_SetMvInf(struct S_353060 *a0, int a1, struct T_353060 *a2, int a3) {
-    int t = a2->f10;
-    a0->f0 = a2->f0;
-    a0->f4 = a2->f4;
-    a0->f8 = a2->f8;
-    a0->fC = a2->fC;
-    a0->f14 = t;
-    a0->f10 = a1;
-    a0->f20 = a3;
+void sfmpv_SetMvInf(SfdMvInf *mv, int bitRate, MpvPicAtr *pic, int vbv) {
+    int t = pic->rate;
+    mv->width = pic->width;
+    mv->height = pic->height;
+    mv->f08 = pic->f08;
+    mv->f0C = pic->f0C;
+    mv->rate = t;
+    mv->bitRate = bitRate;
+    mv->vbv = vbv;
 }
 
 struct S_35BB60 { long f0; long f8; long f10; int f18; };

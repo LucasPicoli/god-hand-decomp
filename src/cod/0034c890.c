@@ -13,6 +13,6 @@ int SfdTrack_getObj(SfdHandle *self, int trno, void **out) {
     *out = 0;
     if (__builtin_expect(tr->ready, 0) == 0)
         return func_0034DD70(self, SFD_ERR_TRACK_NOT_READY);
-    *out = tr->obj;
+    *out = tr->buf.obj;
     return 0;
 }

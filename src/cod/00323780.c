@@ -1,17 +1,16 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
 #include "godhand/MpvHandle.h"
+#include "godhand/sftim.h"
 
 extern struct S2 { int a; int b; } D_00457B10;
 extern int func_00345848;
 extern void MWSFSVM_Error();
 extern int Cmp_a1_Eq_0x37B0(int *, int);
 extern char D_003DA5F8;
-extern void sfmpv_AddRtotSj(void *a0, int a1);
 extern void func_00323AA0(int a0);
 extern void sfbuf_SetSupSj(void *a0, void *a1, void *a2, int a3);
 extern void sfbuf_InitBufData(void *a0, int a1, int a2);
-extern int GetArrayElemA0C_35A1C8();
 extern int SFHDS_ProcessHdr();
 extern int Obj34D8_CopyVec3_From98_To934();
 extern int MPS_SetErrFn();
@@ -279,28 +278,28 @@ int sfbuf_InitRingSj(char *a0, int *a1, int *a2, int a3, void *t0) {
 }
 
 __attribute__((section(".text.sfhds_SetHdrRaw")))
-int sfhds_SetHdrRaw(int a0, int a1, int a2) {
+int sfhds_SetHdrRaw(SftimHn *hn, char *raw, int len) {
     int (*fn)();
     int elem;
     int sz;
-    int *p;
+    SfdHdInf *hdr;
 
-    fn = (int (*)())GetArrayElemA0C_35A1C8(a0, 0x4B);
-    elem = GetArrayElemA0C_35A1C8(a0, 0x4C);
+    fn = (int (*)())GetArrayElemA0C_35A1C8(hn, 0x4B);
+    elem = GetArrayElemA0C_35A1C8(hn, 0x4C);
     if (fn) {
-        fn(elem, a1, a2);
+        fn(elem, raw, len);
     }
-    p = (int *)(a0 + 0x78);
-    if (*p != 0) {
+    hdr = &hn->hdr;
+    if (hdr->valid != 0) {
         return 0;
     }
     sz = 0x800;
-    if (a2 < 0x801) sz = a2;
-    MEM_Copy(a0 + 0x10C, a1, sz);
-    *(int *)((char *)p + 0x90) = sz;
-    SFHDS_ProcessHdr(p);
-    Obj34D8_CopyVec3_From98_To934(a0);
-    func_0034D2D8(a0);
+    if (len < 0x801) sz = len;
+    MEM_Copy(hdr->raw, raw, sz);
+    hdr->len = sz;
+    SFHDS_ProcessHdr(hdr);
+    Obj34D8_CopyVec3_From98_To934(hn);
+    func_0034D2D8(hn);
     return 1;
 }
 
@@ -315,9 +314,9 @@ int func_0034FD28(int a0) {
 
     s1 = func_00368FE8();
     if (!s1) {
-        return func_0034DD70(0, 0xFF000D08, a0);
+        return func_0034DD70(0, 0xFF000D08);
     }
-    if (MPS_SetErrFn(s1, func_0034FE78)) {
+    if (MPS_SetErrFn(s1, func_0034FE78, a0)) {
         Tramp_MPS_Destroy_34FEE0(s1);
         return func_0034DD70(0, 0xFF000D09);
     }

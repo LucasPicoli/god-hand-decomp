@@ -12,7 +12,7 @@ int SFMPVP_Put(SftimHn *hn, unsigned int src, int len)
     if (SFMPVP_IsSceMpegUsed(hn) == 0) {
         return len;
     }
-    return sfmpvp_PutVibuf(SFD_WORK_VIBUF(hn->work), src, len);
+    return sfmpvp_PutVibuf(&hn->work->vi, src, len);
 }
 
 __attribute__((section(".text.SFMPVP_Unput")))
@@ -21,5 +21,5 @@ int SFMPVP_Unput(SftimHn *hn, int n)
     if (SFMPVP_IsSceMpegUsed(hn) == 0) {
         return n;
     }
-    return viBufUnput(SFD_WORK_VIBUF(hn->work), n);
+    return viBufUnput(&hn->work->vi, n);
 }

@@ -1,6 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/eeKernel.h"
 #include "godhand/globals.h"
+#include "godhand/sftim.h"
 
 extern unsigned char D_00766C28[0x48];
 extern void sceMpegInit(void);
@@ -8,10 +9,6 @@ extern int WaitSema(int sid);
 extern int SignalSema(int sid);
 
 /* cygnus-2.96 matched TU. */
-
-
-
-
 
 extern void Obj0000_Memset_Backward_366B80(void *p, int c, int n);   /* UTY_MemsetByte */
 
@@ -52,26 +49,17 @@ int sfmpv_IsPtypeSkip(char *p, unsigned int ptype)
 
 /* cygnus-2.96 matched TU. */
 
-typedef struct {
-    unsigned char b[0x24];
-    int cnt;
-    int f28;
-} Ttu;
-
 __attribute__((section(".text.sfmpv_SetSkipTtu")))
-void sfmpv_SetSkipTtu(char *p)
+void sfmpv_SetSkipTtu(SftimHn *hn)
 {
-    Ttu *cur = (Ttu *) (p + 0xDF0);
-    Ttu *nxt = cur + 1;
+    SftimRec *cur = &hn->tim.rec[3];
+    SftimRec *nxt = cur + 1;
 
-    if (cur->cnt < *(int *) (p + 0xE6C))
+    if (cur->time < hn->tim.rec[5].time)
         *nxt = *cur;
 }
 
 /* cygnus-2.96 matched TU. */
-
-
-
 
 #define D_ENABLER (*(volatile unsigned int *) 0x1000F520)
 #define D_ENABLEW (*(volatile unsigned int *) 0x1000F590)
@@ -86,27 +74,6 @@ void func_00355880(unsigned int chcr) {
 }
 
 /* cygnus-2.96 matched TU. */
-
-typedef struct {
-    /* 0x00 */ unsigned int base;
-    /* 0x04 */ unsigned int tagp;
-    /* 0x08 */ int nblk;
-    /* 0x0C */ int rd;
-    /* 0x10 */ int rdofs;
-    /* 0x14 */ int wr;
-    /* 0x18 */ int size;
-    /* 0x1C */ unsigned char pad1C[0x40 - 0x1C];
-    /* 0x40 */ int sema;
-    /* 0x44 */ int active;
-    /* 0x48 */ long long total;
-    /* 0x50 */ void *ent;
-    /* 0x54 */ int nent;
-    /* 0x58 */ int f58;
-    /* 0x5C */ int f5C;
-} ViBuf;
-
-
-
 
 __attribute__((section(".text.viBufUnput")))
 int viBufUnput(ViBuf *b, int n)

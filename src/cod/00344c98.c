@@ -5,7 +5,7 @@ extern int MWSFD_GetUsePicUsr(void);
 extern int SUD_AnalyTypeDivField(void *usr, int size);
 
 __attribute__((section(".text.func_00344C98")))
-int func_00344C98(void *sfd, SfdPicInf *inf, void *usr, int size)
+int func_00344C98(void *sfd, MpvPicAtr *inf, void *usr, int size)
 {
     int mode = 0;
     int use;

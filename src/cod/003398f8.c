@@ -28,13 +28,13 @@ void func_003398F8(SjRbf *sj, int id, int nbyte, SjChunk *ck)
         ck->data = sj->buf + sj->freePos;
         sj->freePos = (sj->freePos + ck->len) % sj->size;
         sj->free -= ck->len;
-        sj->freeTaken += ck->len;
+        sj->flow[0][0] += ck->len;
     } else if (id == 1) {
         ck->len = MIN(MIN(sj->data, sj->size - sj->dataPos + sj->extra), nbyte);
         ck->data = sj->buf + sj->dataPos;
         sj->dataPos = (sj->dataPos + ck->len) % sj->size;
         sj->data -= ck->len;
-        sj->dataTaken += ck->len;
+        sj->flow[1][0] += ck->len;
     } else {
         ck->len = 0;
         ck->data = 0;

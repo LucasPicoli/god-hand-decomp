@@ -11,7 +11,7 @@ extern void SFMPVF_EndRefFrm(SfdFrm *frm);
 extern void sfmpv_CopyPicUsrInf(SfdUsrBuf *dst, SfdUsrBuf *src);
 extern void *func_003A5148(void *d, const void *s, unsigned int n);    /* memcpy */
 void sfmpv_PeekNextPicUd(SjObj *sj, int *type, unsigned char **ext, int *extLen);
-int sfmpv_SetFrmPara(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm);
+int sfmpv_SetFrmPara(SftimHn *hn, MpvPicAtr *pic, SfdOut *out, SfdFrm **pfrm);
 void SfdWork_getPicOffset(SftimHn *hn, SfdWork *work, int *x, int *y);
 void sfmpv_SetStartTtu(SftimHn *hn);
 void sfmpv_SetFrmTime(SftimHn *hn, SfdFrm *ft);
@@ -20,7 +20,7 @@ extern int func_00353348(SftimHn *hn, int ptype);
 extern int sfmpv_IsPtypeSkip(SftimHn *hn, unsigned int ptype);
 
 __attribute__((section(".text.sfmpv_SetFrmPara")))
-int sfmpv_SetFrmPara(SftimHn *hn, SfdPicInf *pic, SfdOut *out, SfdFrm **pfrm)
+int sfmpv_SetFrmPara(SftimHn *hn, MpvPicAtr *pic, SfdOut *out, SfdFrm **pfrm)
 {
     SfdWork *work = hn->work;
     SfdErr *err = &hn->errInf;

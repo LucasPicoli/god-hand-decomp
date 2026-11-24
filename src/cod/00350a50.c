@@ -1,4 +1,6 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/sftim.h"
+#include "godhand/MpvHandle.h"
 
 extern int WaitSema(int sid);
 extern int SignalSema(int sid);
@@ -6,41 +8,28 @@ extern void setD3_CHCR(unsigned int chcr);
 
 /* cygnus-2.96 matched TU. */
 
-typedef struct {
-    int f0;
-    unsigned char pad4[0x7C - 4];
-    int f7C;
-} SfCond;
-
-typedef struct {
-    int f0;
-    unsigned char pad4[0x114 - 4];
-    int f114;
-} SfSrc;
-
 extern int sfmpv_GetTermSrc(void *hn);                    /* sfmpv_GetTermSrc */
-extern void MPV_GetBitRate(int h, unsigned int *rate);  /* MPV_GetBitRate */
 extern int SFBUF_GetWTot(void *hn, int f);             /* SFBUF_GetWTot */
 extern int Obj35C0_IsIndexedSet_1F3C_C380(void *hn, int f);   /* SFTRN_IsSetup */
 extern int SFBUF_GetRingBufSiz(void *hn, int f);             /* SFBUF_GetRingBufSiz */
 
 __attribute__((section(".text.sfmpv_IsVbvEnough")))
-int sfmpv_IsVbvEnough(char *hn)
+int sfmpv_IsVbvEnough(SftimHn *hn)
 {
-    SfCond *cond = (SfCond *) (hn + 0x78);
-    SfSrc *src = *(SfSrc **) (hn + 0x1FC0);
-    int h = src->f0;
+    SfdHdInf *hdr = &hn->hdr;
+    SfdWork *w = hn->work;
+    MpvHandle *mpv = w->dec;
     unsigned int rate;
     int f;
 
     if (sfmpv_GetTermSrc(hn) == 1)
         return 1;
-    if (cond->f0 != 0 && cond->f7C == 0)
+    if (hdr->valid != 0 && hdr->f7C == 0)
         return 1;
-    MPV_GetBitRate(h, &rate);
+    MPV_GetBitRate(mpv, &rate);
     if (rate == 0x3FFFF)
         return 1;
-    if (SFBUF_GetWTot(hn, 1) >= src->f114)
+    if (SFBUF_GetWTot(hn, 1) >= w->f114)
         return 1;
     f = Obj35C0_IsIndexedSet_1F3C_C380(hn, 1) == 0;
     if (SFBUF_GetWTot(hn, f) < SFBUF_GetRingBufSiz(hn, f))
@@ -50,36 +39,7 @@ int sfmpv_IsVbvEnough(char *hn)
 
 /* cygnus-2.96 matched TU. */
 
-typedef struct {
-    /* 0x00 */ unsigned int base;
-    /* 0x04 */ unsigned int tagp;
-    /* 0x08 */ int nblk;
-    /* 0x0C */ int rd;
-    /* 0x10 */ int rdofs;
-    /* 0x14 */ int wr;
-    /* 0x18 */ int size;
-    /* 0x1C */ unsigned int f1C;
-    /* 0x20 */ unsigned int f20;
-    /* 0x24 */ unsigned int f24;
-    /* 0x28 */ unsigned int f28;
-    /* 0x2C */ unsigned int f2C;
-    /* 0x30 */ unsigned int f30;
-    /* 0x34 */ unsigned int f34;
-    /* 0x38 */ unsigned int f38;
-    /* 0x3C */ unsigned int f3C;
-    /* 0x40 */ int sema;
-    /* 0x44 */ int active;
-    /* 0x48 */ long long total;
-    /* 0x50 */ void *ent;
-    /* 0x54 */ int nent;
-    /* 0x58 */ int f58;
-    /* 0x5C */ int f5C;
-} ViBuf;
-
-
-
 extern void func_00355880(unsigned int chcr);   /* setD4_CHCR */
-
 
 #define D3_CHCR    (*(volatile unsigned int *) 0x1000B000)
 #define D3_MADR    (*(volatile unsigned int *) 0x1000B010)

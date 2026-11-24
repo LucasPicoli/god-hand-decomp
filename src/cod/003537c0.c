@@ -1,36 +1,32 @@
-/* cygnus-2.96: Sofdec timer step, measures the decode time of one unit (0x3537C0). */
-extern void sfmpv_SetSkipTtu(char *h);
-extern int SJRBF_GetFlowCnt(char *a0, int a1, int a2);
-extern int func_00369FB8(char *a0, char *a1);
-extern int sfmpv_ChkMpvErr(char *h, int a1, int a2, int a3);
-extern void sfmpv_AddRtotSj(char *h, int a1);
-extern void SFPLY_AddSkipPic(char *h, int a1, int a2);
+/* cygnus-2.96: Sofdec picture skip, steps the stream joint past one picture and counts it as skipped (0x3537C0). */
+#include "godhand/sftim.h"
+#include "godhand/MpvHandle.h"
 
 __attribute__((section(".text.sfmpv_SkipFrm")))
-int sfmpv_SkipFrm(char *h, char *tm)
+int sfmpv_SkipFrm(SftimHn *hn, SjObj *sj)
 {
-    char *w;
-    char *obj;
-    char *sub;
+    SfdWork *w;
+    MpvHandle *mpv;
+    MpvPicAtr *pic;
     int start;
     int r;
     int dt;
     int ret;
 
-    w = *(char **)(h + 0x1FC0);
-    obj = *(char **)w;
-    sfmpv_SetSkipTtu(h);
-    start = SJRBF_GetFlowCnt(tm, 0, 1);
-    sub = w + 0x8C;
-    r = func_00369FB8(obj, tm);
-    dt = SJRBF_GetFlowCnt(tm, 0, 1) - start;
-    ret = sfmpv_ChkMpvErr(h, r, dt, 0xFF000F07);
-    sfmpv_AddRtotSj(h, dt);
+    w = hn->work;
+    mpv = w->dec;
+    sfmpv_SetSkipTtu(hn);
+    start = SJRBF_GetFlowCnt(sj, 0, 1);
+    pic = &w->pic;
+    r = func_00369FB8(mpv, sj);
+    dt = SJRBF_GetFlowCnt(sj, 0, 1) - start;
+    ret = sfmpv_ChkMpvErr(hn, r, dt, 0xFF000F07);
+    sfmpv_AddRtotSj(hn, dt);
     if (ret == 0) {
-        if (*(signed char *)(sub + 0x58) == 0) {
-            *(int *)(w + 0x16C) = 1;
+        if ((signed char)pic->picStruct == 0) {
+            w->f16C = 1;
         }
-        SFPLY_AddSkipPic(h, 1, *(int *)(sub + 0x18));
+        SFPLY_AddSkipPic(hn, 1, pic->picType);
         return 0;
     }
     return ret;
