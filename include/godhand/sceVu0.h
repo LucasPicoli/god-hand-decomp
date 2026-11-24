@@ -19,6 +19,12 @@ extern void sceVu0ApplyMatrix(void *v0, void *m0, void *v1);
 void sceVu0AddVector(void *out, void *a, void *b);
 /* out = in * s in x, y and z; w copied. */
 void sceVu0ScaleVectorXYZ(void *out, void *in, float s);
+/* a0 = a1 - a2 (all four components). */
+void sceVu0SubVector(void *a0, void *a1, void *a2);
+/* a0 = a1 * s (all four components). */
+void sceVu0ScaleVector(void *a0, void *a1, float s);
+/* a0 = a1 scaled to length 1 in x, y and z; w zeroed. */
+void sceVu0Normalize(void *a0, void *a1);
 /* out = the view matrix of a camera at p looking along zd with up yd. */
 void sceVu0CameraMatrix(void *out, void *p, void *zd, void *yd);
 /* dst = the matrix src (sceVu0CopyMatrix). */
