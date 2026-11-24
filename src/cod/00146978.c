@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/cCockScroll.h"
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.func_0026A338")))
@@ -36,41 +37,25 @@ done:
     *(char *)(o + 0x1700) = *(unsigned char *)(o + 0x1700) + 1;
 }
 
-/* compiler: sn-2.95.3-136 ; extra keys: none */
+/* Queue message `msg` of kind `kind`: kind 0 stores it as msg + 0x30D1, kind 1
+ * as msg + 0x304E, any other kind leaves the message slot as it is. */
 __attribute__((section(".text.cCockScroll_OnScroll")))
-void cCockScroll_OnScroll(char *o, unsigned short a, unsigned short kind) {
-    int n;
-    int v;
-    int off;
-    char *p;
-
-    n = *(short *)(o + 0x100);
-    if (n < 4) {
-        if (kind == 0) {
-            goto k0;
+void cCockScroll_OnScroll(cCockScroll *self, unsigned short msg, unsigned short kind)
+{
+    if (self->count < COCKSCROLL_QUEUE_NUM) {
+        switch (kind) {
+        case 0:
+            self->msgQueue[self->count] = msg + 0x30D1;
+            break;
+        case 1:
+            self->msgQueue[self->count] = msg + 0x304E;
+            break;
         }
-        if (kind == 1) {
-            goto k1;
-        }
-        goto skip;
-k0:
-        off = n * 2;
-        v = a + 0x30D1;
-        goto st;
-k1:
-        off = n * 2;
-        v = a + 0x304E;
-st:
-        *(short *)(o + off + 0xF0) = v;
-skip:
-        if ((*(unsigned char *)(o + 0x104) & 2) != 0) {
-            p = *(char **)(o + 0x90);
-            *(float *)(p + 0x38) = *(float *)(p + 0x38) + 50.0f;
-        }
-        *(char *)(o + 0x104) = *(unsigned char *)(o + 0x104) & 0xFD;
-        v = *(short *)(o + 0x100) * 2;
-        *(short *)(o + v + 0xF8) = kind;
-        *(short *)(o + 0x100) = *(unsigned short *)(o + 0x100) + 1;
+        if (self->flags & COCKSCROLL_FLAG_SHIFT)
+            self->work[0]->posX += 50.0f;
+        self->flags &= ~COCKSCROLL_FLAG_SHIFT;
+        self->kindQueue[self->count] = kind;
+        self->count++;
     }
 }
 
