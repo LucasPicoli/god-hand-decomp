@@ -1,12 +1,12 @@
 /* ee-2.9-991111 matched TU. */
 
-typedef struct { int f0; int f4; } Hn;
+#include "godhand/cDamageUnit.h"
 
-
+/* The value stored under key, or 0. */
 __attribute__((section(".text.func_002BB138")))
-int func_002BB138(void)
+int func_002BB138(KeySlot *tbl, int key)
 {
-    Hn *h = func_002BB068();
+    KeySlot *h = func_002BB068(tbl, key);
     if (h == 0) return 0;
-    return h->f4;
+    return h->value;
 }

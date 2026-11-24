@@ -15,7 +15,6 @@
 extern int D_00747A78;
 extern void *D_003C2648;
 extern void *D_003C23A4;
-extern char D_005E8040[];
 extern char D_005CAE50[];
 extern char D_0061A990[];
 extern char D_00586AF0[];
@@ -24,7 +23,6 @@ extern char D_00604700[];
 extern char D_00583EC0[];
 extern int *D_00754C50[];
 
-extern void func_002B9D58(void *p);
 extern void ListOwner_updateFollowFocus(void *p);
 extern void func_002D9BE0(void *p);
 extern void func_00296530(void *p);
@@ -49,7 +47,7 @@ void Move(void)
 {
     D_00752D44 = D_00752CF0;
     D_00752CFC = T0_COUNT;
-    func_002B9D58(D_005E8040);
+    func_002B9D58(&D_005E8040);
     D_00752CFC -= T0_COUNT;
     ListOwner_updateFollowFocus(D_005CAE50);
     func_002D9BE0(D_0061A990);

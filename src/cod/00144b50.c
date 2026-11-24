@@ -2,10 +2,9 @@
 
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
+#include "godhand/cDamageUnit.h"
 #include "godhand/globals.h"
 
-extern char D_0044BED0[];
-extern char D_00747AC0;
 extern void cOmBase_setMeshColorFromLayer(void *a0, int a1, float r, float g, float b);
 extern void cHeap_free(void *heap, void *p);
 extern void BlockOwner_dtor(void *self, int flags);
@@ -14,42 +13,25 @@ extern int cIDBase_initialize(void *self, int pack, int type);
 extern void func_00144C90(void *self);
 
 /* Constructor of a collision shape: set its vtable, zero the flags and the four
- * vector slots (0x50, 0x60, 0xD0, 0xF0), record the owner, mark the shape as
- * owned (bit 1) unless the owner is the global D_00747AC0, then set the offset
- * and the second position. Returns the shape. */
-
-
-typedef struct ShapeObj {
-    char unk00[4];
-    unsigned char flags;                /* 0x04 bit 1: owner is not the global */
-    char unk05[3];
-    void *owner;                        /* 0x08 */
-    char unk0C[0xF4];
-    void *vt;                           /* 0x100 */
-} ShapeObj;
-
-#define SHAPE_NOT_GLOBAL_OWNER  0x2
-
-
-
-extern void cCollisionShape_setOffsetPos(ShapeObj *self, void *offset);
-extern void func_002BB298(ShapeObj *self, void *pos);
-
+ * vector slots (0x50, 0x60, 0xD0, 0xF0), record the matrix, mark the shape as
+ * following its own matrix (bit 1) unless it's the world matrix D_00747AC0,
+ * then set the offset and the rotation. Returns the shape. */
 __attribute__((section(".text.cCollisionShape_construct")))
-ShapeObj *cCollisionShape_construct(ShapeObj *self, void *owner, void *offset, void *pos) {
+cCollisionShape *cCollisionShape_construct(cCollisionShape *self, const struct cMatrix *mtx,
+                                           const cVec *ofs, const cVec *rot) {
     self->vt = D_0044BED0;
     self->flags = 0;
     VU0_SQC2_VF0(self, 0x50);
     VU0_SQC2_VF0(self, 0x60);
     VU0_SQC2_VF0(self, 0xD0);
     VU0_SQC2_VF0(self, 0xF0);
-    self->owner = owner;
-    if (owner != &D_00747AC0)
-        self->flags = self->flags | SHAPE_NOT_GLOBAL_OWNER;
+    self->mtx = mtx;
+    if (mtx != &D_00747AC0)
+        self->flags = self->flags | CCOLLISION_SHAPE_NOT_WORLD;
     else
-        self->flags = self->flags & ~SHAPE_NOT_GLOBAL_OWNER;
-    cCollisionShape_setOffsetPos(self, offset);
-    func_002BB298(self, pos);
+        self->flags = self->flags & ~CCOLLISION_SHAPE_NOT_WORLD;
+    cCollisionShape_setOffsetPos(self, ofs);
+    func_002BB298(self, rot);
     return self;
 }
 

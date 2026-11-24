@@ -33,37 +33,31 @@ void *func_001C9140(void *a0)
     return s0;
 }
 
-/* sn-2.95.3-136 candidate. */
-
-
-
-extern int SpawnRec_create(void *obj, int r, int p2, int p3, int p4, void *self,
-                         float f12, float f13);
-
+/* Append a cylinder volume at ofs in mtx's space, turned by rot; its id, or -1. */
 __attribute__((section(".text.cDamageUnit_AddDamageCollCylinder")))
 int cDamageUnit_AddDamageCollCylinder(cDamageUnit *self, const struct cMatrix *mtx,
                                       const cVec *ofs, const cVec *rot,
                                       float height, float radius)
 {
-    const cDamageVtEnt *vt;
-    char *obj;
-    char *p;
+    const cDamageVtEnt *ent;
+    cDamageNode *node;
+    cDamageNode *p;
     int r;
 
-    if (self->type == 0) return -1;
-    vt = self->vt;
-    obj = (char *)((int (*)(void *))vt[2].pfn)((char *)self + vt[2].delta);
-    if (obj == 0) return -1;
+    if (self->type == CDAMAGE_TYPE_SPARE) return -1;
+    ent = &self->vt[CDAMAGE_UNIT_NEWNODE];
+    node = ((cDamageNode *(*)(void *))ent->pfn)((char *)self + ent->delta);
+    if (node == 0) return -1;
     if (func_001FD908(self) == 0) return -1;
-    r = SpawnRec_create(obj, func_001FD908(self), (int)mtx, (int)ofs, (int)rot, self, height, radius);
+    r = cDamageNode_attachCylinder(node, func_001FD908(self), mtx, ofs, rot, height, radius, self);
     if (r == -1) return r;
     if (self->nodes != 0) {
-        p = (char *)self->nodes;
-        while (*(char **)(p + 0x24) != 0) p = *(char **)(p + 0x24);
-        *(char **)(p + 0x24) = obj;
-        *(char **)(obj + 0x20) = p;
+        p = self->nodes;
+        while (p->next != 0) p = p->next;
+        p->next = node;
+        node->prev = p;
     } else {
-        self->nodes = (cDamageNode *)obj;
+        self->nodes = node;
     }
     return r;
 }

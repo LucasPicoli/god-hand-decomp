@@ -17,7 +17,6 @@
 /* ------------------------------------------------------------------ */
 extern unsigned char *D_003C23A4;  /* 0x003C23A4: pointer in .data */
 extern char D_003C2555;                  /* 0x003C2555: 1-byte flag in .data */
-extern int D_0044BED0;                   /* 0x0044BED0: first int of rodata table */
 extern int D_00747A80;                   /* 0x00747A80: BSS word */
 extern int D_00747A98;                   /* 0x00747A98: BSS word */
 
@@ -186,40 +185,40 @@ void cNowLoading_exitTask(void) {
     D_003C2555 = 1;
 }
 
-/* D_0044BED0 cluster — 7 byte-identical accessor functions */
+/* D_0044BED0 cluster: 7 byte-identical functions that store the cCollisionShape base vtable */
 __attribute__((section(".text.Obj0000_Set_Ptr_Field_100_2BA4D8")))
-void Obj0000_Set_Ptr_Field_100_2BA4D8(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_Field_100_2BA4D8(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Ptr_Field_100_2BA580")))
-void Obj0000_Set_Ptr_Field_100_2BA580(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_Field_100_2BA580(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Ptr_Field_100_2BA6E8")))
-void Obj0000_Set_Ptr_Field_100_2BA6E8(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_Field_100_2BA6E8(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Ptr_100_D_0044BED0_2BA818")))
-void Obj0000_Set_Ptr_100_D_0044BED0_2BA818(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_100_D_0044BED0_2BA818(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Ptr_100_D_0044BED0_2BA8D0")))
-void Obj0000_Set_Ptr_100_D_0044BED0_2BA8D0(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_100_D_0044BED0_2BA8D0(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Field_100_Ptr_D_0044BED0_2BA938")))
-void Obj0000_Set_Field_100_Ptr_D_0044BED0_2BA938(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Field_100_Ptr_D_0044BED0_2BA938(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_Ptr_Field_100_D_0044BED0_2BAA30")))
-void Obj0000_Set_Ptr_Field_100_D_0044BED0_2BAA30(char *arg0) {
-    *(int **)(arg0 + 0x100) = &D_0044BED0;
+void Obj0000_Set_Ptr_Field_100_D_0044BED0_2BAA30(cCollisionShape *self) {
+    self->vt = D_0044BED0;
 }
 
 __attribute__((section(".text.Obj0000_Set_D_00747A80_Field_70_2BF780")))

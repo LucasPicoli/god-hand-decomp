@@ -7,28 +7,19 @@
 extern void CustomIDWork_SetMessNo(void *work, int messNo);
 extern void cOmWeapon_SetBreak(int weapon);
 
-/* cCollisionShape: copy the position vector in, then call the shape's virtual update (vt[10]). */
-
-
-#define CSHAPE_VT_UPDATE  10            /* 0x50 into the delta/index/pfn table */
-
-/* The shape past its vtable pointer: the position at 0x110. */
-typedef struct cCollisionShapePos {
+/* The rectangular box: the shape, then its size. */
+typedef struct cCollisionShapeRectbox {
     cCollisionShape base;               /* 0x000 */
-    char unk104[0xC];
-    float pos[3];                       /* 0x110 */
-} cCollisionShapePos;
+    cVec size;                          /* 0x110 */
+} cCollisionShapeRectbox;
 
-__attribute__((section(".text.cCollisionShape_setPos")))
-void cCollisionShape_setPos(cCollisionShapePos *self, float *pos) {
-    float *dst = self->pos;
+/* The box's set-size slot (CCOLLISION_SHAPE_SETSIZE of D_0044BB20): copy the
+ * size in, then call the shape's virtual update (vt[10]). */
+__attribute__((section(".text.cCollisionShapeRectbox_setSize")))
+void cCollisionShapeRectbox_setSize(cCollisionShapeRectbox *self, const cVec *size) {
     cDamageVtEnt *ent;
-    if (dst != pos) {
-        dst[0] = pos[0];
-        dst[1] = pos[1];
-        dst[2] = pos[2];
-    }
-    ent = &self->base.vt[CSHAPE_VT_UPDATE];
+    cVec_copy3(&self->size, size);
+    ent = &self->base.vt[CCOLLISION_SHAPE_UPDATE];
     ((void (*)(void *))ent->pfn)((char *)self + ent->delta);
 }
 

@@ -1,21 +1,25 @@
 /* ee-2.9-991111 matched TU. */
 
+#include "godhand/cDamageUnit.h"
+
+/* The slot holding key, or 0. */
 __attribute__((section(".text.func_002BB068")))
-void *func_002BB068(void *a0, int a1) {
+KeySlot *func_002BB068(KeySlot *tbl, int key) {
     unsigned int i = 0;
     do {
-        if (*(int*)a0 == a1) return a0;
-        a0 = (char*)a0 + 8;
+        if (tbl->key == key) return tbl;
+        tbl++;
     } while (++i < 4);
     return 0;
 }
 
+/* The first free slot, or 0. */
 __attribute__((section(".text.func_002BB098")))
-void *func_002BB098(void *a0) {
+KeySlot *func_002BB098(KeySlot *tbl) {
     unsigned int i = 0;
     do {
-        if (*(int*)a0 == 0) return a0;
-        a0 = (char*)a0 + 8;
+        if (tbl->key == 0) return tbl;
+        tbl++;
     } while (++i < 4);
     return 0;
 }

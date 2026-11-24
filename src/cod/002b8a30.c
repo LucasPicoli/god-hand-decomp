@@ -1,8 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cDamageUnit.h"
+
+/* The kind of group: 1 for 0 and the odd groups 1-7, 0 for the even ones
+ * 2-8 and anything else. self isn't read. */
 __attribute__((section(".text.func_002B8A30")))
-int func_002B8A30(int a0, unsigned int a1) {
-    switch (a1) {
+int func_002B8A30(cCollisionManager *self, unsigned int group) {
+    switch (group) {
     case 0:
     case 1:
     case 3:

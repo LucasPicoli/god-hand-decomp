@@ -1,12 +1,12 @@
 typedef struct XformNode {
     char unk00[4];
-    unsigned char flags;        /* 0x04 bit 0: has a local transform, bit 1: use the world matrix */
+    unsigned char flags;        /* 0x04 bit 0: has a local transform, bit 1: parent isn't the world matrix */
     char unk05[3];
     float (*parent)[4];         /* 0x08 */
     char unk0C[4];
     float local[4][4];          /* 0x10 */
-    float rot[4];               /* 0x50 */
-    float scale[4];             /* 0x60 */
+    float ofs[4];               /* 0x50 */
+    float rot[4];               /* 0x60 */
     float (*mtx)[4];            /* 0x70 */
     char unk74[0xC];
     float world_mtx[4][4];      /* 0x80 */
@@ -22,7 +22,7 @@ void func_002BB2D8(XformNode *n)
 {
     long t;
 
-    if (capVu0LengthSq(n->rot) != 0.0f || capVu0LengthSq(n->scale) != 0.0f) {
+    if (capVu0LengthSq(n->ofs) != 0.0f || capVu0LengthSq(n->rot) != 0.0f) {
         n->flags |= 1;
         t = n->flags;
         if ((t >> 1) % 2UL == 1) {
@@ -37,6 +37,6 @@ void func_002BB2D8(XformNode *n)
         n->pos = n->parent[3];
         n->mtx = n->parent;
     }
-    MtxInitRotVec(n->local, n->scale, 0);
-    CopyVec3ToField30_147C40(n->local, n->rot);
+    MtxInitRotVec(n->local, n->rot, 0);
+    CopyVec3ToField30_147C40(n->local, n->ofs);
 }

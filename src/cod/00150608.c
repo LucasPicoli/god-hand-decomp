@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/cDamageUnit.h"
 #include "godhand/globals.h"
 
 extern void SetFlagOnEntries7C_1D51B8(void *a0, int a1, int a2);
@@ -23,7 +24,6 @@ extern int D_005E6900;
 extern void func_002AE3D0(void *);
 extern int D_005E75B0;
 extern void cCamera(void *);
-extern int D_005E8040;
 extern void InitVtableEntry_2B8AE0(void *);
 extern int D_005FEC58;
 extern void ClearHeadAndSubblocksReturnSelf(void *);

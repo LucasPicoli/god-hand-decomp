@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cDamageUnit.h"
 #include "godhand/cEmSetParam.h"
 #include "godhand/cEm00.h"
 #include "godhand/cDamageManage.h"
@@ -99,75 +100,32 @@ void DmgObj_stopDamageVolumes(DmgObj *self)
     self->pair[4].unit->power = 0;
 }
 
-/* Take a free object from the pool and set it up with the caller's table: base init, the embedded sub-object (table D_0044BCA0 as method table), state 2, then two scale calls through its methods 3 and 5; when the taken record is not free it is handed back through the pool's method 6. Returns the object, or 0. */
-#define POOLOBJ_FREE_MASK   0x201
-#define POOLOBJ_FREE_VALUE  0x1
-#define POOLOBJ_SUB_OFFSET  0xE0
 
-typedef struct SubVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, float scale);
-} SubVtEnt;
-
-typedef struct SubVt {
-    char unk00[0x18];
-    SubVtEnt scaleA;                    /* 0x18 method 3 */
-    char unk20[8];
-    SubVtEnt scaleB;                    /* 0x28 method 5 */
-} SubVt;
-
-typedef struct PoolVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, void *obj);
-} PoolVtEnt;
-
-typedef struct PoolVt {
-    char unk00[0x30];
-    PoolVtEnt release;                  /* 0x30 method 6 */
-} PoolVt;
-
-typedef struct Pool {
-    char unk00[0x18];
-    PoolVt *vt;                         /* 0x18 */
-} Pool;
-
-typedef struct PoolObj {
-    unsigned int flags;                 /* 0x00 */
-    char unk04[0x30];
-    void *owner;                        /* 0x34 */
-    char unk38[0xA8];
-    int state;                          /* 0xE0 first word of the sub-object */
-    char unkE4[0x1C];
-    SubVt *subVt;                       /* 0x100 */
-} PoolObj;
-
-extern PoolObj *create(Pool *pool, int flag);
-extern void func_002B8A70(PoolObj *obj, int arg);
-
-
-
+/* Take a free unit from the pool and build a cylinder in it: the group, the shape (vtable D_0044BCA0), state 2, then the radius and the height through the shape's methods 3 and 5. A unit that isn't free goes back through the pool's method 6. Returns the unit, or 0. */
 __attribute__((section(".text.Pool_createObjWithTable")))
-PoolObj *Pool_createObjWithTable(Pool *pool, int arg, int a, int b, void *table, float scaleA, float scaleB)
+cCollisionUnit *Pool_createObjWithTable(cCollisionManager *pool, int group, const struct cMatrix *mtx,
+                                        const cVec *ofs, const cVec *rot, float height, float radius)
 {
-    PoolObj *obj = create(pool, 2);
-    PoolObj *sub;
+    cCollisionUnit *obj = create(pool, CCOLLISION_SHAPE_CYLINDER);
+    cCollisionShape *shape;
     if (obj == 0) {
         return 0;
     }
-    if (((obj->flags & POOLOBJ_FREE_MASK) ^ POOLOBJ_FREE_VALUE) != 0) {
-        pool->vt->release.pfn((char *)pool + pool->vt->release.delta, obj);
+    if (((obj->flags & COLL_UNIT_FLAGS_READY_MASK) ^ COLL_UNIT_FLAGS_READY) != 0) {
+        ((void (*)(void *, cCollisionUnit *))pool->vt[CCOLLISION_MANAGER_RELEASE].pfn)(
+            (char *)pool + pool->vt[CCOLLISION_MANAGER_RELEASE].delta, obj);
         return 0;
     }
-    func_002B8A70(obj, arg);
-    sub = (PoolObj *)((char *)obj + POOLOBJ_SUB_OFFSET);
-    cCollisionShape_construct(sub, a, b, table);
-    sub->subVt = (SubVt *)D_0044BCA0;
-    obj->state = 2;
-    sub->subVt->scaleA.pfn((char *)sub + sub->subVt->scaleA.delta, scaleB);
-    sub->subVt->scaleB.pfn((char *)sub + sub->subVt->scaleB.delta, scaleA);
-    obj->owner = sub;
+    func_002B8A70(obj, group);
+    shape = &obj->body;
+    cCollisionShape_construct(shape, mtx, ofs, rot);
+    shape->vt = D_0044BCA0;
+    shape->state = CCOLLISION_SHAPE_CYLINDER;
+    ((void (*)(void *, float))shape->vt[CCOLLISION_SHAPE_SETRADIUS].pfn)(
+        (char *)shape + shape->vt[CCOLLISION_SHAPE_SETRADIUS].delta, radius);
+    ((void (*)(void *, float))shape->vt[CCOLLISION_SHAPE_SETHEIGHT].pfn)(
+        (char *)shape + shape->vt[CCOLLISION_SHAPE_SETHEIGHT].delta, height);
+    obj->shape = shape;
     return obj;
 }
 

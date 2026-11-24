@@ -16,7 +16,6 @@ extern char *D_005CAFF0;
 extern void func_001582A0(void *self, void *link, float f12, float f13, int a2, int a3, int t0);
 extern void cParts_setRotationOrder(void *self, int order);
 extern void cModel_calcParts(void *self);
-extern char D_00747AC0[];
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
 extern char D_00583F20[];
@@ -162,7 +161,7 @@ void GiveOwner_createGiveVolumes(GiveOwner *self) {
             v[1] = 0.0f;
             v[2] = 0.0f;
             v[3] = 1.0f;
-            cDamageUnit_AddDamageCollSphere((cDamageUnit *)*slot, (const struct cMatrix *)D_00747AC0, (const cVec *)v, 1.0f);
+            cDamageUnit_AddDamageCollSphere((cDamageUnit *)*slot, &D_00747AC0, (const cVec *)v, 1.0f);
             (*slot)->kind = GIVE_ATTACK_KIND;
             (*slot)->power = GIVE_POWER;
             cDamageUnit_SetDamageCollActive((cDamageUnit *)*slot, 0);

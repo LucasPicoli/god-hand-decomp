@@ -12,7 +12,6 @@ extern int cOmSub_move(void *move);
 extern void cOmSub_initMove3_y(void *dst, void *obj, int idx, int a3, float f12, float f13, float f14);
 extern void cOmSub_initMove1_pos(void *dst, void *obj, int idx, int a3, void *t0, float f12, float f13);
 extern char D_00747B00[];
-extern char D_00747AC0[];
 extern int cOmBase_checkDamage(void *self, int damage);
 extern void cHeatSys_AddHeatGage(void *heat, int a1, float amount);
 extern int D_005CB000;
@@ -102,16 +101,16 @@ typedef struct cOmGiveTake {
 __attribute__((section(".text.cOmGiveTake_init")))
 int cOmGiveTake_init(cOmGiveTake *self)
 {
-    float v[4] __attribute__((aligned(16)));
+    cVec v __attribute__((aligned(16)));
 
     func_001B6FB8(self);
     self->give = cDamageManage_CreateDamageGive(&D_00574380, GIVE_KIND, (cGameObj *)self);
     if (self->give != 0) {
-        v[0] = 0.0f;
-        v[1] = 0.0f;
-        v[2] = 0.0f;
-        v[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->give, (const struct cMatrix *)D_00747AC0, (const cVec *)v, GIVE_SPHERE);
+        v.x = 0.0f;
+        v.y = 0.0f;
+        v.z = 0.0f;
+        v.w = 1.0f;
+        cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->give, &D_00747AC0, &v, GIVE_SPHERE);
         self->give->kind = GIVE_HIT_KIND;
         self->give->power = GIVE_DAMAGE;
         cDamageUnit_SetDamageCollActive((cDamageUnit *)self->give, 0);
@@ -119,11 +118,11 @@ int cOmGiveTake_init(cOmGiveTake *self)
     }
     self->take = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)self, TAKE_KIND);
     if (self->take != 0) {
-        v[0] = 0.0f;
-        v[1] = 0.0f;
-        v[2] = TAKE_OFFSET_Z;
-        v[3] = 1.0f;
-        cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->take, (const struct cMatrix *)self->base.mtx, (const cVec *)v, TAKE_SPHERE);
+        v.x = 0.0f;
+        v.y = 0.0f;
+        v.z = TAKE_OFFSET_Z;
+        v.w = 1.0f;
+        cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->take, (const struct cMatrix *)self->base.mtx, &v, TAKE_SPHERE);
         cDamageUnit_SetDamageCollActive((cDamageUnit *)self->take, 0);
     }
     self->base.flags2 &= ~OM_F2_HIT_OFF;

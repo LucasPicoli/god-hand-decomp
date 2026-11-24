@@ -3,6 +3,7 @@
 #include "godhand/ColiseumBattle.h"
 #include "godhand/Poker.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cDamageUnit.h"
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
 #include "godhand/globals.h"
@@ -22,8 +23,6 @@ extern int D_003C2388;
 extern int *D_003C2384;
 extern char D_00583F20[];
 extern char D_00754220[];
-extern char D_005E8040[];
-extern void KeySlotTable_set(char *slot, int a1, int a2);
 extern unsigned short D_00747A50;
 extern unsigned char D_005FEA60[];
 extern int FindEntityAtPosition_2C2638(void *mgr, void *shape, void *centerOut, float *extentOut);
@@ -107,43 +106,20 @@ void IdScreen_loadIdData(Poker *self)
     }
 }
 
-typedef struct KeyHolder {
-    char unk00[0xC0];
-    cVec *pos;              /* 0xC0 */
-} KeyHolder;
-
-typedef struct KeyLink {
-    char unk00[0x34];
-    KeyHolder *holder;      /* 0x34 */
-} KeyLink;
-
-/* An object that follows a position taken from a key-slot holder. */
-typedef struct KeyFollower {
-    cVec posA;              /* 0x00 */
-    cVec posB;              /* 0x10 */
-    char unk20[8];
-    KeyLink *link;          /* 0x28 */
-    short id;               /* 0x2C */
-    unsigned char ready;    /* 0x2E */
-} KeyFollower;
-
-
-
-
-
-/* KeyFollower_attach: take a key slot from the table (-1 when none is left), register it, and start both
- * position copies from the holder's position. Returns the object id. */
-__attribute__((section(".text.KeyFollower_attach")))
-int KeyFollower_attach(KeyFollower *self, int a1, int a2, int a3, int t0, int t1, int key)
+/* cDamageNode_attachBox: take a box unit from the pool for the node (-1 when none is left), store owner under key 1,
+ * and start both position copies from the shape's position. Returns the node's id. */
+__attribute__((section(".text.cDamageNode_attachBox")))
+int cDamageNode_attachBox(cDamageNode *self, int group, const struct cMatrix *mtx, const cVec *ofs,
+                          const cVec *rot, const cVec *size, cDamageUnit *owner)
 {
-    char *slot;
-    slot = Pool_createObjWithVt(D_005E8040);
-    self->link = (KeyLink *)slot;
-    if (slot == 0) {
+    cCollisionUnit *unit;
+    unit = Pool_createObjWithVt(&D_005E8040, group, mtx, ofs, rot, size);
+    self->unit = unit;
+    if (unit == 0) {
         return -1;
     }
-    KeySlotTable_set(slot + 0x14, 1, key);
-    cVec_copy3(&self->posB, self->link->holder->pos);
+    KeySlotTable_set(unit->keyTable, 1, (int)owner);
+    cVec_copy3(&self->posB, self->unit->shape->pos);
     cVec_copy3(&self->posA, &self->posB);
     self->ready = 1;
     return self->id;

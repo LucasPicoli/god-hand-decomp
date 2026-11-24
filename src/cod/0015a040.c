@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cDamageUnit.h"
 #include "godhand/cIDBase.h"
 #include "godhand/cTaskManager.h"
 #include "godhand/cTaskWork.h"
@@ -20,7 +21,7 @@ extern void CustomIDWork_SetMoveOffsetPosXSin(void *work, int kind, int frames);
 extern void CustomIDWork_ResetMoveOffsetPos(void *work);
 extern void CustomIDWork_SetColorAnimSin(void *work, int from, int to, int frames);
 extern void CustomIDWork_ResetColorAnim(void *work);
-extern char D_00747B00[];
+extern cVec D_00747B00;                 /* the zero vector */
 
 /* Constructor of the 6-part display object: base setup, then (when its data table matches) the ID data, initial animation and message, and the 27 display works. */
 
@@ -246,72 +247,29 @@ void MarkObj_setPulse(MarkObj *self, int on)
     }
 }
 
-/* Take a free object from the pool and set it up: base init, its embedded sub-object (table D_0044BD60 as method table, scale applied through its method 3); when the taken record is not in the free state it is handed back through the pool's method 12. Returns the object, or 0. */
-#define POOLOBJ_FREE_MASK   0x201
-#define POOLOBJ_FREE_VALUE  0x1
-#define POOLOBJ_SUB_OFFSET  0xE0
 
-typedef struct SubVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, float scale);
-} SubVtEnt;
-
-typedef struct SubVt {
-    char unk00[0x18];
-    SubVtEnt scale;                     /* 0x18 method 3 */
-} SubVt;
-
-typedef struct PoolVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, void *obj);
-} PoolVtEnt;
-
-typedef struct PoolVt {
-    char unk00[0x30];
-    PoolVtEnt release;                  /* 0x30 method 6 */
-} PoolVt;
-
-typedef struct Pool {
-    char unk00[0x18];
-    PoolVt *vt;                         /* 0x18 */
-} Pool;
-
-typedef struct PoolObj {
-    unsigned int flags;                 /* 0x00 */
-    char unk04[0x30];
-    void *owner;                        /* 0x34 */
-    char unk38[0xA8];
-    int state;                          /* 0xE0 first word of the sub-object */
-    char unkE4[0x1C];
-    SubVt *subVt;                       /* 0x100 */
-} PoolObj;
-
-extern PoolObj *create(Pool *pool, int flag);
-extern void func_002B8A70(PoolObj *obj, int arg);
-
-
-
-
+/* Take a free unit from the pool and build a sphere in it: the group, the shape (no rotation; vtable D_0044BD60), state 0, then the radius through the shape's method 3. A unit that isn't free goes back through the pool's method 6. Returns the unit, or 0. */
 __attribute__((section(".text.Pool_createObjWithScale")))
-PoolObj *Pool_createObjWithScale(Pool *pool, int arg, int a, int b, float scale)
+cCollisionUnit *Pool_createObjWithScale(cCollisionManager *pool, int group, const struct cMatrix *mtx,
+                                        const cVec *ofs, float radius)
 {
-    PoolObj *obj = create(pool, 0);
-    PoolObj *sub;
+    cCollisionUnit *obj = create(pool, CCOLLISION_SHAPE_SPHERE);
+    cCollisionShape *shape;
     if (obj == 0) {
         return 0;
     }
-    if (((obj->flags & POOLOBJ_FREE_MASK) ^ POOLOBJ_FREE_VALUE) != 0) {
-        pool->vt->release.pfn((char *)pool + pool->vt->release.delta, obj);
+    if (((obj->flags & COLL_UNIT_FLAGS_READY_MASK) ^ COLL_UNIT_FLAGS_READY) != 0) {
+        ((void (*)(void *, cCollisionUnit *))pool->vt[CCOLLISION_MANAGER_RELEASE].pfn)(
+            (char *)pool + pool->vt[CCOLLISION_MANAGER_RELEASE].delta, obj);
         return 0;
     }
-    func_002B8A70(obj, arg);
-    sub = (PoolObj *)((char *)obj + POOLOBJ_SUB_OFFSET);
-    cCollisionShape_construct(sub, a, b, D_00747B00);
-    sub->subVt = (SubVt *)D_0044BD60;
-    obj->state = 0;
-    sub->subVt->scale.pfn((char *)sub + sub->subVt->scale.delta, scale);
-    obj->owner = sub;
+    func_002B8A70(obj, group);
+    shape = &obj->body;
+    cCollisionShape_construct(shape, mtx, ofs, &D_00747B00);
+    shape->vt = D_0044BD60;
+    shape->state = CCOLLISION_SHAPE_SPHERE;
+    ((void (*)(void *, float))shape->vt[CCOLLISION_SHAPE_SETRADIUS].pfn)(
+        (char *)shape + shape->vt[CCOLLISION_SHAPE_SETRADIUS].delta, radius);
+    obj->shape = shape;
     return obj;
 }

@@ -1,89 +1,41 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cSnd.h"
+#include "godhand/cDamageUnit.h"
 #include "godhand/vu0.h"
 #include "godhand/globals.h"
 
 extern void SlotList_selectPrev(void *self);
 extern void func_001F6AF8(void *self);
 
-#define POOLOBJ_FREE_MASK   0x201
-#define POOLOBJ_FREE_VALUE  0x1
-#define POOLOBJ_SUB_OFFSET  0xE0
 
-typedef struct SubVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, int arg);
-} SubVtEnt;
-
-typedef struct SubVtEnt0 {
-    short delta;
-    short index;
-    void (*pfn)(void *self);
-} SubVtEnt0;
-
-typedef struct SubVt {
-    char unk00[0x38];
-    SubVtEnt setA;                      /* 0x38 method 7 */
-    char unk40[0x10];
-    SubVtEnt0 setB;                     /* 0x50 method 10, takes no argument */
-} SubVt;
-
-typedef struct PoolVtEnt {
-    short delta;
-    short index;
-    void (*pfn)(void *self, void *obj);
-} PoolVtEnt;
-
-typedef struct PoolVt {
-    char unk00[0x30];
-    PoolVtEnt release;                  /* 0x30 method 6 */
-} PoolVt;
-
-typedef struct Pool {
-    char unk00[0x18];
-    PoolVt *vt;                         /* 0x18 */
-} Pool;
-
-typedef struct PoolObj {
-    unsigned int flags;                 /* 0x00 */
-    char unk04[0x30];
-    void *owner;                        /* 0x34 */
-    char unk38[0xA8];
-    int state;                          /* 0xE0 first word of the sub-object */
-    char unkE4[0x1C];
-    SubVt *subVt;                       /* 0x100 */
-} PoolObj;
-
-
-extern PoolObj *create(Pool *pool, int flag);
-extern void func_002B8A70(PoolObj *obj, int arg);
-extern PoolObj *cCollisionShape_construct(PoolObj *sub, int a, int b, int c);   /* returns this */
-
-/* Takes a free object from the pool and builds it: base init, the embedded sub-object (method table D_0044BB20), state 4, the zeroed vectors at 0x1F0 and 0x200, then setter 7 with the last argument and method 10. When the taken record is not free it goes back through the pool's method 6. Returns the object, or 0. */
+/* Take a free unit from the pool and build a box in it: the group, the shape (vtable D_0044BB20), the two vectors at 0x110 and 0x120 of the shape cleared, state 4, then the size through the shape's method 7 and its method 10. A unit that isn't free goes back through the pool's method 6. Returns the unit, or 0. */
 __attribute__((section(".text.Pool_createObjWithVt")))
-PoolObj *Pool_createObjWithVt(Pool *pool, int arg, int a, int b, int c, int last)
+cCollisionUnit *Pool_createObjWithVt(cCollisionManager *pool, int group, const struct cMatrix *mtx,
+                                     const cVec *ofs, const cVec *rot, const cVec *size)
 {
-    PoolObj *obj = create(pool, 4);
-    PoolObj *sub;
+    cCollisionUnit *obj = create(pool, CCOLLISION_SHAPE_RECTBOX);
+    cCollisionShape *shape;
     if (obj == 0) {
         return 0;
     }
-    if (((obj->flags & POOLOBJ_FREE_MASK) ^ POOLOBJ_FREE_VALUE) != 0) {
-        pool->vt->release.pfn((char *)pool + pool->vt->release.delta, obj);
+    if (((obj->flags & COLL_UNIT_FLAGS_READY_MASK) ^ COLL_UNIT_FLAGS_READY) != 0) {
+        ((void (*)(void *, cCollisionUnit *))pool->vt[CCOLLISION_MANAGER_RELEASE].pfn)(
+            (char *)pool + pool->vt[CCOLLISION_MANAGER_RELEASE].delta, obj);
         return 0;
     }
-    func_002B8A70(obj, arg);
-    sub = (PoolObj *)((char *)obj + POOLOBJ_SUB_OFFSET);
-    cCollisionShape_construct(sub, a, b, c);
-    sub->subVt = (SubVt *)D_0044BB20;
+    func_002B8A70(obj, group);
+    shape = &obj->body;
+    cCollisionShape_construct(shape, mtx, ofs, rot);
+    shape->vt = D_0044BB20;
     VU0_SQC2_VF0(obj, 0x1F0);
     VU0_SQC2_VF0(obj, 0x200);
-    obj->state = 4;
-    sub->subVt->setA.pfn((char *)sub + sub->subVt->setA.delta, last);
-    sub->subVt->setB.pfn((char *)sub + sub->subVt->setB.delta);
-    obj->owner = sub;
+    shape->state = CCOLLISION_SHAPE_RECTBOX;
+    ((void (*)(void *, const cVec *))shape->vt[CCOLLISION_SHAPE_SETSIZE].pfn)(
+        (char *)shape + shape->vt[CCOLLISION_SHAPE_SETSIZE].delta, size);
+    ((void (*)(void *))shape->vt[CCOLLISION_SHAPE_UPDATE].pfn)(
+        (char *)shape + shape->vt[CCOLLISION_SHAPE_UPDATE].delta);
+    obj->shape = shape;
     return obj;
 }
 

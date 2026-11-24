@@ -12,7 +12,6 @@ extern void cEmManage_reset(void *m);
 extern void func_001FDEA8(void *p);
 extern void cHeatSys_Initialize(void *h);
 extern void Obj0000_Clear_Fields_00_08_0C_0E_10_12_1F6CF8(void *p);
-extern int KeySlotTable_set(void *tbl, int key, int value);
 extern void func_002A87E8(void *self, int arg);
 
 extern char D_005864F0[];               /* enemy manager */
@@ -109,61 +108,33 @@ void DamageFiveObj_clearHits(DamageFiveObj *self)
     cDamageUnit_SetDamageCollActive((cDamageUnit *)self->unit4, 0);
 }
 
-typedef struct Vec3 {
-    float x, y, z;
-} Vec3;
-
-typedef struct PoolOwner {
-    char unk00[0xC0];
-    Vec3 *pos;                          /* 0xC0 */
-} PoolOwner;
-
-typedef struct PoolObj {
-    char unk00[0x14];
-    char keyTable[0x20];                /* 0x14 key slot table */
-    PoolOwner *owner;                   /* 0x34 */
-} PoolObj;
-
-typedef struct SpawnRec {
-    Vec3 pos;                           /* 0x00 */
-    char unk0C[4];
-    Vec3 cur;                           /* 0x10 */
-    char unk1C[0xC];
-    PoolObj *obj;                       /* 0x28 */
-    short kind;                         /* 0x2C */
-    char started;                       /* 0x2E */
-} SpawnRec;
-
-extern char D_005E8040[];               /* object pool */
-extern PoolObj *Pool_createObjWithTable(void *pool, int a1, int a2, int a3, int t0);
-
-
-/* Create the pool object for the record, register key 1, copy its owner position into cur and pos and mark the record started. Returns -1 when the pool is full. */
-__attribute__((section(".text.SpawnRec_create")))
-int SpawnRec_create(SpawnRec *self, int a1, int a2, int a3, int t0, int value)
+/* Take a cylinder unit from the pool for the node (-1 when none is left), store owner under key 1, copy the shape's position into posB and posB into posA, and mark the node ready. Returns the node's id. */
+__attribute__((section(".text.cDamageNode_attachCylinder")))
+int cDamageNode_attachCylinder(cDamageNode *self, int group, const struct cMatrix *mtx, const cVec *ofs,
+                               const cVec *rot, float height, float radius, cDamageUnit *owner)
 {
-    Vec3 *cur;
-    Vec3 *src;
+    cVec *cur;
+    cVec *src;
 
-    self->obj = Pool_createObjWithTable(D_005E8040, a1, a2, a3, t0);
-    if (self->obj == 0) {
+    self->unit = Pool_createObjWithTable(&D_005E8040, group, mtx, ofs, rot, height, radius);
+    if (self->unit == 0) {
         return -1;
     }
-    KeySlotTable_set(self->obj->keyTable, 1, value);
-    src = self->obj->owner->pos;
-    cur = &self->cur;
+    KeySlotTable_set(self->unit->keyTable, 1, (int)owner);
+    src = self->unit->shape->pos;
+    cur = &self->posB;
     if (cur != src) {
-        self->cur.x = src->x;
+        self->posB.x = src->x;
         cur->y = src->y;
         cur->z = src->z;
     }
-    if (&self->pos != cur) {
-        self->pos.x = self->cur.x;
-        self->pos.y = cur->y;
-        self->pos.z = cur->z;
+    if (&self->posA != cur) {
+        self->posA.x = self->posB.x;
+        self->posA.y = cur->y;
+        self->posA.z = cur->z;
     }
-    self->started = 1;
-    return self->kind;
+    self->ready = 1;
+    return self->id;
 }
 
 #define MODE_NUM  2

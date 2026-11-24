@@ -24,27 +24,14 @@ void cSceAtManager_initFreeList(void *unused, unsigned int *arr, int count) {
     }
 }
 
-typedef struct Sub {
-    unsigned char pad0[0x10];
-    int f10;
-} Sub;
-
-typedef struct Node {
-    unsigned char pad0[0x24];
-    struct Node *next;
-    Sub *sub;
-} Node;
-
-
-
 __attribute__((section(".text.func_001FD988")))
 void func_001FD988(cDamageUnit *self, int kind) {
-    Node *p;
-    int r;
+    cDamageNode *p;
+    int group;
 
     self->unitKind = kind;
-    r = func_001FD908(self);
-    for (p = (Node *)self->nodes; p != 0; p = p->next) {
-        p->sub->f10 = r;
+    group = func_001FD908(self);
+    for (p = self->nodes; p != 0; p = p->next) {
+        p->unit->group = group;
     }
 }

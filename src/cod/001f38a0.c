@@ -16,8 +16,8 @@ void cDamageUnit_SetDamageCollRadius(cDamageUnit *self, int id, float radius)
     if (node == 0) return;
     do {
         if (node->id == id) {
-            cCollisionShape *shape = node->data->shape;
-            cDamageVtEnt *ent = &shape->vt[CDAMAGE_SHAPE_SETRADIUS];
+            cCollisionShape *shape = node->unit->shape;
+            cDamageVtEnt *ent = &shape->vt[CCOLLISION_SHAPE_SETRADIUS];
             ((void (*)(void *, float))ent->pfn)((char *)shape + ent->delta, radius);
             return;
         }
