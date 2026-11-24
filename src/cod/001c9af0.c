@@ -27,7 +27,7 @@ static __inline__ void setMoveState(cOmBase *self, unsigned char mode, unsigned 
 __attribute__((section(".text.func_001C9AF0")))
 void func_001C9AF0(cOmWeapon *self)
 {
-    int frame[3];
+    int frame[3]; /* 12 bytes at sp+0x30 for cOmBase_childAt's dead store (sw at 0x1C9B20); frame[1] is 1 word short */
     cVec to;
     cVec from;
     cVec hit;
