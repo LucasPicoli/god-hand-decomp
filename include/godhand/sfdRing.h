@@ -11,15 +11,7 @@
 
 #define SFDRING_DELIM_LEN   4       /* bytes of a start code */
 
-/* MPV_CheckDelim results this code acts on. */
-#define MPV_DELIM_SEQ       4
-#define MPV_DELIM_PIC       8
-#define MPV_DELIM_SKIP_A    0x40
-#define MPV_DELIM_SKIP_B    0x80
-
-/* Mask bits that allow each kind of delimiter. */
-#define SFDRING_MASK_PIC    0x40
-#define SFDRING_MASK_SEQ    0x48
+/* MPV_CheckDelim results, and the masks MPV_SearchDelim takes, are the MPV_DLM_* names in MpvHandle.h. */
 
 typedef struct SfdRing {
     unsigned char *p0;                  /* 0x00 */

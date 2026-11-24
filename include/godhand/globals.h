@@ -2272,7 +2272,6 @@ extern int* volatile D_00766CD0;
 extern char* volatile D_00766CD4; /* active mode table, volatile keeps retail's lui+addiu address */
 extern int D_00766CD8;
 extern volatile int D_00766CE0;
-extern void*D_00766D44;
 extern char D_00766D48[];
 extern unsigned char* volatile D_0076A588; /* entry table pointer, volatile keeps retail's lui+addiu address */
 extern int*D_0076A5D8;

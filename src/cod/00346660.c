@@ -1,28 +1,17 @@
 /* cygnus-2.96 matched TU. */
-
-typedef struct VT {
-    char pad0[0xC];
-    void (*fC)(void *p);
-    char pad10[0x14];
-    int (*f24)(void *p, int n);
-} VT;
-typedef struct P { VT *vt; } P;
-typedef struct S { int f0; int f4; } S;
-
-
-
+#include "godhand/MpvDec.h"
 
 __attribute__((section(".text.MPV_DecodePicAtr")))
-int MPV_DecodePicAtr(void *h, S *s, int *out)
+int MPV_DecodePicAtr(MpvHandle *hn, MpvPicSrc *src, int *out)
 {
-    P *p;
+    SjObj *sj;
     int r;
 
-    p = func_00338B90(s->f0, s->f4);
-    if (p == 0) return -1;
-    r = MPV_DecodePicAtrSj(h, p);
-    *out = s->f4 - p->vt->f24(p, 1);
-    p->vt->fC(p);
+    sj = func_00338B90(src->work, src->size);
+    if (sj == 0) return -1;
+    r = MPV_DecodePicAtrSj(hn, sj);
+    *out = src->size - sj->vt->getNumData(sj, 1);
+    sj->vt->destroy(sj);
     return r;
 }
 

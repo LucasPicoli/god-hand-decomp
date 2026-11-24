@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 extern int sfset_IsCondValid();
 extern int isEffectiveVer();
@@ -21,7 +22,6 @@ extern void MWSFD_Free(int *a0, int a1);
 extern void func_00352AA0(int *a0, int *a1);
 extern void SFTIM_Tc2Time(int *a0, int *a1, int *a2);
 extern int D_003EE278;
-extern int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *a0);
 extern int ReferThreadStatus(int threadId, int *status);
 extern int SuspendThread(int threadId);
 extern int Obj34D8_SetGlobalEE0B8_IfField48();
@@ -271,16 +271,14 @@ int sftim_GetTimeVsync(int *a0, int *a1, int *a2) {
 }
 
 __attribute__((section(".text.MPV_GetBitRate")))
-int MPV_GetBitRate(int *a0, int *a1)
+int MPV_GetBitRate(MpvHandle *hn, int *rate)
 {
     int r;
-    int *s0;
-    s0 = a0;
-    r = Obj0000_Set_D_00766D44_Check_Field_188_NE_2(a0);
+    r = Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn);
     if (r != 0) {
         return func_00369F20(0, 0xFF03020Du);
     }
-    *a1 = *(int *)((char *)s0 + 0x2A8);
+    *rate = hn->bitRate;
     return 0;
 }
 
@@ -377,17 +375,16 @@ int SFH_AnlyByteRate(void *a0, int *a1)
 }
 
 __attribute__((section(".text.MPV_Destroy")))
-int MPV_Destroy(void *a0)
+int MPV_Destroy(MpvHandle *hn)
 {
-    char *s0 = (char *)a0;
     int r;
-    r = Obj0000_Set_D_00766D44_Check_Field_188_NE_2(s0);
+    r = Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn);
     if (r != 0) {
         return func_00369F20(0, 0xFF030201);
     }
-    func_0036C688(s0);
-    func_0036C440(s0, 0x40C);
-    *(int *)(s0 + 0x188) = 1;
+    func_0036C688(hn);
+    func_0036C440(hn, 0x40C);
+    hn->stat = MPV_HN_FREE;
     return 0;
 }
 
@@ -610,12 +607,12 @@ int SFD_GetFps(int a0, int *a1) {
 }
 
 __attribute__((section(".text.MPV_GetLinkFlg")))
-int MPV_GetLinkFlg(int *a0, int *a1, int *a2) {
-    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(a0)) {
+int MPV_GetLinkFlg(MpvHandle *hn, int *a1, int *a2) {
+    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn)) {
         return func_00369F20(0, 0xFF03020Eu);
     }
-    *a1 = *(int *)((char *)a0 + 0x2B4);
-    *a2 = *(int *)((char *)a0 + 0x2B8);
+    *a1 = hn->d;
+    *a2 = hn->e;
     return 0;
 }
 

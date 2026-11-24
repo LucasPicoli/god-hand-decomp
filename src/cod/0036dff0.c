@@ -1,6 +1,7 @@
 /* cygnus-2.96: MPV header decode over a stream joint: walk the delimiters, parse each header chunk,
  * pass the parsed bytes on, and stop once a picture is ready or a parser needs more data. */
 #include "godhand/criSj.h"
+#include "godhand/MpvHandle.h"
 typedef struct SfdCounters {
     char pad000[0x308];
     int f308;                           /* 0x308 */
@@ -12,7 +13,6 @@ typedef struct SfdCounters {
     int bytesTotal;                     /* 0x4A0 */
 } SfdCounters;
 
-extern int MPV_GoNextDelimSj(SjObj *sj);
 extern char *parseShc(char *dec, char *p);
 extern char *func_0036EB58(char *dec, char *p);
 extern char *MpvBits_searchStartCode(char *dec, char *p);

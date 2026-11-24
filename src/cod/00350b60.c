@@ -1,9 +1,8 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 extern void sfmpv_SetTermDst(void *a0, int a1);
 extern void SFSET_SetCond(void *a0, int a1, int a2);
-extern int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *);
-extern char D_003F1AA0;
 extern void *memcpy(void *, const void *, unsigned int);
 
 __attribute__((section(".text.sfmpv_ChkTermFlg")))
@@ -21,50 +20,50 @@ void sfmpv_ChkTermFlg(char *a0) {
 }
 
 __attribute__((section(".text.MPV_SetErrFunc")))
-void *MPV_SetErrFunc(char *o, int a1, int a2) {
-    char *p;
-    if (o == 0) {
-        p = &D_003F1AA0;
+int MPV_SetErrFunc(MpvHandle *hn, MpvErrFn fn, void *obj) {
+    MpvErr *err;
+    if (hn == 0) {
+        err = &D_003F1AA0;
     } else {
-        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2((int *)o))
-            return func_00369F20(0, (void *)0xFF030203);
-        p = o + 0x250;
+        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn))
+            return func_00369F20(0, 0xFF030203);
+        err = &hn->err;
     }
-    *(int *)(p + 0x0) = a1;
-    *(int *)(p + 0x4) = a2;
+    err->fn = fn;
+    err->obj = obj;
     return 0;
 }
 
 __attribute__((section(".text.MPV_RequestStop")))
-void MPV_RequestStop(char *o) {
-    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2((int *)o)) {
-        func_00369F20(0, (void *)0xFF030211);
+void MPV_RequestStop(MpvHandle *hn) {
+    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn)) {
+        func_00369F20(0, 0xFF030211);
         return;
     }
-    *(int *)(o + 0x408) = 1;
-    if (*(int *)(o + 0x35C) == 2)
-        MPVM2V_RequestStop((int *)o);
+    hn->stopReq = 1;
+    if (hn->codec == MPV_CODEC_M2V)
+        MPVM2V_RequestStop(hn);
 }
 
 __attribute__((section(".text.MPV_GetVbvBufSiz")))
-void *MPV_GetVbvBufSiz(char *o, int *p1, int *p2, int *p3) {
+int MPV_GetVbvBufSiz(MpvHandle *hn, int *p1, int *p2, int *p3) {
     int a0v;
-    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2((int *)o))
-        return func_00369F20(0, (void *)0xFF03020F);
-    *p1 = *(int *)(o + 0x2AC) << 11;
-    *p2 = *(int *)(o + 0x2BC);
-    a0v = *(int *)(o + 0x2A8);
+    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn))
+        return func_00369F20(0, 0xFF03020F);
+    *p1 = hn->blocks << 11;
+    *p2 = hn->c;
+    a0v = hn->bitRate;
     if (a0v == 0x3FFFF)
         *p3 = -1;
     else
-        *p3 = (*(int *)(o + 0x2BC) * a0v) / 0x708;
+        *p3 = (hn->c * a0v) / 0x708;
     return 0;
 }
 
 __attribute__((section(".text.MPV_GetPicAtr")))
-void *MPV_GetPicAtr(char *o, void *dst) {
-    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2((int *)o))
-        return func_00369F20(0, (void *)0xFF03020C);
-    memcpy(dst, o + 0x1D0, 0x80);
+int MPV_GetPicAtr(MpvHandle *hn, MpvPicAtr *atr) {
+    if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn))
+        return func_00369F20(0, 0xFF03020C);
+    memcpy(atr, &hn->picAtr, sizeof(MpvPicAtr));
     return 0;
 }

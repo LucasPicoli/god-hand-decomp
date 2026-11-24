@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvDec.h"
 
 extern void SFTIM_GetNowTime(int a0, int *out0, int *out1);
 extern void sftim_ResetVtimeTmr(int a0, int a1);
@@ -37,7 +38,6 @@ extern int SFD_SetConcatPlay(int a0);
 extern int MWSFSVM_Error(char *msg);
 extern char D_004592D0[];
 extern void sfbuf_PeekChunk(void *buf, int a1, void *out0, void *out1);
-extern int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(void *a0);
 extern int D_00766CE8[];
 extern void MPS_GetPackHd(int a0, int *a1);
 extern void MPS_GetSysHd(int a0, int *a1, int a2);
@@ -46,7 +46,6 @@ extern void Forward3A52F0_334500(void *);
 extern int D_00454948[];
 extern void Thunk_func_0033B658(void *sp);
 extern void Thunk_func_0033B670(void *sp);
-extern int MPV_DecodePicAtr(int a0, int *a1, int *a2);
 extern void Forward33B658_33E678(void);
 extern void Forward33B670_33E690(void);
 extern void adxsjd_insert_proc(void *a);
@@ -391,25 +390,18 @@ check2:
 }
 
 __attribute__((section(".text.MPV_GetCond")))
-int MPV_GetCond(int *a0, int a1, int *a2) {
-    int *s0;
-    int s1;
-    int *s2;
+int MPV_GetCond(MpvHandle *hn, int id, int *val) {
     int *base;
 
-    s0 = a0;
-    s1 = a1;
-    s2 = a2;
-
-    if (s0 == 0) {
+    if (hn == 0) {
         base = D_00766CE8;
     } else {
-        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(s0) != 0) {
+        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn) != 0) {
             return func_00369F20(0, 0xFF030210);
         }
-        base = (int *)((char *)s0 + 0x190);
+        base = hn->cond;
     }
-    *s2 = base[s1];
+    *val = base[id];
     return 0;
 }
 
@@ -507,28 +499,24 @@ __attribute__((section(".text.sfmpv_ProcessAuxShc")))
 void sfmpv_ProcessAuxShc(int a0) {
     int s0;
     int s1;
-    int s2;
-    int v0;
-    int v1;
-    int local[8];
+    MpvHandle *hn;
+    MpvPicSrc src;
+    int out;
     s0 = a0;
     s1 = *(int *)((char *)s0 + 0x1FC0);
-    s2 = *(int *)s1;
-    v0 = GetArrayElemA0C_35A1C8(s0, 0x5D);
-    local[0] = v0;
-    v1 = GetArrayElemA0C_35A1C8(s0, 0x5E);
-    v0 = local[0];
-    local[1] = v1;
-    if (v0 == 0) {
+    hn = *(MpvHandle **)s1;
+    src.work = (MpvWork *)GetArrayElemA0C_35A1C8(s0, 0x5D);
+    src.size = GetArrayElemA0C_35A1C8(s0, 0x5E);
+    if (src.work == 0) {
         return;
     }
-    if (v1 == 0) {
+    if (src.size == 0) {
         return;
     }
     if (*(int *)((char *)s1 + 0x78) != 0xC0) {
         return;
     }
-    if (MPV_DecodePicAtr(s2, local, local + 4) != 0) {
+    if (MPV_DecodePicAtr(hn, &src, &out) != 0) {
         return;
     }
     *(int *)((char *)s1 + 0x74) = 2;

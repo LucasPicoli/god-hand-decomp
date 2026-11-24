@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 /* compiler: cygnus-2.96 ; extra keys: none */
 __attribute__((section(".text.MPV_CheckDelim")))
@@ -14,21 +15,21 @@ int MPV_CheckDelim(unsigned char *b) {
     c <<= 8;
     c |= b[3];
     if (c == 0x100) {
-        r = 4;
+        r = MPV_DLM_PSC;
     } else if (c == 0x101) {
-        r = 3;
+        r = MPV_DLM_SLICE;
     } else if ((unsigned int)(c - 0x102) < 0xAE) {
-        r = 1;
+        r = MPV_DLM_SLICE_NEXT;
     } else if (c == 0x1B2) {
-        r = 0x20;
+        r = MPV_DLM_UDSC;
     } else if (c == 0x1B3) {
-        r = 0x40;
+        r = MPV_DLM_SHC;
     } else if (c == 0x1B5) {
-        r = 0x10;
+        r = MPV_DLM_ESC;
     } else if (c == 0x1B7) {
-        r = 0x80;
+        r = MPV_DLM_SEC;
     } else if ((c ^ 0x1B8) == 0) {
-        r = 8;
+        r = MPV_DLM_GSC;
     } else {
         r = 0;
     }

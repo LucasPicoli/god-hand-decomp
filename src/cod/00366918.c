@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 extern int D_00766CE8[];
 extern int D_0076A590[];
@@ -8,15 +9,15 @@ int UTY_CmpTime(int a0,int a1,int a2,int a3){if((long)a0*(long)a3<=(long)a2*(lon
 
 /* cygnus-2.96 */
 __attribute__((section(".text.MPV_GetPicUsr")))
-void MPV_GetPicUsr(char *p, int *a, int *b)
+void MPV_GetPicUsr(MpvHandle *hn, char **buf, int *len)
 {
-    char *q = p + 0x3EC;
+    MpvPicUsr *usr = &hn->usr;
 
-    if (a != 0) {
-        *a = *(int *)(q + 0x0);
+    if (buf != 0) {
+        *buf = usr->buf;
     }
-    if (b != 0) {
-        *b = *(int *)(q + 0x8);
+    if (len != 0) {
+        *len = usr->len;
     }
 }
 

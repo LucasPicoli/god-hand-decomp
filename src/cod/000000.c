@@ -8,6 +8,7 @@
 #include "godhand/cOmbb.h"
 #include "godhand/pl00.h"
 #include "godhand/globals.h"
+#include "godhand/MpvHandle.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -1107,11 +1108,11 @@ int MPSLIB_CheckHn(int *a0) {
 }
 
 __attribute__((section(".text.Obj0000_Set_Field_3BC_Triple")))
-void Obj0000_Set_Field_3BC_Triple(unsigned char *a0, int a1, int a2, int a3, int a4) {
-    int *p = (int *)(a0 + 0x3BC + a1 * 12);
-    p[0] = a2;
-    p[1] = a3;
-    p[2] = a4;
+void Obj0000_Set_Field_3BC_Triple(MpvHandle *hn, int no, SjObj *sj, void (*cb)(int arg, int ch), int arg) {
+    SfdSjCh *ch = &hn->ch[no];
+    ch->sj = sj;
+    ch->cb = cb;
+    ch->arg = arg;
 }
 
 __attribute__((section(".text.Tramp_003356B0_00335610")))
@@ -1120,23 +1121,21 @@ void Tramp_003356B0_00335610(int a0, int a1) {
 }
 
 __attribute__((section(".text.Obj0000_Set_D_00766D44_Check_Field_188_NE_2")))
-int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int *a0) {
-    D_00766D44 = (void *)a0;
-    if (a0 == 0) {
+int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(MpvHandle *hn) {
+    D_00766D44 = hn;
+    if (hn == 0) {
         return -1;
     }
-    return (*(int *)((char *)a0 + 0x188) ^ 2) == 0 ? 0 : -1;
+    return (hn->stat ^ MPV_HN_USED) == 0 ? 0 : -1;
 }
 
-extern int func_0036CD98(int);
-
 __attribute__((section(".text.Obj0000_Get_Field_3B4_Via_func_0036CD98")))
-int Obj0000_Get_Field_3B4_Via_func_0036CD98(unsigned char *a0) {
-    int v0 = 0;
-    if (a0 != 0) {
-        v0 = *(int *)(a0 + 0x3B4);
+void Obj0000_Get_Field_3B4_Via_func_0036CD98(MpvHandle *hn, int id, int val) {
+    int dev = 0;
+    if (hn != 0) {
+        dev = hn->dev;
     }
-    return func_0036CD98(v0);
+    func_0036CD98(dev, id, val);
 }
 
 __attribute__((section(".text.Obj0000_Set_D_0076A5D8_Check_Field_0_EQ_2")))
@@ -1400,8 +1399,6 @@ void Obj0000_Call_FnFC_Field_100_94_90_Scaled(unsigned char *arg0)
   fn(*((int *) (arg0 + 0x100)), a1, a2 << 1);
   *((int *) (arg0 + 0xF4)) = *((int *) (arg0 + 0x94));
 }
-
-extern int func_00369F20(int, unsigned int);
 
 __attribute__((section(".text.Obj0000_Check_D_0045A460_Magic_And_D_0045A470_Val")))
 int Obj0000_Check_D_0045A460_Magic_And_D_0045A470_Val(void)

@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/MpvHandle.h"
 
-extern int MPV_GoNextDelimSj();
 extern int D_00455920;
 extern int D_00455950;
 extern int GetArrayElemA0C_35A1C8(void *, int);
@@ -15,25 +15,25 @@ extern void SFBUF_GetUoch(int a0, int a1, int a2, void *a3);
 extern int sfmps_CopySj(int a0, int a1, int a2);
 
 __attribute__((section(".text.mpvhdec_RecoverSj")))
-int mpvhdec_RecoverSj(int a0, int a1, int a2) {
-    int *p = (int *)(a0 + 0x250);
-    int n = *(int *)(a0 + 0x194);
+int mpvhdec_RecoverSj(MpvHandle *hn, int mask, SjObj *sj) {
+    MpvErr *err = &hn->err;
+    int n = hn->cond[1];
     int s1;
-    if (*(int *)(a0 + 0x384) != 0) {
-        *(int *)(a0 + 0x384) = 0;
-        *(int *)(a0 + 0x388) += 1;
-        p[3] += 1;
+    if (hn->unk384 != 0) {
+        hn->unk384 = 0;
+        hn->unk388 += 1;
+        err->unk0C += 1;
         if (n == 0) {
             return -2;
         }
-        p[4] += 1;
+        err->unk10 += 1;
     }
     s1 = (n == 0) ? -2 : -3;
     for (;;) {
-        int r = MPV_GoNextDelimSj(a2);
+        int r = MPV_GoNextDelimSj(sj);
         if (r == 0) break;
-        if ((r & a1) != 0) { s1 = 0; break; }
-        if (func_0036BDA0(a2, 1, 4) != 4) break;
+        if ((r & mask) != 0) { s1 = 0; break; }
+        if (func_0036BDA0(sj, 1, 4) != 4) break;
     }
     return s1;
 }
@@ -91,25 +91,22 @@ int sfmpv_ConcatSub(void *a0) {
 }
 
 void mpvlib_SetCondAll(int, int);
-int Obj0000_Set_D_00766D44_Check_Field_188_NE_2(int);
-int func_00369F20(int, int);
-int Obj0000_Get_Field_3B4_Via_func_0036CD98(int, int, int);
 
 __attribute__((section(".text.MPV_SetCond")))
-int MPV_SetCond(int a0, int a1, int a2) {
+int MPV_SetCond(MpvHandle *hn, int a1, int a2) {
     int *base;
     if (a1 == 8 && a2 == 0)
         a2 = (int)&func_0036C448;
-    if (a0 == 0) {
+    if (hn == 0) {
         mpvlib_SetCondAll(a1, a2);
         base = &D_00766CE8;
     } else {
-        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(a0))
+        if (Obj0000_Set_D_00766D44_Check_Field_188_NE_2(hn))
             return func_00369F20(0, 0xFF030202);
-        base = (int *)(a0 + 0x190);
+        base = hn->cond;
     }
     base[a1] = a2;
-    Obj0000_Get_Field_3B4_Via_func_0036CD98(a0, a1, a2);
+    Obj0000_Get_Field_3B4_Via_func_0036CD98(hn, a1, a2);
     return 0;
 }
 

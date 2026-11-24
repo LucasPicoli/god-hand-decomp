@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 extern unsigned char D_00450FD8[];
 
@@ -16,11 +17,12 @@ int sfmps_Concat(int *a0) {
 }
 
 __attribute__((section(".text.MPV_SetPicUsrBuf")))
-void MPV_SetPicUsrBuf(char *a0, int a1, int a2) {
-    a0 += 0x3EC;
-    *(int *)(a0 + 0x0) = a1;
-    *(int *)(a0 + 0x4) = a2;
-    *(int *)(a0 + 0x8) = 0;
+void MPV_SetPicUsrBuf(MpvHandle *hn, char *buf, int size) {
+    MpvPicUsr *usr = &hn->usr;
+
+    usr->buf = buf;
+    usr->size = size;
+    usr->len = 0;
 }
 
 __attribute__((section(".text.sfmpv_GetDtime")))

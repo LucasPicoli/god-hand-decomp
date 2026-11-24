@@ -1,4 +1,5 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/MpvHandle.h"
 
 extern void func_0034DD70(int, int);
 extern void UTY_MemcpyByte(int, int, int);
@@ -12,8 +13,6 @@ extern void ADXT_SetOutVol(int);
 extern void UTY_MemsetDword(int, int, int);
 extern void func_0032A838(int);
 extern void func_0032B830(int);
-extern void func_00369E80(int);
-extern char D_003F1AA0[];
 extern void func_0032AAA0(int);
 extern void adxf_LoadPtNwEx(int, int, int, int, int, int);
 extern char D_003C532F[];
@@ -88,7 +87,7 @@ __attribute__((section(".text.func_0034A3E0")))
 void func_0034A3E0(int a0) { func_0032B830((*(int *)((char *)(*(int *)((char *)a0 + 0x2004)) + 0x0))); }
 
 __attribute__((section(".text.func_00369E60")))
-void func_00369E60(int a0) { func_00369E80(D_003F1AA0); }
+void func_00369E60(int a0) { func_00369E80(&D_003F1AA0); }
 
 __attribute__((section(".text.func_00349C08")))
 void func_00349C08(int a0) { func_0032AAA0((*(int *)((char *)(*(int *)((char *)a0 + 0x2004)) + 0x0))); }

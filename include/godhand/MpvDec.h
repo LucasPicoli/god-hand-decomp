@@ -9,6 +9,8 @@
 #ifndef GODHAND_MPVDEC_H
 #define GODHAND_MPVDEC_H
 
+#include "godhand/MpvHandle.h"
+
 #define MPV_WORK_LEN        0x200
 #define MPV_ERR_PICATR      0xFF000F1B
 
@@ -46,7 +48,7 @@ typedef struct MpvPicSrc {
 } MpvPicSrc;
 
 extern MpvDec *sfmpv_GetHd(MpvHn *hn);
-extern int MPV_DecodePicAtr(int pic, MpvPicSrc *src, int *out);
+extern int MPV_DecodePicAtr(MpvHandle *hn, MpvPicSrc *src, int *out);
 extern int func_0034DD70(MpvHn *hn, int code);
 
 #endif
