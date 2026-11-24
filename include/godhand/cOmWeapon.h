@@ -42,7 +42,7 @@ typedef struct cOmWeapon {
     int timer;                              /* 0x668 frame countdown, see cOmWeapon_SetDamage */
     float unk66C;                           /* 0x66C */
     struct cGameObj *thrower;               /* 0x670 the fighter that threw it (setThrow's cGameObj argument) */
-    float fallVel;                          /* 0x674 vertical speed while dropping */
+    float fallVel;                          /* 0x674 vertical speed while dropping; func_001C9AF0 uses it as a frame countdown */
     char unk678[0x10];
     unsigned char waterHit;                 /* 0x688 set once LineObj_checkWaterHit finds water */
     char unk689[0x7];
