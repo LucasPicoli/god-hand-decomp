@@ -13,6 +13,10 @@
 #include "godhand/CustomIDWork.h"
 
 #define PANEL_ELEM_NUM    0x11
+#define PANEL_ELEM_LEFT   2     /* the two cursor elements (PanelObj_setCursorMode) */
+#define PANEL_ELEM_RIGHT  3
+#define PANEL_ELEM_UP     4     /* the two arrow elements (PanelObj_setArrowMode) */
+#define PANEL_ELEM_DOWN   5
 
 typedef struct PanelObj {
     int unk00;                          /* 0x00 cleared by func_001DEC70 */
@@ -23,5 +27,13 @@ typedef struct PanelObj {
 } PanelObj;                             /* 0x89C */
 
 typedef char PanelObj_size_check[(sizeof(PanelObj) == 0x89C) ? 1 : -1];
+
+/* Show or hide the two cursor elements: mode 0 hides the first and shows the
+ * second, mode 1 shows both, any other mode leaves them. */
+void PanelObj_setCursorMode(PanelObj *self, unsigned char mode);
+/* The same for the two arrow elements. */
+void PanelObj_setArrowMode(PanelObj *self, unsigned char mode);
+/* Set element 8's local x to its left (left != 0) or right x for the language. */
+void func_001DF7D0(PanelObj *self, int left);
 
 #endif
