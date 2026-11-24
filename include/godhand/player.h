@@ -22,9 +22,10 @@ typedef struct PlayerSave {
 extern PlayerSave D_00755880;
 extern cHeatSys D_005CB000;     /* the player's heat gauge */
 
-/* Whether the sub screen is up. Reads the player's base.mode and base.phase
- * (0x2F4, 0x2F5) as the sub screen's open and selection bytes, and unk15F4. */
+/* Whether the sub screen is up: 1 when base.mode (0x2F4) is 0 and base.phase
+ * (0x2F5) is 0 to 3. */
 extern int pl00_CkSubScreen(pl00 *pl);
+/* The same test, but 1 at once when unk15F4 bit 0x400 is set. */
 extern int func_0012BAF0(pl00 *pl);
 
 extern cGameObj *Getplayer(void);

@@ -7,7 +7,6 @@
 #include "godhand/sync.h"
 #include "godhand/globals.h"
 
-
 /* Once the current slot's stream header is in, read its format into the slot info and rebuild the page. */
 __attribute__((section(".text.MenuCtl_readSlotStreamInfo")))
 void MenuCtl_readSlotStreamInfo(MenuCtl *ctl)

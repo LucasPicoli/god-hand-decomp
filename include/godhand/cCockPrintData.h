@@ -4,7 +4,7 @@
  * The class name is retail's: the vtable D_0041E668 holds func_00143598 and
  * func_00143998, and its type-info function (func_00143B20) registers
  * "14cCockPrintData" with base "9cCockBase". The DispMgr holds one at 0x1AE0,
- * and its constructor stores the vtable pointer at 0x80 (0x1419A0). The
+ * and its constructor stores the vtable pointer at 0x80 (0x1419C4). The
  * method and field names are ours.
  */
 #ifndef GODHAND_CCOCKPRINTDATA_H

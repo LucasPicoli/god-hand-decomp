@@ -54,8 +54,8 @@ typedef char cCollisionShape_size_check[(sizeof(cCollisionShape) == 0x110) ? 1 :
 
 /* Slots of the shape's vtable. */
 #define CCOLLISION_SHAPE_SETRADIUS  3       /* sphere and cylinder */
-#define CCOLLISION_SHAPE_SETHEIGHT  5       /* cylinder */
-#define CCOLLISION_SHAPE_SETSIZE    7       /* box */
+#define CCOLLISION_SHAPE_SETHEIGHT  5       /* cylinder; the rectbox sets size.y */
+#define CCOLLISION_SHAPE_SETSIZE    7       /* rectbox */
 #define CCOLLISION_SHAPE_UPDATE     10
 
 /* The base vtable, which the constructor stores, and the vtables of the

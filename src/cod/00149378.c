@@ -73,7 +73,7 @@ typedef struct EffObj {
 __attribute__((section(".text.EffObj_startEffectAtPos")))
 void EffObj_startEffectAtPos(EffObj *self)
 {
-    cVec pos;
+    cVec pos __attribute__((aligned(16)));
     float *p;
     VU0_SQC2_VF0(&pos, 0);
     p = (*(GetPosFn *)(self->vt + VT_GETPOS_FN))((char *)self + *(short *)(self->vt + VT_GETPOS_DELTA));

@@ -59,7 +59,7 @@ void func_0016ACD0(cSubScrShopMain *self)
                 cIDBaseEnt *w4;
                 w1->posY = w2->src->posY - i * 26;
                 w3 = cIDBase_getIDWork(&self->inputBase, 0);
-                w3->colorBase.c[3] = *q / 20.0f * 256.0f;
+                w3->colorBase.c[3] = (int)(*q / 20.0f * 256.0f);
                 w4 = cIDBase_getIDWork(&self->inputBase, 0);
                 w4->number = self->input[i];
                 cIDBase_move(&self->inputBase);

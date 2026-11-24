@@ -35,8 +35,10 @@ struct cOmWeapon;
 
 /* The hand child, grip offset and grip rotation enemy self holds a weapon of
  * CreateObj kind with, into hand, pos and rot (cVec, zeroed first). Enemy
- * 0x279, and every enemy but 0x209 and 0x21F when left is set, hold it
- * mirrored in the other hand. Shared by func_0026AB20 and func_0028D138. */
+ * 0x279 holds it mirrored, in hand 0xA. When left is set, 0x209 and 0x21F
+ * keep the grip, 0x223 mirrors it into hand 0x12, 0x279 mirrors it back into
+ * hand 0x10, and every other enemy mirrors it into hand 0xA. Shared by
+ * func_0026AB20 and func_0028D138. */
 #define CEM00_WEAPON_GRIP(self, kind, left, pos, rot, hand) \
     {                                    \
         (hand) = 0x10;                   \
