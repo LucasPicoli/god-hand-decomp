@@ -12,8 +12,11 @@
 #ifndef GODHAND_SLOTUI_H
 #define GODHAND_SLOTUI_H
 
-#define SLOTUI_MARK_NUM      10         /* entries at markBase */
-#define SLOTUI_BET_NUM       2          /* entries at betBase */
+#include "godhand/cIDBase.h"
+#include "godhand/CustomIDWork.h"
+
+#define SLOTUI_MARK_NUM      10         /* entries in mark */
+#define SLOTUI_BET_NUM       2          /* entries in bet */
 #define SLOTUI_ENTRY_SIZE    0x7C       /* sizeof(CustomIDWork) */
 
 /* The global record at **D_003C2384; only the two words cleared at release are named. */
@@ -24,10 +27,16 @@ typedef struct SlotUiHost {
 } SlotUiHost;
 
 typedef struct SlotUi {
-    char idBase[0x530];                 /* 0x000 the cIDBase part; the mark entries start at 0x50 */
-    char idBase2[0x50];                 /* 0x530 second cIDBase */
-    char betBase[0xF8];                 /* 0x580 the bet mark entries */
+    cIDBaseObj id;                      /* 0x000 the marks' display */
+    char unk048[0x50 - sizeof(cIDBaseObj)];
+    CustomIDWork mark[SLOTUI_MARK_NUM]; /* 0x050 the reel and line marks */
+    char unk528[0x530 - 0x528];
+    cIDBaseObj id2;                     /* 0x530 the bet marks' display */
+    char unk578[0x580 - 0x530 - sizeof(cIDBaseObj)];
+    CustomIDWork bet[SLOTUI_BET_NUM];   /* 0x580 the bet marks */
     int *node;                          /* 0x678 heap node, 0 when none; word -8 is its heap */
-} SlotUi;
+} SlotUi;                               /* 0x67C */
+
+typedef char SlotUi_node_check[((int)&((SlotUi *)0)->node == 0x678) ? 1 : -1];
 
 #endif

@@ -3,6 +3,7 @@
 #include "godhand/cOmBase.h"
 #include "godhand/vu0.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cCockActButton.h"
 
 extern int D_00747A78;
 extern cOmBase *Getplayer(void);
@@ -10,7 +11,6 @@ extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 extern void SetCustomIDDispOneOrAll_1F29C0(void *self, int id, int on);
 extern void CustomIDWork_SetNumber(void *work, int value);
 extern int cIDBase_initialize(void *self, int a1, int a2);
-extern int cIDBase_getIDWork(void *self, int idx);
 extern int ChkLine(cVec *from, cVec *to, cVec *hit, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11, int a12);
 
 #define SYSFLAG_FREEZE  0x40000000      /* bit of D_00747A78: the game is frozen */
@@ -50,44 +50,21 @@ void DigitDisplay_setNumber(char *self, int on, int value) {
     CustomIDWork_SetNumber(self + 0x728, value);
 }
 
-#define IDSET_WORK_NUM  13
-
-/* The id elements this display owns: the first one's local position is mirrored at 0xA0. */
-typedef struct IdWork {
-    char unk00[0x38];
-    float x;                            /* 0x38 */
-    float y;                            /* 0x3C */
-} IdWork;
-
-typedef struct IdSet {
-    char unk000[0x90];
-    int unk90;                          /* 0x90 */
-    char unk94[0xC];
-    float x;                            /* 0xA0 */
-    float y;                            /* 0xA4 */
-    char unkA8[8];
-    IdWork *work[IDSET_WORK_NUM];       /* 0xB0 */
-    char unkE4Pad[0xE4 - 0xB0 - 4 * IDSET_WORK_NUM];
-    int unkE4;                          /* 0xE4 */
-} IdSet;
-
 /* Builds the id set (kind 4): collects the 13 element works and copies the first one's position. */
 __attribute__((section(".text.func_0013BC28")))
-void func_0013BC28(IdSet *self) {
-    IdWork **tbl = self->work;
+void func_0013BC28(cCockActButton *self) {
     unsigned short i;
 
     self->unk90 = 0;
     cIDBase_initialize(self, 1, 4);
     i = 0;
     do {
-        /* byte-offset form: tbl[i] swaps the addu operands */
-        *(int *)((char *)tbl + (i << 2)) = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
-    } while (i < IDSET_WORK_NUM);
-    self->x = self->work[0]->x;
-    self->y = self->work[0]->y;
-    self->unkE4 = -1;
+    } while (i < COCKACTBUTTON_WORK_NUM);
+    self->x = self->work[0]->posX;
+    self->y = self->work[0]->posY;
+    self->msg = -1;
 }
 
 #define FRAME ((char *)&from - 0x30)

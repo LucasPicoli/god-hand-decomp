@@ -18,7 +18,6 @@ typedef struct UvScrollObj {
     unsigned short msg;                 /* 0xBE message ID work 3 shows, 0xFFFF hides it */
 } UvScrollObj;
 
-extern void *cIDBase_getIDWork(void *self, int idx);
 
 __attribute__((section(".text.func_0013EE58")))
 void func_0013EE58(UvScrollObj *self)
@@ -28,10 +27,10 @@ void func_0013EE58(UvScrollObj *self)
     unsigned short i;
     float f;
 
-    w[0] = cIDBase_getIDWork(self, 0);
-    w[1] = cIDBase_getIDWork(self, 1);
-    w2 = cIDBase_getIDWork(self, 2);
-    w[2] = cIDBase_getIDWork(self, 3);
+    w[0] = cIDBase_getIDWork(&self->base, 0);
+    w[1] = cIDBase_getIDWork(&self->base, 1);
+    w2 = cIDBase_getIDWork(&self->base, 2);
+    w[2] = cIDBase_getIDWork(&self->base, 3);
     for (i = 0; i < 2; i++) {
         self->ch[i].y += 0.03f;
         self->ch[i].x += 0.03f;

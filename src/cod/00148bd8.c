@@ -1,13 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
+#include "godhand/BlackJack.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
 
 extern void printf_2E0D60(int a, int b, int c, int d, int e, int f, char *g, int h);
 extern void func_001D5690(void *a0, int a1);
 extern void SetBlendField820_1D5B90(void *a0, int a1);
-extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
 extern int D_007474A0;
 extern int D_004664A0;
 extern int D_007476B0;
@@ -120,7 +120,7 @@ void BlackJack_UpdateDoubleDownMenu(void *a0)
                 cCoreSave_subGold(&D_00569B70, *(int *)(s0 + 0x1814));
                 v = *(int *)(s0 + 0x1814) * 2;
                 *(int *)(s0 + 0x1814) = v;
-                CustomIDWork_SetNumber_1D5760(s0, v);
+                CustomIDWork_SetNumber_1D5760(a0, v);
                 SetBlendField820_1D5B90(s0, 0);
                 cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 *(int *)(s0 + 0x1808) = 0;

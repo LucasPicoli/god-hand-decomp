@@ -26,7 +26,7 @@ typedef struct cCockItem {
     char unk0A4[0xB0 - 0xA4];
     cIDBaseObj ticketBase;              /* 0x0B0 the ticket display */
     char unk0F8[0x100 - 0xF8];
-    int ticketSeed;                     /* 0x100 seed of the ticket entries; entry 0 is hidden while 0 */
+    int ticketNumber;                   /* 0x100 the ticket entries' number; 0 hides entry 0 */
     unsigned char showSecond;           /* 0x104 1: ticket entry 1 is shown too */
 } cCockItem;
 

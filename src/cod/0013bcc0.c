@@ -1,15 +1,15 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
+#include "godhand/JukeBox.h"
+#include "godhand/cCockActButton.h"
 #include "godhand/globals.h"
 
-extern void cIDBase_move(void *);
 extern void cIDBase_trans(void *);
 extern void CustomIDWork_SetMessNo(void *work, int messNo);
 extern void func_001415E8(void *self, int arg);
 extern void displayScrollLayer(int layer, int on);
 extern long D_007474A0[];
 extern void cIDBase_restartAnim(void *self);
-extern void *cIDBase_getIDWork(void *self, int idx);
 
 /* Run an entry's update hook from the type table D_003BF0E0 (g++ 2.x
  * delta/index/pfn entries, indexed by the type byte at +0), set the screen
@@ -28,13 +28,13 @@ extern HookEnt D_003BF0E0[];
 #define SCREEN_STATE_ENTRY_RUN 10
 
 __attribute__((section(".text.Entry_runHookAndDraw")))
-void Entry_runHookAndDraw(unsigned char *self) {
-    int type = self[0];
+void Entry_runHookAndDraw(JukeBoxObj *self) {
+    int type = self->type;
     int delta = D_003BF0E0[type].delta;
-    D_003BF0E0[type].pfn(self + delta);
+    D_003BF0E0[type].pfn((char *)self + delta);
     D_005CAE40 = SCREEN_STATE_ENTRY_RUN;
-    cIDBase_move(self + 0x30);
-    cIDBase_trans(self + 0x30);
+    cIDBase_move(&self->idBase);
+    cIDBase_trans(&self->idBase);
 }
 
 /* Set message `messNo` on the two work records of display slot `slot`
@@ -150,32 +150,16 @@ void ModeObj_pollInputBits(ModeObj *self) {
 
 /* Restart the animation and refill the 13 entry pointers at 0xB0 from
  * cIDBase_getIDWork, then clear the two state bytes at 0x94/0x95. */
-#define ENTRY_COUNT 13
-
-typedef struct IdScreen {
-    char unk00[0x1C];
-    unsigned char started;              /* 0x1C */
-    char unk1D[0x73];
-    int unk90;                          /* 0x90 */
-    unsigned char sel0;                 /* 0x94 */
-    unsigned char sel1;                 /* 0x95 */
-    char unk96[0x1A];
-    void *ent[ENTRY_COUNT];             /* 0xB0 */
-} IdScreen;
-
-
-
-
-__attribute__((section(".text.IdScreen_refillEntries")))
-void IdScreen_refillEntries(IdScreen *self) {
+__attribute__((section(".text.cCockActButton_refillEntries")))
+void cCockActButton_refillEntries(cCockActButton *self) {
     unsigned short i = 0;
     self->unk90 = 0;
     cIDBase_restartAnim(self);
-    self->started = 1;
+    self->base.playing = 1;
     do {
-        self->ent[i] = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
-    } while (i < ENTRY_COUNT);
-    self->sel0 = 0;
-    self->sel1 = 0;
+    } while (i < COCKACTBUTTON_WORK_NUM);
+    self->active = 0;
+    self->step = 0;
 }

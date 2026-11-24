@@ -10,7 +10,6 @@ extern void Obj0000_Set_Fields_68_6C_From_D_007474A0_1615D0(void *self);
 extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
-extern void *cIDBase_getIDWork(void *self, int idx);
 extern void **D_003C2384;
 extern void CustomIDWork_SetOffsetPosX(void *work, int x);
 extern void CustomIDWork_SetMoveOffsetPosX(void *work, int from, int to, int frames);
@@ -161,7 +160,7 @@ void IdDispObj_constructKind9(IdDispObj *self)
         self->b5D = 0;
     }
     for (i = 0; i < IDOBJ_WORK_NUM; i++) {
-        self->work[i] = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
     }
     self->bBC = 0;
 }

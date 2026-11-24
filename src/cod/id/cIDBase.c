@@ -49,7 +49,6 @@ cIDBaseObj *cIDBase(cIDBaseObj *self)
     return self;
 }
 
-extern cIDBaseEnt *cIDBase_getIDWork(cIDBaseObj *self, int id);
 extern void cIDBase_setDispParent(cIDBaseObj *self, cIDBaseEnt *ent, int show);
 extern void cIDBase_setDispChildren(cIDBaseObj *self, cIDBaseEnt *ent, int show);
 /* Show or hide the entry with id `id`, its parent chain and its children. */

@@ -17,7 +17,6 @@ extern void pl00_reset(void *p);
 extern void func_001F6B78(void *p, int a);
 extern void func_001F6C40(void *p, int a);
 extern int JukeBox_Load(void *p);
-extern void Entry_runHookAndDraw(void *p);
 extern void JukeBox_Release(void *p);
 extern void cSnd_BgmFlaggedNodeKick(void *p, float f);
 
@@ -27,7 +26,7 @@ extern void cIDBase(void *);
 __attribute__((section(".text.JukeBox")))
 JukeBoxObj *JukeBox(JukeBoxObj *self) {
     self->done = 0;
-    cIDBase(self->idBase);
+    cIDBase(&self->idBase);
     self->dataFile = 0;
     return self;
 }

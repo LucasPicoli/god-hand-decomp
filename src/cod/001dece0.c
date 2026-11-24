@@ -1,10 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDBase.h"
+#include "godhand/CustomIDWork.h"
+#include "godhand/PanelObj.h"
 #include "godhand/globals.h"
 
 extern int _MemoryAlloc(void *ctx, int k, int v);
 extern void cIDBase_initialize(void *p, int a, int b);
 extern void cIDBase_restartAnim(void *p);
-extern void *cIDBase_getIDWork(void *p, int i);
 extern void CustomIDWork_Initialize(void *p, void *w);
 extern void CustomIDWork_SetDisp(void *p, int f);
 extern void CustomIDWork_SetMessNo(void *p, int n);
@@ -43,19 +45,19 @@ int func_002B5AF8(void *a0, int a1, void *ctx)
 }
 
 __attribute__((section(".text.func_001DECE0")))
-void func_001DECE0(char *p)
+void func_001DECE0(PanelObj *p)
 {
     int i;
 
-    cIDBase_initialize(p + 0x10, 0x12, 1);
-    cIDBase_restartAnim(p + 0x10);
-    for (i = 0; i < 0x11; i++) {
-        CustomIDWork_Initialize(p + 0x60 + i * 0x7C, cIDBase_getIDWork(p + 0x10, i));
+    cIDBase_initialize(&p->id, 0x12, 1);
+    cIDBase_restartAnim(&p->id);
+    for (i = 0; i < PANEL_ELEM_NUM; i++) {
+        CustomIDWork_Initialize(&p->elem[i], cIDBase_getIDWork(&p->id, i));
     }
-    CustomIDWork_SetDisp(p + 0x60, 0);
-    CustomIDWork_SetMessNo(p + 0x3C4, 0x1000);
-    CustomIDWork_SetMessNo(p + 0x4BC, 0x1001);
-    CustomIDWork_SetMessNo(p + 0x538, 0x1002);
+    CustomIDWork_SetDisp(&p->elem[0], 0);
+    CustomIDWork_SetMessNo(&p->elem[7], 0x1000);
+    CustomIDWork_SetMessNo(&p->elem[9], 0x1001);
+    CustomIDWork_SetMessNo(&p->elem[10], 0x1002);
     func_001DEE60(p, 0x11, 0);
 }
 

@@ -11,7 +11,6 @@ extern void cDvd_CheckWait(void *dvd, int id);
 extern void cIDManager_setIDData(void *mgr, int pack, void *data);
 extern void cIDBase_initialize(cCockLastBossBar *self, int pack, int a);
 extern void cIDBase_restartAnim(cCockLastBossBar *self);
-extern cIDBaseEnt *cIDBase_getIDWork(cCockLastBossBar *self, int id);
 
 /* Prepare the final boss bar for the room: load the message pack once, initialise the display and look the four entries up by id. */
 __attribute__((section(".text.cCockLastBossBar_roomInit")))
@@ -30,7 +29,7 @@ void cCockLastBossBar_roomInit(cCockLastBossBar *self)
     self->unkA0 = 0x20000000;
     self->unkA4 = 1.0f;
     for (i = 0; i < COCKLASTBOSSBAR_ENT_NUM; i++) {
-        self->ent[i] = cIDBase_getIDWork(self, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
     }
     self->flag79 = 0;
     self->flag7A = 0;

@@ -7,7 +7,6 @@ extern void func_001D5430(void *a0, int a1);
 extern void SetBlendField4BC_1D5848(void *a0, int a1);
 extern void func_001D5360(void *a0, int a1);
 extern void func_001D5500(void *a0, int a1);
-extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
 extern int D_007474A0;
 
 /* sn-2.95.3-136 matched TU. */

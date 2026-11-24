@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/SlotUi.h"
 #include "godhand/globals.h"
 
 extern int irand(void);
@@ -17,7 +18,6 @@ extern void cDvd_CheckWait();
 extern void cIDManager_setIDData();
 extern void cIDBase_initialize();
 extern void cIDBase_restartAnim();
-extern char *cIDBase_getIDWork();
 extern void CustomIDWork_Initialize();
 extern void CustomIDWork_SetMessNo();
 extern void CustomIDWork_SetNumber();
@@ -240,36 +240,36 @@ __attribute__((section(".text.func_00124C30"))) void func_00124C30(char *s1, int
 
 
 __attribute__((section(".text.func_001E71B8")))
-void func_001E71B8(char *a0, int a1)
+void func_001E71B8(SlotUi *self, int a1)
 {
     char buf[0x40];
     int r;
     int i;
     char *w;
-    char *b;
+    cIDBaseObj *b;
     char *g;
 
     cIDManager_getLocalFileName(D_003C2388, buf, D_0042BB20, -1);
-    r = cDvd_ReadAlloc(D_00583F20, buf, a0 + 0x678, D_00754220, 0, 0, 0, 0);
+    r = cDvd_ReadAlloc(D_00583F20, buf, &self->node, D_00754220, 0, 0, 0, 0);
     if (r != 0) {
         cDvd_CheckWait(D_00583F20, r);
-        cIDManager_setIDData(*D_003C2384, 0x11, *(int *)(a0 + 0x678));
-        cIDBase_initialize(a0, 0x11, a1);
-        cIDBase_restartAnim(a0);
-        for (i = 0; i < 10; i++)
-            CustomIDWork_Initialize(a0 + 0x50 + i * 0x7C, cIDBase_getIDWork(a0, i));
-        b = a0 + 0x530;
+        cIDManager_setIDData(*D_003C2384, 0x11, self->node);
+        cIDBase_initialize(&self->id, 0x11, a1);
+        cIDBase_restartAnim(&self->id);
+        for (i = 0; i < SLOTUI_MARK_NUM; i++)
+            CustomIDWork_Initialize(&self->mark[i], cIDBase_getIDWork(&self->id, i));
+        b = &self->id2;
         cIDBase_initialize(b, 0x11, 2);
         cIDBase_restartAnim(b);
-        for (i = 0; i < 2; i++)
-            CustomIDWork_Initialize(a0 + 0x580 + i * 0x7C, cIDBase_getIDWork(b, i));
+        for (i = 0; i < SLOTUI_BET_NUM; i++)
+            CustomIDWork_Initialize(&self->bet[i], cIDBase_getIDWork(b, i));
         g = (char *)&D_007474A0;
         if (*(unsigned short *)(g + 0x5B0) == 5)
-            CustomIDWork_SetMessNo(a0 + 0x5FC, 0x1001);
+            CustomIDWork_SetMessNo(&self->bet[1], 0x1001);
         else
-            CustomIDWork_SetMessNo(a0 + 0x5FC, 0x1001);
-        CustomIDWork_SetNumber(a0 + 0x50, 0);
-        SlotUi_showEndMarks(a0);
+            CustomIDWork_SetMessNo(&self->bet[1], 0x1001);
+        CustomIDWork_SetNumber(&self->mark[0], 0);
+        SlotUi_showEndMarks(self);
     }
 }
 

@@ -1,10 +1,10 @@
 /* include/godhand/BlackJack.h - the casino blackjack table.
  *
- * BlackJack is one object of 0x1836 bytes. Its first 0x1630 bytes
- * are the cIDBase / CustomIDWork display entries (BlackJackId works on
- * them). From 0x1630 on come the game fields named here: the card deck
- * (52 objects, each with a flag word), two hands of 5 card slots, a small
- * state machine (state, phase) and the bet.
+ * BlackJack is one object of 0x1836 bytes. Its first 0x1630 bytes are the
+ * display: a cIDBase at 0x10 and its 45 CustomIDWork elements from 0x60
+ * (BlackJackId works on them). From 0x1630 on come the game fields named
+ * here: the card deck (52 objects, each with a flag word), two hands of 5
+ * card slots, a small state machine (state, phase) and the bet.
  *
  * Offsets are exact. A field nobody has named yet stays as unkNNN padding.
  * Field names are ours, taken from the methods that read and write them.
@@ -12,6 +12,11 @@
 #ifndef GODHAND_BLACKJACK_H
 #define GODHAND_BLACKJACK_H
 
+#include "godhand/cIDBase.h"
+#include "godhand/CustomIDWork.h"
+
+#define BLACKJACK_ELEM_NUM   45     /* CustomIDWork elements of the display */
+#define BLACKJACK_ELEM_NUMBER 2     /* the element that shows the bet or the payout */
 #define BLACKJACK_DECK_NUM   52
 #define BLACKJACK_HAND_NUM   5      /* card slots per hand */
 #define BLACKJACK_SUIT_NUM   4
@@ -59,7 +64,11 @@ typedef struct BlackJackCard {
 } BlackJackCard;                        /* 0x8 */
 
 typedef struct BlackJack {
-    char unk0000[0x1630];
+    char unk0000[0x10];
+    cIDBaseObj id;                      /* 0x0010 the elements' display */
+    char unk0058[0x60 - 0x10 - sizeof(cIDBaseObj)];
+    CustomIDWork elem[BLACKJACK_ELEM_NUM]; /* 0x0060 */
+    char unk162C[0x1630 - 0x162C];
     int level;                          /* 0x1630 table level, 0..3 */
     BlackJackCard deck[BLACKJACK_DECK_NUM]; /* 0x1634 */
     BlackJackCard *handA[BLACKJACK_HAND_NUM];  /* 0x17D4 */
@@ -79,6 +88,11 @@ typedef struct BlackJack {
     short cardIdB[BLACKJACK_HAND_NUM];  /* 0x182C card ids dealt to hand B */
 } BlackJack;                            /* 0x1836 */
 
+typedef char BlackJack_level_check[((int)&((BlackJack *)0)->level == 0x1630) ? 1 : -1];
+
 extern int D_0042AFE0[BLACKJACK_SUIT_NUM];
+
+/* Set the number the bet element (BLACKJACK_ELEM_NUMBER) shows. */
+void CustomIDWork_SetNumber_1D5760(BlackJack *self, int number);
 
 #endif

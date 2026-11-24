@@ -25,7 +25,6 @@ extern void cSnd_BgmEventStart(void *snd, int event, int a2, int a3);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void func_001DEE40(void *p, int a1);
 extern void cIDBase_initIDWork(cNowLoading *self, int idx);
-extern cIDBaseEnt *cIDBase_getIDWork(cNowLoading *self, int idx);
 extern void cIDBase_restartAnim(cNowLoading *self);
 
 /* Copies the wave settings from the parameter block, clamps the entry count
@@ -242,10 +241,10 @@ void cNowLoading_setup(cNowLoading *self)
     cIDBase_initIDWork(self, 3);
     cIDBase_restartAnim(self);
     self->base.playing = 1;
-    ent[0] = cIDBase_getIDWork(self, 0);
-    ent[1] = cIDBase_getIDWork(self, 1);
-    barEnt = cIDBase_getIDWork(self, 2);
-    ent[2] = cIDBase_getIDWork(self, 3);
+    ent[0] = cIDBase_getIDWork(&self->base, 0);
+    ent[1] = cIDBase_getIDWork(&self->base, 1);
+    barEnt = cIDBase_getIDWork(&self->base, 2);
+    ent[2] = cIDBase_getIDWork(&self->base, 3);
     for (i = 0; i < NOWLOADING_SLOT_NUM; i++) {
         self->slot[i].one = NOWLOADING_SLOT_ONE;
         self->slot[i].two = NOWLOADING_SLOT_TWO;

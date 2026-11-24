@@ -3,13 +3,13 @@
 extern int D_00421FE8;
 extern int InitFields_1B6E90(void *self);
 extern void cIDBase_restartAnim(void *self);
-extern int cIDBase_getIDWork(void *self, int idx);
 extern void *D_003C23A4;
 extern void *cMessage_getMessageAddr(void *mgr, int id);
 extern void *cMessage_getRubyAddr(void *mgr, int id);
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cCockPrintData.h"
 
 
 
@@ -61,12 +61,6 @@ void *func_0017E0F8(void *a0) {
     return a0;
 }
 
-typedef struct S143598 {
-    char pad00[0x94];
-    int work[4];
-    char pad1[0x10C];
-    char bytes[0x10];
-} S143598;
 
 
 
@@ -76,25 +70,24 @@ typedef struct S143598 {
 
 
 __attribute__((section(".text.func_00143598")))
-void func_00143598(void *self) {
+void func_00143598(cCockPrintData *self) {
     unsigned short i;
 
     cIDBase_restartAnim(self);
-    *(char *)((char *)self + 0x1C) = 1;
-    *(int *)((char *)self + 0x90) = cCoreSave_getGold(&D_00569B70);
+    self->base.playing = 1;
+    self->gold = cCoreSave_getGold(&D_00569B70);
 
-    for (i = 0; i < 4; i++) {
-        ((S143598 *)self)->work[i] = cIDBase_getIDWork(self, i);
+    for (i = 0; i < COCKPRINT_WORK_NUM; i++) {
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
     }
-    for (i = 0; i < 0x10; i++) {
-        ((S143598 *)self)->bytes[i] = 0;
+    for (i = 0; i < COCKPRINT_SLOT_NUM; i++) {
+        self->on[i] = 0;
     }
 
-    *(int *)(*(char **)((char *)self + 0x9C) + 0x2C) |= 0x8000000;
-    *(int *)(*(char **)((char *)self + 0x94) + 0x84) =
-        *(int *)((char *)self + 0x90);
+    self->work[2]->flags |= IDENT_FLAG_NO_DRAW;
+    self->work[0]->number = self->gold;
     cCoreSave_initAddGold(&D_00569B70);
-    *(char *)((char *)self + 0x1C0) = 0;
+    self->mode = 0;
 }
 
 typedef struct S2B21F0 {

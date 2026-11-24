@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCockAlert.h"
 #include "godhand/globals.h"
 
 extern unsigned char D_0044BAB0[];
@@ -6,7 +7,6 @@ extern void __builtin_delete(void *a);
 extern int cIDBase_initialize();
 extern int D_00747A80;
 extern int cGameObj_isClip();
-extern int cIDBase_getIDWork(void *a, int b);
 extern void func_0031EEC8(void *a, void *b);
 extern void SetField_0_4_8_31EEA8(void *a, void *b, void *c);
 
@@ -158,17 +158,15 @@ void func_0013D048(void *a0) {
 
 
 __attribute__((section(".text.func_0013C220")))
-void func_0013C220(void *a0) {
-    int *tbl;
+void func_0013C220(cCockAlert *self) {
     unsigned short i;
-    tbl = (int *)((char *)a0 + 0x98);
-    *(int *)((char *)a0 + 0x90) = 0;
-    cIDBase_initialize(a0, 1, 0xA);
+    self->unk90 = 0;
+    cIDBase_initialize(self, 1, 0xA);
     i = 0;
     do {
-        *(int *)((char *)tbl + (i << 2)) = cIDBase_getIDWork(a0, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
-    } while (i < 4);
+    } while (i < COCKALERT_ENT_NUM);
 }
 
 /* LANE K3, wave 18 -- DEAD-HEAD boundary class.

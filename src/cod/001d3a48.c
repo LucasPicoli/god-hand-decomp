@@ -2,7 +2,6 @@
 #include "godhand/BlackJack.h"
 #include "godhand/cCoreSave.h"
 
-extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
 extern void SetLinkedObjField2B_1D6D68(void *a0, int a1);
 extern void func_001D49E0(void *a0, int a1);
 extern void func_001D4AA8(void *a0, int a1);

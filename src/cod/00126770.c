@@ -3,6 +3,7 @@
 #include "godhand/cObjBase.h"
 #include "godhand/cSnd.h"
 #include "godhand/DispMgr.h"
+#include "godhand/cIDBase.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 
@@ -20,8 +21,6 @@ extern void *InitFields_1B6E90(void *a0);
 extern int D_007859B8;
 extern int D_00785878;
 extern void GetOrInitGlobal785878_1B8058(void);
-extern void *cIDBase_getIDWork(void *self, int idx);
-extern void cIDBase_initEntry(void *a0, int a1, void *a2);
 extern void func_002B64C0(int a0);
 extern void SetCustomIDDispOneOrAll_1DD258(int a0, int a1, int a2);
 extern void cScenario_sleepFrames(int a0);
@@ -146,9 +145,9 @@ void *cGameObj__tf(void)
 __attribute__((section(".text.cIDBase_initIDWork")))
 void cIDBase_initIDWork(void *a0, int idx)
 {
-    void *v0 = cIDBase_getIDWork(a0, idx);
-    if (v0 != 0) {
-        cIDBase_initEntry(a0, *(int*)((char*)v0 + 0x1C), v0);
+    cIDBaseEnt *ent = cIDBase_getIDWork(a0, idx);
+    if (ent != 0) {
+        cIDBase_initEntry(a0, ent->src, ent);
     }
 }
 
@@ -204,10 +203,10 @@ void func_00126770(char *a0) {
 }
 
 __attribute__((section(".text.func_00143A90")))
-void func_00143A90(DispMgrGold *self) {
-    if (self->num != 0) {
+void func_00143A90(cCockPrintData *self) {
+    if (self->work[0] != 0) {
         self->gold = cCoreSave_getGold(&D_00569B70);
-        self->num->seed = cCoreSave_getGold(&D_00569B70);
+        self->work[0]->number = cCoreSave_getGold(&D_00569B70);
         cCoreSave_initAddGold(&D_00569B70);
     }
 }

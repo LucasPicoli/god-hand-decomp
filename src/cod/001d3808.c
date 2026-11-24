@@ -2,7 +2,6 @@
 #include "godhand/BlackJack.h"
 #include "godhand/cSnd.h"
 
-extern void CustomIDWork_SetNumber_1D5760(void *a0, int a1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void func_001D49E0(void *a0, int a1);
 extern void func_001D4AA8(void *a0, int a1);

@@ -135,7 +135,7 @@ struct cIDBaseEnt {
     float f6C;                  /* 0x6C */
     float f70[4];               /* 0x70 */
     float f80;                  /* 0x80 */
-    unsigned int seed;          /* 0x84 */
+    unsigned int number;        /* 0x84 shown number, set by CustomIDWork::SetNumber */
     unsigned char kind;         /* 0x88 IDENT_KIND_* */
     unsigned char b89;          /* 0x89 */
     unsigned char b8A;          /* 0x8A */
@@ -176,6 +176,13 @@ typedef struct cIDBase {
 
 /* Advance every entry of the display one frame. */
 void cIDBase_move(cIDBaseObj *self);
+
+/* The active entry whose id is `id`. With no entry table, or no such entry,
+ * the spare entry at D_005CB300. */
+cIDBaseEnt *cIDBase_getIDWork(cIDBaseObj *self, int id);
+
+/* Fill display entry `ent` from source record `src`. */
+void cIDBase_initEntry(cIDBaseObj *self, cIDBaseSrc *src, cIDBaseEnt *ent);
 
 typedef char cIDBaseEnt_size_check[sizeof(cIDBaseEnt) == IDBASE_ENT_SIZE ? 1 : -1];
 typedef char cIDBaseSrc_size_check[sizeof(cIDBaseSrc) == IDBASE_SRC_SIZE ? 1 : -1];

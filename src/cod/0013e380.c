@@ -4,7 +4,6 @@
 #include "godhand/globals.h"
 
 extern void cIDBase_initialize(void *a0, int a1, int a2);
-extern int cIDBase_getIDWork(void *a0, int a1);
 extern void func_002B2580(char *self);
 extern void cSndSeTrack_switchSoundData(char *self);
 extern int D_00747A34;
@@ -33,22 +32,20 @@ void Slot1_endGameStep(char *self) {
     }
 }
 
-/* Set up two id works: initialise the id manager, fetch each work into the table at +0x9C, clear the counter at +0x90. */
+/* Set up the count display, cache its two entries in ent and forget the ticket. */
 
 
 
 __attribute__((section(".text.InitTwoIdWorks")))
-void InitTwoIdWorks(void *a0) {
-    int *tbl;
+void InitTwoIdWorks(cCockItem *self) {
     unsigned short i;
-    tbl = (int *)((char *)a0 + 0x9C);
-    cIDBase_initialize(a0, 1, 0x1F);
+    cIDBase_initialize(self, 1, 0x1F);
     i = 0;
     do {
-        *(int *)((char *)tbl + (i << 2)) = cIDBase_getIDWork(a0, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
         i = i + 1;
-    } while (i < 2);
-    *(int *)((char *)a0 + 0x90) = 0;
+    } while (i < COCKITEM_ENT_NUM);
+    self->ticket = 0;
 }
 
 /* PLAY stage of a two-phase scene: start it on phase 0, step it until it ends, then fall back to the next stage. */

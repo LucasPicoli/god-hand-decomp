@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cIDMenuPanel.h"
 
-extern int cIDBase_getIDWork(void *self, int idx);
-extern void cIDBase_move(void *a0);
 extern void cIDBase_trans(void *a0);
 extern unsigned char D_005864F0[];
 extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
@@ -21,46 +20,55 @@ extern void func_0032DF70(void *a0, int a1, int a2);
 extern void func_0032DA28(void *a0, int a1, int a2);
 extern void func_00374958(void *a0, float f);
 
+#define SHOP_INPUTS  5                  /* combo inputs shown at once */
+
 /* sn-2.95.3-136 matched TU. */
 
 
 
 
 
+/* cSubScrShopMain, retail's name (its type-info function func_0016C1E8
+ * registers "15cSubScrShopMain"): the shop's main sub-screen, with a second
+ * display at 0xD0 and the combo input display at 0x210. */
+typedef struct cSubScrShopMain {
+    cIDPanelHead head;                  /* 0x000 */
+    char unk064[0xD0 - 0x64];
+    cIDBaseObj subBase;                 /* 0x0D0 */
+    char unk118[0x210 - 0x118];
+    cIDBaseObj inputBase;               /* 0x210 entry 0 drawn once per shown input */
+    char unk258[0x260 - 0x258];
+    short inputTimer[SHOP_INPUTS];      /* 0x260 frames each shown input stays up */
+    char unk26A[2];
+    int input[SHOP_INPUTS];             /* 0x26C input shown in each slot */
+} cSubScrShopMain;
+
 __attribute__((section(".text.func_0016ACD0")))
-void func_0016ACD0(void *a0)
+void func_0016ACD0(cSubScrShopMain *self)
 {
-    char *s4 = (char *)a0;
     unsigned short i;
 
-    if (*(char *)(s4 + 0x5A) == 3) {
-        for (i = 0; i < 5; i++) {
-            short *tbl = (short *)(s4 + 0x260);
+    if (self->head.state == 3) {
+        for (i = 0; i < SHOP_INPUTS; i++) {
+            short *tbl = self->inputTimer;
             short *q = tbl + i;
             if (*q != 0) {
-                int ids;
-                int k;
-                char *w1 = (char *)cIDBase_getIDWork(s4 + 0x210, 0);
-                char *w2 = (char *)cIDBase_getIDWork(s4 + 0x210, 0);
-                char *w3;
-                char *w4;
-                int t;
-                *(float *)(w1 + 0x3C) =
-                    *(float *)(*(int *)(w2 + 0x1C) + 0xC) - (float)(i * 26);
-                w3 = (char *)cIDBase_getIDWork(s4 + 0x210, 0);
-                *(char *)(w3 + 0x4F) = (int)((float)*q / 20.0f * 256.0f);
-                w4 = (char *)cIDBase_getIDWork(s4 + 0x210, 0);
-                k = i * 4;
-                ids = (int)(s4 + 0x26C);
-                t = *(int *)(ids + k);
-                *(int *)(w4 + 0x84) = t;
-                cIDBase_move(s4 + 0x210);
-                cIDBase_trans(s4 + 0x210);
+                cIDBaseEnt *w1 = cIDBase_getIDWork(&self->inputBase, 0);
+                cIDBaseEnt *w2 = cIDBase_getIDWork(&self->inputBase, 0);
+                cIDBaseEnt *w3;
+                cIDBaseEnt *w4;
+                w1->posY = w2->src->posY - i * 26;
+                w3 = cIDBase_getIDWork(&self->inputBase, 0);
+                w3->colorBase.c[3] = *q / 20.0f * 256.0f;
+                w4 = cIDBase_getIDWork(&self->inputBase, 0);
+                w4->number = self->input[i];
+                cIDBase_move(&self->inputBase);
+                cIDBase_trans(&self->inputBase);
             }
         }
     }
-    cIDBase_trans(s4 + 0xD0);
-    cIDBase_trans(s4);
+    cIDBase_trans(&self->subBase);
+    cIDBase_trans(&self->head.base);
 }
 
 /* sn-2.95.3-136 matched TU. */

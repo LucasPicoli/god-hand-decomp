@@ -13,7 +13,6 @@ extern void cIDManager_setIDData(void *mgr, int pack, void *data);
 extern void cIDBase_initialize(cCockTutorial *self, int pack, int a);
 extern void cIDBase_setPackedMessData(cCockTutorial *self, int pack, int a);
 extern void cIDBase_restartAnim(cCockTutorial *self);
-extern cIDBaseEnt *cIDBase_getIDWork(cCockTutorial *self, int id);
 
 /* Prepare the tutorial display for the room: load the message pack once,
  * initialise the display and look the seven entries up by id. */
@@ -32,7 +31,7 @@ void cCockTutorial_roomInit(cCockTutorial *self) {
     cIDBase_restartAnim(self);
     self->base.playing = 1;
     for (i = 0; i < COCKTUT_ENT_NUM; i++) {
-        self->ent[i] = cIDBase_getIDWork(self, i);
+        self->ent[i] = cIDBase_getIDWork(&self->base, i);
     }
     self->ent[0]->sclX = 0;
     self->ent[0]->sclY = 0;

@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cDvd.h"
+#include "godhand/cIDBase.h"
 #include "godhand/cSnd.h"
-#include "godhand/CustomIDWork.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cObj.h"
 #include "godhand/vu0.h"
@@ -12,7 +12,6 @@ extern void cDvd_pollJob(cDvd *self);
 extern void func_00201250(cDvd *self);
 extern void cHeap_free(void *heap, void *p);
 extern void BlockOwner_dtor(void *self, int flags);
-extern CustomIDObj *cIDBase_getIDWork(void *idBase, int idx);
 extern int func_001717C0(cOmBase *self, void *target, cVec *pos);
 extern void *InitFields_1B6E90(void *self);
 extern int D_00429B88;
@@ -57,25 +56,25 @@ void cHeapOwner_deletingDtor(HeapOwner *self, int flags) {
     BlockOwner_dtor(self, flags);
 }
 
-#define IDWORK_HIGHLIGHT  10            /* index of the id work whose hide bit follows the mode byte */
+#define IDWORK_HIGHLIGHT  10            /* id of the entry whose hidden bit follows the mode byte */
 
 /* An ID screen: a mode byte at 1 and the id base at 0x30. */
 typedef struct IdModeScreen {
     char unk00;
     unsigned char mode;                 /* 0x01 */
     char unk02[0x2E];
-    char idBase[1];                     /* 0x30 */
+    cIDBaseObj idBase;                  /* 0x30 */
 } IdModeScreen;
 
-/* Hide the highlight element when the mode is 2, else show it. */
+/* Show the highlight entry when the mode is 2, else hide it. */
 __attribute__((section(".text.CustomID_toggleBit29")))
 void CustomID_toggleBit29(IdModeScreen *self) {
     if (self->mode == 2) {
-        CustomIDObj *obj = cIDBase_getIDWork(self->idBase, IDWORK_HIGHLIGHT);
-        obj->flags &= ~CIDW_OBJ_HIDE;
+        cIDBaseEnt *ent = cIDBase_getIDWork(&self->idBase, IDWORK_HIGHLIGHT);
+        ent->flags &= ~IDENT_FLAG_HIDDEN;
     } else {
-        CustomIDObj *obj = cIDBase_getIDWork(self->idBase, IDWORK_HIGHLIGHT);
-        obj->flags |= CIDW_OBJ_HIDE;
+        cIDBaseEnt *ent = cIDBase_getIDWork(&self->idBase, IDWORK_HIGHLIGHT);
+        ent->flags |= IDENT_FLAG_HIDDEN;
     }
 }
 

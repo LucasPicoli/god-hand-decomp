@@ -67,7 +67,7 @@ __attribute__((section(".text.cOm_takeCasinoTicket")))
 void cOm_takeCasinoTicket(TicketObj *self) {
     KeyStop();
     cCoreSave_addCasinoTicket(&D_00569B70, -1);
-    Cockpit->item.ticketSeed = (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
+    Cockpit->item.ticketNumber = (short)cCoreSave_getCasinoTicketNum(&D_00569B70);
     self->mode = 1;
     self->phase = 0;
     self->flags = self->flags | CASINO_ACTIVE;

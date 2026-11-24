@@ -7,7 +7,6 @@ typedef struct Vec { float x, y, z, w; } Vec;
 
 extern void func_001D6D20(BlackJack *, int);
 extern void SetLinkedObjField2B_1D6D68(BlackJack *, int);
-extern void CustomIDWork_SetNumber_1D5760(BlackJack *, int);
 extern void PanelHost_slideSidePanel(BlackJack *, int);
 extern void BlackJack_slidePanel(BlackJack *, int);
 extern void func_001D61C0(BlackJack *, int);

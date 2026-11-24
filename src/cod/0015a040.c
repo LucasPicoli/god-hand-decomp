@@ -11,7 +11,6 @@ extern void cIDManager_setIDData(void *mgr, int kind, int res);
 extern void cIDBase_initialize(void *self, int kind, int arg);
 extern void cIDBase_resetAnim(void *self);
 extern int cIDBase_setPackedMessData(void *self, int kind, int arg);
-extern void *cIDBase_getIDWork(void *self, int idx);
 extern void **D_003C2384;
 extern cTaskManager D_00752C00;
 extern void cTaskWork_sleep(cTaskWork *task, int frames);
@@ -76,7 +75,7 @@ void IdDispObj_construct(IdDispObj *self)
         self->b5D = 0;
     }
     for (i = 0; i < IDOBJ_WORK_NUM; i++) {
-        self->work[i] = cIDBase_getIDWork(self, i);
+        self->work[i] = cIDBase_getIDWork(&self->base, i);
     }
     self->bEC = 0;
     self->bED = 0;

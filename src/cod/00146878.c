@@ -1,11 +1,12 @@
-extern void IdPair_init(void *);
+#include "godhand/cCockScroll.h"
+
 extern void cIDBase_restartAnim(void *);
 
 __attribute__((section(".text.func_00146878")))
-void func_00146878(char *self)
+void func_00146878(cCockScroll *self)
 {
-    IdPair_init(self);
-    *(short *)(self + 0x100) = 0;
+    cCockScroll_reset(self);
+    self->count = 0;
     cIDBase_restartAnim(self);
-    self[0x1C] = 1;
+    self->base.playing = 1;
 }
