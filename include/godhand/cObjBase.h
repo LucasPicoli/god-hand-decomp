@@ -167,8 +167,9 @@ void cObjBase__dtor(struct cObjBase *self, int flags);
 #define EFFECT_FOLLOW_OWNER ((cObj *)0xFFFFFFFF)
 
 /* Start effect id of the given kind on owner (param 0: the defaults). follow is
- * the object the effect follows, EFFECT_FOLLOW_OWNER for owner itself. Returns 0
- * when the effect file is missing, otherwise 1 or the started count. */
+ * the object the effect follows, EFFECT_FOLLOW_OWNER for owner itself. Returns 1
+ * when effects are off, 0 when the effect file is missing or the effect fails to
+ * start, otherwise 1. */
 int SetEffect(int kind, int id, cObj *owner, cEffectParam *param, int handle, cObj *follow);
 
 #endif

@@ -7,6 +7,12 @@
  * in a0 as its effect number and kill mode. With no t1 the effect sits on a0,
  * looping and at a0's scale when a0's motionFlags has bit 1; otherwise it sits
  * on t1 at a0's scale. Either way it follows a0. */
+/* Three spellings are load-bearing under sn-2.95.3-136:
+ *   1. unk4F is `unsigned char`: a signed byte folds 0xFF to -1, and gcc then
+ *      emits one `li -1` for both 0x4C and 0x4F where retail has two.
+ *   2. The scale run stores through the bound `float *q`, which hoists
+ *      retail's `addiu $v0,$sp,0x30` above the first store.
+ *   3. The branch tests `t1 == 0` first, so its arm is retail's fall-through. */
 __attribute__((section(".text.InitRenderStruct_2A8608")))
 void InitRenderStruct_2A8608(cGameObj *a0, int a1, int a2, int a3, int t0, void *t1) {
     cEffectParam s;
