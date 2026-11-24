@@ -1,7 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
-extern int GetThreadId(void);
 extern int WaitSema(int sema);
 extern int SignalSema(int sema);
 

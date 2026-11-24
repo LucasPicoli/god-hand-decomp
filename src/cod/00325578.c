@@ -1,29 +1,18 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/adxm.h"
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
 extern int CreateThread(void *);
 extern void StartThread_3B0BA8(int, int);
-extern void ChangeThreadPriority(int, int);
 extern void adxm_mwidle_proc(void);
 extern int D_00468CF0;
 
-typedef struct {
-    int status;
-    void *func;
-    void *stack;
-    int stackSize;
-    void *gpReg;
-    int initPriority;
-    int currentPriority;
-    int attr;
-    int option;
-} ThreadParam;
 
 __attribute__((section(".text.func_00325578")))
 void func_00325578(void) {
-    ThreadParam param;
-    param.func = (void *)adxm_mwidle_proc;
+    struct ThreadParam param;
+    param.entry = adxm_mwidle_proc;
     param.stack = D_003CB9D0;
     param.stackSize = 0x2000;
     param.initPriority = D_003CF9D8;
@@ -31,7 +20,7 @@ void func_00325578(void) {
     D_003C814C = CreateThread(&param);
     D_003C814C;
     StartThread_3B0BA8(D_003C814C, 0);
-    ChangeThreadPriority(D_003C814C, D_003C80C8);
+    ChangeThreadPriority(D_003C814C, D_003C80B0.g);
     adxm_SuspendThread(D_003C814C);
     D_003C814C;
 }

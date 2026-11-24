@@ -1,7 +1,7 @@
 /* cygnus-2.96 matched TU. */
 
 #include "godhand/sfxlib.h"
-#include "godhand/adxsjd.h"
+#include "godhand/adxPly.h"
 #include "godhand/criFs.h"
 #include "godhand/globals.h"
 
@@ -145,15 +145,15 @@ void Sfx_buildFrameRecord(Sfx *sfx, SfdFrmSrc *src, SfdFrmSrc *frmsrc)
 extern volatile int D_003C7418;   /* volatile keeps retail's separate lui+addiu address (plain int folds %lo into the lw) */
 
 __attribute__((section(".text.AdxSjd_stepFill")))
-void AdxSjd_stepFill(AdxSjdRun *run)
+void AdxSjd_stepFill(AdxPly *adxt)
 {
     SjChunk ck;
     SjObj *sj;
-    void *rna = run->rna;
-    void *sjd = run->sjd;
+    void *rna = adxt->rna;
+    void *sjd = adxt->sjd;
     int have = Obj3260_Tramp_003383B0_D358(rna);
     int need = func_00326370(rna);
-    int lim = run->flush;
+    int lim = adxt->flush;
     int nsj;
     int bytes;
     int i;
@@ -161,24 +161,24 @@ void AdxSjd_stepFill(AdxSjdRun *run)
     if (lim > ADXSJD_MAX_FILL)
         lim = ADXSJD_MAX_FILL;
     if (have < lim && Obj3270_GetVia4_Obj33C8_10_77D0(sjd) < need
-        && Obj3260_GetByte_1_D778(run->sjd) != ADXSJD_STAT_PLAY)
+        && Obj3260_GetByte_1_D778(adxt->sjd) != ADXSJD_STAT_PLAY)
         goto next;
-    if (run->busy == 0) {
-        if (run->stopReq == 0) {
+    if (adxt->busy == 0) {
+        if (adxt->pause == 0) {
             Obj3260_Tramp_00338338_D338(rna, 1);
-            run->unk9C = 0;
-            run->unkA0 = D_003C7418;
+            adxt->baseCount = 0;
+            adxt->baseVsync = D_003C7418;
         }
-        run->stat = ADXSJD_STAT_PLAY;
+        adxt->stat = ADXT_STAT_PLAYING;
     }
-    run->unk71 = 1;
+    adxt->unk71 = 1;
 next:
-    if (Obj3260_GetByte_1_D778(run->sjd) != ADXSJD_STAT_PLAY)
+    if (Obj3260_GetByte_1_D778(adxt->sjd) != ADXSJD_STAT_PLAY)
         return;
-    nsj = func_0032A5B8(run);
-    bytes = run->flush * nsj * 2;
+    nsj = func_0032A5B8(adxt);
+    bytes = adxt->flush * nsj * 2;
     for (i = 0; i < nsj; i++) {
-        sj = run->sj[i];
+        sj = adxt->sjiA[i];
         sj->vt->getChunk(sj, 0, bytes, &ck);
         func_003A52F0(ck.data, 0, ck.len);
         sj->vt->putChunk(sj, 1, &ck);

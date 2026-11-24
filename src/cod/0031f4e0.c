@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/MpvHandle.h"
+#include "godhand/adxm.h"
 
 extern void func_00324C50(void);
 extern void func_0032AF88(void);
@@ -35,8 +36,6 @@ extern void ADXB_Stop(int);
 extern void (*D_003E9D20)(void);
 extern void func_00335B88(int);
 extern int (*D_003F2004)(void);
-extern struct cb_0031f4e0 D_00755C20;
-extern struct cb2 D_00755C28;
 
 __attribute__((section(".text.func_003248F0")))
 int func_003248F0(void) {
@@ -360,18 +359,12 @@ int func_0036CE38(int dev, SjObj *sj) {
     return 0;
 }
 
-struct cb_0031f4e0 { void (*fn)(int); int arg; };
-
-
 __attribute__((section(".text.func_00325FA8")))
 void func_00325FA8(void) {
     if (D_00755C20.fn != 0) {
         D_00755C20.fn(D_00755C20.arg);
     }
 }
-
-struct cb2 { void (*fn)(int); int arg; };
-
 
 __attribute__((section(".text.func_00325FD8")))
 void func_00325FD8(void) {

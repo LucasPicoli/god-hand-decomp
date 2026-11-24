@@ -7,6 +7,8 @@
 #ifndef GODHAND_ADXMTHREAD_H
 #define GODHAND_ADXMTHREAD_H
 
+#include "godhand/eeKernel.h"
+
 /* Per-server stop request / acknowledge flags and wake counters. */
 extern volatile long D_003C8158, D_003C8160;
 extern volatile long D_003C8178, D_003C8180;
@@ -19,28 +21,13 @@ extern volatile int D_003C80E8;
 extern volatile int D_003C80F0;
 extern volatile int D_003C80F4;
 extern volatile int D_003C80FC;
-extern volatile int D_003C8148, D_003C814C, D_003C8150;    /* server thread ids */
+extern volatile int D_003C8148;         /* the thread that ran the setup (func_00325638) */
+extern volatile int D_003C814C, D_003C8150;    /* server thread ids */
 extern volatile int D_003C81C8;
 extern unsigned short D_003C81C4;       /* GS BGCOLOR debug tint */
 
 #define GS_BGCOLOR (*(volatile unsigned long *)0x120000E0)
 
-struct ThreadParam {
-    int status;
-    void *entry;
-    void *stack;
-    int stackSize;
-    void *gpReg;
-    int initPriority;
-    int currentPriority;
-    unsigned int attr;
-    unsigned int option;
-    int waitType;
-    int waitId;
-    int wakeupCount;
-};
-
-extern int ReferThreadStatus(int tid, struct ThreadParam *info);
 extern void SleepThread_3252E0(void);
 extern void ExitDeleteThread(void);
 
@@ -53,5 +40,11 @@ extern void Forward33BC48_33BD48(void);
 extern int Forward33BC48_33BD78(void);
 extern int Forward33BC48_33BDA8(void);
 extern void Obj0000_Increment_D_003C8100_324E98(void);
+
+/* Create the four server threads, each at its AdxmCfg priority. */
+extern void func_003253C0(void);
+extern void func_00325468(void);
+extern void func_003254F0(void);
+extern void func_00325578(void);
 
 #endif /* GODHAND_ADXMTHREAD_H */

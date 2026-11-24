@@ -1,19 +1,8 @@
 /* ee-2.9-991111 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
 /* ee-2.9-991111 */
-
-struct ThreadParam {
-    int status;
-    void *func;
-    void *stack;
-    int stack_size;
-    void *gp_reg;
-    int initial_priority;
-    int current_priority;
-    unsigned int attr;
-    unsigned int option;
-};
 
 struct SemaParam {
     int currentCount;
@@ -29,8 +18,6 @@ typedef struct { int f0; int f4; } Ring;
 extern int CreateSema(struct SemaParam *p);
 extern int CreateThread(struct ThreadParam *p);
 extern int DeleteSema(int id);
-extern int GetThreadId(void);
-extern int ChangeThreadPriority(int tid, int prio);
 extern void StartThread_3B0BA8(int tid, Ring *r);
 extern void topThread(Ring *r);
 extern Ring D_0077DF98;
@@ -51,11 +38,11 @@ int InitThread(void)
     D_0077DF90 = CreateSema(&sp);
     if (D_0077DF90 < 0)
         return -1;
-    tp.func = topThread;
+    tp.entry = topThread;
     tp.stack = D_0077DB90;
-    tp.stack_size = 0x400;
-    tp.gp_reg = D_00468CF0;
-    tp.initial_priority = 0;
+    tp.stackSize = 0x400;
+    tp.gpReg = D_00468CF0;
+    tp.initPriority = 0;
     tp.option = (unsigned int)D_0045FE28;
     tid = CreateThread(&tp);
     D_003FAE48 = tid;

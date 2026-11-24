@@ -4,6 +4,7 @@
 #include "godhand/vu0.h"
 #include "godhand/cSnd.h"
 #include "godhand/globals.h"
+#include "godhand/eeKernel.h"
 
 extern float fRand1_1(void);
 extern float fRand0_1(void);
@@ -18,7 +19,6 @@ extern void func_00381D38(void);
 extern void func_003A6A20(char *a0);
 extern void func_0031C900(int a0);
 extern void CustomIDWork_SetLocalPosY(char *a0, int a1);
-extern int ChangeThreadPriority(int tid, int prio);
 extern int SignalSema(int sema);
 extern void ExitDeleteThread(void);
 

@@ -105,8 +105,9 @@ int Forward33F130_3248D8(int a0, int a1) { return func_0033F130(a1); }
 __attribute__((section(".text.Forward335A18_324C78")))
 int Forward335A18_324C78(int a0) { return func_00335A18(a0); }
 
+/* SVM callback slot 6; arg is the callback argument, unused. */
 __attribute__((section(".text.Forward324D88_324E70")))
-int Forward324D88_324E70(void) { return adxm_goto_svr_border(D_003C814C, D_003C80C8); }
+void Forward324D88_324E70(int arg) { adxm_goto_svr_border(D_003C814C, D_003C80B0.g); }
 
 __attribute__((section(".text.SleepThread_3252E0")))
 void SleepThread_3252E0(void) { SleepThread(); }

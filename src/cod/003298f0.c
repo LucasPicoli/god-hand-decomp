@@ -104,17 +104,17 @@ void adxPly_destroy(AdxPly *ply)
     func_00329848();
     func_00329870(ply);
     func_00329898(ply);
-    if (ply->stat == ADXPLY_STAT_RUN) {
+    if (ply->used == ADXPLY_USED) {
         func_00329ED8(ply);
     }
-    p = ply->rsv0C;
+    p = ply->rna;
     if (p != 0) {
-        ply->rsv0C = 0;
+        ply->rna = 0;
         Obj3260_TrampChain_D2D8(p);
     }
-    p = ply->rsv04;
+    p = ply->sjd;
     if (p != 0) {
-        ply->rsv04 = 0;
+        ply->sjd = 0;
         ADXSJD_Destroy(p);
     }
     stm = ply->stm;
@@ -160,7 +160,7 @@ void adxPly_destroy(AdxPly *ply)
         ADXAMP_Destroy(p);
     }
     func_003A52F0(ply, 0, ADXPLY_SIZE);
-    ply->stat = 0;
+    ply->used = 0;
     Forward33B670_33E690();
 }
 

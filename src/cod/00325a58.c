@@ -1,6 +1,6 @@
 #include "godhand/adxmThread.h"
 #include "godhand/globals.h"
-extern int ChangeThreadPriority(int tid, int prio);
+#include "godhand/eeKernel.h"
 extern int WakeupThread(int tid);
 extern int adxm_ResumeThread(int tid);
 

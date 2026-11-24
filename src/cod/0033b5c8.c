@@ -1,5 +1,6 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/criCbTbl.h"
 
 extern void PrintfErrorReport(char *fmt, ...);
 extern void func_0036D7C0(void);
@@ -7,14 +8,6 @@ extern void func_0036DCE8(void);
 extern void m2vlib_InitObjTbl(void);
 extern void func_00366D18(void);
 extern void func_00368AA0(void);
-
-/* svm lock release. Fixed type tables are not named yet, so the hook slot stays a local record. */
-struct FnEntry {
-    void (*fn)(int);    /* 0x0 unlock hook, 0 when none is registered */
-    int arg;            /* 0x4 hook argument */
-};
-
-extern struct FnEntry D_007588A8;
 
 /* Leave one nesting level; at the outermost, report an owner mismatch (org, now), clear the owner, then call the unlock hook. */
 __attribute__((section(".text.svm_unlock")))
@@ -33,10 +26,6 @@ void svm_unlock(int owner)
         D_007588A8.fn(D_007588A8.arg);
     }
 }
-
-
-
-
 
 /* Set up the entry pool of the decoder: hang the table pointer, run both init steps, size the pool, then mark the entries. */
 __attribute__((section(".text.cri_InitEntryPool")))
@@ -57,8 +46,6 @@ void cri_InitEntryPool(int n, int work, unsigned int size)
 }
 
 extern int mpslib_InitLibWork(int a, int b);         /* pool setup: entry count, work area; defined in 0032d3a8.c */
-
-
 
 /* Select the mode table, then run the pool setup; spin on a bad jump if the build tag is not 4.
    The two arguments only pass through to the setup, which is why retail keeps $a0/$a1 untouched. */

@@ -1,10 +1,10 @@
 /* cygnus-2.96 matched TU. */
+#include "godhand/eeKernel.h"
 
 extern int iReferThreadStatus(int, int *);
 extern void iWakeupThread_3B0A40(int);
 extern int MPSLIB_CheckHn(int);
 extern int GetArrayElemA0C_35A1C8(int, int);
-extern int ReferThreadStatus(int thid, void *info);
 extern int WakeupThread(int thid);
 extern int D_003EE270;
 extern void SJ_SplitChunk(void *a0, int a1, void *a2, void *a3);
@@ -39,10 +39,10 @@ void sftim_ResetVtimeTmr(int a0, int a1) {
 
 __attribute__((section(".text.func_00325290")))
 void func_00325290(int a0) {
-    int info[12];
+    struct ThreadParam info;
     if (a0 != 0) {
-        ReferThreadStatus(a0, info);
-        if (info[0] == 4 || info[0] == 0xC) {
+        ReferThreadStatus(a0, &info);
+        if (info.status == 4 || info.status == 0xC) {
             WakeupThread(a0);
         }
     }
