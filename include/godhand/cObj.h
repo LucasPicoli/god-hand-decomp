@@ -29,7 +29,7 @@
 #define COBJ_FIELDS \
     CMODEL_FIELDS \
     char unk2E4[0xC]; \
-    unsigned int unk2F0;                /* 0x2F0 MoveObj clears the low two bits after each move */ \
+    unsigned int unk2F0;                /* 0x2F0 MoveObj clears the low two bits after each move; setPlayerPos sets bit 0 of the object the player links at 0x68C; on a cObjSimple bit 0 resets the swing each frame */ \
     unsigned char mode;                 /* 0x2F4 0x2F4..0x2F7 are the four state bytes the move code writes together */ \
     unsigned char phase;                /* 0x2F5 */ \
     unsigned char step;                 /* 0x2F6 */ \

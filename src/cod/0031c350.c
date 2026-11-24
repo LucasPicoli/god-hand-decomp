@@ -1,5 +1,6 @@
 /* sn-2.95.3-136: player restart point save/restore and setPlayerPos (0x31C350..). */
 #include "godhand/player.h"
+#include "godhand/cOmBase.h"
 
 __attribute__((section(".text.func_0031C350")))
 void func_0031C350(cVec *pos, float *rot)
@@ -50,12 +51,12 @@ __attribute__((section(".text.setPlayerPos")))
 void setPlayerPos(cVec *pos, float angle)
 {
     cGameObj *pl = Getplayer();
-    cPlayerVt *vt;
-    cPlayerLink *link;
+    cGameObjVt *vt;
+    cOmBase *link;
     cVec rot;
 
-    ((cPlayerVt *)pl->vtable)->setPos((char *)pl + ((cPlayerVt *)pl->vtable)->setPosDelta, pos);
-    vt = (cPlayerVt *)pl->vtable;
+    cGameObj_vt(pl)->setPos((char *)pl + cGameObj_vt(pl)->setPosDelta, pos);
+    vt = cGameObj_vt(pl);
     {
         void *self = (char *)pl + vt->setRotDelta;
 
@@ -65,11 +66,11 @@ void setPlayerPos(cVec *pos, float angle)
         rot.z = 0.0f;
         vt->setRot(self, &rot);
     }
-    link = *(cPlayerLink **)((char *)pl + 0x68C);
-    ((cGameObjHead *)pl)->pos.x = pos->x;
-    ((cGameObjHead *)pl)->pos.y = pos->y;
-    ((cGameObjHead *)pl)->pos.z = pos->z;
+    link = *(cOmBase **)((char *)pl + 0x68C);
+    pl->mtxLocal[12] = pos->x;
+    pl->mtxLocal[13] = pos->y;
+    pl->mtxLocal[14] = pos->z;
     if (link != 0) {
-        link->flags |= 1;
+        link->unk2F0 |= 1;
     }
 }

@@ -59,8 +59,8 @@ __attribute__((section(".text.cOl2b_startOpening")))
 int cOl2b_startOpening(cOl2b *self)
 {
     func_001B6FB8(self);
-    self->flags5B8 |= COL2B_FLAG5B8_FIXED;
-    self->flags250 |= COL2B_FLAG250_OPEN;
+    self->base.flags2 |= COL2B_FLAG2_FIXED;
+    self->base.objFlags |= COL2B_OBJ_OPEN;
     self->stateA29 = 0;
     self->stateA28 = 0;
     self->state = COL2B_STATE_OPENING;

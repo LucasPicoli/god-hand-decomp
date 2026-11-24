@@ -12,7 +12,7 @@ void cObjSimple_SetOneBodyFlag(cObjSimple *self, int on) {
         return;
     }
     cModel_setMeshDisplay(self, D_0044B430, 0);
-    switch (self->objId) {
+    switch (self->actorId) {
     case 0x204:
     case 0x22B:
         cModel_setMeshDisplay(self, D_0044B438, 0);

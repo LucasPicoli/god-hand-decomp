@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+/* This TU declares the constructor cObjBase (DispMgr.h reaches cObjBase.h through cObjSimple.h). */
+#define COBJBASE_NO_TYPEDEF
 #include "godhand/objFactory.h"
 #include "godhand/DispMgr.h"
 #include "godhand/globals.h"

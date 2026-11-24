@@ -53,7 +53,12 @@ typedef struct cGameObjVt {
     short getPosDelta;                  /* 0x68 */
     short pad6A;
     cVec *(*getPos)(void *self);        /* 0x6C the object's current position */
-    char unk70[0x80 - 0x70];
+    short setPosDelta;                  /* 0x70 */
+    short pad72;
+    void (*setPos)(void *self, cVec *pos); /* 0x74 cGameObj_setPos in cGameObj's table */
+    short setRotDelta;                  /* 0x78 */
+    short pad7A;
+    void (*setRot)(void *self, cVec *rot); /* 0x7C cGameObj_setRot in cGameObj's table */
     short lockOnDelta;                  /* 0x80 */
     short pad82;
     void (*lockOn)(void *self);         /* 0x84 getLockOnPos and getHitCheckPos both call it */
@@ -149,6 +154,9 @@ typedef char cGameObj_chk_ground[GAMEOBJ_OFFSET(groundKind) == 0x474 ? 1 : -1];
 typedef char cGameObj_chk_frame[GAMEOBJ_OFFSET(motionFrame) == 0x430 ? 1 : -1];
 typedef char cGameObj_chk_name[GAMEOBJ_OFFSET(name) == 0x538 ? 1 : -1];
 typedef char cGameObj_chk_size[sizeof(struct cGameObj) == 0x5B0 ? 1 : -1];
+typedef char cGameObjVt_chk_setPos[(int)&((cGameObjVt *)0)->setPos == 0x74 ? 1 : -1];
+typedef char cGameObjVt_chk_setRot[(int)&((cGameObjVt *)0)->setRot == 0x7C ? 1 : -1];
+typedef char cGameObjVt_chk_lockOn[(int)&((cGameObjVt *)0)->lockOn == 0x84 ? 1 : -1];
 
 /* The sort uses insertion sort alone below this many entries. */
 #define GAMEOBJ_SORT_THRESHOLD 16
