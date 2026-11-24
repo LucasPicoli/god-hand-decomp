@@ -5,9 +5,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 extern float D_00567FC0[];
-extern unsigned char D_005FEE00[];
 extern int cOmSub_move(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern float D_00568020[];
 extern void func_001B6FB8(void *a0);
 extern int cModel_getMeshPtr(void *a0, int a1);

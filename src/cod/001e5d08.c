@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
@@ -12,7 +13,6 @@ extern void func_001E8E48(void *a0, void *a1);
 extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void cSnd_SeStop(void *a0, int a1);
-extern char D_005FEE00[];
 extern void func_001E6C80(Slot2 *a0, int a1, int a2);
 
 /* Slot2 payout stage, first line prize: pay out coin by coin until a button
@@ -54,17 +54,17 @@ void Slot2_payoutLine1(Slot2 *self) {
             done = 1;
         }
         if ((done & 0xFF) == 0) break;
-        cSnd_BgmEventStart(D_005FEE00, 0x32, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x32, 0, 0);
         self->coinUnit = 100;
         self->coinNum = self->unk36C[0] / 100;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId[1] = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId[1] = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId[1]);
+            cSnd_SeStop(&D_005FEE00, self->seId[1]);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             func_001E6ED8(self, 0, 0);
             Slot2_setLineMark(self, 0, 0);
@@ -121,17 +121,17 @@ void Slot2_payoutLine2(Slot2 *self) {
             done = 1;
         }
         if ((done & 0xFF) == 0) break;
-        cSnd_BgmEventStart(D_005FEE00, 0x33, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x33, 0, 0);
         self->coinUnit = 100;
         self->coinNum = self->unk36C[1] / 100;
         VU0_SQC2_VF0(buf, 0);
         func_001E8E48(&self->reel[0], buf);
-        self->seId[1] = cSnd_SeCall(D_005FEE00, 2, 2, (int)buf, 0, 0);
+        self->seId[1] = cSnd_SeCall(&D_005FEE00, 2, 2, (int)buf, 0, 0);
         self->phase = self->phase + 1;
         break;
     case 2:
         if (self->coinNum == 0 || cCoreSave_isGoldFull(&D_00569B70) != 0 || (D_00747650 & 0xF00000000L) != 0) {
-            cSnd_SeStop(D_005FEE00, self->seId[1]);
+            cSnd_SeStop(&D_005FEE00, self->seId[1]);
             cCoreSave_addGold(&D_00569B70, self->coinUnit * self->coinNum, 0);
             func_001E6ED8(self, 0, 0);
             func_001E6C80(self, 0, 0);

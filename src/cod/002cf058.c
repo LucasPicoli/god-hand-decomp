@@ -2,7 +2,6 @@
 #include "godhand/cSnd.h"
 #include "godhand/sceVu0.h"
 
-extern cSnd D_005FEE00;
 extern float capVu0Atan2(float y, float x);
 extern float capVu0LengthAB(void *a0, void *a1);
 

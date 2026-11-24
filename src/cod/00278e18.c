@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
 
@@ -11,8 +12,6 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
 extern float fRand1_1(void);
 extern unsigned int Rnd(void);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern unsigned char D_005FEE00[];
 
 #include "godhand/vu0.h"
 
@@ -169,22 +168,22 @@ __attribute__((section(".text.cEm00_stepCirclePlayer"))) void cEm00_stepCirclePl
             switch ((unsigned char)(Rnd() % 6)) {
                 default:
                 case 0:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 0, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0, (cObj *)self, 0, 0, 0, 0);
                     break;
                 case 1:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 1, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 1, (cObj *)self, 0, 0, 0, 0);
                     break;
                 case 2:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 2, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 2, (cObj *)self, 0, 0, 0, 0);
                     break;
                 case 3:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 3, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 3, (cObj *)self, 0, 0, 0, 0);
                     break;
                 case 4:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 4, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 4, (cObj *)self, 0, 0, 0, 0);
                     break;
                 case 5:
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1, 5, self, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, 5, (cObj *)self, 0, 0, 0, 0);
                     break;
             }
         }

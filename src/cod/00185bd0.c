@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/cSnd.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001B76D8(void *a0);
 extern void cCollisionSolidManage_ChkHit(void *, void *);
 extern char D_00462FC0[];
-extern void cOmBase_setMeshDispFromLayer(int a0, int a1, int a2);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
-extern void SetEffect(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
-extern int D_005FEE00;
+extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
+extern int SetEffect(int a0, int a1, cObj *a2, int a3, int a4, unsigned int a5);
 extern void func_001B6FB8(void *a0);
 extern void func_001BFB28(void *a0);
 
@@ -97,7 +96,7 @@ void UpdatePhaseWithHitCheckC(void *a0)
 
 
 __attribute__((section(".text.SetMeshLayerAndPlayEffect")))
-void SetMeshLayerAndPlayEffect(int arg0, int arg1)
+void SetMeshLayerAndPlayEffect(void *arg0, int arg1)
 {
     cOmBase_setMeshDispFromLayer(arg0, 0x28, 0);
     cOmBase_setMeshDispFromLayer(arg0, 0x29, 0);

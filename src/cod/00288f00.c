@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEma2.h"
+#include "godhand/cSnd.h"
 
 extern cGameObj *Getplayer(void);
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
-extern char D_005FEE00[];
 extern unsigned short D_00747A50;
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 extern float Turn_dest(cVec *from, cVec *to, float rot, float limit);
@@ -35,7 +34,7 @@ void cEma2_setDamage(cEma2 *self)
 
     if (self->base.hp <= 0)
         return;
-    cSnd_SeCall_2CBA48(D_005FEE00, 0, EMA2_HIT_SE, self, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 0, EMA2_HIT_SE, (cObj *)self, 0, 0, 0, 0);
     if (D_00747A50 == EMA2_GAME_MODE)
         self->base.hp -= (int)(PLAYER_POWER(player) * EMA2_POWER_SCALE);
     else

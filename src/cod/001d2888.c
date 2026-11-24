@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
-extern void cSnd_SeCallGlobal(unsigned char *, int, int, int);
 extern void func_002B4768(unsigned char *, unsigned char *, unsigned char *);
 extern unsigned int D_00747A84;
 extern int D_007474A0;
@@ -10,8 +10,6 @@ extern long D_00747640;
 extern unsigned char *D_003C23A4;
 extern void SetFlagEntries5And6_1D5650(void *a0, int a1);
 extern void SetBlendField2CC_1D5AE8(void *a0, int a1);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_005FEE00[];
 extern void SetFlagEntries7And8_1D5610(void *a0, int a1);
 extern void SetBlendField3C4_1D5A40(void *a0, int a1);
 extern void func_001D5690(void *a0, int a1);
@@ -106,7 +104,7 @@ void BlackJack_UpdateStandMenu(BlackJack *self)
         if ((f & 0xCC0000C000000L) != 0) {
             SetFlagEntries5And6_1D5650(self, 0);
             SetBlendField2CC_1D5AE8(self, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             self->phase = 0;
             self->state = 6;
             return;
@@ -116,7 +114,7 @@ void BlackJack_UpdateStandMenu(BlackJack *self)
             if (((q >> 2) & 1) == 1) {
                 SetFlagEntries5And6_1D5650(self, 0);
                 SetBlendField2CC_1D5AE8(self, 0);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
                 self->phase = 0;
                 self->state = 8;
             }
@@ -127,7 +125,7 @@ void BlackJack_UpdateStandMenu(BlackJack *self)
 
             if ((h & 0x10000000L) != 0) {
                 SetBlendField2CC_1D5AE8(self, 0);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 self->phase = 0;
                 self->state = 0xA;
             }
@@ -163,7 +161,7 @@ void BlackJack_UpdateHitMenu(BlackJack *self)
         if ((f & 0xCC0000C000000L) != 0) {
             SetFlagEntries7And8_1D5610(self, 0);
             SetBlendField3C4_1D5A40(self, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             self->phase = 0;
             self->state = 7;
             return;
@@ -173,7 +171,7 @@ void BlackJack_UpdateHitMenu(BlackJack *self)
             if (((q >> 2) & 1) == 1) {
                 SetFlagEntries7And8_1D5610(self, 0);
                 SetBlendField3C4_1D5A40(self, 0);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
                 self->phase = 0;
                 self->state = 8;
             }
@@ -186,7 +184,7 @@ void BlackJack_UpdateHitMenu(BlackJack *self)
                 SetBlendField3C4_1D5A40(self, 0);
                 func_001D5690(self, 2);
                 self->flags = self->flags & ~4;
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 self->phase = 0;
                 self->state = 9;
             }

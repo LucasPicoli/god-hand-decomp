@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 
 /* sn-2.95.3-136 */
 
 extern float fRand0_1(void);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern char D_005FEE00[];
 
 __attribute__((section(".text.func_00274238")))
 void func_00274238(cEm00 *self, unsigned char kind) {
@@ -98,6 +97,6 @@ tail:
     *(unsigned char *)(s1 + 0x2F6) = 0;
     *(unsigned char *)(s1 + 0x2F7) = s2;
     if (s2 != 0) {
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x7C, s1, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x7C, (cObj *)self, 0, 0, 0, 0);
     }
 }

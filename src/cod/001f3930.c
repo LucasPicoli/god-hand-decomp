@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -16,9 +17,6 @@ extern void func_001F55C0(void *a0, int a1, int a2, int a3);
 extern void MarkObj_setPulse(void *a0, int a1);
 extern void func_001F4700(void *a0);
 extern void func_001F4758(void *a0);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1,
-                              int t2);
-extern unsigned char D_005FEE00[];
 extern int D_007474A0;
 extern char D_003BE8B0[];
 
@@ -97,10 +95,10 @@ void func_001F3930(void *a0)
             CustomIDWork_placeByIndex(s1 + 0x60, *(unsigned short *)(s1 + 0x37D2), 1);
             func_001F55C0(s1 + 0x60, *(short *)(s1 + 0x37D6), 7,
                           *(short *)(s1 + 0x37D4));
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & 0x20000000) {
             ColiseumUi_StartFade(s1, 1);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             *(int *)(s1 + 8) = *(int *)(s1 + 8) + 1;
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
             if (func_001F4530(s1, *(short *)(s1 + 0x37A8),
@@ -109,7 +107,7 @@ void func_001F3930(void *a0)
                 D_00586AA4 = *(unsigned char *)(s1 + 0x37AE);
                 MarkObj_setPulse(s1 + 0x60, 0);
                 ColiseumUi_StartFade(s1, 1);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
                 *(int *)(s1 + 8) = *(int *)(s1 + 8) + 2;
             }
         }

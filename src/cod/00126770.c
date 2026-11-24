@@ -1,5 +1,6 @@
 #define COBJBASE_NO_TYPEDEF
 #include "godhand/cObjBase.h"
+#include "godhand/cSnd.h"
 #include "godhand/DispMgr.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
@@ -21,7 +22,6 @@ extern void GetOrInitGlobal785878_1B8058(void);
 extern void *cIDBase_getIDWork(void *self, int idx);
 extern void cIDBase_initEntry(void *a0, int a1, void *a2);
 extern void func_002B64C0(int a0);
-extern char D_005FEE00[];
 extern void SetCustomIDDispOneOrAll_1DD258(int a0, int a1, int a2);
 extern void cScenario_sleepFrames(int a0);
 extern int cDvd_Check(int a0, int a1);
@@ -183,7 +183,7 @@ int func_00380AE8(int a0, int a1) {
 __attribute__((section(".text.func_00126770")))
 void func_00126770(char *a0) {
     char *s1 = a0;
-    char *s0;
+    cSnd *s0;
     int v0, v1;
     int x;
     x = *(int *)(s1 + 0x165C);
@@ -191,15 +191,15 @@ void func_00126770(char *a0) {
         cActionButtonUnit_setExit(x);
         *(int *)(s1 + 0x165C) = 0;
     }
-    s0 = D_005FEE00;
+    s0 = &D_005FEE00;
     cSnd_SeStop(s0, *(int *)(s1 + 0x161C));
     *(int *)(s1 + 0x161C) = 0;
-    v0 = *(int *)(s0 + 0xB0);
-    v1 = *(int *)(s0 + 0xAC);
+    v0 = s0->flagsB0;
+    v1 = s0->flagsAC;
     v0 &= 0xFFBFFFFF;
     v1 &= 0xFFBFFFFF;
-    *(int *)(s0 + 0xB0) = v0;
-    *(int *)(s0 + 0xAC) = v1;
+    s0->flagsB0 = v0;
+    s0->flagsAC = v1;
     cSnd_SeStop(s0, *(int *)(s1 + 0x1620));
     *(int *)(s1 + 0x1620) = 0;
 }

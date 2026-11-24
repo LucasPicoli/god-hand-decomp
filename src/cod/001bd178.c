@@ -101,7 +101,6 @@ void func_002BE510(int a, int b)
     }
 }
 
-extern cSnd D_005FEE00;
 /* Takes a BGM node off the active list and marks it unused. */
 __attribute__((section(".text.cSndBgmNode_Unlink")))
 void cSndBgmNode_Unlink(cSndBgmNode *node) {

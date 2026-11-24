@@ -1,4 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/globals.h"
 
 extern unsigned char D_00462FC0[];
@@ -14,9 +16,6 @@ extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern unsigned char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void KillEffect(void *a0, int a1, int a2);
 extern void KillEffectWithFlag(void *a0, int a1, int a2, int a3);
 extern void func_001AAB10(void *a0);
@@ -136,7 +135,7 @@ __attribute__((section(".text.func_001AA6C0")))
 void func_001AA6C0(void *a0)
 {
     char *s1 = (char *)a0;
-    float buf[4] __attribute__((aligned(16)));
+    cVec buf __attribute__((aligned(16)));
     int hold[4];
 
     switch (*(unsigned char *)(s1 + 0x2F5)) {
@@ -146,36 +145,36 @@ void func_001AA6C0(void *a0)
         float *(*fp)();
         float *src;
         int b;
-        int part;
+        cOmBase *part;
         KillEffect(s1, 0xB, 0);
         KillEffectWithFlag(s1, 3, 2, 0x1E);
-        VU0_SQC2_VF0(buf, 0);
+        VU0_SQC2_VF0(&buf, 0);
         vt = *(char **)(s1 + 0x214);
         off = *(short *)(vt + 0x80);
         fp = *(float *(**)())(vt + 0x84);
         src = fp(s1 + off);
-        if (buf != src) {
-            buf[0] = src[0];
-            buf[1] = src[1];
-            buf[2] = src[2];
+        if (&buf.x != src) {
+            buf.x = src[0];
+            buf.y = src[1];
+            buf.z = src[2];
         }
-        SetEffectPos(0, 7, 0, buf, -1, 1.0f);
+        SetEffectPos(0, 7, 0, &buf, 1.0f, -1);
         {
             int i = 5;
             if ((hold[0] = b = *(unsigned char *)(s1 + 0x2B4)), i < b)
-                part = *(int *)(*(int *)(s1 + 0x278) + i * 4);
+                part = (*(cOmBase ***)(s1 + 0x278))[i];
             else
                 part = 0;
         }
-        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x5B, s1, 0, part, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x5B, a0, 0, (cParts *)part, 0, 0);
         {
             int i = 5;
             if ((hold[0] = b = *(unsigned char *)(s1 + 0x2B4)), i < b)
-                part = *(int *)(*(int *)(s1 + 0x278) + i * 4);
+                part = (*(cOmBase ***)(s1 + 0x278))[i];
             else
                 part = 0;
         }
-        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x87, s1, 0, part, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x87, a0, 0, (cParts *)part, 0, 0);
         func_001AAB10(s1);
         SetField5B0Bit2ClearBit8_1B7908((int)s1);
         *(short *)(s1 + 0x600) = 0x1E;
@@ -250,7 +249,7 @@ void func_00114E28(void *a0)
         t = *(int *)(s1 + 0x304);
         p1 = *(int *)(t + 0x3D8) + t;
         p2 = *(int *)(t + 0x3DC) + t;
-        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x29, s1, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x29, a0, 0, 0, 0, 0);
         func_002A8578(s1, p1, p2, 3, 0.0f, 0, 0);
         *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
         /* fallthrough */

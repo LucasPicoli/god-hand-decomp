@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/DispMgr.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
@@ -7,7 +8,6 @@ extern void cSnd_BgmEventStart(void *a0, int a1, int a2, int a3);
 extern void Slot2_setMarkLayers(void *a0, int a1, int a2);
 extern void Slot2_selectMark(void *a0, int a1, int a2, int a3);
 extern void UiPanel_setMessAndShow(void *a0, int a1, int a2);
-extern char D_005FEE00[];
 extern long D_00747640;
 
 /* sn-2.95.3-136 matched TU. */
@@ -38,7 +38,7 @@ void func_001E2240(void *a0) {
         SetEffect(1, 2, 0, 0, -1, 0xFFFFFFFFU);
         Slot2_selectMark(s1, *(unsigned short *)(s1 + 0x494), 1, 1);
         Slot2_setMarkLayers(s1, 1, 1);
-        cSnd_BgmEventStart(D_005FEE00, 0x32, 0, 0);
+        cSnd_BgmEventStart(&D_005FEE00, 0x32, 0, 0);
         *(int *)(s1 + 0xC) = *(int *)(s1 + 0xC) + 1;
         break;
     case 2:

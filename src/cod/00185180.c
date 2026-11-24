@@ -1,4 +1,4 @@
-extern void func_001851C0(void *, int);
+extern void func_001851C0(void *, unsigned int);
 
 __attribute__((section(".text.func_00185180")))
 void func_00185180(unsigned char *self)

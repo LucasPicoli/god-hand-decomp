@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void CustomIDWork_SetColorAnimNormal_2D68D8(void *a0, int a1, int a2, int a3);
 extern void CustomIDWork_SetScaleAnimNormal(void *a0, int a1, float a2, float a3);
@@ -6,7 +7,6 @@ extern void CustomIDWork_SetDisp(void *a0, int a1);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern void Panel_hideIcons(void *a0);
 extern int D_005CAFF0;
-extern char D_005FEE00[];
 
 /* sn-2.95.3-136 */
 
@@ -55,7 +55,7 @@ void func_001ED848(void *a0) {
                 *(int *)(s1 + 0x34C) = 0x1E;
             } else {
                 if (*(int *)(s1 + 0x34C) == 0xF) {
-                    cSnd_SeCall(D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
+                    cSnd_SeCall(&D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
                 }
                 *(int *)(s1 + 0x34C) -= 1;
             }
@@ -72,7 +72,7 @@ void func_001ED848(void *a0) {
                 *(int *)(s1 + 0x34C) = 0x1E;
             } else {
                 if (*(int *)(s1 + 0x34C) == 0xF) {
-                    cSnd_SeCall(D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
+                    cSnd_SeCall(&D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
                 }
                 *(int *)(s1 + 0x34C) -= 1;
             }
@@ -85,7 +85,7 @@ void func_001ED848(void *a0) {
                 *(int *)(s1 + 0x34C) = 0x1E;
             } else {
                 if (*(int *)(s1 + 0x34C) == 0xF) {
-                    cSnd_SeCall(D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
+                    cSnd_SeCall(&D_005FEE00, 2, 0xB0, D_005CAFF0 + 0x210, 0, 0);
                 }
                 *(int *)(s1 + 0x34C) -= 1;
             }
@@ -97,7 +97,7 @@ void func_001ED848(void *a0) {
                 *(int *)(s1 + 0x34C) = 0xA;
             } else {
                 if (*(int *)(s1 + 0x34C) == 0x14) {
-                    cSnd_SeCall(D_005FEE00, 2, 0xB1, D_005CAFF0 + 0x210, 0, 0);
+                    cSnd_SeCall(&D_005FEE00, 2, 0xB1, D_005CAFF0 + 0x210, 0, 0);
                 }
                 *(int *)(s1 + 0x34C) -= 1;
             }

@@ -1,5 +1,7 @@
 /* sn-2.95.3-136: func_001F5F70, per-frame update of a menu screen: runs the current state's handler,
  * jumps to state 2 on pad bit 0x20000000, then keeps the screen's BGM event playing once its delay runs out. */
+#include "godhand/cSnd.h"
+
 typedef struct MenuScreen {
     unsigned char unk0;
     unsigned char state;    /* 0x01 */
@@ -21,7 +23,6 @@ typedef struct MenuStateFn {
 
 extern MenuStateFn D_003BF0F8[];
 extern unsigned long D_00747640;
-extern char D_005FEE00[];
 extern void func_001F6680(MenuScreen *s);
 extern void func_001F6758(MenuScreen *s);
 extern void CustomID_toggleBit29(MenuScreen *s);
@@ -44,10 +45,10 @@ void func_001F5F70(MenuScreen *s)
         if (s->bgmFirst != 0) {
             if (s->bgm != -2) {
                 s->bgmFirst = 0;
-                cSnd_BgmEventStart(D_005FEE00, s->bgm, 0, 0);
+                cSnd_BgmEventStart(&D_005FEE00, s->bgm, 0, 0);
             }
-        } else if (s->bgm != -2 && cSnd_BgmEvIsPlaying(D_005FEE00, s->bgm) == 0) {
-            cSnd_BgmEventStart(D_005FEE00, s->bgm, 0, 0);
+        } else if (s->bgm != -2 && cSnd_BgmEvIsPlaying(&D_005FEE00, s->bgm) == 0) {
+            cSnd_BgmEventStart(&D_005FEE00, s->bgm, 0, 0);
         }
     }
 }

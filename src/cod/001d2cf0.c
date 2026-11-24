@@ -1,10 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/BlackJack.h"
+#include "godhand/cSnd.h"
 
-extern char D_005FEE00[];
 extern float D_005680F0[];
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 
 #define DEAL_FRAMES 20
 
@@ -20,7 +19,7 @@ void BlackJack_UpdateDealPlayer(BlackJack *self)
     case 1:
         if (self->timer == 0) {
             self->handA[self->dealSlot]->obj->flags &= ~BLACKJACK_CARD_FACE_DOWN;
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, self->handA[self->dealSlot]->obj, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, (cObj *)self->handA[self->dealSlot]->obj, 0, 0, 0, 0);
             self->timer = DEAL_FRAMES;
             self->phase += 1;
         } else {
@@ -75,7 +74,7 @@ void BlackJack_UpdateDealDealer(BlackJack *self)
     case 1:
         if (self->timer == 0) {
             self->handA[self->dealSlot]->obj->flags &= ~BLACKJACK_CARD_FACE_DOWN;
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, self->handA[self->dealSlot]->obj, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, (cObj *)self->handA[self->dealSlot]->obj, 0, 0, 0, 0);
             self->timer = DEAL_FRAMES;
             self->phase += 1;
         } else {

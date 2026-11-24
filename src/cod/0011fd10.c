@@ -1,12 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
 extern char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern char D_005FEE00[];
 extern int D_007474A8;
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
@@ -21,8 +22,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
 extern void cObjBase_addNullSpeed(void *a0, float f12);
 extern void func_0012C348(void *a0, int a1);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int t0, float f12);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern void func_0012C0F8(void *a0, int a1);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
@@ -36,7 +35,7 @@ __attribute__((section(".text.func_0011FD10")))
 void func_0011FD10(void *a0)
 {
     char *s0 = (char *)a0;
-    float buf[4];
+    cVec buf;
     char *s1;
     int f1;
     int f2;
@@ -55,12 +54,12 @@ void func_0011FD10(void *a0)
         pl00_clearMotionCam(s0, 0, 0);
         CallWithAndClearField698_12AC28(s0);
         func_0012B928(s0);
-        buf[1] = 0.0f;
-        v = buf[1];
-        buf[0] = -0.100000001f;
-        buf[2] = 1.0f;
-        buf[3] = 1.0f;
-        func_001299F0(s0, s1, buf, 0, v);
+        buf.y = 0.0f;
+        v = buf.y;
+        buf.x = -0.100000001f;
+        buf.z = 1.0f;
+        buf.w = 1.0f;
+        func_001299F0(s0, s1, &buf, 0, v);
         switch (irand() % 3) {
         default:
         case 0: {
@@ -136,7 +135,7 @@ void func_0011FD10(void *a0)
                 int bb;
                 int lm;
                 bb = *(unsigned char *)(s0 + 0x2B4);
-                *(int *)buf = bb;
+                *(int *)&buf = bb;
                 lm = 4;
                 if (lm < bb) {
                     e = *(char **)(*(int *)(s0 + 0x278) + 0x10);
@@ -144,10 +143,10 @@ void func_0011FD10(void *a0)
                     e = 0;
                 }
                 if (e != 0) {
-                    SetEffectPos(0x58, 0x10, 0, *(void **)(e + 0xF0), -1, 1.0f);
+                    SetEffectPos(0x58, 0x10, 0, *(cVec **)(e + 0xF0), 1.0f, -1);
                 }
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xA, s0, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xA, a0, 0, 0, 0, 0);
         }
         if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0 && *(int *)(s0 + 0x15B4) != 0) {
             *(int *)(s0 + 0x15B4) = 0;
@@ -168,12 +167,12 @@ void func_0011FD10(void *a0)
     case 2: {
         float v;
 
-        buf[1] = 0.0f;
-        v = buf[1];
-        buf[0] = -0.100000001f;
-        buf[2] = 1.0f;
-        buf[3] = 1.0f;
-        func_001299F0(s0, s1, buf, 0, v);
+        buf.y = 0.0f;
+        v = buf.y;
+        buf.x = -0.100000001f;
+        buf.z = 1.0f;
+        buf.w = 1.0f;
+        func_001299F0(s0, s1, &buf, 0, v);
         if (*(unsigned char *)(s0 + 0x2F7) != 0) {
             cEm00_GetPlMotion(s1, 0x26, v, v);
         } else {
@@ -251,20 +250,20 @@ void func_0011FD10(void *a0)
         if ((*(unsigned short *)(s0 + 0x3AC) & 3) == 0) {
             break;
         }
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x123, s0, 0, 0, 0, 0);
-        VU0_SQC2_VF0(buf, 0x0);
-        buf[0] = fRand1_1() * 0.200000003f;
-        buf[1] = fRand1_1() * 0.200000003f + 1.29999995f;
-        buf[2] = fRand1_1() * 0.200000003f + 0.600000024f;
-        sceVu0ApplyMatrix(buf, s0 + 0x80, buf);
-        SetEffectPos(0, 0x40, 0, buf, -1, 1.0f);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x123, a0, 0, 0, 0, 0);
+        VU0_SQC2_VF0(&buf, 0x0);
+        buf.x = fRand1_1() * 0.200000003f;
+        buf.y = fRand1_1() * 0.200000003f + 1.29999995f;
+        buf.z = fRand1_1() * 0.200000003f + 0.600000024f;
+        sceVu0ApplyMatrix(&buf, s0 + 0x80, &buf);
+        SetEffectPos(0, 0x40, 0, &buf, 1.0f, -1);
         break;
     case 4: {
-        buf[1] = 0.0f;
-        buf[0] = -0.100000001f;
-        buf[2] = 1.5f;
-        buf[3] = 1.0f;
-        func_001299F0(s0, s1, buf, 0, buf[1]);
+        buf.y = 0.0f;
+        buf.x = -0.100000001f;
+        buf.z = 1.5f;
+        buf.w = 1.0f;
+        func_001299F0(s0, s1, &buf, 0, buf.y);
         { int g1; int g2;
         if (*(unsigned char *)(s0 + 0x2F7) != 0) {
             int pa = *(int *)(s0 + 0x304);

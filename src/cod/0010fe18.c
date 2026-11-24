@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
@@ -20,7 +21,6 @@ extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEma2_startPlayerMotion(void *a0, int a1, float f12, float f13);
-extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);

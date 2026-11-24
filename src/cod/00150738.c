@@ -174,7 +174,6 @@ SideCounter *func_002C53A8(SideCounter *self)
 /* cygnus-2.96 */
 
 
-extern cSnd D_005FEE00;
 /* Puts a BGM node at the head of the active list. */
 __attribute__((section(".text.cSndBgmNode_Link")))
 void cSndBgmNode_Link(cSndBgmNode *node)

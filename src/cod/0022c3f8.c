@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int irand(void);
@@ -19,7 +20,6 @@ extern void Obj293_OrByte_5A4(void *a0, int a1);
 extern void Obj293_OrByte_5A5_1(void *a0);
 extern void Obj293_ClearBytes_5A0_5A3(void *a0);
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern unsigned char D_005FEE00[];
 extern int D_005864F0;
 extern char D_00462FC0[];
 
@@ -52,8 +52,6 @@ extern char D_00462FC0[];
 
 /* sn-2.95.3-136 matched TU. */
 
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f,
-                              int g, int h);
 
 /* Phase machine on the step byte, 14 case labels. Calls func_002A8578, cSnd_SeCall_2CBA48,
  * GetSeqSEBase, cGameObj_SetTgtTurn, moveMotion, cObjBase_addNullSpeed_Rotation and 16 more. */
@@ -94,7 +92,7 @@ __attribute__((section(".text.func_0022C3F8"))) void func_0022C3F8(cEm00 *self)
             *(char *)(s1 + 0x1864) = 0;
             func_002A8578(s1, EM_RES_REC((int)b, 0x10C0), EM_RES_REC((int)b, 0x10C8), 0xA, 0.0f, 0,
                           0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0xA), s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0xA), (cObj *)self, 0, 0, 0, 0);
             *(float *)(s1 + 0x600) = 150.0f;
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }

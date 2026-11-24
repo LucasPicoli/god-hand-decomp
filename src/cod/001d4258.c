@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/BlackJack.h"
+#include "godhand/cSnd.h"
 
 /* sn-2.95.3-136 */
 typedef struct Vec { float x, y, z, w; } Vec;
@@ -7,7 +8,6 @@ typedef struct Vec { float x, y, z, w; } Vec;
 extern void func_001D6D20(BlackJack *, int);
 extern void SetLinkedObjField2B_1D6D68(BlackJack *, int);
 extern void CustomIDWork_SetNumber_1D5760(BlackJack *, int);
-extern int  cSnd_SeCall_2CBA48(void *, int, int, int, int, int, int, int);
 extern void PanelHost_slideSidePanel(BlackJack *, int);
 extern void BlackJack_slidePanel(BlackJack *, int);
 extern void func_001D61C0(BlackJack *, int);
@@ -16,7 +16,6 @@ extern void func_001D5D20(BlackJack *, int);
 extern void IdPanel_setSlideState(BlackJack *, int);
 extern void PanelWork_setMode(BlackJack *, int);
 
-extern char D_005FEE00[];
 extern Vec  D_005680F0[];
 extern Vec  D_00568080[];
 
@@ -35,7 +34,7 @@ void BlackJack_UpdateClearTable(BlackJack *self)
         self->bet = 0;
         CustomIDWork_SetNumber_1D5760(self, 0);
         self->timer = 0x14;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, (int)self->handA[0]->obj, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, (cObj *)self->handA[0]->obj, 0, 0, 0, 0);
         self->phase++;
     case 1:
         k = -1.0f;

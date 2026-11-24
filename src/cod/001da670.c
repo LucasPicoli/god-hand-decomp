@@ -1,14 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void Poker_resetDeck(void *a0);
 extern void func_001DBE18(void *a0, void *a1);
 extern void func_001D6EC8(void *a0, int a1);
 extern void func_001D6DD0(void *a0, int a1);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void SetField_56_1DEBE8(void *a0, int a1);
 extern float D_00568160[];
 extern float D_005681C0[];
-extern int D_005FEE00;
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -64,7 +63,7 @@ void func_001DA670(char *s0) {
         {
         char *g2 = *(char **)*(char **)(s0 + 0x3004);
         *(int *)(g2 + 0x250) = *(int *)(g2 + 0x250) & 0xFFFFFFFDU;
-        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, *(char **)*(char **)(s0 + 0x3004), 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, *(cObj **)*(char **)(s0 + 0x3004), 0, 0, 0, 0);
         SetField_56_1DEBE8(s0, 0);
         *(int *)(s0 + 0x302C) = 10;
         *(unsigned char *)(s0 + 0x3025) = *(unsigned char *)(s0 + 0x3025) + 1;
@@ -98,7 +97,7 @@ void func_001DA670(char *s0) {
         ok = TickDown((int *)(s0 + 0x3028));
         if (ok) {
             func_001D6DD0(*(char **)(s0 + 0x3004), 1);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 1, *(char **)*(char **)(s0 + 0x3004), 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 1, *(cObj **)*(char **)(s0 + 0x3004), 0, 0, 0, 0);
             *(unsigned char *)(s0 + 0x3025) = *(unsigned char *)(s0 + 0x3025) + 1;
         }
         break;

@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern float fRand0_1(void);
@@ -18,7 +19,6 @@ extern void Obj1D00_SetState_7_E_a1(void *a0, int a1);
 extern void Obj1D00_SetState_7_10(void *a0);
 extern void Obj1D00_SetState_7_12(void *a0);
 extern void Obj1D00_SetState_7_14(void *a0);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -28,8 +28,6 @@ extern unsigned char D_005FEE00[];
 
 
 
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f,
-                               int g, int h);
 
 
 
@@ -144,7 +142,7 @@ __attribute__((section(".text.func_00259A88"))) void func_00259A88(cEm00 *self)
                         p1 = EM_RES_REC(b, 0xB34);
                         p2 = EM_RES_REC(b, 0xB38);
                     }
-                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0x23), s1, 0, 0,
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0x23), (cObj *)self, 0, 0,
                                        0, 0);
                     break;
                 case 0x260:

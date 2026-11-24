@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern void cSnd_LoadStartupBanks(void *a0);
@@ -10,7 +11,6 @@ extern int _MemoryAlloc(void *, int, void *);
 extern void func_0030D8E0(int a0);
 extern void cTaskWork_exit(int a0);
 extern int D_00747A24;
-extern char D_005FEE00[];
 extern char D_00583F20[];
 extern char D_00754200[];
 extern char D_00752C38[];
@@ -50,7 +50,7 @@ void func_0030D5C8(void) {
         a |= 0x4000;
         D_00747A24 = a;
         if ((a & 0x40000) == 0) {
-            cSnd_LoadStartupBanks(D_005FEE00);
+            cSnd_LoadStartupBanks(&D_005FEE00);
         }
     }
     {

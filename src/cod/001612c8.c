@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cScenario.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern int D_00741940[];
@@ -12,7 +13,6 @@ extern void SetField_630_1C2370(int a0);
 extern char D_00747470[];
 extern char *D_003C23A4;
 extern int D_00747A84;
-extern int D_005FEE00;
 extern void cTaskWork_sleep(void *p, int a);
 extern void cMessage_deleteAll(void *p);
 extern void cSnd_SeFadeOutHeldVoices(void *p);
@@ -20,7 +20,6 @@ extern void func_00306140(void);
 extern void classFADE_start(void *p, int b, int c, int d, unsigned int e, int f, int g);
 extern void cTaskWork_exit(void *a0);
 extern void func_001D0C98(void *a0, int a1);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 extern void *cIDBase(void *a0);
 extern void cRoomJump(void *a0);
 extern void AIXP_SetTrackVol(int a0, int a1, int a2);
@@ -138,7 +137,7 @@ void BlackJack_UpdateRevealDealerHand(char *s1)
     int n;
     int ok;
     long v;
-    int **arr;
+    void ***arr;
     char **arr2;
 
     switch (*(unsigned int *)(s1 + 0x1808)) {
@@ -149,7 +148,7 @@ void BlackJack_UpdateRevealDealerHand(char *s1)
     case 1:
         if (*(int *)(s1 + 0x180C) == 0) {
             for (i = 0; i < *(unsigned short *)(s1 + 0x17FE); i++) {
-                arr = (int **)(s1 + 0x17E8) + i;
+                arr = (void ***)(s1 + 0x17E8) + i;
                 func_001D0C98(*arr, 1);
                 cSnd_SeCall_2CBA48(&D_005FEE00, 2, 1, **arr, 0, 0, 0, 0);
             }

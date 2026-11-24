@@ -2,12 +2,11 @@
 
 #include "godhand/cEm00.h"
 #include "godhand/ColiseumBattle.h"
+#include "godhand/cSnd.h"
 #include "godhand/cTaskManager.h"
 #include "godhand/cTaskWork.h"
 #include "godhand/cOmBase.h"
 
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *snd, int bus, int no, void *obj, int a4, int a5, int a6, int a7);
 extern char D_00586AA5;
 extern void cEmWrap_StartAction(void *act);
 extern float frand(float lo, float hi);
@@ -36,8 +35,8 @@ __attribute__((section(".text.cEm00_startStagger")))
 void cEm00_startStagger(EmStagger *self) {
     self->staggerHeight = CEM00_VCALL0(self, getScale)->y;
     self->staggerTime = EM_STAGGER_FRAMES;
-    cSnd_SeCall_2CBA48(D_005FEE00, 2, EM_SE_STAGGER_A, self, 0, 0, 0, 0);
-    cSnd_SeCall_2CBA48(D_005FEE00, 0, EM_SE_STAGGER_B, self, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, EM_SE_STAGGER_A, (cObj *)self, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 0, EM_SE_STAGGER_B, (cObj *)self, 0, 0, 0, 0);
 }
 
 /* Run the handler for the unit's kind (flags bits 1-2: 0, 2 or 4). Mode 1 only runs for a unit with bit 0 set. */

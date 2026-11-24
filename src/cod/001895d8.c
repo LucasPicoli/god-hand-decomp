@@ -2,6 +2,7 @@
 
 #include "godhand/cEmSetParam.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/cGameObj.h"
 #include "godhand/vu0.h"
@@ -14,8 +15,6 @@ extern void KeySlotTable_set(char *slot, int a1, int a2);
 extern void CustomIDWork_SetOffsetPosY(CustomIDWork *self, int y);
 extern void CustomIDWork_SetMoveOffsetPosY(CustomIDWork *self, int from, int to, int frames);
 extern void func_001DEE60(void *self, int sel, int on);
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *snd, int b, int c, void *obj, int e, int f, int g, int h);
 extern float Turn_dest_dir(float cur, float dest, float speed);
 extern float Adjust_theta(float f12);
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
@@ -154,7 +153,7 @@ void cGameObjTurnB_stepTurn(cGameObjTurnB *self) {
     switch (self->base.step) {
     case 0:
         if (self->base.actorId != ACTOR_ID_A && self->base.actorId != ACTOR_ID_B) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 3, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 3, (cObj *)self, 0, 0, 0, 0);
         }
         self->base.stepArg = 0;
         self->base.step = 1;

@@ -2,6 +2,7 @@
 
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
@@ -19,7 +20,6 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
 extern int SetEffectParts(int a0, int a1, void *a2, int a3, float f12,
                            float f13, float f14, float f15, int a4);
 extern char D_00462FC0[];
-extern char D_005FEE00[];
 extern int D_00747A24;
 extern void cSnd_DieDemoStart(void *a0);
 extern void func_0012C348(void *a0, int a1);
@@ -92,7 +92,7 @@ void func_00115C00(void *a0)
         }
         if (*(unsigned short *)(s1 + 0x3AC) & 1) {
             *(short *)(s1 + 0x54A) = 0;
-            cSnd_DieDemoStart(D_005FEE00);
+            cSnd_DieDemoStart(&D_005FEE00);
             func_0012C348(s1, 2);
         }
         break;

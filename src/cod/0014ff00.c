@@ -3,13 +3,13 @@
 #include "godhand/cOmBase.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cScenario.h"
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern unsigned char D_005864F0[];
 extern void cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern int D_005E8658;
 extern void func_002BECB0();
-extern unsigned char D_005FEE00[];
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
 extern int D_00747470;
 extern void classFADE_kill(void *p);

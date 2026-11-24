@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/cCoreSave.h"
 
@@ -18,8 +19,6 @@ extern void func_001E6D48(char *a0, int a1, int a2);
 extern void func_001E6E10(char *a0, int a1, int a2);
 extern void CustomIDOwner_setColorMode(char *a0, int a1);
 extern void SetUiIdWorkDispRange(char *a0, int a1);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_005FEE00[];
 extern int D_007474A0;
 extern int D_00747A2C;
 extern long D_00747640;
@@ -90,7 +89,7 @@ void Slot2_UpdateBet(Slot2 *self)
         if (self->betLv == 0) {
             char *g = (char *)&D_007474A0;
             if (GAMEWORK_PAD(g) & 0x20000000L) {
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
                 self->state = 4;
                 self->step = 0;
                 self->phase = 0;
@@ -111,7 +110,7 @@ void Slot2_UpdateBet(Slot2 *self)
                 self->betLv += 1;
                 cCoreSave_subGold(&D_00569B70, self->betCost);
                 Slot2_showLayersForBetLv(self);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
                 return;
             }
             if (f & 0x20000000L) {
@@ -121,7 +120,7 @@ void Slot2_UpdateBet(Slot2 *self)
                 self->betLv -= 1;
                 cCoreSave_addGold(&D_00569B70, self->betCost, 0);
                 Slot2_showLayersForBetLv(self);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
                 return;
             }
             if (self->betLv != 0 && (f & 0x2200012000000L)) {
@@ -139,7 +138,7 @@ void Slot2_UpdateBet(Slot2 *self)
         }
         CustomIDOwner_setColorMode(self->layer, 1);
         self->timer = 0xF;
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
         self->step = self->step + 1;
         break;
     case 2:

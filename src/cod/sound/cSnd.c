@@ -75,7 +75,7 @@ int cSnd_EmSeCheck(cSnd *self, int objId)
 }
 /* Plays a sound-effect slot on a free voice at the origin, with an id pair and two extra arguments. */
 __attribute__((section(".text.cSnd_SeCall_2CB8A0")))
-int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6)
+int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, unsigned int a5, int a6)
 {
     cSndSeVoice *voice;
 

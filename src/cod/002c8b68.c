@@ -4,8 +4,8 @@ extern char *Getplayer(void);
 extern void cSescr_At_ck(void *a0, int a1, void *a2, float f12);
 extern int cSnd_SeCall(void *a0, int a1, short a2, void *a3, int a4, int a5);
 extern int cSnd_SeFadeOut(void *a0, int a1, short a2);
-extern char D_005FEE00[];
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 
 
@@ -36,7 +36,7 @@ void func_002C8B68(char *a0)
         break;
     case 1:
         if (*(unsigned short *)(s1 + 0xA) == 0) {
-            int r = cSnd_SeCall(D_005FEE00, *(unsigned short *)(s1 + 0xC),
+            int r = cSnd_SeCall(&D_005FEE00, *(unsigned short *)(s1 + 0xC),
                                 *(short *)(s1 + 0xE), s1 + 0x10, 0x20000, 0);
 
             *(int *)(s0 + 0x14) = r;
@@ -53,7 +53,7 @@ void func_002C8B68(char *a0)
             break;
         }
         if (*(unsigned short *)(s1 + 0xA) == 0) {
-            char *q = cSnd_FindVoiceByHandle(D_005FEE00, *(int *)(s0 + 0x14));
+            char *q = cSnd_FindVoiceByHandle(&D_005FEE00, *(int *)(s0 + 0x14));
 
             if (q == 0) {
                 *(unsigned char *)(s0 + 0x13) = 4;
@@ -65,7 +65,7 @@ void func_002C8B68(char *a0)
         break;
     case 3:
         if (*(unsigned short *)(s1 + 0xA) == 0) {
-            cSnd_SeFadeOut(D_005FEE00, *(int *)(s0 + 0x14), 0x1E);
+            cSnd_SeFadeOut(&D_005FEE00, *(int *)(s0 + 0x14), 0x1E);
         }
         *(unsigned char *)(s0 + 0x13) = 4;
         /* fall through */

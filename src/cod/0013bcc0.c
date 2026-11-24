@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern void cIDBase_move(void *);
@@ -7,8 +8,6 @@ extern void CustomIDWork_SetMessNo(void *work, int messNo);
 extern void func_001415E8(void *self, int arg);
 extern void displayScrollLayer(int layer, int on);
 extern long D_007474A0[];
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CB8A0(void *snd, int slot, int key, int idA, int idB, int a5, int a6);
 extern void cIDBase_restartAnim(void *self);
 extern void *cIDBase_getIDWork(void *self, int idx);
 
@@ -144,7 +143,7 @@ void ModeObj_pollInputBits(ModeObj *self) {
     if (INPUT_WORD(in) & INPUT_BIT_MODE)
         self->mode = 10;
     if (INPUT_WORD(in) & INPUT_BIT_SOUND) {
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
         self->mode = -1;
     }
 }

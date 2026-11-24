@@ -1,9 +1,9 @@
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 extern unsigned char D_00785798[];
 extern int D_00420328;
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
-extern unsigned char D_005FEE00[];
 
 __attribute__((section(".text.GetOrInit_007857B8_16FC30")))
 void *GetOrInit_007857B8_16FC30(void)
@@ -45,8 +45,8 @@ void *InitObjVU0Fields_16FC80(void *obj)
 __attribute__((section(".text.func_0016FEA0")))
 void func_0016FEA0(void *obj)
 {
-    cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, obj, 0, 0, 0, 0);
-    cSnd_SeCall_2CBA48(D_005FEE00, 2, 2, obj, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, obj, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, 2, obj, 0, 0, 0, 0);
 }
 
 __attribute__((section(".text.GetOrInitSingleton7857C8_16FF18")))

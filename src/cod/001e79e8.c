@@ -1,9 +1,9 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void func_0031A0B8(char *a0, int a1);
 extern void func_0031A088(char *a0, int a1);
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
-extern char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -69,7 +69,7 @@ void func_001E79E8(void *a0)
         *(int *)(s0 + 0x4) = 3;
         *(int *)(s0 + 0x8) = 0;
         *(int *)(s0 + 0xC) = 0;
-        cSnd_SeCall(D_005FEE00, 2, 0, *(int *)(*(char **)(s0 + 0x0) + 0xF0), 0, 0);
+        cSnd_SeCall(&D_005FEE00, 2, 0, *(int *)(*(char **)(s0 + 0x0) + 0xF0), 0, 0);
         /* fallthrough */
     case 3:
         if (*(int *)(s0 + 0x10) != 0) {

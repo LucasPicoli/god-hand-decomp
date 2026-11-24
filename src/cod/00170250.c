@@ -1,7 +1,7 @@
+#include "godhand/cSnd.h"
 #include "godhand/objField.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
-extern unsigned char D_005FEE00[];
 extern unsigned char D_00785798[];
 
 #include "godhand/vu0.h"
@@ -76,7 +76,7 @@ void FreeObjResourceAndDestroyD_170570(void *a0, void *a1) {
 }
 
 __attribute__((section(".text.InitObjVU0Slots0A0C_170700")))
-void InitObjVU0Slots0A0C_170700(int a0) {
+void InitObjVU0Slots0A0C_170700(void *a0) {
     cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xA, a0, 0, 0, 0, 0);
     cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xC, a0, 0, 0, 0, 0);
 }

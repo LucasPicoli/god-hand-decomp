@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void func_001DD770(void *a0, int a1);
 extern void func_001DD840(void *a0, int a1);
@@ -8,9 +9,7 @@ extern void func_001DD5A0(void *a0, int a1);
 extern void SetBlendField348_1DDBB8(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int D_007474A0;
-extern unsigned char D_005FEE00[];
 extern void PushEntryAtField10000_299868(char *a0, long a1, long a2);
 extern int D_003C1180;
 extern int D_003C118C;
@@ -34,13 +33,13 @@ void func_001D79D8(void *a0) {
         if (*(long *)(g + 0x1B0) & 0xCC0000C000000L) {
             func_001DD840(o, 1);
             SetBlendField348_1DDBB8(o, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             *(unsigned char *)(o + 0x3025) = 0;
             *(unsigned char *)(o + 0x3024) = 4;
         } else if (*(long *)(g + 0x1B0) & 0x3300003000000L) {
             func_001DD840(o, 1);
             SetBlendField348_1DDBB8(o, 0);
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
             *(unsigned char *)(o + 0x3025) = 0;
             *(unsigned char *)(o + 0x3024) = 1;
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
@@ -58,7 +57,7 @@ void func_001D79D8(void *a0) {
                 *(unsigned char *)(o + 0x3025) = 0;
                 *(unsigned char *)(o + 0x3024) = 3;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & 0x20000000) {
             if (*(int *)(o + 0x3034) > 0) {
                 cCoreSave_addGold(&D_00569B70, 0x64, 0);
@@ -74,7 +73,7 @@ void func_001D79D8(void *a0) {
                 *(unsigned char *)(o + 0x3025) = 0;
                 *(unsigned char *)(o + 0x3024) = 4;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
         }
         break;
     }

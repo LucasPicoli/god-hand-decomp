@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
@@ -8,7 +9,6 @@
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 
 
@@ -18,7 +18,6 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
                    int a7, int a8, int a9, int a10, int a11, int a12);
-extern unsigned char D_005FEE00[];
 extern unsigned char D_00747A2C[];
 
 #define FRAME ((char *)va - 0x30)
@@ -102,7 +101,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
             int b = EM_RES(self);
             ma = EM_RES_REC(b, 0xB4C);
             mb = EM_RES_REC(b, 0xB50);
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), (cObj *)self, 0, 0, 0, 0);
         }
             break;
         case 0x260:
@@ -167,7 +166,7 @@ void cEm00_stepLeapAndLand(cEm00 *self)
             break;
         }
         func_002A8578(self, ma, mb, 3, 0.0f, gb, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
         self->timerA = 0;
         {
             cEmLink *q = self->unk698;

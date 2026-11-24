@@ -1,19 +1,18 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int irand(void);
 extern int moveMotion(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern char *Getplayer(void);
 extern int cEmManage_CkPlCatched(void *a0);
-extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
 
 /* sn-2.95.3-136 matched TU. */
@@ -217,7 +216,7 @@ void func_00213710(void *a0)
                 int b;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 6),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
                 b = *(int *)(p + 0x304);
                 s2v = *(int *)(b + 0xD10) + b;
                 s0v = *(int *)(b + 0xD14) + b;
@@ -228,7 +227,7 @@ void func_00213710(void *a0)
                 int b;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 6),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
                 b = *(int *)(p + 0x304);
                 s2v = *(int *)(b + 0xD38) + b;
                 s0v = *(int *)(b + 0xD3C) + b;
@@ -253,7 +252,7 @@ void func_00213710(void *a0)
                 int b;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 0xA),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
                 b = *(int *)(p + 0x304);
                 s2v = *(int *)(b + 0x1BD0) + b;
                 s0v = *(int *)(b + 0x1BD4) + b;
@@ -282,7 +281,7 @@ void func_00213710(void *a0)
             if (*(unsigned short *)(q + 0x2FE) == 0x3B7) {
                 s2v = *(int *)(b + 0x4F4) + b;
                 s0v = *(int *)(b + 0x4F8) + b;
-                cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x64, p, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x64, a0, 0, 0, 0, 0);
             }
         }
         func_002A8578(p, s2v, s0v, 10, 0.0f, gb, 0);
@@ -374,7 +373,7 @@ void func_00213710(void *a0)
                     (int)((unsigned int)irand() % 60) + 0x78;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 6),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
             }
         case 0x220: case 0x221: case 0x222:
             if (*(int *)(p + 0x5F4) != 0) {
@@ -384,7 +383,7 @@ void func_00213710(void *a0)
                     (int)((unsigned int)irand() % 60) + 0x78;
                 cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 0xA),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
             }
             break;
         default:

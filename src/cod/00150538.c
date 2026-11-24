@@ -2,11 +2,11 @@
 
 #include "godhand/cOmBase.h"
 #include "godhand/cModel.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmSized.h"
 
 extern void func_003A52F0(void *dst, int val, int len);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void Esp_killByGroup(int a0);
 extern void func_00300C00(int a0, int a1);
 extern void cHeap_free(void *heap, void *p);
@@ -67,7 +67,7 @@ void cOmEffectHolderB_syncEffectPos(cOmEffectHolderB *self) {
     src = ((cVec *(*)(void *))self->vtable[16].pfn)((char *)self + self->vtable[16].delta);
     cVec_copy3(&pos, src);
     if (self->effect != 0) {
-        SetEffectPos(0, self->effect, 0, &pos, -1, 1.0f);
+        SetEffectPos(0, self->effect, 0, &pos, 1.0f, -1);
     }
 }
 

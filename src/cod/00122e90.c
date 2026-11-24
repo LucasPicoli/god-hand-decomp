@@ -1,17 +1,16 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_0012C348(void *a0, int a1);
 extern void cSnd_DieDemoStart(void *a0);
 extern unsigned int irand(void);
 extern float capVu0Atan2(float y, float x);
 extern float Adjust_theta(float f12);
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 extern void func_00124EC0(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 
 /* sn-2.95.3-136 */
@@ -47,10 +46,10 @@ void func_00122E90(void *a0)
     *(float *)(s1 + 0x54C) = 30.0f;
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x123, s1, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD6, a0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x123, a0, 0, 0, 0, 0);
         func_0012C348(s1, 3);
-        cSnd_DieDemoStart(D_005FEE00);
+        cSnd_DieDemoStart(&D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
         switch (*(unsigned char *)(s1 + 0x2F7)) {
         case 0:

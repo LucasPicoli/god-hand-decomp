@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
 
@@ -20,9 +21,7 @@ extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float fRand0_1(void);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern unsigned char D_00462FC0[];
-extern unsigned char D_005FEE00[];
 
 __attribute__((section(".text.func_0025B5A8")))
 void func_0025B5A8(void *a0){ char *s0=(char*)a0;
@@ -182,12 +181,12 @@ void func_00287E50(void *a0)
     }
     *(float *)(s0 + 0x600) = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
     if (*(float *)(s0 + 0x600) <= 0.0f) {
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x60, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x60, a0, 0, 0, 0, 0);
         *(float *)(s0 + 0x600) = fRand0_1() * 60.0f + 90.0f;
     }
     *(float *)(s0 + 0x604) = *(float *)(s0 + 0x604) - *(float *)(s0 + 0x5A8);
     if (*(float *)(s0 + 0x604) <= 0.0f) {
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x51, s0, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x51, a0, 0, 0, 0, 0);
         *(float *)(s0 + 0x604) = fRand0_1() * 4.0f + 8.0f;
     }
 }

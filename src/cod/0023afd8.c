@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -8,7 +9,6 @@ extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
 extern int Getplayer(void);
 extern int moveMotion(void *a0);
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void Obj1D00_ClearState_6(int a0);
 extern void Obj1D00_ClearState_7(int a0);
@@ -16,7 +16,6 @@ extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -154,7 +153,7 @@ __attribute__((section(".text.func_0023AFD8"))) void func_0023AFD8(cEm00 *self)
                     int p = *(int *)(s3 + 0x304);
                     s2 = EM_RES_REC(p, 0x1A18);
                     s1 = EM_RES_REC(p, 0x1A1C);
-                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 0x23), s3, 0, 0,
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s3) + 0x23), (cObj *)self, 0, 0,
                                        0, 0);
                 } break;
                 case 94: {

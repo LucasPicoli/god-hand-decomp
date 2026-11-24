@@ -25,8 +25,6 @@ typedef struct cOmRockerLowFrame {
 
 #define ROCKER_FRAME_OFFSET(field) ((int)&((cOmRockerLowFrame *)0)->field)
 
-extern cSnd D_005FEE00;
-extern int cSnd_SeCall_2CBA48(cSnd *self, int slot, int id, void *obj, int a4, int a5, int a6, int a7);
 extern float fRand1_1(void);
 
 /* Rocks the object: on the hit, aim along the knock direction; then three damped swings back and forth. */
@@ -37,7 +35,7 @@ void func_001A6310(cOmRockerLow *self)
 
     switch (self->base.phase) {
     case 0:
-        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x96, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x96, (cObj *)self, 0, 0, 0, 0);
         cVec_copy3(&self->swingDir, &self->knock);
         cVec_unitOf(&f.unit, &self->swingDir);
         VU0_LQC2(4, &f.unit, 0);

@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/globals.h"
 
-extern char D_005FEE00[];
 extern void SlotList_selectPrev(void *self);
 extern void func_001F6AF8(void *self);
-extern void cSnd_SeCall_2CB8A0(char *snd, int a1, int a2, int a3, int t0, int t1, int t2);
 
 #define POOLOBJ_FREE_MASK   0x201
 #define POOLOBJ_FREE_VALUE  0x1
@@ -118,26 +117,26 @@ void MenuInput_stepPageKeys(MenuCursor *self)
 
     if (b & PAD_PAGE_PREV) {
         SlotList_selectPrev(self);
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     } else if (b & PAD_PAGE_NEXT) {
         func_001F6AF8(self);
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     } else if (b & PAD_FIRST) {
         self->mode = 1;
         self->entry = 0;
         self->step = 0;
         self->stepArg = 0;
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     } else if (b & PAD_LAST) {
         self->mode = 2;
         self->step = 0;
         self->stepArg = 0;
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     } else if (b & PAD_PREV_ALT) {
         SlotList_selectPrev(self);
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     } else if (b & PAD_NEXT_ALT) {
         func_001F6AF8(self);
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, MENU_SE_MOVE, -1, -1, 0, 0);
     }
 }

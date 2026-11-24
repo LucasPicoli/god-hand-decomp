@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
@@ -23,7 +24,6 @@ extern unsigned int D_00747A78;
 extern unsigned int D_00747A80;
 extern int D_003C2F84;
 extern char D_00747470[];
-extern int D_005FEE00;
 extern int D_005FEA60;
 extern void cScenario_startSoftEvent(int a0, int a1);
 extern void cScenario__endSoftEvent(int a0);

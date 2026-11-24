@@ -16,7 +16,6 @@ extern void cSnd_DieDemoStart(void *a0);
 extern unsigned int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -41,6 +40,7 @@ extern char D_005FEE00[];
 
 
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -122,7 +122,7 @@ void func_0011DE30(void *a0)
                 func_0012C0F8(s0, (int)(*(float *)(s1 + 0x76C) * 20.0f));
             if (*(short *)(s0 + 0x54A) <= 0) {
                 *(short *)(s0 + 0x54A) = 0;
-                cSnd_DieDemoStart(D_005FEE00);
+                cSnd_DieDemoStart(&D_005FEE00);
                 cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                 *(short *)(s0 + 0x434) = *(unsigned short *)(s0 + 0x434) | 8;
             }

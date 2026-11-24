@@ -3,7 +3,6 @@
 #include "godhand/cBgmData.h"
 
 extern char D_003C3138[];
-extern char D_005FEE00[];
 extern void cSnd_SetBgmState(void *a0, int a1);
 
 /* sn-2.95.3-136 matched TU. */
@@ -37,7 +36,7 @@ void SetBgmTbl(unsigned short id, int val, int state) {
     if (found == 0) {
         return;
     }
-    cSnd_SetBgmState(D_005FEE00, state);
+    cSnd_SetBgmState(&D_005FEE00, state);
     switch (state) {
     default:
     case 0:

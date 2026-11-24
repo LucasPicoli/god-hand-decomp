@@ -1,15 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
-extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00124EC0(void *a0);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern void func_0012CC70(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern void SetMotionStep(void *a0, float f12);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
@@ -82,14 +81,14 @@ void func_00114608(void *a0)
                     *(int *)(s1 + 0x15B0) = *(int *)(s1 + 0x15B0) - 1;
                     if (*(int *)(s1 + 0x161C) == 0)
                         *(int *)(s1 + 0x161C) =
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 4, s1, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 4, a0, 0, 0, 0, 0);
                     cEmManage_SetSpeedRate(&D_005864F0, 0.03f);
                     *(float *)(s1 + 0x5A8) = 0.03f;
                     SetMotionStep(s1, 0.03f);
                     {
-                        char *g = (char *)&D_005FEE00;
-                        *(int *)(g + 0xB0) = *(int *)(g + 0xB0) | 0x400000;
-                        *(int *)(g + 0xAC) = *(int *)(g + 0xAC) | 0x400000;
+                        cSnd *g = &D_005FEE00;
+                        g->flagsB0 = g->flagsB0 | 0x400000;
+                        g->flagsAC = g->flagsAC | 0x400000;
                     }
                     if (*(int *)(s1 + 0x15BC) != 0) {
                         *(int *)(s1 + 0x15BC) = 0;

@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -11,8 +12,6 @@ extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern char D_005FEE00[];
 
 /* Phase machine on the step byte, 6 case labels. Calls Obj0000_Get_Byte_17C3_NZ_2_276468,
  * func_002A8578, Getplayer, cGameObj_SetTgtTurn, moveMotion, cObjBase_addNullSpeed_Rotation and 3
@@ -117,7 +116,7 @@ __attribute__((section(".text.func_0022B9E0"))) void func_0022B9E0(cEm00 *self)
     } else if ((*(unsigned short *)(p + 0x3AC) & 1) != 0) {
         func_0026BEF0(self, 6, 0);
         *(float *)(p + 0x600) = 3.0f;
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x22, p, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x22, (cObj *)self, 0, 0, 0, 0);
     }
     if ((*(unsigned short *)(p + 0x3AC) & 3) != 0) {
         *(int *)(p + 0x5FC) = 1;

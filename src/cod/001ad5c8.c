@@ -1,6 +1,7 @@
 /* sn-2.95.3-136: func_001AD5C8, two-phase gimmick move: on a trigger start the rise or the slide with its sound,
  * then run the move and reset the phase bytes when it ends. */
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 
 #define GIMMICK_START_SE  0x82
 #define GIMMICK_END_SE    0x83
@@ -19,13 +20,11 @@ typedef struct cOmGimmickMove {
     float dist;                         /* 0x790 how far it rises or slides */
 } cOmGimmickMove;
 
-extern unsigned char D_005FEE00[];
 extern char D_00747B00[];
 extern void cOmSub_initMove3_y(char *mv, unsigned char *p, int a2, void *a3, float f12, float f13, float f14);
 extern void cOmSub_initMove1_pos(char *mv, char *p, int a2, int a3, void *pos, float f12, float f13);
 extern void cOmSub_setVibration(void *mv, int a1, int a2, float f12, float f13, float f14);
 extern int cOmSub_move(char *mv);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, void *f, int g, int h);
 
 static inline cOmBase *getPart(cOmGimmickMove *self, int i)
 {
@@ -79,14 +78,14 @@ void func_001AD5C8(cOmGimmickMove *self)
         self->base.step = 0;
         self->base.stepArg = 0;
         self->base.phase = 1;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, GIMMICK_START_SE, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, GIMMICK_START_SE, (cObj *)self, 0, 0, 0, 0);
         /* fall through: the move starts this frame */
     case 1:
         if (cOmSub_move(self->move))
             return;
         self->triggered = 0;
         self->moving = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, GIMMICK_END_SE, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, GIMMICK_END_SE, (cObj *)self, 0, 0, 0, 0);
         resetPart(self);
         break;
     }

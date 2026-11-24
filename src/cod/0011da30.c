@@ -16,7 +16,6 @@ extern void cSnd_DieDemoStart(void *a0);
 extern unsigned int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -35,14 +34,13 @@ extern char D_005FEE00[];
 
 
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5,
-                              int a6, int a7);
 
 
 
 
 
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -118,12 +116,12 @@ void func_0011DA30(void *a0)
                     func_0012C0F8(s1, (int)(*(float *)(s0 + 0x76C) * 50.0f));
                 if (*(short *)(s1 + 0x54A) <= 0) {
                     *(short *)(s1 + 0x54A) = 0;
-                    cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
-                    cSnd_DieDemoStart(D_005FEE00);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD6, a0, 0, 0, 0, 0);
+                    cSnd_DieDemoStart(&D_005FEE00);
                     cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
                     *(short *)(s1 + 0x434) = *(unsigned short *)(s1 + 0x434) | 8;
                 } else {
-                    cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
                 }
                 func_0012C348(s1, 2);
             }

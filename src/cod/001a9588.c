@@ -2,11 +2,11 @@
 
 #include "godhand/cEm00.h"
 #include "godhand/cOmb2.h"
+#include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/cMessDrawFont.h"
 
 extern void displayScrollLayer(int layer, int show);
-extern char D_005FEE00[];
 extern void cSnd_BgmEventStart(void *snd, int event, int a2, int a3);
 extern void func_002B00A0(cMessDrawFont *self, void *cmd);
 extern void func_002B0208(cMessDrawFont *self, void *cmd);
@@ -116,7 +116,7 @@ typedef struct BgmObj {
 __attribute__((section(".text.BgmObj_startEventAndArmTimer")))
 int BgmObj_startEventAndArmTimer(BgmObj *self) {
     int event = self->rec->event;
-    cSnd_BgmEventStart(D_005FEE00, event, 0, 0);
+    cSnd_BgmEventStart(&D_005FEE00, event, 0, 0);
     /* Every arm arms the same timer; retail keeps the four-way compare tree. */
     switch (event) {
     case 6:

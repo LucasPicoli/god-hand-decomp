@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cEm00.h"
@@ -13,7 +14,6 @@ extern void func_001B76D8(void *self);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void cSnd_SetBgmState(void *snd, int state);
 extern long D_00747640;
-extern char D_005FEE00[];
 extern void CustomIDWork_ResetColorAnim(CustomIDWork *work);
 extern void CustomIDWork_SetColorAnimNormal_2D68D8(CustomIDWork *work, int from, int to, int frames);
 extern void CustomIDWork_SetColorAnimNormal_2D6898(CustomIDWork *work, int color, int frames);
@@ -133,7 +133,7 @@ void Poker_updateIntro(Poker *self)
         break;
     case 3:
         if (Poker_timerDone(self)) {
-            cSnd_SetBgmState(D_005FEE00, 0);
+            cSnd_SetBgmState(&D_005FEE00, 0);
             self->phase = 0;
             self->state = POKER_STATE_NEXT;
         }

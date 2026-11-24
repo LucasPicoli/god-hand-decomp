@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern void cSeData_Init(void *a0);
 extern void cBgmData_Init(void *a0);
 extern void cSndSeVoice_Ctor(void *a0);
 extern void cSndBgmNode_Ctor(void *a0);
-extern char D_005FEE00[];
 extern char D_005FEFF0[];
 extern char D_005FFCF0[];
 extern char D_005FFD80[];
@@ -34,7 +34,7 @@ void cSnd_StaticInit(void *a0, int a1) {
     if (a1 != 0xFFFF) return;
     if (a0 == 0) return;
 
-    func_002C9C88(D_005FEE00);
+    func_002C9C88(&D_005FEE00);
 
     p = D_005FEFF0;
     /* `i != -1` (retail materialises -1 and closes with `bne`), not `i >= 0`:

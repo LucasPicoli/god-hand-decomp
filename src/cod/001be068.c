@@ -4,11 +4,10 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSaveManager.h"
 #include "godhand/cGameObj.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int moveMotion(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern int D_005FEE00[];
 extern cSaveRooms D_005E9CB8;
 extern cSaveTail D_00755880;
 extern cSaveWorld D_007474A0;
@@ -26,7 +25,7 @@ __attribute__((section(".text.cEm00_stepCountedPause"))) void cEm00_stepCountedP
 
     switch (self->phase) {
         case 0:
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 8, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 8, (cObj *)self, 0, 0, 0, 0);
             v0 = EM_RES(self);
             func_002A8578(self, EM_RES_REC(v0, 0xC), 0, 0, 0.0f, 0, 0);
             self->phase = 1;

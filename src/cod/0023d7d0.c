@@ -3,12 +3,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
-extern void cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void Obj1D00_ClearState_6(int a0);
 extern void Obj1D00_ClearState_7(int a0);
@@ -18,13 +19,11 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern void InitRenderStruct_2A8608(void *a0, int a1, int a2, int a3, int t0, int t1);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern void func_001D0B30(int a0, float a1);
 extern void cEm00_armAttackVolume(void *a0);
 
 
 
-extern unsigned char D_005FEE00[];
 
 /* Fields cEm00.h does not name yet. Offsets are from the record start. */
 #define EM_AT(T, self, off) (*(T *)((char *)(self) + (off)))
@@ -168,10 +167,10 @@ void cEm00_idleChooseNext(void *a0)
                 e = 0;
             }
             if (e != 0) {
-                SetEffectPos(0x58, 0x11, 0, *(void **)(e + 0xF0), -1, 1.0f);
+                SetEffectPos(0x58, 0x11, 0, *(void **)(e + 0xF0), 1.0f, -1);
             }
         }
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xF6, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xF6, (cObj *)self, 0, 0, 0, 0);
         {
             int t = self->emNo;
             if (t >= 0x205 && (t < 0x208 || t == 0x224)) {

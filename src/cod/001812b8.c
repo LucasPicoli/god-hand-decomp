@@ -1,14 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
 extern int cOmSub_move(void *a0);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned int t1);
-extern char D_005FEE00[];
 
 extern void cOmSub_initMove1_ang(void *a0, void *a1, int a2, int a3, void *t0,
                                  float f12, float f13, int t1);
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5,
-                              int a6, int a7);
 
 
 
@@ -32,7 +30,7 @@ void func_001812B8(void *a0)
         *(unsigned char *)(s1 + 0x2F7) = 0;
         /* fallthrough */
     case 1: {
-        int t1a;
+        cOmBase *t1a;
         if (*(short *)(s1 + 0x608) >= 0)
             goto dec;
         {
@@ -45,8 +43,8 @@ void func_001812B8(void *a0)
         }
         i1 = 1;
         ok1 = ((*(int *)(frame + 0x10) = b1 = *(unsigned char *)(s1 + 0x2B4)), (i1 < b1));
-        if (ok1) t1a = *(int *)(*(int *)(s1 + 0x278) + i1 * 4); else t1a = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xDC, s1, 0, t1a, 0, 0);
+        if (ok1) t1a = (*(cOmBase ***)(s1 + 0x278))[i1]; else t1a = 0;
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xDC, a0, 0, (cParts *)t1a, 0, 0);
         *(unsigned char *)(s1 + 0x2F5) = 2;
         *(unsigned char *)(s1 + 0x2F6) = 0;
         *(unsigned char *)(s1 + 0x2F7) = 0;
@@ -70,7 +68,7 @@ void func_001812B8(void *a0)
     }
     case 3: {
         char *s0 = s1 + 0x610;
-        int t1b, t1c;
+        cOmBase *t1b, *t1c;
         if (cOmSub_move(s0) != 0)
             goto dec;
         {
@@ -83,12 +81,12 @@ void func_001812B8(void *a0)
         }
         i2 = 2;
         ok2 = ((*(int *)(frame + 0x20) = b2 = *(unsigned char *)(s1 + 0x2B4)), (i2 < b2));
-        if (ok2) t1b = *(int *)(*(int *)(s1 + 0x278) + i2 * 4); else t1b = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xDD, s1, 0, t1b, 0, 0);
+        if (ok2) t1b = (*(cOmBase ***)(s1 + 0x278))[i2]; else t1b = 0;
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xDD, a0, 0, (cParts *)t1b, 0, 0);
         i3 = 2;
         ok3 = ((*(int *)(frame + 0x20) = b3 = *(unsigned char *)(s1 + 0x2B4)), (i3 < b3));
-        if (ok3) t1c = *(int *)(*(int *)(s1 + 0x278) + i3 * 4); else t1c = 0;
-        cSnd_SeCall_2CBA48(D_005FEE00, 2, 0xDE, s1, 0, t1c, 0, 0);
+        if (ok3) t1c = (*(cOmBase ***)(s1 + 0x278))[i3]; else t1c = 0;
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xDE, a0, 0, (cParts *)t1c, 0, 0);
         SetEffect(1, 1, s1, 0, -1, 0xFFFFFFFFU);
         *(unsigned char *)(s1 + 0x2F5) = 4;
         *(unsigned char *)(s1 + 0x2F6) = 0;

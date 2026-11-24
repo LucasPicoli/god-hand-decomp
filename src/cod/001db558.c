@@ -1,15 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void func_001DEE40(void *p, int a1);
 extern void func_001DF528(void *p, int a1, int a2);
 extern void UiRecord_setDispSubs6to10(void *p, int a1);
 extern void func_001DF7D0(void *p, int a1);
 extern void func_001DF820(void *p, int a1);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int a4, int a5, int a6);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 extern char D_005681C0[];
-extern char D_005FEE00[];
 extern long D_007474A0[];
 extern long D_00747640;
 
@@ -90,13 +88,13 @@ void func_001DB558(void *arg)
                 *(int *)(s1 + 0x3040) = 0;
                 func_001DF7D0(s1 + 0x25B0, 1);
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else {
             m = D_007474A0[52];
             if ((m & 0x20000000) != 0) {
                 *(int *)(s1 + 0x3040) = 1;
                 func_001DF7D0(s1 + 0x25B0, 0);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
             } else if ((m & 0x10000000) != 0) {
                 char *p;
 
@@ -119,17 +117,17 @@ void func_001DB558(void *arg)
                 }
                 UiRecord_setDispSubs6to10(p, 0);
                 func_001DF820(p, 0);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
             }
         }
         break;
     case 5:
         f = TickDown((int *)(s1 + 0x3028));
         if (f) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0,
-                               **(int **)(s1 + 0x3004), 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0,
-                               **(int **)(s1 + 0x3008), 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0,
+                               *(cObj **)*(char **)(s1 + 0x3004), 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0,
+                               *(cObj **)*(char **)(s1 + 0x3008), 0, 0, 0, 0);
             *(int *)(s1 + 0x302C) = 0xF;
             *(unsigned char *)(s1 + 0x3025) = *(unsigned char *)(s1 + 0x3025) + 1;
         }

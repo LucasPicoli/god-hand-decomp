@@ -16,8 +16,6 @@ typedef struct MenuPanel {
     unsigned char toggle;               /* 0x1D4 */
 } MenuPanel;
 
-extern cSnd D_005FEE00;
-extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 extern void func_0016BC78(void *a0);
 extern void Obj0000_Set_Short_202(unsigned char *a0);
 extern void Obj0000_Set_Short_204(unsigned char *a0);

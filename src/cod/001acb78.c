@@ -1,7 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
-extern int D_005FEE00;
-extern void cSnd_SeCall_2CBA48(int *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int irand(void);
 extern void cDamageUnit_SetDamageCollFlashActive(void *a0, int a1, short a2);
 
@@ -104,7 +103,7 @@ void func_001ACB78(void *a0)
             p = *(int *)(s0 + 0x628);
             if (p != 0) {
                 cDamageUnit_SetDamageCollFlashActive((void *)p, 1, 2);
-                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x111, s0, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x111, a0, 0, 0, 0, 0);
             }
             *(char *)(s0 + 0x2F7) = 0;
             *(char *)(s0 + 0x2F6) = 5;

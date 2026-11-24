@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern int GetSeqSEBase(void *a0);
 extern void func_0026EE40(void *a0, int a1, int a2);
 extern unsigned short D_00747A50;
-extern char D_005FEE00[];
 
 /* func_0026ECD0 — two jump tables.  sn-2.95.3-136. */
 
@@ -20,7 +19,7 @@ extern char D_005FEE00[];
 __attribute__((section(".text.func_0026ECD0")))
 void func_0026ECD0(void *a0, int a1) {
     char *s1 = (char *)a0;
-    char *p;
+    cSnd *p;
     int t;
     int v;
     int n;
@@ -49,9 +48,9 @@ void func_0026ECD0(void *a0, int a1) {
     if (v < 0x224) {
         if (v >= 0x220) goto lvl;
     }
-    p = D_005FEE00;
-    cSnd_SeCall_2CBA48(p, 0, 0xF7, s1, 0, 0, 0, 0);
-    cSnd_SeCall_2CBA48(p, 1, (short)(GetSeqSEBase(s1) + 0x14), s1, 0, 0, 0, 0);
+    p = &D_005FEE00;
+    cSnd_SeCall_2CBA48(p, 0, 0xF7, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(p, 1, (short)(GetSeqSEBase(s1) + 0x14), a0, 0, 0, 0, 0);
 lvl:
     switch (cCoreSave_getGameLevel(&D_00569B70)) {
     case 1:

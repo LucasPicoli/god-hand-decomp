@@ -21,7 +21,6 @@ extern void func_00372CB0(void *a0);
 
 
 
-extern cSnd D_005FEE00;
 /* Runs one update of a used BGM node: blends its channels, steps its state machine, then clears its update flag. */
 __attribute__((section(".text.cSndBgmNode_StepState")))
 void cSndBgmNode_StepState(cSndBgmNode *node) {

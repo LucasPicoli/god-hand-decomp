@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
-extern float D_005FEE00[];
 extern short D_003F2060[];
 extern int SdeSystemOutModeGet(void);
 
@@ -19,8 +19,8 @@ void func_00373FF0(char *p, int idx, float x)
     if (*(int *)p == 0) {
         return;
     }
-    t = x * D_005FEE00[idx] / 127.0f;
-    t = t * *(float *)((char *)&D_005FEE00[idx] + 12) / 127.0f;
+    t = x * D_005FEE00.unk00[idx] / 127.0f;
+    t = t * D_005FEE00.unk0C[idx] / 127.0f;
     if (SdeSystemOutModeGet() == 2) {
         t = t * *(float *)(p + 0x34);
     }

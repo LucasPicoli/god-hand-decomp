@@ -1,14 +1,14 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
-extern char D_005FEE00[];
 
 __attribute__((section(".text.func_00129630")))
 void func_00129630(void *this)
 {
     int cn;
-    char *g;
+    cSnd *g;
     if (!(*(int *)((char *)this + 0x15F4) & 0x10)) {
         *(int *)((char *)this + 0x15F4) |= 0x20;
         cn = cCoreSave_getCostumeNo(&D_00569B70);
@@ -28,7 +28,7 @@ void func_00129630(void *this)
             break;
         }
     }
-    g = D_005FEE00;
-    *(int *)(g + 0xB0) &= 0xFFBFFFFF;
-    *(int *)(g + 0xAC) &= 0xFFBFFFFF;
+    g = &D_005FEE00;
+    g->flagsB0 &= 0xFFBFFFFF;
+    g->flagsAC &= 0xFFBFFFFF;
 }

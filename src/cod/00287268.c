@@ -3,6 +3,7 @@
 /* cEm00_stepGrowlWhileActive: an enemy that holds one pose and growls at random intervals
  * while any actor is active. */
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int moveMotion(void *a0);
@@ -11,9 +12,7 @@ extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern int IsAnyActorActive_289418(void *a0);
 extern float fRand0_1(void);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern char D_00462FC0[];
-extern char D_005FEE00[];
 
 __attribute__((section(".text.cEm00_stepGrowlWhileActive")))
 void cEm00_stepGrowlWhileActive(cEm00 *self)
@@ -40,7 +39,7 @@ void cEm00_stepGrowlWhileActive(cEm00 *self)
         t = self->timer - self->speedRate;
         self->timer = t;
         if (t <= 0.0f) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 2, 0x60, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x60, (cObj *)self, 0, 0, 0, 0);
             self->timer = fRand0_1() * 30.0f + 60.0f;
         }
     } else {

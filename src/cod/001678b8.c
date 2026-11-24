@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmDoor.h"
 #include "godhand/cSceAtManager.h"
@@ -7,7 +8,6 @@
 #include "godhand/globals.h"
 
 extern void *D_003C264C;
-extern char D_005FEE00[];
 extern void cSaveManager_stageClear(void *self);
 extern void func_002CABE0(void *bus);
 extern unsigned int D_00747A78;
@@ -60,7 +60,7 @@ void cOmDoor_setObjCollision(cOmDoor *self) {
 __attribute__((section(".text.GameLoop_stageClearToState3")))
 void GameLoop_stageClearToState3(char *state) {
     cSaveManager_stageClear(D_003C264C);
-    func_002CABE0(D_005FEE00);
+    func_002CABE0(&D_005FEE00);
     *state = 3;
 }
 

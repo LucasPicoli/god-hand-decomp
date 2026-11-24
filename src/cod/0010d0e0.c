@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/pl00.h"
 #include "godhand/vu0.h"
 #include "godhand/cMovie.h"
@@ -10,14 +11,12 @@ extern void func_001268F0(void *a0);
 extern void func_00124540(void *a0, int a1);
 extern void cSnd_SeStop(void *a0, int a1);
 extern unsigned int irand(void);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f12);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int cCollisionManager_checkNearCollision(void *a0, int a1, void *a2, float f);
 extern void pl00_addComboHit(void *a0);
-extern char D_005FEE00[];
 extern char D_005E8040[];
 extern void func_002D42E0(cMovieTrack *track);
 extern int D_00747A84;
@@ -37,7 +36,7 @@ __attribute__((section(".text.pl00_stepCountedAttack"))) void pl00_stepCountedAt
             self->comboSet = 0;
             func_001268F0(self);
             func_00124540(self, 5);
-            cSnd_SeStop(D_005FEE00, self->unk1620);
+            cSnd_SeStop(&D_005FEE00, self->unk1620);
             self->unk1620 = 0;
             switch (self->unk1614) {
                 case 0:
@@ -75,7 +74,7 @@ __attribute__((section(".text.pl00_stepCountedAttack"))) void pl00_stepCountedAt
                     }
                     break;
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x41, self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x41, (cObj *)self, 0, 0, 0, 0);
             func_002A8578(self, s2v, s0v, 3, 2.0f, 0, 0);
             self->stepCount = 8;
             self->unk15B0 = 0;

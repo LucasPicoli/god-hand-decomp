@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern unsigned int irand(void);
@@ -18,8 +19,6 @@ extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void func_002744E0(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern char D_005FEE00[];
 
 /* Phase machine on the step byte, 14 case labels. Calls irand,
  * CheckSlotsShort2FEAndSetByte1864_262A10, Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578,
@@ -212,7 +211,7 @@ __attribute__((section(".text.func_00234368"))) void func_00234368(cEm00 *self)
                 goto set5F4;
             if (self->timerB != 0) {
                 self->timerB = 0;
-                cSnd_SeCall_2CBA48(D_005FEE00, 1, 0x25, self, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x25, (cObj *)self, 0, 0, 0, 0);
                 if (self->seqFlags & 2) {
                 call13:
                     func_0026BEF0(self, 0x13, 0);

@@ -3,13 +3,13 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEm00.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
 extern unsigned int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int GetSeqSEBase(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
@@ -27,7 +27,6 @@ extern void func_00274FE8(void *a0);
 
 
 extern void func_0027DB50(int a0, int a1);
-extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
 extern unsigned char D_00747A2C[];
 
@@ -210,7 +209,7 @@ void cEm00_hitReaction(void *a0)
                 int p = EM_RES(self);
                 recA = EM_RES_REC(p, 0xA68);
                 recB = EM_RES_REC(p, 0xA6C);
-                cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), self, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), (cObj *)self, 0, 0, 0, 0);
             }
             break;
         case 0x260:
@@ -239,7 +238,7 @@ void cEm00_hitReaction(void *a0)
             break;
         }
         func_002A8578(self, recA, recB, 3, 0.0f, nb, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
         {
             char *link = (char *)self->unk698;
 
@@ -632,7 +631,7 @@ void cEm00_hitReaction(void *a0)
             } else {
                 MOTION_PAIR(0x9D8, 0x9DC)
             }
-            cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(self) + 0x23), (cObj *)self, 0, 0, 0, 0);
             break;
         case 0x260:
             MOTION_PAIR(0x3184, 0x3188)
@@ -679,7 +678,7 @@ void cEm00_hitReaction(void *a0)
             recB = EM_RES_REC(p, 0x788);
         }
         func_002A8578(self, recA, recB, 2, 0.0f, nb, 0);
-        cSnd_SeCall_2CBA48(D_005FEE00, 1, (short)GetSeqSEBase(self), self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)GetSeqSEBase(self), (cObj *)self, 0, 0, 0, 0);
         func_0026F120(self);
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
         case 1:

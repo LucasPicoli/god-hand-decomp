@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/BlackJack.h"
+#include "godhand/cSnd.h"
 
-extern char D_005FEE00[];
 extern float D_00568080[];
 extern void func_001D0C98(BlackJackCard *card, int on);
 
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 
 #define DEAL_FRAMES 20
 #define DEALER_HIT_MAX 0x10
@@ -44,7 +43,7 @@ void BlackJack_UpdateDealDealerHandB(BlackJack *self)
             if (self->dealSlotB < BLACKJACK_HAND_NUM) {
                 self->handB[self->dealSlotB]->obj->flags &= ~BLACKJACK_CARD_FACE_DOWN;
                 func_001D0C98(self->handB[self->dealSlotB], 0);
-                cSnd_SeCall_2CBA48(D_005FEE00, 2, 0, self->handB[self->dealSlotB]->obj, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, (cObj *)self->handB[self->dealSlotB]->obj, 0, 0, 0, 0);
                 self->timer = DEAL_FRAMES;
                 self->phase += 1;
                 break;

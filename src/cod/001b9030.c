@@ -2,6 +2,7 @@
 
 #include "godhand/cEmSetParam.h"
 #include "godhand/cScenario.h"
+#include "godhand/cSnd.h"
 #include "godhand/Slot2.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cMessage.h"
@@ -15,7 +16,6 @@ extern void cDvd_CheckWaitFrame(void *dvd, int id);
 extern void cHeap_free(int heap, int *node);
 extern void KillEffect(void *obj, int a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *obj, void *arg);
-extern char D_005FEE00[];
 extern void cSndSeVoice_CheckEnd(void *snd, int handle);
 extern void func_002AEF98(void *pool);
 
@@ -188,7 +188,7 @@ void cMessageWin_close(MessWin *self)
     if ((self->flags & MWIN_FLAG_OPEN) == 0)
         return;
     if (self->voice != 0)
-        cSndSeVoice_CheckEnd(D_005FEE00, self->voiceId);
+        cSndSeVoice_CheckEnd(&D_005FEE00, self->voiceId);
     /* int views of the two voice words: a struct member store would let the D_003C23A4 load schedule above them. */
     *(int *)&self->voice = 0;
     *(int *)&self->voiceId = -1;

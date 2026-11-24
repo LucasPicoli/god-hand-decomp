@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void func_001E7848(char *a0, int a1);
 extern void func_001E7868(char *a0, int a1);
@@ -15,8 +16,6 @@ extern void func_001E3E40(char *a0, int a1, int a2, int a3);
 extern void MarkObj_setMarkFlag(char *a0, int a1, int a2);
 extern void CustomIDOwner_setColorMode(char *a0, int a1);
 extern void SetUiIdWorkDispRange(char *a0, int a1);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, short a2, short a3, short a4, int a5, int a6);
-extern char D_005FEE00[];
 extern int D_007474A0;
 extern int D_00747A2C;
 extern long D_00747640;
@@ -122,7 +121,7 @@ void func_001E0310(void *a0)
         if (*(unsigned short *)(s1 + 0x48E) == 0) {
             char *g = (char *)&D_007474A0;
             if (*(long *)(g + 0x1A0) & 0x200000000L) {
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
                 *(int *)(s1 + 0x4) = 4;
                 *(int *)(s1 + 0x8) = 0;
                 *(int *)(s1 + 0xC) = 0;
@@ -143,7 +142,7 @@ void func_001E0310(void *a0)
                 *(unsigned short *)(s1 + 0x48E) += 1;
                 cCoreSave_subGold(&D_00569B70, *(int *)(s1 + 0x3C8));
                 Slot2_showLayersForMode(s1);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
                 return;
             }
             if (f & 0x200000000L) {
@@ -153,7 +152,7 @@ void func_001E0310(void *a0)
                 *(unsigned short *)(s1 + 0x48E) -= 1;
                 cCoreSave_addGold(&D_00569B70, *(int *)(s1 + 0x3C8), 0);
                 Slot2_showLayersForMode(s1);
-                cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+                cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
                 return;
             }
             if (*(unsigned short *)(s1 + 0x48E) != 0 && (f & 0x2200802000000L)) {
@@ -171,7 +170,7 @@ void func_001E0310(void *a0)
         }
         CustomIDOwner_setColorMode(s1 + 0x4D0, 1);
         *(int *)(s1 + 0x10) = 0xF;
-        cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
         *(int *)(s1 + 0x8) = *(int *)(s1 + 0x8) + 1;
         break;
     case 2:

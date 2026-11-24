@@ -17,8 +17,6 @@ typedef struct OptionPanel {
     signed char row;                    /* 0x110 */
 } OptionPanel;
 
-extern cSnd D_005FEE00;
-extern int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, int a5, int a6);
 extern void func_00167EB0(void *self);
 
 /* Input step of the options panel: moves through the six rows and changes

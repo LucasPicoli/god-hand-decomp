@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cSnd.h"
 
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern char D_005FEE00[];
 extern void func_003057D0(void *a, int b, int c);
 extern void espSys_effDataRelease(void *a, int b);
 extern void SetField214PtrThenInit_1B6F38(void *a, void *b);
@@ -33,7 +32,7 @@ void func_001793D0(char *p)
     if (st == 1) goto tick;
     return;
 init:
-    cSnd_SeCall_2CBA48((void *)D_005FEE00, 2, 2, p, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 2, 2, (cObj *)p, 0, 0, 0, 0);
     *(short *)(p + 0x654) = 0xF;
     *(char *)(p + 0x2F5) = 1;
     *(char *)(p + 0x2F6) = 0;

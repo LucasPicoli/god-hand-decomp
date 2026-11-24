@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -7,12 +8,10 @@ extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00274FE8(void *a0);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -94,7 +93,7 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
                     int b = *(int *)(s1 + 0x304);
                     s3 = EM_RES_REC(b, 0xB5C);
                     s2 = EM_RES_REC(b, 0xB60);
-                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0x23), s1, 0, 0,
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 0x23), (cObj *)self, 0, 0,
                                        0, 0);
                 } break;
                 case 0x260: {
@@ -167,8 +166,8 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
             }
             func_002A8578(s1, s3, s2, 3, 0.0f, s4, 0);
             if (*(unsigned char *)(s1 + 0x2F7) == 0) {
-                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, s1, 0, 0, 0, 0);
-                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s1, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, (cObj *)self, 0, 0, 0, 0);
+                cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, (cObj *)self, 0, 0, 0, 0);
             }
             if (*(short *)(s1 + 0x54A) <= 0) {
                 *(short *)(s1 + 0x54A) = 1;
@@ -207,8 +206,8 @@ __attribute__((section(".text.func_0025A3E8"))) void func_0025A3E8(cEm00 *self)
                 int b = *(int *)(s1 + 0x304);
                 func_002A8578(s1, EM_RES_REC(b, 0xF84), EM_RES_REC(b, 0xF88), 0, 0.0f, s4, 0);
             }
-            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, s1, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x2D, (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x32, (cObj *)self, 0, 0, 0, 0);
             if (*(short *)(s1 + 0x54A) <= 0) {
                 *(short *)(s1 + 0x54A) = 1;
             }

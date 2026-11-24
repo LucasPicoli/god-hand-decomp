@@ -1,4 +1,5 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
@@ -6,7 +7,6 @@
 extern int irand(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
 extern void func_0026ECD0(void *a0, int a1);
 extern float fRand1_1(void);
 extern float Adjust_theta(float f12);
@@ -16,7 +16,6 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_00262750(void *a0, int a1);
 extern void *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
-extern unsigned char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -187,8 +186,8 @@ __attribute__((section(".text.func_002557F8"))) void func_002557F8(cEm00 *self)
                 } break;
             }
             func_002A8578(s1, p1, p2, 3, 0.0f, gb, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 4), s1, 0, 0, 0, 0);
-            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xF6, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 1, (short)(GetSeqSEBase(s1) + 4), (cObj *)self, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xF6, (cObj *)self, 0, 0, 0, 0);
             *(float *)(s1 + 0x54C) = 10.0f;
             *(int *)(s1 + 0x16E8) += 0x3E7;
             func_0026ECD0(s1, 0);

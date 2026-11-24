@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/cDataManager.h"
 #include "godhand/cCoreSave.h"
@@ -13,8 +14,6 @@
 extern void func_001F8A88(void *a0, float x0, float x1, float y0, float y1, float z0, float z1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern int SetEffect(int a0, int a1, void *a2, int a3, int t0, unsigned t1);
-extern int cSnd_SeCall_2CBA48(void *a, int b, int c, void *d, int e, int f, int g, int h);
-extern unsigned char D_005FEE00[];
 extern void cModel_setLayerDisplay(int a0, int a1, int a2);
 extern int D_003BD880;
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
@@ -352,7 +351,7 @@ void func_001B1630(char *p)
         if (*(unsigned char *)(p + 0x667) == 0) {
             *(unsigned char *)(p + 0x667) = 1;
             SetEffect(0x58, 5, p, 0, 7, 0xFFFFFFFFu);
-            *(int *)(p + 0x668) = cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x117, p, 0, 0, 0, 0);
+            *(int *)(p + 0x668) = cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x117, (cObj *)p, 0, 0, 0, 0);
         }
     }
 }

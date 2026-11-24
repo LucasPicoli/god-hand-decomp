@@ -1,7 +1,7 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
-extern int D_005FEE00;
 extern int D_00754200;
 extern int D_00580D40;
 extern int D_00747A78[];

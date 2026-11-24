@@ -1,13 +1,13 @@
 /* TU: pl00 [player] - recovered C++ class. */
 extern void pl00_reset(void);
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "include_asm.h"
 
 #include "godhand/vu0.h"
 
 extern void func_001C8D48(void *obj);
 
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
-extern int D_005FEE00[];
 
 __attribute__((section(".text.pl00_CannonGameMode")))
 void pl00_CannonGameMode(void *a0, int a1) {
@@ -54,8 +54,6 @@ void pl00_setPyramidIn(char *a0) {
 /* sn-2.95.3-136 matched TU. */
 
 
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0,
-                               int t1, int t2, int t3);
 
 __attribute__((section(".text.pl00_SetCannonDamage")))
 void pl00_SetCannonDamage(unsigned char *p)
@@ -76,9 +74,9 @@ void pl00_SetCannonDamage(unsigned char *p)
             e = 0;
         }
         if (e != 0) {
-            SetEffectPos(0, 3, 0, *((void **) (e + 0xF0)), -1, 1.0f);
+            SetEffectPos(0, 3, 0, *((void **) (e + 0xF0)), 1.0f, -1);
         }
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0x123, p, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x123, (cObj *)p, 0, 0, 0, 0);
         n = *((unsigned short *) (p + 0x54A)) - 10;
         *((short *) (p + 0x54A)) = n;
         if ((short) n <= 0) {

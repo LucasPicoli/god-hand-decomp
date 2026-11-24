@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -17,9 +18,6 @@ extern void func_0012C348(void *a0, int a1);
 extern unsigned int D_00747A24;
 extern char D_00462FC0[];
 extern char D_005864F0[];
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5,
-                              int a6, int a7);
 __attribute__((section(".text.func_00120BC0")))
 void func_00120BC0(void *a0)
 {
@@ -48,10 +46,10 @@ void func_00120BC0(void *a0)
         func_001299F0(s1, s0, buf, 0, z);
         cEm00_GetPlMotion(s0, 0x22, z, z);
         if (*(short *)(s1 + 0x54A) <= 0) {
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD6, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD6, a0, 0, 0, 0, 0);
             func_0012C348(s1, 2);
         } else {
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
             func_0012C348(s1, 2);
         }
         *(int *)(s1 + 0x15B0) = 1;

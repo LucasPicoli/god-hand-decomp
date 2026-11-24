@@ -1,8 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 
-extern int D_005FEE00;
-extern void cSnd_SeCall_2CBA48(int *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 
 __attribute__((section(".text.func_0027F3A0")))
 void func_0027F3A0(char *a0)
@@ -24,7 +23,7 @@ void func_0027F3A0(char *a0)
     if (0.0f < *(float *)(a0 + 0x54C))
         return;
 
-    cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xA, a0, 0, 0, 0, 0);
+    cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xA, (cObj *)a0, 0, 0, 0, 0);
 
     b = *(unsigned char *)(a0 + 0x2B4);
     spill[0] = b;
@@ -34,7 +33,7 @@ void func_0027F3A0(char *a0)
     else
         obj = 0;
     if (obj != 0)
-        SetEffectPos(0x58, 0x10, 0, (void *)*(int *)(obj + 0xF0), -1, 1.0f);
+        SetEffectPos(0x58, 0x10, 0, (void *)*(int *)(obj + 0xF0), 1.0f, -1);
 
     *(float *)(a0 + 0x54C) = 3.0f;
     if (*(short *)(a0 + 0x548) <= 0)

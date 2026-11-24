@@ -2,7 +2,6 @@
 
 extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float f12);
 extern void cEm00_GetPlMotion(void *a0, int a1, float f12, float f13);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -16,10 +15,10 @@ extern void cSnd_DieDemoStart(void *a0);
 extern void func_0012C348(void *a0, int a1);
 extern unsigned char D_00462FC0[];
 extern unsigned char D_005864F0[];
-extern unsigned char D_005FEE00[];
 extern int D_00747A24;
 
 /* sn-2.95.3-136 candidate. */
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -63,7 +62,7 @@ void func_0011BF20(void *a0)
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
     case 0:
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xCF, s1, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xCF, a0, 0, 0, 0, 0);
         v[1] = 0.0f;
         v[0] = -0.0437f;
         v[2] = 1.227f;
@@ -124,14 +123,14 @@ void func_0011BF20(void *a0)
             func_0012C0F8(s1, (int)(*(float *)(s0 + 0x76C) * 50.0f));
         }
         if (*(short *)(s1 + 0x54A) <= 0) {
-            char *snd = D_005FEE00;
+            cSnd *snd = &D_005FEE00;
             *(short *)(s1 + 0x54A) = 0;
-            cSnd_SeCall_2CBA48(snd, 0, 0xD6, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(snd, 0, 0xD6, a0, 0, 0, 0, 0);
             cSnd_DieDemoStart(snd);
             cCoreSave_addGameLevelPoint(s2, -0x3E8);
             *(unsigned short *)(s1 + 0x434) = *(unsigned short *)(s1 + 0x434) | 8;
         } else {
-            cSnd_SeCall_2CBA48(D_005FEE00, 0, 0xD7, s1, 0, 0, 0, 0);
+            cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
         }
         func_0012C348(s1, 2);
         break;

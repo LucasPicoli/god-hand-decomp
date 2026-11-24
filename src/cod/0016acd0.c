@@ -3,10 +3,7 @@
 extern int cIDBase_getIDWork(void *self, int idx);
 extern void cIDBase_move(void *a0);
 extern void cIDBase_trans(void *a0);
-extern unsigned char D_005FEE00[];
 extern unsigned char D_005864F0[];
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int t0, int t1, int t2, int t3);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float a5);
 extern int cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
 extern void func_0019BA08(void *a0, int a1, int a2);
 extern void SetField5B0Bit2ClearBit8_1B7908(int a0);
@@ -67,6 +64,8 @@ void func_0016ACD0(void *a0)
 }
 
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 
 
@@ -81,7 +80,7 @@ __attribute__((section(".text.func_0019B580")))
 void func_0019B580(void *a0)
 {
     char *s0 = (char *)a0;
-    float buf[4] __attribute__((aligned(16)));
+    cVec buf __attribute__((aligned(16)));
 
     switch (*(unsigned char *)(s0 + 0x2F5)) {
     case 0: {
@@ -89,18 +88,18 @@ void func_0019B580(void *a0)
         short off;
         float *(*fp)();
         float *src;
-        VU0_SQC2_VF0(buf, 0);
+        VU0_SQC2_VF0(&buf, 0);
         vt = *(char **)(s0 + 0x214);
         off = *(short *)(vt + 0x80);
         fp = *(float *(**)())(vt + 0x84);
         src = fp(s0 + off);
-        if (buf != src) {
-            buf[0] = src[0];
-            buf[1] = src[1];
-            buf[2] = src[2];
+        if (&buf.x != src) {
+            buf.x = src[0];
+            buf.y = src[1];
+            buf.z = src[2];
         }
-        SetEffectPos(0, 0xCC, 0, buf, -1, 1.0f);
-        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, s0, 0, 0, 0, 0);
+        SetEffectPos(0, 0xCC, 0, &buf, 1.0f, -1);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, a0, 0, 0, 0, 0);
         if (*(char *)(s0 + 0xA92) == 0) {
             func_0019BA08(s0, 0, 2);
             cEmManage_CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), 0xFFFF, 0);

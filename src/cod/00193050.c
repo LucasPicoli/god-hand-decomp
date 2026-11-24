@@ -8,7 +8,6 @@
 
 extern void func_001B6FB8(void *self);
 extern void cHeap_free(int heap, int *node);
-extern cSnd D_005FEE00;
 extern void cSnd_CheckSeEnd(cSnd *snd, int handle);
 
 /* The jump table: groups of 0x30-byte records, found through a header at the table address. */

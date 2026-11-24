@@ -2,6 +2,8 @@
 
 #include "godhand/ColiseumBattle.h"
 #include "godhand/cEmSetParam.h"
+#include "godhand/cSnd.h"
+#include "godhand/effectPos.h"
 #include "godhand/pl00.h"
 #include "godhand/vu0.h"
 #include "godhand/cGameObj.h"
@@ -14,8 +16,6 @@ extern void cEmWrap_SetVital(void *wrap, int vital);
 extern void cEmWrap_StartAction(void *wrap);
 extern int cRoomSave_clearEmDeadFlag(void *self, int id);
 extern cGameObj *GetJacket(void);
-extern char D_005FEE00[];
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int a4, float f12);
 extern int cSnd_SeCall(void *a0, int a1, int a2, void *a3, int a4, int a5);
 
 #define ARENA_PHASE_DEFEAT    0
@@ -97,12 +97,19 @@ extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, void *a
                    int a7, int a8, int a9, int a10, int a11, int a12);
 
 #define SURFACE_WATER  0x400
-#define FRAME ((char *)buf - 0x30)
+#define FRAME ((char *)&hit - 0x30)
 
 typedef struct HitRec {
     int unk0;
     unsigned int surface;               /* 0x4 */
 } HitRec;
+
+/* What ChkLine fills in: the hit point, then the record of the surface it hit. */
+typedef struct LineHit {
+    cVec point;                         /* 0x00 */
+    HitRec *rec;                        /* 0x10 */
+    char unk14[0xC];
+} LineHit;
 
 /* A game object that can splash: past the base part it keeps a vertical speed and a once-only flag. */
 typedef struct SplashObj {
@@ -119,7 +126,7 @@ typedef struct SplashObj {
 __attribute__((section(".text.cGameObj_checkWaterSplash")))
 void cGameObj_checkWaterSplash(SplashObj *self)
 {
-    float buf[8];
+    LineHit hit;
     cVec *pos;
 
     if (self->splashed != 0)
@@ -130,15 +137,15 @@ void cGameObj_checkWaterSplash(SplashObj *self)
     if ((self->base.seqFlags & 4) == 0 && !(self->fall < 0.0f))
         return;
     {
-        float *v = buf;
+        cVec *v = &hit.point;
         int one;
 
         VU0_SQC2_VF0(FRAME, 0x30);
         one = 1;
-        if (ChkLine(&self->base.posA, pos, v, 0, 7, 0, &buf[4], 1, 0, 0, 0, 0, one) != 0
-            && (((HitRec *)*(void **)&buf[4])->surface & SURFACE_WATER) != 0) {
-            SetEffectPos(0, 0x55, 0, v, -1, 1.0f);
-            cSnd_SeCall(D_005FEE00, 2, 0x50, self->base.pos, 0, 0);
+        if (ChkLine(&self->base.posA, pos, v, 0, 7, 0, &hit.rec, 1, 0, 0, 0, 0, one) != 0
+            && (hit.rec->surface & SURFACE_WATER) != 0) {
+            SetEffectPos(0, 0x55, 0, v, 1.0f, -1);
+            cSnd_SeCall(&D_005FEE00, 2, 0x50, self->base.pos, 0, 0);
             self->splashed = one;
         }
     }

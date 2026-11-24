@@ -1,9 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
 extern void func_001038E0(char *a0, char *a1, char *a2, float f12, float f13);
-extern char D_005FEE00[];
-extern int cSnd_SeCall_2CB8A0(char *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern float fRand1_1(void);
 extern char D_00463050[];
 extern void *Getplayer(void);
@@ -163,7 +162,7 @@ void func_0017AEB0(char *p)
     if (*(short *)(p + 0x606) == 0) return;
     if (*(unsigned char *)(p + 0x2F4) == 0) {
         *(short *)(p + 0x606) = *(unsigned short *)(p + 0x606) - 1;
-        cSnd_SeCall_2CB8A0(D_005FEE00, 2, 0x1E, -1, -1, 0, 0);
+        cSnd_SeCall_2CB8A0(&D_005FEE00, 2, 0x1E, -1, -1, 0, 0);
         if (*(short *)(p + 0x606) != 0) {
             if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
                 o = *(int *)(*(int *)(p + 0x278));

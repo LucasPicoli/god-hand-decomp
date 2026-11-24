@@ -1,12 +1,11 @@
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern int moveMotion(void *a0);
 extern unsigned int irand(void);
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
-extern int D_005FEE00;
 
 /* Phase machine on the step byte, 7 case labels. Calls func_002A8578, moveMotion, irand,
  * cSnd_SeCall_2CBA48. */
@@ -39,19 +38,19 @@ __attribute__((section(".text.func_0027C460"))) void func_0027C460(cEm00 *self)
                     switch (irand() % 5) {
                         case 0:
                         default:
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xA, self, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xA, (cObj *)self, 0, 0, 0, 0);
                             break;
                         case 1:
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xB, self, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xB, (cObj *)self, 0, 0, 0, 0);
                             break;
                         case 2:
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xE, self, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xE, (cObj *)self, 0, 0, 0, 0);
                             break;
                         case 3:
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xF, self, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0xF, (cObj *)self, 0, 0, 0, 0);
                             break;
                         case 4:
-                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x10, self, 0, 0, 0, 0);
+                            cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x10, (cObj *)self, 0, 0, 0, 0);
                             break;
                     }
                 }

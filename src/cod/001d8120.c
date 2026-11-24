@@ -2,6 +2,7 @@
 
 /* Bet-adjust screen of a casino game, second variant: step 0 sets up, step 1 reads the pad (confirm, cancel, leave, raise the bet by 100 and pay it in) and refreshes the eight payout numbers. */
 #include "godhand/cCoreSave.h"
+#include "godhand/cSnd.h"
 
 extern void func_001DD770(void *a0, int a1);
 extern void func_001DD840(void *a0, int a1);
@@ -11,9 +12,7 @@ extern void func_001DD5A0(void *a0, int a1);
 extern void SetBlendField630_1DDD08(void *a0, int a1);
 extern void CustomIDWork_SetNumber_1DD218(char *a0, int a1);
 extern void SetCustomIDNumberIndexed_1DD648(char *a0, int a1, int a2);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int D_007474A0;
-extern unsigned char D_005FEE00[];
 
 __attribute__((section(".text.UpdateBetAdjustScreenB")))
 void UpdateBetAdjustScreenB(void *a0) {
@@ -35,7 +34,7 @@ void UpdateBetAdjustScreenB(void *a0) {
                 *(unsigned char *)(o + 0x3025) = 0;
                 *(unsigned char *)(o + 0x3024) = 2;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1B0) & 0x3300003000000L) {
             func_001DD9E0(o, 1);
             SetBlendField630_1DDD08(o, 0);
@@ -46,14 +45,14 @@ void UpdateBetAdjustScreenB(void *a0) {
                 *(unsigned char *)(o + 0x3025) = 0;
                 *(unsigned char *)(o + 0x3024) = 1;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15F, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & 0x10000000) {
             cCoreSave_addGold(&D_00569B70, *(int *)(o + 0x3034), 0);
             *(int *)(o + 0x3034) = 0;
             CustomIDWork_SetNumber_1DD218(o, 0);
             *(unsigned char *)(o + 0x3025) = 0;
             *(unsigned char *)(o + 0x3024) = 0x15;
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x15E, -1, -1, 0, 0);
         } else if (*(long *)(g + 0x1A0) & 0x20000000) {
             if (*(int *)(o + 0x3034) > 0) {
                 cCoreSave_addGold(&D_00569B70, 0x64, 0);
@@ -69,7 +68,7 @@ void UpdateBetAdjustScreenB(void *a0) {
                 *(unsigned char *)(o + 0x3025) = 0;
                 *(unsigned char *)(o + 0x3024) = 0x15;
             }
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x161, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x161, -1, -1, 0, 0);
         }
         break;
     }

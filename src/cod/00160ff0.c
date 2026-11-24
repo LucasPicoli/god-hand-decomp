@@ -1,9 +1,9 @@
 /* sn-2.95.3-136: event movie play step: pause bgm and lock game flags, start the movie, wait for it to end, then restore and fade in (0x160FF0). */
+#include "godhand/cSnd.h"
 #include "godhand/gameWork.h"
 #include "godhand/classFADE.h"
 #include "godhand/cMovie.h"
 #include "godhand/globals.h"
-extern char D_005FEE00[];
 
 extern void KeyStop(void);
 extern void cSnd_BattleBgmAllPause(void *, float);
@@ -35,7 +35,7 @@ int func_00160FF0(cEvMovie *self)
         id = self->movieNo + 2;
         hp = &D_00566E40;
         KeyStop();
-        cSnd_BattleBgmAllPause(D_005FEE00, 1.0f);
+        cSnd_BattleBgmAllPause(&D_005FEE00, 1.0f);
         GW_LOCKFLAGS |= 0x4000000;
         GW_LOCKFLAGS |= 0x2000000;
         GW_LOCKFLAGS |= 0x40000000;
@@ -63,7 +63,7 @@ int func_00160FF0(cEvMovie *self)
         if (cMovie_GetStatus(D_005E79D0, D_00566E40))
             return 0;
         cMovie_Stop(D_005E79D0, D_00566E40);
-        cSnd_BgmFlaggedNodeKick(D_005FEE00, 20.0f);
+        cSnd_BgmFlaggedNodeKick(&D_005FEE00, 20.0f);
         GW_LOCKFLAGS &= ~0x4000000;
         GW_LOCKFLAGS &= ~0x2000000;
         GW_LOCKFLAGS &= ~0x40000000;

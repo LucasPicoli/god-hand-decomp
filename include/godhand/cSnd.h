@@ -195,7 +195,23 @@ cSndKindEnt *func_002D0B88(unsigned short id);
 int cSnd_BgmReqFromEnemies(void *self);
 /* Set the default system volumes and copy master and sub channels into the two triples. */
 void func_002C9E78(cSnd *self);
+/* Play sound-effect slot on a voice bound to obj and its part. Slot 1 stands for
+   the enemy group's own slot, found from owner if set, else from obj. */
+int cSnd_SeCall_2CBA48(cSnd *self, int slot, short key, struct cObj *obj, struct cObj *owner, struct cParts *part, unsigned int a6, int a7);
+/* Play sound-effect slot on a free voice at the origin, with an id pair. */
+int cSnd_SeCall_2CB8A0(cSnd *self, int slot, short key1, short idA, short idB, unsigned int a5, int a6);
+/* Play sound-effect slot with key unless bit 1 of D_00747A30 is set: through
+   cSnd_SeCall_2CBA48 on voice if it is set, else through cSnd_SeCall_2CB8A0. */
+void cSnd_SeCallGlobal(void *unused, int slot, short key, void *voice);
+/* Fade out every voice with this key, or release it if it has no live handle. */
+void cSnd_SeFadeVoicesByKey(cSnd *self, short key, short fade);
+/* Detach every voice from an object. */
+void cSnd_SeDetachObj(cSnd *self, void *obj);
+/* Calls Forward325C98_325DC0(0); self is unused. */
+void func_002CA690(cSnd *self);
 
+/* The game's one sound manager. */
+extern cSnd D_005FEE00;
 extern cSndKindEnt D_003C3120; /* fallback entry, just before the table */
 
 #endif /* GODHAND_CSND_H */

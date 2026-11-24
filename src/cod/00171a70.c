@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cEmManage.h"
+#include "godhand/cSnd.h"
 
 extern char D_00463050[];
 extern int D_003C2F84;
 extern int D_00747A78;
 extern void cCamManager_setPlCamera(char *a0, int a1);
 extern void cScenario__endSoftEvent(int a0);
-extern char D_005FEE00[];
-extern void cSnd_SeCall_2CB8A0(char *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern void func_003201F0();
 extern void func_0031F4A0();
 
@@ -73,7 +72,7 @@ __attribute__((section(".text.func_00294A88")))
 void func_00294A88(cEmManage *self) {
     if (self->unk542 != 0) return;
     self->unk542 = 0x96;
-    cSnd_SeCall_2CB8A0(D_005FEE00, 2, 0xA4, -1, -1, 0, 0);
+    cSnd_SeCall_2CB8A0(&D_005FEE00, 2, 0xA4, -1, -1, 0, 0);
 }
 
 __attribute__((section(".text.cCollisionShape_setOffsetPos")))

@@ -2,6 +2,7 @@
 
 #include "godhand/cOmb2.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cSnd.h"
 #include "godhand/pl00.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cDamageManage.h"
@@ -13,9 +14,7 @@ extern void cOmSub_initMove1_pos(void *dst, void *obj, int idx, int a3, void *t0
 extern char D_00747B00[];
 extern char D_00747AC0[];
 extern int cOmBase_checkDamage(void *self, int damage);
-extern int cSnd_SeCall_2CBA48(void *snd, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern void cHeatSys_AddHeatGage(void *heat, int a1, float amount);
-extern char D_005FEE00[];
 extern int D_005CB000;
 extern int cModel_setMeshDisplay(void *model, char *name, int on);
 
@@ -210,7 +209,7 @@ void pl00_addComboHit(pl00 *self)
     self->comboCount = (unsigned char)self->comboCount + 1;
     self->comboTimer = COMBO_WINDOW;
     if (self->comboCount == COMBO_TOP_HITS) {
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, COMBO_SE_TOP, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, COMBO_SE_TOP, (cObj *)self, 0, 0, 0, 0);
         cCoreSave_addGameLevelPoint(&D_00569B70, COMBO_BONUS_POINTS);
     }
     heat = COMBO_HEAT_FIRST;
@@ -220,7 +219,7 @@ void pl00_addComboHit(pl00 *self)
         heat = heat * COMBO_HEAT_LATER;
     cHeatSys_AddHeatGage(&D_005CB000, 0, heat);
     if (self->comboCount % 3 == 1)
-        cSnd_SeCall_2CBA48(D_005FEE00, 0, COMBO_SE_STEP, self, 0, 0, 0, 0);
+        cSnd_SeCall_2CBA48(&D_005FEE00, 0, COMBO_SE_STEP, (cObj *)self, 0, 0, 0, 0);
     cCoreSave_addGameLevelPoint(&D_00569B70, COMBO_STEP_POINTS);
 }
 

@@ -6,9 +6,9 @@
 #include "godhand/cIDBase.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEvent.h"
+#include "godhand/cSnd.h"
 #include "godhand/gameWork.h"
 
-extern int D_005FEE00;
 extern int cSnd_SeIsLoadOk(void *snd, int handle);
 extern char D_00462FC0[];
 extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int on);

@@ -1,13 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cSnd.h"
 
-extern void cOmBase_setMeshDispFromLayer(int a0, int a1, int a2);
-extern void cSnd_SeCall_2CBA48(void *a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
-extern void SetEffect(int a0, int a1, int a2, int a3, int a4, unsigned int a5);
-extern void func_00186038(int a0, int a1);
-extern int D_005FEE00;
+extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
+extern int SetEffect(int a0, int a1, cObj *a2, int a3, int a4, unsigned int a5);
+extern void func_00186038(char *a0, int a1);
 
 __attribute__((section(".text.func_001852E8")))
-void func_001852E8(int arg0, unsigned int arg1)
+void func_001852E8(void *arg0, unsigned int arg1)
 {
     cOmBase_setMeshDispFromLayer(arg0, 1, 0);
     cOmBase_setMeshDispFromLayer(arg0, 2, 0);

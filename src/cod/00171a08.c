@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cDvd.h"
+#include "godhand/cSnd.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cObj.h"
@@ -15,7 +16,6 @@ extern CustomIDObj *cIDBase_getIDWork(void *idBase, int idx);
 extern int func_001717C0(cOmBase *self, void *target, cVec *pos);
 extern void *InitFields_1B6E90(void *self);
 extern int D_00429B88;
-extern char D_005FEE00[];
 extern void KillEffect(void *obj, int a, int b);
 extern void cSnd_SeStop(void *snd, int handle);
 extern void SetField214PtrThenInit_1B6F38(void *obj, int flag);
@@ -151,7 +151,7 @@ void cGiveOwner_destructB(SeOwnerObj *self, int flag) {
     self->vtable = (void *)&D_00428B58;
     KillEffect(self, 0, 2);
     if (self->seHandle != 0) {
-        cSnd_SeStop(D_005FEE00, self->seHandle);
+        cSnd_SeStop(&D_005FEE00, self->seHandle);
     }
     self->seHandle = 0;
     SetField214PtrThenInit_1B6F38(self, flag);

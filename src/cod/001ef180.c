@@ -1,12 +1,12 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/ColiseumBattle.h"
+#include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/globals.h"
 
 
 extern int cSnd_SeCall(void *a0, int a1, short a2, int a3, int a4, int a5);
-extern int cSnd_SeCall_2CB8A0(void *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern void CustomIDOwner_setShown(char *a0, int a1);
 extern void DigitDisplay_setNumber(char *a0, int a1, int a2);
 extern void CustomIDOwner_setPanelState(char *a0, int a1);
@@ -16,7 +16,6 @@ extern void cScenario_beginRoomJump_2C4548(char *p, int a1, float f, void *buf, 
 extern void NoOp_1F0490(char *a0);
 extern void func_001F28F0(char *a0);
 extern void func_001F2990(char *a0);
-extern char D_005FEE00[];
 extern char D_00747470[];
 extern int D_005CAFF0;
 extern int D_00747A24[];
@@ -35,7 +34,7 @@ void ColiseumBattle_StepResult(ColiseumBattle *self)
 
     switch (self->state) {
     case 0:
-        cSnd_SeCall(D_005FEE00, 0, 0x35, D_005CAFF0 + 0x210, 0, 0);
+        cSnd_SeCall(&D_005FEE00, 0, 0x35, D_005CAFF0 + 0x210, 0, 0);
         CustomIDOwner_setShown(self->ui, 1);
         self->timer = 0x3C;
         self->state = self->state + 1;
@@ -146,7 +145,7 @@ void ColiseumBattle_StepResult(ColiseumBattle *self)
             self->state = self->state + 1;
             self->prizeSteps = 0;
         } else {
-            cSnd_SeCall_2CB8A0(D_005FEE00, 0, 0x165, -1, -1, 0, 0);
+            cSnd_SeCall_2CB8A0(&D_005FEE00, 0, 0x165, -1, -1, 0, 0);
             cCoreSave_setGold(&D_00569B70, cCoreSave_getGold(&D_00569B70) + 0x3E8);
             self->prizeSteps = self->prizeSteps - 1;
         }

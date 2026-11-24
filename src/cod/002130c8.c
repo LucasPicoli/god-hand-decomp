@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
+#include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
@@ -10,11 +11,9 @@ extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void cGameObj_SetTgtTurn(char *a0, int a1, float f12);
 extern unsigned int irand(void);
 extern int GetSeqSEBase(void *a0);
-extern int cSnd_SeCall_2CBA48(void *a0, int a1, int a2, void *a3, int a4, int a5, int a6, int a7);
 extern char *Getplayer(void);
 extern int cEmManage_CkPlCatched(void *a0);
 extern unsigned char D_005864F0[];
-extern char D_005FEE00[];
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -224,9 +223,9 @@ void func_002130C8(void *a0)
         case 0x220: case 0x221: case 0x222:
             {
                 int b;
-                cSnd_SeCall_2CBA48(D_005FEE00, 1,
+                cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                    (short)(GetSeqSEBase(p) + 0xA),
-                                   p, 0, 0, 0, 0);
+                                   a0, 0, 0, 0, 0);
                 b = *(int *)(p + 0x304);
                 s2v = *(int *)(b + 0x1BC8) + b;
                 s0v = *(int *)(b + 0x1BCC) + b;
@@ -333,9 +332,9 @@ void func_002130C8(void *a0)
                     *(int *)(p + 0x5F4) = *(int *)(p + 0x5F4) - 1;
                 } else {
                     *(int *)(p + 0x5F4) = irand() % 60 + 0x78;
-                    cSnd_SeCall_2CBA48(D_005FEE00, 1,
+                    cSnd_SeCall_2CBA48(&D_005FEE00, 1,
                                        (short)(GetSeqSEBase(p) + 0xA),
-                                       p, 0, 0, 0, 0);
+                                       a0, 0, 0, 0, 0);
                 }
               }
             }

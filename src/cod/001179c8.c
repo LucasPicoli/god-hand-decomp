@@ -17,8 +17,8 @@ extern float SetMotionStep(void *a0, float f);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
 extern void cObjBase_addNullSpeed(void *a0, float f12);
-extern void SetEffectPos(int a0, int a1, int a2, void *a3, int t0, float f12);
 
+#include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 
@@ -237,7 +237,7 @@ void func_001179C8(char *s1)
                 e = 0;
             }
             if (e != 0) {
-                SetEffectPos(0, 0x4F, 0, *(void **)(e + 0xF0), -1, 1.0f);
+                SetEffectPos(0, 0x4F, 0, *(void **)(e + 0xF0), 1.0f, -1);
             }
             *(short *)(s1 + 0x56A) = 0;
         } else {

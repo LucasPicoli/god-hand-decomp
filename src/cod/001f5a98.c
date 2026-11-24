@@ -17,7 +17,6 @@ extern void cIDManager_setIDData(int a0, int a1, int a2);
 extern int cIDBase_initialize(void *id, int no, int flag);
 extern int cIDBase_setPackedMessData(void *id, int no, int flag);
 extern void SlotList_selectPrev(JukeBoxObj *self);
-extern cSnd D_005FEE00;
 extern void SetSequenceFlags_373810(cSndBgmNode *node, int bits);
 extern void ClearFlagBits_373858(cSndBgmNode *node, int bits);
 extern void cSndBgmNode_FadeOut(cSndBgmNode *node, float time);

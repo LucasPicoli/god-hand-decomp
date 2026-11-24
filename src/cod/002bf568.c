@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 /* sn-2.95.3-136: scenario step kind 5 (0x2BF568). Runs when the step is not blocked by the pause bit: clears the step record, fades the event bgm out, then jumps to the room stored in the game work block. */
+#include "godhand/cSnd.h"
 #include "godhand/player.h"
 #include "godhand/ScenarioStep.h"
 #include "godhand/globals.h"
@@ -8,7 +9,6 @@
 extern int D_00747A84;         /* GameWork flags5E4: system flags; the other work words are reached from its address as in the older TUs */
 extern int D_003C264C;
 extern char D_00583EC0[];               /* the door jump record */
-extern int D_005FEE00[];                /* the sound system */
 
 extern void func_002BF800(ScenarioStep *step);
 extern void Obj0000_Set_D_00747A80_Field_70_2BF780(ScenarioStep *step);
@@ -38,10 +38,10 @@ void ScenarioStep_runJumpKind(ScenarioStep *step)
         step->unk03 = 0;
         if (step->mode == one) {
             *(int *)(h - 0x60) |= 0x40;
-            cSnd_BgmEventFade(D_005FEE00, 0, 10.0f, 0.0f, -1.0f);
+            cSnd_BgmEventFade(&D_005FEE00, 0, 10.0f, 0.0f, -1.0f);
             g = h - 0x5E4;
-            D_005FEE00[0xB0 / 4] |= 0x200000;
-            D_005FEE00[0xAC / 4] |= 0x200000;
+            D_005FEE00.flagsB0 |= 0x200000;
+            D_005FEE00.flagsAC |= 0x200000;
             D_00747A84 &= -0x4001;
             if (*(unsigned short *)(g + 0x5B4) == 0x100) {
                 func_002C0840(D_003C264C);
