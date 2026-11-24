@@ -1,11 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/cSnd.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001B76D8(void *a0);
-extern void cCollisionSolidManage_ChkHit(void *, void *);
-extern char D_00462FC0[];
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern int SetEffect(int a0, int a1, cObj *a2, int a3, int a4, unsigned int a5);
 extern void func_001B6FB8(void *a0);
@@ -46,7 +45,7 @@ void UpdatePhaseWithHitCheckB(void *a0)
     else
         arg = f0;
     fp((int)(s0 + arg));
-    cCollisionSolidManage_ChkHit(D_00462FC0, s0);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_001B76D8(s0);
 }
 
@@ -85,7 +84,7 @@ void UpdatePhaseWithHitCheckC(void *a0)
     else
         arg = f0;
     fp((int)(s0 + arg));
-    cCollisionSolidManage_ChkHit(D_00462FC0, s0);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_001B76D8(s0);
 }
 

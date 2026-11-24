@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
 extern int moveMotion(void *a0);
 extern void func_0012C540(void *a0, int a1);
-extern int D_00462FC0;
 
 /* sn-2.95.3-136 candidate. */
 
@@ -23,7 +22,7 @@ void func_0011A660(void *a0)
 {
     char *s0 = (char *)a0;
 
-    cCollisionSolidManage_SetActive(&D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(float *)(s0 + 0x54C) = 2.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:

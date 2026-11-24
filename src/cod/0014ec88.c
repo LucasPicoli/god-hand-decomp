@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cObjBase.h"
 #include "godhand/motion.h"
 
@@ -9,8 +10,6 @@ float step, float start, int flags);
 
 extern unsigned int func_0031ED08(float f);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int D_00462FC0;
 extern void Obj1D00_SetState_6_A(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 
@@ -41,7 +40,7 @@ void func_0014EC88(cObjBase *self) {
 
 __attribute__((section(".text.func_00237E90")))
 void func_00237E90(void *a0){ char *s0=(char*)a0; int v0; float one;
- cCollisionSolidManage_SetActive(&D_00462FC0,s0,0);
+ cCollisionSolidManage_SetActive(&D_00462FC0,(cGameObj *)s0,0);
  *(int*)(s0+0x16D0)=*(int*)(s0+0x16D0)|0x20000;
  *(float*)(s0+0x54C)=3.0f;
  switch(*(unsigned char*)(s0+0x2F6)){

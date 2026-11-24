@@ -1,4 +1,4 @@
-extern int D_00462FC0;
+#include "godhand/cCollisionSolid.h"
 extern int D_005CAFF0;
 extern int D_00463050;
 

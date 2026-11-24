@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cScrSpriteDraw.h"
+#include "godhand/cCollisionSolid.h"
 
 extern int D_003C2388;
 extern void *cIDManager_getTexAddr(int a, int b, int c);
@@ -416,43 +417,29 @@ void *func_00193EA8(unsigned char *this) {
     return this;
 }
 
-/* sn-2.95.3-136 candidate. */
-
-typedef struct Unit {
-    char pad[0x10];
-    struct Unit *next;
-} Unit;
-
-typedef struct {
-    Unit *head;
-    int count;
-} Mgr;
-
-
-
-extern Unit *func_00134430(void *mem, void *a, int b, float f);
-
+/* Give owner a unit at the end of the list, unless it has one or is null. */
 __attribute__((section(".text.cCollisionSolidManage_CreateUnit")))
-void cCollisionSolidManage_CreateUnit(Mgr *m, void *a, int b, float f)
+void cCollisionSolidManage_CreateUnit(cCollisionSolidManage *self, struct cGameObj *owner, int priority,
+                                      float share)
 {
-    Unit *p;
-    Unit *q;
+    cCollisionSolidManageUnit *p;
+    cCollisionSolidManageUnit *q;
 
-    if (a != 0) {
-        if (func_001346C8(m, a) == 0) {
-            if (m->head != 0) {
-                q = m->head;
+    if (owner != 0) {
+        if (func_001346C8(self, owner) == 0) {
+            if (self->first != 0) {
+                q = self->first;
                 while (q->next != 0) {
                     q = q->next;
                 }
-                p = func_00134430(func_0030F550(0x40), a, b, f);
+                p = func_00134430(func_0030F550(sizeof(cCollisionSolidManageUnit)), owner, priority, share);
                 q->next = p;
             } else {
-                p = func_00134430(func_0030F550(0x40), a, b, f);
-                m->head = p;
+                p = func_00134430(func_0030F550(sizeof(cCollisionSolidManageUnit)), owner, priority, share);
+                self->first = p;
             }
             if (p != 0) {
-                do { m->count = m->count + 1; } while (0);
+                do { self->unitNum = self->unitNum + 1; } while (0);
             }
         }
     }

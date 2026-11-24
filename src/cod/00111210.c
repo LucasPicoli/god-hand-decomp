@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -14,14 +15,12 @@ extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0012C348(void *a0, int a1);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void func_001299F0(void *a0, void *a1, void *a2, int a3, float a4);
 extern void cEm00_GetPlMotion(void *a0, int a1, float a2, float a3);
 extern void func_00124EC0(void *a0);
 extern void func_0012C0F8(void *a0, int a1);
 extern int D_00747A24;
-extern char D_00462FC0[];
 extern char D_005864F0[];
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetBigHitEffWait(void *a0, int a1);
@@ -181,7 +180,7 @@ void func_001209A0(void *a0)
     *(float *)(s0 + 0x54C) = 5.0f;
     *(int *)(s0 + 0x250) |= 0x10000;
     s1 = *(char **)(s0 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     cEmManage_SetPlCatched(D_005864F0);
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:

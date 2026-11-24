@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -19,9 +20,7 @@ extern void func_00124EC0(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cEmManage_SetSpeedRate(void *a0, float f12);
 extern char D_005864F0[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float fRand0_1(void);
-extern unsigned char D_00462FC0[];
 
 __attribute__((section(".text.func_0025B5A8")))
 void func_0025B5A8(void *a0){ char *s0=(char*)a0;
@@ -147,7 +146,7 @@ void func_00287E50(void *a0)
     char *s0 = (char *)a0;
     *(float *)(s0 + 0x54C) = 3.0f;
     *(int *)(s0 + 0x15B0) = *(int *)(s0 + 0x15B0) | 0x10000;
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(int *)(s0 + 0x258) = *(int *)(s0 + 0x258) | 0x80000000;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0: {

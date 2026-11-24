@@ -1,11 +1,9 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
 
 extern int D_0041D220[];
-extern int D_00462FC0[];
-extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void cPlBase__dtor(void *a0, void *a1);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float SetMotionStep(void *a0, float f);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 
 __attribute__((section(".text.cCockMess_SetMessNo")))
@@ -35,7 +33,7 @@ void ResetAnimSlotArray_13F510(char *a0) {
 __attribute__((section(".text.InitActorWithVtable_107EC8")))
 void InitActorWithVtable_107EC8(void *a0, void *a1) {
     *(int **)((char*)a0+0x214) = D_0041D220;
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
     cPlBase__dtor(a0, a1);
 }
 
@@ -45,7 +43,7 @@ void StepPlayerSubscreenMode_10B780(void *a0) {
     int st;
     int base;
     *(float*)((char*)a0 + 0x54C) = 5.0f;
-    cCollisionSolidManage_SetActive(D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
     *(int*)((char*)a0 + 0x15F4) = *(int*)((char*)a0 + 0x15F4) | 0x2000;
     *(float*)((char*)a0 + 0x5A8) = 1.0f;
     SetMotionStep(a0, 1.0f);

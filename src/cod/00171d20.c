@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 
@@ -7,8 +8,6 @@ extern void func_002A87E8(void *a0, int a1);
 extern void func_001B76D8(void *a0);
 extern void cModel_calcParts(void *);
 extern void cModel_calcWorldParts(void *);
-extern void cCollisionSolidManage_ChkHit(void *, void *);
-extern char D_00462FC0[];
 extern void func_001C0450(void *);
 extern float cEmManage_GetSpeedRate(void *a0);
 extern char D_005864F0[];
@@ -95,7 +94,7 @@ void UpdatePhaseWithHitCheck(void *a0)
     else
         arg = f0;
     fp((int)(s0 + arg));
-    cCollisionSolidManage_ChkHit(D_00462FC0, s0);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
 }
@@ -185,7 +184,7 @@ void UpdatePhaseWithScroll(void *a0)
     rate = cEmManage_GetSpeedRate(D_005864F0);
     *(float *)(s0 + 0x5A8) = rate;
     cModel_ScrollTexture(s0, rate);
-    cCollisionSolidManage_ChkHit(D_00462FC0, s0);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
 }

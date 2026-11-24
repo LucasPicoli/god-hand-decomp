@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -5,8 +6,6 @@
 
 /* sn-2.95.3-136 matched TU. */
 
-extern unsigned char D_00462FC0[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, void *a1, float a2);
@@ -28,7 +27,7 @@ __attribute__((section(".text.func_00244708"))) void func_00244708(cEm00 *self)
 
     bomb = func_002948C8(&D_005864F0, self->unk17B1);
     VU0_SQC2_VF0(buf, 0);
-    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     self->emFlags = self->emFlags | 0x10000;
     switch (self->step) {
         case 0: {

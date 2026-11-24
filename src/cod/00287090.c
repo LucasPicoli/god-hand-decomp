@@ -1,22 +1,21 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 
 extern int moveMotion(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cModel_calcNullPart(void *a0);
 extern void Add_nullspeed(void *a0);
 extern float fRand0_1(void);
-extern char D_00462FC0[];
 /* Phase machine on the step byte, 4 case labels. Calls cCollisionSolidManage_SetActive,
  * func_002A8578, moveMotion, cModel_calcNullPart, Add_nullspeed, cSnd_SeCall_2CBA48 and 3 more. */
 __attribute__((section(".text.func_00287090"))) void func_00287090(cEm00 *self)
 {
     int res;
     float f;
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0:
             self->gotoFlags = self->gotoFlags | 1;

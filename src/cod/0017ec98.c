@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
 
 extern int espSys_effDataRegist(void *table, int id, void *data);
 extern int SetEffect(int kind, int id, void *obj, int a3, int a4, unsigned int a5);
 extern char D_007419A0[];
-extern void cCollisionSolidManage_CreateUnit(void *mgr, void *owner, int kind, float radius);
-extern void cCollisionSolidManage_CreateSphere(void *mgr, void *owner, void *body, void *centre, float radius);
 
 #define EFFDATA_ID 0x27D
 
@@ -34,8 +33,6 @@ int cOmBase_initEffData27D(cOmBase *self)
 
 
 
-extern int D_00462FC0;                  /* collision solid manager */
-
 /* Init of an object with one collision sphere: base init, mark it solid, register
  * the unit and a sphere centred half a unit above its origin, reset the mode byte. */
 __attribute__((section(".text.cOmBase_initSphereBody")))
@@ -45,12 +42,12 @@ int cOmBase_initSphereBody(cOmBase *self)
 
     func_001B6FB8(self);
     self->flags2 |= COMBASE_F2_SOLID;
-    cCollisionSolidManage_CreateUnit(&D_00462FC0, self, 6, 0.1f);
+    cCollisionSolidManage_CreateUnit(&D_00462FC0, (cGameObj *)self, 6, 0.1f);
     centre.x = 0.0f;
     centre.y = 0.5f;
     centre.z = 0.0f;
     centre.w = 1.0f;
-    cCollisionSolidManage_CreateSphere(&D_00462FC0, self, self->mtx, &centre, 0.4f);
+    cCollisionSolidManage_CreateSphere(&D_00462FC0, (cGameObj *)self, (const struct cMatrix *)self->mtx, &centre, 0.4f);
     self->mode = 0;
     return 1;
 }

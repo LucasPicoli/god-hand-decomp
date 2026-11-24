@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -6,10 +7,8 @@
 
 extern int moveMotion(void *a0);
 extern int GetSeqSEBase(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int irand(void);
 extern void cModel_calcNullPart(void *a0);
-extern char D_00462FC0[];
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float a2);
 extern void Add_nullspeed(void *a0);
 
@@ -46,7 +45,7 @@ __attribute__((section(".text.func_002803F0"))) void func_002803F0(cEm00 *self)
 __attribute__((section(".text.func_002887D0"))) void func_002887D0(cEm00 *self)
 {
     int res;
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     self->gotoFlags = self->gotoFlags | 2;
     switch (self->step) {
         case 0:

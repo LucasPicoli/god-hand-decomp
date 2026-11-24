@@ -1,11 +1,10 @@
 /* sn-2.95.3-136: func_001AB730, gimmick open/close step: play the open motion with the solid
  * collision off, flash its damage collision when the motion ends, then close it again. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageGive.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
-extern char D_00462FC0[];
-extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int on);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
@@ -35,7 +34,7 @@ void func_001AB730(cOmOpenClose *self)
     switch (self->base.step) {
     case 0:
         self->flags |= OPENCLOSE_OPENING;
-        cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+        cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
         {
             int v0 = (int)self->base.pack;
 
@@ -69,7 +68,7 @@ void func_001AB730(cOmOpenClose *self)
     case 3:
         if (moveMotion(self) != 0) {
             self->timer = 0x1E;
-            cCollisionSolidManage_SetActive(D_00462FC0, self, 1);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 1);
             self->base.mode = 0;
             self->base.phase = 0;
             self->base.step = 0;

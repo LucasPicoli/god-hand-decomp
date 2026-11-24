@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/cMessCommon.h"
 #include "godhand/globals.h"
@@ -7,8 +8,6 @@ extern unsigned int D_007476B0;
 extern int D_00568288;
 extern void cActionButton_set(int *a0, int a1, int a2, int a3, int t0, int t1, int t2);
 extern int cModel_getMeshPtr(int a0, int a1);
-extern void NodeList_clear(int *a0);
-extern void NodeList_deletingDtor(int *a0, int a1);
 
 __attribute__((section(".text.cSnd_GetBgmData")))
 int cSnd_GetBgmData(int a0, int a1) {
@@ -92,37 +91,37 @@ int func_001BFB28(int a0){
 }
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit")))
-void cCollisionSolidManage_ReleaseUnit(int *a0, int a1){
-    int *node;
-    int *prev;
-    int *head;
-    int next;
+void cCollisionSolidManage_ReleaseUnit(cCollisionSolidManage *self, struct cGameObj *owner){
+    cCollisionSolidManageUnit *node;
+    cCollisionSolidManageUnit *prev;
+    cCollisionSolidManageUnit *head;
+    cCollisionSolidManageUnit *next;
 
     prev = 0;
-    if (a1 == 0) {
+    if (owner == 0) {
         return;
     }
-    head = *(int **)a0;
+    head = self->first;
     node = head;
     while (node != 0) {
-        if (*node == a1) {
+        if (node->owner == owner) {
             break;
         }
         prev = node;
-        node = *(int **)((char *)node + 0x10);
+        node = node->next;
     }
     if (node == 0) {
         return;
     }
-    next = *(int *)((char *)node + 0x10);
+    next = node->next;
     if (node != head) {
-        *(int *)((char *)prev + 0x10) = next;
+        prev->next = next;
     } else {
-        *(int *)a0 = next;
+        self->first = next;
     }
-    NodeList_clear(node);
+    cCollisionSolidManageUnit_clear(node);
     if (node != 0) {
-        NodeList_deletingDtor(node, 3);
+        cCollisionSolidManageUnit__dtor(node, 3);
     }
-    *(int *)((char *)a0 + 0x4) = *(int *)((char *)a0 + 0x4) - 1;
+    self->unitNum = self->unitNum - 1;
 }

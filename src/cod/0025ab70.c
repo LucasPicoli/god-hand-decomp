@@ -2,16 +2,15 @@
 
 /* cEm00_stepMotionThenTimedEnd: an enemy that starts a motion picked by its enemy number,
  * waits out a 150 frame timer and then ends the step. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
-extern void cCollisionSolidManage_SetPriority(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
-extern int D_00462FC0;
 
 __attribute__((section(".text.cEm00_stepMotionThenTimedEnd")))
 void cEm00_stepMotionThenTimedEnd(cEm00 *self)
@@ -89,7 +88,7 @@ void cEm00_stepMotionThenTimedEnd(cEm00 *self)
             }
             break;
         }
-        cCollisionSolidManage_SetPriority(&D_00462FC0, self, 0);
+        cCollisionSolidManage_SetPriority(&D_00462FC0, (cGameObj *)self, 0);
         {
             cVec *p;
             cVec *q;
@@ -133,7 +132,7 @@ void cEm00_stepMotionThenTimedEnd(cEm00 *self)
         t = self->timer - self->speedRate;
         self->timer = t;
         if (t <= 0.0f) {
-            cCollisionSolidManage_SetPriority(&D_00462FC0, self, 5);
+            cCollisionSolidManage_SetPriority(&D_00462FC0, (cGameObj *)self, 5);
             if (self->unk17BB != 0 && self->unk1740 <= 0.0f) {
                 func_00274238(self, 0);
             } else {

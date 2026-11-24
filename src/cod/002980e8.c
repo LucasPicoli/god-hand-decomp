@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 
 extern int D_00586AF0;
 extern void CostumeObj_applyPartMeshes(void);
@@ -12,11 +13,9 @@ extern void func_00298C18(void);
 extern void func_00298EF8(void);
 extern void cModel_setBossMeshes(void);
 extern char D_005864F0[];
-extern char D_00462FC0[];
 extern char *Getplayer();
 extern int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(void *p);
 extern int cEmManage_CkPlCatched(void *p);
-extern void cCollisionSolidManage_SetActive(void *a, void *b, int c);
 extern void func_00129718(void *a, void *b, int c);
 
 /* clone */
@@ -115,7 +114,7 @@ void func_002DD300(char *a0) {
     *(float *)(a0 + 0x54C) = 30.0f;
     *(char *)(a0 + 0x2F4) = 1;
     *(char *)(a0 + 0x2F5) = 0x1D;
-    cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x1D);
 }
 
@@ -135,6 +134,6 @@ void func_002DD3C0(char *a0) {
     *(float *)(a0 + 0x54C) = 30.0f;
     *(char *)(a0 + 0x2F4) = 1;
     *(char *)(a0 + 0x2F5) = 0x1E;
-    cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x1E);
 }

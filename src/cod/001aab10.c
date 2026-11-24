@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cDamageUnit.h"
 #include "godhand/vu0.h"
@@ -35,9 +36,6 @@ typedef struct BreakFrame {
     cVec rot;                           /* 0x10 */
 } BreakFrame;
 
-extern char D_00462FC0[];
-
-extern void cCollisionSolidManage_SetActive(int a0, int a1, int a2);
 extern void func_001AA8D8(char *a0, int a1, float *a2, float *a3);
 
 /* Break the object: switch its damage and collision off, scatter every piece
@@ -63,7 +61,7 @@ void func_001AAB10(cOmBreakable *self)
     if (self->vol[2] != 0) {
         self->vol[2]->flags &= ~1;
     }
-    cCollisionSolidManage_SetActive((int)D_00462FC0, (int)self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     VU0_LQC2(4, &self->base.knock, 0);
     VU0_SQC2(4, &f, 0);
     cVec_set4(&f.rot, 0.0f, 0.0f, 0.0f, 1.0f);

@@ -20,9 +20,7 @@ typedef struct cEmFallWork {
 #define EMFALL_FLOOR_RANGE 10.0f
 
 extern unsigned int D_00747A78;
-extern char D_00462FC0[];
 extern float capVu0MagnitudeSqXZ(void *a, void *b);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cObjBase_SetSeqEffect(cObjBase *a0);
 extern void cModel_calcParts(cModel *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
@@ -48,7 +46,7 @@ void func_00277568(cEm00 *self)
     }
     self->playerDist = capVu0MagnitudeSqXZ(Getplayer()->pos, self->pos);
     EMFALL(self)->flags &= ~EMFALL_GROUNDED;
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     idx = D_003BFAC0[self->mode].index;
     if (idx >= 0) {
         e = (*(cVtEnt8 **)((char *)self + D_003BFAC0[self->mode].u.delta2))[idx - 1];
@@ -66,7 +64,7 @@ void func_00277568(cEm00 *self)
     cModel_calcParts(self);
     IK_InverseKinematics(self->ik, self);
     cModel_calcWorldParts(self);
-    cCollisionSolidManage_ChkHit(D_00462FC0, self);
+    cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)self);
     if (!(EMFALL(self)->flags & EMFALL_GROUNDED)) {
         VU0_SQC2_VF0(&wall, 0);
         if (ChkCollScrWall(self, &wall, 0, &norm, 0, 0, EMFALL_WALL_RADIUS) != 0) {

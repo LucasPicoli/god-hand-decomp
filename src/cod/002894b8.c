@@ -1,16 +1,13 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEma2.h"
 #include "godhand/vu0.h"
 
 extern cGameObj *Getplayer(void);
-extern void cCollisionSolidManage_SetActive(void *manager, void *obj, int active);
-extern char D_00462FC0[];
 extern int D_00747A2C;
 extern float capVu0MagnitudeSqXZ(cVec *a, cVec *b);
 
-extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
-                   int a7, int a8, int a9, int a10, int a11, int a12);
 
 
 
@@ -57,7 +54,7 @@ int cEma2_startHitCooldown(cEma2 *self)
     if (ChkLine(start, &to, 0, 0, 1, 0x18, 0, 0, 0, 0, 0, 0, n) == n)
         return 0;
     self->base.hitFlash = EMA2_COOLDOWN;
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, &self->base, 0);
     return 1;
 }
 

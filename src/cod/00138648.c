@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/cCamera.h"
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/ColiseumBattle.h"
@@ -13,9 +14,7 @@ extern void sceVu0CameraMatrix(float *out, cVec *p, cVec *zd, cVec *yd);
 extern void *Getplayer(void);
 extern void cOmBase_setMeshDispFromLayer(cOmBase *self, int layer, int on);
 extern int SetEffect(int effNo, int kind, void *obj, int a3, int a4, unsigned int a5);
-extern void cCollisionSolidManage_SetActive(void *mgr, void *obj, int active);
 extern void KillEffect(void *obj, int effNo, int mode);
-extern char D_00462FC0[];
 
 /* Build the view matrix: take the eye and the target through the model
  * matrix, find the view direction (target minus the untransformed eye) and
@@ -165,7 +164,7 @@ void cOmBase_switchOff(cOmOffBody *self)
         self->solid[1]->flags &= ~1;
     if (self->solid[2] != 0)
         self->solid[2]->flags &= ~1;
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     self->killFlags |= OMOFF_FLAG_FADE_KILL;
     KillEffect(self, 3, 2);
     KillEffect(self, 0xB, 2);

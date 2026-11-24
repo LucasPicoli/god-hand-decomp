@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 
 extern void func_003182D8(int a, int b);
 extern void func_0031CE90(int a, int b);
 extern unsigned char D_0045F039[];
 extern int D_00466470;
 extern void __builtin_delete();
-extern int D_00462FC0[];
-extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void EmitterAllKill(void);
 extern void EspAllKill(void);
 extern void sdeIssLumpProcess(void);
@@ -100,27 +99,27 @@ void cBoundingBox__dtor(int a0, int a1) {
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_277540")))
 void cCollisionSolidManage_ReleaseUnit_277540(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
 }
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_278368")))
 void cCollisionSolidManage_ReleaseUnit_278368(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
 }
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_27E088")))
 void cCollisionSolidManage_ReleaseUnit_27E088(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
 }
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_281940")))
 void cCollisionSolidManage_ReleaseUnit_281940(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
 }
 
 __attribute__((section(".text.cCollisionSolidManage_ReleaseUnit_289E10")))
 void cCollisionSolidManage_ReleaseUnit_289E10(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
 }
 
 __attribute__((section(".text.func_00305B90")))

@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cEma2.h"
 #include "godhand/motion.h"
@@ -30,15 +31,11 @@ static __inline__ void cModelNode_show(cModelNode *node) {
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
 extern void cObjBase_KageInit(void *a, void *b, void *c);
-extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
-extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern float fRand0_1(void);
 
 extern int Rnd(void);
-extern int D_00462FC0;
 struct sph { int a; float b; int c; float d; };
 /* Sets up the enemy from its room entry: copies the entry, clears the state
  * bytes, picks the motion set, builds the damage spheres and the solid
@@ -98,7 +95,7 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     cModel_calcParts(self);
     IK_InverseKinematics(self->base.ik, self);
     cModel_calcWorldParts(self);
-    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, &self->base, 0);
     cVec_copy3(&self->escPos, self->base.pos);
     cParts_setRotationOrder(self, 4);
     cObjBase_KageInit(self, self->shadow, D_003C3F68);
@@ -167,12 +164,12 @@ int func_002897F0(cEma2 *self, SET_EM_DATA *data, void *arg)
     centre.w = 1.0f;
     self->hitSphere[3] = cDamageUnit_AddDamageCollSphere((cDamageUnit *)self->damageTake, (const struct cMatrix *)child->mtx, &centre, 0.25f);
 
-    cCollisionSolidManage_CreateUnit(&D_00462FC0, self, 5, 0.2f);
+    cCollisionSolidManage_CreateUnit(&D_00462FC0, &self->base, 5, 0.2f);
     centre.w = 1.0f;
     centre.y = 0.5f;
     centre.x = 0;
     centre.z = 0;
-    cCollisionSolidManage_CreateSphere(&D_00462FC0, self, self->base.mtx, &centre, 0.5f);
+    cCollisionSolidManage_CreateSphere(&D_00462FC0, &self->base, (const struct cMatrix *)self->base.mtx, &centre, 0.5f);
 
     /* The goal's first word holds flags, its w the random wait. */
     *(int *)&self->goal.z = 0;

@@ -4,16 +4,13 @@
 
 
 extern void func_0028EBF0(char *a0, void *a1, int a2);
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 extern void cModel_calcParts(void *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cParts_setRotationOrder(void *a0, int a1);
-extern void cCollisionSolidManage_CreateUnit(void *a0, void *a1, int a2, float f);
-extern void cCollisionSolidManage_CreateSphere(void *a0, void *a1, void *a2, void *a3, float f);
 extern void cWorldLight_Init_SatanLight(void *a0, void *a1);
-extern int D_00462FC0;
 extern char D_00604700[];
 
 #include "godhand/vu0.h"
@@ -60,7 +57,7 @@ int func_002816E0(char *a0)
     *(short *)(s1 + 0x2AE) = 0x1770;
     *(unsigned char *)(s1 + 0x616) = 1;
     *(char *)(s1 + 0x531) = -1;
-    cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cParts_setRotationOrder(s1, 4);
     *(short *)(s1 + 0x54A) = *(short *)(s1 + 0x548) = 1;
     *(int *)(s1 + 0x670) = 0;
@@ -85,13 +82,13 @@ int func_002816E0(char *a0)
         *(int *)(s1 + 0x674) = cDamageUnit_AddDamageCollSphere(
             *(cDamageUnit **)(s1 + 0x670), (const struct cMatrix *)(base + 0x80), (const cVec *)r, 0.25f);
     }
-    cCollisionSolidManage_CreateUnit(&D_00462FC0, s1, 5, 0.2f);
+    cCollisionSolidManage_CreateUnit(&D_00462FC0, (cGameObj *)s1, 5, 0.2f);
     q = (struct sph *)(buf + 0x40);
     *(int *)(buf + 0x40) = 0;
     q->b = 0.5f;
     *(int *)(buf + 0x48) = 0;
     q->d = 1.0f;
-    cCollisionSolidManage_CreateSphere(&D_00462FC0, s1, s1 + 0x80, q, 0.5f);
+    cCollisionSolidManage_CreateSphere(&D_00462FC0, (cGameObj *)s1, (const struct cMatrix *)(s1 + 0x80), (const cVec *)q, 0.5f);
     *(int *)(s1 + 0x2D0) = *(int *)(s1 + 0x2D0) & 0xBFFFFFFF;
     *(unsigned char *)(s1 + 0x15B0) = 0;
     cWorldLight_Init_SatanLight(D_00604700, s1);

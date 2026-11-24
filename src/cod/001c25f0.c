@@ -1,8 +1,8 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 
 extern int D_0042C4F8;
-extern char D_00462FC0[];
 extern char D_0044BE98[];
 extern int D_0044EE38;
 
@@ -61,7 +61,7 @@ int GetBuiltPackedAddr_1FFA28(int a0) {
 
 __attribute__((section(".text.ForwardDispatchByMode_27F170")))
 void ForwardDispatchByMode_27F170(void *a0) {
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, a0);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, a0);
     KillEffect(a0, 1, 2);
 }
 

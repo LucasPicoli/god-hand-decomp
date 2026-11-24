@@ -1,42 +1,103 @@
-/* include/godhand/cCollisionSolid.h - cCollisionSolid, one solid collision body.
+/* include/godhand/cCollisionSolid.h - cCollisionSolid, one solid collision
+ * body, and cCollisionSolidManage, the manager that keeps each owner's solids.
  *
  * The base constructor (cCollisionSolid) clears the state words, zeroes two
  * vectors, points the vtable word at the base table and sets flag bit 0. The
- * sphere constructor runs it, swaps in the sphere table, stores the owner and
- * fills the centre and the radius. The record is at least 0x74 bytes; its real
- * size is not known.
+ * sphere constructor runs it, swaps in the sphere table, stores the body
+ * matrix and fills the centre and the radius. The record is at least 0x74
+ * bytes; its real size is not known.
  *
- * Method names are the game's own, from the symbol table in the retail ELF.
- * Field names are ours, taken from the methods that read and write them.
- * Offsets are exact: every body that uses this header builds byte-identical
- * to retail. A field we can't name yet stays as unkNN padding.
+ * Retail's names, from its symbol table and type info strings: the classes
+ * (cCollisionSolid, cCollisionSolidSphere, cCollisionSolidCapsule,
+ * cCollisionSolidBox, cCollisionSolidManage, cCollisionSolidManageUnit), the
+ * base constructor cCollisionSolid and its destructor cCollisionSolid__dtor,
+ * and the manager's six methods (CreateUnit, CreateSphere, SetActive,
+ * SetPriority, ReleaseUnit, ChkHit). The other names are ours: the unit's
+ * cCollisionSolidManageUnit_clear, __dtor, _setActive and _setPriority, the
+ * three body destructors, cCollisionSolid_constructSphere and
+ * cCollisionSolid_updateBounds, like the field names, which come from the
+ * methods that read and write them. Offsets are exact: every body that uses
+ * this header builds byte-identical to retail. A field we can't name yet
+ * stays as unkNN padding.
  */
 #ifndef GODHAND_CCOLLISIONSOLID_H
 #define GODHAND_CCOLLISIONSOLID_H
 
 #include "godhand/cOmBase.h"
 
+struct cGameObj;
+/* Retail's matrix type (CreateSphere__21cCollisionSolidManageP8cGameObjRC7cMatrixRC4cVecf);
+ * only pointers to it are used. */
+struct cMatrix;
+
 #define CSOLID_STATE_SPHERE  1          /* state: the sphere constructor ran */
+#define CSOLID_STATE_BOX     3          /* state of a box body (cCollisionSolidBox) */
+
+#define CSOLID_FLAG_ACTIVE   0x1        /* flags: the solid takes part in hit checks */
+#define CSOLID_FLAG_HIT      0x2        /* flags: set on both solids of a touching pair */
+
+/* The g++ 2.x method table of a solid body (0x28 bytes): five 8-byte
+ * entries, each a this adjustment, an index and the function. */
+typedef struct cCollisionSolidVt {
+    short unk00[2];
+    void *(*typeInfo)(void);            /* 0x04 the class's type info function */
+    short dtorDelta;                    /* 0x08 */
+    short dtorIndex;
+    void (*dtor)(void *self, int flags); /* 0x0C destructor; flags bit 0 frees the body */
+    short unk10[2];
+    void (*unk14)(void *self);          /* 0x14 */
+    short updateBoundsDelta;            /* 0x18 */
+    short updateBoundsIndex;
+    void (*updateBounds)(void *self);   /* 0x1C cCollisionSolid_updateBounds for a sphere */
+    char unk20[8];                      /* 0x20 zero in every table */
+} cCollisionSolidVt;
+
+typedef char cCollisionSolidVt_size_check[(sizeof(cCollisionSolidVt) == 0x28) ? 1 : -1];
+
+/* Method tables, named by the type info function each one holds at 0x04:
+ * cCollisionSolid (D_0041D808), cCollisionSolidSphere (D_0041D7E0,
+ * __tf21cCollisionSolidSphere), cCollisionSolidCapsule (D_0041D7B8,
+ * __tf22cCollisionSolidCapsule) and cCollisionSolidBox (D_0041D790,
+ * __tf18cCollisionSolidBox). */
+extern const cCollisionSolidVt D_0041D808;
+extern const cCollisionSolidVt D_0041D7E0;
+extern const cCollisionSolidVt D_0041D7B8;
+extern const cCollisionSolidVt D_0041D790;
 
 /* The C function cCollisionSolid is the constructor, so the record type has
  * its own name. */
 typedef struct cCollisionSolidObj {
-    int unk00;                          /* 0x00 cleared by the base constructor */
-    int state;                          /* 0x04 */
-    unsigned int flags;                 /* 0x08 bit 0 set by the constructor */
+    struct cCollisionSolidObj *next;    /* 0x00 next solid of the unit, cleared by the base constructor */
+    int state;                          /* 0x04 CSOLID_STATE_* */
+    unsigned int flags;                 /* 0x08 CSOLID_FLAG_*; the constructor sets CSOLID_FLAG_ACTIVE */
     char unk0C[4];
-    cVec unk10;                         /* 0x10 zeroed */
-    cVec unk20;                         /* 0x20 zeroed */
-    const void *vt;                     /* 0x30 table of the body kind */
+    cVec min;                           /* 0x10 bounds, (0, 0, 0, 1) from the constructor */
+    cVec max;                           /* 0x20 */
+    const cCollisionSolidVt *vt;        /* 0x30 table of the body kind */
     char unk34[0xC];
-    void *owner;                        /* 0x40 the object that owns the body */
+    const struct cMatrix *body;         /* 0x40 the body's matrix, as CreateSphere is given it */
     char unk44[0xC];
     cVec center;                        /* 0x50 sphere centre, w zeroed */
-    cVec unk60;                         /* 0x60 zeroed */
+    cVec unk60;                         /* 0x60 the centre through the body matrix */
     float radius;                       /* 0x70 sphere radius */
 } cCollisionSolidObj;
 
+typedef char cCollisionSolid_min_check[((int)&((cCollisionSolidObj *)0)->min == 0x10) ? 1 : -1];
+typedef char cCollisionSolid_body_check[((int)&((cCollisionSolidObj *)0)->body == 0x40) ? 1 : -1];
 typedef char cCollisionSolid_radius_check[((int)&((cCollisionSolidObj *)0)->radius == 0x70) ? 1 : -1];
+
+/* Base constructor: no next solid, state 0, both bounds (0, 0, 0, 1), base table, CSOLID_FLAG_ACTIVE. */
+cCollisionSolidObj *cCollisionSolid(cCollisionSolidObj *self);
+/* Base destructor: put the base table back, free the body when flags bit 0 is set. */
+void cCollisionSolid__dtor(cCollisionSolidObj *self, int flags);
+/* Destructors of the sphere, the capsule and the box: put the class's table
+ * back, then run the base destructor. */
+void cCollisionSolidSphere__dtor(cCollisionSolidObj *self, int flags);
+void cCollisionSolidCapsule__dtor(cCollisionSolidObj *self, int flags);
+void cCollisionSolidBox__dtor(cCollisionSolidObj *self, int flags);
+/* Sphere constructor: base constructor, sphere table, body matrix, centre, radius. */
+cCollisionSolidObj *cCollisionSolid_constructSphere(cCollisionSolidObj *self, const struct cMatrix *body,
+                                                    const cVec *center, float radius);
 
 /* A box collision body: the solid record, then the eight corners, bottom face first. */
 typedef struct cCollisionSolidBox {
@@ -47,8 +108,83 @@ typedef struct cCollisionSolidBox {
 
 typedef char cCollisionSolidBox_corner_check[((int)&((cCollisionSolidBox *)0)->corner == 0xF0) ? 1 : -1];
 
+#define CSOLID_HIT_MAX       32         /* cCollisionSolidManage.hits */
+
+/* One owner's entry in the manager's list, with the owner's solids. Retail's
+ * class name, from Q225cCollisionSolidManageUnit9ePRIORITY in CreateUnit's and
+ * SetPriority's symbols. CreateUnit allocates it as 0x40 bytes and
+ * func_00134430 builds it. */
+typedef struct cCollisionSolidManageUnit {
+    struct cGameObj *owner;             /* 0x00 */
+    cCollisionSolidObj *first;          /* 0x04 its first solid */
+    int priority;                       /* 0x08 cCollisionSolidManageUnit::ePRIORITY. 0: never pushed;
+                                         * otherwise the higher of the two takes the whole push,
+                                         * equal ones split it by share */
+    float share;                        /* 0x0C how much of the push it hands a unit of the same priority */
+    struct cCollisionSolidManageUnit *next; /* 0x10 */
+    char unk14[0xC];
+    cVec min;                           /* 0x20 bounds of all its solids, (0, 0, 0, 1) from func_00134430 */
+    cVec max;                           /* 0x30 */
+} cCollisionSolidManageUnit;
+
+typedef char cCollisionSolidManageUnit_size_check[(sizeof(cCollisionSolidManageUnit) == 0x40) ? 1 : -1];
+
+/* The solid collision manager: the list of units, one per owner, and the
+ * owners the last check hit. Its constructor (func_00134650) clears first,
+ * the 32 hits and hitNum; it doesn't write unitNum.
+ *
+ * 0x8C bytes: it holds only pointers and ints (nothing 16-byte aligned), and
+ * no instruction reads or writes 0x8C or past it. Its .bss slot (D_00462FC0,
+ * up to D_00463050) is 0x90, which fits either size: it only bounds the
+ * record to 0x89..0x90. A 0x8C record lands there because the compilers emit
+ * it as .comm sym,140,8, so the next object starts at 0x462FC0 + 0x8C rounded
+ * up to 8; a 0x90 record would end at the same label. */
+typedef struct cCollisionSolidManage {
+    cCollisionSolidManageUnit *first;   /* 0x00 */
+    int unitNum;                        /* 0x04 */
+    struct cGameObj *hits[CSOLID_HIT_MAX]; /* 0x08 owners hit by the last check */
+    unsigned int hitNum;                /* 0x88 */
+} cCollisionSolidManage;
+
+typedef char cCollisionSolidManage_size_check[(sizeof(cCollisionSolidManage) == 0x8C) ? 1 : -1];
+
+/* The solid collision manager (g_CollSolidManage in the retail symbol table). */
+extern cCollisionSolidManage D_00462FC0;
+
+/* Empty the manager: no units, no live solids, no hits. */
+void func_00134690(cCollisionSolidManage *self);
+
+/* Unit constructor: owner, priority and share, no solids, no next unit, both bounds (0, 0, 0, 1). */
+cCollisionSolidManageUnit *func_00134430(cCollisionSolidManageUnit *self, struct cGameObj *owner,
+                                         int priority, float share);
+/* Destroy every solid of the unit through its table's destructor. */
+void cCollisionSolidManageUnit_clear(cCollisionSolidManageUnit *self);
+/* Unit destructor: cCollisionSolidManageUnit_clear, then free the unit when flags bit 0 is set. */
+void cCollisionSolidManageUnit__dtor(cCollisionSolidManageUnit *self, int flags);
+/* Add a sphere around center, on the body matrix, at the end of the unit's solids. */
+void func_00134520(cCollisionSolidManageUnit *self, const struct cMatrix *body, const cVec *center,
+                   float radius);
+/* Set CSOLID_FLAG_ACTIVE on every solid of the unit (active == 1), or clear it. */
+void cCollisionSolidManageUnit_setActive(cCollisionSolidManageUnit *self, int active);
+/* Set the unit's priority. */
+void cCollisionSolidManageUnit_setPriority(cCollisionSolidManageUnit *self, int priority);
+/* The unit of owner, or 0 (assembly). */
+cCollisionSolidManageUnit *func_001346C8(cCollisionSolidManage *self, struct cGameObj *owner);
+/* Give owner a unit at the end of the list, unless it has one. */
+void cCollisionSolidManage_CreateUnit(cCollisionSolidManage *self, struct cGameObj *owner, int priority,
+                                      float share);
+/* Unlink owner's unit, destroy its solids and free it. */
+void cCollisionSolidManage_ReleaseUnit(cCollisionSolidManage *self, struct cGameObj *owner);
+/* Add a sphere around center, on the body matrix, to owner's unit. */
+void cCollisionSolidManage_CreateSphere(cCollisionSolidManage *self, struct cGameObj *owner,
+                                        const struct cMatrix *body, const cVec *center, float radius);
+/* Mark every solid of owner's unit active (active == 1) or inactive. */
+void cCollisionSolidManage_SetActive(cCollisionSolidManage *self, struct cGameObj *owner, int active);
+/* Set the priority of owner's unit (a cCollisionSolidManageUnit::ePRIORITY). */
+void cCollisionSolidManage_SetPriority(cCollisionSolidManage *self, struct cGameObj *owner, int priority);
+
 /* Nonzero when obj hits a solid of the manager. */
-extern int cCollisionSolidManage_ChkHit(void *mgr, void *obj);
+int cCollisionSolidManage_ChkHit(cCollisionSolidManage *self, struct cGameObj *obj);
 
 /* The line test between two points (assembly); the parameters as its callers pass them. */
 int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,

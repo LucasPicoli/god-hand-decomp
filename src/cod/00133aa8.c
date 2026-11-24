@@ -94,22 +94,22 @@ void func_002BF708(Obj2BF708 *self)
 }
 
 /* Moves the sphere centre into world space, then rebuilds the box around it:
- * unk10 gets the corner at centre - radius, unk20 the corner at centre + radius.
- * Clears flag bit 1 (the box is up to date). */
+ * min gets the corner at centre - radius, max the corner at centre + radius.
+ * Clears CSOLID_FLAG_HIT. */
 __attribute__((section(".text.cCollisionSolid_updateBounds")))
 void cCollisionSolid_updateBounds(cCollisionSolidObj *self)
 {
     float r;
-    sceVu0ApplyMatrix(&self->unk60, self->owner, &self->center);
+    sceVu0ApplyMatrix(&self->unk60, (void *)self->body, &self->center);
     r = self->radius;
-    self->unk10.x = self->unk60.x - r;
-    self->unk10.y = self->unk60.y - r;
-    self->unk10.z = self->unk60.z - r;
-    self->unk20.x = self->unk60.x + r;
-    self->unk20.y = self->unk60.y + r;
-    self->unk20.z = self->unk60.z + r;
+    self->min.x = self->unk60.x - r;
+    self->min.y = self->unk60.y - r;
+    self->min.z = self->unk60.z - r;
+    self->max.x = self->unk60.x + r;
+    self->max.y = self->unk60.y + r;
+    self->max.z = self->unk60.z + r;
     /* signed mask: retail builds ~2 with one addiu */
-    self->flags = (int)self->flags & ~2;
+    self->flags = (int)self->flags & ~CSOLID_FLAG_HIT;
 }
 
 extern int D_0061A990;                  /* a counter that changes every frame */

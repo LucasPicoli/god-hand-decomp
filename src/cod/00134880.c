@@ -1,12 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
 
 extern void func_002A84A8(void *a0, int a1, int a2, int a3, float f12);
 extern int setMotionInfo(void *a0, int a1, int a2, int a3, float f12, float f13, int t0);
 extern void func_002B6400(int a0);
-extern void *func_001346C8(int a0, int a1, int a2, int a3, float f);
-extern void func_00134520(void *p, int a2, int a3, float f);
 extern void CustomIDWork_SetNumber(void *self, int number);
 extern int SetField214PtrThenInit_1B6F38(void *obj);
 extern char *InitFields_1B6E90(char *a0);
@@ -40,10 +39,11 @@ void cNode_setLocalTranslation(int a0, int a1)
 }
 
 __attribute__((section(".text.cCollisionSolidManage_CreateSphere")))
-void cCollisionSolidManage_CreateSphere(int a0, int a1, int a2, int a3, float f) {
-    void *r = func_001346C8(a0, a1, a2, a3, f);
-    if (r) {
-        func_00134520(r, a2, a3, f);
+void cCollisionSolidManage_CreateSphere(cCollisionSolidManage *self, struct cGameObj *owner,
+                                        const struct cMatrix *body, const cVec *center, float radius) {
+    cCollisionSolidManageUnit *unit = func_001346C8(self, owner);
+    if (unit) {
+        func_00134520(unit, body, center, radius);
     }
 }
 

@@ -493,8 +493,6 @@ extern int D_0041D5D0;
 extern int D_0041D5E8;
 extern int D_0041D600;
 extern int D_0041D618;
-extern int D_0041D790;
-extern int D_0041D7B8;
 extern int D_0041D830;
 extern int D_0041D848;
 extern int D_0041D860;

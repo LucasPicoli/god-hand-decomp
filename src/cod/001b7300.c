@@ -1,13 +1,12 @@
 /* SN ProDG ee-gcc 2.95.3 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
 
 extern int D_00747A84;
 extern char D_005E8658[];
 extern char D_005CAE50[];
-extern char D_00462FC0[];
 extern void func_002BECB0(void *a0, long a1);
 extern void func_001331B8(void *a0, long a1, int a2);
-extern void cCollisionSolidManage_ReleaseUnit(void *a0, void *a1);
 extern void func_001B7BB8(void *a0);
 extern int *D_003C2384;
 extern void cIDBase_clear(int a0);
@@ -24,7 +23,7 @@ void SetField5B0Bit2ClearBit8_1B7908(cOmBase *self) {
     }
     func_002BECB0(D_005E8658, self->name);
     func_001331B8(D_005CAE50, self->modelHandle, 0);
-    cCollisionSolidManage_ReleaseUnit(D_00462FC0, self);
+    cCollisionSolidManage_ReleaseUnit(&D_00462FC0, (cGameObj *)self);
     func_001B7BB8(self);
     self->flags0 = (self->flags0 | COMBASE_F0_GONE) & ~8;
 }

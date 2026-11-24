@@ -1,29 +1,25 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 
-extern void *cCollisionSolid_constructSphere(void *mem, int a, int b, float f);
 extern int D_00460D18;
 
-typedef struct Node {
-    struct Node *next;
-    struct Node *child;
-} Node;
-
 __attribute__((section(".text.func_00134520")))
-void func_00134520(Node *n, int a, int b, float f) {
-    Node *p;
-    Node *q;
+void func_00134520(cCollisionSolidManageUnit *self, const struct cMatrix *body, const cVec *center,
+                   float radius) {
+    cCollisionSolidObj *p;
+    cCollisionSolidObj *q;
 
-    if (n->next != 0) {
-        if (n->child != 0) {
-            q = n->child;
+    if (self->owner != 0) {
+        if (self->first != 0) {
+            q = self->first;
             while (q->next != 0) {
                 q = q->next;
             }
-            p = (Node *)cCollisionSolid_constructSphere(func_0030F550(0x80), a, b, f);
+            p = cCollisionSolid_constructSphere(func_0030F550(0x80), body, center, radius);
             q->next = p;
         } else {
-            p = (Node *)cCollisionSolid_constructSphere(func_0030F550(0x80), a, b, f);
-            n->child = p;
+            p = cCollisionSolid_constructSphere(func_0030F550(0x80), body, center, radius);
+            self->first = p;
         }
         if (p != 0) {
             D_00460D18 = D_00460D18 + 1;

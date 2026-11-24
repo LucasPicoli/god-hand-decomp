@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
@@ -10,7 +11,6 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
 extern void func_0010A438(void *a0);
 extern void func_00124EC0(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void func_00129630(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
@@ -18,7 +18,6 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void cEmManage_SetSpeedRate(void *a0, float a1);
 extern int D_005864F0;
-extern int D_00462FC0;
 extern void cHeatSys_AddHeatGage(void *a0, float a1, int a2);
 extern int D_005CB000;
 extern void func_002A52E8(void *a0, int a1);
@@ -69,7 +68,7 @@ void func_00113768(void *a0)
         float one;
         func_00124EC0(s1);
         if (*(unsigned short *)(s1 + 0x3AC) & 0x100) {
-            cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
         }
         if (moveMotion(s1) != 0) {
             func_00129630(s1);

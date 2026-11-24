@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -10,9 +11,7 @@ extern void func_002A74E0(void *a0, int a1, int a2);
 
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int D_007476B0;
-extern char D_00462FC0[];
 
 /* Phase machine on the step byte, 4 case labels. Calls cCollisionSolidManage_SetActive,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, moveMotion, func_002A74E0, Getplayer and 4
@@ -21,7 +20,7 @@ __attribute__((section(".text.func_00244CF8"))) void func_00244CF8(cEm00 *self)
 {
     float one;
 
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0: {
             int t0, b;

@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
@@ -27,8 +28,6 @@ extern char D_005864F0[];
 extern void cSnd_SeStop(void *a0, int a1);
 extern int D_00747A0C;
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
-extern unsigned char D_00462FC0[];
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 
 __attribute__((section(".text.func_0011B900")))
 void func_0011B900(void *a0)
@@ -304,7 +303,7 @@ void func_00111A20(void *a0)
     case 1:
         func_00124EC0(s1);
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-            cCollisionSolidManage_SetActive(&D_00462FC0, s1, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
         }
         if (moveMotion(s1) != 0) {
             func_00129630(s1);

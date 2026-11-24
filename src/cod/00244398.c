@@ -1,21 +1,18 @@
 /* sn-2.95.3-136 */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cOmWeapon.h"
 #include "godhand/sceVu0.h"
 #include "godhand/motion.h"
 
-extern void cCollisionSolidManage_SetActive(int a0, int a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void KillEffect(int a0, int a1, int a2);
 extern void func_00262750(void *a0, int a1);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(cObjBase *self, float scale);
 extern void cObjBase_addNullSpeed(cObjBase *self, float scale);
-extern int ChkLine(void *a0, void *a1, void *a2, void *a3, int a4, int a5, void *a6,
-                   int a7, int a8, int a9, int a10, int a11, int a12);
 extern void func_001D0108(cOmWeapon *self);
-extern char D_00462FC0;
 
 /* Down step: start the down motion, kill the effects, then settle onto the
  * ground below; on landing take a 50 hit and move to phase 8. */
@@ -28,7 +25,7 @@ void func_00244398(cEm00 *self)
     int landed;
     int motion;
 
-    cCollisionSolidManage_SetActive((int)&D_00462FC0, (int)self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     self->emFlags |= 0x10000;
     switch (self->step) {
     case 0:

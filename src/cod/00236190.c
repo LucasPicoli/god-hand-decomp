@@ -1,16 +1,15 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
 extern void *Getplayer(void);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float a1);
 extern void cObjBase_addNullSpeed(void *a0, float a1);
 extern void func_002DB770(void);
 extern void func_00129718(void *a0, void *a1, int a2);
-extern char D_00462FC0[];
 extern char D_007474A0[];
 
 #include "godhand/vu0.h"
@@ -37,7 +36,7 @@ __attribute__((section(".text.func_00236190"))) void func_00236190(cEm00 *self)
     char *s1 = (char *)self;
     char *s2 = (char *)Getplayer();
 
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     switch (*(unsigned char *)(s1 + 0x2F6)) {
         case 0: {
             int p;
@@ -100,7 +99,7 @@ __attribute__((section(".text.func_00236190"))) void func_00236190(cEm00 *self)
                     *(char *)(s1 + 0x2F6) = 0;
                     *(char *)(s1 + 0x2F5) = 0x1D;
                     (*(unsigned char *)(s1 + 0x2F7))++;
-                    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+                    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
                     func_00129718(s2, s1, 0x1D);
                 }
                 func_002DB770();

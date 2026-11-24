@@ -1,8 +1,8 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cSnd.h"
 #include "godhand/globals.h"
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
 extern void func_0012B928(void *a0);
@@ -21,7 +21,6 @@ extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern float Adjust_theta(float f12);
 extern unsigned int D_00747A24;
 extern unsigned short D_00747A50;
-extern char D_00462FC0[];
 extern char D_005864F0[];
 extern void cOmSub_setVibration(void *a0, int a1, int a2, float f12, float f13, float f14);
 extern int cOmSub_move(void *a0);
@@ -68,7 +67,7 @@ void func_0011ECB0(void *a0)
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     *(int *)(s1 + 0x15F4) = *(int *)(s1 + 0x15F4) | 0x2000;
     s3 = *(char **)(s1 + 0x694);
-    cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(D_005864F0);
     *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
     switch (*(unsigned char *)(s1 + 0x2F6)) {

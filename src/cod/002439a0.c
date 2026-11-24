@@ -1,9 +1,9 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int Getplayer(void);
 extern void cGameObj_SetTgtTurn(void *a0, int a1, float f12);
@@ -13,7 +13,6 @@ extern void cObjBase_addNullSpeed(void *a0, float f);
 extern void EmWeaponHolder_dropWeapons(void *a0, int a1, int a2);
 extern float capVu0Sin(float f12);
 extern float Adjust_theta(float f12);
-extern char D_00462FC0[];
 
 /* Phase machine on the step byte, 12 case labels. Calls cCollisionSolidManage_SetActive,
  * Obj0000_Get_Byte_17C3_NZ_2_276468, func_002A8578, cGameObj_SetTgtTurn, Getplayer, moveMotion and
@@ -24,7 +23,7 @@ __attribute__((section(".text.func_002439A0"))) void func_002439A0(cEm00 *self)
     float th;
     int p;
 
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     self->emFlags |= 0x10000;
     switch (self->step) {
         case 0: {

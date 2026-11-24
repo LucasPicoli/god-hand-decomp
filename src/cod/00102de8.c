@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 #include "godhand/globals.h"
 extern int moveMotion(void *a0);
@@ -8,8 +9,6 @@ extern void cObjBase_addNullSpeed(void *a0, float s);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern char *func_002DDAB0(int a0, float f, int a1);
 extern void func_0026AB20(void *a0, char *a1, int a2);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int D_00462FC0;
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_00123938(void *a0, int a1);
@@ -78,7 +77,7 @@ void func_001AB8F8(void *a0){ char *s0=(char*)a0; char *g; T3 c; T3 t;
 
 __attribute__((section(".text.func_00237F98")))
 void func_00237F98(void *a0){ char *s0=(char*)a0; int v0;
- cCollisionSolidManage_SetActive(&D_00462FC0,s0,0);
+ cCollisionSolidManage_SetActive(&D_00462FC0,(cGameObj *)s0,0);
  *(float*)(s0+0x54C)=3.0f;
  switch(*(unsigned char*)(s0+0x2F6)){
  case 0: v0=*(int*)(s0+0x304);
@@ -118,7 +117,7 @@ void func_0010CB10(void *a0){ char *s0=(char*)a0; char *t0; int p1,p2; void *fl;
 
 __attribute__((section(".text.func_00236ED0")))
 void func_00236ED0(void *a0){ char *s0=(char*)a0; int v0;
- cCollisionSolidManage_SetActive(&D_00462FC0,s0,0);
+ cCollisionSolidManage_SetActive(&D_00462FC0,(cGameObj *)s0,0);
  *(int*)(s0+0x16D0)=*(int*)(s0+0x16D0)|0x20000;
  *(float*)(s0+0x54C)=3.0f;
  *(int*)(s0+0x250)=*(int*)(s0+0x250)|0x10000;

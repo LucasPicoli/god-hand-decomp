@@ -1,4 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
@@ -23,13 +24,11 @@ extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00129578(void *a0);
 extern void InvokeVirtualAtField214AndForward_124E68(void *a0, float f);
 extern void func_00124EC0(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_00129630(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void func_0010A438(void *a0);
 extern void cSnd_SeStop(void *a0, int a1);
 extern char D_005864F0[];
-extern char D_00462FC0[];
 extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 extern void cHeatSys_AddHeatGage(void *a0, int a1, float a2);
 extern void func_00274FE8(void *a0);
@@ -265,7 +264,7 @@ void func_00111750(void *a0)
     case 1:
         func_00124EC0(s1);
         if ((*(unsigned short *)(s1 + 0x3AC) & 0x100) != 0) {
-            cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+            cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
         }
         if (moveMotion(s1) != 0) {
             func_00129630(s1);
@@ -323,7 +322,7 @@ void func_0025C5D8(void *a0)
     char *s0 = (char *)a0;
     char *s1 = (char *)Getplayer();
 
-    cCollisionSolidManage_SetActive(D_00462FC0, s0, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     *(float *)(s0 + 0x54C) = 3.0f;
     switch (*(unsigned char *)(s0 + 0x2F6)) {
     case 0:

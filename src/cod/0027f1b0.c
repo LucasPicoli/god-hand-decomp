@@ -1,5 +1,6 @@
 /* sn-2.95.3-136: func_0027F1B0, enemy per-frame update: the same shape as 00281968.c, with unk1560's low
  * two bits cleared before the phase dispatch and the wobble angle kept at 0x15B0. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cObjBase.h"
 #include "godhand/cEmManage.h"
 #include "godhand/cEm00.h"
@@ -14,7 +15,6 @@
 #define EM_WOBBLE(self)   (*(float *)((char *)(self) + 0x15B0))
 
 extern unsigned int D_00747A78;         /* system flags */
-extern char D_00462FC0[];
 extern void SetMotionStep(void *a0, float f12);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_0027F3A0(char *self);
@@ -23,7 +23,6 @@ extern void func_00280DB8(char *self);
 extern void cModel_calcParts(cModel *a0);
 extern void IK_InverseKinematics(void *a0, void *a1);
 extern void cModel_calcWorldParts(cModel *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern float capVu0Sin(float f12);
 extern float Adjust_theta(float angle);
 extern void cModel_ScrollTexture(cModel *a0, float f);
@@ -51,7 +50,7 @@ void func_0027F1B0(cEm00 *self)
     cModel_calcParts(self);
     IK_InverseKinematics(self->ik, self);
     cModel_calcWorldParts(self);
-    cCollisionSolidManage_SetActive(D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
 
     scroll = capVu0Sin(EM_WOBBLE(self)) * 0.5f;
     scroll += 1.0f;

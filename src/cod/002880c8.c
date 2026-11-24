@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
@@ -6,8 +7,6 @@
  * 0x168/0x16C, mode 3) stepping moveMotion.  sn-2.95.3-136. */
 
 extern int moveMotion(void *a0);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
-extern int D_00462FC0;
 
 /* Phase machine on the step byte, 2 case labels. Calls cCollisionSolidManage_SetActive,
  * func_002A8578, moveMotion. */
@@ -16,7 +15,7 @@ __attribute__((section(".text.func_002880C8"))) void func_002880C8(cEm00 *self)
     int res;
     self->gotoFlags = self->gotoFlags | 0x10020;
     self->hitFlash = 3.0f;
-    cCollisionSolidManage_SetActive(&D_00462FC0, self, 0);
+    cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)self, 0);
     switch (self->step) {
         case 0:
             res = EM_RES(self);

@@ -1,10 +1,10 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/motion.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
-extern void cCollisionSolidManage_SetActive(void *a0, void *a1, int a2);
 extern void func_001268F0(void *a0);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 extern void func_00124EC0(void *a0);
@@ -12,11 +12,8 @@ extern int moveMotion(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
-extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
-                   int a7, int a8, int a9, int a10, int a11, int a12);
 extern int SetEffectParts(int a0, int a1, void *a2, int a3, float f12,
                            float f13, float f14, float f15, int a4);
-extern char D_00462FC0[];
 
 #define FRAME ((char *)va - 0x30)
 
@@ -57,7 +54,7 @@ void func_001158E8(void *a0)
     case 1: {
         func_00124EC0(s1);
         *(int *)(s1 + 0x15F4) |= 0x80;
-        cCollisionSolidManage_SetActive(D_00462FC0, s1, 0);
+        cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
         if (moveMotion(s1) != 0) {
             *(unsigned char *)(s1 + 0x2F6) = 2;
         }

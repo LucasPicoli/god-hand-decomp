@@ -12,7 +12,6 @@ extern void func_002B2438(cMessageWin *win);
 extern unsigned short D_003BD70C;
 extern void cIDBase_resetAnim(void *id);
 extern unsigned int D_007474A8;
-extern cCollisionSolidObj *cCollisionSolid(cCollisionSolidObj *self);
 extern void *_MemoryAlloc(int size, int align, int heap);
 extern int cMessCommon_getCodeSize(int code);
 
@@ -132,23 +131,21 @@ void cEm00_updateSlotCooldown(EmSlotObj *self) {
     }
 }
 
-/* Sphere constructor: run the base one, then set the sphere table, owner, state, centre and radius. */
+/* Sphere constructor: run the base one, then set the sphere table, body matrix, state, centre and radius. */
 
 
 
 #define CSOLID_CENTER_OFFSET  0x50      /* cCollisionSolidObj.center, for the VU0 store */
 #define CSOLID_UNK60_OFFSET   0x60      /* cCollisionSolidObj.unk60 */
 
-extern const unsigned char D_0041D7E0[];        /* sphere table */
-
-
 __attribute__((section(".text.cCollisionSolid_constructSphere")))
-cCollisionSolidObj *cCollisionSolid_constructSphere(cCollisionSolidObj *self, void *owner, cVec *center, float radius) {
+cCollisionSolidObj *cCollisionSolid_constructSphere(cCollisionSolidObj *self, const struct cMatrix *body,
+                                                    const cVec *center, float radius) {
     cVec *dst;
     cCollisionSolid(self);
     dst = &self->center;
-    self->vt = D_0041D7E0;
-    self->owner = owner;
+    self->vt = &D_0041D7E0;
+    self->body = body;
     VU0_SQC2_VF0(self, CSOLID_CENTER_OFFSET);
     VU0_SQC2_VF0(self, CSOLID_UNK60_OFFSET);
     self->state = CSOLID_STATE_SPHERE;

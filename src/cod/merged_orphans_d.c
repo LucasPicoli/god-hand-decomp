@@ -1,3 +1,4 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cGameObj.h"
 #include "godhand/globals.h"
 
@@ -50,15 +51,14 @@ cVec *cGameObj_getPos(cGameObj *self) { return self->pos; }
  * with obj) but with a non-0xF0 store offset, or a 2-arg registration.
  */
 extern int D_00586AF0;
-extern void cCollisionSolid__dtor(void *obj);
 extern void SetField214PtrThenInit_1B6F38(void *obj);
 extern void func_00298088(void);
 extern void func_00297B40(void *a, void *b);
 
-__attribute__((section(".text.InitObjVtableField30_133B58")))
-void InitObjVtableField30_133B58(void *obj) {
-    *(int **)((char *)obj + 0x30) = &D_0041D7B8;
-    cCollisionSolid__dtor(obj);
+__attribute__((section(".text.cCollisionSolidCapsule__dtor")))
+void cCollisionSolidCapsule__dtor(cCollisionSolidObj *self, int flags) {
+    self->vt = &D_0041D7B8;
+    cCollisionSolid__dtor(self, flags);
 }
 
 __attribute__((section(".text.InitObjVtableField214_195ED0")))

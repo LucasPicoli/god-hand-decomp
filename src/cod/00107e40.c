@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/globals.h"
+#include "godhand/cCollisionSolid.h"
 
 extern int D_00460D18;
 extern int D_0042C320;
@@ -9,17 +10,18 @@ extern int D_00421F20;
 extern int cPlBase(void *obj);
 extern int D_0041D220;
 
+/* Empty the manager: no units, no live solids, no hits. */
 __attribute__((section(".text.func_00134690")))
-void func_00134690(int *p) {
+void func_00134690(cCollisionSolidManage *self) {
     unsigned int i;
 
-    p[0] = 0;
-    p[1] = 0;
+    self->first = 0;
+    self->unitNum = 0;
     D_00460D18 = 0;
-    for (i = 0; i < 0x20; i++) {
-        p[i + 2] = 0;
+    for (i = 0; i < CSOLID_HIT_MAX; i++) {
+        self->hits[i] = 0;
     }
-    p[34] = 0;
+    self->hitNum = 0;
 }
 
 #include "godhand/vu0.h"

@@ -1,10 +1,9 @@
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 
 /* sn-2.95.3-136 matched TU. */
 
-extern int D_00462FC0;
-extern void cCollisionSolidManage_SetPriority(void *a0, void *a1, int a2);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_00262750(void *a0, int a1);
 extern int moveMotion(void *a0);
@@ -21,8 +20,6 @@ extern void cObjBase_addNullSpeed(void *a0, float a1);
 
 
 
-extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,
-                   int a7, int a8, int a9, int a10, int a11, int a12);
 
 #include "godhand/vu0.h"
 
@@ -125,7 +122,7 @@ __attribute__((section(".text.func_0025ADC0"))) void func_0025ADC0(cEm00 *self)
                     s0v = EM_RES_REC(b, 0x15d8);
                 } break;
             }
-            cCollisionSolidManage_SetPriority(&D_00462FC0, s1, 5);
+            cCollisionSolidManage_SetPriority(&D_00462FC0, (cGameObj *)s1, 5);
             func_002A8578(s1, s2v, s0v, 3, 0.0f, gb, 0);
             *(unsigned char *)(s1 + 0x2F6) += 1;
         }

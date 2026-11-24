@@ -1,13 +1,11 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 
 extern unsigned short D_003F2060[];
 extern void func_001B6FB8(void *);
-extern void cCollisionSolidManage_CreateUnit(void *a, void *b, int c, float d);
-extern void cCollisionSolidManage_CreateSphere(void *a, void *b, int c, void *d, float e);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
-extern int D_00462FC0;
 extern char D_00747B00[];
 
 /* sn-2.95.3-136: a list control stepping its per-slot values from pad flags. */
@@ -309,8 +307,8 @@ int cOmGiveTake_initSphere(char *p)
     float *sph;
     char *n;
     char *m;
-    int k;
-    void *solid;
+    char *k;
+    cCollisionSolidManage *solid;
     int flag;
     char *vt;
 
@@ -352,18 +350,18 @@ int cOmGiveTake_initSphere(char *p)
     solid = &D_00462FC0;
     *(short *)(p + 0x548) = HIT_SIZE;
     *(short *)(p + 0x54A) = HIT_SIZE;
-    cCollisionSolidManage_CreateUnit(solid, p, 0, SOLID_RADIUS);
+    cCollisionSolidManage_CreateUnit(solid, (cGameObj *)p, 0, SOLID_RADIUS);
     flag = *(unsigned char *)(p + OBJ_MTX_FLAG);
     *(int *)buf = flag;
     if (flag)
-        k = **(int **)(p + OBJ_MTX_PTR);
+        k = **(char ***)(p + OBJ_MTX_PTR);
     else
         k = 0;
     buf[3] = 1.0f;
     buf[0] = 0.0f;
     buf[1] = 0.0f;
     buf[2] = 0.0f;
-    cCollisionSolidManage_CreateSphere(solid, p, k + 0x80, buf, SOLID_SPHERE);
+    cCollisionSolidManage_CreateSphere(solid, (cGameObj *)p, (const struct cMatrix *)(k + 0x80), (const cVec *)buf, SOLID_SPHERE);
     SetField380Bit2000ForTag_1B7300(p, 0, 0);
     SetField380Bit2000ForTag_1B7300(p, 0x40, 0);
     *(int *)(p + 0x250) |= 0x10000;

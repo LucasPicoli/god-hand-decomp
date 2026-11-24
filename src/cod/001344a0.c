@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
+#include "godhand/cCollisionSolid.h"
 #include "godhand/cOmBase.h"
 #include "godhand/cEm00.h"
 #include "godhand/cEmSetParam.h"
@@ -87,43 +88,26 @@ void cOmBase_updateWithHitRecord(cOmHitHolder *self)
     cVec_copy3(&self->base.posB, &self->base.rot);
 }
 
-/* Empty the node list: pop each node, run its virtual deleting destructor, count the node out. */
-typedef struct VtEnt {
-    short delta;
-    short index;
-    void *pfn;
-} VtEnt;
-
-typedef struct ListNode {
-    struct ListNode *next;              /* 0x00 */
-    char unk04[0x2C];
-    VtEnt *vt;                          /* 0x30 */
-} ListNode;
-
-typedef struct NodeList {
-    int unk00;
-    int head;                           /* 0x04 first node (an address) */
-} NodeList;
-
+/* Empty the unit: pop each solid, run its virtual deleting destructor, count the solid out. */
 typedef struct NodeStats {
     int liveNodes;                      /* 0x00 */
 } NodeStats;
 
 extern NodeStats D_00460D18;
 
-__attribute__((section(".text.NodeList_clear")))
-void NodeList_clear(NodeList *self)
+__attribute__((section(".text.cCollisionSolidManageUnit_clear")))
+void cCollisionSolidManageUnit_clear(cCollisionSolidManageUnit *self)
 {
-    if (self->head != 0) {
+    if (self->first != 0) {
         do {
-            ListNode *node = (ListNode *)self->head;
-            int next = (int)node->next;
+            cCollisionSolidObj *node = self->first;
+            cCollisionSolidObj *next = node->next;
             if (node != 0) {
-                ((void (*)(void *, int))node->vt[1].pfn)((char *)node + node->vt[1].delta, 3);
+                node->vt->dtor((char *)node + node->vt->dtorDelta, 3);
             }
-            self->head = next;
+            self->first = next;
             D_00460D18.liveNodes--;
-        } while (self->head != 0);
+        } while (self->first != 0);
     }
 }
 
