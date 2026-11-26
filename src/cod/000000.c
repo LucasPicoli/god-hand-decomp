@@ -2239,9 +2239,6 @@ int Forward348BE0_346BE0(int a0, int a1) {
 }
 INCLUDE_ASM("nonmatching", displayOmLayer);
 
-INCLUDE_ASM("nonmatching", pl00_CkSubScreen);
-
-
 INCLUDE_ASM("nonmatching", cOmSub_setVibration);
 
 /* Starts the poison state machine: mode 0, phase 5, step 0. */
