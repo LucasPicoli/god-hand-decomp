@@ -1,7 +1,7 @@
 /* TU: cCollisionScroll - recovered C++ class. */
 #include "include_asm.h"
 
-extern void func_001331B8(void *a0, long acc, int a2);
+extern void cCollisionScroll_SetCollEnableByName(void *a0, long acc, int a2);
 
 __attribute__((section(".text.cCollisionScroll_SetCollEnable")))
 void cCollisionScroll_SetCollEnable(void *a0, signed char *a1, int a2) {
@@ -15,5 +15,5 @@ void cCollisionScroll_SetCollEnable(void *a0, signed char *a1, int a2) {
             if (i >= 8) break;
         } while (*a1 != 0);
     }
-    func_001331B8(a0, acc, a2);
+    cCollisionScroll_SetCollEnableByName(a0, acc, a2);
 }

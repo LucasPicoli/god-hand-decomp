@@ -24,8 +24,8 @@ static __inline__ long CollScroll_packName(signed char *s)
 
 /* cCollisionScroll::SetCollEnable by packed name: find the layer whose name packs to `name` and
  * clear (on) or set (off) COLLSCROLL_ENTRY_OFF in each of its entries. */
-__attribute__((section(".text.func_001331B8")))
-void func_001331B8(cCollisionScroll *self, long name, int on)
+__attribute__((section(".text.cCollisionScroll_SetCollEnableByName")))
+void cCollisionScroll_SetCollEnableByName(cCollisionScroll *self, long name, int on)
 {
     unsigned int i;
 

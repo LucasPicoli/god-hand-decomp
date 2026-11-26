@@ -7,8 +7,8 @@
 extern volatile SfxAlpWork D_003F1EC8;
 
 /* Release a handle: mark it free and drop the pool's in-use count. */
-__attribute__((section(".text.func_0036CB98")))
-void func_0036CB98(volatile SfxAlpHn *hn)
+__attribute__((section(".text.sfxalp_ReleaseHn")))
+void sfxalp_ReleaseHn(volatile SfxAlpHn *hn)
 {
     if (hn != 0) {
         hn->used = 0;

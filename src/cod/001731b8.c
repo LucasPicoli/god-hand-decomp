@@ -49,7 +49,7 @@ typedef struct HitNode {
     unsigned char flags;                /* 0x29 */
 } HitNode;
 
-extern int func_002C0B38(HitNode *node, void *arg);   /* kind 0 */
+extern int HitNode_containsQuadPoint(HitNode *node, void *arg);   /* kind 0 */
 extern int func_002C0C28(HitNode *node, void *arg);   /* kind 2 */
 extern int func_002C0CB0(HitNode *node, void *arg);   /* kind 4 */
 
@@ -64,7 +64,7 @@ int HitNode_dispatchByKind(HitNode *node, void *arg, int mode) {
     kind = node->flags & HITNODE_KIND_MASK;
     switch (kind) {
     case 0:
-        return func_002C0B38(node, arg);
+        return HitNode_containsQuadPoint(node, arg);
     case 2:
         return func_002C0C28(node, arg);
     case 4:

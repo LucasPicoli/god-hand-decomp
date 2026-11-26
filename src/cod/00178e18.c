@@ -63,8 +63,8 @@ char *func_003A79F8(char *tab, const char *fmt) {
 #define HITVOL_UNIT_ACTIVE    1         /* bit 0 of the damage-take unit's first word */
 
 /* Registers a box with a damage-take unit, marks the unit active and fills the tail of the record. */
-__attribute__((section(".text.func_00178E18")))
-int func_00178E18(cOmHitVolume *em)
+__attribute__((section(".text.cOmHitVolume_initTakeBox")))
+int cOmHitVolume_initTakeBox(cOmHitVolume *em)
 {
     cVec v[4];             /* size twice, offset, rotation */
     cVec *ofs;

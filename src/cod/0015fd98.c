@@ -2,7 +2,7 @@
 
 extern void func_002BD078(void *a0, void *a1, void *pts);
 extern void func_003A52F0(void *d, int c, int n);
-extern void func_0015FCB8(void *a0, void *a1, int idx);
+extern void SubSlotTable_register(void *a0, void *a1, int idx);
 
 /* sn-2.95.3-136 candidate. */
 #include "godhand/vu0.h"
@@ -124,15 +124,15 @@ void func_0015FD98(char *self)
     int m;
 
     func_003A52F0(self, 0, 0x48);
-    func_0015FCB8(self, self + 0x60, 0);
-    func_0015FCB8(self, self + 0x310, 1);
-    func_0015FCB8(self, self + 0x620, 2);
-    func_0015FCB8(self, self + 0x730, 3);
-    func_0015FCB8(self, self + 0x880, 4);
-    func_0015FCB8(self, self + 0x9C0, 5);
-    func_0015FCB8(self, self + 0xBA0, 8);
-    func_0015FCB8(self, self + 0xC40, 7);
-    func_0015FCB8(self, self + 0xAE0, 6);
+    SubSlotTable_register(self, self + 0x60, 0);
+    SubSlotTable_register(self, self + 0x310, 1);
+    SubSlotTable_register(self, self + 0x620, 2);
+    SubSlotTable_register(self, self + 0x730, 3);
+    SubSlotTable_register(self, self + 0x880, 4);
+    SubSlotTable_register(self, self + 0x9C0, 5);
+    SubSlotTable_register(self, self + 0xBA0, 8);
+    SubSlotTable_register(self, self + 0xC40, 7);
+    SubSlotTable_register(self, self + 0xAE0, 6);
     q = self + 4;
     i = 8;
     do {

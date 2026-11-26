@@ -5,8 +5,8 @@
 
 /* Registers sub of the given kind in the first free slot. 1 if there was
  * one, 0 if the table is full. */
-__attribute__((section(".text.func_0015FCB8")))
-int func_0015FCB8(SubSlotTable *tbl, void *sub, int kind)
+__attribute__((section(".text.SubSlotTable_register")))
+int SubSlotTable_register(SubSlotTable *tbl, void *sub, int kind)
 {
     int no = func_0015FD68(tbl);
     if (no < 0) {
@@ -20,8 +20,8 @@ int func_0015FCB8(SubSlotTable *tbl, void *sub, int kind)
 /* 1 when pt lies inside the node's height band and inside its XZ quad: the
  * point must sit on the inner side of all four edges, tested from corner 0
  * (edges to corners 1 and 3) and from corner 2 (edges to corners 1 and 3). */
-__attribute__((section(".text.func_002C0B38")))
-int func_002C0B38(HitNode *node, float *pt)
+__attribute__((section(".text.HitNode_containsQuadPoint")))
+int HitNode_containsQuadPoint(HitNode *node, float *pt)
 {
     float ox, oz, px, pz, bx, bz, dx, dz, cx, cz;
 

@@ -5,7 +5,7 @@ extern void CopyVec3ToField30_147C40(float *a0, float *a1);
 extern void MtxInverse(void *a0, void *a1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
 extern void func_001B6FB8(void *);
-extern void func_001331B8(char *a0, long a1, int a2);
+extern void cCollisionScroll_SetCollEnableByName(char *a0, long a1, int a2);
 extern char D_005CAE50[];
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int t0);
 extern void cModel_calcParts(void *a0);
@@ -114,7 +114,7 @@ void cOmThrow_SetParent(char *p, char *parent)
         void (*fp)() = *(void (**)())(vt + 0xAC);
         fp(p + off);
     }
-    func_001331B8(D_005CAE50, *(long *)(p + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, *(long *)(p + 0x540), 0);
     *(cDamageGive **)(p + 0x600) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
     flag = *(unsigned char *)(p + 0x2B4);
     *(int *)buf = flag;

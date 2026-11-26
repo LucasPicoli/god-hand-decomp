@@ -10,8 +10,8 @@
 extern cOmBase *CreateObj(int id, int a1);
 extern void cOmBase_setMeshDispFromLayer(void *model, int layer, int show);
 
-__attribute__((section(".text.func_001B57E8")))
-int func_001B57E8(cOmTwin *self)
+__attribute__((section(".text.cOmTwin_setup")))
+int cOmTwin_setup(cOmTwin *self)
 {
     cVec v[4];
     cVec *size;

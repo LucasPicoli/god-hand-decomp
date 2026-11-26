@@ -23,8 +23,8 @@ typedef struct cOmPartsBox {
 /* Switches the damage unit off, shows mesh 0 and hides mesh 1, hides the model,
  * clears the skip-local and skip-parent bits of parts 1.., then places each
  * part from a 1/100 copy of the knock vector with y raised by 0.02. */
-__attribute__((section(".text.func_001BCD70")))
-void func_001BCD70(cOmPartsBox *self)
+__attribute__((section(".text.cOmPartsBox_placeParts")))
+void cOmPartsBox_placeParts(cOmPartsBox *self)
 {
     unsigned char frame[0x30] __attribute__((aligned(16)));
     int i, n;

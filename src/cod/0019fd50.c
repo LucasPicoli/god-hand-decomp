@@ -11,7 +11,7 @@ void ClearDamageCollAndState_19FD50(void *a0) {
     cDamageUnit *x = *(cDamageUnit **)((char*)a0 + 0x650);
     *(int*)((char*)a0 + 0x5B0) = (v0 & -9) | 4;
     if (x != 0) cDamageUnit_SetDamageCollActive(x, 0);
-    func_001331B8(D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 

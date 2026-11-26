@@ -46,7 +46,7 @@ void func_0018BF40(void *a0) {
     if (*(int*)((char*)a0 + 0x650) != 0) {
         cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char*)a0 + 0x650), 0);
     }
-    func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 
@@ -106,7 +106,7 @@ void func_0018CD48(void *a0) {
     if (*(int*)((char*)a0 + 0x650) != 0) {
         cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char*)a0 + 0x650), 0);
     }
-    func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 
@@ -166,7 +166,7 @@ void func_0018DB00(void *a0) {
     if (*(int*)((char*)a0 + 0x650) != 0) {
         cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char*)a0 + 0x650), 0);
     }
-    func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 

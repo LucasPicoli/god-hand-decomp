@@ -117,14 +117,14 @@ void func_002BAB30(void *a0) {
 
 
 
-extern int func_002BBDB8(void *a0, float f0, float f1, void *a1, float f2,
+extern int HitCheck_capsulePairFromMtxInset(void *a0, float f0, float f1, void *a1, float f2,
                          float f3);
 
 __attribute__((section(".text.func_002BCCC0")))
 int func_002BCCC0(void *a0, void *a1, void *a2, float f0, float f1) {
     float t = __builtin_sqrtf(capVu0LengthSq(a2));
 
-    return func_002BBDB8(a0, f0, f1, a1, 0.0f, t);
+    return HitCheck_capsulePairFromMtxInset(a0, f0, f1, a1, 0.0f, t);
 }
 
 /* sn-2.95.3-136 matched TU. */

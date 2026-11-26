@@ -4,7 +4,7 @@
 
 extern int sfset_IsCondValid();
 extern int isEffectiveVer();
-extern void func_0036CB98(int a0);
+extern void sfxalp_ReleaseHn(int a0);
 extern int D_003EE338;
 extern void Forward33B658_3389F8(void);
 extern void Forward33B670_338A10(void);
@@ -173,8 +173,8 @@ void SFX_Destroy(int a0)
     arg = *(int *)(a0 + 0x24);
     s0 = *(int *)(a0 + 0x30);
     *(int *)a0 = 0;
-    func_0035FFB0(arg);
-    func_0036CB98(s0);
+    sfd_ReleaseHn(arg);
+    sfxalp_ReleaseHn(s0);
     D_003EE338 = D_003EE338 - 1;
 }
 

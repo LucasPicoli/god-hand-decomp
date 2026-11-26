@@ -2,7 +2,7 @@
 #include "godhand/cOmBase.h"
 
 extern char D_005CAE50[];
-extern void func_001331B8(char *a0, long a1, int a2);
+extern void cCollisionScroll_SetCollEnableByName(char *a0, long a1, int a2);
 
 /* Show or hide every mesh node on one layer. */
 __attribute__((section(".text.cOmBase_setMeshDispFromLayer")))
@@ -46,6 +46,6 @@ __attribute__((section(".text.cOmBase_setScrSollEnable")))
 void cOmBase_setScrSollEnable(cOmBase *self, int enable) {
     long handle = self->modelHandle;
 
-    func_001331B8(D_005CAE50, handle, enable);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, handle, enable);
 }
 

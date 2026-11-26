@@ -5,7 +5,7 @@
 
 extern void func_001CF3A8(void *a0);
 extern void cModel_calcParts(void *a0);
-extern void func_001331B8(char *a0, long a1, int a2);
+extern void cCollisionScroll_SetCollEnableByName(char *a0, long a1, int a2);
 extern char D_005CAE50[];
 
 static inline void cpy3(float *d, float *s)
@@ -52,7 +52,7 @@ void cOmWeapon_setParent(cOmWeapon *self, cGameObj *par, unsigned int idx, const
     self->base.phase = 1;
     func_001CF3A8(self);
     cModel_calcParts(self);
-    func_001331B8(D_005CAE50, self->base.modelHandle, 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, self->base.modelHandle, 0);
     if (self->base.actorId != 0x369) return;
     if (par == 0) return;
     if (par->emNo == 0x252) {

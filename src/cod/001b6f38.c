@@ -6,7 +6,7 @@
 #include "godhand/globals.h"
 
 extern char D_005CAE50[];
-extern void func_001331B8(char *a0, long a1, int a2);
+extern void cCollisionScroll_SetCollEnableByName(char *a0, long a1, int a2);
 extern void ReleaseObj(char *a0);
 extern void func_001FE370(cDamageManage *a0, char *a1);
 extern cActionButtonEnt *func_001F7798(cActionButton *self);
@@ -18,7 +18,7 @@ __attribute__((section(".text.SetField214PtrThenInit_1B6F38")))
 void SetField214PtrThenInit_1B6F38(void *self, int flags) {
     char *a0 = self;
     *(int*)(a0 + 0x214) = (int)&D_00428A20;
-    func_001331B8(D_005CAE50, *(long*)(a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, *(long*)(a0 + 0x540), 0);
     cCollisionSolidManage_ReleaseUnit(&D_00462FC0, (cGameObj *)a0);
     ReleaseObj(a0);
     func_001FE370(&D_00574380, a0);

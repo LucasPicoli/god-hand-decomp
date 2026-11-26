@@ -13,7 +13,7 @@ void SetStateDisabled_190068(void *a0) {
     if (*(int*)((char*)a0 + 0x654) != 0) {
         cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char*)a0 + 0x654), 0);
     }
-    func_001331B8((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName((int)&D_005CAE50, *(double*)((char*)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 

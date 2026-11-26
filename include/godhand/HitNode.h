@@ -3,7 +3,7 @@
  * A hit set (src/cod/00137cb8.c) holds an array of 0x38-byte nodes from
  * HITSET_OFFSET_NODE on. HitNode_dispatchByKind picks the point test by the
  * kind bits of flags: kind 0 is a prism over a quad on the XZ plane
- * (func_002C0B38), kinds 2 and 4 are tested by func_002C0C28 and
+ * (HitNode_containsQuadPoint), kinds 2 and 4 are tested by func_002C0C28 and
  * func_002C0CB0. Names are ours; unnamed fields stay as unkNN padding.
  */
 #ifndef GODHAND_HITNODE_H

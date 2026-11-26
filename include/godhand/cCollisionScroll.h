@@ -47,7 +47,7 @@ typedef struct cCollisionScroll {
 } cCollisionScroll;
 
 /* Layer i as an integer sum, index first. &layers[i] gives the same address with
- * the addu operands the other way round (func_001331B8). */
+ * the addu operands the other way round (cCollisionScroll_SetCollEnableByName). */
 #define COLLSCROLL_LAYER_AT(base, i)     ((ScrollLayer *)((i) * sizeof(ScrollLayer) + (unsigned int)(base)))
 
 /* Entry i, and the polygon group an entry names, as integer sums with the

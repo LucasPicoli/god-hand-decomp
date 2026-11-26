@@ -3,7 +3,7 @@
 #include "godhand/cOmWeapon.h"
 #include "godhand/vu0.h"
 
-extern void func_001331B8(char *a0, long a1, int a2);
+extern void cCollisionScroll_SetCollEnableByName(char *a0, long a1, int a2);
 extern char D_005CAE50[];
 extern void cModel_calcParts(void *model);
 extern char *Getplayer(void);
@@ -20,7 +20,7 @@ void cOmWeapon_resetHold(cOmWeapon *self) {
     self->base.mode = 0;
     self->base.step = 0;
     self->base.stepArg = 0;
-    func_001331B8(D_005CAE50, self->base.modelHandle, 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, self->base.modelHandle, 0);
 }
 
 extern int ChkLine(void *a0, void *a1, void *a2, int a3, int a4, int a5, int a6,

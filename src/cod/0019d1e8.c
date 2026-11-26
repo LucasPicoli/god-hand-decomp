@@ -22,7 +22,7 @@ void ResetObjState_19D1E8(void *a0) {
     if (sub != 0) {
         cDamageUnit_SetDamageCollActive(sub, 0);
     }
-    func_001331B8(D_005CAE50, *(long *)((char *)a0 + 0x540), 0);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, *(long *)((char *)a0 + 0x540), 0);
     ClearStateAndFlag_1C7E08(a0);
 }
 
