@@ -1,8 +1,8 @@
 /* Struct: CGObj33C8_t — mixed byte/short/word fields +0xD..+0xCC; short array at +0xE2. */
-#include "include_asm.h"
 #include "godhand/criStm.h"
 #include "godhand/adxbLoop.h"
 #include "godhand/Obj33C8.h"
+#include "godhand/adxbPrm.h"
 
 /* ── CALL CHAIN (4) — deferred ─────────────────────────── */
 /* Release the record and clear the whole object. */
@@ -18,7 +18,36 @@ void ADXB_Destroy(Obj33C8 *self) {
 }
 
 /* ── MEDIUM (1) — large initializer ───────────────────────────────────────*/
-INCLUDE_ASM("nonmatching", ADXB_SetDefPrm);
+/* Fills the decoder's default stream parameters: 16-bit stereo at 48000 Hz in
+ * 0x400-sample blocks with no end, the work block pointed at the output ring,
+ * the default format copied in and the loop fields cleared. */
+__attribute__((section(".text.ADXB_SetDefPrm")))
+void ADXB_SetDefPrm(AdxbPrm *self) {
+    self->blkLen = ADXB_DEF_BLKLEN;
+    self->mode = 1;
+    self->sfreq = ADXB_DEF_SFREQ;
+    self->nch = ADXB_DEF_NCH;
+    self->bps = ADXB_DEF_BPS;
+    self->total = ADXB_DEF_TOTAL;
+    self->level = ADXB_DEF_LEVEL;
+    self->fmt = self->defFmt;
+    self->wkNch = ADXB_DEF_NCH;
+    self->wkLevel = ADXB_DEF_LEVEL;
+    self->wkBlkLen = ADXB_DEF_BLKLEN;
+    self->wkBuf = self->pcmbuf;
+    self->wkSize = self->pcmbsize;
+    self->wkDist = self->pcmbdist;
+    self->decCnt = 0;
+    self->lpType = 0;
+    self->lpFlag = 0;
+    self->lpCount = 0;
+    self->lpStart = 0;
+    self->lpStartOfst = 0;
+    self->lpEnd = 0;
+    self->lpEndOfst = 0;
+    self->lpLen = 0;
+    self->decPos = 0;
+}
 
 
 /* ── ACCESSOR / BRANCHED_LEAF (15) ─────────────────────────────────────── */
