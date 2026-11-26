@@ -104,13 +104,18 @@ class CarveError(Exception):
 
 _GLABEL_RE = re.compile(r"^\s*glabel\s+(\S+)")
 _ENDLABEL_RE = re.compile(r"^\s*endlabel\s+(\S+)")
-_NONMATCHING_RE = re.compile(r"^\s*nonmatching\s+(\S+),")
+_NONMATCHING_RE = re.compile(r"^\s*nonmatching\s+(\S+)(,|\s*$)")
 _ALIGN3_RE = re.compile(r"^\s*\.align\s+3\s*$")
 _ALABEL_LIKE_RE = re.compile(r"^\s*(alabel|jlabel|ehlabel)\s+(\S+)")
 # A split fragment (scripts/mark_split_fragments.py): inter-function words
 # with no symbol. It bounds the previous carve unit but is never carvable.
 _FRAGMENT_RE = re.compile(r"^\s*fragment\s+(\S+)")
 _ENDFRAGMENT_RE = re.compile(r"^\s*endfragment\s+(\S+)")
+# A top-level data block splat found in .text (e.g. libstdc++ nilRep at
+# 0x3BB168). Like a fragment it bounds the previous carve unit, so a C body
+# never swallows the words.
+_DLABEL_RE = re.compile(r"^dlabel\s+(\S+)")
+_ENDDLABEL_RE = re.compile(r"^enddlabel\s+(\S+)")
 # Instruction line in a splat-disassembled carve fragment:
 #   ``    /* FILE_OFF HEX_VRAM HEX_BYTES */  insn ...``
 # Each match contributes 4 bytes to the carve unit's .text size.
@@ -370,9 +375,12 @@ def _index_functions(lines: list[str]) -> dict[str, tuple[int, int, int]]:
         end_re = _ENDLABEL_RE
         if not m:
             m = _FRAGMENT_RE.match(line)
+            end_re = _ENDFRAGMENT_RE
+            if not m:
+                m = _DLABEL_RE.match(line)
+                end_re = _ENDDLABEL_RE
             if not m:
                 continue
-            end_re = _ENDFRAGMENT_RE
             fragments.add(m.group(1))
         name = m.group(1)
         # Upward walk: find the leading `.align 3`.
@@ -403,9 +411,10 @@ def _index_functions(lines: list[str]) -> dict[str, tuple[int, int, int]]:
                 endlabel = k
                 break
         else:
-            raise BuildError(
-                f"carve indexer: no endlabel for {name!r} starting at line {i + 1}"
-            )
+            if end_re is not _ENDDLABEL_RE:  # splat may leave a data block open
+                raise BuildError(
+                    f"carve indexer: no endlabel for {name!r} starting at line {i + 1}"
+                )
         func_pos.append((name, block_start, i, endlabel))
 
     # Now derive block_end_inclusive = (next function's block_start) - 1,

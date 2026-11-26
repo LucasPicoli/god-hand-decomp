@@ -286,6 +286,24 @@ class TestSplitMonolithicSmoke:
         assert len(fragments) == 2
         assert list(carved.keys()) == ["func_00100008"]
 
+    def test_dlabel_block_bounds_previous_carve(self):
+        """Data splat put in .text after a function stays out of its carve."""
+        mono = _MIN_MONO.replace("""
+.align 3
+nonmatching func_00100008, 12""", """
+.align 3
+nonmatching D_00100008
+
+dlabel D_00100008
+    /* 8 100008 00000001 */ .word 0x00000001
+enddlabel D_00100008
+
+.align 3
+nonmatching func_00100008, 12""")
+        fragments, carved, _ = CarveSchema.split_monolithic(mono, ["func_00100000"])
+        assert "D_00100008" not in carved["func_00100000"]
+        assert "dlabel D_00100008" in fragments[1]
+
     def test_split_missing_function_raises(self):
         with pytest.raises(BuildError, match="not present in monolithic"):
             CarveSchema.split_monolithic(_MIN_MONO, ["func_DEADBEEF"])
