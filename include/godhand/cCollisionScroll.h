@@ -20,6 +20,8 @@
 typedef struct ScrollData {
     char unk00[0x20];
     unsigned short numLayers;           /* 0x20 entries in cCollisionScroll.layers */
+    char unk22[6];
+    unsigned short numEntries;          /* 0x28 entries in cCollisionScroll.entries */
 } ScrollData;
 
 typedef struct ScrollLayer {
@@ -47,6 +49,12 @@ typedef struct cCollisionScroll {
 /* Layer i as an integer sum, index first. &layers[i] gives the same address with
  * the addu operands the other way round (func_001331B8). */
 #define COLLSCROLL_LAYER_AT(base, i)     ((ScrollLayer *)((i) * sizeof(ScrollLayer) + (unsigned int)(base)))
+
+/* Entry i, and the polygon group an entry names, as integer sums with the
+ * index first, for the same reason (cCollisionScroll_SetLayerCollEnable). */
+#define COLLSCROLL_ENTRY_AT(base, i)     ((ScrollEntry *)((i) * sizeof(ScrollEntry) + (unsigned int)(base)))
+#define COLLSCROLL_GROUP_AT(base, g)     ((char *)(((g) << 4) + (unsigned int)(base)))
+#define COLLSCROLL_GROUP_KIND(grp)   (*(unsigned char *)((grp) + 0xD))
 
 typedef char cCollisionScroll_chk_layer[sizeof(ScrollLayer) == 0x14 ? 1 : -1];
 typedef char cCollisionScroll_chk_entry[sizeof(ScrollEntry) == 0x14 ? 1 : -1];
