@@ -29,10 +29,11 @@ __attribute__((section(".text.cScenario_setCam")))
 int cScenario_setCam(cScenario *self, const char *name) {
     return cScenario_startCamMotion(self, SearchCameraData(name));
 }
-#include "include_asm.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/vu0.h"
 #include "godhand/cOmBase.h"
+#include "godhand/cGameObj.h"
+#include "godhand/player.h"
 
 __attribute__((section(".text.cScenario_taskExec")))
 /* Start entry(arg) as a script task in `slot`; returns its index or -1. */
@@ -60,7 +61,53 @@ void cScenario_beginRoomJump(int a0, unsigned char a1, unsigned char a2, int a3,
 }
 
 
-INCLUDE_ASM("nonmatching", cScenario_beginCasinoBattle);
+/* The scenario keeps the return point of a battle at its start: a position, a heading (0x10) and a room
+ * number (0x16). */
+#define SCENARIO_RETURN_POS(s)    ((cVec *)(s))
+#define SCENARIO_RETURN_ANGLE(s)  (*(float *)((char *)(s) + 0x10))
+#define SCENARIO_RETURN_ROOM(s)   (*(short *)((char *)(s) + 0x16))
+
+extern void cSaveManager_setCheckPoint(int mgr, int a1, int a2, int a3);
+
+/* cGameObj method 0x88, called right after the lock-on position: the player's rotation vector. */
+#define GAMEOBJ_VT_GETROT(vt)       (((cVtEnt *)(vt))[0x88 / 8])
+
+/* The player's lock-on position and its rotation vector, through its method table. */
+static __inline__ cVec *Player_lockOnPos(cGameObj *pl)
+{
+    cGameObjVt *vt = cGameObj_vt(pl);
+    return ((cVec *(*)(void *))vt->lockOn)((char *)pl + vt->lockOnDelta);
+}
+
+static __inline__ cVec *Player_rotVec(cGameObj *pl)
+{
+    cGameObjVt *vt = cGameObj_vt(pl);
+    return ((cVec *(*)(void *))GAMEOBJ_VT_GETROT(vt).pfn)((char *)pl + GAMEOBJ_VT_GETROT(vt).delta);
+}
+
+/* cScenario_beginCasinoBattle: start the casino battle: set save flag 0x04000000, remember the player's
+ * position and heading as the return point (room 0), set a checkpoint and set bit 0x8000000 of D_00747A24. */
+__attribute__((section(".text.cScenario_beginCasinoBattle")))
+void cScenario_beginCasinoBattle(void)
+{
+    cVec saved[2];
+    cVec *v;
+    int *flags;
+
+    flags = (int *)&D_00569B70.data->flags;
+    *flags = *flags | 0x04000000;
+    v = Player_lockOnPos(Getplayer());
+    VU0_LQC2(4, v, 0);
+    VU0_SQC2(4, saved, 0x0);
+    v = Player_rotVec(Getplayer());
+    VU0_LQC2(4, v, 0);
+    VU0_SQC2(4, saved, 0x10);
+    SCENARIO_RETURN_ROOM(D_003C2F84) = 0;
+    cVec_copy3(SCENARIO_RETURN_POS(D_003C2F84), &saved[0]);
+    SCENARIO_RETURN_ANGLE(D_003C2F84) = saved[1].y;
+    cSaveManager_setCheckPoint(D_003C264C, 0, 0, 0);
+    D_00747A24 = D_00747A24 | 0x8000000;
+}
 
 __attribute__((section(".text.cScenario_endCasinoBattle")))
 void cScenario_endCasinoBattle(void)
@@ -74,15 +121,7 @@ void cScenario_endCasinoBattle(void)
     *flags = *flags & ~0x04000000;
 }
 
-
-/* The scenario keeps the return point of a battle at its start: a position, a heading (0x10) and a room
- * number (0x16). */
-#define SCENARIO_RETURN_POS(s)    ((cVec *)(s))
-#define SCENARIO_RETURN_ANGLE(s)  (*(float *)((char *)(s) + 0x10))
-#define SCENARIO_RETURN_ROOM(s)   (*(short *)((char *)(s) + 0x16))
-
 extern unsigned int D_00568240;
-extern void cSaveManager_setCheckPoint(int mgr, int a1, int a2, int a3);
 extern void cScenario_beginRoomJump_2C4548(cScenario *self, int room, float angle, void *pos, int a3, unsigned int t0, int t1);
 
 /* cScenario_beginKurohukuBattle: start the Kurohuku battle: mark it in D_00568240, remember the return
