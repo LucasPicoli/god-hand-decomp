@@ -226,7 +226,6 @@ int ReturnZero_DFF0(void) { return 0; }
 
 __attribute__((section(".text.ReturnZero_DFF8")))
 int ReturnZero_DFF8(void) { return 0; }
-INCLUDE_ASM("nonmatching", func_0034DB60);
 /* Initialise the Sofdec system block from the caller's init record. Returns long: with an int return gcc sibcalls SFTRN_Init and drops retail's jal. */
 __attribute__((section(".text.SfdSys_init")))
 long SfdSys_init(SfdSysInit *init)
