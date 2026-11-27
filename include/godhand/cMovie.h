@@ -61,6 +61,10 @@ extern void cMovie_haltActive(void *mgr, int handle);
 extern int cMovie_GetStatus(void *mgr, int handle);
 extern void cMovie_Stop(void *mgr, int handle);
 
+/* Set to 1 when a movie starts (sw at 0x2B4CFC); the vblank handler, func_0030B148, reads and
+ * clears it, so it is volatile. */
+extern volatile int D_003C3CD4;
+
 typedef struct cMovie {
     cMovieTrack *track;                 /* 0x00 MOVIE_TRACK_NUM entries */
     int player[MOVIE_TRACK_NUM];        /* 0x04 */
