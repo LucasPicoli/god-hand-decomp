@@ -11,4 +11,7 @@ void MtxInitRotY(float *mtx, float angle);
 /* dst = the inverse of src. */
 void MtxInverse(float *dst, float *src);
 
+/* q (x, y, z, w) = the rotation of the 4x4 matrix m. */
+void func_0015A190(float *q, void *m);
+
 #endif /* GODHAND_MTX_H */

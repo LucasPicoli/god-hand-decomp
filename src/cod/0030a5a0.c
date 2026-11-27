@@ -1,4 +1,5 @@
 #include "godhand/vu0.h"
+#include "godhand/sceVu0.h"
 
 /* sceVu0UnitMatrix — builds a 4x4 identity matrix at a0: makes [0,0,0,1] in $vf4
  * then rotates it across the four rows (vmr32). */

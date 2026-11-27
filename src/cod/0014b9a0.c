@@ -1,5 +1,6 @@
 #include "godhand/cModel.h"
 #include "godhand/globals.h"
+#include "godhand/sceVu0.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -9,7 +10,6 @@ extern void func_00155C68(void *a0, void *a1, int a2);
 extern void func_0031A600(void *a0, int a1, int a2, int a3);
 extern void func_0031A650(void *a0, int a1, int a2, int a3, int t0);
 extern void func_0030A548(void *dst, void *src);
-extern void sceVu0UnitMatrix(void *m);
 extern int D_007476B0;
 extern unsigned char D_00754C80[];
 extern float D_003BD880[];

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
+#include "godhand/sceVu0.h"
 
-extern void sceVu0UnitMatrix(void *m);
 extern void sceVu0MulMatrix(void *a, void *b, void *c);
 
 /* sn-2.95.3-136 matched TU. */

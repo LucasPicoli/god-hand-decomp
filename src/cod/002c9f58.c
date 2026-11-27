@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void sceVu0UnitMatrix(void *m);
+#include "godhand/sceVu0.h"
+
 extern void cSndMemHeap_OpenMain(void);
 extern void func_002CA220(void *a);
 extern void cSnd_loadSoundGroup(void *a, int b);

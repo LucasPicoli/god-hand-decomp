@@ -5,7 +5,6 @@
 #include "godhand/sceVu0.h"
 
 extern const float D_003BD880[4];
-extern void sceVu0UnitMatrix(void *m);
 extern void sceVu0RotMatrix(void *dst, void *src, float *ang);
 extern float sceVu0InnerProduct(void *a0, void *a1);
 extern float capVu0Acos(float x);
