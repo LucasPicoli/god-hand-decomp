@@ -5,6 +5,7 @@
 #include "godhand/cGameObj.h"
 #include "godhand/CustomIDWork.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
 
 extern cGameObj *Getplayer(void);
 extern int D_003C264C;
@@ -88,7 +89,7 @@ extern struct Table_func_0017D6B0 D_003BDA58;
 __attribute__((section(".text.cEmObj_tickModeTimer")))
 void cEmObj_tickModeTimer(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
@@ -96,26 +97,26 @@ void cEmObj_tickModeTimer(void *a0)
     float left;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDA58 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDA58 + i8 + 4);
     }
-    f0 = D_003BDA58.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDA58.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     rate = cEmManage_GetSpeedRate(D_005864F0);
-    left = *(float *)(s0 + OBJ_TIMER_OFFSET) - rate;
-    *(float *)(s0 + OBJ_TIMER_OFFSET) = left;
+    left = *(float *)((char *)s0 + OBJ_TIMER_OFFSET) - rate;
+    *(float *)((char *)s0 + OBJ_TIMER_OFFSET) = left;
     if (left < 0.0f)
-        *(float *)(s0 + OBJ_TIMER_OFFSET) = 0.0f;
+        *(float *)((char *)s0 + OBJ_TIMER_OFFSET) = 0.0f;
     func_001B76D8(s0);
 }

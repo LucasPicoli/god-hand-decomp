@@ -20,32 +20,33 @@ extern void CopyVec3ToField30_147C40(void *a0, void *a1);
 extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
+#include "godhand/cObj.h"
 extern char D_005864F0[];
 
 __attribute__((section(".text.func_00278C30")))
 void func_00278C30(void *a0)
 {
-    char *s0 = (char *)a0;
-    char *g = D_00586A7C;
+    cObj *s0 = a0;
+    cObj *g = (cObj *)D_00586A7C;
     float one;
 
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0: {
         float f = 0.0f;
         char *v0;
-        if (*(unsigned char *)(s0 + 0x2F7) == 0) {
+        if (s0->stepArg == 0) {
             f = (float)(int)(Rnd() % 0xF0);
         }
-        v0 = *(char **)(s0 + 0x304);
-        *(unsigned char *)(s0 + 0x2F7) = 1;
+        v0 = s0->pack;
+        s0->stepArg = 1;
         func_002A8578(s0, *(int *)(v0 + 0xC) + (int)v0, *(int *)(v0 + 0x10) + (int)v0, 5, f, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) += 1;
+        s0->step += 1;
     }
         /* fallthrough */
     case 1:
         if (moveMotion(s0) != 0) {
             if ((Rnd() & 1) != 0) {
-                *(unsigned char *)(s0 + 0x2F6) = 2;
+                s0->step = 2;
             }
         }
         one = 1.0f;
@@ -53,15 +54,15 @@ void func_00278C30(void *a0)
         cObjBase_addNullSpeed(s0, one);
         break;
     case 2: {
-        char *v0 = *(char **)(s0 + 0x304);
+        char *v0 = s0->pack;
         func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 5, 0.0f, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) += 1;
+        s0->step += 1;
     }
         /* fallthrough */
     case 3:
         if (moveMotion(s0) != 0) {
             if ((Rnd() & 1) != 0) {
-                *(unsigned char *)(s0 + 0x2F6) = 0;
+                s0->step = 0;
             }
         }
         one = 1.0f;
@@ -70,19 +71,18 @@ void func_00278C30(void *a0)
         break;
     }
     if (g != 0) {
-        if (*(unsigned char *)(g + 0x2F4) == 1) {
+        if (g->mode == 1) {
             func_00279C20(s0);
-            *(unsigned char *)(s0 + 0x2F7) = 0;
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 5;
+            s0->stepArg = 0;
+            s0->mode = 0;
+            s0->step = 0;
+            s0->phase = 5;
         }
     }
 }
 
 #include "godhand/vu0.h"
-
-struct VtEnt { short delta; short index; void *pfn; };
+#include "godhand/cOmBase.h"
 
 __attribute__((section(".text.func_001881F0")))
 void func_001881F0(void *a0)
@@ -93,10 +93,9 @@ void func_001881F0(void *a0)
         cVec q20;       /* 0x20 */
         float mtx[16];  /* 0x30 */
     } buf __attribute__((aligned(16)));
-    char *s1 = (char *)a0;
-    struct VtEnt *vt;
+    cOmBase *s1 = a0;
+    cVtEnt *vt;
     int i;
-    int off;
     int one1;
     float lim;
     char *e, *e10, *e20, *e30, *e40;
@@ -104,12 +103,12 @@ void func_001881F0(void *a0)
     cVec *q20v, *q10v;
     float rate;
 
-    switch (*(unsigned char *)(s1 + 0x2F5)) {
+    switch (s1->phase) {
     case 0: {
         float *r;
         VU0_SQC2_VF0(&buf.pos, 0x0);
-        vt = *(struct VtEnt **)(s1 + 0x214);
-        r = ((float *(*)(void *))vt[0x10].pfn)(s1 + vt[0x10].delta);
+        vt = s1->vtable;
+        r = ((float *(*)(void *))vt[0x10].pfn)((char *)s1 + vt[0x10].delta);
         if (&buf.pos.x != r) {
             buf.pos.x = r[0];
             buf.pos.y = r[1];
@@ -119,55 +118,55 @@ void func_001881F0(void *a0)
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, a0, 0, 0, 0, 0);
         func_00188798(s1);
         SetField5B0Bit2ClearBit8_1B7908(s1);
-        if (*(int *)(s1 + 0x608) != 0) {
-            cDamageUnit_SetDamageCollFlashActive(*(void **)(s1 + 0x608), 1, 1);
+        if (*(int *)((char *)s1 + 0x608) != 0) {
+            cDamageUnit_SetDamageCollFlashActive(*(void **)((char *)s1 + 0x608), 1, 1);
         }
-        *(unsigned char *)(s1 + 0x2F5) = 1;
-        *(short *)(s1 + 0x600) = 0x1E;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->phase = 1;
+        *(short *)((char *)s1 + 0x600) = 0x1E;
+        s1->step = 0;
+        s1->stepArg = 0;
     }
         /* fallthrough */
     case 1:
-        *(short *)(s1 + 0x600) = *(unsigned short *)(s1 + 0x600) - 1;
-        if (*(short *)(s1 + 0x600) <= 0) {
-            *(short *)(s1 + 0x600) = 0xF;
-            *(unsigned char *)(s1 + 0x2F5) = 2;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0x600) = *(unsigned short *)((char *)s1 + 0x600) - 1;
+        if (*(short *)((char *)s1 + 0x600) <= 0) {
+            *(short *)((char *)s1 + 0x600) = 0xF;
+            s1->phase = 2;
+            s1->step = 0;
+            s1->stepArg = 0;
         }
         break;
     case 2: {
-        int n = *(unsigned short *)(s1 + 0x600) - 1;
+        int n = *(unsigned short *)((char *)s1 + 0x600) - 1;
 
-        *(short *)(s1 + 0x600) = n;
-        *(float *)(s1 + 0x24C) = (float)(short)n / 15.0f;
+        *(short *)((char *)s1 + 0x600) = n;
+        s1->tint.w = (float)(short)n / 15.0f;
         if ((short)n <= 0) {
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 3;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->step = 0;
+            s1->phase = 3;
+            s1->stepArg = 0;
         }
         break;
     }
     case 3:
-        *(unsigned char *)(s1 + 0x2F4) = 3;
-        *(unsigned char *)(s1 + 0x2F5) = 0;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->mode = 3;
+        s1->phase = 0;
+        s1->step = 0;
+        s1->stepArg = 0;
         break;
     default:
         break;
     }
     i = 0;
-    if (i < 6 && *(unsigned char *)(s1 + 0x2B4) != i) {
+    if (i < 6 && s1->partNum != i) {
         q20v = &buf.q20;
         q10v = &buf.q10;
-        e40 = s1 + 0x650;
-        e10 = s1 + 0x620;
-        e30 = s1 + 0x640;
-        e20 = s1 + 0x630;
-        e = s1 + 0x610;
-        for (; i < 6 && *(unsigned char *)(s1 + 0x2B4) != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
+        e40 = (char *)s1 + 0x650;
+        e10 = (char *)s1 + 0x620;
+        e30 = (char *)s1 + 0x640;
+        e20 = (char *)s1 + 0x630;
+        e = (char *)s1 + 0x610;
+        for (; i < 6 && s1->partNum != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
         one1 = 1;
         lim = -1000.0f;
         if (GetField_54_173900(e) == one1) {

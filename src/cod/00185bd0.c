@@ -3,6 +3,7 @@
 #include "godhand/cDamageManage.h"
 #include "godhand/cSnd.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cObj.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_001B76D8(void *a0);
@@ -23,28 +24,28 @@ extern struct Table_func_00194480 D_003BDB48;
 __attribute__((section(".text.UpdatePhaseWithHitCheckB")))
 void UpdatePhaseWithHitCheckB(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDB48 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDB48 + i8 + 4);
     }
-    f0 = D_003BDB48.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDB48.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_001B76D8(s0);
 }
@@ -62,28 +63,28 @@ extern struct Table_func_001A5470 D_003BDB98;
 __attribute__((section(".text.UpdatePhaseWithHitCheckC")))
 void UpdatePhaseWithHitCheckC(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDB98 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDB98 + i8 + 4);
     }
-    f0 = D_003BDB98.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDB98.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_001B76D8(s0);
 }

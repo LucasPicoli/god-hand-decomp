@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 
 #include "godhand/ColiseumBattle.h"
+#include "godhand/cObj.h"
 
 extern char D_00747470[];
 extern void classFADE_kill(void *p);
@@ -107,28 +108,28 @@ extern struct Table_func_001AC838 D_003BDC18;
 __attribute__((section(".text.UpdatePhaseWithPostStepA")))
 void UpdatePhaseWithPostStepA(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDC18 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDC18 + i8 + 4);
     }
-    f0 = D_003BDC18.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDC18.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     cOmShake_updateHeight(s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
@@ -147,28 +148,28 @@ extern struct Table_func_00180FD0 D_003BDAF8;
 __attribute__((section(".text.UpdatePhaseWithPostStepB")))
 void UpdatePhaseWithPostStepB(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDAF8 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDAF8 + i8 + 4);
     }
-    f0 = D_003BDAF8.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDAF8.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     cOmBase_shakeHeight(s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
@@ -188,28 +189,28 @@ extern struct Table_func_001B5A58 D_003BDD60;
 __attribute__((section(".text.UpdatePhaseThenCalcParts")))
 void UpdatePhaseThenCalcParts(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDD60 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDD60 + i8 + 4);
     }
-    f0 = D_003BDD60.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDD60.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_002A87E8(s0, 0);
     cModel_calcParts(s0);
     cModel_calcWorldParts(s0);

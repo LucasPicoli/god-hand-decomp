@@ -16,6 +16,7 @@ extern void func_002D58E8(void *work, void *entry, int arg);
 extern void func_002D5440(cTaskManager *self, int index);
 extern void InitFields_1B6E90(void *);
 #include "godhand/objField.h"
+#include "godhand/cObj.h"
 extern int D_00428778;
 
 /* Allocate and zero a 0x4D0-byte object, run the base constructor and set its vtable pointer; 0 if the allocator is locked or full. */
@@ -106,28 +107,28 @@ void *InitVuBlockObject(void *a0){
 
 __attribute__((section(".text.DispatchActionTableA")))
 void DispatchActionTableA(void *a0) {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
-    if (*(unsigned char *)(s0 + 0x2F5) >= 1) *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 1) s0->phase = 0;
+    i8 = s0->phase * 8;
     e = D_003BC7B0 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))(D_003BC7B0 + i8 + 4);
     }
-    f0 = *(short *)(D_003BC7B0 + *(unsigned char *)(s0 + 0x2F5) * 8);
+    f0 = *(short *)(D_003BC7B0 + s0->phase * 8);
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
 }
 
 /* Dispatch the current action: pick the table entry for state byte +0x2F5 (reset to 0 when out of range) and call its handler. */
@@ -135,26 +136,26 @@ void DispatchActionTableA(void *a0) {
 
 __attribute__((section(".text.DispatchActionTableB")))
 void DispatchActionTableB(void *a0) {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
-    if (*(unsigned char *)(s0 + 0x2F5) >= 1) *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 1) s0->phase = 0;
+    i8 = s0->phase * 8;
     e = D_003BC7B8 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))(D_003BC7B8 + i8 + 4);
     }
-    f0 = *(short *)(D_003BC7B8 + *(unsigned char *)(s0 + 0x2F5) * 8);
+    f0 = *(short *)(D_003BC7B8 + s0->phase * 8);
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
 }

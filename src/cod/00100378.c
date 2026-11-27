@@ -16,6 +16,7 @@ extern float D_003BD880[];
 #include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cDamageManage.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -100,49 +101,49 @@ int func_001B0340(char *p)
 }
 
 __attribute__((section(".text.cOmThrow_SetParent")))
-void cOmThrow_SetParent(char *p, char *parent)
+void cOmThrow_SetParent(cGameObj *p, char *parent)
 {
     float buf[8];
     float *sph;
-    char *n;
+    cOmBase *n;
     int flag;
-    int obj;
+    cOmBase *obj;
 
     {
-        char *vt = *(char **)(p + 0x214);
-        short off = *(short *)(vt + 0xA8);
-        void (*fp)() = *(void (**)())(vt + 0xAC);
-        fp(p + off);
+        cVtEnt *vt = p->vtable;
+        short off = vt[21].delta;
+        void (*fp)(void *) = (void (*)(void *))vt[21].pfn;
+        fp((char *)p + off);
     }
-    cCollisionScroll_SetCollEnableByName(D_005CAE50, *(long *)(p + 0x540), 0);
-    *(cDamageGive **)(p + 0x600) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
-    flag = *(unsigned char *)(p + 0x2B4);
+    cCollisionScroll_SetCollEnableByName(D_005CAE50, p->modelHandle, 0);
+    *(cDamageGive **)((char *)p + 0x600) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
+    flag = p->partNum;
     *(int *)buf = flag;
-    if (flag) n = **(char ***)(p + 0x278); else n = 0;
+    if (flag) n = *p->children; else n = 0;
     buf[4] = 0.0f;
     buf[5] = 0.0f;
     buf[6] = 0.0f;
     sph = buf + 4;
     sph[3] = 1.0f;
-    *(int *)(p + 0x604) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x600), (const struct cMatrix *)(n + 0x80),
+    *(int *)((char *)p + 0x604) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)((char *)p + 0x600), (const struct cMatrix *)n->mtx,
                                                           (const cVec *)sph, 0.5f);
-    cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + 0x600), 0);
-    *(int *)(p + 0x644) = (int)parent;
-    *(char *)(p + 0x2F4) = 0;
-    *(char *)(p + 0x2F5) = 0;
-    *(char *)(p + 0x2F6) = 0;
-    *(char *)(p + 0x2F7) = 0;
+    cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char *)p + 0x600), 0);
+    *(int *)((char *)p + 0x644) = (int)parent;
+    p->mode = 0;
+    p->phase = 0;
+    p->step = 0;
+    p->stepArg = 0;
     {
-        int flag2 = *(unsigned char *)(p + 0x2B4);
+        int flag2 = p->partNum;
         *(int *)buf = flag2;
-        if (flag2) obj = **(int **)(p + 0x278); else obj = 0;
+        if (flag2) obj = *p->children; else obj = 0;
     }
     if (obj != 0) {
-        float *s = *(float **)(obj + 0xD0);
-        float *d = (float *)(p + 0x630);
+        float *s = &obj->anchor->x;
+        float *d = (float *)((char *)p + 0x630);
         if (d != s) { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; }
-        *(int *)(p + 0x624) = 0;
-        *(char *)(p + 0x640) = 0;
+        *(int *)((char *)p + 0x624) = 0;
+        *(char *)((char *)p + 0x640) = 0;
     }
 }
 

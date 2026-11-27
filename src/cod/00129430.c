@@ -142,7 +142,7 @@ extern Blob18 D_00429278;
 __attribute__((section(".text.cOmBase_tickPhaseWithHit")))
 void cOmBase_tickPhaseWithHit(cOmBase *self)
 {
-    char *s0 = (char *)self;
+    cOmBase *s0 = self;
     struct Entry_func_001BC1C8 tbl[3];
     char *e;
     int i8;
@@ -151,23 +151,23 @@ void cOmBase_tickPhaseWithHit(cOmBase *self)
     int v1;
 
     *(Blob18 *)tbl = D_00429278;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    i8 = s0->phase * 8;
     e = (char *)tbl + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)tbl + i8 + 4);
     }
-    f0 = tbl[*(unsigned char *)(s0 + 0x2F5)].f0;
+    f0 = tbl[s0->phase].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
-    v1 = cOmBase_checkDamage(self, *(int *)(s0 + OBJ_DAMAGE_OFFSET));
+    fp((int)((char *)s0 + arg));
+    v1 = cOmBase_checkDamage(self, *(int *)((char *)s0 + OBJ_DAMAGE_OFFSET));
     if (v1 == 1) {
         if (self->hp <= 0) {
             int flags = self->flags0;
