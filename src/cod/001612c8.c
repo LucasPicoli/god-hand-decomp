@@ -2,6 +2,7 @@
 #include "godhand/cScenario.h"
 #include "godhand/cSnd.h"
 #include "godhand/globals.h"
+#include "godhand/cEm00.h"
 
 extern int D_00741940[];
 extern int D_00741960[];
@@ -64,7 +65,7 @@ typedef struct { char b[0x18]; } Blob18;
 extern Blob18 D_00448C78;
 
 __attribute__((section(".text.func_00288930")))
-void func_00288930(char *s0)
+void func_00288930(cEm00 *s0)
 {
     struct Entry_00288930 tbl[3];
     char *e;
@@ -73,32 +74,32 @@ void func_00288930(char *s0)
     int type; int arg; int (*fp)(int); long entry;
 
     *(Blob18 *)tbl = D_00448C78;
-    if (*(int *)(s0 + 0x15C4) != 0) {
-        if (IsEntryActive_1C2490(*(int *)(s0 + 0x15C4)) != 0) {
-            *(int *)(s0 + 0x15C4) = 0;
+    if (s0->unk15C4 != 0) {
+        if (IsEntryActive_1C2490(s0->unk15C4) != 0) {
+            s0->unk15C4 = 0;
         } else {
-            SetField_630_1C2370(*(int *)(s0 + 0x15C4));
+            SetField_630_1C2370(s0->unk15C4);
         }
-        *(int *)(s0 + 0x15C4) = 0;
+        s0->unk15C4 = 0;
     }
-    if (*(unsigned char *)(s0 + 0x2F5) >= 3)
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 3)
+        s0->phase = 0;
+    i8 = s0->phase * 8;
     e = (char *)tbl + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)tbl + i8 + 4);
     }
-    f0 = tbl[*(unsigned char *)(s0 + 0x2F5)].f0;
+    f0 = tbl[s0->phase].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
 }
 
 __attribute__((section(".text.cScenario_endTask")))
