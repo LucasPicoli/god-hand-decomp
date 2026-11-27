@@ -30,7 +30,7 @@ typedef struct RecTable {
 __attribute__((section(".text.cRoomJump_getRecord")))
 void *cRoomJump_getRecord(cRoomJump *self, unsigned short group, unsigned char n)
 {
-    RecGroup *grp = func_002BEAA8(self, group);
+    RecGroup *grp = cRoomJump_findRecord(self, group);
     char *rec = 0;
     if (grp != 0 && n < grp->count) {
         char *tbl = (char *)self->tbl;

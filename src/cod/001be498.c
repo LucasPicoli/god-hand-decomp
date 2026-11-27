@@ -43,8 +43,8 @@ typedef struct OrbitFrame {
  * position by speedRate, and turns it pi/256 per unit of speedRate toward the anchor.
  * The work address is bound before the volatile zero-and-subtract block, as retail
  * forms it there and reads it after. */
-__attribute__((section(".text.func_002495E0")))
-void func_002495E0(cEm00 *self, float angle)
+__attribute__((section(".text.cEm00_orbitAnchorBlend")))
+void cEm00_orbitAnchorBlend(cEm00 *self, float angle)
 {
     OrbitFrame f;
     float keep, one;
@@ -92,7 +92,7 @@ inline static void cp40(char *a0, float *a1, float *src)
 /* Flags part a1 of the owner (0x278 table, 0x2B4 count) with 8 and 0x10, copies the two
  * vectors a2 and a3 with small random jitter, and sets up the effect slot at
  * 0x600 + a1 * 0x60 from them with unit scale and a 3.0 scale vector. */
-__attribute__((section(".text.func_001BE498"))) void func_001BE498(char *a0, int a1, float *a2, float *a3)
+__attribute__((section(".text.PartFx_initSlotJitter"))) void PartFx_initSlotJitter(char *a0, int a1, float *a2, float *a3)
 {
   __attribute__((aligned(16))) unsigned char frame[0x50];
   float *new_var;

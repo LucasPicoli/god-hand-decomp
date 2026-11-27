@@ -10,7 +10,7 @@ extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern void func_00281260(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
-extern void func_002495E0(void *a0, float f12);
+extern void cEm00_orbitAnchorBlend(void *a0, float f12);
 extern float fRand0_1(void);
 extern int moveMotion(void *a0);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
@@ -52,7 +52,7 @@ __attribute__((section(".text.func_00249AB0"))) void func_00249AB0(cEm00 *self)
         case 1: {
             float d;
 
-            func_002495E0(self, 0.0f);
+            cEm00_orbitAnchorBlend(self, 0.0f);
             moveMotion(self);
             cObjBase_addNullSpeed_Rotation(self, 1.0f);
             cObjBase_addNullSpeed(self, 1.0f);

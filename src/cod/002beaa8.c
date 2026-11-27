@@ -15,8 +15,8 @@ typedef struct RoomJumpTbl {
 } RoomJumpTbl;
 
 /* Find the record of jump point id in the room's jump table; 0 if there is none. */
-__attribute__((section(".text.func_002BEAA8")))
-RoomJumpRec *func_002BEAA8(cRoomJump *self, unsigned short id)
+__attribute__((section(".text.cRoomJump_findRecord")))
+RoomJumpRec *cRoomJump_findRecord(cRoomJump *self, unsigned short id)
 {
     RoomJumpTbl *tbl = (RoomJumpTbl *)self->tbl;
     RoomJumpRec *p;

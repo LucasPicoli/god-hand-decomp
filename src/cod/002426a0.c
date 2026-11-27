@@ -12,7 +12,7 @@ extern void *Getplayer(void);
 extern float capVu0MagnitudeSqXZ(void *a0, void *a1);
 extern void func_00281260(void *a0);
 extern void ClearBytes2F4To2F7_283170(void *a0);
-extern void func_002495E0(void *a0, float f);
+extern void cEm00_orbitAnchorBlend(void *a0, float f);
 extern char D_005CB000[];
 
 /* Phase machine on the step byte, 4 case labels. Calls cCollisionSolidManage_SetActive,
@@ -104,7 +104,7 @@ __attribute__((section(".text.func_00249960"))) void func_00249960(cEm00 *self)
                 *((unsigned char *)(((char *)self + 0x2F6))) =
                     (*((unsigned char *)(((char *)self + 0x2F6)))) + 1;
             case 1:
-                func_002495E0(self, 0.0f);
+                cEm00_orbitAnchorBlend(self, 0.0f);
                 moveMotion(self);
                 one = 1.0f;
                 cObjBase_addNullSpeed_Rotation(self, one);

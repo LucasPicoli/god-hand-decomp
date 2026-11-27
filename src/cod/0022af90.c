@@ -7,7 +7,7 @@
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int moveMotion(void *a0);
 extern void cGameObj_startPhase3(void *a0, int a1, int a2);
-extern void func_002495E0(void *a0, float f);
+extern void cEm00_orbitAnchorBlend(void *a0, float f);
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float s);
 extern void cObjBase_addNullSpeed(void *a0, float s);
 extern void *Getplayer(void);
@@ -66,7 +66,7 @@ __attribute__((section(".text.func_0024A518"))) void func_0024A518(cEm00 *self)
             } else {
                 self->emFlags = self->emFlags & 0xFEFFFFFF;
             }
-            func_002495E0(self, 0.0f);
+            cEm00_orbitAnchorBlend(self, 0.0f);
             self->emFlags = self->emFlags | 0x800000;
             if (moveMotion(self) != 0) {
                 self->emFlags = self->emFlags & 0xFEFFFFFF;

@@ -20,8 +20,8 @@ extern char D_005CAE50[];
 
 
 /* Copy one table entry of the track into each running kind-2 node it owns; part picks the table. */
-__attribute__((section(".text.func_00377AC0")))
-void func_00377AC0(SeqTrackTbl *trk, unsigned short part)
+__attribute__((section(".text.SeqTrack_copyPartTables")))
+void SeqTrack_copyPartTables(SeqTrackTbl *trk, unsigned short part)
 {
     int i;
     for (i = 0; i < SEQNODE_NUM; i++) {
@@ -56,8 +56,8 @@ void func_00377AC0(SeqTrackTbl *trk, unsigned short part)
 
 
 
-__attribute__((section(".text.func_00148420")))
-int func_00148420(cModelNode *node, cMeshData *data, int b, int flags, int n, void *box, void *arena)
+__attribute__((section(".text.cModelNode_setupAlloc")))
+int cModelNode_setupAlloc(cModelNode *node, cMeshData *data, int b, int flags, int n, void *box, void *arena)
 {
     cMeshData *ref;
     void *buf;
@@ -155,8 +155,8 @@ static __inline__ void ombox_vec(cVec *v, float x, float y, float z, float w)
 
 /* Sets the object up: a sphere take on the first child, 297 hit points and
  * the collision box. */
-__attribute__((section(".text.func_00180A10")))
-int func_00180A10(cOmBoxObj *self)
+__attribute__((section(".text.cOmBoxObj_setup")))
+int cOmBoxObj_setup(cOmBoxObj *self)
 {
     cVec size;
     cVec center;

@@ -90,10 +90,10 @@ void UpdateChannelOutputLevels_377700(void *a0) {
             s3++;
             s0 += 4;
         } while (i >= 0);
-        func_00377AC0(a0, 1);
+        SeqTrack_copyPartTables(a0, 1);
     }
     if ((*(unsigned short*)((char*)a0 + 0x10) & 2) != 0) {
-        func_00377AC0(a0, 2);
+        SeqTrack_copyPartTables(a0, 2);
     }
     *(short*)((char*)a0 + 0x10) = 0;
 }

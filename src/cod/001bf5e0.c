@@ -30,8 +30,8 @@ typedef void (*vfn2)(void *, void *);
 /* Per frame: spin the object by 6 degrees. Phase 0 offers the action button
  * when the player is within 2.5 units and faces it; phase 2 counts the wait
  * down and returns to phase 0. */
-__attribute__((section(".text.func_001BF5E0")))
-void func_001BF5E0(void *a0)
+__attribute__((section(".text.cObj_spinAndOfferCut")))
+void cObj_spinAndOfferCut(void *a0)
 {
     char *s2 = (char *)a0;
     /* One object at $sp+0: the rotation at 0x00, the length argument at 0x10

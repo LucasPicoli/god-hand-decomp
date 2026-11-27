@@ -136,7 +136,7 @@ int sfmpv_IsSkip(int a0, int a1) {
     if (sfmpv_IsSeekSkip(a0) != 0) r = 1;
     else if (sfmpv_IsPtypeSkip(a0, p2) != 0) r = 1;
     else if (sfmpv_IsEmptyBpic(a0, p2, a1) != 0) r = 1;
-    else if (func_00353348(a0, p2) != 0) r = 1;
+    else if (SfdHn_acceptsRequest(a0, p2) != 0) r = 1;
     else r = (sfmpv_IsLate(a0, p2) != 0);
     sfmpv_UpdateDefect(a0, q, r);
     return r;

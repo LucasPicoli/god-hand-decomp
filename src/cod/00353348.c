@@ -12,8 +12,8 @@ typedef struct SfdHn {
 } SfdHn;
 
 /* 1 when the play status admits the request: status 3 only request 3, status 2 requests 2 and 3. */
-__attribute__((section(".text.func_00353348")))
-int func_00353348(SfdHn *hn, int req)
+__attribute__((section(".text.SfdHn_acceptsRequest")))
+int SfdHn_acceptsRequest(SfdHn *hn, int req)
 {
     unsigned int stat = hn->play->stat;
     int ok = 0;

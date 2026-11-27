@@ -13,8 +13,8 @@ extern char D_00454328[];
 
 /* Returns the found flag of the named file, searching the disc for it once when
  * the cached state has not located it; 0 when the search fails. */
-__attribute__((section(".text.func_003331E0")))
-int func_003331E0(char *name)
+__attribute__((section(".text.dvCi_getFileSizeUnchecked")))
+int dvCi_getFileSizeUnchecked(char *name)
 {
     CriFileStat info;
 

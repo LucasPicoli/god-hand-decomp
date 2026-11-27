@@ -12,7 +12,7 @@ extern float func_002B0A58(cMessDrawFont *self, unsigned short *text, void *arg)
 extern void func_001B6FB8(void *self);
 extern void cOmDoor_setObjCollision(void *self);
 
-/* Decode one record header: store the kind (bits 12..15 of the first word); kinds 1, 3 and 5 point the output at the record's table in the blob, reset it when the record has fewer than 2 entries, otherwise step to the first entry, read its first value and let func_00159DA0 start the decode; any other kind keeps the record's float. */
+/* Decode one record header: store the kind (bits 12..15 of the first word); kinds 1, 3 and 5 point the output at the record's table in the blob, reset it when the record has fewer than 2 entries, otherwise step to the first entry, read its first value and let QuantBox_decodeBounds start the decode; any other kind keeps the record's float. */
 #define REC_KIND_BYTES   1
 #define REC_KIND_SHORTS  3
 #define REC_KIND_SHORTS2 5
@@ -39,7 +39,7 @@ typedef struct RecOut {
     } u;                                /* 0x10 */
 } RecOut;
 
-extern void func_00159DA0(RecOut *out);
+extern void QuantBox_decodeBounds(RecOut *out);
 
 __attribute__((section(".text.RecDecode_readHeader")))
 void RecDecode_readHeader(RecOut *out, char *blob, RecIn *in)
@@ -59,7 +59,7 @@ void RecDecode_readHeader(RecOut *out, char *blob, RecIn *in)
         out->pos = 0;
         out->cur = p + 0x10;
         out->first = *(unsigned char *)(p + 0x10);
-        func_00159DA0(out);
+        QuantBox_decodeBounds(out);
         break;
     case REC_KIND_SHORTS:
         p = blob + in->u.off;
@@ -71,7 +71,7 @@ void RecDecode_readHeader(RecOut *out, char *blob, RecIn *in)
         out->pos = 0;
         out->cur = p + 0x20;
         out->first = *(unsigned short *)(p + 0x20);
-        func_00159DA0(out);
+        QuantBox_decodeBounds(out);
         break;
     case REC_KIND_SHORTS2:
         q = blob + in->u.off;
@@ -82,7 +82,7 @@ void RecDecode_readHeader(RecOut *out, char *blob, RecIn *in)
         out->pos = 0;
         out->cur = q + 0x10;
         out->first = *(unsigned short *)(q + 0x10);
-        func_00159DA0(out);
+        QuantBox_decodeBounds(out);
         break;
     clear:
         out->kind = 0;

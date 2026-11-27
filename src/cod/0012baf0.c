@@ -11,8 +11,8 @@
 #define PL00_SUBSCREEN_PHASES   4     /* phases 0..3 of mode 0 are the sub-screen states */
 
 /* Whether the player shows a sub-screen: the forced flag, or mode 0 with phase 0..3. */
-__attribute__((section(".text.func_0012BAF0")))
-int func_0012BAF0(pl00 *self)
+__attribute__((section(".text.pl00_CkSubScreenOrForced")))
+int pl00_CkSubScreenOrForced(pl00 *self)
 {
     int phase;
 
@@ -34,8 +34,8 @@ ng: /* every return 0 jumps back here, as retail does */
 
 
 /* Whether an object in mode 0 sits at step 2 or 3, or at step 6 or 7. */
-__attribute__((section(".text.func_001C2328")))
-int func_001C2328(cObj *self)
+__attribute__((section(".text.cObj_isStepActive")))
+int cObj_isStepActive(cObj *self)
 {
     int step;
 

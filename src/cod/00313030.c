@@ -23,8 +23,8 @@ extern char D_0041B730[];               /* method table of this class */
 /* Allocates and zeroes a 0x14C0-byte player object, runs the cPlBase
  * constructor, sets its method table and zeroes its two vectors. 0 when the
  * allocator is locked or full. */
-__attribute__((section(".text.func_00313030")))
-void *func_00313030(void)
+__attribute__((section(".text.ObjFactory_create103")))
+void *ObjFactory_create103(void)
 {
     cPlObj14C0 *obj;
     cPlObj14C0 *self;

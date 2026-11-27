@@ -28,8 +28,8 @@ typedef struct AimFrame {
 #define AIMFRAME_OFFSET(field) ((int)&((AimFrame *)0)->field)
 
 /* Turn child 31 of enemy 0x20D up or down toward the player's head, or back to level. */
-__attribute__((section(".text.func_00274D18")))
-void func_00274D18(cEm00 *self)
+__attribute__((section(".text.cEm00_aimPartAtPlayer")))
+void cEm00_aimPartAtPlayer(cEm00 *self)
 {
     AimFrame f;
     cGameObj *part;

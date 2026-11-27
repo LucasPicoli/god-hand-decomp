@@ -13,8 +13,8 @@ extern void cEm00_setGoto(void *self, void *pos, int a2, int a3, float f);
  * start the phase 0x6D motion at once, some refuse, and the rest walk to a point 10 units from the player.
  * Both arms that return 1 write their own tail; jump2 cross-jumps the common li/sb/sb run
  * into the one shared tail retail has (a goto to a shared label schedules it differently). */
-__attribute__((section(".text.func_0026E258")))
-int func_0026E258(cEm00 *self)
+__attribute__((section(".text.cEm00_startIdleApproach")))
+int cEm00_startIdleApproach(cEm00 *self)
 {
     cVec v;
     cVec dir;

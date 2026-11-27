@@ -8,7 +8,7 @@ extern void func_001DBF18(void *self, unsigned short *a, unsigned short *b, unsi
 extern void func_00297C88(void *ev, int id);
 extern cBgmData *cSnd_GetBgmData(void *snd, int idx);
 extern void cBgmData_LoadNamed(cBgmData *data, int slot, char *name);
-extern int func_001C2328(void *obj);
+extern int cObj_isStepActive(void *obj);
 
 extern void func_001DBFB8(void *self, unsigned short *x0, unsigned short *y0, unsigned short *x1, unsigned short *y1,
                           unsigned short *x2, unsigned short *y2, unsigned short *x3, unsigned short *y3,
@@ -115,7 +115,7 @@ static __inline__ long inrange(unsigned short k, int lo, int hi)
     return c;
 }
 
-/* First live item object of actor 0x3D1 for which func_001C2328 answers nonzero, or 0. */
+/* First live item object of actor 0x3D1 for which cObj_isStepActive answers nonzero, or 0. */
 __attribute__((section(".text.ObjList_findActor3D1")))
 char *ObjList_findActor3D1(void)
 {
@@ -133,7 +133,7 @@ char *ObjList_findActor3D1(void)
         k = *(unsigned short *)(obj + 0x2FE);
         if (!(inrange(k, ACTOR_ITEM_FIRST, ACTOR_ITEM_END) & 0xFF)) continue;
         if ((k ^ ACTOR_TARGET) != 0) continue;
-        if (func_001C2328(obj) != 0) return obj;
+        if (cObj_isStepActive(obj) != 0) return obj;
     }
     return 0;
 }

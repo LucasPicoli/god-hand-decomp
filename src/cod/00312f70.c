@@ -25,8 +25,8 @@ extern char D_00448890[];               /* method table of this 0x21C0 class */
 /* Allocates and zeroes a 0x21C0-byte game object, runs the cGameObj
  * constructor, sets its method table and zeroes the vectors of its 44
  * records and its tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_00313150")))
-void *func_00313150(void)
+__attribute__((section(".text.ObjFactory_create27A")))
+void *ObjFactory_create27A(void)
 {
     cObj21C0 *obj;
     cObj21C0 *self;
@@ -77,8 +77,8 @@ extern char D_00447AD0[];               /* method table of this 0x21C0 class */
 /* Allocates and zeroes a 0x21C0-byte game object, runs the cGameObj
  * constructor, sets its method table and zeroes the vectors of its 44
  * records and its tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_00313210")))
-void *func_00313210(void)
+__attribute__((section(".text.ObjFactory_create212")))
+void *ObjFactory_create212(void)
 {
     cObj21C0 *obj;
     cObj21C0 *self;
@@ -129,8 +129,8 @@ extern char D_00447F70[];               /* method table of this 0x21C0 class */
 /* Allocates and zeroes a 0x21C0-byte game object, runs the cGameObj
  * constructor, sets its method table and zeroes the vectors of its 44
  * records and its tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_003132D0")))
-void *func_003132D0(void)
+__attribute__((section(".text.ObjFactory_create253")))
+void *ObjFactory_create253(void)
 {
     cObj21C0 *obj;
     cObj21C0 *self;
@@ -181,8 +181,8 @@ extern char D_00448028[];               /* method table of this 0x21C0 class */
 /* Allocates and zeroes a 0x21C0-byte game object, runs the cGameObj
  * constructor, sets its method table and zeroes the vectors of its 44
  * records and its tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_00313390")))
-void *func_00313390(void)
+__attribute__((section(".text.ObjFactory_create257")))
+void *ObjFactory_create257(void)
 {
     cObj21C0 *obj;
     cObj21C0 *self;
@@ -233,8 +233,8 @@ extern char D_00448948[];               /* method table of this 0x21C0 class */
 /* Allocates and zeroes a 0x21C0-byte game object, runs the cGameObj
  * constructor, sets its method table and zeroes the vectors of its 44
  * records and its tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_00313450")))
-void *func_00313450(void)
+__attribute__((section(".text.ObjFactory_create27F")))
+void *ObjFactory_create27F(void)
 {
     cObj21C0 *obj;
     cObj21C0 *self;
@@ -289,8 +289,8 @@ extern char D_0041B6A0[];               /* method table of this class */
 /* Allocates and zeroes a 0x20E0-byte object, runs the cObjBase constructor,
  * sets its method table and zeroes the vectors of its 44 records and its
  * tail. 0 when the allocator is locked or full. */
-__attribute__((section(".text.func_00312F70")))
-void *func_00312F70(void)
+__attribute__((section(".text.ObjFactory_create101")))
+void *ObjFactory_create101(void)
 {
     cObj20E0 *obj;
     cObj20E0 *self;

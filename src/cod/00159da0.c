@@ -16,8 +16,8 @@ typedef struct QuantBox {
 } QuantBox;
 
 /* Decode a quantised 2D box into floats. Kind 1 stores bytes scaled by a table pair, kind 3 shorts, kind 5 floats. */
-__attribute__((section(".text.func_00159DA0")))
-void func_00159DA0(QuantBox *self)
+__attribute__((section(".text.QuantBox_decodeBounds")))
+void QuantBox_decodeBounds(QuantBox *self)
 {
     switch (self->kind) {
     case 0:

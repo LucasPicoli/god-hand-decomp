@@ -2013,9 +2013,9 @@ extern int func_003A52F0(int a0, int a1, int a2);
 __attribute__((section(".text.Forward3A52F0_332BE0")))
 int Forward3A52F0_332BE0(int a0) { return func_003A52F0(a0, 0, 0x48); }
 
-extern int func_003331E0(void);
+extern int dvCi_getFileSizeUnchecked(void);
 __attribute__((section(".text.Forward3331E0_3332B0")))
-int Forward3331E0_3332B0(void) { return func_003331E0(); }
+int Forward3331E0_3332B0(void) { return dvCi_getFileSizeUnchecked(); }
 
 extern int SRD_SetFilesystem64(void);
 __attribute__((section(".text.Forward331C98_333F60")))

@@ -1,6 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 
-/* sn-2.95.3-136 [as=sn]: func_002F48A8, advances the object's blend value and its rate, restarts the
+/* sn-2.95.3-136 [as=sn]: cObjBlend_stepBlendAndSync, advances the object's blend value and its rate, restarts the
  * motion node's texture motion at that blend, then syncs the node position, scale and colour (the
  * same tail as func_002E6868). */
 #include "godhand/cObjSimple.h"
@@ -69,8 +69,8 @@ static inline int linkOn(cObjBlend *self)
     return 0;
 }
 
-__attribute__((section(".text.func_002F48A8")))
-void func_002F48A8(cObjBlend *self)
+__attribute__((section(".text.cObjBlend_stepBlendAndSync")))
+void cObjBlend_stepBlendAndSync(cObjBlend *self)
 {
     cObjSimpleVec3 v;
     cObjSimpleVec3 w;

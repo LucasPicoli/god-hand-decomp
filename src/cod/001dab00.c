@@ -22,8 +22,8 @@ static __inline__ unsigned char TickDown(int *p) {
  * random slot (row 0..3, column from the 0x604 width) or the next one, flash it and
  * play its sound. Each arm does its own x * 13 after its second random call: in the
  * shared block combine fuses the multiply and the add into madd, which retail has not. */
-__attribute__((section(".text.func_001DAB00")))
-void func_001DAB00(char *s0) {
+__attribute__((section(".text.Casino_stepSlotPick")))
+void Casino_stepSlotPick(char *s0) {
     unsigned char ok;
 
     switch (*(unsigned char *)(s0 + 0x3025)) {

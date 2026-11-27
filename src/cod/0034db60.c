@@ -13,8 +13,8 @@ extern void NoOp_DF58(void);
 
 /* Set up the transport work area and the Sofdec system block; when the system
  * init fails, run the teardown hooks and return 0. */
-__attribute__((section(".text.func_0034DB60")))
-long func_0034DB60(SfdSysInit *init)
+__attribute__((section(".text.SfdSys_initWithWork")))
+long SfdSys_initWithWork(SfdSysInit *init)
 {
     long ok;
 

@@ -95,7 +95,7 @@ typedef struct PhaseJob {
 
 extern void func_002B41F0(PhaseJob *job);
 
-extern void func_002B42F0(PhaseJob *job);
+extern void ActorMove_endStep(PhaseJob *job);
 
 /* Start the job on phase 0 and move to the run phase; in the run phase
  * step it, and finish it once the step reports done. */
@@ -109,7 +109,7 @@ void PhaseJob_step(PhaseJob *job)
         /* fallthrough */
     case PHASE_RUN:
         if (func_002B4228(job) != 0)
-            func_002B42F0(job);
+            ActorMove_endStep(job);
         break;
     }
 }

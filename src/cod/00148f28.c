@@ -22,7 +22,7 @@ extern void cModel_setLayerDisplay(int a0, int a1, int a2);
 extern int D_003BD880;
 extern void cOmBase_setMeshDispFromLayer(void *a0, int a1, int a2);
 extern void SetField380Bit2000ForTag_1B7300(void *a0, int a1, int a2);
-extern void func_001BE498(char *a0, int a1, float *a2, float *a3);
+extern void PartFx_initSlotJitter(char *a0, int a1, float *a2, float *a3);
 extern int D_00747A78;
 
 /* sn-2.95.3-136 */
@@ -456,7 +456,7 @@ void func_001BE740(char *p)
 
     if (*(unsigned char *)(p + 0x2B4) != i) {
         do {
-            func_001BE498(p, i, (float *)frame, (float *)(frame + 0x10));
+            PartFx_initSlotJitter(p, i, (float *)frame, (float *)(frame + 0x10));
             i++;
         } while (i < 8 && *(unsigned char *)(p + 0x2B4) != i);
     }

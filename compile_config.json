@@ -104,7 +104,7 @@
     "for all 735 currently-matched TUs) or 'sn-2.95.3-136' (opt-in SN",
     "ee-gcc for the `sq`-prologue functions).  TUs not",
     "named here use the default compiler; the override is at TU",
-    "granularity (not per-function \u2014 that's a later task if needed).",
+    "granularity (not per-function — that's a later task if needed).",
     "Documentation entries (path starting with `_`) are ignored.",
     "",
     "Wired through `compile.py::discover` -> CompileUnit.compiler ->",
@@ -19802,7 +19802,7 @@
     "the TU's INCLUDE_ASM macro pulls the carved .s into its own .text,",
     "so the standalone build/asm/nonmatching/<name>.o is NOT built or",
     "linked when `tu` is set.  Without `tu` (baseline), the",
-    "standalone .o is linked directly \u2014 useful for asm-only carves",
+    "standalone .o is linked directly — useful for asm-only carves",
     "with no C wrapper yet.",
     "",
     "Mechanism: each carve splits the monolithic at the",
@@ -20050,7 +20050,7 @@
       "tu": "src/cod/000000.c"
     },
     {
-      "_comment": "first-TU group \u2014 accessor family @ 0x002930A8 \u2013 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
+      "_comment": "first-TU group — accessor family @ 0x002930A8 – 0x00293C40. 17 carve-eligible funcs (2 Ghidra mis-boundary fragments at 0x002930C8 / 0x00293748 stay in the monolithic)."
     },
     {
       "name": "cEmManage_getNextNo",
@@ -20116,7 +20116,7 @@
       "tu": "src/cod/000293.c"
     },
     {
-      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 \u2014 PERMANENT; no carve needed."
+      "_comment": "func_00293138 (fp+bnel, 1500 B) stays in monolithic asm/cod/000000 — PERMANENT; no carve needed."
     },
     {
       "name": "Obj293_OrByte_5A3",
@@ -23003,7 +23003,7 @@
       "tu": "src/cod/0034d8.c"
     },
     {
-      "name": "func_0034DB60",
+      "name": "SfdSys_initWithWork",
       "unit": "asm/cod/000000",
       "vaddr": "0x0034DB60",
       "size": 104,
@@ -87403,105 +87403,105 @@
       "tu": "src/cod/003bb058.c"
     },
     {
-      "name": "func_00377AC0",
+      "name": "SeqTrack_copyPartTables",
       "unit": "asm/cod/000000",
       "vaddr": "0x00377AC0",
       "size": 260,
       "tu": "src/cod/00148420.c"
     },
     {
-      "name": "func_00148420",
+      "name": "cModelNode_setupAlloc",
       "unit": "asm/cod/000000",
       "vaddr": "0x00148420",
       "size": 384,
       "tu": "src/cod/00148420.c"
     },
     {
-      "name": "func_00180A10",
+      "name": "cOmBoxObj_setup",
       "unit": "asm/cod/000000",
       "vaddr": "0x00180A10",
       "size": 708,
       "tu": "src/cod/00148420.c"
     },
     {
-      "name": "func_002F48A8",
+      "name": "cObjBlend_stepBlendAndSync",
       "unit": "asm/cod/000000",
       "vaddr": "0x002F48A8",
       "size": 636,
       "tu": "src/cod/002f48a8.c"
     },
     {
-      "name": "func_00313150",
+      "name": "ObjFactory_create27A",
       "unit": "asm/cod/000000",
       "vaddr": "0x00313150",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_00313210",
+      "name": "ObjFactory_create212",
       "unit": "asm/cod/000000",
       "vaddr": "0x00313210",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_003132D0",
+      "name": "ObjFactory_create253",
       "unit": "asm/cod/000000",
       "vaddr": "0x003132D0",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_00313390",
+      "name": "ObjFactory_create257",
       "unit": "asm/cod/000000",
       "vaddr": "0x00313390",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_00313450",
+      "name": "ObjFactory_create27F",
       "unit": "asm/cod/000000",
       "vaddr": "0x00313450",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_00312F70",
+      "name": "ObjFactory_create101",
       "unit": "asm/cod/000000",
       "vaddr": "0x00312F70",
       "size": 192,
       "tu": "src/cod/00312f70.c"
     },
     {
-      "name": "func_00313030",
+      "name": "ObjFactory_create103",
       "unit": "asm/cod/000000",
       "vaddr": "0x00313030",
       "size": 176,
       "tu": "src/cod/00313030.c"
     },
     {
-      "name": "func_001BF5E0",
+      "name": "cObj_spinAndOfferCut",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BF5E0",
       "size": 504,
       "tu": "src/cod/001bf5e0.c"
     },
     {
-      "name": "func_0012BAF0",
+      "name": "pl00_CkSubScreenOrForced",
       "unit": "asm/cod/000000",
       "vaddr": "0x0012BAF0",
       "size": 72,
       "tu": "src/cod/0012baf0.c"
     },
     {
-      "name": "func_001C2328",
+      "name": "cObj_isStepActive",
       "unit": "asm/cod/000000",
       "vaddr": "0x001C2328",
       "size": 68,
       "tu": "src/cod/0012baf0.c"
     },
     {
-      "name": "func_00353348",
+      "name": "SfdHn_acceptsRequest",
       "unit": "asm/cod/000000",
       "vaddr": "0x00353348",
       "size": 92,
@@ -87515,42 +87515,42 @@
       "tu": "src/cod/00148160.c"
     },
     {
-      "name": "func_00274D18",
+      "name": "cEm00_aimPartAtPlayer",
       "unit": "asm/cod/000000",
       "vaddr": "0x00274D18",
       "size": 380,
       "tu": "src/cod/00274d18.c"
     },
     {
-      "name": "func_002BEAA8",
+      "name": "cRoomJump_findRecord",
       "unit": "asm/cod/000000",
       "vaddr": "0x002BEAA8",
       "size": 84,
       "tu": "src/cod/002beaa8.c"
     },
     {
-      "name": "func_002B42F0",
+      "name": "ActorMove_endStep",
       "unit": "asm/cod/000000",
       "vaddr": "0x002B42F0",
       "size": 156,
       "tu": "src/cod/001aa510.c"
     },
     {
-      "name": "func_001AA510",
+      "name": "cOmHitObj_damageStep",
       "unit": "asm/cod/000000",
       "vaddr": "0x001AA510",
       "size": 432,
       "tu": "src/cod/001aa510.c"
     },
     {
-      "name": "func_002F62F8",
+      "name": "cFxPartTrail_setup",
       "unit": "asm/cod/000000",
       "vaddr": "0x002F62F8",
       "size": 1092,
       "tu": "src/cod/002f62f8.c"
     },
     {
-      "name": "func_003331E0",
+      "name": "dvCi_getFileSizeUnchecked",
       "unit": "asm/cod/000000",
       "vaddr": "0x003331E0",
       "size": 152,
@@ -87564,35 +87564,35 @@
       "tu": "src/cod/003234d0.c"
     },
     {
-      "name": "func_002495E0",
+      "name": "cEm00_orbitAnchorBlend",
       "unit": "asm/cod/000000",
       "vaddr": "0x002495E0",
       "size": 396,
       "tu": "src/cod/001be498.c"
     },
     {
-      "name": "func_001BE498",
+      "name": "PartFx_initSlotJitter",
       "unit": "asm/cod/000000",
       "vaddr": "0x001BE498",
       "size": 676,
       "tu": "src/cod/001be498.c"
     },
     {
-      "name": "func_00159DA0",
+      "name": "QuantBox_decodeBounds",
       "unit": "asm/cod/000000",
       "vaddr": "0x00159DA0",
       "size": 548,
       "tu": "src/cod/00159da0.c"
     },
     {
-      "name": "func_001DAB00",
+      "name": "Casino_stepSlotPick",
       "unit": "asm/cod/000000",
       "vaddr": "0x001DAB00",
       "size": 788,
       "tu": "src/cod/001dab00.c"
     },
     {
-      "name": "func_0026E258",
+      "name": "cEm00_startIdleApproach",
       "unit": "asm/cod/000000",
       "vaddr": "0x0026E258",
       "size": 508,
@@ -87608,14 +87608,14 @@
     "  1. Assembling every `asm` part to build/rel/<name>/<asm-rel>.o",
     "  2. Full-linking via `mipsel-linux-gnu-ld -EL -T <lcf>",
     "     --unresolved-symbols=ignore-all -o build/rel/<name>/<name>.elf`",
-    "     (full link, not -r \u2014 the SNR2 tail",
+    "     (full link, not -r — the SNR2 tail",
     "     blob already encodes the surviving external reloc table).",
     "  3. Extracting .text via",
     "     `objcopy -O binary --only-section=.text` to",
     "     build/rel/<name>/<name>.text.bin.",
-    "  4. Concatenating parts in order \u2014 each `bin` part is read",
+    "  4. Concatenating parts in order — each `bin` part is read",
     "     verbatim and each `asm` part is replaced by the linked .text",
-    "     bytes \u2014 to produce build/rel/<name>.rel.",
+    "     bytes — to produce build/rel/<name>.rel.",
     "  5. Asserting sha256(build/rel/<name>.rel) == sha256_expected.",
     "",
     "Schema per entry:",
@@ -87674,7 +87674,7 @@
     "deprecated in the schema; per-unit `target_path`/`base_path` is",
     "used instead).  They live here only as the on-disk roots compile.py",
     "uses when constructing those per-unit paths and when mirroring",
-    "build/ \u2192 expected/build/ for not-yet-decompiled units.",
+    "build/ → expected/build/ for not-yet-decompiled units.",
     "`watch_patterns` and `progress_categories` are written verbatim.",
     "`min_version` pins the schema; bumping it should be deliberate."
   ],

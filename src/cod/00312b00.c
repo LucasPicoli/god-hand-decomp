@@ -25,17 +25,17 @@ cObj *func_00312B00(int id, int dataId)
         obj = 0;
         break;
     case 0x101:
-        obj = func_00312F70();
+        obj = ObjFactory_create101();
         break;
     case 0x212:
-        obj = func_00313210();
+        obj = ObjFactory_create212();
         break;
     case 0x253:
-        obj = func_003132D0();
+        obj = ObjFactory_create253();
         break;
     case 0x257:
     case 0x628:
-        obj = func_00313390();
+        obj = ObjFactory_create257();
         break;
     case 0x36E:
         obj = func_00318138();

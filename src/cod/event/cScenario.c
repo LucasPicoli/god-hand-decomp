@@ -50,7 +50,7 @@ int cScenario_isEventStartOk(cScenario *self)
 {
     if (D_00747A84 & 0x40000000)
         return 0;
-    return func_0012BAF0(Getplayer()) != 0;
+    return pl00_CkSubScreenOrForced(Getplayer()) != 0;
 }
 
 

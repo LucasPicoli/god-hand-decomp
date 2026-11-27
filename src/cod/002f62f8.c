@@ -55,8 +55,8 @@ static __inline__ cOmBase *childAt(cOmBase *b, int *frame, int idx)
 /* Set a part-following trail up: copy the part binding from the parameters and
    resolve it on the owner, then build the segments as cFxTrail_setup does with
    a second point array, and set the life. */
-__attribute__((section(".text.func_002F62F8")))
-int func_002F62F8(cFxTrail *self, void *arg)
+__attribute__((section(".text.cFxPartTrail_setup")))
+int cFxPartTrail_setup(cFxTrail *self, void *arg)
 {
     int frame[4];
     cVec start;

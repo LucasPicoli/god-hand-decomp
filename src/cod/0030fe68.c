@@ -26,25 +26,25 @@ cObj *func_0030FE68(int id, int dataId)
         obj = AllocAndInitSystem_312F00();
         break;
     case 0x101:
-        obj = func_00312F70();
+        obj = ObjFactory_create101();
         break;
     case 0x103:
-        obj = func_00313030();
+        obj = ObjFactory_create103();
         break;
     case 0x27A:
-        obj = func_00313150();
+        obj = ObjFactory_create27A();
         break;
     case 0x212:
-        obj = func_00313210();
+        obj = ObjFactory_create212();
         break;
     case 0x253:
-        obj = func_003132D0();
+        obj = ObjFactory_create253();
         break;
     case 0x257:
-        obj = func_00313390();
+        obj = ObjFactory_create257();
         break;
     case 0x259:
-        obj = func_00313390();
+        obj = ObjFactory_create257();
         break;
     case 0x200:
         obj = AllocZeroedAndInit_3130E0();
@@ -221,7 +221,7 @@ cObj *func_0030FE68(int id, int dataId)
         obj = AllocZeroedAndInit_3130E0();
         break;
     case 0x27F:
-        obj = func_00313450();
+        obj = ObjFactory_create27F();
         break;
     case 0x230:
         obj = AllocAndInitObjVtable_313510();

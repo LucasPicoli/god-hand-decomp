@@ -15,8 +15,8 @@ extern unsigned char D_005FEE00[];
 /* End a motion step: clear the step flag; an ending motion or an end command
    goes to the end phase, a restart command runs its move, anything else clears
    the phase. */
-__attribute__((section(".text.func_002B42F0")))
-void func_002B42F0(ActorMove *self) {
+__attribute__((section(".text.ActorMove_endStep")))
+void ActorMove_endStep(ActorMove *self) {
     int fi = self->flags;
     unsigned long f = fi;
     unsigned long ending;
@@ -85,8 +85,8 @@ static __inline__ int HitObj_child(cOmHitObj *self, unsigned char *frame, int id
 }
 
 /* On a hit, finish the object when its hp is gone, else play the hit cue; then run the state handler. */
-__attribute__((section(".text.func_001AA510")))
-void func_001AA510(cOmHitObj *self)
+__attribute__((section(".text.cOmHitObj_damageStep")))
+void cOmHitObj_damageStep(cOmHitObj *self)
 {
     unsigned char frame[0x10];
     HitObjStates tbl;

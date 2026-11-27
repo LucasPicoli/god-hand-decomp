@@ -16,7 +16,7 @@ void SfdWork_getPicOffset(SftimHn *hn, SfdWork *work, int *x, int *y);
 void sfmpv_SetStartTtu(SftimHn *hn);
 void sfmpv_SetFrmTime(SftimHn *hn, SfdFrm *ft);
 void sfmpv_ChangePicUd(SftimHn *hn, SfdFrm *ft, SjObj *sj);
-extern int func_00353348(SftimHn *hn, int ptype);
+extern int SfdHn_acceptsRequest(SftimHn *hn, int ptype);
 extern int sfmpv_IsPtypeSkip(SftimHn *hn, unsigned int ptype);
 
 __attribute__((section(".text.sfmpv_SetFrmPara")))
@@ -129,7 +129,7 @@ void sfmpv_SetStartTtu(SftimHn *hn)
         int time;
         int unit;
 
-        if (func_00353348(hn, 3) == 0 && sfmpv_IsPtypeSkip(hn, 3) == 0) {
+        if (SfdHn_acceptsRequest(hn, 3) == 0 && sfmpv_IsPtypeSkip(hn, 3) == 0) {
             tc.frameAdd = 0;
         }
         SFTIM_Tc2Time(&tc, &time, &unit);

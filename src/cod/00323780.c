@@ -81,7 +81,7 @@ int func_00345780(int a0)
         return -1;
     }
 
-    if (func_0034DB60(&sp) != 0) {
+    if (SfdSys_initWithWork(&sp) != 0) {
         MWSFLIB_SetErrCode(-0x12D);
     } else {
         if (func_0034DE20(0, &func_00345848, 0) != 0)
