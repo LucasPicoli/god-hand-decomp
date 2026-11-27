@@ -1,14 +1,9 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceDma.h"
 #include "godhand/globals.h"
 
-typedef struct {
-    volatile unsigned int chcr;
-} sceDmaChan;
-
-extern int sceDmaPause(sceDmaChan *chan);
-
 __attribute__((section(".text.WaitDma")))
-void WaitDma(sceDmaChan *chan)
+void WaitDma(volatile sceDmaChan *chan)
 {
     int i = 0x1000000;
 

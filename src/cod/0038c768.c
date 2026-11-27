@@ -1,19 +1,19 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceDma.h"
 
-extern void WaitDma(void *);
 extern void _IO_free_backup_area(int *);
 extern void UpdateGlobalPtrWithParam_3A7CC0(int);
 
 __attribute__((section(".text.sceDmaRecvN")))
-void sceDmaRecvN(int *o, int a1, int a2) {
-    int s1 = CheckAddress(a1);
-    int f;
-    WaitDma(o);
-    if ((unsigned int)o[4] != 0xFFFFFFFFU)
-        o[4] = s1;
-    o[8] = a2;
-    f = o[0] & ~0xC;
-    o[0] = (f & ~1) | 0x100;
+void sceDmaRecvN(sceDmaChan *chan, void *addr, int qwc) {
+    unsigned int dst = CheckAddress((unsigned int)addr);
+    int chcr;
+    WaitDma(chan);
+    if ((unsigned int)chan->madr != 0xFFFFFFFFU)
+        chan->madr = (void *)dst;
+    chan->qwc = qwc;
+    chcr = chan->chcr & ~0xC;   /* normal mode */
+    chan->chcr = (chcr & ~1) | 0x100; /* into memory, start */
 }
 
 __attribute__((section(".text._IO_seekoff")))
