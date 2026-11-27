@@ -5,6 +5,7 @@
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
 #include "godhand/pl00.h"
+#include "godhand/cGameObj.h"
 
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 extern int irand(void);
@@ -82,59 +83,59 @@ static __inline__ long inr(unsigned short k, int lo, int hi)
 __attribute__((section(".text.func_0010F4B8")))
 void func_0010F4B8(void *a0)
 {
-    char *s0 = (char *)a0;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    cGameObj *s0 = a0;
+    switch (s0->step) {
     case 0: {
         int p1, p2;
-        *(short *)(s0 + 0x5E0) = 0;
-        *(short *)(s0 + 0x5E2) = 0;
+        *(short *)((char *)s0 + 0x5E0) = 0;
+        *(short *)((char *)s0 + 0x5E2) = 0;
         func_00124540(s0, 0);
-        if (*(int *)(s0 + 0x640) != 0) {
-            if (inr(*(unsigned short *)(*(int *)(s0 + 0x640) + 0x2FE), 0x200, 0x300) & 0xFF)
+        if (*(int *)((char *)s0 + 0x640) != 0) {
+            if (inr(*(unsigned short *)(*(int *)((char *)s0 + 0x640) + 0x2FE), 0x200, 0x300) & 0xFF)
                 cCoreSave_addGameLevelPoint(&D_00569B70, 0x14);
         }
-        if (*(unsigned char *)(s0 + 0x2F7) != 0) {
+        if (s0->stepArg != 0) {
             char *v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
-            *(char *)(s0 + 0x1684) = 0;
-            v = *(char **)(s0 + 0x304);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)((char *)s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)((char *)s0 + 0x600) * 20.0f), 0x19, 0xB, 0, 0x123);
+            *(char *)((char *)s0 + 0x1684) = 0;
+            v = s0->pack;
             p1 = *(int *)(v + 0x1C8) + (int)v;
             p2 = *(int *)(v + 0x1CC) + (int)v;
         } else {
             char *v;
-            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
-            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)(s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
-            *(char *)(s0 + 0x1684) = 0;
-            v = *(char **)(s0 + 0x304);
+            Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, (int)(*(float *)((char *)s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
+            Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, (int)(*(float *)((char *)s0 + 0x600) * 20.0f), 0x18, 0x1D, 0, 0x123);
+            *(char *)((char *)s0 + 0x1684) = 0;
+            v = s0->pack;
             p1 = *(int *)(v + 0x1A4) + (int)v;
             p2 = *(int *)(v + 0x1A8) + (int)v;
         }
         func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
-        *(float *)(s0 + 0x54C) = 15.0f;
-        *(unsigned char *)(s0 + 0x2F6) += 1;
+        s0->hitFlash = 15.0f;
+        s0->step += 1;
     }
     case 1:
         func_00124EC0(s0);
-        if (*(int *)(s0 + 0x640) != 0)
-            *(char *)(s0 + 0x648) = 0x14;
+        if (*(int *)((char *)s0 + 0x640) != 0)
+            *(char *)((char *)s0 + 0x648) = 0x14;
         if (moveMotion(s0) != 0) {
-            if (*(unsigned char *)(s0 + 0x2F7) == 0)
+            if (s0->stepArg == 0)
                 Obj0000_Clear_Fields_640_648_124E58(s0);
             pl00_clearMotionCam(s0, 1, 0);
-            *(char *)(s0 + 0x2F4) = 0;
-            *(char *)(s0 + 0x2F5) = 0;
-            *(char *)(s0 + 0x2F6) = 0;
-            *(char *)(s0 + 0x2F7) = 0;
+            *(char *)((char *)s0 + 0x2F4) = 0;
+            *(char *)((char *)s0 + 0x2F5) = 0;
+            *(char *)((char *)s0 + 0x2F6) = 0;
+            *(char *)((char *)s0 + 0x2F7) = 0;
         }
         break;
     }
     func_0010A438(s0);
-    if (*(unsigned short *)(s0 + 0x3AC) & 0x100) {
+    if (s0->seqFlags & 0x100) {
         cEmManage_SetSpeedRate(D_005864F0, 0.1f);
     }
     if (func_00123938(s0, 1) != 0) {
-        if (*(unsigned char *)(s0 + 0x2F7) == 0)
+        if (s0->stepArg == 0)
             Obj0000_Clear_Fields_640_648_124E58(s0);
         pl00_clearMotionCam(s0, 1, 0);
     }
@@ -143,49 +144,49 @@ void func_0010F4B8(void *a0)
 __attribute__((section(".text.func_00287E50")))
 void func_00287E50(void *a0)
 {
-    char *s0 = (char *)a0;
-    *(float *)(s0 + 0x54C) = 3.0f;
-    *(int *)(s0 + 0x15B0) = *(int *)(s0 + 0x15B0) | 0x10000;
+    cGameObj *s0 = a0;
+    s0->hitFlash = 3.0f;
+    *(int *)((char *)s0 + 0x15B0) = *(int *)((char *)s0 + 0x15B0) | 0x10000;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
-    *(int *)(s0 + 0x258) = *(int *)(s0 + 0x258) | 0x80000000;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    s0->unk258 = s0->unk258 | 0x80000000;
+    switch (s0->step) {
     case 0: {
-        int v0 = *(int *)(s0 + 0x304);
+        int v0 = *(int *)((char *)s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x168) + v0, *(int *)(v0 + 0x16C) + v0, 3, 0.0f, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     }
     case 1:
         moveMotion(s0);
         break;
     case 2: {
-        int v0 = *(int *)(s0 + 0x304);
+        int v0 = *(int *)((char *)s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x170) + v0, *(int *)(v0 + 0x174) + v0, 3, 0.0f, 0, 0);
-        *(unsigned short *)(s0 + 0x54A) = *(unsigned short *)(s0 + 0x54A) - 0x32;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(unsigned short *)((char *)s0 + 0x54A) = *(unsigned short *)((char *)s0 + 0x54A) - 0x32;
+        s0->step = s0->step + 1;
     }
     case 3:
         if (moveMotion(s0) != 0)
-            *(unsigned char *)(s0 + 0x2F6) = 0;
+            s0->step = 0;
         break;
     }
-    if (*(short *)(s0 + 0x54A) <= 0) {
-        float *p = *(float **)(s0 + 0xF0);
-        p[1] = p[1] - *(float *)(s0 + 0x5A8) * 0.1f;
-        if ((*(float **)(s0 + 0xF0))[1] < -5.0f) {
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F4) = 2;
-            *(unsigned char *)(s0 + 0x2F5) = 2;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+    if (s0->hp <= 0) {
+        float *p = *(float **)((char *)s0 + 0xF0);
+        p[1] = p[1] - s0->speedRate * 0.1f;
+        if ((*(float **)((char *)s0 + 0xF0))[1] < -5.0f) {
+            s0->step = 0;
+            s0->mode = 2;
+            s0->phase = 2;
+            s0->stepArg = 0;
         }
     }
-    *(float *)(s0 + 0x600) = *(float *)(s0 + 0x600) - *(float *)(s0 + 0x5A8);
-    if (*(float *)(s0 + 0x600) <= 0.0f) {
+    *(float *)((char *)s0 + 0x600) = *(float *)((char *)s0 + 0x600) - s0->speedRate;
+    if (*(float *)((char *)s0 + 0x600) <= 0.0f) {
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x60, a0, 0, 0, 0, 0);
-        *(float *)(s0 + 0x600) = fRand0_1() * 60.0f + 90.0f;
+        *(float *)((char *)s0 + 0x600) = fRand0_1() * 60.0f + 90.0f;
     }
-    *(float *)(s0 + 0x604) = *(float *)(s0 + 0x604) - *(float *)(s0 + 0x5A8);
-    if (*(float *)(s0 + 0x604) <= 0.0f) {
+    *(float *)((char *)s0 + 0x604) = *(float *)((char *)s0 + 0x604) - s0->speedRate;
+    if (*(float *)((char *)s0 + 0x604) <= 0.0f) {
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x51, a0, 0, 0, 0, 0);
-        *(float *)(s0 + 0x604) = fRand0_1() * 4.0f + 8.0f;
+        *(float *)((char *)s0 + 0x604) = fRand0_1() * 4.0f + 8.0f;
     }
 }

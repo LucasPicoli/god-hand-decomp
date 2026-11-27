@@ -42,42 +42,42 @@ extern void cObjBase_addNullSpeed(void *a0, float s);
 __attribute__((section(".text.func_0022B358")))
 void func_0022B358(cEm00 *self)
 {
-    char *s0 = (char *)self;
+    cEm00 *s0 = self;
     int t0;
     int a1, a2;
     char *s1;
     unsigned int s2;
 
-    *(char *)(s0 + 0x186A) = 2;
-    *(int *)(s0 + 0x16D4) |= 0x400;
-    if (*(unsigned char *)(s0 + 0x2F6) == 0) {
-        switch (*(int *)(s0 + 0x564)) {
+    *(char *)((char *)s0 + 0x186A) = 2;
+    s0->emFlags2 |= 0x400;
+    if (s0->step == 0) {
+        switch (s0->emNo) {
         GRP:
-            *(char *)(s0 + 0x2F6) = 2;
+            *(char *)((char *)s0 + 0x2F6) = 2;
             break;
         }
     }
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0:
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
         {
-            int b = *(int *)(s0 + 0x304);
+            int b = *(int *)((char *)s0 + 0x304);
             func_002A8578(s0, *(int *)(b + 0xDDC) + b, *(int *)(b + 0xDE0) + b,
                           3, 0.0f, t0, 0);
         }
-        *(int *)(s0 + 0x5FC) = 0;
-        *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->timerC = 0;
+        *(char *)((char *)s0 + 0x2F6) = s0->step + 1;
     case 1:
-        *(int *)(s0 + 0x16DC) = 0x64;
-        *(int *)(s0 + 0x16E0) = 0x96;
+        s0->unk16DC = 0x64;
+        s0->unk16E0 = 0x96;
         cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
-                                         *(float *)(s0 + 0x5A8) * 0.09817477f);
+                                         s0->speedRate * 0.09817477f);
         if (moveMotion(s0) != 0)
-            *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+            *(char *)((char *)s0 + 0x2F6) = s0->step + 1;
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
-            if (*(unsigned char *)(s0 + 0x17C3) != 0)
+        if ((s0->seqFlags & 1) != 0) {
+            if (s0->unk17C3 != 0)
                 func_0026A638(self, 1);
             else
                 func_0026A638(self, 0);
@@ -85,72 +85,72 @@ void func_0022B358(cEm00 *self)
         break;
     case 2:
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        switch (*(int *)(s0 + 0x564)) {
+        switch (s0->emNo) {
         default:
             {
-                int b = *(int *)(s0 + 0x304);
+                int b = *(int *)((char *)s0 + 0x304);
                 a1 = *(int *)(b + 0xDE4) + b;
                 a2 = *(int *)(b + 0xDE8) + b;
             }
             break;
         GRP:
             {
-                int b = *(int *)(s0 + 0x304);
+                int b = *(int *)((char *)s0 + 0x304);
                 a1 = *(int *)(b + 0x152C) + b;
                 a2 = *(int *)(b + 0x1530) + b;
             }
             break;
         }
         func_002A8578(s0, a1, a2, 3, 0.0f, t0, 0);
-        *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(char *)((char *)s0 + 0x2F6) = s0->step + 1;
     case 3:
-        *(int *)(s0 + 0x16DC) = 0x64;
-        *(int *)(s0 + 0x16E0) = 0x96;
-        *(int *)(s0 + 0x16D0) |= 0x400;
+        s0->unk16DC = 0x64;
+        s0->unk16E0 = 0x96;
+        s0->emFlags |= 0x400;
         cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
-                                         *(float *)(s0 + 0x5A8) * 0.09817477f);
+                                         s0->speedRate * 0.09817477f);
         moveMotion(s0);
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if (*(float *)(s0 + 0x618) < 2.25f)
-            *(char *)(s0 + 0x2F6) = 4;
+        if (s0->playerDist < 2.25f)
+            *(char *)((char *)s0 + 0x2F6) = 4;
         break;
     case 4:
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        switch (*(int *)(s0 + 0x564)) {
+        switch (s0->emNo) {
         default:
             {
-                int b = *(int *)(s0 + 0x304);
+                int b = *(int *)((char *)s0 + 0x304);
                 a1 = *(int *)(b + 0xDEC) + b;
                 a2 = *(int *)(b + 0xDF0) + b;
             }
             break;
         GRP:
             {
-                int b = *(int *)(s0 + 0x304);
+                int b = *(int *)((char *)s0 + 0x304);
                 a1 = *(int *)(b + 0x1534) + b;
                 a2 = *(int *)(b + 0x1538) + b;
             }
             break;
         }
         func_002A8578(s0, a1, a2, 3, 0.0f, t0, 0);
-        *(char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(char *)((char *)s0 + 0x2F6) = s0->step + 1;
     case 5:
-        *(int *)(s0 + 0x16DC) = 0x64;
-        *(int *)(s0 + 0x16E0) = 0x96;
-        *(int *)(s0 + 0x16D0) |= 0x400;
+        s0->unk16DC = 0x64;
+        s0->unk16E0 = 0x96;
+        s0->emFlags |= 0x400;
         cGameObj_SetTgtTurn((cGameObj *)s0, &self->unk16A0,
-                                         *(float *)(s0 + 0x5A8) * 0.09817477f);
+                                         s0->speedRate * 0.09817477f);
         moveMotion(s0);
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if (6.25f < *(float *)(s0 + 0x618))
-            *(char *)(s0 + 0x2F6) = 2;
+        if (6.25f < s0->playerDist)
+            *(char *)((char *)s0 + 0x2F6) = 2;
         break;
     }
 
     s2 = 0;
-    s1 = s0 + 0x6E4;
+    s1 = (char *)s0 + 0x6E4;
     while (s2 < 2) {
         void *e = *(void **)s1;
         if (e != 0 && CountdownObj_tickIsSpent(e) != 0) {
@@ -161,8 +161,8 @@ void func_0022B358(cEm00 *self)
         s1 += 4;
         s2++;
     }
-    if ((*(unsigned short *)(s0 + 0x3AC) & 3) != 0)
-        *(int *)(s0 + 0x5FC) = 1;
-    if (*(int *)(s0 + 0x5FC) != 0)
-        *(int *)(s0 + 0x16D4) &= 0xFFFFFBFFU;
+    if ((s0->seqFlags & 3) != 0)
+        s0->timerC = 1;
+    if (s0->timerC != 0)
+        s0->emFlags2 &= 0xFFFFFBFFU;
 }

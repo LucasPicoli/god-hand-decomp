@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
+#include "godhand/cGameObj.h"
 
 /* sn-2.95.3-136 */
 
@@ -10,27 +11,27 @@ extern void ReleaseField6ECByTag564_26B1E8(void *a0);
 
 __attribute__((section(".text.func_00274238")))
 void func_00274238(cEm00 *self, unsigned char kind) {
-    char *s1 = (char *)self;
+    cEm00 *s1 = self;
     unsigned char s2 = kind;
 
-    if ((*(int *)(s1 + 0x16D0) & 0x2000) != 0) goto tail;
-    switch (*(int *)(s1 + 0x564)) {
+    if ((s1->emFlags & 0x2000) != 0) goto tail;
+    switch (s1->emNo) {
     default:
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 1: default:
-            *(float *)(s1 + 0x173C) = 40.0f;
+            *(float *)((char *)s1 + 0x173C) = 40.0f;
             break;
             case 2:
-            *(float *)(s1 + 0x173C) = 30.0f;
+            *(float *)((char *)s1 + 0x173C) = 30.0f;
             break;
             case 3:
-            *(float *)(s1 + 0x173C) = 20.0f;
+            *(float *)((char *)s1 + 0x173C) = 20.0f;
             break;
             case 4:
-            *(float *)(s1 + 0x173C) = 20.0f;
+            *(float *)((char *)s1 + 0x173C) = 20.0f;
             break;
             case 5:
-            *(float *)(s1 + 0x173C) = 15.0f;
+            *(float *)((char *)s1 + 0x173C) = 15.0f;
             break;
         }
         break;
@@ -43,24 +44,24 @@ void func_00274238(cEm00 *self, unsigned char kind) {
     case 0x27E:
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 2:
-            *(float *)(s1 + 0x173C) = 8.0f;
+            *(float *)((char *)s1 + 0x173C) = 8.0f;
             break;
             case 3:
-            *(float *)(s1 + 0x173C) = 6.0f;
+            *(float *)((char *)s1 + 0x173C) = 6.0f;
             break;
             case 4:
-            *(float *)(s1 + 0x173C) = 6.0f;
+            *(float *)((char *)s1 + 0x173C) = 6.0f;
             break;
             case 5:
-            *(float *)(s1 + 0x173C) = 5.0f;
+            *(float *)((char *)s1 + 0x173C) = 5.0f;
             break;
             case 1: default:
-            *(float *)(s1 + 0x173C) = 10.0f;
+            *(float *)((char *)s1 + 0x173C) = 10.0f;
             break;
         }
         break;
     case 0x24F: case 0x278: case 0x279:
-        *(float *)(s1 + 0x173C) = 0.0f;
+        *(float *)((char *)s1 + 0x173C) = 0.0f;
         goto tail;
     case 0x206: case 0x20C: case 0x20D: case 0x224: case 0x225: case 0x227:
     case 0x228: case 0x229: case 0x22A: case 0x22B: case 0x22C: case 0x22D:
@@ -68,34 +69,34 @@ void func_00274238(cEm00 *self, unsigned char kind) {
     case 0x25A:
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
             case 1: default:
-            *(float *)(s1 + 0x173C) = 15.0f;
+            *(float *)((char *)s1 + 0x173C) = 15.0f;
             break;
             case 2:
-            *(float *)(s1 + 0x173C) = 13.0f;
+            *(float *)((char *)s1 + 0x173C) = 13.0f;
             break;
             case 3:
-            *(float *)(s1 + 0x173C) = 12.0f;
+            *(float *)((char *)s1 + 0x173C) = 12.0f;
             break;
             case 4:
-            *(float *)(s1 + 0x173C) = 12.0f;
+            *(float *)((char *)s1 + 0x173C) = 12.0f;
             break;
             case 5:
-            *(float *)(s1 + 0x173C) = 10.0f;
+            *(float *)((char *)s1 + 0x173C) = 10.0f;
             break;
         }
         break;
     }
     if (cCoreSave_getGameLevel(&D_00569B70) < 5) {
-        *(float *)(s1 + 0x173C) = *(float *)(s1 + 0x173C) + fRand0_1() * 4.0f;
+        *(float *)((char *)s1 + 0x173C) = *(float *)((char *)s1 + 0x173C) + fRand0_1() * 4.0f;
     }
 tail:
-    if (*(int *)(s1 + 0x564) == 0x279) {
+    if (s1->emNo == 0x279) {
         ReleaseField6ECByTag564_26B1E8(s1);
     }
-    *(unsigned char *)(s1 + 0x2F4) = 0;
-    *(unsigned char *)(s1 + 0x2F5) = 0x69;
-    *(unsigned char *)(s1 + 0x2F6) = 0;
-    *(unsigned char *)(s1 + 0x2F7) = s2;
+    s1->mode = 0;
+    s1->phase = 0x69;
+    s1->step = 0;
+    s1->stepArg = s2;
     if (s2 != 0) {
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x7C, (cObj *)self, 0, 0, 0, 0);
     }

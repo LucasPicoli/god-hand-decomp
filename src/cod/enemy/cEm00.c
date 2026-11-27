@@ -1,3 +1,4 @@
+#include "godhand/cEm00.h"
 /* TU: cEm00 [enemy] - recovered C++ class. */
 
 __attribute__((section(".text.cEm00_setAlphaMode")))
@@ -17,11 +18,11 @@ int cEm00_ckBananaDance(void *a0) {
 }
 
 __attribute__((section(".text.cEm00_setR608EventEnd")))
-void cEm00_setR608EventEnd(void *a0) {
-    *(unsigned char *)((char *)a0 + 0x2F5) = 0x68;
-    *(unsigned char *)((char *)a0 + 0x2F6) = 0x4;
-    *(unsigned char *)((char *)a0 + 0x2F4) = 0;
-    *(unsigned char *)((char *)a0 + 0x2F7) = 0;
+void cEm00_setR608EventEnd(cEm00 *a0) {
+    a0->phase = 0x68;
+    a0->step = 0x4;
+    a0->mode = 0;
+    a0->stepArg = 0;
 }
 
 __attribute__((section(".text.cEm00_setNeckMoveOff")))

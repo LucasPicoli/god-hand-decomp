@@ -9,9 +9,10 @@ extern void func_001B7EE0(void *self, float f);
 #include "godhand/cSnd.h"
 #include "godhand/emPhaseTable.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cGameObj.h"
 
 __attribute__((section(".text.func_001AC980")))
-void func_001AC980(char *self)
+void func_001AC980(cGameObj *self)
 {
     cDamageTake *hit;
     int n;
@@ -19,47 +20,47 @@ void func_001AC980(char *self)
     int c;
     unsigned long t;
 
-    EM_PHASE_RUN(&D_003BDC40, self, *(unsigned char *)(self + 0x2F5));
+    EM_PHASE_RUN(&D_003BDC40, self, self->phase);
 
-    c = --*(signed char *)(self + 0x621);
+    c = --*(signed char *)((char *)self + 0x621);
     if (c <= 0) {
-        *(signed char *)(self + 0x621) = 5;
-        n = *(short *)(self + 0x54A) + 1;
-        if (n >= *(short *)(self + 0x548))
-            *(short *)(self + 0x54A) = *(short *)(self + 0x548);
+        *(signed char *)((char *)self + 0x621) = 5;
+        n = self->hp + 1;
+        if (n >= self->hpMax)
+            self->hp = self->hpMax;
         else
-            *(short *)(self + 0x54A) = n;
+            self->hp = n;
     }
-    if (*(unsigned char *)(self + 0x60D) == 0) {
-        hit = *(cDamageTake **)(self + 0x624);
+    if (*(unsigned char *)((char *)self + 0x60D) == 0) {
+        hit = *(cDamageTake **)((char *)self + 0x624);
         if (hit != 0) {
             t = hit->hitFlags;
             t &= 1;
             if (t != 0) {
             int d = hit->power;
 
-            m = *(short *)(self + 0x54A);
+            m = self->hp;
             m -= d;
-            *(float *)(self + 0x54C) = 3.0f;
-            if (m >= *(short *)(self + 0x548))
-                *(short *)(self + 0x54A) = *(short *)(self + 0x548);
+            self->hitFlash = 3.0f;
+            if (m >= self->hpMax)
+                self->hp = self->hpMax;
             else
-                *(short *)(self + 0x54A) = m;
-            *(int *)(self + 0x618) += d;
-            if (*(short *)(self + 0x54A) <= 0) {
-                *(unsigned char *)(self + 0x2F4) = 1;
-                *(unsigned char *)(self + 0x2F5) = 0;
-                *(unsigned char *)(self + 0x2F6) = 0;
-                *(unsigned char *)(self + 0x2F7) = 0;
+                self->hp = m;
+            *(int *)((char *)self + 0x618) += d;
+            if (self->hp <= 0) {
+                self->mode = 1;
+                self->phase = 0;
+                self->step = 0;
+                self->stepArg = 0;
             } else {
-                *(short *)(self + 0x610) = 8;
-                *(float *)(self + 0x614) = (*(float **)(self + 0xF0))[1];
+                *(short *)((char *)self + 0x610) = 8;
+                *(float *)((char *)self + 0x614) = (*(float **)((char *)self + 0xF0))[1];
             }
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 10, (cObj *)self, 0, 0, 0, 0);
             }
         }
     }
     func_001AC370(self);
-    if (*(unsigned char *)(self + 0x60C) == 1)
+    if (*(unsigned char *)((char *)self + 0x60C) == 1)
         func_001B7EE0(self, 2.0f);
 }

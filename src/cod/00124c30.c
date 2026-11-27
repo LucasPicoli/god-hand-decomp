@@ -4,6 +4,7 @@
 #include "godhand/SlotUi.h"
 #include "godhand/globals.h"
 #include "godhand/cCamera.h"
+#include "godhand/cGameObj.h"
 
 extern int irand(void);
 extern int moveMotion(void *a0);
@@ -52,57 +53,57 @@ extern void func_0032BB48(int a0, int a1, int a2);
 __attribute__((section(".text.func_0027F970")))
 void func_0027F970(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     char *p;
     int ok;
     unsigned long z = 0;
 
-    *(int *)(s0 + 0x1560) |= 1;
-    p = *(char **)(s0 + 0x1580);
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    *(int *)((char *)s0 + 0x1560) |= 1;
+    p = *(char **)((char *)s0 + 0x1580);
+    switch (s0->step) {
     case 0:
         ok = 0;
         if (p != 0) {
             ok = *(short *)(p + 0x548) / 2 >= *(short *)(p + 0x54A);
         }
         if (ok && (irand() & 1)) {
-            char *t = *(char **)(s0 + 0x304);
+            char *t = s0->pack;
             func_002A8578(s0, *(int *)(t + 0x98) + (int)t, *(int *)(t + 0x9C) + (int)t, 5, 0.0f, z, 0);
         } else {
             int lvl = cCoreSave_getGameLevel(&D_00569B70);
             if (lvl >= 3) {
-                char *t = *(char **)(s0 + 0x304);
+                char *t = s0->pack;
                 func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x74) + (int)t, 5, 0.0f, z, 0);
             } else {
-                char *t = *(char **)(s0 + 0x304);
+                char *t = s0->pack;
                 func_002A8578(s0, *(int *)(t + 0x6C) + (int)t, *(int *)(t + 0x70) + (int)t, 5, 0.0f, z, 0);
             }
         }
-        *(int *)(s0 + 0x5F0) = 1;
-        *(short *)(s0 + 0x568) = 1;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(int *)((char *)s0 + 0x5F0) = 1;
+        s0->unk568 = 1;
+        s0->step = s0->step + 1;
         /* fallthrough */
     case 1:
         if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         break;
     }
-    if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0) {
-        if (*(int *)(s0 + 0x5F0) != 0) {
-            *(int *)(s0 + 0x5F0) = 0;
+    if ((s0->seqFlags & 1) != 0) {
+        if (*(int *)((char *)s0 + 0x5F0) != 0) {
+            *(int *)((char *)s0 + 0x5F0) = 0;
             func_00280EB8(s0, 0, 0);
             func_00280EB8(s0, 0, 1);
-            *(short *)(s0 + 0x568) = 0;
+            s0->unk568 = 0;
         }
     } else {
-        *(int *)(s0 + 0x5F0) = 1;
+        *(int *)((char *)s0 + 0x5F0) = 1;
     }
-    if (*(short *)(s0 + 0x568) != 0) {
-        *(int *)(s0 + 0x1560) |= 2;
+    if (s0->unk568 != 0) {
+        *(int *)((char *)s0 + 0x1560) |= 2;
     }
 }
 

@@ -5,6 +5,8 @@
 #include "godhand/cEm00.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cGameObj.h"
+#include "godhand/cObj.h"
 
 extern int setMotionInfo(cObjBase *self, char *motion, SEQ_DATA_HEADER_1 *seqData, unsigned int blendLen,
 
@@ -54,26 +56,26 @@ void func_0014EB90(cObjBase *self)
 __attribute__((section(".text.func_00288A58")))
 void func_00288A58(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     int v0;
     float one;
 
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
-    *(float *)(s0 + 0x54C) = 3.0f;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    s0->hitFlash = 3.0f;
+    switch (s0->step) {
     case 0:
         func_0028FB08(a0);
         cCoreSave_addKillNpcNum(&D_00569B70);
-        v0 = *(int *)(s0 + 0x304);
+        v0 = *(int *)((char *)s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x90) + v0, *(int *)(v0 + 0x94) + v0, 5, 0.0f, 0, 0);
         cSnd_SeCall_2CBA48(&D_005FEE00, 1, 0x5F, a0, 0, 0, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     case 1:
         if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F7) = 0;
-            *(unsigned char *)(s0 + 0x2F4) = 2;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 2;
+            s0->stepArg = 0;
+            s0->mode = 2;
+            s0->step = 0;
+            s0->phase = 2;
         } else {
             one = 1.0f;
             cObjBase_addNullSpeed_Rotation(s0, one);
@@ -86,39 +88,39 @@ void func_00288A58(void *a0)
 __attribute__((section(".text.func_0011A530")))
 void func_0011A530(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *t0;
     int p1, p2;
     float one;
 
-    *(int *)(s0 + 0x15F4) |= 0x80;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    *(int *)((char *)s0 + 0x15F4) |= 0x80;
+    switch (s0->step) {
     case 0:
-        t0 = *(char **)(s0 + 0x304);
-        *(short *)(s0 + 0x5E0) = 0;
-        *(short *)(s0 + 0x5E2) = 0;
+        t0 = s0->pack;
+        *(short *)((char *)s0 + 0x5E0) = 0;
+        *(short *)((char *)s0 + 0x5E2) = 0;
         p1 = *(int *)(t0 + 0x28) + (int)t0;
         p2 = *(int *)(t0 + 0x2C) + (int)t0;
-        if (*(void **)(s0 + 0x6A0) != 0) {
-            func_002A8578(*(void **)(s0 + 0x6A0), *(int *)(t0 + 0x36C) + (int)t0,
+        if (*(void **)((char *)s0 + 0x6A0) != 0) {
+            func_002A8578(*(void **)((char *)s0 + 0x6A0), *(int *)(t0 + 0x36C) + (int)t0,
                           *(int *)(t0 + 0x388) + (int)t0, 10, 0.0f, 0, 0);
             {
-            char *v0 = *(char **)(s0 + 0x304);
+            char *v0 = s0->pack;
             p1 = *(int *)(v0 + 0x344) + (int)v0;
             p2 = *(int *)(v0 + 0x348) + (int)v0;
-            *(unsigned char *)(s0 + 0x2F7) = 3;
+            s0->stepArg = 3;
             }
         }
-        if (*(int *)(s0 + 0x698) != 0) {
+        if (*(int *)((char *)s0 + 0x698) != 0) {
             {
-            char *v0 = *(char **)(s0 + 0x304);
+            char *v0 = s0->pack;
             p1 = *(int *)(v0 + 0x3AC) + (int)v0;
             p2 = *(int *)(v0 + 0x3B0) + (int)v0;
-            *(unsigned char *)(s0 + 0x2F7) = 3;
+            s0->stepArg = 3;
             }
         }
         func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     case 1:
         one = 1.0f;
         moveMotion(s0);
@@ -131,18 +133,18 @@ void func_0011A530(void *a0)
 __attribute__((section(".text.func_00102CB0")))
 void func_00102CB0(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     float one;
     int p1, p2, t0;
 
     t0 = 0;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0:
-        switch (*(unsigned char *)(s0 + 0x2F7)) {
+        switch (s0->stepArg) {
         case 0:
         default:
             {
-            char *v0 = *(char **)(s0 + 0x304);
+            char *v0 = s0->pack;
             p1 = *(int *)(v0 + 0x6C) + (int)v0;
             p2 = *(int *)(v0 + 0x70) + (int)v0;
             t0 = (irand() & 1) << 1;
@@ -150,21 +152,21 @@ void func_00102CB0(void *a0)
             break;
         case 1:
             {
-            char *v1 = *(char **)(s0 + 0x304);
+            char *v1 = s0->pack;
             p1 = *(int *)(v1 + 0x64) + (int)v1;
             p2 = *(int *)(v1 + 0x68) + (int)v1;
             }
             break;
         case 2:
             {
-            char *v2 = *(char **)(s0 + 0x304);
+            char *v2 = s0->pack;
             p1 = *(int *)(v2 + 0x5C) + (int)v2;
             p2 = *(int *)(v2 + 0x60) + (int)v2;
             }
             break;
         case 3:
             {
-            char *v3 = *(char **)(s0 + 0x304);
+            char *v3 = s0->pack;
             t0 = 2;
             p1 = *(int *)(v3 + 0x5C) + (int)v3;
             p2 = *(int *)(v3 + 0x60) + (int)v3;
@@ -172,13 +174,13 @@ void func_00102CB0(void *a0)
             break;
         }
         func_002A8578(s0, p1, p2, 5, 0.0f, t0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     case 1:
         if (moveMotion(s0) != 0) {
-            *(char *)(s0 + 0x2F4) = 0;
-            *(char *)(s0 + 0x2F5) = 0;
-            *(char *)(s0 + 0x2F6) = 0;
-            *(char *)(s0 + 0x2F7) = 0;
+            *(char *)((char *)s0 + 0x2F4) = 0;
+            *(char *)((char *)s0 + 0x2F5) = 0;
+            *(char *)((char *)s0 + 0x2F6) = 0;
+            *(char *)((char *)s0 + 0x2F7) = 0;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s0, one);
@@ -190,18 +192,18 @@ void func_00102CB0(void *a0)
 __attribute__((section(".text.func_00102938")))
 void func_00102938(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *s1;
     char *v0;
     float one;
     float f;
 
     s1 = (char *)Getplayer();
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0:
-        v0 = *(char **)(s0 + 0x304);
+        v0 = s0->pack;
         func_002A8578(s0, *(int *)(v0 + 0x14) + (int)v0, *(int *)(v0 + 0x18) + (int)v0, 10, 0.0f, 0, 0);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     case 1:
         if (*(unsigned char *)(s1 + 0x61F) != 0) {
             f = *(float *)(s1 + 0x608) - 0.5235988f;
@@ -215,8 +217,8 @@ void func_00102938(void *a0)
             if (*(float *)(s1 + 0x604) < 0.0f) {
                 f = -f;
             }
-            *(float *)(s0 + 0x104) = *(float *)(s0 + 0x104) + f;
-            *(float *)(s0 + 0x104) = Adjust_theta(*(float *)(s0 + 0x104));
+            s0->rot.y = s0->rot.y + f;
+            s0->rot.y = Adjust_theta(s0->rot.y);
         }
         one = 1.0f;
         moveMotion(s0);
@@ -230,41 +232,41 @@ void func_00102938(void *a0)
 __attribute__((section(".text.func_0024AA68")))
 void func_0024AA68(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     int v0;
     int t0;
     float one;
     float f;
 
-    *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x30400;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    *(int *)((char *)s0 + 0x16D0) = *(int *)((char *)s0 + 0x16D0) | 0x30400;
+    switch (s0->step) {
     case 0:
-        *(char *)(s0 + 0x1864) = 0;
+        *(char *)((char *)s0 + 0x1864) = 0;
         t0 = Obj0000_Get_Byte_17C3_NZ_2_276468(s0) & 0xFFFF;
-        v0 = *(int *)(s0 + 0x304);
+        v0 = *(int *)((char *)s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x3D94) + v0, *(int *)(v0 + 0x3D98) + v0, 10, 0.0f, t0, 0);
-        if (*(void **)(s0 + 0x748) != 0) {
-            Obj2810_ClearState_5(*(void **)(s0 + 0x748));
+        if (*(void **)((char *)s0 + 0x748) != 0) {
+            Obj2810_ClearState_5(*(void **)((char *)s0 + 0x748));
         }
-        if (*(void **)(s0 + 0x74C) != 0) {
-            ClearBytes2F4To2F7_283170(*(void **)(s0 + 0x74C));
+        if (*(void **)((char *)s0 + 0x74C) != 0) {
+            ClearBytes2F4To2F7_283170(*(void **)((char *)s0 + 0x74C));
         }
-        if (*(void **)(s0 + 0x750) != 0) {
-            ClearBytes2F4To2F7_283170(*(void **)(s0 + 0x750));
+        if (*(void **)((char *)s0 + 0x750) != 0) {
+            ClearBytes2F4To2F7_283170(*(void **)((char *)s0 + 0x750));
         }
-        *(float *)(s0 + 0x600) = 30.0f;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(float *)((char *)s0 + 0x600) = 30.0f;
+        s0->step = s0->step + 1;
     case 1:
-        f = *(float *)(s0 + 0x600);
+        f = *(float *)((char *)s0 + 0x600);
         if (0.0f < f) {
-            *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
-            *(float *)(s0 + 0x600) = f - *(float *)(s0 + 0x5A8);
+            *(int *)((char *)s0 + 0x16D0) = *(int *)((char *)s0 + 0x16D0) | 0x800000;
+            *(float *)((char *)s0 + 0x600) = f - s0->speedRate;
         }
         if (moveMotion(s0) != 0) {
-            *(char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0xA1;
-            *(char *)(s0 + 0x2F6) = 0;
-            *(char *)(s0 + 0x2F7) = 0;
+            *(char *)((char *)s0 + 0x2F4) = 0;
+            s0->phase = 0xA1;
+            *(char *)((char *)s0 + 0x2F6) = 0;
+            *(char *)((char *)s0 + 0x2F7) = 0;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s0, one);

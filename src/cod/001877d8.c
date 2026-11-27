@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/cGameObj.h"
 
 extern char D_00423148[];
 extern int ResetField214FreeField180_1C2820();
@@ -44,11 +45,11 @@ int func_00187A50(void *a0) {
 
 
 __attribute__((section(".text.func_00188118")))
-void func_00188118(void *a0) {
+void func_00188118(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x604));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;
@@ -187,11 +188,11 @@ void func_0018A620(void *a0, void *a1) {
 
 
 __attribute__((section(".text.func_0018A988")))
-void func_0018A988(void *a0) {
+void func_0018A988(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x600));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;

@@ -2,6 +2,7 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
+#include "godhand/cGameObj.h"
 
 extern void cEmManage_SetPlCatched(void *a0);
 extern void CallWithAndClearField698_12AC28(void *a0);
@@ -20,15 +21,15 @@ extern char D_005864F0[];
 __attribute__((section(".text.func_00120BC0")))
 void func_00120BC0(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     char *s0;
     float buf[4];
-    *(float *)(s1 + 0x54C) = 5.0f;
-    s0 = *(char **)(s1 + 0x694);
-    *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 0x10000;
+    s1->hitFlash = 5.0f;
+    s0 = *(char **)((char *)s1 + 0x694);
+    s1->objFlags = s1->objFlags | 0x10000;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cEmManage_SetPlCatched(D_005864F0);
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    switch (s1->step) {
     case 0:
     {
         float z;
@@ -44,28 +45,28 @@ void func_00120BC0(void *a0)
         z = buf[1];
         func_001299F0(s1, s0, buf, 0, z);
         cEm00_GetPlMotion(s0, 0x22, z, z);
-        if (*(short *)(s1 + 0x54A) <= 0) {
+        if (s1->hp <= 0) {
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD6, a0, 0, 0, 0, 0);
             func_0012C348(s1, 2);
         } else {
             cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD7, a0, 0, 0, 0, 0);
             func_0012C348(s1, 2);
         }
-        *(int *)(s1 + 0x15B0) = 1;
-        *(short *)(s1 + 0x56E) = 0xF;
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        *(int *)((char *)s1 + 0x15B0) = 1;
+        *(short *)((char *)s1 + 0x56E) = 0xF;
+        (s1->step)++;
     }
     case 1:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
-            if (*(short *)(s1 + 0x54A) <= 0) {
+            if (s1->hp <= 0) {
                 D_00747A24 |= 8;
             } else {
                 pl00_clearMotionCam(s1, 0, 0);
-                *(char *)(s1 + 0x2F4) = 1;
-                *(char *)(s1 + 0x2F5) = 4;
-                *(char *)(s1 + 0x2F6) = 0;
-                *(char *)(s1 + 0x2F7) = 0;
+                *(char *)((char *)s1 + 0x2F4) = 1;
+                *(char *)((char *)s1 + 0x2F5) = 4;
+                *(char *)((char *)s1 + 0x2F6) = 0;
+                *(char *)((char *)s1 + 0x2F7) = 0;
             }
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);

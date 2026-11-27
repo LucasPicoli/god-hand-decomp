@@ -5,6 +5,7 @@
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 #include "godhand/cCollisionSolid.h"
+#include "godhand/cObj.h"
 extern int D_005CAFF0;
 extern int D_007476B0;
 extern char *D_00566E10;
@@ -40,35 +41,35 @@ int cDamageManage_CkHitStop(cDamageManage *self) {
 }
 
 __attribute__((section(".text.IsStateVal6_10B5C8")))
-int IsStateVal6_10B5C8(char *a0) {
-    if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
+int IsStateVal6_10B5C8(cObj *a0) {
+    if (a0->mode != 0) {
         return 0;
     }
-    return *(unsigned char*)((char*)a0+0x2F5) == 0x6;
+    return a0->phase == 0x6;
 }
 
 __attribute__((section(".text.IsStateVal3_10B620")))
-int IsStateVal3_10B620(char *a0) {
-    if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
+int IsStateVal3_10B620(cObj *a0) {
+    if (a0->mode != 0) {
         return 0;
     }
-    return *(unsigned char*)((char*)a0+0x2F5) == 0x3;
+    return a0->phase == 0x3;
 }
 
 __attribute__((section(".text.IsStateVal17_10B648")))
-int IsStateVal17_10B648(char *a0) {
-    if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
+int IsStateVal17_10B648(cObj *a0) {
+    if (a0->mode != 0) {
         return 0;
     }
-    return *(unsigned char*)((char*)a0+0x2F5) == 0x11;
+    return a0->phase == 0x11;
 }
 
 __attribute__((section(".text.IsByte2F5Eq7_WhenByte2F4Zero_10B670")))
-int IsByte2F5Eq7_WhenByte2F4Zero_10B670(char *a0) {
-    if (*(unsigned char*)((char*)a0+0x2F4) != 0) {
+int IsByte2F5Eq7_WhenByte2F4Zero_10B670(cObj *a0) {
+    if (a0->mode != 0) {
         return 0;
     }
-    return *(unsigned char*)((char*)a0+0x2F5) == 0x7;
+    return a0->phase == 0x7;
 }
 
 __attribute__((section(".text.SetFirstFreeSlot_Field_1644_1268B0")))

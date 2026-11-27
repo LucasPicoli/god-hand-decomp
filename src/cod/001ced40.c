@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern float cEmManage_GetSpeedRate(void *a0);
@@ -21,39 +22,39 @@ static inline int GetLayerObj(char *a0, int *frame, int idx)
 
 __attribute__((section(".text.func_001CED40")))
 void func_001CED40(void *a0) {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     unsigned char frame[0x10];
     float r;
     char *e;
 
     r = cEmManage_GetSpeedRate(&D_005864F0);
     e = (char *)GetLayerObj(s0, (int *)frame, 1);
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0:
-        *(short *)(s0 + 0x56A) = 0;
-        *(int *)(s0 + 0x24C) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->unk56A = 0;
+        *(int *)((char *)s0 + 0x24C) = 0;
+        s0->step = s0->step + 1;
         /* fallthrough */
     case 1:
         {
             float t;
             int fl;
 
-            t = *(float *)(s0 + 0x24C);
+            t = s0->tint.w;
             t += r * 0.1f;
-            fl = *(int *)(s0 + 0x250) | 0x10;
-            *(int *)(s0 + 0x250) = fl;
-            *(float *)(s0 + 0x24C) = t;
+            fl = s0->objFlags | 0x10;
+            s0->objFlags = fl;
+            s0->tint.w = t;
             if (t > 1.0f) {
-                *(float *)(s0 + 0x24C) = 1.0f;
-                *(int *)(s0 + 0x250) = fl & 0xFFFFFFEF;
-                *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+                s0->tint.w = 1.0f;
+                s0->objFlags = fl & 0xFFFFFFEF;
+                s0->step = s0->step + 1;
             }
         }
         break;
     case 2:
-        *(float *)(s0 + 0x674) = 30.0f;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(float *)((char *)s0 + 0x674) = 30.0f;
+        s0->step = s0->step + 1;
         /* fallthrough */
     case 3:
         {
@@ -63,49 +64,49 @@ void func_001CED40(void *a0) {
 
                 p = *(float **)(e + 0xD0);
                 *p = *p + r * 0.05f;
-                t = *(float *)(s0 + 0x674);
+                t = *(float *)((char *)s0 + 0x674);
                 t -= r;
-                *(float *)(s0 + 0x674) = t;
+                *(float *)((char *)s0 + 0x674) = t;
                 if (!(t <= 0.0f)) {
                     break;
                 }
             }
-            *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+            s0->step = s0->step + 1;
         }
         break;
     case 4:
-        *(float *)(s0 + 0x674) = 60.0f;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(float *)((char *)s0 + 0x674) = 60.0f;
+        s0->step = s0->step + 1;
         /* fallthrough */
     case 5:
         {
             float t;
 
-            t = *(float *)(s0 + 0x674);
+            t = *(float *)((char *)s0 + 0x674);
             t -= r;
-            *(float *)(s0 + 0x674) = t;
+            *(float *)((char *)s0 + 0x674) = t;
             if (t <= 0.0f) {
-                *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+                s0->step = s0->step + 1;
             }
         }
         break;
     case 6:
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
         /* fallthrough */
     case 7:
         {
             float t;
 
-            t = *(float *)(s0 + 0x24C);
+            t = s0->tint.w;
             t -= r * 0.1f;
-            *(int *)(s0 + 0x250) = *(int *)(s0 + 0x250) | 0x10;
-            *(float *)(s0 + 0x24C) = t;
+            s0->objFlags = s0->objFlags | 0x10;
+            s0->tint.w = t;
             if (t < 0.0f) {
-                *(float *)(s0 + 0x24C) = 0.0f;
-                *(unsigned char *)(s0 + 0x2F4) = 1;
-                *(unsigned char *)(s0 + 0x2F5) = 0;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+                s0->tint.w = 0.0f;
+                s0->mode = 1;
+                s0->phase = 0;
+                s0->step = 0;
+                s0->stepArg = 0;
             }
         }
         break;

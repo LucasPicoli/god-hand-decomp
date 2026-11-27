@@ -7,6 +7,8 @@ extern void SetField_0_4_8_31EEA8(void *a0, void *a1, void *a2);
 extern char D_007854C8[];
 #include "godhand/motion.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cGameObj.h"
+#include "godhand/cObj.h"
 extern void cObjBase_addNullSpeed_Rotation(void *a0, float f);
 extern void cObjBase_addNullSpeed(void *a0, float f);
 
@@ -21,19 +23,19 @@ void *GetOrInitSubSingleton_103880(void) {
 }
 
 __attribute__((section(".text.ForwardAndSyncPosition_102EE0")))
-void ForwardAndSyncPosition_102EE0(void *a0) {
+void ForwardAndSyncPosition_102EE0(cGameObj *a0) {
     int s1 = Getplayer();
     int g;
     int p0, p1;
     cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
-    *(int *)((char *)a0 + 0x250) |= 2;
-    *(float *)((char *)a0 + 0x54C) = 2.0f;
-    switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
+    a0->objFlags |= 2;
+    a0->hitFlash = 2.0f;
+    switch (a0->step) {
     case 0:
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0xC) + g),
                       (void *)(*(int *)((char *)g + 0x10) + g), 0, 0.0f, 0, 0);
-        (*(unsigned char *)((char *)a0 + 0x2F6))++;
+        (a0->step)++;
         /* fallthrough */
     case 1:
         p0 = *(int *)((char *)a0 + 0xF0);
@@ -58,22 +60,22 @@ void ForwardAndSyncPosition_102EE0(void *a0) {
 }
 
 __attribute__((section(".text.UpdateAttackMovePhase_102FE8")))
-void UpdateAttackMovePhase_102FE8(void *a0) {
+void UpdateAttackMovePhase_102FE8(cObj *a0) {
     int g;
-    switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
+    switch (a0->step) {
     case 0:
         g = *(int *)((char *)a0 + 0x304);
         func_002A8578(a0, (void *)(*(int *)((char *)g + 0x54) + g),
                       (void *)(*(int *)((char *)g + 0x58) + g), 0, 0.0f, 0, 0);
         if (SetEffect(0, 0x51, a0, 0, -1, EFFECT_FOLLOW_OWNER)) { }
-        (*(unsigned char *)((char *)a0 + 0x2F6))++;
+        (a0->step)++;
         /* fallthrough */
     case 1:
         if (moveMotion(a0)) {
-            *(unsigned char *)((char *)a0 + 0x2F4) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F5) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F6) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F7) = 0;
+            a0->mode = 0;
+            a0->phase = 0;
+            a0->step = 0;
+            a0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(a0, 1.0f);
         cObjBase_addNullSpeed(a0, 1.0f);

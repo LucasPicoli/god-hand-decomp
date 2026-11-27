@@ -4,6 +4,7 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cGameObj.h"
 
 extern unsigned char D_005864F0[];
 extern int D_007474A8;
@@ -23,7 +24,7 @@ extern void cObjBase_addNullSpeed_Rotation(void *a0, float f12);
 extern void cObjBase_addNullSpeed(void *a0, float f12);
 
 __attribute__((section(".text.func_00118158")))
-void func_00118158(char *s1)
+void func_00118158(cGameObj *s1)
 {
     float buf[4];
     char *s0;
@@ -32,15 +33,15 @@ void func_00118158(char *s1)
     char *q1;
     short f15;
 
-    *(float *)(s1 + 0x54C) = 5.0f;
-    *(int *)(s1 + 0x250) |= 0x10000;
-    s2 = *(char **)(s1 + 0x694);
+    s1->hitFlash = 5.0f;
+    s1->objFlags |= 0x10000;
+    s2 = *(char **)((char *)s1 + 0x694);
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     s0 = (char *)&D_005864F0;
     cEmManage_SetPlCatched(s0);
     cEmManage_SetSlotWait(s0, 2);
-    *(int *)(s1 + 0x15F4) |= 0x80000;
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    *(int *)((char *)s1 + 0x15F4) |= 0x80000;
+    switch (s1->step) {
     case 0:
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
@@ -51,7 +52,7 @@ void func_00118158(char *s1)
         func_001299F0(s1, s2, buf, 0, 3.14159274f);
         cEm00_GetPlMotion(s2, 0x3E, 0.0f, 0.0f);
         cCoreSave_addGameLevelPoint(&D_00569B70, 0x64);
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        (s1->step)++;
         /* fallthrough */
     case 1:
         func_002DB7A8();
@@ -60,21 +61,21 @@ void func_00118158(char *s1)
             char *q;
 
             q = s2 + 0x550;
-            p = *(char **)(s1 + 0xF0);
+            p = *(char **)((char *)s1 + 0xF0);
             VU0_VADD_XYZ_IP(p, 0x0, q);
         }
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
-            (*(unsigned char *)(s1 + 0x2F6))++;
+            (s1->step)++;
         }
         goto tail3;
     case 2:
         cEm00_GetPlMotion(s2, 0x3F, 0.0f, 0.0f);
-        *(short *)(s1 + 0x568) = 0x5A;
-        (*(unsigned char *)(s1 + 0x2F6))++;
-        *(int *)(s1 + 0x15B0) = 0;
-        *(int *)(s1 + 0x15B4) = 0;
-        *(int *)(s1 + 0x15B8) = 0;
+        s1->unk568 = 0x5A;
+        (s1->step)++;
+        *(int *)((char *)s1 + 0x15B0) = 0;
+        *(int *)((char *)s1 + 0x15B4) = 0;
+        *(int *)((char *)s1 + 0x15B8) = 0;
         /* fallthrough */
     case 3:
         func_002DB7A8();
@@ -83,20 +84,20 @@ void func_00118158(char *s1)
             char *q;
 
             q = s2 + 0x550;
-            p = *(char **)(s1 + 0xF0);
+            p = *(char **)((char *)s1 + 0xF0);
             VU0_VADD_XYZ_IP(p, 0x0, q);
         }
-        if (*(short *)(s1 + 0x568) != 0) {
-            *(short *)(s1 + 0x568) = *(unsigned short *)(s1 + 0x568) - 1;
+        if (s1->unk568 != 0) {
+            s1->unk568 = *(unsigned short *)((char *)s1 + 0x568) - 1;
         }
-        if (*(int *)(s1 + 0x15B8) != 0) {
-            *(int *)(s1 + 0x15B8) = *(int *)(s1 + 0x15B8) - 1;
+        if (*(int *)((char *)s1 + 0x15B8) != 0) {
+            *(int *)((char *)s1 + 0x15B8) = *(int *)((char *)s1 + 0x15B8) - 1;
         }
-        *(int *)(s1 + 0x15B0) = *(int *)(s1 + 0x15B0) + 1;
+        *(int *)((char *)s1 + 0x15B0) = *(int *)((char *)s1 + 0x15B0) + 1;
         if ((D_007474A8 & 0xF0) != 0) {
             int lim;
 
-            switch (*(int *)(s1 + 0x15B4)) {
+            switch (*(int *)((char *)s1 + 0x15B4)) {
             case 0: default: lim = 0x3E7; break;
             case 1: lim = 6; break;
             case 2: lim = 5; break;
@@ -104,66 +105,66 @@ void func_00118158(char *s1)
             case 4: lim = 3; break;
             case 5: lim = 2; break;
             }
-            if (*(int *)(s1 + 0x15B0) < lim) {
-                *(int *)(s1 + 0x15B4) = *(int *)(s1 + 0x15B4) + 1;
+            if (*(int *)((char *)s1 + 0x15B0) < lim) {
+                *(int *)((char *)s1 + 0x15B4) = *(int *)((char *)s1 + 0x15B4) + 1;
             }
-            if (lim < *(int *)(s1 + 0x15B0)) {
-                *(int *)(s1 + 0x15B4) = *(int *)(s1 + 0x15B4) - 1;
+            if (lim < *(int *)((char *)s1 + 0x15B0)) {
+                *(int *)((char *)s1 + 0x15B4) = *(int *)((char *)s1 + 0x15B4) - 1;
             }
-            if (*(int *)(s1 + 0x15B4) < 0) {
-                *(int *)(s1 + 0x15B4) = 0;
+            if (*(int *)((char *)s1 + 0x15B4) < 0) {
+                *(int *)((char *)s1 + 0x15B4) = 0;
             }
-            if (*(int *)(s1 + 0x15B4) >= 5) {
-                *(int *)(s1 + 0x15B4) = 4;
+            if (*(int *)((char *)s1 + 0x15B4) >= 5) {
+                *(int *)((char *)s1 + 0x15B4) = 4;
             }
-            *(int *)(s1 + 0x15B0) = 0;
-            *(int *)(s1 + 0x15B8) = 0xA;
+            *(int *)((char *)s1 + 0x15B0) = 0;
+            *(int *)((char *)s1 + 0x15B8) = 0xA;
         } else {
-            if (*(int *)(s1 + 0x15B8) <= 0) {
-                *(int *)(s1 + 0x15B8) = 5;
-                *(int *)(s1 + 0x15B4) = *(int *)(s1 + 0x15B4) - 1;
-                if (*(int *)(s1 + 0x15B4) < 0) {
-                    *(int *)(s1 + 0x15B4) = 0;
+            if (*(int *)((char *)s1 + 0x15B8) <= 0) {
+                *(int *)((char *)s1 + 0x15B8) = 5;
+                *(int *)((char *)s1 + 0x15B4) = *(int *)((char *)s1 + 0x15B4) - 1;
+                if (*(int *)((char *)s1 + 0x15B4) < 0) {
+                    *(int *)((char *)s1 + 0x15B4) = 0;
                 }
             }
         }
-        switch (*(int *)(s1 + 0x15B4)) {
-        case 0: default: *(float *)(s1 + 0x5A8) = 0.699999988f; break;
-        case 1: *(float *)(s1 + 0x5A8) = 1.0f; break;
-        case 2: *(float *)(s1 + 0x5A8) = 1.39999998f; break;
-        case 3: *(float *)(s1 + 0x5A8) = 1.79999995f; break;
-        case 4: *(float *)(s1 + 0x5A8) = 2.20000005f; break;
+        switch (*(int *)((char *)s1 + 0x15B4)) {
+        case 0: default: s1->speedRate = 0.699999988f; break;
+        case 1: s1->speedRate = 1.0f; break;
+        case 2: s1->speedRate = 1.39999998f; break;
+        case 3: s1->speedRate = 1.79999995f; break;
+        case 4: s1->speedRate = 2.20000005f; break;
         }
-        SetMotionStep(s1, *(float *)(s1 + 0x5A8));
+        SetMotionStep(s1, s1->speedRate);
         func_00124EC0(s1);
-        if (moveMotion(s1) == 0 || *(short *)(s1 + 0x568) > 0)
+        if (moveMotion(s1) == 0 || s1->unk568 > 0)
             goto tail3;
     
     
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        (s1->step)++;
         goto tail3;
     case 4:
         cEm00_GetPlMotion(s2, 0x41, 0.0f, 0.0f);
         f15 = 0xF;
-        *(short *)(s1 + 0x56E) = f15;
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        *(short *)((char *)s1 + 0x56E) = f15;
+        (s1->step)++;
         /* fallthrough */
     case 5:
-        if (*(short *)(s1 + 0x56E) == 0 || s2 == 0)
+        if (*(short *)((char *)s1 + 0x56E) == 0 || s2 == 0)
             goto join5;
-        (*(short *)(s1 + 0x56E))--;
-        p1 = *(char **)(s1 + 0xF0);
+        (*(short *)((char *)s1 + 0x56E))--;
+        p1 = *(char **)((char *)s1 + 0xF0);
     
-        q1 = s1 + 0x550;
+        q1 = (char *)s1 + 0x550;
         VU0_VADD_XYZ_IP(p1, 0x0, q1);
     join5:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             pl00_clearMotionCam(s1, 0, 0);
-            *(char *)(s1 + 0x2F4) = 0;
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
+            *(char *)((char *)s1 + 0x2F4) = 0;
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
         }
     tail3:
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
@@ -172,29 +173,29 @@ void func_00118158(char *s1)
     case 6:
         cEm00_GetPlMotion(s2, 0x40, 0.0f, 0.0f);
         f15 = 0xF;
-        *(short *)(s1 + 0x56E) = f15;
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        *(short *)((char *)s1 + 0x56E) = f15;
+        (s1->step)++;
         /* fallthrough */
     case 7:
-        if (*(short *)(s1 + 0x56E) != 0) {
+        if (*(short *)((char *)s1 + 0x56E) != 0) {
             if (s2 != 0) {
                 char *p;
                 char *q;
 
-                *(short *)(s1 + 0x56E) = *(unsigned short *)(s1 + 0x56E) - 1;
-                p = *(char **)(s1 + 0xF0);
+                *(short *)((char *)s1 + 0x56E) = *(unsigned short *)((char *)s1 + 0x56E) - 1;
+                p = *(char **)((char *)s1 + 0xF0);
                  
-                q = s1 + 0x550;
+                q = (char *)s1 + 0x550;
                 VU0_VADD_XYZ_IP(p, 0x0, q);
             }
         }
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             pl00_clearMotionCam(s1, 0, 0);
-            *(char *)(s1 + 0x2F4) = 0;
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
+            *(char *)((char *)s1 + 0x2F4) = 0;
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         cObjBase_addNullSpeed(s1, 1.0f);

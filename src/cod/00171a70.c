@@ -2,6 +2,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cSnd.h"
 #include "godhand/cDamageUnit.h"
+#include "godhand/cObj.h"
 
 extern char D_00463050[];
 extern int D_003C2F84;
@@ -94,12 +95,12 @@ void func_002BB298(cCollisionShape *self, const cVec *rot)
 
 __attribute__((section(".text.func_00304BF8")))
 int func_00304BF8(char *a0) {
-    char *a1 = *(char **)(a0 + 0x108);
+    cObj *a1 = *(char **)(a0 + 0x108);
     if (a1 != 0) {
-        *(int *)(a0 + 0x240) = *(unsigned char *)(a1 + 0x2F4);
-        *(int *)(a0 + 0x244) = *(unsigned char *)(a1 + 0x2F5);
-        *(int *)(a0 + 0x248) = *(unsigned char *)(a1 + 0x2F6);
-        *(int *)(a0 + 0x24C) = *(unsigned char *)(a1 + 0x2F7);
+        *(int *)(a0 + 0x240) = a1->mode;
+        *(int *)(a0 + 0x244) = a1->phase;
+        *(int *)(a0 + 0x248) = a1->step;
+        *(int *)(a0 + 0x24C) = a1->stepArg;
         return func_00303A20(a0);
     }
     return 0;

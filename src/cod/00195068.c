@@ -22,6 +22,7 @@ extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cOmBreakable.h"
 extern char D_005864F0[];
 
 struct VtEnt { short delta; short index; void *pfn; };
@@ -30,7 +31,7 @@ __attribute__((section(".text.cOmBreakable_stepBreak")))
 void cOmBreakable_stepBreak(void *a0)
 {
     char buf[0x80] __attribute__((aligned(16)));
-    char *s1 = (char *)a0;
+    cOmBreakable *s1 = a0;
     struct VtEnt *vt;
     int i;
     int off;
@@ -41,80 +42,80 @@ void cOmBreakable_stepBreak(void *a0)
     char *q20v, *q10v;
     float rate;
 
-    switch (*(unsigned char *)(s1 + 0x2F5)) {
+    switch (s1->base.phase) {
     case 0: {
         int cnt, part;
         cOmBase *tt;
         unsigned char ok;
-        if (*(int *)(s1 + 0xB20) != 0) {
-            cSnd_SeStop(&D_005FEE00, *(int *)(s1 + 0xB20));
-            *(int *)(s1 + 0xB20) = 0;
+        if (*(int *)((char *)s1 + 0xB20) != 0) {
+            cSnd_SeStop(&D_005FEE00, *(int *)((char *)s1 + 0xB20));
+            *(int *)((char *)s1 + 0xB20) = 0;
         }
         VU0_SQC2_VF0(buf, 0x0);
         {
             int two = 2;
-            cnt = *(unsigned char *)(s1 + 0x2B4);
+            cnt = s1->base.partNum;
             ok = ((*(int *)(buf + 0x10) = cnt), (two < cnt));
-            if (ok) part = *(int *)(*(int *)(s1 + 0x278) + 8); else part = 0;
+            if (ok) part = *(int *)(*(int *)((char *)s1 + 0x278) + 8); else part = 0;
         }
         ForwardVec3At30_147C60(buf, (float *)(part + 0x80));
         SetEffect(0x177, 2, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         {
             int two = 2;
-            cnt = *(unsigned char *)(s1 + 0x2B4);
+            cnt = s1->base.partNum;
             ok = ((*(int *)(buf + 0x10) = cnt), (two < cnt));
-            if (ok) tt = (*(cOmBase ***)(s1 + 0x278))[2]; else tt = 0;
+            if (ok) tt = (*(cOmBase ***)((char *)s1 + 0x278))[2]; else tt = 0;
         }
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x87, a0, 0, (cParts *)tt, 0, 0);
         KillEffect((int)s1, 1, 2);
         cEmManage_CreateItem(D_005864F0, (int)buf, 0xFFFF, 0);
         func_00195620(s1);
         SetField5B0Bit2ClearBit8_1B7908(s1);
-        *(short *)(s1 + 0xAF0) = 0x96;
-        *(unsigned char *)(s1 + 0x2F5) = 1;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0xAF0) = 0x96;
+        s1->base.phase = 1;
+        s1->base.step = 0;
+        s1->base.stepArg = 0;
     }
         /* fallthrough */
     case 1:
-        *(short *)(s1 + 0xAF0) = *(unsigned short *)(s1 + 0xAF0) - 1;
-        if (*(short *)(s1 + 0xAF0) <= 0) {
-            *(short *)(s1 + 0xAF0) = 0xF;
-            *(unsigned char *)(s1 + 0x2F5) = 2;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0xAF0) = *(unsigned short *)((char *)s1 + 0xAF0) - 1;
+        if (*(short *)((char *)s1 + 0xAF0) <= 0) {
+            *(short *)((char *)s1 + 0xAF0) = 0xF;
+            s1->base.phase = 2;
+            s1->base.step = 0;
+            s1->base.stepArg = 0;
         }
         break;
     case 2: {
-        int n = *(unsigned short *)(s1 + 0xAF0) - 1;
+        int n = *(unsigned short *)((char *)s1 + 0xAF0) - 1;
 
-        *(short *)(s1 + 0xAF0) = n;
+        *(short *)((char *)s1 + 0xAF0) = n;
         if ((short)n <= 0) {
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 3;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->base.step = 0;
+            s1->base.phase = 3;
+            s1->base.stepArg = 0;
         }
         break;
     }
     case 3:
-        *(unsigned char *)(s1 + 0x2F4) = 0;
-        *(unsigned char *)(s1 + 0x2F5) = 0;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->base.mode = 0;
+        s1->base.phase = 0;
+        s1->base.step = 0;
+        s1->base.stepArg = 0;
         break;
     default:
         break;
     }
     i = 3;
-    if (i < 9 && *(unsigned char *)(s1 + 0x2B4) != i) {
+    if (i < 9 && s1->base.partNum != i) {
         q20v = buf + 0x30;
         q10v = buf + 0x20;
-        e40 = s1 + 0x790;
-        e10 = s1 + 0x760;
-        e30 = s1 + 0x780;
-        e20 = s1 + 0x770;
-        e = s1 + 0x750;
-        for (; i < 9 && *(unsigned char *)(s1 + 0x2B4) != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
+        e40 = (char *)s1 + 0x790;
+        e10 = (char *)s1 + 0x760;
+        e30 = (char *)s1 + 0x780;
+        e20 = (char *)s1 + 0x770;
+        e = (char *)s1 + 0x750;
+        for (; i < 9 && s1->base.partNum != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
         one1 = 1;
         lim = -1000.0f;
         if (GetField_54_173900(e) == one1) {

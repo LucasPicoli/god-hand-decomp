@@ -1,19 +1,20 @@
 /* cygnus-2.96 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/cGameObj.h"
 
 extern int D_003D8410;
 extern void func_003A52F0(void *a0, int a1, int a2, int a3);
 
 __attribute__((section(".text.func_00318540")))
-int func_00318540(void *a0) {
-    int v1 = *(int*)((char*)a0+0x250);
+int func_00318540(cGameObj *a0) {
+    int v1 = a0->objFlags;
     v1 |= 0x80000;
     *(char*)((char*)a0+0x2F4) = 0;
-    *(int*)((char*)a0+0x250) = v1;
+    a0->objFlags = v1;
     *(char*)((char*)a0+0x2F5) = 0;
     *(char*)((char*)a0+0x2F6) = 0;
     *(char*)((char*)a0+0x2F7) = 0;
-    *(int*)((char*)a0+0x4D0) = 0;
+    a0->unk4D0 = 0;
     *(int*)((char*)a0+0x4D4) = 0;
     return 1;
 }

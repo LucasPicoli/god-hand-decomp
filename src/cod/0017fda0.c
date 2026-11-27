@@ -80,6 +80,7 @@ int func_00181920(char *p)
 
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
+#include "godhand/cObj.h"
 
 
 
@@ -89,7 +90,7 @@ extern void cOmSub_initMove1_ang(void *dst, void *obj, int idx, int a3, void *a4
 
 
 __attribute__((section(".text.func_0017FDA0")))
-void func_0017FDA0(char *p)
+void func_0017FDA0(cObj *p)
 {
     unsigned char hold[0x10] __attribute__((aligned(16)));
     unsigned char a10[0x10];
@@ -105,18 +106,18 @@ void func_0017FDA0(char *p)
     float k;
     int flag, one, n;
 
-    switch (*(unsigned char *)(p + 0x2F5)) {
+    switch (p->phase) {
     case 0:
-        if (*(int *)(p + 0xA24) == 1) return;
+        if (*(int *)((char *)p + 0xA24) == 1) return;
         k = 0.100000001f;
         s = D_00567FF0;
         i = 0;
         b20 = a20;
-        q = p + 0x600;
+        q = (char *)p + 0x600;
         do {
-            ok = ((*(int *)hold = cnt = *(unsigned char *)(p + 0x2B4)),
+            ok = ((*(int *)hold = cnt = p->partNum),
                   (i >= 0 && i < cnt));
-            if (ok) e = *(char **)(*(char **)(p + 0x278) + i * 4); else e = 0;
+            if (ok) e = *(char **)(*(char **)((char *)p + 0x278) + i * 4); else e = 0;
             if (e != 0) {
                 char *ep = e + 0x100;
                 VU0_SQC2_VF0(hold, 0x20);
@@ -137,14 +138,14 @@ void func_0017FDA0(char *p)
             int b2;
             unsigned char ok2;
             cOmBase *e2;
-            ok2 = ((*(int *)hold = b2 = *(unsigned char *)(p + 0x2B4)), (lim < b2));
-            if (ok2) e2 = (*(cOmBase ***)(p + 0x278))[1]; else e2 = 0;
+            ok2 = ((*(int *)hold = b2 = p->partNum), (lim < b2));
+            if (ok2) e2 = (*(cOmBase ***)((char *)p + 0x278))[1]; else e2 = 0;
             cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xDF, (cObj *)p, 0, (cParts *)e2, 0, 0);
         }
-        p[0xA28] = 1;
-        p[0x2F5] = 1;
-        p[0x2F6] = 0;
-        p[0x2F7] = 0;
+        ((char *)p)[0xA28] = 1;
+        ((char *)p)[0x2F5] = 1;
+        ((char *)p)[0x2F6] = 0;
+        ((char *)p)[0x2F7] = 0;
     case 1:
         break;
     default:
@@ -152,7 +153,7 @@ void func_0017FDA0(char *p)
     }
     flag = 0;
     one = 1;
-    r = p + 0x600;
+    r = (char *)p + 0x600;
     n = 2;
     do {
         if (cOmSub_move(r) != 0) flag = one;
@@ -160,10 +161,10 @@ void func_0017FDA0(char *p)
         r += 0x160;
     } while (n >= 0);
     if (flag != 0) return;
-    *(int *)(p + 0xA24) = 1;
-    p[0xA28] = 0;
-    p[0x2F4] = 0;
-    p[0x2F5] = 0;
-    p[0x2F6] = 0;
-    p[0x2F7] = 0;
+    *(int *)((char *)p + 0xA24) = 1;
+    ((char *)p)[0xA28] = 0;
+    ((char *)p)[0x2F4] = 0;
+    ((char *)p)[0x2F5] = 0;
+    ((char *)p)[0x2F6] = 0;
+    ((char *)p)[0x2F7] = 0;
 }

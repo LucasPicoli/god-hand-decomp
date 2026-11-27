@@ -16,6 +16,7 @@ extern char D_005864F0[];
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cObj.h"
 
 #define FRAME ((char *)mtx - 0x30)
 
@@ -23,28 +24,28 @@ __attribute__((section(".text.func_001B6A30")))
 void func_001B6A30(void *a0)
 {
     cVec mtx[4];
-    char *s1 = (char *)a0;
+    cObj *s1 = a0;
 
-    if (*(int *)(s1 + 0x62C) >= 0) {
-        *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) & 0xFFFFFFFDU;
+    if (*(int *)((char *)s1 + 0x62C) >= 0) {
+        s1->objFlags = s1->objFlags & 0xFFFFFFFDU;
     }
-    switch (*(unsigned char *)(s1 + 0x2F5)) {
+    switch (s1->phase) {
     case 0:
     {
         float *d;
         float *sr;
 
-        d = *(float **)(s1 + 0xF0);
-        sr = (float *)(s1 + 0x600);
+        d = *(float **)((char *)s1 + 0xF0);
+        sr = (float *)((char *)s1 + 0x600);
         if (d != sr) {
             d[0] = sr[0];
             d[1] = sr[1];
             d[2] = sr[2];
         }
-        *(short *)(s1 + 0x628) = 0x28;
-        *(char *)(s1 + 0x2F5) = 1;
-        *(char *)(s1 + 0x2F6) = 0;
-        *(char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0x628) = 0x28;
+        *(char *)((char *)s1 + 0x2F5) = 1;
+        *(char *)((char *)s1 + 0x2F6) = 0;
+        *(char *)((char *)s1 + 0x2F7) = 0;
     }
         /* fallthrough */
     case 1:
@@ -53,37 +54,37 @@ void func_001B6A30(void *a0)
         char *v2;
         int d;
 
-        unsigned long fl = *(unsigned int *)(s1 + 0x5B8);
+        unsigned long fl = *(unsigned int *)((char *)s1 + 0x5B8);
         if ((fl & 1) == 0) {
-            if (*(int *)(s1 + 0x62C) < 0) {
-                *(int *)(s1 + 0x250) = *(int *)(s1 + 0x250) | 2;
+            if (*(int *)((char *)s1 + 0x62C) < 0) {
+                s1->objFlags = s1->objFlags | 2;
             }
             break;
         }
-        if (*(short *)(s1 + 0x628) <= 0) {
-        SetEffectPos(1, 1, 0, (cVec *)(s1 + 0x600), 1.0f, -1);
-        v0 = s1 + 0x610;
-        v2 = s1 + 0x100;
+        if (*(short *)((char *)s1 + 0x628) <= 0) {
+        SetEffectPos(1, 1, 0, (cVec *)((char *)s1 + 0x600), 1.0f, -1);
+        v0 = (char *)s1 + 0x610;
+        v2 = (char *)s1 + 0x100;
         SetEffect(1, 2, a0, 0, 1, EFFECT_FOLLOW_OWNER);
-        *(int *)(s1 + 0x610) = 0;
+        *(int *)((char *)s1 + 0x610) = 0;
         *(int *)(v0 + 0x4) = 0;
         *(float *)(v0 + 0x8) = 1.0f;
         *(float *)(v0 + 0xC) = 1.0f;
         MtxInitRotVec(mtx, v2, 0);
         sceVu0ApplyMatrix(v0, mtx, v0);
-        d = *(int *)(s1 + 0x620);
+        d = *(int *)((char *)s1 + 0x620);
         if (d != 0) {
             cDamageUnit_SetDamageCollActive(d, 1);
-            cDamageGive_SetDmgGiveHitVecDir(*(int *)(s1 + 0x620), v2);
+            cDamageGive_SetDmgGiveHitVecDir(*(int *)((char *)s1 + 0x620), v2);
         }
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x46, a0, 0, 0, 0, 0);
-        *(short *)(s1 + 0x628) = 0x5A;
-        *(char *)(s1 + 0x2F6) = 0;
-        *(char *)(s1 + 0x2F5) = 2;
-        *(char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0x628) = 0x5A;
+        *(char *)((char *)s1 + 0x2F6) = 0;
+        *(char *)((char *)s1 + 0x2F5) = 2;
+        *(char *)((char *)s1 + 0x2F7) = 0;
         break;
         }
-        *(short *)(s1 + 0x628) = *(unsigned short *)(s1 + 0x628) - 1;
+        *(short *)((char *)s1 + 0x628) = *(unsigned short *)((char *)s1 + 0x628) - 1;
         break;
     }
     case 2:
@@ -100,7 +101,7 @@ void func_001B6A30(void *a0)
 
         rate = cEmManage_GetSpeedRate(D_005864F0);
         vp = (char *)&mtx[1];
-        VU0_LQC2(4, s1 + 0x610, 0);
+        VU0_LQC2(4, (char *)s1 + 0x610, 0);
         VU0_SQC2(4, FRAME, 0x40);
         VU0_LQC2(4, FRAME, 0x40);
         VU0_LOAD_SCALAR(5, rate);
@@ -109,24 +110,24 @@ void func_001B6A30(void *a0)
         VU0_LQC2(4, vp, 0);
         VU0_SQC2(4, FRAME, 0x30);
         v = &mtx[0].x;
-        p = *(float **)(s1 + 0xF0);
+        p = *(float **)((char *)s1 + 0xF0);
         VU0_VADD_XYZ_IP(p, 0, v);
-        n = *(unsigned short *)(s1 + 0x628) - 1;
-        *(short *)(s1 + 0x628) = n;
-        if (*(short *)(s1 + 0x628) < 0) {
+        n = *(unsigned short *)((char *)s1 + 0x628) - 1;
+        *(short *)((char *)s1 + 0x628) = n;
+        if (*(short *)((char *)s1 + 0x628) < 0) {
             goto ph3;
         }
         VU0_SQC2_VF0(FRAME, 0x30);
         hit = 0;
         eff = 0;
-        d = ChkLine(s1 + 0x490, *(int *)(s1 + 0xF0), v, 0, 7, 0, 0, 0, 0, 0, 0,
+        d = ChkLine((char *)s1 + 0x490, *(int *)((char *)s1 + 0xF0), v, 0, 7, 0, 0, 0, 0, 0, 0,
                     0, 1);
         if (d != 0) {
             hit = 1;
             eff = 1;
         }
         {
-            int t = *(int *)(s1 + 0x620);
+            int t = *(int *)((char *)s1 + 0x620);
             if (t != 0) {
                 int u = *(int *)(t + 0x34);
                 if (u != 0) {
@@ -137,7 +138,7 @@ void func_001B6A30(void *a0)
                         v[1] = *(float *)(w + 4);
                         v[2] = *(float *)(w + 8);
                     }
-                    mtx[0].y = *(float *)(*(int *)(s1 + 0xF0) + 4);
+                    mtx[0].y = *(float *)(*(int *)((char *)s1 + 0xF0) + 4);
                 }
             }
         }
@@ -148,11 +149,11 @@ void func_001B6A30(void *a0)
         if (eff != 0) {
             SetEffectPos(1, 3, 0, mtx, 1.0f, -1);
         }
-        d = *(int *)(s1 + 0x620);
+        d = *(int *)((char *)s1 + 0x620);
         if (d != 0) {
             cDamageUnit_SetDamageCollActive(d, 0);
         }
-        d = *(int *)(s1 + 0x624);
+        d = *(int *)((char *)s1 + 0x624);
         if (d != 0) {
             cDamageUnit_SetDamageCollActive(d, 0);
         }
@@ -161,21 +162,21 @@ void func_001B6A30(void *a0)
     ph3:
         ph = 3;
     setph:
-        *(char *)(s1 + 0x2F7) = 0;
+        *(char *)((char *)s1 + 0x2F7) = 0;
         do { } while (0);
-        *(char *)(s1 + 0x2F5) = ph;
-        *(char *)(s1 + 0x2F6) = 0;
+        *(char *)((char *)s1 + 0x2F5) = ph;
+        *(char *)((char *)s1 + 0x2F6) = 0;
         break;
     }
     case 3:
     {
         int d;
 
-        *(char *)(s1 + 0x2F5) = 0;
-        *(char *)(s1 + 0x2F6) = 0;
-        *(char *)(s1 + 0x2F7) = 0;
+        *(char *)((char *)s1 + 0x2F5) = 0;
+        *(char *)((char *)s1 + 0x2F6) = 0;
+        *(char *)((char *)s1 + 0x2F7) = 0;
         KillEffect(s1, 1, 2);
-        d = *(int *)(s1 + 0x620);
+        d = *(int *)((char *)s1 + 0x620);
         if (d != 0) {
             cDamageUnit_SetDamageCollActive(d, 0);
         }
@@ -186,15 +187,15 @@ void func_001B6A30(void *a0)
         int f;
         int n;
 
-        f = *(int *)(s1 + 0x250) | 2;
-        *(int *)(s1 + 0x250) = f;
-        n = *(unsigned short *)(s1 + 0x628) - 1;
-        *(short *)(s1 + 0x628) = n;
-        if (*(short *)(s1 + 0x628) < 0) {
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
-            *(int *)(s1 + 0x250) = f & 0xFFFFFFFDU;
+        f = s1->objFlags | 2;
+        s1->objFlags = f;
+        n = *(unsigned short *)((char *)s1 + 0x628) - 1;
+        *(short *)((char *)s1 + 0x628) = n;
+        if (*(short *)((char *)s1 + 0x628) < 0) {
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
+            s1->objFlags = f & 0xFFFFFFFDU;
         }
         break;
     }

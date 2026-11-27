@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cGameObj.h"
 
 /* sn-2.95.3-136 matched TU. */
 
@@ -19,19 +20,19 @@ extern char D_005CB000[];
 __attribute__((section(".text.func_00123460")))
 void func_00123460(void *arg)
 {
-    char *s0 = (char *)arg;
+    cGameObj *s0 = arg;
     float g;
     int ph;
 
     g = D_003BD4A0;
-    if (*(int *)(s0 + 0x6A8) != 0) {
-        if ((*(int *)(s0 + 0x15F4) & 0x20) == 0) {
-            cOmWeapon_kickOff(*(int *)(s0 + 0x6A8));
-            *(int *)(s0 + 0x6A8) = 0;
+    if (*(int *)((char *)s0 + 0x6A8) != 0) {
+        if ((*(int *)((char *)s0 + 0x15F4) & 0x20) == 0) {
+            cOmWeapon_kickOff(*(int *)((char *)s0 + 0x6A8));
+            *(int *)((char *)s0 + 0x6A8) = 0;
             cCoreSave_clearPaper(&D_00569B70);
         }
     }
-    ph = *(unsigned char *)(s0 + 0x2F4);
+    ph = s0->mode;
     if (ph == 5) {
         return;
     }
@@ -47,7 +48,7 @@ void func_00123460(void *arg)
     }
 
     {
-        int f1 = *(int *)(s0 + 0x15F4);
+        int f1 = *(int *)((char *)s0 + 0x15F4);
         int msk = f1 & 0x200;
         int ok = (msk == 0);
         unsigned char *h = (unsigned char *)D_005CB000;
@@ -56,25 +57,25 @@ void func_00123460(void *arg)
                 if (f1 & 0x80000) {
                     g = g * 0.25f;
                 }
-                cHeatSys_SubHeatGage(h, 1, g * *(float *)(s0 + 0x5A8));
+                cHeatSys_SubHeatGage(h, 1, g * s0->speedRate);
             }
         }
     }
 
-    if (*(int *)(s0 + 0x15F4) & 0x20) {
+    if (*(int *)((char *)s0 + 0x15F4) & 0x20) {
         int lv;
         lv = cHeatSys_GetHeatLv(D_005CB000);
         if (lv == 0) {
-            int sta = *(unsigned short *)(s0 + 0x5F2);
+            int sta = *(unsigned short *)((char *)s0 + 0x5F2);
             if (sta != 0) {
                 KillEffect(s0, 3, 2);
-                *(unsigned short *)(s0 + 0x5F2) = 0;
+                *(unsigned short *)((char *)s0 + 0x5F2) = 0;
             }
         } else {
-            int stb = *(unsigned short *)(s0 + 0x5F2);
+            int stb = *(unsigned short *)((char *)s0 + 0x5F2);
             if (stb != 1) {
             KillEffect(s0, 3, 2);
-            *(unsigned short *)(s0 + 0x5F2) = 1;
+            *(unsigned short *)((char *)s0 + 0x5F2) = 1;
             switch (cCoreSave_getCostumeNo(&D_00569B70)) {
             case 0:
             case 2:
@@ -93,9 +94,9 @@ void func_00123460(void *arg)
             }
         }
     } else {
-        int st2 = *(unsigned short *)(s0 + 0x5F2);
+        int st2 = *(unsigned short *)((char *)s0 + 0x5F2);
         if (st2 != 3) {
-            *(unsigned short *)(s0 + 0x5F2) = 3;
+            *(unsigned short *)((char *)s0 + 0x5F2) = 3;
             switch (cCoreSave_getCostumeNo(&D_00569B70)) {
             case 0:
             case 2:
@@ -114,7 +115,7 @@ void func_00123460(void *arg)
         }
     }
 
-    *(float *)(s0 + 0x5DC) = 1.0f;
-    *(float *)(s0 + 0x5A8) = 1.0f;
+    *(float *)((char *)s0 + 0x5DC) = 1.0f;
+    s0->speedRate = 1.0f;
     SetMotionStep(s0, 1.0f);
 }

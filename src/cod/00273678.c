@@ -1,3 +1,4 @@
+#include "godhand/cEm00.h"
 /* sn-2.95.3-136 matched TU. */
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
@@ -60,11 +61,11 @@ void cmdParaChg_377428(char *a0, char *a1) {
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
 __attribute__((section(".text.cEm00_setSitChair")))
-void cEm00_setSitChair(void *a0, float *a1, float f12) {
+void cEm00_setSitChair(cEm00 *a0, float *a1, float f12) {
     float *d = (float *)((char *)a0 + 0x490);
     float *v0;
-    *(int *)((char *)a0 + 0x16D0) = *(int *)((char *)a0 + 0x16D0) & 0xDFFFFFFF;
-    *(int *)((char *)a0 + 0x16EC) = 0;
+    a0->emFlags = a0->emFlags & 0xDFFFFFFF;
+    a0->unk16EC = 0;
     if (d != a1) {
         d[0] = a1[0];
         d[1] = a1[1];
@@ -72,14 +73,14 @@ void cEm00_setSitChair(void *a0, float *a1, float f12) {
     }
     v0 = *(float **)((char *)a0 + 0xF0);
     if (v0 != d) {
-        v0[0] = *(float *)((char *)a0 + 0x490);
+        v0[0] = a0->posA.x;
         v0[1] = d[1];
         v0[2] = d[2];
     }
-    *(float *)((char *)a0 + 0x104) = f12;
-    *(unsigned char *)((char *)a0 + 0x1650) = 5;
-    *(unsigned char *)((char *)a0 + 0x2F5) = 1;
-    *(unsigned char *)((char *)a0 + 0x2F4) = 0;
-    *(unsigned char *)((char *)a0 + 0x2F6) = 0;
-    *(unsigned char *)((char *)a0 + 0x2F7) = 0;
+    a0->rot.y = f12;
+    a0->unk1650 = 5;
+    a0->phase = 1;
+    a0->mode = 0;
+    a0->step = 0;
+    a0->stepArg = 0;
 }
