@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCollisionSolid.h"
+#include "godhand/cGameObj.h"
 
 extern char D_005864F0[];
 extern char *Getplayer();
@@ -13,7 +14,7 @@ extern char D_00754220[];
 extern void func_003A52F0(void *, int, int);
 
 __attribute__((section(".text.func_002DD480")))
-void func_002DD480(char *a0) {
+void func_002DD480(cGameObj *a0) {
     char *o;
     char *g;
     o = Getplayer();
@@ -23,17 +24,17 @@ void func_002DD480(char *a0) {
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
     if (cEmManage_CkPlCatched(g) != 0) return;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
-    *(float *)(a0 + 0x54C) = 30.0f;
-    *(char *)(a0 + 0x2F4) = 1;
-    *(char *)(a0 + 0x2F5) = 0x1F;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    a0->hitFlash = 30.0f;
+    *(char *)((char *)a0 + 0x2F4) = 1;
+    *(char *)((char *)a0 + 0x2F5) = 0x1F;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x1F);
 }
 
 __attribute__((section(".text.func_002DD540")))
-void func_002DD540(char *a0) {
+void func_002DD540(cGameObj *a0) {
     char *o;
     char *g;
     o = Getplayer();
@@ -43,17 +44,17 @@ void func_002DD540(char *a0) {
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
     if (cEmManage_CkPlCatched(g) != 0) return;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
-    *(float *)(a0 + 0x54C) = 30.0f;
-    *(char *)(a0 + 0x2F4) = 1;
-    *(char *)(a0 + 0x2F5) = 0x20;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    a0->hitFlash = 30.0f;
+    *(char *)((char *)a0 + 0x2F4) = 1;
+    *(char *)((char *)a0 + 0x2F5) = 0x20;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x20);
 }
 
 __attribute__((section(".text.func_002DD600")))
-void func_002DD600(char *a0) {
+void func_002DD600(cGameObj *a0) {
     char *o;
     char *g;
     o = Getplayer();
@@ -63,11 +64,11 @@ void func_002DD600(char *a0) {
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
     if (cEmManage_CkPlCatched(g) != 0) return;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
-    *(float *)(a0 + 0x54C) = 30.0f;
-    *(char *)(a0 + 0x2F4) = 1;
-    *(char *)(a0 + 0x2F5) = 0x21;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    a0->hitFlash = 30.0f;
+    *(char *)((char *)a0 + 0x2F4) = 1;
+    *(char *)((char *)a0 + 0x2F5) = 0x21;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x21);
 }

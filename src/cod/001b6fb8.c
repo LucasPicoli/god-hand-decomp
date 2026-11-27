@@ -3,6 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/DispMgr.h"
 #include "godhand/globals.h"
+#include "godhand/cGameObj.h"
 
 extern int SearchData(int a0, void *a1, int a2);
 extern int cModel_setupModel(void *a0, int a1, int a2, int a3, int a4);
@@ -66,22 +67,22 @@ int func_001B6FB8(void *a0)
 
 __attribute__((section(".text.func_00270C78")))
 void func_00270C78(cEm00 *self) {
-    char *s0 = (char *)self;
+    cEm00 *s0 = self;
     int t;
-    if (*(int *)(s0 + 0x564) == 0x265 && (*(int *)(s0 + 0x16D4) & 0x20000000)) {
+    if (s0->emNo == 0x265 && (s0->emFlags2 & 0x20000000)) {
         t = 0x9F;
-        *(unsigned char *)(s0 + 0x2F7) = 1;
-        *(unsigned char *)(s0 + 0x2F5) = t;
-        *(unsigned char *)(s0 + 0x2F4) = 0;
+        s0->stepArg = 1;
+        s0->phase = t;
+        s0->mode = 0;
     } else {
-        if (*(int *)(s0 + 0x564) == 0x279) {
+        if (s0->emNo == 0x279) {
             ReleaseField6ECByTag564_26B1E8(s0);
         }
-        *(unsigned char *)(s0 + 0x2F4) = 1;
-        *(unsigned char *)(s0 + 0x2F5) = 0xF;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->mode = 1;
+        s0->phase = 0xF;
+        s0->stepArg = 0;
     }
-    *(unsigned char *)(s0 + 0x2F6) = 0;
+    s0->step = 0;
 }
 
 #include "godhand/vu0.h"

@@ -1,3 +1,5 @@
+#include "godhand/cObj.h"
+#include "godhand/cGameObj.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern char *D_00754C38;
@@ -47,24 +49,24 @@ void classPAD_WORK_Pad_act_set(char *o, unsigned int v, unsigned int w) {
 }
 
 __attribute__((section(".text.func_001D0090")))
-void func_001D0090(char *o, int v) {
-    float *d = (float *)(o + 0x490);
-    char *n = *(char **)(o + 0x600);
+void func_001D0090(cObj *o, int v) {
+    float *d = (float *)((char *)o + 0x490);
+    char *n = *(char **)((char *)o + 0x600);
     unsigned int f;
     if (n != 0) {
         float *s = *(float **)(n + 0xF0);
         if (d != s) { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; }
     }
-    *(float *)(o + 0x24C) = 1.0f;
-    f = *(unsigned int *)(o + 0x250) & 0xFFFFFFEFU;
-    *(unsigned int *)(o + 0x250) = f;
-    *(int *)(o + 0x670) = v;
-    *(unsigned char *)(o + 0x2F5) = 0xF;
-    *(int *)(o + 0x600) = 0;
-    *(int *)(o + 0x630) = 0;
-    *(unsigned char *)(o + 0x2F4) = 0;
-    *(unsigned char *)(o + 0x2F6) = 0;
-    *(unsigned char *)(o + 0x2F7) = 0;
+    *(float *)((char *)o + 0x24C) = 1.0f;
+    f = *(unsigned int *)((char *)o + 0x250) & 0xFFFFFFEFU;
+    *(unsigned int *)((char *)o + 0x250) = f;
+    *(int *)((char *)o + 0x670) = v;
+    o->phase = 0xF;
+    *(int *)((char *)o + 0x600) = 0;
+    *(int *)((char *)o + 0x630) = 0;
+    o->mode = 0;
+    o->step = 0;
+    o->stepArg = 0;
 }
 
 /* compiler: sn-2.95.3-136 ; extra keys: none */
@@ -181,11 +183,11 @@ void func_001F6C40(int unused, int on) {
 
 
 __attribute__((section(".text.func_00268408")))
-int func_00268408(char *o) {
+int func_00268408(cGameObj *o) {
     int st;
     int a;
 
-    st = *(int *)(o + 0x564);
+    st = o->emNo;
     if (st < 0x20F) {
         return 0;
     }
@@ -194,19 +196,19 @@ int func_00268408(char *o) {
             return 0;
         }
     }
-    a = *(int *)(o + 0x474);
+    a = o->groundKind;
     if (a != 1 && a != 9) {
         return 0;
     }
     if (D_00747A50 != 0x700) {
         return 0;
     }
-    if (0.0f < *(float *)(o + 0x1744)) {
+    if (0.0f < *(float *)((char *)o + 0x1744)) {
         return 0;
     }
-    *(unsigned char *)(o + 0x2F7) = 0;
-    *(unsigned char *)(o + 0x2F4) = 0;
-    *(unsigned char *)(o + 0x2F6) = 0;
-    *(unsigned char *)(o + 0x2F5) = 0x86;
+    o->stepArg = 0;
+    o->mode = 0;
+    o->step = 0;
+    o->phase = 0x86;
     return 1;
 }

@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cGameObj.h"
 
 extern void cEmManage_SetSlotWait(void *a0, int a1);
 extern void cEmManage_SetPlCatched(void *a0);
@@ -61,48 +62,48 @@ extern void cSceAtManager_SetEnable_2C2950(void *p, int a);
 __attribute__((section(".text.func_00113F68")))
 void func_00113F68(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
 
-    *(float *)(s1 + 0x54C) = 30.0f;
+    s1->hitFlash = 30.0f;
     cEmManage_SetSlotWait(D_005864F0, 2);
     cEmManage_SetPlCatched(D_005864F0);
     cEmManage_SetBigHitEffWait(D_005864F0, 2);
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    switch (s1->step) {
     case 0:
     {
         int t;
 
         Obj0000_Clear_Fields_640_648_124E58(s1);
-        *(short *)(s1 + 0x5E0) = 0;
-        *(short *)(s1 + 0x5E2) = 0;
+        *(short *)((char *)s1 + 0x5E0) = 0;
+        *(short *)((char *)s1 + 0x5E2) = 0;
         func_00129578(s1);
         cCoreSave_useGodItem(&D_00569B70);
-        t = *(int *)(s1 + 0x304);
+        t = *(int *)((char *)s1 + 0x304);
         func_002A8578(s1, *(int *)(t + 0x604) + t, *(int *)(t + 0x608) + t,
                       3, 0.0f, 0, 0);
-        *(int *)(s1 + 0x15B0) = 1;
-        (*(unsigned char *)(s1 + 0x2F6))++;
+        *(int *)((char *)s1 + 0x15B0) = 1;
+        (s1->step)++;
     }
         /* fallthrough */
     case 1:
         func_00124EC0(s1);
-        if ((*(unsigned short *)(s1 + 0x3AC) & 0x200) != 0) {
+        if ((s1->seqFlags & 0x200) != 0) {
             cEmManage_SetPlSorry(D_005864F0);
         }
         if (moveMotion(s1) != 0) {
             pl00_clearMotionCam(s1, 0, 0);
-            *(char *)(s1 + 0x2F4) = 0;
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
+            *(char *)((char *)s1 + 0x2F4) = 0;
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         cObjBase_addNullSpeed(s1, 1.0f);
         break;
     }
-    if ((*(unsigned short *)(s1 + 0x3AC) & 1) != 0) {
-        if (*(int *)(s1 + 0x15B0) != 0) {
-            *(int *)(s1 + 0x15B0) = 0;
+    if ((s1->seqFlags & 1) != 0) {
+        if (*(int *)((char *)s1 + 0x15B0) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = 0;
             cCoreSave_setGameLevel(&D_00569B70, 0);
         }
     }
@@ -132,40 +133,40 @@ void func_00113F68(void *a0)
 __attribute__((section(".text.func_00114460")))
 void func_00114460(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     float v[4] __attribute__((aligned(16)));
 
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0: {
         int p1, p2;
-        *(short *)(s0 + 0x5E0) = 0;
-        *(short *)(s0 + 0x5E2) = 0;
+        *(short *)((char *)s0 + 0x5E0) = 0;
+        *(short *)((char *)s0 + 0x5E2) = 0;
         if (irand() & 1) {
-            p1 = *(int *)(*(char **)(s0 + 0x304) + 0x230) + *(int *)(s0 + 0x304);
-            p2 = *(int *)(*(char **)(s0 + 0x304) + 0x234) + *(int *)(s0 + 0x304);
+            p1 = *(int *)(s0->pack + 0x230) + *(int *)((char *)s0 + 0x304);
+            p2 = *(int *)(s0->pack + 0x234) + *(int *)((char *)s0 + 0x304);
         } else {
-            p1 = *(int *)(*(char **)(s0 + 0x304) + 0x8A0) + *(int *)(s0 + 0x304);
-            p2 = *(int *)(*(char **)(s0 + 0x304) + 0x8A4) + *(int *)(s0 + 0x304);
+            p1 = *(int *)(s0->pack + 0x8A0) + *(int *)((char *)s0 + 0x304);
+            p2 = *(int *)(s0->pack + 0x8A4) + *(int *)((char *)s0 + 0x304);
         }
         func_002A8578(s0, p1, p2, 3, 0.0f, 0, 0);
-        *(short *)(s0 + 0x568) = 1;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->unk568 = 1;
+        s0->step = s0->step + 1;
     }
         /* fallthrough */
     case 1:
         if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if ((*(unsigned short *)(s0 + 0x3AC) & 1) != 0 && *(short *)(s0 + 0x568) != 0) {
-            *(short *)(s0 + 0x568) = 0;
-            VU0_LQC2(4, *(char **)(s0 + 0xF0), 0);
+        if ((s0->seqFlags & 1) != 0 && s0->unk568 != 0) {
+            s0->unk568 = 0;
+            VU0_LQC2(4, *(char **)((char *)s0 + 0xF0), 0);
             VU0_SQC2(4, v, 0);
-            if (cEmManage_SetEmAnger(D_005864F0, v, *(float *)(s0 + 0x104), 15.0f, 0.523598790f) != 0) {
+            if (cEmManage_SetEmAnger(D_005864F0, v, s0->rot.y, 15.0f, 0.523598790f) != 0) {
                 if (cCoreSave_getGameLevel(&D_00569B70) != 5) {
                     cHeatSys_AddHeatGage(&D_005CB000, 0, 12.0f);
                     cCoreSave_addGameLevelPoint(&D_00569B70, 0xFA);

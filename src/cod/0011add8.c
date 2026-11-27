@@ -39,49 +39,50 @@ extern void func_0010A438(void *a0);
 
 #include "godhand/vu0.h"
 #include "godhand/pl00.h"
+#include "godhand/cGameObj.h"
 
 __attribute__((section(".text.func_0011ADD8")))
 void func_0011ADD8(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     float buf[4] __attribute__((aligned(16)));
     int s3v, s2v;
 
-    *(float *)(s1 + 0x54C) = 15.0f;
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    s1->hitFlash = 15.0f;
+    switch (s1->step) {
     case 0: {
         cSnd *g;
         char *p;
 
-        switch (*(unsigned char *)(s1 + 0x2F7)) {
+        switch (s1->stepArg) {
         case 0: default:
             switch (irand() % 5) {
             case 0: default: {
-                char *v0 = *(char **)(s1 + 0x304);
+                char *v0 = s1->pack;
                 s3v = *(int *)(v0 + 0x158) + (int)v0;
                 s2v = *(int *)(v0 + 0x15C) + (int)v0;
                 break;
             }
             case 1: {
-                char *v0 = *(char **)(s1 + 0x304);
+                char *v0 = s1->pack;
                 s3v = *(int *)(v0 + 0x4FC) + (int)v0;
                 s2v = *(int *)(v0 + 0x500) + (int)v0;
                 break;
             }
             case 2: {
-                char *v0 = *(char **)(s1 + 0x304);
+                char *v0 = s1->pack;
                 s3v = *(int *)(v0 + 0x164) + (int)v0;
                 s2v = *(int *)(v0 + 0x168) + (int)v0;
                 break;
             }
             case 3: {
-                char *v0 = *(char **)(s1 + 0x304);
+                char *v0 = s1->pack;
                 s3v = *(int *)(v0 + 0x504) + (int)v0;
                 s2v = *(int *)(v0 + 0x508) + (int)v0;
                 break;
             }
             case 4: {
-                char *v0 = *(char **)(s1 + 0x304);
+                char *v0 = s1->pack;
                 s3v = *(int *)(v0 + 0x50C) + (int)v0;
                 s2v = *(int *)(v0 + 0x510) + (int)v0;
                 break;
@@ -89,37 +90,37 @@ void func_0011ADD8(void *a0)
             }
             break;
         case 1: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x158) + (int)v0;
             s2v = *(int *)(v0 + 0x15C) + (int)v0;
             break;
         }
         case 2: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x4FC) + (int)v0;
             s2v = *(int *)(v0 + 0x500) + (int)v0;
             break;
         }
         case 3: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x514) + (int)v0;
             s2v = *(int *)(v0 + 0x518) + (int)v0;
             break;
         }
         case 4: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x164) + (int)v0;
             s2v = *(int *)(v0 + 0x168) + (int)v0;
             break;
         }
         case 5: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x504) + (int)v0;
             s2v = *(int *)(v0 + 0x508) + (int)v0;
             break;
         }
         case 6: {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x50C) + (int)v0;
             s2v = *(int *)(v0 + 0x510) + (int)v0;
             break;
@@ -130,91 +131,91 @@ void func_0011ADD8(void *a0)
         cSnd_SeCall_2CBA48(g, 0, 0x123, a0, 0, 0, 0, 0);
         pl00_clearMotionCam(s1, 0, 0);
         func_0012C348(s1, 2);
-        p = *(char **)(s1 + 0x678);
+        p = *(char **)((char *)s1 + 0x678);
         if (p != 0) {
             VU0_LQC2(4, p + 0x10, 0);
             VU0_SQC2(4, buf, 0);
-            *(float *)(s1 + 0x104) = capVu0Atan2(buf[0], buf[2]) + 3.1415927f;
-            *(float *)(s1 + 0x104) = Adjust_theta(*(float *)(s1 + 0x104));
+            s1->rot.y = capVu0Atan2(buf[0], buf[2]) + 3.1415927f;
+            s1->rot.y = Adjust_theta(s1->rot.y);
         }
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
         func_002A8578(s1, s3v, s2v, 2, 0.0f, 0, 0);
-        *(int *)(s1 + 0x15B0) = 0;
-        *(int *)(s1 + 0x15B4) = 0;
-        *(unsigned char *)(s1 + 0x2F6) += 1;
+        *(int *)((char *)s1 + 0x15B0) = 0;
+        *(int *)((char *)s1 + 0x15B4) = 0;
+        s1->step += 1;
     }
         /* fallthrough */
     case 1: {
         char *g;
 
-        if (*(int *)(s1 + 0x15B4) != 0) {
-            *(int *)(s1 + 0x15B4) -= 1;
+        if (*(int *)((char *)s1 + 0x15B4) != 0) {
+            *(int *)((char *)s1 + 0x15B4) -= 1;
         }
         g = (char *)&D_007474A0;
         if ((*(int *)(g + 8) & 0xF0) != 0) {
-            *(int *)(s1 + 0x15B4) = 0xA;
+            *(int *)((char *)s1 + 0x15B4) = 0xA;
         }
         if (moveMotion(s1) != 0) {
-            if (*(int *)(s1 + 0x15B4) > 0) {
-                *(unsigned char *)(s1 + 0x2F5) = 4;
-                *(unsigned char *)(s1 + 0x2F4) = 1;
-                *(unsigned char *)(s1 + 0x2F6) = 0;
-                *(unsigned char *)(s1 + 0x2F7) = 1;
+            if (*(int *)((char *)s1 + 0x15B4) > 0) {
+                s1->phase = 4;
+                s1->mode = 1;
+                s1->step = 0;
+                s1->stepArg = 1;
             } else {
-                *(unsigned char *)(s1 + 0x2F4) = 1;
-                *(unsigned char *)(s1 + 0x2F5) = 4;
-                *(unsigned char *)(s1 + 0x2F6) = 0;
-                *(unsigned char *)(s1 + 0x2F7) = 0;
+                s1->mode = 1;
+                s1->phase = 4;
+                s1->step = 0;
+                s1->stepArg = 0;
             }
             break;
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         cObjBase_addNullSpeed(s1, 1.0f);
-        if ((*(unsigned short *)(s1 + 0x3AC) & 0x20) != 0) {
-            *(int *)(s1 + 0x15B0) = 1;
-            if (*(unsigned char *)(s1 + 0x61E) != 0 || (*(int *)(g + 8) & 0xF0) != 0) {
-                *(unsigned char *)(s1 + 0x2F7) = 1;
-                *(float *)(s1 + 0x54C) = 5.0f;
-                *(unsigned char *)(s1 + 0x2F5) = 6;
-                *(unsigned char *)(s1 + 0x2F6) = 0;
-                *(unsigned char *)(s1 + 0x2F4) = 0;
+        if ((s1->seqFlags & 0x20) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = 1;
+            if (*(unsigned char *)((char *)s1 + 0x61E) != 0 || (*(int *)(g + 8) & 0xF0) != 0) {
+                s1->stepArg = 1;
+                s1->hitFlash = 5.0f;
+                s1->phase = 6;
+                s1->step = 0;
+                s1->mode = 0;
             }
             break;
         }
-        if (*(int *)(s1 + 0x15B0) != 0) {
-            *(int *)(s1 + 0x15B0) = 0;
-            func_0012C0F8(s1, *(int *)(s1 + 0x160C));
-            if (*(short *)(s1 + 0x54A) <= 0) {
-                *(short *)(s1 + 0x54A) = 1;
+        if (*(int *)((char *)s1 + 0x15B0) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = 0;
+            func_0012C0F8(s1, *(int *)((char *)s1 + 0x160C));
+            if (s1->hp <= 0) {
+                s1->hp = 1;
             }
-            *(int *)(s1 + 0x160C) = 0;
+            *(int *)((char *)s1 + 0x160C) = 0;
         }
         break;
     }
     case 2: {
-        if (*(int *)(s1 + 0x15B4) != 0) {
-            char *v0 = *(char **)(s1 + 0x304);
+        if (*(int *)((char *)s1 + 0x15B4) != 0) {
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x51C) + (int)v0;
             s2v = *(int *)(v0 + 0x520) + (int)v0;
             Obj0000_Set_Fields_1668_1660_1670_1678_1680_10A408(a0, 0xA, 0x17, 0x2A, 0, 0xA);
             Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(a0, 0xA, 0x17, 0x2A, 0, 0xA);
-            *(char *)(s1 + 0x1684) = 0;
+            *(char *)((char *)s1 + 0x1684) = 0;
         } else {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             s3v = *(int *)(v0 + 0x174) + (int)v0;
             s2v = *(int *)(v0 + 0x178) + (int)v0;
         }
         func_002A8578(s1, s3v, s2v, 0xA, 0.0f, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) += 1;
+        s1->step += 1;
     }
         /* fallthrough */
     case 3:
         if (moveMotion(s1) != 0) {
-            *(unsigned char *)(s1 + 0x2F4) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 0;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->mode = 0;
+            s1->phase = 0;
+            s1->step = 0;
+            s1->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         cObjBase_addNullSpeed(s1, 1.0f);

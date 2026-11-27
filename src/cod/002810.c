@@ -1,5 +1,6 @@
 /* Struct: CGUnk_0010B5C8_t — own word at +0x1560; embeds shared CGStateBlock4 at +0x2F4 (shares the +0x2F4..+0x2F7 block with CGObj1D00_t — likely a common CG base class). */
 #include "godhand/cGameObj.h"
+#include "godhand/cObj.h"
 
 /* ── All-zero (5-insn): sb 0,2F7; sb 0,2F4; sb 0,2F5; jr; delay:sb 0,2F6 ── */
 /* Optimizer reorders 4 independent zero-stores non-trivially; use ASM.    */
@@ -168,25 +169,25 @@ void Obj2810_SetState_E_a1(char *a0, int a1) {
 /* ── Branched_leaf: func_00281470 (0x44 B) ── */
 
 __attribute__((section(".text.func_00281470")))
-void func_00281470(int a0, unsigned char a1) {
+void func_00281470(cObj *a0, unsigned char a1) {
     switch (a1) {
     case 0:
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0xF;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->mode = 0;
+        a0->phase = 0xF;
+        a0->step = 0;
+        a0->stepArg = 0;
         break;
     case 1:
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0xF;
-        *(unsigned char *)(a0 + 0x2F6) = 2;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->mode = 0;
+        a0->phase = 0xF;
+        a0->step = 2;
+        a0->stepArg = 0;
         break;
     default:
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0xF;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->mode = 0;
+        a0->phase = 0xF;
+        a0->step = 0;
+        a0->stepArg = 0;
         break;
     }
 }

@@ -1,3 +1,4 @@
+#include "godhand/cGameObj.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern char *Getplayer(void);
@@ -12,10 +13,10 @@ extern void cEm00_setGoto(void *a0, int a1, int a2, int a3, float f);
 
 __attribute__((section(".text.func_0026E588")))
 int func_0026E588(void *a0) {
-    char *s0 = (char *)a0;
-    if (0.0f < *(float *)(s0 + 0x16C0)) return 0;
-    if (*(int *)(s0 + 0x1644) & 0x40000000) return 0;
-    switch (*(int *)(s0 + 0x564)) {
+    cGameObj *s0 = a0;
+    if (0.0f < *(float *)((char *)s0 + 0x16C0)) return 0;
+    if (*(int *)((char *)s0 + 0x1644) & 0x40000000) return 0;
+    switch (s0->emNo) {
     case 0x208: case 0x209: case 0x20B: case 0x20E: case 0x211:
     case 0x213: case 0x214: case 0x215: case 0x217: case 0x21C:
     case 0x21F: case 0x220: case 0x221: case 0x222: case 0x223:
@@ -25,20 +26,20 @@ int func_0026E588(void *a0) {
     case 0x278: case 0x279: case 0x27E:
         return 0;
     }
-    if (*(float *)(s0 + 0x618) < 16.0f) return 0;
-    if (*(int *)(s0 + 0x16EC) > 0) return 0;
+    if (*(float *)((char *)s0 + 0x618) < 16.0f) return 0;
+    if (*(int *)((char *)s0 + 0x16EC) > 0) return 0;
     {
-        char *vec = s0 + 0x1660;
+        char *vec = (char *)s0 + 0x1660;
         char *r = Getplayer();
         float mag = capVu0MagnitudeSqXZ(vec, *(void **)(r + 0xF0));
-        float sq = *(float *)(s0 + 0x16C8);
+        float sq = *(float *)((char *)s0 + 0x16C8);
         if (mag < sq * sq) return 0;
-        *(int *)(s0 + 0x16D0) &= 0xFFFFFFFD;
+        *(int *)((char *)s0 + 0x16D0) &= 0xFFFFFFFD;
         cEm00_setGoto(s0, (int)vec, 6, 0, 450.0f);
-        *(char *)(s0 + 0x2F7) = 0;
-        *(char *)(s0 + 0x2F4) = 0;
-        *(char *)(s0 + 0x2F6) = 0;
-        *(char *)(s0 + 0x2F5) = 0x13;
+        *(char *)((char *)s0 + 0x2F7) = 0;
+        *(char *)((char *)s0 + 0x2F4) = 0;
+        *(char *)((char *)s0 + 0x2F6) = 0;
+        *(char *)((char *)s0 + 0x2F5) = 0x13;
         return 1;
     }
 }

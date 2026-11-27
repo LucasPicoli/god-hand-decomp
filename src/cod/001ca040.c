@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
 
 extern unsigned char D_005864F0[];
 extern float cEmManage_GetSpeedRate(void *a0);
@@ -29,7 +30,7 @@ static inline void cpy3(float *d, float *s)
 }
 
 __attribute__((section(".text.func_001CA040")))
-void func_001CA040(char *this)
+void func_001CA040(cObj *this)
 {
     unsigned char frame[0x10] __attribute__((aligned(16)));
     float rate;
@@ -42,14 +43,14 @@ void func_001CA040(char *this)
     float w;
 
     rate = cEmManage_GetSpeedRate(&D_005864F0);
-    kind = *(unsigned short *)(this + 0x2FE);
+    kind = this->actorId;
     if (kind == 0x3AA) goto have;
     if (kind != 0x3AB) goto nohave;
 have:
     {
         lim = 5;
-        ok = ((*(int *)frame = b = *(unsigned char *)(this + 0x2B4)), (lim < b));
-        if (ok) obj = *(int *)(*(int *)(this + 0x278) + 0x14); else obj = 0;
+        ok = ((*(int *)frame = b = this->partNum), (lim < b));
+        if (ok) obj = *(int *)(*(int *)((char *)this + 0x278) + 0x14); else obj = 0;
         if (obj != 0) {
             float c = *(float *)(obj + 0x110);
             float k = 0.0500000007f;
@@ -63,26 +64,26 @@ have:
         }
     }
 nohave:
-    if (*(unsigned char *)(this + 0x2F6) == 0) {
-        int t = *(unsigned short *)(this + 0x2FE);
-        *(char *)(this + 0x531) = -1;
+    if (this->step == 0) {
+        int t = this->actorId;
+        *(char *)((char *)this + 0x531) = -1;
         if (t != 0x3AE && t != 0x3B7) {
             KillEffect(this, 8, 2);
         }
-        *(unsigned char *)(this + 0x2F6) = *(unsigned char *)(this + 0x2F6) + 1;
+        this->step = this->step + 1;
     }
-    w = *(float *)(this + 0x684);
+    w = *(float *)((char *)this + 0x684);
     if (0.0f < w) {
-        *(float *)(this + 0x684) = w - rate;
-        ok2 = ((*(int *)frame = b2 = *(unsigned char *)(this + 0x2B4)), (b2 != 0));
-        if (ok2) o2 = *(char **)(*(int *)(this + 0x278) + 0); else o2 = 0;
+        *(float *)((char *)this + 0x684) = w - rate;
+        ok2 = ((*(int *)frame = b2 = this->partNum), (b2 != 0));
+        if (ok2) o2 = *(char **)(*(int *)((char *)this + 0x278) + 0); else o2 = 0;
         if (o2 != 0) {
-            if (0.0f < *(float *)(this + 0x684)) {
+            if (0.0f < *(float *)((char *)this + 0x684)) {
                 float r = *(float *)(o2 + 0x104) + rate * 0.523598790f;
                 *(float *)(o2 + 0x104) = r;
                 *(float *)(o2 + 0x104) = Adjust_theta(r);
             } else {
-                float *ss = (float *)(this + 0x620);
+                float *ss = (float *)((char *)this + 0x620);
                 float *dd = (float *)(o2 + 0x100);
                 cpy3(dd, ss);
             }

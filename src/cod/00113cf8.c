@@ -7,6 +7,7 @@ extern void Owner_spawnEffect(void *a0);
 extern void pl00_clearMotionCam(void *a0, int a1, int a2);
 extern void Obj0000_Clear_Fields_640_648_124E58(void *a0);
 #include "godhand/motion.h"
+#include "godhand/cGameObj.h"
 extern int moveMotion(void *a0);
 extern void func_00124EC0(void *a0);
 
@@ -18,32 +19,32 @@ extern int D_005864F0;
 __attribute__((section(".text.func_00113CF8")))
 void func_00113CF8(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     int b;
     float one;
 
-    *(float *)(s1 + 0x54C) = 30.0f;
+    s1->hitFlash = 30.0f;
     cEmManage_SetSlotWait(&D_005864F0, 2);
     cEmManage_SetPlCatched(&D_005864F0);
     cEmManage_SetBigHitEffWait(&D_005864F0, 2);
-    *(int *)(s1 + 0x15F4) |= 0x200;
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    *(int *)((char *)s1 + 0x15F4) |= 0x200;
+    switch (s1->step) {
     case 0:
         Owner_spawnEffect(s1);
         pl00_clearMotionCam(s1, 0, 0);
         Obj0000_Clear_Fields_640_648_124E58(s1);
-        b = *(int *)(s1 + 0x304);
-        *(short *)(s1 + 0x5E0) = 0;
-        *(short *)(s1 + 0x5E2) = 0;
+        b = *(int *)((char *)s1 + 0x304);
+        *(short *)((char *)s1 + 0x5E0) = 0;
+        *(short *)((char *)s1 + 0x5E2) = 0;
         func_002A8578(s1, *(int *)(b + 0x220) + b, *(int *)(b + 0x224) + b, 3, 21.0f, 0, 0);
-        *(int *)(s1 + 0x15B0) = 0xD;
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        *(int *)((char *)s1 + 0x15B0) = 0xD;
+        s1->step = s1->step + 1;
     case 1:
         moveMotion(s1);
-        if (*(int *)(s1 + 0x15B0) != 0) {
-            *(int *)(s1 + 0x15B0) = *(int *)(s1 + 0x15B0) - 1;
+        if (*(int *)((char *)s1 + 0x15B0) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = *(int *)((char *)s1 + 0x15B0) - 1;
         } else {
-            *(unsigned char *)(s1 + 0x2F6) = 2;
+            s1->step = 2;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s1, one);
@@ -52,23 +53,23 @@ void func_00113CF8(void *a0)
         break;
     case 2:
         Obj0000_Clear_Fields_640_648_124E58(s1);
-        b = *(int *)(s1 + 0x304);
-        *(short *)(s1 + 0x5E0) = 0;
-        *(short *)(s1 + 0x5E2) = 0;
+        b = *(int *)((char *)s1 + 0x304);
+        *(short *)((char *)s1 + 0x5E0) = 0;
+        *(short *)((char *)s1 + 0x5E2) = 0;
         func_002A8578(s1, *(int *)(b + 0x380) + b, *(int *)(b + 0x384) + b, 0, 0.0f, 0, 0);
-        *(unsigned short *)(s1 + 0x54A) = *(unsigned short *)(s1 + 0x54A) - 10;
-        if (*(short *)(s1 + 0x54A) < 2) {
-            *(short *)(s1 + 0x54A) = 1;
+        *(unsigned short *)((char *)s1 + 0x54A) = *(unsigned short *)((char *)s1 + 0x54A) - 10;
+        if (s1->hp < 2) {
+            s1->hp = 1;
         }
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        s1->step = s1->step + 1;
     case 3:
         func_00124EC0(s1);
         if (moveMotion(s1) != 0) {
             pl00_clearMotionCam(s1, 0, 0);
-            *(char *)(s1 + 0x2F4) = 0;
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
+            *(char *)((char *)s1 + 0x2F4) = 0;
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s1, one);

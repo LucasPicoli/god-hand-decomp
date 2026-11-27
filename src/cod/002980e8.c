@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cCollisionSolid.h"
+#include "godhand/cGameObj.h"
 
 extern int D_00586AF0;
 extern void CostumeObj_applyPartMeshes(void);
@@ -99,7 +100,7 @@ void Forward297B40_2991B0(void) {
 }
 
 __attribute__((section(".text.func_002DD300")))
-void func_002DD300(char *a0) {
+void func_002DD300(cGameObj *a0) {
     char *o;
     char *g;
     o = Getplayer();
@@ -109,17 +110,17 @@ void func_002DD300(char *a0) {
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
     if (cEmManage_CkPlCatched(g) != 0) return;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
-    *(float *)(a0 + 0x54C) = 30.0f;
-    *(char *)(a0 + 0x2F4) = 1;
-    *(char *)(a0 + 0x2F5) = 0x1D;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    a0->hitFlash = 30.0f;
+    *(char *)((char *)a0 + 0x2F4) = 1;
+    *(char *)((char *)a0 + 0x2F5) = 0x1D;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x1D);
 }
 
 __attribute__((section(".text.func_002DD3C0")))
-void func_002DD3C0(char *a0) {
+void func_002DD3C0(cGameObj *a0) {
     char *o;
     char *g;
     o = Getplayer();
@@ -129,11 +130,11 @@ void func_002DD3C0(char *a0) {
     g = D_005864F0;
     if (*(int *)(g + 0x514) > 0) return;
     if (cEmManage_CkPlCatched(g) != 0) return;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F7) = 0;
-    *(float *)(a0 + 0x54C) = 30.0f;
-    *(char *)(a0 + 0x2F4) = 1;
-    *(char *)(a0 + 0x2F5) = 0x1E;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    a0->hitFlash = 30.0f;
+    *(char *)((char *)a0 + 0x2F4) = 1;
+    *(char *)((char *)a0 + 0x2F5) = 0x1E;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)a0, 0);
     func_00129718(o, a0, 0x1E);
 }

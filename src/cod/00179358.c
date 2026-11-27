@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
+#include "godhand/cGameObj.h"
 
 extern int cOmBase_checkDamage();
 extern int ClearStateAndFlag_1C7E08();
@@ -15,11 +16,11 @@ extern char D_00421D68[];
 
 
 __attribute__((section(".text.func_00179358")))
-void func_00179358(void *a0) {
+void func_00179358(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;
@@ -75,11 +76,11 @@ void func_00179DE0(void *a0, void *a1) {
 
 
 __attribute__((section(".text.func_0017A108")))
-void func_0017A108(void *a0) {
+void func_0017A108(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;
@@ -163,11 +164,11 @@ void func_0017C6A8(void *a0, void *a1) {
 
 
 __attribute__((section(".text.func_0017CA18")))
-void func_0017CA18(void *a0) {
+void func_0017CA18(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;

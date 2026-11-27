@@ -5,6 +5,8 @@
 #include "godhand/cScenario.h"
 #include "godhand/cSnd.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
+#include "godhand/cGameObj.h"
 
 extern unsigned char D_005864F0[];
 extern void cEmManage_CreateItem(void *a0, int a1, int a2, int a3);
@@ -37,16 +39,16 @@ void func_0014FF00(int a0, unsigned int a1, int a2, int a3)
 }
 
 __attribute__((section(".text.func_001889C8")))
-void func_001889C8(unsigned char *a0)
+void func_001889C8(cObj *a0)
 {
-    long v0 = *(unsigned int *)(a0 + 0x5B0);
+    long v0 = *(unsigned int *)((char *)a0 + 0x5B0);
 
     if (((v0 >> 1) & 1) == 0) {
-        *(int *)(a0 + 0x5B0) |= 1;
-        *(unsigned char *)(a0 + 0x2F4) = 2;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
+        *(int *)((char *)a0 + 0x5B0) |= 1;
+        a0->mode = 2;
+        a0->step = 0;
+        a0->stepArg = 0;
+        a0->phase = 0;
     }
 }
 
@@ -107,47 +109,47 @@ void func_001B7BB8(cOmBase *self)
 }
 
 __attribute__((section(".text.func_001BFFE0")))
-void func_001BFFE0(unsigned char *a0)
+void func_001BFFE0(cObj *a0)
 {
-    long v0 = *(unsigned int *)(a0 + 0x5B0);
+    long v0 = *(unsigned int *)((char *)a0 + 0x5B0);
 
     if (((v0 >> 1) & 1) == 0) {
-        *(int *)(a0 + 0x5B0) |= 1;
-        *(unsigned char *)(a0 + 0x2F4) = 2;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
+        *(int *)((char *)a0 + 0x5B0) |= 1;
+        a0->mode = 2;
+        a0->step = 0;
+        a0->stepArg = 0;
+        a0->phase = 0;
     }
 }
 
 __attribute__((section(".text.func_001C24E8")))
-void func_001C24E8(char *a0) {
+void func_001C24E8(cGameObj *a0) {
     long v;
 
-    *(char *)(a0 + 0x2F6) = 4;
-    *(char *)(a0 + 0x660) = 1;
-    *(char *)(a0 + 0x2F4) = 0;
-    *(char *)(a0 + 0x2F5) = 0;
-    *(int *)(a0 + 0x630) = 0;
-    v = *(unsigned int *)(a0 + 0x5B0);
+    *(char *)((char *)a0 + 0x2F6) = 4;
+    *(char *)((char *)a0 + 0x660) = 1;
+    *(char *)((char *)a0 + 0x2F4) = 0;
+    *(char *)((char *)a0 + 0x2F5) = 0;
+    *(int *)((char *)a0 + 0x630) = 0;
+    v = *(unsigned int *)((char *)a0 + 0x5B0);
     if (((v >> 5) & 1) == 0) {
-        cCoreSave_freeItem(&D_00569B70, *(unsigned short *)(a0 + 0x662));
+        cCoreSave_freeItem(&D_00569B70, *(unsigned short *)((char *)a0 + 0x662));
     } else {
-        func_002BECB0(&D_005E8658, *(long *)(a0 + 0x538));
+        func_002BECB0(&D_005E8658, a0->name);
     }
 }
 
 __attribute__((section(".text.func_001C3B98")))
-void func_001C3B98(unsigned char *a0)
+void func_001C3B98(cObj *a0)
 {
-    long v0 = *(unsigned int *)(a0 + 0x5B0);
+    long v0 = *(unsigned int *)((char *)a0 + 0x5B0);
 
     if (((v0 >> 1) & 1) == 0) {
-        *(int *)(a0 + 0x5B0) |= 1;
-        *(unsigned char *)(a0 + 0x2F4) = 2;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
+        *(int *)((char *)a0 + 0x5B0) |= 1;
+        a0->mode = 2;
+        a0->step = 0;
+        a0->stepArg = 0;
+        a0->phase = 0;
     }
 }
 

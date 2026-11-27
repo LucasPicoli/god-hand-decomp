@@ -9,6 +9,8 @@ extern void *Getplayer(void);
 extern int Obj0000_Get_Byte_17C3_NZ_2_276468(void *a0);
 #include "godhand/motion.h"
 #include "godhand/cCamera.h"
+#include "godhand/cObj.h"
+#include "godhand/cGameObj.h"
 extern void Obj1D00_SetState_7_1C(int a0);
 extern void cCamManager_setPartsCamera(void *cam, int mode);
 extern void cPartsCamera_SetParts(void *parts, void *obj, int a2, int a3);
@@ -152,58 +154,58 @@ void func_00284350(char *p)
 }
 
 __attribute__((section(".text.func_0017AEB0")))
-void func_0017AEB0(char *p)
+void func_0017AEB0(cObj *p)
 {
     unsigned char frame[0x10];
     unsigned int b;
     int o, o2;
     float x;
 
-    if (*(short *)(p + 0x606) == 0) return;
-    if (*(unsigned char *)(p + 0x2F4) == 0) {
-        *(short *)(p + 0x606) = *(unsigned short *)(p + 0x606) - 1;
+    if (*(short *)((char *)p + 0x606) == 0) return;
+    if (p->mode == 0) {
+        *(short *)((char *)p + 0x606) = *(unsigned short *)((char *)p + 0x606) - 1;
         cSnd_SeCall_2CB8A0(&D_005FEE00, 2, 0x1E, -1, -1, 0, 0);
-        if (*(short *)(p + 0x606) != 0) {
-            if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-                o = *(int *)(*(int *)(p + 0x278));
+        if (*(short *)((char *)p + 0x606) != 0) {
+            if (((*(int *)frame = b = p->partNum), (0 < b)))
+                o = *(int *)(*(int *)((char *)p + 0x278));
             else
                 o = 0;
             if (o == 0) return;
-            if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-                o2 = *(int *)(*(int *)(p + 0x278));
+            if (((*(int *)frame = b = p->partNum), (0 < b)))
+                o2 = *(int *)(*(int *)((char *)p + 0x278));
             else
                 o2 = 0;
             x = fRand1_1();
-            *(float *)(o2 + 0x100) = *(float *)(p + 0x608) + (x + x) * 0.0174532924f;
+            *(float *)(o2 + 0x100) = *(float *)((char *)p + 0x608) + (x + x) * 0.0174532924f;
         } else {
-            if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-                o = *(int *)(*(int *)(p + 0x278));
+            if (((*(int *)frame = b = p->partNum), (0 < b)))
+                o = *(int *)(*(int *)((char *)p + 0x278));
             else
                 o = 0;
             if (o == 0) return;
-            if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-                o = *(int *)(*(int *)(p + 0x278));
+            if (((*(int *)frame = b = p->partNum), (0 < b)))
+                o = *(int *)(*(int *)((char *)p + 0x278));
             else
                 o = 0;
-            *(float *)(o + 0x100) = *(float *)(p + 0x608);
+            *(float *)(o + 0x100) = *(float *)((char *)p + 0x608);
         }
     } else {
-        *(short *)(p + 0x606) = 0;
-        if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-            o = *(int *)(*(int *)(p + 0x278));
+        *(short *)((char *)p + 0x606) = 0;
+        if (((*(int *)frame = b = p->partNum), (0 < b)))
+            o = *(int *)(*(int *)((char *)p + 0x278));
         else
             o = 0;
         if (o == 0) return;
-        if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (0 < b)))
-            o = *(int *)(*(int *)(p + 0x278));
+        if (((*(int *)frame = b = p->partNum), (0 < b)))
+            o = *(int *)(*(int *)((char *)p + 0x278));
         else
             o = 0;
-        *(float *)(o + 0x100) = *(float *)(p + 0x608);
+        *(float *)(o + 0x100) = *(float *)((char *)p + 0x608);
     }
 }
 
 __attribute__((section(".text.func_00247588")))
-void func_00247588(char *p)
+void func_00247588(cGameObj *p)
 {
     unsigned char frame[0x10];
     void *ptr;
@@ -214,34 +216,34 @@ void func_00247588(char *p)
     unsigned char st;
 
     ptr = Getplayer();
-    *(int *)(p + 0x16D0) |= 0x30000;
-    *(float *)(p + 0x54C) = 3.0f;
-    *(int *)(p + 0x250) |= 0x10000;
-    st = *(unsigned char *)(p + 0x2F6);
+    *(int *)((char *)p + 0x16D0) |= 0x30000;
+    p->hitFlash = 3.0f;
+    p->objFlags |= 0x10000;
+    st = p->step;
     if (st == 0) goto blockA;
     if (st == 1) goto common;
     return;
 blockA:
     {
         r = Obj0000_Get_Byte_17C3_NZ_2_276468(p);
-        q = *(char **)(p + 0x304);
+        q = p->pack;
         func_002A8578(p, *(int *)(q + 0x2FB4) + (int)q, *(int *)(q + 0x2FB8) + (int)q,
                       0, 0.0f, r & 0xFFFF, 0);
-        Obj1D00_SetState_7_1C(*(int *)(p + 0x708));
-        *(unsigned char *)(p + 0x2F6) = *(unsigned char *)(p + 0x2F6) + 1;
+        Obj1D00_SetState_7_1C(*(int *)((char *)p + 0x708));
+        p->step = p->step + 1;
     }
 common:
     cam = D_00463050;
     cCamManager_setPartsCamera(cam, 0);
     parts = cam + 0x920;
     i1 = 0x1B;
-    if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (i1 < b)))
-        o1 = *(int *)(*(int *)(p + 0x278) + i1 * 4);
+    if (((*(int *)frame = b = p->partNum), (i1 < b)))
+        o1 = *(int *)(*(int *)((char *)p + 0x278) + i1 * 4);
     else
         o1 = 0;
     i2 = 0x1C;
-    if (((*(int *)frame = b = *(unsigned char *)(p + 0x2B4)), (i2 < b)))
-        o2 = *(int *)(*(int *)(p + 0x278) + i2 * 4);
+    if (((*(int *)frame = b = p->partNum), (i2 < b)))
+        o2 = *(int *)(*(int *)((char *)p + 0x278) + i2 * 4);
     else
         o2 = 0;
     cPartsCamera_SetParts(parts, p, o1, o2);

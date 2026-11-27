@@ -2,6 +2,7 @@
 #include "godhand/cCoreSave.h"
 #include "godhand/cSnd.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cOmbb.h"
 
 extern void KillEffect(void *a0, int a1, int a2);
 extern void cSnd_SeStop(void *a0, int a1);
@@ -17,27 +18,27 @@ extern void cSnd_SeStop(void *a0, int a1);
 
 __attribute__((section(".text.cOmbb__clearFire")))
 void cOmbb__clearFire(void *arg) {
-    char *s0 = (char *)arg;
+    cOmbb *s0 = arg;
     int se;
     float f;
     KillEffect(s0, 0, 2);
     SetEffect(1, 2, arg, 0, 0, EFFECT_FOLLOW_OWNER);
-    se = *(int *)(s0 + 0x608);
+    se = s0->hissSe;
     if (se != 0) {
         cSnd_SeStop(&D_005FEE00, se);
     }
-    *(int *)(s0 + 0x608) = 0;
+    s0->hissSe = 0;
     cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x16, arg, 0, 0, 0, 0);
     switch (cCoreSave_getGameLevel(&D_00569B70) - 1) {
     case 0:
-    default: *(float *)(s0 + 0x604) = 450.0f; break;
-    case 1: *(float *)(s0 + 0x604) = 350.0f; break;
-    case 2: *(float *)(s0 + 0x604) = 250.0f; break;
-    case 3: *(float *)(s0 + 0x604) = 250.0f; break;
-    case 4: *(float *)(s0 + 0x604) = 150.0f; break;
+    default: s0->countdown = 450.0f; break;
+    case 1: s0->countdown = 350.0f; break;
+    case 2: s0->countdown = 250.0f; break;
+    case 3: s0->countdown = 250.0f; break;
+    case 4: s0->countdown = 150.0f; break;
     }
     (void)f;
-    *(unsigned char *)(s0 + 0x2F4) = 0;
-    *(unsigned char *)(s0 + 0x2F6) = 4;
-    *(unsigned char *)(s0 + 0x600) = 0;
+    s0->base.mode = 0;
+    s0->base.step = 4;
+    s0->fireLit = 0;
 }

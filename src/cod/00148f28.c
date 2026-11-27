@@ -11,6 +11,10 @@
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cEm00.h"
+#include "godhand/cOl2b.h"
+#include "godhand/cGameObj.h"
+#include "godhand/cObj.h"
 
 extern void func_001F8A88(void *a0, float x0, float x1, float y0, float y1, float z0, float z1);
 extern void sceVu0ApplyMatrix(void *a0, void *a1, void *a2);
@@ -78,25 +82,25 @@ void cCoreSave_setComboMax(cCoreSave *self, unsigned int set, int max)
 }
 
 __attribute__((section(".text.cEm00_CkDevilEvent")))
-int cEm00_CkDevilEvent(char *p) {
-    if (*(unsigned char *)(p + 0x2F4) != 0) {
+int cEm00_CkDevilEvent(cEm00 *p) {
+    if (p->mode != 0) {
         return 0;
     }
-    if (*(unsigned char *)(p + 0x2F5) != 4) {
+    if (p->phase != 4) {
         return 0;
     }
-    return *(unsigned char *)(p + 0x2F6) >= 2;
+    return p->step >= 2;
 }
 
 /* sn-2.95.3-136 */
 __attribute__((section(".text.cEm00_setEm65Separate")))
-void cEm00_setEm65Separate(char *p)
+void cEm00_setEm65Separate(cEm00 *p)
 {
-    *(unsigned char *)(p + 0x2F4) = 0;
-    *(unsigned char *)(p + 0x2F6) = 0;
-    *(float *)(p + 0x54C) = 3.0f;
-    *(unsigned char *)(p + 0x2F5) = 0x9A;
-    *(unsigned char *)(p + 0x2F7) = 0;
+    p->mode = 0;
+    p->step = 0;
+    p->hitFlash = 3.0f;
+    p->phase = 0x9A;
+    p->stepArg = 0;
 }
 
 /* Stores src as the goal (unless it is the goal already) and sets the goto flag. */
@@ -145,13 +149,13 @@ void cOl21_setCollisionActive(cOl21 *self, int active, float radius) {
 
 /* sn-2.95.3-136 */
 __attribute__((section(".text.cOl2b_setInit")))
-void cOl2b_setInit(char *p)
+void cOl2b_setInit(cOl2b *p)
 {
-    if (*(int *)(p + 0xA24) != 0) {
-        *(unsigned char *)(p + 0x2F4) = 3;
-        *(unsigned char *)(p + 0x2F5) = 0;
-        *(unsigned char *)(p + 0x2F6) = 0;
-        *(unsigned char *)(p + 0x2F7) = 0;
+    if (p->state != 0) {
+        p->base.mode = 3;
+        p->base.phase = 0;
+        p->base.step = 0;
+        p->base.stepArg = 0;
     }
 }
 
@@ -367,7 +371,7 @@ void func_001B1630(char *p)
 
 
 __attribute__((section(".text.func_001B2548")))
-int func_001B2548(char *p)
+int func_001B2548(cGameObj *p)
 {
     unsigned char frame[0x20] __attribute__((aligned(16)));
     int flag;
@@ -377,12 +381,12 @@ int func_001B2548(char *p)
 
     func_001B6FB8(p);
     dg = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)p, 1);
-    *(cDamageTake **)(p + 0x600) = dg;
+    *(cDamageTake **)((char *)p + 0x600) = dg;
     if (dg != 0) {
-        flag = *(unsigned char *)(p + 0x2B4);
+        flag = p->partNum;
         *(int *)frame = flag;
         if (flag) {
-            n = **(char ***)(p + 0x278);
+            n = **(char ***)((char *)p + 0x278);
         } else {
             n = 0;
         }
@@ -390,20 +394,20 @@ int func_001B2548(char *p)
         sph = frame + 0x10;
         VU0_LQC2(4, &D_003BD880, 0);
         VU0_SQC2(4, frame, 0x10);
-        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x600), (const struct cMatrix *)n, (const cVec *)sph, 2.25f);
-        *(int *)(*(int *)(p + 0x600)) |= 1;
+        cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)((char *)p + 0x600), (const struct cMatrix *)n, (const cVec *)sph, 2.25f);
+        *(int *)(*(int *)((char *)p + 0x600)) |= 1;
     }
-    *(short *)(p + 0x548) = 0x3E8;
-    *(int *)(p + 0x624) = 0;
-    *(unsigned char *)(p + 0x62C) = 0;
-    *(unsigned char *)(p + 0x2F5) = 0;
-    *(short *)(p + 0x54A) = 0x3E8;
-    *(int *)(p + 0x5B8) |= 8;
-    *(float *)(p + 0x620) = 1.8f;
-    *(float *)(p + 0x628) = 0.036f;
+    p->hpMax = 0x3E8;
+    *(int *)((char *)p + 0x624) = 0;
+    *(unsigned char *)((char *)p + 0x62C) = 0;
+    p->phase = 0;
+    p->hp = 0x3E8;
+    *(int *)((char *)p + 0x5B8) |= 8;
+    *(float *)((char *)p + 0x620) = 1.8f;
+    *(float *)((char *)p + 0x628) = 0.036f;
     cModel_setLayerDisplay((int)p, 0, 1);
     cModel_setLayerDisplay((int)p, 0x40, 0);
-    *(unsigned char *)(p + 0x62D) = 0;
+    *(unsigned char *)((char *)p + 0x62D) = 0;
     return 1;
 }
 
@@ -463,44 +467,44 @@ void func_001BE740(char *p)
 
 
 __attribute__((section(".text.func_001BF2F0")))
-void func_001BF2F0(char *p)
+void func_001BF2F0(cObj *p)
 {
     unsigned char frame[0x10] __attribute__((aligned(16)));
     int b1, b2, b3, b4;
     int o1, o2, o3, o4;
     int i1, i2, i3, i4;
 
-    switch (*(unsigned char *)(p + 0x2F5)) {
+    switch (p->phase) {
     case 0:
         i1 = 1;
-        if ((*(int *)frame = b1 = *(unsigned char *)(p + 0x2B4), (i1 >= 0 && i1 < b1)))
-            o1 = *(int *)(*(int *)(p + 0x278) + i1 * 4);
+        if ((*(int *)frame = b1 = p->partNum, (i1 >= 0 && i1 < b1)))
+            o1 = *(int *)(*(int *)((char *)p + 0x278) + i1 * 4);
         else o1 = 0;
         if (o1 != 0) {
             i2 = 1;
-            if ((*(int *)frame = b2 = *(unsigned char *)(p + 0x2B4), (i2 >= 0 && i2 < b2)))
-                o2 = *(int *)(*(int *)(p + 0x278) + i2 * 4);
+            if ((*(int *)frame = b2 = p->partNum, (i2 >= 0 && i2 < b2)))
+                o2 = *(int *)(*(int *)((char *)p + 0x278) + i2 * 4);
             else o2 = 0;
             *(float *)(o2 + 0x100) = *(float *)(o2 + 0x100) + 0.1745329201221466f;
             i3 = 1;
-            if ((*(int *)frame = b3 = *(unsigned char *)(p + 0x2B4), (i3 >= 0 && i3 < b3)))
-                o3 = *(int *)(*(int *)(p + 0x278) + i3 * 4);
+            if ((*(int *)frame = b3 = p->partNum, (i3 >= 0 && i3 < b3)))
+                o3 = *(int *)(*(int *)((char *)p + 0x278) + i3 * 4);
             else o3 = 0;
             if (0.0f < *(float *)(o3 + 0x100)) {
                 i4 = 1;
-                if ((*(int *)frame = b4 = *(unsigned char *)(p + 0x2B4), (i4 >= 0 && i4 < b4)))
-                    o4 = *(int *)(*(int *)(p + 0x278) + i4 * 4);
+                if ((*(int *)frame = b4 = p->partNum, (i4 >= 0 && i4 < b4)))
+                    o4 = *(int *)(*(int *)((char *)p + 0x278) + i4 * 4);
                 else o4 = 0;
                 *(float *)(o4 + 0x100) = 0.0f;
-                *(unsigned char *)(p + 0x2F5) = *(unsigned char *)(p + 0x2F5) + 1;
+                p->phase = p->phase + 1;
             }
         }
         break;
     case 1:
         D_00747A78 = D_00747A78 & 0xFDFFFFFF;
-        *(char *)(p + 0x2F4) = 0;
-        *(char *)(p + 0x2F5) = 0;
-        *(int *)(p + 0x600) = *(int *)(p + 0x600) & -2;
+        *(char *)((char *)p + 0x2F4) = 0;
+        *(char *)((char *)p + 0x2F5) = 0;
+        *(int *)((char *)p + 0x600) = *(int *)((char *)p + 0x600) & -2;
         break;
     }
 }
@@ -594,7 +598,7 @@ void func_001FF0B0(char *p)
 
 
 __attribute__((section(".text.func_002799B8")))
-void func_002799B8(char *a0)
+void func_002799B8(cObj *a0)
 {
     float A[4] __attribute__((aligned(16)));
     float B[4] __attribute__((aligned(16)));
@@ -619,8 +623,8 @@ void func_002799B8(char *a0)
         o1 = *(int *)(*(int *)(g + 0x278) + idx * 4);
     else o1 = 0;
     if (o1 != 0) {
-        if ((*(int *)hold = b2 = *(unsigned char *)(a0 + 0x2B4), b2 != 0))
-            o2 = *(int *)(*(int *)(a0 + 0x278) + 0 * 4);
+        if ((*(int *)hold = b2 = a0->partNum, b2 != 0))
+            o2 = *(int *)(*(int *)((char *)a0 + 0x278) + 0 * 4);
         else o2 = 0;
         if (o2 != 0) {
             d = *(float **)(o2 + 0xD0);
@@ -631,16 +635,16 @@ void func_002799B8(char *a0)
             if (d != A) { d[0] = A[0]; d[1] = A[1]; d[2] = A[2]; }
             p2 = (float *)(o2 + 0x100);
             if (p2 != B) { p2[0] = B[0]; p2[1] = B[1]; p2[2] = B[2]; }
-            *(int *)(a0 + 0x1580) = (int)g;
-            *(int *)(a0 + 0x1584) = idx;
-            p3 = (float *)(a0 + 0x1590);
+            *(int *)((char *)a0 + 0x1580) = (int)g;
+            *(int *)((char *)a0 + 0x1584) = idx;
+            p3 = (float *)((char *)a0 + 0x1590);
             if (p3 != A) { p3[0] = A[0]; p3[1] = A[1]; do { } while (0); p3[2] = A[2]; }
-            p4 = (float *)(a0 + 0x15A0);
+            p4 = (float *)((char *)a0 + 0x15A0);
             if (p4 != B) { p4[0] = B[0]; p4[1] = B[1]; do { } while (0); p4[2] = B[2]; }
-            *(char *)(a0 + 0x2F5) = 3;
-            *(char *)(a0 + 0x2F4) = 0;
-            *(char *)(a0 + 0x2F6) = 0;
-            *(char *)(a0 + 0x2F7) = 0;
+            *(char *)((char *)a0 + 0x2F5) = 3;
+            *(char *)((char *)a0 + 0x2F4) = 0;
+            *(char *)((char *)a0 + 0x2F6) = 0;
+            *(char *)((char *)a0 + 0x2F7) = 0;
         }
     }
 }
