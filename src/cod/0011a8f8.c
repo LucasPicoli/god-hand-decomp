@@ -1,6 +1,7 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cSnd.h"
 #include "godhand/motion.h"
+#include "godhand/cGameObj.h"
 
 extern void *cSnd_GetSeData(void *a0, int a1);
 extern int cSeData_IsAlive(void *p);
@@ -115,32 +116,32 @@ age:
 __attribute__((section(".text.func_0011A8F8")))
 void func_0011A8F8(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     float one;
     float f;
 
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    switch (s1->step) {
     case 0: {
         int p1, p2;
         switch (irand() % 3) {
         case 0:
         default:
             {
-            char *v0 = *(char **)(s1 + 0x304);
+            char *v0 = s1->pack;
             p1 = *(int *)(v0 + 0x140) + (int)v0;
             p2 = *(int *)(v0 + 0x144) + (int)v0;
             }
             break;
         case 1:
             {
-            char *v1 = *(char **)(s1 + 0x304);
+            char *v1 = s1->pack;
             p1 = *(int *)(v1 + 0x4DC) + (int)v1;
             p2 = *(int *)(v1 + 0x4E0) + (int)v1;
             }
             break;
         case 2:
             {
-            char *v2 = *(char **)(s1 + 0x304);
+            char *v2 = s1->pack;
             p1 = *(int *)(v2 + 0x4E4) + (int)v2;
             p2 = *(int *)(v2 + 0x4E8) + (int)v2;
             }
@@ -152,7 +153,7 @@ void func_0011A8F8(void *a0)
         pl00_clearMotionCam(s1, 0, 0);
         CallWithAndClearField698_12AC28(s1);
         func_0012B928(s1);
-        *(unsigned char *)(s1 + 0x2F6) += 1;
+        s1->step += 1;
     }
         /* fallthrough */
     case 1:
@@ -160,22 +161,22 @@ void func_0011A8F8(void *a0)
             if (func_00123938(s1, 1) != 0) {
                 return;
             }
-            *(char *)(s1 + 0x2F4) = 0;
-            *(char *)(s1 + 0x2F5) = 0;
-            *(char *)(s1 + 0x2F6) = 0;
-            *(char *)(s1 + 0x2F7) = 0;
+            *(char *)((char *)s1 + 0x2F4) = 0;
+            *(char *)((char *)s1 + 0x2F5) = 0;
+            *(char *)((char *)s1 + 0x2F6) = 0;
+            *(char *)((char *)s1 + 0x2F7) = 0;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s1, one);
         cObjBase_addNullSpeed(s1, one);
-        f = *(float *)(s1 + 0x54C);
+        f = s1->hitFlash;
         break;
     default:
-        f = *(float *)(s1 + 0x54C);
+        f = s1->hitFlash;
         break;
     }
     if (f <= 1.0f) {
-        *(unsigned short *)(s1 + 0x3AC) |= 0x40;
+        s1->seqFlags |= 0x40;
     }
     func_00123938(s1, 1);
 }

@@ -36,6 +36,7 @@ extern char D_005864E0[];
 #include "godhand/vu0.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/cOmWeapon.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -64,14 +65,14 @@ __attribute__((section(".text.func_0027B810")))
 int func_0027B810(char *a0)
 {
     char buf[0x70];
-    char *s1 = a0;
+    cGameObj *s1 = a0;
     int v0;
     int n;
     char *base;
     struct sph *q;
 
     VU0_SQC2_VF0(buf, 0x10);
-    *(int *)(s1 + 0x564) = 0x263;
+    s1->emNo = 0x263;
     *(unsigned char *)(buf + 0x31) = 0xFF;
     *(int *)(buf + 0x10) = 0;
     *(int *)(buf + 0x14) = 0;
@@ -81,32 +82,32 @@ int func_0027B810(char *a0)
         return 0;
     }
     func_0028EBF0(s1, buf, 0);
-    v0 = *(int *)(s1 + 0x304);
-    *(unsigned char *)(s1 + 0x2F4) = 0;
-    *(unsigned char *)(s1 + 0x2F5) = 0;
-    *(unsigned char *)(s1 + 0x2F6) = 0;
-    *(unsigned char *)(s1 + 0x2F7) = 0;
-    *(int *)(s1 + 0x1580) = 0;
-    *(int *)(s1 + 0x1584) = 0;
+    v0 = *(int *)((char *)s1 + 0x304);
+    s1->mode = 0;
+    s1->phase = 0;
+    s1->step = 0;
+    s1->stepArg = 0;
+    *(int *)((char *)s1 + 0x1580) = 0;
+    *(int *)((char *)s1 + 0x1584) = 0;
     func_002A8578(s1, *(int *)(v0 + 0x10) + v0, *(int *)(v0 + 0x14) + v0, 0, 0.0f, 0, 0);
     moveMotion(s1);
     cModel_calcParts(s1);
-    IK_InverseKinematics(s1 + 0x448, s1);
+    IK_InverseKinematics((char *)s1 + 0x448, s1);
     cModel_calcWorldParts(s1);
-    *(unsigned char *)(s1 + 0x616) = 1;
+    *(unsigned char *)((char *)s1 + 0x616) = 1;
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
     cParts_setRotationOrder(s1, 4);
-    *(short *)(s1 + 0x54A) = *(short *)(s1 + 0x548) = 1;
-    *(int *)(s1 + 0x670) = 0;
-    if (*(int *)(s1 + 0x564) != 0x263) {
+    s1->hp = s1->hpMax = 1;
+    *(int *)((char *)s1 + 0x670) = 0;
+    if (s1->emNo != 0x263) {
         struct sph *r;
-        *(cDamageTake **)(s1 + 0x670) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)s1, 1);
-        n = *(unsigned char *)(s1 + 0x2B4);
+        *(cDamageTake **)((char *)s1 + 0x670) = cDamageManage_CreateDamageTake(&D_00574380, (cGameObj *)s1, 1);
+        n = s1->partNum;
         *(int *)(buf + 0x40) = n;
         {
             int one = 1;
             if (one < n) {
-                base = *(char **)(*(char **)(s1 + 0x278) + 4);
+                base = *(char **)(*(char **)((char *)s1 + 0x278) + 4);
             } else {
                 base = 0;
             }
@@ -116,8 +117,8 @@ int func_0027B810(char *a0)
         *(int *)(buf + 0x54) = 0;
         *(int *)(buf + 0x58) = 0;
         r->d = 1.0f;
-        *(int *)(s1 + 0x674) = cDamageUnit_AddDamageCollSphere(
-            *(cDamageUnit **)(s1 + 0x670), (const struct cMatrix *)(base + 0x80), (const cVec *)r, 0.25f);
+        *(int *)((char *)s1 + 0x674) = cDamageUnit_AddDamageCollSphere(
+            *(cDamageUnit **)((char *)s1 + 0x670), (const struct cMatrix *)(base + 0x80), (const cVec *)r, 0.25f);
     }
     cCollisionSolidManage_CreateUnit(&D_00462FC0, (cGameObj *)s1, 5, 0.2f);
     q = (struct sph *)(buf + 0x40);
@@ -125,12 +126,12 @@ int func_0027B810(char *a0)
     q->b = 0.5f;
     *(int *)(buf + 0x48) = 0;
     q->d = 1.0f;
-    cCollisionSolidManage_CreateSphere(&D_00462FC0, (cGameObj *)s1, (const struct cMatrix *)(s1 + 0x80), (const cVec *)q, 0.5f);
-    v0 = *(int *)(s1 + 0x304);
+    cCollisionSolidManage_CreateSphere(&D_00462FC0, (cGameObj *)s1, (const struct cMatrix *)((char *)s1 + 0x80), (const cVec *)q, 0.5f);
+    v0 = *(int *)((char *)s1 + 0x304);
     cDataManager_addPinnedData(&D_005864E0, 0x369, *(int *)(v0 + 0xC) + v0);
     {
         cGameObj *obj = CreateObj(0x369, 0xFFFF);
-        *(cGameObj **)(s1 + 0x15B0) = obj;
+        *(cGameObj **)((char *)s1 + 0x15B0) = obj;
         if (obj != 0) {
             char *p2;
             char *p3;
@@ -146,22 +147,22 @@ int func_0027B810(char *a0)
                 cGameObjVt *vt = cGameObj_vt(obj);
                 vt->initial((char *)obj + vt->initialDelta);
             }
-            src1 = *(float **)(s1 + 0xF0);
-            dst = *(float **)(*(char **)(s1 + 0x15B0) + 0xF0);
+            src1 = *(float **)((char *)s1 + 0xF0);
+            dst = *(float **)(*(char **)((char *)s1 + 0x15B0) + 0xF0);
             if (dst != src1) {
                 dst[0] = src1[0];
                 dst[1] = src1[1];
                 dst[2] = src1[2];
             }
-            p2 = *(char **)(s1 + 0x15B0);
-            src2 = *(float **)(s1 + 0xF0);
+            p2 = *(char **)((char *)s1 + 0x15B0);
+            src2 = *(float **)((char *)s1 + 0xF0);
             p490 = (float *)(p2 + 0x490);
             if (p490 != src2) {
                 p490[0] = src2[0];
                 p490[1] = src2[1];
                 p490[2] = src2[2];
             }
-            p3 = *(char **)(s1 + 0x15B0);
+            p3 = *(char **)((char *)s1 + 0x15B0);
             p100 = (int *)(p3 + 0x100);
             p100[0] = 0;
             p100[1] = 0;
@@ -172,15 +173,15 @@ int func_0027B810(char *a0)
             *(int *)(buf + 0x60) = 0;
             *(int *)(buf + 0x64) = 0;
             *(int *)(buf + 0x68) = 0;
-            cOmWeapon_setParent(*(cOmWeapon **)(s1 + 0x15B0), (cGameObj *)s1, 0x12, (cVec *)q, (cVec *)(buf + 0x60));
-            Obj1D00_ClearState_8(*(cOmBase **)(s1 + 0x15B0));
+            cOmWeapon_setParent(*(cOmWeapon **)((char *)s1 + 0x15B0), (cGameObj *)s1, 0x12, (cVec *)q, (cVec *)(buf + 0x60));
+            Obj1D00_ClearState_8(*(cOmBase **)((char *)s1 + 0x15B0));
         }
     }
-    *(char *)(s1 + 0x531) = -1;
-    *(char *)(s1 + 0x617) = 1;
-    *(float *)(s1 + 0x1564) = 0.02f;
-    *(int *)(s1 + 0x15B4) = 0;
-    *(int *)(s1 + 0x1568) = 0;
-    *(int *)(s1 + 0x15D4) = 0;
+    *(char *)((char *)s1 + 0x531) = -1;
+    *(char *)((char *)s1 + 0x617) = 1;
+    *(float *)((char *)s1 + 0x1564) = 0.02f;
+    *(int *)((char *)s1 + 0x15B4) = 0;
+    *(int *)((char *)s1 + 0x1568) = 0;
+    *(int *)((char *)s1 + 0x15D4) = 0;
     return 1;
 }

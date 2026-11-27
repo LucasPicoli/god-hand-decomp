@@ -2,6 +2,7 @@
 #include "godhand/globals.h"
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cGrid.h"
+#include "godhand/cGameObj.h"
 
 extern int D_00747A78;
 extern char D_00747A50[];
@@ -38,16 +39,16 @@ void func_0031BDC8(char *a0) {
 
 
 __attribute__((section(".text.func_00274F50")))
-int func_00274F50(char *a0) {
+int func_00274F50(cGameObj *a0) {
     char *g;
     char *p;
-    if ((*(int *)(a0 + 0x564) ^ 0x21C) != 0) {
+    if ((a0->emNo ^ 0x21C) != 0) {
         return 0;
     }
     if (*(unsigned short *)D_00747A50 != 0x403) {
         return 0;
     }
-    if (0.0f < *(float *)(a0 + 0x1748)) {
+    if (0.0f < *(float *)((char *)a0 + 0x1748)) {
         return 0;
     }
     g = D_005864F0;
@@ -65,10 +66,10 @@ int func_00274F50(char *a0) {
     if (*(short *)(p + 0x54A) <= 0) {
         return 0;
     }
-    *(char *)(a0 + 0x2F7) = 0;
-    *(char *)(a0 + 0x2F4) = 0;
-    *(char *)(a0 + 0x2F6) = 0;
-    *(char *)(a0 + 0x2F5) = 0x7A;
+    *(char *)((char *)a0 + 0x2F7) = 0;
+    *(char *)((char *)a0 + 0x2F4) = 0;
+    *(char *)((char *)a0 + 0x2F6) = 0;
+    *(char *)((char *)a0 + 0x2F5) = 0x7A;
     return 1;
 }
 

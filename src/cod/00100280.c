@@ -9,6 +9,7 @@ extern void cGameObj__tf(void);
 extern void SetField_0_4_8_31EEA8(void *, void *, void *);
 extern void cObjBase__tf(void);
 #include "godhand/motion.h"
+#include "godhand/cObj.h"
 extern void cObjBase_addNullSpeed_Rotation(void *, float);
 extern void cObjBase_addNullSpeed(void *, float);
 
@@ -59,22 +60,22 @@ void *GetOrInitSingletonAlt_101E48(void) {
 }
 
 __attribute__((section(".text.UpdateAttackMoveState_102BD8")))
-void UpdateAttackMoveState_102BD8(void *a0) {
+void UpdateAttackMoveState_102BD8(cObj *a0) {
     void *r = Getplayer();
-    switch (*(unsigned char *)((char *)a0 + 0x2F6)) {
+    switch (a0->step) {
     case 0: {
         void *p = *(void **)((char *)a0 + 0x304);
         void *q = (void *)(*(int *)((char *)p + 0x24) + (int)p);
         func_002A8578(a0, q, q, 5, 0.0f, 0, 0);
-        *(unsigned char *)((char *)a0 + 0x2F6) = *(unsigned char *)((char *)a0 + 0x2F6) + 1;
+        a0->step = a0->step + 1;
     }
     case 1:
         *(float *)((char *)r + 0x15F0) = D_003BC7C0;
         if (moveMotion(a0) != 0) {
-            *(unsigned char *)((char *)a0 + 0x2F4) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F5) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F6) = 0;
-            *(unsigned char *)((char *)a0 + 0x2F7) = 0;
+            a0->mode = 0;
+            a0->phase = 0;
+            a0->step = 0;
+            a0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(a0, 1.0f);
         cObjBase_addNullSpeed(a0, 1.0f);

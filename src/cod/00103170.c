@@ -17,42 +17,43 @@ extern int D_00747A24;
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cGameObj.h"
 __attribute__((section(".text.func_00103170")))
 void func_00103170(void *a0)
 {
     float buf[4];
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     void *s1;
     float one;
     s1 = Getplayer();
-    *(float *)(s0 + 0x54C) = 5.0f;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    s0->hitFlash = 5.0f;
+    switch (s0->step) {
     case 0:
     {
-        int v0 = *(int *)(s0 + 0x304);
+        int v0 = *(int *)((char *)s0 + 0x304);
         func_002A8578(s0, *(int *)(v0 + 0x2C) + v0, *(int *)(v0 + 0x30) + v0, 1, 0.0f, 0, 0);
     }
         SetEffect(0, 0x52, a0, 0, -1, EFFECT_FOLLOW_OWNER);
         func_0012C348(s1, 0);
         pl00_clearMotionCam(s1, 0, 0);
         {
-            char *p = *(char **)(s0 + 0x5B0);
+            char *p = *(char **)((char *)s0 + 0x5B0);
             if (p != 0) {
                 float th;
                 VU0_LQC2(4, p + 0x10, 0);
                 VU0_SQC2(4, buf, 0);
                 th = capVu0Atan2(buf[0], buf[2]) + 3.14159274f;
-                *(float *)(s0 + 0x104) = th;
-                *(float *)(s0 + 0x104) = Adjust_theta(th);
+                s0->rot.y = th;
+                s0->rot.y = Adjust_theta(th);
             }
         }
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     case 1:
         if (moveMotion(s0) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s0, one);
@@ -64,16 +65,16 @@ void func_00103170(void *a0)
 __attribute__((section(".text.func_00122D18")))
 void func_00122D18(void *a0)
 {
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     int s2;
     int s0;
     float one;
 
-    *(float *)(s1 + 0x54C) = 30.0f;
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    s1->hitFlash = 30.0f;
+    switch (s1->step) {
     case 0:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x16C) + b;
             s0 = *(int *)(b + 0x170) + b;
         }
@@ -82,18 +83,18 @@ void func_00122D18(void *a0)
         cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
         func_0012C348(s1, 3);
         func_002A8578(s1, s2, s0, 2, 0.0f, 0, 0);
-        *(int *)(s1 + 0x15B0) = 0x82;
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        *(int *)((char *)s1 + 0x15B0) = 0x82;
+        s1->step = s1->step + 1;
     case 1:
         func_00124EC0(s1);
-        if (*(int *)(s1 + 0x15B0) != 0) {
-            *(int *)(s1 + 0x15B0) = *(int *)(s1 + 0x15B0) - 1;
+        if (*(int *)((char *)s1 + 0x15B0) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = *(int *)((char *)s1 + 0x15B0) - 1;
         } else {
             D_00747A24 = D_00747A24 | 8;
         }
         if (moveMotion(s1) != 0) {
             D_00747A24 = D_00747A24 | 8;
-            *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+            s1->step = s1->step + 1;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s1, one);

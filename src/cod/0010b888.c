@@ -11,42 +11,42 @@ extern void func_001CF3A8(void *a0);
 
 __attribute__((section(".text.pl00_SubscreenMode")))
 void pl00_SubscreenMode(void *a0, int a1) {
-    char *s0 = (char *)a0;
+    pl00 *s0 = a0;
     int v0;
     if (a1 != 0) {
-        *(unsigned char *)(s0 + 0x2F4) = 5;
-        *(unsigned char *)(s0 + 0x420) = *(unsigned char *)(s0 + 0x420) | 1;
-        *(float *)(s0 + 0x54C) = 5.0f;
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->base.mode = 5;
+        *(unsigned char *)((char *)s0 + 0x420) = *(unsigned char *)((char *)s0 + 0x420) | 1;
+        s0->base.hitFlash = 5.0f;
+        s0->base.phase = 0;
+        s0->base.step = 0;
+        s0->base.stepArg = 0;
     } else {
-        *(unsigned char *)(s0 + 0x420) = *(unsigned char *)(s0 + 0x420) & 0xFE;
+        *(unsigned char *)((char *)s0 + 0x420) = *(unsigned char *)((char *)s0 + 0x420) & 0xFE;
         pl00_clearMotionCam(s0, 0, 0);
         func_00126770(s0);
-        v0 = *(int *)(s0 + 0x304);
-        *(unsigned char *)(s0 + 0x2F4) = 0;
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        v0 = *(int *)((char *)s0 + 0x304);
+        s0->base.mode = 0;
+        s0->base.phase = 0;
+        s0->base.step = 0;
+        s0->base.stepArg = 0;
         func_002A8578(s0, *(int *)(v0 + 0x28) + v0, *(int *)(v0 + 0x2C) + v0, 0, 0.0f, 0, 0);
         moveMotion(s0);
         cModel_calcParts(s0);
-        IK_InverseKinematics(s0 + 0x448, s0);
+        IK_InverseKinematics((char *)s0 + 0x448, s0);
         cModel_calcWorldParts(s0);
-        if (*(int *)(s0 + 0x6A8) != 0) {
-            func_001CF3A8(*(void **)(s0 + 0x6A8));
-            cModel_calcParts(*(void **)(s0 + 0x6A8));
+        if (*(int *)((char *)s0 + 0x6A8) != 0) {
+            func_001CF3A8(*(void **)((char *)s0 + 0x6A8));
+            cModel_calcParts(*(void **)((char *)s0 + 0x6A8));
         }
     }
 }
 
 __attribute__((section(".text.pl00_SubscreenMotSet")))
 void pl00_SubscreenMotSet(void *a0, int a1) {
-    char *s0 = (char *)a0;
+    pl00 *s0 = a0;
     func_001269E0(a0, a1, 1);
-    *(unsigned char *)(s0 + 0x2F4) = 5;
-    *(unsigned char *)(s0 + 0x2F6) = 2;
-    *(unsigned char *)(s0 + 0x2F5) = 0;
-    *(unsigned char *)(s0 + 0x2F7) = 0;
+    s0->base.mode = 5;
+    s0->base.step = 2;
+    s0->base.phase = 0;
+    s0->base.stepArg = 0;
 }

@@ -5,6 +5,7 @@ extern void cPlBase__dtor(void *a0, int flags);
 extern float SetMotionStep(void *a0, float f);
 #include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
+#include "godhand/cGameObj.h"
 
 __attribute__((section(".text.cCockMess_SetMessNo")))
 void cCockMess_SetMessNo(char *a0, unsigned short a1, unsigned char a2, float f12, float f13) {
@@ -39,32 +40,32 @@ void InitActorWithVtable_107EC8(void *a0, int flags) {
 
 /* The player's mode-5 (sub-screen) handler, entry 5 of the mode table D_003BD0B8. */
 __attribute__((section(".text.StepPlayerSubscreenMode_10B780")))
-void StepPlayerSubscreenMode_10B780(void *a0) {
+void StepPlayerSubscreenMode_10B780(cGameObj *a0) {
     int st;
     int base;
-    *(float*)((char*)a0 + 0x54C) = 5.0f;
+    a0->hitFlash = 5.0f;
     cCollisionSolidManage_SetActive(&D_00462FC0, a0, 0);
     *(int*)((char*)a0 + 0x15F4) = *(int*)((char*)a0 + 0x15F4) | 0x2000;
-    *(float*)((char*)a0 + 0x5A8) = 1.0f;
+    a0->speedRate = 1.0f;
     SetMotionStep(a0, 1.0f);
-    st = *(unsigned char*)((char*)a0 + 0x2F6);
+    st = a0->step;
     switch (st) {
     case 0:
         base = *(int*)((char*)a0 + 0x304);
         func_002A8578(a0, *(int*)((char*)base + 0x28) + base, *(int*)((char*)base + 0x2C) + base, 0xA, 0.0f, 0, 0);
-        *(unsigned char*)((char*)a0 + 0x2F6) = *(unsigned char*)((char*)a0 + 0x2F6) + 1;
+        a0->step = a0->step + 1;
         /* fallthrough */
     case 1:
         moveMotion(a0);
         break;
     case 2:
-        *(unsigned char*)((char*)a0 + 0x2F6) = st + 1;
+        a0->step = st + 1;
         /* fallthrough */
     case 3:
         if (moveMotion(a0) != 0) {
-            *(unsigned char*)((char*)a0 + 0x2F6) = 0;
+            a0->step = 0;
         }
         break;
     }
-    *(unsigned short*)((char*)a0 + 0x3AC) = *(unsigned short*)((char*)a0 + 0x3AC) | 0x404;
+    a0->seqFlags = a0->seqFlags | 0x404;
 }

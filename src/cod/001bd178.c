@@ -4,6 +4,7 @@
 #include "godhand/cEmManage.h"
 #include "godhand/cOmDoor.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
 
 /* Lock the door (on == 1) or unlock it. */
 __attribute__((section(".text.cOmDoor_setLock")))
@@ -44,11 +45,11 @@ void func_00201F20(int a, int b)
 
 /* cygnus-2.96 | drop-freorder-blocks */
 __attribute__((section(".text.func_002896B0")))
-void func_002896B0(char *p)
+void func_002896B0(cObj *p)
 {
-    if (*(unsigned char *)(p + 0x2F4) == 0) {
-        if (*(unsigned char *)(p + 0x2F5) == 8) {
-            *(unsigned char *)(p + 0x2F6) = 2;
+    if (p->mode == 0) {
+        if (p->phase == 8) {
+            p->step = 2;
         }
     }
 }

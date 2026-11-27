@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cHeatSys.h"
+#include "godhand/cGameObj.h"
 
 /* Level 1 once cur reaches threshold, else 0. Stores and returns lv. */
 __attribute__((section(".text.cHeatSys_GetHeatLv")))
@@ -71,20 +72,20 @@ void func_002BA650(char *a0, float f12) {
 }
 
 __attribute__((section(".text.func_00278570")))
-void func_00278570(char *a0) {
+void func_00278570(cGameObj *a0) {
     char *p;
     unsigned long flags;
-    if (*(int*)(a0 + 0x564) == 0x232) return;
-    if (*(short*)(a0 + 0x54A) <= 0) return;
-    p = *(char**)(a0 + 0x670);
+    if (a0->emNo == 0x232) return;
+    if (a0->hp <= 0) return;
+    p = *(char**)((char *)a0 + 0x670);
     if (p == 0) return;
     flags = *(unsigned int*)(p + 0x60);
     if ((flags & 1) == 0) return;
-    if (0.0f < *(float*)(a0 + 0x54C)) return;
-    *(char*)(a0 + 0x2F7) = 0;
-    *(char*)(a0 + 0x2F4) = 0;
-    *(char*)(a0 + 0x2F6) = 0;
-    *(char*)(a0 + 0x2F5) = 1;
+    if (0.0f < a0->hitFlash) return;
+    *(char*)((char *)a0 + 0x2F7) = 0;
+    *(char*)((char *)a0 + 0x2F4) = 0;
+    *(char*)((char *)a0 + 0x2F6) = 0;
+    *(char*)((char *)a0 + 0x2F5) = 1;
 }
 
 __attribute__((section(".text.func_00178980")))

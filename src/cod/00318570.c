@@ -1,3 +1,4 @@
+#include "godhand/cObj.h"
 /* sn-2.95.3-136 matched TU. */
 
 extern void func_00318700(void *a0, void *a1);
@@ -6,33 +7,33 @@ extern void cModel_calcPartsInline(void *a0);
 __attribute__((section(".text.func_00318570")))
 void func_00318570(char *a0)
 {
-    char *s0 = a0;
+    cObj *s0 = a0;
     char buf[0x90];
 
-    switch (*(unsigned char *)(s0 + 0x2F4)) {
+    switch (s0->mode) {
     case 1:
-        *(short *)(s0 + 0x4D8) = 0x12C;
-        *(unsigned char *)(s0 + 0x2F4) = *(unsigned char *)(s0 + 0x2F4) + 1;
-        *(int *)(*(char **)(s0 + 0xF0) + 0x0) = 0;
-        *(int *)(*(char **)(s0 + 0xF0) + 0x4) = 0;
-        *(float *)(*(char **)(s0 + 0xF0) + 0x8) = -150.0f;
-        *(float *)(s0 + 0x130) = -180.0f;
-        *(float *)(s0 + 0x134) = -30.0f;
-        *(int *)(s0 + 0x138) = 0;
+        *(short *)((char *)s0 + 0x4D8) = 0x12C;
+        s0->mode = s0->mode + 1;
+        *(int *)(*(char **)((char *)s0 + 0xF0) + 0x0) = 0;
+        *(int *)(*(char **)((char *)s0 + 0xF0) + 0x4) = 0;
+        *(float *)(*(char **)((char *)s0 + 0xF0) + 0x8) = -150.0f;
+        s0->rotAdd.x = -180.0f;
+        s0->rotAdd.y = -30.0f;
+        *(int *)((char *)s0 + 0x138) = 0;
         /* fall through */
     case 2: {
-        int t = *(unsigned short *)(s0 + 0x4D8) - 1;
+        int t = *(unsigned short *)((char *)s0 + 0x4D8) - 1;
 
-        *(short *)(s0 + 0x4D8) = t;
+        *(short *)((char *)s0 + 0x4D8) = t;
         if ((short)t == -1) {
-            *(unsigned char *)(s0 + 0x2F4) = 3;
-            *(int *)(s0 + 0x250) |= 2;
+            s0->mode = 3;
+            s0->objFlags |= 2;
         }
         break;
     }
     case 3:
-        *(unsigned char *)(s0 + 0x2F4) = 4;
-        *(int *)(s0 + 0x250) |= 2;
+        s0->mode = 4;
+        s0->objFlags |= 2;
         break;
     case 0:
     case 4:
@@ -40,7 +41,7 @@ void func_00318570(char *a0)
         break;
     }
     {
-        char *q = *(char **)(s0 + 0x4D0);
+        char *q = *(char **)((char *)s0 + 0x4D0);
 
         if (q == 0) {
             return;

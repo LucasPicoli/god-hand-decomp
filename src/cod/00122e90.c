@@ -33,60 +33,61 @@ extern int D_00747A24;
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cGameObj.h"
 
 __attribute__((section(".text.func_00122E90")))
 void func_00122E90(void *a0)
 {
     float buf[4];
-    char *s1 = (char *)a0;
+    cGameObj *s1 = a0;
     int s2;
     int s0;
     float one;
 
-    *(float *)(s1 + 0x54C) = 30.0f;
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    s1->hitFlash = 30.0f;
+    switch (s1->step) {
     case 0:
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0xD6, a0, 0, 0, 0, 0);
         cSnd_SeCall_2CBA48(&D_005FEE00, 0, 0x123, a0, 0, 0, 0, 0);
         func_0012C348(s1, 3);
         cSnd_DieDemoStart(&D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -1000);
-        switch (*(unsigned char *)(s1 + 0x2F7)) {
+        switch (s1->stepArg) {
         case 0:
         default:
             switch (irand() % 5) {
             case 0:
             default:
             {
-                int b = *(int *)(s1 + 0x304);
+                int b = *(int *)((char *)s1 + 0x304);
                 s2 = *(int *)(b + 0x158) + b;
                 s0 = *(int *)(b + 0x15C) + b;
             }
                 break;
             case 1:
             {
-                int b = *(int *)(s1 + 0x304);
+                int b = *(int *)((char *)s1 + 0x304);
                 s2 = *(int *)(b + 0x4FC) + b;
                 s0 = *(int *)(b + 0x500) + b;
             }
                 break;
             case 2:
             {
-                int b = *(int *)(s1 + 0x304);
+                int b = *(int *)((char *)s1 + 0x304);
                 s2 = *(int *)(b + 0x164) + b;
                 s0 = *(int *)(b + 0x168) + b;
             }
                 break;
             case 3:
             {
-                int b = *(int *)(s1 + 0x304);
+                int b = *(int *)((char *)s1 + 0x304);
                 s2 = *(int *)(b + 0x504) + b;
                 s0 = *(int *)(b + 0x508) + b;
             }
                 break;
             case 4:
             {
-                int b = *(int *)(s1 + 0x304);
+                int b = *(int *)((char *)s1 + 0x304);
                 s2 = *(int *)(b + 0x50C) + b;
                 s0 = *(int *)(b + 0x510) + b;
             }
@@ -95,72 +96,72 @@ void func_00122E90(void *a0)
             break;
         case 1:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x158) + b;
             s0 = *(int *)(b + 0x15C) + b;
         }
             break;
         case 2:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x4FC) + b;
             s0 = *(int *)(b + 0x500) + b;
         }
             break;
         case 3:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x514) + b;
             s0 = *(int *)(b + 0x518) + b;
         }
             break;
         case 4:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x164) + b;
             s0 = *(int *)(b + 0x168) + b;
         }
             break;
         case 5:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x504) + b;
             s0 = *(int *)(b + 0x508) + b;
         }
             break;
         case 6:
         {
-            int b = *(int *)(s1 + 0x304);
+            int b = *(int *)((char *)s1 + 0x304);
             s2 = *(int *)(b + 0x50C) + b;
             s0 = *(int *)(b + 0x510) + b;
         }
             break;
         }
         {
-            char *p = *(char **)(s1 + 0x678);
+            char *p = *(char **)((char *)s1 + 0x678);
             if (p != 0) {
                 float th;
 
                 VU0_LQC2(4, p + 0x10, 0);
                 VU0_SQC2(4, buf, 0);
                 th = capVu0Atan2(buf[0], buf[2]) + 3.14159274f;
-                *(float *)(s1 + 0x104) = th;
-                *(float *)(s1 + 0x104) = Adjust_theta(th);
+                s1->rot.y = th;
+                s1->rot.y = Adjust_theta(th);
             }
         }
         func_002A8578(s1, s2, s0, 2, 0.0f, 0, 0);
-        *(int *)(s1 + 0x15B0) = 0x28;
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        *(int *)((char *)s1 + 0x15B0) = 0x28;
+        s1->step = s1->step + 1;
     case 1:
         func_00124EC0(s1);
-        if (*(int *)(s1 + 0x15B0) != 0) {
-            *(int *)(s1 + 0x15B0) = *(int *)(s1 + 0x15B0) - 1;
+        if (*(int *)((char *)s1 + 0x15B0) != 0) {
+            *(int *)((char *)s1 + 0x15B0) = *(int *)((char *)s1 + 0x15B0) - 1;
         } else {
             D_00747A24 = D_00747A24 | 8;
         }
         if (moveMotion(s1) != 0) {
             D_00747A24 = D_00747A24 | 8;
-            *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+            s1->step = s1->step + 1;
         }
         one = 1.0f;
         cObjBase_addNullSpeed_Rotation(s1, one);

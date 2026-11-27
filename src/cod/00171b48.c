@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/cGameObj.h"
 
 extern char D_00420D68[];
 extern int InitField214WithPtr429420_1BD650();
@@ -55,11 +56,11 @@ void func_00173A78(void *a0, void *a1) {
 
 
 __attribute__((section(".text.func_00173DE8")))
-void func_00173DE8(void *a0) {
+void func_00173DE8(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;
@@ -115,11 +116,11 @@ void func_00174830(void *a0, void *a1) {
 
 
 __attribute__((section(".text.func_00174BB0")))
-void func_00174BB0(void *a0) {
+void func_00174BB0(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;

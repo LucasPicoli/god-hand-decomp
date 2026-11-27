@@ -11,6 +11,7 @@
 #include "godhand/MpvHandle.h"
 #include "godhand/cCollisionSolid.h"
 #include "godhand/criCbTbl.h"
+#include "godhand/cObj.h"
 
 /* ------------------------------------------------------------------ */
 /* Externs unified across the 7-function D_0044BED0 cluster.          */
@@ -1528,8 +1529,8 @@ void Obj0000_Set_Fields_166C_1664_1674_167C_Short_1682_10A420(pl00 *self, int mo
 }
 
 __attribute__((section(".text.Obj0000_Get_Byte_2F4_EQ_1_10B5B8")))
-int Obj0000_Get_Byte_2F4_EQ_1_10B5B8(char *a0) {
-    return *(unsigned char*)(a0 + 0x2F4) == 1;
+int Obj0000_Get_Byte_2F4_EQ_1_10B5B8(cObj *a0) {
+    return a0->mode == 1;
 }
 
 __attribute__((section(".text.Obj0000_IsSet_Field_15F4_Bit_400000_10B698")))
@@ -1539,19 +1540,19 @@ int Obj0000_IsSet_Field_15F4_Bit_400000_10B698(char *a0) {
 }
 
 __attribute__((section(".text.pl00_SetCannonReflect")))
-void pl00_SetCannonReflect(char *a0, unsigned char a1) {
-    *(unsigned char*)(a0 + 0x2F7) = a1;
-    *(unsigned char*)(a0 + 0x2F4) = 6;
-    *(unsigned char*)(a0 + 0x2F6) = 2;
-    *(unsigned char*)(a0 + 0x2F5) = 0;
+void pl00_SetCannonReflect(pl00 *a0, unsigned char a1) {
+    a0->base.stepArg = a1;
+    a0->base.mode = 6;
+    a0->base.step = 2;
+    a0->base.phase = 0;
 }
 
 __attribute__((section(".text.pl00_setEventWait")))
-void pl00_setEventWait(char *a0) {
-    *(unsigned char*)(a0 + 0x2F4) = 0;
-    *(unsigned char*)(a0 + 0x2F5) = 0x45;
-    *(unsigned char*)(a0 + 0x2F6) = 0;
-    *(unsigned char*)(a0 + 0x2F7) = 0;
+void pl00_setEventWait(pl00 *a0) {
+    a0->base.mode = 0;
+    a0->base.phase = 0x45;
+    a0->base.step = 0;
+    a0->base.stepArg = 0;
 }
 
 __attribute__((section(".text.Obj0000_IsSet_Field_15F4_Bit_1000_12C530")))

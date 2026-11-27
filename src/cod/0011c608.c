@@ -20,6 +20,7 @@ extern int D_00747A24;
 #include "godhand/cSnd.h"
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -45,16 +46,16 @@ extern int D_00747A24;
 __attribute__((section(".text.func_0011C608")))
 void func_0011C608(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     char *s1;
     float v[4] __attribute__((aligned(16)));
 
-    *(int *)(s0 + 0x250) |= 0x10000;
-    *(float *)(s0 + 0x54C) = 5.0f;
-    s1 = *(char **)(s0 + 0x694);
+    s0->objFlags |= 0x10000;
+    s0->hitFlash = 5.0f;
+    s1 = *(char **)((char *)s0 + 0x694);
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
     cEmManage_SetPlCatched(D_005864F0);
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0: {
         float z;
         v[1] = 0.0f;
@@ -66,22 +67,22 @@ void func_0011C608(void *a0)
         CallWithAndClearField698_12AC28(s0);
         func_0012B928(s0);
         cEm00_GetPlMotion(s1, 7, z, z);
-        *(short *)(s0 + 0x56E) = 0xF;
+        *(short *)((char *)s0 + 0x56E) = 0xF;
         cCoreSave_addGameLevelPoint(&D_00569B70, -0x140);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     }
     /* fallthrough */
     case 1:
-        if (*(short *)(s0 + 0x56E) != 0 && s1 != 0) {
+        if (*(short *)((char *)s0 + 0x56E) != 0 && s1 != 0) {
             char *q = s1 + 0x550;
             char *p;
-            *(short *)(s0 + 0x56E) = *(unsigned short *)(s0 + 0x56E) - 1;
-            p = *(char **)(s0 + 0xF0);
+            *(short *)((char *)s0 + 0x56E) = *(unsigned short *)((char *)s0 + 0x56E) - 1;
+            p = *(char **)((char *)s0 + 0xF0);
             VU0_VADD_XYZ_IP(p, 0, q);
         }
         func_00124EC0(s0);
         if (moveMotion(s0))
-            *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+            s0->step = s0->step + 1;
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
         break;
@@ -94,17 +95,17 @@ void func_0011C608(void *a0)
         v[3] = 1.0f;
         func_001299F0(s0, s1, v, 0, z);
         cEm00_GetPlMotion(s1, 8, z, z);
-        *(int *)(s0 + 0x15B0) = 5;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        *(int *)((char *)s0 + 0x15B0) = 5;
+        s0->step = s0->step + 1;
     }
     /* fallthrough */
     case 3:
         func_00124EC0(s0);
         if (moveMotion(s0))
-            *(int *)(s0 + 0x15B0) = 5;
-        if (*(int *)(s0 + 0x15B0) != 0) {
-            int t = *(int *)(s0 + 0x15B0) - 1;
-            *(int *)(s0 + 0x15B0) = t;
+            *(int *)((char *)s0 + 0x15B0) = 5;
+        if (*(int *)((char *)s0 + 0x15B0) != 0) {
+            int t = *(int *)((char *)s0 + 0x15B0) - 1;
+            *(int *)((char *)s0 + 0x15B0) = t;
             if (t == 0) {
                 if (s1 != 0)
                     func_0012C0F8(s0, (int)(*(float *)(s1 + 0x76C) * 10.0f));
@@ -116,14 +117,14 @@ void func_0011C608(void *a0)
         break;
     case 4:
         cEm00_GetPlMotion(s1, 9, 3.0f, 0.0f);
-        *(int *)(s0 + 0x15B0) = 0x1E;
+        *(int *)((char *)s0 + 0x15B0) = 0x1E;
         cSnd_DieDemoStart(&D_005FEE00);
         cCoreSave_addGameLevelPoint(&D_00569B70, -0x3E8);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     /* fallthrough */
     case 5:
         func_00124EC0(s0);
-        *(short *)(s0 + 0x434) = *(unsigned short *)(s0 + 0x434) | 8;
+        *(short *)((char *)s0 + 0x434) = s0->motionFlags | 8;
         if (moveMotion(s0))
             D_00747A24 |= 8;
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
@@ -131,16 +132,16 @@ void func_0011C608(void *a0)
         break;
     case 6:
         cEm00_GetPlMotion(s1, 0xA, 3.0f, 0.0f);
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->step = s0->step + 1;
     /* fallthrough */
     case 7:
         func_00124EC0(s0);
         if (moveMotion(s0)) {
             pl00_clearMotionCam(s0, 0, 0);
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);

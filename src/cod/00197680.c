@@ -128,6 +128,7 @@ int *GetInstanceD_198F68(void) {
 }
 
 #include "godhand/vu0.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -161,11 +162,11 @@ void FreeObjSlotD_199040(void *a0, int a1) {
 }
 
 __attribute__((section(".text.UpdateSlotHpState_1993C8")))
-void UpdateSlotHpState_1993C8(void *a0) {
+void UpdateSlotHpState_1993C8(cGameObj *a0) {
     int v1;
     v1 = cOmBase_checkDamage(a0, *(int *)((char*)a0 + 0x650));
     if (v1 == 1) {
-        if (*(short *)((char*)a0 + 0x54A) <= 0) {
+        if (a0->hp <= 0) {
             int v3 = *(int *)((char*)a0 + 0x5B0);
             *(char *)((char*)a0 + 0x2F4) = 2;
             *(char *)((char*)a0 + 0x2F5) = 0;

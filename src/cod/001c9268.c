@@ -11,6 +11,7 @@ extern int D_007419A0;
 #include "godhand/cDamageManage.h"
 #include "godhand/cOmWeapon.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cObj.h"
 
 
 
@@ -27,7 +28,7 @@ extern int D_007419A0;
 
 
 __attribute__((section(".text.func_001C9268")))
-int func_001C9268(char *p)
+int func_001C9268(cObj *p)
 {
     float buf[12];
     char *n;
@@ -37,83 +38,83 @@ int func_001C9268(char *p)
     if (func_001B6FB8(p) == 0) {
         return 0;
     }
-    *(int *)(p + 0x600) = 0;
-    *(int *)(p + 0x604) = 0;
-    *(int *)(p + 0x630) = 0;
-    switch (*(unsigned short *)(p + 0x2FE)) {
+    *(int *)((char *)p + 0x600) = 0;
+    *(int *)((char *)p + 0x604) = 0;
+    *(int *)((char *)p + 0x630) = 0;
+    switch (p->actorId) {
     default:
-        *(int *)(p + 0x668) = 0x64;
+        *(int *)((char *)p + 0x668) = 0x64;
         break;
     case 0x361:
-        *(int *)(p + 0x668) = 0x78;
+        *(int *)((char *)p + 0x668) = 0x78;
         break;
     case 0x362:
-        *(int *)(p + 0x668) = 0x5A;
+        *(int *)((char *)p + 0x668) = 0x5A;
         break;
     case 0x363:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x368:
-        *(int *)(p + 0x668) = 0x96;
+        *(int *)((char *)p + 0x668) = 0x96;
         break;
     case 0x3B7:
-        *(int *)(p + 0x668) = 0x28;
+        *(int *)((char *)p + 0x668) = 0x28;
         break;
     case 0x3B4:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x3AD:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x3AE:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x3AA:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x3AB:
-        *(int *)(p + 0x668) = 0x3C;
+        *(int *)((char *)p + 0x668) = 0x3C;
         break;
     case 0x3AF:
-        *(int *)(p + 0x668) = 0x1;
+        *(int *)((char *)p + 0x668) = 0x1;
         break;
     case 0x36D:
-        *(int *)(p + 0x668) = 0x50;
+        *(int *)((char *)p + 0x668) = 0x50;
         break;
     case 0x3A9:
-        *(int *)(p + 0x668) = 0x5A;
+        *(int *)((char *)p + 0x668) = 0x5A;
         break;
     case 0x3A8:
-        *(int *)(p + 0x668) = 0x5A;
+        *(int *)((char *)p + 0x668) = 0x5A;
         break;
     case 0x379:
-        *(int *)(p + 0x668) = 0x5A;
+        *(int *)((char *)p + 0x668) = 0x5A;
         break;
     case 0x375:
-        *(int *)(p + 0x668) = 0x64;
+        *(int *)((char *)p + 0x668) = 0x64;
         break;
     case 0x377:
-        *(int *)(p + 0x668) = 0x64;
+        *(int *)((char *)p + 0x668) = 0x64;
         break;
     case 0x378:
-        *(int *)(p + 0x668) = 0x64;
+        *(int *)((char *)p + 0x668) = 0x64;
         break;
     case 0x37B:
-        *(int *)(p + 0x668) = 0x5A;
+        *(int *)((char *)p + 0x668) = 0x5A;
         break;
     case 0x380:
-        *(int *)(p + 0x668) = 0x96;
+        *(int *)((char *)p + 0x668) = 0x96;
         break;
     case 0x390:
-        *(int *)(p + 0x668) = 0x3E7;
+        *(int *)((char *)p + 0x668) = 0x3E7;
         break;
     }
 
-    *(cDamageGive **)(p + 0x650) = cDamageManage_CreateDamageGive(&D_00574380, 1, (cGameObj *)p);
-    flag = *(unsigned char *)(p + 0x2B4);
+    *(cDamageGive **)((char *)p + 0x650) = cDamageManage_CreateDamageGive(&D_00574380, 1, (cGameObj *)p);
+    flag = p->partNum;
     *(int *)buf = flag;
     if (flag) {
-        n = **(char ***)(p + 0x278);
+        n = **(char ***)((char *)p + 0x278);
     } else {
         n = 0;
     }
@@ -122,17 +123,17 @@ int func_001C9268(char *p)
     buf[6] = 0.0f;
     sph = buf + 4;
     sph[3] = 1.0f;
-    *(int *)(p + 0x654) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x650), (const struct cMatrix *)(n + 0x80),
+    *(int *)((char *)p + 0x654) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)((char *)p + 0x650), (const struct cMatrix *)(n + 0x80),
                                                           (const cVec *)sph, 0.3f);
-    cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + 0x650), 0);
+    cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char *)p + 0x650), 0);
 
-    *(cDamageGive **)(p + 0x658) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
-    if (*(int *)(p + 0x658) != 0) {
-        int flag2 = *(unsigned char *)(p + 0x2B4);
+    *(cDamageGive **)((char *)p + 0x658) = cDamageManage_CreateDamageGive(&D_00574380, 0, (cGameObj *)p);
+    if (*(int *)((char *)p + 0x658) != 0) {
+        int flag2 = p->partNum;
         char *n2;
         *(int *)buf = flag2;
         if (flag2) {
-            n2 = **(char ***)(p + 0x278);
+            n2 = **(char ***)((char *)p + 0x278);
         } else {
             n2 = 0;
         }
@@ -140,26 +141,26 @@ int func_001C9268(char *p)
         buf[0] = 0.0f;
         buf[1] = 0.0f;
         buf[2] = 0.0f;
-        *(int *)(p + 0x65C) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)(p + 0x658), (const struct cMatrix *)(n2 + 0x80),
+        *(int *)((char *)p + 0x65C) = cDamageUnit_AddDamageCollSphere(*(cDamageUnit **)((char *)p + 0x658), (const struct cMatrix *)(n2 + 0x80),
                                                               (const cVec *)buf, 0.4f);
-        cDamageUnit_SetDamageCollActive(*(cDamageUnit **)(p + 0x658), 0);
-        *(short *)(*(int *)(p + 0x658) + 0x46) = 0x2F;
-        *(int *)(*(int *)(p + 0x658) + 0x4C) = 0x32;
-        cDamageGive_SetDmgGiveHitVec(*(cDamageGive **)(p + 0x658), (const cVec *)&D_00747B00);
+        cDamageUnit_SetDamageCollActive(*(cDamageUnit **)((char *)p + 0x658), 0);
+        *(short *)(*(int *)((char *)p + 0x658) + 0x46) = 0x2F;
+        *(int *)(*(int *)((char *)p + 0x658) + 0x4C) = 0x32;
+        cDamageGive_SetDmgGiveHitVec(*(cDamageGive **)((char *)p + 0x658), (const cVec *)&D_00747B00);
         {
-            char *dg = *(char **)(p + 0x658);
+            char *dg = *(char **)((char *)p + 0x658);
             *(int *)(dg + 0x40) = -1;
             *(short *)(dg + 0x44) = 0;
         }
     }
 
-    if (*(unsigned short *)(p + 0x2FE) == 0x3B7) {
+    if (p->actorId == 0x3B7) {
         SetEffect(0x58, 0x8D, (cObj *)p, 0, 8, EFFECT_FOLLOW_OWNER);
     }
-    switch (*(unsigned short *)(p + 0x2FE)) {
+    switch (p->actorId) {
     case 0x3AE:
         {
-            char *e = *(char **)(p + 0x304);
+            char *e = p->pack;
             espSys_effDataRegist(&D_007419A0, 0x206,
                                  (void *)(*(int *)(e + 0xC) + (int)e));
         }
@@ -185,12 +186,12 @@ int func_001C9268(char *p)
     }
     cOmBase_setMeshDispFromLayer(p, 0x40, 0);
 
-    switch (*(unsigned short *)(p + 0x2FE)) {
+    switch (p->actorId) {
     default:
-        *(char *)(p + 0x2F4) = 0;
-        *(char *)(p + 0x2F6) = 2;
-        *(char *)(p + 0x2F5) = 0;
-        *(char *)(p + 0x2F7) = 0;
+        *(char *)((char *)p + 0x2F4) = 0;
+        *(char *)((char *)p + 0x2F6) = 2;
+        *(char *)((char *)p + 0x2F5) = 0;
+        *(char *)((char *)p + 0x2F7) = 0;
         break;
     case 0x3A8:
     case 0x3A9:
@@ -199,41 +200,41 @@ int func_001C9268(char *p)
     case 0x3AD:
     case 0x3AE:
     case 0x3B4:
-        *(char *)(p + 0x2F4) = 0;
-        *(char *)(p + 0x2F6) = 3;
-        *(char *)(p + 0x2F5) = 0;
-        *(char *)(p + 0x2F7) = 0;
+        *(char *)((char *)p + 0x2F4) = 0;
+        *(char *)((char *)p + 0x2F6) = 3;
+        *(char *)((char *)p + 0x2F5) = 0;
+        *(char *)((char *)p + 0x2F7) = 0;
         break;
     case 0x36A:
-        *(float *)(p + 0x118) = 1.3f;
-        *(float *)(p + 0x114) = 1.3f;
-        *(float *)(p + 0x110) = 1.3f;
+        p->scale.z = 1.3f;
+        p->scale.y = 1.3f;
+        p->scale.x = 1.3f;
         break;
     case 0x382:
-        *(char *)(p + 0x2F4) = 0;
-        *(char *)(p + 0x2F5) = 0x17;
-        *(char *)(p + 0x2F6) = 0;
-        *(char *)(p + 0x2F7) = 0;
+        *(char *)((char *)p + 0x2F4) = 0;
+        *(char *)((char *)p + 0x2F5) = 0x17;
+        *(char *)((char *)p + 0x2F6) = 0;
+        *(char *)((char *)p + 0x2F7) = 0;
         break;
     case 0x42A:
-        *(char *)(p + 0x2F4) = 0;
-        *(char *)(p + 0x2F5) = 0x16;
-        *(char *)(p + 0x2F6) = 0;
-        *(char *)(p + 0x2F7) = 0;
+        *(char *)((char *)p + 0x2F4) = 0;
+        *(char *)((char *)p + 0x2F5) = 0x16;
+        *(char *)((char *)p + 0x2F6) = 0;
+        *(char *)((char *)p + 0x2F7) = 0;
         break;
     }
 
-    if (*(unsigned short *)(p + 0x2FE) == 0x42A) {
-        *(int *)(p + 0x5B8) |= 0x40;
+    if (p->actorId == 0x42A) {
+        *(int *)((char *)p + 0x5B8) |= 0x40;
     } else {
-        *(int *)(p + 0x5B8) &= ~0x40;
+        *(int *)((char *)p + 0x5B8) &= ~0x40;
     }
 
-    *(char *)(p + 0x688) = 0;
-    *(int *)(p + 0x68C) = 0;
-    if (*(unsigned short *)(p + 0x2FE) == 0x37B || *(unsigned short *)(p + 0x2FE) == 0x390) {
+    *(char *)((char *)p + 0x688) = 0;
+    *(int *)((char *)p + 0x68C) = 0;
+    if (p->actorId == 0x37B || p->actorId == 0x390) {
         cGameObj *obj = CreateObj(0x37C, 0xFFFF);
-        *(cGameObj **)(p + 0x68C) = obj;
+        *(cGameObj **)((char *)p + 0x68C) = obj;
         if (obj != 0) {
             cGameObjVt *vt;
             float *src;
@@ -247,21 +248,21 @@ int func_001C9268(char *p)
             vt = cGameObj_vt(obj);
             vt->initial((char *)obj + vt->initialDelta);
 
-            dst = *(float **)(*(char **)(p + 0x68C) + 0xF0);
-            src = *(float **)(p + 0xF0);
+            dst = *(float **)(*(char **)((char *)p + 0x68C) + 0xF0);
+            src = *(float **)((char *)p + 0xF0);
             if (dst != src) {
                 dst[0] = src[0];
                 dst[1] = src[1];
                 dst[2] = src[2];
             }
-            src2 = *(float **)(p + 0xF0);
-            d490 = (float *)(*(char **)(p + 0x68C) + 0x490);
+            src2 = *(float **)((char *)p + 0xF0);
+            d490 = (float *)(*(char **)((char *)p + 0x68C) + 0x490);
             if (d490 != src2) {
                 d490[0] = src2[0];
                 d490[1] = src2[1];
                 d490[2] = src2[2];
             }
-            p100 = (int *)(*(char **)(p + 0x68C) + 0x100);
+            p100 = (int *)(*(char **)((char *)p + 0x68C) + 0x100);
             p100[0] = 0;
             p100[1] = 0;
             p100[2] = 0;
@@ -271,15 +272,15 @@ int func_001C9268(char *p)
             buf[8] = 0.0f;
             buf[9] = 0.0f;
             buf[10] = 0.0f;
-            cOmWeapon_setParent(*(cOmWeapon **)(p + 0x68C), (cGameObj *)p, 2, (cVec *)buf, (cVec *)&buf[8]);
+            cOmWeapon_setParent(*(cOmWeapon **)((char *)p + 0x68C), (cGameObj *)p, 2, (cVec *)buf, (cVec *)&buf[8]);
         }
     }
 
-    if (*(unsigned short *)(p + 0x2FE) == 0x376) {
-        int f = *(int *)(p + 0x2D0);
+    if (p->actorId == 0x376) {
+        int f = *(int *)((char *)p + 0x2D0);
         f &= ~0x20000000;
         f |= 0x80000000;
-        *(int *)(p + 0x2D0) = f;
+        *(int *)((char *)p + 0x2D0) = f;
     }
     return 1;
 }

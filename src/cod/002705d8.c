@@ -3,6 +3,7 @@
 #include "godhand/cEm00.h"
 #include "godhand/motion.h"
 #include "godhand/cCamera.h"
+#include "godhand/cGameObj.h"
 
 extern void *Getplayer(void);
 extern void func_001D0408(void *a0);
@@ -35,48 +36,48 @@ extern char D_005864F0[];
 __attribute__((section(".text.func_002705D8")))
 void func_002705D8(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     void *s1;
 
     s1 = Getplayer();
-    if (*(void **)(s0 + 0x738) != 0) {
-        func_001D0408(*(void **)(s0 + 0x738));
-        *(int *)(s0 + 0x738) = 0;
+    if (*(void **)((char *)s0 + 0x738) != 0) {
+        func_001D0408(*(void **)((char *)s0 + 0x738));
+        *(int *)((char *)s0 + 0x738) = 0;
     }
     {
-        int w = *(int *)(s0 + 0x564);
+        int w = s0->emNo;
 
         if (w == 0x279) {
             ReleaseField6ECByTag564_26B1E8(s0);
-            w = *(int *)(s0 + 0x564);
+            w = s0->emNo;
         }
         if (w == 0x26A) {
-            if (*(int *)(s0 + 0x16D0) & 0x1000000) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0xA5;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+            if (*(int *)((char *)s0 + 0x16D0) & 0x1000000) {
+                s0->mode = 0;
+                s0->phase = 0xA5;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0xA1;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0xA1;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         }
-        if (0.0f < *(float *)(s0 + 0x16C0) && (w ^ 0x26A) != 0) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x13;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+        if (0.0f < *(float *)((char *)s0 + 0x16C0) && (w ^ 0x26A) != 0) {
+            s0->mode = 0;
+            s0->phase = 0x13;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         }
     }
-    if (func_00274150(s0) != 0 || 0.0f < *(float *)(s0 + 0x1734)) {
-        *(unsigned char *)(s0 + 0x2F4) = 0;
-        *(unsigned char *)(s0 + 0x2F5) = 0x89;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+    if (func_00274150(s0) != 0 || 0.0f < *(float *)((char *)s0 + 0x1734)) {
+        s0->mode = 0;
+        s0->phase = 0x89;
+        s0->step = 0;
+        s0->stepArg = 0;
         return;
     }
     if (func_00274F50(s0) != 0) {
@@ -85,109 +86,109 @@ void func_002705D8(void *a0)
     if (cEm00_startHitUnitAim(s0) != 0) {
         return;
     }
-    if (*(unsigned char *)(s0 + 0x1864) != 0) {
+    if (*(unsigned char *)((char *)s0 + 0x1864) != 0) {
         if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
             if (irand() & 1) {
-                *(unsigned char *)(s0 + 0x1864) = 0;
+                *(unsigned char *)((char *)s0 + 0x1864) = 0;
             }
         }
-        if (*(int *)(s0 + 0x16EC) != 0) {
-            *(unsigned char *)(s0 + 0x1864) = 0;
+        if (*(int *)((char *)s0 + 0x16EC) != 0) {
+            *(unsigned char *)((char *)s0 + 0x1864) = 0;
         }
-        if (1.5707964f < *(float *)(s0 + 0x760)) {
-            *(unsigned char *)(s0 + 0x1864) = 0;
+        if (1.5707964f < *(float *)((char *)s0 + 0x760)) {
+            *(unsigned char *)((char *)s0 + 0x1864) = 0;
         }
     }
     {
-        int w2 = *(int *)(s0 + 0x564);
+        int w2 = s0->emNo;
 
         switch (w2) {
         case 0x220:
         case 0x221:
         case 0x222:
-            if (*(unsigned char *)(s0 + 0x1864) != 0) {
-                *(unsigned char *)(s0 + 0x1864) = 0;
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x6B;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+            if (*(unsigned char *)((char *)s0 + 0x1864) != 0) {
+                *(unsigned char *)((char *)s0 + 0x1864) = 0;
+                s0->mode = 0;
+                s0->phase = 0x6B;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
-            if (*(float *)(s0 + 0x618) < 9.0f) {
-                if (D_005CB010 != 0 || *(float *)(s0 + 0x5A8) < 1.0f) {
-                    *(unsigned char *)(s0 + 0x2F4) = 0;
-                    *(unsigned char *)(s0 + 0x2F5) = 0x6B;
-                    *(unsigned char *)(s0 + 0x2F6) = 0;
-                    *(unsigned char *)(s0 + 0x2F7) = 0;
+            if (*(float *)((char *)s0 + 0x618) < 9.0f) {
+                if (D_005CB010 != 0 || s0->speedRate < 1.0f) {
+                    s0->mode = 0;
+                    s0->phase = 0x6B;
+                    s0->step = 0;
+                    s0->stepArg = 0;
                     return;
                 }
                 if (cCoreSave_getGameLevel(&D_00569B70) >= 3) {
-                    *(unsigned char *)(s0 + 0x2F4) = 0;
-                    *(unsigned char *)(s0 + 0x2F5) = 0x12;
-                    *(unsigned char *)(s0 + 0x2F6) = 0;
-                    *(unsigned char *)(s0 + 0x2F7) = 1;
+                    s0->mode = 0;
+                    s0->phase = 0x12;
+                    s0->step = 0;
+                    s0->stepArg = 1;
                     return;
                 }
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         case 0x211:
-            if (*(int *)(s0 + 0x16D4) & 0x20) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x7F;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+            if (*(int *)((char *)s0 + 0x16D4) & 0x20) {
+                s0->mode = 0;
+                s0->phase = 0x7F;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
             if (cOmBase_countGroupsInAction211(s0) < 2 && (unsigned int)getItemNumInRoom() < 0xA) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x84;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+                s0->mode = 0;
+                s0->phase = 0x84;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
             break;
         case 0x265:
-            if (*(int *)(s0 + 0x16D4) & 0x20000000) {
+            if (*(int *)((char *)s0 + 0x16D4) & 0x20000000) {
                 if (func_0012C4F0(s1) != 0) {
                     if (func_00262AA8(a0) != 0) {
                         return;
                     }
                 }
-                if (*(unsigned char *)(s0 + 0x1864) != 0) {
-                    *(unsigned char *)(s0 + 0x1864) = 0;
-                    *(unsigned char *)(s0 + 0x2F4) = 0;
-                    *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-                    *(unsigned char *)(s0 + 0x2F6) = 0;
-                    *(unsigned char *)(s0 + 0x2F7) = 0;
+                if (*(unsigned char *)((char *)s0 + 0x1864) != 0) {
+                    *(unsigned char *)((char *)s0 + 0x1864) = 0;
+                    s0->mode = 0;
+                    s0->phase = 0x6C;
+                    s0->step = 0;
+                    s0->stepArg = 0;
                     return;
                 }
-                if (*(float *)(s0 + 0x618) < 12.25f) {
-                    *(unsigned char *)(s0 + 0x2F4) = 0;
-                    *(unsigned char *)(s0 + 0x2F5) = 0x9E;
-                    *(int *)(s0 + 0x16D0) = *(int *)(s0 + 0x16D0) | 0x800000;
-                    *(unsigned char *)(s0 + 0x2F6) = 0;
-                    *(unsigned char *)(s0 + 0x2F7) = 0;
+                if (*(float *)((char *)s0 + 0x618) < 12.25f) {
+                    s0->mode = 0;
+                    s0->phase = 0x9E;
+                    *(int *)((char *)s0 + 0x16D0) = *(int *)((char *)s0 + 0x16D0) | 0x800000;
+                    s0->step = 0;
+                    s0->stepArg = 0;
                     return;
                 }
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x9C;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+                s0->mode = 0;
+                s0->phase = 0x9C;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
             break;
         case 0x21F:
-            if (9.0f < *(float *)(s0 + 0x618)) {
-                if (*(float *)(s0 + 0x16E4) <= 0.0f) {
-                    if ((unsigned int)func_002919C0(D_005864F0, *(unsigned short *)(s0 + 0x2FE), 0x21F) < 2) {
-                        *(unsigned char *)(s0 + 0x2F4) = 0;
-                        *(unsigned char *)(s0 + 0x2F5) = 0x8B;
-                        *(unsigned char *)(s0 + 0x2F6) = 0;
-                        *(unsigned char *)(s0 + 0x2F7) = 0;
+            if (9.0f < *(float *)((char *)s0 + 0x618)) {
+                if (*(float *)((char *)s0 + 0x16E4) <= 0.0f) {
+                    if ((unsigned int)func_002919C0(D_005864F0, s0->actorId, 0x21F) < 2) {
+                        s0->mode = 0;
+                        s0->phase = 0x8B;
+                        s0->step = 0;
+                        s0->stepArg = 0;
                         return;
                     }
                 }
@@ -195,19 +196,19 @@ void func_002705D8(void *a0)
             break;
         }
     }
-    if (*(unsigned char *)(s0 + 0x1864) != 0) {
+    if (*(unsigned char *)((char *)s0 + 0x1864) != 0) {
         int w3;
 
-        *(unsigned char *)(s0 + 0x1864) = 0;
-        w3 = *(int *)(s0 + 0x564);
+        *(unsigned char *)((char *)s0 + 0x1864) = 0;
+        w3 = s0->emNo;
         w3 -= 0x205;
         switch (w3) {
         default:
             if (func_0012C4F0(s1) == 0) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+                s0->mode = 0;
+                s0->phase = 0x6C;
+                s0->step = 0;
+                s0->stepArg = 0;
                 return;
             }
             break;
@@ -218,16 +219,16 @@ void func_002705D8(void *a0)
         case 109:
         case 110:
         case 111:
-            if (*(float *)(s0 + 0x618) < 9.0f &&
+            if (*(float *)((char *)s0 + 0x618) < 9.0f &&
                 ((irand() & 1) != 0 || func_0012C4F0(s1) != 0)) {
                 if (func_00273960(a0, 6.0f) != 0) {
                     return;
                 }
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         case 0:
         case 1:
@@ -255,17 +256,17 @@ void func_002705D8(void *a0)
             if (func_0012C4F0(s1) != 0) {
                 break;
             }
-            if (*(float *)(s0 + 0x618) < 9.0f && (irand() & 1) != 0) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0xA;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 1;
+            if (*(float *)((char *)s0 + 0x618) < 9.0f && (irand() & 1) != 0) {
+                s0->mode = 0;
+                s0->phase = 0xA;
+                s0->step = 0;
+                s0->stepArg = 1;
                 return;
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         case 27:
         case 28:
@@ -273,62 +274,62 @@ void func_002705D8(void *a0)
             if (func_0012C4F0(s1) != 0) {
                 break;
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x12;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 1;
+            s0->mode = 0;
+            s0->phase = 0x12;
+            s0->step = 0;
+            s0->stepArg = 1;
             return;
         case 81:
         case 121:
             if (func_0012C4F0(s1) != 0) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0x4B;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 0;
+                s0->mode = 0;
+                s0->phase = 0x4B;
+                s0->step = 0;
+                s0->stepArg = 0;
                 break;
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         case 30:
-            if (func_0012C4F0(s1) == 0 && *(float *)(s0 + 0x618) < 9.0f &&
+            if (func_0012C4F0(s1) == 0 && *(float *)((char *)s0 + 0x618) < 9.0f &&
                 (irand() & 1) != 0) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 0xA;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 1;
+                s0->mode = 0;
+                s0->phase = 0xA;
+                s0->step = 0;
+                s0->stepArg = 1;
                 return;
             }
             break;
         case 116:
-            if (*(float *)(s0 + 0x618) < 25.0f && (irand() & 1) != 0) {
-                *(unsigned char *)(s0 + 0x2F4) = 0;
-                *(unsigned char *)(s0 + 0x2F5) = 9;
-                *(unsigned char *)(s0 + 0x2F6) = 0;
-                *(unsigned char *)(s0 + 0x2F7) = 2;
+            if (*(float *)((char *)s0 + 0x618) < 25.0f && (irand() & 1) != 0) {
+                s0->mode = 0;
+                s0->phase = 9;
+                s0->step = 0;
+                s0->stepArg = 2;
                 return;
             }
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
             return;
         }
     }
-    *(unsigned char *)(s0 + 0x1864) = 0;
-    if (1.5707964f < Turn_dest(*(void **)(s0 + 0xF0), *(float *)(s0 + 0x104),
-                               (float *)(s0 + 0x16A0), 3.1415927f)) {
-        *(unsigned char *)(s0 + 0x2F4) = 0;
-        *(unsigned char *)(s0 + 0x2F5) = 8;
-        *(int *)(s0 + 0x16D4) = *(int *)(s0 + 0x16D4) | 1;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+    *(unsigned char *)((char *)s0 + 0x1864) = 0;
+    if (1.5707964f < Turn_dest(*(void **)((char *)s0 + 0xF0), s0->rot.y,
+                               (float *)((char *)s0 + 0x16A0), 3.1415927f)) {
+        s0->mode = 0;
+        s0->phase = 8;
+        *(int *)((char *)s0 + 0x16D4) = *(int *)((char *)s0 + 0x16D4) | 1;
+        s0->step = 0;
+        s0->stepArg = 0;
         return;
     }
-    *(unsigned char *)(s0 + 0x2F4) = 0;
-    *(unsigned char *)(s0 + 0x2F5) = 0;
-    *(unsigned char *)(s0 + 0x2F6) = 0;
-    *(unsigned char *)(s0 + 0x2F7) = 0;
+    s0->mode = 0;
+    s0->phase = 0;
+    s0->step = 0;
+    s0->stepArg = 0;
 }
