@@ -1,77 +1,86 @@
 /* TU: cOl29 [object] - recovered C++ class. */
 #include "godhand/vu0.h"
 #include "include_asm.h"
+#include "godhand/cOmBase.h"
+
+/* The cOl29 record as far as its methods reach. The base is cOmBase, as for
+ * the other cOl* objects (cOl0e.h). */
+typedef struct cOl29 {
+    cOmBase base;                       /* 0x000 */
+    char unk5E0[0x764 - 0x5E0];
+    unsigned char open;                 /* 0x764 what cOl29::isOpen returns: 1 after setOpenFix, 0 after setCloseFix */
+} cOl29;
 
 __attribute__((section(".text.cOl29_setOpen")))
-void cOl29_setOpen(unsigned char *a0)
+void cOl29_setOpen(cOl29 *a0)
 {
-    if (a0[0x764] == 0) {
-        a0[0x2F7] = 0;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 1;
+    if (a0->open == 0) {
+        a0->base.stepArg = 0;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.mode = 1;
     }
 }
 
 __attribute__((section(".text.cOl29_setClose")))
-void cOl29_setClose(unsigned char *a0)
+void cOl29_setClose(cOl29 *a0)
 {
-    if (a0[0x764] == 1) {
-        a0[0x2F7] = 0;
-        a0[0x2F5] = 0;
-        a0[0x2F6] = 0;
-        a0[0x2F4] = 2;
+    if (a0->open == 1) {
+        a0->base.stepArg = 0;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.mode = 2;
     }
 }
 
 __attribute__((section(".text.cOl29_isOpen")))
-unsigned char cOl29_isOpen(unsigned char *a0) {
-    return a0[0x764];
+unsigned char cOl29_isOpen(cOl29 *a0) {
+    return a0->open;
 }
 
 __attribute__((section(".text.cOl29_setOpenFix")))
-void cOl29_setOpenFix(char *a0) {
+void cOl29_setOpenFix(cOl29 *a0) {
     float buf[4] __attribute__((aligned(16)));
-    if (*(unsigned char *)(a0 + 0x764) == 0) {
-        int *vt = *(int **)(a0 + 0x214);
-        short off = *(short *)((char *)vt + 0x80);
-        void *(*fp)() = *(void *(**)())((char *)vt + 0x84);
-        void *src = fp(a0 + off);
+    if (a0->open == 0) {
+        cVtEnt *vt = a0->base.vtable;
+        short off = vt[16].delta;
+        void *(*fp)(void *) = (void *(*)(void *))vt[16].pfn;
+        void *src = fp((char *)a0 + off);
         VU0_LQC2(4, src, 0);
         VU0_SQC2(4, buf, 0);
         {
-            int *vt2 = *(int **)(a0 + 0x214);
-            short off2 = *(short *)((char *)vt2 + 0x70);
-            void (*fp2)() = *(void (**)())((char *)vt2 + 0x74);
-            fp2(a0 + off2, buf);
+            cVtEnt *vt2 = a0->base.vtable;
+            short off2 = vt2[14].delta;
+            void (*fp2)(void *, float *) = (void (*)(void *, float *))vt2[14].pfn;
+            fp2((char *)a0 + off2, buf);
         }
-        *(unsigned char *)(a0 + 0x764) = 1;
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->open = 1;
+        a0->base.mode = 0;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.stepArg = 0;
     }
 }
 __attribute__((section(".text.cOl29_setCloseFix")))
-void cOl29_setCloseFix(char *a0) {
+void cOl29_setCloseFix(cOl29 *a0) {
     float buf[4] __attribute__((aligned(16)));
-    if (*(unsigned char *)(a0 + 0x764) == 1) {
-        int *vt = *(int **)(a0 + 0x214);
-        short off = *(short *)((char *)vt + 0x80);
-        void *(*fp)() = *(void *(**)())((char *)vt + 0x84);
-        void *src = fp(a0 + off);
+    if (a0->open == 1) {
+        cVtEnt *vt = a0->base.vtable;
+        short off = vt[16].delta;
+        void *(*fp)(void *) = (void *(*)(void *))vt[16].pfn;
+        void *src = fp((char *)a0 + off);
         VU0_LQC2(4, src, 0);
         VU0_SQC2(4, buf, 0);
         {
-            int *vt2 = *(int **)(a0 + 0x214);
-            short off2 = *(short *)((char *)vt2 + 0x70);
-            void (*fp2)() = *(void (**)())((char *)vt2 + 0x74);
-            fp2(a0 + off2, buf);
+            cVtEnt *vt2 = a0->base.vtable;
+            short off2 = vt2[14].delta;
+            void (*fp2)(void *, float *) = (void (*)(void *, float *))vt2[14].pfn;
+            fp2((char *)a0 + off2, buf);
         }
-        *(unsigned char *)(a0 + 0x764) = 0;
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->open = 0;
+        a0->base.mode = 0;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.stepArg = 0;
     }
 }

@@ -14,10 +14,9 @@ extern void CopyVec3ToField30_147C40(void *a0, void *a1);
 extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
+#include "godhand/cOmTwin.h"
 extern char D_005864F0[];
 extern void func_001B6458(void *a0);
-
-struct VtEnt { short delta; short index; void *pfn; };
 
 __attribute__((section(".text.func_001B5EA0")))
 void func_001B5EA0(void *a0)
@@ -28,10 +27,9 @@ void func_001B5EA0(void *a0)
         cVec q20;       /* 0x20 */
         float mtx[16];  /* 0x30 */
     } buf __attribute__((aligned(16)));
-    char *s1 = (char *)a0;
-    struct VtEnt *vt;
+    cOmTwin *s1 = a0;
+    cVtEnt *vt;
     int i;
-    int off;
     int one1;
     float lim;
     char *e, *e10, *e20, *e30, *e40;
@@ -39,20 +37,20 @@ void func_001B5EA0(void *a0)
     cVec *q20v, *q10v;
     float rate;
 
-    switch (*(unsigned char *)(s1 + 0x2F5)) {
+    switch (s1->base.phase) {
     case 0: {
         float *r;
-        if (*(int *)(s1 + 0x604) != 0) {
-            *(int *)(*(char **)(s1 + 0x604) + 0x62C) |= 0x80000000;
-            *(int *)(*(char **)(s1 + 0x604) + 0x5B8) &= ~1;
+        if (s1->partA != 0) {
+            ((cOmTwinPart *)s1->partA)->state |= COMTWIN_PART_LIVE;
+            s1->partA->flags2 &= ~1;
         }
-        if (*(int *)(s1 + 0x608) != 0) {
-            *(int *)(*(char **)(s1 + 0x608) + 0x62C) |= 0x80000000;
-            *(int *)(*(char **)(s1 + 0x608) + 0x5B8) &= ~1;
+        if (s1->partB != 0) {
+            ((cOmTwinPart *)s1->partB)->state |= COMTWIN_PART_LIVE;
+            s1->partB->flags2 &= ~1;
         }
         VU0_SQC2_VF0(&buf.pos, 0x0);
-        vt = *(struct VtEnt **)(s1 + 0x214);
-        r = ((float *(*)(void *))vt[0x10].pfn)(s1 + vt[0x10].delta);
+        vt = s1->base.vtable;
+        r = ((float *(*)(void *))vt[0x10].pfn)((char *)s1 + vt[0x10].delta);
         if (&buf.pos.x != r) {
             buf.pos.x = r[0];
             buf.pos.y = r[1];
@@ -62,52 +60,52 @@ void func_001B5EA0(void *a0)
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0x87, a0, 0, 0, 0, 0);
         func_001B6458(s1);
         SetField5B0Bit2ClearBit8_1B7908(s1);
-        *(unsigned char *)(s1 + 0x2F5) = 1;
-        *(int *)(s1 + 0x850) = 0x1E;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->base.phase = 1;
+        *(int *)((char *)s1 + 0x850) = 0x1E;
+        s1->base.step = 0;
+        s1->base.stepArg = 0;
     }
         /* fallthrough */
     case 1:
-        *(int *)(s1 + 0x850) = *(int *)(s1 + 0x850) - 1;
-        if (*(int *)(s1 + 0x850) <= 0) {
-            *(int *)(s1 + 0x850) = 0xF;
-            *(unsigned char *)(s1 + 0x2F5) = 2;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+        *(int *)((char *)s1 + 0x850) = *(int *)((char *)s1 + 0x850) - 1;
+        if (*(int *)((char *)s1 + 0x850) <= 0) {
+            *(int *)((char *)s1 + 0x850) = 0xF;
+            s1->base.phase = 2;
+            s1->base.step = 0;
+            s1->base.stepArg = 0;
         }
         break;
     case 2: {
-        int n = *(int *)(s1 + 0x850) - 1;
+        int n = *(int *)((char *)s1 + 0x850) - 1;
 
-        *(int *)(s1 + 0x850) = n;
-        *(float *)(s1 + 0x24C) = (float)n / 15.0f;
+        *(int *)((char *)s1 + 0x850) = n;
+        s1->base.tint.w = (float)n / 15.0f;
         if (n <= 0) {
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 3;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->base.step = 0;
+            s1->base.phase = 3;
+            s1->base.stepArg = 0;
         }
         break;
     }
     case 3:
-        *(unsigned char *)(s1 + 0x2F4) = 2;
-        *(unsigned char *)(s1 + 0x2F5) = 0;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->base.mode = 2;
+        s1->base.phase = 0;
+        s1->base.step = 0;
+        s1->base.stepArg = 0;
         break;
     default:
         break;
     }
     i = 1;
-    if (i < 6 && *(unsigned char *)(s1 + 0x2B4) != i) {
+    if (i < 6 && s1->base.partNum != i) {
         q20v = &buf.q20;
         q10v = &buf.q10;
-        e40 = s1 + 0x6B0;
-        e10 = s1 + 0x680;
-        e30 = s1 + 0x6A0;
-        e20 = s1 + 0x690;
-        e = s1 + 0x670;
-        for (; i < 6 && *(unsigned char *)(s1 + 0x2B4) != i;) {
+        e40 = (char *)s1 + 0x6B0;
+        e10 = (char *)s1 + 0x680;
+        e30 = (char *)s1 + 0x6A0;
+        e20 = (char *)s1 + 0x690;
+        e = (char *)s1 + 0x670;
+        for (; i < 6 && s1->base.partNum != i;) {
         one1 = 1;
         lim = -1000.0f;
         if (GetField_54_173900(e) == one1) {
