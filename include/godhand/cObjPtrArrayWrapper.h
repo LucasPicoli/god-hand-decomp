@@ -1,21 +1,18 @@
-/* include/godhand/cObjPtrArrayWrapper.h - the object-pointer array wrapper (sn code at 0x3129D0..)
- * and the g++ 2.x vector it holds. Field names are ours; offsets are exact.
+/* include/godhand/cObjPtrArrayWrapper.h - the object-pointer array wrapper (sn code at 0x3129D0..):
+ * the methods on a PtrVecRef that never grow the storage past its capacity.
  */
 #ifndef GODHAND_COBJPTRARRAYWRAPPER_H
 #define GODHAND_COBJPTRARRAYWRAPPER_H
 
-/* A vector of 4-byte elements. */
-typedef struct cPtrVec {
-    int *unk0;                  /* 0x0 */
-    int *begin;                 /* 0x4 */
-    int *finish;                /* 0x8 one past the last element */
-    int *capEnd;                /* 0xC */
-} cPtrVec;
+#include "godhand/ptrVec.h"
 
-typedef struct cObjPtrArrayWrapperObj {
-    cPtrVec *vec;               /* 0x0 null before the first allocation */
-} cObjPtrArrayWrapperObj;
+/* Append value while the list has room; the new entry, or 0 when full. */
+void **cObjPtrArrayWrapper_pushBack(PtrVecRef *self, void *value);
 
-extern void func_00317FF0(cPtrVec *vec, int *pos, int *val);
+/* Insert value before position while the list has room; the new entry, or 0 when full. */
+void **cObjPtrArrayWrapper_insert(PtrVecRef *self, void **position, void *value);
+
+/* The vector's insert with reallocation (g++ 2.x vector<T *>::insert_aux). */
+extern void func_00317FF0(PtrVec *vec, void **pos, void **val);
 
 #endif
