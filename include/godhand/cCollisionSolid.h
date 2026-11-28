@@ -130,6 +130,8 @@ typedef char cCollisionSolidBox_world_check[((int)&((cCollisionSolidBox *)0)->wo
  * centre distance below which they overlap (assembly; the parameters as its
  * callers pass them). */
 int func_00136A88(const cCollisionSolidBoxWorld *a, const cCollisionSolidBoxWorld *b, float *reach);
+/* The point of box closest to p, into *out (assembly; the parameters as func_00134E18 passes them). */
+void func_00137670(const cVec *p, const cCollisionSolidBoxWorld *box, cVec *out);
 
 #define CSOLID_HIT_MAX       32         /* cCollisionSolidManage.hits */
 
@@ -216,8 +218,8 @@ int func_00135250(cCollisionSolidManage *self, float *amin, float *amax, float *
 /* Nonzero when sphere a of unit ua touches sphere b of unit ub (assembly). */
 int func_00134CB0(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
                   cCollisionSolidManageUnit *ub, cCollisionSolidObj *b);
-/* Nonzero when sphere a of unit ua touches box b of unit ub; swapped is 1 when
- * the box is the solid being checked (assembly). */
+/* Nonzero when sphere a of unit ua touches box b of unit ub, pushing the two
+ * apart; swapped is 1 when the box is the solid being checked. */
 int func_00134E18(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
                   cCollisionSolidManageUnit *ub, cCollisionSolidBox *b, int swapped);
 
