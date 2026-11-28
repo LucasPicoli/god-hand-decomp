@@ -28,11 +28,6 @@ void func_0031A320(DmaChainObj *self, int i)
     self->slot[i].hi = 0;
 }
 
-static inline int pktIsMode1(void)
-{
-    return D_007474A0.mode == 1;
-}
-
 #define PKT(set, n, odd) ((set)->pkt[n][odd].data)
 #define LINK(a, b) SetPackedFields10And18_14FF60((int)(a), (int *)(b))
 
@@ -67,7 +62,7 @@ void func_0031A338(DmaPktSet *set)
         LINK(p7, p8);
         LINK(p8, p9);
     }
-    if (pktIsMode1()) {
+    if (GameWork_isPal()) {
         func_0014FE78(PKT(set, 10, odd));
         LINK(PKT(set, 9, odd), PKT(set, 10, odd));
     }

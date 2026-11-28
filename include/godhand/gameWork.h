@@ -38,7 +38,8 @@ typedef struct GameWork {
     long rep;                   /* 0x1B0 pad repeat bits */
     char pad1B8[0x210 - 0x1B8];
     int frame;                  /* 0x210 bit 0 picks the packet buffer */
-    char pad214[0x270 - 0x214];
+    int field;                  /* 0x214 GS CSR FIELD bit, latched at each vblank */
+    char pad218[0x270 - 0x218];
     unsigned long long bgA : 15;     /* 0x270 background mode, 0x10 or 0x16 (Set_bg_mode) */
     unsigned long long : 49;
     char pad278[0x3E0 - 0x278];
@@ -89,6 +90,14 @@ typedef struct GameWork {
 } GameWork;                     /* 0x620 */
 
 extern GameWork D_007474A0;
+
+#define GAMEWORK_MODE_PAL 1             /* GameWork.mode */
+
+/* 1 when the game runs in PAL mode. */
+static __inline__ int GameWork_isPal(void)
+{
+    return D_007474A0.mode == GAMEWORK_MODE_PAL;
+}
 
 /* The block from GameWork 0x58C on, which code also reaches as its own symbol D_00747A2C.
  * cSaveLoad.h (cSaveLoadGlobals) and cE3.h (cE3Sys) describe parts of the same block. */
