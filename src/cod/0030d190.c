@@ -27,36 +27,25 @@ void MenuCtl_readSlotStreamInfo(MenuCtl *ctl)
 
 /* Append value when the wrapper's length is still below its capacity; return the new element, or 0 when full. */
 __attribute__((section(".text.cObjPtrArrayWrapper_pushBack")))
-int *cObjPtrArrayWrapper_pushBack(cObjPtrArrayWrapperObj *self, int value)
+void **cObjPtrArrayWrapper_pushBack(PtrVecRef *self, void *value)
 {
-    int local;
-    unsigned int size;
-    unsigned int cap;
-    cPtrVec *v;
-    cPtrVec *capVec;
-    int *vp;
+    void *local;
+    PtrVec *v;
+    void **vp;
 
     local = value;
-    size = self->vec ? (self->vec->finish - self->vec->begin) : 0;
-    capVec = self->vec;
-    if (capVec) {
-        int *b = capVec->begin;
-        cap = capVec->capEnd - b;
-    } else {
-        cap = 0;
-    }
-    if (!(size < cap))
+    if (!PtrVecRef_hasRoom(self))
         return 0;
     vp = &local;
-    v = self->vec;
-    if (v->finish != v->capEnd) {
-        if (v->finish != 0)
-            *v->finish = local;
-        v->finish = v->finish + 1;
+    v = self->v;
+    if (v->end != v->cap) {
+        if (v->end != 0)
+            *v->end = local;
+        v->end = v->end + 1;
     } else {
-        func_00317FF0(v, v->finish, vp);
+        func_00317FF0(v, v->end, vp);
     }
-    return self->vec->finish - 1;
+    return self->v->end - 1;
 }
 
 /* Start a sound slot from a descriptor: claim a slot, copy the descriptor, derive the two channel gains and load the script cursor from the bank; -1 when no slot is free. */

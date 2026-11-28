@@ -17,9 +17,32 @@ typedef struct PtrVecRef {
     PtrVec *v;                          /* 0 until the list is allocated */
 } PtrVecRef;
 
+/* Entries in the list; 0 before it is allocated. */
+static __inline__ unsigned int PtrVecRef_size(PtrVecRef *l)
+{
+    return l->v ? (unsigned int)(l->v->end - l->v->begin) : 0;
+}
+
+/* Entries the storage holds; 0 before it is allocated. */
+static __inline__ unsigned int PtrVecRef_capacity(PtrVecRef *l)
+{
+    PtrVec *v = l->v;
+    if (v) {
+        void **b = v->begin;
+        void **c = v->cap;
+        return c - b;
+    }
+    return 0;
+}
+
+/* Nonzero while another entry fits without growing the storage. */
+static __inline__ int PtrVecRef_hasRoom(PtrVecRef *l)
+{
+    return PtrVecRef_size(l) < PtrVecRef_capacity(l);
+}
+
 extern PtrVecRef D_00754C30;            /* every registered object */
 extern PtrVecRef D_00754C58;            /* every other object */
 
-extern void func_003129D0(PtrVecRef *list, void *obj);
 
 #endif /* GODHAND_PTRVEC_H */
