@@ -2,6 +2,8 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cDamageManage.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
+#include "godhand/cGameObj.h"
 
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
 extern void func_002A87E8(void *a0, int a1);
@@ -30,28 +32,28 @@ extern struct Table_func_001788A0 D_003BDA08;
 __attribute__((section(".text.UpdatePhaseThenCalcPartsB")))
 void UpdatePhaseThenCalcPartsB(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDA08 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDA08 + i8 + 4);
     }
-    f0 = D_003BDA08.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDA08.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
     cModel_calcParts(s0);
@@ -72,28 +74,28 @@ extern struct Table_func_001B0468 D_003BDC98;
 __attribute__((section(".text.UpdatePhaseWithHitCheck")))
 void UpdatePhaseWithHitCheck(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDC98 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDC98 + i8 + 4);
     }
-    f0 = D_003BDC98.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDC98.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_002A87E8(s0, 0);
     func_001B76D8(s0);
@@ -112,29 +114,29 @@ extern struct Table_func_001C0378 D_003BDE40;
 __attribute__((section(".text.UpdatePhaseConditionalSync")))
 void UpdatePhaseConditionalSync(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; void (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDE40 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (void (*)(int))(int)(entry >> 32);
     } else {
         fp = *(void (**)(int))((char *)&D_003BDE40 + i8 + 4);
     }
-    f0 = D_003BDE40.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDE40.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
-    if (*(unsigned char *)(s0 + 0x675) == 0) {
+    fp((int)((char *)s0 + arg));
+    if (*(unsigned char *)((char *)s0 + 0x675) == 0) {
         func_002A87E8(s0, 0);
     }
     func_001C0450(s0);
@@ -158,31 +160,31 @@ extern struct Table_func_001AEDB0 D_003BDC68;
 __attribute__((section(".text.UpdatePhaseWithScroll")))
 void UpdatePhaseWithScroll(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     float rate;
     int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDC68 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDC68 + i8 + 4);
     }
-    f0 = D_003BDC68.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDC68.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     rate = cEmManage_GetSpeedRate(D_005864F0);
-    *(float *)(s0 + 0x5A8) = rate;
+    s0->speedRate = rate;
     cModel_ScrollTexture(s0, rate);
     cCollisionSolidManage_ChkHit(&D_00462FC0, (cGameObj *)s0);
     func_002A87E8(s0, 0);
@@ -195,28 +197,28 @@ void UpdatePhaseWithScroll(void *a0)
 
 __attribute__((section(".text.UpdateActionTable")))
 void UpdateActionTable(void *a0) {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
-    if (*(unsigned char *)(s0 + 0x2F5) >= 1) *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 1) s0->phase = 0;
+    i8 = s0->phase * 8;
     e = D_003C0480 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))(D_003C0480 + i8 + 4);
     }
-    f0 = *(short *)(D_003C0480 + *(unsigned char *)(s0 + 0x2F5) * 8);
+    f0 = *(short *)(D_003C0480 + s0->phase * 8);
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_002A87E8(s0, 0);
 }
 

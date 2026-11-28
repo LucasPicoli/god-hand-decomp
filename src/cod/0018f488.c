@@ -5,6 +5,8 @@
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
+#include "godhand/cOmBase.h"
 
 extern int IsEntryActive_1C2490(int a0);
 extern void SetField_630_1C2370(int a0);
@@ -34,7 +36,7 @@ typedef struct { char b[0x10]; } Blob10;
 extern Blob10 D_00448E00;
 
 __attribute__((section(".text.UpdateStateTableWithPendingEntry")))
-void UpdateStateTableWithPendingEntry(char *s0)
+void UpdateStateTableWithPendingEntry(cObj *s0)
 {
     struct Entry_func_0028A8D0 tbl[2];
     char *e;
@@ -43,32 +45,32 @@ void UpdateStateTableWithPendingEntry(char *s0)
     int type; int arg; int (*fp)(int); long entry;
 
     *(Blob10 *)tbl = D_00448E00;
-    if (*(int *)(s0 + 0x15B0) != 0) {
-        if (IsEntryActive_1C2490(*(int *)(s0 + 0x15B0)) != 0) {
-            *(int *)(s0 + 0x15B0) = 0;
+    if (*(int *)((char *)s0 + 0x15B0) != 0) {
+        if (IsEntryActive_1C2490(*(int *)((char *)s0 + 0x15B0)) != 0) {
+            *(int *)((char *)s0 + 0x15B0) = 0;
         } else {
-            SetField_630_1C2370(*(int *)(s0 + 0x15B0));
+            SetField_630_1C2370(*(int *)((char *)s0 + 0x15B0));
         }
-        *(int *)(s0 + 0x15B0) = 0;
+        *(int *)((char *)s0 + 0x15B0) = 0;
     }
-    if (*(unsigned char *)(s0 + 0x2F5) >= 2)
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 2)
+        s0->phase = 0;
+    i8 = s0->phase * 8;
     e = (char *)tbl + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)tbl + i8 + 4);
     }
-    f0 = tbl[*(unsigned char *)(s0 + 0x2F5)].f0;
+    f0 = tbl[s0->phase].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
 }
 
 /* Coliseum wave director, second variant: clear the field, then spawn the next group when the timer (750 frames) runs out or no enemy is left. */
@@ -130,33 +132,33 @@ struct Table_173 { struct Entry_173 e[4]; };
 __attribute__((section(".text.UpdatePhaseWithFlagGate")))
 void UpdatePhaseWithFlagGate(void *a0)
 {
-    char *s0 = (char *)a0;
+    cOmBase *s0 = a0;
     struct Table_173 buf;
     char *e;
     int i8;
     int f0;
     long flags; int type; int arg; int (*fp)(int); long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
-    flags = *(unsigned int *)(s0 + 0x5B0);
+    flags = (unsigned int)s0->flags0;
     if (((flags >> 2) & 1) == 0) {
         buf = D_00423E10;
-        i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+        i8 = s0->mode * 8;
         e = (char *)&buf + i8;
         type = (short)*(unsigned short *)(e + 2);
         if (type >= 0) {
-            int base = *(int *)(s0 + (short)*(unsigned short *)(e + 4));
+            int base = *(int *)((char *)s0 + (short)*(unsigned short *)(e + 4));
             entry = *(long *)(base + type * 8 - 8);
             fp = (int (*)(int))(int)(entry >> 32);
         } else {
             fp = *(int (**)(int))((char *)&buf + i8 + 4);
         }
-        f0 = buf.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+        f0 = buf.e[s0->mode].f0;
         if (type >= 0)
             arg = (short)entry + f0;
         else
             arg = f0;
-        fp((int)(s0 + arg));
-        flags = *(unsigned int *)(s0 + 0x5B0);
+        fp((int)((char *)s0 + arg));
+        flags = (unsigned int)s0->flags0;
         if (((flags >> 1) & 1) == 0)
             func_002A87E8(s0, 0);
         func_001B76D8(s0);

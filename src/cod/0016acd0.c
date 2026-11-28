@@ -74,6 +74,7 @@ void func_0016ACD0(cSubScrShopMain *self)
 #include "godhand/cSnd.h"
 #include "godhand/effectPos.h"
 #include "godhand/vu0.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -86,20 +87,14 @@ void func_0016ACD0(cSubScrShopMain *self)
 __attribute__((section(".text.func_0019B580")))
 void func_0019B580(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     cVec buf __attribute__((aligned(16)));
 
-    switch (*(unsigned char *)(s0 + 0x2F5)) {
+    switch (s0->phase) {
     case 0: {
-        char *vt;
-        short off;
-        float *(*fp)();
         float *src;
         VU0_SQC2_VF0(&buf, 0);
-        vt = *(char **)(s0 + 0x214);
-        off = *(short *)(vt + 0x80);
-        fp = *(float *(**)())(vt + 0x84);
-        src = fp(s0 + off);
+        src = CVCALL_FN(s0, 16, float *(*)(void *))(CVCALL_THIS(s0, 16));
         if (&buf.x != src) {
             buf.x = src[0];
             buf.y = src[1];
@@ -107,53 +102,53 @@ void func_0019B580(void *a0)
         }
         SetEffectPos(0, 0xCC, 0, &buf, 1.0f, -1);
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0, a0, 0, 0, 0, 0);
-        if (*(char *)(s0 + 0xA92) == 0) {
+        if (*(char *)((char *)s0 + 0xA92) == 0) {
             func_0019BA08(s0, 0, 2);
-            cEmManage_CreateItem(&D_005864F0, *(int *)(s0 + 0xF0), 0xFFFF, 0);
-            *(short *)(s0 + 0x54A) = *(unsigned short *)(s0 + 0x548);
-            *(unsigned char *)(s0 + 0xA92) = *(unsigned char *)(s0 + 0xA92) + 1;
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            cEmManage_CreateItem(&D_005864F0, (int)s0->pos, 0xFFFF, 0);
+            s0->hp = s0->hpMax;
+            *(unsigned char *)((char *)s0 + 0xA92) = *(unsigned char *)((char *)s0 + 0xA92) + 1;
+            s0->mode = 0;
+            s0->phase = 0;
+            s0->step = 0;
+            s0->stepArg = 0;
             break;
         }
         func_0019BA08(s0, 1, 3);
         SetField5B0Bit2ClearBit8_1B7908((int)s0);
-        *(unsigned char *)(s0 + 0x2F5) = 1;
-        *(short *)(s0 + 0xA90) = 0x1E;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->phase = 1;
+        *(short *)((char *)s0 + 0xA90) = 0x1E;
+        s0->step = 0;
+        s0->stepArg = 0;
     }
     /* fallthrough */
     case 1: {
-        int v = *(unsigned short *)(s0 + 0xA90) - 1;
-        *(short *)(s0 + 0xA90) = v;
+        int v = *(unsigned short *)((char *)s0 + 0xA90) - 1;
+        *(short *)((char *)s0 + 0xA90) = v;
         if ((short)v > 0)
             break;
-        *(short *)(s0 + 0xA90) = 0xF;
-        *(unsigned char *)(s0 + 0x2F5) = 2;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        *(short *)((char *)s0 + 0xA90) = 0xF;
+        s0->phase = 2;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
     case 2: {
-        int v = *(unsigned short *)(s0 + 0xA90) - 1;
+        int v = *(unsigned short *)((char *)s0 + 0xA90) - 1;
         short t = v;
-        *(short *)(s0 + 0xA90) = v;
-        *(float *)(s0 + 0x24C) = (float)t / 15.0f;
+        *(short *)((char *)s0 + 0xA90) = v;
+        s0->tint.w = (float)t / 15.0f;
         if (t > 0)
             break;
-        *(unsigned char *)(s0 + 0x2F5) = 3;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->phase = 3;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
     case 3:
-        *(unsigned char *)(s0 + 0x2F4) = 3;
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->mode = 3;
+        s0->phase = 0;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
 }
@@ -161,6 +156,7 @@ void func_0019B580(void *a0)
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/vu0.h"
 #include "godhand/cObjBase.h"
+#include "godhand/cOmBase.h"
 
 
 
@@ -183,23 +179,17 @@ typedef struct Frame {
 __attribute__((section(".text.func_001BFD28")))
 void func_001BFD28(void *a0)
 {
-    char *s0 = (char *)a0;
+    cOmBase *s0 = a0;
     Frame fr;
     cEffectParam *e;
     float ang;
 
-    switch (*(unsigned char *)(s0 + 0x2F5)) {
+    switch (s0->phase) {
     case 0: {
-        char *vt;
-        short off;
-        float *(*fp)();
         float *src;
-        ang = capVu0Atan2(*(float *)(s0 + 0x5C0), *(float *)(s0 + 0x5C8));
+        ang = capVu0Atan2(s0->knock.x, s0->knock.z);
         VU0_SQC2_VF0(&fr, 0x00);
-        vt = *(char **)(s0 + 0x214);
-        off = *(short *)(vt + 0x80);
-        fp = *(float *(**)())(vt + 0x84);
-        src = fp(s0 + off);
+        src = CVCALL_FN(s0, 16, float *(*)(void *))(CVCALL_THIS(s0, 16));
         if ((void *)&fr.a != (void *)src) {
             fr.a.x = src[0];
             fr.a.y = src[1];
@@ -240,48 +230,43 @@ void func_001BFD28(void *a0)
         }
         fr.s.size = 1.0f;
         SetEffect(0, 0x1C, 0, &fr.s, -1, EFFECT_FOLLOW_OWNER);
-        {
-            char *vt2 = *(char **)(s0 + 0x214);
-            short off2 = *(short *)(vt2 + 0xA8);
-            void (*fp2)() = *(void (**)())(vt2 + 0xAC);
-            fp2(s0 + off2);
-        }
+        CVCALL_FN(s0, 21, void (*)(void *))(CVCALL_THIS(s0, 21));
         DamageObj_disableDamage(s0);
         SetField5B0Bit2ClearBit8_1B7908((int)s0);
-        *(unsigned char *)(s0 + 0x2F5) = 1;
-        *(short *)(s0 + 0x604) = 0x1E;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->phase = 1;
+        *(short *)((char *)s0 + 0x604) = 0x1E;
+        s0->step = 0;
+        s0->stepArg = 0;
     }
     /* fallthrough */
     case 1: {
-        int v = *(unsigned short *)(s0 + 0x604) - 1;
-        *(short *)(s0 + 0x604) = v;
+        int v = *(unsigned short *)((char *)s0 + 0x604) - 1;
+        *(short *)((char *)s0 + 0x604) = v;
         if ((short)v > 0)
             break;
-        *(short *)(s0 + 0x604) = 0xF;
-        *(unsigned char *)(s0 + 0x2F5) = 2;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        *(short *)((char *)s0 + 0x604) = 0xF;
+        s0->phase = 2;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
     case 2: {
-        int v = *(unsigned short *)(s0 + 0x604) - 1;
+        int v = *(unsigned short *)((char *)s0 + 0x604) - 1;
         short t = v;
-        *(short *)(s0 + 0x604) = v;
-        *(float *)(s0 + 0x24C) = (float)t / 15.0f;
+        *(short *)((char *)s0 + 0x604) = v;
+        s0->tint.w = (float)t / 15.0f;
         if (t > 0)
             break;
-        *(unsigned char *)(s0 + 0x2F5) = 3;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->phase = 3;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
     case 3:
-        *(unsigned char *)(s0 + 0x2F4) = 3;
-        *(unsigned char *)(s0 + 0x2F5) = 0;
-        *(unsigned char *)(s0 + 0x2F6) = 0;
-        *(unsigned char *)(s0 + 0x2F7) = 0;
+        s0->mode = 3;
+        s0->phase = 0;
+        s0->step = 0;
+        s0->stepArg = 0;
         break;
     }
 }

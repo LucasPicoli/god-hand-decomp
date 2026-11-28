@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/cDamageManage.h"
+#include "godhand/cGameObj.h"
 
 extern void UpdateObjByIndexedOp_2FBE50(void *slot);
 extern int ClearField5B4IfFlagUnset_1B76B0(int a0);
@@ -51,7 +52,7 @@ extern struct Table_func_001B0F70 D_003BDCC0;
 __attribute__((section(".text.ModeDispatch_tickWithHitStop")))
 void ModeDispatch_tickWithHitStop(void *a0)
 {
-    char *s0 = (char *)a0;
+    cGameObj *s0 = a0;
     char *e;
     int i8;
     int f0;
@@ -61,23 +62,23 @@ void ModeDispatch_tickWithHitStop(void *a0)
     if (cDamageManage_CkHitStop(&D_00574380) != 0) return;
     DamagePairObj_clearHits(s0);
     rate = cEmManage_GetSpeedRate(D_005864F0);
-    *(float *)(s0 + 0x5A8) = rate;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    s0->speedRate = rate;
+    i8 = s0->mode * 8;
     e = (char *)&D_003BDCC0 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&D_003BDCC0 + i8 + 4);
     }
-    f0 = D_003BDCC0.e[*(unsigned char *)(s0 + 0x2F4)].f0;
+    f0 = D_003BDCC0.e[s0->mode].f0;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_001B1938(s0);
     func_001B1630(s0);
     func_001B76D8(s0);

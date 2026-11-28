@@ -238,7 +238,9 @@ typedef struct cEm00 {
     float unk760;                           /* 0x760 */
     char unk764[0x4];
     float unk768;                           /* 0x768 angle tested against pi/4 before the attack */
-    char unk76C[0x194];
+    float unk76C;                           /* 0x76C scale on the damage the enemy's catch moves deal the player (func_0012C0F8) */
+    float unk770;                           /* 0x770 */
+    char unk774[0x18C];
     int unk900;                             /* 0x900 countdown of the derived enemy, ticks down once per frame */
     char unk904[0xC58];
     int unk155C;                            /* 0x155C bits 0 and 1 pick the alternate textures of enemies 0x2A7, 0x2A9 and 0x2AB */
@@ -292,7 +294,7 @@ typedef struct cEm00 {
     int hitKind;                            /* 0x16C4 which hit this reaction answers, 0 to 16 */
     char unk16C8[0x8];
     int emFlags;                            /* 0x16D0 */
-    int emFlags2;                           /* 0x16D4 CEM00_FLAG2_* */
+    unsigned int emFlags2;                  /* 0x16D4 CEM00_FLAG2_* */
     unsigned int unk16D8;                   /* 0x16D8 */
     int unk16DC;                            /* 0x16DC  */
     int unk16E0;                            /* 0x16E0  */

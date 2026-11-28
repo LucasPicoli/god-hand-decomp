@@ -13,9 +13,9 @@ extern void CopyVec3ToField30_147C40(void *a0, void *a1);
 extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
+#include "godhand/cObj.h"
 extern char D_005864F0[];
 
-struct VtEnt { short delta; short index; void *pfn; };
 struct Pmf { short delta; short index; union { void *fn; short vo; } u; };
 typedef struct { char b[0x20]; } Tbl32;
 
@@ -23,9 +23,9 @@ __attribute__((section(".text.func_001A2AA8")))
 void func_001A2AA8(void *a0)
 {
     char frame[0x80] __attribute__((aligned(16)));
-    char *s2 = (char *)a0;
+    cObj *s2 = a0;
     struct Pmf *pm;
-    struct VtEnt *vt;
+    cVtEnt *vt;
     void *fn;
     long ve;
     int ix, off8;
@@ -47,32 +47,32 @@ void func_001A2AA8(void *a0)
         return;
     }
     *(Tbl32 *)frame = *(Tbl32 *)D_00426F50;
-    pm = (struct Pmf *)frame + *(unsigned char *)(s2 + 0x2F4);
+    pm = (struct Pmf *)frame + s2->mode;
     ix = pm->index;
     if (ix >= 0) {
-        vt = *(struct VtEnt **)(s2 + pm->u.vo);
+        vt = *(cVtEnt **)((char *)s2 + pm->u.vo);
         ve = *(long *)((char *)vt + (ix - 1) * 8);
         fn = (void *)(int)(ve >> 32);
     } else {
         q4 = frame + 4;
-        off8 = *(unsigned char *)(s2 + 0x2F4) * 8;
+        off8 = s2->mode * 8;
         fn = *(void **)(q4 + off8);
     }
-    dl = (pm3 = (struct Pmf *)frame + *(unsigned char *)(s2 + 0x2F4))->delta;
+    dl = (pm3 = (struct Pmf *)frame + s2->mode)->delta;
     new_var = &dl;
     dl = (ix >= 0) ? (short)ve + (*new_var) : dl;
-    th = s2 + dl;
+    th = (char *)s2 + dl;
     i = 0;
     ((void (*)(void *))fn)(th);
-    if (*(unsigned char *)(s2 + 0x2B4) != i) {
+    if (s2->partNum != i) {
         q20v = frame + 0x30;
         q10v = frame + 0x20;
-        e40 = s2 + 0x650;
-        e10 = s2 + 0x620;
-        e30 = s2 + 0x640;
-        e20 = s2 + 0x630;
-        e = s2 + 0x610;
-        for (; i < 0x14 && *(unsigned char *)(s2 + 0x2B4) != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
+        e40 = (char *)s2 + 0x650;
+        e10 = (char *)s2 + 0x620;
+        e30 = (char *)s2 + 0x640;
+        e20 = (char *)s2 + 0x630;
+        e = (char *)s2 + 0x610;
+        for (; i < 0x14 && s2->partNum != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
         one1 = 1;
         lim = -1000.0f;
         if (GetField_54_173900(e) == one1) {

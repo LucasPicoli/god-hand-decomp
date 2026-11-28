@@ -14,10 +14,9 @@ extern void CopyVec3ToField30_147C40(void *a0, void *a1);
 extern void MtxMulScaleVec(void *a0, void *a1, void *a2);
 extern int MtxCopy();
 #include "godhand/objField.h"
+#include "godhand/cOmBase.h"
 extern char D_005864F0[];
 extern void func_00174448(void *a0);
-
-struct VtEnt { short delta; short index; void *pfn; };
 
 __attribute__((section(".text.func_00173EC0")))
 void func_00173EC0(void *a0)
@@ -28,10 +27,9 @@ void func_00173EC0(void *a0)
         cVec q20;       /* 0x20 */
         float mtx[16];  /* 0x30 */
     } buf __attribute__((aligned(16)));
-    char *s1 = (char *)a0;
-    struct VtEnt *vt;
+    cOmBase *s1 = a0;
+    cVtEnt *vt;
     int i;
-    int off;
     int one1;
     float lim;
     char *e, *e10, *e20, *e30, *e40;
@@ -39,12 +37,12 @@ void func_00173EC0(void *a0)
     cVec *q20v, *q10v;
     float rate;
 
-    switch (*(unsigned char *)(s1 + 0x2F5)) {
+    switch (s1->phase) {
     case 0: {
         float *r;
         VU0_SQC2_VF0(&buf.pos, 0x0);
-        vt = *(struct VtEnt **)(s1 + 0x214);
-        r = ((float *(*)(void *))vt[0x10].pfn)(s1 + vt[0x10].delta);
+        vt = s1->vtable;
+        r = ((float *(*)(void *))vt[0x10].pfn)((char *)s1 + vt[0x10].delta);
         if (&buf.pos.x != r) {
             buf.pos.x = r[0];
             buf.pos.y = r[1];
@@ -54,52 +52,52 @@ void func_00173EC0(void *a0)
         cSnd_SeCall_2CBA48(&D_005FEE00, 2, 0xF, a0, 0, 0, 0, 0);
         func_00174448(s1);
         SetField5B0Bit2ClearBit8_1B7908(s1);
-        *(unsigned char *)(s1 + 0x2F5) = 1;
-        *(short *)(s1 + 0x654) = 0x1E;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->phase = 1;
+        *(short *)((char *)s1 + 0x654) = 0x1E;
+        s1->step = 0;
+        s1->stepArg = 0;
     }
         /* fallthrough */
     case 1:
-        *(short *)(s1 + 0x654) = *(unsigned short *)(s1 + 0x654) - 1;
-        if (*(short *)(s1 + 0x654) <= 0) {
-            *(short *)(s1 + 0x654) = 0xF;
-            *(unsigned char *)(s1 + 0x2F5) = 2;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+        *(short *)((char *)s1 + 0x654) = *(unsigned short *)((char *)s1 + 0x654) - 1;
+        if (*(short *)((char *)s1 + 0x654) <= 0) {
+            *(short *)((char *)s1 + 0x654) = 0xF;
+            s1->phase = 2;
+            s1->step = 0;
+            s1->stepArg = 0;
         }
         break;
     case 2: {
-        int n = *(unsigned short *)(s1 + 0x654) - 1;
+        int n = *(unsigned short *)((char *)s1 + 0x654) - 1;
 
-        *(short *)(s1 + 0x654) = n;
-        *(float *)(s1 + 0x24C) = (float)(short)n / 15.0f;
+        *(short *)((char *)s1 + 0x654) = n;
+        s1->tint.w = (float)(short)n / 15.0f;
         if ((short)n <= 0) {
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 3;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->step = 0;
+            s1->phase = 3;
+            s1->stepArg = 0;
         }
         break;
     }
     case 3:
-        *(unsigned char *)(s1 + 0x2F4) = 3;
-        *(unsigned char *)(s1 + 0x2F5) = 0;
-        *(unsigned char *)(s1 + 0x2F6) = 0;
-        *(unsigned char *)(s1 + 0x2F7) = 0;
+        s1->mode = 3;
+        s1->phase = 0;
+        s1->step = 0;
+        s1->stepArg = 0;
         break;
     default:
         break;
     }
     i = 1;
-    if (i < 6 && *(unsigned char *)(s1 + 0x2B4) != i) {
+    if (i < 6 && s1->partNum != i) {
         q20v = &buf.q20;
         q10v = &buf.q10;
-        e40 = s1 + 0x700;
-        e10 = s1 + 0x6D0;
-        e30 = s1 + 0x6F0;
-        e20 = s1 + 0x6E0;
-        e = s1 + 0x6C0;
-        for (; i < 6 && *(unsigned char *)(s1 + 0x2B4) != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
+        e40 = (char *)s1 + 0x700;
+        e10 = (char *)s1 + 0x6D0;
+        e30 = (char *)s1 + 0x6F0;
+        e20 = (char *)s1 + 0x6E0;
+        e = (char *)s1 + 0x6C0;
+        for (; i < 6 && s1->partNum != i; i++, e40 += 0x60, e10 += 0x60, e30 += 0x60, e20 += 0x60, e += 0x60) {
         one1 = 1;
         lim = -1000.0f;
         if (GetField_54_173900(e) == one1) {

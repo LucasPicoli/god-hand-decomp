@@ -34,6 +34,8 @@ extern char D_005864F0[];
  */
 
 #include "godhand/vu0.h"
+#include "godhand/pl00.h"
+#include "godhand/cGameObj.h"
 
 
 
@@ -54,94 +56,92 @@ extern char D_005864F0[];
 
 
 
-
-#define OTHER (*(char **)(s1 + 0x698))
 
 __attribute__((section(".text.func_00115030")))
 void func_00115030(void *a0) {
-    char *s1 = (char *)a0;
+    pl00 *s1 = a0;
     float mv[20]; /* mv[0..15]: rotation matrix; mv[16..19]: direction vector */
-    float *d;
-    float *s;
-    float *d2;
-    float *s2;
-    char *o;
+    cVec *d;
+    cVec *s;
+    cVec *d2;
+    cVec *s2;
+    cGameObj *o;
     int t;
     int tt;
     int p1;
     int p2;
 
-    *(float *)(s1 + 0x54C) = 5.0f;
+    s1->base.hitFlash = 5.0f;
     cEmManage_SetSlotWait(D_005864F0, 2);
     cEmManage_SetPlCatched(D_005864F0);
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s1, 0);
-    switch (*(unsigned char *)(s1 + 0x2F6)) {
+    switch (s1->base.step) {
     case 0:
-        *(short *)(s1 + 0x5E0) = 0;
-        *(short *)(s1 + 0x5E2) = 0;
+        s1->comboSlot = 0;
+        s1->comboSet = 0;
         func_001268F0(s1);
         Obj0000_Clear_Fields_640_648_124E58(s1);
-        t = *(int *)(s1 + 0x304);
+        t = (int)s1->base.pack;
         p1 = *(int *)(t + 0x8C8) + t;
         p2 = *(int *)(t + 0x8CC) + t;
-        o = *(char **)(s1 + 0x69C);
-        *(char **)(s1 + 0x698) = o;
+        o = s1->unk69C;
+        s1->sub698 = o;
         if (o != 0) {
             VU0_SQC2_VF0(mv, 0x40);
-            MtxInitRotY(mv, *(float *)(s1 + 0x104));
+            MtxInitRotY(mv, s1->base.rot.y);
             mv[16] = 0.0f;
             mv[17] = 0.0f;
             mv[18] = -1.0f;
             sceVu0ApplyMatrix(&mv[16], mv, &mv[16]);
-            (*(float **)(s1 + 0xF0))[0] = (*(float **)(OTHER + 0xF0))[0] + mv[16];
-            (*(float **)(s1 + 0xF0))[2] = (*(float **)(OTHER + 0xF0))[2] + mv[18];
-            cOmWeapon_resetHold(OTHER);
-            d = *(float **)(OTHER + 0xF0);
-            s = *(float **)(s1 + 0xF0);
+            s1->base.pos->x = s1->sub698->pos->x + mv[16];
+            s1->base.pos->z = s1->sub698->pos->z + mv[18];
+            cOmWeapon_resetHold(s1->sub698);
+            d = s1->sub698->pos;
+            s = s1->base.pos;
             if (d != s) {
-                d[0] = s[0];
-                d[1] = s[1];
-                d[2] = s[2];
+                d->x = s->x;
+                d->y = s->y;
+                d->z = s->z;
             }
-            d = (float *)(OTHER + 0x100);
-            s = (float *)(s1 + 0x100);
+            d = &s1->sub698->rot;
+            s = &s1->base.rot;
             if (d != s) {
-                d[0] = s[0];
-                d[1] = s[1];
-                d[2] = s[2];
+                d->x = s->x;
+                d->y = s->y;
+                d->z = s->z;
             }
-            tt = *(int *)(s1 + 0x304);
-            func_002A8578(OTHER, *(int *)(tt + 0x900) + tt, 0, 0, 0.0f, 0, 0);
+            tt = (int)s1->base.pack;
+            func_002A8578(s1->sub698, *(int *)(tt + 0x900) + tt, 0, 0, 0.0f, 0, 0);
         }
         func_002A8578(s1, p1, p2, 0, 0.0f, 0, 0);
-        *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
+        s1->base.step = s1->base.step + 1;
         /* fallthrough */
     case 1:
         func_00124EC0(s1);
-        if (OTHER != 0) {
-            d2 = *(float **)(OTHER + 0xF0);
-            s2 = *(float **)(s1 + 0xF0);
+        if (s1->sub698 != 0) {
+            d2 = s1->sub698->pos;
+            s2 = s1->base.pos;
             if (d2 != s2) {
-                d2[0] = s2[0];
-                d2[1] = s2[1];
-                d2[2] = s2[2];
+                d2->x = s2->x;
+                d2->y = s2->y;
+                d2->z = s2->z;
             }
-            d = (float *)(OTHER + 0x100);
-            s = (float *)(s1 + 0x100);
+            d = &s1->sub698->rot;
+            s = &s1->base.rot;
             if (d != s) {
-                d[0] = s[0];
-                d[1] = s[1];
-                d[2] = s[2];
+                d->x = s->x;
+                d->y = s->y;
+                d->z = s->z;
             }
         }
         InvokeVirtualAtField214AndForward_124E68(s1, 0.19634954f);
         if (moveMotion(s1) != 0) {
             pl00_clearMotionCam(s1, 0, 0);
             func_0012A8D8(s1);
-            *(unsigned char *)(s1 + 0x2F4) = 0;
-            *(unsigned char *)(s1 + 0x2F5) = 0;
-            *(unsigned char *)(s1 + 0x2F6) = 0;
-            *(unsigned char *)(s1 + 0x2F7) = 0;
+            s1->base.mode = 0;
+            s1->base.phase = 0;
+            s1->base.step = 0;
+            s1->base.stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s1, 1.0f);
         cObjBase_addNullSpeed(s1, 1.0f);

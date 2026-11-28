@@ -1,6 +1,5 @@
 /* sn-2.95.3-136 matched TU. */
 
-extern void *Getplayer(void);
 #include "godhand/cCollisionSolid.h"
 #include "godhand/motion.h"
 extern int moveMotion(void *a0);
@@ -26,70 +25,73 @@ extern char D_007474A0[];
 
 #include "godhand/vu0.h"
 #include "godhand/cCoreSave.h"
+#include "godhand/cEm00.h"
+#include "godhand/cGameObj.h"
+#include "godhand/player.h"
 
 __attribute__((section(".text.func_00239240")))
 void func_00239240(void *a0)
 {
-    char *s0 = (char *)a0;
-    char *s1 = (char *)Getplayer();
+    cEm00 *s0 = a0;
+    cGameObj *s1 = Getplayer();
 
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    switch (s0->step) {
     case 0:
     {
         int p;
 
-        *(char *)(s0 + 0x1864) = 0;
-        p = *(int *)(s0 + 0x304);
+        s0->unk1864 = 0;
+        p = EM_RES(s0);
         func_002A8578(s0, *(int *)(p + 0x3BD8) + p, *(int *)(p + 0x3BDC) + p,
                       0, 0.0f, 0, 0);
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
-        case 1: default: *(short *)(s0 + 0x568) = 0xF; break;
-        case 2: *(short *)(s0 + 0x568) = 0x14; break;
-        case 3: case 4: *(short *)(s0 + 0x568) = 0x19; break;
-        case 5: *(short *)(s0 + 0x568) = 0x1E; break;
+        case 1: default: s0->unk568 = 0xF; break;
+        case 2: s0->unk568 = 0x14; break;
+        case 3: case 4: s0->unk568 = 0x19; break;
+        case 5: s0->unk568 = 0x1E; break;
         }
-        *(short *)(s0 + 0x56A) = 0x1E;
-        *(short *)(s0 + 0x56E) = 0xF;
-        (*(unsigned char *)(s0 + 0x2F6))++;
+        s0->unk56A = 0x1E;
+        s0->unk56E = 0xF;
+        (s0->step)++;
     }
         /* fallthrough */
     case 1:
         cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
-        if (*(short *)(s0 + 0x56E) != 0) {
-            char *q;
-            int p0;
+        if (s0->unk56E != 0) {
+            cVec *q;
+            cVec *p0;
 
-            (*(short *)(s0 + 0x56E))--;
-            p0 = *(int *)(s0 + 0xF0);
-             
-            q = s1 + 0x550;
+            (s0->unk56E)--;
+            p0 = s0->pos;
+
+            q = &s1->vel;
             VU0_VADD_XYZ_IP(p0, 0, q);
         }
-        *(float *)(s0 + 0x54C) = 3.0f;
+        s0->hitFlash = 3.0f;
         if (moveMotion(s0) != 0) {
-            *(char *)(s0 + 0x2F4) = 0;
-            *(char *)(s0 + 0x2F5) = 0x6C;
-            *(char *)(s0 + 0x2F6) = 0;
-            *(char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if (*(short *)(s0 + 0x56A) > 0) {
-            *(short *)(s0 + 0x56A) = *(unsigned short *)(s0 + 0x56A) - 1;
+        if (s0->unk56A > 0) {
+            s0->unk56A = s0->unk56A - 1;
             func_002DB770();
             {
                 char *g = D_007474A0;
                 if ((*(int *)(g + 8) & 0xF0) != 0)
-                    *(short *)(s0 + 0x568) = *(unsigned short *)(s0 + 0x568) - 1;
+                    s0->unk568 = s0->unk568 - 1;
                 if ((*(int *)(g + 8) & 0xF00000) != 0)
-                    *(short *)(s0 + 0x568) = *(unsigned short *)(s0 + 0x568) - 4;
+                    s0->unk568 = s0->unk568 - 4;
             }
-        } else if (*(short *)(s0 + 0x568) <= 0) {
+        } else if (s0->unk568 <= 0) {
             int k = 2;
 
             do {
-                *(unsigned char *)(s0 + 0x2F6) = k;
-                *(unsigned char *)(s1 + 0x2F6) = k;
+                s0->step = k;
+                s1->step = k;
             } while (0);
         }
         break;
@@ -98,19 +100,19 @@ void func_00239240(void *a0)
         int p;
         int one = 1;
 
-        p = *(int *)(s0 + 0x304);
-        *(char *)(s0 + 0x1864) = 0;
+        p = EM_RES(s0);
+        s0->unk1864 = 0;
         func_002A8578(s0, *(int *)(p + 0x3BE0) + p, *(int *)(p + 0x3BE4) + p,
                       3, 0.0f, 0, 0);
-        *(int *)(s0 + 0x5F0) = one;
-        *(float *)(s0 + 0x54C) = 15.0f;
-        *(short *)(s0 + 0x568) = 0x28;
-        (*(unsigned char *)(s0 + 0x2F6))++;
+        s0->timerA = one;
+        s0->hitFlash = 15.0f;
+        s0->unk568 = 0x28;
+        (s0->step)++;
     }
         /* fallthrough */
     case 3:
-        if (*(short *)(s0 + 0x568) != 0) {
-            *(short *)(s0 + 0x568) = *(unsigned short *)(s0 + 0x568) - 1;
+        if (s0->unk568 != 0) {
+            s0->unk568 = s0->unk568 - 1;
             cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
         }
         if (moveMotion(s0) != 0) {
@@ -119,14 +121,11 @@ void func_00239240(void *a0)
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if ((*(unsigned short *)(s0 + 0x3AC) & 0x1) != 0) {
-            if (*(int *)(s0 + 0x5F0) != 0) {
-                char *vt = *(char **)(s0 + 0x214);
-                int (*fp)() = *(int (**)())(vt + 0xAC);
-
-                fp(s0 + *(short *)(vt + 0xA8), 0xA, s1, 1, 0);
-                if (*(short *)(s0 + 0x54A) <= 0)
-                    *(short *)(s0 + 0x54A) = 1;
+        if ((s0->seqFlags & 0x1) != 0) {
+            if (s0->timerA != 0) {
+                CEM00_VCALL(s0, hit, 0xA, s1, 1, 0);
+                if (s0->hp <= 0)
+                    s0->hp = 1;
             }
         }
         break;

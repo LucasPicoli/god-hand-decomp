@@ -5,6 +5,7 @@
 #include "godhand/cPlCamera.h"
 #include "godhand/cEm00.h"
 #include "godhand/globals.h"
+#include "godhand/cObj.h"
 
 extern void StoreVecFromFieldB0_2B6160(cVec *dst, void *obj);
 extern void func_002E28F0(void *obj, float y);
@@ -60,28 +61,28 @@ void cOmBase_dropTestB(cOmBase *self)
 /* Tick: dispatch the current action: pick the table entry for state byte +0x2F5 (reset to 0 when out of range) and call its handler, then sync. */
 __attribute__((section(".text.ActionTable_tickDispatch")))
 void ActionTable_tickDispatch(void *a0) {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     char *e;
     int i8;
     int f0;
     int type; int arg; int (*fp)(int); long entry;
-    if (*(unsigned char *)(s0 + 0x2F5) >= 0xD) *(unsigned char *)(s0 + 0x2F5) = 0;
-    i8 = *(unsigned char *)(s0 + 0x2F5) * 8;
+    if (s0->phase >= 0xD) s0->phase = 0;
+    i8 = s0->phase * 8;
     e = D_003C03F8 + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))(D_003C03F8 + i8 + 4);
     }
-    f0 = *(short *)(D_003C03F8 + *(unsigned char *)(s0 + 0x2F5) * 8);
+    f0 = *(short *)(D_003C03F8 + s0->phase * 8);
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_002A87E8(s0, 0);
 }
 

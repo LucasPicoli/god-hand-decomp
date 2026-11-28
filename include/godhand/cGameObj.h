@@ -113,7 +113,8 @@ struct cGameObj *cGameObj(struct cGameObj *self);
     int emNo;                           /* 0x564 enemy number of an enemy */ \
     short unk568;                       /* 0x568 set when a hit lands; cEm00's end-of-motion code clears it and calls the hit method */ \
     short unk56A;                       /* 0x56A countdown beside unk568 */ \
-    char unk56C[0x570 - 0x56C]; \
+    short unk56C;                       /* 0x56C variation, set to irand() & 3 and switched on */ \
+    short unk56E;                       /* 0x56E frame countdown, started at 15, 30 or 60 and counted to 0 */ \
     short effNo;                        /* 0x570 one more effect to kill with the object, -1 if none */ \
     short pad572; \
     int effArg;                         /* 0x574 the mode to kill it with */ \
@@ -155,6 +156,7 @@ typedef char cGameObj_chk_hp[GAMEOBJ_OFFSET(hp) == 0x54A ? 1 : -1];
 typedef char cGameObj_chk_kind[GAMEOBJ_OFFSET(kindName) == 0x4AC ? 1 : -1];
 typedef char cGameObj_chk_emno[GAMEOBJ_OFFSET(emNo) == 0x564 ? 1 : -1];
 typedef char cGameObj_chk_eff[GAMEOBJ_OFFSET(seqData) == 0x42C ? 1 : -1];
+typedef char cGameObj_chk_56E[GAMEOBJ_OFFSET(unk56E) == 0x56E ? 1 : -1];
 typedef char cGameObj_chk_effno[GAMEOBJ_OFFSET(effNo) == 0x570 ? 1 : -1];
 typedef char cGameObj_chk_scr[GAMEOBJ_OFFSET(scrFlags) == 0x5A0 ? 1 : -1];
 typedef char cGameObj_chk_scale[GAMEOBJ_OFFSET(scale) == 0x110 ? 1 : -1];

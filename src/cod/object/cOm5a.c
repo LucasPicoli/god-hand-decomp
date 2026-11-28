@@ -1,78 +1,79 @@
 /* TU: cOm5a [object] - recovered C++ class. */
 #include "godhand/vu0.h"
 #include "include_asm.h"
+#include "godhand/cOm5a.h"
 
 __attribute__((section(".text.cOm5a_isOpen")))
-unsigned char cOm5a_isOpen(unsigned char *a0) {
-    return a0[0x60D];
+unsigned char cOm5a_isOpen(cOm5a *a0) {
+    return a0->open;
 }
 
 __attribute__((section(".text.cOm5a_setOpenFix")))
-void cOm5a_setOpenFix(char *a0) {
+void cOm5a_setOpenFix(cOm5a *a0) {
     float buf[4] __attribute__((aligned(16)));
-    if (*(unsigned char *)(a0 + 0x60D) == 0) {
-        int *vt = *(int **)(a0 + 0x214);
-        short off = *(short *)((char *)vt + 0x80);
-        void *(*fp)() = *(void *(**)())((char *)vt + 0x84);
-        void *src = fp(a0 + off);
+    if (a0->open == 0) {
+        cVtEnt *vt = a0->base.vtable;
+        short off = vt[16].delta;
+        void *(*fp)(void *) = (void *(*)(void *))vt[16].pfn;
+        void *src = fp((char *)a0 + off);
         VU0_LQC2(4, src, 0);
         VU0_SQC2(4, buf, 0);
-        if (*(int *)(a0 + 0x600) == 0) {
-            buf[1] = buf[1] + *(float *)(a0 + 0x790);
+        if (a0->openType == 0) {
+            buf[1] = buf[1] + a0->unk790;
         } else {
-            buf[1] = buf[1] - *(float *)(a0 + 0x790);
+            buf[1] = buf[1] - a0->unk790;
         }
         {
-            int *vt2 = *(int **)(a0 + 0x214);
-            short off2 = *(short *)((char *)vt2 + 0x70);
-            void (*fp2)() = *(void (**)())((char *)vt2 + 0x74);
-            fp2(a0 + off2, buf);
+            cVtEnt *vt2 = a0->base.vtable;
+            short off2 = vt2[14].delta;
+            void (*fp2)(void *, float *) = (void (*)(void *, float *))vt2[14].pfn;
+            fp2((char *)a0 + off2, buf);
         }
-        *(int *)(a0 + 0x5B8) = *(int *)(a0 + 0x5B8) & ~0x100;
-        *(unsigned char *)(a0 + 0x60D) = 1;
-        *(unsigned char *)(a0 + 0x2F4) = 3;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->base.flags2 = a0->base.flags2 & ~0x100;
+        a0->open = 1;
+        a0->base.mode = 3;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.stepArg = 0;
     }
 }
 __attribute__((section(".text.cOm5a_setCloseFix")))
-void cOm5a_setCloseFix(char *a0) {
+void cOm5a_setCloseFix(cOm5a *a0) {
     float buf[4] __attribute__((aligned(16)));
-    if (*(unsigned char *)(a0 + 0x60D) == 1) {
-        int *vt = *(int **)(a0 + 0x214);
-        short off = *(short *)((char *)vt + 0x80);
-        void *(*fp)() = *(void *(**)())((char *)vt + 0x84);
-        void *src = fp(a0 + off);
+    if (a0->open == 1) {
+        cVtEnt *vt = a0->base.vtable;
+        short off = vt[16].delta;
+        void *(*fp)(void *) = (void *(*)(void *))vt[16].pfn;
+        void *src = fp((char *)a0 + off);
         VU0_LQC2(4, src, 0);
         VU0_SQC2(4, buf, 0);
-        if (*(int *)(a0 + 0x600) == 0) {
-            buf[1] = buf[1] - *(float *)(a0 + 0x790);
+        if (a0->openType == 0) {
+            buf[1] = buf[1] - a0->unk790;
         } else {
-            buf[1] = buf[1] + *(float *)(a0 + 0x790);
+            buf[1] = buf[1] + a0->unk790;
         }
         {
-            int *vt2 = *(int **)(a0 + 0x214);
-            short off2 = *(short *)((char *)vt2 + 0x70);
-            void (*fp2)() = *(void (**)())((char *)vt2 + 0x74);
-            fp2(a0 + off2, buf);
+            cVtEnt *vt2 = a0->base.vtable;
+            short off2 = vt2[14].delta;
+            void (*fp2)(void *, float *) = (void (*)(void *, float *))vt2[14].pfn;
+            fp2((char *)a0 + off2, buf);
         }
-        *(int *)(a0 + 0x5B8) = *(int *)(a0 + 0x5B8) | 0x100;
-        *(unsigned char *)(a0 + 0x60D) = 0;
-        *(unsigned char *)(a0 + 0x2F4) = 0;
-        *(unsigned char *)(a0 + 0x2F5) = 0;
-        *(unsigned char *)(a0 + 0x2F6) = 0;
-        *(unsigned char *)(a0 + 0x2F7) = 0;
+        a0->base.flags2 = a0->base.flags2 | 0x100;
+        a0->open = 0;
+        a0->base.mode = 0;
+        a0->base.phase = 0;
+        a0->base.step = 0;
+        a0->base.stepArg = 0;
     }
 }
 __attribute__((section(".text.cOm5a_setFaceClose")))
-void cOm5a_setFaceClose(int *a0) {
-    int p;
-    a0[0x182] = 2;
-    a0[0x181] = 0;
-    p = a0[0x189];
+void cOm5a_setFaceClose(cOm5a *a0) {
+    cDamageTake *p;
+    a0->faceState = 2;
+    a0->unk604 = 0.0f;
+    p = a0->take;
     if (p != 0) {
-        cDamageUnit_SetDamageCollActive(p, 0);
+        cDamageUnit_SetDamageCollActive((cDamageUnit *)p, 0);
     }
 }
 

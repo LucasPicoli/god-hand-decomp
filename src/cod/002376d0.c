@@ -2,8 +2,10 @@
 #include "godhand/cCollisionSolid.h"
 #include "godhand/cCoreSave.h"
 #include "godhand/motion.h"
+#include "godhand/cEm00.h"
+#include "godhand/cGameObj.h"
+#include "godhand/player.h"
 
-extern int Getplayer(void);
 extern unsigned int irand(void);
 extern int moveMotion(void *a0);
 extern void func_00274FE8(void *a0);
@@ -25,40 +27,40 @@ extern void cActionButton_set(void *a0, int a1, int a2,
 __attribute__((section(".text.func_002376D0")))
 void func_002376D0(void *a0)
 {
-    char *s0 = (char *)a0;
-    char *s1 = (char *)Getplayer();
+    cEm00 *s0 = a0;
+    cGameObj *s1 = Getplayer();
 
     cCollisionSolidManage_SetActive(&D_00462FC0, (cGameObj *)s0, 0);
-    *(int *)(s0 + 0x16D0) |= 0x21000;
-    *(float *)(s0 + 0x54C) = 3.0f;
-    switch (*(unsigned char *)(s0 + 0x2F6)) {
+    s0->emFlags |= 0x21000;
+    s0->hitFlash = 3.0f;
+    switch (s0->step) {
     case 0: {
-        int w = *(int *)(s0 + 0x304);
-        *(unsigned char *)(s0 + 0x1864) = 0;
+        int w = EM_RES(s0);
+        s0->unk1864 = 0;
         func_002A8578(s0, *(int *)(w + 0x20FC) + w, *(int *)(w + 0x2100) + w,
                       0, 0.0f, 0, 0);
-        *(short *)(s0 + 0x568) = 0;
-        *(short *)(s0 + 0x56E) = 0x3C;
+        s0->unk568 = 0;
+        s0->unk56E = 0x3C;
         switch (cCoreSave_getGameLevel(&D_00569B70)) {
         default:
         case 1:
-            *(short *)(s0 + 0x56A) = 0x39;
+            s0->unk56A = 0x39;
             break;
         case 2:
-            *(short *)(s0 + 0x56A) = 0x3E;
+            s0->unk56A = 0x3E;
             break;
         case 3:
-            *(short *)(s0 + 0x56A) = 0x43;
+            s0->unk56A = 0x43;
             break;
         case 4:
-            *(short *)(s0 + 0x56A) = 0x43;
+            s0->unk56A = 0x43;
             break;
         case 5:
-            *(short *)(s0 + 0x56A) = 0x48;
+            s0->unk56A = 0x48;
             break;
         }
-        *(short *)(s0 + 0x56C) = irand() & 3;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->unk56C = irand() & 3;
+        s0->step = s0->step + 1;
     }
     /* fallthrough */
     case 1:
@@ -68,68 +70,65 @@ void func_002376D0(void *a0)
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);
-        if (*(short *)(s0 + 0x56A) != 0) {
-            *(short *)(s0 + 0x56A) = *(unsigned short *)(s0 + 0x56A) - 1;
-        } else if (*(short *)(s1 + 0x54A) > 0 && *(short *)(s0 + 0x568) == 0) {
-            switch (*(short *)(s0 + 0x56C)) {
+        if (s0->unk56A != 0) {
+            s0->unk56A = s0->unk56A - 1;
+        } else if (s1->hp > 0 && s0->unk568 == 0) {
+            switch (s0->unk56C) {
             default:
             case 0:
                 if ((D_007474A8 & 0xD0) != 0)
-                    *(short *)(s0 + 0x56A) = 0;
+                    s0->unk56A = 0;
                 cActionButton_set(D_00568288, 0xB, 0x25,
                                                            0, func_002376C0, s0, 0);
                 break;
             case 1:
                 if ((D_007474A8 & 0xE0) != 0)
-                    *(short *)(s0 + 0x56A) = 0;
+                    s0->unk56A = 0;
                 cActionButton_set(D_00568288, 0xB, 0x25,
                                                            1, func_002376C0, s0, 0);
                 break;
             case 2:
                 if ((D_007474A8 & 0xB0) != 0)
-                    *(short *)(s0 + 0x56A) = 0;
+                    s0->unk56A = 0;
                 cActionButton_set(D_00568288, 0xB, 0x25,
                                                            2, func_002376C0, s0, 0);
                 break;
             case 3:
                 if ((D_007474A8 & 0x70) != 0)
-                    *(short *)(s0 + 0x56A) = 0;
+                    s0->unk56A = 0;
                 cActionButton_set(D_00568288, 0xB, 0x25,
                                                            3, func_002376C0, s0, 0);
                 break;
             }
         }
-        if (*(unsigned short *)(s0 + 0x3AC) & 0x10) {
-            *(short *)(s0 + 0x56A) = 0x3E7;
-            if (*(short *)(s0 + 0x568) == 0 || *(short *)(s1 + 0x54A) <= 0) {
-                *(unsigned char *)(s1 + 0x2F6) = *(unsigned char *)(s1 + 0x2F6) + 1;
-                *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        if (s0->seqFlags & 0x10) {
+            s0->unk56A = 0x3E7;
+            if (s0->unk568 == 0 || s1->hp <= 0) {
+                s1->step = s1->step + 1;
+                s0->step = s0->step + 1;
             }
         }
-        if (*(unsigned short *)(s0 + 0x3AC) & 1) {
-            int vt = *(int *)(s0 + 0x214);
-            short off = *(short *)(vt + 0xA8);
-            int (*fp)() = *(int (**)())(vt + 0xAC);
-            fp(s0 + off, 0x32, 0, 0, 0);
-            if (*(short *)(s0 + 0x54A) <= 0)
-                *(short *)(s0 + 0x54A) = 1;
+        if (s0->seqFlags & 1) {
+            CEM00_VCALL(s0, hit, 0x32, 0, 0, 0);
+            if (s0->hp <= 0)
+                s0->hp = 1;
         }
         break;
     case 2: {
-        int w = *(int *)(s0 + 0x304);
-        *(unsigned char *)(s0 + 0x1864) = 0;
+        int w = EM_RES(s0);
+        s0->unk1864 = 0;
         func_002A8578(s0, *(int *)(w + 0x2104) + w, *(int *)(w + 0x2108) + w,
                       0, 0.0f, 0, 0);
-        *(short *)(s0 + 0x56E) = 0x3C;
-        *(unsigned char *)(s0 + 0x2F6) = *(unsigned char *)(s0 + 0x2F6) + 1;
+        s0->unk56E = 0x3C;
+        s0->step = s0->step + 1;
     }
     /* fallthrough */
     case 3:
         if (moveMotion(s0)) {
-            *(unsigned char *)(s0 + 0x2F4) = 0;
-            *(unsigned char *)(s0 + 0x2F5) = 0x6C;
-            *(unsigned char *)(s0 + 0x2F6) = 0;
-            *(unsigned char *)(s0 + 0x2F7) = 0;
+            s0->mode = 0;
+            s0->phase = 0x6C;
+            s0->step = 0;
+            s0->stepArg = 0;
         }
         cObjBase_addNullSpeed_Rotation(s0, 1.0f);
         cObjBase_addNullSpeed(s0, 1.0f);

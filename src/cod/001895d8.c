@@ -7,6 +7,7 @@
 #include "godhand/CustomIDWork.h"
 #include "godhand/cGameObj.h"
 #include "godhand/vu0.h"
+#include "godhand/cObj.h"
 
 extern void cEmSetParam_setEm(cEmSetParam *param, int entry);
 extern void cEmWrap_StartAction(void *wrap);
@@ -214,7 +215,7 @@ extern StateTable D_004235D0;
 __attribute__((section(".text.StateObj_runHandlerB")))
 void StateObj_runHandlerB(void *a0)
 {
-    char *s0 = (char *)a0;
+    cObj *s0 = a0;
     StateTable tbl;
     char *e;
     int i8;
@@ -225,21 +226,21 @@ void StateObj_runHandlerB(void *a0)
     long entry;
     if (ClearField5B4IfFlagUnset_1B76B0((int)s0) == 0) return;
     tbl = D_004235D0;
-    i8 = *(unsigned char *)(s0 + 0x2F4) * 8;
+    i8 = s0->mode * 8;
     e = (char *)&tbl + i8;
     type = *(short *)(e + 2);
     if (type >= 0) {
-        int base = *(int *)(s0 + *(short *)(e + 4));
+        int base = *(int *)((char *)s0 + *(short *)(e + 4));
         entry = *(long *)(base + type * 8 - 8);
         fp = (int (*)(int))(int)(entry >> 32);
     } else {
         fp = *(int (**)(int))((char *)&tbl + i8 + 4);
     }
-    f0 = tbl.e[*(unsigned char *)(s0 + 0x2F4)].adjust;
+    f0 = tbl.e[s0->mode].adjust;
     if (type >= 0)
         arg = (short)entry + f0;
     else
         arg = f0;
-    fp((int)(s0 + arg));
+    fp((int)((char *)s0 + arg));
     func_001B76D8(s0);
 }
