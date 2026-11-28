@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceDma.h"
 #include "godhand/eeKernel.h"
 
 extern void _IO_free_backup_area(int *a0);
-extern void WaitDma(void *a0);
 
 /* MATCH via ee-2.9-991111. */
 
@@ -24,14 +24,14 @@ void _IO_seekpos(int *a0, int a1, int a2)
 
 
 __attribute__((section(".text.sceDmaSend")))
-void sceDmaSend(int *a0, int a1)
+void sceDmaSend(sceDmaChan *chan, void *tag)
 {
-    int s1 = CheckAddress(a1);
-    WaitDma(a0);
-    if ((unsigned int)a0[0xC] != 0xFFFFFFFFU)
-        a0[0xC] = s1;
-    a0[8] = 0;
-    a0[0] = (a0[0] & ~0xC) | 0x105;
+    unsigned int addr = CheckAddress((unsigned int)tag);
+    WaitDma(chan);
+    if ((unsigned int)chan->tadr != 0xFFFFFFFFU)
+        chan->tadr = (void *)addr;
+    chan->qwc = 0;
+    chan->chcr = (chan->chcr & ~0xC) | 0x105;
 }
 
 /* MATCH via ee-2.9-991111. */

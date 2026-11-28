@@ -1,16 +1,14 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceDma.h"
 #include "godhand/eeKernel.h"
-
-typedef struct {
-    volatile unsigned int chcr;
-} sceDmaChan;
 
 #define D_ENABLER (*(volatile unsigned int *)0x1000F520)
 #define D_ENABLEW (*(volatile unsigned int *)0x1000F590)
 #define D_CTRL    (*(volatile unsigned int *)0x1000E000)
 
+
 __attribute__((section(".text.sceDmaPause")))
-unsigned int sceDmaPause(sceDmaChan *chan)
+unsigned int sceDmaPause(volatile sceDmaChan *chan)
 {
     int oldstat;
     unsigned int en;

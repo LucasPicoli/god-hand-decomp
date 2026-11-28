@@ -1,8 +1,8 @@
 /* ee-2.9-991111 matched TU. */
+#include "godhand/sceDma.h"
 
 extern void func_0031DFA8(void *a0, void *a1);
 extern float func_0031EDA0(int class, unsigned int sign, int exp, unsigned int frac);
-extern void WaitDma(void *);
 
 struct fp32 { int a; int b; int c; int d; long long e; long long f; };
 
@@ -21,24 +21,12 @@ float dptofp(double a0)
 }
 
 __attribute__((section(".text.sceDmaSendN")))
-void sceDmaSendN(void *a0, int a1, void *a2)
+void sceDmaSendN(sceDmaChan *chan, void *addr, int qwc)
 {
-    void *s0;
-    int s1;
-    void *s2;
-    int v0;
-    int v1;
-
-    s0 = a0;
-    s2 = a2;
-    s1 = CheckAddress(a1);
-    WaitDma(s0);
-    v1 = *(int *)((char *)s0 + 0x10);
-    if ((unsigned int)v1 != 0xFFFFFFFFu)
-        *(int *)((char *)s0 + 0x10) = s1;
-    *(void **)((char *)s0 + 0x20) = s2;
-    v0 = *(int *)s0;
-    v0 = v0 & -13;
-    v0 = v0 | 0x101;
-    *(int *)s0 = v0;
+    unsigned int src = CheckAddress((unsigned int)addr);
+    WaitDma(chan);
+    if ((unsigned int)chan->madr != 0xFFFFFFFFU)
+        chan->madr = (void *)src;
+    chan->qwc = qwc;
+    chan->chcr = (chan->chcr & ~0xC) | 0x101;
 }
