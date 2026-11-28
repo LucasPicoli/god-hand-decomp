@@ -13,7 +13,8 @@ typedef struct {
     void *tadr;                 /* 0x30 */
 } sceDmaChan;
 
-#define SCE_DMA_GIF ((sceDmaChan *)0x1000A000)
+/* The GIF channel's registers. The vendor's SCE_DMA_GIF is the channel id 2. */
+#define DMA_GIF_CHAN ((sceDmaChan *)0x1000A000)
 
 /* Spin until the channel stops; pause it if that takes too long. */
 void WaitDma(volatile sceDmaChan *chan);

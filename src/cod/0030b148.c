@@ -16,9 +16,9 @@
  * test always passes, and retail still reads the counter. */
 #define VBLANK_SEND_PACKET(limit)                                               \
     {                                                                           \
-        if (D_00753D84 != 0 && sceDmaSync(SCE_DMA_GIF, 1, 0) == 0               \
+        if (D_00753D84 != 0 && sceDmaSync(DMA_GIF_CHAN, 1, 0) == 0              \
             && D_00753D80 >= (limit)) {                                         \
-            sceDmaSend(SCE_DMA_GIF, D_00752D80);                                \
+            sceDmaSend(DMA_GIF_CHAN, D_00752D80);                               \
             D_00753D84 = 0;                                                     \
         }                                                                       \
     }

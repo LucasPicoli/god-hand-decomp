@@ -6,7 +6,6 @@
 #define D_ENABLEW (*(volatile unsigned int *)0x1000F590)
 #define D_CTRL    (*(volatile unsigned int *)0x1000E000)
 
-
 __attribute__((section(".text.sceDmaPause")))
 unsigned int sceDmaPause(volatile sceDmaChan *chan)
 {

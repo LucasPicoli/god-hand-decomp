@@ -28,7 +28,7 @@ int func_00134E18(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cC
     CVEC_ZERO(near);
     q = &near;
     func_00137670(&center, box, q);
-    dx = center.x - q->x;
+    dx = center.x - near.x;
     dz = center.z - q->z;
     FPU_SQRT_S(dist, dx * dx + dz * dz);
     if (a->radius < dist)

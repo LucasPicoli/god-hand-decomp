@@ -218,8 +218,8 @@ int func_00135250(cCollisionSolidManage *self, float *amin, float *amax, float *
 /* Nonzero when sphere a of unit ua touches sphere b of unit ub (assembly). */
 int func_00134CB0(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
                   cCollisionSolidManageUnit *ub, cCollisionSolidObj *b);
-/* Nonzero when sphere a of unit ua touches box b of unit ub, pushing the two
- * apart; swapped is 1 when the box is the solid being checked. */
+/* Nonzero when sphere a of unit ua touches box b of unit ub, pushing ua's
+ * owner out (ub's when swapped); swapped is 1 when the box is the solid being checked. */
 int func_00134E18(cCollisionSolidManage *self, cCollisionSolidManageUnit *ua, cCollisionSolidObj *a,
                   cCollisionSolidManageUnit *ub, cCollisionSolidBox *b, int swapped);
 
