@@ -1,5 +1,6 @@
 /* sn-2.95.3-136 matched TU. */
 #include "godhand/globals.h"
+#include "godhand/mtx.h"
 
 extern float sqrtf(float x);
 
